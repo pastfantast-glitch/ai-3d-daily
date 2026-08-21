@@ -1,0 +1,1 @@
+document.addEventListener('DOMContentLoaded',()=>{const groups=[...document.querySelectorAll('details')];groups.forEach((item)=>{item.addEventListener('toggle',()=>{if(!item.open)return;groups.forEach((other)=>{if(other!==item&&other.open)other.open=false;});});});});
