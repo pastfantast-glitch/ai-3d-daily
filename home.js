@@ -73,6 +73,16 @@ document.addEventListener('DOMContentLoaded',()=>{
     link.replaceWith(article);
   });
 
+  const analysisDetails=[...document.querySelectorAll('.home-full-analysis,.more-card details')];
+  analysisDetails.forEach(item=>{
+    item.addEventListener('toggle',()=>{
+      if(!item.open)return;
+      analysisDetails.forEach(other=>{
+        if(other!==item&&other.open)other.open=false;
+      });
+    });
+  });
+
   const style=document.createElement('style');
   style.textContent=`
     .home-full-analysis{margin-top:12px;border:1px solid #e1e5eb;border-radius:10px;background:#fafbfc;overflow:hidden}
