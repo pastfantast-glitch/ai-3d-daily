@@ -8,108 +8,189 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <header class="hero">
-    <div class="wrap">
-      <div class="eyebrow">AI · 3D · GAME ART DAILY</div>
-      <h1>AI 3D Daily</h1>
-      <p class="lead">每天替 3D 美術與遊戲開發者篩選真正值得看的更新、工作流與產業資訊。</p>
-      <div class="meta">2026 / 08 / 21 · 測試版</div>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <div>
+        <div class="eyebrow">AI · 3D · GAME ART DAILY</div>
+        <h1>AI 3D Daily</h1>
+        <p class="lead">替 3D 美術與遊戲開發者整理真正值得看的工具更新、工作流與產業資訊。</p>
+      </div>
+      <div class="date-card">
+        <span>今日摘要</span>
+        <strong>2026 / 08 / 21</strong>
+        <small>測試版</small>
+      </div>
     </div>
   </header>
 
-  <main class="wrap">
-    <section>
-      <div class="section-head">
+  <nav class="quick-nav" aria-label="快速導覽">
+    <div class="wrap nav-scroll">
+      <a href="#top5">TOP 5</a>
+      <a href="#c1">01 生成式 AI</a>
+      <a href="#c2">02 3D 工具</a>
+      <a href="#c3">03 遊戲引擎</a>
+      <a href="#c4">04 製作流程</a>
+      <a href="#c5">05 價格授權</a>
+      <a href="#c6">06 產業新聞</a>
+      <a href="#c7">07 Stefan 3D AI</a>
+    </div>
+  </nav>
+
+  <main class="wrap main-layout">
+    <section id="top5" class="section-block">
+      <div class="section-title-row">
         <div>
           <span class="kicker">TODAY</span>
-          <h2>🔥 今日必看 TOP 5</h2>
+          <h2>今日必看 TOP 5</h2>
         </div>
-        <p>先看這 5 則，就能掌握今天最重要的變化。</p>
+        <p>只想快速掌握今天重點，先看這一區。</p>
       </div>
 
-      <div class="top-grid">
-        <article class="card featured">
-          <img src="https://cdn.meshy.ai/landing-assets/blog/3d-modeling-and-animation/create-3d-elements-using-meshy-ai.webp" alt="Meshy AI 3D" onerror="this.remove()" />
-          <div class="content">
-            <div class="tag">AI 3D · ★★★★★</div>
-            <h3>Meshy 7：多視圖生成開始分離造型與貼圖參考</h3>
-            <p>Meshy 7 已進入 API，並加入可獨立指定貼圖參考圖片的能力。這讓「四視圖控制幾何、材質圖控制 Texture」更接近 production workflow。</p>
-            <div class="impact"><b>對 3D 美術：</b>適合角色裝備、場景 Prop、載具與需要造型一致性的遊戲資產。</div>
-            <a href="https://docs.meshy.ai/en/api/changelog" target="_blank" rel="noreferrer">查看官方來源 →</a>
-          </div>
-        </article>
+      <article class="hero-story">
+        <div class="hero-media">
+          <img src="https://cdn.meshy.ai/landing-assets/blog/3d-modeling-and-animation/create-3d-elements-using-meshy-ai.webp" alt="Meshy AI 3D" onerror="this.style.display='none'" />
+        </div>
+        <div class="hero-copy">
+          <div class="meta-line"><span class="tag">AI 3D</span><span class="rating">★★★★★</span></div>
+          <h3>Meshy 7：多視圖生成開始分離造型與貼圖參考</h3>
+          <p>Meshy 7 已進入 API，並加入可獨立指定貼圖參考圖片的能力。這讓「四視圖控制幾何、材質圖控制 Texture」更接近 production workflow。</p>
+          <div class="impact"><strong>對 3D 美術：</strong>適合角色裝備、場景 Prop、載具與需要造型一致性的遊戲資產。</div>
+          <a class="source-link" href="https://docs.meshy.ai/en/api/changelog" target="_blank" rel="noreferrer">查看官方來源 →</a>
+        </div>
+      </article>
 
-        <article class="card featured">
-          <div class="visual unity">UNITY AI</div>
-          <div class="content">
-            <div class="tag">ENGINE · ★★★★★</div>
+      <div class="top-list">
+        <article class="story-row">
+          <div class="rank">02</div>
+          <div class="story-copy">
+            <div class="meta-line"><span class="tag">ENGINE</span><span class="rating">★★★★★</span></div>
             <h3>Unity AI：開始真正理解 Scene 與 Project Context</h3>
-            <p>Unity AI 的方向已從單純回答問題，走向理解 Scene Hierarchy、GameObject、Component 與 Package，並透過 Agent 模式協助實際操作專案。</p>
-            <div class="impact"><b>對 3D 美術：</b>未來可用自然語言找材質、檢查 Prefab、LOD、貼圖規格與大量場景物件。</div>
-            <a href="https://unity.com/blog/unity-ai-how-to-get-started" target="_blank" rel="noreferrer">查看官方來源 →</a>
+            <p>Unity AI 正從聊天助手走向理解 Scene Hierarchy、GameObject、Component 與 Package 的 Agent 模式。</p>
+            <div class="impact"><strong>對美術：</strong>未來可用自然語言找材質、檢查 Prefab、LOD、貼圖規格與大量場景物件。</div>
           </div>
+          <a class="source-link" href="https://unity.com/blog/unity-ai-how-to-get-started" target="_blank" rel="noreferrer">來源 →</a>
         </article>
 
-        <article class="card featured">
-          <img src="https://cdn2.unrealengine.com/03-body-1920x1080-1920x1080-ee3e03f0914f.jpg?resize=1&w=1600" alt="Unreal Engine" onerror="this.remove()" />
-          <div class="content">
-            <div class="tag">UNREAL · ★★★★★</div>
+        <article class="story-row">
+          <div class="rank">03</div>
+          <div class="story-copy">
+            <div class="meta-line"><span class="tag">UNREAL</span><span class="rating">★★★★★</span></div>
             <h3>Unreal Engine 5.8：PCG、Mesh Terrain 與效能持續推進</h3>
             <p>UE5.8 聚焦大型世界、PCG、Mesh Terrain、植被與角色流程，並持續改善 Lumen、MegaLights 與 shader 效率。</p>
-            <div class="impact"><b>對場景美術：</b>更適合程序化場景、大量植被與大型關卡的 production。</div>
-            <a href="https://www.unrealengine.com/news/unreal-engine-5-8-is-now-available" target="_blank" rel="noreferrer">查看官方來源 →</a>
+            <div class="impact"><strong>對場景美術：</strong>更適合程序化場景、大量植被與大型關卡 production。</div>
           </div>
+          <a class="source-link" href="https://www.unrealengine.com/news/unreal-engine-5-8-is-now-available" target="_blank" rel="noreferrer">來源 →</a>
         </article>
 
-        <article class="card featured">
-          <div class="visual blender">BLENDER 5.2 LTS</div>
-          <div class="content">
-            <div class="tag">DCC · ★★★★★</div>
+        <article class="story-row">
+          <div class="rank">04</div>
+          <div class="story-copy">
+            <div class="meta-line"><span class="tag">DCC</span><span class="rating">★★★★★</span></div>
             <h3>Blender 5.2 LTS：適合正式建立長期 Production Pipeline</h3>
-            <p>LTS 版本適合團隊把 Blender 作為穩定基準，尤其是正在建立 3ds Max → Blender → Unity / Unreal 流程時。</p>
-            <div class="impact"><b>對團隊：</b>優先使用 LTS 可降低插件、檔案格式與版本相容風險。</div>
-            <a href="https://www.blender.org/download/lts/" target="_blank" rel="noreferrer">查看官方來源 →</a>
+            <p>LTS 版本適合團隊把 Blender 作為穩定基準，尤其是建立 3ds Max → Blender → Unity / Unreal 流程時。</p>
+            <div class="impact"><strong>對團隊：</strong>優先使用 LTS 可降低插件、檔案格式與版本相容風險。</div>
           </div>
+          <a class="source-link" href="https://www.blender.org/download/lts/" target="_blank" rel="noreferrer">來源 →</a>
         </article>
 
-        <article class="card featured">
-          <div class="visual pipeline">AI → DCC → ENGINE</div>
-          <div class="content">
-            <div class="tag">WORKFLOW · ★★★★★</div>
-            <h3>AI 3D 的競爭焦點正在從「生成模型」轉向「可修改的工作流」</h3>
-            <p>局部編輯、部件理解、Retopo、貼圖重建、Rig 與引擎輸出，正在成為新一代 AI 3D 工具真正的差異點。</p>
-            <div class="impact"><b>對遊戲美術：</b>是否能進 production，已比單張 Demo 的視覺品質更重要。</div>
-            <a href="https://tencent-hunyuan.github.io/Hunyuan3D-Buffalo1.0/" target="_blank" rel="noreferrer">查看案例 →</a>
+        <article class="story-row">
+          <div class="rank">05</div>
+          <div class="story-copy">
+            <div class="meta-line"><span class="tag">WORKFLOW</span><span class="rating">★★★★★</span></div>
+            <h3>AI 3D 的競爭焦點正從「生成模型」轉向「可修改工作流」</h3>
+            <p>局部編輯、部件理解、Retopo、貼圖重建、Rig 與引擎輸出，逐漸成為新一代 AI 3D 工具真正的差異點。</p>
+            <div class="impact"><strong>對遊戲美術：</strong>能否順利進 production，比單次 Demo 的視覺效果更重要。</div>
           </div>
+          <a class="source-link" href="https://tencent-hunyuan.github.io/Hunyuan3D-Buffalo1.0/" target="_blank" rel="noreferrer">來源 →</a>
         </article>
       </div>
     </section>
 
-    <section>
-      <div class="section-head">
-        <div><span class="kicker">7 CATEGORIES</span><h2>每日追蹤分類</h2></div>
-        <p>原則上每類最多 5 則；沒有值得看的內容就不硬湊。</p>
+    <section class="section-block categories-block">
+      <div class="section-title-row">
+        <div>
+          <span class="kicker">7 CATEGORIES</span>
+          <h2>每日追蹤分類</h2>
+        </div>
+        <p>每類最多 5 則；沒有值得看的內容就不硬湊。</p>
       </div>
 
-      <div class="category-grid">
-        <article class="category"><div class="num">01</div><h3>2D 生成式 AI / 3D 生成式 AI</h3><p>新模型、Image-to-3D、Multi-view、Texture、Video、Agent 與 AI 3D Pipeline。</p><ul><li>Meshy 7 / Multi-view workflow</li><li>Hunyuan3D-Buffalo 局部編輯</li><li>2D 生成工具與透明素材流程</li></ul></article>
-        <article class="category"><div class="num">02</div><h3>3D 美術工具 / 3D 軟體更新</h3><p>Blender、3ds Max、Maya、ZBrush、Substance、Houdini 與相關外掛。</p><ul><li>Blender LTS</li><li>3ds Max USD / Skin / Material</li><li>Maya Retopo / OpenPBR / Toon</li></ul></article>
-        <article class="category"><div class="num">03</div><h3>Unity / Unreal / 其他遊戲引擎</h3><p>Renderer、Lighting、Shader、PCG、AI Agent、效能與美術工作流。</p><ul><li>Unity AI</li><li>Unreal Engine 5.8</li><li>Godot 與其他引擎重要更新</li></ul></article>
-        <article class="category"><div class="num">04</div><h3>3D 美術實際製作流程與案例</h3><p>場景、角色、物件、材質、燈光、引擎整合與 Optimization。</p><ul><li>Concept → Blockout → Modular</li><li>Sculpt → Retopo → Bake → Engine</li><li>AI → DCC → Engine</li></ul></article>
-        <article class="category"><div class="num">05</div><h3>美術軟體價格 / 授權 / 商業化</h3><p>訂閱價格、商用授權、AI Credit、免費版限制與企業方案。</p><ul><li>只報真正有變化的項目</li><li>不重複沒有更新的價格資訊</li></ul></article>
-        <article class="category"><div class="num">06</div><h3>美術與遊戲產業重要新聞</h3><p>工作室、平台、AI 導入、裁員、收購、外包與引擎生態。</p><ul><li>優先評估對 3D Artist 的長期影響</li><li>過濾一般遊戲宣傳新聞</li></ul></article>
-        <article class="category"><div class="num">07</div><h3>Stefan 3D AI 最新內容</h3><p>固定追蹤工具實測、AI 3D workflow 與 production 案例，並盡量交叉比對官方資訊。</p><ul><li>工具到底好不好用</li><li>能否進 Unity / Unreal</li><li>Topology / UV / Texture / Rig 評估</li></ul><a href="https://www.youtube.com/@stefan_3d_ai" target="_blank" rel="noreferrer">前往 Stefan 3D AI →</a></article>
+      <div class="category-stack">
+        <article class="category-section" id="c1">
+          <div class="category-index">01</div>
+          <div class="category-body">
+            <div class="category-head"><h3>2D 生成式 AI / 3D 生成式 AI</h3><span>模型 · Image-to-3D · Multi-view · Texture · Agent</span></div>
+            <ul class="brief-list"><li><strong>Meshy 7 / Multi-view workflow</strong><span>造型與貼圖參考開始分離控制。</span></li><li><strong>Hunyuan3D-Buffalo</strong><span>局部編輯與部件理解更接近 production。</span></li><li><strong>2D 生成工具</strong><span>持續關注透明素材、角色設定與場景概念流程。</span></li></ul>
+          </div>
+        </article>
+
+        <article class="category-section" id="c2">
+          <div class="category-index">02</div>
+          <div class="category-body">
+            <div class="category-head"><h3>3D 美術工具 / 3D 軟體更新</h3><span>Blender · 3ds Max · Maya · ZBrush · Substance · Houdini</span></div>
+            <ul class="brief-list"><li><strong>Blender LTS</strong><span>追蹤正式 production 版本與插件相容性。</span></li><li><strong>3ds Max</strong><span>USD、Skin、Material 與場景流程更新。</span></li><li><strong>Maya / ZBrush / Substance</strong><span>Retopo、OpenPBR、貼圖與角色流程。</span></li></ul>
+          </div>
+        </article>
+
+        <article class="category-section" id="c3">
+          <div class="category-index">03</div>
+          <div class="category-body">
+            <div class="category-head"><h3>Unity / Unreal / 其他遊戲引擎</h3><span>Renderer · Lighting · Shader · PCG · AI Agent · Optimization</span></div>
+            <ul class="brief-list"><li><strong>Unity AI</strong><span>關注 Agent 對場景與美術資產管理的實際能力。</span></li><li><strong>Unreal Engine</strong><span>PCG、Lumen、Nanite、Mesh Terrain 與大型場景。</span></li><li><strong>其他引擎</strong><span>只保留會影響美術流程的重要更新。</span></li></ul>
+          </div>
+        </article>
+
+        <article class="category-section" id="c4">
+          <div class="category-index">04</div>
+          <div class="category-body">
+            <div class="category-head"><h3>3D 美術實際製作流程與案例</h3><span>場景 · 角色 · 物件 · 材質 · 燈光 · 引擎整合</span></div>
+            <ul class="brief-list"><li><strong>場景</strong><span>Concept → Blockout → Modular Kit → Engine。</span></li><li><strong>角色</strong><span>Sculpt → Retopo → Bake → Texture → Rig → Engine。</span></li><li><strong>AI Pipeline</strong><span>AI → DCC → Cleanup → Engine 的真實可用性。</span></li></ul>
+          </div>
+        </article>
+
+        <article class="category-section" id="c5">
+          <div class="category-index">05</div>
+          <div class="category-body">
+            <div class="category-head"><h3>美術軟體價格 / 授權 / 商業化</h3><span>訂閱 · 商用授權 · AI Credit · 免費版限制</span></div>
+            <ul class="brief-list"><li><strong>只報真正有變化的項目</strong><span>價格與授權沒有改變就不重複。</span></li><li><strong>優先追蹤</strong><span>Adobe、Autodesk、Unity、Epic、AI 3D 工具與重要外掛。</span></li></ul>
+          </div>
+        </article>
+
+        <article class="category-section" id="c6">
+          <div class="category-index">06</div>
+          <div class="category-body">
+            <div class="category-head"><h3>美術與遊戲產業重要新聞</h3><span>工作室 · AI 導入 · 收購 · 裁員 · 外包 · 引擎生態</span></div>
+            <ul class="brief-list"><li><strong>對 3D Artist 的影響優先</strong><span>分析工作型態、職缺與 production 變化。</span></li><li><strong>過濾一般宣傳</strong><span>一般遊戲上市、活動與行銷新聞不優先。</span></li></ul>
+          </div>
+        </article>
+
+        <article class="category-section" id="c7">
+          <div class="category-index">07</div>
+          <div class="category-body">
+            <div class="category-head"><h3>Stefan 3D AI 最新內容</h3><span>工具實測 · AI 3D Workflow · Production Case Study</span></div>
+            <ul class="brief-list"><li><strong>工具到底好不好用</strong><span>不只看 Demo，而是看 workflow。</span></li><li><strong>Production 評估</strong><span>Topology、UV、Texture、Rig 與能否進 Unity / Unreal。</span></li></ul>
+            <a class="source-link" href="https://www.youtube.com/@stefan_3d_ai" target="_blank" rel="noreferrer">前往 Stefan 3D AI →</a>
+          </div>
+        </article>
       </div>
     </section>
 
     <section class="try-box">
-      <span class="kicker">TRY TODAY</span>
-      <h2>🧪 今天值得實測</h2>
-      <p><b>Meshy Multi-view Geometry + Texture Reference 分離</b></p>
-      <ol><li>準備四視圖作為幾何參考。</li><li>另外準備 2–4 張材質／配色參考。</li><li>生成後比較不同 Polycount。</li><li>進 Blender / Max 檢查 Silhouette、UV、Topology 與 Texture Projection。</li><li>最後進 Unity / Unreal 驗證是否真的能用。</li></ol>
+      <div>
+        <span class="kicker">TRY TODAY</span>
+        <h2>今天值得實測</h2>
+        <p><strong>Meshy Multi-view Geometry + Texture Reference 分離</strong></p>
+      </div>
+      <ol>
+        <li>準備四視圖作為幾何參考。</li>
+        <li>另外準備 2–4 張材質／配色參考。</li>
+        <li>生成後比較不同 Polycount。</li>
+        <li>進 Blender / Max 檢查 Silhouette、UV、Topology 與 Texture Projection。</li>
+        <li>最後進 Unity / Unreal 驗證是否真的能用。</li>
+      </ol>
     </section>
   </main>
 
-  <footer><div class="wrap">AI 3D Daily · Curated for 3D Game Art Production</div></footer>
+  <footer><div class="wrap footer-inner"><strong>AI 3D Daily</strong><span>Curated for 3D Game Art Production</span></div></footer>
 </body>
 </html>
