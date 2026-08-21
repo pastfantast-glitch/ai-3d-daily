@@ -19,7 +19,29 @@ document.addEventListener('DOMContentLoaded',()=>{
     ]
   };
 
+  document.body.classList.add('archive-page');
+  const siteHead=document.querySelector('.site-head');
+  if(siteHead){
+    const title=siteHead.querySelector('h1');
+    const intro=siteHead.querySelector('.intro');
+    if(title) title.textContent=`${report.date} 歷史日報`;
+    if(intro) intro.textContent='完整保存當日情報、Production 分析、實測方式與來源。平常閱讀以首頁為主；這裡作為歷史快照與查閱資料庫。';
+    const note=document.createElement('div');
+    note.className='archive-note';
+    note.textContent='ARCHIVE DATABASE · 當日完整快照';
+    const stats=siteHead.querySelector('.stats');
+    if(stats) stats.before(note);
+  }
+  const top=document.getElementById('top');
+  if(top){
+    const kicker=top.querySelector('.section-kicker');
+    const heading=top.querySelector('h2');
+    if(kicker) kicker.textContent='ARCHIVE SNAPSHOT';
+    if(heading) heading.textContent='當日必看 TOP 5';
+  }
+
   const groups=[...document.querySelectorAll('details')];
+  groups.forEach(item=>{item.open=false;});
   groups.forEach(item=>{
     item.addEventListener('toggle',()=>{
       if(!item.open)return;
@@ -32,6 +54,9 @@ document.addEventListener('DOMContentLoaded',()=>{
 
   const style=document.createElement('style');
   style.textContent=`
+    .archive-page .site-head{background:#fafbfc}
+    .archive-note{display:inline-flex;margin:18px 0 0;padding:6px 9px;border:1px solid #dfe3ea;border-radius:999px;background:#fff;color:#68717f;font-size:.67rem;font-weight:900;letter-spacing:.05em}
+    .archive-page details:not([open]) .detail-body{display:none}
     .dailybar{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.97);backdrop-filter:blur(12px);border-bottom:1px solid #dfe4eb;box-shadow:0 4px 14px rgba(25,35,52,.05)}
     .dailybar-inner{width:min(980px,calc(100% - 32px));margin:auto;display:flex;align-items:stretch;min-height:48px;overflow:hidden}
     .daily-id{display:flex;align-items:center;gap:8px;flex:0 0 auto;padding-right:12px;border-right:1px solid #dfe4eb;background:rgba(255,255,255,.98);z-index:2}
@@ -59,7 +84,7 @@ document.addEventListener('DOMContentLoaded',()=>{
       .day-link{min-width:21px;height:24px}
       .daily-nav a{padding:0 10px;font-size:.74rem}
     }
-    @media(max-width:440px){.daily-date{font-size:.63rem}.daily-home{font-size:0}.daily-home:after{content:'← 總覽';font-size:.73rem}}
+    @media(max-width:440px){.daily-date{font-size:.63rem}.daily-home{font-size:0}.daily-home:after{content:'← 首頁';font-size:.73rem}}
   `;
   document.head.append(style);
 
@@ -67,9 +92,9 @@ document.addEventListener('DOMContentLoaded',()=>{
   const next=report.next?`<a class="day-link" href="../${report.next}/" aria-label="後一日日報">→</a>`:'';
   const bar=document.createElement('nav');
   bar.className='dailybar';
-  bar.setAttribute('aria-label','當日日報導覽');
+  bar.setAttribute('aria-label','歷史日報導覽');
   bar.innerHTML=`<div class="dailybar-inner">
-    <div class="daily-id"><a class="daily-home" href="../">← 總覽</a><div class="date-nav">${prev}<span class="daily-date">${report.date}</span>${next}</div></div>
+    <div class="daily-id"><a class="daily-home" href="../">← 首頁</a><div class="date-nav">${prev}<span class="daily-date">${report.date}</span>${next}</div></div>
     <div class="daily-nav">
       <a href="#top" data-section="top">TOP 5</a>
       <a href="#ai" data-section="ai">生成式 AI</a>
