@@ -19,13 +19,33 @@
       <p class="intro">先看這週目前有哪些值得持續關注的主題，再往下看今天新增與更新了什麼。這週目前的主線集中在 AI 3D 可控性、遊戲引擎自動化與 Production Pipeline 穩定性。</p>
     </div>
     <div class="week-summary" aria-label="本週概況">
-      <div class="week-counts"><span><b>0</b> NEW</span><span><b>2</b> UPDATE</span><span><b>3</b> 持續追蹤</span></div>
+      <div class="week-counts"><span><b>0</b> NEW</span><span><b>2</b> UPDATE</span><span><b>3</b> 持續追蹤</span><span class="week-asof">截至 08/21</span></div>
       <div class="week-topics">
-        <div><span class="pill purple">AI 3D</span><b>Meshy 7</b><span class="status-badge status-update">UPDATE</span><small>多視圖 Geometry / Texture Reference 分離</small></div>
-        <div><span class="pill blue">UNREAL</span><b>UE 5.8</b><span class="status-badge status-track">持續追蹤</span><small>PCG、Mesh Terrain、大型場景流程</small></div>
-        <div><span class="pill blue">UNITY AI</span><b>Unity AI</b><span class="status-badge status-track">持續追蹤</span><small>Project-aware Agent 與美術 QA</small></div>
-        <div><span class="pill green">BLENDER</span><b>Blender 5.2 LTS</b><span class="status-badge status-track">持續追蹤</span><small>Production Baseline 與 Export SOP</small></div>
-        <div><span class="pill orange">授權</span><b>Mudbox</b><span class="status-badge status-update">UPDATE</span><small>停售時程與 Pipeline 遷移</small></div>
+        <article class="week-topic">
+          <div class="week-topic-head"><span class="pill purple">AI 3D</span><h2>Meshy 7</h2><span class="status-badge status-update">UPDATE</span></div>
+          <p>Meshy 7 把控制模型形體的多視圖參考與控制貼圖的參考圖分開處理，四視圖可以專心負責 Silhouette 與比例，彩色設定圖則負責材質。對角色裝備、武器、載具與 Prop，這比單純提高生成品質更重要，因為 AI 3D 開始更接近實際資產製作流程。</p>
+          <small>值得注意：可直接拿已有標準答案的資產測試，觀察 Cleanup 與人工 Blockout 的總時間差。</small>
+        </article>
+        <article class="week-topic">
+          <div class="week-topic-head"><span class="pill blue">UNREAL</span><h2>UE 5.8</h2><span class="status-badge status-track">持續追蹤</span></div>
+          <p>UE 5.8 持續把 PCG、Mesh Terrain、植被與大型世界流程往規則化製作推進。Environment Artist 的工作會更偏向 Modular Kit、Variation 與 Scatter 規則，而不是逐顆擺設；對大型地圖價值很高，但 Experimental 功能仍需要保留替代方案。</p>
+          <small>值得注意：先在支線 Level 或測試場景驗證控制力、修改成本與 GPU 開銷。</small>
+        </article>
+        <article class="week-topic">
+          <div class="week-topic-head"><span class="pill blue">UNITY AI</span><h2>Unity AI</h2><span class="status-badge status-track">持續追蹤</span></div>
+          <p>Unity AI 的重點已經從單純產生 C#，轉向理解 Scene、GameObject、Component 與 Project Context。對 3D 美術最實際的價值是做專案內 QA，例如找 Texture Import、LOD、Material、Renderer 與 Prefab 設定問題，而不是直接讓 Agent 自動修改整個遊戲。</p>
+          <small>值得注意：正式專案應先從只讀分析開始，先看誤判率再決定是否開放修改。</small>
+        </article>
+        <article class="week-topic">
+          <div class="week-topic-head"><span class="pill green">BLENDER</span><h2>Blender 5.2 LTS</h2><span class="status-badge status-track">持續追蹤</span></div>
+          <p>Blender 5.2 LTS 的價值不是單一功能，而是能作為較穩定的 Production Baseline。團隊可以固定 Add-on、Python、FBX 與 Export SOP，降低版本快速變動造成的維護成本；對正在建立 Blender 流程的團隊尤其值得先做完整資產往返驗證。</p>
+          <small>值得注意：優先檢查 Scale、Axis、Normal、UV、Material Slot、Pivot 與 Skeleton／Root。</small>
+        </article>
+        <article class="week-topic">
+          <div class="week-topic-head"><span class="pill orange">授權</span><h2>Mudbox</h2><span class="status-badge status-update">UPDATE</span></div>
+          <p>Autodesk 已進一步推進 Mudbox 的停售時程，這已經不是一般價格變動，而是產品生命週期風險。仍有舊資產與 Script 的團隊不必立刻停用，但應開始盤點 Sculpt、Paint、Bake 與歷史檔案依賴，新專案則不適合再把 Mudbox 當長期核心。</p>
+          <small>值得注意：現在就確認 ZBrush／Blender 等替代流程是否能完整接回既有 Pipeline。</small>
+        </article>
       </div>
     </div>
   </div>
