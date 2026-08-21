@@ -73,14 +73,39 @@ document.addEventListener('DOMContentLoaded',()=>{
     link.replaceWith(article);
   });
 
+  const loadVideo=details=>{
+    details.querySelectorAll('.video-embed[data-youtube-id]').forEach(box=>{
+      if(box.querySelector('iframe'))return;
+      const id=(box.dataset.youtubeId||'').trim();
+      if(!/^[A-Za-z0-9_-]{6,20}$/.test(id))return;
+      const iframe=document.createElement('iframe');
+      iframe.src=`https://www.youtube-nocookie.com/embed/${id}?rel=0`;
+      iframe.title=box.dataset.videoTitle||'YouTube video';
+      iframe.loading='lazy';
+      iframe.allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+      iframe.referrerPolicy='strict-origin-when-cross-origin';
+      iframe.allowFullscreen=true;
+      box.append(iframe);
+    });
+  };
+
+  const unloadVideo=details=>{
+    details.querySelectorAll('.video-embed iframe').forEach(frame=>frame.remove());
+  };
+
   const analysisDetails=[...document.querySelectorAll('.home-full-analysis,.more-card details')];
   analysisDetails.forEach(item=>{
     item.addEventListener('toggle',()=>{
-      if(!item.open)return;
-      analysisDetails.forEach(other=>{
-        if(other!==item&&other.open)other.open=false;
-      });
+      if(item.open){
+        analysisDetails.forEach(other=>{
+          if(other!==item&&other.open)other.open=false;
+        });
+        loadVideo(item);
+      }else{
+        unloadVideo(item);
+      }
     });
+    if(item.open)loadVideo(item);
   });
 
   const style=document.createElement('style');
@@ -101,7 +126,11 @@ document.addEventListener('DOMContentLoaded',()=>{
     .top-item-expandable:hover{background:#fff}
     .top-item-expandable>div{min-width:0}
     .top-item-expandable .home-full-analysis{max-width:780px}
-    @media(max-width:760px){.home-analysis-body{padding:12px}.home-analysis-body p{font-size:.79rem}.home-full-analysis>summary{padding:9px 11px}}
+    .video-embed{position:relative;width:100%;aspect-ratio:16/9;margin:14px 0;border-radius:10px;overflow:hidden;background:#111}
+    .video-embed iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+    .video-fallback{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:12px 0;padding:12px 14px;border:1px solid #e1e5eb;border-radius:10px;background:#fff}
+    .video-fallback a{color:#5550b8;font-weight:850;text-decoration:none}
+    @media(max-width:760px){.home-analysis-body{padding:12px}.home-analysis-body p{font-size:.79rem}.home-full-analysis>summary{padding:9px 11px}.video-fallback{align-items:flex-start;flex-direction:column}}
   `;
   document.head.append(style);
 });
