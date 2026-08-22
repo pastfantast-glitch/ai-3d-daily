@@ -1,0 +1,72 @@
+{
+  "date": "2026-08-22",
+  "group_title": "今天另外發現的有效情報",
+  "items": [
+    {
+      "id": "fungal-creature",
+      "pill": "CHARACTER / SURFACING",
+      "pill_class": "green",
+      "status": "DISCOVERED · 08/19",
+      "title": "Fungal Creature：用 Blender、ZBrush、Substance 與 UE5 組合多種有機材質",
+      "summary": "Kamil Tondera 的生物角色案例把樹皮、菌類、根系與植物組織整合成同一個可信生物。重點不是單一軟體技巧，而是從 silhouette、曲線生成、Retopo 到 hand-painted surfacing 的完整角色 Production 流程。",
+      "quick": [
+        ["Character", "★★★★☆"],
+        ["Organic Surfacing", "高"],
+        ["可複製性", "高"]
+      ],
+      "analysis": [
+        ["視覺目標與問題", "案例要解決的是如何把樹皮、蘑菇、根系與植物組織混成一個仍然有清楚 silhouette 的生物，而不是把很多高頻細節堆在一起。作者會反覆退遠檢查整體形體，避免有機細節把主輪廓與焦點吃掉。"],
+        ["Production 流程與關鍵決策", "流程從簡單球體／圓柱 blockout 開始，在 ZBrush 完成高模與解剖，再利用 Blender Curve、Draw 與 BY-GEN 類工具快速建立藤蔓與組織細節；Retopo 採 ZRemesh + Blender RetopoFlow，UV 用 UVPackmaster；Substance Painter 以 mask、procedural generator、Curvature/AO 與 hand-paint 疊出多材質，再進 UE5 做最終燈光。"],
+        ["為什麼值得學", "最有 Production 價值的是把『大形 → 中型結構 → 表面材質』分層處理。藤蔓、根系這種形狀若全靠雕刻會非常慢，用 Curve 先解決路徑與體積，再把高頻細節交給 alpha／brush／texture，能明顯降低重工。"],
+        ["限制與可複製 SOP", "這是 Hero Creature 類案例，細節量與材質複雜度不能直接照搬到大量 NPC。可複製 SOP：① 先鎖 silhouette；② 曲線類結構先程序／Curve 化；③ Retopo 分自動與人工兩階段；④ 材質避免純色，用色相與 roughness 微變化連接不同組織；⑤ 進引擎後用單一主光先驗證形體，再補局部燈。適合 Character Artist、Creature Artist、Surfacing Artist。"],
+        ["20 分鐘實測", "做一段樹皮＋菌類混合的小型 bust：Curve 拉出兩條根系，ZBrush 或 Blender 雕一層主體，Substance 只用 3 組 roughness/value variation 分開材質，再進引擎用單主光檢查遠近距離 readability。"]
+      ],
+      "source": "https://80.lv/articles/sculpting-and-texturing-a-fungal-creature-inspired-by-the-last-of-us",
+      "source_label": "作者訪談／80 Level · 中高可信度"
+    },
+    {
+      "id": "quad-maker",
+      "pill": "BLENDER / RETOPO",
+      "pill_class": "blue",
+      "status": "DISCOVERED · 08/19",
+      "title": "Quad Maker：把 Blender 手動 Retopo 做得更接近 Maya Quad Draw",
+      "summary": "Mark Kingsnorth 的 Quad Maker 提供 Add Vertices、Fill Quads、Extend Borders、Draw Quad Strip、Quick Cut 等操作，目標是把高模手動重拓撲變成更連續的單一工作流。對從 Maya／3ds Max 轉 Blender 的角色與 Prop 美術，它值得當效率工具評估。",
+      "quick": [
+        ["Retopo", "★★★★☆"],
+        ["導入成本", "低"],
+        ["適合", "角色 / Prop"]
+      ],
+      "analysis": [
+        ["它解決什麼", "Blender 原生可以完成 Retopo，但操作常分散在吸附、擠出、Knife、Loop Cut、Smooth 等多個工具。Quad Maker 把常用操作集中成一套偏 Quad Draw 思維的工具集，降低手在工具間切換的頻率。"],
+        ["Production 影響", "Add Vertices、Fill Quads、Draw Quad Strip、Extend Borders 對臉部、肩胯與 hard-surface 轉折區特別有用，因為這些地方通常不是全自動 Retopo 能直接交付的區域。真正值得比較的是每 1,000 個 quad 的人工時間與修正次數。"],
+        ["限制與風險", "它仍然是手動 Retopo 輔助，不會替你決定 deformation loop、pole 位置或 topology 語意。第三方 add-on 也需要確認 Blender 版本更新相容性，因此不能把它當成唯一 Retopo SOP。"],
+        ["可複製 SOP", "用同一個高模資產做 A/B：A 用 Blender 原生 Shrinkwrap + Poly Build；B 用 Quad Maker。固定 15 分鐘，比較 quad 數、穿插、邊界連續性與每次改線需要的操作步數，再決定是否加入角色 SOP。"],
+        ["適合誰", "Character Artist、Creature Artist、Prop Artist，以及從 Maya Quad Draw 或 3ds Max Graphite／Freeform 工作流轉到 Blender 的使用者。"]
+      ],
+      "source": "https://80.lv/articles/manually-retopologize-your-3d-meshes-with-this-blender-tool",
+      "source_label": "工具作者資訊／80 Level · 中等可信度"
+    },
+    {
+      "id": "matplus-13",
+      "pill": "BLENDER / TEXTURE",
+      "pill_class": "orange",
+      "status": "DISCOVERED · 08/12",
+      "title": "MatPlus 1.3：在 Blender 內做類 Substance Painter 的 Layer-Based Texture Workflow",
+      "summary": "MatPlus 把 Paint Layer、Fill Layer、Folder、Blend Mode、Mask、UDIM 與 game-ready texture export 放進 Blender，1.3 再加入 auto-cache、BeFX Library、Smart Masks 與 Display 模組。它不是 Painter 的直接替代結論，但對希望減少 DCC 往返的人很值得測。",
+      "quick": [
+        ["Texturing", "★★★★☆"],
+        ["UDIM", "支援"],
+        ["引擎輸出", "Unity / Unreal"]
+      ],
+      "analysis": [
+        ["材質目標與架構", "MatPlus 的核心不是新增一支畫筆，而是在 Blender 內建立非破壞式 layer stack，管理 Base Color、Roughness、Metallic、Normal、Bump 等通道，讓 Fill／Paint／Mask／Folder 的思路接近 Painter 或 Mari。"],
+        ["Production 收益", "如果建模、UV、Lookdev 都在 Blender，最大的收益是少一次 Export → Painter → Reimport 的來回，尤其在模型拓撲與 UV 還在反覆修改的階段。多 UDIM 與 Unreal／Unity map export 讓它至少具備遊戲資產測試價值。"],
+        ["1.3 的實質更新", "1.3 將重點放在 auto-cache、BeFX Library／Smart Masks 與 Display 模組，方向是改善大型材質堆疊的操作效率、加快起始材質建立，以及讓預覽呈現更可控。這些更新比單純新增幾個 material preset 更接近 Production usability。"],
+        ["限制與適用邊界", "Blender 內 texturing 是否能取代 Painter，仍取決於 bake、mask generator、anchor-like workflow、資產管理、效能與團隊標準。若公司 Pipeline 已高度依賴 Substance automation，轉換成本可能比省下的 DCC 往返更高。"],
+        ["20 分鐘實測", "拿一個 2-UDIM Prop，在 MatPlus 做 Base Color + Roughness + Metal + Normal 四通道，至少建立 1 個 Fill、1 個 Paint、1 個 Mask，再輸出 Unity／UE preset。記錄與 Painter 相同任務的切換次數、等待時間與修改 UV 後的恢復成本。"]
+      ],
+      "source": "https://80.lv/articles/matplus-brings-substance-3d-painter-inspired-texture-painting-to-blender",
+      "source_label": "Marketplace 報導／作者產品資訊 · 中等可信度"
+    }
+  ]
+}
