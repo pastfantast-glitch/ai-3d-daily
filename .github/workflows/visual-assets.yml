@@ -6,6 +6,7 @@ on:
     paths:
       - 'visual-assets.json'
       - 'scripts/extract_visual_assets.py'
+      - 'scripts/inject_visual_previews.py'
       - '.github/workflows/visual-assets.yml'
   workflow_dispatch:
 
@@ -24,14 +25,16 @@ jobs:
         run: pip install requests beautifulsoup4 pillow
       - name: Extract and normalize article images
         run: python scripts/extract_visual_assets.py
-      - name: Commit generated visual assets
+      - name: Inject local previews into site
+        run: python scripts/inject_visual_previews.py
+      - name: Commit generated visual assets and preview markup
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add assets/visual
+          git add assets/visual index.html 2026-08-22/index.html home-content.css styles.css
           if git diff --cached --quiet; then
-            echo "No asset changes"
+            echo "No visual asset or preview changes"
           else
-            git commit -m "Refresh visual evidence assets"
+            git commit -m "Refresh visual evidence assets and previews"
             git push
           fi
