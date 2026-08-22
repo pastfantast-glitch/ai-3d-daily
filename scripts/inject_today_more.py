@@ -44,13 +44,12 @@ def inject_home(path: Path):
     for old in soup.select('[data-supplemental-group="true"]'):
         old.decompose()
     target = None
-    more_section = None
     for h2 in soup.find_all('h2'):
         if h2.get_text(strip=True) == '今天還有什麼':
-            more_section = h2.find_parent('section', class_='home-section')
-            if more_section:
-                target = more_section.select_one('.more-feed')
-                head = more_section.select_one('.home-section-head')
+            section = h2.find_parent('section', class_='home-section')
+            if section:
+                target = section.select_one('.more-feed')
+                head = section.select_one('.home-section-head')
                 if head:
                     desc = head.find('p')
                     if desc:
@@ -58,6 +57,8 @@ def inject_home(path: Path):
             break
     if not target:
         raise RuntimeError('Could not find 今天還有什麼 .more-feed')
+
+    base_count = len(target.select('.more-card'))
     group = soup.new_tag('section', attrs={'class':'more-group','data-supplemental-group':'true'})
     head = soup.new_tag('header', attrs={'class':'more-group-head'})
     no = soup.new_tag('span', attrs={'class':'more-group-no'}); no.string='02'; head.append(no)
@@ -66,13 +67,13 @@ def inject_home(path: Path):
         group.append(make_card(soup,item))
     target.append(group)
 
-    # Keep archive summary count aligned with the actual supplemental dataset.
+    total_more = base_count + len(DATA['items'])
     date_href = f'{DATE}/'
     for archive in soup.select('.archive-item'):
         if archive.get('href') == date_href:
             small = archive.find('small')
             if small:
-                small.string = f'5 個必看 · {len(DATA["items"])} 個補充'
+                small.string = f'5 個必看 · {total_more} 個有效情報'
             break
     path.write_text(str(soup), encoding='utf-8')
 
@@ -84,7 +85,7 @@ def inject_daily(path: Path):
     main = soup.find('main') or soup.body
     section = soup.new_tag('section', attrs={'class':'category-section','data-supplemental-daily':'true'})
     h2 = soup.new_tag('h2'); h2.string='補充有效情報'; section.append(h2)
-    intro = soup.new_tag('p'); intro.string=f'TOP 5 之外，當日另行主動發現並通過可信度、版本有效性與歷史去重的 {len(DATA["items"])} 則有效情報。'; section.append(intro)
+    intro = soup.new_tag('p'); intro.string=f'TOP 5 之外，當日另行主動發現並通過可信度、版本有效性與歷史去重的 {len(DATA["items"])} 則 Supplemental 情報。'; section.append(intro)
     for item in DATA['items']:
         article = soup.new_tag('article', attrs={'class':'category-news','data-supplemental-id':item['id']})
         h3 = soup.new_tag('h3'); h3.string=f"{item['status']}｜{item['title']}"; article.append(h3)
