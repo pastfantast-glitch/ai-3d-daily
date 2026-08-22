@@ -31,7 +31,8 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add assets/visual index.html 2026-08-22/index.html home-content.css styles.css
+          git add assets/visual index.html home-content.css styles.css
+          find . -maxdepth 2 -type f -path './20??-??-??/index.html' -print0 | xargs -0 -r git add
           if git diff --cached --quiet; then
             echo "No visual asset or preview changes"
           else
