@@ -1,115 +1,19 @@
 document.addEventListener('DOMContentLoaded',()=>{
-  const search=document.querySelector('#news-search');
-  const filters=[...document.querySelectorAll('.filter')];
-  const items=[...document.querySelectorAll('.searchable')];
-  const empty=document.querySelector('#empty-state');
-  let active='all';
-  const apply=()=>{
-    const q=(search?.value||'').trim().toLowerCase();
-    let shown=0;
-    items.forEach(item=>{
-      const categories=(item.dataset.category||'').split(/\s+/);
-      const text=(item.dataset.search||item.textContent||'').toLowerCase();
-      const visible=(active==='all'||categories.includes(active))&&(!q||text.includes(q));
-      item.hidden=!visible;
-      if(visible)shown++;
-    });
-    if(empty)empty.hidden=shown!==0;
-  };
-  filters.forEach(btn=>btn.addEventListener('click',()=>{
-    active=btn.dataset.filter||'all';
-    filters.forEach(x=>x.classList.toggle('is-active',x===btn));
-    apply();
-  }));
-  search?.addEventListener('input',apply);
-
-  const sourceFooter=(label,name,url)=>`<div class="analysis-source-row"><span>${label}</span><a href="${url}" target="_blank" rel="noreferrer">${name} ↗</a></div>`;
-  const analysis={
-    meshy:{match:['Meshy 7','Meshy 7：'],body:`<h4>核心內容</h4><p>Meshy 7 把控制 Geometry 的多視圖參考與控制 Texture 的參考圖拆開，讓四視圖負責輪廓、比例與結構，彩色設定圖則專心控制材質。這解決了過去線稿、背視圖與不完整材質資訊彼此干擾的問題。</p><h4>對 3D 美術的影響</h4><p>角色裝備、武器、載具與 Prop 最直接受益。合理流程會變成「四視圖控制 Geometry → 彩色設定控制 Texture → AI 生成 → Blender / Max Cleanup → Unity / Unreal」，更像正式資產流程，而不是只追求 Turntable 好看。</p><h4>Production 判斷</h4><p>適合作為 Blockout、High-poly 起點與材質 First Pass；目前仍需人工檢查 Topology、UV、Normal、分件與 Silhouette。真正要量化的是 AI 生成＋Cleanup 是否比人工 Blockout 總時間更短。</p><h4>適合誰</h4><p>角色建模、Prop Artist、場景美術、3D Generalist，以及正在建立 AI Asset SOP 的團隊。</p><h4>實測／行動</h4><p>挑一個已有完成答案的 Prop，四視圖只控制 Geometry、2–3 張彩色設定控制 Texture。生成後只記 Silhouette、硬表面轉角、UV、材質分區與 Cleanup 分鐘數，再和人工 Blockout 比較。</p>${sourceFooter('來源','Meshy 官方','https://docs.meshy.ai/en/api/changelog')}`},
-    unreal:{match:['UE 5.8','Unreal Engine 5.8'],body:`<h4>核心內容</h4><p>UE 5.8 持續把 PCG、Mesh Terrain、植被與大型世界相關能力往規則化製作整合。對 Environment Artist 而言，重點不是多一個工具，而是可以把部分逐顆擺設轉成 Modular Kit、Variation、Density、Mask 與 Scatter Rule。</p><h4>對 3D 美術的影響</h4><p>大型地圖、開放世界與高重複資產場景會最有感。美術工作的價值會從「擺得快」移向「規則設計得穩、Variation 做得夠、例外情況處理得好」。</p><h4>Production 判斷</h4><p>PCG 已經值得正式測試，但 Mesh Terrain 等較新的流程仍應保留 fallback。導入前要一起看控制力、修改成本、Shader / GPU 成本與團隊學習曲線，而不是只看生成速度。</p><h4>適合誰</h4><p>Environment Artist、Level Artist、TA、World Building 團隊與負責大型場景效能的人。</p><h4>實測／行動</h4><p>在一個 20×20 公尺測試區，用同一批 2–3 種 Prop 做人工擺設與 PCG 兩版，比較時間、重複感、局部手改便利性，以及 Shader Complexity / Stat GPU 結果。</p>${sourceFooter('來源','Unreal Engine 官方','https://www.unrealengine.com/news/unreal-engine-5-8-is-now-available')}`},
-    unity:{match:['Unity AI'],body:`<h4>核心內容</h4><p>Unity AI 的方向從單純聊天與產生 C#，往能理解 Scene、GameObject、Component 與 Project Context 的 Agent 前進。這使它有機會直接針對專案內資產與設定做檢查。</p><h4>對 3D 美術的影響</h4><p>對美術最有價值的使用方式不是「幫我做完整遊戲」，而是 Project-aware QA：找出 Texture Import、LOD、Material、Renderer、Prefab 或命名設定的異常，把大量重複檢查交給 Agent。</p><h4>Production 判斷</h4><p>目前建議從只讀分析開始，不要先開放大量自動修改。真正要測的是它能抓到多少已知問題、假陽性比例多高，以及報告是否足以讓 Artist 或 TA 快速採取行動。</p><h4>適合誰</h4><p>Unity 3D Artist、TA、Lead、Technical Artist，以及需要做資產規範檢查的團隊。</p><h4>實測／行動</h4><p>要求 Agent 掃描目前 Scene 的 Mesh Renderer、Material、Texture 與 LOD，只輸出問題清單、不做修改。事先準備幾個已知錯誤，再比對它的命中率與誤判。</p>${sourceFooter('來源','Unity 官方','https://unity.com/blog/unity-ai-assistant-ask-plan-agent-mode-explained')}`},
-    blender:{match:['Blender 5.2'],body:`<h4>核心內容</h4><p>Blender 5.2 LTS 的核心價值是長期穩定支援，而不是單一功能比一般版本更多。團隊可以把 Add-on、Python、Scene Units、FBX / USD、Export Preset 與檔案版本固定在同一個基準。</p><h4>對 3D 美術的影響</h4><p>對正在從 Max / Maya 導入 Blender 的團隊，統一版本能明顯降低「每個人環境不同」造成的 Export、Plugin 與 Script 問題，也比較適合建立可重現的 SOP。</p><h4>Production 判斷</h4><p>值得作為正式候選基準版，但先不要只因為是 LTS 就全員切換。應先驗證角色、場景、Rig、Morph、材質與引擎輸出，確認常用 Add-on 與 Python 工具沒有阻斷問題。</p><h4>適合誰</h4><p>Blender 導入團隊、角色／場景 Lead、TA、Pipeline TD，以及需要維護跨 DCC Export SOP 的人。</p><h4>實測／行動</h4><p>用一個真實資產跑 Max → Blender 5.2 → Unity / Unreal，集中檢查 Scale、Axis、Normal、UV、Material Slot、Pivot、Skeleton 與 Root 是否一致。</p>${sourceFooter('來源','Blender 官方','https://www.blender.org/download/lts/')}`},
-    mudbox:{match:['Mudbox'],body:`<h4>核心內容</h4><p>Autodesk 推進 Mudbox 的停售時程，這已經不是一般價格變化，而是產品生命週期正在結束的訊號。對既有團隊來說，問題會逐漸轉成歷史資產與舊流程是否還能長期重現。</p><h4>對 3D 美術的影響</h4><p>仍使用 Mudbox Sculpt、Texture Paint、Bake Preset、Script 或舊檔案的專案不必立即停用，但現在就應盤點依賴；新專案則不適合再把 Mudbox 當長期核心。</p><h4>Production 判斷</h4><p>最大的風險不是「今天不能用」，而是未來人員、授權、OS、外掛或檔案相容性變化後，舊 SOP 難以重現。遷移測試應包含功能、時間與歷史資產兼容，而不是只找一套功能表看起來相似的軟體。</p><h4>適合誰</h4><p>仍維護 Mudbox 舊案的角色／材質團隊、Lead、Pipeline TD 與外包管理。</p><h4>實測／行動</h4><p>挑一個歷史 Mudbox 資產，用 ZBrush 或 Blender 重做同一段 Sculpt / Paint / Export，記錄缺失功能、檔案轉換問題與實際時間差。</p>${sourceFooter('來源','Autodesk 官方','https://www.autodesk.com/products/mudbox/buy')}`}
-  };
-
-  const findAnalysis=text=>Object.values(analysis).find(item=>item.match.some(key=>text.includes(key)));
-  const makeDetails=(data,label='完整分析')=>{
-    const details=document.createElement('details');
-    details.className='home-full-analysis';
-    details.innerHTML=`<summary>${label}</summary><div class="home-analysis-body">${data.body}</div>`;
-    return details;
-  };
-
-  document.querySelectorAll('.week-topic').forEach(card=>{
-    const head=card.querySelector('.week-topic-head');
-    const pill=head?.querySelector('.pill');
-    const status=head?.querySelector('.status-badge');
-    if(head&&pill&&status) pill.after(status);
-    const data=findAnalysis(card.textContent||'');
-    if(data&&!card.querySelector('.home-full-analysis')) card.append(makeDetails(data));
-  });
-
-  document.querySelectorAll('.top-item').forEach(link=>{
-    const data=findAnalysis(link.textContent||'');
-    if(!data)return;
-    const article=document.createElement('article');
-    article.className='top-item top-item-expandable';
-    article.innerHTML=link.innerHTML;
-    article.querySelector(':scope > strong')?.remove();
-    article.querySelector(':scope > div')?.append(makeDetails(data));
-    link.replaceWith(article);
-  });
-
-  const headingMap={'實測方法':'實測／行動','本週可做':'實測／行動','觀看方式':'實測／行動','適合誰看':'適合誰','Production 評估':'Production 判斷','更新內容':'核心內容'};
-  document.querySelectorAll('.more-card').forEach(card=>{
-    const details=card.querySelector('details');
-    const body=details?.querySelector('.detail-body');
-    if(!details||!body)return;
-    details.classList.add('home-full-analysis');
-    body.classList.add('home-analysis-body');
-    const first=body.firstElementChild;
-    if(first?.tagName==='P'){
-      const h=document.createElement('h4');
-      h.textContent='核心內容';
-      body.insertBefore(h,first);
-    }
-    body.querySelectorAll('h4').forEach(h=>{if(headingMap[h.textContent.trim()])h.textContent=headingMap[h.textContent.trim()];});
-    const source=card.querySelector(':scope > .source-inline');
-    if(source){
-      const row=document.createElement('div');
-      row.className='analysis-source-row';
-      row.innerHTML=`<span>${source.href.includes('youtube.com')?'影片':'來源'}</span>`;
-      source.className='';
-      if(source.href.includes('youtube.com')) source.textContent='Stefan 3D AI ↗';
-      row.append(source);
-      body.append(row);
-    }
-  });
-
-  const loadVideo=details=>{
-    details.querySelectorAll('.video-embed[data-youtube-id]').forEach(box=>{
-      if(box.querySelector('iframe'))return;
-      const id=(box.dataset.youtubeId||'').trim();
-      if(!/^[A-Za-z0-9_-]{6,20}$/.test(id))return;
-      const iframe=document.createElement('iframe');
-      iframe.src=`https://www.youtube-nocookie.com/embed/${id}?rel=0`;
-      iframe.title=box.dataset.videoTitle||'YouTube video';
-      iframe.loading='lazy';
-      iframe.allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
-      iframe.referrerPolicy='strict-origin-when-cross-origin';
-      iframe.allowFullscreen=true;
-      box.append(iframe);
-    });
-  };
-  const unloadVideo=details=>details.querySelectorAll('.video-embed iframe').forEach(frame=>frame.remove());
-  const analysisDetails=[...document.querySelectorAll('.home-full-analysis')];
-  analysisDetails.forEach(item=>{
-    item.addEventListener('toggle',()=>{
-      if(item.open){
-        analysisDetails.forEach(other=>{if(other!==item&&other.open)other.open=false;});
-        loadVideo(item);
-      }else unloadVideo(item);
-    });
-    if(item.open)loadVideo(item);
-  });
+  const search=document.querySelector('#news-search'),filters=[...document.querySelectorAll('.filter')],items=[...document.querySelectorAll('.searchable')],empty=document.querySelector('#empty-state');let active='all';
+  const apply=()=>{const q=(search?.value||'').trim().toLowerCase();let shown=0;items.forEach(item=>{const cats=(item.dataset.category||'').split(/\s+/),text=(item.dataset.search||item.textContent||'').toLowerCase(),ok=(active==='all'||cats.includes(active))&&(!q||text.includes(q));item.hidden=!ok;if(ok)shown++;});if(empty)empty.hidden=shown!==0;};
+  filters.forEach(btn=>btn.addEventListener('click',()=>{active=btn.dataset.filter||'all';filters.forEach(x=>x.classList.toggle('is-active',x===btn));apply();}));search?.addEventListener('input',apply);
+  const src=(label,name,url)=>`<div class="analysis-source-row"><span>${label}</span><a href="${url}" target="_blank" rel="noreferrer">${name} ↗</a></div>`;
+  const data=[
+    {keys:['Tripo P2.0','Native Quad'],week:`<h4>本週發生什麼變化</h4><p>Tripo P2.0 Preview 把 AI 3D 的競爭從外觀品質推向 Native Quad 與更高 mesh budget。相較本週前段仍偏生成與 reference control 的討論，現在開始直接碰 Retopo、Rig 與 Animation handoff。</p><h4>Production 趨勢</h4><p>AI 3D 的價值判斷正在從「生成得像不像」轉成「生成後能少做多少 Cleanup」。四邊面本身不是終點，肩、胯、膝、眼口的 deformation edge flow 才是角色 Production 的真正門檻。</p><h4>本週判斷</h4><p>值得立即小規模實測，不建議直接取代人工 Retopo。先用已有人工答案的人形或生物做 A/B，若局部修線時間能少一半以上才有導入價值。</p>${src('來源／可信度','Tripo 官方 Blog','https://www.tripo3d.ai/blog')}`,day:`<h4>更新內容</h4><p>P2.0 Preview 主打 Native Quad Topology 與更高 mesh budget，定位直接指向 editing、rigging、animation 與 real-time workflow。它仍是 Preview，因此不能把「Native Quad」直接等同 animation-ready topology。</p><h4>對 3D 美術的影響</h4><p>角色與 Creature 應優先檢查肩、胯、膝、肘、眼口與 pole；Prop 則看洞口、薄片、倒角與硬表面邊界。若只需局部修線，AI → 全部重拓撲才有機會縮成 AI → 局部 Cleanup → UV／Skin。</p><h4>Production 判斷／限制</h4><p>Production ★★★☆☆。潛在節省時間高，但 deformation loop、UV seam 可設性與 subdivision 輪廓仍需人工驗證。適合角色美術、Creature Artist、Rigger、TA、Prop Artist。</p><h4>20 分鐘實測</h4><p>拿已有人工 Low-poly 的角色只看 Wireframe，比肩／胯 loop、pole、眼口 topology、UV seam 與 Subdivision 後輪廓。</p>${src('來源／可信度','Tripo 官方 Blog','https://www.tripo3d.ai/blog')}`},
+    {keys:['Meshy 7','Smart Topology'],week:`<h4>本週發生什麼變化</h4><p>Meshy 7、Ultra、Multi-Image texture reference 與 Smart Topology 在本週形成更清楚的分工：高保真 geometry、texture control、低面數 topology 不再被當成同一個步驟。</p><h4>Production 趨勢</h4><p>這代表 AI 資產流程正在模組化。真正應比較的是 Generate → Cleanup → UV／Material → Engine 的總時間，而不是只看第一張 turntable。</p><h4>本週判斷</h4><p>Prop、Background Asset 值得導入測試；deformation character 仍需保守。建議建立固定 4K triangles 與高保真兩條測試線。</p>${src('來源／可信度','Meshy 官方 API Changelog','https://docs.meshy.ai/en/api/changelog')}`,day:`<h4>更新內容</h4><p>Meshy 7 是標準高保真生成模型；Smart Topology 則使用獨立 meshy-t2 流程，可指定 target polycount，官方文件目前標示 100–15,000 triangles。兩者應分開評估。</p><h4>對 3D 美術的影響</h4><p>合理流程是 Meshy 7 做形體／材質 first pass，需要低模時再跑 Smart Topology。對 Prop 與 Background Asset，這比固定全案只用最新模型更接近 Production。</p><h4>Production 判斷／限制</h4><p>Production ★★★☆☆。低面數輸出仍需檢查 UV、Normal、分件、非流形、LOD、Collision；角色 deformation 不應只看 triangle 數就判定可用。</p><h4>20 分鐘實測</h4><p>同一 Prop 做高保真版與 Smart Topology 4K triangles，進 Blender 記錄 silhouette、UV、material slot、normal 與人工修理分鐘數。</p>${src('來源／可信度','Meshy 官方 API Changelog','https://docs.meshy.ai/en/api/changelog')}`},
+    {keys:['Spider Walker','程序動畫','先 Live'],week:`<h4>本週發生什麼變化</h4><p>Blender 5.2 生態出現更實際的程序 locomotion 案例：Spider Walker 把多足角色的落腳、地面追蹤與步序變成 live solver，最後再 Bake。</p><h4>Production 趨勢</h4><p>重點不是取代 Animator，而是把重複性的 ground contact first pass 程序化，再把 timing、overlap、secondary motion 留給人工。這種「Live → Validate → Bake」也適合其他 Rig 工具。</p><h4>本週判斷</h4><p>Creature／Robot 專案值得測，導入成本低；一般人形角色則先當輔助技術，不必取代既有 locomotion SOP。</p>${src('來源／可信度','80 Level／作者工具介紹','https://80.lv/articles/free-blender-tool-for-procedural-spider-walks')}`,day:`<h4>核心內容</h4><p>Spider Walker 會依 root motion 預估 foot target，raycast 地面，再依腿序列決定抬腳與落腳；滿意後可 Bake 成一般 Action。</p><h4>對 3D 美術的影響</h4><p>多足怪物、機械蜘蛛與 Boss 可以快速得到 locomotion first pass，Animator 再集中處理節奏、身體重心與 secondary motion。</p><h4>Production 判斷／限制</h4><p>Prototype ★★★★☆。急轉彎可能腿交叉、速度突變可能腳滑，跳躍與跨障礙需要額外狀態。適合 Animator、Rigger、Creature Artist、TA。</p><h4>15 分鐘實測</h4><p>用 4 足 rig 在平地、15° 斜坡與小階梯各走一次，再 Bake，檢查腳滑、交叉與曲線密度。</p>${src('來源／可信度','80 Level／作者工具介紹','https://80.lv/articles/free-blender-tool-for-procedural-spider-walks')}`},
+    {keys:['River Modeler','Jobs / Burst','Jobs + Burst'],week:`<h4>本週發生什麼變化</h4><p>Unity 場景工具的訊號從單一 spline authoring 進一步走向 Jobs、Burst、MeshData、segment 與 streaming。河流只是案例，架構可以延伸到道路、管線、電纜與長牆。</p><h4>Production 趨勢</h4><p>大型場景製作正把「美術控制路徑與變化」和「系統負責 mesh generation／streaming」拆開，降低巨大單一 mesh 與手工重建成本。</p><h4>本週判斷</h4><p>若專案已使用 Unity 6／Stylized Water 3，值得建立 baseline 等新版比較；其他專案則先吸收架構，不必為單一工具切換技術棧。</p>${src('來源／可信度','80 Level 技術報導','https://80.lv/articles/unity-s-stylized-water-3-is-getting-spline-based-river-modeler-tool')}`,day:`<h4>核心內容</h4><p>River Modeler 重構方向是 Spline → Segment → MeshData → Jobs/Burst 平行生成，再串 VFX／Audio streaming 與 terrain workflow。作者在部分長 spline case 宣稱最高約 24×。</p><h4>對 3D 美術的影響</h4><p>Environment Artist 可以把時間放在 river path、width、bank 與 material variation，系統處理長距離 mesh 與局部更新。</p><h4>Production 判斷／限制</h4><p>Environment ★★★★☆。架構價值高，但 24× 是作者測試數據，且工具依賴 Unity／Stylized Water 3 生態。適合 Environment Artist、Level Artist、TA。</p><h4>20 分鐘實測</h4><p>先替現有 spline river 建 500m／2km baseline，記錄 editor generation time、物件數與 drawcall，之後與新版 A/B。</p>${src('來源／可信度','80 Level 技術報導','https://80.lv/articles/unity-s-stylized-water-3-is-getting-spline-based-river-modeler-tool')}`},
+    {keys:['Stefan','Souls-like'],week:`<h4>本週發生什麼變化</h4><p>Stefan 的 72 小時 Souls-like 案例把 AI 3D 從單一模型比較拉回完整遊戲製作時限：生成只是前段，後面仍有 Cleanup、Collision、Pivot、Scale、Lighting、Animation compatibility 與 Engine assembly。</p><h4>Production 趨勢</h4><p>本週 AI 3D 的共同趨勢都是開始量「總交付時間」而不是生成秒數。這與 Tripo／Meshy 對 topology 與 handoff 的更新形成同一條主線。</p><h4>本週判斷</h4><p>值得當 workflow case study，但影片含工具推廣，不應當獨立 benchmark。最適合拿一個 Prop 複製整條流程並自己計時。</p>${src('來源／可信度','Stefan 3D AI YouTube','https://www.youtube.com/watch?v=9kejfKCb0S8')}`,day:`<h4>核心內容</h4><p>案例的價值是把 AI 資產塞進 72 小時遊戲製作，觀察生成後仍需人工處理的場景 assembly、lighting、collision、角色匯入與 Unreal setup。</p><h4>對 3D 美術的影響</h4><p>評估 AI 工具時應把 Generate、Cleanup、Pivot／Scale、Material、Collision、Engine import 全部計時，避免只看生成速度造成錯誤 ROI。</p><h4>Production 判斷／限制</h4><p>案例價值 ★★★★☆。適合 AI Pipeline 評估者、Indie、Lead、TA；影片含 Tripo 推廣，因此品質結論要用自己的資產再驗證。</p><h4>20 分鐘實測</h4><p>只做一個 Prop：AI 生成 → Blender Cleanup → Collision／Pivot → Unreal import，逐段記錄分鐘數。</p>${src('來源／可信度','Stefan 3D AI YouTube','https://www.youtube.com/watch?v=9kejfKCb0S8')}`}
+  ];
+  const find=t=>data.find(d=>d.keys.some(k=>t.includes(k)));
+  const details=(html,label='完整分析')=>{const d=document.createElement('details');d.className='home-full-analysis';d.innerHTML=`<summary>${label}</summary><div class="home-analysis-body">${html}</div>`;return d;};
+  document.querySelectorAll('.week-topic').forEach(card=>{if(card.querySelector('.home-full-analysis'))return;const d=find(card.textContent||'');if(d)card.append(details(d.week));});
+  document.querySelectorAll('.top-item').forEach(link=>{if(link.querySelector('.home-full-analysis'))return;const d=find(link.textContent||'');if(!d)return;const article=document.createElement('article');article.className='top-item top-item-expandable';article.innerHTML=link.innerHTML;article.querySelector(':scope > strong')?.remove();article.querySelector(':scope > div')?.append(details(d.day));link.replaceWith(article);});
+  document.querySelectorAll('.more-card details').forEach(d=>{d.classList.add('home-full-analysis');d.querySelector('.detail-body')?.classList.add('home-analysis-body');});
+  const all=[...document.querySelectorAll('.home-full-analysis')];all.forEach(d=>d.addEventListener('toggle',()=>{if(d.open)all.forEach(o=>{if(o!==d)o.open=false;});}));
 });
