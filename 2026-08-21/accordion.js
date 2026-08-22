@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   const report={
     date:'2026-08-21',
     previous:null,
-    next:null,
+    next:'2026-08-22',
     statuses:[
       {match:'Meshy',label:'UPDATE',type:'update'},
       {match:'Unreal Engine 5.8',label:'持續追蹤',type:'track'},
@@ -125,15 +125,12 @@ document.addEventListener('DOMContentLoaded',()=>{
   const navLinks=[...bar.querySelectorAll('.daily-nav a')];
   const sectionIds=['top','ai','tools','engine','workflow','license','industry','stefan','try'];
   const sections=sectionIds.map(id=>document.getElementById(id)).filter(Boolean);
-
   const activate=(id,scrollNav=false)=>{
     navLinks.forEach(link=>link.classList.toggle('is-active',link.dataset.section===id));
     const active=navLinks.find(link=>link.dataset.section===id);
     if(scrollNav) active?.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});
   };
-
   navLinks.forEach(link=>link.addEventListener('click',()=>activate(link.dataset.section,true)));
-
   let ticking=false;
   const updateActive=()=>{
     const y=window.scrollY+84;
@@ -142,8 +139,6 @@ document.addEventListener('DOMContentLoaded',()=>{
     activate(current,false);
     ticking=false;
   };
-  window.addEventListener('scroll',()=>{
-    if(!ticking){window.requestAnimationFrame(updateActive);ticking=true;}
-  },{passive:true});
+  window.addEventListener('scroll',()=>{if(!ticking){window.requestAnimationFrame(updateActive);ticking=true;}},{passive:true});
   updateActive();
 });
