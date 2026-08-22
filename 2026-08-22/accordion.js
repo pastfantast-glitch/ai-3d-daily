@@ -1,0 +1,21 @@
+document.addEventListener('DOMContentLoaded',()=>{
+  const report={date:'2026-08-22',previous:'2026-08-21',next:null};
+  document.body.classList.add('archive-page');
+  document.querySelectorAll('details').forEach(item=>item.open=false);
+  const originalNav=document.querySelector('.jumpbar');
+  if(originalNav) originalNav.hidden=true;
+  const style=document.createElement('style');
+  style.textContent=`.archive-page .site-head{background:#fafbfc}.dailybar{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.97);backdrop-filter:blur(12px);border-bottom:1px solid #dfe4eb;box-shadow:0 4px 14px rgba(25,35,52,.05)}.dailybar-inner{width:min(980px,calc(100% - 32px));margin:auto;display:flex;align-items:stretch;min-height:48px;overflow:hidden}.daily-id{display:flex;align-items:center;gap:8px;flex:0 0 auto;padding-right:12px;border-right:1px solid #dfe4eb}.daily-home{color:#202837;text-decoration:none;font-size:.78rem;font-weight:850}.date-nav{display:flex;align-items:center;gap:5px}.daily-date{color:#6d7583;font-size:.72rem;font-weight:800}.day-link{display:flex;align-items:center;justify-content:center;min-width:23px;height:26px;border-radius:7px;color:#5a6371;text-decoration:none;font-size:.74rem;font-weight:900}.daily-nav{display:flex;align-items:stretch;overflow-x:auto;scrollbar-width:none}.daily-nav a{position:relative;display:flex;align-items:center;white-space:nowrap;text-decoration:none;color:#596272;font-size:.78rem;font-weight:750;padding:0 11px;border-right:1px solid #edf0f4}.daily-nav a.is-active{color:#594ed0;font-weight:900;background:#f7f6ff}.daily-nav a.is-active:after{content:'';position:absolute;left:10px;right:10px;bottom:0;height:3px;background:#6658e8}#top,.category-deep,#try{scroll-margin-top:62px}@media(max-width:640px){.dailybar-inner{width:100%;padding-left:11px}.daily-nav a{padding:0 10px;font-size:.74rem}}`;
+  document.head.append(style);
+  const prev=report.previous?`<a class="day-link" href="../${report.previous}/" aria-label="前一日日報">←</a>`:'';
+  const next=report.next?`<a class="day-link" href="../${report.next}/" aria-label="後一日日報">→</a>`:'';
+  const bar=document.createElement('nav');
+  bar.className='dailybar';
+  bar.innerHTML=`<div class="dailybar-inner"><div class="daily-id"><a class="daily-home" href="../">← 首頁</a><div class="date-nav">${prev}<span class="daily-date">${report.date}</span>${next}</div></div><div class="daily-nav"><a href="#top" data-section="top">TOP 5</a><a href="#ai" data-section="ai">AI</a><a href="#tools" data-section="tools">工具</a><a href="#engine" data-section="engine">引擎</a><a href="#workflow" data-section="workflow">流程</a><a href="#license" data-section="license">授權</a><a href="#industry" data-section="industry">產業</a><a href="#stefan" data-section="stefan">Stefan</a><a href="#cases" data-section="cases">案例</a><a href="#blender" data-section="blender">Blender</a><a href="#try" data-section="try">實測</a></div></div>`;
+  document.body.prepend(bar);
+  const links=[...bar.querySelectorAll('.daily-nav a')];
+  const sections=links.map(a=>document.getElementById(a.dataset.section)).filter(Boolean);
+  const activate=id=>links.forEach(a=>a.classList.toggle('is-active',a.dataset.section===id));
+  const update=()=>{let current='top';const y=window.scrollY+84;sections.forEach(s=>{if(s.offsetTop<=y)current=s.id});activate(current)};
+  window.addEventListener('scroll',update,{passive:true});update();
+});
