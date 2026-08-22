@@ -44,11 +44,17 @@ def inject_home(path: Path):
     for old in soup.select('[data-supplemental-group="true"]'):
         old.decompose()
     target = None
+    more_section = None
     for h2 in soup.find_all('h2'):
         if h2.get_text(strip=True) == '今天還有什麼':
-            section = h2.find_parent('section', class_='home-section')
-            if section:
-                target = section.select_one('.more-feed')
+            more_section = h2.find_parent('section', class_='home-section')
+            if more_section:
+                target = more_section.select_one('.more-feed')
+                head = more_section.select_one('.home-section-head')
+                if head:
+                    desc = head.find('p')
+                    if desc:
+                        desc.string = 'TOP 5 之外，今天另外主動發現、通過可信度、版本有效性與歷史去重的有效情報。'
             break
     if not target:
         raise RuntimeError('Could not find 今天還有什麼 .more-feed')
@@ -59,6 +65,15 @@ def inject_home(path: Path):
     for item in DATA['items']:
         group.append(make_card(soup,item))
     target.append(group)
+
+    # Keep archive summary count aligned with the actual supplemental dataset.
+    date_href = f'{DATE}/'
+    for archive in soup.select('.archive-item'):
+        if archive.get('href') == date_href:
+            small = archive.find('small')
+            if small:
+                small.string = f'5 個必看 · {len(DATA["items"])} 個補充'
+            break
     path.write_text(str(soup), encoding='utf-8')
 
 
@@ -69,7 +84,7 @@ def inject_daily(path: Path):
     main = soup.find('main') or soup.body
     section = soup.new_tag('section', attrs={'class':'category-section','data-supplemental-daily':'true'})
     h2 = soup.new_tag('h2'); h2.string='補充有效情報'; section.append(h2)
-    intro = soup.new_tag('p'); intro.string='TOP 5 之外、通過可信度、版本有效性與歷史去重的當日補充情報。'; section.append(intro)
+    intro = soup.new_tag('p'); intro.string=f'TOP 5 之外，當日另行主動發現並通過可信度、版本有效性與歷史去重的 {len(DATA["items"])} 則有效情報。'; section.append(intro)
     for item in DATA['items']:
         article = soup.new_tag('article', attrs={'class':'category-news','data-supplemental-id':item['id']})
         h3 = soup.new_tag('h3'); h3.string=f"{item['status']}｜{item['title']}"; article.append(h3)
