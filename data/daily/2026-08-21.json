@@ -1,0 +1,157 @@
+{
+  "date": "2026-08-21",
+  "schema_version": 2,
+  "render_revision": 1,
+  "identity_provenance": "historical-backfill",
+  "backfilled_from": "2026-08-21/index.html",
+  "visual_evidence": {
+    "hist-docs-meshy-ai-4389fdb32b": {
+      "enabled": true,
+      "source_url": "https://docs.meshy.ai/en/api/changelog",
+      "label": "HISTORICAL SOURCE VISUAL",
+      "confidence": "medium",
+      "keywords": [
+        "Meshy 7",
+        "多視圖幾何與貼圖參考正式分離"
+      ]
+    },
+    "hist-unrealengine-com-e9df260543": {
+      "enabled": true,
+      "source_url": "https://www.unrealengine.com/news/unreal-engine-5-8-is-now-available",
+      "label": "HISTORICAL SOURCE VISUAL",
+      "confidence": "medium",
+      "keywords": [
+        "Unreal Engine 5.8",
+        "PCG",
+        "Mesh Terrain 與大型場景流程持續成熟"
+      ]
+    },
+    "hist-unity-com-072da682d0": {
+      "enabled": true,
+      "source_url": "https://unity.com/blog/unity-ai-assistant-ask-plan-agent-mode-explained",
+      "label": "HISTORICAL SOURCE VISUAL",
+      "confidence": "medium",
+      "keywords": [
+        "Unity AI",
+        "從聊天工具走向能理解 Project Context 的 Agent"
+      ]
+    },
+    "hist-blender-org-ee9ece028b": {
+      "enabled": true,
+      "source_url": "https://www.blender.org/download/lts",
+      "label": "HISTORICAL SOURCE VISUAL",
+      "confidence": "medium",
+      "keywords": [
+        "Blender 5.2 LTS",
+        "適合作為長期 Production Pipeline 的基準版本"
+      ]
+    },
+    "hist-autodesk-com-0db24d6d86": {
+      "enabled": true,
+      "source_url": "https://www.autodesk.com/products/mudbox/buy",
+      "label": "HISTORICAL SOURCE VISUAL",
+      "confidence": "medium",
+      "keywords": [
+        "Autodesk Mudbox 進入停售階段",
+        "新 Pipeline 不宜再投入"
+      ]
+    }
+  },
+  "items": [
+    {
+      "id": "hist-docs-meshy-ai-4389fdb32b",
+      "slot": "top",
+      "full_analysis": [
+        {
+          "label": "更新內容",
+          "text": "Meshy 7 已進入 API，並加入可分別指定幾何參考與貼圖參考的流程。你可以用正、側、背視圖控制 Silhouette 與比例，再用另外的彩色設定圖或材質 Render 控制 Texture，避免過去同一套圖片同時負責形體與材質造成的污染。"
+        },
+        {
+          "label": "對 3D 美術的影響",
+          "text": "最直接受益的是角色裝備、武器、載具與場景 Prop。合理流程會變成「四視圖 → Geometry、彩色設定 → Texture、AI 生成 → Blender / Max Cleanup → Unity / Unreal」。它更適合作為 Blockout 或 High-poly 起點，而不是 Final Asset。"
+        },
+        {
+          "label": "20 分鐘實測",
+          "text": "拿一個你已有標準答案的 Prop：四視圖控制 Geometry、2–3 張配色圖控制 Texture。生成後只檢查 Silhouette、洞口、硬表面轉角、UV 與 Cleanup 時間，再和人工 Blockout 比較。"
+        }
+      ],
+      "source_url": "https://docs.meshy.ai/en/api/changelog"
+    },
+    {
+      "id": "hist-unrealengine-com-e9df260543",
+      "slot": "top",
+      "full_analysis": [
+        {
+          "label": "摘要脈絡",
+          "text": "UE 5.8 把大型場景相關能力往同一方向推進，包括 PCG、Mesh Terrain、植被、Lighting 與 Shader 效率。這不只是多一個場景工具，而是讓 Environment Artist 能把部分「逐顆擺物件」的工作轉成規則、Variation 與 Modular Kit。對大型地圖或需要大量重複資產的專案，Production 價值會比小型線性場景更明顯。"
+        },
+        {
+          "label": "完整分析",
+          "text": "5.8 強化大型世界、PCG、Mesh Terrain、植被與 Shader 效率。場景美術的工作會更偏向 Modular Kit、Variations、規則與 PCG Input，而不是逐顆擺放。Mesh Terrain 仍建議先測試，不要立即當成唯一正式地形方案。"
+        },
+        {
+          "label": "20 分鐘實測",
+          "text": "複製一個現有 Level，以 2–3 種 Prop 做 PCG Scatter，和人工擺設比較控制力、花費時間，再用 Shader Complexity / Stat GPU 看成本。"
+        }
+      ],
+      "source_url": "https://www.unrealengine.com/news/unreal-engine-5-8-is-now-available"
+    },
+    {
+      "id": "hist-unity-com-072da682d0",
+      "slot": "top",
+      "full_analysis": [
+        {
+          "label": "摘要脈絡",
+          "text": "Unity AI 的重點已不只是產生 C#，而是開始理解 Scene、GameObject、Component 與 Project Context。這代表它未來可以直接針對專案內容做檢查，例如找出錯誤的 Texture Import、LOD、Material 或 Renderer 設定。對 3D 美術來說，最值得測試的其實是「美術 QA 助手」，而不是讓 AI 自動生成整個遊戲。"
+        },
+        {
+          "label": "完整分析",
+          "text": "如果 Agent 能穩定理解 Project Context，它最有價值的用法可能是找錯誤 Texture Import、Material、LOD、Renderer 與 Prefab，而不是直接生成遊戲內容。正式專案應先從只讀分析開始。"
+        },
+        {
+          "label": "20 分鐘實測",
+          "text": "要求它分析目前 Scene 所有 Mesh Renderer、Material、Texture、LOD，列出 10 個可能影響效能或美術一致性的問題，但不要修改。"
+        }
+      ],
+      "source_url": "https://unity.com/blog/unity-ai-assistant-ask-plan-agent-mode-explained"
+    },
+    {
+      "id": "hist-blender-org-ee9ece028b",
+      "slot": "top",
+      "full_analysis": [
+        {
+          "label": "摘要脈絡",
+          "text": "Blender 5.2 LTS 的價值不在於功能比一般版本更多，而是它提供較長的穩定支援週期。對要把 Blender 納入公司流程的團隊，固定 LTS 能降低 Add-on、Python API、FBX 與檔案版本變動造成的維護成本。若目前正在從 3ds Max 或 Maya 轉換，這種版本更適合拿來建立統一 SOP。"
+        },
+        {
+          "label": "完整分析",
+          "text": "如果要把 Blender 正式納入 Max / Maya 團隊，固定 LTS 能降低插件、Python API 與檔案版本變動帶來的維護成本。先驗證 FBX、Rig、Material Slot 與常用外掛再推到全團隊。"
+        },
+        {
+          "label": "20 分鐘實測",
+          "text": "跑一個真實資產的 Max → Blender 5.2 → Unity / Unreal，只檢查 Scale、Axis、Normal、UV、Material Slot、Pivot 與 Skeleton / Root。"
+        }
+      ],
+      "source_url": "https://www.blender.org/download/lts"
+    },
+    {
+      "id": "hist-autodesk-com-0db24d6d86",
+      "slot": "top",
+      "full_analysis": [
+        {
+          "label": "Production 指標",
+          "text": "新專案導入 ★☆☆☆☆ 遷移必要性 高 替代 ZBrush / Blender"
+        },
+        {
+          "label": "摘要脈絡",
+          "text": "Autodesk 已開始推進 Mudbox 的停售時程，因此這不是一般的價格調整，而是產品生命週期正在結束的訊號。仍有 Mudbox 歷史資產或 Script 的團隊不需要立刻停用，但現在就應盤點 Sculpt、Paint、Bake 與舊檔案的依賴。新專案則不適合再把 Mudbox 當成長期核心工具。"
+        },
+        {
+          "label": "完整分析",
+          "text": "對仍使用 Mudbox Sculpt、Texture Paint、Bake 或專用 Script 的團隊，不一定需要立即停用，但應先盤點歷史資產與流程依賴，新專案不建議再以 Mudbox 為核心。"
+        }
+      ],
+      "source_url": "https://www.autodesk.com/products/mudbox/buy"
+    }
+  ]
+}

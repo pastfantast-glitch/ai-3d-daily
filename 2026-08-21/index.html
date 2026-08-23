@@ -7,9 +7,9 @@
    AI 3D Daily｜每日 3D 美術與遊戲開發情報
   </title>
   <meta content="每日整理 AI、3D 美術工具、Unity、Unreal、Production workflow 與遊戲產業情報。" name="description"/>
-  <link href="../styles.css?v=20260823-1" rel="stylesheet"/>
-  <link href="../daily.css?v=20260823-1" rel="stylesheet"/>
-  <script defer="True" src="../daily.js?v=20260823-1">
+  <link href="../styles.css?v=20260821-r1" rel="stylesheet"/>
+  <link href="../daily.css?v=20260821-r1" rel="stylesheet"/>
+  <script defer="True" src="../daily.js?v=20260821-r1">
   </script>
  </head>
  <body class="archive-page" data-next="2026-08-22" data-previous="" data-report-date="2026-08-21">
@@ -97,7 +97,7 @@
       下一日 2026-08-22
      </p>
     </div>
-    <article class="news important">
+    <article class="news important" data-intel-id="hist-docs-meshy-ai-4389fdb32b" data-intel-role="card">
      <div class="news-rank">
       01
      </div>
@@ -119,6 +119,17 @@
       <p class="summary">
        Meshy 7 現在可以把「控制模型形體的參考圖」與「控制貼圖的參考圖」分開處理。過去同一組圖片同時負責 Geometry 與 Texture，容易讓線稿、背視圖或不完整材質資訊互相干擾；新的做法讓四視圖負責輪廓與比例，彩色設定圖則專心控制材質。對角色裝備、武器、載具與 Prop 來說，這讓 AI 3D 更接近實際遊戲資產的製作方式。
       </p>
+      <figure class="case-preview" data-intel-id="hist-docs-meshy-ai-4389fdb32b" data-intel-role="visual" data-visual-id="hist-docs-meshy-ai-4389fdb32b">
+       <a href="https://docs.meshy.ai/en/api/changelog" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+        <img alt="HISTORICAL SOURCE VISUAL preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-08-21/hist-docs-meshy-ai-4389fdb32b.jpg"/>
+       </a>
+       <figcaption>
+        <span>
+         HISTORICAL SOURCE VISUAL
+        </span>
+        · Local visual evidence · 點圖開啟原始來源
+       </figcaption>
+      </figure>
       <div class="quick-impact">
        <span>
         <b>
@@ -139,7 +150,7 @@
         低
        </span>
       </div>
-      <details open="">
+      <details>
        <summary>
         完整分析
        </summary>
@@ -169,7 +180,7 @@
       </a>
      </div>
     </article>
-    <article class="news">
+    <article class="news" data-intel-id="hist-unrealengine-com-e9df260543" data-intel-role="card">
      <div class="news-rank">
       02
      </div>
@@ -191,6 +202,17 @@
       <p class="summary">
        UE 5.8 把大型場景相關能力往同一方向推進，包括 PCG、Mesh Terrain、植被、Lighting 與 Shader 效率。這不只是多一個場景工具，而是讓 Environment Artist 能把部分「逐顆擺物件」的工作轉成規則、Variation 與 Modular Kit。對大型地圖或需要大量重複資產的專案，Production 價值會比小型線性場景更明顯。
       </p>
+      <figure class="case-preview" data-intel-id="hist-unrealengine-com-e9df260543" data-intel-role="visual" data-visual-id="hist-unrealengine-com-e9df260543">
+       <a href="https://www.unrealengine.com/news/unreal-engine-5-8-is-now-available" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+        <img alt="HISTORICAL SOURCE VISUAL preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-08-21/hist-unrealengine-com-e9df260543.jpg"/>
+       </a>
+       <figcaption>
+        <span>
+         HISTORICAL SOURCE VISUAL
+        </span>
+        · Local visual evidence · 點圖開啟原始來源
+       </figcaption>
+      </figure>
       <div class="quick-impact">
        <span>
         <b>
@@ -216,6 +238,15 @@
         完整分析
        </summary>
        <div class="detail-body">
+        <h4>
+         摘要脈絡
+        </h4>
+        <p>
+         UE 5.8 把大型場景相關能力往同一方向推進，包括 PCG、Mesh Terrain、植被、Lighting 與 Shader 效率。這不只是多一個場景工具，而是讓 Environment Artist 能把部分「逐顆擺物件」的工作轉成規則、Variation 與 Modular Kit。對大型地圖或需要大量重複資產的專案，Production 價值會比小型線性場景更明顯。
+        </p>
+        <h4>
+         完整分析
+        </h4>
         <p>
          5.8 強化大型世界、PCG、Mesh Terrain、植被與 Shader 效率。場景美術的工作會更偏向 Modular Kit、Variations、規則與 PCG Input，而不是逐顆擺放。Mesh Terrain 仍建議先測試，不要立即當成唯一正式地形方案。
         </p>
@@ -232,7 +263,7 @@
       </a>
      </div>
     </article>
-    <article class="news">
+    <article class="news" data-intel-id="hist-unity-com-072da682d0" data-intel-role="card">
      <div class="news-rank">
       03
      </div>
@@ -254,6 +285,17 @@
       <p class="summary">
        Unity AI 的重點已不只是產生 C#，而是開始理解 Scene、GameObject、Component 與 Project Context。這代表它未來可以直接針對專案內容做檢查，例如找出錯誤的 Texture Import、LOD、Material 或 Renderer 設定。對 3D 美術來說，最值得測試的其實是「美術 QA 助手」，而不是讓 AI 自動生成整個遊戲。
       </p>
+      <figure class="case-preview" data-intel-id="hist-unity-com-072da682d0" data-intel-role="visual" data-visual-id="hist-unity-com-072da682d0">
+       <a href="https://unity.com/blog/unity-ai-assistant-ask-plan-agent-mode-explained" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+        <img alt="HISTORICAL SOURCE VISUAL preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-08-21/hist-unity-com-072da682d0.jpg"/>
+       </a>
+       <figcaption>
+        <span>
+         HISTORICAL SOURCE VISUAL
+        </span>
+        · Local visual evidence · 點圖開啟原始來源
+       </figcaption>
+      </figure>
       <div class="quick-impact">
        <span>
         <b>
@@ -279,6 +321,15 @@
         完整分析
        </summary>
        <div class="detail-body">
+        <h4>
+         摘要脈絡
+        </h4>
+        <p>
+         Unity AI 的重點已不只是產生 C#，而是開始理解 Scene、GameObject、Component 與 Project Context。這代表它未來可以直接針對專案內容做檢查，例如找出錯誤的 Texture Import、LOD、Material 或 Renderer 設定。對 3D 美術來說，最值得測試的其實是「美術 QA 助手」，而不是讓 AI 自動生成整個遊戲。
+        </p>
+        <h4>
+         完整分析
+        </h4>
         <p>
          如果 Agent 能穩定理解 Project Context，它最有價值的用法可能是找錯誤 Texture Import、Material、LOD、Renderer 與 Prefab，而不是直接生成遊戲內容。正式專案應先從只讀分析開始。
         </p>
@@ -295,7 +346,7 @@
       </a>
      </div>
     </article>
-    <article class="news">
+    <article class="news" data-intel-id="hist-blender-org-ee9ece028b" data-intel-role="card">
      <div class="news-rank">
       04
      </div>
@@ -314,6 +365,17 @@
       <p class="summary">
        Blender 5.2 LTS 的價值不在於功能比一般版本更多，而是它提供較長的穩定支援週期。對要把 Blender 納入公司流程的團隊，固定 LTS 能降低 Add-on、Python API、FBX 與檔案版本變動造成的維護成本。若目前正在從 3ds Max 或 Maya 轉換，這種版本更適合拿來建立統一 SOP。
       </p>
+      <figure class="case-preview" data-intel-id="hist-blender-org-ee9ece028b" data-intel-role="visual" data-visual-id="hist-blender-org-ee9ece028b">
+       <a href="https://www.blender.org/download/lts" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+        <img alt="HISTORICAL SOURCE VISUAL preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-08-21/hist-blender-org-ee9ece028b.jpg"/>
+       </a>
+       <figcaption>
+        <span>
+         HISTORICAL SOURCE VISUAL
+        </span>
+        · Local visual evidence · 點圖開啟原始來源
+       </figcaption>
+      </figure>
       <div class="quick-impact">
        <span>
         <b>
@@ -339,6 +401,15 @@
         完整分析
        </summary>
        <div class="detail-body">
+        <h4>
+         摘要脈絡
+        </h4>
+        <p>
+         Blender 5.2 LTS 的價值不在於功能比一般版本更多，而是它提供較長的穩定支援週期。對要把 Blender 納入公司流程的團隊，固定 LTS 能降低 Add-on、Python API、FBX 與檔案版本變動造成的維護成本。若目前正在從 3ds Max 或 Maya 轉換，這種版本更適合拿來建立統一 SOP。
+        </p>
+        <h4>
+         完整分析
+        </h4>
         <p>
          如果要把 Blender 正式納入 Max / Maya 團隊，固定 LTS 能降低插件、Python API 與檔案版本變動帶來的維護成本。先驗證 FBX、Rig、Material Slot 與常用外掛再推到全團隊。
         </p>
@@ -355,7 +426,7 @@
       </a>
      </div>
     </article>
-    <article class="news">
+    <article class="news" data-intel-id="hist-autodesk-com-0db24d6d86" data-intel-role="card">
      <div class="news-rank">
       05
      </div>
@@ -399,6 +470,21 @@
         完整分析
        </summary>
        <div class="detail-body">
+        <h4>
+         Production 指標
+        </h4>
+        <p>
+         新專案導入 ★☆☆☆☆ 遷移必要性 高 替代 ZBrush / Blender
+        </p>
+        <h4>
+         摘要脈絡
+        </h4>
+        <p>
+         Autodesk 已開始推進 Mudbox 的停售時程，因此這不是一般的價格調整，而是產品生命週期正在結束的訊號。仍有 Mudbox 歷史資產或 Script 的團隊不需要立刻停用，但現在就應盤點 Sculpt、Paint、Bake 與舊檔案的依賴。新專案則不適合再把 Mudbox 當成長期核心工具。
+        </p>
+        <h4>
+         完整分析
+        </h4>
         <p>
          對仍使用 Mudbox Sculpt、Texture Paint、Bake 或專用 Script 的團隊，不一定需要立即停用，但應先盤點歷史資產與流程依賴，新專案不建議再以 Mudbox 為核心。
         </p>
