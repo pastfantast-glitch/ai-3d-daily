@@ -3,11 +3,15 @@ document.addEventListener('DOMContentLoaded',async()=>{
   const cards=[...document.querySelectorAll('.top-item, .more-card')];
 
   // Canonical Full Analysis + local Visual Evidence are hydrated by one shared renderer used by both views.
+  // The module inherits the shell's cache-bust token, so render_revision changes invalidate both together.
   try{
     const self=[...document.scripts].find(s=>s.src.includes('/home.js'))?.src||location.href;
     const reportDate=document.body.dataset.reportDate||document.querySelector('.week-asof')?.textContent.trim()||document.querySelector('.topline span:last-child')?.textContent.trim()||'current';
-    const stamp=reportDate.replaceAll('-','');
-    const mod=await import(new URL(`canonical-client.js?v=${stamp}`,self).href);
+    const shellUrl=new URL(self,location.href);
+    const token=shellUrl.searchParams.get('v')||reportDate.replaceAll('-','');
+    const moduleUrl=new URL('canonical-client.js',self);
+    moduleUrl.searchParams.set('v',token);
+    const mod=await import(moduleUrl.href);
     await mod.hydrateCanonicalAnalysis();
   }catch(err){console.warn('Canonical intelligence renderer unavailable',err);}
 
