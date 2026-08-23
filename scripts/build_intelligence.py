@@ -3,9 +3,8 @@
 
 The daily JSON under data/daily/YYYY-MM-DD.json is the only editable source for
 Full Analysis. Homepage and archive consume the same structured blocks and render
-them with the same semantic hierarchy: each block label is an h4 and its body is
-a following paragraph. This preserves content parity without sacrificing the
-presentation system's typography and visual hierarchy.
+them with the same semantic hierarchy. Identity may be shared by multiple DOM
+nodes, so only data-intel-role=card nodes are render targets.
 """
 from pathlib import Path
 import json, sys
@@ -22,49 +21,30 @@ def analysis_html(soup, blocks, home=False):
     details = soup.new_tag('details')
     if home:
         details['class'] = ['home-full-analysis']
-
-    summary = soup.new_tag('summary')
-    summary.string = '完整分析'
-    details.append(summary)
-
-    body = soup.new_tag('div')
-    body['class'] = ['detail-body'] + (['home-analysis-body'] if home else [])
-
+    summary = soup.new_tag('summary'); summary.string = '完整分析'; details.append(summary)
+    body = soup.new_tag('div'); body['class'] = ['detail-body'] + (['home-analysis-body'] if home else [])
     for block in blocks:
-        heading = soup.new_tag('h4')
-        heading.string = block['label']
-        paragraph = soup.new_tag('p')
-        paragraph.string = block['text']
-        body.append(heading)
-        body.append(paragraph)
-
+        heading = soup.new_tag('h4'); heading.string = block['label']
+        paragraph = soup.new_tag('p'); paragraph.string = block['text']
+        body.append(heading); body.append(paragraph)
     details.append(body)
     return details
 
 
 def main():
-    date = sys.argv[1] if len(sys.argv) > 1 else max(
-        p.stem for p in (ROOT / 'data' / 'daily').glob('20??-??-??.json')
-    )
+    date = sys.argv[1] if len(sys.argv) > 1 else max(p.stem for p in (ROOT / 'data' / 'daily').glob('20??-??-??.json'))
     records = {item['id']: item for item in load(date)['items']}
-
-    # Both views are rendered from the same canonical records using stable IDs.
     for path, home in ((ROOT / 'index.html', True), (ROOT / date / 'index.html', False)):
         soup = BeautifulSoup(path.read_text('utf-8'), 'html.parser')
         rendered = 0
-        for card in soup.select('[data-intel-id]'):
+        for card in soup.select('[data-intel-role="card"][data-intel-id]'):
             record = records.get(card.get('data-intel-id'))
-            if not record:
-                continue
+            if not record: continue
             old = card.find('details')
-            if not old:
-                continue
-            old.replace_with(analysis_html(soup, record['full_analysis'], home))
-            rendered += 1
-
+            if not old: continue
+            old.replace_with(analysis_html(soup, record['full_analysis'], home)); rendered += 1
         path.write_text(soup.prettify(), 'utf-8')
         print(f'{path.relative_to(ROOT)}: rendered {rendered} canonical analyses')
 
 
-if __name__ == '__main__':
-    main()
+if __name__ == '__main__': main()
