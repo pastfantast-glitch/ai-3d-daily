@@ -1,5 +1,7 @@
 {
   "date": "2026-08-23",
+  "schema_version": 1,
+  "render_revision": 1,
   "items": [
     {"id":"blender-52-geometry-nodes-physics","slot":"top","full_analysis":[{"label":"問題／目標","text":"把 cloth、hair dynamics 從黑盒 simulation 拉進可程序化、可組合的 Geometry Nodes workflow。"},{"label":"Production","text":"高階資產包裝底層 XPBD；Collider 可直接用 modifier stack 幾何，Custom Force／Effector 可插入自訂行為。這讓 Technical Artist 能把 simulation 規則封裝成資產，而不是每個 shot 重建。"},{"label":"限制","text":"官方仍標 Experimental，設計可能迭代；正式專案先做 prototype，不宜立刻替換成熟 cloth pipeline。"},{"label":"20 分鐘實測","text":"同一塊布建立 Collider、風力 Custom Force，再把 setup 存成 node asset，測 cache、重開檔一致性與動畫交接。"}]},
     {"id":"retopoflow-419","slot":"top","full_analysis":[{"label":"關鍵決策","text":"RetopoFlow 4 把 Contours、PolyStrips、Strokes、PolyPen 等工作直接融入 Edit Mode，進入工具時自動處理 snapping、retopology overlay、auto merge、inactive geometry fade，退出後恢復原設定。"},{"label":"Production 收益","text":"減少模式切換與工具上下文斷裂；4.1.x 又改善 Relax、edge sliding、projection 與 snapping source 指定，較適合角色高模到 deformation topology 的長時間工作。"},{"label":"限制","text":"第三方 Add-on 仍要做 Blender 版本鎖定與專案測試。"},{"label":"SOP","text":"先用頭部／肩膀高模做 20 分鐘測試，檢查 Contours、PolyStrips、Relax、Mirror 與 Blender 原生 Edit 操作是否符合習慣。"}]},
