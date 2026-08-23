@@ -10,6 +10,8 @@ on:
       # Pipeline/frontend changes may rebuild the current release for verification.
       - 'scripts/build_intelligence.py'
       - 'scripts/check_release_input.py'
+      - 'scripts/check_registry_contract.py'
+      - 'scripts/check_pipeline_contract.py'
       - 'scripts/check_intelligence_contract.py'
       - 'scripts/extract_visual_assets.py'
       - 'scripts/inject_visual_previews.py'
@@ -54,6 +56,9 @@ jobs:
       - name: Install pipeline dependencies
         run: pip install beautifulsoup4 requests pillow
 
+      - name: Validate publishing topology
+        run: python scripts/check_pipeline_contract.py
+
       - name: Resolve canonical date
         id: date
         shell: bash
@@ -80,6 +85,9 @@ jobs:
 
       - name: Release-ready input preflight
         run: python scripts/check_release_input.py "${{ steps.date.outputs.value }}"
+
+      - name: Validate published registry / dedupe contract
+        run: python scripts/check_registry_contract.py
 
       - name: Render canonical Full Analysis into both views
         run: python scripts/build_intelligence.py "${{ steps.date.outputs.value }}"
