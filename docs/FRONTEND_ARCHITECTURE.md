@@ -2,18 +2,47 @@
 
 ## Purpose
 
-The homepage is a generated Production Intelligence surface, but its frontend structure is a stable product contract. Daily content may change; layout ownership must not drift with it.
+The homepage and historical daily reports are derived views of canonical Production Intelligence data. Daily content changes; identity, presentation contracts and publishing ownership must not drift with it.
+
+## Canonical data
+
+- `data/daily/YYYY-MM-DD.json` — source of truth for each day's Intelligence records.
+- Every Intelligence record uses a stable `id`.
+- Homepage and Daily Report cards carry the same `data-intel-id`.
+- Full Analysis is authored once in canonical data and rendered into both views.
+- Canonical Full Analysis blocks are `label + text`; renderers output semantic `<h4>label</h4><p>text</p>` pairs.
+
+## Canonical visual evidence
+
+Visual identity uses the same stable Intelligence ID. Do not identify images by article-title matching.
+
+Each day's canonical JSON may contain a top-level `visual_evidence` map keyed by Intelligence ID. A visual record may define:
+
+- `enabled`
+- `source_url`
+- `label`
+- `confidence`
+- `keywords`
+- optional `reason` when disabled
+
+`scripts/extract_visual_assets.py` reads only this canonical map, validates representative image candidates from the source page, and stores successful assets as `assets/visual/<data-intel-id>.jpg`.
+
+`scripts/inject_visual_previews.py` reads `assets/visual/manifest.json` and injects a preview only into a card with the exact matching `data-intel-id`. Preview markup must carry the same ID and link back to the canonical source page.
+
+The legacy `visual-assets.json` title-key manifest is retired and must not return.
 
 ## Homepage modules
 
-- `index.html` — current homepage content and semantic structure. Keep readable and non-minified.
+- `index.html` — current homepage derived view. Keep readable and non-minified.
 - `home.css` — foundation and structural layout only.
 - `home-content.css` — dark visual theme, information-card content, analysis UI and visual-evidence presentation.
-- `home-components.css` — current Supplemental, Test Today, Archive and preference-vote components.
+- `home-components.css` — Supplemental, Test Today, Archive and preference-vote components.
 - `home.js` — details interaction and browser-local preference voting.
+- `canonical-client.js` — shared runtime integrity renderer for canonical Full Analysis.
 - `styles.css` — historical daily-report styles and shared base styles.
+- `daily.css` / `daily.js` — shared historical report presentation and interaction.
 
-Do not create an emergency stylesheet to patch a selector mismatch. Fix the owning module instead.
+Do not create an emergency stylesheet to patch a selector mismatch. Fix the owning module or renderer contract instead.
 
 ## Homepage semantic contract
 
@@ -27,13 +56,23 @@ The section order is fixed:
 
 Desktop Supplemental layout is two columns. Mobile layout is one column.
 
-## Single-writer rule
+## Single-publish-pipeline rule
 
-The daily scheduled publishing task is the only owner allowed to create or replace Intelligence cards in `index.html` and the current `YYYY-MM-DD/index.html` report.
+`.github/workflows/intelligence-build.yml` is the only GitHub Actions workflow allowed to convert canonical data into derived Homepage / Daily HTML and commit current-day local visual assets.
 
-Visual automation is enrichment-only: it may extract, normalize and inject verified visual evidence, but it must not create, delete, reorder or replace TOP 5 / Supplemental Intelligence cards.
+The sequence is:
 
-Structural repair utilities may repair navigation, link safety, counts and cache state, but must not invent Intelligence content.
+1. Resolve latest canonical date.
+2. Bootstrap stable IDs only for legacy markup when needed.
+3. Render canonical Full Analysis.
+4. Extract canonical Visual Evidence.
+5. Inject local previews by stable ID.
+6. Run Intelligence, Visual, Homepage and Daily contracts.
+7. Commit derived views and local visual assets.
+
+Do not create a second workflow that also modifies `index.html` or current daily HTML. In particular, `.github/workflows/visual-assets.yml` is retired because parallel HTML writers create race conditions.
+
+The scheduled daily task owns Intelligence decisions and canonical data. GitHub Actions only renders and enriches that canonical state; it must not invent, reorder or replace Intelligence records.
 
 ## Retired architecture
 
@@ -43,8 +82,8 @@ The following were removed and must not return:
 - `scripts/inject_today_more.py`
 - `.github/workflows/today-more.yml`
 - `home-layout-fixes.css`
-
-They created multiple writers for the homepage and allowed stale cross-day data to contaminate a newer homepage.
+- `visual-assets.json`
+- `.github/workflows/visual-assets.yml`
 
 Retired homepage selectors include:
 
@@ -65,38 +104,22 @@ This data is browser-local only. The scheduled publisher must never claim to hav
 
 ## Cache busting
 
-When a visible or interactive homepage asset changes, bump the corresponding `?v=` reference in `index.html` in the same publication batch.
-
-Assets:
-
-- `home.css`
-- `home-content.css`
-- `home-components.css`
-- `home.js`
-
-Visual-preview automation uses dynamic cache busting and must not hard-code an obsolete date version.
+When a visible or interactive asset changes, bump the corresponding `?v=` reference in the same publication batch. Visual files themselves use stable-ID filenames and are regenerated only from verified canonical evidence.
 
 ## Required QA
 
 Run before publication:
 
 ```bash
+python scripts/check_intelligence_contract.py
+python scripts/check_visual_contract.py YYYY-MM-DD
 python scripts/check_home_contract.py
+python scripts/check_daily_contract.py
 ```
 
-The contract rejects, among other things:
+Publication must fail on Full Analysis drift, semantic hierarchy drift, visual-ID mismatch, missing rendered local assets for successfully extracted visuals, Homepage selector regression, invalid Daily navigation, unsafe external links, or other contract failures.
 
-- TOP 5 count other than five
-- Supplemental count outside 6–12
-- workflow-era `data-supplemental-id` cards on the homepage
-- retired selectors or emergency stylesheet references
-- minified/single-line `index.html`
-- missing current component selectors
-- stale homepage search/filter JavaScript
-- unsafe homepage `target="_blank"` links
-- `null` placeholders in the latest daily report
-
-If QA fails, do not publish first and fix later. Fix the generated state, rerun QA, then commit.
+If QA fails, do not publish first and fix later. Fix the canonical state or owning pipeline, rerun QA, then commit.
 
 ## Historical navigation
 
