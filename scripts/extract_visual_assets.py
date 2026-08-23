@@ -8,8 +8,8 @@ from bs4 import BeautifulSoup
 from PIL import Image
 
 ROOT = Path(__file__).resolve().parents[1]
-OUT_DIR = ROOT / 'assets' / 'visual'
-OUT_DIR.mkdir(parents=True, exist_ok=True)
+VISUAL_ROOT = ROOT / 'assets' / 'visual'
+VISUAL_ROOT.mkdir(parents=True, exist_ok=True)
 UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/126 Safari/537.36'
 TIMEOUT = 25
 RETRIES = 2
@@ -117,12 +117,14 @@ def fetch_image(session,page_url,cand):
     return im,cand['score']+min(45,area/350000)+(8 if 1.1<=ratio<=2.2 else 0)
 
 
-def save_image(intel_id,im):
+def save_image(date,intel_id,im):
     if im.mode not in ('RGB','L'):
         bg=Image.new('RGB',im.size,(18,24,39)); bg.paste(im,mask=im.getchannel('A') if 'A' in im.getbands() else None); im=bg
     else: im=im.convert('RGB')
     if im.width>1600: im=im.resize((1600,round(im.height*1600/im.width)),Image.Resampling.LANCZOS)
-    out=OUT_DIR/f'{intel_id}.jpg'; im.save(out,'JPEG',quality=88,optimize=True,progressive=True); return out
+    out_dir=VISUAL_ROOT/date
+    out_dir.mkdir(parents=True,exist_ok=True)
+    out=out_dir/f'{intel_id}.jpg'; im.save(out,'JPEG',quality=88,optimize=True,progressive=True); return out
 
 
 def classify_failure(exc,candidate_count=0):
@@ -138,7 +140,7 @@ def classify_failure(exc,candidate_count=0):
 def main():
     date=sys.argv[1] if len(sys.argv)>1 else latest_date(); entries=load_entries(date)
     session=requests.Session(); session.headers.update({'User-Agent':UA,'Accept-Language':'en-US,en;q=0.8'})
-    report={'date':date,'identity':'data-intel-id','generated_by':'scripts/extract_visual_assets.py','entries':[]}
+    report={'date':date,'identity':'data-intel-id','asset_versioning':'daily-snapshot','generated_by':'scripts/extract_visual_assets.py','entries':[]}
     for entry in entries:
         rec={'id':entry['id'],'page_url':entry['page_url'],'status':'pending','confidence':entry['confidence'],'candidate_count':0}; candidates=[]; failures=[]
         try:
@@ -151,12 +153,18 @@ def main():
                 except Exception as exc:
                     failures.append({'url':cand['url'],'reason':str(exc)[:180]})
             if not winner: raise RuntimeError('no valid representative image candidate')
-            score,cand,im=winner; out=save_image(entry['id'],im)
+            score,cand,im=winner; out=save_image(date,entry['id'],im)
             rec.update({'status':'ok','asset_path':str(out.relative_to(ROOT)).replace('\\','/'),'source_image_url':cand['url'],'source_kind':cand['reason'],'width':im.width,'height':im.height,'label':entry['label'],'score':round(score,2),'tested':tested[:8],'failures':failures[:8]})
         except Exception as exc:
             rec['status']=classify_failure(exc,len(candidates)); rec['error']=str(exc); rec['failures']=failures[:8]
         report['entries'].append(rec); print(f"visual {entry['id']}: {rec['status']} candidates={rec['candidate_count']}")
-    (OUT_DIR/'manifest.json').write_text(json.dumps(report,ensure_ascii=False,indent=2),'utf-8')
+
+    payload=json.dumps(report,ensure_ascii=False,indent=2)
+    # Current manifest is a convenience pointer for Homepage/runtime hydration.
+    (VISUAL_ROOT/'manifest.json').write_text(payload,'utf-8')
+    # Per-date manifest preserves the historical evidence snapshot and diagnostics.
+    date_dir=VISUAL_ROOT/date; date_dir.mkdir(parents=True,exist_ok=True)
+    (date_dir/'manifest.json').write_text(payload,'utf-8')
     ok=sum(x['status']=='ok' for x in report['entries']); print(f'visual assets {date}: {ok}/{len(report["entries"])}')
     # Missing visuals are a soft failure. The contract requires every enabled ID to
     # have an explicit diagnostic status, so the report remains publishable and observable.
