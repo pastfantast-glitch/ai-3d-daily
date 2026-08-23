@@ -5,9 +5,11 @@ on:
     branches: [main]
     paths:
       # Scheduled content publishing writes this marker LAST, after canonical data,
-      # homepage markup and the daily snapshot are all complete.
-      - 'data/publish/**'
+      # homepage markup and the daily snapshot are all complete. Receipt metadata
+      # deliberately does not retrigger the publisher.
+      - 'data/publish/*.ready'
       # Pipeline/frontend changes may rebuild the current release for verification.
+      - 'requirements-pipeline.txt'
       - 'scripts/build_intelligence.py'
       - 'scripts/render_daily_navigation.py'
       - 'scripts/check_release_input.py'
@@ -18,6 +20,9 @@ on:
       - 'scripts/inject_visual_previews.py'
       - 'scripts/check_visual_contract.py'
       - 'scripts/apply_cache_bust.py'
+      - 'scripts/verify_pages_publish.py'
+      - 'scripts/write_publish_receipt.py'
+      - 'scripts/restore_publish_snapshot.py'
       - 'canonical-client.js'
       - 'home.js'
       - 'daily.js'
@@ -28,23 +33,29 @@ on:
         description: 'Canonical report date (YYYY-MM-DD); blank = latest'
         required: false
         type: string
+      recovery_sha:
+        description: 'Optional known-good Publish commit SHA to restore derived publication surfaces'
+        required: false
+        type: string
   issues:
     types: [opened, reopened]
 
 permissions:
   contents: write
 
-# Single Writer Rule: every trigger shares one global lock. Manual, push and issue
-# reruns must never render/commit the site concurrently.
+# Single Writer Rule: every trigger shares one global lock. Manual, push, issue
+# reruns and recovery must never write the site concurrently.
 concurrency:
   group: canonical-intelligence-publish
   cancel-in-progress: true
 
 jobs:
   publish:
-    if: github.event_name != 'issues' || startsWith(github.event.issue.title, 'rerun-canonical:')
+    if: >-
+      (github.event_name != 'issues' || startsWith(github.event.issue.title, 'rerun-canonical:')) &&
+      (github.event_name != 'workflow_dispatch' || github.event.inputs.recovery_sha == '')
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 25
     steps:
       - uses: actions/checkout@v6
         with:
@@ -54,8 +65,8 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Install pipeline dependencies
-        run: pip install beautifulsoup4 requests pillow
+      - name: Install locked pipeline dependencies
+        run: pip install -r requirements-pipeline.txt
 
       - name: Validate publishing topology
         run: python scripts/check_pipeline_contract.py
@@ -164,8 +175,10 @@ jobs:
           fi
 
       - name: Atomic publish derived assets and views
+        id: publish_commit
         shell: bash
         run: |
+          set -euo pipefail
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
 
@@ -176,13 +189,94 @@ jobs:
           find . -maxdepth 2 -mindepth 2 -path './20??-??-??/index.html' -print0 | xargs -0 -r git add --
 
           if git diff --cached --quiet; then
-            echo "Canonical assets and rendered views already current"
+            publish_sha="$(git log -1 --format=%H --grep="^Publish canonical intelligence ${{ steps.date.outputs.value }}$")"
+            test -n "$publish_sha" || { echo "No prior publish commit found for current rendered state"; exit 1; }
+            echo "Canonical assets and rendered views already current at $publish_sha"
+          else
+            git commit -m "Publish canonical intelligence ${{ steps.date.outputs.value }}"
+            # Working tree must be clean here. If main changed during this run and
+            # conflicts with the same derived files, fail rather than overwrite it.
+            git pull --rebase origin main
+            git push origin HEAD:main
+            publish_sha="$(git rev-parse HEAD)"
+          fi
+          echo "publish_sha=$publish_sha" >> "$GITHUB_OUTPUT"
+
+      - name: Verify public GitHub Pages release
+        env:
+          SITE_URL: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/
+        run: python scripts/verify_pages_publish.py "${{ steps.date.outputs.value }}" --base-url "$SITE_URL" --attempts 8 --delay 15
+
+      - name: Write verified publish receipt
+        env:
+          SITE_URL: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/
+        run: |
+          python scripts/write_publish_receipt.py "${{ steps.date.outputs.value }}" \
+            --publish-sha "${{ steps.publish_commit.outputs.publish_sha }}" \
+            --run-id "${{ github.run_id }}" \
+            --site-url "$SITE_URL"
+
+      - name: Commit operational receipt metadata
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add "data/publish/${{ steps.date.outputs.value }}.done.json" data/publish/latest-success.json
+          if git diff --cached --quiet; then
+            echo "Verified receipt already current"
             exit 0
           fi
+          git commit -m "Record verified publish ${{ steps.date.outputs.value }}"
+          git pull --rebase origin main
+          git push origin HEAD:main
 
-          git commit -m "Publish canonical intelligence ${{ steps.date.outputs.value }}"
+      - name: Publish success summary
+        if: success()
+        shell: bash
+        run: |
+          {
+            echo "## Canonical publish DONE"
+            echo "- Date: ${{ steps.date.outputs.value }}"
+            echo "- Publish commit: ${{ steps.publish_commit.outputs.publish_sha }}"
+            echo "- Receipt: data/publish/${{ steps.date.outputs.value }}.done.json"
+            echo "- Pages: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/"
+          } >> "$GITHUB_STEP_SUMMARY"
 
-          # Working tree must be clean here. If main changed during this run and
-          # conflicts with the same derived files, fail rather than overwrite it.
+      - name: Publish failure summary
+        if: failure()
+        shell: bash
+        run: |
+          {
+            echo "## Canonical publish FAILED"
+            echo "- No DONE receipt is written on failure."
+            echo "- Inspect the first failed step above; scheduled recovery will retry at most once."
+          } >> "$GITHUB_STEP_SUMMARY"
+
+  recovery:
+    if: github.event_name == 'workflow_dispatch' && github.event.inputs.recovery_sha != ''
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+      - name: Restore known-good derived publication snapshot
+        env:
+          RECOVERY_SHA: ${{ github.event.inputs.recovery_sha }}
+        run: python scripts/restore_publish_snapshot.py --target "$RECOVERY_SHA" --apply
+      - name: Commit recovery without rewriting history
+        shell: bash
+        env:
+          RECOVERY_SHA: ${{ github.event.inputs.recovery_sha }}
+        run: |
+          set -euo pipefail
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          if git diff --cached --quiet; then
+            echo "Recovery target already matches current derived publication"
+            exit 0
+          fi
+          git commit -m "Recover canonical publication from $RECOVERY_SHA"
           git pull --rebase origin main
           git push origin HEAD:main
