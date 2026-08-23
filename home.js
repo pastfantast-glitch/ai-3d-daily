@@ -2,10 +2,10 @@ document.addEventListener('DOMContentLoaded',async()=>{
   document.querySelectorAll('a[target="_blank"]').forEach(a=>a.rel='noopener noreferrer');
   const cards=[...document.querySelectorAll('.top-item, .more-card')];
 
-  // Canonical Full Analysis is hydrated by one shared renderer used by both views.
+  // Canonical Full Analysis + local Visual Evidence are hydrated by one shared renderer used by both views.
   try{
     const self=[...document.scripts].find(s=>s.src.includes('/home.js'))?.src||location.href;
-    const mod=await import(new URL('canonical-client.js?v=20260823-1',self).href);
+    const mod=await import(new URL('canonical-client.js?v=20260823-2',self).href);
     await mod.hydrateCanonicalAnalysis();
   }catch(err){console.warn('Canonical intelligence renderer unavailable',err);}
 
