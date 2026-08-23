@@ -1,42 +1,21 @@
-name: Daily state repair
+name: Legacy daily state repair QA (read-only)
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - 'scripts/repair_daily_state.py'
-      - '.github/workflows/daily-state-repair.yml'
   workflow_dispatch:
 
 permissions:
-  contents: write
-
-concurrency:
-  group: daily-state-repair
-  cancel-in-progress: true
+  contents: read
 
 jobs:
-  repair:
+  verify:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Install dependencies
-        run: pip install beautifulsoup4
-      - name: Repair homepage and daily navigation state
-        run: python scripts/repair_daily_state.py
-      - name: Homepage contract QA
-        run: python scripts/check_home_contract.py
-      - name: Commit repaired state
+      - run: pip install beautifulsoup4
+      - name: Validate homepage and daily contracts only
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add index.html 20??-??-??/index.html
-          if git diff --cached --quiet; then
-            echo "No state repair changes"
-          else
-            git commit -m "Repair daily homepage state"
-            git push
-          fi
+          python scripts/check_home_contract.py
+          python scripts/check_daily_contract.py
