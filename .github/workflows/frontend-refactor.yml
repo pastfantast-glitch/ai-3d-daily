@@ -1,0 +1,37 @@
+name: Refactor homepage frontend
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/refactor_home_frontend.py'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  refactor:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install CSS tooling
+        run: pip install cssutils cssbeautifier beautifulsoup4
+      - name: Refactor homepage frontend
+        run: python scripts/refactor_home_frontend.py
+      - name: Run homepage contract QA
+        run: python scripts/check_home_contract.py
+      - name: Commit refactor
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No frontend refactor changes"
+          else
+            git commit -m "Refactor homepage frontend architecture"
+            git push
+          fi
