@@ -3,12 +3,13 @@
 
 Only intelligence-build.yml may write repository contents. Legacy QA workflows
 must remain read-only. The canonical publisher must keep a release-ready gate,
-preflight, registry QA, archive navigation + homepage archive-list rendering,
-historical regression, atomic content publish, public Pages verification,
-success receipt, recovery path, and one global concurrency lock. Runtime modules
-must inherit the shell cache token and never guess stable IDs for new dates.
-GitHub-hosted JavaScript actions must stay on Node.js 24-capable majors and Python
-dependencies must be installed from the validated lock file.
+preflight, registry QA, archive navigation + shared presentation normalization,
+homepage archive-list rendering, historical regression, atomic content publish,
+public Pages verification, success receipt, recovery path, and one global
+concurrency lock. Runtime modules must inherit the shell cache token and never
+guess stable IDs for new dates. GitHub-hosted JavaScript actions must stay on
+Node.js 24-capable majors and Python dependencies must be installed from the
+validated lock file.
 """
 from pathlib import Path
 import re, sys
@@ -69,16 +70,25 @@ else:
     if re.search(r'pip install\s+beautifulsoup4\b', main):
         fail('canonical publisher bypasses dependency lock')
 
+normalizer=ROOT/'scripts'/'normalize_archive_presentation.py'
+nav_renderer=ROOT/'scripts'/'render_daily_navigation.py'
+if not normalizer.exists():
+    fail('archive presentation normalizer missing')
+if not nav_renderer.exists():
+    fail('render_daily_navigation.py missing')
+else:
+    nav_text=nav_renderer.read_text('utf-8')
+    if 'normalize_archive_presentation' not in nav_text or 'normalize_presentation()' not in nav_text:
+        fail('archive navigation renderer no longer invokes shared presentation normalizer')
+
 for path in sorted(WF.glob('*.yml')):
     text=path.read_text('utf-8')
-
     for match in re.finditer(r'actions/checkout@v(\d+)', text):
         if int(match.group(1)) < 5:
             fail(f'Node 20 checkout action returned: {path.name} uses {match.group(0)}')
     for match in re.finditer(r'actions/setup-python@v(\d+)', text):
         if int(match.group(1)) < 6:
             fail(f'Node 20 setup-python action returned: {path.name} uses {match.group(0)}')
-
     if path == MAIN:
         continue
     if re.search(r'contents:\s*write', text):
@@ -89,8 +99,6 @@ for path in sorted(WF.glob('*.yml')):
 for retired in ('visual-assets.yml','today-more.yml','historical-backfill-once.yml'):
     if (WF/retired).exists(): fail(f'retired writer workflow returned: {retired}')
 
-# Runtime cache token must be inherited from the cache-busted shell asset so a
-# same-day render_revision change invalidates canonical-client.js as well.
 for name in ('home.js','daily.js'):
     path=ROOT/name
     if not path.exists():
@@ -118,4 +126,4 @@ if errors:
     print('PIPELINE CONTRACT FAILED')
     print('\n'.join('- '+e for e in errors))
     sys.exit(1)
-print('PIPELINE CONTRACT PASS: one atomic writer + ready gate + archive parity + historical regression + locked deps + Pages receipt + recovery + Node 24')
+print('PIPELINE CONTRACT PASS: one atomic writer + shared daily presentation v2 + ready gate + archive parity + historical regression + locked deps + Pages receipt + recovery + Node 24')
