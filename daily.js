@@ -3,10 +3,10 @@ document.addEventListener('DOMContentLoaded',async()=>{
   const date=document.body.dataset.reportDate||document.querySelector('.topline span:last-child')?.textContent.trim()||'';
   const previous=document.body.dataset.previous||'',next=document.body.dataset.next||'';
 
-  // Same canonical renderer as homepage: one source, one semantic hierarchy.
+  // Same canonical renderer as homepage: Full Analysis + local Visual Evidence share one stable-ID source.
   try{
     const self=[...document.scripts].find(s=>s.src.includes('/daily.js'))?.src||location.href;
-    const mod=await import(new URL('canonical-client.js?v=20260823-1',self).href);
+    const mod=await import(new URL('canonical-client.js?v=20260823-2',self).href);
     await mod.hydrateCanonicalAnalysis();
   }catch(err){console.warn('Canonical intelligence renderer unavailable',err);}
 
