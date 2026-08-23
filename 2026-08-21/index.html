@@ -1,68 +1,1174 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="zh-Hant">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>AI 3D Daily｜每日 3D 美術與遊戲開發情報</title>
-  <meta name="description" content="每日整理 AI、3D 美術工具、Unity、Unreal、Production workflow 與遊戲產業情報。" />
-  <link rel="stylesheet" href="styles.css" />
-  <script src="accordion.js" defer></script>
-</head>
-<body>
-<header class="site-head"><div class="page"><div class="topline"><span>AI 3D DAILY</span><span>2026-08-21</span></div><h1>每日 3D 美術情報</h1><p class="intro">替 3D Artist 篩掉雜訊，只留下今天值得看的更新、Production 影響與快速實測方式。</p><div class="stats"><span><b>5</b> 今日必看</span><span><b>7</b> 深度分類</span><span><b>3</b> 建議實測</span></div></div></header>
-<nav class="jumpbar"><div class="page navinner"><a href="#top">TOP 5</a><a href="#ai">生成式 AI</a><a href="#tools">3D 工具</a><a href="#engine">引擎</a><a href="#workflow">流程</a><a href="#license">授權</a><a href="#industry">產業</a><a href="#stefan">Stefan</a><a href="#try">實測</a></div></nav>
-<main class="page">
-<section id="top" class="block">
-  <div class="block-head"><div><span class="section-kicker">TODAY</span><h2>今日必看 TOP 5</h2></div><p>每則先交代事件背景與變化，再進入完整 Production 分析。</p></div>
-
-  <article class="news important"><div class="news-rank">01</div><div class="news-main"><div class="meta"><span class="pill purple">AI 3D</span><span class="priority">● 高優先</span><span>官方</span></div><h3>Meshy 7：多視圖幾何與貼圖參考正式分離</h3><p class="summary">Meshy 7 現在可以把「控制模型形體的參考圖」與「控制貼圖的參考圖」分開處理。過去同一組圖片同時負責 Geometry 與 Texture，容易讓線稿、背視圖或不完整材質資訊互相干擾；新的做法讓四視圖負責輪廓與比例，彩色設定圖則專心控制材質。對角色裝備、武器、載具與 Prop 來說，這讓 AI 3D 更接近實際遊戲資產的製作方式。</p><div class="quick-impact"><span><b>Production</b> ★★★☆☆</span><span><b>節省時間</b> 高</span><span><b>學習成本</b> 低</span></div><details open><summary>完整分析</summary><div class="detail-body"><h4>更新內容</h4><p>Meshy 7 已進入 API，並加入可分別指定幾何參考與貼圖參考的流程。你可以用正、側、背視圖控制 Silhouette 與比例，再用另外的彩色設定圖或材質 Render 控制 Texture，避免過去同一套圖片同時負責形體與材質造成的污染。</p><h4>對 3D 美術的影響</h4><p>最直接受益的是角色裝備、武器、載具與場景 Prop。合理流程會變成「四視圖 → Geometry、彩色設定 → Texture、AI 生成 → Blender / Max Cleanup → Unity / Unreal」。它更適合作為 Blockout 或 High-poly 起點，而不是 Final Asset。</p><h4>20 分鐘實測</h4><p>拿一個你已有標準答案的 Prop：四視圖控制 Geometry、2–3 張配色圖控制 Texture。生成後只檢查 Silhouette、洞口、硬表面轉角、UV 與 Cleanup 時間，再和人工 Blockout 比較。</p></div></details><a class="source" href="https://docs.meshy.ai/en/api/changelog" target="_blank" rel="noreferrer">官方來源 ↗</a></div></article>
-
-  <article class="news"><div class="news-rank">02</div><div class="news-main"><div class="meta"><span class="pill blue">UNREAL</span><span class="priority">● 高優先</span><span>官方</span></div><h3>Unreal Engine 5.8：PCG、Mesh Terrain 與大型場景流程持續成熟</h3><p class="summary">UE 5.8 把大型場景相關能力往同一方向推進，包括 PCG、Mesh Terrain、植被、Lighting 與 Shader 效率。這不只是多一個場景工具，而是讓 Environment Artist 能把部分「逐顆擺物件」的工作轉成規則、Variation 與 Modular Kit。對大型地圖或需要大量重複資產的專案，Production 價值會比小型線性場景更明顯。</p><div class="quick-impact"><span><b>大型場景</b> ★★★★★</span><span><b>導入成本</b> 中～高</span><span><b>節省擺設</b> 高</span></div><details><summary>完整分析</summary><div class="detail-body"><p>5.8 強化大型世界、PCG、Mesh Terrain、植被與 Shader 效率。場景美術的工作會更偏向 Modular Kit、Variations、規則與 PCG Input，而不是逐顆擺放。Mesh Terrain 仍建議先測試，不要立即當成唯一正式地形方案。</p><h4>20 分鐘實測</h4><p>複製一個現有 Level，以 2–3 種 Prop 做 PCG Scatter，和人工擺設比較控制力、花費時間，再用 Shader Complexity / Stat GPU 看成本。</p></div></details><a class="source" href="https://www.unrealengine.com/news/unreal-engine-5-8-is-now-available" target="_blank" rel="noreferrer">官方來源 ↗</a></div></article>
-
-  <article class="news"><div class="news-rank">03</div><div class="news-main"><div class="meta"><span class="pill blue">UNITY AI</span><span class="priority">● 高優先</span><span>Open Beta</span></div><h3>Unity AI：從聊天工具走向能理解 Project Context 的 Agent</h3><p class="summary">Unity AI 的重點已不只是產生 C#，而是開始理解 Scene、GameObject、Component 與 Project Context。這代表它未來可以直接針對專案內容做檢查，例如找出錯誤的 Texture Import、LOD、Material 或 Renderer 設定。對 3D 美術來說，最值得測試的其實是「美術 QA 助手」，而不是讓 AI 自動生成整個遊戲。</p><div class="quick-impact"><span><b>美術 QA</b> ★★★★★</span><span><b>Production</b> ★★★☆☆</span><span><b>風險</b> 自動修改資產</span></div><details><summary>完整分析</summary><div class="detail-body"><p>如果 Agent 能穩定理解 Project Context，它最有價值的用法可能是找錯誤 Texture Import、Material、LOD、Renderer 與 Prefab，而不是直接生成遊戲內容。正式專案應先從只讀分析開始。</p><h4>20 分鐘實測</h4><p>要求它分析目前 Scene 所有 Mesh Renderer、Material、Texture、LOD，列出 10 個可能影響效能或美術一致性的問題，但不要修改。</p></div></details><a class="source" href="https://unity.com/blog/unity-ai-assistant-ask-plan-agent-mode-explained" target="_blank" rel="noreferrer">官方來源 ↗</a></div></article>
-
-  <article class="news"><div class="news-rank">04</div><div class="news-main"><div class="meta"><span class="pill green">BLENDER</span><span>官方</span></div><h3>Blender 5.2 LTS：適合作為長期 Production Pipeline 的基準版本</h3><p class="summary">Blender 5.2 LTS 的價值不在於功能比一般版本更多，而是它提供較長的穩定支援週期。對要把 Blender 納入公司流程的團隊，固定 LTS 能降低 Add-on、Python API、FBX 與檔案版本變動造成的維護成本。若目前正在從 3ds Max 或 Maya 轉換，這種版本更適合拿來建立統一 SOP。</p><div class="quick-impact"><span><b>穩定度</b> ★★★★★</span><span><b>團隊基準</b> ★★★★★</span><span><b>外掛風險</b> 中</span></div><details><summary>完整分析</summary><div class="detail-body"><p>如果要把 Blender 正式納入 Max / Maya 團隊，固定 LTS 能降低插件、Python API 與檔案版本變動帶來的維護成本。先驗證 FBX、Rig、Material Slot 與常用外掛再推到全團隊。</p><h4>20 分鐘實測</h4><p>跑一個真實資產的 Max → Blender 5.2 → Unity / Unreal，只檢查 Scale、Axis、Normal、UV、Material Slot、Pivot 與 Skeleton / Root。</p></div></details><a class="source" href="https://www.blender.org/download/lts/" target="_blank" rel="noreferrer">官方來源 ↗</a></div></article>
-
-  <article class="news"><div class="news-rank">05</div><div class="news-main"><div class="meta"><span class="pill orange">授權</span><span>官方</span></div><h3>Autodesk Mudbox 進入停售階段：新 Pipeline 不宜再投入</h3><p class="summary">Autodesk 已開始推進 Mudbox 的停售時程，因此這不是一般的價格調整，而是產品生命週期正在結束的訊號。仍有 Mudbox 歷史資產或 Script 的團隊不需要立刻停用，但現在就應盤點 Sculpt、Paint、Bake 與舊檔案的依賴。新專案則不適合再把 Mudbox 當成長期核心工具。</p><div class="quick-impact"><span><b>新專案導入</b> ★☆☆☆☆</span><span><b>遷移必要性</b> 高</span><span><b>替代</b> ZBrush / Blender</span></div><details><summary>完整分析</summary><div class="detail-body"><p>對仍使用 Mudbox Sculpt、Texture Paint、Bake 或專用 Script 的團隊，不一定需要立即停用，但應先盤點歷史資產與流程依賴，新專案不建議再以 Mudbox 為核心。</p></div></details><a class="source" href="https://www.autodesk.com/products/mudbox/buy" target="_blank" rel="noreferrer">官方來源 ↗</a></div></article>
-</section>
-
-<section class="block" id="categories"><div class="block-head"><div><span class="section-kicker">TRACKING</span><h2>7 大分類深度追蹤</h2></div><p>先用數句摘要建立背景，再展開 Production 判斷。</p></div>
-
-  <section class="category-deep" id="ai"><header class="cat-head"><span>01</span><div><h3>2D / 3D 生成式 AI</h3><p>今天最明顯的方向，是 AI 3D 從單純追求生成品質，轉向控制性與後續可編輯性。對 Production 來說，能減少多少 Cleanup、能否順利進 DCC 與引擎，比 Turntable 看起來多漂亮更重要。</p></div></header>
-    <article class="category-news"><div class="meta"><span class="pill purple">AI 3D</span><span class="priority">● 高優先</span></div><h4>Meshy 7：Geometry 與 Texture Reference 分離，真正影響的是可控性</h4><p class="summary">Meshy 把幾何與貼圖參考拆開後，美術可以用四視圖控制形體，再用彩色設定圖控制材質，兩種資料不必互相妥協。這對角色裝備、武器與 Prop 特別有用，因為它們通常本來就有結構圖與材質圖兩套來源。真正的價值是縮短 Blockout 與材質 First Pass，而不是直接取代後續 Cleanup。</p><div class="quick-impact"><span><b>角色/Prop</b> ★★★★★</span><span><b>Production</b> ★★★☆☆</span><span><b>Cleanup</b> 仍必要</span></div><details><summary>完整分析</summary><div class="detail-body"><h4>更新內容</h4><p>多視圖可用於控制輪廓與比例，材質圖則獨立負責 Texture。這對角色裝備、武器、載具與場景 Prop 特別重要，因為這些資產本來就常有「線稿四視圖」與「彩色材質設定」兩套來源。</p><h4>對 3D 美術的影響</h4><p>最大的價值不是完全取代建模，而是把最前面的 Blockout、形體探索與初步材質投射壓縮。真正進遊戲前仍要人工檢查 Topology、UV、Normal、材質分區與 Silhouette。</p><h4>適合誰看</h4><p>角色建模、Prop Artist、場景美術、3D Generalist、獨立開發者。</p><h4>10–20 分鐘實測</h4><p>拿一個已有完成稿的 Prop，比較「AI 生成＋Cleanup」和「人工 Blockout」實際時間，不要只比畫面漂亮程度。</p></div></details><a class="source" href="https://docs.meshy.ai/en/api/changelog" target="_blank" rel="noreferrer">官方來源 ↗</a></article>
-    <article class="category-news"><div class="meta"><span class="pill purple">WORKFLOW</span></div><h4>Tripo 類工具的真正競爭點：Smart Export、DCC Bridge、Texture 與後處理</h4><p class="summary">AI 3D 工具之間的生成品質逐漸接近後，差距會更多出現在後續工作流。Smart Export、分件、UV、Topology、Texture、Rig 與 DCC Bridge 是否乾淨，會直接影響 Blender／Max 內還要花多少時間整理。對遊戲美術而言，少半小時 Cleanup 往往比 Demo 多一點細節更有價值。</p><div class="quick-impact"><span><b>工作流價值</b> ★★★★☆</span><span><b>節省時間</b> 中～高</span><span><b>關鍵</b> Export / UV / Topology</span></div><details><summary>完整分析</summary><div class="detail-body"><p>當生成品質逐漸接近時，真正拉開差距的是匯出、分件、材質、拓撲、Rig、DCC Bridge 與遊戲引擎整合。對 Production 來說，少 30 分鐘 Cleanup 通常比 Demo 多 10% 細節更有價值。</p><h4>實測方法</h4><p>同一份參考圖在兩個 AI 3D 工具各生成一次，再進 Blender 檢查命名、分件、UV、材質數量、法線、Polycount 與可編輯性，最後輸出 Unity / Unreal。</p></div></details></article>
-  </section>
-
-  <section class="category-deep" id="tools"><header class="cat-head"><span>02</span><div><h3>3D 美術工具 / 軟體</h3><p>今天的重點不是單一新功能，而是版本穩定性與工具生命週期。對正式團隊來說，插件、Script、FBX、Skin、材質與引擎輸出是否穩定，通常比「多了一個新按鈕」更值得追。</p></div></header>
-    <article class="category-news"><div class="meta"><span class="pill green">BLENDER</span><span>官方</span></div><h4>Blender 5.2 LTS：適合拿來固定公司級 Production Baseline</h4><p class="summary">5.2 LTS 適合被當成團隊統一版本，而不是每個人各自追最新 Blender。固定版本後，Export Preset、Add-on、Scene Units 與 Python 工具才比較容易建立可重現的 SOP。對從 Max／Maya 逐步導入 Blender 的團隊，這能降低版本差異造成的錯誤。</p><div class="quick-impact"><span><b>團隊導入</b> ★★★★★</span><span><b>穩定性</b> 高</span><span><b>遷移成本</b> 中</span></div><details><summary>完整分析</summary><div class="detail-body"><p>對從 3ds Max / Maya 轉 Blender 的團隊，最大風險常不是操作學不會，而是每個人版本不同、插件不一致、FBX 設定不統一。LTS 很適合當統一基準，再把 Export Preset、Addon 清單與 Scene Units 寫進 SOP。</p><h4>實測方法</h4><p>挑角色與場景各一個正式資產，用 5.2 LTS 跑完整 Import / Edit / Export，檢查 Scale、Axis、Normal、Material Slot、UV、Skin、Morph 與 Root。</p></div></details><a class="source" href="https://www.blender.org/download/lts/" target="_blank" rel="noreferrer">官方來源 ↗</a></article>
-    <article class="category-news"><div class="meta"><span class="pill green">3DS MAX</span></div><h4>3ds Max 更新：升級決策應優先看 Skin、FBX、Material 與 Plugin 相容</h4><p class="summary">對已經有成熟 Max Pipeline 的團隊，小版本升級不應只看新增功能清單。Skin、Morph、FBX、Material、MaxScript 與 Plugin 只要有一項出現相容問題，就可能影響整條角色或場景流程。比較安全的做法是先用標準測試檔驗證，再決定是否全員升級。</p><div class="quick-impact"><span><b>升級急迫性</b> 低～中</span><span><b>風險</b> Plugin</span><span><b>先測</b> FBX / Skin</span></div><details><summary>完整分析</summary><div class="detail-body"><p>正式 Production 不建議只因小版本更新就全員升級。先建立測試檔，涵蓋 Skin、Morph、材質、USD / FBX、MaxScript 與常用插件，確認輸出引擎後沒有差異，再決定是否推廣。</p><h4>適合誰看</h4><p>角色美術 Lead、場景 Lead、TA、Pipeline TD，以及負責團隊版本管理的人。</p></div></details></article>
-  </section>
-
-  <section class="category-deep" id="engine"><header class="cat-head"><span>03</span><div><h3>Unity / Unreal / 遊戲引擎</h3><p>Unity 與 Unreal 都在把「規則」與「Agent」放進 Editor，但方向略有不同。Unity AI 更像 Project-aware 助手；Unreal 的 PCG 與 Mesh Terrain 則在改變大型場景的建立方式，兩者都會讓美術與 TA 的工作邊界更接近。</p></div></header>
-    <article class="category-news"><div class="meta"><span class="pill blue">UNITY AI</span><span>Open Beta</span></div><h4>Unity AI：對美術最有潛力的不是生成內容，而是 Project-aware QA</h4><p class="summary">Unity AI 如果能可靠讀懂 Project Context，就能把很多原本由 TA 或 Lead 手動做的檢查自動化。例如找出小物件誤用 4K Texture、LOD 缺漏、Material 不一致或 Normal Map Import 設定錯誤。正式專案目前比較適合先把它當「只讀檢查工具」，而不是直接讓 Agent 大量修改資產。</p><div class="quick-impact"><span><b>美術 QA</b> ★★★★★</span><span><b>正式導入</b> ★★★☆☆</span><span><b>建議</b> 先只讀</span></div><details><summary>完整分析</summary><div class="detail-body"><p>真正有 Production 價值的方向，是把原本 TA 或 Lead 需要手動掃描的重複檢查交給 Agent。像是找出 4K 貼圖使用在小物件、LOD 缺漏、材質設定不一致、Normal Map Import 錯誤等。</p><h4>實測方法</h4><p>先用只讀方式，要求 Agent 對既有場景做資產 QA 報告，不允許修改。觀察它能否指出你已知的問題與假陽性比例。</p></div></details><a class="source" href="https://unity.com/blog/unity-ai-assistant-ask-plan-agent-mode-explained" target="_blank" rel="noreferrer">官方來源 ↗</a></article>
-    <article class="category-news"><div class="meta"><span class="pill blue">UNREAL</span></div><h4>UE 5.8：PCG 與 Mesh Terrain 讓 Environment Artist 更接近規則導向工作</h4><p class="summary">PCG 並不是「按一下就自動變好看」，而是把植被、碎石、道路周邊資產等重複擺設轉成可重複使用的規則。美術仍要決定密度、Variation、Seed、例外區域與 Art Direction。也因此 Environment Artist 的能力會逐漸從單純擺物件，延伸到設計一套能反覆產生好結果的規則。</p><div class="quick-impact"><span><b>Environment</b> ★★★★★</span><span><b>TA 協作</b> 高</span><span><b>導入成本</b> 中～高</span></div><details><summary>完整分析</summary><div class="detail-body"><p>PCG 能把植被、碎石、道路周邊資產與大規模分布自動化，但要得到好的視覺結果，仍需要美術設計規則、Variation、Seed、密度與 Art Direction 例外。</p><h4>實測方法</h4><p>找一塊 20×20 公尺場景，用同一組資產做人工擺放與 PCG 兩版，比較時間、重複感、控制性與 GPU / Draw Call 成本。</p></div></details><a class="source" href="https://www.unrealengine.com/news/unreal-engine-5-8-is-now-available" target="_blank" rel="noreferrer">官方來源 ↗</a></article>
-  </section>
-
-  <section class="category-deep" id="workflow"><header class="cat-head"><span>04</span><div><h3>3D 美術 Production / Workflow</h3><p>AI 生成正在縮短前段製作，但「生成後怎麼整理」已經變成新的 Production 問題。真正要算的是從 Generate 到 Engine 可用的總時間，而不是模型出圖的幾十秒。</p></div></header>
-    <article class="category-news"><div class="meta"><span class="pill purple">AI → DCC</span></div><h4>AI 生成不是終點：真正可用的流程仍是 Generate → Cleanup → Engine</h4><p class="summary">目前 AI 最擅長的是概念探索、Blockout 與初步模型生成，但遊戲資產仍要經過 Retopo、UV、Bake、Texture、Naming、Pivot、LOD、Collision 或 Rig 等步驟。若只計算「生成花了幾分鐘」，很容易高估節省的時間。Production 評估應該記錄從生成開始到真正進 Unity／Unreal 可用為止的完整成本。</p><div class="quick-impact"><span><b>前段加速</b> 高</span><span><b>後段人工</b> 仍高</span><span><b>適用</b> Prop / Blockout</span></div><details><summary>完整分析</summary><div class="detail-body"><p>一個 AI 模型要進遊戲，至少還要經過幾何清理、拓撲、UV、材質壓縮、Pivot / Naming、碰撞、LOD、Rig 或 Animation 測試。Production 能不能省時間，要看整條流程，不是生成本身。</p><h4>適合誰看</h4><p>角色美術、場景美術、TA、外包管理、負責建立 AI SOP 的主管。</p><h4>實測方法</h4><p>記錄每一步分鐘數：Generate、Cleanup、Retopo、UV、Texture、Import、Fix。連續測 5 個資產後，再決定是否值得正式採用。</p></div></details></article>
-    <article class="category-news"><div class="meta"><span class="pill green">ENVIRONMENT</span></div><h4>程序化場景增加後，美術價值會從「擺得快」轉向「規則設計得好」</h4><p class="summary">PCG 能減少大量重複擺設，但它不會自動解決畫面節奏與 Art Direction。真正決定結果的是 Modular Kit 是否完整、Variation 是否足夠，以及 Density、Mask、Slope、Seed 等規則是否合理。未來場景美術需要多理解一層程序化邏輯，但仍然是用美術判斷控制最後結果。</p><div class="quick-impact"><span><b>場景效率</b> 高</span><span><b>學習成本</b> 中</span><span><b>TA 需求</b> 上升</span></div><details><summary>完整分析</summary><div class="detail-body"><p>Environment Artist 未來會更常需要理解 Density、Mask、Slope、Biome、Seed、Rule Override 等概念。這不代表傳統場景美術消失，而是從「手動重複操作」移向「建立可重複使用的視覺規則」。</p></div></details></article>
-  </section>
-
-  <section class="category-deep" id="license"><header class="cat-head"><span>05</span><div><h3>價格 / 授權 / 商業化</h3><p>這一類只追蹤真的會改變工具選擇與公司成本的變化，例如停售、授權條款、商業限制或重大價格調整。單純沒有變化的月費不會每天重複列出。</p></div></header>
-    <article class="category-news"><div class="meta"><span class="pill orange">LIFECYCLE</span><span>官方</span></div><h4>Mudbox 停售：不是價格新聞，而是遷移時間表的開始</h4><p class="summary">Mudbox 的停售代表團隊需要開始處理「未來還能不能重現舊流程」這件事，而不只是換一套 Sculpt 軟體。歷史專案可能仍依賴 Bake Preset、Texture Paint、Script、檔案格式與外包 SOP。越早用 ZBrush 或 Blender 做一次完整替代測試，越容易知道真正的遷移成本。</p><div class="quick-impact"><span><b>遷移必要性</b> 高</span><span><b>新案導入</b> ★☆☆☆☆</span><span><b>替代</b> ZBrush / Blender</span></div><details><summary>完整分析</summary><div class="detail-body"><p>需要盤點的不是只有軟體本身，還包括舊專案檔、Bake Preset、Texture Paint、Script、教學文件與外包流程。若歷史資產還要長期維護，最好先建立可重現的替代 SOP。</p><h4>實測方法</h4><p>挑一個 Mudbox 歷史資產，用 ZBrush 或 Blender 完成同一段 Sculpt / Paint / Export，記錄差異與缺失功能。</p></div></details><a class="source" href="https://www.autodesk.com/products/mudbox/buy" target="_blank" rel="noreferrer">官方來源 ↗</a></article>
-  </section>
-
-  <section class="category-deep" id="industry"><header class="cat-head"><span>06</span><div><h3>美術 / 遊戲產業</h3><p>產業新聞不只看哪家公司裁員，而是觀察哪些 3D 職能正在被合併、技術化或重新定義。這會直接影響美術未來值得投資的技能組合。</p></div></header>
-    <article class="category-news"><div class="meta"><span class="pill orange">INDUSTRY</span></div><h4>3D Artist 職務持續技術化：Environment、TA、Procedural 的邊界愈來愈模糊</h4><p class="summary">AI、PCG 與即時引擎工具正在把傳統角色、場景與 TA 的工作邊界拉得更近。公司需要的往往不只是能把模型做漂亮的人，而是能理解 Engine、Optimization、Procedural 與 Pipeline 的美術。對個人來說，不一定要轉職 TA，但至少值得在原本專長旁邊再跨一層能力。</p><div class="quick-impact"><span><b>職涯影響</b> 高</span><span><b>TA 價值</b> 上升</span><span><b>純執行型工作</b> 風險較高</span></div><details><summary>完整分析</summary><div class="detail-body"><p>AI、PCG 與更複雜的即時引擎工具都在把傳統「角色 / 場景 / TA」的邊界打散。對個人職涯而言，最值得投資的是跨一層能力：角色懂 Engine、場景懂 PCG、建模懂材質與效能、Lead 懂 Pipeline。</p><h4>適合誰看</h4><p>3D Artist、Lead、TA、外包主管與需要規劃團隊技能的人。</p><h4>本週可做</h4><p>把你目前技能表列出「DCC、Engine、Shader、Automation、AI」五欄，找出最弱的一欄，安排一個 30 分鐘實作而不是只看教學。</p></div></details></article>
-  </section>
-
-  <section class="category-deep" id="stefan"><header class="cat-head"><span>07</span><div><h3>Stefan 3D AI</h3><p>這一類優先追完整 Pipeline 測試，而不是只看 AI 模型 Showcase。影片若有贊助，會把作者評價與可重現的流程結果分開，並盡量用官方資料交叉確認。</p></div></header>
-    <article class="category-news"><div class="meta"><span class="pill purple">CREATOR TEST</span><span>需交叉驗證</span></div><h4>最值得追的內容：AI Asset 是否真的能從生成一路走到遊戲</h4><p class="summary">Stefan 的影片值得看的地方，是他通常不會停在 AI 生成完成的 Turntable，而會繼續進 Blender、Retopo、UV、Rig 或遊戲引擎。這讓我們能看到「漂亮 Demo」和「真正可用 Asset」之間還差多少人工處理。觀看時最重要的是記錄 Cleanup 與總時間，而不是只接受影片最後的主觀評價。</p><div class="quick-impact"><span><b>實務參考</b> ★★★★☆</span><span><b>可信度</b> 需看贊助</span><span><b>適合</b> AI Pipeline 評估</span></div><details><summary>完整分析</summary><div class="detail-body"><p>觀看這類影片時，應把「作者主觀評價」和「可重現的流程結果」分開。真正值得記錄的是生成時間、Cleanup、Topology、UV、Texture、Rig、引擎匯入與最後可用程度；若有贊助，再用官方文件與其他實測交叉驗證。</p><h4>觀看方式</h4><p>不要整支被動看完。直接記 6 個欄位：輸入、生成、Cleanup、Retopo/UV、Engine、總時間。這樣才能和其他工具做橫向比較。</p></div></details><a class="source" href="https://www.youtube.com/@stefan_3d_ai" target="_blank" rel="noreferrer">前往頻道 ↗</a></article>
-  </section>
-</section>
-
-<section class="block" id="try"><div class="block-head"><div><span class="section-kicker">TRY TODAY</span><h2>今天值得實測</h2></div><p>每項控制在約 20 分鐘，重點是驗證是否能進工作流。</p></div><div class="try-list"><div><b>01 · Meshy Geometry + Texture Reference</b><p>選一個你已經有完成答案的 Prop，比較 AI 生成＋Cleanup 與人工 Blockout 的實際分鐘數，並記錄 Silhouette、UV 與硬表面結構需要修多少。</p></div><div><b>02 · Unity AI 美術 QA</b><p>只允許分析、不允許修改，讓它檢查 Texture、LOD、Material 與 Renderer。重點不是它列出幾個問題，而是其中有多少是真正需要處理的。</p></div><div><b>03 · Blender 5.2 LTS Pipeline</b><p>用一個正式資產跑 Max → Blender → Unity / Unreal，檢查 Scale、Axis、Normal、UV、Material Slot 與 Root，確認是否足以當團隊基準版本。</p></div></div></section>
-</main>
-<footer><div class="page">AI 3D Daily · Production-first briefing for 3D artists.</div></footer>
-</body>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   AI 3D Daily｜每日 3D 美術與遊戲開發情報
+  </title>
+  <meta content="每日整理 AI、3D 美術工具、Unity、Unreal、Production workflow 與遊戲產業情報。" name="description"/>
+  <link href="../styles.css?v=20260823-1" rel="stylesheet"/>
+  <link href="../daily.css?v=20260823-1" rel="stylesheet"/>
+  <script defer="True" src="../daily.js?v=20260823-1">
+  </script>
+ </head>
+ <body class="archive-page" data-next="2026-08-22" data-report-date="2026-08-21">
+  <header class="site-head">
+   <div class="page">
+    <div class="topline">
+     <span>
+      AI 3D DAILY
+     </span>
+     <span>
+      2026-08-21
+     </span>
+    </div>
+    <h1>
+     2026-08-21 歷史日報
+    </h1>
+    <p class="intro">
+     替 3D Artist 篩掉雜訊，只留下今天值得看的更新、Production 影響與快速實測方式。
+    </p>
+    <div class="stats">
+     <span>
+      <b>
+       5
+      </b>
+      今日必看
+     </span>
+     <span>
+      <b>
+       7
+      </b>
+      深度分類
+     </span>
+     <span>
+      <b>
+       3
+      </b>
+      建議實測
+     </span>
+    </div>
+   </div>
+  </header>
+  <nav class="jumpbar">
+   <div class="page navinner">
+    <a href="#top">
+     TOP 5
+    </a>
+    <a href="#ai">
+     生成式 AI
+    </a>
+    <a href="#tools">
+     3D 工具
+    </a>
+    <a href="#engine">
+     引擎
+    </a>
+    <a href="#workflow">
+     流程
+    </a>
+    <a href="#license">
+     授權
+    </a>
+    <a href="#industry">
+     產業
+    </a>
+    <a href="#stefan">
+     Stefan
+    </a>
+    <a href="#try">
+     實測
+    </a>
+   </div>
+  </nav>
+  <main class="page">
+   <section class="block" id="top">
+    <div class="block-head">
+     <div>
+      <span class="section-kicker">
+       TODAY
+      </span>
+      <h2>
+       今日必看 TOP 5
+      </h2>
+     </div>
+     <p>
+      下一日 2026-08-22
+     </p>
+    </div>
+    <article class="news important">
+     <div class="news-rank">
+      01
+     </div>
+     <div class="news-main">
+      <div class="meta">
+       <span class="pill purple">
+        AI 3D
+       </span>
+       <span class="priority">
+        ● 高優先
+       </span>
+       <span>
+        官方
+       </span>
+      </div>
+      <h3>
+       Meshy 7：多視圖幾何與貼圖參考正式分離
+      </h3>
+      <p class="summary">
+       Meshy 7 現在可以把「控制模型形體的參考圖」與「控制貼圖的參考圖」分開處理。過去同一組圖片同時負責 Geometry 與 Texture，容易讓線稿、背視圖或不完整材質資訊互相干擾；新的做法讓四視圖負責輪廓與比例，彩色設定圖則專心控制材質。對角色裝備、武器、載具與 Prop 來說，這讓 AI 3D 更接近實際遊戲資產的製作方式。
+      </p>
+      <div class="quick-impact">
+       <span>
+        <b>
+         Production
+        </b>
+        ★★★☆☆
+       </span>
+       <span>
+        <b>
+         節省時間
+        </b>
+        高
+       </span>
+       <span>
+        <b>
+         學習成本
+        </b>
+        低
+       </span>
+      </div>
+      <details open="">
+       <summary>
+        完整分析
+       </summary>
+       <div class="detail-body">
+        <h4>
+         更新內容
+        </h4>
+        <p>
+         Meshy 7 已進入 API，並加入可分別指定幾何參考與貼圖參考的流程。你可以用正、側、背視圖控制 Silhouette 與比例，再用另外的彩色設定圖或材質 Render 控制 Texture，避免過去同一套圖片同時負責形體與材質造成的污染。
+        </p>
+        <h4>
+         對 3D 美術的影響
+        </h4>
+        <p>
+         最直接受益的是角色裝備、武器、載具與場景 Prop。合理流程會變成「四視圖 → Geometry、彩色設定 → Texture、AI 生成 → Blender / Max Cleanup → Unity / Unreal」。它更適合作為 Blockout 或 High-poly 起點，而不是 Final Asset。
+        </p>
+        <h4>
+         20 分鐘實測
+        </h4>
+        <p>
+         拿一個你已有標準答案的 Prop：四視圖控制 Geometry、2–3 張配色圖控制 Texture。生成後只檢查 Silhouette、洞口、硬表面轉角、UV 與 Cleanup 時間，再和人工 Blockout 比較。
+        </p>
+       </div>
+      </details>
+      <a class="source" href="https://docs.meshy.ai/en/api/changelog" rel="noopener noreferrer" target="_blank">
+       官方來源 ↗
+      </a>
+     </div>
+    </article>
+    <article class="news">
+     <div class="news-rank">
+      02
+     </div>
+     <div class="news-main">
+      <div class="meta">
+       <span class="pill blue">
+        UNREAL
+       </span>
+       <span class="priority">
+        ● 高優先
+       </span>
+       <span>
+        官方
+       </span>
+      </div>
+      <h3>
+       Unreal Engine 5.8：PCG、Mesh Terrain 與大型場景流程持續成熟
+      </h3>
+      <p class="summary">
+       UE 5.8 把大型場景相關能力往同一方向推進，包括 PCG、Mesh Terrain、植被、Lighting 與 Shader 效率。這不只是多一個場景工具，而是讓 Environment Artist 能把部分「逐顆擺物件」的工作轉成規則、Variation 與 Modular Kit。對大型地圖或需要大量重複資產的專案，Production 價值會比小型線性場景更明顯。
+      </p>
+      <div class="quick-impact">
+       <span>
+        <b>
+         大型場景
+        </b>
+        ★★★★★
+       </span>
+       <span>
+        <b>
+         導入成本
+        </b>
+        中～高
+       </span>
+       <span>
+        <b>
+         節省擺設
+        </b>
+        高
+       </span>
+      </div>
+      <details>
+       <summary>
+        完整分析
+       </summary>
+       <div class="detail-body">
+        <p>
+         5.8 強化大型世界、PCG、Mesh Terrain、植被與 Shader 效率。場景美術的工作會更偏向 Modular Kit、Variations、規則與 PCG Input，而不是逐顆擺放。Mesh Terrain 仍建議先測試，不要立即當成唯一正式地形方案。
+        </p>
+        <h4>
+         20 分鐘實測
+        </h4>
+        <p>
+         複製一個現有 Level，以 2–3 種 Prop 做 PCG Scatter，和人工擺設比較控制力、花費時間，再用 Shader Complexity / Stat GPU 看成本。
+        </p>
+       </div>
+      </details>
+      <a class="source" href="https://www.unrealengine.com/news/unreal-engine-5-8-is-now-available" rel="noopener noreferrer" target="_blank">
+       官方來源 ↗
+      </a>
+     </div>
+    </article>
+    <article class="news">
+     <div class="news-rank">
+      03
+     </div>
+     <div class="news-main">
+      <div class="meta">
+       <span class="pill blue">
+        UNITY AI
+       </span>
+       <span class="priority">
+        ● 高優先
+       </span>
+       <span>
+        Open Beta
+       </span>
+      </div>
+      <h3>
+       Unity AI：從聊天工具走向能理解 Project Context 的 Agent
+      </h3>
+      <p class="summary">
+       Unity AI 的重點已不只是產生 C#，而是開始理解 Scene、GameObject、Component 與 Project Context。這代表它未來可以直接針對專案內容做檢查，例如找出錯誤的 Texture Import、LOD、Material 或 Renderer 設定。對 3D 美術來說，最值得測試的其實是「美術 QA 助手」，而不是讓 AI 自動生成整個遊戲。
+      </p>
+      <div class="quick-impact">
+       <span>
+        <b>
+         美術 QA
+        </b>
+        ★★★★★
+       </span>
+       <span>
+        <b>
+         Production
+        </b>
+        ★★★☆☆
+       </span>
+       <span>
+        <b>
+         風險
+        </b>
+        自動修改資產
+       </span>
+      </div>
+      <details>
+       <summary>
+        完整分析
+       </summary>
+       <div class="detail-body">
+        <p>
+         如果 Agent 能穩定理解 Project Context，它最有價值的用法可能是找錯誤 Texture Import、Material、LOD、Renderer 與 Prefab，而不是直接生成遊戲內容。正式專案應先從只讀分析開始。
+        </p>
+        <h4>
+         20 分鐘實測
+        </h4>
+        <p>
+         要求它分析目前 Scene 所有 Mesh Renderer、Material、Texture、LOD，列出 10 個可能影響效能或美術一致性的問題，但不要修改。
+        </p>
+       </div>
+      </details>
+      <a class="source" href="https://unity.com/blog/unity-ai-assistant-ask-plan-agent-mode-explained" rel="noopener noreferrer" target="_blank">
+       官方來源 ↗
+      </a>
+     </div>
+    </article>
+    <article class="news">
+     <div class="news-rank">
+      04
+     </div>
+     <div class="news-main">
+      <div class="meta">
+       <span class="pill green">
+        BLENDER
+       </span>
+       <span>
+        官方
+       </span>
+      </div>
+      <h3>
+       Blender 5.2 LTS：適合作為長期 Production Pipeline 的基準版本
+      </h3>
+      <p class="summary">
+       Blender 5.2 LTS 的價值不在於功能比一般版本更多，而是它提供較長的穩定支援週期。對要把 Blender 納入公司流程的團隊，固定 LTS 能降低 Add-on、Python API、FBX 與檔案版本變動造成的維護成本。若目前正在從 3ds Max 或 Maya 轉換，這種版本更適合拿來建立統一 SOP。
+      </p>
+      <div class="quick-impact">
+       <span>
+        <b>
+         穩定度
+        </b>
+        ★★★★★
+       </span>
+       <span>
+        <b>
+         團隊基準
+        </b>
+        ★★★★★
+       </span>
+       <span>
+        <b>
+         外掛風險
+        </b>
+        中
+       </span>
+      </div>
+      <details>
+       <summary>
+        完整分析
+       </summary>
+       <div class="detail-body">
+        <p>
+         如果要把 Blender 正式納入 Max / Maya 團隊，固定 LTS 能降低插件、Python API 與檔案版本變動帶來的維護成本。先驗證 FBX、Rig、Material Slot 與常用外掛再推到全團隊。
+        </p>
+        <h4>
+         20 分鐘實測
+        </h4>
+        <p>
+         跑一個真實資產的 Max → Blender 5.2 → Unity / Unreal，只檢查 Scale、Axis、Normal、UV、Material Slot、Pivot 與 Skeleton / Root。
+        </p>
+       </div>
+      </details>
+      <a class="source" href="https://www.blender.org/download/lts/" rel="noopener noreferrer" target="_blank">
+       官方來源 ↗
+      </a>
+     </div>
+    </article>
+    <article class="news">
+     <div class="news-rank">
+      05
+     </div>
+     <div class="news-main">
+      <div class="meta">
+       <span class="pill orange">
+        授權
+       </span>
+       <span>
+        官方
+       </span>
+      </div>
+      <h3>
+       Autodesk Mudbox 進入停售階段：新 Pipeline 不宜再投入
+      </h3>
+      <p class="summary">
+       Autodesk 已開始推進 Mudbox 的停售時程，因此這不是一般的價格調整，而是產品生命週期正在結束的訊號。仍有 Mudbox 歷史資產或 Script 的團隊不需要立刻停用，但現在就應盤點 Sculpt、Paint、Bake 與舊檔案的依賴。新專案則不適合再把 Mudbox 當成長期核心工具。
+      </p>
+      <div class="quick-impact">
+       <span>
+        <b>
+         新專案導入
+        </b>
+        ★☆☆☆☆
+       </span>
+       <span>
+        <b>
+         遷移必要性
+        </b>
+        高
+       </span>
+       <span>
+        <b>
+         替代
+        </b>
+        ZBrush / Blender
+       </span>
+      </div>
+      <details>
+       <summary>
+        完整分析
+       </summary>
+       <div class="detail-body">
+        <p>
+         對仍使用 Mudbox Sculpt、Texture Paint、Bake 或專用 Script 的團隊，不一定需要立即停用，但應先盤點歷史資產與流程依賴，新專案不建議再以 Mudbox 為核心。
+        </p>
+       </div>
+      </details>
+      <a class="source" href="https://www.autodesk.com/products/mudbox/buy" rel="noopener noreferrer" target="_blank">
+       官方來源 ↗
+      </a>
+     </div>
+    </article>
+   </section>
+   <section class="block" id="categories">
+    <div class="block-head">
+     <div>
+      <span class="section-kicker">
+       TRACKING
+      </span>
+      <h2>
+       7 大分類深度追蹤
+      </h2>
+     </div>
+     <p>
+      先用數句摘要建立背景，再展開 Production 判斷。
+     </p>
+    </div>
+    <section class="category-deep" id="ai">
+     <header class="cat-head">
+      <span>
+       01
+      </span>
+      <div>
+       <h3>
+        2D / 3D 生成式 AI
+       </h3>
+       <p>
+        今天最明顯的方向，是 AI 3D 從單純追求生成品質，轉向控制性與後續可編輯性。對 Production 來說，能減少多少 Cleanup、能否順利進 DCC 與引擎，比 Turntable 看起來多漂亮更重要。
+       </p>
+      </div>
+     </header>
+     <article class="category-news">
+      <div class="meta">
+       <span class="pill purple">
+        AI 3D
+       </span>
+       <span class="priority">
+        ● 高優先
+       </span>
+      </div>
+      <h4>
+       Meshy 7：Geometry 與 Texture Reference 分離，真正影響的是可控性
+      </h4>
+      <p class="summary">
+       Meshy 把幾何與貼圖參考拆開後，美術可以用四視圖控制形體，再用彩色設定圖控制材質，兩種資料不必互相妥協。這對角色裝備、武器與 Prop 特別有用，因為它們通常本來就有結構圖與材質圖兩套來源。真正的價值是縮短 Blockout 與材質 First Pass，而不是直接取代後續 Cleanup。
+      </p>
+      <div class="quick-impact">
+       <span>
+        <b>
+         角色/Prop
+        </b>
+        ★★★★★
+       </span>
+       <span>
+        <b>
+         Production
+        </b>
+        ★★★☆☆
+       </span>
+       <span>
+        <b>
+         Cleanup
+        </b>
+        仍必要
+       </span>
+      </div>
+      <details>
+       <summary>
+        完整分析
+       </summary>
+       <div class="detail-body">
+        <h4>
+         更新內容
+        </h4>
+        <p>
+         多視圖可用於控制輪廓與比例，材質圖則獨立負責 Texture。這對角色裝備、武器、載具與場景 Prop 特別重要，因為這些資產本來就常有「線稿四視圖」與「彩色材質設定」兩套來源。
+        </p>
+        <h4>
+         對 3D 美術的影響
+        </h4>
+        <p>
+         最大的價值不是完全取代建模，而是把最前面的 Blockout、形體探索與初步材質投射壓縮。真正進遊戲前仍要人工檢查 Topology、UV、Normal、材質分區與 Silhouette。
+        </p>
+        <h4>
+         適合誰看
+        </h4>
+        <p>
+         角色建模、Prop Artist、場景美術、3D Generalist、獨立開發者。
+        </p>
+        <h4>
+         10–20 分鐘實測
+        </h4>
+        <p>
+         拿一個已有完成稿的 Prop，比較「AI 生成＋Cleanup」和「人工 Blockout」實際時間，不要只比畫面漂亮程度。
+        </p>
+       </div>
+      </details>
+      <a class="source" href="https://docs.meshy.ai/en/api/changelog" rel="noopener noreferrer" target="_blank">
+       官方來源 ↗
+      </a>
+     </article>
+     <article class="category-news">
+      <div class="meta">
+       <span class="pill purple">
+        WORKFLOW
+       </span>
+      </div>
+      <h4>
+       Tripo 類工具的真正競爭點：Smart Export、DCC Bridge、Texture 與後處理
+      </h4>
+      <p class="summary">
+       AI 3D 工具之間的生成品質逐漸接近後，差距會更多出現在後續工作流。Smart Export、分件、UV、Topology、Texture、Rig 與 DCC Bridge 是否乾淨，會直接影響 Blender／Max 內還要花多少時間整理。對遊戲美術而言，少半小時 Cleanup 往往比 Demo 多一點細節更有價值。
+      </p>
+      <div class="quick-impact">
+       <span>
+        <b>
+         工作流價值
+        </b>
+        ★★★★☆
+       </span>
+       <span>
+        <b>
+         節省時間
+        </b>
+        中～高
+       </span>
+       <span>
+        <b>
+         關鍵
+        </b>
+        Export / UV / Topology
+       </span>
+      </div>
+      <details>
+       <summary>
+        完整分析
+       </summary>
+       <div class="detail-body">
+        <p>
+         當生成品質逐漸接近時，真正拉開差距的是匯出、分件、材質、拓撲、Rig、DCC Bridge 與遊戲引擎整合。對 Production 來說，少 30 分鐘 Cleanup 通常比 Demo 多 10% 細節更有價值。
+        </p>
+        <h4>
+         實測方法
+        </h4>
+        <p>
+         同一份參考圖在兩個 AI 3D 工具各生成一次，再進 Blender 檢查命名、分件、UV、材質數量、法線、Polycount 與可編輯性，最後輸出 Unity / Unreal。
+        </p>
+       </div>
+      </details>
+     </article>
+    </section>
+    <section class="category-deep" id="tools">
+     <header class="cat-head">
+      <span>
+       02
+      </span>
+      <div>
+       <h3>
+        3D 美術工具 / 軟體
+       </h3>
+       <p>
+        今天的重點不是單一新功能，而是版本穩定性與工具生命週期。對正式團隊來說，插件、Script、FBX、Skin、材質與引擎輸出是否穩定，通常比「多了一個新按鈕」更值得追。
+       </p>
+      </div>
+     </header>
+     <article class="category-news">
+      <div class="meta">
+       <span class="pill green">
+        BLENDER
+       </span>
+       <span>
+        官方
+       </span>
+      </div>
+      <h4>
+       Blender 5.2 LTS：適合拿來固定公司級 Production Baseline
+      </h4>
+      <p class="summary">
+       5.2 LTS 適合被當成團隊統一版本，而不是每個人各自追最新 Blender。固定版本後，Export Preset、Add-on、Scene Units 與 Python 工具才比較容易建立可重現的 SOP。對從 Max／Maya 逐步導入 Blender 的團隊，這能降低版本差異造成的錯誤。
+      </p>
+      <div class="quick-impact">
+       <span>
+        <b>
+         團隊導入
+        </b>
+        ★★★★★
+       </span>
+       <span>
+        <b>
+         穩定性
+        </b>
+        高
+       </span>
+       <span>
+        <b>
+         遷移成本
+        </b>
+        中
+       </span>
+      </div>
+      <details>
+       <summary>
+        完整分析
+       </summary>
+       <div class="detail-body">
+        <p>
+         對從 3ds Max / Maya 轉 Blender 的團隊，最大風險常不是操作學不會，而是每個人版本不同、插件不一致、FBX 設定不統一。LTS 很適合當統一基準，再把 Export Preset、Addon 清單與 Scene Units 寫進 SOP。
+        </p>
+        <h4>
+         實測方法
+        </h4>
+        <p>
+         挑角色與場景各一個正式資產，用 5.2 LTS 跑完整 Import / Edit / Export，檢查 Scale、Axis、Normal、Material Slot、UV、Skin、Morph 與 Root。
+        </p>
+       </div>
+      </details>
+      <a class="source" href="https://www.blender.org/download/lts/" rel="noopener noreferrer" target="_blank">
+       官方來源 ↗
+      </a>
+     </article>
+     <article class="category-news">
+      <div class="meta">
+       <span class="pill green">
+        3DS MAX
+       </span>
+      </div>
+      <h4>
+       3ds Max 更新：升級決策應優先看 Skin、FBX、Material 與 Plugin 相容
+      </h4>
+      <p class="summary">
+       對已經有成熟 Max Pipeline 的團隊，小版本升級不應只看新增功能清單。Skin、Morph、FBX、Material、MaxScript 與 Plugin 只要有一項出現相容問題，就可能影響整條角色或場景流程。比較安全的做法是先用標準測試檔驗證，再決定是否全員升級。
+      </p>
+      <div class="quick-impact">
+       <span>
+        <b>
+         升級急迫性
+        </b>
+        低～中
+       </span>
+       <span>
+        <b>
+         風險
+        </b>
+        Plugin
+       </span>
+       <span>
+        <b>
+         先測
+        </b>
+        FBX / Skin
+       </span>
+      </div>
+      <details>
+       <summary>
+        完整分析
+       </summary>
+       <div class="detail-body">
+        <p>
+         正式 Production 不建議只因小版本更新就全員升級。先建立測試檔，涵蓋 Skin、Morph、材質、USD / FBX、MaxScript 與常用插件，確認輸出引擎後沒有差異，再決定是否推廣。
+        </p>
+        <h4>
+         適合誰看
+        </h4>
+        <p>
+         角色美術 Lead、場景 Lead、TA、Pipeline TD，以及負責團隊版本管理的人。
+        </p>
+       </div>
+      </details>
+     </article>
+    </section>
+    <section class="category-deep" id="engine">
+     <header class="cat-head">
+      <span>
+       03
+      </span>
+      <div>
+       <h3>
+        Unity / Unreal / 遊戲引擎
+       </h3>
+       <p>
+        Unity 與 Unreal 都在把「規則」與「Agent」放進 Editor，但方向略有不同。Unity AI 更像 Project-aware 助手；Unreal 的 PCG 與 Mesh Terrain 則在改變大型場景的建立方式，兩者都會讓美術與 TA 的工作邊界更接近。
+       </p>
+      </div>
+     </header>
+     <article class="category-news">
+      <div class="meta">
+       <span class="pill blue">
+        UNITY AI
+       </span>
+       <span>
+        Open Beta
+       </span>
+      </div>
+      <h4>
+       Unity AI：對美術最有潛力的不是生成內容，而是 Project-aware QA
+      </h4>
+      <p class="summary">
+       Unity AI 如果能可靠讀懂 Project Context，就能把很多原本由 TA 或 Lead 手動做的檢查自動化。例如找出小物件誤用 4K Texture、LOD 缺漏、Material 不一致或 Normal Map Import 設定錯誤。正式專案目前比較適合先把它當「只讀檢查工具」，而不是直接讓 Agent 大量修改資產。
+      </p>
+      <div class="quick-impact">
+       <span>
+        <b>
+         美術 QA
+        </b>
+        ★★★★★
+       </span>
+       <span>
+        <b>
+         正式導入
+        </b>
+        ★★★☆☆
+       </span>
+       <span>
+        <b>
+         建議
+        </b>
+        先只讀
+       </span>
+      </div>
+      <details>
+       <summary>
+        完整分析
+       </summary>
+       <div class="detail-body">
+        <p>
+         真正有 Production 價值的方向，是把原本 TA 或 Lead 需要手動掃描的重複檢查交給 Agent。像是找出 4K 貼圖使用在小物件、LOD 缺漏、材質設定不一致、Normal Map Import 錯誤等。
+        </p>
+        <h4>
+         實測方法
+        </h4>
+        <p>
+         先用只讀方式，要求 Agent 對既有場景做資產 QA 報告，不允許修改。觀察它能否指出你已知的問題與假陽性比例。
+        </p>
+       </div>
+      </details>
+      <a class="source" href="https://unity.com/blog/unity-ai-assistant-ask-plan-agent-mode-explained" rel="noopener noreferrer" target="_blank">
+       官方來源 ↗
+      </a>
+     </article>
+     <article class="category-news">
+      <div class="meta">
+       <span class="pill blue">
+        UNREAL
+       </span>
+      </div>
+      <h4>
+       UE 5.8：PCG 與 Mesh Terrain 讓 Environment Artist 更接近規則導向工作
+      </h4>
+      <p class="summary">
+       PCG 並不是「按一下就自動變好看」，而是把植被、碎石、道路周邊資產等重複擺設轉成可重複使用的規則。美術仍要決定密度、Variation、Seed、例外區域與 Art Direction。也因此 Environment Artist 的能力會逐漸從單純擺物件，延伸到設計一套能反覆產生好結果的規則。
+      </p>
+      <div class="quick-impact">
+       <span>
+        <b>
+         Environment
+        </b>
+        ★★★★★
+       </span>
+       <span>
+        <b>
+         TA 協作
+        </b>
+        高
+       </span>
+       <span>
+        <b>
+         導入成本
+        </b>
+        中～高
+       </span>
+      </div>
+      <details>
+       <summary>
+        完整分析
+       </summary>
+       <div class="detail-body">
+        <p>
+         PCG 能把植被、碎石、道路周邊資產與大規模分布自動化，但要得到好的視覺結果，仍需要美術設計規則、Variation、Seed、密度與 Art Direction 例外。
+        </p>
+        <h4>
+         實測方法
+        </h4>
+        <p>
+         找一塊 20×20 公尺場景，用同一組資產做人工擺放與 PCG 兩版，比較時間、重複感、控制性與 GPU / Draw Call 成本。
+        </p>
+       </div>
+      </details>
+      <a class="source" href="https://www.unrealengine.com/news/unreal-engine-5-8-is-now-available" rel="noopener noreferrer" target="_blank">
+       官方來源 ↗
+      </a>
+     </article>
+    </section>
+    <section class="category-deep" id="workflow">
+     <header class="cat-head">
+      <span>
+       04
+      </span>
+      <div>
+       <h3>
+        3D 美術 Production / Workflow
+       </h3>
+       <p>
+        AI 生成正在縮短前段製作，但「生成後怎麼整理」已經變成新的 Production 問題。真正要算的是從 Generate 到 Engine 可用的總時間，而不是模型出圖的幾十秒。
+       </p>
+      </div>
+     </header>
+     <article class="category-news">
+      <div class="meta">
+       <span class="pill purple">
+        AI → DCC
+       </span>
+      </div>
+      <h4>
+       AI 生成不是終點：真正可用的流程仍是 Generate → Cleanup → Engine
+      </h4>
+      <p class="summary">
+       目前 AI 最擅長的是概念探索、Blockout 與初步模型生成，但遊戲資產仍要經過 Retopo、UV、Bake、Texture、Naming、Pivot、LOD、Collision 或 Rig 等步驟。若只計算「生成花了幾分鐘」，很容易高估節省的時間。Production 評估應該記錄從生成開始到真正進 Unity／Unreal 可用為止的完整成本。
+      </p>
+      <div class="quick-impact">
+       <span>
+        <b>
+         前段加速
+        </b>
+        高
+       </span>
+       <span>
+        <b>
+         後段人工
+        </b>
+        仍高
+       </span>
+       <span>
+        <b>
+         適用
+        </b>
+        Prop / Blockout
+       </span>
+      </div>
+      <details>
+       <summary>
+        完整分析
+       </summary>
+       <div class="detail-body">
+        <p>
+         一個 AI 模型要進遊戲，至少還要經過幾何清理、拓撲、UV、材質壓縮、Pivot / Naming、碰撞、LOD、Rig 或 Animation 測試。Production 能不能省時間，要看整條流程，不是生成本身。
+        </p>
+        <h4>
+         適合誰看
+        </h4>
+        <p>
+         角色美術、場景美術、TA、外包管理、負責建立 AI SOP 的主管。
+        </p>
+        <h4>
+         實測方法
+        </h4>
+        <p>
+         記錄每一步分鐘數：Generate、Cleanup、Retopo、UV、Texture、Import、Fix。連續測 5 個資產後，再決定是否值得正式採用。
+        </p>
+       </div>
+      </details>
+     </article>
+     <article class="category-news">
+      <div class="meta">
+       <span class="pill green">
+        ENVIRONMENT
+       </span>
+      </div>
+      <h4>
+       程序化場景增加後，美術價值會從「擺得快」轉向「規則設計得好」
+      </h4>
+      <p class="summary">
+       PCG 能減少大量重複擺設，但它不會自動解決畫面節奏與 Art Direction。真正決定結果的是 Modular Kit 是否完整、Variation 是否足夠，以及 Density、Mask、Slope、Seed 等規則是否合理。未來場景美術需要多理解一層程序化邏輯，但仍然是用美術判斷控制最後結果。
+      </p>
+      <div class="quick-impact">
+       <span>
+        <b>
+         場景效率
+        </b>
+        高
+       </span>
+       <span>
+        <b>
+         學習成本
+        </b>
+        中
+       </span>
+       <span>
+        <b>
+         TA 需求
+        </b>
+        上升
+       </span>
+      </div>
+      <details>
+       <summary>
+        完整分析
+       </summary>
+       <div class="detail-body">
+        <p>
+         Environment Artist 未來會更常需要理解 Density、Mask、Slope、Biome、Seed、Rule Override 等概念。這不代表傳統場景美術消失，而是從「手動重複操作」移向「建立可重複使用的視覺規則」。
+        </p>
+       </div>
+      </details>
+     </article>
+    </section>
+    <section class="category-deep" id="license">
+     <header class="cat-head">
+      <span>
+       05
+      </span>
+      <div>
+       <h3>
+        價格 / 授權 / 商業化
+       </h3>
+       <p>
+        這一類只追蹤真的會改變工具選擇與公司成本的變化，例如停售、授權條款、商業限制或重大價格調整。單純沒有變化的月費不會每天重複列出。
+       </p>
+      </div>
+     </header>
+     <article class="category-news">
+      <div class="meta">
+       <span class="pill orange">
+        LIFECYCLE
+       </span>
+       <span>
+        官方
+       </span>
+      </div>
+      <h4>
+       Mudbox 停售：不是價格新聞，而是遷移時間表的開始
+      </h4>
+      <p class="summary">
+       Mudbox 的停售代表團隊需要開始處理「未來還能不能重現舊流程」這件事，而不只是換一套 Sculpt 軟體。歷史專案可能仍依賴 Bake Preset、Texture Paint、Script、檔案格式與外包 SOP。越早用 ZBrush 或 Blender 做一次完整替代測試，越容易知道真正的遷移成本。
+      </p>
+      <div class="quick-impact">
+       <span>
+        <b>
+         遷移必要性
+        </b>
+        高
+       </span>
+       <span>
+        <b>
+         新案導入
+        </b>
+        ★☆☆☆☆
+       </span>
+       <span>
+        <b>
+         替代
+        </b>
+        ZBrush / Blender
+       </span>
+      </div>
+      <details>
+       <summary>
+        完整分析
+       </summary>
+       <div class="detail-body">
+        <p>
+         需要盤點的不是只有軟體本身，還包括舊專案檔、Bake Preset、Texture Paint、Script、教學文件與外包流程。若歷史資產還要長期維護，最好先建立可重現的替代 SOP。
+        </p>
+        <h4>
+         實測方法
+        </h4>
+        <p>
+         挑一個 Mudbox 歷史資產，用 ZBrush 或 Blender 完成同一段 Sculpt / Paint / Export，記錄差異與缺失功能。
+        </p>
+       </div>
+      </details>
+      <a class="source" href="https://www.autodesk.com/products/mudbox/buy" rel="noopener noreferrer" target="_blank">
+       官方來源 ↗
+      </a>
+     </article>
+    </section>
+    <section class="category-deep" id="industry">
+     <header class="cat-head">
+      <span>
+       06
+      </span>
+      <div>
+       <h3>
+        美術 / 遊戲產業
+       </h3>
+       <p>
+        產業新聞不只看哪家公司裁員，而是觀察哪些 3D 職能正在被合併、技術化或重新定義。這會直接影響美術未來值得投資的技能組合。
+       </p>
+      </div>
+     </header>
+     <article class="category-news">
+      <div class="meta">
+       <span class="pill orange">
+        INDUSTRY
+       </span>
+      </div>
+      <h4>
+       3D Artist 職務持續技術化：Environment、TA、Procedural 的邊界愈來愈模糊
+      </h4>
+      <p class="summary">
+       AI、PCG 與即時引擎工具正在把傳統角色、場景與 TA 的工作邊界拉得更近。公司需要的往往不只是能把模型做漂亮的人，而是能理解 Engine、Optimization、Procedural 與 Pipeline 的美術。對個人來說，不一定要轉職 TA，但至少值得在原本專長旁邊再跨一層能力。
+      </p>
+      <div class="quick-impact">
+       <span>
+        <b>
+         職涯影響
+        </b>
+        高
+       </span>
+       <span>
+        <b>
+         TA 價值
+        </b>
+        上升
+       </span>
+       <span>
+        <b>
+         純執行型工作
+        </b>
+        風險較高
+       </span>
+      </div>
+      <details>
+       <summary>
+        完整分析
+       </summary>
+       <div class="detail-body">
+        <p>
+         AI、PCG 與更複雜的即時引擎工具都在把傳統「角色 / 場景 / TA」的邊界打散。對個人職涯而言，最值得投資的是跨一層能力：角色懂 Engine、場景懂 PCG、建模懂材質與效能、Lead 懂 Pipeline。
+        </p>
+        <h4>
+         適合誰看
+        </h4>
+        <p>
+         3D Artist、Lead、TA、外包主管與需要規劃團隊技能的人。
+        </p>
+        <h4>
+         本週可做
+        </h4>
+        <p>
+         把你目前技能表列出「DCC、Engine、Shader、Automation、AI」五欄，找出最弱的一欄，安排一個 30 分鐘實作而不是只看教學。
+        </p>
+       </div>
+      </details>
+     </article>
+    </section>
+    <section class="category-deep" id="stefan">
+     <header class="cat-head">
+      <span>
+       07
+      </span>
+      <div>
+       <h3>
+        Stefan 3D AI
+       </h3>
+       <p>
+        這一類優先追完整 Pipeline 測試，而不是只看 AI 模型 Showcase。影片若有贊助，會把作者評價與可重現的流程結果分開，並盡量用官方資料交叉確認。
+       </p>
+      </div>
+     </header>
+     <article class="category-news">
+      <div class="meta">
+       <span class="pill purple">
+        CREATOR TEST
+       </span>
+       <span>
+        需交叉驗證
+       </span>
+      </div>
+      <h4>
+       最值得追的內容：AI Asset 是否真的能從生成一路走到遊戲
+      </h4>
+      <p class="summary">
+       Stefan 的影片值得看的地方，是他通常不會停在 AI 生成完成的 Turntable，而會繼續進 Blender、Retopo、UV、Rig 或遊戲引擎。這讓我們能看到「漂亮 Demo」和「真正可用 Asset」之間還差多少人工處理。觀看時最重要的是記錄 Cleanup 與總時間，而不是只接受影片最後的主觀評價。
+      </p>
+      <div class="quick-impact">
+       <span>
+        <b>
+         實務參考
+        </b>
+        ★★★★☆
+       </span>
+       <span>
+        <b>
+         可信度
+        </b>
+        需看贊助
+       </span>
+       <span>
+        <b>
+         適合
+        </b>
+        AI Pipeline 評估
+       </span>
+      </div>
+      <details>
+       <summary>
+        完整分析
+       </summary>
+       <div class="detail-body">
+        <p>
+         觀看這類影片時，應把「作者主觀評價」和「可重現的流程結果」分開。真正值得記錄的是生成時間、Cleanup、Topology、UV、Texture、Rig、引擎匯入與最後可用程度；若有贊助，再用官方文件與其他實測交叉驗證。
+        </p>
+        <h4>
+         觀看方式
+        </h4>
+        <p>
+         不要整支被動看完。直接記 6 個欄位：輸入、生成、Cleanup、Retopo/UV、Engine、總時間。這樣才能和其他工具做橫向比較。
+        </p>
+       </div>
+      </details>
+      <a class="source" href="https://www.youtube.com/@stefan_3d_ai" rel="noopener noreferrer" target="_blank">
+       前往頻道 ↗
+      </a>
+     </article>
+    </section>
+   </section>
+   <section class="block" id="try">
+    <div class="block-head">
+     <div>
+      <span class="section-kicker">
+       TRY TODAY
+      </span>
+      <h2>
+       今天值得實測
+      </h2>
+     </div>
+     <p>
+      每項控制在約 20 分鐘，重點是驗證是否能進工作流。
+     </p>
+    </div>
+    <div class="try-list">
+     <div>
+      <b>
+       01 · Meshy Geometry + Texture Reference
+      </b>
+      <p>
+       選一個你已經有完成答案的 Prop，比較 AI 生成＋Cleanup 與人工 Blockout 的實際分鐘數，並記錄 Silhouette、UV 與硬表面結構需要修多少。
+      </p>
+     </div>
+     <div>
+      <b>
+       02 · Unity AI 美術 QA
+      </b>
+      <p>
+       只允許分析、不允許修改，讓它檢查 Texture、LOD、Material 與 Renderer。重點不是它列出幾個問題，而是其中有多少是真正需要處理的。
+      </p>
+     </div>
+     <div>
+      <b>
+       03 · Blender 5.2 LTS Pipeline
+      </b>
+      <p>
+       用一個正式資產跑 Max → Blender → Unity / Unreal，檢查 Scale、Axis、Normal、UV、Material Slot 與 Root，確認是否足以當團隊基準版本。
+      </p>
+     </div>
+    </div>
+   </section>
+  </main>
+  <footer>
+   <div class="page">
+    AI 3D Daily · Production-first briefing for 3D artists.
+   </div>
+  </footer>
+ </body>
 </html>
