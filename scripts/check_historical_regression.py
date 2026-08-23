@@ -109,12 +109,15 @@ def validate_home_archive_links(all_dirs: list[Path]) -> None:
         fail("home", "index.html missing")
         return
     soup = BeautifulSoup(home.read_text("utf-8"), "html.parser")
-    existing = {d.name for d in all_dirs}
+    expected = [d.name for d in reversed(all_dirs)]
+    actual = []
     for a in soup.select(".history-list a[href]"):
         href = a.get("href", "")
         m = re.fullmatch(r"(20\d{2}-\d{2}-\d{2})/?", href)
-        if m and m.group(1) not in existing:
-            fail("home", f"dangling history archive link: {href}")
+        if m:
+            actual.append(m.group(1))
+    if actual != expected:
+        fail("home", f"history archive list mismatch: expected {expected}, got {actual}")
 
 
 def validate_canonical_archive_parity(date: str) -> None:
@@ -160,6 +163,7 @@ def canonical_rebuild_simulation(date: str) -> None:
                 run(work, sys.executable, "scripts/bootstrap_intelligence_ids.py")
             run(work, sys.executable, "scripts/check_release_input.py", date)
             run(work, sys.executable, "scripts/render_daily_navigation.py")
+            run(work, sys.executable, "scripts/render_home_archive_links.py")
             run(work, sys.executable, "scripts/build_intelligence.py", date)
             # Dry runs reuse the persisted date-scoped visual snapshot; they do not
             # hit third-party websites again.
