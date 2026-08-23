@@ -6,12 +6,12 @@
   <title>
    2026-08-23｜AI 3D Daily
   </title>
-  <link href="../styles.css?v=20260823-1" rel="stylesheet"/>
-  <link href="../daily.css?v=20260823-1" rel="stylesheet"/>
-  <script defer="True" src="../daily.js?v=20260823-1">
+  <link href="../styles.css?v=20260823-r2" rel="stylesheet"/>
+  <link href="../daily.css?v=20260823-r2" rel="stylesheet"/>
+  <script defer="True" src="../daily.js?v=20260823-r2">
   </script>
  </head>
- <body class="archive-page" data-previous="2026-08-22" data-report-date="2026-08-23">
+ <body class="archive-page" data-next="" data-previous="2026-08-22" data-report-date="2026-08-23">
   <header class="site-head">
    <div class="page">
     <div class="topline">
@@ -68,7 +68,7 @@
       前一日 2026-08-22 · 最新日報
      </p>
     </div>
-    <article class="news">
+    <article class="news" data-intel-id="blender-52-geometry-nodes-physics" data-intel-role="card">
      <div class="news-rank">
       01
      </div>
@@ -87,6 +87,17 @@
       <p class="summary">
        Blender 官方說明 5.2 LTS 的 Hair／Cloth dynamics 已由 Geometry Nodes 內建資產包裝 XPBD Solver，並支援 Collider、Custom Force 與 Custom Effector。它仍標示 Experimental，但已不是單純技術展示。
       </p>
+      <figure class="case-preview" data-intel-id="blender-52-geometry-nodes-physics" data-intel-role="visual" data-visual-id="blender-52-geometry-nodes-physics">
+       <a href="https://code.blender.org/2026/07/geometry-nodes-physics/" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+        <img alt="OFFICIAL ARTICLE VISUAL preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-08-23/blender-52-geometry-nodes-physics.jpg"/>
+       </a>
+       <figcaption>
+        <span>
+         OFFICIAL ARTICLE VISUAL
+        </span>
+        · Local visual evidence · 點圖開啟原始來源
+       </figcaption>
+      </figure>
       <div class="quick-impact">
        <span>
         <b>
@@ -112,28 +123,28 @@
         完整分析
        </summary>
        <div class="detail-body">
+        <h4>
+         問題／目標
+        </h4>
         <p>
-         <b>
-          問題／目標：
-         </b>
          把 cloth、hair dynamics 從黑盒 simulation 拉進可程序化、可組合的 Geometry Nodes workflow。
         </p>
+        <h4>
+         Production
+        </h4>
         <p>
-         <b>
-          Production：
-         </b>
          高階資產包裝底層 XPBD；Collider 可直接用 modifier stack 幾何，Custom Force／Effector 可插入自訂行為。這讓 Technical Artist 能把 simulation 規則封裝成資產，而不是每個 shot 重建。
         </p>
+        <h4>
+         限制
+        </h4>
         <p>
-         <b>
-          限制：
-         </b>
          官方仍標 Experimental，設計可能迭代；正式專案先做 prototype，不宜立刻替換成熟 cloth pipeline。
         </p>
+        <h4>
+         20 分鐘實測
+        </h4>
         <p>
-         <b>
-          20 分鐘實測：
-         </b>
          同一塊布建立 Collider、風力 Custom Force，再把 setup 存成 node asset，測 cache、重開檔一致性與動畫交接。
         </p>
        </div>
@@ -143,7 +154,7 @@
       </a>
      </div>
     </article>
-    <article class="news">
+    <article class="news" data-intel-id="retopoflow-419" data-intel-role="card">
      <div class="news-rank">
       02
      </div>
@@ -187,28 +198,28 @@
         完整分析
        </summary>
        <div class="detail-body">
+        <h4>
+         關鍵決策
+        </h4>
         <p>
-         <b>
-          關鍵決策：
-         </b>
          RetopoFlow 4 把 Contours、PolyStrips、Strokes、PolyPen 等工作直接融入 Edit Mode，進入工具時自動處理 snapping、retopology overlay、auto merge、inactive geometry fade，退出後恢復原設定。
         </p>
+        <h4>
+         Production 收益
+        </h4>
         <p>
-         <b>
-          Production 收益：
-         </b>
          減少模式切換與工具上下文斷裂；4.1.x 又改善 Relax、edge sliding、projection 與 snapping source 指定，較適合角色高模到 deformation topology 的長時間工作。
         </p>
+        <h4>
+         限制
+        </h4>
         <p>
-         <b>
-          限制：
-         </b>
          第三方 Add-on 仍要做 Blender 版本鎖定與專案測試。
         </p>
+        <h4>
+         SOP
+        </h4>
         <p>
-         <b>
-          SOP：
-         </b>
          先用頭部／肩膀高模做 20 分鐘測試，檢查 Contours、PolyStrips、Relax、Mirror 與 Blender 原生 Edit 操作是否符合習慣。
         </p>
        </div>
@@ -218,7 +229,7 @@
       </a>
      </div>
     </article>
-    <article class="news">
+    <article class="news" data-intel-id="endfield-hybrid-npr" data-intel-role="card">
      <div class="news-rank">
       03
      </div>
@@ -237,6 +248,17 @@
       <p class="summary">
        這個 2026/08 專案把同一角色分別在 UE5.8 與 Blender 建立 Hybrid NPR，目標是在 realtime／offline 間維持一致的 anime readability，同時保留部分 PBR 材質資訊。
       </p>
+      <figure class="case-preview" data-intel-id="endfield-hybrid-npr" data-intel-role="visual" data-visual-id="endfield-hybrid-npr">
+       <a href="https://sku11zz.github.io/AnimTA_ShuyuanJi/project-endfield-character-rendering.html" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+        <img alt="PROJECT VISUAL preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-08-23/endfield-hybrid-npr.jpg"/>
+       </a>
+       <figcaption>
+        <span>
+         PROJECT VISUAL
+        </span>
+        · Local visual evidence · 點圖開啟原始來源
+       </figcaption>
+      </figure>
       <div class="quick-impact">
        <span>
         <b>
@@ -262,28 +284,28 @@
         完整分析
        </summary>
        <div class="detail-body">
+        <h4>
+         視覺問題
+        </h4>
         <p>
-         <b>
-          視覺問題：
-         </b>
          Realtime 中臉部陰影過重、衣服紋理容易被壓掉、anime readability 不足。
         </p>
+        <h4>
+         方法
+        </h4>
         <p>
-         <b>
-          方法：
-         </b>
          UE5 端採 view-dependent NPR 思路，柔化 face／hair tonal steps，同時讓 body 保留 PBR detail，再統一 skylight、rim light 與 post process。價值在於不是追求完全 Unlit，而是分區決定 NPR 與 PBR 的職責。
         </p>
+        <h4>
+         限制
+        </h4>
         <p>
-         <b>
-          限制：
-         </b>
          這是 solo recreation，不等同原遊戲官方 shader；應當作可驗證方法，而非逆向定論。
         </p>
+        <h4>
+         SOP
+        </h4>
         <p>
-         <b>
-          SOP：
-         </b>
          同角色固定相機，先建立 Face/Hair/Body 三區，再分別決定 tone step、PBR 保留量與 rim/post，最後用 UE／Blender A/B 比較。
         </p>
        </div>
@@ -293,7 +315,7 @@
       </a>
      </div>
     </article>
-    <article class="news">
+    <article class="news" data-intel-id="procedural-hand-painted-eevee" data-intel-role="card">
      <div class="news-rank">
       04
      </div>
@@ -312,6 +334,17 @@
       <p class="summary">
        3D Artist lassyla 公開其常用 EEVEE procedural shader 教學與 demo scene；Noise 是建立手繪感的重要部分。對 Stylized 場景，它提供一條介於純手繪 Base Color 與一般 PBR 之間的快速 look-dev 路線。
       </p>
+      <figure class="case-preview" data-intel-id="procedural-hand-painted-eevee" data-intel-role="visual" data-visual-id="procedural-hand-painted-eevee">
+       <a href="https://80.lv/articles/tutorial-procedural-blender-shader-with-hand-painted-look" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+        <img alt="SOURCE COVER preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-08-23/procedural-hand-painted-eevee.jpg"/>
+       </a>
+       <figcaption>
+        <span>
+         SOURCE COVER
+        </span>
+        · Local visual evidence · 點圖開啟原始來源
+       </figcaption>
+      </figure>
       <div class="quick-impact">
        <span>
         <b>
@@ -337,22 +370,22 @@
         完整分析
        </summary>
        <div class="detail-body">
+        <h4>
+         材質目標
+        </h4>
         <p>
-         <b>
-          材質目標：
-         </b>
          用 procedural breakup 模擬 brush variation，降低規則 CG shading 的乾淨感。
         </p>
+        <h4>
+         Production 判斷
+        </h4>
         <p>
-         <b>
-          Production 判斷：
-         </b>
          適合快速 blockout／style exploration；若直接套全場景，Noise 頻率與方向缺乏 art direction 會造成一致的「程序噪點感」。正式 Production 應保留 per-material scale、mask 與 hero asset override。
         </p>
+        <h4>
+         20 分鐘實測
+        </h4>
         <p>
-         <b>
-          20 分鐘實測：
-         </b>
          同一石牆建立純 PBR、procedural painterly、手繪 Base Color 三版，固定燈光比較 readability 與 texture authoring 時間。
         </p>
        </div>
@@ -362,7 +395,7 @@
       </a>
      </div>
     </article>
-    <article class="news">
+    <article class="news" data-intel-id="blender-52-lts" data-intel-role="card">
      <div class="news-rank">
       05
      </div>
@@ -381,6 +414,17 @@
       <p class="summary">
        5.2 LTS 支援到 2028/07；除了 Node Physics，還包含 instance-heavy Geometry Nodes 約 2× 加速、Cycles texture cache、Principled Thin Wall、EEVEE GI／probe 改善與 remote asset libraries。
       </p>
+      <figure class="case-preview" data-intel-id="blender-52-lts" data-intel-role="visual" data-visual-id="blender-52-lts">
+       <a href="https://www.blender.org/releases/5-2/" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+        <img alt="OFFICIAL RELEASE VISUAL preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-08-23/blender-52-lts.jpg"/>
+       </a>
+       <figcaption>
+        <span>
+         OFFICIAL RELEASE VISUAL
+        </span>
+        · Local visual evidence · 點圖開啟原始來源
+       </figcaption>
+      </figure>
       <div class="quick-impact">
        <span>
         <b>
@@ -406,23 +450,29 @@
         完整分析
        </summary>
        <div class="detail-body">
+        <h4>
+         Production 基線
+        </h4>
         <p>
-         <b>
-          Production 影響：
-         </b>
-         真正重要的是可以把 5.2 當下一個長期工作基線，而不是追 daily build。對大量 instance 場景、procedural environment、材質與資產庫都有直接改善。
+         LTS 的價值不是單一新功能，而是提供可長期鎖版的工具鏈基線；5.2 支援到 2028/07，適合拿代表性專案做升版驗證。
         </p>
+        <h4>
+         值得驗證
+        </h4>
         <p>
-         <b>
-          遷移 SOP：
-         </b>
-         複製一個正式資產專案，在 5.2 測 Add-ons、Geometry Nodes、材質、FBX／glTF export、render parity；全部通過再鎖 studio baseline。
+         優先檢查 instance-heavy Geometry Nodes、Cycles texture cache、Principled Thin Wall、EEVEE 與 remote asset libraries，再測既有 Add-ons、FBX／glTF 與 render parity。
         </p>
+        <h4>
+         限制
+        </h4>
         <p>
-         <b>
-          限制：
-         </b>
-         Experimental 功能仍應獨立評估，LTS 不代表每個新功能都已 Production-safe。
+         LTS 不代表其中所有 Experimental 功能都 Production-safe；穩定版基線與實驗功能必須分開評估。
+        </p>
+        <h4>
+         SOP
+        </h4>
+        <p>
+         複製一份代表性專案，在不影響正式案的環境完成 Add-ons、GN、材質、輸出與引擎 round-trip 測試，通過後再鎖版。
         </p>
        </div>
       </details>
@@ -446,7 +496,7 @@
       獨立 Supplemental Discovery；不是 TOP 5 落選區。
      </p>
     </div>
-    <article class="category-news">
+    <article class="category-news" data-intel-id="node-preview-thumbnails" data-intel-role="card">
      <div class="meta">
       <span class="pill green">
        BLENDER / NODES
@@ -461,6 +511,17 @@
      <p class="summary">
       Blender Extensions 上的 Add-on 可在節點上方顯示小型即時預覽，並支援只標記節點、64/128/256 px 品質與分批更新。
      </p>
+     <figure class="case-preview" data-intel-id="node-preview-thumbnails" data-intel-role="visual" data-visual-id="node-preview-thumbnails">
+      <a href="https://extensions.blender.org/add-ons/node-preview/" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+       <img alt="ADD-ON PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-08-23/node-preview-thumbnails.jpg"/>
+      </a>
+      <figcaption>
+       <span>
+        ADD-ON PREVIEW
+       </span>
+       · Local visual evidence · 點圖開啟原始來源
+      </figcaption>
+     </figure>
      <div class="quick-impact">
       <span>
        <b>
@@ -486,8 +547,29 @@
        完整分析
       </summary>
       <div class="detail-body">
+       <h4>
+        問題／目標
+       </h4>
        <p>
-        對從其他 DCC 轉 Blender 的使用者，最大價值是降低 Node Graph 的黑盒感；複雜材質可只開 Marked Nodes 控制成本。先在非正式專案測效能與穩定性。
+        大型 Shader、Geometry Nodes、Compositor graph 很容易只靠節點名稱與接線猜中間結果；live thumbnail 讓中間訊號直接可視化。
+       </p>
+       <h4>
+        Production 收益
+       </h4>
+       <p>
+        對 NPR Shader 與程序材質 debug 特別有價值，可減少反覆把中間輸出接到最終 Output 的操作。複雜圖可用 Only Marked Nodes 控制 preview 範圍與成本。
+       </p>
+       <h4>
+        限制
+       </h4>
+       <p>
+        目前發布資訊明確提到 Windows 11 測試，跨平台與超大型 graph 的效能仍應在團隊環境驗證。
+       </p>
+       <h4>
+        10 分鐘實測
+       </h4>
+       <p>
+        挑一個既有複雜材質，標記 5–10 個關鍵節點，比較開啟前後定位 mask、normal、noise 問題所需時間。
        </p>
       </div>
      </details>
@@ -495,7 +577,7 @@
       Blender Extensions ↗
      </a>
     </article>
-    <article class="category-news">
+    <article class="category-news" data-intel-id="geo-nodes-guide" data-intel-role="card">
      <div class="meta">
       <span class="pill green">
        GEOMETRY NODES
@@ -510,6 +592,17 @@
      <p class="summary">
       在節點上 hover 即顯示用途、常見使用方式、pitfalls、搭配節點與 workflow example；要求 Blender 5.0+。
      </p>
+     <figure class="case-preview" data-intel-id="geo-nodes-guide" data-intel-role="visual" data-visual-id="geo-nodes-guide">
+      <a href="https://extensions.blender.org/add-ons/geo-nodes-guide/" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+       <img alt="ADD-ON PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-08-23/geo-nodes-guide.jpg"/>
+      </a>
+      <figcaption>
+       <span>
+        ADD-ON PREVIEW
+       </span>
+       · Local visual evidence · 點圖開啟原始來源
+      </figcaption>
+     </figure>
      <div class="quick-impact">
       <span>
        <b>
@@ -535,8 +628,29 @@
        完整分析
       </summary>
       <div class="detail-body">
+       <h4>
+        問題／目標
+       </h4>
        <p>
-        這類工具不提升 render 品質，但能顯著減少查文件的 context switching，特別適合剛從 modifier-based DCC 邏輯轉 Geometry Nodes 的階段。缺點是社群文件品質仍要與官方 manual 交叉確認。
+        Geometry Nodes 節點數量快速增加，單靠名稱難以記住用途、常見陷阱與搭配方式。
+       </p>
+       <h4>
+        Workflow
+       </h4>
+       <p>
+        把 332 個節點的用途、pitfalls、搭配節點與 workflow example 放進 hover 文件，可降低離開 Blender 查資料造成的上下文切換。
+       </p>
+       <h4>
+        限制
+       </h4>
+       <p>
+        它是學習與快速查詢層，不應取代 Blender 官方 Manual 對型別、版本差異與精確行為的定義。
+       </p>
+       <h4>
+        適合誰
+       </h4>
+       <p>
+        特別適合剛從傳統 modifier／3ds Max 工作方式轉入 Geometry Nodes 的使用者，以及需要快速回想冷門節點的 Technical Artist。
        </p>
       </div>
      </details>
@@ -544,7 +658,7 @@
       Blender Extensions ↗
      </a>
     </article>
-    <article class="category-news">
+    <article class="category-news" data-intel-id="ppeh-tools" data-intel-role="card">
      <div class="meta">
       <span class="pill green">
        MODELING / GN
@@ -559,6 +673,17 @@
      <p class="summary">
       把 Geometry Nodes 封裝成一般 modifier 參數，不要求美術直接編 node tree；核心版可免費商用。
      </p>
+     <figure class="case-preview" data-intel-id="ppeh-tools" data-intel-role="visual" data-visual-id="ppeh-tools">
+      <a href="https://blenderartists.org/t/ppeh-tools-procedural-modeling-toolkit-for-blender-5-2-lts/1647698" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+       <img alt="AUTHOR PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-08-23/ppeh-tools.jpg"/>
+      </a>
+      <figcaption>
+       <span>
+        AUTHOR PREVIEW
+       </span>
+       · Local visual evidence · 點圖開啟原始來源
+      </figcaption>
+     </figure>
      <div class="quick-impact">
       <span>
        <b>
@@ -584,8 +709,29 @@
        完整分析
       </summary>
       <div class="detail-body">
+       <h4>
+        Production 問題
+       </h4>
        <p>
-        對熟悉 3ds Max modifier stack 的人尤其值得看：操作模型仍是 modifier stack，而底層是 GN。先挑 3 個常用建模操作與 Max 現有做法比較可控性、apply 後拓樸與 UV。
+        很多程序建模操作可以用 Geometry Nodes 完成，但直接維護大型 node graph 對一般模型師的操作成本偏高。
+       </p>
+       <h4>
+        方法
+       </h4>
+       <p>
+        ppeh_tools 把約 30 個程序建模／UV 工具封裝成一般 modifier 參數，讓 non-destructive workflow 更接近傳統 modifier stack 的使用方式。
+       </p>
+       <h4>
+        驗證重點
+       </h4>
+       <p>
+        第三方 GN modifier 最重要的是 apply 後拓樸、UV、版本相容與 modifier stack 順序是否穩定，而不是只看操作展示。
+       </p>
+       <h4>
+        15 分鐘實測
+       </h4>
+       <p>
+        挑三個最常用 hard-surface／UV 操作，和原生做法比較操作時間、apply 後 topology、UV 與重新開檔一致性。
        </p>
       </div>
      </details>
@@ -593,7 +739,7 @@
       Blender Artists／作者發布 ↗
      </a>
     </article>
-    <article class="category-news">
+    <article class="category-news" data-intel-id="node-wrangler-52-preview" data-intel-role="card">
      <div class="meta">
       <span class="pill green">
        BLENDER / SHADER
@@ -608,6 +754,17 @@
      <p class="summary">
       5.2 Manual 明確整理 Shader／Geometry Nodes 的 Preview Node Output 與 Merge Selected Nodes 等功能。
      </p>
+     <figure class="case-preview" data-intel-id="node-wrangler-52-preview" data-intel-role="visual" data-visual-id="node-wrangler-52-preview">
+      <a href="https://docs.blender.org/manual/en/latest/addons/node_wrangler.html" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+       <img alt="DOCUMENTATION VISUAL preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-08-23/node-wrangler-52-preview.jpg"/>
+      </a>
+      <figcaption>
+       <span>
+        DOCUMENTATION VISUAL
+       </span>
+       · Local visual evidence · 點圖開啟原始來源
+      </figcaption>
+     </figure>
      <div class="quick-impact">
       <span>
        <b>
@@ -633,8 +790,29 @@
        完整分析
       </summary>
       <div class="detail-body">
+       <h4>
+        問題／目標
+       </h4>
        <p>
-        Shader 中 Shift+Ctrl+LMB 可把節點輸出接到最終輸出做快速檢查；Geometry Nodes 對應 Shift+Alt+LMB。對材質 debug，這比不斷手動拉線更值得先記成肌肉記憶。
+        材質與 Geometry Nodes debug 時，快速查看任一節點輸出比反覆手動改線更重要。
+       </p>
+       <h4>
+        Workflow
+       </h4>
+       <p>
+        Shader 使用 Shift+Ctrl+LMB、Geometry Nodes 使用 Shift+Alt+LMB 的 Preview Output，可直接形成日常 debug muscle memory，並可搭配 Merge Selected Nodes 降低基礎接線成本。
+       </p>
+       <h4>
+        Production 收益
+       </h4>
+       <p>
+        它不是大型新功能，但屬於每天會累積時間收益的低成本操作；對複雜 NPR 材質尤其適合標準化成團隊快捷 SOP。
+       </p>
+       <h4>
+        10 分鐘實測
+       </h4>
+       <p>
+        拿一個現有 NPR Shader，依序 preview base mask、shadow mask、normal 處理與 highlight 訊號，記錄與手動接線的步驟差。
        </p>
       </div>
      </details>
@@ -642,7 +820,7 @@
       Blender Manual ↗
      </a>
     </article>
-    <article class="category-news">
+    <article class="category-news" data-intel-id="stylized-pixelated-caustics" data-intel-role="card">
      <div class="meta">
       <span class="pill green">
        NPR / BLENDER
@@ -682,8 +860,29 @@
        完整分析
       </summary>
       <div class="detail-body">
+       <h4>
+        視覺目標
+       </h4>
        <p>
-        這類 fake caustics 的 Production 優勢是 art-directable；遊戲或 stylized 場景應先確認 pattern 在相機移動時不會像貼紙，並把 scale／speed／contrast 暴露成材質參數。
+        建立可 art-direct 的 stylized／pixelated 水面焦散，而不是追求物理正確的光學模擬。
+       </p>
+       <h4>
+        方法
+       </h4>
+       <p>
+        以 projected 2D Voronoi 等程序訊號控制焦散形狀，將 scale、speed、contrast 暴露成材質參數，讓效果能配合場景風格調整。
+       </p>
+       <h4>
+        Production 判斷
+       </h4>
+       <p>
+        這類方法的優勢是便宜、可控且容易保持 NPR 一致性；缺點是視角、投射空間與重複感需要實際場景驗證。
+       </p>
+       <h4>
+        SOP
+       </h4>
+       <p>
+        先固定三個控制參數，再在近景、中景、遠景各測一次 readability，避免只在 shader preview 中看起來成立。
        </p>
       </div>
      </details>
@@ -691,7 +890,7 @@
       Blender Artists Tutorials ↗
      </a>
     </article>
-    <article class="category-news">
+    <article class="category-news" data-intel-id="material-lighting-nodes" data-intel-role="card">
      <div class="meta">
       <span class="pill green">
        BLENDER / NPR DEV
@@ -706,6 +905,17 @@
      <p class="summary">
       Blender 開發者公開新 Material Lighting Nodes 方向，包含 Light Info 與 Light Evaluation，讓材質能取得光源資訊並自訂 shading。
      </p>
+     <figure class="case-preview" data-intel-id="material-lighting-nodes" data-intel-role="visual" data-visual-id="material-lighting-nodes">
+      <a href="https://devtalk.blender.org/t/npr-project-multi-stage-compositing/40758/80" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+       <img alt="DEVELOPMENT VISUAL preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-08-23/material-lighting-nodes.jpg"/>
+      </a>
+      <figcaption>
+       <span>
+        DEVELOPMENT VISUAL
+       </span>
+       · Local visual evidence · 點圖開啟原始來源
+      </figcaption>
+     </figure>
      <div class="quick-impact">
       <span>
        <b>
@@ -731,8 +941,29 @@
        完整分析
       </summary>
       <div class="detail-body">
+       <h4>
+        問題／目標
+       </h4>
        <p>
-        這對 Toon／NPR 的價值是自訂 lighting 不必完全繞開 EEVEE。現在仍屬開發討論，設計可能變動；值得追蹤 per-light shading、Light Info 與 Light Evaluation 的後續穩定化。
+        NPR 材質常需要比標準 BSDF 更直接地取得與重組光照資訊，才能自訂 tone、shadow 與 stylized lighting response。
+       </p>
+       <h4>
+        開發方向
+       </h4>
+       <p>
+        Material Lighting Nodes 的 Light Info／Light Evaluation 方向是把更多 lighting 資訊帶入材質節點，讓 EEVEE 材質能建立更可控的 lighting 邏輯。
+       </p>
+       <h4>
+        Production 意義
+       </h4>
+       <p>
+        如果介面成熟，會降低 NPR Shader 依賴 workaround 或額外引擎修改的需求，對 toon／anime look-dev 很值得追蹤。
+       </p>
+       <h4>
+        限制
+       </h4>
+       <p>
+        目前仍是開發中能力，不應當作已穩定發布功能；Production 應先追蹤 API、效能與版本落地情況。
        </p>
       </div>
      </details>
@@ -774,9 +1005,6 @@
    <nav class="day-nav">
     <a href="../2026-08-22/">
      ← 2026-08-22
-    </a>
-    <a href="../">
-     回首頁
     </a>
     <span>
      最新日報
