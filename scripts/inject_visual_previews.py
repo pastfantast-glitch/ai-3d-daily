@@ -2,6 +2,7 @@
 import json, sys
 from pathlib import Path
 from bs4 import BeautifulSoup
+from normalize_archive_presentation import main as normalize_archive_presentation
 
 ROOT=Path(__file__).resolve().parents[1]
 MANIFEST=ROOT/'assets'/'visual'/'manifest.json'
@@ -17,8 +18,9 @@ def asset_src(rec,prefix):
     return f"{prefix}{rec['asset_path']}"
 
 
-def make_preview(soup,rec,prefix):
-    fig=soup.new_tag('figure',attrs={'class':'case-preview','data-visual-id':rec['id'],'data-intel-id':rec['id'],'data-intel-role':'visual'})
+def make_preview(soup,rec,prefix,is_archive=False):
+    classes='case-preview daily-visual' if is_archive else 'case-preview'
+    fig=soup.new_tag('figure',attrs={'class':classes,'data-visual-id':rec['id'],'data-intel-id':rec['id'],'data-intel-role':'visual'})
     a=soup.new_tag('a',href=rec['page_url'],target='_blank',rel='noopener noreferrer',title='開啟原始案例')
     img=soup.new_tag('img',src=asset_src(rec,prefix),alt=f"{rec.get('label','SOURCE PREVIEW')} preview",loading='lazy',decoding='async')
     img['onerror']="this.closest('.case-preview').style.display='none'"
@@ -28,7 +30,7 @@ def make_preview(soup,rec,prefix):
     fig.append(cap); return fig
 
 
-def inject(path,prefix,records):
+def inject(path,prefix,records,is_archive=False):
     soup=BeautifulSoup(path.read_text('utf-8'),'html.parser'); changed=False
     cards=soup.select('[data-intel-role="card"][data-intel-id]')
     for card in cards:
@@ -42,10 +44,13 @@ def inject(path,prefix,records):
         if existing:
             img=existing.find('img'); a=existing.find('a')
             existing['data-visual-id']=intel_id; existing['data-intel-id']=intel_id; existing['data-intel-role']='visual'
+            if is_archive:
+                classes=list(existing.get('class') or [])
+                if 'daily-visual' not in classes: classes.append('daily-visual'); existing['class']=classes; changed=True
             if img and img.get('src')!=expected: img['src']=expected; changed=True
             if a and a.get('href')!=rec['page_url']: a['href']=rec['page_url']; changed=True
             continue
-        preview=make_preview(soup,rec,prefix)
+        preview=make_preview(soup,rec,prefix,is_archive=is_archive)
         impact=card.find('div',class_='quick-impact')
         if impact: impact.insert_before(preview)
         else:
@@ -65,9 +70,14 @@ def main():
     if manifest.get('asset_versioning')!='daily-snapshot': raise SystemExit('visual manifest must use daily-snapshot asset versioning')
     records={x['id']:x for x in manifest.get('entries',[]) if x.get('status')=='ok'}
     changed=[]
-    if inject(ROOT/'index.html','',records): changed.append('index.html')
+    if inject(ROOT/'index.html','',records,is_archive=False): changed.append('index.html')
     daily=ROOT/date/'index.html'
-    if daily.exists() and inject(daily,'../',records): changed.append(str(daily.relative_to(ROOT)))
+    if daily.exists() and inject(daily,'../',records,is_archive=True): changed.append(str(daily.relative_to(ROOT)))
+
+    # Visual injection is the last stage that may create new archive DOM nodes.
+    # Re-normalize presentation afterwards so future new figures cannot bypass the
+    # shared Daily Presentation Contract.
+    normalize_archive_presentation()
     print('visual preview injection:',', '.join(changed) if changed else 'no markup changes',f'({len(records)} canonical visuals)')
 
 if __name__=='__main__': main()
