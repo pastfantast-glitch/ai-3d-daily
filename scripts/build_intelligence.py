@@ -4,7 +4,8 @@
 The daily JSON under data/daily/YYYY-MM-DD.json is the only editable source for
 Full Analysis. Homepage and archive consume the same structured blocks and render
 them with the same semantic hierarchy. Identity may be shared by multiple DOM
-nodes, so only data-intel-role=card nodes are render targets.
+nodes, so render targets must satisfy BOTH structural card selectors and
+`data-intel-role=card`.
 """
 from pathlib import Path
 import json, sys
@@ -34,10 +35,14 @@ def analysis_html(soup, blocks, home=False):
 def main():
     date = sys.argv[1] if len(sys.argv) > 1 else max(p.stem for p in (ROOT / 'data' / 'daily').glob('20??-??-??.json'))
     records = {item['id']: item for item in load(date)['items']}
-    for path, home in ((ROOT / 'index.html', True), (ROOT / date / 'index.html', False)):
+    targets = (
+        (ROOT / 'index.html', True, '.top-item[data-intel-role="card"][data-intel-id], .more-card[data-intel-role="card"][data-intel-id]'),
+        (ROOT / date / 'index.html', False, '#top .news[data-intel-role="card"][data-intel-id], .category-news[data-intel-role="card"][data-intel-id]'),
+    )
+    for path, home, selector in targets:
         soup = BeautifulSoup(path.read_text('utf-8'), 'html.parser')
         rendered = 0
-        for card in soup.select('[data-intel-role="card"][data-intel-id]'):
+        for card in soup.select(selector):
             record = records.get(card.get('data-intel-id'))
             if not record: continue
             old = card.find('details')
