@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-import io, json, re, sys
+import io, json, re, sys, time
 from pathlib import Path
 from urllib.parse import urljoin
 
@@ -12,6 +12,7 @@ OUT_DIR = ROOT / 'assets' / 'visual'
 OUT_DIR.mkdir(parents=True, exist_ok=True)
 UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/126 Safari/537.36'
 TIMEOUT = 25
+RETRIES = 2
 BAD = re.compile(r'(logo|icon|avatar|author|cookie|banner|advert|ads|sprite|placeholder|zoom-icon|tracking|pixel|emoji)', re.I)
 GOOD = re.compile(r'(final|render|hero|cover|scene|character|portrait|environment|unreal|blender|result|project|screenshot|preview)', re.I)
 
@@ -40,6 +41,22 @@ def load_entries(date):
             'confidence': cfg.get('confidence', 'candidate')
         })
     return entries
+
+
+def request_with_retry(session, url, **kwargs):
+    last = None
+    for attempt in range(RETRIES + 1):
+        try:
+            r = session.get(url, timeout=TIMEOUT, allow_redirects=True, **kwargs)
+            if r.status_code in (401, 403, 429):
+                raise PermissionError(f'blocked HTTP {r.status_code}')
+            r.raise_for_status()
+            return r
+        except Exception as exc:
+            last = exc
+            if attempt < RETRIES:
+                time.sleep(1.5 * (attempt + 1))
+    raise last
 
 
 def norm_url(base, value):
@@ -112,13 +129,12 @@ def collect_candidates(page_url, html, keywords):
 
 
 def fetch_image(session,page_url,cand):
-    r=session.get(cand['url'],timeout=TIMEOUT,headers={'Referer':page_url},allow_redirects=True)
-    r.raise_for_status()
+    r=request_with_retry(session,cand['url'],headers={'Referer':page_url})
     if 'image' not in r.headers.get('content-type','').lower():
-        raise ValueError('candidate is not an image')
+        raise ValueError('not_image')
     im=Image.open(io.BytesIO(r.content)); im.load(); w,h=im.size
     if w<640 or h<320:
-        raise ValueError(f'too small {w}x{h}')
+        raise ValueError(f'too_small:{w}x{h}')
     ratio=w/h; area=w*h
     score=cand['score']+min(45,area/350000)+(8 if 1.1<=ratio<=2.2 else 0)
     return im,score
@@ -140,32 +156,53 @@ def save_image(intel_id,im):
     return out
 
 
+def classify_failure(exc, candidate_count=0):
+    s=str(exc).lower()
+    if 'blocked http' in s or '403' in s or '401' in s or '429' in s:
+        return 'blocked'
+    if 'too_small' in s:
+        return 'too_small'
+    if 'not_image' in s:
+        return 'not_image'
+    if 'timeout' in s or 'connection' in s or 'http' in s:
+        return 'http_error'
+    if candidate_count == 0:
+        return 'no_candidate'
+    return 'identity_uncertain'
+
+
 def main():
     date=sys.argv[1] if len(sys.argv)>1 else latest_date()
     entries=load_entries(date)
     session=requests.Session(); session.headers.update({'User-Agent':UA,'Accept-Language':'en-US,en;q=0.8'})
     report={'date':date,'identity':'data-intel-id','generated_by':'scripts/extract_visual_assets.py','entries':[]}
     for entry in entries:
-        rec={'id':entry['id'],'page_url':entry['page_url'],'status':'missing','confidence':entry['confidence']}
+        rec={'id':entry['id'],'page_url':entry['page_url'],'status':'pending','confidence':entry['confidence'],'candidate_count':0}
+        candidates=[]; failures=[]
         try:
-            page=session.get(entry['page_url'],timeout=TIMEOUT); page.raise_for_status()
+            page=request_with_retry(session,entry['page_url'])
             candidates=collect_candidates(entry['page_url'],page.text,entry['keywords'])
+            rec['candidate_count']=len(candidates)
             winner=None; tested=[]
             for cand in candidates[:18]:
                 try:
                     im,score=fetch_image(session,entry['page_url'],cand)
                     tested.append({'url':cand['url'],'score':round(score,2),'size':list(im.size),'reason':cand['reason']})
                     if winner is None or score>winner[0]: winner=(score,cand,im.copy())
-                except Exception:
+                except Exception as exc:
+                    failures.append({'url':cand['url'],'reason':str(exc)[:180]})
                     continue
             if not winner:
                 raise RuntimeError('no valid representative image candidate')
             score,cand,im=winner
             out=save_image(entry['id'],im)
-            rec.update({'status':'ok','asset_path':str(out.relative_to(ROOT)).replace('\\','/'),'source_image_url':cand['url'],'source_kind':cand['reason'],'width':im.width,'height':im.height,'label':entry['label'],'score':round(score,2),'tested':tested[:8]})
+            rec.update({'status':'ok','asset_path':str(out.relative_to(ROOT)).replace('\\','/'),'source_image_url':cand['url'],'source_kind':cand['reason'],'width':im.width,'height':im.height,'label':entry['label'],'score':round(score,2),'tested':tested[:8],'failures':failures[:8]})
         except Exception as exc:
+            rec['status']=classify_failure(exc,len(candidates))
             rec['error']=str(exc)
+            rec['failures']=failures[:8]
         report['entries'].append(rec)
+        print(f"visual {entry['id']}: {rec['status']} candidates={rec['candidate_count']}")
     (OUT_DIR/'manifest.json').write_text(json.dumps(report,ensure_ascii=False,indent=2),'utf-8')
     ok=sum(x['status']=='ok' for x in report['entries'])
     print(f'visual assets {date}: {ok}/{len(report["entries"])}')
