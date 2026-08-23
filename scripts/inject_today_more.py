@@ -8,6 +8,11 @@ DATA = json.loads((ROOT / 'today-more.json').read_text(encoding='utf-8'))
 DATE = DATA['date']
 
 
+def homepage_date(soup):
+    spans = soup.select('.home-hero .topline span')
+    return spans[-1].get_text(strip=True) if spans else ''
+
+
 def make_details(soup, item):
     details = soup.new_tag('details', attrs={'class':'home-full-analysis'})
     summary = soup.new_tag('summary'); summary.string = '完整分析'; details.append(summary)
@@ -37,34 +42,50 @@ def make_card(soup, item):
     return article
 
 
-def inject_home(path: Path):
+def normalize_home(path: Path):
     soup = BeautifulSoup(path.read_text(encoding='utf-8'), 'html.parser')
     target = soup.select_one('.more-grid')
     if not target:
         raise RuntimeError('Could not find 今天還有什麼 .more-grid')
 
+    current_date = homepage_date(soup)
+
+    # Always remove workflow-managed cards before deciding whether DATA is current.
     for old in target.select('[data-supplemental-id]'):
         old.decompose()
-    for item in DATA['items']:
-        target.append(make_card(soup, item))
 
+    if DATE == current_date:
+        for item in DATA['items']:
+            target.append(make_card(soup, item))
+        action = f'injected {len(DATA["items"])} cards'
+    else:
+        # Stale payloads must never contaminate a newer homepage.
+        action = f'skipped stale payload {DATE}; homepage is {current_date}'
+        for archive in soup.select('.history-list > a'):
+            if archive.get('href') == f'{DATE}/':
+                span = archive.find('span')
+                if span:
+                    span.string = '歷史日報'
+                break
+
+    count = len(target.select('.more-card'))
     head = target.find_parent('section').select_one('.home-section-head') if target.find_parent('section') else None
     if head:
         desc = head.find('p')
         if desc:
-            desc.string = f'獨立 Supplemental Discovery · {len(target.select(".more-card"))} 則有效情報'
+            desc.string = f'獨立 Supplemental Discovery · {count} 則有效情報'
 
-    date_href = f'{DATE}/'
     for archive in soup.select('.history-list > a'):
-        if archive.get('href') == date_href:
+        if archive.get('href') == f'{current_date}/':
             span = archive.find('span')
             if span:
-                span.string = f'TOP 5 + {len(target.select(".more-card"))} 則 Supplemental'
+                span.string = f'TOP 5 + {count} 則 Supplemental'
             break
 
     for a in soup.find_all('a', target='_blank'):
         rel = set(a.get('rel', [])); rel.update({'noopener','noreferrer'}); a['rel'] = sorted(rel)
     path.write_text(str(soup), encoding='utf-8')
+    return current_date, action
 
 
 def inject_daily(path: Path):
@@ -95,8 +116,9 @@ def inject_daily(path: Path):
     path.write_text(str(soup), encoding='utf-8')
 
 
-inject_home(ROOT / 'index.html')
-daily = ROOT / DATE / 'index.html'
-if daily.exists():
-    inject_daily(daily)
-print(f'Injected {len(DATA["items"])} supplemental items for {DATE}')
+current_date, action = normalize_home(ROOT / 'index.html')
+if DATE == current_date:
+    daily = ROOT / DATE / 'index.html'
+    if daily.exists():
+        inject_daily(daily)
+print(f'Supplemental injector: {action}')
