@@ -1,4 +1,19 @@
-/* Compatibility shim.
-   Homepage layout rules were consolidated into the canonical homepage stylesheets.
-   Keep this file temporarily because older cached index.html versions may still request it.
-   Do not add new component styles here. */
+/* Current homepage structure and interaction layer.
+   This file is intentionally limited to selectors that exist in index.html. */
+.home-page .more-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.home-page .more-grid>.more-card{display:flex;flex-direction:column;min-width:0;padding:17px;background:#101927;border:1px solid var(--line);border-radius:14px;box-shadow:0 6px 20px rgba(0,0,0,.14)}
+.home-page .more-grid>.more-card>p{margin:8px 0 0;color:#a3aec1;font-size:var(--ds-summary);line-height:1.68}
+.home-page .more-grid>.more-card .source{display:inline-block;margin-top:auto;padding-top:14px}
+.home-page .test-section>p{margin:0;padding:16px 18px;border:1px solid #2a3850;border-radius:12px;background:#111a2a;color:#b5bfd0;font-size:.82rem;line-height:1.7;box-shadow:0 8px 22px rgba(0,0,0,.14)}
+.home-page .history-list{display:grid;gap:10px}
+.home-page .history-list>a{display:grid;grid-template-columns:118px 1fr;gap:14px;align-items:center;padding:13px 15px;text-decoration:none;color:inherit;background:#101927;border:1px solid var(--line);border-radius:12px;box-shadow:0 8px 22px rgba(0,0,0,.12);transition:.16s ease}
+.home-page .history-list>a:hover{border-color:#5f58a8;background:#152136}
+.home-page .history-list strong{color:#aaa1ff;font-size:.78rem;font-weight:900}
+.home-page .history-list span{color:#8e9aaf;font-size:.75rem;line-height:1.5}
+.home-page .preference-vote{display:flex;align-items:center;gap:7px;margin-top:12px}
+.home-page .preference-vote span{font-size:.68rem;color:#7f8ba0;margin-right:2px}
+.home-page .preference-vote button{appearance:none;border:1px solid #2a3850;background:#101927;color:#9eabcb;border-radius:8px;padding:5px 9px;font-size:.76rem;line-height:1;cursor:pointer}
+.home-page .preference-vote button:hover{border-color:#596985;color:#d8e0ef}
+.home-page .preference-vote button.is-up{background:#15352f;border-color:#2a6a56;color:#7fe0ba}
+.home-page .preference-vote button.is-down{background:#3a2027;border-color:#6a3340;color:#ff9aaa}
+@media(max-width:760px){.home-page .more-grid{grid-template-columns:1fr;gap:10px}.home-page .more-grid>.more-card{padding:15px 14px}.home-page .test-section>p{padding:14px 15px}.home-page .history-list>a{grid-template-columns:1fr;gap:4px;padding:12px 14px}}
