@@ -38,11 +38,9 @@ jobs:
             python scripts/backfill_historical_archive.py "$date"
             python scripts/extract_visual_assets.py "$date"
             python scripts/inject_visual_previews.py "$date"
-            # Old-date visual injection is archive-only in effect; restore live homepage.
             git checkout -- index.html
             python scripts/check_archive_backfill.py "$date"
           done
-          # Root manifest remains the current/latest-day convenience pointer.
           cp assets/visual/2026-08-23/manifest.json assets/visual/manifest.json
           python scripts/render_daily_navigation.py
           python scripts/check_intelligence_contract.py
@@ -91,3 +89,4 @@ jobs:
           git commit -m 'Backfill canonical archives 2026-08-21 and 2026-08-22'
           git pull --rebase origin main
           git push origin HEAD:main
+# retrigger: 2026-08-23T16:41+08:00
