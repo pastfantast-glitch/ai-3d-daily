@@ -1,12 +1,14 @@
 #!/usr/bin/env python3
-"""Guard the publishing topology and runtime integrity contracts.
+"""Guard publishing topology, runtime integrity, and operational reliability.
 
 Only intelligence-build.yml may write repository contents. Legacy QA workflows
-must remain read-only. The canonical publisher must keep release-ready gating,
-preflight, registry QA, archive navigation rendering, atomic publish, and a
-global concurrency lock. Runtime modules must inherit the shell cache token and
-must never guess stable IDs for new dates. GitHub-hosted JavaScript actions must
-stay on Node.js 24-capable major versions.
+must remain read-only. The canonical publisher must keep a release-ready gate,
+preflight, registry QA, archive navigation rendering, atomic content publish,
+public Pages verification, success receipt, recovery path, and one global
+concurrency lock. Runtime modules must inherit the shell cache token and never
+guess stable IDs for new dates. GitHub-hosted JavaScript actions must stay on
+Node.js 24-capable majors and Python dependencies must be installed from the
+validated lock file.
 """
 from pathlib import Path
 import re, sys
@@ -14,9 +16,17 @@ import re, sys
 ROOT=Path(__file__).resolve().parents[1]
 WF=ROOT/'.github'/'workflows'
 MAIN=WF/'intelligence-build.yml'
+LOCK=ROOT/'requirements-pipeline.txt'
 errors=[]
 
 def fail(msg): errors.append(msg)
+
+if not LOCK.exists():
+    fail('requirements-pipeline.txt missing')
+else:
+    locked=LOCK.read_text('utf-8')
+    for package in ('beautifulsoup4==','requests==','Pillow=='):
+        if package not in locked: fail(f'pipeline dependency not exactly pinned: {package[:-2]}')
 
 if not MAIN.exists():
     fail('intelligence-build.yml missing')
@@ -24,8 +34,9 @@ if not MAIN.exists():
 else:
     main=MAIN.read_text('utf-8')
     required=[
-        "- 'data/publish/**'",
+        "- 'data/publish/*.ready'",
         'group: canonical-intelligence-publish',
+        'pip install -r requirements-pipeline.txt',
         'check_release_input.py',
         'check_registry_contract.py',
         'render_daily_navigation.py',
@@ -37,15 +48,24 @@ else:
         'check_visual_contract.py',
         'check_home_contract.py',
         'check_daily_contract.py',
+        'verify_pages_publish.py',
+        'write_publish_receipt.py',
+        'restore_publish_snapshot.py',
         'find . -maxdepth 2 -mindepth 2',
         'Publish canonical intelligence',
+        'Record verified publish',
+        'recovery_sha',
     ]
     for token in required:
         if token not in main: fail(f'intelligence-build missing required stage/token: {token}')
+    if "- 'data/publish/**'" in main:
+        fail('receipt metadata must not retrigger canonical publish; use *.ready only')
     if "- 'data/daily/**'" in main:
         fail('canonical publish must not trigger on data/daily/** before release is ready')
     if 'contents: write' not in main:
         fail('canonical publisher requires contents: write')
+    if re.search(r'pip install\s+beautifulsoup4\b', main):
+        fail('canonical publisher bypasses dependency lock')
 
 for path in sorted(WF.glob('*.yml')):
     text=path.read_text('utf-8')
@@ -98,4 +118,4 @@ if errors:
     print('PIPELINE CONTRACT FAILED')
     print('\n'.join('- '+e for e in errors))
     sys.exit(1)
-print('PIPELINE CONTRACT PASS: one atomic writer + release-ready gate + archive navigation + runtime integrity + Node 24 actions')
+print('PIPELINE CONTRACT PASS: one atomic writer + ready gate + locked deps + Pages verification + verified receipt + recovery + Node 24 actions')
