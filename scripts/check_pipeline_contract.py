@@ -3,12 +3,12 @@
 
 Only intelligence-build.yml may write repository contents. Legacy QA workflows
 must remain read-only. The canonical publisher must keep a release-ready gate,
-preflight, registry QA, archive navigation rendering, atomic content publish,
-public Pages verification, success receipt, recovery path, and one global
-concurrency lock. Runtime modules must inherit the shell cache token and never
-guess stable IDs for new dates. GitHub-hosted JavaScript actions must stay on
-Node.js 24-capable majors and Python dependencies must be installed from the
-validated lock file.
+preflight, registry QA, archive navigation + homepage archive-list rendering,
+historical regression, atomic content publish, public Pages verification,
+success receipt, recovery path, and one global concurrency lock. Runtime modules
+must inherit the shell cache token and never guess stable IDs for new dates.
+GitHub-hosted JavaScript actions must stay on Node.js 24-capable majors and Python
+dependencies must be installed from the validated lock file.
 """
 from pathlib import Path
 import re, sys
@@ -40,6 +40,7 @@ else:
         'check_release_input.py',
         'check_registry_contract.py',
         'render_daily_navigation.py',
+        'render_home_archive_links.py',
         'build_intelligence.py',
         'extract_visual_assets.py',
         'inject_visual_previews.py',
@@ -48,6 +49,7 @@ else:
         'check_visual_contract.py',
         'check_home_contract.py',
         'check_daily_contract.py',
+        'check_historical_regression.py --days 4',
         'verify_pages_publish.py',
         'write_publish_receipt.py',
         'restore_publish_snapshot.py',
@@ -70,8 +72,6 @@ else:
 for path in sorted(WF.glob('*.yml')):
     text=path.read_text('utf-8')
 
-    # Node.js 20 is deprecated on GitHub-hosted runners. checkout v5+ and
-    # setup-python v6+ use Node.js 24; reject older majors anywhere in the repo.
     for match in re.finditer(r'actions/checkout@v(\d+)', text):
         if int(match.group(1)) < 5:
             fail(f'Node 20 checkout action returned: {path.name} uses {match.group(0)}')
@@ -86,7 +86,7 @@ for path in sorted(WF.glob('*.yml')):
     if re.search(r'\bgit\s+(commit|push)\b', text):
         fail(f'second writer command found: {path.name}')
 
-for retired in ('visual-assets.yml','today-more.yml'):
+for retired in ('visual-assets.yml','today-more.yml','historical-backfill-once.yml'):
     if (WF/retired).exists(): fail(f'retired writer workflow returned: {retired}')
 
 # Runtime cache token must be inherited from the cache-busted shell asset so a
@@ -118,4 +118,4 @@ if errors:
     print('PIPELINE CONTRACT FAILED')
     print('\n'.join('- '+e for e in errors))
     sys.exit(1)
-print('PIPELINE CONTRACT PASS: one atomic writer + ready gate + locked deps + Pages verification + verified receipt + recovery + Node 24 actions')
+print('PIPELINE CONTRACT PASS: one atomic writer + ready gate + archive parity + historical regression + locked deps + Pages receipt + recovery + Node 24')
