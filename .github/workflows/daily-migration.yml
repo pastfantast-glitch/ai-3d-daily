@@ -1,0 +1,43 @@
+name: Migrate daily reports
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/migrate_daily_reports.py'
+      - 'daily.css'
+      - 'daily.js'
+      - '.github/workflows/daily-migration.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: daily-report-migration
+  cancel-in-progress: true
+
+jobs:
+  migrate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install beautifulsoup4
+      - name: Migrate all historical reports
+        run: python scripts/migrate_daily_reports.py
+      - name: Validate migrated reports
+        run: python scripts/check_daily_contract.py
+      - name: Commit migration
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add 20??-??-??/index.html
+          if git diff --cached --quiet; then
+            echo "Daily reports already normalized"
+          else
+            git commit -m "Normalize historical daily report presentation"
+            git push
+          fi
