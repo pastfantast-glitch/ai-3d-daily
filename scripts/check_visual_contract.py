@@ -15,12 +15,19 @@ def main():
     date=sys.argv[1] if len(sys.argv)>1 else latest_date()
     data=json.loads((ROOT/'data'/'daily'/f'{date}.json').read_text('utf-8'))
     enabled={k:v for k,v in (data.get('visual_evidence') or {}).items() if v.get('enabled',True) is not False}
-    manifest_path=ROOT/'assets'/'visual'/'manifest.json'; errors=[]
+    manifest_path=ROOT/'assets'/'visual'/'manifest.json'; snapshot_manifest=ROOT/'assets'/'visual'/date/'manifest.json'; errors=[]
     if not manifest_path.exists():
         errors.append('assets/visual/manifest.json missing'); manifest={'entries':[]}
     else: manifest=json.loads(manifest_path.read_text('utf-8'))
     if manifest.get('date')!=date: errors.append(f"manifest date mismatch: {manifest.get('date')} != {date}")
     if manifest.get('identity')!='data-intel-id': errors.append('manifest identity must be data-intel-id')
+    if manifest.get('asset_versioning')!='daily-snapshot': errors.append('manifest asset_versioning must be daily-snapshot')
+    if not snapshot_manifest.exists():
+        errors.append(f'per-date visual manifest missing: {snapshot_manifest.relative_to(ROOT)}')
+    else:
+        snap=json.loads(snapshot_manifest.read_text('utf-8'))
+        if snap!=manifest: errors.append('per-date visual manifest differs from current manifest')
+
     entries={x['id']:x for x in manifest.get('entries',[])}
     unknown=set(entries)-set(enabled)
     if unknown: errors.append(f'manifest contains non-canonical visual IDs: {sorted(unknown)}')
@@ -36,20 +43,24 @@ def main():
 
     ok={k:v for k,v in entries.items() if v.get('status')=='ok'}
     for intel_id,rec in ok.items():
-        asset=ROOT/rec.get('asset_path','')
+        asset_path=Path(rec.get('asset_path',''))
+        asset=ROOT/asset_path
         if not asset.exists(): errors.append(f'{intel_id}: local asset missing: {asset}')
+        expected_prefix=Path('assets')/'visual'/date
+        try: asset_path.relative_to(expected_prefix)
+        except Exception: errors.append(f'{intel_id}: asset must be date-versioned under {expected_prefix}')
 
-    for view,path in [('home',ROOT/'index.html'),('daily',ROOT/date/'index.html')]:
+    for view,path,prefix in [('home',ROOT/'index.html',''),('daily',ROOT/date/'index.html','../')]:
         if not path.exists(): errors.append(f'{view}: page missing'); continue
         soup=BeautifulSoup(path.read_text('utf-8'),'html.parser')
-        for intel_id in ok:
+        for intel_id,rec in ok.items():
             card=soup.select_one(f'[data-intel-role="card"][data-intel-id="{intel_id}"]')
-            if not card: errors.append(f'{view}: {intel_id} canonical card missing'); continue
-            fig=card.find('figure',class_='case-preview',attrs={'data-intel-role':'visual'})
+            if not card: errors.append(f'{view}: {intel_id} card missing'); continue
+            fig=card.find('figure',class_='case-preview')
             if not fig: errors.append(f'{view}: {intel_id} extracted visual not rendered'); continue
-            if fig.get('data-intel-id')!=intel_id: errors.append(f'{view}: {intel_id} preview identity mismatch')
-            img=fig.find('img')
-            if not img or Path(img.get('src','')).name!=Path(ok[intel_id]['asset_path']).name: errors.append(f'{view}: {intel_id} preview asset mismatch')
+            if fig.get('data-intel-id')!=intel_id or fig.get('data-intel-role')!='visual': errors.append(f'{view}: {intel_id} preview identity/role mismatch')
+            img=fig.find('img'); expected=f"{prefix}{rec['asset_path']}"
+            if not img or img.get('src')!=expected: errors.append(f'{view}: {intel_id} preview asset mismatch: {img.get("src") if img else None} != {expected}')
 
     attempted=len(enabled); success=len(ok)
     print(f'VISUAL COVERAGE {date}: {success}/{attempted} canonical candidates')
