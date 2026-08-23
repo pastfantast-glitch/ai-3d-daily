@@ -2,9 +2,9 @@
 """Normalize archive presentation markup without changing intelligence content.
 
 Historical reports are immutable content snapshots, but their presentation layer is
-shared. This script adds the current semantic Daily Presentation Contract classes
-and removes legacy presentation-only emphasis so all archives render consistently
-through styles.css + daily.css + daily.js.
+shared. This script adds the current semantic Daily Presentation Contract classes,
+removes legacy presentation-only emphasis, and refreshes historical shared-asset
+cache tokens so old archives actually receive the current design system.
 """
 from pathlib import Path
 import re
@@ -12,6 +12,7 @@ from bs4 import BeautifulSoup
 
 ROOT = Path(__file__).resolve().parents[1]
 DATE_RE = re.compile(r'^20\d{2}-\d{2}-\d{2}$')
+ARCHIVE_PRESENTATION_TOKEN = 'archive-p2-20260823'
 
 
 def add_class(tag, *names):
@@ -24,6 +25,19 @@ def add_class(tag, *names):
     tag['class'] = classes
 
 
+def set_shared_asset_token(soup):
+    for tag in soup.find_all('link', href=True):
+        href=tag.get('href','')
+        if re.match(r'^\.\./(?:styles|daily)\.css(?:\?v=.*)?$', href):
+            base=href.split('?v=',1)[0]
+            tag['href']=f'{base}?v={ARCHIVE_PRESENTATION_TOKEN}'
+    for tag in soup.find_all('script', src=True):
+        src=tag.get('src','')
+        if re.match(r'^\.\./daily\.js(?:\?v=.*)?$', src):
+            base=src.split('?v=',1)[0]
+            tag['src']=f'{base}?v={ARCHIVE_PRESENTATION_TOKEN}'
+
+
 def normalize(path: Path) -> bool:
     original = path.read_text('utf-8')
     soup = BeautifulSoup(original, 'html.parser')
@@ -34,11 +48,10 @@ def normalize(path: Path) -> bool:
     add_class(body, 'archive-page')
     add_class(soup.select_one('header.site-head'), 'daily-hero')
     add_class(soup.select_one('main.page'), 'daily-main')
+    set_shared_asset_token(soup)
 
     for card in soup.select('#top .news'):
         add_class(card, 'daily-card', 'daily-card-top')
-        # `important` was an old presentation-only modifier that made one legacy
-        # TOP card visually different from the current Daily design.
         classes = [c for c in (card.get('class') or []) if c != 'important']
         card['class'] = classes
 
@@ -73,6 +86,7 @@ def main():
             if normalize(d / 'index.html'):
                 changed.append(d.name)
     print('ARCHIVE PRESENTATION NORMALIZED:', ', '.join(changed) if changed else 'already current')
+    print('ARCHIVE PRESENTATION TOKEN:', ARCHIVE_PRESENTATION_TOKEN)
 
 
 if __name__ == '__main__':
