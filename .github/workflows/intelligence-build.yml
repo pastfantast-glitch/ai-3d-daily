@@ -39,11 +39,14 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+
       - name: Install pipeline dependencies
         run: pip install beautifulsoup4 requests pillow
+
       - name: Resolve canonical date
         id: date
         shell: bash
@@ -61,53 +64,26 @@ jobs:
           test -f "data/daily/$value.json" || { echo "Missing canonical dataset: $value"; exit 1; }
           echo "value=$value" >> "$GITHUB_OUTPUT"
           echo "Publishing canonical date: $value"
+
       - name: Bootstrap stable IDs only for legacy markup
         run: python scripts/bootstrap_intelligence_ids.py
+
       - name: Render canonical Full Analysis into both views
         run: python scripts/build_intelligence.py "${{ steps.date.outputs.value }}"
+
       - name: Extract representative visuals with retry and diagnostics
         run: python scripts/extract_visual_assets.py "${{ steps.date.outputs.value }}"
-      - name: Persist visual extraction diagnostics
-        run: |
-          git config user.name github-actions[bot]
-          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
-          git add assets/visual
-          if ! git diff --cached --quiet; then
-            git commit -m "Record visual extraction ${{ steps.date.outputs.value }}"
-          fi
-          if ! git diff --quiet || ! git diff --cached --quiet; then
-            git stash push --include-untracked -m canonical-derived-before-diagnostics
-            had_stash=1
-          else
-            had_stash=0
-          fi
-          git pull --rebase origin main
-          if [ "$had_stash" = 1 ]; then
-            git stash pop
-          fi
-          git push
-      - name: Rebase after diagnostics commit
-        run: |
-          if ! git diff --quiet || ! git diff --cached --quiet; then
-            git stash push --include-untracked -m canonical-derived-before-rerender
-            had_stash=1
-          else
-            had_stash=0
-          fi
-          git pull --rebase origin main
-          if [ "$had_stash" = 1 ]; then
-            git stash pop
-          fi
-      - name: Re-render canonical Full Analysis after rebase
-        run: python scripts/build_intelligence.py "${{ steps.date.outputs.value }}"
+
       - name: Inject local previews by stable intelligence ID
         run: python scripts/inject_visual_previews.py "${{ steps.date.outputs.value }}"
+
       - name: Full publish contract QA
         run: |
           python scripts/check_intelligence_contract.py
           python scripts/check_visual_contract.py "${{ steps.date.outputs.value }}"
           python scripts/check_home_contract.py
           python scripts/check_daily_contract.py
+
       - name: Print visual coverage summary
         if: always()
         shell: bash
@@ -122,16 +98,26 @@ jobs:
               print(f"- {x.get('id')}: {x.get('status')} candidates={x.get('candidate_count',0)} error={x.get('error','')}")
           PY
           fi
-      - name: Commit derived views
+
+      - name: Atomic publish derived assets and views
+        shell: bash
         run: |
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+
+          git add assets/visual
           git add index.html
           git add "${{ steps.date.outputs.value }}/index.html"
-          if ! git diff --cached --quiet; then
-            git commit -m "Publish canonical intelligence ${{ steps.date.outputs.value }}"
-            git pull --rebase origin main
-            git push
-          else
-            echo "Canonical rendered views already current"
+
+          if git diff --cached --quiet; then
+            echo "Canonical assets and rendered views already current"
+            exit 0
           fi
+
+          git commit -m "Publish canonical intelligence ${{ steps.date.outputs.value }}"
+
+          # The working tree is clean here, so rebase is safe. If main changed during
+          # this run and conflicts with the same derived files, fail rather than
+          # silently overwrite newer work.
+          git pull --rebase origin main
+          git push origin HEAD:main
