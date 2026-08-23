@@ -6,7 +6,8 @@ document.addEventListener('DOMContentLoaded',async()=>{
   // Same canonical renderer as homepage: Full Analysis + local Visual Evidence share one stable-ID source.
   try{
     const self=[...document.scripts].find(s=>s.src.includes('/daily.js'))?.src||location.href;
-    const mod=await import(new URL('canonical-client.js?v=20260823-2',self).href);
+    const stamp=(date||'current').replaceAll('-','');
+    const mod=await import(new URL(`canonical-client.js?v=${stamp}`,self).href);
     await mod.hydrateCanonicalAnalysis();
   }catch(err){console.warn('Canonical intelligence renderer unavailable',err);}
 
