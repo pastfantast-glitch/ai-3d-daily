@@ -4,10 +4,14 @@ document.addEventListener('DOMContentLoaded',async()=>{
   const previous=document.body.dataset.previous||'',next=document.body.dataset.next||'';
 
   // Same canonical renderer as homepage: Full Analysis + local Visual Evidence share one stable-ID source.
+  // The module inherits daily.js' cache-bust token, keeping archive runtime and shell revisions aligned.
   try{
     const self=[...document.scripts].find(s=>s.src.includes('/daily.js'))?.src||location.href;
-    const stamp=(date||'current').replaceAll('-','');
-    const mod=await import(new URL(`canonical-client.js?v=${stamp}`,self).href);
+    const shellUrl=new URL(self,location.href);
+    const token=shellUrl.searchParams.get('v')||(date||'current').replaceAll('-','');
+    const moduleUrl=new URL('canonical-client.js',self);
+    moduleUrl.searchParams.set('v',token);
+    const mod=await import(moduleUrl.href);
     await mod.hydrateCanonicalAnalysis();
   }catch(err){console.warn('Canonical intelligence renderer unavailable',err);}
 
