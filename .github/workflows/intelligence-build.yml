@@ -18,6 +18,8 @@ on:
         description: 'Canonical report date (YYYY-MM-DD); blank = latest'
         required: false
         type: string
+  issues:
+    types: [opened]
 
 permissions:
   contents: write
@@ -28,6 +30,7 @@ concurrency:
 
 jobs:
   publish:
+    if: github.event_name != 'issues' || startsWith(github.event.issue.title, 'rerun-canonical:')
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
@@ -44,13 +47,16 @@ jobs:
         shell: bash
         env:
           REQUESTED_DATE: ${{ github.event.inputs.date }}
+          ISSUE_TITLE: ${{ github.event.issue.title }}
         run: |
           if [ -n "$REQUESTED_DATE" ]; then
-            test -f "data/daily/$REQUESTED_DATE.json" || { echo "Missing canonical dataset: $REQUESTED_DATE"; exit 1; }
             value="$REQUESTED_DATE"
+          elif [[ "$ISSUE_TITLE" == rerun-canonical:* ]]; then
+            value="${ISSUE_TITLE#rerun-canonical: }"
           else
             value="$(find data/daily -maxdepth 1 -name '20??-??-??.json' -printf '%f\n' | sed 's/.json$//' | sort | tail -1)"
           fi
+          test -f "data/daily/$value.json" || { echo "Missing canonical dataset: $value"; exit 1; }
           echo "value=$value" >> "$GITHUB_OUTPUT"
           echo "Publishing canonical date: $value"
       - name: Bootstrap stable IDs only for legacy markup
