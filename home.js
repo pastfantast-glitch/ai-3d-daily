@@ -1,24 +1,14 @@
 document.addEventListener('DOMContentLoaded',async()=>{
   document.querySelectorAll('a[target="_blank"]').forEach(a=>a.rel='noopener noreferrer');
   const cards=[...document.querySelectorAll('.top-item, .more-card')];
-  const date=document.querySelector('.topline span:last-child')?.textContent.trim();
-  const sourceMap=[['geometry-nodes-physics','blender-52-geometry-nodes-physics'],['retopoflow','retopoflow-419'],['project-endfield-character-rendering','endfield-hybrid-npr'],['hand-painted-look','procedural-hand-painted-eevee'],['blender.org/releases/5-2','blender-52-lts'],['node-preview','node-preview-thumbnails'],['geo-nodes-guide','geo-nodes-guide'],['ppeh-tools','ppeh-tools'],['node_wrangler','node-wrangler-52-preview'],['pixelated-caustics','stylized-pixelated-caustics'],['material-lighting-nodes','material-lighting-nodes']];
-  const resolveId=card=>card.dataset.intelId||sourceMap.find(([key])=>(card.querySelector('a.source')?.href||'').includes(key))?.[1];
-  const renderAnalysis=(card,blocks)=>{
-    let details=card.querySelector('details');
-    if(!details){details=document.createElement('details');(card.querySelector('a.source')||card.lastElementChild)?.insertAdjacentElement('beforebegin',details);}
-    details.className='home-full-analysis';
-    details.innerHTML='<summary>完整分析</summary><div class="detail-body home-analysis-body">'+blocks.map(b=>`<p><b>${b.label}：</b> ${b.text}</p>`).join('')+'</div>';
-  };
-  if(date){
-    try{
-      const res=await fetch(`data/daily/${date}.json`,{cache:'no-store'});
-      if(res.ok){
-        const data=await res.json(),records=new Map(data.items.map(x=>[x.id,x]));
-        cards.forEach(card=>{const id=resolveId(card),rec=records.get(id);if(id)card.dataset.intelId=id;if(rec?.full_analysis)renderAnalysis(card,rec.full_analysis);});
-      }
-    }catch(err){console.warn('Canonical intelligence hydration failed',err);}
-  }
+
+  // Canonical Full Analysis is hydrated by one shared renderer used by both views.
+  try{
+    const self=[...document.scripts].find(s=>s.src.includes('/home.js'))?.src||location.href;
+    const mod=await import(new URL('canonical-client.js?v=20260823-1',self).href);
+    await mod.hydrateCanonicalAnalysis();
+  }catch(err){console.warn('Canonical intelligence renderer unavailable',err);}
+
   // Keep exactly one analysis block and one open block at a time.
   cards.forEach(card=>{const all=[...card.querySelectorAll('details')];all.slice(1).forEach(d=>d.remove());});
   const analyses=[...document.querySelectorAll('.home-full-analysis')];
