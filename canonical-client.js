@@ -77,10 +77,7 @@ function makeVisual(entry){
 
 function renderVisual(card,entry){
   const existing=card.querySelector('figure.case-preview');
-  if(!entry){
-    if(existing&&existing.dataset.intelRole==='visual')existing.remove();
-    return;
-  }
+  if(!entry)return; // Historical static preview must never be removed by a newer manifest.
 
   const expected=new URL(entry.asset_path,import.meta.url).href;
   if(existing){
@@ -103,19 +100,39 @@ function renderVisual(card,entry){
   }
 }
 
+async function loadVisualManifest(date){
+  const snapshotUrl=new URL(`./assets/visual/${date}/manifest.json`,import.meta.url);
+  try{
+    const r=await fetch(snapshotUrl,{cache:'no-store'});
+    if(r.ok){
+      const m=await r.json();
+      if(m.date===date)return m;
+    }
+  }catch(_){}
+
+  // Transitional fallback for a release that has not yet been migrated to a
+  // date-scoped manifest. It is accepted only when the root manifest date matches.
+  try{
+    const rootUrl=new URL('./assets/visual/manifest.json',import.meta.url);
+    const r=await fetch(rootUrl,{cache:'no-store'});
+    if(!r.ok)return {date,entries:[]};
+    const m=await r.json();
+    return m.date===date?m:{date,entries:[]};
+  }catch(_){return {date,entries:[]};}
+}
+
 export async function hydrateCanonicalAnalysis(){
   const date=reportDate();
   if(!date)return;
   try{
     const dataUrl=new URL(`./data/daily/${date}.json`,import.meta.url);
-    const manifestUrl=new URL('./assets/visual/manifest.json',import.meta.url);
     const [data,manifest]=await Promise.all([
       fetch(dataUrl,{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error(`canonical ${r.status}`);return r.json();}),
-      fetch(manifestUrl,{cache:'no-store'}).then(r=>r.ok?r.json():({entries:[]})).catch(()=>({entries:[]}))
+      loadVisualManifest(date)
     ]);
 
     const records=new Map(data.items.map(x=>[x.id,x]));
-    const visuals=new Map((manifest.date===date?manifest.entries:[])
+    const visuals=new Map((manifest.entries||[])
       .filter(x=>x.status==='ok')
       .map(x=>[x.id,x]));
 
