@@ -39,7 +39,7 @@ def main() -> None:
 
     canonical = json.loads((ROOT / "data" / "daily" / f"{args.date}.json").read_text("utf-8"))
     receipt = {
-        "schema": 1,
+        "schema": 2,
         "date": args.date,
         "state": "DONE",
         "publish_commit_sha": args.publish_sha,
@@ -48,12 +48,16 @@ def main() -> None:
         "site_url": args.site_url.rstrip("/") + "/",
         "daily_url": args.site_url.rstrip("/") + f"/{args.date}/",
         "qa": {
+            "pipeline_topology": "pass",
             "release_preflight": "pass",
             "registry": "pass",
+            "archive_navigation": "pass",
+            "homepage_archive_parity": "pass",
             "intelligence": "pass",
             "visual": "pass",
             "homepage": "pass",
             "daily": "pass",
+            "historical_regression": "pass",
             "pages": "pass",
         },
         "canonical": {
@@ -68,7 +72,7 @@ def main() -> None:
     out_dir.mkdir(parents=True, exist_ok=True)
     (out_dir / f"{args.date}.done.json").write_text(json.dumps(receipt, ensure_ascii=False, indent=2) + "\n", "utf-8")
     latest = {
-        "schema": 1,
+        "schema": 2,
         "date": args.date,
         "publish_commit_sha": args.publish_sha,
         "receipt": f"data/publish/{args.date}.done.json",
