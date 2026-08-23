@@ -2,51 +2,120 @@
 
 ## Purpose
 
-The homepage and historical daily reports are derived views of canonical Production Intelligence data. Daily content changes; identity, presentation contracts and publishing ownership must not drift with it.
+Homepage and historical daily reports are views of one Production Intelligence system. Daily content changes; identity, historical snapshots, presentation contracts and publishing ownership must not drift with it.
 
-## Canonical data
+## Canonical daily data
 
-- `data/daily/YYYY-MM-DD.json` — source of truth for each day's Intelligence records.
-- Every Intelligence record uses a stable `id`.
-- Homepage and Daily Report cards carry the same `data-intel-id`.
-- Full Analysis is authored once in canonical data and rendered into both views.
-- Canonical Full Analysis blocks are `label + text`; renderers output semantic `<h4>label</h4><p>text</p>` pairs.
+- `data/daily/YYYY-MM-DD.json` is the canonical Intelligence dataset for that date.
+- Every Intelligence record has one stable `id`.
+- `slot=top` must contain exactly 5 records; `slot=more` must contain 6–12.
+- Full Analysis is authored once as structured `label + text` blocks and rendered into both Homepage and Daily as semantic `<h4>label</h4><p>text</p>` pairs.
+- Homepage and Daily cards carry `data-intel-id="..." data-intel-role="card"` from the moment new-date source markup is written.
+- New dates must never infer identity from title, card order or source URL. The 2026-08-23 bootstrap/title fallback is a legacy compatibility exception only.
 
-## Canonical visual evidence
+## Published Intelligence Registry
 
-Visual identity uses the same stable Intelligence ID. Do not identify images by article-title matching.
+There is no third manually maintained Registry file. The append-only collection of `data/daily/*.json` is the Published Intelligence Registry.
 
-Each day's canonical JSON may contain a top-level `visual_evidence` map keyed by Intelligence ID. A visual record may define:
+`scripts/check_registry_contract.py` enforces:
+
+- the same source URL may not silently change stable ID;
+- when a stable ID appears again on a later date, it is an UPDATE and must declare `status: "UPDATE"` plus a non-empty `delta`;
+- a repeated record without a real delta is rejected instead of being republished as new intelligence.
+
+This keeps dedupe history in the same canonical data rather than creating another mutable source.
+
+## Release-ready gate
+
+The scheduled publisher writes files in this order:
+
+1. complete Discovery / dedupe / Intelligence decisions;
+2. write `data/daily/YYYY-MM-DD.json`;
+3. write the current `index.html` content shell with stable IDs / roles;
+4. write `YYYY-MM-DD/index.html` historical snapshot shell with the same IDs / roles;
+5. write any required registry/metadata state;
+6. **last**, create `data/publish/YYYY-MM-DD.ready`.
+
+The `.ready` marker is the publication gate. `data/daily/**` does **not** trigger the canonical publish workflow, preventing GitHub Actions from rendering while the scheduled task is still writing the other files.
+
+`scripts/check_release_input.py` runs before any derived rendering and verifies date/schema, unique IDs, TOP/Supplemental counts, Full Analysis shape, Visual Evidence IDs, both page shells, exact ID order/sets, roles, source links and analysis shells. If input is incomplete, publication stops before modifying derived output.
+
+## Canonical Full Analysis
+
+`scripts/build_intelligence.py` reads only canonical Full Analysis blocks and replaces the analysis body on the card with the matching stable ID.
+
+Homepage and Daily must therefore contain identical normalized Full Analysis text for the same ID. `scripts/check_intelligence_contract.py` validates block count, `h4 + p` semantic hierarchy, labels, paragraphs and cross-view parity.
+
+## Canonical Visual Evidence
+
+Visual identity uses the same stable Intelligence ID.
+
+Each canonical dataset may contain top-level `visual_evidence` keyed by stable ID with:
 
 - `enabled`
 - `source_url`
 - `label`
 - `confidence`
 - `keywords`
-- optional `reason` when disabled
+- `reason` when disabled
 
-`scripts/extract_visual_assets.py` reads only this canonical map, validates representative image candidates from the source page, and stores successful assets as `assets/visual/<data-intel-id>.jpg`.
+`scripts/extract_visual_assets.py` extracts representative images from canonical source pages using OG/Twitter metadata, JSON-LD and article image candidates. It rejects logos/icons/avatars/ads/placeholders, validates Content-Type and minimum dimensions, and records explicit diagnostic states for missing images.
 
-`scripts/inject_visual_previews.py` reads `assets/visual/manifest.json` and injects a preview only into a card with the exact matching `data-intel-id`. Preview markup must carry the same ID and link back to the canonical source page.
+### Historical visual snapshot rule
 
-The legacy `visual-assets.json` title-key manifest is retired and must not return.
+Visual files are versioned by date:
+
+`assets/visual/YYYY-MM-DD/<data-intel-id>.jpg`
+
+Each date also gets:
+
+`assets/visual/YYYY-MM-DD/manifest.json`
+
+`assets/visual/manifest.json` is only the current-release convenience manifest. Date-scoped storage is mandatory because an UPDATE may reuse the same stable ID on a later date; overwriting a global `<id>.jpg` would mutate historical reports.
+
+`scripts/inject_visual_previews.py` injects only `status=ok` local assets by exact stable ID. Preview figures carry `data-intel-role="visual"` so Intelligence QA cannot mistake them for cards.
+
+`scripts/check_visual_contract.py` verifies current/per-date manifests, date-scoped paths, local asset existence, source-page identity, card/visual roles and matching Homepage/Daily rendered paths.
+
+## Runtime integrity
+
+`canonical-client.js` is a shared integrity renderer used by Homepage and Daily.
+
+It may rehydrate:
+
+- Full Analysis from `data/daily/YYYY-MM-DD.json`;
+- Visual Evidence from `assets/visual/YYYY-MM-DD/manifest.json` and local snapshot assets.
+
+Historical pages therefore read their own visual manifest, never the newest root manifest. Runtime must not remove a valid historical static preview merely because the newest release has a different date.
+
+New dates must already carry stable IDs. Runtime title/source fallback is restricted to the legacy 2026-08-23 snapshot.
+
+`home.js` / `daily.js` load the shared module with the report date as the module cache key instead of a permanently hard-coded 8/23 token.
+
+## Historical navigation
+
+Previous/next links are structural derived state, not Intelligence content.
+
+`scripts/render_daily_navigation.py` scans actual dated report directories and sets `data-previous` / `data-next` for every snapshot. When a new report is added, the previous day's `data-next` is updated in the same atomic publication.
+
+The publisher therefore stages all dated `*/index.html` files that changed structurally, not only the new day's file. `scripts/check_daily_contract.py` verifies actual previous/next dates and rejects literal `null` placeholders.
 
 ## Homepage modules
 
-- `index.html` — current homepage derived view. Keep readable and non-minified.
-- `home.css` — foundation and structural layout only.
-- `home-content.css` — dark visual theme, information-card content, analysis UI and visual-evidence presentation.
+- `index.html` — current Homepage view; readable non-minified HTML.
+- `home.css` — foundation / structural layout.
+- `home-content.css` — visual theme, Intelligence-card content, Full Analysis and preview presentation.
 - `home-components.css` — Supplemental, Test Today, Archive and preference-vote components.
-- `home.js` — details interaction and browser-local preference voting.
-- `canonical-client.js` — shared runtime integrity renderer for canonical Full Analysis.
-- `styles.css` — historical daily-report styles and shared base styles.
-- `daily.css` / `daily.js` — shared historical report presentation and interaction.
+- `home.js` — Homepage interaction and browser-local preference voting.
+- `canonical-client.js` — shared runtime integrity renderer.
+- `styles.css` — historical/shared base styles.
+- `daily.css` / `daily.js` — historical report presentation / interaction.
 
-Do not create an emergency stylesheet to patch a selector mismatch. Fix the owning module or renderer contract instead.
+Do not create an emergency stylesheet to patch a selector mismatch. Fix the owning semantic markup, renderer or component contract.
 
 ## Homepage semantic contract
 
-The section order is fixed:
+Section order is fixed:
 
 1. Hero / date / status counts
 2. `.top-list > .top-item` — exactly five TOP 5 cards
@@ -54,29 +123,52 @@ The section order is fixed:
 4. `.test-section` — Today worth testing
 5. `.history-list > a` — archive links
 
-Desktop Supplemental layout is two columns. Mobile layout is one column.
+Desktop Supplemental is two columns; mobile is one column.
 
-## Single-publish-pipeline rule
+## Cache busting
 
-`.github/workflows/intelligence-build.yml` is the only GitHub Actions workflow allowed to convert canonical data into derived Homepage / Daily HTML and commit current-day local visual assets.
+`scripts/apply_cache_bust.py YYYY-MM-DD` applies a deterministic token based on `date + render_revision` to visible/interactive shell assets. Re-running the same revision is idempotent; changing the day or render revision creates a new URL.
 
-The sequence is:
+Runtime canonical data and manifests are fetched with no-store semantics; local images are immutable per date snapshot.
 
-1. Resolve latest canonical date.
-2. Bootstrap stable IDs only for legacy markup when needed.
-3. Render canonical Full Analysis.
-4. Extract canonical Visual Evidence.
-5. Inject local previews by stable ID.
-6. Run Intelligence, Visual, Homepage and Daily contracts.
-7. Commit derived views and local visual assets.
+## Single atomic publish pipeline
 
-Do not create a second workflow that also modifies `index.html` or current daily HTML. In particular, `.github/workflows/visual-assets.yml` is retired because parallel HTML writers create race conditions.
+`.github/workflows/intelligence-build.yml` is the only repository writer.
 
-The scheduled daily task owns Intelligence decisions and canonical data. GitHub Actions only renders and enriches that canonical state; it must not invent, reorder or replace Intelligence records.
+All triggers share one global concurrency lock. Other migration/repair workflows remain read-only QA only.
+
+Scheduled publication is triggered by the `.ready` marker and follows this order:
+
+1. validate pipeline topology;
+2. resolve the exact ready-marker/manual/issue date;
+3. run 2026-08-23 legacy ID migration only when that exact legacy date is being rebuilt;
+4. run release-ready input preflight;
+5. validate Published Intelligence Registry / dedupe history;
+6. render archive previous/next navigation;
+7. render canonical Full Analysis;
+8. extract date-versioned Visual Evidence;
+9. inject local previews by stable ID;
+10. apply deterministic cache bust;
+11. run Intelligence / Visual / Homepage / Daily contracts;
+12. stage visual assets, Homepage and every changed dated report;
+13. create **one** `Publish canonical intelligence YYYY-MM-DD` commit;
+14. clean-worktree rebase and push.
+
+There are no intermediate manifest commits. A QA failure leaves no partially published generated state on main.
+
+## Pipeline topology QA
+
+`scripts/check_pipeline_contract.py` verifies:
+
+- only `intelligence-build.yml` has `contents: write`;
+- no other workflow contains git commit/push writer commands;
+- `data/daily/**` is not a publish trigger;
+- release-ready, registry, navigation, render, visual, cache and QA stages remain present;
+- retired parallel writers do not return.
 
 ## Retired architecture
 
-The following were removed and must not return:
+These must not return:
 
 - `today-more.json`
 - `scripts/inject_today_more.py`
@@ -85,14 +177,7 @@ The following were removed and must not return:
 - `visual-assets.json`
 - `.github/workflows/visual-assets.yml`
 
-Retired homepage selectors include:
-
-- `.more-feed`, `.more-group`
-- `.test-strip`
-- `.archive-list`, `.archive-item`
-- `.history-search`, `.search-box`, `.empty-state`
-- old homepage `.category-list`
-- `.week-summary`, `.week-topic`
+Retired Homepage selectors include `.more-feed`, `.more-group`, `.test-strip`, `.archive-list`, `.archive-item`, `.history-search`, `.search-box`, `.empty-state`, old `.category-list`, `.week-summary`, `.week-topic`.
 
 ## Preference voting
 
@@ -100,29 +185,24 @@ TOP 5 and Supplemental cards receive 👍 / 👎 controls from `home.js`.
 
 Storage key: `ai3d-preferences-v1`.
 
-This data is browser-local only. The scheduled publisher must never claim to have read it unless a separate authorized server-side preference profile exists.
+This remains browser-local only. The scheduled publisher must never claim to have read personalization unless a separate authorized server-side preference profile exists.
 
-## Cache busting
+## Publication completion contract
 
-When a visible or interactive asset changes, bump the corresponding `?v=` reference in the same publication batch. Visual files themselves use stable-ID filenames and are regenerated only from verified canonical evidence.
-
-## Required QA
-
-Run before publication:
+A release is complete only after all of these pass:
 
 ```bash
+python scripts/check_pipeline_contract.py
+python scripts/check_release_input.py YYYY-MM-DD
+python scripts/check_registry_contract.py
 python scripts/check_intelligence_contract.py
 python scripts/check_visual_contract.py YYYY-MM-DD
 python scripts/check_home_contract.py
 python scripts/check_daily_contract.py
 ```
 
-Publication must fail on Full Analysis drift, semantic hierarchy drift, visual-ID mismatch, missing rendered local assets for successfully extracted visuals, Homepage selector regression, invalid Daily navigation, unsafe external links, or other contract failures.
+and main contains:
 
-If QA fails, do not publish first and fix later. Fix the canonical state or owning pipeline, rerun QA, then commit.
+`Publish canonical intelligence YYYY-MM-DD`
 
-## Historical navigation
-
-Older daily reports must link to the real next date when one exists. The newest report must never render a `null` next-day placeholder.
-
-`scripts/repair_daily_state.py` is a structural repair utility for navigation/count/link drift. It is not an Intelligence-content generator.
+If any contract fails, fix the canonical/source state or owning renderer and rerun. Do not publish first and repair later.
