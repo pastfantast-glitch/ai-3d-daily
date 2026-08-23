@@ -4,12 +4,11 @@ on:
   push:
     branches: [main]
     paths:
-      # Scheduled content publishing writes this marker LAST, after canonical data,
-      # homepage markup and the daily snapshot are all complete. Receipt metadata
-      # deliberately does not retrigger the publisher.
       - 'data/publish/*.ready'
-      # Pipeline/frontend changes may rebuild the current release for verification.
       - 'requirements-pipeline.txt'
+      - 'styles.css'
+      - 'daily.css'
+      - 'scripts/normalize_archive_presentation.py'
       - 'scripts/build_intelligence.py'
       - 'scripts/render_daily_navigation.py'
       - 'scripts/render_home_archive_links.py'
@@ -47,8 +46,6 @@ on:
 permissions:
   contents: write
 
-# Single Writer Rule: every trigger shares one global lock. Manual, push, issue
-# reruns and recovery must never write the site concurrently.
 concurrency:
   group: canonical-intelligence-publish
   cancel-in-progress: true
@@ -64,17 +61,13 @@ jobs:
       - uses: actions/checkout@v6
         with:
           fetch-depth: 0
-
       - uses: actions/setup-python@v6
         with:
           python-version: '3.12'
-
       - name: Install locked pipeline dependencies
         run: pip install -r requirements-pipeline.txt
-
       - name: Validate publishing topology
         run: python scripts/check_pipeline_contract.py
-
       - name: Resolve canonical date
         id: date
         shell: bash
@@ -86,79 +79,38 @@ jobs:
           AFTER_SHA: ${{ github.sha }}
         run: |
           set -euo pipefail
-
-          extract_date() {
-            printf '%s\n' "$1" | grep -oE '20[0-9]{2}-[0-9]{2}-[0-9]{2}' | head -1 || true
-          }
-
-          candidate=""
-          source="latest"
-
-          if [ -n "${REQUESTED_DATE:-}" ]; then
-            candidate="$(extract_date "$REQUESTED_DATE")"
-            source="workflow_dispatch"
-          elif [ "${EVENT_NAME:-}" = "issues" ] && [[ "${ISSUE_TITLE:-}" == rerun-canonical:* ]]; then
-            candidate="$(extract_date "$ISSUE_TITLE")"
-            source="issue_title"
+          extract_date() { printf '%s\n' "$1" | grep -oE '20[0-9]{2}-[0-9]{2}-[0-9]{2}' | head -1 || true; }
+          candidate=""; source="latest"
+          if [ -n "${REQUESTED_DATE:-}" ]; then candidate="$(extract_date "$REQUESTED_DATE")"; source="workflow_dispatch"
+          elif [ "${EVENT_NAME:-}" = "issues" ] && [[ "${ISSUE_TITLE:-}" == rerun-canonical:* ]]; then candidate="$(extract_date "$ISSUE_TITLE")"; source="issue_title"
           elif [ "${EVENT_NAME:-}" = "push" ]; then
             ready=""
-            if [ -n "${BEFORE_SHA:-}" ] && git cat-file -e "$BEFORE_SHA^{commit}" 2>/dev/null; then
-              ready="$(git diff --name-only "$BEFORE_SHA" "$AFTER_SHA" -- 'data/publish/*.ready' | sort | tail -1)"
-            fi
-            if [ -n "$ready" ]; then
-              candidate="$(extract_date "$(basename "$ready" .ready)")"
-              source="ready_marker"
-            fi
+            if [ -n "${BEFORE_SHA:-}" ] && git cat-file -e "$BEFORE_SHA^{commit}" 2>/dev/null; then ready="$(git diff --name-only "$BEFORE_SHA" "$AFTER_SHA" -- 'data/publish/*.ready' | sort | tail -1)"; fi
+            if [ -n "$ready" ]; then candidate="$(extract_date "$(basename "$ready" .ready)")"; source="ready_marker"; fi
           fi
-
-          if [ -z "$candidate" ]; then
-            candidate="$(find data/daily -maxdepth 1 -name '20??-??-??.json' -printf '%f\n' | sed 's/.json$//' | sort | tail -1)"
-            source="latest_dataset"
-          fi
-
-          if ! [[ "$candidate" =~ ^20[0-9]{2}-[0-9]{2}-[0-9]{2}$ ]]; then
-            echo "Invalid canonical date resolved from $source: '$candidate'"
-            exit 1
-          fi
-
-          if [ ! -f "data/daily/$candidate.json" ]; then
-            echo "Missing canonical dataset: $candidate (source=$source)"
-            exit 1
-          fi
-
-          echo "value=$candidate" >> "$GITHUB_OUTPUT"
-          echo "Publishing canonical date: $candidate (source=$source)"
-
-      # One-time compatibility only. New dates MUST already contain stable IDs and
-      # roles in source markup; the preflight below will reject missing identity.
+          if [ -z "$candidate" ]; then candidate="$(find data/daily -maxdepth 1 -name '20??-??-??.json' -printf '%f\n' | sed 's/.json$//' | sort | tail -1)"; source="latest_dataset"; fi
+          if ! [[ "$candidate" =~ ^20[0-9]{2}-[0-9]{2}-[0-9]{2}$ ]]; then echo "Invalid canonical date resolved from $source: '$candidate'"; exit 1; fi
+          if [ ! -f "data/daily/$candidate.json" ]; then echo "Missing canonical dataset: $candidate (source=$source)"; exit 1; fi
+          echo "value=$candidate" >> "$GITHUB_OUTPUT"; echo "Publishing canonical date: $candidate (source=$source)"
       - name: Legacy 2026-08-23 stable-ID migration
         if: steps.date.outputs.value == '2026-08-23'
         run: python scripts/bootstrap_intelligence_ids.py
-
       - name: Release-ready input preflight
         run: python scripts/check_release_input.py "${{ steps.date.outputs.value }}"
-
       - name: Validate published registry / dedupe contract
         run: python scripts/check_registry_contract.py
-
-      - name: Render archive previous/next navigation
+      - name: Render archive previous/next navigation and shared presentation
         run: python scripts/render_daily_navigation.py
-
       - name: Render homepage history list from actual archives
         run: python scripts/render_home_archive_links.py
-
       - name: Render canonical Full Analysis into both views
         run: python scripts/build_intelligence.py "${{ steps.date.outputs.value }}"
-
       - name: Extract representative visuals with retry and diagnostics
         run: python scripts/extract_visual_assets.py "${{ steps.date.outputs.value }}"
-
       - name: Inject local previews by stable intelligence ID
         run: python scripts/inject_visual_previews.py "${{ steps.date.outputs.value }}"
-
       - name: Apply deterministic release cache bust
         run: python scripts/apply_cache_bust.py "${{ steps.date.outputs.value }}"
-
       - name: Full publish contract QA
         run: |
           python scripts/check_intelligence_contract.py
@@ -166,7 +118,6 @@ jobs:
           python scripts/check_home_contract.py
           python scripts/check_daily_contract.py
           python scripts/check_historical_regression.py --days 4
-
       - name: Print visual coverage summary
         if: always()
         shell: bash
@@ -177,11 +128,9 @@ jobs:
           from pathlib import Path
           d=json.loads(Path('assets/visual/manifest.json').read_text())
           print('Visual manifest date:', d.get('date'))
-          for x in d.get('entries',[]):
-              print(f"- {x.get('id')}: {x.get('status')} candidates={x.get('candidate_count',0)} error={x.get('error','')}")
+          for x in d.get('entries',[]): print(f"- {x.get('id')}: {x.get('status')} candidates={x.get('candidate_count',0)} error={x.get('error','')}")
           PY
           fi
-
       - name: Atomic publish derived assets and views
         id: publish_commit
         shell: bash
@@ -189,41 +138,27 @@ jobs:
           set -euo pipefail
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
-
-          git add assets/visual
-          git add index.html
-          # Navigation rendering may update the previous day's next pointer, so all
-          # archive index pages are part of the same atomic structural publication.
+          git add assets/visual index.html
           find . -maxdepth 2 -mindepth 2 -path './20??-??-??/index.html' -print0 | xargs -0 -r git add --
-
           if git diff --cached --quiet; then
             publish_sha="$(git log -1 --format=%H --grep="^Publish canonical intelligence ${{ steps.date.outputs.value }}$")"
             test -n "$publish_sha" || { echo "No prior publish commit found for current rendered state"; exit 1; }
-            echo "Canonical assets and rendered views already current at $publish_sha"
           else
             git commit -m "Publish canonical intelligence ${{ steps.date.outputs.value }}"
-            # Working tree must be clean here. If main changed during this run and
-            # conflicts with the same derived files, fail rather than overwrite it.
             git pull --rebase origin main
             git push origin HEAD:main
             publish_sha="$(git rev-parse HEAD)"
           fi
           echo "publish_sha=$publish_sha" >> "$GITHUB_OUTPUT"
-
       - name: Verify public GitHub Pages release
         env:
           SITE_URL: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/
         run: python scripts/verify_pages_publish.py "${{ steps.date.outputs.value }}" --base-url "$SITE_URL" --attempts 8 --delay 15
-
       - name: Write verified publish receipt
         env:
           SITE_URL: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/
         run: |
-          python scripts/write_publish_receipt.py "${{ steps.date.outputs.value }}" \
-            --publish-sha "${{ steps.publish_commit.outputs.publish_sha }}" \
-            --run-id "${{ github.run_id }}" \
-            --site-url "$SITE_URL"
-
+          python scripts/write_publish_receipt.py "${{ steps.date.outputs.value }}" --publish-sha "${{ steps.publish_commit.outputs.publish_sha }}" --run-id "${{ github.run_id }}" --site-url "$SITE_URL"
       - name: Commit operational receipt metadata
         shell: bash
         run: |
@@ -231,36 +166,21 @@ jobs:
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
           git add "data/publish/${{ steps.date.outputs.value }}.done.json" data/publish/latest-success.json
-          if git diff --cached --quiet; then
-            echo "Verified receipt already current"
-            exit 0
-          fi
+          if git diff --cached --quiet; then exit 0; fi
           git commit -m "Record verified publish ${{ steps.date.outputs.value }}"
           git pull --rebase origin main
           git push origin HEAD:main
-
       - name: Publish success summary
         if: success()
-        shell: bash
         run: |
-          {
-            echo "## Canonical publish DONE"
-            echo "- Date: ${{ steps.date.outputs.value }}"
-            echo "- Publish commit: ${{ steps.publish_commit.outputs.publish_sha }}"
-            echo "- Receipt: data/publish/${{ steps.date.outputs.value }}.done.json"
-            echo "- Pages: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/"
-          } >> "$GITHUB_STEP_SUMMARY"
-
+          echo "## Canonical publish DONE" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Date: ${{ steps.date.outputs.value }}" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Publish commit: ${{ steps.publish_commit.outputs.publish_sha }}" >> "$GITHUB_STEP_SUMMARY"
       - name: Publish failure summary
         if: failure()
-        shell: bash
         run: |
-          {
-            echo "## Canonical publish FAILED"
-            echo "- No DONE receipt is written on failure."
-            echo "- Inspect the first failed step above; scheduled recovery will retry at most once."
-          } >> "$GITHUB_STEP_SUMMARY"
-
+          echo "## Canonical publish FAILED" >> "$GITHUB_STEP_SUMMARY"
+          echo "- No DONE receipt is written on failure." >> "$GITHUB_STEP_SUMMARY"
   recovery:
     if: github.event_name == 'workflow_dispatch' && github.event.inputs.recovery_sha != ''
     runs-on: ubuntu-latest
@@ -281,10 +201,7 @@ jobs:
           set -euo pipefail
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
-          if git diff --cached --quiet; then
-            echo "Recovery target already matches current derived publication"
-            exit 0
-          fi
+          if git diff --cached --quiet; then exit 0; fi
           git commit -m "Recover canonical publication from $RECOVERY_SHA"
           git pull --rebase origin main
           git push origin HEAD:main
