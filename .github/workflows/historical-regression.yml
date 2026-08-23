@@ -1,0 +1,54 @@
+name: Historical regression matrix
+
+on:
+  workflow_dispatch:
+    inputs:
+      days:
+        description: 'Latest archive snapshots to validate'
+        required: false
+        default: '4'
+        type: string
+  push:
+    branches: [main]
+    paths:
+      - '20??-??-??/index.html'
+      - 'index.html'
+      - 'styles.css'
+      - 'daily.css'
+      - 'daily.js'
+      - 'canonical-client.js'
+      - 'scripts/check_historical_regression.py'
+      - 'scripts/build_intelligence.py'
+      - 'scripts/render_daily_navigation.py'
+      - 'scripts/check_release_input.py'
+      - 'scripts/check_intelligence_contract.py'
+      - 'scripts/check_visual_contract.py'
+      - 'scripts/check_home_contract.py'
+      - 'scripts/check_daily_contract.py'
+      - 'scripts/inject_visual_previews.py'
+      - 'scripts/apply_cache_bust.py'
+      - 'requirements-pipeline.txt'
+      - '.github/workflows/historical-regression.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: historical-regression
+  cancel-in-progress: true
+
+jobs:
+  regression:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - name: Install locked pipeline dependencies
+        run: pip install -r requirements-pipeline.txt
+      - name: Run historical archive regression matrix
+        env:
+          REQUESTED_DAYS: ${{ github.event.inputs.days }}
+        run: python scripts/check_historical_regression.py --days "${REQUESTED_DAYS:-4}"
