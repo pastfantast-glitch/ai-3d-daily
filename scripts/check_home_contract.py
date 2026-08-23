@@ -5,8 +5,9 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 INDEX = ROOT / 'index.html'
-LAYOUT = ROOT / 'home-layout.css'
-UI = ROOT / 'home-ui.css'
+FOUNDATION = ROOT / 'home.css'
+UI = ROOT / 'home-content.css'
+COMPONENTS = ROOT / 'home-layout-fixes.css'
 JS = ROOT / 'home.js'
 
 errors = []
@@ -18,13 +19,9 @@ if not INDEX.exists():
     fail('index.html missing')
 else:
     html = INDEX.read_text('utf-8')
-    if 'home-layout.css?v=' not in html:
-        fail('index.html must reference home-layout.css with cache-bust')
-    if 'home-ui.css?v=' not in html:
-        fail('index.html must reference home-ui.css with cache-bust')
-    for legacy in ('home.css', 'home-content.css', 'home-layout-fixes.css'):
-        if legacy in html:
-            fail(f'legacy stylesheet still referenced: {legacy}')
+    for asset in ('home.css?v=', 'home-content.css?v=', 'home-layout-fixes.css?v=', 'home.js?v='):
+        if asset not in html:
+            fail(f'index.html missing cache-busted asset: {asset}')
     if html.count('class="top-item') != 5:
         fail('homepage must contain exactly 5 TOP 5 cards')
     more_count = html.count('class="more-card')
@@ -39,12 +36,12 @@ else:
         if not rel or 'noopener' not in rel.group(1) or 'noreferrer' not in rel.group(1):
             fail(f'external target=_blank link missing noopener noreferrer: {tag[:120]}')
 
-for path in (LAYOUT, UI, JS):
+for path in (FOUNDATION, UI, COMPONENTS, JS):
     if not path.exists():
         fail(f'missing required frontend asset: {path.name}')
 
 css = ''
-for path in (LAYOUT, UI):
+for path in (FOUNDATION, UI, COMPONENTS):
     if path.exists():
         css += '\n' + path.read_text('utf-8')
 
