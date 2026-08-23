@@ -11,12 +11,12 @@ permissions:
 
 concurrency:
   group: historical-canonical-backfill-once
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   backfill:
     runs-on: ubuntu-latest
-    timeout-minutes: 40
+    timeout-minutes: 35
     steps:
       - uses: actions/checkout@v6
         with:
@@ -26,35 +26,64 @@ jobs:
           python-version: '3.12'
       - name: Install locked pipeline dependencies
         run: pip install -r requirements-pipeline.txt
-      - name: Backfill canonical archives and visual snapshots
+      - name: Build and validate historical canonical archives
+        id: migrate
+        continue-on-error: true
         shell: bash
         run: |
           set -euo pipefail
+          exec > >(tee /tmp/historical-backfill.log) 2>&1
           for date in 2026-08-21 2026-08-22; do
             echo "=== Backfill $date ==="
             python scripts/backfill_historical_archive.py "$date"
             python scripts/extract_visual_assets.py "$date"
             python scripts/inject_visual_previews.py "$date"
-            # Historical extraction/injection must never replace the live homepage.
+            # Old-date visual injection is archive-only in effect; restore live homepage.
             git checkout -- index.html
             python scripts/check_archive_backfill.py "$date"
           done
-          # Root manifest is only the latest-day convenience pointer; restore it.
+          # Root manifest remains the current/latest-day convenience pointer.
           cp assets/visual/2026-08-23/manifest.json assets/visual/manifest.json
           python scripts/render_daily_navigation.py
           python scripts/check_intelligence_contract.py
           python scripts/check_registry_contract.py
           python scripts/check_daily_contract.py
           python scripts/check_historical_regression.py --days 4
-      - name: Commit historical canonical backfill
+      - name: Persist failure diagnostic without partial publication
+        if: steps.migrate.outcome != 'success'
         shell: bash
         run: |
           set -euo pipefail
+          git reset --hard HEAD
+          git clean -fd
+          mkdir -p data/publish
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          log=Path('/tmp/historical-backfill.log')
+          tail=log.read_text('utf-8',errors='replace')[-8000:] if log.exists() else 'no log captured'
+          payload={'state':'FAILED','scope':['2026-08-21','2026-08-22'],'mode':'historical-canonical-backfill','log_tail':tail}
+          Path('data/publish/historical-backfill-status.json').write_text(json.dumps(payload,ensure_ascii=False,indent=2)+'\n','utf-8')
+          PY
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add data/publish/historical-backfill-status.json
+          git commit -m 'Record failed historical canonical backfill'
+          git pull --rebase origin main
+          git push origin HEAD:main
+          exit 1
+      - name: Commit successful historical canonical backfill
+        if: steps.migrate.outcome == 'success'
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f data/publish/historical-backfill-status.json
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
           git add data/daily/2026-08-21.json data/daily/2026-08-22.json
           git add 2026-08-21/index.html 2026-08-22/index.html 2026-08-23/index.html
           git add assets/visual/2026-08-21 assets/visual/2026-08-22 assets/visual/manifest.json
+          git add -u data/publish/historical-backfill-status.json || true
           if git diff --cached --quiet; then
             echo 'Historical backfill already current'
             exit 0
@@ -62,5 +91,3 @@ jobs:
           git commit -m 'Backfill canonical archives 2026-08-21 and 2026-08-22'
           git pull --rebase origin main
           git push origin HEAD:main
-
-# retrigger: 2026-08-23T16:36+08:00
