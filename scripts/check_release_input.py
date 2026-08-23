@@ -20,6 +20,9 @@ def latest_date():
     if not dates: raise SystemExit('No canonical daily datasets found')
     return dates[-1]
 
+def norm_url(url):
+    return (url or '').strip().rstrip('/')
+
 def card_ids(soup, selector, label):
     cards = soup.select(selector)
     ids = []
@@ -34,6 +37,22 @@ def card_ids(soup, selector, label):
     if len(ids) != len(set(ids)):
         fail(f'{label} contains duplicate data-intel-id values')
     return ids
+
+def source_map(soup, selector, label):
+    out={}
+    for card in soup.select(selector):
+        rid=(card.get('data-intel-id') or '').strip()
+        if not rid: continue
+        source=card.select_one('a.source[href]')
+        if not source:
+            fail(f'{label} {rid}: missing source link')
+            continue
+        href=norm_url(source.get('href'))
+        if not href:
+            fail(f'{label} {rid}: empty source href')
+            continue
+        out[rid]=href
+    return out
 
 def main():
     date = sys.argv[1] if len(sys.argv) > 1 else latest_date()
@@ -98,10 +117,16 @@ def main():
     if set(home_top + home_more) != idset: fail('homepage canonical ID set mismatch')
     if set(daily_top + daily_more) != idset: fail('daily canonical ID set mismatch')
 
+    home_sources=source_map(home,'.top-item,.more-card','homepage')
+    daily_sources=source_map(daily,'#top .news,.category-news','daily')
+    for rid in idset:
+        hs=home_sources.get(rid); ds=daily_sources.get(rid)
+        if hs and ds and hs!=ds:
+            fail(f'{rid}: homepage/daily source URL drift: {hs} != {ds}')
+
     for label, soup, selector in [('homepage',home,'.top-item,.more-card'),('daily',daily,'#top .news,.category-news')]:
         for card in soup.select(selector):
             rid = card.get('data-intel-id','?')
-            if not card.select_one('a.source[href]'): fail(f'{label} {rid}: missing source link')
             if not card.select_one('details .detail-body'): fail(f'{label} {rid}: missing Full Analysis shell')
     for card in home.select('.top-item,.more-card'):
         rid=card.get('data-intel-id','?')
@@ -109,6 +134,6 @@ def main():
 
     if errors:
         print('RELEASE INPUT CONTRACT FAILED'); print('\n'.join('- '+e for e in errors)); sys.exit(1)
-    print(f'RELEASE INPUT CONTRACT PASS: {date} / {len(top)} TOP / {len(more)} Supplemental')
+    print(f'RELEASE INPUT CONTRACT PASS: {date} / {len(top)} TOP / {len(more)} Supplemental / source parity OK')
 
 if __name__ == '__main__': main()
