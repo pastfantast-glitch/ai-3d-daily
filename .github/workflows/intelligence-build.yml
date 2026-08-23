@@ -24,8 +24,10 @@ on:
 permissions:
   contents: write
 
+# Single Writer Rule: every trigger shares one global lock. Manual, push and issue
+# reruns must never render/commit the site concurrently.
 concurrency:
-  group: canonical-intelligence-publish-${{ github.event.inputs.date || 'latest' }}
+  group: canonical-intelligence-publish
   cancel-in-progress: true
 
 jobs:
@@ -69,9 +71,6 @@ jobs:
         run: |
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
-          # Earlier render/bootstrap steps intentionally modify derived HTML before
-          # visual diagnostics are committed. Stash those unrelated changes so the
-          # rebase has a clean worktree, then restore them after the diagnostics push.
           git add assets/visual
           if ! git diff --cached --quiet; then
             git commit -m "Record visual extraction ${{ steps.date.outputs.value }}"
@@ -86,12 +85,9 @@ jobs:
           if [ "$had_stash" = 1 ]; then
             git stash pop
           fi
-          # Push only after rebase and restoration; diagnostics commit is already
-          # part of HEAD while derived HTML remains an uncommitted working-tree change.
           git push
       - name: Rebase after diagnostics commit
         run: |
-          # Keep this stage defensive: derived HTML may be dirty by design.
           if ! git diff --quiet || ! git diff --cached --quiet; then
             git stash push --include-untracked -m canonical-derived-before-rerender
             had_stash=1
