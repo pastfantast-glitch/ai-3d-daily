@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-import json, re, sys
+import json, sys
 from pathlib import Path
 from bs4 import BeautifulSoup
 
@@ -14,7 +14,12 @@ def latest_date():
 
 
 def make_preview(soup,rec,prefix):
-    fig=soup.new_tag('figure',attrs={'class':'case-preview','data-visual-id':rec['id'],'data-intel-id':rec['id']})
+    fig=soup.new_tag('figure',attrs={
+        'class':'case-preview',
+        'data-visual-id':rec['id'],
+        'data-intel-id':rec['id'],
+        'data-intel-role':'visual'
+    })
     a=soup.new_tag('a',href=rec['page_url'],target='_blank',rel='noopener noreferrer',title='開啟原始案例')
     asset_name=Path(rec['asset_path']).name
     img=soup.new_tag('img',src=f'{prefix}{asset_name}',alt=f"{rec.get('label','SOURCE PREVIEW')} preview",loading='lazy',decoding='async')
@@ -27,17 +32,19 @@ def make_preview(soup,rec,prefix):
 
 def inject(path,prefix,records):
     soup=BeautifulSoup(path.read_text('utf-8'),'html.parser'); changed=False
-    # Remove orphan preview markup from canonical cards; it can be re-added only by exact ID.
-    for card in soup.select('[data-intel-id]'):
+    # Only canonical card-role nodes may receive visual evidence. A visual node may
+    # share the same intelligence ID without being mistaken for the card itself.
+    for card in soup.select('[data-intel-role="card"][data-intel-id]'):
         intel_id=card.get('data-intel-id'); rec=records.get(intel_id)
-        existing=card.find('figure',class_='case-preview',recursive=False) or card.find('figure',class_='case-preview')
+        existing=card.find('figure',class_='case-preview')
         if not rec:
-            if existing and existing.get('data-intel-id'):
+            if existing and existing.get('data-intel-role')=='visual':
                 existing.decompose(); changed=True
             continue
         expected=f"{prefix}{Path(rec['asset_path']).name}"
         if existing:
-            img=existing.find('img'); a=existing.find('a'); existing['data-visual-id']=intel_id; existing['data-intel-id']=intel_id
+            img=existing.find('img'); a=existing.find('a')
+            existing['data-visual-id']=intel_id; existing['data-intel-id']=intel_id; existing['data-intel-role']='visual'
             if img and img.get('src')!=expected: img['src']=expected; changed=True
             if a and a.get('href')!=rec['page_url']: a['href']=rec['page_url']; changed=True
             continue
