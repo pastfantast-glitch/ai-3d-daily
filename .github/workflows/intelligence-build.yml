@@ -59,6 +59,22 @@ jobs:
         run: python scripts/build_intelligence.py "${{ steps.date.outputs.value }}"
       - name: Extract representative visuals with retry and diagnostics
         run: python scripts/extract_visual_assets.py "${{ steps.date.outputs.value }}"
+      - name: Persist visual extraction diagnostics
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add assets/visual
+          if ! git diff --cached --quiet; then
+            git commit -m "Record visual extraction ${{ steps.date.outputs.value }}"
+            git pull --rebase origin main
+            git push
+          else
+            echo "Visual diagnostics already current"
+          fi
+      - name: Rebase after diagnostics commit
+        run: git pull --rebase origin main
+      - name: Re-render canonical Full Analysis after rebase
+        run: python scripts/build_intelligence.py "${{ steps.date.outputs.value }}"
       - name: Inject local previews by stable intelligence ID
         run: python scripts/inject_visual_previews.py "${{ steps.date.outputs.value }}"
       - name: Full publish contract QA
@@ -81,11 +97,11 @@ jobs:
               print(f"- {x.get('id')}: {x.get('status')} candidates={x.get('candidate_count',0)} error={x.get('error','')}")
           PY
           fi
-      - name: Commit derived views and local visual assets
+      - name: Commit derived views
         run: |
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
-          git add index.html assets/visual
+          git add index.html
           git add "${{ steps.date.outputs.value }}/index.html"
           if ! git diff --cached --quiet; then
             git commit -m "Publish canonical intelligence ${{ steps.date.outputs.value }}"
