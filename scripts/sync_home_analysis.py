@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# Canonical rule: homepage full analysis must exactly match the current daily report.
 from pathlib import Path
 from copy import deepcopy
 from bs4 import BeautifulSoup
