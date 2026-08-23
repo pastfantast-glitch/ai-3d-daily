@@ -9,6 +9,14 @@ errors=[]
 def norm(s): return re.sub(r'\s+',' ',s).strip()
 def canonical_text(record): return norm(' '.join(f"{b['label']} {b['text']}" for b in record['full_analysis']))
 
+# Role is necessary but not sufficient: intelligence analysis belongs only to the
+# structural article-card containers. Visual nodes may share the same stable ID,
+# and stale/legacy markup must never make a figure eligible as an analysis card.
+CARD_SELECTORS={
+    'home': '.top-item[data-intel-role="card"][data-intel-id], .more-card[data-intel-role="card"][data-intel-id]',
+    'daily': '#top .news[data-intel-role="card"][data-intel-id], .category-news[data-intel-role="card"][data-intel-id]',
+}
+
 dates=sorted(p.stem for p in (ROOT/'data'/'daily').glob('20??-??-??.json'))
 for date in dates:
     data=json.loads((ROOT/'data'/'daily'/f'{date}.json').read_text('utf-8'))
@@ -18,9 +26,7 @@ for date in dates:
     seen={}
     for name,path in views:
         soup=BeautifulSoup(path.read_text('utf-8'),'html.parser'); seen[name]={}
-        # Identity is reusable across card and visual nodes. Full Analysis belongs only
-        # to role=card, so visual evidence must never be evaluated as an intelligence card.
-        cards=soup.select('[data-intel-role="card"][data-intel-id]')
+        cards=soup.select(CARD_SELECTORS[name])
         for card in cards:
             rid=card.get('data-intel-id')
             if rid not in recs: continue
