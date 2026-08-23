@@ -1,0 +1,54 @@
+name: Canonical intelligence build
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'data/daily/**'
+      - 'scripts/build_intelligence.py'
+      - 'scripts/bootstrap_intelligence_ids.py'
+      - 'scripts/check_intelligence_contract.py'
+      - '.github/workflows/intelligence-build.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install beautifulsoup4
+      - name: Bootstrap stable IDs for migration compatibility
+        run: python scripts/bootstrap_intelligence_ids.py
+      - name: Render canonical Full Analysis into both views
+        run: python scripts/build_intelligence.py 2026-08-23
+      - name: Cache bust changed behavior assets
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+          version='20260823-3'
+          p=Path('index.html');s=p.read_text();s=re.sub(r'home\.js\?v=[^"\']+',f'home.js?v={version}',s);p.write_text(s)
+          p=Path('2026-08-23/index.html');s=p.read_text();s=re.sub(r'daily\.js\?v=[^"\']+',f'daily.js?v={version}',s);p.write_text(s)
+          PY
+      - name: Contract QA
+        run: |
+          python scripts/check_home_contract.py
+          python scripts/check_daily_contract.py
+          python scripts/check_intelligence_contract.py
+      - name: Commit rendered views
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add index.html 2026-08-23/index.html
+          if ! git diff --cached --quiet; then
+            git commit -m "Render 2026-08-23 from canonical intelligence data"
+            git push
+          fi
