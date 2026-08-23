@@ -127,10 +127,12 @@ for path in (FOUNDATION, UI, COMPONENTS):
     if path.exists():
         css += '\n' + path.read_text('utf-8')
 
+# Only selectors with dedicated styling are required here. today-section/more-section
+# are structural role classes and are validated in DOM order above.
 required = (
     '.top-list', '.top-item', '.more-grid', '.more-card',
-    '.today-section', '.more-section', '.test-section', '.history-list',
-    '.preference-vote', '.home-full-analysis', '.quick-impact', '.case-preview'
+    '.test-section', '.history-list', '.preference-vote',
+    '.home-full-analysis', '.quick-impact', '.case-preview'
 )
 for selector in required:
     if selector not in css:
