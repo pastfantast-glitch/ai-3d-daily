@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 """Read-only historical regression matrix.
 
-Legacy archive snapshots are validated structurally. Dates that also have canonical
-JSON receive a full rebuild simulation inside a temporary copy of the repository.
-Nothing in the working repository is modified or pushed.
+Legacy archive snapshots are validated structurally. The latest date that also has
+canonical JSON receives a full rebuild simulation inside a temporary copy of the
+repository. Older canonical dates are checked as archive/canonical parity only, so
+we never pretend today's homepage is an old homepage. Nothing is pushed.
 """
 from __future__ import annotations
 
@@ -33,6 +34,10 @@ def archive_dirs(root: Path) -> list[Path]:
         p for p in root.iterdir()
         if p.is_dir() and DATE_RE.fullmatch(p.name) and (p / "index.html").exists()
     )
+
+
+def canonical_dates() -> list[str]:
+    return sorted(p.stem for p in (ROOT / "data" / "daily").glob("20??-??-??.json"))
 
 
 def validate_archive_snapshot(d: Path, all_dirs: list[Path]) -> None:
@@ -87,11 +92,13 @@ def validate_archive_snapshot(d: Path, all_dirs: list[Path]) -> None:
             fail(date, "date-scoped visual manifest date mismatch")
         for entry in data.get("entries", []):
             if entry.get("status") == "ok":
-                asset = entry.get("local_path") or entry.get("asset")
-                if asset:
-                    candidate = ROOT / asset.lstrip("/")
-                    if not candidate.exists():
-                        fail(date, f"visual asset missing: {asset}")
+                asset = entry.get("asset_path")
+                if not asset:
+                    fail(date, f"visual entry {entry.get('id')} missing asset_path")
+                    continue
+                candidate = ROOT / asset.lstrip("/")
+                if not candidate.exists():
+                    fail(date, f"visual asset missing: {asset}")
 
     rows.append((date, "snapshot", "PASS" if not any(e.startswith(date + ":") for e in errors) else "FAIL"))
 
@@ -110,6 +117,23 @@ def validate_home_archive_links(all_dirs: list[Path]) -> None:
             fail("home", f"dangling history archive link: {href}")
 
 
+def validate_canonical_archive_parity(date: str) -> None:
+    canonical_path = ROOT / "data" / "daily" / f"{date}.json"
+    archive_path = ROOT / date / "index.html"
+    if not canonical_path.exists() or not archive_path.exists():
+        return
+    data = json.loads(canonical_path.read_text("utf-8"))
+    soup = BeautifulSoup(archive_path.read_text("utf-8"), "html.parser")
+    expected = [x["id"] for x in data.get("items", [])]
+    cards = soup.select('[data-intel-role="card"][data-intel-id]')
+    actual = [c.get("data-intel-id") for c in cards if c.get("data-intel-id") in expected]
+    if actual != expected:
+        fail(date, f"archive/canonical stable ID order mismatch: expected {expected}, got {actual}")
+        rows.append((date, "canonical-parity", "FAIL"))
+        return
+    rows.append((date, "canonical-parity", "PASS"))
+
+
 def run(work: Path, *cmd: str) -> None:
     proc = subprocess.run(cmd, cwd=work, text=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
     print(f"$ {' '.join(cmd)}")
@@ -119,9 +143,13 @@ def run(work: Path, *cmd: str) -> None:
 
 
 def canonical_rebuild_simulation(date: str) -> None:
-    canonical = ROOT / "data" / "daily" / f"{date}.json"
-    if not canonical.exists():
+    cds = canonical_dates()
+    if date not in cds:
         rows.append((date, "canonical-rebuild", "SKIP (legacy snapshot: no canonical JSON)"))
+        return
+    if date != cds[-1]:
+        validate_canonical_archive_parity(date)
+        rows.append((date, "canonical-rebuild", "SKIP (older canonical date; archive parity used)"))
         return
 
     with tempfile.TemporaryDirectory(prefix=f"ai3d-regression-{date}-") as td:
@@ -133,8 +161,8 @@ def canonical_rebuild_simulation(date: str) -> None:
             run(work, sys.executable, "scripts/check_release_input.py", date)
             run(work, sys.executable, "scripts/render_daily_navigation.py")
             run(work, sys.executable, "scripts/build_intelligence.py", date)
-            # Historical dry runs reuse the persisted date-scoped visual snapshot;
-            # they deliberately do not hit third-party websites again.
+            # Dry runs reuse the persisted date-scoped visual snapshot; they do not
+            # hit third-party websites again.
             run(work, sys.executable, "scripts/inject_visual_previews.py", date)
             run(work, sys.executable, "scripts/apply_cache_bust.py", date)
             run(work, sys.executable, "scripts/check_intelligence_contract.py")
@@ -160,6 +188,8 @@ def main() -> int:
     selected = all_dirs[-max(1, args.days):]
 
     print("Historical regression archives:", ", ".join(d.name for d in selected))
+    if len(selected) < args.days:
+        print(f"NOTE: requested {args.days} archive days but repository currently contains {len(selected)} total archive snapshots")
     validate_home_archive_links(all_dirs)
     for d in selected:
         validate_archive_snapshot(d, all_dirs)
