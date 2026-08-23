@@ -13,18 +13,23 @@ on:
       - 'scripts/check_visual_contract.py'
       - '.github/workflows/intelligence-build.yml'
   workflow_dispatch:
+    inputs:
+      date:
+        description: 'Canonical report date (YYYY-MM-DD); blank = latest'
+        required: false
+        type: string
 
 permissions:
   contents: write
 
 concurrency:
-  group: canonical-intelligence-publish
+  group: canonical-intelligence-publish-${{ github.event.inputs.date || 'latest' }}
   cancel-in-progress: true
 
 jobs:
   publish:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
         with:
@@ -34,15 +39,25 @@ jobs:
           python-version: '3.12'
       - name: Install pipeline dependencies
         run: pip install beautifulsoup4 requests pillow
-      - name: Resolve latest canonical date
+      - name: Resolve canonical date
         id: date
         shell: bash
-        run: echo "value=$(find data/daily -maxdepth 1 -name '20??-??-??.json' -printf '%f\n' | sed 's/.json$//' | sort | tail -1)" >> "$GITHUB_OUTPUT"
+        env:
+          REQUESTED_DATE: ${{ github.event.inputs.date }}
+        run: |
+          if [ -n "$REQUESTED_DATE" ]; then
+            test -f "data/daily/$REQUESTED_DATE.json" || { echo "Missing canonical dataset: $REQUESTED_DATE"; exit 1; }
+            value="$REQUESTED_DATE"
+          else
+            value="$(find data/daily -maxdepth 1 -name '20??-??-??.json' -printf '%f\n' | sed 's/.json$//' | sort | tail -1)"
+          fi
+          echo "value=$value" >> "$GITHUB_OUTPUT"
+          echo "Publishing canonical date: $value"
       - name: Bootstrap stable IDs only for legacy markup
         run: python scripts/bootstrap_intelligence_ids.py
       - name: Render canonical Full Analysis into both views
         run: python scripts/build_intelligence.py "${{ steps.date.outputs.value }}"
-      - name: Extract representative visuals from canonical visual_evidence
+      - name: Extract representative visuals with retry and diagnostics
         run: python scripts/extract_visual_assets.py "${{ steps.date.outputs.value }}"
       - name: Inject local previews by stable intelligence ID
         run: python scripts/inject_visual_previews.py "${{ steps.date.outputs.value }}"
@@ -52,6 +67,20 @@ jobs:
           python scripts/check_visual_contract.py "${{ steps.date.outputs.value }}"
           python scripts/check_home_contract.py
           python scripts/check_daily_contract.py
+      - name: Print visual coverage summary
+        if: always()
+        shell: bash
+        run: |
+          if [ -f assets/visual/manifest.json ]; then
+            python - <<'PY'
+          import json
+          from pathlib import Path
+          d=json.loads(Path('assets/visual/manifest.json').read_text())
+          print('Visual manifest date:', d.get('date'))
+          for x in d.get('entries',[]):
+              print(f"- {x.get('id')}: {x.get('status')} candidates={x.get('candidate_count',0)} error={x.get('error','')}")
+          PY
+          fi
       - name: Commit derived views and local visual assets
         run: |
           git config user.name github-actions[bot]
