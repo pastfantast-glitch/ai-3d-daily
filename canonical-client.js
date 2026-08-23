@@ -1,4 +1,4 @@
-const RULES=[
+const LEGACY_20260823_RULES=[
 ['blender-52-geometry-nodes-physics',['geometry-nodes-physics'],['Geometry Nodes Physics']],
 ['retopoflow-419',['retopoflow'],['RetopoFlow 4.1.9']],
 ['endfield-hybrid-npr',['project-endfield-character-rendering'],['Arknights: Endfield']],
@@ -12,10 +12,10 @@ const RULES=[
 ['material-lighting-nodes',[],['Material Lighting Nodes']]
 ];
 
-function identify(card){
+function legacyIdentify20260823(card){
   const href=[...card.querySelectorAll('a.source')].map(a=>a.href).join(' ');
   const title=card.querySelector('h2,h3,h4')?.textContent||'';
-  for(const [id,hrefs,titles] of RULES){
+  for(const [id,hrefs,titles] of LEGACY_20260823_RULES){
     if(hrefs.some(k=>href.includes(k))||titles.some(k=>title.includes(k)))return id;
   }
   return null;
@@ -120,7 +120,10 @@ export async function hydrateCanonicalAnalysis(){
       .map(x=>[x.id,x]));
 
     canonicalCards().forEach(card=>{
-      const id=card.dataset.intelId||identify(card);
+      let id=card.dataset.intelId||'';
+      // Compatibility only for the pre-stable-ID 2026-08-23 snapshot. New dates
+      // must ship data-intel-id in source markup and pass release preflight.
+      if(!id&&date==='2026-08-23')id=legacyIdentify20260823(card)||'';
       if(!id)return;
       card.dataset.intelId=id;
       card.dataset.intelRole='card';
