@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
 """One-way bootstrap for legacy 2026-08-23 cards that predate stable IDs.
 
-New renderers must write data-intel-id directly. This migration prefers source URL
-identity and uses title matching only where the source URL is too generic.
+New renderers must write data-intel-id and data-intel-role directly. This migration
+prefers source URL identity and uses title matching only where the source URL is
+too generic. Intelligence identity may appear on multiple elements, so role is
+part of the DOM contract: cards are role=card; visual evidence is role=visual.
 """
 from pathlib import Path
 from bs4 import BeautifulSoup
@@ -51,10 +53,13 @@ def migrate(path, selectors):
         rid = card.get('data-intel-id') or identify(card)
         if rid:
             card['data-intel-id'] = rid
+            card['data-intel-role'] = 'card'
             assigned.add(rid)
+    for fig in soup.select('figure.case-preview[data-intel-id]'):
+        fig['data-intel-role'] = 'visual'
 
     path.write_text(soup.prettify(), 'utf-8')
-    print(f'{path.relative_to(ROOT)}: assigned {len(assigned)} unique canonical IDs')
+    print(f'{path.relative_to(ROOT)}: assigned {len(assigned)} unique canonical card IDs')
 
 
 migrate(ROOT / 'index.html', ['.top-item', '.more-card'])
