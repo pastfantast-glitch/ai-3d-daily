@@ -1,0 +1,46 @@
+name: Full analysis sync
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'index.html'
+      - '20??-??-??/index.html'
+      - 'scripts/sync_home_analysis.py'
+      - 'scripts/check_analysis_sync.py'
+      - '.github/workflows/full-analysis-sync.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: full-analysis-sync
+  cancel-in-progress: true
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install beautifulsoup4
+      - name: Restore homepage full analysis from canonical daily report
+        run: python scripts/sync_home_analysis.py
+      - name: Verify full analysis parity
+        run: python scripts/check_analysis_sync.py
+      - name: Homepage contract QA
+        run: python scripts/check_home_contract.py
+      - name: Commit restored analysis if needed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          if git diff --cached --quiet; then
+            echo "Full analysis already in sync"
+          else
+            git commit -m "Restore homepage full analysis parity"
+            git push
+          fi
