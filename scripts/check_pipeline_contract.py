@@ -5,7 +5,8 @@ Only intelligence-build.yml may write repository contents. Legacy QA workflows
 must remain read-only. The canonical publisher must keep release-ready gating,
 preflight, registry QA, archive navigation rendering, atomic publish, and a
 global concurrency lock. Runtime modules must inherit the shell cache token and
-must never guess stable IDs for new dates.
+must never guess stable IDs for new dates. GitHub-hosted JavaScript actions must
+stay on Node.js 24-capable major versions.
 """
 from pathlib import Path
 import re, sys
@@ -47,8 +48,19 @@ else:
         fail('canonical publisher requires contents: write')
 
 for path in sorted(WF.glob('*.yml')):
-    if path == MAIN: continue
     text=path.read_text('utf-8')
+
+    # Node.js 20 is deprecated on GitHub-hosted runners. checkout v5+ and
+    # setup-python v6+ use Node.js 24; reject older majors anywhere in the repo.
+    for match in re.finditer(r'actions/checkout@v(\d+)', text):
+        if int(match.group(1)) < 5:
+            fail(f'Node 20 checkout action returned: {path.name} uses {match.group(0)}')
+    for match in re.finditer(r'actions/setup-python@v(\d+)', text):
+        if int(match.group(1)) < 6:
+            fail(f'Node 20 setup-python action returned: {path.name} uses {match.group(0)}')
+
+    if path == MAIN:
+        continue
     if re.search(r'contents:\s*write', text):
         fail(f'second writer permission found: {path.name}')
     if re.search(r'\bgit\s+(commit|push)\b', text):
@@ -86,4 +98,4 @@ if errors:
     print('PIPELINE CONTRACT FAILED')
     print('\n'.join('- '+e for e in errors))
     sys.exit(1)
-print('PIPELINE CONTRACT PASS: one atomic writer + release-ready gate + archive navigation + runtime integrity')
+print('PIPELINE CONTRACT PASS: one atomic writer + release-ready gate + archive navigation + runtime integrity + Node 24 actions')
