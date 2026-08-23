@@ -1,0 +1,33 @@
+name: Homepage contract QA
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'index.html'
+      - 'home.css'
+      - 'home-content.css'
+      - 'home-layout-fixes.css'
+      - 'home.js'
+      - 'scripts/check_home_contract.py'
+      - 'scripts/inject_today_more.py'
+      - 'scripts/inject_visual_previews.py'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: homepage-contract-qa
+  cancel-in-progress: true
+
+jobs:
+  contract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate homepage structure, selectors and interactions
+        run: python scripts/check_home_contract.py
