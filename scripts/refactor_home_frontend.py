@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# Migration trigger: 2026-08-23 frontend architecture cleanup.
 from pathlib import Path
 import logging
 import re
@@ -14,10 +15,8 @@ cssutils.log.setLevel(logging.CRITICAL)
 cssutils.ser.prefs.useMinified()
 
 DYNAMIC_CLASSES = {
-    # Semantic variants used by the daily template even if not present today.
     'purple', 'blue', 'green', 'orange', 'priority', 'hot', 'beta',
     'status-new', 'status-update', 'status-track', 'important',
-    # JS/runtime and reusable homepage components.
     'preference-vote', 'is-up', 'is-down', 'top-item-expandable',
     'home-full-analysis', 'home-analysis-body', 'analysis-source-row',
     'source-inline', 'video-embed', 'video-fallback', 'case-preview',
