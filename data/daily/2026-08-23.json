@@ -1,7 +1,20 @@
 {
   "date": "2026-08-23",
-  "schema_version": 1,
-  "render_revision": 1,
+  "schema_version": 2,
+  "render_revision": 2,
+  "visual_evidence": {
+    "blender-52-geometry-nodes-physics": {"enabled": true, "source_url": "https://code.blender.org/2026/07/geometry-nodes-physics/", "label": "OFFICIAL ARTICLE VISUAL", "confidence": "high", "keywords": ["geometry nodes", "physics", "cloth", "hair", "simulation"]},
+    "retopoflow-419": {"enabled": true, "source_url": "https://superhivemarket.com/products/retopoflow/versions", "label": "PRODUCT VISUAL", "confidence": "medium", "keywords": ["retopoflow", "retopology", "blender"]},
+    "endfield-hybrid-npr": {"enabled": true, "source_url": "https://sku11zz.github.io/AnimTA_ShuyuanJi/project-endfield-character-rendering.html", "label": "PROJECT VISUAL", "confidence": "high", "keywords": ["endfield", "character", "rendering", "unreal", "blender", "npr"]},
+    "procedural-hand-painted-eevee": {"enabled": true, "source_url": "https://80.lv/articles/tutorial-procedural-blender-shader-with-hand-painted-look", "label": "SOURCE COVER", "confidence": "high", "keywords": ["procedural", "hand painted", "shader", "blender", "eevee"]},
+    "blender-52-lts": {"enabled": true, "source_url": "https://www.blender.org/releases/5-2/", "label": "OFFICIAL RELEASE VISUAL", "confidence": "high", "keywords": ["blender 5.2", "geometry nodes", "eevee", "cycles"]},
+    "node-preview-thumbnails": {"enabled": true, "source_url": "https://extensions.blender.org/add-ons/node-preview/", "label": "ADD-ON PREVIEW", "confidence": "high", "keywords": ["node preview", "thumbnail", "shader", "geometry nodes"]},
+    "geo-nodes-guide": {"enabled": true, "source_url": "https://extensions.blender.org/add-ons/geo-nodes-guide/", "label": "ADD-ON PREVIEW", "confidence": "high", "keywords": ["geo nodes guide", "geometry nodes", "nodes"]},
+    "ppeh-tools": {"enabled": true, "source_url": "https://blenderartists.org/t/ppeh-tools-procedural-modeling-toolkit-for-blender-5-2-lts/1647698", "label": "AUTHOR PREVIEW", "confidence": "medium", "keywords": ["ppeh", "procedural modeling", "blender", "modifier"]},
+    "node-wrangler-52-preview": {"enabled": true, "source_url": "https://docs.blender.org/manual/en/latest/addons/node_wrangler.html", "label": "DOCUMENTATION VISUAL", "confidence": "medium", "keywords": ["node wrangler", "preview", "shader"]},
+    "stylized-pixelated-caustics": {"enabled": false, "reason": "Current source URL is a category index rather than the exact tutorial; identity cannot be verified safely."},
+    "material-lighting-nodes": {"enabled": true, "source_url": "https://devtalk.blender.org/t/npr-project-multi-stage-compositing/40758/80", "label": "DEVELOPMENT VISUAL", "confidence": "medium", "keywords": ["material lighting", "light info", "light evaluation", "npr"]}
+  },
   "items": [
     {"id":"blender-52-geometry-nodes-physics","slot":"top","full_analysis":[{"label":"問題／目標","text":"把 cloth、hair dynamics 從黑盒 simulation 拉進可程序化、可組合的 Geometry Nodes workflow。"},{"label":"Production","text":"高階資產包裝底層 XPBD；Collider 可直接用 modifier stack 幾何，Custom Force／Effector 可插入自訂行為。這讓 Technical Artist 能把 simulation 規則封裝成資產，而不是每個 shot 重建。"},{"label":"限制","text":"官方仍標 Experimental，設計可能迭代；正式專案先做 prototype，不宜立刻替換成熟 cloth pipeline。"},{"label":"20 分鐘實測","text":"同一塊布建立 Collider、風力 Custom Force，再把 setup 存成 node asset，測 cache、重開檔一致性與動畫交接。"}]},
     {"id":"retopoflow-419","slot":"top","full_analysis":[{"label":"關鍵決策","text":"RetopoFlow 4 把 Contours、PolyStrips、Strokes、PolyPen 等工作直接融入 Edit Mode，進入工具時自動處理 snapping、retopology overlay、auto merge、inactive geometry fade，退出後恢復原設定。"},{"label":"Production 收益","text":"減少模式切換與工具上下文斷裂；4.1.x 又改善 Relax、edge sliding、projection 與 snapping source 指定，較適合角色高模到 deformation topology 的長時間工作。"},{"label":"限制","text":"第三方 Add-on 仍要做 Blender 版本鎖定與專案測試。"},{"label":"SOP","text":"先用頭部／肩膀高模做 20 分鐘測試，檢查 Contours、PolyStrips、Relax、Mirror 與 Blender 原生 Edit 操作是否符合習慣。"}]},
