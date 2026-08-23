@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded',()=>{
+  document.querySelectorAll('a[target="_blank"]').forEach(a=>a.rel='noopener noreferrer');
   const cards=[...document.querySelectorAll('.top-item, .more-card')];
 
   // Keep exactly one full-analysis block per information card.
