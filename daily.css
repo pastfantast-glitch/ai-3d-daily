@@ -1,4 +1,4 @@
-/* AI 3D Daily — unified archive presentation contract */
+/* AI 3D Daily — unified archive presentation + color contract */
 .archive-page .site-head{background:#fafbfc}
 .archive-page .site-head h1{margin-bottom:8px}
 .archive-note{display:inline-flex;margin:18px 0 0;padding:6px 9px;border:1px solid #dfe3ea;border-radius:999px;background:#fff;color:#68717f;font-size:.67rem;font-weight:900;letter-spacing:.05em}
@@ -18,12 +18,18 @@
 .daily-nav a.is-active{color:#594ed0;font-weight:900;background:#f7f6ff}
 .daily-nav a.is-active:after{content:"";position:absolute;left:10px;right:10px;bottom:0;height:3px;border-radius:3px 3px 0 0;background:#6658e8}
 .day-nav{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:28px 0 0;padding:14px 16px;border:1px solid var(--line);border-radius:14px;background:var(--paper);box-shadow:0 4px 14px rgba(25,35,52,.035)}
-.day-nav a{color:#4e5c73;text-decoration:none;font-size:.8rem;font-weight:850}
-.day-nav a:hover{color:var(--purple)}
-.day-nav span{color:var(--muted);font-size:.78rem;font-weight:750}
+.day-nav a{color:#4e5c73;text-decoration:none;font-size:.8rem;font-weight:850}.day-nav a:hover{color:var(--purple)}.day-nav span{color:var(--muted);font-size:.78rem;font-weight:750}
 .status-badge,.news-status{display:inline-flex;align-items:center;min-height:20px;padding:2px 7px;border-radius:999px;font-size:.62rem;font-weight:900;letter-spacing:.04em;white-space:nowrap}
 .status-new{background:#eaf7f0;color:#20764d}.status-update{background:#fff0dd;color:#9b5b18}.status-track{background:#eef1f6;color:#5c6675}
+/* Daily Color Contract v1: presentation color is canonical CSS, never legacy markup. */
+.archive-page .daily-card .pill,.archive-page .daily-card .pill.purple,.archive-page .daily-card .pill.blue,.archive-page .daily-card .pill.green,.archive-page .daily-card .pill.orange{background:#eef1f6;color:#515c6d}
+.archive-page .daily-card .priority{display:inline-flex;align-items:center;min-height:20px;padding:2px 7px;border-radius:999px;background:#eef1f6;color:#5c6675;font-size:.62rem;font-weight:900;letter-spacing:.04em;white-space:nowrap}
+.archive-page .daily-card-top:before{background:linear-gradient(180deg,var(--purple),var(--blue))}
+.archive-page .daily-card-top .news-rank{background:linear-gradient(180deg,#f4f1ff 0,#edf3ff 100%);color:#6b63d7}
+.archive-page .daily-card-more:before{background:#cfd5df}
+.archive-page .category-deep:nth-of-type(n) .daily-card-more:before{background:#cfd5df}
+.archive-page .category-deep .cat-head>span{background:#eef1f6;color:#626b79}
 #top,.category-deep,#try{scroll-margin-top:62px}
 @media(max-width:640px){.dailybar-inner{width:100%;padding-left:11px;min-height:46px}.daily-id{gap:6px;padding-right:8px}.daily-home{font-size:.75rem}.daily-date{font-size:.66rem}.day-link{min-width:21px;height:24px}.daily-nav a{padding:0 10px;font-size:.74rem}.day-nav{align-items:flex-start;flex-direction:column}}
 @media(max-width:440px){.daily-date{font-size:.63rem}.daily-home{font-size:0}.daily-home:after{content:'← 首頁';font-size:.73rem}}
-/* Contract v1: presentation only; historical intelligence remains immutable. */
+/* Contract v2: shared presentation + canonical color semantics; historical intelligence remains immutable. */
