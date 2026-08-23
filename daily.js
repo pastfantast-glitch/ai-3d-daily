@@ -2,9 +2,14 @@ document.addEventListener('DOMContentLoaded',async()=>{
   document.body.classList.add('archive-page');
   const date=document.body.dataset.reportDate||document.querySelector('.topline span:last-child')?.textContent.trim()||'';
   const previous=document.body.dataset.previous||'',next=document.body.dataset.next||'';
-  const sourceMap=[['geometry-nodes-physics','blender-52-geometry-nodes-physics'],['retopoflow','retopoflow-419'],['project-endfield-character-rendering','endfield-hybrid-npr'],['hand-painted-look','procedural-hand-painted-eevee'],['blender.org/releases/5-2','blender-52-lts'],['node-preview','node-preview-thumbnails'],['geo-nodes-guide','geo-nodes-guide'],['ppeh-tools','ppeh-tools'],['node_wrangler','node-wrangler-52-preview'],['pixelated-caustics','stylized-pixelated-caustics'],['material-lighting-nodes','material-lighting-nodes']];
-  const cards=[...document.querySelectorAll('#top .news,.category-deep .news')],resolveId=card=>card.dataset.intelId||sourceMap.find(([key])=>(card.querySelector('a.source')?.href||'').includes(key))?.[1];
-  try{const res=await fetch(`../data/daily/${date}.json`,{cache:'no-store'});if(res.ok){const data=await res.json(),records=new Map(data.items.map(x=>[x.id,x]));cards.forEach(card=>{const id=resolveId(card),rec=records.get(id);if(id)card.dataset.intelId=id;if(rec?.full_analysis){let d=card.querySelector('details');if(!d){d=document.createElement('details');card.querySelector('a.source')?.insertAdjacentElement('beforebegin',d);}d.innerHTML='<summary>完整分析</summary><div class="detail-body">'+rec.full_analysis.map(b=>`<p><b>${b.label}：</b> ${b.text}</p>`).join('')+'</div>';}});}}catch(err){console.warn('Canonical intelligence hydration failed',err);}
+
+  // Same canonical renderer as homepage: one source, one semantic hierarchy.
+  try{
+    const self=[...document.scripts].find(s=>s.src.includes('/daily.js'))?.src||location.href;
+    const mod=await import(new URL('canonical-client.js?v=20260823-1',self).href);
+    await mod.hydrateCanonicalAnalysis();
+  }catch(err){console.warn('Canonical intelligence renderer unavailable',err);}
+
   const head=document.querySelector('.site-head');if(head&&!head.querySelector('.archive-note')){const note=document.createElement('div');note.className='archive-note';note.textContent='ARCHIVE DATABASE · 當日完整快照';const stats=head.querySelector('.stats');stats?stats.before(note):head.querySelector('.page')?.append(note);}
   const details=[...document.querySelectorAll('details')];details.forEach(d=>d.open=false);details.forEach(d=>d.addEventListener('toggle',()=>{if(d.open)details.forEach(o=>{if(o!==d)o.open=false;});}));document.querySelector('.jumpbar')?.setAttribute('hidden','');
   if(!document.querySelector('.dailybar')){const prev=previous?`<a class="day-link" href="../${previous}/" aria-label="前一日日報">←</a>`:'',nxt=next?`<a class="day-link" href="../${next}/" aria-label="後一日日報">→</a>`:'',sections=[['top','TOP 5'],['categories','分類追蹤'],['try','實測']].filter(([id])=>document.getElementById(id)),bar=document.createElement('nav');bar.className='dailybar';bar.setAttribute('aria-label','歷史日報導覽');bar.innerHTML=`<div class="dailybar-inner"><div class="daily-id"><a class="daily-home" href="../">← 首頁</a><div class="date-nav">${prev}<span class="daily-date">${date}</span>${nxt}</div></div><div class="daily-nav">${sections.map(([id,label])=>`<a href="#${id}" data-section="${id}">${label}</a>`).join('')}</div></div>`;document.body.prepend(bar);}
