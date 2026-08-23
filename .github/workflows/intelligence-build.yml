@@ -1,4 +1,4 @@
-name: Canonical intelligence build
+name: Canonical intelligence publish
 
 on:
   push:
@@ -8,14 +8,21 @@ on:
       - 'scripts/build_intelligence.py'
       - 'scripts/bootstrap_intelligence_ids.py'
       - 'scripts/check_intelligence_contract.py'
+      - 'scripts/extract_visual_assets.py'
+      - 'scripts/inject_visual_previews.py'
+      - 'scripts/check_visual_contract.py'
       - '.github/workflows/intelligence-build.yml'
   workflow_dispatch:
 
 permissions:
   contents: write
 
+concurrency:
+  group: canonical-intelligence-publish
+  cancel-in-progress: true
+
 jobs:
-  build:
+  publish:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -24,22 +31,36 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - run: pip install beautifulsoup4
-      - name: Bootstrap stable IDs for migration compatibility
+      - name: Install pipeline dependencies
+        run: pip install beautifulsoup4 requests pillow
+      - name: Resolve latest canonical date
+        id: date
+        shell: bash
+        run: echo "value=$(find data/daily -maxdepth 1 -name '20??-??-??.json' -printf '%f\n' | sed 's/.json$//' | sort | tail -1)" >> "$GITHUB_OUTPUT"
+      - name: Bootstrap stable IDs only for legacy markup
         run: python scripts/bootstrap_intelligence_ids.py
       - name: Render canonical Full Analysis into both views
-        run: python scripts/build_intelligence.py 2026-08-23
-      - name: Contract QA
+        run: python scripts/build_intelligence.py "${{ steps.date.outputs.value }}"
+      - name: Extract representative visuals from canonical visual_evidence
+        run: python scripts/extract_visual_assets.py "${{ steps.date.outputs.value }}"
+      - name: Inject local previews by stable intelligence ID
+        run: python scripts/inject_visual_previews.py "${{ steps.date.outputs.value }}"
+      - name: Full publish contract QA
         run: |
+          python scripts/check_intelligence_contract.py
+          python scripts/check_visual_contract.py "${{ steps.date.outputs.value }}"
           python scripts/check_home_contract.py
           python scripts/check_daily_contract.py
-          python scripts/check_intelligence_contract.py
-      - name: Commit rendered views
+      - name: Commit derived views and local visual assets
         run: |
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
-          git add index.html 2026-08-23/index.html
+          git add index.html assets/visual
+          git add "${{ steps.date.outputs.value }}/index.html"
           if ! git diff --cached --quiet; then
-            git commit -m "Render 2026-08-23 canonical semantic analysis"
+            git commit -m "Publish canonical intelligence ${{ steps.date.outputs.value }}"
+            git pull --rebase origin main
             git push
+          else
+            echo "Canonical rendered views already current"
           fi
