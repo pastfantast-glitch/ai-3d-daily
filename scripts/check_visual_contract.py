@@ -43,9 +43,9 @@ def main():
         if not path.exists(): errors.append(f'{view}: page missing'); continue
         soup=BeautifulSoup(path.read_text('utf-8'),'html.parser')
         for intel_id in ok:
-            card=soup.select_one(f'[data-intel-id="{intel_id}"]')
-            if not card: errors.append(f'{view}: {intel_id} card missing'); continue
-            fig=card.find('figure',class_='case-preview')
+            card=soup.select_one(f'[data-intel-role="card"][data-intel-id="{intel_id}"]')
+            if not card: errors.append(f'{view}: {intel_id} canonical card missing'); continue
+            fig=card.find('figure',class_='case-preview',attrs={'data-intel-role':'visual'})
             if not fig: errors.append(f'{view}: {intel_id} extracted visual not rendered'); continue
             if fig.get('data-intel-id')!=intel_id: errors.append(f'{view}: {intel_id} preview identity mismatch')
             img=fig.find('img')
