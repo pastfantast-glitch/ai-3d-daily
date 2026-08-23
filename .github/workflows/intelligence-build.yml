@@ -4,13 +4,20 @@ on:
   push:
     branches: [main]
     paths:
-      - 'data/daily/**'
+      # Scheduled content publishing writes this marker LAST, after canonical data,
+      # homepage markup and the daily snapshot are all complete.
+      - 'data/publish/**'
+      # Pipeline/frontend changes may rebuild the current release for verification.
       - 'scripts/build_intelligence.py'
-      - 'scripts/bootstrap_intelligence_ids.py'
+      - 'scripts/check_release_input.py'
       - 'scripts/check_intelligence_contract.py'
       - 'scripts/extract_visual_assets.py'
       - 'scripts/inject_visual_previews.py'
       - 'scripts/check_visual_contract.py'
+      - 'scripts/apply_cache_bust.py'
+      - 'canonical-client.js'
+      - 'home.js'
+      - 'daily.js'
       - '.github/workflows/intelligence-build.yml'
   workflow_dispatch:
     inputs:
@@ -65,8 +72,14 @@ jobs:
           echo "value=$value" >> "$GITHUB_OUTPUT"
           echo "Publishing canonical date: $value"
 
-      - name: Bootstrap stable IDs only for legacy markup
+      # One-time compatibility only. New dates MUST already contain stable IDs and
+      # roles in source markup; the preflight below will reject missing identity.
+      - name: Legacy 2026-08-23 stable-ID migration
+        if: steps.date.outputs.value == '2026-08-23'
         run: python scripts/bootstrap_intelligence_ids.py
+
+      - name: Release-ready input preflight
+        run: python scripts/check_release_input.py "${{ steps.date.outputs.value }}"
 
       - name: Render canonical Full Analysis into both views
         run: python scripts/build_intelligence.py "${{ steps.date.outputs.value }}"
@@ -76,6 +89,9 @@ jobs:
 
       - name: Inject local previews by stable intelligence ID
         run: python scripts/inject_visual_previews.py "${{ steps.date.outputs.value }}"
+
+      - name: Apply deterministic release cache bust
+        run: python scripts/apply_cache_bust.py "${{ steps.date.outputs.value }}"
 
       - name: Full publish contract QA
         run: |
@@ -116,8 +132,7 @@ jobs:
 
           git commit -m "Publish canonical intelligence ${{ steps.date.outputs.value }}"
 
-          # The working tree is clean here, so rebase is safe. If main changed during
-          # this run and conflicts with the same derived files, fail rather than
-          # silently overwrite newer work.
+          # Working tree must be clean here. If main changed during this run and
+          # conflicts with the same derived files, fail rather than overwrite it.
           git pull --rebase origin main
           git push origin HEAD:main
