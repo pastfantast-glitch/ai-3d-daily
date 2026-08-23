@@ -1,0 +1,64 @@
+name: One-time historical canonical backfill
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/historical-backfill-once.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: historical-canonical-backfill-once
+  cancel-in-progress: false
+
+jobs:
+  backfill:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - name: Install locked pipeline dependencies
+        run: pip install -r requirements-pipeline.txt
+      - name: Backfill canonical archives and visual snapshots
+        shell: bash
+        run: |
+          set -euo pipefail
+          for date in 2026-08-21 2026-08-22; do
+            echo "=== Backfill $date ==="
+            python scripts/backfill_historical_archive.py "$date"
+            python scripts/extract_visual_assets.py "$date"
+            python scripts/inject_visual_previews.py "$date"
+            # Historical extraction/injection must never replace the live homepage.
+            git checkout -- index.html
+            python scripts/check_archive_backfill.py "$date"
+          done
+          # Root manifest is only the latest-day convenience pointer; restore it.
+          cp assets/visual/2026-08-23/manifest.json assets/visual/manifest.json
+          python scripts/render_daily_navigation.py
+          python scripts/check_intelligence_contract.py
+          python scripts/check_registry_contract.py
+          python scripts/check_daily_contract.py
+          python scripts/check_historical_regression.py --days 4
+      - name: Commit historical canonical backfill
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add data/daily/2026-08-21.json data/daily/2026-08-22.json
+          git add 2026-08-21/index.html 2026-08-22/index.html 2026-08-23/index.html
+          git add assets/visual/2026-08-21 assets/visual/2026-08-22 assets/visual/manifest.json
+          if git diff --cached --quiet; then
+            echo 'Historical backfill already current'
+            exit 0
+          fi
+          git commit -m 'Backfill canonical archives 2026-08-21 and 2026-08-22'
+          git pull --rebase origin main
+          git push origin HEAD:main
