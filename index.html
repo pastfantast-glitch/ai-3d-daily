@@ -1,3 +1,271 @@
 <!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>AI 3D Daily｜每日 3D 美術情報總覽</title>
+  <link href="styles.css?v=20260822-4" rel="stylesheet">
+  <link href="home.css?v=20260823-2" rel="stylesheet">
+  <link href="home-content.css?v=20260823-2" rel="stylesheet">
+  <link href="home-layout-fixes.css?v=20260823-2" rel="stylesheet">
+  <script defer src="home.js?v=20260823-2"></script>
+</head>
+<body class="home-page">
+  <header class="home-hero">
+    <div class="page">
+      <div class="topline"><span>AI 3D DAILY</span><span>2026-08-23</span></div>
+      <div class="hero-copy">
+        <span class="section-kicker">TODAY · 08/23</span>
+        <h1>今日 3D Production 情報</h1>
+      </div>
+      <div class="week-counts">
+        <span><b>0</b> NEW</span>
+        <span><b>11</b> DISCOVERED</span>
+        <span><b>0</b> UPDATE</span>
+        <span><b>0</b> 持續追蹤</span>
+        <span class="week-asof">2026-08-23</span>
+      </div>
+    </div>
+  </header>
 
-<html lang="zh-Hant"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><title>AI 3D Daily｜每日 3D 美術情報總覽</title><link href="styles.css?v=20260822-4" rel="stylesheet"/><link href="home.css?v=20260823-1" rel="stylesheet"/><link href="home-content.css?v=20260822-4" rel="stylesheet"/><link href="home-layout-fixes.css?v=20260823-1" rel="stylesheet"/><script defer="" src="home.js?v=20260822-3"></script></head><body class="home-page"><header class="home-hero"><div class="page"><div class="topline"><span>AI 3D DAILY</span><span>2026-08-23</span></div><div class="hero-copy"><span class="section-kicker">TODAY · 08/23</span><h1>今日 3D Production 情報</h1></div><div class="week-counts"><span><b>0</b> NEW</span><span><b>11</b> DISCOVERED</span><span><b>0</b> UPDATE</span><span><b>0</b> 持續追蹤</span><span class="week-asof">2026-08-23</span></div></div></header><main class="page home-main"><section class="home-section today-section"><div class="home-section-head today-head"><div><span class="section-kicker">TODAY · 08/23</span><h2>今天最值得看的 5 件事</h2></div><a class="text-link" href="2026-08-23/">查看 8/23 歷史快照 →</a></div><div class="top-list"><article class="top-item"><span class="top-no">01</span><div><div class="item-meta"><span class="pill green">BLENDER / PHYSICS</span><span class="status-badge status-track">DISCOVERED · 07/30</span></div><h2>Blender 5.2：Geometry Nodes Physics 已值得建立 Production Prototype</h2><p>Hair／Cloth dynamics 以 Geometry Nodes 資產包裝 XPBD Solver，支援 Collider、Custom Force、Custom Effector；仍是 Experimental，但已能開始封裝可重用 simulation 規則。</p><div class="quick-impact"><span><b>Procedural</b> ★★★★★</span><span><b>成熟度</b> Experimental</span><span><b>先測</b> Cloth / Hair</span></div><details class="home-full-analysis"><summary>完整分析</summary><div class="detail-body home-analysis-body"><p>價值在 simulation 進入可組合的 Geometry Nodes 架構。正式專案先 prototype；20 分鐘可測 cloth + collider + custom force，再存成 node asset 檢查 cache 與重開檔一致性。</p></div></details><a class="source" href="https://code.blender.org/2026/07/geometry-nodes-physics/" rel="noopener noreferrer" target="_blank">Blender Developers Blog · 官方 ↗</a></div></article><article class="top-item"><span class="top-no">02</span><div><div class="item-meta"><span class="pill green">BLENDER / RETOPO</span><span class="status-badge status-track">DISCOVERED · 06/25</span></div><h2>RetopoFlow 4.1.9：Blender 5.2 相容，手動 Retopo 深度整合 Edit Mode</h2><p>RetopoFlow 4 把 Contours、PolyStrips、Strokes、PolyPen、Relax 直接整合進 Edit Mode；4.1.9 已支援 Blender 5.2。</p><div class="quick-impact"><span><b>Character</b> ★★★★★</span><span><b>5.2</b> 支援</span><span><b>Workflow</b> Edit Mode</span></div><details class="home-full-analysis"><summary>完整分析</summary><div class="detail-body home-analysis-body"><p>進入工具時自動處理 snapping、overlay、auto merge 與 inactive fade，退出後恢復設定。用頭部高模做 20 分鐘測試，和 Blender 原生 Poly Build 比較操作成本。</p></div></details><a class="source" href="https://superhivemarket.com/products/retopoflow/versions" rel="noopener noreferrer" target="_blank">RetopoFlow 版本紀錄 ↗</a></div></article><article class="top-item"><span class="top-no">03</span><div><div class="item-meta"><span class="pill green">NPR / UE5</span><span class="status-badge status-track">DISCOVERED · 08/2026</span></div><h2>Arknights: Endfield Rendering Recreation：UE5.8 × Blender Hybrid NPR</h2><p>同一角色在 UE5.8 與 Blender 維持 anime visual target；UE 端柔化 face／hair tonal steps，同時讓 body 保留 PBR detail。</p><div class="quick-impact"><span><b>NPR</b> ★★★★★</span><span><b>UE5.8</b> Realtime</span><span><b>跨引擎</b> 高</span></div><details class="home-full-analysis"><summary>完整分析</summary><div class="detail-body home-analysis-body"><p>可複製重點是 Face／Hair／Body 分區決定 NPR 與 PBR 職責，再統一 skylight、rim、post。這是 solo recreation，不代表原遊戲官方 shader。</p></div></details><a class="source" href="https://sku11zz.github.io/AnimTA_ShuyuanJi/project-endfield-character-rendering.html" rel="noopener noreferrer" target="_blank">作者 Breakdown ↗</a></div></article><article class="top-item"><span class="top-no">04</span><div><div class="item-meta"><span class="pill green">BLENDER / NPR</span><span class="status-badge status-track">DISCOVERED · 08/18</span></div><h2>Procedural Hand-Painted EEVEE Shader：快速建立 painterly breakup</h2><p>lassyla 公開常用 EEVEE procedural shader 與 demo scene，以 Noise 等程序訊號建立手繪感。</p><div class="quick-impact"><span><b>Stylized</b> ★★★★★</span><span><b>EEVEE</b> 即時</span><span><b>可實測</b> 高</span></div><details class="home-full-analysis"><summary>完整分析</summary><div class="detail-body home-analysis-body"><p>適合 look-dev；正式導入要避免全場景同一 Noise 頻率。建議同一資產比較 PBR、procedural painterly、手繪 Base Color 三版。</p></div></details><a class="source" href="https://80.lv/articles/tutorial-procedural-blender-shader-with-hand-painted-look" rel="noopener noreferrer" target="_blank">80 Level／作者教學索引 ↗</a></div></article><article class="top-item"><span class="top-no">05</span><div><div class="item-meta"><span class="pill green">BLENDER 5.2 LTS</span><span class="status-badge status-track">DISCOVERED · 07/14</span></div><h2>Blender 5.2 LTS：下一個值得鎖版的 Production 基線</h2><p>支援到 2028/07，包含 instance-heavy Geometry Nodes 約 2× 加速、Cycles texture cache、Principled Thin Wall、EEVEE 改善與 remote asset libraries。</p><div class="quick-impact"><span><b>LTS</b> 至 2028/07</span><span><b>GN</b> 約 2×</span><span><b>Production</b> ★★★★★</span></div><details class="home-full-analysis"><summary>完整分析</summary><div class="detail-body home-analysis-body"><p>先複製代表性專案測 Add-ons、GN、材質、FBX／glTF 與 render parity，通過後再鎖 5.2。LTS 不代表 Experimental 功能都 Production-safe。</p></div></details><a class="source" href="https://www.blender.org/releases/5-2/" rel="noopener noreferrer" target="_blank">Blender 官方 ↗</a></div></article></div></section><section class="home-section more-section"><div class="home-section-head"><div><span class="section-kicker">MORE · 08/23</span><h2>今天還有什麼</h2></div><p>獨立 Supplemental Discovery · 16 則有效情報</p></div><div class="more-grid"><article class="more-card"><div class="item-meta"><span class="pill green">BLENDER / NODES</span></div><h4>Node Preview Thumbnails 1.1.2</h4><p>Shader、Geometry Nodes、Compositor 節點上方直接顯示 live preview。</p><div class="quick-impact"><span><b>Debug</b> 快</span><span><b>Shader</b> 高</span><span><b>限制</b> 僅測 Win11</span></div><details class="home-full-analysis"><summary>完整分析</summary><div class="detail-body home-analysis-body"><p>降低 Node Graph 黑盒感；複雜圖可用 Only Marked Nodes 控制成本。</p></div></details><a class="source" href="https://extensions.blender.org/add-ons/node-preview/" rel="noopener noreferrer" target="_blank">Blender Extensions ↗</a></article><article class="more-card"><div class="item-meta"><span class="pill green">GEOMETRY NODES</span></div><h4>Geo Nodes Guide：332 個節點 hover 文件</h4><p>直接顯示用途、pitfalls、搭配節點與 workflow example。</p><div class="quick-impact"><span><b>學習</b> ★★★★★</span><span><b>節點</b> 332</span><span><b>GPL</b> 是</span></div><details class="home-full-analysis"><summary>完整分析</summary><div class="detail-body home-analysis-body"><p>適合剛轉 Geometry Nodes；關鍵技術細節仍與官方 Manual 交叉確認。</p></div></details><a class="source" href="https://extensions.blender.org/add-ons/geo-nodes-guide/" rel="noopener noreferrer" target="_blank">Blender Extensions ↗</a></article><article class="more-card"><div class="item-meta"><span class="pill green">MODELING / GN</span></div><h4>ppeh_tools：30 個程序建模／UV modifier</h4><p>Geometry Nodes 封裝成一般 modifier 參數，核心版可免費商用。</p><div class="quick-impact"><span><b>Hard Surface</b> 高</span><span><b>Non-destructive</b> 高</span><span><b>工具</b> 30</span></div><details class="home-full-analysis"><summary>完整分析</summary><div class="detail-body home-analysis-body"><p>對 modifier stack 使用者直覺；先比較三個常用操作的 apply 拓樸與 UV。</p></div></details><a class="source" href="https://blenderartists.org/t/ppeh-tools-procedural-modeling-toolkit-for-blender-5-2-lts/1647698" rel="noopener noreferrer" target="_blank">作者發布 ↗</a></article><article class="more-card"><div class="item-meta"><span class="pill green">BLENDER / SHADER</span></div><h4>Node Wrangler 5.2：Preview Output 快捷操作</h4><p>Shader 用 Shift+Ctrl+LMB；Geometry Nodes 用 Shift+Alt+LMB 快速 preview output。</p><div class="quick-impact"><span><b>效率</b> 高</span><span><b>內建</b> 是</span><span><b>成本</b> 低</span></div><details class="home-full-analysis"><summary>完整分析</summary><div class="detail-body home-analysis-body"><p>材質 debug 很值得先形成肌肉記憶，也可配合 Merge Selected Nodes 減少基礎接線。</p></div></details><a class="source" href="https://docs.blender.org/manual/en/latest/addons/node_wrangler.html" rel="noopener noreferrer" target="_blank">Blender Manual ↗</a></article><article class="more-card"><div class="item-meta"><span class="pill green">NPR / LIGHTING</span></div><h4>Stylized / Pixelated Caustics</h4><p>用 projected 2D Voronoi 建立 art-directable 的非寫實水面焦散。</p><div class="quick-impact"><span><b>NPR</b> 高</span><span><b>可控</b> 高</span><span><b>用途</b> 水面</span></div><details class="home-full-analysis"><summary>完整分析</summary><div class="detail-body home-analysis-body"><p>正式材質應暴露 scale、speed、contrast，並測相機移動時是否產生貼紙感。</p></div></details><a class="source" href="https://blenderartists.org/c/resources/tutorials-tips-and-tricks/40" rel="noopener noreferrer" target="_blank">Blender Artists ↗</a></article><article class="more-card"><div class="item-meta"><span class="pill green">BLENDER / NPR DEV</span></div><h4>Material Lighting Nodes：NPR Project 開始把自訂材質光照帶回 EEVEE</h4><p>Blender 開發者 8/20 公開新 Material Lighting Nodes 方向，包含 Light Info 與 Light Evaluation，目標是讓材質能直接取得光源資訊並自訂 shading。</p><div class="quick-impact"><span><b>NPR</b> ★★★★★</span><span><b>EEVEE</b> 開發中</span><span><b>Production</b> 先 Prototype</span></div><details class="home-full-analysis"><summary>完整分析</summary><div class="detail-body home-analysis-body"><p>對 Toon／NPR 最重要的是自訂 lighting 不必完全繞開 EEVEE。現在仍屬開發討論，不宜視為穩定功能；值得先追 Light Info、Light Evaluation 與未來 per-light shading 的 API/Node 變化。</p></div></details><a class="source" href="https://devtalk.blender.org/t/npr-project-multi-stage-compositing/40758/80" rel="noopener noreferrer" target="_blank">Blender Developer Forum ↗</a></article><article class="more-card" data-supplemental-id="fungal-creature"><div class="item-meta"><span class="pill green">CHARACTER / SURFACING</span><span class="status-badge status-track">DISCOVERED · 08/19</span></div><h4>Fungal Creature：用 Blender、ZBrush、Substance 與 UE5 組合多種有機材質</h4><p>Kamil Tondera 的生物角色案例把樹皮、菌類、根系與植物組織整合成同一個可信生物。重點不是單一軟體技巧，而是從 silhouette、曲線生成、Retopo 到 hand-painted surfacing 的完整角色 Production 流程。</p><figure class="case-preview" data-visual-id="fungal-creature"><a href="https://80.lv/articles/sculpting-and-texturing-a-fungal-creature-inspired-by-the-last-of-us" rel="noreferrer" target="_blank" title="開啟原始案例"><img alt="SOURCE COVER preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/fungal-creature.jpg"/></a><figcaption><span>SOURCE COVER</span> · Local visual evidence · 點圖開啟原始來源</figcaption></figure><div class="quick-impact"><span><b>Character</b> ★★★★☆</span><span><b>Organic Surfacing</b> 高</span><span><b>可複製性</b> 高</span></div><details class="home-full-analysis"><summary>完整分析</summary><div class="detail-body home-analysis-body"><h4>視覺目標與問題</h4><p>案例要解決的是如何把樹皮、蘑菇、根系與植物組織混成一個仍然有清楚 silhouette 的生物，而不是把很多高頻細節堆在一起。作者會反覆退遠檢查整體形體，避免有機細節把主輪廓與焦點吃掉。</p><h4>Production 流程與關鍵決策</h4><p>流程從簡單球體／圓柱 blockout 開始，在 ZBrush 完成高模與解剖，再利用 Blender Curve、Draw 與 BY-GEN 類工具快速建立藤蔓與組織細節；Retopo 採 ZRemesh + Blender RetopoFlow，UV 用 UVPackmaster；Substance Painter 以 mask、procedural generator、Curvature/AO 與 hand-paint 疊出多材質，再進 UE5 做最終燈光。</p><h4>為什麼值得學</h4><p>最有 Production 價值的是把『大形 → 中型結構 → 表面材質』分層處理。藤蔓、根系這種形狀若全靠雕刻會非常慢，用 Curve 先解決路徑與體積，再把高頻細節交給 alpha／brush／texture，能明顯降低重工。</p><h4>限制與可複製 SOP</h4><p>這是 Hero Creature 類案例，細節量與材質複雜度不能直接照搬到大量 NPC。可複製 SOP：① 先鎖 silhouette；② 曲線類結構先程序／Curve 化；③ Retopo 分自動與人工兩階段；④ 材質避免純色，用色相與 roughness 微變化連接不同組織；⑤ 進引擎後用單一主光先驗證形體，再補局部燈。適合 Character Artist、Creature Artist、Surfacing Artist。</p><h4>20 分鐘實測</h4><p>做一段樹皮＋菌類混合的小型 bust：Curve 拉出兩條根系，ZBrush 或 Blender 雕一層主體，Substance 只用 3 組 roughness/value variation 分開材質，再進引擎用單主光檢查遠近距離 readability。</p></div></details><a class="source" href="https://80.lv/articles/sculpting-and-texturing-a-fungal-creature-inspired-by-the-last-of-us" rel="noopener noreferrer" target="_blank">作者訪談／80 Level · 中高可信度 ↗</a></article><article class="more-card" data-supplemental-id="quad-maker"><div class="item-meta"><span class="pill blue">BLENDER / RETOPO</span><span class="status-badge status-track">DISCOVERED · 08/19</span></div><h4>Quad Maker：把 Blender 手動 Retopo 做得更接近 Maya Quad Draw</h4><p>Mark Kingsnorth 的 Quad Maker 提供 Add Vertices、Fill Quads、Extend Borders、Draw Quad Strip、Quick Cut 等操作，目標是把高模手動重拓撲變成更連續的單一工作流。對從 Maya／3ds Max 轉 Blender 的角色與 Prop 美術，它值得當效率工具評估。</p><div class="quick-impact"><span><b>Retopo</b> ★★★★☆</span><span><b>導入成本</b> 低</span><span><b>適合</b> 角色 / Prop</span></div><details class="home-full-analysis"><summary>完整分析</summary><div class="detail-body home-analysis-body"><h4>它解決什麼</h4><p>Blender 原生可以完成 Retopo，但操作常分散在吸附、擠出、Knife、Loop Cut、Smooth 等多個工具。Quad Maker 把常用操作集中成一套偏 Quad Draw 思維的工具集，降低手在工具間切換的頻率。</p><h4>Production 影響</h4><p>Add Vertices、Fill Quads、Draw Quad Strip、Extend Borders 對臉部、肩胯與 hard-surface 轉折區特別有用，因為這些地方通常不是全自動 Retopo 能直接交付的區域。真正值得比較的是每 1,000 個 quad 的人工時間與修正次數。</p><h4>限制與風險</h4><p>它仍然是手動 Retopo 輔助，不會替你決定 deformation loop、pole 位置或 topology 語意。第三方 add-on 也需要確認 Blender 版本更新相容性，因此不能把它當成唯一 Retopo SOP。</p><h4>可複製 SOP</h4><p>用同一個高模資產做 A/B：A 用 Blender 原生 Shrinkwrap + Poly Build；B 用 Quad Maker。固定 15 分鐘，比較 quad 數、穿插、邊界連續性與每次改線需要的操作步數，再決定是否加入角色 SOP。</p><h4>適合誰</h4><p>Character Artist、Creature Artist、Prop Artist，以及從 Maya Quad Draw 或 3ds Max Graphite／Freeform 工作流轉到 Blender 的使用者。</p></div></details><a class="source" href="https://80.lv/articles/manually-retopologize-your-3d-meshes-with-this-blender-tool" rel="noopener noreferrer" target="_blank">工具作者資訊／80 Level · 中等可信度 ↗</a></article><article class="more-card" data-supplemental-id="matplus-13"><div class="item-meta"><span class="pill orange">BLENDER / TEXTURE</span><span class="status-badge status-track">DISCOVERED · 08/12</span></div><h4>MatPlus 1.3：在 Blender 內做類 Substance Painter 的 Layer-Based Texture Workflow</h4><p>MatPlus 把 Paint Layer、Fill Layer、Folder、Blend Mode、Mask、UDIM 與 game-ready texture export 放進 Blender，1.3 再加入 auto-cache、BeFX Library、Smart Masks 與 Display 模組。它不是 Painter 的直接替代結論，但對希望減少 DCC 往返的人很值得測。</p><div class="quick-impact"><span><b>Texturing</b> ★★★★☆</span><span><b>UDIM</b> 支援</span><span><b>引擎輸出</b> Unity / Unreal</span></div><details class="home-full-analysis"><summary>完整分析</summary><div class="detail-body home-analysis-body"><h4>材質目標與架構</h4><p>MatPlus 的核心不是新增一支畫筆，而是在 Blender 內建立非破壞式 layer stack，管理 Base Color、Roughness、Metallic、Normal、Bump 等通道，讓 Fill／Paint／Mask／Folder 的思路接近 Painter 或 Mari。</p><h4>Production 收益</h4><p>如果建模、UV、Lookdev 都在 Blender，最大的收益是少一次 Export → Painter → Reimport 的來回，尤其在模型拓撲與 UV 還在反覆修改的階段。多 UDIM 與 Unreal／Unity map export 讓它至少具備遊戲資產測試價值。</p><h4>1.3 的實質更新</h4><p>1.3 將重點放在 auto-cache、BeFX Library／Smart Masks 與 Display 模組，方向是改善大型材質堆疊的操作效率、加快起始材質建立，以及讓預覽呈現更可控。</p><h4>限制與適用邊界</h4><p>Blender 內 texturing 是否能取代 Painter，仍取決於 bake、mask generator、anchor-like workflow、資產管理、效能與團隊標準。若公司 Pipeline 已高度依賴 Substance automation，轉換成本可能比省下的 DCC 往返更高。</p><h4>20 分鐘實測</h4><p>拿一個 2-UDIM Prop，在 MatPlus 做 Base Color + Roughness + Metal + Normal 四通道，至少建立 1 個 Fill、1 個 Paint、1 個 Mask，再輸出 Unity／UE preset。</p></div></details><a class="source" href="https://80.lv/articles/matplus-brings-substance-3d-painter-inspired-texture-painting-to-blender" rel="noopener noreferrer" target="_blank">Marketplace 報導／作者產品資訊 · 中等可信度 ↗</a></article><article class="more-card" data-supplemental-id="zen-bbq-20"><div class="item-meta"><span class="pill blue">BLENDER / HARD SURFACE</span><span class="status-badge status-track">DISCOVERED · 08/05</span></div><h4>Zen BBQ 2.0：程序 Bevel 直接 Bake 成 Normal／AO／Curvature 等 Production Maps</h4><p>Zen BBQ 2.0 把可調式 bevel workflow 延伸到 map baking，可針對物件或整個 collection 烘焙 Normal、AO、Curvature、ID 等貼圖，並用 Explode system 降低投射穿插。對 hard-surface 資產，這比單純 viewport bevel 預覽更接近可交付流程。</p><div class="quick-impact"><span><b>Hard Surface</b> ★★★★☆</span><span><b>Baking</b> 內建</span><span><b>導入成本</b> 低中</span></div><details class="home-full-analysis"><summary>完整分析</summary><div class="detail-body home-analysis-body"><h4>功能與用途</h4><p>它把 bevel 視覺化、程序控制與貼圖烘焙串成同一條鏈，適合想在 Blender 內完成 hard-surface high-to-low 或 weighted bevel 類流程的人。</p><h4>Production 影響</h4><p>若能穩定把 bevel 結果轉成 Normal／AO／Curvature／ID，可減少切到外部 baker 的次數，尤其適合大量機械 Prop 或環境模組。</p><h4>限制／風險</h4><p>仍需檢查 cage、爆炸距離、硬邊與 UV seam；自動化 baking 不會替你解決所有投射 artifact。</p><h4>是否值得測</h4><p>值得用同一個機械 Prop 比較原本 Marmoset／Painter bake 與 Zen BBQ 2.0 的 artifact 數量、設定時間與重烘成本。</p></div></details><a class="source" href="https://80.lv/articles/this-blender-add-on-for-customizable-bevels-gets-a-new-map-baking-system" rel="noopener noreferrer" target="_blank">Marketplace 報導／工具作者資訊 · 中等可信度 ↗</a></article><article class="more-card" data-supplemental-id="seamless-painter"><div class="item-meta"><span class="pill orange">BLENDER / TEXTURE TIP</span><span class="status-badge status-track">DISCOVERED · 08/17</span></div><h4>Seamless Painter：直接用 Blender Texture Paint 製作無縫貼圖</h4><p>Omar Faruq Tawsif 示範用 Blender 內建 Texture Paint 加免費自動化 add-on 建立 seamless canvas，工具已測試 Blender 3.6 到 5.2。對 Stylized／手繪材質來說，它提供一條不必先進 Photoshop 的快速貼圖起稿路徑。</p><div class="quick-impact"><span><b>Texture Paint</b> ★★★★☆</span><span><b>Blender 5.2</b> 已測</span><span><b>適合</b> Stylized</span></div><details class="home-full-analysis"><summary>完整分析</summary><div class="detail-body home-analysis-body"><h4>技巧是什麼</h4><p>核心是先把可平鋪畫布與繪製設定自動建立，再直接在 Blender 裡畫，減少手工做 offset／邊界檢查的步驟。</p><h4>實際用途</h4><p>適合牆面、地面、筆觸材質與 stylized pattern 的快速製作，也能和 Shader Node 預覽同時進行。</p><h4>限制</h4><p>這不是完整的 Painter 替代方案；複雜 channel authoring、mask stack 與大量材質管理仍有差距。</p><h4>是否值得導入</h4><p>如果你常做手繪／NPR 貼圖，值得加入個人工具箱；若工作主要是 PBR hero asset，優先級較低。</p></div></details><a class="source" href="https://80.lv/articles/how-to-paint-seamlessly-in-blender-s-texture-paint-mode" rel="noopener noreferrer" target="_blank">作者教學／80 Level · 中高可信度 ↗</a></article><article class="more-card" data-supplemental-id="sculptools-palette"><div class="item-meta"><span class="pill green">BLENDER / SCULPT</span><span class="status-badge status-track">DISCOVERED · 08/05</span></div><h4>Sculptools: Palette：把常用 Sculpt Brush 與工具集中成游標旁 Radial Menu</h4><p>Sculptools: Palette 是免費 Blender sculpt workflow 工具，可把常用筆刷／工具放進 radial menu，支援 flick、數字鍵、Radius／Strength 動態調整與 preset 匯入匯出。它屬於小工具，但對長時間雕刻的操作中斷很可能有實際改善。</p><div class="quick-impact"><span><b>Sculpt</b> ★★★☆☆</span><span><b>免費</b> 是</span><span><b>導入成本</b> 低</span></div><details class="home-full-analysis"><summary>完整分析</summary><div class="detail-body home-analysis-body"><h4>功能是什麼</h4><p>把高頻 brush 與 sculpt tool 固定在一個可自訂 radial menu，減少在 Toolbar／Asset Shelf 來回尋找。</p><h4>Production 影響</h4><p>價值主要在長時間 sculpt session 的操作節奏與肌肉記憶，不是畫質本身。</p><h4>限制</h4><p>如果團隊已高度自訂 hotkey 或用數位筆快捷鍵，收益可能不大；也要確認版本更新後 preset 是否穩定。</p><h4>是否值得測</h4><p>值得用 10 分鐘做一段臉部／皺褶雕刻，記錄切換筆刷次數與是否真的少離開 viewport。</p></div></details><a class="source" href="https://80.lv/articles/check-out-this-free-blender-add-on-for-organizing-your-tools-in-a-radial-menu" rel="noopener noreferrer" target="_blank">工具報導／80 Level · 中等可信度 ↗</a></article><article class="more-card" data-supplemental-id="spline-architect-272"><div class="item-meta"><span class="pill blue">UNITY / LEVEL TOOLS</span><span class="status-badge status-track">DISCOVERED · 08/13</span></div><h4>Spline Architect 2.7.2：GPU Instancing 把大量沿樣條物件推到百萬級</h4><p>Unity 的 Spline Architect 2.7.2 新增 GPU instancing，作者示範可沿 spline 移動／配置最高約 1,000,000 個物件。工具同時涵蓋道路、軌道、管線、交通系統、相機路徑與 Terrain 整合，對大型場景工具值得留意。</p><div class="quick-impact"><span><b>Environment</b> ★★★★☆</span><span><b>GPU Instancing</b> 百萬級示範</span><span><b>Unity</b> 2022 / 6</span></div><details class="home-full-analysis"><summary>完整分析</summary><div class="detail-body home-analysis-body"><h4>功能與用途</h4><p>它把 spline authoring、mesh deformation、object cloning、terrain tools 與 movement 集中在同一套 Unity 工具。</p><h4>Production 影響</h4><p>對道路、欄杆、管線、植被帶、燈具等長距離場景物件，GPU instancing 能把『可編輯』與『大量重複』同時保留。</p><h4>限制／風險</h4><p>百萬物件是作者展示值，不代表所有專案都能在同樣硬體與 shader 成本下達到相同結果；還要看 culling、material variation 與 CPU authoring cost。</p><h4>是否值得測</h4><p>大型場景／Level Art 專案值得拿 10k、100k、1M 三個數量級做 Editor 與 Runtime profiling。</p></div></details><a class="source" href="https://80.lv/articles/spline-architect-s-new-version-adds-gpu-instancing-for-1-000-000-objects-along-splines" rel="noopener noreferrer" target="_blank">開發者資訊／80 Level · 中等可信度 ↗</a></article><article class="more-card" data-supplemental-id="focalrig-gasp"><div class="item-meta"><span class="pill purple">UNREAL / ANIMATION</span><span class="status-badge status-track">DISCOVERED · 08/19</span></div><h4>FocalRig × GASP：用 Control Rig 程序節點快速改成 True First-Person</h4><p>Maks Maisak 展示在 Unreal Game Animation Sample Project 中加入 FocalRig 節點後，約 10 分鐘做出 true first-person，同時保留 motion matching、foot placement、vaulting、sliding 與同步攻擊。這對 Animator／TA 是很實際的程序動畫案例。</p><div class="quick-impact"><span><b>Animation</b> ★★★★☆</span><span><b>Control Rig</b> 程序式</span><span><b>適合</b> Animator / TA</span></div><details class="home-full-analysis"><summary>完整分析</summary><div class="detail-body home-analysis-body"><h4>技巧是什麼</h4><p>FocalRig 以自配置 Control Rig nodes 取代部分 aim offset／look-at 處理，讓相機、瞄準、foot IK 與 locomotion 能共存。</p><h4>Production 影響</h4><p>若能維持原 GASP motion matching 與 traversal，代表程序層可以疊在既有動畫資料上，而不必重做一套 first-person clip。</p><h4>限制</h4><p>目前主要是作者展示，完整 tutorial／project files 尚未全部公開；導入前要測武器、鏡頭穿模、network replication 與極端 pose。</p><h4>是否值得測</h4><p>做一個 GASP clone，只加 look/aim 與 camera follow，先驗證 vault、slide、takedown 三種高風險動作。</p></div></details><a class="source" href="https://80.lv/articles/true-first-person-mode-in-unreal-engine-s-game-animation-sample-project" rel="noopener noreferrer" target="_blank">開發者展示／80 Level · 中高可信度 ↗</a></article><article class="more-card" data-supplemental-id="marrow-softbody"><div class="item-meta"><span class="pill green">BLENDER / SIM</span><span class="status-badge status-track">DISCOVERED · 08/18</span></div><h4>Marrow：GPU XPBD Soft Body Add-on 展示即時體積保持與黏著破裂</h4><p>Alan Syarif 展示 WIP 的 Marrow Blender add-on：以 tetrahedral cage 與 neo-Hookean XPBD 在 GPU 上求解 soft body，支援 volume preservation 與 Stick Break。作者在 RTX 4060 的典型 setup 回報約 1–2 ms，但實際成本會依設定而變。</p><div class="quick-impact"><span><b>Simulation</b> ★★★★☆</span><span><b>成熟度</b> WIP</span><span><b>GPU</b> XPBD</span></div><details class="home-full-analysis"><summary>完整分析</summary><div class="detail-body home-analysis-body"><h4>功能是什麼</h4><p>它把 mesh 填入 tetrahedral cage 後用 GPU 做 XPBD soft-body 求解，重點是即時互動與體積保持。</p><h4>Production 用途</h4><p>適合做果凍、生物組織、軟體道具、黏著／拉扯類 prototype；若未來可 bake，對動畫 blocking 很有潛力。</p><h4>限制／風險</h4><p>目前仍是 WIP，數值穩定性、碰撞、cache/bake、跨機器一致性與商用支援都需要後續確認。</p><h4>是否值得追</h4><p>TA、FX Artist、Creature Animator 值得追蹤，但正式專案先不要把它當唯一 soft-body solver。</p></div></details><a class="source" href="https://80.lv/articles/artist-shows-fascinating-soft-body-simulation-made-with-wip-blender-add-on" rel="noopener noreferrer" target="_blank">作者展示／80 Level · 中等可信度 ↗</a></article><article class="more-card" data-supplemental-id="vfx-toolkit-10"><div class="item-meta"><span class="pill purple">BLENDER / VFX</span><span class="status-badge status-track">DISCOVERED · 08/03</span></div><h4>VFX Toolkit 1.0：100+ 程序特效、Geometry Nodes、Shader 與手繪 FX 集中到 Blender</h4><p>Casey Sheep 的 VFX Toolkit 1.0 收錄 100+ procedural effects、Geometry Nodes generators、shaders、hand-drawn animation FX、compositor effects 與 VFX assets。對需要快速做 impact、trail、smoke 或 stylized scene accents 的 3D Generalist 很實用。</p><div class="quick-impact"><span><b>VFX</b> ★★★★☆</span><span><b>資產量</b> 100+</span><span><b>適合</b> Generalist / FX</span></div><details class="home-full-analysis"><summary>完整分析</summary><div class="detail-body home-analysis-body"><h4>功能與用途</h4><p>它把常見 impact、trail、smoke、screen FX 等預製成可調元件，降低每次從零搭節點的成本。</p><h4>Production 影響</h4><p>最大價值是 preproduction 與 prototype：可以先把節奏、讀性與風格做出來，再決定哪些效果需要客製。</p><h4>限制</h4><p>資產庫容易造成視覺同質化；正式案仍需統一 art direction、效能預算與 naming／packing。</p><h4>是否值得測</h4><p>如果團隊常用 Blender 做 previs、motion 或 stylized FX，值得先挑 3 個效果測輸出到最終 compositing／engine 的可接續性。</p></div></details><a class="source" href="https://80.lv/articles/artist-releases-blender-add-on-with-over-100-vfx-assets-presets" rel="noopener noreferrer" target="_blank">工具作者資訊／80 Level · 中等可信度 ↗</a></article></div></section><section class="home-section test-section"><div class="home-section-head"><div><span class="section-kicker">TEST TODAY</span><h2>今天值得實測</h2></div></div><p>① Blender 5.2 Geometry Nodes Cloth/Hair；② procedural painterly vs 手繪 Base Color；③ RetopoFlow 4.1.9 頭部 Retopo。</p></section><section class="home-section history-section"><div class="home-section-head"><div><span class="section-kicker">ARCHIVE</span><h2>歷史日報</h2></div><p>完整資料庫</p></div><div class="history-list"><a href="2026-08-23/"><strong>2026-08-23</strong><span>TOP 5 + 6 則 Supplemental</span></a><a href="2026-08-22/"><strong>2026-08-22</strong><span>TOP 5 + 16 則 Supplemental</span></a><a href="2026-08-21/"><strong>2026-08-21</strong><span>歷史日報</span></a><a href="2026-08-20/"><strong>2026-08-20</strong><span>歷史日報</span></a></div></section></main></body></html>
+  <main class="page home-main">
+    <section class="home-section today-section">
+      <div class="home-section-head today-head">
+        <div>
+          <span class="section-kicker">TODAY · 08/23</span>
+          <h2>今天最值得看的 5 件事</h2>
+        </div>
+        <a class="text-link" href="2026-08-23/">查看 8/23 歷史快照 →</a>
+      </div>
+
+      <div class="top-list">
+        <article class="top-item">
+          <span class="top-no">01</span>
+          <div>
+            <div class="item-meta">
+              <span class="pill green">BLENDER / PHYSICS</span>
+              <span class="status-badge status-track">DISCOVERED · 07/30</span>
+            </div>
+            <h2>Blender 5.2：Geometry Nodes Physics 已值得建立 Production Prototype</h2>
+            <p>Hair／Cloth dynamics 以 Geometry Nodes 資產包裝 XPBD Solver，支援 Collider、Custom Force、Custom Effector；仍是 Experimental，但已能開始封裝可重用 simulation 規則。</p>
+            <div class="quick-impact">
+              <span><b>Procedural</b> ★★★★★</span>
+              <span><b>成熟度</b> Experimental</span>
+              <span><b>先測</b> Cloth / Hair</span>
+            </div>
+            <details class="home-full-analysis">
+              <summary>完整分析</summary>
+              <div class="detail-body home-analysis-body"><p>價值在 simulation 進入可組合的 Geometry Nodes 架構。正式專案先 prototype；20 分鐘可測 cloth + collider + custom force，再存成 node asset 檢查 cache 與重開檔一致性。</p></div>
+            </details>
+            <a class="source" href="https://code.blender.org/2026/07/geometry-nodes-physics/" target="_blank" rel="noopener noreferrer">Blender Developers Blog · 官方 ↗</a>
+          </div>
+        </article>
+
+        <article class="top-item">
+          <span class="top-no">02</span>
+          <div>
+            <div class="item-meta">
+              <span class="pill green">BLENDER / RETOPO</span>
+              <span class="status-badge status-track">DISCOVERED · 06/25</span>
+            </div>
+            <h2>RetopoFlow 4.1.9：Blender 5.2 相容，手動 Retopo 深度整合 Edit Mode</h2>
+            <p>RetopoFlow 4 把 Contours、PolyStrips、Strokes、PolyPen、Relax 直接整合進 Edit Mode；4.1.9 已支援 Blender 5.2。</p>
+            <div class="quick-impact">
+              <span><b>Character</b> ★★★★★</span>
+              <span><b>5.2</b> 支援</span>
+              <span><b>Workflow</b> Edit Mode</span>
+            </div>
+            <details class="home-full-analysis">
+              <summary>完整分析</summary>
+              <div class="detail-body home-analysis-body"><p>進入工具時自動處理 snapping、overlay、auto merge 與 inactive fade，退出後恢復設定。用頭部高模做 20 分鐘測試，和 Blender 原生 Poly Build 比較操作成本。</p></div>
+            </details>
+            <a class="source" href="https://superhivemarket.com/products/retopoflow/versions" target="_blank" rel="noopener noreferrer">RetopoFlow 版本紀錄 ↗</a>
+          </div>
+        </article>
+
+        <article class="top-item">
+          <span class="top-no">03</span>
+          <div>
+            <div class="item-meta">
+              <span class="pill green">NPR / UE5</span>
+              <span class="status-badge status-track">DISCOVERED · 08/2026</span>
+            </div>
+            <h2>Arknights: Endfield Rendering Recreation：UE5.8 × Blender Hybrid NPR</h2>
+            <p>同一角色在 UE5.8 與 Blender 維持 anime visual target；UE 端柔化 face／hair tonal steps，同時讓 body 保留 PBR detail。</p>
+            <div class="quick-impact">
+              <span><b>NPR</b> ★★★★★</span>
+              <span><b>UE5.8</b> Realtime</span>
+              <span><b>跨引擎</b> 高</span>
+            </div>
+            <details class="home-full-analysis">
+              <summary>完整分析</summary>
+              <div class="detail-body home-analysis-body"><p>可複製重點是 Face／Hair／Body 分區決定 NPR 與 PBR 職責，再統一 skylight、rim、post。這是 solo recreation，不代表原遊戲官方 shader。</p></div>
+            </details>
+            <a class="source" href="https://sku11zz.github.io/AnimTA_ShuyuanJi/project-endfield-character-rendering.html" target="_blank" rel="noopener noreferrer">作者 Breakdown ↗</a>
+          </div>
+        </article>
+
+        <article class="top-item">
+          <span class="top-no">04</span>
+          <div>
+            <div class="item-meta">
+              <span class="pill green">BLENDER / NPR</span>
+              <span class="status-badge status-track">DISCOVERED · 08/18</span>
+            </div>
+            <h2>Procedural Hand-Painted EEVEE Shader：快速建立 painterly breakup</h2>
+            <p>lassyla 公開常用 EEVEE procedural shader 與 demo scene，以 Noise 等程序訊號建立手繪感。</p>
+            <div class="quick-impact">
+              <span><b>Stylized</b> ★★★★★</span>
+              <span><b>EEVEE</b> 即時</span>
+              <span><b>可實測</b> 高</span>
+            </div>
+            <details class="home-full-analysis">
+              <summary>完整分析</summary>
+              <div class="detail-body home-analysis-body"><p>適合 look-dev；正式導入要避免全場景同一 Noise 頻率。建議同一資產比較 PBR、procedural painterly、手繪 Base Color 三版。</p></div>
+            </details>
+            <a class="source" href="https://80.lv/articles/tutorial-procedural-blender-shader-with-hand-painted-look" target="_blank" rel="noopener noreferrer">80 Level／作者教學索引 ↗</a>
+          </div>
+        </article>
+
+        <article class="top-item">
+          <span class="top-no">05</span>
+          <div>
+            <div class="item-meta">
+              <span class="pill green">BLENDER 5.2 LTS</span>
+              <span class="status-badge status-track">DISCOVERED · 07/14</span>
+            </div>
+            <h2>Blender 5.2 LTS：下一個值得鎖版的 Production 基線</h2>
+            <p>支援到 2028/07，包含 instance-heavy Geometry Nodes 約 2× 加速、Cycles texture cache、Principled Thin Wall、EEVEE 改善與 remote asset libraries。</p>
+            <div class="quick-impact">
+              <span><b>LTS</b> 至 2028/07</span>
+              <span><b>GN</b> 約 2×</span>
+              <span><b>Production</b> ★★★★★</span>
+            </div>
+            <details class="home-full-analysis">
+              <summary>完整分析</summary>
+              <div class="detail-body home-analysis-body"><p>先複製代表性專案測 Add-ons、GN、材質、FBX／glTF 與 render parity，通過後再鎖 5.2。LTS 不代表 Experimental 功能都 Production-safe。</p></div>
+            </details>
+            <a class="source" href="https://www.blender.org/releases/5-2/" target="_blank" rel="noopener noreferrer">Blender 官方 ↗</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="home-section more-section">
+      <div class="home-section-head">
+        <div>
+          <span class="section-kicker">MORE · 08/23</span>
+          <h2>今天還有什麼</h2>
+        </div>
+        <p>獨立 Supplemental Discovery · 6 則有效情報</p>
+      </div>
+
+      <div class="more-grid">
+        <article class="more-card">
+          <div class="item-meta"><span class="pill green">BLENDER / NODES</span></div>
+          <h4>Node Preview Thumbnails 1.1.2</h4>
+          <p>Shader、Geometry Nodes、Compositor 節點上方直接顯示 live preview。</p>
+          <div class="quick-impact">
+            <span><b>Debug</b> 快</span><span><b>Shader</b> 高</span><span><b>限制</b> 僅測 Win11</span>
+          </div>
+          <details class="home-full-analysis">
+            <summary>完整分析</summary>
+            <div class="detail-body home-analysis-body"><p>降低 Node Graph 黑盒感；複雜圖可用 Only Marked Nodes 控制成本。</p></div>
+          </details>
+          <a class="source" href="https://extensions.blender.org/add-ons/node-preview/" target="_blank" rel="noopener noreferrer">Blender Extensions ↗</a>
+        </article>
+
+        <article class="more-card">
+          <div class="item-meta"><span class="pill green">GEOMETRY NODES</span></div>
+          <h4>Geo Nodes Guide：332 個節點 hover 文件</h4>
+          <p>直接顯示用途、pitfalls、搭配節點與 workflow example。</p>
+          <div class="quick-impact">
+            <span><b>學習</b> ★★★★★</span><span><b>節點</b> 332</span><span><b>GPL</b> 是</span>
+          </div>
+          <details class="home-full-analysis">
+            <summary>完整分析</summary>
+            <div class="detail-body home-analysis-body"><p>適合剛轉 Geometry Nodes；關鍵技術細節仍與官方 Manual 交叉確認。</p></div>
+          </details>
+          <a class="source" href="https://extensions.blender.org/add-ons/geo-nodes-guide/" target="_blank" rel="noopener noreferrer">Blender Extensions ↗</a>
+        </article>
+
+        <article class="more-card">
+          <div class="item-meta"><span class="pill green">MODELING / GN</span></div>
+          <h4>ppeh_tools：30 個程序建模／UV modifier</h4>
+          <p>Geometry Nodes 封裝成一般 modifier 參數，核心版可免費商用。</p>
+          <div class="quick-impact">
+            <span><b>Hard Surface</b> 高</span><span><b>Non-destructive</b> 高</span><span><b>工具</b> 30</span>
+          </div>
+          <details class="home-full-analysis">
+            <summary>完整分析</summary>
+            <div class="detail-body home-analysis-body"><p>對 modifier stack 使用者直覺；先比較三個常用操作的 apply 拓樸與 UV。</p></div>
+          </details>
+          <a class="source" href="https://blenderartists.org/t/ppeh-tools-procedural-modeling-toolkit-for-blender-5-2-lts/1647698" target="_blank" rel="noopener noreferrer">作者發布 ↗</a>
+        </article>
+
+        <article class="more-card">
+          <div class="item-meta"><span class="pill green">BLENDER / SHADER</span></div>
+          <h4>Node Wrangler 5.2：Preview Output 快捷操作</h4>
+          <p>Shader 用 Shift+Ctrl+LMB；Geometry Nodes 用 Shift+Alt+LMB 快速 preview output。</p>
+          <div class="quick-impact">
+            <span><b>效率</b> 高</span><span><b>內建</b> 是</span><span><b>成本</b> 低</span>
+          </div>
+          <details class="home-full-analysis">
+            <summary>完整分析</summary>
+            <div class="detail-body home-analysis-body"><p>材質 debug 很值得先形成肌肉記憶，也可配合 Merge Selected Nodes 減少基礎接線。</p></div>
+          </details>
+          <a class="source" href="https://docs.blender.org/manual/en/latest/addons/node_wrangler.html" target="_blank" rel="noopener noreferrer">Blender Manual ↗</a>
+        </article>
+
+        <article class="more-card">
+          <div class="item-meta"><span class="pill green">NPR / LIGHTING</span></div>
+          <h4>Stylized / Pixelated Caustics</h4>
+          <p>用 projected 2D Voronoi 建立 art-directable 的非寫實水面焦散。</p>
+          <div class="quick-impact">
+            <span><b>NPR</b> 高</span><span><b>可控</b> 高</span><span><b>用途</b> 水面</span>
+          </div>
+          <details class="home-full-analysis">
+            <summary>完整分析</summary>
+            <div class="detail-body home-analysis-body"><p>正式材質應暴露 scale、speed、contrast，並測相機移動時是否產生貼紙感。</p></div>
+          </details>
+          <a class="source" href="https://blenderartists.org/c/resources/tutorials-tips-and-tricks/40" target="_blank" rel="noopener noreferrer">Blender Artists ↗</a>
+        </article>
+
+        <article class="more-card">
+          <div class="item-meta"><span class="pill green">BLENDER / NPR DEV</span></div>
+          <h4>Material Lighting Nodes：NPR Project 開始把自訂材質光照帶回 EEVEE</h4>
+          <p>Blender 開發者 8/20 公開新 Material Lighting Nodes 方向，包含 Light Info 與 Light Evaluation，目標是讓材質能直接取得光源資訊並自訂 shading。</p>
+          <div class="quick-impact">
+            <span><b>NPR</b> ★★★★★</span><span><b>EEVEE</b> 開發中</span><span><b>Production</b> 先 Prototype</span>
+          </div>
+          <details class="home-full-analysis">
+            <summary>完整分析</summary>
+            <div class="detail-body home-analysis-body"><p>對 Toon／NPR 最重要的是自訂 lighting 不必完全繞開 EEVEE。現在仍屬開發討論，不宜視為穩定功能；值得先追 Light Info、Light Evaluation 與未來 per-light shading 的 API/Node 變化。</p></div>
+          </details>
+          <a class="source" href="https://devtalk.blender.org/t/npr-project-multi-stage-compositing/40758/80" target="_blank" rel="noopener noreferrer">Blender Developer Forum ↗</a>
+        </article>
+      </div>
+    </section>
+
+    <section class="home-section test-section">
+      <div class="home-section-head">
+        <div><span class="section-kicker">TEST TODAY</span><h2>今天值得實測</h2></div>
+      </div>
+      <p>① Blender 5.2 Geometry Nodes Cloth/Hair；② procedural painterly vs 手繪 Base Color；③ RetopoFlow 4.1.9 頭部 Retopo。</p>
+    </section>
+
+    <section class="home-section history-section">
+      <div class="home-section-head">
+        <div><span class="section-kicker">ARCHIVE</span><h2>歷史日報</h2></div>
+        <p>完整資料庫</p>
+      </div>
+      <div class="history-list">
+        <a href="2026-08-23/"><strong>2026-08-23</strong><span>TOP 5 + 6 則 Supplemental</span></a>
+        <a href="2026-08-22/"><strong>2026-08-22</strong><span>歷史日報</span></a>
+        <a href="2026-08-21/"><strong>2026-08-21</strong><span>歷史日報</span></a>
+        <a href="2026-08-20/"><strong>2026-08-20</strong><span>歷史日報</span></a>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
