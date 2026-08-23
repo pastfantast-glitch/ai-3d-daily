@@ -1,25 +1,13 @@
-name: Migrate daily report presentation
+name: Legacy daily migration QA (read-only)
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - 'daily.css'
-      - 'daily.js'
-      - 'scripts/migrate_daily_reports.py'
-      - 'scripts/check_daily_contract.py'
-      - '.github/workflows/daily-migrate.yml'
   workflow_dispatch:
 
 permissions:
-  contents: write
-
-concurrency:
-  group: daily-presentation-migration
-  cancel-in-progress: true
+  contents: read
 
 jobs:
-  migrate:
+  verify:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -27,18 +15,5 @@ jobs:
         with:
           python-version: '3.12'
       - run: pip install beautifulsoup4
-      - name: Migrate all daily reports
-        run: python scripts/migrate_daily_reports.py
-      - name: Validate daily report contract
+      - name: Validate daily report contract only
         run: python scripts/check_daily_contract.py
-      - name: Commit migrated presentation
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add 20??-??-??/index.html
-          if git diff --cached --quiet; then
-            echo "No presentation changes"
-          else
-            git commit -m "Migrate daily report presentation"
-            git push
-          fi
