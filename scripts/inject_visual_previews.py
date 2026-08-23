@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 import json, re
+from datetime import datetime
 from pathlib import Path
+from zoneinfo import ZoneInfo
 from bs4 import BeautifulSoup, Tag
 
 ROOT=Path(__file__).resolve().parents[1]
@@ -25,7 +27,7 @@ def matching_case(text):
 
 def make_preview(soup,case,prefix):
     fig=soup.new_tag('figure',attrs={'class':'case-preview','data-visual-id':case['asset'].rsplit('.',1)[0]})
-    a=soup.new_tag('a',href=case['source'],target='_blank',rel='noreferrer',title='開啟原始案例')
+    a=soup.new_tag('a',href=case['source'],target='_blank',rel='noopener noreferrer',title='開啟原始案例')
     img=soup.new_tag('img',src=f'{prefix}{case["asset"]}',alt=f'{case["label"]} preview',loading='lazy',decoding='async')
     img['onerror']="this.closest('.case-preview').style.display='none'"; a.append(img); fig.append(a)
     cap=soup.new_tag('figcaption'); tag=soup.new_tag('span'); tag.string=case['label']; cap.append(tag); cap.append(' · Local visual evidence · 點圖開啟原始來源'); fig.append(cap)
@@ -69,8 +71,17 @@ def inject_file(path,prefix):
 
 def append_css(path):
     text=path.read_text('utf-8')
-    if 'Visual Evidence Preview: local assets generated' not in text: path.write_text(text.rstrip()+PREVIEW_CSS,'utf-8'); return True
+    if 'Visual Evidence Preview: local assets generated' not in text:
+        path.write_text(text.rstrip()+PREVIEW_CSS,'utf-8'); return True
     return False
+
+def bump_asset(text, asset):
+    pat=re.compile(rf'({re.escape(asset)}\?v=)(\d{{8}})-(\d+)')
+    m=pat.search(text)
+    if not m: return text
+    today=datetime.now(ZoneInfo('Asia/Taipei')).strftime('%Y%m%d')
+    n=int(m.group(3))+1 if m.group(2)==today else 1
+    return pat.sub(rf'\g<1>{today}-{n}', text, count=1)
 
 def main():
     changed=[]; home=ROOT/'index.html'; hist=latest_daily_page()
@@ -79,13 +90,16 @@ def main():
     css_changed=False
     for css in [ROOT/'home-content.css',ROOT/'styles.css']:
         if append_css(css): changed.append(css.name); css_changed=True
-    # Existing cache-bust is retained; only first installation needed to bump it.
     if css_changed:
-        text=home.read_text('utf-8').replace('styles.css?v=20260822-3','styles.css?v=20260822-4').replace('home-content.css?v=20260822-3','home-content.css?v=20260822-4')
+        text=home.read_text('utf-8')
+        text=bump_asset(text,'styles.css')
+        text=bump_asset(text,'home-content.css')
         home.write_text(text,'utf-8')
         if hist:
             t=hist.read_text('utf-8')
-            if '../styles.css"' in t: hist.write_text(t.replace('../styles.css"','../styles.css?v=20260822-4"'),'utf-8')
+            if '../styles.css?v=' in t:
+                t=bump_asset(t,'../styles.css')
+            hist.write_text(t,'utf-8')
     print('preview injection changed:',', '.join(changed) if changed else 'nothing')
 
 if __name__=='__main__': main()
