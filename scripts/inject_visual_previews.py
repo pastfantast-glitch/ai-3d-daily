@@ -13,16 +13,14 @@ def latest_date():
     return dates[-1]
 
 
+def asset_src(rec,prefix):
+    return f"{prefix}{rec['asset_path']}"
+
+
 def make_preview(soup,rec,prefix):
-    fig=soup.new_tag('figure',attrs={
-        'class':'case-preview',
-        'data-visual-id':rec['id'],
-        'data-intel-id':rec['id'],
-        'data-intel-role':'visual'
-    })
+    fig=soup.new_tag('figure',attrs={'class':'case-preview','data-visual-id':rec['id'],'data-intel-id':rec['id'],'data-intel-role':'visual'})
     a=soup.new_tag('a',href=rec['page_url'],target='_blank',rel='noopener noreferrer',title='開啟原始案例')
-    asset_name=Path(rec['asset_path']).name
-    img=soup.new_tag('img',src=f'{prefix}{asset_name}',alt=f"{rec.get('label','SOURCE PREVIEW')} preview",loading='lazy',decoding='async')
+    img=soup.new_tag('img',src=asset_src(rec,prefix),alt=f"{rec.get('label','SOURCE PREVIEW')} preview",loading='lazy',decoding='async')
     img['onerror']="this.closest('.case-preview').style.display='none'"
     a.append(img); fig.append(a)
     cap=soup.new_tag('figcaption'); badge=soup.new_tag('span'); badge.string=rec.get('label','SOURCE PREVIEW')
@@ -32,16 +30,15 @@ def make_preview(soup,rec,prefix):
 
 def inject(path,prefix,records):
     soup=BeautifulSoup(path.read_text('utf-8'),'html.parser'); changed=False
-    # Only canonical card-role nodes may receive visual evidence. A visual node may
-    # share the same intelligence ID without being mistaken for the card itself.
-    for card in soup.select('[data-intel-role="card"][data-intel-id]'):
+    cards=soup.select('[data-intel-role="card"][data-intel-id]')
+    for card in cards:
         intel_id=card.get('data-intel-id'); rec=records.get(intel_id)
-        existing=card.find('figure',class_='case-preview')
+        existing=card.find('figure',class_='case-preview',recursive=False) or card.find('figure',class_='case-preview')
         if not rec:
             if existing and existing.get('data-intel-role')=='visual':
                 existing.decompose(); changed=True
             continue
-        expected=f"{prefix}{Path(rec['asset_path']).name}"
+        expected=asset_src(rec,prefix)
         if existing:
             img=existing.find('img'); a=existing.find('a')
             existing['data-visual-id']=intel_id; existing['data-intel-id']=intel_id; existing['data-intel-role']='visual'
@@ -65,11 +62,12 @@ def main():
     if not MANIFEST.exists(): raise SystemExit('visual manifest missing; run extract_visual_assets.py first')
     manifest=json.loads(MANIFEST.read_text('utf-8'))
     if manifest.get('date')!=date: raise SystemExit(f"visual manifest date mismatch: {manifest.get('date')} != {date}")
+    if manifest.get('asset_versioning')!='daily-snapshot': raise SystemExit('visual manifest must use daily-snapshot asset versioning')
     records={x['id']:x for x in manifest.get('entries',[]) if x.get('status')=='ok'}
     changed=[]
-    if inject(ROOT/'index.html','assets/visual/',records): changed.append('index.html')
+    if inject(ROOT/'index.html','',records): changed.append('index.html')
     daily=ROOT/date/'index.html'
-    if daily.exists() and inject(daily,'../assets/visual/',records): changed.append(str(daily.relative_to(ROOT)))
+    if daily.exists() and inject(daily,'../',records): changed.append(str(daily.relative_to(ROOT)))
     print('visual preview injection:',', '.join(changed) if changed else 'no markup changes',f'({len(records)} canonical visuals)')
 
 if __name__=='__main__': main()
