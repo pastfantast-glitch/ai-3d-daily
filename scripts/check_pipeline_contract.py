@@ -3,7 +3,8 @@
 
 Only intelligence-build.yml may write repository contents. Legacy QA workflows
 must remain read-only. The canonical publisher must keep release-ready gating,
-preflight, atomic publish, and a global concurrency lock.
+preflight, registry QA, archive navigation rendering, atomic publish, and a
+global concurrency lock.
 """
 from pathlib import Path
 import re, sys
@@ -25,6 +26,7 @@ else:
         'group: canonical-intelligence-publish',
         'check_release_input.py',
         'check_registry_contract.py',
+        'render_daily_navigation.py',
         'build_intelligence.py',
         'extract_visual_assets.py',
         'inject_visual_previews.py',
@@ -33,6 +35,7 @@ else:
         'check_visual_contract.py',
         'check_home_contract.py',
         'check_daily_contract.py',
+        'find . -maxdepth 2 -mindepth 2',
         'Publish canonical intelligence',
     ]
     for token in required:
@@ -57,4 +60,4 @@ if errors:
     print('PIPELINE CONTRACT FAILED')
     print('\n'.join('- '+e for e in errors))
     sys.exit(1)
-print('PIPELINE CONTRACT PASS: one atomic writer + release-ready gate')
+print('PIPELINE CONTRACT PASS: one atomic writer + release-ready gate + archive navigation')
