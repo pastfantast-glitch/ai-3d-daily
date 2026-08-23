@@ -12,13 +12,17 @@ on:
       - 'requirements-pipeline.txt'
       - 'scripts/build_intelligence.py'
       - 'scripts/render_daily_navigation.py'
+      - 'scripts/render_home_archive_links.py'
       - 'scripts/check_release_input.py'
       - 'scripts/check_registry_contract.py'
       - 'scripts/check_pipeline_contract.py'
       - 'scripts/check_intelligence_contract.py'
+      - 'scripts/check_historical_regression.py'
       - 'scripts/extract_visual_assets.py'
       - 'scripts/inject_visual_previews.py'
       - 'scripts/check_visual_contract.py'
+      - 'scripts/check_home_contract.py'
+      - 'scripts/check_daily_contract.py'
       - 'scripts/apply_cache_bust.py'
       - 'scripts/verify_pages_publish.py'
       - 'scripts/write_publish_receipt.py'
@@ -140,6 +144,9 @@ jobs:
       - name: Render archive previous/next navigation
         run: python scripts/render_daily_navigation.py
 
+      - name: Render homepage history list from actual archives
+        run: python scripts/render_home_archive_links.py
+
       - name: Render canonical Full Analysis into both views
         run: python scripts/build_intelligence.py "${{ steps.date.outputs.value }}"
 
@@ -158,6 +165,7 @@ jobs:
           python scripts/check_visual_contract.py "${{ steps.date.outputs.value }}"
           python scripts/check_home_contract.py
           python scripts/check_daily_contract.py
+          python scripts/check_historical_regression.py --days 4
 
       - name: Print visual coverage summary
         if: always()
