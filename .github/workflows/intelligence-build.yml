@@ -29,15 +29,6 @@ jobs:
         run: python scripts/bootstrap_intelligence_ids.py
       - name: Render canonical Full Analysis into both views
         run: python scripts/build_intelligence.py 2026-08-23
-      - name: Cache bust changed behavior assets
-        run: |
-          python - <<'PY'
-          from pathlib import Path
-          import re
-          version='20260823-3'
-          p=Path('index.html');s=p.read_text();s=re.sub(r'home\.js\?v=[^"\']+',f'home.js?v={version}',s);p.write_text(s)
-          p=Path('2026-08-23/index.html');s=p.read_text();s=re.sub(r'daily\.js\?v=[^"\']+',f'daily.js?v={version}',s);p.write_text(s)
-          PY
       - name: Contract QA
         run: |
           python scripts/check_home_contract.py
@@ -49,6 +40,6 @@ jobs:
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
           git add index.html 2026-08-23/index.html
           if ! git diff --cached --quiet; then
-            git commit -m "Render 2026-08-23 from canonical intelligence data"
+            git commit -m "Render 2026-08-23 canonical semantic analysis"
             git push
           fi
