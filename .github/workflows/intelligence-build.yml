@@ -9,6 +9,7 @@ on:
       - 'data/publish/**'
       # Pipeline/frontend changes may rebuild the current release for verification.
       - 'scripts/build_intelligence.py'
+      - 'scripts/render_daily_navigation.py'
       - 'scripts/check_release_input.py'
       - 'scripts/check_registry_contract.py'
       - 'scripts/check_pipeline_contract.py'
@@ -89,6 +90,9 @@ jobs:
       - name: Validate published registry / dedupe contract
         run: python scripts/check_registry_contract.py
 
+      - name: Render archive previous/next navigation
+        run: python scripts/render_daily_navigation.py
+
       - name: Render canonical Full Analysis into both views
         run: python scripts/build_intelligence.py "${{ steps.date.outputs.value }}"
 
@@ -131,7 +135,9 @@ jobs:
 
           git add assets/visual
           git add index.html
-          git add "${{ steps.date.outputs.value }}/index.html"
+          # Navigation rendering may update the previous day's next pointer, so all
+          # archive index pages are part of the same atomic structural publication.
+          find . -maxdepth 2 -mindepth 2 -path './20??-??-??/index.html' -print0 | xargs -0 -r git add --
 
           if git diff --cached --quiet; then
             echo "Canonical assets and rendered views already current"
