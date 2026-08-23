@@ -6,6 +6,7 @@ on:
     paths:
       - 'today-more.json'
       - 'scripts/inject_today_more.py'
+      - 'scripts/repair_daily_state.py'
       - 'visual-assets.json'
       - '.github/workflows/today-more.yml'
   workflow_dispatch:
@@ -27,6 +28,8 @@ jobs:
           python-version: '3.12'
       - name: Install dependencies
         run: pip install requests beautifulsoup4 pillow
+      - name: Repair stale homepage and daily navigation state
+        run: python scripts/repair_daily_state.py
       - name: Inject supplemental cards
         run: python scripts/inject_today_more.py
       - name: Refresh visual assets
@@ -39,7 +42,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add index.html 2026-08-*/index.html assets/visual home-content.css styles.css
+          git add index.html 20??-??-??/index.html assets/visual home-content.css styles.css
           if git diff --cached --quiet; then
             echo "No content changes"
           else
