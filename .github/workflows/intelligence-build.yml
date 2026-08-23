@@ -66,11 +66,24 @@ jobs:
         env:
           REQUESTED_DATE: ${{ github.event.inputs.date }}
           ISSUE_TITLE: ${{ github.event.issue.title }}
+          EVENT_NAME: ${{ github.event_name }}
+          BEFORE_SHA: ${{ github.event.before }}
+          AFTER_SHA: ${{ github.sha }}
         run: |
           if [ -n "$REQUESTED_DATE" ]; then
             value="$REQUESTED_DATE"
           elif [[ "$ISSUE_TITLE" == rerun-canonical:* ]]; then
             value="${ISSUE_TITLE#rerun-canonical: }"
+          elif [ "$EVENT_NAME" = "push" ]; then
+            ready=""
+            if [ -n "$BEFORE_SHA" ] && git cat-file -e "$BEFORE_SHA^{commit}" 2>/dev/null; then
+              ready="$(git diff --name-only "$BEFORE_SHA" "$AFTER_SHA" -- 'data/publish/*.ready' | sort | tail -1)"
+            fi
+            if [ -n "$ready" ]; then
+              value="$(basename "$ready" .ready)"
+            else
+              value="$(find data/daily -maxdepth 1 -name '20??-??-??.json' -printf '%f\n' | sed 's/.json$//' | sort | tail -1)"
+            fi
           else
             value="$(find data/daily -maxdepth 1 -name '20??-??-??.json' -printf '%f\n' | sed 's/.json$//' | sort | tail -1)"
           fi
