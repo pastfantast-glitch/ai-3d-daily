@@ -2,6 +2,7 @@
 from pathlib import Path
 import re
 import sys
+from bs4 import BeautifulSoup
 
 ROOT = Path(__file__).resolve().parents[1]
 INDEX = ROOT / 'index.html'
@@ -19,28 +20,43 @@ if not INDEX.exists():
     fail('index.html missing')
 else:
     html = INDEX.read_text('utf-8')
+    soup = BeautifulSoup(html, 'html.parser')
+
     for asset in ('home.css?v=', 'home-content.css?v=', 'home-components.css?v=', 'home.js?v='):
         if asset not in html:
             fail(f'index.html missing cache-busted asset: {asset}')
     if 'home-layout-fixes.css' in html:
         fail('legacy emergency stylesheet is still referenced')
-    if html.count('class="top-item') != 5:
-        fail('homepage must contain exactly 5 TOP 5 cards')
-    more_count = html.count('class="more-card')
-    if not 6 <= more_count <= 12:
-        fail(f'Supplemental cards must be 6-12, got {more_count}')
-    if 'data-supplemental-id=' in html:
+
+    # Structural contracts must be DOM-aware. Class attributes may contain multiple
+    # tokens and may be reordered by BeautifulSoup/renderers; string-prefix counts
+    # are therefore not valid structure checks.
+    top_items = soup.select('.top-item')
+    if len(top_items) != 5:
+        fail(f'homepage must contain exactly 5 TOP 5 cards, got {len(top_items)}')
+
+    more_cards = soup.select('.more-card')
+    if not 6 <= len(more_cards) <= 12:
+        fail(f'Supplemental cards must be 6-12, got {len(more_cards)}')
+
+    if soup.select('[data-supplemental-id]'):
         fail('workflow-managed stale supplemental cards must not exist on homepage')
-    if html.count('class="test-section') != 1:
-        fail('homepage must contain one test-section')
-    if html.count('class="history-list') != 1:
-        fail('homepage must contain one history-list')
+
+    test_sections = soup.select('section.test-section')
+    if len(test_sections) != 1:
+        fail(f'homepage must contain one test-section, got {len(test_sections)}')
+
+    history_lists = soup.select('.history-list')
+    if len(history_lists) != 1:
+        fail(f'homepage must contain one history-list, got {len(history_lists)}')
+
     if '\n' not in html or len(html.splitlines()) < 40:
         fail('index.html must remain readable non-minified HTML')
-    for tag in re.findall(r'<a\b[^>]*target="_blank"[^>]*>', html):
-        rel = re.search(r'rel="([^"]*)"', tag)
-        if not rel or 'noopener' not in rel.group(1) or 'noreferrer' not in rel.group(1):
-            fail(f'external target=_blank link missing noopener noreferrer: {tag[:120]}')
+
+    for a in soup.select('a[target="_blank"]'):
+        rel = set(a.get('rel') or [])
+        if 'noopener' not in rel or 'noreferrer' not in rel:
+            fail(f'external target=_blank link missing noopener noreferrer: {str(a)[:120]}')
 
 for path in (FOUNDATION, UI, COMPONENTS, JS):
     if not path.exists():
