@@ -33,7 +33,11 @@ def main():
     for path,assets in targets:
         if not path.exists(): raise SystemExit(f'missing page for cache bust: {path}')
         text=path.read_text('utf-8'); old=text
-        for asset in assets: text=replace_asset(text,asset,token)
+        for asset in assets:
+            text=replace_asset(text,asset,token)
+        missing=[asset for asset in assets if f'{asset}?v={token}' not in text]
+        if missing:
+            raise SystemExit(f"cache bust verification failed for {path.relative_to(ROOT)}: {', '.join(missing)}")
         if text!=old: path.write_text(text,'utf-8')
         print(path.relative_to(ROOT), token)
 
