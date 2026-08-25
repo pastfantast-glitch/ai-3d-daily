@@ -15,7 +15,10 @@ def latest_date():
     return dates[-1]
 
 def replace_asset(text, asset, token):
-    pattern=rf'({re.escape(asset)})\?v=[^"\']+'
+    # Match both unversioned references (asset) and already-versioned ones
+    # (asset?v=...). This keeps reruns idempotent while also adding the cache
+    # token when a renderer has emitted a fresh unversioned shell reference.
+    pattern=rf'({re.escape(asset)})(?:\?v=[^"\']+)?'
     return re.sub(pattern, rf'\1?v={token}', text)
 
 def main():
