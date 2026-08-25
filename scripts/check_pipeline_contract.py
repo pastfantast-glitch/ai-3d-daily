@@ -13,10 +13,11 @@ if not MAIN.exists(): fail('intelligence-build.yml missing'); main=''
 else:
     main=MAIN.read_text('utf-8')
     required=[
-        "- 'data/publish/*.ready'","- 'styles.css'","- 'daily.css'","- 'scripts/normalize_archive_presentation.py'",
-        'group: canonical-intelligence-publish','pip install -r requirements-pipeline.txt','check_release_input.py','check_registry_contract.py','render_daily_navigation.py','render_home_archive_links.py','build_intelligence.py','extract_visual_assets.py','inject_visual_previews.py','apply_cache_bust.py','check_intelligence_contract.py','check_visual_contract.py','check_home_contract.py','check_daily_contract.py','check_historical_regression.py --days 4','verify_pages_publish.py','write_publish_receipt.py','restore_publish_snapshot.py','find . -maxdepth 2 -mindepth 2','Publish canonical intelligence','Record verified publish','recovery_sha']
+        "- 'data/publish/*.ready'","- 'styles.css'","- 'home.css'","- 'home-content.css'","- 'home-components.css'","- 'daily.css'","- 'scripts/normalize_archive_presentation.py'",
+        'group: canonical-intelligence-publish','cancel-in-progress: false','pip install -r requirements-pipeline.txt','check_release_input.py','check_registry_contract.py','render_daily_navigation.py','render_home_archive_links.py','build_intelligence.py','extract_visual_assets.py','inject_visual_previews.py','apply_cache_bust.py','check_intelligence_contract.py','check_visual_contract.py','check_home_contract.py','check_daily_contract.py','check_historical_regression.py --days 4','verify_pages_publish.py','write_publish_receipt.py','restore_publish_snapshot.py','find . -maxdepth 2 -mindepth 2','Publish canonical intelligence','Record verified publish','recovery_sha']
     for token in required:
         if token not in main: fail(f'intelligence-build missing required stage/token: {token}')
+    if 'cancel-in-progress: true' in main: fail('canonical writer must queue overlapping triggers, never cancel an active publish')
     if "- 'data/publish/**'" in main: fail('receipt metadata must not retrigger canonical publish; use *.ready only')
     if "- 'data/daily/**'" in main: fail('canonical publish must not trigger on data/daily/** before release is ready')
     if 'contents: write' not in main: fail('canonical publisher requires contents: write')
@@ -27,6 +28,12 @@ if not nav_renderer.exists(): fail('render_daily_navigation.py missing')
 else:
     nav_text=nav_renderer.read_text('utf-8')
     if 'normalize_archive_presentation' not in nav_text or 'normalize_presentation()' not in nav_text: fail('archive navigation renderer no longer invokes shared presentation normalizer')
+cache=ROOT/'scripts'/'apply_cache_bust.py'
+if not cache.exists(): fail('apply_cache_bust.py missing')
+else:
+    cache_text=cache.read_text('utf-8')
+    if "(?:\\?v=[^\"\\']+)?" not in cache_text: fail('cache bust must support both unversioned and already-versioned asset references')
+    if 'cache bust verification failed' not in cache_text: fail('cache bust must verify every expected shell asset received the current token')
 for path in sorted(WF.glob('*.yml')):
     text=path.read_text('utf-8')
     for match in re.finditer(r'actions/checkout@v(\d+)', text):
@@ -53,4 +60,4 @@ else:
     if 'LEGACY_20260823_RULES' not in text: fail('legacy 2026-08-23 compatibility rules missing explicit namespace')
 if errors:
     print('PIPELINE CONTRACT FAILED'); print('\n'.join('- '+e for e in errors)); sys.exit(1)
-print('PIPELINE CONTRACT PASS: one atomic writer + presentation-trigger coverage + shared Daily color/presentation contract + ready gate + historical regression + locked deps + Pages receipt + recovery + Node 24')
+print('PIPELINE CONTRACT PASS: one atomic writer + complete shell-trigger coverage + non-cancelling concurrency + cache verification + shared Daily presentation + ready gate + historical regression + locked deps + Pages receipt + recovery + Node 24')
