@@ -7,6 +7,9 @@ on:
       - 'data/publish/*.ready'
       - 'requirements-pipeline.txt'
       - 'styles.css'
+      - 'home.css'
+      - 'home-content.css'
+      - 'home-components.css'
       - 'daily.css'
       - 'scripts/normalize_archive_presentation.py'
       - 'scripts/build_intelligence.py'
@@ -48,7 +51,7 @@ permissions:
 
 concurrency:
   group: canonical-intelligence-publish
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   publish:
