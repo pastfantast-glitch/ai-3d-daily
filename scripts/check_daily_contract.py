@@ -12,10 +12,27 @@ for i,d in enumerate(dirs):
     need('null' not in text.lower(),'literal null present'); need('archive-page' in soup.body.get('class',[]),'missing archive-page class'); need(soup.body.get('data-report-date')==date,'report date contract mismatch')
     need(bool(soup.find('link',href=re.compile(r'\.\./styles\.css\?v='))),'missing shared styles.css'); need(bool(soup.find('link',href=re.compile(r'\.\./daily\.css\?v='))),'missing daily.css'); need(bool(soup.find('script',src=re.compile(r'\.\./daily\.js\?v='))),'missing daily.js'); need(not soup.find('script',src=re.compile(r'accordion\.js')),'legacy accordion.js still referenced')
     header=soup.select_one('header.site-head'); main=soup.select_one('main.page'); need(bool(header and 'daily-hero' in header.get('class',[])),'missing shared daily-hero presentation class'); need(bool(main and 'daily-main' in main.get('class',[])),'missing shared daily-main presentation class')
+
+    top_section=soup.select_one('#top'); more_section=soup.select_one('#more')
+    need(bool(top_section and 'block' in top_section.get('class',[])),'TOP section missing shared block presentation class')
+    if more_section: need('block' in more_section.get('class',[]),'Supplemental section missing shared block presentation class')
+    if top_section: need(bool(top_section.select_one(':scope > .block-head')),'TOP section missing block-head')
+    if more_section: need(bool(more_section.select_one(':scope > .block-head')),'Supplemental section missing block-head')
+
     top_cards=soup.select('#top .news'); need(len(top_cards)==5,f'TOP section must contain exactly 5 cards, got {len(top_cards)}'); more_cards=soup.select('.category-news')
-    for card in top_cards:
+    for rank,card in enumerate(top_cards,1):
         classes=set(card.get('class',[])); need({'daily-card','daily-card-top'}<=classes,'TOP card missing shared daily-card presentation classes'); need('important' not in classes,'legacy important presentation modifier returned')
+        rank_node=card.find('div',class_='news-rank',recursive=False); main_node=card.find('div',class_='news-main',recursive=False)
+        need(bool(rank_node),f'TOP {rank}: missing news-rank presentation column')
+        need(bool(main_node),f'TOP {rank}: missing news-main presentation column')
+        if rank_node: need(rank_node.get_text(strip=True)==f'{rank:02d}',f'TOP {rank}: rank label mismatch')
+        if main_node:
+            need(bool(main_node.find(['h3','h4'],recursive=False)),f'TOP {rank}: news-main missing title')
+            need(bool(main_node.select_one('.quick-impact')),f'TOP {rank}: news-main missing quick-impact')
+            need(bool(main_node.select_one('details.daily-full-analysis')),f'TOP {rank}: news-main missing Full Analysis')
+            need(bool(main_node.select_one('a.source.daily-source')),f'TOP {rank}: news-main missing source')
     for card in more_cards: need({'daily-card','daily-card-more'}<=set(card.get('class',[])),'Supplemental card missing shared daily-card presentation classes')
+
     for card in soup.select('[data-intel-role="card"]'):
         rid=card.get('data-intel-id','?')
         for pill in card.select('.pill'):
@@ -29,4 +46,4 @@ for i,d in enumerate(dirs):
     for a in soup.find_all('a',target='_blank'): need({'noopener','noreferrer'}<=set(a.get('rel',[])),'unsafe target=_blank link')
     expected_prev=dirs[i-1].name if i else ''; expected_next=dirs[i+1].name if i+1<len(dirs) else ''; need(soup.body.get('data-previous','')==expected_prev,'previous date mismatch'); need(soup.body.get('data-next','')==expected_next,'next date mismatch')
 if errors: print('DAILY CONTRACT FAILED'); print('\n'.join('- '+e for e in errors)); sys.exit(1)
-print(f'DAILY CONTRACT PASS: {len(dirs)} reports / shared presentation v2 + canonical color v1')
+print(f'DAILY CONTRACT PASS: {len(dirs)} reports / shared presentation v3 + canonical card structure')
