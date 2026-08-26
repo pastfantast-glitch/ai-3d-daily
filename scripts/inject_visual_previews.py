@@ -35,40 +35,31 @@ def inject(path,prefix,records,is_archive=False):
     cards=soup.select('[data-intel-role="card"][data-intel-id]')
     for card in cards:
         intel_id=card.get('data-intel-id'); rec=records.get(intel_id)
-        existing=card.find('figure',class_='case-preview',recursive=False) or card.find('figure',class_='case-preview')
+
+        # Canonicalize preview DOM by removing every pre-existing preview first.
+        # This avoids stale/duplicate template previews and guarantees that the
+        # single injected visual is placed immediately before quick-impact.
+        existing_previews=list(card.select('figure.case-preview'))
+        if existing_previews:
+            for preview in existing_previews:
+                preview.decompose()
+            changed=True
+
         if not rec:
-            if existing and existing.get('data-intel-role')=='visual':
-                existing.decompose(); changed=True
             continue
-        expected=asset_src(rec,prefix)
-        if existing:
-            img=existing.find('img'); a=existing.find('a')
-            existing['data-visual-id']=intel_id; existing['data-intel-id']=intel_id; existing['data-intel-role']='visual'
-            if is_archive:
-                classes=list(existing.get('class') or [])
-                if 'daily-visual' not in classes: classes.append('daily-visual'); existing['class']=classes; changed=True
-            if img and img.get('src')!=expected: img['src']=expected; changed=True
-            if a and a.get('href')!=rec['page_url']: a['href']=rec['page_url']; changed=True
-            # Existing previews can come from the rendered template in an older
-            # position. Enforce the homepage contract instead of only updating
-            # their metadata, so reruns deterministically restore card order.
-            impact=card.find('div',class_='quick-impact')
-            if impact:
-                descendants=list(card.descendants)
-                try:
-                    if descendants.index(existing) > descendants.index(impact):
-                        impact.insert_before(existing); changed=True
-                except ValueError:
-                    pass
-            continue
+
         preview=make_preview(soup,rec,prefix,is_archive=is_archive)
         impact=card.find('div',class_='quick-impact')
-        if impact: impact.insert_before(preview)
+        if impact:
+            impact.insert_before(preview)
         else:
             details=card.find('details')
-            if details: details.insert_before(preview)
-            else: card.append(preview)
+            if details:
+                details.insert_before(preview)
+            else:
+                card.append(preview)
         changed=True
+
     if changed: path.write_text(soup.prettify(),'utf-8')
     return changed
 
