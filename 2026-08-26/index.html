@@ -23,284 +23,323 @@
    </div>
   </header>
   <main class="page daily-main">
-   <section id="top">
-    <h2>
-     今天最值得看的 5 件事
-    </h2>
+   <section class="block" id="top">
+    <div class="block-head">
+     <div>
+      <span class="section-kicker">
+       TODAY
+      </span>
+      <h2>
+       今天最值得看的 5 件事
+      </h2>
+     </div>
+    </div>
     <article class="news daily-card daily-card-top" data-intel-id="ue-5-8-2-hotfix" data-intel-role="card">
-     <h3>
-      Unreal Engine 5.8.2 Hotfix：Production 鎖版前先做 regression pass
-     </h3>
-     <p>
-      UE 5.8.2 已於 8/25 上線，對 5.8 專案的價值集中在穩定性與 regression 修正。
-     </p>
-     <figure class="case-preview daily-visual" data-intel-id="ue-5-8-2-hotfix" data-intel-role="visual" data-visual-id="ue-5-8-2-hotfix">
-      <a href="https://forums.unrealengine.com/c/general/announcements/49" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
-       <img alt="OFFICIAL VISUAL preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-08-26/ue-5-8-2-hotfix.jpg"/>
+     <div class="news-rank">
+      01
+     </div>
+     <div class="news-main">
+      <h3>
+       Unreal Engine 5.8.2 Hotfix：Production 鎖版前先做 regression pass
+      </h3>
+      <p class="summary">
+       UE 5.8.2 已於 8/25 上線，對 5.8 專案的價值集中在穩定性與 regression 修正。
+      </p>
+      <figure class="case-preview daily-visual" data-intel-id="ue-5-8-2-hotfix" data-intel-role="visual" data-visual-id="ue-5-8-2-hotfix">
+       <a href="https://forums.unrealengine.com/c/general/announcements/49" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+        <img alt="OFFICIAL VISUAL preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-08-26/ue-5-8-2-hotfix.jpg"/>
+       </a>
+       <figcaption>
+        <span>
+         OFFICIAL VISUAL
+        </span>
+        · Local visual evidence · 點圖開啟原始來源
+       </figcaption>
+      </figure>
+      <p class="quick-impact daily-impact">
+       Quick Impact｜已在 5.8 的團隊應先用代表性關卡與角色做 smoke test。
+      </p>
+      <details class="daily-full-analysis">
+       <summary>
+        完整分析
+       </summary>
+       <div class="detail-body daily-analysis-body">
+        <h4>
+         Production 判斷
+        </h4>
+        <p>
+         Unreal Engine 5.8.2 在 8/25 正式釋出，對已進入 5.8 的專案來說，比追逐新功能更重要的是 regression 與穩定性修補；5.8 又是 UE5 路線圖中最後一個預定 major release，因此 hotfix 品質直接影響後續 production 鎖版。
+        </p>
+        <h4>
+         導入方式
+        </h4>
+        <p>
+         不要直接覆蓋團隊主分支；先複製目前 5.8 專案，跑 shader compile、Nanite/Lumen、角色動畫、cook/package 與主要平台 smoke test，再決定升級。
+        </p>
+        <h4>
+         限制
+        </h4>
+        <p>
+         官方公告確認 hotfix 已上線，但每個專案使用的 plugin 與自訂 engine patch 不同，仍需自己的 regression matrix。
+        </p>
+        <h4>
+         20 分鐘實測
+        </h4>
+        <p>
+         開一個代表性關卡與角色，對照 5.8.1/5.8.2 的 editor log、viewport、PIE 與 packaged build，先抓最可能阻塞美術的差異。
+        </p>
+       </div>
+      </details>
+      <a class="source daily-source" href="https://forums.unrealengine.com/c/general/announcements/49" rel="noopener noreferrer" target="_blank">
+       Source
       </a>
-      <figcaption>
-       <span>
-        OFFICIAL VISUAL
-       </span>
-       · Local visual evidence · 點圖開啟原始來源
-      </figcaption>
-     </figure>
-     <p class="quick-impact daily-impact">
-      Quick Impact｜已在 5.8 的團隊應先用代表性關卡與角色做 smoke test。
-     </p>
-     <details class="daily-full-analysis">
-      <summary>
-       完整分析
-      </summary>
-      <div class="detail-body daily-analysis-body">
-       <h4>
-        Production 判斷
-       </h4>
-       <p>
-        Unreal Engine 5.8.2 在 8/25 正式釋出，對已進入 5.8 的專案來說，比追逐新功能更重要的是 regression 與穩定性修補；5.8 又是 UE5 路線圖中最後一個預定 major release，因此 hotfix 品質直接影響後續 production 鎖版。
-       </p>
-       <h4>
-        導入方式
-       </h4>
-       <p>
-        不要直接覆蓋團隊主分支；先複製目前 5.8 專案，跑 shader compile、Nanite/Lumen、角色動畫、cook/package 與主要平台 smoke test，再決定升級。
-       </p>
-       <h4>
-        限制
-       </h4>
-       <p>
-        官方公告確認 hotfix 已上線，但每個專案使用的 plugin 與自訂 engine patch 不同，仍需自己的 regression matrix。
-       </p>
-       <h4>
-        20 分鐘實測
-       </h4>
-       <p>
-        開一個代表性關卡與角色，對照 5.8.1/5.8.2 的 editor log、viewport、PIE 與 packaged build，先抓最可能阻塞美術的差異。
-       </p>
-      </div>
-     </details>
-     <a class="source daily-source" href="https://forums.unrealengine.com/c/general/announcements/49" rel="noopener noreferrer" target="_blank">
-      Source
-     </a>
+     </div>
     </article>
     <article class="news daily-card daily-card-top" data-intel-id="blendcap-105-grounding" data-intel-role="card">
-     <h3>
-      BlendCap 1.0.5：AI Mocap 的 grounding 與腳底接觸更實用
-     </h3>
-     <p>
-      Body Grounding、Feet Define the Floor 與 vertical smoothing 直接處理 vision mocap 常見 cleanup 問題。
-     </p>
-     <figure class="case-preview daily-visual" data-intel-id="blendcap-105-grounding" data-intel-role="visual" data-visual-id="blendcap-105-grounding">
-      <a href="https://arcomade.gumroad.com/l/BlendCap" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
-       <img alt="SOURCE VISUAL preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-08-26/blendcap-105-grounding.jpg"/>
+     <div class="news-rank">
+      02
+     </div>
+     <div class="news-main">
+      <h3>
+       BlendCap 1.0.5：AI Mocap 的 grounding 與腳底接觸更實用
+      </h3>
+      <p class="summary">
+       Body Grounding、Feet Define the Floor 與 vertical smoothing 直接處理 vision mocap 常見 cleanup 問題。
+      </p>
+      <figure class="case-preview daily-visual" data-intel-id="blendcap-105-grounding" data-intel-role="visual" data-visual-id="blendcap-105-grounding">
+       <a href="https://arcomade.gumroad.com/l/BlendCap" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+        <img alt="SOURCE VISUAL preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-08-26/blendcap-105-grounding.jpg"/>
+       </a>
+       <figcaption>
+        <span>
+         SOURCE VISUAL
+        </span>
+        · Local visual evidence · 點圖開啟原始來源
+       </figcaption>
+      </figure>
+      <p class="quick-impact daily-impact">
+       Quick Impact｜值得用跳躍、跪地、翻滾素材測 foot sliding 與 cleanup 時間。
+      </p>
+      <details class="daily-full-analysis">
+       <summary>
+        完整分析
+       </summary>
+       <div class="detail-body daily-analysis-body">
+        <h4>
+         AI Motion 重點
+        </h4>
+        <p>
+         BlendCap 1.0.5 把 Body Grounding、Feet Define the Floor 與垂直 smoothing 改進放進 Blender 內的 performance capture 流程，直接針對 AI/vision mocap 常見的地面漂移、跪地與跳躍被抹平問題。
+        </p>
+        <h4>
+         輸入與 Rig
+        </h4>
+        <p>
+         工具面向 Blender 4.2+，提供 Rigify、Auto-Rig Pro、CloudRig、Mixamo retarget preset；適合把捕捉結果直接落到常見遊戲角色 rig，再做 cleanup。
+        </p>
+        <h4>
+         Production 限制
+        </h4>
+        <p>
+         Grounding 改善不代表完全消除 foot sliding；翻滾、趴地、接觸地面的複雜動作仍要逐段檢查 root/hips 與腳掌接觸。
+        </p>
+        <h4>
+         實測
+        </h4>
+        <p>
+         用走路→跳躍→跪地→起身的一鏡到底素材，記錄自動結果的腳滑、地面穿插與需要手修的 frame 數。
+        </p>
+       </div>
+      </details>
+      <a class="source daily-source" href="https://arcomade.gumroad.com/l/BlendCap" rel="noopener noreferrer" target="_blank">
+       Source
       </a>
-      <figcaption>
-       <span>
-        SOURCE VISUAL
-       </span>
-       · Local visual evidence · 點圖開啟原始來源
-      </figcaption>
-     </figure>
-     <p class="quick-impact daily-impact">
-      Quick Impact｜值得用跳躍、跪地、翻滾素材測 foot sliding 與 cleanup 時間。
-     </p>
-     <details class="daily-full-analysis">
-      <summary>
-       完整分析
-      </summary>
-      <div class="detail-body daily-analysis-body">
-       <h4>
-        AI Motion 重點
-       </h4>
-       <p>
-        BlendCap 1.0.5 把 Body Grounding、Feet Define the Floor 與垂直 smoothing 改進放進 Blender 內的 performance capture 流程，直接針對 AI/vision mocap 常見的地面漂移、跪地與跳躍被抹平問題。
-       </p>
-       <h4>
-        輸入與 Rig
-       </h4>
-       <p>
-        工具面向 Blender 4.2+，提供 Rigify、Auto-Rig Pro、CloudRig、Mixamo retarget preset；適合把捕捉結果直接落到常見遊戲角色 rig，再做 cleanup。
-       </p>
-       <h4>
-        Production 限制
-       </h4>
-       <p>
-        Grounding 改善不代表完全消除 foot sliding；翻滾、趴地、接觸地面的複雜動作仍要逐段檢查 root/hips 與腳掌接觸。
-       </p>
-       <h4>
-        實測
-       </h4>
-       <p>
-        用走路→跳躍→跪地→起身的一鏡到底素材，記錄自動結果的腳滑、地面穿插與需要手修的 frame 數。
-       </p>
-      </div>
-     </details>
-     <a class="source daily-source" href="https://arcomade.gumroad.com/l/BlendCap" rel="noopener noreferrer" target="_blank">
-      Source
-     </a>
+     </div>
     </article>
     <article class="news daily-card daily-card-top" data-intel-id="google-agenthands-xr-gestures" data-intel-role="card">
-     <h3>
-      Google AgentHands：AI Motion 開始理解語意、時間與空間
-     </h3>
-     <p>
-      AgentHands 依對話與空間脈絡產生同步手勢，展示下一階段互動角色 motion generation 的方向。
-     </p>
-     <figure class="case-preview daily-visual" data-intel-id="google-agenthands-xr-gestures" data-intel-role="visual" data-visual-id="google-agenthands-xr-gestures">
-      <a href="https://research.google/blog/agenthands-generating-interactive-hand-gestures-for-spatially-grounded-agent-conversations-in-xr/" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
-       <img alt="OFFICIAL RESEARCH VISUAL preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-08-26/google-agenthands-xr-gestures.jpg"/>
+     <div class="news-rank">
+      03
+     </div>
+     <div class="news-main">
+      <h3>
+       Google AgentHands：AI Motion 開始理解語意、時間與空間
+      </h3>
+      <p class="summary">
+       AgentHands 依對話與空間脈絡產生同步手勢，展示下一階段互動角色 motion generation 的方向。
+      </p>
+      <figure class="case-preview daily-visual" data-intel-id="google-agenthands-xr-gestures" data-intel-role="visual" data-visual-id="google-agenthands-xr-gestures">
+       <a href="https://research.google/blog/agenthands-generating-interactive-hand-gestures-for-spatially-grounded-agent-conversations-in-xr/" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+        <img alt="OFFICIAL RESEARCH VISUAL preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-08-26/google-agenthands-xr-gestures.jpg"/>
+       </a>
+       <figcaption>
+        <span>
+         OFFICIAL RESEARCH VISUAL
+        </span>
+        · Local visual evidence · 點圖開啟原始來源
+       </figcaption>
+      </figure>
+      <p class="quick-impact daily-impact">
+       Quick Impact｜目前是研究原型，但對動態 NPC / XR 手勢生成值得持續追蹤。
+      </p>
+      <details class="daily-full-analysis">
+       <summary>
+        完整分析
+       </summary>
+       <div class="detail-body daily-analysis-body">
+        <h4>
+         AI Motion 趨勢
+        </h4>
+        <p>
+         Google 在 8/25 公開 AgentHands，讓 LLM 根據對話、使用者問題與空間脈絡生成同步手勢。它不是現成遊戲動畫工具，但代表 motion generation 正從『生成一段動作』走向語意、時間與空間共同約束。
+        </p>
+        <h4>
+         對遊戲動畫的意義
+        </h4>
+        <p>
+         NPC 對話若能把語音節奏、指向目標與手勢事件綁在一起，未來可減少大量泛用 talking animation 手工配置，尤其適合 XR、互動導覽與動態 NPC。
+        </p>
+        <h4>
+         限制
+        </h4>
+        <p>
+         目前屬研究原型，沒有可直接交付 FBX/BVH 的 game-ready production pipeline；不應把研究 demo 當成可立即取代 animator 的工具。
+        </p>
+        <h4>
+         追蹤指標
+        </h4>
+        <p>
+         後續真正值得導入的版本要看是否能輸出可編輯 skeleton animation、支援角色比例 retarget、避免手部穿插，並提供 deterministic/可重現控制。
+        </p>
+       </div>
+      </details>
+      <a class="source daily-source" href="https://research.google/blog/agenthands-generating-interactive-hand-gestures-for-spatially-grounded-agent-conversations-in-xr/" rel="noopener noreferrer" target="_blank">
+       Source
       </a>
-      <figcaption>
-       <span>
-        OFFICIAL RESEARCH VISUAL
-       </span>
-       · Local visual evidence · 點圖開啟原始來源
-      </figcaption>
-     </figure>
-     <p class="quick-impact daily-impact">
-      Quick Impact｜目前是研究原型，但對動態 NPC / XR 手勢生成值得持續追蹤。
-     </p>
-     <details class="daily-full-analysis">
-      <summary>
-       完整分析
-      </summary>
-      <div class="detail-body daily-analysis-body">
-       <h4>
-        AI Motion 趨勢
-       </h4>
-       <p>
-        Google 在 8/25 公開 AgentHands，讓 LLM 根據對話、使用者問題與空間脈絡生成同步手勢。它不是現成遊戲動畫工具，但代表 motion generation 正從『生成一段動作』走向語意、時間與空間共同約束。
-       </p>
-       <h4>
-        對遊戲動畫的意義
-       </h4>
-       <p>
-        NPC 對話若能把語音節奏、指向目標與手勢事件綁在一起，未來可減少大量泛用 talking animation 手工配置，尤其適合 XR、互動導覽與動態 NPC。
-       </p>
-       <h4>
-        限制
-       </h4>
-       <p>
-        目前屬研究原型，沒有可直接交付 FBX/BVH 的 game-ready production pipeline；不應把研究 demo 當成可立即取代 animator 的工具。
-       </p>
-       <h4>
-        追蹤指標
-       </h4>
-       <p>
-        後續真正值得導入的版本要看是否能輸出可編輯 skeleton animation、支援角色比例 retarget、避免手部穿插，並提供 deterministic/可重現控制。
-       </p>
-      </div>
-     </details>
-     <a class="source daily-source" href="https://research.google/blog/agenthands-generating-interactive-hand-gestures-for-spatially-grounded-agent-conversations-in-xr/" rel="noopener noreferrer" target="_blank">
-      Source
-     </a>
+     </div>
     </article>
     <article class="news daily-card daily-card-top" data-intel-id="blender-4513-lts" data-intel-role="card">
-     <h3>
-      Blender 4.5 LTS：4.5.13 維護線持續推進
-     </h3>
-     <p>
-      4.5 LTS 維護到 2027 年 7 月，對量產團隊比頻繁追 major release 更適合作為穩定 baseline。
-     </p>
-     <p class="quick-impact daily-impact">
-      Quick Impact｜建立固定 FBX、Rig、GN、材質 smoke test，讓 LTS patch 可控升級。
-     </p>
-     <details class="daily-full-analysis">
-      <summary>
-       完整分析
-      </summary>
-      <div class="detail-body daily-analysis-body">
-       <h4>
-        Production 判斷
-       </h4>
-       <p>
-        Blender 4.5 LTS 的 4.5.13 維護版排定 8/25，LTS 分支持續維護到 2027 年 7 月。對量產團隊，這類維護版的價值在於修 regression 而不改變 major feature baseline。
-       </p>
-       <h4>
-        團隊策略
-       </h4>
-       <p>
-        如果 pipeline 仍鎖 4.5 LTS，應把 4.5.x 當成可控升級線，而不是因 5.x 新功能頻繁切換；插件、Python API、FBX 與 render farm 都應有固定驗證場景。
-       </p>
-       <h4>
-        限制
-       </h4>
-       <p>
-        維護版仍可能碰到特定插件或 driver 差異；正式升級前應確認 release artifact 與實際修正項目，而不是只依 milestone 日期。
-       </p>
-       <h4>
-        行動
-       </h4>
-       <p>
-        保存一份角色 rig、Geometry Nodes 場景、材質與 FBX round-trip 測試檔，每次 LTS patch 用同一套 smoke test。
-       </p>
-      </div>
-     </details>
-     <a class="source daily-source" href="https://projects.blender.org/blender/blender/milestone/25" rel="noopener noreferrer" target="_blank">
-      Source
-     </a>
+     <div class="news-rank">
+      04
+     </div>
+     <div class="news-main">
+      <h3>
+       Blender 4.5 LTS：4.5.13 維護線持續推進
+      </h3>
+      <p class="summary">
+       4.5 LTS 維護到 2027 年 7 月，對量產團隊比頻繁追 major release 更適合作為穩定 baseline。
+      </p>
+      <p class="quick-impact daily-impact">
+       Quick Impact｜建立固定 FBX、Rig、GN、材質 smoke test，讓 LTS patch 可控升級。
+      </p>
+      <details class="daily-full-analysis">
+       <summary>
+        完整分析
+       </summary>
+       <div class="detail-body daily-analysis-body">
+        <h4>
+         Production 判斷
+        </h4>
+        <p>
+         Blender 4.5 LTS 的 4.5.13 維護版排定 8/25，LTS 分支持續維護到 2027 年 7 月。對量產團隊，這類維護版的價值在於修 regression 而不改變 major feature baseline。
+        </p>
+        <h4>
+         團隊策略
+        </h4>
+        <p>
+         如果 pipeline 仍鎖 4.5 LTS，應把 4.5.x 當成可控升級線，而不是因 5.x 新功能頻繁切換；插件、Python API、FBX 與 render farm 都應有固定驗證場景。
+        </p>
+        <h4>
+         限制
+        </h4>
+        <p>
+         維護版仍可能碰到特定插件或 driver 差異；正式升級前應確認 release artifact 與實際修正項目，而不是只依 milestone 日期。
+        </p>
+        <h4>
+         行動
+        </h4>
+        <p>
+         保存一份角色 rig、Geometry Nodes 場景、材質與 FBX round-trip 測試檔，每次 LTS patch 用同一套 smoke test。
+        </p>
+       </div>
+      </details>
+      <a class="source daily-source" href="https://projects.blender.org/blender/blender/milestone/25" rel="noopener noreferrer" target="_blank">
+       Source
+      </a>
+     </div>
     </article>
     <article class="news daily-card daily-card-top" data-intel-id="blender-vse-transition-handles" data-intel-role="card">
-     <h3>
-      Blender VSE Transition Handles：主 PR 已進入 review-ready
-     </h3>
-     <p>
-      8/25 開發更新持續修 input validation、corner artifacts 與 retiming/channel edge cases。
-     </p>
-     <figure class="case-preview daily-visual" data-intel-id="blender-vse-transition-handles" data-intel-role="visual" data-visual-id="blender-vse-transition-handles">
-      <a href="https://devtalk.blender.org/t/gsoc-2026-vse-strip-transition-handles/45257" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
-       <img alt="OFFICIAL DEV VISUAL preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-08-26/blender-vse-transition-handles.jpg"/>
+     <div class="news-rank">
+      05
+     </div>
+     <div class="news-main">
+      <h3>
+       Blender VSE Transition Handles：主 PR 已進入 review-ready
+      </h3>
+      <p class="summary">
+       8/25 開發更新持續修 input validation、corner artifacts 與 retiming/channel edge cases。
+      </p>
+      <figure class="case-preview daily-visual" data-intel-id="blender-vse-transition-handles" data-intel-role="visual" data-visual-id="blender-vse-transition-handles">
+       <a href="https://devtalk.blender.org/t/gsoc-2026-vse-strip-transition-handles/45257" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+        <img alt="OFFICIAL DEV VISUAL preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-08-26/blender-vse-transition-handles.jpg"/>
+       </a>
+       <figcaption>
+        <span>
+         OFFICIAL DEV VISUAL
+        </span>
+        · Local visual evidence · 點圖開啟原始來源
+       </figcaption>
+      </figure>
+      <p class="quick-impact daily-impact">
+       Quick Impact｜對 animatic、playblast review、短片與 trailer 的 Blender 內剪輯更有價值。
+      </p>
+      <details class="daily-full-analysis">
+       <summary>
+        完整分析
+       </summary>
+       <div class="detail-body daily-analysis-body">
+        <h4>
+         最新進度
+        </h4>
+        <p>
+         Blender GSoC 的 VSE Strip Transition Handles 在 8/25 更新：主 transition PR 已進入 review-ready，並持續修正 input validation、transition corner artifact 與既有 retiming/channel edge cases。
+        </p>
+        <h4>
+         Production 價值
+        </h4>
+        <p>
+         對 animatic、playblast review、短片與遊戲 trailer，transition 直接成為 strip 操作的一部分，可降低剪輯階段在額外軟體間 round-trip 的摩擦。
+        </p>
+        <h4>
+         限制
+        </h4>
+        <p>
+         這仍是開發中功能，部分 retiming 與指定 channel 的 edge case 尚需保留舊 transition 路徑，不適合當作穩定版既成能力。
+        </p>
+        <h4>
+         追蹤方向
+        </h4>
+        <p>
+         等主 PR 合併後，以實際 animatic 測 transition、retime、nested meta strip 與輸出，確認是否足以進入團隊剪輯模板。
+        </p>
+       </div>
+      </details>
+      <a class="source daily-source" href="https://devtalk.blender.org/t/gsoc-2026-vse-strip-transition-handles/45257" rel="noopener noreferrer" target="_blank">
+       Source
       </a>
-      <figcaption>
-       <span>
-        OFFICIAL DEV VISUAL
-       </span>
-       · Local visual evidence · 點圖開啟原始來源
-      </figcaption>
-     </figure>
-     <p class="quick-impact daily-impact">
-      Quick Impact｜對 animatic、playblast review、短片與 trailer 的 Blender 內剪輯更有價值。
-     </p>
-     <details class="daily-full-analysis">
-      <summary>
-       完整分析
-      </summary>
-      <div class="detail-body daily-analysis-body">
-       <h4>
-        最新進度
-       </h4>
-       <p>
-        Blender GSoC 的 VSE Strip Transition Handles 在 8/25 更新：主 transition PR 已進入 review-ready，並持續修正 input validation、transition corner artifact 與既有 retiming/channel edge cases。
-       </p>
-       <h4>
-        Production 價值
-       </h4>
-       <p>
-        對 animatic、playblast review、短片與遊戲 trailer，transition 直接成為 strip 操作的一部分，可降低剪輯階段在額外軟體間 round-trip 的摩擦。
-       </p>
-       <h4>
-        限制
-       </h4>
-       <p>
-        這仍是開發中功能，部分 retiming 與指定 channel 的 edge case 尚需保留舊 transition 路徑，不適合當作穩定版既成能力。
-       </p>
-       <h4>
-        追蹤方向
-       </h4>
-       <p>
-        等主 PR 合併後，以實際 animatic 測 transition、retime、nested meta strip 與輸出，確認是否足以進入團隊剪輯模板。
-       </p>
-      </div>
-     </details>
-     <a class="source daily-source" href="https://devtalk.blender.org/t/gsoc-2026-vse-strip-transition-handles/45257" rel="noopener noreferrer" target="_blank">
-      Source
-     </a>
+     </div>
     </article>
    </section>
-   <section id="more">
-    <h2>
-     今天還有什麼
-    </h2>
+   <section class="block" id="more">
+    <div class="block-head">
+     <div>
+      <span class="section-kicker">
+       MORE
+      </span>
+      <h2>
+       今天還有什麼
+      </h2>
+     </div>
+    </div>
     <article class="category-news daily-card daily-card-more" data-intel-id="blender-flow-141" data-intel-role="card">
      <h3>
       Blender Flow 1.4.1：程序化骨鏈 secondary motion
