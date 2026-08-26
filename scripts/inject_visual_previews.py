@@ -49,6 +49,17 @@ def inject(path,prefix,records,is_archive=False):
                 if 'daily-visual' not in classes: classes.append('daily-visual'); existing['class']=classes; changed=True
             if img and img.get('src')!=expected: img['src']=expected; changed=True
             if a and a.get('href')!=rec['page_url']: a['href']=rec['page_url']; changed=True
+            # Existing previews can come from the rendered template in an older
+            # position. Enforce the homepage contract instead of only updating
+            # their metadata, so reruns deterministically restore card order.
+            impact=card.find('div',class_='quick-impact')
+            if impact:
+                descendants=list(card.descendants)
+                try:
+                    if descendants.index(existing) > descendants.index(impact):
+                        impact.insert_before(existing); changed=True
+                except ValueError:
+                    pass
             continue
         preview=make_preview(soup,rec,prefix,is_archive=is_archive)
         impact=card.find('div',class_='quick-impact')
