@@ -18,9 +18,10 @@ else:
     main=MAIN.read_text('utf-8')
     required=[
         "- 'data/publish/*.ready'","- 'styles.css'","- 'home.css'","- 'home-content.css'","- 'home-components.css'","- 'daily.css'","- 'scripts/normalize_archive_presentation.py'",
-        'group: canonical-intelligence-publish','cancel-in-progress: false','pip install -r requirements-pipeline.txt','check_release_input.py','check_registry_contract.py','render_daily_navigation.py','render_home_archive_links.py','build_intelligence.py','extract_visual_assets.py','inject_visual_previews.py','apply_cache_bust.py','check_intelligence_contract.py','check_visual_contract.py','check_home_contract.py','check_daily_contract.py','check_historical_regression.py --days 4','verify_pages_publish.py','write_publish_receipt.py','restore_publish_snapshot.py','find . -maxdepth 2 -mindepth 2','Publish canonical intelligence','Record verified publish','recovery_sha']
+        'group: canonical-intelligence-publish','cancel-in-progress: false','pip install -r requirements-pipeline.txt','check_release_input.py','check_registry_contract.py','render_daily_navigation.py','render_home_archive_links.py','build_intelligence.py','extract_visual_assets.py','inject_visual_previews.py','apply_cache_bust.py','check_intelligence_contract.py','check_visual_contract.py','check_home_contract.py','check_daily_contract.py','check_historical_regression.py --days 4','verify_pages_publish.py','write_publish_receipt.py','restore_publish_snapshot.py','find . -maxdepth 2 -mindepth 2','Publish canonical intelligence','Record verified publish','recovery_sha','ref: main']
     for token in required:
         if token not in main: fail(f'intelligence-build missing required stage/token: {token}')
+    if main.count('ref: main') < 2: fail('canonical publish and recovery checkouts must both refresh to latest main to avoid stale queued-run SHA conflicts')
     if 'cancel-in-progress: true' in main: fail('canonical writer must queue overlapping triggers, never cancel an active publish')
     if "- 'data/publish/**'" in main: fail('receipt metadata must not retrigger canonical publish; use *.ready only')
     if "- 'data/daily/**'" in main: fail('canonical publish must not trigger on data/daily/** before release is ready')
@@ -110,4 +111,4 @@ else:
 
 if errors:
     print('PIPELINE CONTRACT FAILED'); print('\n'.join('- '+e for e in errors)); sys.exit(1)
-print('PIPELINE CONTRACT PASS: one atomic writer + fail-fast semantic visual injection compatibility + complete shell-trigger coverage + non-cancelling concurrency + cache verification + shared Daily presentation + ready gate + historical regression + locked deps + Pages receipt + recovery + Node 24')
+print('PIPELINE CONTRACT PASS: one atomic writer + latest-main checkout freshness + fail-fast semantic visual injection compatibility + complete shell-trigger coverage + non-cancelling concurrency + cache verification + shared Daily presentation + ready gate + historical regression + locked deps + Pages receipt + recovery + Node 24')
