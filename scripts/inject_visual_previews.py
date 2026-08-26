@@ -49,7 +49,9 @@ def inject(path,prefix,records,is_archive=False):
             continue
 
         preview=make_preview(soup,rec,prefix,is_archive=is_archive)
-        impact=card.find('div',class_='quick-impact')
+        # quick-impact is a semantic class, not a fixed HTML tag. Homepage uses
+        # <p class="quick-impact"> while archive templates may use other tags.
+        impact=card.select_one('.quick-impact')
         if impact:
             impact.insert_before(preview)
         else:
