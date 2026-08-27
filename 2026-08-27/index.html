@@ -1,75 +1,624 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>AI 3D Daily｜2026-08-27</title>
-  <link rel="stylesheet" href="../styles.css?v=20260827-r1">
-  <link rel="stylesheet" href="../daily.css?v=20260827-r1">
-  <script defer src="../daily.js?v=20260827-r1"></script>
-</head>
-<body class="archive-page" data-report-date="2026-08-27" data-previous="2026-08-26" data-next="">
-<header class="site-head daily-hero">
-  <div class="page"><p>AI 3D DAILY · 2026-08-27</p><h1>Production Intelligence 日報</h1></div>
-</header>
-<main class="page daily-main">
-<section id="top" class="block">
-  <div class="block-head"><div><span class="section-kicker">TODAY</span><h2>今天最值得看的 5 件事</h2></div></div>
-  <article class="news daily-card daily-card-top" data-intel-id="smart-remesh-2" data-intel-role="card">
-    <div class="news-rank">01</div><div class="news-main">
-      <h3>Smart Remesh 2：AI / 掃描高密度模型開始把 UV、材質與 Retopo 一起處理</h3>
-      <p class="summary">UV/UDIM、材質與 baked detail 保留，讓自動 remesh 更接近可進 production 的 cleanup 節點。</p>
-      <p class="quick-impact daily-impact">Quick Impact｜最值得拿 Meshy / Tripo 高密度 Prop 實測 cleanup 時間。</p>
-      <details class="daily-full-analysis"><summary>完整分析</summary><div class="detail-body daily-analysis-body"></div></details>
-      <a class="source daily-source" href="https://superhivemarket.com/products/smart-remesh" target="_blank" rel="noopener noreferrer">Source</a>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   AI 3D Daily｜2026-08-27
+  </title>
+  <link href="../styles.css?v=20260827-r1" rel="stylesheet"/>
+  <link href="../daily.css?v=20260827-r1" rel="stylesheet"/>
+  <script defer="" src="../daily.js?v=20260827-r1">
+  </script>
+ </head>
+ <body class="archive-page" data-next="" data-previous="2026-08-26" data-report-date="2026-08-27">
+  <header class="site-head daily-hero">
+   <div class="page">
+    <p>
+     AI 3D DAILY · 2026-08-27
+    </p>
+    <h1>
+     Production Intelligence 日報
+    </h1>
+   </div>
+  </header>
+  <main class="page daily-main">
+   <section class="block" id="top">
+    <div class="block-head">
+     <div>
+      <span class="section-kicker">
+       TODAY
+      </span>
+      <h2>
+       今天最值得看的 5 件事
+      </h2>
+     </div>
     </div>
-  </article>
-  <article class="news daily-card daily-card-top" data-intel-id="blender-layer-v2-krita" data-intel-role="card">
-    <div class="news-rank">02</div><div class="news-main">
-      <h3>Blender Layer V2：Blender Viewport 直接進 Krita，3D Pose → Paint-over 更順</h3>
-      <p class="summary">支援 Blender 5.2 LTS / Krita 5.3+，補上透明與 Pose Library preview 等實際工作流問題。</p>
-      <p class="quick-impact daily-impact">Quick Impact｜Concept、角色造型審核與 NPR paint-over 值得測。</p>
-      <details class="daily-full-analysis"><summary>完整分析</summary><div class="detail-body daily-analysis-body"></div></details>
-      <a class="source daily-source" href="https://krita-artists.org/t/blender-leyer-v2-creditos-para-su-base-yuntoko/189427" target="_blank" rel="noopener noreferrer">Source</a>
+    <article class="news daily-card daily-card-top" data-intel-id="smart-remesh-2" data-intel-role="card">
+     <div class="news-rank">
+      01
+     </div>
+     <div class="news-main">
+      <h3>
+       Smart Remesh 2：AI / 掃描高密度模型開始把 UV、材質與 Retopo 一起處理
+      </h3>
+      <p class="summary">
+       UV/UDIM、材質與 baked detail 保留，讓自動 remesh 更接近可進 production 的 cleanup 節點。
+      </p>
+      <p class="quick-impact daily-impact">
+       Quick Impact｜最值得拿 Meshy / Tripo 高密度 Prop 實測 cleanup 時間。
+      </p>
+      <details class="daily-full-analysis">
+       <summary>
+        完整分析
+       </summary>
+       <div class="detail-body daily-analysis-body">
+        <h4>
+         Production 判斷
+        </h4>
+        <p>
+         Smart Remesh 2 把 UV/UDIM、材質指派、烘焙細節保留與 Smart Cleanup 放進同一個 Blender retopology 流程，特別針對 AI 生成、掃描與高密度 kitbash 的清理成本。對遊戲美術而言，價值不只是減面，而是降低『重拓樸後還要重做 UV/材質』的返工。
+        </p>
+        <h4>
+         適用資產
+        </h4>
+        <p>
+         硬表面模式適合機械 Prop、建築件與 kitbash；Organic 模式則偏向雕刻與掃描。工具宣稱硬表面可保持表面頂點位置不漂移，Organic 模式可直接把細節 bake 到乾淨結果。
+        </p>
+        <h4>
+         限制
+        </h4>
+        <p>
+         自動 remesh 仍不能取代關節 deformation topology、特定遊戲 LOD edge flow 與手工 hero cleanup；UV 保留也需要用實際複雜 UDIM、硬邊與材質邊界驗證。
+        </p>
+        <h4>
+         20 分鐘實測
+        </h4>
+        <p>
+         拿同一個 Meshy/Tripo 高密度 Prop，分別跑硬表面與 Organic，記錄減面率、UV/材質是否保留、normal bake 失真與最後人工 cleanup 分鐘數。
+        </p>
+       </div>
+      </details>
+      <a class="source daily-source" href="https://superhivemarket.com/products/smart-remesh" rel="noopener noreferrer" target="_blank">
+       Source
+      </a>
+     </div>
+    </article>
+    <article class="news daily-card daily-card-top" data-intel-id="blender-layer-v2-krita" data-intel-role="card">
+     <div class="news-rank">
+      02
+     </div>
+     <div class="news-main">
+      <h3>
+       Blender Layer V2：Blender Viewport 直接進 Krita，3D Pose → Paint-over 更順
+      </h3>
+      <p class="summary">
+       支援 Blender 5.2 LTS / Krita 5.3+，補上透明與 Pose Library preview 等實際工作流問題。
+      </p>
+      <p class="quick-impact daily-impact">
+       Quick Impact｜Concept、角色造型審核與 NPR paint-over 值得測。
+      </p>
+      <details class="daily-full-analysis">
+       <summary>
+        完整分析
+       </summary>
+       <div class="detail-body daily-analysis-body">
+        <h4>
+         Workflow 重點
+        </h4>
+        <p>
+         Blender Layer V2 把 Blender 3D viewport 直接連到 Krita drawing layer，讓概念美術可以用 3D 模型、Pose Library 與相機構圖當底，再在 Krita 上即時繪製。對需要角色/場景快速 paint-over 的流程，比傳統截圖→貼圖→重截更順。
+        </p>
+        <h4>
+         Production 價值
+        </h4>
+        <p>
+         最適合 concept、keyframe、造型審核與 NPR paint-over。V2 標示支援 Blender 5.2 LTS / 4.x 與 Krita 5.3+，並修掉透明/空畫布與 Pose Library preview 問題，代表它開始接近可持續使用的橋接工具。
+        </p>
+        <h4>
+         限制
+        </h4>
+        <p>
+         目前資訊主要來自社群發布，正式團隊導入前仍需確認色彩管理、alpha、相機解析度、同步延遲與大型場景 viewport 性能。
+        </p>
+        <h4>
+         實測
+        </h4>
+        <p>
+         用一個角色 A-pose 與一個場景相機，測 3D pose/相機變更到 Krita layer 更新的延遲，再確認 paint-over 匯出回美術評審流程是否能省一次以上 round-trip。
+        </p>
+       </div>
+      </details>
+      <a class="source daily-source" href="https://krita-artists.org/t/blender-leyer-v2-creditos-para-su-base-yuntoko/189427" rel="noopener noreferrer" target="_blank">
+       Source
+      </a>
+     </div>
+    </article>
+    <article class="news daily-card daily-card-top" data-intel-id="batch-exporter-290" data-intel-role="card">
+     <div class="news-rank">
+      03
+     </div>
+     <div class="news-main">
+      <h3>
+       Super Duper Batch Exporter 2.9：命名 Token 與子目錄把 Blender 批次 Export 再往 Pipeline 推一步
+      </h3>
+      <p class="summary">
+       $OBJ / $COLL_PATH / $SCENE 等 token 可直接映射團隊命名與資料夾規則。
+      </p>
+      <figure class="case-preview daily-visual" data-intel-id="batch-exporter-290" data-intel-role="visual" data-visual-id="batch-exporter-290">
+       <a href="https://extensions.blender.org/add-ons/superduperbatchexporter/" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+        <img alt="OFFICIAL EXTENSION VISUAL preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-08-27/batch-exporter-290.jpg"/>
+       </a>
+       <figcaption>
+        <span>
+         OFFICIAL EXTENSION VISUAL
+        </span>
+        · Local visual evidence · 點圖開啟原始來源
+       </figcaption>
+      </figure>
+      <p class="quick-impact daily-impact">
+       Quick Impact｜大量 Prop / LOD / FBX 輸出比單次 Export 更值得導入。
+      </p>
+      <details class="daily-full-analysis">
+       <summary>
+        完整分析
+       </summary>
+       <div class="detail-body daily-analysis-body">
+        <h4>
+         Production 更新
+        </h4>
+        <p>
+         Super Duper Batch Exporter 2.9.0 新增以 $OBJ、$COLL、$COLL_PATH、$SCENE、$BLEND、$DATE、$TIME 組合檔名與子目錄，讓批次輸出不再綁死特定 collection mode。對大量角色、Prop、LOD 與關卡模組輸出，這比單次 export UI 改進更有 production 價值。
+        </p>
+        <h4>
+         引擎 Pipeline
+        </h4>
+        <p>
+         工具支援 FBX、glTF、ABC、USD、OBJ 等格式；FBX 還可在 export 時用 decimate 自動建立 LOD，Unity/Unreal 可直接辨識。最值得測的是把 collection hierarchy 直接映射成專案資料夾與命名規範。
+        </p>
+        <h4>
+         限制
+        </h4>
+        <p>
+         自動 LOD 不等於最終美術 LOD；骨架、blendshape、material slot、pivot、socket 與自訂 exporter 設定仍需做團隊 QA。
+        </p>
+        <h4>
+         20 分鐘實測
+        </h4>
+        <p>
+         建立一個 10 個 Prop + 3 LOD 的測試 collection，用 token 產出完整資料夾結構，匯入 Unity/UE 檢查名稱、LOD、材質 slot 與 pivot 是否完全可重現。
+        </p>
+       </div>
+      </details>
+      <a class="source daily-source" href="https://extensions.blender.org/add-ons/superduperbatchexporter/" rel="noopener noreferrer" target="_blank">
+       Source
+      </a>
+     </div>
+    </article>
+    <article class="news daily-card daily-card-top" data-intel-id="rokoko-create-ai-motion" data-intel-role="card">
+     <div class="news-rank">
+      04
+     </div>
+     <div class="news-main">
+      <h3>
+       Rokoko Create：Vision 併入 AI Motion 主流程，舊 Dual-cam / Webcam 路徑正式退休
+      </h3>
+      <p class="summary">
+       AI video-to-motion / text-to-motion 集中到 Create，單鏡頭 upload 成為主要 capture 路徑。
+      </p>
+      <figure class="case-preview daily-visual" data-intel-id="rokoko-create-ai-motion" data-intel-role="visual" data-visual-id="rokoko-create-ai-motion">
+       <a href="https://support.rokoko.com/hc/en-us/articles/48823033216017-Rokoko-Vision-and-Rokoko-Create-What-you-need-to-know" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+        <img alt="OFFICIAL MOTION VISUAL preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-08-27/rokoko-create-ai-motion.jpg"/>
+       </a>
+       <figcaption>
+        <span>
+         OFFICIAL MOTION VISUAL
+        </span>
+        · Local visual evidence · 點圖開啟原始來源
+       </figcaption>
+      </figure>
+      <p class="quick-impact daily-impact">
+       Quick Impact｜用同一段走、轉、蹲、跳素材比較 foot sliding 與 cleanup。
+      </p>
+      <details class="daily-full-analysis">
+       <summary>
+        完整分析
+       </summary>
+       <div class="detail-body daily-analysis-body">
+        <h4>
+         AI Motion Delta
+        </h4>
+        <p>
+         Rokoko 已把 Vision 併入 Rokoko Create，新的 AI motion capture、video-to-motion 與 text-to-motion 都集中到 Create；舊 dual-cam 與 online webcam capture 已在 8/16 退休。這是工作流與可用性變更，不只是品牌改名。
+        </p>
+        <h4>
+         輸入與輸出判斷
+        </h4>
+        <p>
+         目前官方重點轉向單鏡頭影片上傳，Rokoko 認為品質與穩定性優於舊 dual-cam/webcam 路徑。實際遊戲 pipeline 仍要確認 export 到 FBX/BVH、Studio retarget 與既有 SmartSuit/rig 流程的銜接。
+        </p>
+        <h4>
+         Cleanup / Retarget
+        </h4>
+        <p>
+         單鏡頭 AI mocap 的核心驗收仍是 root、foot contact、遮擋、快速旋轉與手臂交叉；工具整合不代表 cleanup 成本自動消失。
+        </p>
+        <h4>
+         實測
+        </h4>
+        <p>
+         用同一段走→轉身→蹲→跳影片跑 Create，記錄生成時間、腳滑 frame、root 漂移與轉到遊戲 rig 後的手修時間；如果比舊 Vision 少一輪修正才算實質提升。
+        </p>
+       </div>
+      </details>
+      <a class="source daily-source" href="https://support.rokoko.com/hc/en-us/articles/48823033216017-Rokoko-Vision-and-Rokoko-Create-What-you-need-to-know" rel="noopener noreferrer" target="_blank">
+       Source
+      </a>
+     </div>
+    </article>
+    <article class="news daily-card daily-card-top" data-intel-id="deadhand-practical-impact-animation" data-intel-role="card">
+     <div class="news-rank">
+      05
+     </div>
+     <div class="news-main">
+      <h3>
+       Deadhand Theater：用 3D Impact Animation 取代泛用粒子，讓 VFX 服從世界觀
+      </h3>
+      <p class="summary">
+       把 hit flash 從 generic particles 改成更像舞台機關的 3D 動畫，是很好的 stylized VFX art-direction 案例。
+      </p>
+      <figure class="case-preview daily-visual" data-intel-id="deadhand-practical-impact-animation" data-intel-role="visual" data-visual-id="deadhand-practical-impact-animation">
+       <a href="https://80.lv/articles/poker-deckbuilder-with-practical-effects-instead-of-generic-vfx" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+        <img alt="SOURCE VISUAL preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-08-27/deadhand-practical-impact-animation.jpg"/>
+       </a>
+       <figcaption>
+        <span>
+         SOURCE VISUAL
+        </span>
+        · Local visual evidence · 點圖開啟原始來源
+       </figcaption>
+      </figure>
+      <p class="quick-impact daily-impact">
+       Quick Impact｜同一攻擊做粒子版 / 3D 動畫版，直接比 readability 與成本。
+      </p>
+      <details class="daily-full-analysis">
+       <summary>
+        完整分析
+       </summary>
+       <div class="detail-body daily-analysis-body">
+        <h4>
+         Art Direction 判斷
+        </h4>
+        <p>
+         Deadhand Theater 把一般粒子 hit flash 改成 3D impact animation，讓每次攻擊更像舞台上的實體表演。這個案例重要的不是特效技術本身，而是『效果語言是否服從遊戲世界觀』。
+        </p>
+        <h4>
+         Production 啟示
+        </h4>
+        <p>
+         對 stylized 遊戲，可把 impact 拆成 mesh deformation/flipbook/短動畫、少量粒子與音效，而不是所有技能都用相似 bloom + spark。這能提高辨識度，也更容易形成可重用的 VFX style kit。
+        </p>
+        <h4>
+         限制
+        </h4>
+        <p>
+         報導沒有公開性能數據與完整 UE 實作；3D impact animation 可能增加 skeletal/static mesh、draw call 與 authoring 成本，不能只看畫面效果。
+        </p>
+        <h4>
+         實測
+        </h4>
+        <p>
+         挑同一個攻擊做粒子版與 3D 動畫版，固定鏡頭比較 readability、GPU cost、資產重用率與一次效果製作時間，再決定哪些 attack tier 值得用高成本版本。
+        </p>
+       </div>
+      </details>
+      <a class="source daily-source" href="https://80.lv/articles/poker-deckbuilder-with-practical-effects-instead-of-generic-vfx" rel="noopener noreferrer" target="_blank">
+       Source
+      </a>
+     </div>
+    </article>
+   </section>
+   <section class="block" id="more">
+    <div class="block-head">
+     <div>
+      <span class="section-kicker">
+       MORE
+      </span>
+      <h2>
+       今天還有什麼
+      </h2>
+     </div>
     </div>
-  </article>
-  <article class="news daily-card daily-card-top" data-intel-id="batch-exporter-290" data-intel-role="card">
-    <div class="news-rank">03</div><div class="news-main">
-      <h3>Super Duper Batch Exporter 2.9：命名 Token 與子目錄把 Blender 批次 Export 再往 Pipeline 推一步</h3>
-      <p class="summary">$OBJ / $COLL_PATH / $SCENE 等 token 可直接映射團隊命名與資料夾規則。</p>
-      <p class="quick-impact daily-impact">Quick Impact｜大量 Prop / LOD / FBX 輸出比單次 Export 更值得導入。</p>
-      <details class="daily-full-analysis"><summary>完整分析</summary><div class="detail-body daily-analysis-body"></div></details>
-      <a class="source daily-source" href="https://extensions.blender.org/add-ons/superduperbatchexporter/" target="_blank" rel="noopener noreferrer">Source</a>
-    </div>
-  </article>
-  <article class="news daily-card daily-card-top" data-intel-id="rokoko-create-ai-motion" data-intel-role="card">
-    <div class="news-rank">04</div><div class="news-main">
-      <h3>Rokoko Create：Vision 併入 AI Motion 主流程，舊 Dual-cam / Webcam 路徑正式退休</h3>
-      <p class="summary">AI video-to-motion / text-to-motion 集中到 Create，單鏡頭 upload 成為主要 capture 路徑。</p>
-      <p class="quick-impact daily-impact">Quick Impact｜用同一段走、轉、蹲、跳素材比較 foot sliding 與 cleanup。</p>
-      <details class="daily-full-analysis"><summary>完整分析</summary><div class="detail-body daily-analysis-body"></div></details>
-      <a class="source daily-source" href="https://support.rokoko.com/hc/en-us/articles/48823033216017-Rokoko-Vision-and-Rokoko-Create-What-you-need-to-know" target="_blank" rel="noopener noreferrer">Source</a>
-    </div>
-  </article>
-  <article class="news daily-card daily-card-top" data-intel-id="deadhand-practical-impact-animation" data-intel-role="card">
-    <div class="news-rank">05</div><div class="news-main">
-      <h3>Deadhand Theater：用 3D Impact Animation 取代泛用粒子，讓 VFX 服從世界觀</h3>
-      <p class="summary">把 hit flash 從 generic particles 改成更像舞台機關的 3D 動畫，是很好的 stylized VFX art-direction 案例。</p>
-      <p class="quick-impact daily-impact">Quick Impact｜同一攻擊做粒子版 / 3D 動畫版，直接比 readability 與成本。</p>
-      <details class="daily-full-analysis"><summary>完整分析</summary><div class="detail-body daily-analysis-body"></div></details>
-      <a class="source daily-source" href="https://80.lv/articles/poker-deckbuilder-with-practical-effects-instead-of-generic-vfx" target="_blank" rel="noopener noreferrer">Source</a>
-    </div>
-  </article>
-</section>
-<section id="more" class="block">
-  <div class="block-head"><div><span class="section-kicker">MORE</span><h2>今天還有什麼</h2></div></div>
-  <article class="category-news daily-card daily-card-more" data-intel-id="hardflow-1211" data-intel-role="card"><h3>Hardflow 1.21.1：修掉 Blender Toolbar Registry 隱性錯誤</h3><p class="summary">免費 hard-surface toolkit 的穩定性修正。</p><p class="quick-impact daily-impact">Quick Impact｜正在找免費硬表面工具的團隊可列入測試。</p><details class="daily-full-analysis"><summary>完整分析</summary><div class="detail-body daily-analysis-body"></div></details><a class="source daily-source" href="https://extensions.blender.org/add-ons/hardflow/" target="_blank" rel="noopener noreferrer">Source</a></article>
-  <article class="category-news daily-card daily-card-more" data-intel-id="paint-system-2118" data-intel-role="card"><h3>Paint System 2.1.18：跟進 Blender 5.3 Brush API</h3><p class="summary">跨版本 Texture Paint workflow 的 compatibility signal。</p><p class="quick-impact daily-impact">Quick Impact｜升 Blender 前先跑 Palette / Brush smoke test。</p><details class="daily-full-analysis"><summary>完整分析</summary><div class="detail-body daily-analysis-body"></div></details><a class="source daily-source" href="https://extensions.blender.org/add-ons/paint-system/" target="_blank" rel="noopener noreferrer">Source</a></article>
-  <article class="category-news daily-card daily-card-more" data-intel-id="democap-tools-191" data-intel-role="card"><h3>DEMoCap Tools 1.9.1：低成本 Live Mocap → Blender 路徑持續維護</h3><p class="summary">修正 Blender 4.5 async I/O，保留 correction bones 與 Live Connection。</p><p class="quick-impact daily-impact">Quick Impact｜可和 AI video mocap 一起比較 capture-to-cleanup 成本。</p><details class="daily-full-analysis"><summary>完整分析</summary><div class="detail-body daily-analysis-body"></div></details><a class="source daily-source" href="https://extensions.blender.org/add-ons/democap-tools/" target="_blank" rel="noopener noreferrer">Source</a></article>
-  <article class="category-news daily-card daily-card-more" data-intel-id="rebelle-83-heightmap" data-intel-role="card"><h3>Rebelle 8.3：手繪筆觸可輸出 16-bit EXR Heightmap</h3><p class="summary">NPR / 手繪材質可把實體筆觸深度帶回 3D shader。</p><p class="quick-impact daily-impact">Quick Impact｜適合測筆觸 → height/normal → Substance/Blender。</p><details class="daily-full-analysis"><summary>完整分析</summary><div class="detail-body daily-analysis-body"></div></details><a class="source daily-source" href="https://www.cgchannel.com/2026/08/escape-motions-releases-rebelle-8/" target="_blank" rel="noopener noreferrer">Source</a></article>
-  <article class="category-news daily-card daily-card-more" data-intel-id="golaem-open-source-connectors" data-intel-role="card"><h3>Golaem：Houdini / Unreal / USD Connectors 開源</h3><p class="summary">Crowd cache 跨 DCC / Engine 的 connector 風險降低。</p><p class="quick-impact daily-impact">Quick Impact｜大型 NPC/crowd pipeline 值得關注版本鎖定與 USD 整合。</p><details class="daily-full-analysis"><summary>完整分析</summary><div class="detail-body daily-analysis-body"></div></details><a class="source daily-source" href="https://www.cgchannel.com/2026/08/autodesk-open-sources-golaem-for-houdini-and-unreal-engine/" target="_blank" rel="noopener noreferrer">Source</a></article>
-  <article class="category-news daily-card daily-card-more" data-intel-id="alien-shaman-character-workflow" data-intel-role="card"><h3>Alien Shaman Breakdown：角色 Look-dev 與 Environment Lighting 不該最後才對</h3><p class="summary">ZBrush / Mari / Maya / UE / Nuke 的跨工具角色流程值得轉成 look-dev SOP。</p><p class="quick-impact daily-impact">Quick Impact｜重點看大形→surfacing→lighting parity，而不是 micro detail。</p><details class="daily-full-analysis"><summary>完整分析</summary><div class="detail-body daily-analysis-body"></div></details><a class="source daily-source" href="https://80.lv/articles/creating-an-alien-shaman-cg-character-of-using-zbrush-mari-maya" target="_blank" rel="noopener noreferrer">Source</a></article>
-</section>
-</main>
-</body>
+    <article class="category-news daily-card daily-card-more" data-intel-id="hardflow-1211" data-intel-role="card">
+     <h3>
+      Hardflow 1.21.1：修掉 Blender Toolbar Registry 隱性錯誤
+     </h3>
+     <p class="summary">
+      免費 hard-surface toolkit 的穩定性修正。
+     </p>
+     <figure class="case-preview daily-visual" data-intel-id="hardflow-1211" data-intel-role="visual" data-visual-id="hardflow-1211">
+      <a href="https://extensions.blender.org/add-ons/hardflow/" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+       <img alt="OFFICIAL EXTENSION VISUAL preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-08-27/hardflow-1211.jpg"/>
+      </a>
+      <figcaption>
+       <span>
+        OFFICIAL EXTENSION VISUAL
+       </span>
+       · Local visual evidence · 點圖開啟原始來源
+      </figcaption>
+     </figure>
+     <p class="quick-impact daily-impact">
+      Quick Impact｜正在找免費硬表面工具的團隊可列入測試。
+     </p>
+     <details class="daily-full-analysis">
+      <summary>
+       完整分析
+      </summary>
+      <div class="detail-body daily-analysis-body">
+       <h4>
+        近期更新
+       </h4>
+       <p>
+        Hardflow 1.21.1 修正 toolbar registration 破壞 Blender tool list 的問題；雖然是 bugfix，但這類 UI registry 錯誤會讓每次 toolbar redraw / hover 都產生隱性例外，對正式建模工作站穩定性有直接影響。
+       </p>
+       <h4>
+        適用流程
+       </h4>
+       <p>
+        Hardflow 是免費開源 hard-surface boolean toolkit，包含 kitbash、snap、material insert 等功能，適合機械 Prop 與環境模組 blockout。
+       </p>
+       <h4>
+        導入建議
+       </h4>
+       <p>
+        這則不值得進 TOP 5，但如果團隊正在評估免費 HardOps/Boxcutter 替代方案，1.21.1 代表近期版本應優先於舊 build；仍需用自己的 hotkey/tool shelf 配置測衝突。
+       </p>
+      </div>
+     </details>
+     <a class="source daily-source" href="https://extensions.blender.org/add-ons/hardflow/" rel="noopener noreferrer" target="_blank">
+      Source
+     </a>
+    </article>
+    <article class="category-news daily-card daily-card-more" data-intel-id="paint-system-2118" data-intel-role="card">
+     <h3>
+      Paint System 2.1.18：跟進 Blender 5.3 Brush API
+     </h3>
+     <p class="summary">
+      跨版本 Texture Paint workflow 的 compatibility signal。
+     </p>
+     <figure class="case-preview daily-visual" data-intel-id="paint-system-2118" data-intel-role="visual" data-visual-id="paint-system-2118">
+      <a href="https://extensions.blender.org/add-ons/paint-system/" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+       <img alt="OFFICIAL EXTENSION VISUAL preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-08-27/paint-system-2118.jpg"/>
+      </a>
+      <figcaption>
+       <span>
+        OFFICIAL EXTENSION VISUAL
+       </span>
+       · Local visual evidence · 點圖開啟原始來源
+      </figcaption>
+     </figure>
+     <p class="quick-impact daily-impact">
+      Quick Impact｜升 Blender 前先跑 Palette / Brush smoke test。
+     </p>
+     <details class="daily-full-analysis">
+      <summary>
+       完整分析
+      </summary>
+      <div class="detail-body daily-analysis-body">
+       <h4>
+        近期更新
+       </h4>
+       <p>
+        Paint System 2.1.18 修正 Blender 5.3 brush setting API 變更造成的相容問題。對正在跨 4.2 LTS、5.2/5.3 測試 paint workflow 的團隊，這是一個明確的 compatibility signal。
+       </p>
+       <h4>
+        Production 意義
+       </h4>
+       <p>
+        Texture/paint 類 addon 最怕 Blender API 變動導致 palette、brush 或 layer workflow 中斷，因此版本鎖定與 smoke test 比新功能更重要。
+       </p>
+       <h4>
+        限制
+       </h4>
+       <p>
+        目前更新是 API bugfix，不代表完整 5.3 production ready；palette、history、texture save/reload 與大型貼圖仍應獨立驗證。
+       </p>
+      </div>
+     </details>
+     <a class="source daily-source" href="https://extensions.blender.org/add-ons/paint-system/" rel="noopener noreferrer" target="_blank">
+      Source
+     </a>
+    </article>
+    <article class="category-news daily-card daily-card-more" data-intel-id="democap-tools-191" data-intel-role="card">
+     <h3>
+      DEMoCap Tools 1.9.1：低成本 Live Mocap → Blender 路徑持續維護
+     </h3>
+     <p class="summary">
+      修正 Blender 4.5 async I/O，保留 correction bones 與 Live Connection。
+     </p>
+     <figure class="case-preview daily-visual" data-intel-id="democap-tools-191" data-intel-role="visual" data-visual-id="democap-tools-191">
+      <a href="https://extensions.blender.org/add-ons/democap-tools/" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+       <img alt="OFFICIAL MOTION VISUAL preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-08-27/democap-tools-191.jpg"/>
+      </a>
+      <figcaption>
+       <span>
+        OFFICIAL MOTION VISUAL
+       </span>
+       · Local visual evidence · 點圖開啟原始來源
+      </figcaption>
+     </figure>
+     <p class="quick-impact daily-impact">
+      Quick Impact｜可和 AI video mocap 一起比較 capture-to-cleanup 成本。
+     </p>
+     <details class="daily-full-analysis">
+      <summary>
+       完整分析
+      </summary>
+      <div class="detail-body daily-analysis-body">
+       <h4>
+        Animation / AI Motion
+       </h4>
+       <p>
+        DEMoCap Tools 1.9.1 修正 Blender 4.5 async I/O 問題，並保留 mocap file import、correction bones 與 Live Connection。對需要低成本 real-time capture→Blender 的流程，它值得放在 AI motion 候選池之外一起比較。
+       </p>
+       <h4>
+        輸入與 Rig
+       </h4>
+       <p>
+        輸入來自 DEMoCap capture，可匯入捕捉檔或用網路 Live Connection 串流；這不是 text-to-motion，而是 capture pipeline，優勢是結果直接落到 Blender animation cleanup 環境。
+       </p>
+       <h4>
+        限制
+       </h4>
+       <p>
+        需要 DEMoCap/Drag[en]gine 生態，且 game-ready FBX、root motion、foot locking 與最終 retarget 品質仍取決於後續 rig/cleanup。
+       </p>
+      </div>
+     </details>
+     <a class="source daily-source" href="https://extensions.blender.org/add-ons/democap-tools/" rel="noopener noreferrer" target="_blank">
+      Source
+     </a>
+    </article>
+    <article class="category-news daily-card daily-card-more" data-intel-id="rebelle-83-heightmap" data-intel-role="card">
+     <h3>
+      Rebelle 8.3：手繪筆觸可輸出 16-bit EXR Heightmap
+     </h3>
+     <p class="summary">
+      NPR / 手繪材質可把實體筆觸深度帶回 3D shader。
+     </p>
+     <figure class="case-preview daily-visual" data-intel-id="rebelle-83-heightmap" data-intel-role="visual" data-visual-id="rebelle-83-heightmap">
+      <a href="https://www.cgchannel.com/2026/08/escape-motions-releases-rebelle-8/" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+       <img alt="SOURCE VISUAL preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-08-27/rebelle-83-heightmap.jpg"/>
+      </a>
+      <figcaption>
+       <span>
+        SOURCE VISUAL
+       </span>
+       · Local visual evidence · 點圖開啟原始來源
+      </figcaption>
+     </figure>
+     <p class="quick-impact daily-impact">
+      Quick Impact｜適合測筆觸 → height/normal → Substance/Blender。
+     </p>
+     <details class="daily-full-analysis">
+      <summary>
+       完整分析
+      </summary>
+      <div class="detail-body daily-analysis-body">
+       <h4>
+        6 個月補漏
+       </h4>
+       <p>
+        Rebelle 8.3 可把實體筆觸深度輸出成 16-bit EXR heightmap，讓 2D 手繪筆觸能進入 Blender/材質工具/合成軟體重建表面起伏。對 NPR、手繪材質與 title/prop look-dev 比一般繪圖功能更值得關注。
+       </p>
+       <h4>
+        遊戲美術用途
+       </h4>
+       <p>
+        可以把畫出的刮痕、厚塗、浮雕筆觸轉成 height/normal 的來源，再和 Substance 或 shader 混合，形成更有作者筆觸的材質。
+       </p>
+       <h4>
+        限制
+       </h4>
+       <p>
+        heightmap 只是幾何/法線資訊來源，色彩、roughness、尺度與 tileability 仍需後續處理；不適合直接當成完整 PBR 材質生成。
+       </p>
+      </div>
+     </details>
+     <a class="source daily-source" href="https://www.cgchannel.com/2026/08/escape-motions-releases-rebelle-8/" rel="noopener noreferrer" target="_blank">
+      Source
+     </a>
+    </article>
+    <article class="category-news daily-card daily-card-more" data-intel-id="golaem-open-source-connectors" data-intel-role="card">
+     <h3>
+      Golaem：Houdini / Unreal / USD Connectors 開源
+     </h3>
+     <p class="summary">
+      Crowd cache 跨 DCC / Engine 的 connector 風險降低。
+     </p>
+     <figure class="case-preview daily-visual" data-intel-id="golaem-open-source-connectors" data-intel-role="visual" data-visual-id="golaem-open-source-connectors">
+      <a href="https://www.cgchannel.com/2026/08/autodesk-open-sources-golaem-for-houdini-and-unreal-engine/" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+       <img alt="SOURCE VISUAL preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-08-27/golaem-open-source-connectors.jpg"/>
+      </a>
+      <figcaption>
+       <span>
+        SOURCE VISUAL
+       </span>
+       · Local visual evidence · 點圖開啟原始來源
+      </figcaption>
+     </figure>
+     <p class="quick-impact daily-impact">
+      Quick Impact｜大型 NPC/crowd pipeline 值得關注版本鎖定與 USD 整合。
+     </p>
+     <details class="daily-full-analysis">
+      <summary>
+       完整分析
+      </summary>
+      <div class="detail-body daily-analysis-body">
+       <h4>
+        Pipeline 補漏
+       </h4>
+       <p>
+        Autodesk 已把 Golaem for Houdini、Unreal Engine 與 USD connector 以 Apache 2.0 開源，讓 crowd cache 可以在其他 DCC/engine 裡程序化載入，而不必先 bake 全部 geometry。
+       </p>
+       <h4>
+        Production 價值
+       </h4>
+       <p>
+        對大型 NPC/crowd 場景，開源 connector 降低了版本卡死與黑盒 plugin 風險，也方便技術美術針對自家 USD/UE pipeline 修整。
+       </p>
+       <h4>
+        限制
+       </h4>
+       <p>
+        核心 crowd authoring 仍以 Maya Golaem 為中心；開源的是 connector，不等於整套 crowd system 免費。導入前要確認 cache format、版本相容與 UE runtime 成本。
+       </p>
+      </div>
+     </details>
+     <a class="source daily-source" href="https://www.cgchannel.com/2026/08/autodesk-open-sources-golaem-for-houdini-and-unreal-engine/" rel="noopener noreferrer" target="_blank">
+      Source
+     </a>
+    </article>
+    <article class="category-news daily-card daily-card-more" data-intel-id="alien-shaman-character-workflow" data-intel-role="card">
+     <h3>
+      Alien Shaman Breakdown：角色 Look-dev 與 Environment Lighting 不該最後才對
+     </h3>
+     <p class="summary">
+      ZBrush / Mari / Maya / UE / Nuke 的跨工具角色流程值得轉成 look-dev SOP。
+     </p>
+     <p class="quick-impact daily-impact">
+      Quick Impact｜重點看大形→surfacing→lighting parity，而不是 micro detail。
+     </p>
+     <details class="daily-full-analysis">
+      <summary>
+       完整分析
+      </summary>
+      <div class="detail-body daily-analysis-body">
+       <h4>
+        Character Production
+       </h4>
+       <p>
+        Nymera breakdown 展示 ZBrush、Mari、Maya/Arnold、Marvelous Designer、Substance 與 Nuke/UE 環境混合的角色流程，核心是先用真實皮膚與解剖 reference 建立大形，再逐層推進 surfacing，而不是一開始堆 micro detail。
+       </p>
+       <h4>
+        可借鏡方法
+       </h4>
+       <p>
+        最值得轉成 SOP 的是角色 look-dev 與環境 lighting 同步：角色在 Arnold 建立材質與燈光，同時和 Unreal Environment / Nuke compositing 對齊，避免角色完成後才發現場景色溫與反射不匹配。
+       </p>
+       <h4>
+        限制
+       </h4>
+       <p>
+        案例偏 cinematic/VFX，遊戲角色需要把 UDIM 數量、shader 層數、毛髮與材質精度重新縮到 runtime budget；方法可借鏡，規格不能直接照搬。
+       </p>
+      </div>
+     </details>
+     <a class="source daily-source" href="https://80.lv/articles/creating-an-alien-shaman-cg-character-of-using-zbrush-mari-maya" rel="noopener noreferrer" target="_blank">
+      Source
+     </a>
+    </article>
+   </section>
+  </main>
+ </body>
 </html>
