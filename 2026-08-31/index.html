@@ -1,31 +1,708 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
-<head>
+ <head>
   <meta charset="utf-8"/>
   <meta content="width=device-width,initial-scale=1" name="viewport"/>
-  <title>AI 3D Daily｜2026-08-31</title>
+  <title>
+   AI 3D Daily｜2026-08-31
+  </title>
   <link href="../styles.css?v=20260831-r3" rel="stylesheet"/>
   <link href="../daily.css?v=20260831-r3" rel="stylesheet"/>
-  <script defer src="../daily.js?v=20260831-r3"></script>
-</head>
-<body class="archive-page" data-next="" data-previous="2026-08-30" data-report-date="2026-08-31">
-<header class="site-head daily-hero"><div class="page"><a href="../">← 回情報總覽</a><h1>2026-08-31 Production Intelligence</h1><p>AI／3D／遊戲美術 Production Intelligence 日報</p></div></header>
-<main class="page daily-main">
-<section class="block" id="top"><div class="block-head"><h2>今天最值得看的 5 件事</h2></div>
-  <article class="news daily-card daily-card-top" data-intel-id="maya-motionmaker-byod" data-intel-role="card"><div class="news-rank">01</div><div class="news-main"><span class="pill">AI MOTION / MAYA</span><h3>MotionMaker Bring Your Own Data：用自己的動畫庫訓練 AI Motion</h3><p class="summary">本機訓練 studio-specific motion model，生成結果仍可在 Maya 裡完整編修。</p><div class="quick-impact daily-impact"><span><b>Animation</b> ★★★★★</span></div><details class="daily-full-analysis"><summary>完整分析</summary><div class="detail-body daily-analysis-body"></div></details><a class="source daily-source" href="https://blogs.autodesk.com/media-and-entertainment/2026/07/22/motionmaker-bring-your-own-data-amplifies-stylized-animation/">Source ↗</a></div></article>
-  <article class="news daily-card daily-card-top" data-intel-id="substance-painter-12-1" data-intel-role="card"><div class="news-rank">02</div><div class="news-main"><span class="pill">TEXTURE / BAKING</span><h3>Substance Painter 12.1：Skew Painting + Auto Rebake 直攻遊戲 Bake 痛點</h3><p class="summary">低模上直接修正投射方向，搭配 hard-surface Auto UV 與 OpenPBR。</p><div class="quick-impact daily-impact"><span><b>Texture</b> ★★★★★</span></div><details class="daily-full-analysis"><summary>完整分析</summary><div class="detail-body daily-analysis-body"></div></details><a class="source daily-source" href="https://experienceleague.adobe.com/en/docs/substance-3d-painter/using/release-notes/version-12-1">Source ↗</a></div></article>
-  <article class="news daily-card daily-card-top" data-intel-id="godot-4-8-dev4" data-intel-role="card"><div class="news-rank">03</div><div class="news-main"><span class="pill">ENGINE / TECH ART</span><h3>Godot 4.8 開發快照：3D Trail、VisualShader Groups 與 AO 升級</h3><p class="summary">幾項直接影響 VFX、材質重用與場景光照的功能已進入可測階段。</p><div class="quick-impact daily-impact"><span><b>Engine</b> ★★★★☆</span></div><details class="daily-full-analysis"><summary>完整分析</summary><div class="detail-body daily-analysis-body"></div></details><a class="source daily-source" href="https://80.lv/articles/godot-4-8-development-is-in-full-swing">Source ↗</a></div></article>
-  <article class="news daily-card daily-card-top" data-intel-id="matplus-1-3" data-intel-role="card"><div class="news-rank">04</div><div class="news-main"><span class="pill">BLENDER / TEXTURE</span><h3>MatPlus 1.3：把 Layer-Based 3D Texture Painting 收進 Blender</h3><p class="summary">多 UDIM、Smart Masks、auto-cache 與 game-ready map export，目標是減少 Blender↔Painter round-trip。</p><div class="quick-impact daily-impact"><span><b>Texture</b> ★★★★★</span></div><details class="daily-full-analysis"><summary>完整分析</summary><div class="detail-body daily-analysis-body"></div></details><a class="source daily-source" href="https://80.lv/articles/matplus-brings-substance-3d-painter-inspired-texture-painting-to-blender">Source ↗</a></div></article>
-  <article class="news daily-card daily-card-top" data-intel-id="softie-collision-system" data-intel-role="card"><div class="news-rank">05</div><div class="news-main"><span class="pill">BLENDER / DEFORMATION</span><h3>Softie Collision：Geometry Nodes 即時碰撞變形，不必完整 Physics Sim</h3><p class="summary">多碰撞物、self-collision 與 hardness control，適合快速動畫 deformation blocking。</p><div class="quick-impact daily-impact"><span><b>Blender</b> ★★★★☆</span></div><details class="daily-full-analysis"><summary>完整分析</summary><div class="detail-body daily-analysis-body"></div></details><a class="source daily-source" href="https://80.lv/articles/geometry-nodes-powered-real-time-collision-system-for-blender">Source ↗</a></div></article>
-</section>
-<section class="block" id="more"><div class="block-head"><h2>今天還有什麼</h2></div>
-  <article class="category-news daily-card daily-card-more" data-intel-id="cycletex-retro-texture" data-intel-role="card"><span class="pill">TEXTURE / STYLIZED</span><h3>Cycletex：照片快速變成可平鋪的低解析遊戲貼圖</h3><p class="summary">透視校正、crop、downscale 與 seamless 集中在同一個 retro texture utility。</p><div class="quick-impact daily-impact"><span><b>Texture</b> ★★★★☆</span></div><details class="daily-full-analysis"><summary>完整分析</summary><div class="detail-body daily-analysis-body"></div></details><a class="source daily-source" href="https://80.lv/articles/create-seamless-psx-textures-from-photos-with-this-newly-released-tool">Source ↗</a></article>
-  <article class="category-news daily-card daily-card-more" data-intel-id="godot-bg3-occlusion-shader" data-intel-role="card"><span class="pill">SHADER / READABILITY</span><h3>Godot 重現 BG3 Occlusion Cutout：不隱藏整棟牆也能看清角色</h3><p class="summary">對俯視與室內遊戲很實用的角色可視性 tech-art 解法。</p><div class="quick-impact daily-impact"><span><b>Shader</b> ★★★★☆</span></div><details class="daily-full-analysis"><summary>完整分析</summary><div class="detail-body daily-analysis-body"></div></details><a class="source daily-source" href="https://80.lv/articles/artist-recreates-baldur-s-gate-3-s-occlusion-shader-in-godot">Source ↗</a></article>
-  <article class="category-news daily-card daily-card-more" data-intel-id="ziva-inspired-muscle-sim" data-intel-role="card"><span class="pill">CHARACTER TECH / R&amp;D</span><h3>Ziva-inspired Muscle R&amp;D：XPBD + FEM 與可重用 Tet Cage</h3><p class="summary">仍屬研發展示，但對 muscle solve、attachment 與 deformation bake 很有研究價值。</p><div class="quick-impact daily-impact"><span><b>Character Tech</b> ★★★☆☆</span></div><details class="daily-full-analysis"><summary>完整分析</summary><div class="detail-body daily-analysis-body"></div></details><a class="source daily-source" href="https://80.lv/articles/ziva-vfx-inspired-physics-based-muscle-simulation-system">Source ↗</a></article>
-  <article class="category-news daily-card daily-card-more" data-intel-id="blender-spider-walker" data-intel-role="card"><span class="pill">ANIMATION / PROCEDURAL</span><h3>Spider Walker：Blender 即時程序多足步態，可 Bake 成 Action</h3><p class="summary">raycast + velocity prediction 自動安排落腳點，適合生物 locomotion blocking。</p><div class="quick-impact daily-impact"><span><b>Animation</b> ★★★★☆</span></div><details class="daily-full-analysis"><summary>完整分析</summary><div class="detail-body daily-analysis-body"></div></details><a class="source daily-source" href="https://80.lv/articles/free-blender-tool-for-procedural-spider-walks">Source ↗</a></article>
-  <article class="category-news daily-card daily-card-more" data-intel-id="realityscan-2-2-amd" data-intel-role="card"><span class="pill">SCAN / PIPELINE</span><h3>RealityScan 2.2：AMD GPU 與 NVIDIA 可混跑，新增 360 Capture Workflow</h3><p class="summary">Photogrammetry 硬體選擇更自由，360 相機也更容易進 reconstruction pipeline。</p><div class="quick-impact daily-impact"><span><b>Capture</b> ★★★★☆</span></div><details class="daily-full-analysis"><summary>完整分析</summary><div class="detail-body daily-analysis-body"></div></details><a class="source daily-source" href="https://www.realityscan.com/news/realityscan-2-2-is-here-with-full-amd-gpu-support-download-today">Source ↗</a></article>
-  <article class="category-news daily-card daily-card-more" data-intel-id="unity-texture-live-sync" data-intel-role="card"><span class="pill">UNITY / TEXTURE</span><h3>Photoshop / CSP Live Sync：貼圖修改即時預覽到 Unity</h3><p class="summary">4K + alpha、本機非破壞 preview，減少角色臉與服裝貼圖反覆匯出。</p><div class="quick-impact daily-impact"><span><b>Workflow</b> ★★★★☆</span></div><details class="daily-full-analysis"><summary>完整分析</summary><div class="detail-body daily-analysis-body"></div></details><a class="source daily-source" href="https://80.lv/articles/free-clip-studio-paint-photoshop-live-sync-tool-for-unity">Source ↗</a></article>
-</section>
-</main>
-</body>
+  <script defer="" src="../daily.js?v=20260831-r3">
+  </script>
+ </head>
+ <body class="archive-page" data-next="" data-previous="2026-08-30" data-report-date="2026-08-31">
+  <header class="site-head daily-hero">
+   <div class="page">
+    <a href="../">
+     ← 回情報總覽
+    </a>
+    <h1>
+     2026-08-31 Production Intelligence
+    </h1>
+    <p>
+     AI／3D／遊戲美術 Production Intelligence 日報
+    </p>
+   </div>
+  </header>
+  <main class="page daily-main">
+   <section class="block" id="top">
+    <div class="block-head">
+     <h2>
+      今天最值得看的 5 件事
+     </h2>
+    </div>
+    <article class="news daily-card daily-card-top" data-intel-id="maya-motionmaker-byod" data-intel-role="card">
+     <div class="news-rank">
+      01
+     </div>
+     <div class="news-main">
+      <span class="pill">
+       AI MOTION / MAYA
+      </span>
+      <h3>
+       MotionMaker Bring Your Own Data：用自己的動畫庫訓練 AI Motion
+      </h3>
+      <p class="summary">
+       本機訓練 studio-specific motion model，生成結果仍可在 Maya 裡完整編修。
+      </p>
+      <figure class="case-preview daily-visual" data-intel-id="maya-motionmaker-byod" data-intel-role="visual" data-visual-id="maya-motionmaker-byod">
+       <a href="https://blogs.autodesk.com/media-and-entertainment/2026/07/22/motionmaker-bring-your-own-data-amplifies-stylized-animation/" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+        <img alt="OFFICIAL PRODUCT VISUAL preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-08-31/maya-motionmaker-byod.jpg"/>
+       </a>
+       <figcaption>
+        <span>
+         OFFICIAL PRODUCT VISUAL
+        </span>
+        · Local visual evidence · 點圖開啟原始來源
+       </figcaption>
+      </figure>
+      <div class="quick-impact daily-impact">
+       <span>
+        <b>
+         Animation
+        </b>
+        ★★★★★
+       </span>
+      </div>
+      <details class="daily-full-analysis">
+       <summary>
+        完整分析
+       </summary>
+       <div class="detail-body daily-analysis-body">
+        <h4>
+         Animation / AI Motion
+        </h4>
+        <p>
+         MotionMaker 的 Bring Your Own Data 允許團隊用自己的 rig 與 hand-key / mocap 資料，在本機訓練客製 ML motion model；生成的動作仍可回到 Maya Graph Editor、Time Editor 與 Dope Sheet 繼續編修。
+        </p>
+        <h4>
+         輸入 / Rig / 訓練
+        </h4>
+        <p>
+         輸入可以是 mocap 或 keyframe animation，先 retarget 到標準角色、標記 walk/jump 等 action style 後訓練。Autodesk 強調訓練與模型都留在本機；NVIDIA GPU 可加速，官方案例中約 40 分鐘資料在 RTX A2000 筆電上訓練約 7 小時。
+        </p>
+        <h4>
+         Production 判斷
+        </h4>
+        <p>
+         這比一般 text-to-motion 更接近 studio pipeline：核心價值是把既有 animation library 的風格與角色性格變成可重用生成模型。優先測 crowd/NPC locomotion，並量測 foot lock、root motion、轉向與 hero animation cleanup 成本。
+        </p>
+       </div>
+      </details>
+      <a class="source daily-source" href="https://blogs.autodesk.com/media-and-entertainment/2026/07/22/motionmaker-bring-your-own-data-amplifies-stylized-animation/">
+       Source ↗
+      </a>
+     </div>
+    </article>
+    <article class="news daily-card daily-card-top" data-intel-id="substance-painter-12-1" data-intel-role="card">
+     <div class="news-rank">
+      02
+     </div>
+     <div class="news-main">
+      <span class="pill">
+       TEXTURE / BAKING
+      </span>
+      <h3>
+       Substance Painter 12.1：Skew Painting + Auto Rebake 直攻遊戲 Bake 痛點
+      </h3>
+      <p class="summary">
+       低模上直接修正投射方向，搭配 hard-surface Auto UV 與 OpenPBR。
+      </p>
+      <figure class="case-preview daily-visual" data-intel-id="substance-painter-12-1" data-intel-role="visual" data-visual-id="substance-painter-12-1">
+       <a href="https://experienceleague.adobe.com/en/docs/substance-3d-painter/using/release-notes/version-12-1" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+        <img alt="OFFICIAL PRODUCT VISUAL preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-08-31/substance-painter-12-1.jpg"/>
+       </a>
+       <figcaption>
+        <span>
+         OFFICIAL PRODUCT VISUAL
+        </span>
+        · Local visual evidence · 點圖開啟原始來源
+       </figcaption>
+      </figure>
+      <div class="quick-impact daily-impact">
+       <span>
+        <b>
+         Texture
+        </b>
+        ★★★★★
+       </span>
+      </div>
+      <details class="daily-full-analysis">
+       <summary>
+        完整分析
+       </summary>
+       <div class="detail-body daily-analysis-body">
+        <h4>
+         Texture Production Delta
+        </h4>
+        <p>
+         Substance 3D Painter 12.1 把 baking workflow 重做：新增 Auto Rebake、直接畫在 low poly 上的 skew correction、Edge Protection，以及 hard-surface Auto UV mode。這些都是會直接減少 low/high bake 修正時間的 production 功能。
+        </p>
+        <h4>
+         Material Pipeline
+        </h4>
+        <p>
+         Painter 12.1 也把 OpenPBR 納入預設材質工作流；12.1.3 在 8/25 更新 Substance engine 並修正 skew correction undo、network export 等問題，讓這批功能更接近穩定 production 使用。
+        </p>
+        <h4>
+         遊戲資產實測
+        </h4>
+        <p>
+         用一個硬表面道具做 A/B：傳統 cage + 手動 skew 修正 vs 12.1 skew painting + auto rebake，記錄 bake 次數、錯誤修復時間與 UV 可編輯性；再確認 OpenPBR export 到 UE/Unity 的 channel mapping。
+        </p>
+       </div>
+      </details>
+      <a class="source daily-source" href="https://experienceleague.adobe.com/en/docs/substance-3d-painter/using/release-notes/version-12-1">
+       Source ↗
+      </a>
+     </div>
+    </article>
+    <article class="news daily-card daily-card-top" data-intel-id="godot-4-8-dev4" data-intel-role="card">
+     <div class="news-rank">
+      03
+     </div>
+     <div class="news-main">
+      <span class="pill">
+       ENGINE / TECH ART
+      </span>
+      <h3>
+       Godot 4.8 開發快照：3D Trail、VisualShader Groups 與 AO 升級
+      </h3>
+      <p class="summary">
+       幾項直接影響 VFX、材質重用與場景光照的功能已進入可測階段。
+      </p>
+      <figure class="case-preview daily-visual" data-intel-id="godot-4-8-dev4" data-intel-role="visual" data-visual-id="godot-4-8-dev4">
+       <a href="https://80.lv/articles/godot-4-8-development-is-in-full-swing" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+        <img alt="SOURCE VISUAL preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-08-31/godot-4-8-dev4.jpg"/>
+       </a>
+       <figcaption>
+        <span>
+         SOURCE VISUAL
+        </span>
+        · Local visual evidence · 點圖開啟原始來源
+       </figcaption>
+      </figure>
+      <div class="quick-impact daily-impact">
+       <span>
+        <b>
+         Engine
+        </b>
+        ★★★★☆
+       </span>
+      </div>
+      <details class="daily-full-analysis">
+       <summary>
+        完整分析
+       </summary>
+       <div class="detail-body daily-analysis-body">
+        <h4>
+         Engine / Rendering Delta
+        </h4>
+        <p>
+         Godot 4.8 第四個 development snapshot 已把幾個美術向功能拉到可觀察階段，包括長期被要求的 3D Trail node、VisualShader node groups、多 bounce ambient occlusion 與 directional lightmap specular lighting。
+        </p>
+        <h4>
+         對 Tech Art 的意義
+        </h4>
+        <p>
+         3D Trail node 可減少武器拖尾、軌跡與 VFX 依賴自訂 mesh/script 的成本；VisualShader node groups 則讓材質功能更容易模組化與重用，方向與 UE/Unity 的 shader function/subgraph 類似。
+        </p>
+        <h4>
+         採用策略
+        </h4>
+        <p>
+         目前仍屬開發快照，不適合直接鎖 production。建議先做一個 trail + stylized shader prototype，觀察 draw call、透明 overdraw、序列化與版本升級風險，再等 stable release 決定是否納入正式專案。
+        </p>
+       </div>
+      </details>
+      <a class="source daily-source" href="https://80.lv/articles/godot-4-8-development-is-in-full-swing">
+       Source ↗
+      </a>
+     </div>
+    </article>
+    <article class="news daily-card daily-card-top" data-intel-id="matplus-1-3" data-intel-role="card">
+     <div class="news-rank">
+      04
+     </div>
+     <div class="news-main">
+      <span class="pill">
+       BLENDER / TEXTURE
+      </span>
+      <h3>
+       MatPlus 1.3：把 Layer-Based 3D Texture Painting 收進 Blender
+      </h3>
+      <p class="summary">
+       多 UDIM、Smart Masks、auto-cache 與 game-ready map export，目標是減少 Blender↔Painter round-trip。
+      </p>
+      <figure class="case-preview daily-visual" data-intel-id="matplus-1-3" data-intel-role="visual" data-visual-id="matplus-1-3">
+       <a href="https://80.lv/articles/matplus-brings-substance-3d-painter-inspired-texture-painting-to-blender" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+        <img alt="SOURCE VISUAL preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-08-31/matplus-1-3.jpg"/>
+       </a>
+       <figcaption>
+        <span>
+         SOURCE VISUAL
+        </span>
+        · Local visual evidence · 點圖開啟原始來源
+       </figcaption>
+      </figure>
+      <div class="quick-impact daily-impact">
+       <span>
+        <b>
+         Texture
+        </b>
+        ★★★★★
+       </span>
+      </div>
+      <details class="daily-full-analysis">
+       <summary>
+        完整分析
+       </summary>
+       <div class="detail-body daily-analysis-body">
+        <h4>
+         Blender Texture Workflow
+        </h4>
+        <p>
+         MatPlus 1.3 把 Substance Painter / Mari 類型的 layer-based texture painting 放進 Blender，支援 paint/fill layers、folders、blend modes、per-layer masks、多 UDIM 與 game-ready map export；1.3 進一步加入 auto-cache、BeFX Library、Smart Masks 與 Display module。
+        </p>
+        <h4>
+         Production 價值
+        </h4>
+        <p>
+         對希望減少 Blender↔Painter round-trip 的 Prop/Character pipeline，真正值得測的是多 UDIM、channel stack、mask reusability 與 Unreal/Unity map export 是否穩定，而不是只看 UI 像不像 Painter。
+        </p>
+        <h4>
+         導入測試
+        </h4>
+        <p>
+         拿一個含 2–4 UDIM 的硬表面資產，在 MatPlus 與 Substance Painter 各完成一套 edge wear/dirt/material variation，記錄 bake、layer 管理、VRAM、輸出 preset 與返修時間，再判斷是否適合正式資產。
+        </p>
+       </div>
+      </details>
+      <a class="source daily-source" href="https://80.lv/articles/matplus-brings-substance-3d-painter-inspired-texture-painting-to-blender">
+       Source ↗
+      </a>
+     </div>
+    </article>
+    <article class="news daily-card daily-card-top" data-intel-id="softie-collision-system" data-intel-role="card">
+     <div class="news-rank">
+      05
+     </div>
+     <div class="news-main">
+      <span class="pill">
+       BLENDER / DEFORMATION
+      </span>
+      <h3>
+       Softie Collision：Geometry Nodes 即時碰撞變形，不必完整 Physics Sim
+      </h3>
+      <p class="summary">
+       多碰撞物、self-collision 與 hardness control，適合快速動畫 deformation blocking。
+      </p>
+      <figure class="case-preview daily-visual" data-intel-id="softie-collision-system" data-intel-role="visual" data-visual-id="softie-collision-system">
+       <a href="https://80.lv/articles/geometry-nodes-powered-real-time-collision-system-for-blender" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+        <img alt="SOURCE VISUAL preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-08-31/softie-collision-system.jpg"/>
+       </a>
+       <figcaption>
+        <span>
+         SOURCE VISUAL
+        </span>
+        · Local visual evidence · 點圖開啟原始來源
+       </figcaption>
+      </figure>
+      <div class="quick-impact daily-impact">
+       <span>
+        <b>
+         Blender
+        </b>
+        ★★★★☆
+       </span>
+      </div>
+      <details class="daily-full-analysis">
+       <summary>
+        完整分析
+       </summary>
+       <div class="detail-body daily-analysis-body">
+        <h4>
+         Blender Deformation Workflow
+        </h4>
+        <p>
+         Softie Collision System 用 Geometry Nodes 做即時表面碰撞變形，不需要 lattice、shape key 或完整 physics sim，支援多碰撞物與 self-collision，並提供 hardness 控制。
+        </p>
+        <h4>
+         速度 / 限制
+        </h4>
+        <p>
+         開發者表示簡單多碰撞設定可在 i7-14700F 上低於 10ms；它最適合 surface deformation，深度穿透會讓 raycast vector 失效，因此不是通用 soft-body 替代品。
+        </p>
+        <h4>
+         遊戲美術用途
+        </h4>
+        <p>
+         適合動畫 blocking、抓握軟物、擠壓道具、局部 squash 以及需要快速 art-direct 的 deformation。若要進遊戲，應測 bake/轉形狀鍵或骨架的方式，而不是假設 Geometry Nodes 本身能直接 runtime。
+        </p>
+       </div>
+      </details>
+      <a class="source daily-source" href="https://80.lv/articles/geometry-nodes-powered-real-time-collision-system-for-blender">
+       Source ↗
+      </a>
+     </div>
+    </article>
+   </section>
+   <section class="block" id="more">
+    <div class="block-head">
+     <h2>
+      今天還有什麼
+     </h2>
+    </div>
+    <article class="category-news daily-card daily-card-more" data-intel-id="cycletex-retro-texture" data-intel-role="card">
+     <span class="pill">
+      TEXTURE / STYLIZED
+     </span>
+     <h3>
+      Cycletex：照片快速變成可平鋪的低解析遊戲貼圖
+     </h3>
+     <p class="summary">
+      透視校正、crop、downscale 與 seamless 集中在同一個 retro texture utility。
+     </p>
+     <figure class="case-preview daily-visual" data-intel-id="cycletex-retro-texture" data-intel-role="visual" data-visual-id="cycletex-retro-texture">
+      <a href="https://80.lv/articles/create-seamless-psx-textures-from-photos-with-this-newly-released-tool" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+       <img alt="SOURCE VISUAL preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-08-31/cycletex-retro-texture.jpg"/>
+      </a>
+      <figcaption>
+       <span>
+        SOURCE VISUAL
+       </span>
+       · Local visual evidence · 點圖開啟原始來源
+      </figcaption>
+     </figure>
+     <div class="quick-impact daily-impact">
+      <span>
+       <b>
+        Texture
+       </b>
+       ★★★★☆
+      </span>
+     </div>
+     <details class="daily-full-analysis">
+      <summary>
+       完整分析
+      </summary>
+      <div class="detail-body daily-analysis-body">
+       <h4>
+        Texture Utility
+       </h4>
+       <p>
+        Cycletex: Retro Texture 把照片轉低解析遊戲貼圖的常見前處理集中成一個工具：前景選取、透視拉正、8/16-pixel crop、縮圖、調色與自動 seamless。
+       </p>
+       <h4>
+        Stylized / Retro 用途
+       </h4>
+       <p>
+        真正有價值的是把『找照片→校正透視→做 tile→降解析』變成快速迭代流程，適合 PSX/低解析風格，也可作為快速 blockout texture 工具。
+       </p>
+       <h4>
+        實測建議
+       </h4>
+       <p>
+        拿同一張街景照片比較 Photoshop/Substance 手工流程與 Cycletex，檢查 seam、色階量化、透視殘留、可重複性與輸出授權，再決定是否適合批次建立環境 base texture。
+       </p>
+      </div>
+     </details>
+     <a class="source daily-source" href="https://80.lv/articles/create-seamless-psx-textures-from-photos-with-this-newly-released-tool">
+      Source ↗
+     </a>
+    </article>
+    <article class="category-news daily-card daily-card-more" data-intel-id="godot-bg3-occlusion-shader" data-intel-role="card">
+     <span class="pill">
+      SHADER / READABILITY
+     </span>
+     <h3>
+      Godot 重現 BG3 Occlusion Cutout：不隱藏整棟牆也能看清角色
+     </h3>
+     <p class="summary">
+      對俯視與室內遊戲很實用的角色可視性 tech-art 解法。
+     </p>
+     <figure class="case-preview daily-visual" data-intel-id="godot-bg3-occlusion-shader" data-intel-role="visual" data-visual-id="godot-bg3-occlusion-shader">
+      <a href="https://80.lv/articles/artist-recreates-baldur-s-gate-3-s-occlusion-shader-in-godot" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+       <img alt="SOURCE VISUAL preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-08-31/godot-bg3-occlusion-shader.jpg"/>
+      </a>
+      <figcaption>
+       <span>
+        SOURCE VISUAL
+       </span>
+       · Local visual evidence · 點圖開啟原始來源
+      </figcaption>
+     </figure>
+     <div class="quick-impact daily-impact">
+      <span>
+       <b>
+        Shader
+       </b>
+       ★★★★☆
+      </span>
+     </div>
+     <details class="daily-full-analysis">
+      <summary>
+       完整分析
+      </summary>
+      <div class="detail-body daily-analysis-body">
+       <h4>
+        Gameplay Readability
+       </h4>
+       <p>
+        Nando 在 Godot 4.7.1 重現 Baldur's Gate 3 類型的 occlusion cutout shader：當牆面或物件擋住角色時，不是整個隱藏遮擋物，而是在視線區域切出可讀窗口。
+       </p>
+       <h4>
+        Tech Art 價值
+       </h4>
+       <p>
+        固定俯視、斜俯視或室內遊戲常需要這類可視性解法。它比單純 fade 整棟建築保留更多場景資訊，也更容易維持場景美術完整度。
+       </p>
+       <h4>
+        移植測試
+       </h4>
+       <p>
+        可把同一思路分別在 Godot/UE/Unity 做 prototype，測多角色、透明物、Nanite/Deferred、陰影與 depth prepass；最重要是遮擋判定成本與畫面 popping 是否可控。
+       </p>
+      </div>
+     </details>
+     <a class="source daily-source" href="https://80.lv/articles/artist-recreates-baldur-s-gate-3-s-occlusion-shader-in-godot">
+      Source ↗
+     </a>
+    </article>
+    <article class="category-news daily-card daily-card-more" data-intel-id="ziva-inspired-muscle-sim" data-intel-role="card">
+     <span class="pill">
+      CHARACTER TECH / R&amp;D
+     </span>
+     <h3>
+      Ziva-inspired Muscle R&amp;D：XPBD + FEM 與可重用 Tet Cage
+     </h3>
+     <p class="summary">
+      仍屬研發展示，但對 muscle solve、attachment 與 deformation bake 很有研究價值。
+     </p>
+     <figure class="case-preview daily-visual" data-intel-id="ziva-inspired-muscle-sim" data-intel-role="visual" data-visual-id="ziva-inspired-muscle-sim">
+      <a href="https://80.lv/articles/ziva-vfx-inspired-physics-based-muscle-simulation-system" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+       <img alt="SOURCE VISUAL preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-08-31/ziva-inspired-muscle-sim.jpg"/>
+      </a>
+      <figcaption>
+       <span>
+        SOURCE VISUAL
+       </span>
+       · Local visual evidence · 點圖開啟原始來源
+      </figcaption>
+     </figure>
+     <div class="quick-impact daily-impact">
+      <span>
+       <b>
+        Character Tech
+       </b>
+       ★★★☆☆
+      </span>
+     </div>
+     <details class="daily-full-analysis">
+      <summary>
+       完整分析
+      </summary>
+      <div class="detail-body daily-analysis-body">
+       <h4>
+        Character Tech R&amp;D
+       </h4>
+       <p>
+        EA Technical Artist Shirzad Bahrami 正在做受 Ziva VFX 啟發的物理 muscle system，除了既有 XPBD，也加入 FEM，並測試可跨不同 muscle/fat mesh 使用的 tet cage 與 VisMesh attachment constraints。
+       </p>
+       <h4>
+        目前成熟度
+       </h4>
+       <p>
+        這是研發展示而非成熟商用工具，因此不能把 demo 當成可立即導入方案；但 tet cage、visible-mesh attachment 與 XPBD/FEM 取捨本身對角色 deformation R&amp;D 很有參考價值。
+       </p>
+       <h4>
+        遊戲角色意義
+       </h4>
+       <p>
+        如果目標是即時角色，不一定需要完整離線肌肉模擬；更值得研究的是如何把高品質 solve 烘成 corrective shapes、pose-space deformation 或 ML deformation，降低 runtime 成本。
+       </p>
+      </div>
+     </details>
+     <a class="source daily-source" href="https://80.lv/articles/ziva-vfx-inspired-physics-based-muscle-simulation-system">
+      Source ↗
+     </a>
+    </article>
+    <article class="category-news daily-card daily-card-more" data-intel-id="blender-spider-walker" data-intel-role="card">
+     <span class="pill">
+      ANIMATION / PROCEDURAL
+     </span>
+     <h3>
+      Spider Walker：Blender 即時程序多足步態，可 Bake 成 Action
+     </h3>
+     <p class="summary">
+      raycast + velocity prediction 自動安排落腳點，適合生物 locomotion blocking。
+     </p>
+     <figure class="case-preview daily-visual" data-intel-id="blender-spider-walker" data-intel-role="visual" data-visual-id="blender-spider-walker">
+      <a href="https://80.lv/articles/free-blender-tool-for-procedural-spider-walks" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+       <img alt="SOURCE VISUAL preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-08-31/blender-spider-walker.jpg"/>
+      </a>
+      <figcaption>
+       <span>
+        SOURCE VISUAL
+       </span>
+       · Local visual evidence · 點圖開啟原始來源
+      </figcaption>
+     </figure>
+     <div class="quick-impact daily-impact">
+      <span>
+       <b>
+        Animation
+       </b>
+       ★★★★☆
+      </span>
+     </div>
+     <details class="daily-full-analysis">
+      <summary>
+       完整分析
+      </summary>
+      <div class="detail-body daily-analysis-body">
+       <h4>
+        Animation / Procedural Motion
+       </h4>
+       <p>
+        Spider Walker 是 Blender 5.2 LTS 的免費 procedural animation add-on：以 raycast 找地面、依速度預測下一個落腳點，讓多足角色在 body 移動時即時生成 step sequence。
+       </p>
+       <h4>
+        輸入 / 輸出
+       </h4>
+       <p>
+        輸入需要 body/root bone、可獨立 pose 的 leg controller bones 與可行走 surface collection；動作確認後可直接 bake 成一般 keyframed Action，方便後續手修與 FBX pipeline。
+       </p>
+       <h4>
+        Production 判斷
+       </h4>
+       <p>
+        這類工具的價值在 blocking 與大量 locomotion 變體。應測斜坡、樓梯、急轉、不同腿數、速度突變與 foot penetration；若 bake 後曲線乾淨，會比完全手 K 多足步態省很多時間。
+       </p>
+      </div>
+     </details>
+     <a class="source daily-source" href="https://80.lv/articles/free-blender-tool-for-procedural-spider-walks">
+      Source ↗
+     </a>
+    </article>
+    <article class="category-news daily-card daily-card-more" data-intel-id="realityscan-2-2-amd" data-intel-role="card">
+     <span class="pill">
+      SCAN / PIPELINE
+     </span>
+     <h3>
+      RealityScan 2.2：AMD GPU 與 NVIDIA 可混跑，新增 360 Capture Workflow
+     </h3>
+     <p class="summary">
+      Photogrammetry 硬體選擇更自由，360 相機也更容易進 reconstruction pipeline。
+     </p>
+     <figure class="case-preview daily-visual" data-intel-id="realityscan-2-2-amd" data-intel-role="visual" data-visual-id="realityscan-2-2-amd">
+      <a href="https://www.realityscan.com/news/realityscan-2-2-is-here-with-full-amd-gpu-support-download-today" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+       <img alt="OFFICIAL PRODUCT VISUAL preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-08-31/realityscan-2-2-amd.jpg"/>
+      </a>
+      <figcaption>
+       <span>
+        OFFICIAL PRODUCT VISUAL
+       </span>
+       · Local visual evidence · 點圖開啟原始來源
+      </figcaption>
+     </figure>
+     <div class="quick-impact daily-impact">
+      <span>
+       <b>
+        Capture
+       </b>
+       ★★★★☆
+      </span>
+     </div>
+     <details class="daily-full-analysis">
+      <summary>
+       完整分析
+      </summary>
+      <div class="detail-body daily-analysis-body">
+       <h4>
+        Capture Pipeline
+       </h4>
+       <p>
+        RealityScan 2.2 把 GPU accelerated reconstruction 從 NVIDIA 擴到 AMD RDNA 3/3.5/4，Windows 上還可把 AMD 與 NVIDIA GPU 混用並平行分配 reconstruction 工作。
+       </p>
+       <h4>
+        360 Capture
+       </h4>
+       <p>
+        Epic 同時補上 360 camera workflow：可把 equirectangular 影像轉 cube-face 並附 calibration metadata，降低室內/環境 capture 時的拍攝與前處理門檻。
+       </p>
+       <h4>
+        遊戲場景用途
+       </h4>
+       <p>
+        對掃描場景、材質 reference 與快速建立 environment base mesh 都有直接價值。建議測混合 GPU 的實際 scaling、360 對齊品質、mesh cleanup 時間與 RealityScan→Blender/UE 的尺度/座標一致性。
+       </p>
+      </div>
+     </details>
+     <a class="source daily-source" href="https://www.realityscan.com/news/realityscan-2-2-is-here-with-full-amd-gpu-support-download-today">
+      Source ↗
+     </a>
+    </article>
+    <article class="category-news daily-card daily-card-more" data-intel-id="unity-texture-live-sync" data-intel-role="card">
+     <span class="pill">
+      UNITY / TEXTURE
+     </span>
+     <h3>
+      Photoshop / CSP Live Sync：貼圖修改即時預覽到 Unity
+     </h3>
+     <p class="summary">
+      4K + alpha、本機非破壞 preview，減少角色臉與服裝貼圖反覆匯出。
+     </p>
+     <figure class="case-preview daily-visual" data-intel-id="unity-texture-live-sync" data-intel-role="visual" data-visual-id="unity-texture-live-sync">
+      <a href="https://80.lv/articles/free-clip-studio-paint-photoshop-live-sync-tool-for-unity" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+       <img alt="SOURCE VISUAL preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-08-31/unity-texture-live-sync.jpg"/>
+      </a>
+      <figcaption>
+       <span>
+        SOURCE VISUAL
+       </span>
+       · Local visual evidence · 點圖開啟原始來源
+      </figcaption>
+     </figure>
+     <div class="quick-impact daily-impact">
+      <span>
+       <b>
+        Workflow
+       </b>
+       ★★★★☆
+      </span>
+     </div>
+     <details class="daily-full-analysis">
+      <summary>
+       完整分析
+      </summary>
+      <div class="detail-body daily-analysis-body">
+       <h4>
+        Texture Iteration
+       </h4>
+       <p>
+        StudioCats 的免費 Live Sync 工具讓 Photoshop / Clip Studio Paint 的貼圖改動即時預覽到 Unity，支援 4K + alpha，而且通訊完全在本機，原始 texture/material asset 不被破壞。
+       </p>
+       <h4>
+        近期功能
+       </h4>
+       <p>
+        新版本可更準確處理 CSP 的 layer mask、blend mode、adjustment layer、gray/monochrome expression color 等特殊合成；一般 raster layer 保留原解析度，特殊功能則切到 1024px safe preview。
+       </p>
+       <h4>
+        遊戲美術價值
+       </h4>
+       <p>
+        角色臉、妝容、服裝與 toon texture 這類需要頻繁微調的資產特別適合。可量測『改圖→看引擎』迭代從人工 export/import 的分鐘級縮到幾秒，並確認色彩空間、alpha、壓縮與最終正式 import 設定不被 preview 混淆。
+       </p>
+      </div>
+     </details>
+     <a class="source daily-source" href="https://80.lv/articles/free-clip-studio-paint-photoshop-live-sync-tool-for-unity">
+      Source ↗
+     </a>
+    </article>
+   </section>
+  </main>
+ </body>
 </html>
