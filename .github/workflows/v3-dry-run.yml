@@ -1,0 +1,26 @@
+name: V3 synthetic dry run
+
+on:
+  push:
+    branches:
+      - test/v3-60item-dryrun
+    paths:
+      - scripts/test_v3_information_architecture.py
+      - scripts/intelligence_v2.py
+      - config/intelligence-v2.json
+      - .github/workflows/v3-dry-run.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  dry-run:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - name: Run V3 60-item synthetic contract test
+        run: python scripts/test_v3_information_architecture.py
