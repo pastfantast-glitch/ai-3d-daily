@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-"""Normalize archive presentation markup without changing intelligence content.
+"""Normalize shared homepage/archive presentation without changing intelligence content.
 
 Historical reports are immutable content snapshots, while presentation and color
-semantics are shared. This normalizer may repair presentation-only wrappers and
-semantic classes, but never rewrites intelligence text, source URLs, IDs, or
-analysis blocks.
+semantics are shared. This normalizer may repair presentation-only wrappers,
+semantic classes, heading tags, and rank labels, but never rewrites intelligence
+text, source URLs, IDs, or analysis blocks.
 """
 from pathlib import Path
 import re
@@ -12,7 +12,7 @@ from bs4 import BeautifulSoup
 
 ROOT = Path(__file__).resolve().parents[1]
 DATE_RE = re.compile(r'^20\d{2}-\d{2}-\d{2}$')
-ARCHIVE_PRESENTATION_TOKEN = 'archive-p4-daily-structure-v1'
+ARCHIVE_PRESENTATION_TOKEN = 'archive-p5-shared-card-shell-v1'
 LEGACY_PILL_COLORS = {'purple','blue','green','orange','red'}
 
 
@@ -22,6 +22,12 @@ def add_class(tag, *names):
     for name in names:
         if name not in classes: classes.append(name)
     tag['class']=classes
+
+
+def remove_classes(tag, *names):
+    if not tag: return
+    blocked=set(names)
+    tag['class']=[c for c in (tag.get('class') or []) if c not in blocked]
 
 
 def set_shared_asset_token(soup):
@@ -53,10 +59,53 @@ def normalize_section_header(soup, section, kicker):
     inner.append(heading.extract())
 
 
+def normalize_home_top_card_structure(soup, card, rank):
+    """Restore homepage TOP as rank column + one stable content column."""
+    add_class(card, 'top-item')
+    rank_node=card.find('div', class_='top-no', recursive=False)
+    main_node=card.find('div', class_='top-main', recursive=False)
+
+    if not rank_node:
+        rank_node=soup.new_tag('div', attrs={'class':'top-no'})
+        card.insert(0, rank_node)
+    rank_node.string=f'{rank:02d}'
+
+    if not main_node:
+        main_node=soup.new_tag('div', attrs={'class':'top-main'})
+        movable=[child for child in list(card.children) if getattr(child,'name',None) is not None and child is not rank_node]
+        for child in movable:
+            main_node.append(child.extract())
+        card.append(main_node)
+
+    # Homepage CSS contract historically styles the TOP title as h2. Changing
+    # only the semantic tag restores presentation without changing title text.
+    title=main_node.find(['h2','h3'], recursive=False)
+    if title and title.name != 'h2':
+        title.name='h2'
+
+
+def normalize_homepage() -> bool:
+    path=ROOT/'index.html'
+    if not path.exists(): return False
+    original=path.read_text('utf-8'); soup=BeautifulSoup(original,'html.parser')
+    today=soup.select_one('#today')
+    if not today: return False
+    container=today.select_one('.top-list') or today.select_one('.today-grid')
+    add_class(container,'top-list')
+    cards=today.select('[data-intel-role="card"][data-intel-id]')
+    for rank,card in enumerate(cards,1):
+        normalize_home_top_card_structure(soup,card,rank)
+    rendered=soup.prettify()
+    if not rendered.endswith('\n'): rendered+='\n'
+    if rendered!=original:
+        path.write_text(rendered,'utf-8'); return True
+    return False
+
+
 def normalize_top_card_structure(soup, card, rank):
-    """Restore the canonical two-column Daily card shell without changing content."""
+    """Restore the canonical two-column Daily TOP card shell without changing content."""
     add_class(card,'daily-card','daily-card-top')
-    card['class']=[c for c in card.get('class',[]) if c!='important']
+    remove_classes(card,'important')
 
     news_main=card.find('div', class_='news-main', recursive=False)
     rank_node=card.find('div', class_='news-rank', recursive=False)
@@ -70,15 +119,39 @@ def normalize_top_card_structure(soup, card, rank):
 
     if not rank_node:
         rank_node=soup.new_tag('div', attrs={'class':'news-rank'})
-        rank_node.string=f'{rank:02d}'
         card.insert(0,rank_node)
-    elif not rank_node.get_text(strip=True):
-        rank_node.string=f'{rank:02d}'
+    rank_node.string=f'{rank:02d}'
 
-    # The first descriptive paragraph is the canonical summary. Do not touch
-    # quick-impact or analysis paragraphs.
     if not news_main.select_one('.summary'):
         for p in news_main.find_all('p', recursive=False):
+            if 'quick-impact' not in (p.get('class') or []):
+                add_class(p,'summary')
+                break
+
+
+def normalize_more_card_structure(soup, card):
+    """Canonicalize Daily Supplemental cards as a single-column shell.
+
+    Older seeds sometimes carried the TOP `.news` grid class or a `.news-main`
+    wrapper into Supplemental. That creates an empty rank column / shifted body.
+    Flatten only presentation wrappers and preserve all intelligence nodes.
+    """
+    remove_classes(card,'news','important','daily-card-top')
+    add_class(card,'category-news','daily-card','daily-card-more')
+
+    rank_node=card.find('div', class_='news-rank', recursive=False)
+    if rank_node:
+        rank_node.decompose()
+    main_node=card.find('div', class_='news-main', recursive=False)
+    if main_node:
+        insert_at=list(card.children).index(main_node)
+        children=list(main_node.children)
+        main_node.extract()
+        for child in reversed(children):
+            card.insert(insert_at, child)
+
+    if not card.select_one('.summary'):
+        for p in card.find_all('p', recursive=False):
             if 'quick-impact' not in (p.get('class') or []):
                 add_class(p,'summary')
                 break
@@ -96,15 +169,16 @@ def normalize(path: Path) -> bool:
 
     for rank,card in enumerate(soup.select('#top .news'),1):
         normalize_top_card_structure(soup,card,rank)
-    for card in soup.select('.category-news'):
-        add_class(card,'daily-card','daily-card-more')
-        # Supplemental cards are single-column, but descriptive prose should
-        # still use the shared summary semantic when present.
-        if not card.select_one('.summary'):
-            for p in card.find_all('p', recursive=False):
-                if 'quick-impact' not in (p.get('class') or []):
-                    add_class(p,'summary')
-                    break
+
+    if more_section:
+        seen=set()
+        more_cards=[]
+        for card in more_section.select('.category-news, .news'):
+            ident=id(card)
+            if ident not in seen:
+                seen.add(ident); more_cards.append(card)
+        for card in more_cards:
+            normalize_more_card_structure(soup,card)
 
     for card in soup.select('[data-intel-role="card"]'):
         for pill in card.select('.pill'):
@@ -122,9 +196,11 @@ def normalize(path: Path) -> bool:
 
 
 def main():
+    homepage_changed=normalize_homepage()
     changed=[]
     for d in sorted(ROOT.iterdir()):
         if d.is_dir() and DATE_RE.fullmatch(d.name) and (d/'index.html').exists() and normalize(d/'index.html'): changed.append(d.name)
+    print('HOMEPAGE TOP PRESENTATION NORMALIZED:', 'changed' if homepage_changed else 'already current')
     print('ARCHIVE PRESENTATION NORMALIZED:', ', '.join(changed) if changed else 'already current')
     print('ARCHIVE PRESENTATION TOKEN:', ARCHIVE_PRESENTATION_TOKEN)
 
