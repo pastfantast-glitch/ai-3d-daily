@@ -1,12 +1,5 @@
 #!/usr/bin/env python3
-"""Canonical Intelligence renderer.
-
-The daily JSON under data/daily/YYYY-MM-DD.json is the only editable source for
-Full Analysis. Homepage and archive consume the same structured blocks and render
-them with the same semantic hierarchy. Identity may be shared by multiple DOM
-nodes, so render targets must satisfy BOTH structural card selectors and
-`data-intel-role=card`.
-"""
+"""Canonical Intelligence renderer for homepage, daily archive and V2 category pages."""
 from pathlib import Path
 import json, sys
 from bs4 import BeautifulSoup
@@ -32,24 +25,31 @@ def analysis_html(soup, blocks, home=False):
     return details
 
 
+def render_target(path, records, home, selector):
+    if not path.exists(): return 0
+    soup = BeautifulSoup(path.read_text('utf-8'), 'html.parser')
+    rendered = 0
+    for card in soup.select(selector):
+        record = records.get(card.get('data-intel-id'))
+        if not record: continue
+        old = card.find('details')
+        if not old: continue
+        old.replace_with(analysis_html(soup, record['full_analysis'], home)); rendered += 1
+    path.write_text(soup.prettify(), 'utf-8')
+    print(f'{path.relative_to(ROOT)}: rendered {rendered} canonical analyses')
+    return rendered
+
+
 def main():
     date = sys.argv[1] if len(sys.argv) > 1 else max(p.stem for p in (ROOT / 'data' / 'daily').glob('20??-??-??.json'))
-    records = {item['id']: item for item in load(date)['items']}
-    targets = (
-        (ROOT / 'index.html', True, '.top-item[data-intel-role="card"][data-intel-id], .more-card[data-intel-role="card"][data-intel-id]'),
-        (ROOT / date / 'index.html', False, '#top .news[data-intel-role="card"][data-intel-id], .category-news[data-intel-role="card"][data-intel-id]'),
-    )
-    for path, home, selector in targets:
-        soup = BeautifulSoup(path.read_text('utf-8'), 'html.parser')
-        rendered = 0
-        for card in soup.select(selector):
-            record = records.get(card.get('data-intel-id'))
-            if not record: continue
-            old = card.find('details')
-            if not old: continue
-            old.replace_with(analysis_html(soup, record['full_analysis'], home)); rendered += 1
-        path.write_text(soup.prettify(), 'utf-8')
-        print(f'{path.relative_to(ROOT)}: rendered {rendered} canonical analyses')
+    data = load(date)
+    records = {item['id']: item for item in data['items']}
+    render_target(ROOT / 'index.html', records, True, '.top-item[data-intel-role="card"][data-intel-id], .more-card[data-intel-role="card"][data-intel-id]')
+    render_target(ROOT / date / 'index.html', records, False, '#top .news[data-intel-role="card"][data-intel-id], .category-news[data-intel-role="card"][data-intel-id]')
+    if int(data.get('schema_version', 0)) >= 3:
+        for path in sorted((ROOT / date).glob('*/index.html')):
+            if path.parent == ROOT / date:  # one directory below the daily archive
+                render_target(path, records, False, '.category-card[data-intel-role="card"][data-intel-id]')
 
 
 if __name__ == '__main__': main()

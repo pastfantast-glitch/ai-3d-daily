@@ -1,0 +1,42 @@
+/* Date-scoped category pages for AI 3D Daily V2. */
+.category-page {
+  background: #080d18;
+  color: #edf2fb;
+}
+.category-hero {
+  padding: 26px 0 30px;
+  background: linear-gradient(180deg,#0b1220 0%,#0d1422 100%);
+  border-bottom: 1px solid #26344b;
+}
+.category-hero h1 { margin: 6px 0 8px; font-size: 1.8rem; }
+.category-hero p { margin: 0; color: #9aa7bb; }
+.category-back { display:inline-block; margin-bottom:18px; color:#a69cff; text-decoration:none; font-weight:850; }
+.category-main { display:grid; gap:14px; padding-top:28px; padding-bottom:48px; }
+.category-card {
+  padding: 18px;
+  background: #101927;
+  border: 1px solid #26344b;
+  border-radius: 14px;
+  box-shadow: 0 8px 24px rgba(0,0,0,.16);
+}
+.category-meta { color:#8d99ae; font-size:.72rem; font-weight:850; text-transform:uppercase; letter-spacing:.04em; }
+.category-card h2 { margin:8px 0 7px; font-size:1.05rem; line-height:1.4; }
+.category-card .summary { margin:0; color:#aab5c8; font-size:.84rem; line-height:1.68; }
+.category-card .quick-impact { display:flex; gap:7px; flex-wrap:wrap; margin-top:10px; }
+.category-card .quick-impact span { display:inline-flex; min-height:28px; align-items:center; padding:5px 8px; border-radius:7px; background:#182235; color:#aab5c8; border:1px solid #29374d; font-size:.7rem; }
+.category-card details { margin-top:12px; border:1px solid #29384f; border-radius:10px; background:#0d1523; overflow:hidden; }
+.category-card details > summary { padding:10px 12px; cursor:pointer; color:#bbc6d8; font-size:.77rem; font-weight:900; list-style:none; }
+.category-card .detail-body { padding:14px 15px 15px; background:#101827; }
+.category-card .detail-body h4 { margin:16px 0 6px; color:#e6ebf4; font-size:.86rem; }
+.category-card .detail-body h4:first-child { margin-top:0; }
+.category-card .detail-body p { margin:0 0 12px; color:#aeb8ca; font-size:.82rem; line-height:1.74; max-width:72ch; }
+.category-card .source { display:inline-block; margin-top:14px; color:#a69cff; text-decoration:none; font-size:.76rem; font-weight:850; }
+.category-card .case-preview { margin:12px 0 4px; max-width:760px; }
+.category-card .case-preview a { display:block; }
+.category-card .case-preview img { display:block; width:100%; height:auto; max-height:430px; object-fit:contain; border-radius:10px; border:1px solid #29384f; background:#0b1220; }
+.category-card .case-preview figcaption { margin-top:6px; color:#8793a8; font-size:.66rem; font-weight:900; letter-spacing:.06em; }
+.category-card .case-preview figcaption span { color:#a69cff; }
+@media (max-width:760px) {
+  .category-card { padding:15px 14px; }
+  .category-hero { padding-top:20px; }
+}

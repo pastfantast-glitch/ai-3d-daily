@@ -11,6 +11,11 @@ on:
       - 'home-content.css'
       - 'home-components.css'
       - 'daily.css'
+      - 'category.css'
+      - 'config/intelligence-v2.json'
+      - 'scripts/intelligence_v2.py'
+      - 'scripts/render_information_architecture.py'
+      - 'scripts/check_information_architecture.py'
       - 'scripts/normalize_archive_presentation.py'
       - 'scripts/normalize_release_seed.py'
       - 'scripts/build_intelligence.py'
@@ -110,7 +115,9 @@ jobs:
         run: python scripts/render_daily_navigation.py
       - name: Render homepage history list from actual archives
         run: python scripts/render_home_archive_links.py
-      - name: Render canonical Full Analysis into both views
+      - name: Render V2 information architecture and category pages
+        run: python scripts/render_information_architecture.py "${{ steps.date.outputs.value }}"
+      - name: Render canonical Full Analysis into all views
         run: python scripts/build_intelligence.py "${{ steps.date.outputs.value }}"
       - name: Extract representative visuals with retry and diagnostics
         run: python scripts/extract_visual_assets.py "${{ steps.date.outputs.value }}"
@@ -124,6 +131,7 @@ jobs:
           python scripts/check_visual_contract.py "${{ steps.date.outputs.value }}"
           python scripts/check_home_contract.py
           python scripts/check_daily_contract.py
+          python scripts/check_information_architecture.py "${{ steps.date.outputs.value }}"
           python scripts/check_historical_regression.py --days 4
       - name: Print visual coverage summary
         if: always()
@@ -147,6 +155,7 @@ jobs:
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
           git add assets/visual index.html
           find . -maxdepth 2 -mindepth 2 -path './20??-??-??/index.html' -print0 | xargs -0 -r git add --
+          find "${{ steps.date.outputs.value }}" -mindepth 2 -maxdepth 2 -name index.html -print0 | xargs -0 -r git add --
           if git diff --cached --quiet; then
             publish_sha="$(git log -1 --format=%H --grep="^Publish canonical intelligence ${{ steps.date.outputs.value }}$")"
             test -n "$publish_sha" || { echo "No prior publish commit found for current rendered state"; exit 1; }

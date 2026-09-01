@@ -1,9 +1,5 @@
 #!/usr/bin/env python3
-"""Apply deterministic cache tokens to the current Homepage/Daily shell assets.
-
-Token = YYYYMMDD-r<render_revision>. Re-running the same canonical revision is
-idempotent; a new day or render revision gets a new URL without random churn.
-"""
+"""Apply deterministic cache tokens to Homepage, Daily and V2 category assets."""
 from pathlib import Path
 import json, re, sys
 
@@ -15,30 +11,26 @@ def latest_date():
     return dates[-1]
 
 def replace_asset(text, asset, token):
-    # Match both unversioned references (asset) and already-versioned ones
-    # (asset?v=...). This keeps reruns idempotent while also adding the cache
-    # token when a renderer has emitted a fresh unversioned shell reference.
     pattern=rf'({re.escape(asset)})(?:\?v=[^"\']+)?'
     return re.sub(pattern, rf'\1?v={token}', text)
+
+def apply(path, assets, token):
+    if not path.exists(): raise SystemExit(f'missing page for cache bust: {path}')
+    text=path.read_text('utf-8'); old=text
+    for asset in assets: text=replace_asset(text,asset,token)
+    missing=[asset for asset in assets if f'{asset}?v={token}' not in text]
+    if missing: raise SystemExit(f"cache bust verification failed for {path.relative_to(ROOT)}: {', '.join(missing)}")
+    if text!=old: path.write_text(text,'utf-8')
+    print(path.relative_to(ROOT), token)
 
 def main():
     date=sys.argv[1] if len(sys.argv)>1 else latest_date()
     data=json.loads((ROOT/'data'/'daily'/f'{date}.json').read_text('utf-8'))
-    rev=int(data.get('render_revision',1))
-    token=f"{date.replace('-','')}-r{rev}"
-    targets=[
-        (ROOT/'index.html', ['styles.css','home.css','home-content.css','home-components.css','home.js']),
-        (ROOT/date/'index.html', ['../styles.css','../daily.css','../daily.js']),
-    ]
-    for path,assets in targets:
-        if not path.exists(): raise SystemExit(f'missing page for cache bust: {path}')
-        text=path.read_text('utf-8'); old=text
-        for asset in assets:
-            text=replace_asset(text,asset,token)
-        missing=[asset for asset in assets if f'{asset}?v={token}' not in text]
-        if missing:
-            raise SystemExit(f"cache bust verification failed for {path.relative_to(ROOT)}: {', '.join(missing)}")
-        if text!=old: path.write_text(text,'utf-8')
-        print(path.relative_to(ROOT), token)
+    rev=int(data.get('render_revision',1)); token=f"{date.replace('-','')}-r{rev}"
+    apply(ROOT/'index.html',['styles.css','home.css','home-content.css','home-components.css','home.js'],token)
+    apply(ROOT/date/'index.html',['../styles.css','../daily.css','../daily.js'],token)
+    if int(data.get('schema_version',0))>=3:
+        for path in sorted((ROOT/date).glob('*/index.html')):
+            apply(path,['../../styles.css','../../category.css'],token)
 
 if __name__=='__main__': main()

@@ -1,0 +1,158 @@
+#!/usr/bin/env python3
+"""Render the V2 homepage selection and six date-scoped category pages.
+
+Ranking/category decisions are read from canonical schema-v3 data. This renderer
+only turns those decisions into presentation surfaces. Schema-v2 historical/current
+data remains untouched for backwards compatibility.
+"""
+from pathlib import Path
+import json, sys
+from bs4 import BeautifulSoup
+from intelligence_v2 import load_config, is_v2_dataset, validate_v2_dataset, homepage_groups, category_items
+
+ROOT = Path(__file__).resolve().parents[1]
+
+
+def latest_date():
+    return max(p.stem for p in (ROOT / 'data' / 'daily').glob('20??-??-??.json'))
+
+
+def add_text(tag, text):
+    tag.string = str(text)
+    return tag
+
+
+def analysis_shell(soup, home=False):
+    details = soup.new_tag('details')
+    if home:
+        details['class'] = ['home-full-analysis']
+    summary = soup.new_tag('summary'); summary.string = '完整分析'; details.append(summary)
+    body = soup.new_tag('div', attrs={'class': 'detail-body home-analysis-body' if home else 'detail-body'})
+    details.append(body)
+    return details
+
+
+def impact_node(soup, text):
+    wrap = soup.new_tag('div', attrs={'class': 'quick-impact'})
+    span = soup.new_tag('span'); span.string = text; wrap.append(span)
+    return wrap
+
+
+def home_card(soup, item, top=False, rank=None):
+    classes = ['home-card', 'top-item' if top else 'more-card']
+    card = soup.new_tag('article', attrs={'class': ' '.join(classes), 'data-intel-role': 'card', 'data-intel-id': item['id']})
+    content = card
+    if top:
+        no = soup.new_tag('div', attrs={'class': 'top-no'}); no.string = f'{rank:02d}'; card.append(no)
+        content = soup.new_tag('div', attrs={'class': 'top-main'}); card.append(content)
+        title = soup.new_tag('h2')
+    else:
+        title = soup.new_tag('h4')
+    title.string = item['title']; content.append(title)
+    summary = soup.new_tag('p', attrs={'class': 'summary'}); summary.string = item['summary']; content.append(summary)
+    content.append(impact_node(soup, item['quick_impact']))
+    content.append(analysis_shell(soup, home=True))
+    source = soup.new_tag('a', attrs={'class': 'source', 'href': item['source_url'], 'target': '_blank', 'rel': 'noopener noreferrer'})
+    source.string = '來源'; content.append(source)
+    return card
+
+
+def ensure_category_section(soup, date, cfg):
+    main = soup.select_one('main.home-main')
+    if not main:
+        raise SystemExit('homepage main.home-main missing')
+    for old in soup.select('section.category-section, section.test-section'):
+        old.decompose()
+    section = soup.new_tag('section', attrs={'class': 'home-section category-section', 'id': 'categories'})
+    head = soup.new_tag('div', attrs={'class': 'section-head'})
+    h2 = soup.new_tag('h2'); h2.string = '探索今天全部情報'; head.append(h2); section.append(head)
+    grid = soup.new_tag('div', attrs={'class': 'category-nav-grid'})
+    for cat in cfg['categories']:
+        a = soup.new_tag('a', attrs={'class': 'category-nav-card', 'href': f'{date}/{cat["id"]}/'})
+        strong = soup.new_tag('strong'); strong.string = cat['label']; a.append(strong)
+        span = soup.new_tag('span'); span.string = cat['description']; a.append(span)
+        grid.append(a)
+    section.append(grid)
+    more = soup.select_one('section.more-section')
+    if more:
+        more.insert_after(section)
+    else:
+        main.append(section)
+
+
+def render_home(date, data, cfg):
+    path = ROOT / 'index.html'
+    soup = BeautifulSoup(path.read_text('utf-8'), 'html.parser')
+    top, next10 = homepage_groups(data)
+    top_box = soup.select_one('#today .top-list')
+    more_box = soup.select_one('#more .more-grid')
+    if not top_box or not more_box:
+        raise SystemExit('homepage TOP/more containers missing')
+    top_box.clear(); more_box.clear()
+    for rank, item in enumerate(top, 1):
+        top_box.append(home_card(soup, item, top=True, rank=rank))
+    for item in next10:
+        more_box.append(home_card(soup, item, top=False))
+    more_heading = soup.select_one('#more h2')
+    if more_heading: more_heading.string = '今天還有什麼'
+    ensure_category_section(soup, date, cfg)
+    for weekly in soup.select('.week-counts, .week-summary, .week-topic'):
+        weekly.decompose()
+    path.write_text(soup.prettify(), 'utf-8')
+    print(f'V2 homepage rendered: 5 TOP + 10 next + 6 category entries ({date})')
+
+
+def category_page(date, category, items):
+    soup = BeautifulSoup('<!doctype html><html lang="zh-Hant"><head></head><body></body></html>', 'html.parser')
+    head = soup.head
+    meta = soup.new_tag('meta', attrs={'charset': 'utf-8'}); head.append(meta)
+    viewport = soup.new_tag('meta', attrs={'name': 'viewport', 'content': 'width=device-width,initial-scale=1'}); head.append(viewport)
+    title = soup.new_tag('title'); title.string = f'{category["label"]}｜{date}｜AI 3D Daily'; head.append(title)
+    for href in ('../../styles.css', '../../category.css'):
+        head.append(soup.new_tag('link', attrs={'rel': 'stylesheet', 'href': href}))
+    body = soup.body; body['class'] = ['category-page']; body['data-report-date'] = date; body['data-category'] = category['id']
+    header = soup.new_tag('header', attrs={'class': 'category-hero'})
+    page = soup.new_tag('div', attrs={'class': 'page'})
+    back = soup.new_tag('a', attrs={'class': 'category-back', 'href': '../../'}); back.string = '← 回首頁'; page.append(back)
+    kicker = soup.new_tag('span', attrs={'class': 'section-kicker'}); kicker.string = date; page.append(kicker)
+    h1 = soup.new_tag('h1'); h1.string = category['label']; page.append(h1)
+    p = soup.new_tag('p'); p.string = category['description']; page.append(p)
+    header.append(page); body.append(header)
+    main = soup.new_tag('main', attrs={'class': 'page category-main'})
+    for item in items:
+        card = soup.new_tag('article', attrs={'class': 'category-card', 'data-intel-role': 'card', 'data-intel-id': item['id']})
+        meta = soup.new_tag('div', attrs={'class': 'category-meta'}); meta.string = f'#{int(item["rank_global"]):02d} · {item["subcategory"]}'; card.append(meta)
+        h2 = soup.new_tag('h2'); h2.string = item['title']; card.append(h2)
+        summary = soup.new_tag('p', attrs={'class': 'summary'}); summary.string = item['summary']; card.append(summary)
+        card.append(impact_node(soup, item['quick_impact']))
+        card.append(analysis_shell(soup, home=False))
+        source = soup.new_tag('a', attrs={'class': 'source', 'href': item['source_url'], 'target': '_blank', 'rel': 'noopener noreferrer'}); source.string = '來源 ↗'; card.append(source)
+        main.append(card)
+    body.append(main)
+    return soup.prettify() + '\n'
+
+
+def render_categories(date, data, cfg):
+    for category in cfg['categories']:
+        folder = ROOT / date / category['id']; folder.mkdir(parents=True, exist_ok=True)
+        items = category_items(data, category['id'])
+        (folder / 'index.html').write_text(category_page(date, category, items), 'utf-8')
+        print(f'V2 category page: {category["id"]} / {len(items)} items')
+
+
+def main():
+    date = sys.argv[1] if len(sys.argv) > 1 else latest_date()
+    data = json.loads((ROOT / 'data' / 'daily' / f'{date}.json').read_text('utf-8'))
+    if not is_v2_dataset(data):
+        print(f'V2 information architecture: legacy schema {data.get("schema_version")} for {date}; no V2 surfaces rendered')
+        return
+    errors = validate_v2_dataset(data, strict_pool=True)
+    if errors:
+        raise SystemExit('V2 canonical dataset invalid:\n- ' + '\n- '.join(errors))
+    cfg = load_config()
+    render_home(date, data, cfg)
+    render_categories(date, data, cfg)
+
+
+if __name__ == '__main__':
+    main()

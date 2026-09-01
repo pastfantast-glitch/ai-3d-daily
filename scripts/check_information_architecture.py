@@ -1,0 +1,65 @@
+#!/usr/bin/env python3
+"""Fail-closed QA for the V2 six-pool information architecture."""
+from pathlib import Path
+import json, sys
+from bs4 import BeautifulSoup
+from intelligence_v2 import load_config, is_v2_dataset, validate_v2_dataset, homepage_groups, category_items
+
+ROOT = Path(__file__).resolve().parents[1]
+errors = []
+
+def fail(msg): errors.append(msg)
+
+def latest_date():
+    return max(p.stem for p in (ROOT / 'data' / 'daily').glob('20??-??-??.json'))
+
+def main():
+    date = sys.argv[1] if len(sys.argv) > 1 else latest_date()
+    data = json.loads((ROOT / 'data' / 'daily' / f'{date}.json').read_text('utf-8'))
+    cfg = load_config()
+    if not is_v2_dataset(data):
+        print(f'V2 INFORMATION ARCHITECTURE PASS (legacy compatibility): {date} schema={data.get("schema_version")}')
+        return
+    for error in validate_v2_dataset(data, strict_pool=True): fail(error)
+    top, next10 = homepage_groups(data)
+    home = BeautifulSoup((ROOT / 'index.html').read_text('utf-8'), 'html.parser')
+    if home.select('.week-counts, .week-summary, .week-topic'):
+        fail('homepage V2 must not contain weekly overview UI')
+    sections = home.select('main.home-main > section.home-section')
+    roles = []
+    for section in sections:
+        classes = set(section.get('class') or [])
+        roles.append(next((x for x in ('today-section','more-section','category-section','history-section') if x in classes), '?'))
+    if roles != ['today-section','more-section','category-section','history-section']:
+        fail(f'V2 homepage section order drift: {roles}')
+    home_top = [x.get('data-intel-id') for x in home.select('#today .top-item[data-intel-role="card"]')]
+    home_next = [x.get('data-intel-id') for x in home.select('#more .more-card[data-intel-role="card"]')]
+    if home_top != [x['id'] for x in top]: fail('homepage TOP IDs/order differ from canonical global ranks 1-5')
+    if home_next != [x['id'] for x in next10]: fail('homepage next10 IDs/order differ from canonical global ranks 6-15')
+    links = {a.get('href') for a in home.select('.category-nav-card[href]')}
+    expected_links = {f'{date}/{c["id"]}/' for c in cfg['categories']}
+    if links != expected_links: fail(f'category navigation mismatch: {links} != {expected_links}')
+    for category in cfg['categories']:
+        path = ROOT / date / category['id'] / 'index.html'
+        if not path.exists():
+            fail(f'missing category page: {path.relative_to(ROOT)}'); continue
+        soup = BeautifulSoup(path.read_text('utf-8'), 'html.parser')
+        if not soup.body or soup.body.get('data-category') != category['id']:
+            fail(f'{category["id"]}: body category identity mismatch')
+        cards = soup.select('.category-card[data-intel-role="card"][data-intel-id]')
+        expected = [x['id'] for x in category_items(data, category['id'])]
+        actual = [x.get('data-intel-id') for x in cards]
+        if actual != expected: fail(f'{category["id"]}: page item IDs/order mismatch')
+        if len(cards) != 10: fail(f'{category["id"]}: category page must contain exactly 10 items, got {len(cards)}')
+        for card in cards:
+            rid = card.get('data-intel-id')
+            if not card.select_one('.quick-impact'): fail(f'{category["id"]}/{rid}: missing quick-impact')
+            if not card.select_one('details .detail-body'): fail(f'{category["id"]}/{rid}: missing analysis shell')
+            if not card.select_one('a.source[href]'): fail(f'{category["id"]}/{rid}: missing source')
+    if errors:
+        print('V2 INFORMATION ARCHITECTURE FAILED')
+        print('\n'.join('- ' + x for x in errors))
+        sys.exit(1)
+    print('V2 INFORMATION ARCHITECTURE PASS: 6x10 pools + TOP5 + next10 + category pages + no weekly overview')
+
+if __name__ == '__main__': main()
