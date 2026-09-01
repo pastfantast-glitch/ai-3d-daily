@@ -48,6 +48,7 @@ def ensure_analysis_shell(soup, card, home=False):
         add_class(body, 'home-analysis-body')
     else:
         add_class(body, 'daily-analysis-body')
+    return details
 
 
 def ensure_source(soup, card, source_url, home=False):
@@ -65,6 +66,27 @@ def ensure_source(soup, card, source_url, home=False):
         card.append(source)
     if not home:
         add_class(source, 'daily-source')
+    return source
+
+
+def ensure_analysis_before_source(card):
+    """Keep semantic card order deterministic without rewriting intelligence copy.
+
+    Full Analysis is part of the card body while source is terminal metadata. Seeds
+    can arrive with either order, so normalize the existing nodes before canonical
+    analysis rendering replaces the details shell in-place.
+    """
+    details = card.select_one('details')
+    source = card.select_one('a.source[href]')
+    if not details or not source:
+        return
+    nodes = [node for node in card.descendants if getattr(node, 'name', None)]
+    try:
+        if nodes.index(details) > nodes.index(source):
+            details.extract()
+            source.insert_before(details)
+    except ValueError:
+        return
 
 
 def normalize_home(date, data):
@@ -119,6 +141,7 @@ def normalize_home(date, data):
         card['data-intel-role'] = 'card'
         ensure_analysis_shell(soup, card, home=True)
         ensure_source(soup, card, str(rec.get('source_url', '')).strip(), home=True)
+        ensure_analysis_before_source(card)
 
     path.write_text(soup.prettify() + '\n', 'utf-8')
 
@@ -153,6 +176,7 @@ def normalize_daily(date, data):
             continue
         ensure_analysis_shell(soup, card, home=False)
         ensure_source(soup, card, str(rec.get('source_url', '')).strip(), home=False)
+        ensure_analysis_before_source(card)
         for impact in card.select('.quick-impact'):
             add_class(impact, 'daily-impact')
         for visual in card.select('figure.case-preview'):
