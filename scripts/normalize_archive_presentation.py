@@ -3,8 +3,8 @@
 
 Historical reports are immutable content snapshots, while presentation and color
 semantics are shared. This normalizer may repair presentation-only wrappers,
-semantic classes, heading tags, and rank labels, but never rewrites intelligence
-text, source URLs, IDs, or analysis blocks.
+semantic classes, heading tags, rank labels, and Quick Impact wrappers, but never
+rewrites intelligence text, source URLs, IDs, or analysis blocks.
 """
 from pathlib import Path
 import re
@@ -12,7 +12,7 @@ from bs4 import BeautifulSoup
 
 ROOT = Path(__file__).resolve().parents[1]
 DATE_RE = re.compile(r'^20\d{2}-\d{2}-\d{2}$')
-ARCHIVE_PRESENTATION_TOKEN = 'archive-p5-shared-card-shell-v1'
+ARCHIVE_PRESENTATION_TOKEN = 'archive-p6-quick-impact-shell-v1'
 LEGACY_PILL_COLORS = {'purple','blue','green','orange','red'}
 
 
@@ -28,6 +28,27 @@ def remove_classes(tag, *names):
     if not tag: return
     blocked=set(names)
     tag['class']=[c for c in (tag.get('class') or []) if c not in blocked]
+
+
+def normalize_quick_impact_structure(soup, impact):
+    """Ensure Quick Impact always has the styled inner span without changing text.
+
+    Homepage CSS styles `.quick-impact span`. Some release seeds contain only a
+    raw text node (for example `Texture ★★★★★`), which leaves the data present but
+    visually unstyled. Existing structured spans are preserved exactly.
+    """
+    if not impact:
+        return
+    direct_spans=impact.find_all('span', recursive=False)
+    if direct_spans:
+        return
+    children=list(impact.contents)
+    if not children:
+        return
+    wrapper=soup.new_tag('span')
+    for child in children:
+        wrapper.append(child.extract())
+    impact.append(wrapper)
 
 
 def set_shared_asset_token(soup):
@@ -77,11 +98,11 @@ def normalize_home_top_card_structure(soup, card, rank):
             main_node.append(child.extract())
         card.append(main_node)
 
-    # Homepage CSS contract historically styles the TOP title as h2. Changing
-    # only the semantic tag restores presentation without changing title text.
     title=main_node.find(['h2','h3'], recursive=False)
     if title and title.name != 'h2':
         title.name='h2'
+
+    normalize_quick_impact_structure(soup, main_node.select_one('.quick-impact'))
 
 
 def normalize_homepage() -> bool:
@@ -95,6 +116,8 @@ def normalize_homepage() -> bool:
     cards=today.select('[data-intel-role="card"][data-intel-id]')
     for rank,card in enumerate(cards,1):
         normalize_home_top_card_structure(soup,card,rank)
+    for impact in soup.select('.home-page .quick-impact'):
+        normalize_quick_impact_structure(soup, impact)
     rendered=soup.prettify()
     if not rendered.endswith('\n'): rendered+='\n'
     if rendered!=original:
@@ -127,15 +150,11 @@ def normalize_top_card_structure(soup, card, rank):
             if 'quick-impact' not in (p.get('class') or []):
                 add_class(p,'summary')
                 break
+    normalize_quick_impact_structure(soup, news_main.select_one('.quick-impact'))
 
 
 def normalize_more_card_structure(soup, card):
-    """Canonicalize Daily Supplemental cards as a single-column shell.
-
-    Older seeds sometimes carried the TOP `.news` grid class or a `.news-main`
-    wrapper into Supplemental. That creates an empty rank column / shifted body.
-    Flatten only presentation wrappers and preserve all intelligence nodes.
-    """
+    """Canonicalize Daily Supplemental cards as a single-column shell."""
     remove_classes(card,'news','important','daily-card-top')
     add_class(card,'category-news','daily-card','daily-card-more')
 
@@ -155,6 +174,7 @@ def normalize_more_card_structure(soup, card):
             if 'quick-impact' not in (p.get('class') or []):
                 add_class(p,'summary')
                 break
+    normalize_quick_impact_structure(soup, card.select_one('.quick-impact'))
 
 
 def normalize(path: Path) -> bool:
@@ -171,8 +191,7 @@ def normalize(path: Path) -> bool:
         normalize_top_card_structure(soup,card,rank)
 
     if more_section:
-        seen=set()
-        more_cards=[]
+        seen=set(); more_cards=[]
         for card in more_section.select('.category-news, .news'):
             ident=id(card)
             if ident not in seen:
@@ -187,7 +206,9 @@ def normalize(path: Path) -> bool:
         for details in card.select('details'): add_class(details,'daily-full-analysis')
         for detail_body in card.select('.detail-body'): add_class(detail_body,'daily-analysis-body')
         for visual in card.select('figure.case-preview'): add_class(visual,'daily-visual')
-        for impact in card.select('.quick-impact'): add_class(impact,'daily-impact')
+        for impact in card.select('.quick-impact'):
+            add_class(impact,'daily-impact')
+            normalize_quick_impact_structure(soup, impact)
         for source in card.select('a.source'): add_class(source,'daily-source')
     rendered=soup.prettify()
     if not rendered.endswith('\n'): rendered+='\n'
