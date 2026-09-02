@@ -7,7 +7,7 @@
    AI 3D Daily｜Production Intelligence
   </title>
   <link href="styles.css?v=20260902-r2" rel="stylesheet"/>
-  <link href="shared-components.css" rel="stylesheet"/>
+  <link href="shared-components.css?v=20260902-r2" rel="stylesheet"/>
   <link href="home.css?v=20260902-r2" rel="stylesheet"/>
   <link href="home-content.css?v=20260902-r2" rel="stylesheet"/>
   <link href="home-components.css?v=20260902-r2" rel="stylesheet"/>
@@ -928,111 +928,172 @@
       歷史日報
      </h2>
     </div>
+    <div class="history-controls" data-history-controls="">
+     <input aria-label="搜尋歷史情報" class="history-search" placeholder="搜尋 Meshy / Blender / Retarget / UE5…" type="search"/>
+     <div aria-label="歷史分類篩選" class="history-filter-row">
+      <button class="history-filter is-active" data-history-category="all" type="button">
+       全部
+      </button>
+      <button class="history-filter" data-history-category="ai-generation" type="button">
+       AI 生成
+      </button>
+      <button class="history-filter" data-history-category="3d-production" type="button">
+       3D 製作
+      </button>
+      <button class="history-filter" data-history-category="3d-animation" type="button">
+       3D 動作
+      </button>
+      <button class="history-filter" data-history-category="engine-art" type="button">
+       遊戲引擎
+      </button>
+      <button class="history-filter" data-history-category="emerging-case" type="button">
+       新技術 / Case
+      </button>
+      <button class="history-filter" data-history-category="blender-dcc" type="button">
+       Blender / DCC
+      </button>
+     </div>
+     <div aria-label="歷史日期範圍" class="history-filter-row history-range-row">
+      <button class="history-filter" data-history-range="7" type="button">
+       最近 7 天
+      </button>
+      <button class="history-filter" data-history-range="30" type="button">
+       30 天
+      </button>
+      <button class="history-filter is-active" data-history-range="all" type="button">
+       全部日期
+      </button>
+     </div>
+    </div>
     <ul class="history-list">
-     <a href="2026-09-02/">
-      <strong>
-       2026-09-02
-      </strong>
-      <span>
-       歷史日報
-      </span>
-     </a>
-     <a href="2026-09-01/">
-      <strong>
-       2026-09-01
-      </strong>
-      <span>
-       歷史日報
-      </span>
-     </a>
-     <a href="2026-08-31/">
-      <strong>
-       2026-08-31
-      </strong>
-      <span>
-       歷史日報
-      </span>
-     </a>
-     <a href="2026-08-30/">
-      <strong>
-       2026-08-30
-      </strong>
-      <span>
-       歷史日報
-      </span>
-     </a>
-     <a href="2026-08-29/">
-      <strong>
-       2026-08-29
-      </strong>
-      <span>
-       歷史日報
-      </span>
-     </a>
-     <a href="2026-08-28/">
-      <strong>
-       2026-08-28
-      </strong>
-      <span>
-       歷史日報
-      </span>
-     </a>
-     <a href="2026-08-27/">
-      <strong>
-       2026-08-27
-      </strong>
-      <span>
-       歷史日報
-      </span>
-     </a>
-     <a href="2026-08-26/">
-      <strong>
-       2026-08-26
-      </strong>
-      <span>
-       歷史日報
-      </span>
-     </a>
-     <a href="2026-08-25/">
-      <strong>
-       2026-08-25
-      </strong>
-      <span>
-       歷史日報
-      </span>
-     </a>
-     <a href="2026-08-24/">
-      <strong>
-       2026-08-24
-      </strong>
-      <span>
-       歷史日報
-      </span>
-     </a>
-     <a href="2026-08-23/">
-      <strong>
-       2026-08-23
-      </strong>
-      <span>
-       歷史日報
-      </span>
-     </a>
-     <a href="2026-08-22/">
-      <strong>
-       2026-08-22
-      </strong>
-      <span>
-       歷史日報
-      </span>
-     </a>
-     <a href="2026-08-21/">
-      <strong>
-       2026-08-21
-      </strong>
-      <span>
-       歷史日報
-      </span>
-     </a>
+     <details class="archive-year" data-archive-year="2026" open="">
+      <summary>
+       2026
+      </summary>
+      <div class="archive-months">
+       <details class="archive-month" data-archive-month="2026-09" open="">
+        <summary>
+         9 月
+        </summary>
+        <div class="archive-entries">
+         <a class="history-entry" data-history-categories="3d-animation 3d-production ai-generation blender-dcc emerging-case engine-art" data-history-date="2026-09-02" data-history-search="2026-09-02 歷史日報 tripo p2.0：原生 quad topology 生成 p2.0 把 ai 3d 的重點從「看起來像」推向可編輯拓樸，直接瞄準 production asset cleanup。 unity 6.6 compute light baker 新 light baker 以 compute shader + unified ray tracing 產生 lightmap、probe 與 apv 資料。 world from motion：單目影片生成可自由視角 dynamic 3dgs nvidia/stanford 等研究用 video prior 修正 monocular reconstruction，再蒸餾回一致 dynamic gaussian scene。 cascadeur 2026.1：ue livelink + ai root motion ai-assisted keyframe 工具加入 ue livelink、root motion style transfer 與 collision cleanup。 uv flex：互動式 uv island split / merge / reshape 把 uv island 的拆分、合併、變形與 spline 操作做成 viewport-driven 工具。 ue5.8 megalights：production ready megalights 在 5.8 進入 production-ready，加入 translucency、volumetric、debug views 與 60fps 導向優化。 photoshop：firefly image 5 + ai assisted editor adobe 把自然語言編修、遮罩指令與新生成模型直接放進日常 texture/concept 編修環境。 maya 2027：smart bevel、ngskintools、motionmaker maya 2027 同時更新 modeling、skinning、bifrost 與 ai animation，對角色 pipeline 影響廣。 blender 5.2 remote asset libraries blender 資產庫開始支援 remote hosting，讓團隊 asset distribution 從共享磁碟走向可控遠端來源。 procedural stone passage：houdini hda × ue5 即時材質 以自訂 hda 驅動石材生成、損壞、polycount 與散佈，再把 designer maps 重建成 ue5 procedural smart material。 hyper3d worldgen：單張場景圖拆成獨立 3d 資產 worldgen 從單一物件生成走向整個場景的物件分解、3d 化與空間關係重建。 zen bbq 2.0：程序 bevel 直接烘焙 production maps 新的 map baking 可把 procedural bevel 轉成 normal/ao/curvature/id 等貼圖。 iron mitchell：格鬥角色 sculpt / texture / ue pipeline 以 mike tyson 等真實參考塑造 fighter anatomy，再將 zbrush、maya、painter、marmoset 與 unreal 串成角色製作流程。 gaussiandwm++：language-grounded 3d gaussian world model 把語言理解、3d gaussian semantic field、場景編輯與 4d generation 統一到 driving world model。 houdini 22：3dgs、copernicus、kinefx 與 usd 新方向 sneak peek 顯示 native gaussian、retopo、terrain、kinefx、crowd 與 sop-based usd authoring 同步擴張。" href="2026-09-02/">
+          <strong>
+           2026-09-02
+          </strong>
+          <span>
+           歷史日報
+          </span>
+         </a>
+         <a class="history-entry" data-history-categories="" data-history-date="2026-09-01" data-history-search="2026-09-01 歷史日報                      " href="2026-09-01/">
+          <strong>
+           2026-09-01
+          </strong>
+          <span>
+           歷史日報
+          </span>
+         </a>
+        </div>
+       </details>
+       <details class="archive-month" data-archive-month="2026-08">
+        <summary>
+         8 月
+        </summary>
+        <div class="archive-entries">
+         <a class="history-entry" data-history-categories="" data-history-date="2026-08-31" data-history-search="2026-08-31 歷史日報                      " href="2026-08-31/">
+          <strong>
+           2026-08-31
+          </strong>
+          <span>
+           歷史日報
+          </span>
+         </a>
+         <a class="history-entry" data-history-categories="" data-history-date="2026-08-30" data-history-search="2026-08-30 歷史日報                      " href="2026-08-30/">
+          <strong>
+           2026-08-30
+          </strong>
+          <span>
+           歷史日報
+          </span>
+         </a>
+         <a class="history-entry" data-history-categories="" data-history-date="2026-08-29" data-history-search="2026-08-29 歷史日報                        " href="2026-08-29/">
+          <strong>
+           2026-08-29
+          </strong>
+          <span>
+           歷史日報
+          </span>
+         </a>
+         <a class="history-entry" data-history-categories="" data-history-date="2026-08-28" data-history-search="2026-08-28 歷史日報                      " href="2026-08-28/">
+          <strong>
+           2026-08-28
+          </strong>
+          <span>
+           歷史日報
+          </span>
+         </a>
+         <a class="history-entry" data-history-categories="" data-history-date="2026-08-27" data-history-search="2026-08-27 歷史日報                      " href="2026-08-27/">
+          <strong>
+           2026-08-27
+          </strong>
+          <span>
+           歷史日報
+          </span>
+         </a>
+         <a class="history-entry" data-history-categories="" data-history-date="2026-08-26" data-history-search="2026-08-26 歷史日報                      " href="2026-08-26/">
+          <strong>
+           2026-08-26
+          </strong>
+          <span>
+           歷史日報
+          </span>
+         </a>
+         <a class="history-entry" data-history-categories="" data-history-date="2026-08-25" data-history-search="2026-08-25 歷史日報                      " href="2026-08-25/">
+          <strong>
+           2026-08-25
+          </strong>
+          <span>
+           歷史日報
+          </span>
+         </a>
+         <a class="history-entry" data-history-categories="" data-history-date="2026-08-24" data-history-search="2026-08-24 歷史日報                      " href="2026-08-24/">
+          <strong>
+           2026-08-24
+          </strong>
+          <span>
+           歷史日報
+          </span>
+         </a>
+         <a class="history-entry" data-history-categories="" data-history-date="2026-08-23" data-history-search="2026-08-23 歷史日報                      " href="2026-08-23/">
+          <strong>
+           2026-08-23
+          </strong>
+          <span>
+           歷史日報
+          </span>
+         </a>
+         <a class="history-entry" data-history-categories="" data-history-date="2026-08-22" data-history-search="2026-08-22 歷史日報          " href="2026-08-22/">
+          <strong>
+           2026-08-22
+          </strong>
+          <span>
+           歷史日報
+          </span>
+         </a>
+         <a class="history-entry" data-history-categories="" data-history-date="2026-08-21" data-history-search="2026-08-21 歷史日報          " href="2026-08-21/">
+          <strong>
+           2026-08-21
+          </strong>
+          <span>
+           歷史日報
+          </span>
+         </a>
+        </div>
+       </details>
+      </div>
+     </details>
+     <p class="history-empty" hidden="">
+      找不到符合條件的歷史情報。
+     </p>
     </ul>
    </section>
   </main>
