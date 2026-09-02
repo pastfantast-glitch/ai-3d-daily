@@ -47,8 +47,11 @@ def main():
     render_target(ROOT / 'index.html', records, True, '.top-item[data-intel-role="card"][data-intel-id], .more-card[data-intel-role="card"][data-intel-id]')
     render_target(ROOT / date / 'index.html', records, False, '#top .news[data-intel-role="card"][data-intel-id], .category-news[data-intel-role="card"][data-intel-id]')
     if int(data.get('schema_version', 0)) >= 3:
+        # V2 category pages live exactly one directory below the daily archive:
+        # YYYY-MM-DD/<category>/index.html. Render canonical Full Analysis into
+        # every generated category card; do not infer category or ranking here.
         for path in sorted((ROOT / date).glob('*/index.html')):
-            if path.parent == ROOT / date:  # one directory below the daily archive
+            if path.parent.parent == ROOT / date:
                 render_target(path, records, False, '.category-card[data-intel-role="card"][data-intel-id]')
 
 
