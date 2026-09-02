@@ -117,48 +117,48 @@
   box-shadow:0 4px 14px rgba(25,35,52,.035);
 }
 
-/* Full Analysis shares the same light visual language instead of having a separate archive theme. */
+/* Full Analysis: shared dark analysis panel across homepage, daily archive and category pages. */
 details {
-  margin-top: 16px;
-  border: 1px solid var(--ds-line);
-  border-radius: 12px;
-  background: #fafbfc;
+  margin-top: 12px;
+  border: 1px solid #29384f;
+  border-radius: 10px;
+  background: #0d1523;
   overflow: hidden;
 }
 details > summary {
   cursor: pointer;
-  padding: 13px 15px;
-  color: #355fb8;
-  font-size: .84rem;
-  font-weight: 850;
+  padding: 10px 12px;
+  color: #bbc6d8;
+  font-size: .77rem;
+  font-weight: 900;
   list-style: none;
-  background: #f5f7fa;
+  background: #0d1523;
   border-bottom: 1px solid transparent;
 }
 details > summary::-webkit-details-marker { display: none; }
 details > summary::after {
   content: '＋';
   float: right;
-  color: #68758a;
+  color: #8492aa;
   font-size: 1rem;
 }
 details[open] > summary {
-  background: #f2f5f9;
-  border-bottom-color: var(--ds-line);
+  background: #121c2d;
+  border-bottom-color: #26354b;
 }
 details[open] > summary::after { content: '－'; }
 .detail-body {
-  padding: 22px 22px 24px;
+  padding: 14px 15px 15px;
   max-width: 760px;
-  background: #fff;
+  background: #101827;
 }
 .detail-body h4 {
   position: relative;
-  margin: 30px 0 9px;
+  margin: 16px 0 6px;
   padding-left: 14px;
-  color: #172033;
-  font-size: 1.08rem;
-  font-weight: 800;
+  color: #e6ebf4;
+  font-size: .86rem;
+  font-weight: 850;
   letter-spacing: -.01em;
   line-height: 1.4;
 }
@@ -171,24 +171,24 @@ details[open] > summary::after { content: '－'; }
   width: 4px;
   height: 1.08em;
   border-radius: 999px;
-  background: #3f7fe8;
+  background: #6f9eff;
 }
 .detail-body p {
-  margin: 0 0 20px;
+  margin: 0 0 12px;
   padding: 0;
-  color: #525c6b;
-  font-size: .94rem;
+  color: #aeb8ca;
+  font-size: .82rem;
   font-weight: 400;
-  line-height: 1.82;
-  max-width: 70ch;
+  line-height: 1.74;
+  max-width: 72ch;
 }
 .detail-body p:last-child { margin-bottom: 0; }
 .detail-body h4 + p { padding: 0; background: transparent; border: 0; border-radius: 0; box-shadow: none; }
 
 @media (max-width: 760px) {
   .global-category-link { padding: 11px 12px 10px; }
-  .detail-body { padding: 18px 16px 20px; }
-  details > summary { padding: 11px 13px; }
-  .detail-body h4 { font-size: 1rem; margin-top:24px; }
-  .detail-body p { font-size: .9rem; line-height:1.76; margin-bottom:17px; }
+  .detail-body { padding: 12px; }
+  details > summary { padding: 9px 11px; }
+  .detail-body h4 { font-size: .84rem; }
+  .detail-body p { font-size: .8rem; }
 }
