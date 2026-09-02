@@ -8,20 +8,25 @@
     "next10": 10
   },
   "full_analysis": {
-    "min_blocks": 4,
-    "min_text_chars_per_block": 50,
+    "style_reference": "2026-09-01",
+    "min_blocks": 3,
+    "max_blocks": 5,
+    "adaptive_labels": true,
+    "fixed_semantic_labels": false,
+    "quality_rule": "Each block must add one distinct, source-supported production insight; do not pad to a character quota or restate summary/quick_impact.",
     "required_semantics": [
-      "production-delta",
-      "why-it-matters",
-      "pipeline-impact",
-      "limitations-risk"
+      "production-change-or-workflow",
+      "production-value-or-pipeline-impact",
+      "adoption-test-risk-or-limitation"
     ],
-    "semantic_labels": {
-      "production-delta": ["What Changed", "Production Delta", "Production 重點", "變更重點"],
-      "why-it-matters": ["Why It Matters", "Production Value", "為什麼重要", "價值判斷"],
-      "pipeline-impact": ["Pipeline Impact", "導入方式", "導入判斷", "Workflow Impact"],
-      "limitations-risk": ["Limitations / Risk", "實測 / 風險", "限制 / 風險", "測試重點"]
-    }
+    "writing_guidance": [
+      "Use concise content-specific headings like Animation Pipeline, Rig / Retarget, Texture Workflow, Game Pipeline, Production Value, 導入測試 or 實測 instead of fixed report-template headings.",
+      "Choose 3 to 5 analysis angles according to the item itself. Do not force every item into the same four headings.",
+      "Prefer fast-scanning production notes: state the concrete capability or delta, explain the practical workflow value, then give an adoption/test/risk judgment when relevant.",
+      "Keep V3 information depth, but avoid verbosity, filler, repeated context, and minimum-character padding.",
+      "For AI motion/animation, when supported by the source, prioritize input, output/rig compatibility, root motion/fingers/face/multi-person, cleanup/foot lock, retarget, local/cloud, speed, licensing and engine integration.",
+      "The 2026-09-01 Full Analysis tone and structure is the readability reference; do not rewrite historical pages to the new schema."
+    ]
   },
   "categories": [
     {
