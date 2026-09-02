@@ -27,10 +27,10 @@ def main():
     date=sys.argv[1] if len(sys.argv)>1 else latest_date()
     data=json.loads((ROOT/'data'/'daily'/f'{date}.json').read_text('utf-8'))
     rev=int(data.get('render_revision',1)); token=f"{date.replace('-','')}-r{rev}"
-    apply(ROOT/'index.html',['styles.css','home.css','home-content.css','home-components.css','home.js'],token)
-    apply(ROOT/date/'index.html',['../styles.css','../daily.css','../daily.js'],token)
+    apply(ROOT/'index.html',['styles.css','shared-components.css','home.css','home-content.css','home-components.css','home.js'],token)
+    apply(ROOT/date/'index.html',['../styles.css','../shared-components.css','../daily.css','../daily.js'],token)
     if int(data.get('schema_version',0))>=3:
         for path in sorted((ROOT/date).glob('*/index.html')):
-            apply(path,['../../styles.css','../../category.css'],token)
+            apply(path,['../../styles.css','../../shared-components.css','../../category.css'],token)
 
 if __name__=='__main__': main()
