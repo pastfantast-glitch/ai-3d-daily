@@ -1,0 +1,113 @@
+/* Shared UI components: single active source for global category navigation and Full Analysis. */
+
+/* Global sticky TOP5 / category navigation */
+.global-category-nav {
+  position: sticky;
+  top: 0;
+  z-index: 45;
+  background: rgba(9,15,26,.96);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid #26344b;
+  box-shadow: 0 6px 18px rgba(0,0,0,.16);
+}
+.global-category-nav-inner {
+  display: flex;
+  overflow-x: auto;
+  scrollbar-width: none;
+  overscroll-behavior-inline: contain;
+}
+.global-category-nav-inner::-webkit-scrollbar { display: none; }
+.global-category-link {
+  position: relative;
+  flex: 0 0 auto;
+  padding: 12px 13px 11px;
+  color: #98a5b9;
+  text-decoration: none;
+  white-space: nowrap;
+  font-size: .78rem;
+  font-weight: 850;
+}
+.global-category-link:first-child { padding-left: 0; }
+.global-category-link:hover { color: #d5d0ff; }
+.global-category-link.is-active { color: #c1b9ff; }
+.global-category-link.is-active::after {
+  content: "";
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: 0;
+  height: 3px;
+  border-radius: 999px 999px 0 0;
+  background: #8f82ff;
+}
+.global-category-link:first-child.is-active::after { left: 0; }
+
+/* Full Analysis: shared light reading palette across TOP5, daily and category pages */
+details {
+  margin-top: 16px;
+  border: 1px solid #dfe4eb;
+  border-radius: 12px;
+  background: #fafbfc;
+  overflow: hidden;
+}
+details > summary {
+  cursor: pointer;
+  padding: 13px 15px;
+  color: #355fb8;
+  font-size: .84rem;
+  font-weight: 850;
+  list-style: none;
+  background: #f5f7fa;
+  border-bottom: 1px solid transparent;
+}
+details > summary::-webkit-details-marker { display: none; }
+details > summary::after { content: '＋'; float: right; font-size: 1rem; }
+details[open] > summary { border-bottom-color: #dfe4eb; background: #f2f5f9; }
+details[open] > summary::after { content: '－'; }
+.detail-body {
+  padding: 22px 22px 24px;
+  max-width: 760px;
+  background: #fff;
+}
+.detail-body h4 {
+  position: relative;
+  margin: 30px 0 9px;
+  padding-left: 14px;
+  color: #172033;
+  font-size: 1.08rem;
+  font-weight: 800;
+  letter-spacing: -.01em;
+  line-height: 1.4;
+}
+.detail-body h4:first-child { margin-top: 0; }
+.detail-body h4::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: .2em;
+  width: 4px;
+  height: 1.08em;
+  border-radius: 999px;
+  background: #3f7fe8;
+}
+.detail-body p {
+  margin: 0 0 20px;
+  padding: 0;
+  color: #525c6b;
+  font-size: .94rem;
+  font-weight: 400;
+  line-height: 1.82;
+  max-width: 70ch;
+}
+.detail-body p:last-child { margin-bottom: 0; }
+.detail-body h4 + p { padding: 0; background: transparent; border: 0; border-radius: 0; box-shadow: none; }
+
+/* Compact spacing where Full Analysis lives inside category cards. */
+.category-card details { margin-top: 12px; }
+
+@media (max-width: 760px) {
+  .global-category-link { padding: 11px 12px 10px; }
+  .detail-body { padding: 18px 16px 20px; }
+  .detail-body h4 { font-size: 1rem; margin-top: 24px; }
+  .detail-body p { font-size: .9rem; line-height: 1.76; margin-bottom: 17px; }
+}
