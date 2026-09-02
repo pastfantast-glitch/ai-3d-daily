@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   3D 製作｜2026-09-02｜AI 3D Daily
+  </title>
+  <link href="../../styles.css?v=20260902-r1" rel="stylesheet"/>
+  <link href="../../category.css?v=20260902-r1" rel="stylesheet"/>
+ </head>
+ <body class="category-page" data-category="3d-production" data-report-date="2026-09-02">
+  <header class="category-hero">
+   <div class="page">
+    <a class="category-back" href="../../">
+     ← 回首頁
+    </a>
+    <span class="section-kicker">
+     2026-09-02
+    </span>
+    <h1>
+     3D 製作
+    </h1>
+    <p>
+     3D 建模 / 3D 製作流程
+    </p>
+   </div>
+  </header>
+  <main class="page category-main">
+   <article class="category-card" data-intel-id="uv-flex-interactive-edit" data-intel-role="card">
+    <div class="category-meta">
+     #05 · uv
+    </div>
+    <h2>
+     UV Flex：互動式 UV Island Split / Merge / Reshape
+    </h2>
+    <p class="summary">
+     把 UV island 的拆分、合併、變形與 spline 操作做成 viewport-driven 工具。
+    </p>
+    <figure class="case-preview" data-intel-id="uv-flex-interactive-edit" data-intel-role="visual" data-visual-id="uv-flex-interactive-edit">
+     <a href="https://80.lv/articles/split-merge-reshape-uv-islands-with-this-blender-toolset" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE VISUAL preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-02/uv-flex-interactive-edit.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE VISUAL
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span>
+      UV ★★★★☆
+     </span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       Production 重點
+      </h4>
+      <p>
+       特別適合 hard-surface 與 prop 在 unwrap 後的 UV cleanup。
+      </p>
+      <h4>
+       導入判斷
+      </h4>
+      <p>
+       2D IK / spline deformation 能減少手動逐點修島。
+      </p>
+      <h4>
+       實測 / 風險
+      </h4>
+      <p>
+       應測大型 UDIM、鏡像 seam、packing 前後與 Blender 版本相容性。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://80.lv/articles/split-merge-reshape-uv-islands-with-this-blender-toolset" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="zen-bbq2-map-baking" data-intel-role="card">
+    <div class="category-meta">
+     #12 · texture
+    </div>
+    <h2>
+     Zen BBQ 2.0：程序 Bevel 直接烘焙 Production Maps
+    </h2>
+    <p class="summary">
+     新的 Map Baking 可把 procedural bevel 轉成 Normal/AO/Curvature/ID 等貼圖。
+    </p>
+    <figure class="case-preview" data-intel-id="zen-bbq2-map-baking" data-intel-role="visual" data-visual-id="zen-bbq2-map-baking">
+     <a href="https://80.lv/articles/this-blender-add-on-for-customizable-bevels-gets-a-new-map-baking-system" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE VISUAL preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-02/zen-bbq2-map-baking.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE VISUAL
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span>
+      Bake ★★★★☆
+     </span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       Production 重點
+      </h4>
+      <p>
+       可對 selected objects/collections 烘焙並支援 explode 防投射瑕疵。
+      </p>
+      <h4>
+       導入判斷
+      </h4>
+      <p>
+       對 hard-surface 可維持輕量幾何到 bake 階段再固化細節。
+      </p>
+      <h4>
+       實測 / 風險
+      </h4>
+      <p>
+       應測 cage、命名、multiple texture set 與 Marmoset/UE/Unity 的 map parity。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://80.lv/articles/this-blender-add-on-for-customizable-bevels-gets-a-new-map-baking-system" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="iron-mitchell-fighter-character" data-intel-role="card">
+    <div class="category-meta">
+     #13 · pipeline
+    </div>
+    <h2>
+     Iron Mitchell：格鬥角色 Sculpt / Texture / UE Pipeline
+    </h2>
+    <p class="summary">
+     以 Mike Tyson 等真實參考塑造 fighter anatomy，再將 ZBrush、Maya、Painter、Marmoset 與 Unreal 串成角色製作流程。
+    </p>
+    <figure class="case-preview" data-intel-id="iron-mitchell-fighter-character" data-intel-role="visual" data-visual-id="iron-mitchell-fighter-character">
+     <a href="https://80.lv/articles/how-to-sculpt-and-texture-a-3d-fighter-character-with-zbrush-and-substance-3d" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE VISUAL preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-02/iron-mitchell-fighter-character.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE VISUAL
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span>
+      Character ★★★★☆
+     </span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       Production 重點
+      </h4>
+      <p>
+       真人 anatomy 與 fighter reference 讓 stylization 建立在可信結構上，適合作為角色 high-poly 基線。
+      </p>
+      <h4>
+       導入判斷
+      </h4>
+      <p>
+       流程跨 ZBrush、Maya、Painter、Marmoset 與 Unreal，能觀察 sculpt→texture→realtime presentation 的交付節點。
+      </p>
+      <h4>
+       實測 / 風險
+      </h4>
+      <p>
+       可抽取 skin breakup、材質層次、bake 與 realtime lighting 的角色驗收項目。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://80.lv/articles/how-to-sculpt-and-texture-a-3d-fighter-character-with-zbrush-and-substance-3d" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="edge-decal-generator-120" data-intel-role="card">
+    <div class="category-meta">
+     #26 · modeling
+    </div>
+    <h2>
+     Edge Decal Generator 1.2：非破壞式邊緣細節
+    </h2>
+    <p class="summary">
+     用沿邊 decal 取代部分高模雕刻，並可一鍵輸出到 Unreal 或合併 FBX。
+    </p>
+    <div class="quick-impact">
+     <span>
+      Modeling ★★★★☆
+     </span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       Production 重點
+      </h4>
+      <p>
+       適合焊線、磨損、trim 與 edge grime 等重複細節。
+      </p>
+      <h4>
+       導入判斷
+      </h4>
+      <p>
+       非破壞 layer workflow 對反覆 art direction 修改很實用。
+      </p>
+      <h4>
+       實測 / 風險
+      </h4>
+      <p>
+       要檢查 decal overdraw、UV projection、LOD 距離與 engine shader 成本。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://80.lv/articles/create-sculpted-looking-edge-details-with-decals-in-blender" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="quad-maker-place-ring" data-intel-role="card">
+    <div class="category-meta">
+     #30 · retopology
+    </div>
+    <h2>
+     Quad Maker：Place Ring 管狀 Retopology
+    </h2>
+    <p class="summary">
+     以少量 path 點建立可調整 quad sleeve，針對手臂、腿、手指、頸部等 tubular forms。
+    </p>
+    <div class="quick-impact">
+     <span>
+      Retopo ★★★★☆
+     </span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       Production 重點
+      </h4>
+      <p>
+       比手拉 edge loops 更接近高階角色 retopo 的高頻需求。
+      </p>
+      <h4>
+       導入判斷
+      </h4>
+      <p>
+       spacing 可調代表 edge density 能配合 deformation 區域。
+      </p>
+      <h4>
+       實測 / 風險
+      </h4>
+      <p>
+       應和 RetopoFlow/原生 shrinkwrap 對比 topology 可預測性與 cleanup 時間。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://80.lv/articles/quad-maker-adds-retopology-feature-for-tube-like-forms" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="almalexia-cinematic-character" data-intel-role="card">
+    <div class="category-meta">
+     #32 · modeling
+    </div>
+    <h2>
+     Almalexia Cinematic Character：UDIM、Micropoly 與 Arnold Lookdev
+    </h2>
+    <p class="summary">
+     從 Blender 轉 Maya/XGen/Arnold 的角色案例，展示 cinematic asset 對 topology、UDIM 與 layered materials 的取捨。
+    </p>
+    <div class="quick-impact">
+     <span>
+      Character ★★★★☆
+     </span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       Production 重點
+      </h4>
+      <p>
+       Dynamic Subdivision + Micropoly 適合鏈甲等高頻細節，但不等同 game-ready。
+      </p>
+      <h4>
+       導入判斷
+      </h4>
+      <p>
+       UDIM 與 layered materials 提升近景品質，同時提高交付與記憶體成本。
+      </p>
+      <h4>
+       實測 / 風險
+      </h4>
+      <p>
+       適合作為 cinematic 與 real-time 規格差異的對照案例。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://80.lv/articles/recreating-almalexia-from-the-elder-scrolls-as-a-cinematic-character" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="dark-fantasy-realtime-character-pipeline" data-intel-role="card">
+    <div class="category-meta">
+     #40 · pipeline
+    </div>
+    <h2>
+     Dark Fantasy Real-Time Character：高低模到 UE 的完整管線
+    </h2>
+    <p class="summary">
+     案例把 ZBrush/Maya、MetaHuman topology、Marmoset bake 與 Painter PBR 串成可驗證的 game-character workflow。
+    </p>
+    <div class="quick-impact">
+     <span>
+      Character ★★★★☆
+     </span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       Production 重點
+      </h4>
+      <p>
+       早期把臉對齊 MetaHuman topology 並進 Unreal lookdev 可提早發現結構問題。
+      </p>
+      <h4>
+       導入判斷
+      </h4>
+      <p>
+       armor 用 Maya Quad Draw + ZBrush Dynamic Subdivision 維持可控 topology。
+      </p>
+      <h4>
+       實測 / 風險
+      </h4>
+      <p>
+       可轉成角色 SOP：blockout→game topology→bake→material isolation→engine lookdev。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://80.lv/articles/how-to-model-and-texture-a-dark-fantasy-real-time-character-zbrush-maya-and-substance-3d" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="gradient-texturing-standard-workflow" data-intel-role="card">
+    <div class="category-meta">
+     #43 · texture
+    </div>
+    <h2>
+     Gradient Texturing：低記憶體 Stylized 材質標準化
+    </h2>
+    <p class="summary">
+     以小型 gradient palette 取代大量 unique 高解析貼圖，將 stylized shading 資訊編碼進 UV。
+    </p>
+    <div class="quick-impact">
+     <span>
+      Texture ★★★★☆
+     </span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       Production 重點
+      </h4>
+      <p>
+       小型 palette 能顯著降低大量資產的 texture memory。
+      </p>
+      <h4>
+       導入判斷
+      </h4>
+      <p>
+       適合 stylized mobile/indie 場景，但 UV authoring 與色帶治理必須標準化。
+      </p>
+      <h4>
+       實測 / 風險
+      </h4>
+      <p>
+       需量測 memory、draw/material variation、mipmap bleeding 與 art-direction 彈性。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://80.lv/articles/elevating-gradient-texturing-to-a-standard-workflow-in-blender" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="maya-matcha-reference-projection" data-intel-role="card">
+    <div class="category-meta">
+     #45 · texture
+    </div>
+    <h2>
+     Matcha for Maya：Camera Match + Projection Painting
+    </h2>
+    <p class="summary">
+     把 reference camera 管理、投影貼圖、layer 與 PSD 匯出整合成 Maya 內的 photo-based workflow。
+    </p>
+    <div class="quick-impact">
+     <span>
+      Texture ★★★★☆
+     </span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       Production 重點
+      </h4>
+      <p>
+       對寫實 prop/environment 的 photo projection 可減少 Maya↔Photoshop 往返。
+      </p>
+      <h4>
+       導入判斷
+      </h4>
+      <p>
+       Pro 版把 UV/Projection Layers 與 mask 組織後輸出 PSD。
+      </p>
+      <h4>
+       實測 / 風險
+      </h4>
+      <p>
+       要測色彩空間、鏡頭校正誤差、遮擋面與多鏡頭拼接 seam。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://80.lv/articles/this-free-maya-tool-facilitates-working-with-photo-references-camera-matching" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="cartoon-guitar-blender-prop" data-intel-role="card">
+    <div class="category-meta">
+     #50 · modeling
+    </div>
+    <h2>
+     Stylized Electric Guitar：Blender Prop 全流程
+    </h2>
+    <p class="summary">
+     以卡通吉他為例，把 modeling、texturing、outline 與特殊材質整合成 stylized prop pipeline。
+    </p>
+    <div class="quick-impact">
+     <span>
+      Prop ★★★★☆
+     </span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       Production 重點
+      </h4>
+      <p>
+       適合檢查 Blender 接替傳統 DCC 的 prop production 可行性。
+      </p>
+      <h4>
+       導入判斷
+      </h4>
+      <p>
+       stylized outline 與液體材質必須和幾何輪廓共同設計。
+      </p>
+      <h4>
+       實測 / 風險
+      </h4>
+      <p>
+       可抽成 blockout、UV、texture、NPR presentation 的小型測試資產。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://80.lv/articles/breakdown-creating-cartoon-style-3d-electric-guitar-in-blender" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+  </main>
+ </body>
+</html>

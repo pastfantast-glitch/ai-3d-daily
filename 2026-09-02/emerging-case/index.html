@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   新技術 / Case｜2026-09-02｜AI 3D Daily
+  </title>
+  <link href="../../styles.css?v=20260902-r1" rel="stylesheet"/>
+  <link href="../../category.css?v=20260902-r1" rel="stylesheet"/>
+ </head>
+ <body class="category-page" data-category="emerging-case" data-report-date="2026-09-02">
+  <header class="category-hero">
+   <div class="page">
+    <a class="category-back" href="../../">
+     ← 回首頁
+    </a>
+    <span class="section-kicker">
+     2026-09-02
+    </span>
+    <h1>
+     新技術 / Case
+    </h1>
+    <p>
+     新技術 / Production Case
+    </p>
+   </div>
+  </header>
+  <main class="page category-main">
+   <article class="category-card" data-intel-id="world-from-motion-4dgs" data-intel-role="card">
+    <div class="category-meta">
+     #03 · 4d
+    </div>
+    <h2>
+     World from Motion：單目影片生成可自由視角 Dynamic 3DGS
+    </h2>
+    <p class="summary">
+     NVIDIA/Stanford 等研究用 video prior 修正 monocular reconstruction，再蒸餾回一致 dynamic Gaussian scene。
+    </p>
+    <figure class="case-preview" data-intel-id="world-from-motion-4dgs" data-intel-role="visual" data-visual-id="world-from-motion-4dgs">
+     <a href="https://arxiv.org/abs/2607.01202" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE VISUAL preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-02/world-from-motion-4dgs.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE VISUAL
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span>
+      4D ★★★★★
+     </span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       Production 重點
+      </h4>
+      <p>
+       輸入是 monocular video，目標是可自由視角的動態 3D 表示。
+      </p>
+      <h4>
+       導入判斷
+      </h4>
+      <p>
+       把 video generation 的 unseen-region 能力蒸餾回 3DGS 是關鍵。
+      </p>
+      <h4>
+       實測 / 風險
+      </h4>
+      <p>
+       對 capture/virtual production 有潛力，但目前不是 game-ready mesh pipeline。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://arxiv.org/abs/2607.01202" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="gaussiandwmpp-language-grounded" data-intel-role="card">
+    <div class="category-meta">
+     #14 · world-model
+    </div>
+    <h2>
+     GaussianDWM++：Language-Grounded 3D Gaussian World Model
+    </h2>
+    <p class="summary">
+     把語言理解、3D Gaussian semantic field、場景編輯與 4D generation 統一到 driving world model。
+    </p>
+    <figure class="case-preview" data-intel-id="gaussiandwmpp-language-grounded" data-intel-role="visual" data-visual-id="gaussiandwmpp-language-grounded">
+     <a href="https://arxiv.org/abs/2608.16234" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE VISUAL preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-02/gaussiandwmpp-language-grounded.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE VISUAL
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span>
+      World Model ★★★★☆
+     </span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       Production 重點
+      </h4>
+      <p>
+       foundation-feature Gaussian tokenizer 把視語特徵落到 3D primitives。
+      </p>
+      <h4>
+       導入判斷
+      </h4>
+      <p>
+       支援 weather 與動態車輛等 instruction-controlled editing。
+      </p>
+      <h4>
+       實測 / 風險
+      </h4>
+      <p>
+       雖針對 driving，但對 game world semantic editing 的技術路線值得追。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://arxiv.org/abs/2608.16234" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="livingworld-interactive-4d" data-intel-role="card">
+    <div class="category-meta">
+     #18 · world-model
+    </div>
+    <h2>
+     LivingWorld：單張圖生成可擴張動態 4D 世界
+    </h2>
+    <p class="summary">
+     用全域 motion field 維持雲、水、煙等環境動態，在場景擴張時保持方向與尺度一致。
+    </p>
+    <div class="quick-impact">
+     <span>
+      World Model ★★★★★
+     </span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       Production 重點
+      </h4>
+      <p>
+       單圖輸入就試圖生成 scene-scale dynamics，而不只靜態 3D。
+      </p>
+      <h4>
+       導入判斷
+      </h4>
+      <p>
+       論文報告 RTX5090 上單次 expansion 約秒級到十秒級流程，接近互動 iteration。
+      </p>
+      <h4>
+       實測 / 風險
+      </h4>
+      <p>
+       可作為未來 environment previz/world generation 方向，尚非可直接部署的 engine asset。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://arxiv.org/abs/2604.01641" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="4c4d-four-camera" data-intel-role="card">
+    <div class="category-meta">
+     #31 · 4d
+    </div>
+    <h2>
+     4C4D：四台相機完成 4D Gaussian Splatting
+    </h2>
+    <p class="summary">
+     把過去數十到上百相機的 4D capture 需求壓到四台 portable cameras。
+    </p>
+    <div class="quick-impact">
+     <span>
+      4D Capture ★★★★☆
+     </span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       Production 重點
+      </h4>
+      <p>
+       少相機 capture 若能維持幾何品質，會直接降低 volumetric capture 成本。
+      </p>
+      <h4>
+       導入判斷
+      </h4>
+      <p>
+       Neural Decaying Function 用來強化 sparse-view geometry learning。
+      </p>
+      <h4>
+       實測 / 風險
+      </h4>
+      <p>
+       production 要驗快速動作、遮擋、背景干擾與時間同步容錯。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://www.alphaxiv.org/abs/2604.04063v1" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="st-gen4d-cognition-worldmodel" data-intel-role="card">
+    <div class="category-meta">
+     #36 · world-model
+    </div>
+    <h2>
+     ST-Gen4D：把時空認知嵌入 4D World Model
+    </h2>
+    <p class="summary">
+     以 global appearance graph + local dynamic graph 建立 4D cognition，再引導 Gaussian generation。
+    </p>
+    <div class="quick-impact">
+     <span>
+      Research ★★★★☆
+     </span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       Production 重點
+      </h4>
+      <p>
+       研究重點從外觀一致性提升到局部動態拓樸與未來狀態 reasoning。
+      </p>
+      <h4>
+       導入判斷
+      </h4>
+      <p>
+       如果成熟，可影響可互動 world generation 而非只做 camera flythrough。
+      </p>
+      <h4>
+       實測 / 風險
+      </h4>
+      <p>
+       目前評估重點是結構一致性、可控性與可導出表示。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://arxiv.org/abs/2605.07390" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="face-anything-4d-reconstruction" data-intel-role="card">
+    <div class="category-meta">
+     #41 · research
+    </div>
+    <h2>
+     Face Anything：任意序列的 4D Face Reconstruction
+    </h2>
+    <p class="summary">
+     以 canonical facial coordinates + depth 做 temporally stable face geometry 與 dense tracking。
+    </p>
+    <div class="quick-impact">
+     <span>
+      4D Face ★★★★☆
+     </span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       Production 重點
+      </h4>
+      <p>
+       canonical coordinate 讓不同表情/視角映射到同一面部空間。
+      </p>
+      <h4>
+       導入判斷
+      </h4>
+      <p>
+       若穩定可支援 facial capture、tracking 與 training-data generation。
+      </p>
+      <h4>
+       實測 / 風險
+      </h4>
+      <p>
+       production 導入仍需檢查遮擋、髮絲、極端表情與輸出 topology/rig 轉換。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://80.lv/articles/researchers-present-new-method-for-4d-face-reconstruction-from-any-image-sequence" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="motionscale-4dgs" data-intel-role="card">
+    <div class="category-meta">
+     #44 · 4d
+    </div>
+    <h2>
+     MotionScale：可擴展長序列 4D Gaussian Reconstruction
+    </h2>
+    <p class="summary">
+     以 cluster-centric motion basis 與 progressive propagation 處理大場景、長序列與 transient shadow。
+    </p>
+    <div class="quick-impact">
+     <span>
+      4D ★★★★☆
+     </span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       Production 重點
+      </h4>
+      <p>
+       針對長時間與大範圍動態重建的 scalability，而非短 clip demo。
+      </p>
+      <h4>
+       導入判斷
+      </h4>
+      <p>
+       background extension 與 foreground motion 分階段優化更接近實務問題。
+      </p>
+      <h4>
+       實測 / 風險
+      </h4>
+      <p>
+       值得關注 capture cleanup、camera refine 與 temporal stability 的成本。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://arxivlens.com/paperview/details/motionscale-reconstructing-appearance-geometry-and-motion-of-dynamic-scenes-with-scalable-4d-gaussian-splatting-4972-0a511ab6" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="gracia-streamable-4dgs" data-intel-role="card">
+    <div class="category-meta">
+     #47 · 4d
+    </div>
+    <h2>
+     Gracia：4DGS 像影片一樣瀏覽器串流
+    </h2>
+    <p class="summary">
+     4D Gaussian performance capture 可在 browser/headset/phone 串流，直接碰到 bandwidth 與 delivery 問題。
+    </p>
+    <div class="quick-impact">
+     <span>
+      4D Streaming ★★★★☆
+     </span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       Production 重點
+      </h4>
+      <p>
+       重點從 capture/render 進一步走到 distribution。
+      </p>
+      <h4>
+       導入判斷
+      </h4>
+      <p>
+       高頻寬需求仍明顯，代表 production 需把 compression/quality ladder 納入規格。
+      </p>
+      <h4>
+       實測 / 風險
+      </h4>
+      <p>
+       對 virtual human、XR performance、interactive video 有直接參考價值。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://80.lv/articles/gaussian-splatting-videos-can-now-be-streamed-like-regular-videos/" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="sharp-particle-3dgs" data-intel-role="card">
+    <div class="category-meta">
+     #54 · case-study
+    </div>
+    <h2>
+     Apple SHARP × Particle Generator：單圖轉 Metric 3DGS
+    </h2>
+    <p class="summary">
+     把單張影像回歸成 metric Gaussian representation，再用粒子方式 art-direct 其視覺。
+    </p>
+    <div class="quick-impact">
+     <span>
+      3DGS ★★★☆☆
+     </span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       Production 重點
+      </h4>
+      <p>
+       SHARP 的 metric scale 對相機移動與空間整合比純視覺 splat 更有意義。
+      </p>
+      <h4>
+       導入判斷
+      </h4>
+      <p>
+       案例展示 3DGS 不只重建，也能作為可程序化的視覺 primitive。
+      </p>
+      <h4>
+       實測 / 風險
+      </h4>
+      <p>
+       限制是資料體積與目前較偏展示性，需要壓縮/streaming 才能擴大應用。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://80.lv/articles/magical-particle-generator-made-with-apple-s-sharp-model" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="inversphere-3dgs-world" data-intel-role="card">
+    <div class="category-meta">
+     #58 · case-study
+    </div>
+    <h2>
+     Inversphere：把 360° 3DGS 世界折進球體
+    </h2>
+    <p class="summary">
+     以空間 warping 呈現完整 3D Gaussian environment，探索 splat content 的新展示與導航方式。
+    </p>
+    <div class="quick-impact">
+     <span>
+      3DGS ★★★☆☆
+     </span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       Production 重點
+      </h4>
+      <p>
+       技術不是 mesh generation，而是 3DGS 空間展示與視覺化。
+      </p>
+      <h4>
+       導入判斷
+      </h4>
+      <p>
+       可延伸到 memory bubble、map preview、XR gallery 等 presentation。
+      </p>
+      <h4>
+       實測 / 風險
+      </h4>
+      <p>
+       若進 production 要評估 distortion、interaction、LOD 與 streaming。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://80.lv/articles/folding-entire-360-degree-worlds-into-one-sphere-with-3dgs" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+  </main>
+ </body>
+</html>

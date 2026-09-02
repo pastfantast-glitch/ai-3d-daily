@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   遊戲引擎｜2026-09-02｜AI 3D Daily
+  </title>
+  <link href="../../styles.css?v=20260902-r1" rel="stylesheet"/>
+  <link href="../../category.css?v=20260902-r1" rel="stylesheet"/>
+ </head>
+ <body class="category-page" data-category="engine-art" data-report-date="2026-09-02">
+  <header class="category-hero">
+   <div class="page">
+    <a class="category-back" href="../../">
+     ← 回首頁
+    </a>
+    <span class="section-kicker">
+     2026-09-02
+    </span>
+    <h1>
+     遊戲引擎
+    </h1>
+    <p>
+     遊戲引擎 / 引擎端美術內容
+    </p>
+   </div>
+  </header>
+  <main class="page category-main">
+   <article class="category-card" data-intel-id="unity-compute-light-baker-66" data-intel-role="card">
+    <div class="category-meta">
+     #02 · unity
+    </div>
+    <h2>
+     Unity 6.6 Compute Light Baker
+    </h2>
+    <p class="summary">
+     新 light baker 以 Compute Shader + Unified Ray Tracing 產生 lightmap、probe 與 APV 資料。
+    </p>
+    <figure class="case-preview" data-intel-id="unity-compute-light-baker-66" data-intel-role="visual" data-visual-id="unity-compute-light-baker-66">
+     <a href="https://discussions.unity.com/t/new-unity-compute-light-baker-available-in-6-6/1734762" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE VISUAL preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-02/unity-compute-light-baker-66.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE VISUAL
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span>
+      Unity ★★★★★
+     </span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       Production 重點
+      </h4>
+      <p>
+       把 baked lighting 與未來 Surface Cache GI 拉到同一 rendering technology stack。
+      </p>
+      <h4>
+       導入判斷
+      </h4>
+      <p>
+       對 URP 場景可直接測 bake time、noise、lightmap parity 與 GPU vendor 差異。
+      </p>
+      <h4>
+       實測 / 風險
+      </h4>
+      <p>
+       目前在 6.6 alpha/beta 路線，正式案應保留 Progressive Lightmapper fallback。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://discussions.unity.com/t/new-unity-compute-light-baker-available-in-6-6/1734762" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="ue58-megalights-production" data-intel-role="card">
+    <div class="category-meta">
+     #06 · rendering
+    </div>
+    <h2>
+     UE5.8 MegaLights：Production Ready
+    </h2>
+    <p class="summary">
+     MegaLights 在 5.8 進入 production-ready，加入 translucency、volumetric、debug views 與 60fps 導向優化。
+    </p>
+    <figure class="case-preview" data-intel-id="ue58-megalights-production" data-intel-role="visual" data-visual-id="ue58-megalights-production">
+     <a href="https://dev.epicgames.com/documentation/en-us/unreal-engine/megalights-in-unreal-engine" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE VISUAL preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-02/ue58-megalights-production.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE VISUAL
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span>
+      Rendering ★★★★★
+     </span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       Production 重點
+      </h4>
+      <p>
+       固定 rays-per-pixel 的架構讓大量 local lights 成本更可預測。
+      </p>
+      <h4>
+       導入判斷
+      </h4>
+      <p>
+       支援 fog/translucency/IES 後，對實際場景的可用範圍比早期 preview 更完整。
+      </p>
+      <h4>
+       實測 / 風險
+      </h4>
+      <p>
+       需要用目標主機測 noise、complexity hotspot、RT/VSM shadow method 與 scalability。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://dev.epicgames.com/documentation/en-us/unreal-engine/megalights-in-unreal-engine" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="procedural-stone-passage-hda-ue5" data-intel-role="card">
+    <div class="category-meta">
+     #10 · tools
+    </div>
+    <h2>
+     Procedural Stone Passage：Houdini HDA × UE5 即時材質
+    </h2>
+    <p class="summary">
+     以自訂 HDA 驅動石材生成、損壞、polycount 與散佈，再把 Designer maps 重建成 UE5 procedural smart material。
+    </p>
+    <figure class="case-preview" data-intel-id="procedural-stone-passage-hda-ue5" data-intel-role="visual" data-visual-id="procedural-stone-passage-hda-ue5">
+     <a href="https://80.lv/articles/procedural-stone-passage-built-with-a-custom-houdini-hda-in-unreal-engine-5" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE VISUAL preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-02/procedural-stone-passage-hda-ue5.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE VISUAL
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span>
+      Procedural ★★★★☆
+     </span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       Production 重點
+      </h4>
+      <p>
+       HDA 用 curve 與參數驅動尺寸、數量、破損與 polycount，適合把環境造型變成可重用生成器。
+      </p>
+      <h4>
+       導入判斷
+      </h4>
+      <p>
+       Substance Designer base maps 再於 UE5 material graph 重建 procedural smart material，減少 unique texture 依賴。
+      </p>
+      <h4>
+       實測 / 風險
+      </h4>
+      <p>
+       應測 HDA cook time、instance/mesh 輸出、材質 instruction 與 LOD/Nanite 交付成本。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://80.lv/articles/procedural-stone-passage-built-with-a-custom-houdini-hda-in-unreal-engine-5" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="ue5-substrate-crystal-master-material" data-intel-role="card">
+    <div class="category-meta">
+     #21 · shader
+    </div>
+    <h2>
+     UE5 Substrate Crystal：多層可參數化寶石材質
+    </h2>
+    <p class="summary">
+     以 Substrate、POM/Bump Offset、internal glow 與 iridescence 建立單一 master material，生成多種晶體外觀。
+    </p>
+    <div class="quick-impact">
+     <span>
+      Shader ★★★★☆
+     </span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       Production 重點
+      </h4>
+      <p>
+       多層 master material 透過 exposed parameters/switches 控制 POM、內發光、色散感與色移。
+      </p>
+      <h4>
+       導入判斷
+      </h4>
+      <p>
+       同一 setup 可覆蓋多種 crystal types，適合把 lookdev 收斂為可重用材質模板。
+      </p>
+      <h4>
+       實測 / 風險
+      </h4>
+      <p>
+       需 profile Substrate layer、POM sample、Lumen interaction 與不同 scalability 下的成本。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://80.lv/articles/this-opaque-iridescent-crystal-material-built-in-ue5-is-absolutely-hypnotic" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="ue58-lumen-lite" data-intel-role="card">
+    <div class="category-meta">
+     #24 · optimization
+    </div>
+    <h2>
+     UE5.8 Lumen Lite / Medium Quality
+    </h2>
+    <p class="summary">
+     5.8 新增約 2× 較快的 Lumen medium-quality 路徑，目標低階 PC/handheld 與 60fps art direction。
+    </p>
+    <div class="quick-impact">
+     <span>
+      Optimization ★★★★☆
+     </span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       Production 重點
+      </h4>
+      <p>
+       Irradiance Field Gather + cheaper reflections/fog 提供新的 scalability tier。
+      </p>
+      <h4>
+       導入判斷
+      </h4>
+      <p>
+       對 stylized game 可保留 GI 方向而不必完全退回 baked lighting。
+      </p>
+      <h4>
+       實測 / 風險
+      </h4>
+      <p>
+       要特別驗室內 view dependence、probe occlusion、TAA reconstruction 與平台差異。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://dev.epicgames.com/documentation/unreal-engine/unreal-engine-5-8-release-notes" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="kawaii-physics-121-ue58" data-intel-role="card">
+    <div class="category-meta">
+     #33 · tools
+    </div>
+    <h2>
+     Kawaii Physics 1.21：UE5.8、Fixed Substepping、Shared Collision
+    </h2>
+    <p class="summary">
+     UE secondary-motion plugin 更新 5.8 相容性、裙擺/腳穿透改善、低 FPS 穩定性與 collision data 共用。
+    </p>
+    <div class="quick-impact">
+     <span>
+      Tools ★★★★☆
+     </span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       Production 重點
+      </h4>
+      <p>
+       BoneConstraint Subdivision、Fixed Substepping 與 Shared Collision 都直接針對 realtime character secondary motion。
+      </p>
+      <h4>
+       導入判斷
+      </h4>
+      <p>
+       已用於多個商業遊戲，更新重點是 5.8 compatibility 與 production stability 而非單純 demo。
+      </p>
+      <h4>
+       實測 / 風險
+      </h4>
+      <p>
+       需測低 FPS、裙擺/配件 penetration、shared collision 成本與 Animation Blueprint 整合。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://80.lv/articles/kawaii-physics-now-works-with-unreal-engine-5-8" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="ue5-headcrab-substrate-case" data-intel-role="card">
+    <div class="category-meta">
+     #39 · unreal
+    </div>
+    <h2>
+     UE5 Substrate 生物材質：Headcrab 62 頁案例
+    </h2>
+    <p class="summary">
+     以完整角色/生物 case study 驗證 Substrate 在皮膚、濕潤與多層材質上的 lookdev 方法。
+    </p>
+    <div class="quick-impact">
+     <span>
+      Material ★★★★☆
+     </span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       Production 重點
+      </h4>
+      <p>
+       Substrate 的 production 價值要看 layered material 表現與 runtime 成本，不只是 shader graph 能力。
+      </p>
+      <h4>
+       導入判斷
+      </h4>
+      <p>
+       完整 case 可抽取 3ds Max/ZBrush/Painter→UE 的材質交付規格。
+      </p>
+      <h4>
+       實測 / 風險
+      </h4>
+      <p>
+       應對比 legacy material 在 compile time、GPU cost、LOD 與平台相容性。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://80.lv/articles/3d-artist-reimagined-half-life-2-s-headcrab-with-unreal-engine-5-s-substrate" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="ue5-foliage-tools-beta" data-intel-role="card">
+    <div class="category-meta">
+     #48 · optimization
+    </div>
+    <h2>
+     UE5 Foliage Tools：互動式植被模擬 Beta
+    </h2>
+    <p class="summary">
+     更新強化 gamethread、physics、Packed Level Actor 與 Niagara interaction，瞄準高密度植被。
+    </p>
+    <div class="quick-impact">
+     <span>
+      Optimization ★★★★☆
+     </span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       Production 重點
+      </h4>
+      <p>
+       auto-calculate cast shadow 與 gamethread 優化直接對場景性能有影響。
+      </p>
+      <h4>
+       導入判斷
+      </h4>
+      <p>
+       interaction nodes→Niagara 可建立踩踏/風/碰撞等連動。
+      </p>
+      <h4>
+       實測 / 風險
+      </h4>
+      <p>
+       Beta 工具需先在目標 vegetation count 下 profile CPU/GPU/streaming。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://80.lv/articles/foliage-tools-for-unreal-engine-has-received-a-new-beta-version" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="godot-472-maintenance" data-intel-role="card">
+    <div class="category-meta">
+     #52 · tools
+    </div>
+    <h2>
+     Godot 4.7.2：穩定版維護更新
+    </h2>
+    <p class="summary">
+     4.7 第二個 maintenance release，適合已在 4.7 production 的專案評估安全升級。
+    </p>
+    <div class="quick-impact">
+     <span>
+      Godot ★★★☆☆
+     </span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       Production 重點
+      </h4>
+      <p>
+       維護版優先處理 regression/bugfix，production 風險低於直接跳 dev snapshot。
+      </p>
+      <h4>
+       導入判斷
+      </h4>
+      <p>
+       仍建議以 version control + representative scene 做升版驗證。
+      </p>
+      <h4>
+       實測 / 風險
+      </h4>
+      <p>
+       重點測 import、rendering、animation、shader 與平台 build regression。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://godotengine.org/article/maintenance-release-godot-4-7-2/" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="ue57-pixel-water-shader" data-intel-role="card">
+    <div class="category-meta">
+     #56 · shader
+    </div>
+    <h2>
+     UE5.7 Pixelated Water：Baked-light Stylized Shader
+    </h2>
+    <p class="summary">
+     以少量 scrolling textures、refraction、absorption 與 caustics 做 retro water，而非高成本物理模擬。
+    </p>
+    <div class="quick-impact">
+     <span>
+      Shader ★★★☆☆
+     </span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       Production 重點
+      </h4>
+      <p>
+       示例主要靠 baked lighting 與簡化材質維持風格。
+      </p>
+      <h4>
+       導入判斷
+      </h4>
+      <p>
+       對 stylized/retro 專案可用很低複雜度取得強識別度。
+      </p>
+      <h4>
+       實測 / 風險
+      </h4>
+      <p>
+       要測 camera movement、foam transition、透明排序與低解析 texture shimmer。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://80.lv/articles/this-pixelated-water-shader-looks-weirdly-fascinating" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+  </main>
+ </body>
+</html>

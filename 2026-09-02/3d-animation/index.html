@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   3D 動作｜2026-09-02｜AI 3D Daily
+  </title>
+  <link href="../../styles.css?v=20260902-r1" rel="stylesheet"/>
+  <link href="../../category.css?v=20260902-r1" rel="stylesheet"/>
+ </head>
+ <body class="category-page" data-category="3d-animation" data-report-date="2026-09-02">
+  <header class="category-hero">
+   <div class="page">
+    <a class="category-back" href="../../">
+     ← 回首頁
+    </a>
+    <span class="section-kicker">
+     2026-09-02
+    </span>
+    <h1>
+     3D 動作
+    </h1>
+    <p>
+     3D 動作 / 3D 動作製作流程
+    </p>
+   </div>
+  </header>
+  <main class="page category-main">
+   <article class="category-card" data-intel-id="cascadeur-2026-1-livelink-rootmotion" data-intel-role="card">
+    <div class="category-meta">
+     #04 · animation
+    </div>
+    <h2>
+     Cascadeur 2026.1：UE LiveLink + AI Root Motion
+    </h2>
+    <p class="summary">
+     AI-assisted keyframe 工具加入 UE LiveLink、Root Motion style transfer 與 collision cleanup。
+    </p>
+    <figure class="case-preview" data-intel-id="cascadeur-2026-1-livelink-rootmotion" data-intel-role="visual" data-visual-id="cascadeur-2026-1-livelink-rootmotion">
+     <a href="https://80.lv/articles/cascadeur-2026-1-arrives-with-rendering-engine-overhaul" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE VISUAL preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-02/cascadeur-2026-1-livelink-rootmotion.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE VISUAL
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span>
+      Animation ★★★★★
+     </span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       Production 重點
+      </h4>
+      <p>
+       UE LiveLink 能縮短 animation preview round-trip。
+      </p>
+      <h4>
+       導入判斷
+      </h4>
+      <p>
+       AI Root Motion 可從參考 animation 學 movement signature，但仍需 animator cleanup。
+      </p>
+      <h4>
+       實測 / 風險
+      </h4>
+      <p>
+       導入測 root motion、foot lock、pelvis、weapon contact 與 retarget 到既有 skeleton 的穩定性。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://80.lv/articles/cascadeur-2026-1-arrives-with-rendering-engine-overhaul" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="metahuman-mono-video-capture" data-intel-role="card">
+    <div class="category-meta">
+     #19 · mocap
+    </div>
+    <h2>
+     MetaHuman：單鏡頭 Markerless Performance Capture
+    </h2>
+    <p class="summary">
+     UE5.8 的 mono video capture 把普通影片直接導入 MetaHuman animation solve。
+    </p>
+    <div class="quick-impact">
+     <span>
+      Mocap ★★★★☆
+     </span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       Production 重點
+      </h4>
+      <p>
+       單鏡頭離線 solve 降低 capture 硬體門檻。
+      </p>
+      <h4>
+       導入判斷
+      </h4>
+      <p>
+       直接落在 MetaHuman 生態系，後續 Control Rig/Sequencer/retarget 路徑較短。
+      </p>
+      <h4>
+       實測 / 風險
+      </h4>
+      <p>
+       目前要特別測手部、遮擋、快速轉身、foot contact 與自訂角色 retarget 品質。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://dev.epicgames.com/documentation/metahuman/metahuman-animation-from-mono-video-capture-in-unreal-engine" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="rbf-muscle-bone-rig" data-intel-role="card">
+    <div class="category-meta">
+     #22 · rigging
+    </div>
+    <h2>
+     RBF Muscle Rig：全骨骼肌肉變形
+    </h2>
+    <p class="summary">
+     約每側 15 bones 配合 RBF 做 torso/arm muscle deformation，不依賴 blendshape。
+    </p>
+    <div class="quick-impact">
+     <span>
+      Rigging ★★★★☆
+     </span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       Production 重點
+      </h4>
+      <p>
+       bone-based setup 對 realtime runtime 比高成本 muscle sim 更有吸引力。
+      </p>
+      <h4>
+       導入判斷
+      </h4>
+      <p>
+       RBF pose response 可把 deformation 綁到姿勢空間。
+      </p>
+      <h4>
+       實測 / 風險
+      </h4>
+      <p>
+       需測 extreme pose、LOD bone budget、skin weight maintenance 與 engine runtime cost。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://80.lv/articles/realistic-torso-deformation-with-rbf-muscle-rig" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="cyanpuppets-video-mocap" data-intel-role="card">
+    <div class="category-meta">
+     #25 · mocap
+    </div>
+    <h2>
+     CyanPuppets：影片/相機到全身動作資料
+    </h2>
+    <p class="summary">
+     以 camera 或 video 做 markerless mocap，宣稱涵蓋 body、face、finger 並接 Blender/Unreal。
+    </p>
+    <div class="quick-impact">
+     <span>
+      Mocap ★★★★☆
+     </span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       Production 重點
+      </h4>
+      <p>
+       輸入是一般相機或影片，適合低成本 mocap acquisition。
+      </p>
+      <h4>
+       導入判斷
+      </h4>
+      <p>
+       若 face/finger/body 能同時輸出，可減少多套 capture 合成。
+      </p>
+      <h4>
+       實測 / 風險
+      </h4>
+      <p>
+       必測 foot sliding、occlusion、turn-around、root motion 與非標準 rig retarget。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://80.lv/articles/convert-videos-to-motion-data-with-this-add-on/" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="interpblendshape-maya" data-intel-role="card">
+    <div class="category-meta">
+     #28 · facial
+    </div>
+    <h2>
+     interpBlendShape：高階 Maya Facial Deformer
+    </h2>
+    <p class="summary">
+     支援 surface UV interpolation、in-between、Bezier blending 與 GPU 加速，針對 facial rig / graphic deformation。
+    </p>
+    <div class="quick-impact">
+     <span>
+      Facial ★★★★☆
+     </span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       Production 重點
+      </h4>
+      <p>
+       相較線性 blendshape，多種 interpolation 能改善大幅表情過渡。
+      </p>
+      <h4>
+       導入判斷
+      </h4>
+      <p>
+       支援 mesh 與 curve，適合 detached/graphic facial 系統。
+      </p>
+      <h4>
+       實測 / 風險
+      </h4>
+      <p>
+       正式使用前需驗證 cache/export/bake、Maya 版本與 downstream engine 行為。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://80.lv/articles/free-custom-maya-deformer-for-high-end-facial-rigging" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="shape-weight-driver-transformation" data-intel-role="card">
+    <div class="category-meta">
+     #35 · facial
+    </div>
+    <h2>
+     SHAPES + Weight Driver：可預測的 Shape-Shifting Rig
+    </h2>
+    <p class="summary">
+     以 bone orientation 驅動 blendshape，透過 smooth interpolation 取代大量手工 corrective key。
+    </p>
+    <div class="quick-impact">
+     <span>
+      Facial ★★★★☆
+     </span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       Production 重點
+      </h4>
+      <p>
+       先 joint deform 再接 shape target 可提高 transformation 可控性。
+      </p>
+      <h4>
+       導入判斷
+      </h4>
+      <p>
+       Weight Driver smooth interpolation 能減少 corrective shape 手工 keying。
+      </p>
+      <h4>
+       實測 / 風險
+      </h4>
+      <p>
+       若用在 game rig，要評估 plugin dependency、bake 後曲線與 engine compatibility。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://80.lv/articles/artist-shows-shape-shifting-rig-built-with-shapes-weight-drivers" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="focalrig-true-first-person" data-intel-role="card">
+    <div class="category-meta">
+     #42 · animation
+    </div>
+    <h2>
+     FocalRig × GASP：Procedural True First Person
+    </h2>
+    <p class="summary">
+     用自配置 Control Rig nodes 保留 motion matching、foot placement、vaulting 等同時加入第一人稱視角。
+    </p>
+    <div class="quick-impact">
+     <span>
+      Animation ★★★★☆
+     </span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       Production 重點
+      </h4>
+      <p>
+       重點是程序 aim/look 與既有 GASP motion matching 共存。
+      </p>
+      <h4>
+       導入判斷
+      </h4>
+      <p>
+       可避免傳統 first-person 另外維護完整動作集的部分成本。
+      </p>
+      <h4>
+       實測 / 風險
+      </h4>
+      <p>
+       需測 camera sickness、weapon alignment、network replication 與極端 locomotion。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://80.lv/articles/true-first-person-mode-in-unreal-engine-s-game-animation-sample-project" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="maya-muscle-jiggle-ragdoll" data-intel-role="card">
+    <div class="category-meta">
+     #46 · cleanup
+    </div>
+    <h2>
+     Maya Ragdoll Layer：肌肉與脂肪 Jiggle
+    </h2>
+    <p class="summary">
+     用分組 controller、stiffness、frequency/amplitude 與 Record to Layer 疊加 secondary motion。
+    </p>
+    <div class="quick-impact">
+     <span>
+      Cleanup ★★★★☆
+     </span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       Production 重點
+      </h4>
+      <p>
+       適合作為 key animation 上的 secondary motion pass。
+      </p>
+      <h4>
+       導入判斷
+      </h4>
+      <p>
+       分類不同身體區塊的 stiffness 能避免全身同頻率的橡皮感。
+      </p>
+      <h4>
+       實測 / 風險
+      </h4>
+      <p>
+       要保持可 bake、可 art-direct，並用 layer 方式保留 animator 最終控制。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://80.lv/articles/3d-artist-shares-a-tutorial-on-creating-natural-looking-muslce-jiggle" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="stylized-facial-rig-transfer" data-intel-role="card">
+    <div class="category-meta">
+     #57 · facial
+    </div>
+    <h2>
+     Stylized Facial Rig Transfer：基底 Shape/Skin 再角色化
+    </h2>
+    <p class="summary">
+     學生短片案例將一套 facial blendshape/skinning 轉移到另一角色，再針對五官比例重修。
+    </p>
+    <div class="quick-impact">
+     <span>
+      Facial ★★★☆☆
+     </span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       Production 重點
+      </h4>
+      <p>
+       可重用 base facial rig 能降低多角色製作成本。
+      </p>
+      <h4>
+       導入判斷
+      </h4>
+      <p>
+       轉移後仍需針對角色特色修 shape 與 skin，不能視為一鍵流程。
+      </p>
+      <h4>
+       實測 / 風險
+      </h4>
+      <p>
+       值得建立 common FACS/base-shape library + per-character corrective 的分層架構。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://80.lv/articles/facial-rig-tests-for-stylized-characters-in-3d-short-film" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="maya-riverskin-animation" data-intel-role="card">
+    <div class="category-meta">
+     #59 · animation
+    </div>
+    <h2>
+     Riverskin：Maya Scaled-Armor Aerial Animation
+    </h2>
+    <p class="summary">
+     完整 Maya modeling/rigging/animation 的角色短片案例，展示複雜服裝與優雅 body motion 的協同。
+    </p>
+    <div class="quick-impact">
+     <span>
+      Animation ★★★☆☆
+     </span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       Production 重點
+      </h4>
+      <p>
+       複雜服裝 silhouette 與 body arc 必須一起設計，不能只在最後加 secondary motion。
+      </p>
+      <h4>
+       導入判斷
+      </h4>
+      <p>
+       適合作為 keyframe polish、overlap 與 presentation 的參考。
+      </p>
+      <h4>
+       實測 / 風險
+      </h4>
+      <p>
+       production 應把角色 rig、服裝控制與 final comp 明確拆層。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://80.lv/articles/beautiful-aerial-dance-3d-animation-full-of-calm-grace" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+  </main>
+ </body>
+</html>
