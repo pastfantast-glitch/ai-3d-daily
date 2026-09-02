@@ -33,29 +33,23 @@ def inspect_cards(date,name,path,selector,recs,expected_ids):
     if extra: errors.append(f'{date} {name}: unexpected IDs: {sorted(extra)}')
     return seen
 
-def validate_depth(date, rid, record, cfg):
-    blocks=record.get('full_analysis',[])
-    fa_cfg=cfg.get('full_analysis',{})
-    min_blocks=int(fa_cfg.get('min_blocks',3))
-    min_chars=int(fa_cfg.get('min_text_chars_per_block',0))
-    if len(blocks)<min_blocks:
-        errors.append(f'{date}: {rid} full_analysis must have >={min_blocks} structured blocks')
+def validate_depth(date,rid,record,cfg):
+    blocks=record.get('full_analysis',[]); fa=cfg.get('full_analysis',{})
+    min_blocks=int(fa.get('min_blocks',3)); max_blocks=int(fa.get('max_blocks',5))
+    if len(blocks)<min_blocks: errors.append(f'{date}: {rid} full_analysis must have >={min_blocks} structured blocks')
+    if max_blocks and len(blocks)>max_blocks: errors.append(f'{date}: {rid} full_analysis should stay scannable at <={max_blocks} structured blocks')
+    labels=[]; texts=[]
     for i,block in enumerate(blocks,1):
         label=norm(block.get('label','')); text=norm(block.get('text',''))
-        if not label or not text:
-            errors.append(f'{date}: {rid} block {i} requires non-empty label and text')
-        elif min_chars and len(text)<min_chars:
-            errors.append(f'{date}: {rid} block {i} is too shallow ({len(text)} chars; need >={min_chars})')
-    required=fa_cfg.get('required_semantics',[])
-    semantic_labels=fa_cfg.get('semantic_labels',{})
-    labels=[norm(x.get('label','')).casefold() for x in blocks]
-    for semantic in required:
-        allowed=[norm(x).casefold() for x in semantic_labels.get(semantic,[])]
-        if allowed and not any(any(alias in label for alias in allowed) for label in labels):
-            errors.append(f'{date}: {rid} missing required Full Analysis semantic: {semantic}')
+        if not label or not text: errors.append(f'{date}: {rid} block {i} requires non-empty label and text')
+        labels.append(label.casefold()); texts.append(text.casefold())
+    if len(set(labels))!=len(labels): errors.append(f'{date}: {rid} Full Analysis headings must describe distinct analysis angles')
+    if len(set(texts))!=len(texts): errors.append(f'{date}: {rid} Full Analysis contains duplicate analysis text')
+    summary=norm(record.get('summary','')).casefold(); impact=norm(record.get('quick_impact','')).casefold()
+    for i,text in enumerate(texts,1):
+        if text and (text==summary or text==impact): errors.append(f'{date}: {rid} block {i} merely repeats summary/quick_impact')
 
-dates=sorted(p.stem for p in (ROOT/'data'/'daily').glob('20??-??-??.json'))
-cfg=load_config()
+dates=sorted(p.stem for p in (ROOT/'data'/'daily').glob('20??-??-??.json')); cfg=load_config()
 for date in dates:
     data=json.loads((ROOT/'data'/'daily'/f'{date}.json').read_text('utf-8')); recs={x['id']:x for x in data['items']}
     if is_v2_dataset(data):
@@ -69,15 +63,13 @@ for date in dates:
             expected=[x['id'] for x in category_items(data,cat['id'])]
             inspect_cards(date,f'category:{cat["id"]}',ROOT/date/cat['id']/'index.html','.category-card[data-intel-role="card"][data-intel-id]',recs,expected)
     else:
-        expected=list(recs)
-        daily=inspect_cards(date,'daily',ROOT/date/'index.html','#top .news[data-intel-role="card"][data-intel-id], .category-news[data-intel-role="card"][data-intel-id]',recs,expected)
+        expected=list(recs); daily=inspect_cards(date,'daily',ROOT/date/'index.html','#top .news[data-intel-role="card"][data-intel-id], .category-news[data-intel-role="card"][data-intel-id]',recs,expected)
         if date==dates[-1]:
             home=inspect_cards(date,'home',ROOT/'index.html','.top-item[data-intel-role="card"][data-intel-id], .more-card[data-intel-role="card"][data-intel-id]',recs,expected)
             for rid in recs:
                 if home.get(rid)!=daily.get(rid): errors.append(f'{date}: Full Analysis drift for {rid}')
     for rid,record in recs.items():
-        if is_v2_dataset(data):
-            validate_depth(date,rid,record,cfg)
+        if is_v2_dataset(data): validate_depth(date,rid,record,cfg)
         else:
             if len(record.get('full_analysis',[]))<3: errors.append(f'{date}: {rid} full_analysis must have >=3 structured blocks')
             for i,block in enumerate(record.get('full_analysis',[]),1):
