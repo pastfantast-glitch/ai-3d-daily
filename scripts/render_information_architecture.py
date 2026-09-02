@@ -17,11 +17,6 @@ def latest_date():
     return max(p.stem for p in (ROOT / 'data' / 'daily').glob('20??-??-??.json'))
 
 
-def add_text(tag, text):
-    tag.string = str(text)
-    return tag
-
-
 def analysis_shell(soup, home=False):
     details = soup.new_tag('details')
     if home:
@@ -36,6 +31,21 @@ def impact_node(soup, text):
     wrap = soup.new_tag('div', attrs={'class': 'quick-impact'})
     span = soup.new_tag('span'); span.string = text; wrap.append(span)
     return wrap
+
+
+def global_nav(soup, date, cfg, active='top5', category_page=False):
+    nav = soup.new_tag('nav', attrs={'class': 'global-category-nav', 'aria-label': 'Production Intelligence 分類'})
+    inner = soup.new_tag('div', attrs={'class': 'page global-category-nav-inner'})
+    base = '../../' if category_page else ''
+    top = soup.new_tag('a', attrs={'href': base, 'class': 'global-category-link' + (' is-active' if active == 'top5' else '')})
+    top.string = 'TOP5'; inner.append(top)
+    for cat in cfg['categories']:
+        href = f'../{cat["id"]}/' if category_page else f'{date}/{cat["id"]}/'
+        classes = 'global-category-link' + (' is-active' if active == cat['id'] else '')
+        a = soup.new_tag('a', attrs={'href': href, 'class': classes, 'data-category': cat['id']})
+        a.string = cat['label']; inner.append(a)
+    nav.append(inner)
+    return nav
 
 
 def home_card(soup, item, top=False, rank=None):
@@ -98,11 +108,25 @@ def render_home(date, data, cfg):
     ensure_category_section(soup, date, cfg)
     for weekly in soup.select('.week-counts, .week-summary, .week-topic'):
         weekly.decompose()
+    for old in soup.select('.global-category-nav'):
+        old.decompose()
+    main = soup.select_one('main.home-main')
+    main.insert_before(global_nav(soup, date, cfg, active='top5', category_page=False))
     path.write_text(soup.prettify(), 'utf-8')
-    print(f'V2 homepage rendered: 5 TOP + 10 next + 6 category entries ({date})')
+    print(f'V2 homepage rendered: 5 TOP + 10 next + sticky TOP5/category nav ({date})')
 
 
-def category_page(date, category, items):
+def category_footer_nav(soup, category, cfg):
+    cats = cfg['categories']; idx = next(i for i, c in enumerate(cats) if c['id'] == category['id'])
+    prev_cat = cats[(idx - 1) % len(cats)]; next_cat = cats[(idx + 1) % len(cats)]
+    nav = soup.new_tag('nav', attrs={'class': 'category-bottom-nav', 'aria-label': '相鄰分類'})
+    prev = soup.new_tag('a', attrs={'href': f'../{prev_cat["id"]}/'}); prev.string = f'← {prev_cat["label"]}'; nav.append(prev)
+    top = soup.new_tag('a', attrs={'href': '../../'}); top.string = 'TOP5'; nav.append(top)
+    nxt = soup.new_tag('a', attrs={'href': f'../{next_cat["id"]}/'}); nxt.string = f'{next_cat["label"]} →'; nav.append(nxt)
+    return nav
+
+
+def category_page(date, category, items, cfg):
     soup = BeautifulSoup('<!doctype html><html lang="zh-Hant"><head></head><body></body></html>', 'html.parser')
     head = soup.head
     meta = soup.new_tag('meta', attrs={'charset': 'utf-8'}); head.append(meta)
@@ -113,11 +137,11 @@ def category_page(date, category, items):
     body = soup.body; body['class'] = ['category-page']; body['data-report-date'] = date; body['data-category'] = category['id']
     header = soup.new_tag('header', attrs={'class': 'category-hero'})
     page = soup.new_tag('div', attrs={'class': 'page'})
-    back = soup.new_tag('a', attrs={'class': 'category-back', 'href': '../../'}); back.string = '← 回首頁'; page.append(back)
     kicker = soup.new_tag('span', attrs={'class': 'section-kicker'}); kicker.string = date; page.append(kicker)
     h1 = soup.new_tag('h1'); h1.string = category['label']; page.append(h1)
     p = soup.new_tag('p'); p.string = category['description']; page.append(p)
     header.append(page); body.append(header)
+    body.append(global_nav(soup, date, cfg, active=category['id'], category_page=True))
     main = soup.new_tag('main', attrs={'class': 'page category-main'})
     for item in items:
         card = soup.new_tag('article', attrs={'class': 'category-card', 'data-intel-role': 'card', 'data-intel-id': item['id']})
@@ -128,6 +152,7 @@ def category_page(date, category, items):
         card.append(analysis_shell(soup, home=False))
         source = soup.new_tag('a', attrs={'class': 'source', 'href': item['source_url'], 'target': '_blank', 'rel': 'noopener noreferrer'}); source.string = '來源 ↗'; card.append(source)
         main.append(card)
+    main.append(category_footer_nav(soup, category, cfg))
     body.append(main)
     return soup.prettify() + '\n'
 
@@ -136,7 +161,7 @@ def render_categories(date, data, cfg):
     for category in cfg['categories']:
         folder = ROOT / date / category['id']; folder.mkdir(parents=True, exist_ok=True)
         items = category_items(data, category['id'])
-        (folder / 'index.html').write_text(category_page(date, category, items), 'utf-8')
+        (folder / 'index.html').write_text(category_page(date, category, items, cfg), 'utf-8')
         print(f'V2 category page: {category["id"]} / {len(items)} items')
 
 
