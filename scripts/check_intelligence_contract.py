@@ -7,6 +7,7 @@ from intelligence_v2 import is_v2_dataset, homepage_groups, category_items, load
 ROOT=Path(__file__).resolve().parents[1]; errors=[]
 def norm(s): return re.sub(r'\s+',' ',s).strip()
 def canonical_text(record): return norm(' '.join(f"{b['label']} {b['text']}" for b in record['full_analysis']))
+def has_han(s): return bool(re.search(r'[\u3400-\u4dbf\u4e00-\u9fff]',s))
 
 def inspect_cards(date,name,path,selector,recs,expected_ids):
     seen={}
@@ -36,12 +37,14 @@ def inspect_cards(date,name,path,selector,recs,expected_ids):
 def validate_depth(date,rid,record,cfg):
     blocks=record.get('full_analysis',[]); fa=cfg.get('full_analysis',{})
     min_blocks=int(fa.get('min_blocks',3)); max_blocks=int(fa.get('max_blocks',5))
+    require_zh_hant=fa.get('heading_language')=='zh-Hant'
     if len(blocks)<min_blocks: errors.append(f'{date}: {rid} full_analysis must have >={min_blocks} structured blocks')
     if max_blocks and len(blocks)>max_blocks: errors.append(f'{date}: {rid} full_analysis should stay scannable at <={max_blocks} structured blocks')
     labels=[]; texts=[]
     for i,block in enumerate(blocks,1):
         label=norm(block.get('label','')); text=norm(block.get('text',''))
         if not label or not text: errors.append(f'{date}: {rid} block {i} requires non-empty label and text')
+        if require_zh_hant and label and not has_han(label): errors.append(f'{date}: {rid} block {i} Full Analysis heading must use Traditional Chinese (technical names/abbreviations may remain Latin): {label!r}')
         labels.append(label.casefold()); texts.append(text.casefold())
     if len(set(labels))!=len(labels): errors.append(f'{date}: {rid} Full Analysis headings must describe distinct analysis angles')
     if len(set(texts))!=len(texts): errors.append(f'{date}: {rid} Full Analysis contains duplicate analysis text')
