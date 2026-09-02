@@ -2,8 +2,6 @@ document.addEventListener('DOMContentLoaded',async()=>{
   document.querySelectorAll('a[target="_blank"]').forEach(a=>a.rel='noopener noreferrer');
   const cards=[...document.querySelectorAll('.top-item, .more-card')];
 
-  // Canonical Full Analysis + local Visual Evidence are hydrated by one shared renderer used by both views.
-  // The module inherits the shell's cache-bust token, so render_revision changes invalidate both together.
   try{
     const self=[...document.scripts].find(s=>s.src.includes('/home.js'))?.src||location.href;
     const reportDate=document.body.dataset.reportDate||document.querySelector('.week-asof')?.textContent.trim()||document.querySelector('.topline span:last-child')?.textContent.trim()||'current';
@@ -15,10 +13,35 @@ document.addEventListener('DOMContentLoaded',async()=>{
     await mod.hydrateCanonicalAnalysis();
   }catch(err){console.warn('Canonical intelligence renderer unavailable',err);}
 
-  // Keep exactly one analysis block and one open block at a time.
   cards.forEach(card=>{const all=[...card.querySelectorAll('details')];all.slice(1).forEach(d=>d.remove());});
   const analyses=[...document.querySelectorAll('.home-full-analysis')];
   analyses.forEach(d=>d.addEventListener('toggle',()=>{if(d.open)analyses.forEach(other=>{if(other!==d)other.open=false;});}));
+
+  // Historical Intelligence Library: text search + V2 category + date window.
+  const archive=document.querySelector('.history-list');
+  const historySearch=document.querySelector('.history-search');
+  if(archive&&historySearch){
+    let category='all',range='all';
+    const entries=[...archive.querySelectorAll('.history-entry')];
+    const daysBetween=(newest,date)=>Math.floor((new Date(newest+'T00:00:00')-new Date(date+'T00:00:00'))/86400000);
+    const newest=entries.map(x=>x.dataset.historyDate).sort().at(-1)||'';
+    const applyHistory=()=>{
+      const query=historySearch.value.trim().toLowerCase();let visible=0;
+      entries.forEach(a=>{
+        const cats=(a.dataset.historyCategories||'').split(/\s+/).filter(Boolean);
+        const inCategory=category==='all'||cats.includes(category);
+        const inRange=range==='all'||daysBetween(newest,a.dataset.historyDate)<Number(range);
+        const inSearch=!query||(a.dataset.historySearch||a.textContent.toLowerCase()).includes(query);
+        a.hidden=!(inCategory&&inRange&&inSearch);if(!a.hidden)visible++;
+      });
+      archive.querySelectorAll('.archive-month').forEach(m=>{const any=[...m.querySelectorAll('.history-entry')].some(a=>!a.hidden);m.hidden=!any;if(any&&(query||category!=='all'||range!=='all'))m.open=true;});
+      archive.querySelectorAll('.archive-year').forEach(y=>{const any=[...y.querySelectorAll('.archive-month')].some(m=>!m.hidden);y.hidden=!any;if(any&&(query||category!=='all'||range!=='all'))y.open=true;});
+      const empty=archive.querySelector('.history-empty');if(empty)empty.hidden=visible!==0;
+    };
+    historySearch.addEventListener('input',applyHistory);
+    document.querySelectorAll('[data-history-category]').forEach(btn=>btn.addEventListener('click',()=>{category=btn.dataset.historyCategory;document.querySelectorAll('[data-history-category]').forEach(x=>x.classList.toggle('is-active',x===btn));applyHistory();}));
+    document.querySelectorAll('[data-history-range]').forEach(btn=>btn.addEventListener('click',()=>{range=btn.dataset.historyRange;document.querySelectorAll('[data-history-range]').forEach(x=>x.classList.toggle('is-active',x===btn));applyHistory();}));
+  }
 
   const STORE='ai3d-preferences-v1';let pref={votes:{},tags:{}};
   try{pref=Object.assign(pref,JSON.parse(localStorage.getItem(STORE)||'{}'));pref.votes=pref.votes||{};pref.tags=pref.tags||{};}catch(_){}
