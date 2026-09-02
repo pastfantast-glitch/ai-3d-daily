@@ -13,6 +13,27 @@ def fail(msg): errors.append(msg)
 def latest_date():
     return max(p.stem for p in (ROOT / 'data' / 'daily').glob('20??-??-??.json'))
 
+def shared_component_contract(soup, name):
+    links = [x.get('href','') for x in soup.select('head link[rel="stylesheet"][href]')]
+    shared = [x for x in links if 'shared-components.css' in x]
+    if len(shared) != 1:
+        fail(f'{name}: expected exactly one shared-components.css stylesheet, got {len(shared)}')
+
+def source_css_contract():
+    shared = ROOT / 'shared-components.css'
+    if not shared.exists():
+        fail('shared-components.css missing')
+        return
+    text = shared.read_text('utf-8')
+    for token in ('.global-category-nav', '.global-category-link', '.detail-body', 'details > summary'):
+        if token not in text:
+            fail(f'shared-components.css missing canonical component selector: {token}')
+    for filename in ('home.css','category.css'):
+        page_css = (ROOT / filename).read_text('utf-8')
+        for token in ('.global-category-nav', '.global-category-link', '.detail-body'):
+            if token in page_css:
+                fail(f'{filename}: shared component selector must not be duplicated locally: {token}')
+
 def nav_contract(soup, date, cfg, active, category_page=False):
     navs = soup.select('nav.global-category-nav')
     if len(navs) != 1:
@@ -43,9 +64,11 @@ def main():
     if not is_v2_dataset(data):
         print(f'V2 INFORMATION ARCHITECTURE PASS (legacy compatibility): {date} schema={data.get("schema_version")}')
         return
+    source_css_contract()
     for error in validate_v2_dataset(data, strict_pool=True): fail(error)
     top, next10 = homepage_groups(data)
     home = BeautifulSoup((ROOT / 'index.html').read_text('utf-8'), 'html.parser')
+    shared_component_contract(home, 'homepage')
     if home.select('.week-counts, .week-summary, .week-topic'):
         fail('homepage V2 must not contain weekly overview UI')
     sections = home.select('main.home-main > section.home-section')
@@ -68,6 +91,7 @@ def main():
         if not path.exists():
             fail(f'missing category page: {path.relative_to(ROOT)}'); continue
         soup = BeautifulSoup(path.read_text('utf-8'), 'html.parser')
+        shared_component_contract(soup, category['id'])
         if not soup.body or soup.body.get('data-category') != category['id']:
             fail(f'{category["id"]}: body category identity mismatch')
         nav_contract(soup, date, cfg, category['id'], category_page=True)
@@ -88,6 +112,6 @@ def main():
         print('V2 INFORMATION ARCHITECTURE FAILED')
         print('\n'.join('- ' + x for x in errors))
         sys.exit(1)
-    print('V2 INFORMATION ARCHITECTURE PASS: 6x10 pools + TOP5 + next10 + sticky global navigation + category pages')
+    print('V2 INFORMATION ARCHITECTURE PASS: 6x10 pools + TOP5 + next10 + shared components + sticky global navigation + category pages')
 
 if __name__ == '__main__': main()
