@@ -38,14 +38,34 @@
 .home-page .history-range-row { padding-top:1px; }
 .home-page .history-list { display:grid; gap:10px; }
 .home-page .archive-year, .home-page .archive-month { margin:0; border:1px solid #26344b; border-radius:12px; background:#0e1625; overflow:hidden; }
-.home-page .archive-year > summary, .home-page .archive-month > summary { list-style:none; cursor:pointer; user-select:none; }
+.home-page .archive-year > summary, .home-page .archive-month > summary {
+  -webkit-appearance:none;
+  appearance:none;
+  list-style:none;
+  cursor:pointer;
+  user-select:none;
+  border:0;
+  outline:none;
+  color-scheme:dark;
+}
 .home-page .archive-year > summary::-webkit-details-marker, .home-page .archive-month > summary::-webkit-details-marker { display:none; }
 .home-page .archive-year > summary { padding:12px 14px; color:#dce3ef; font-size:.8rem; font-weight:900; background:#101927; }
 .home-page .archive-year > summary::after, .home-page .archive-month > summary::after { content:'＋'; float:right; color:#76869e; }
 .home-page .archive-year[open] > summary::after, .home-page .archive-month[open] > summary::after { content:'－'; }
 .home-page .archive-months { display:grid; gap:8px; padding:10px; }
 .home-page .archive-month { border-color:#223047; background:#0b1320; }
-.home-page .archive-month > summary { padding:10px 12px; color:#aeb9cb; font-size:.73rem; font-weight:900; }
+.home-page .archive-month > summary,
+.home-page .archive-month:not([open]) > summary {
+  padding:10px 12px;
+  color:#aeb9cb;
+  background:#0d1523;
+  font-size:.73rem;
+  font-weight:900;
+}
+.home-page .archive-month[open] > summary { color:#c2ccdc; background:#121c2d; }
+.home-page .archive-month > summary:hover { color:#d7deea; background:#142035; }
+.home-page .archive-month > summary:focus,
+.home-page .archive-month > summary:focus-visible { color:#dce3ef; background:#142035; box-shadow:inset 0 0 0 1px #4e5f7d; }
 .home-page .archive-entries { display:grid; gap:7px; padding:0 9px 9px; }
 .home-page .history-entry { display:grid; grid-template-columns:118px minmax(0,1fr); gap:14px; align-items:center; padding:11px 12px; text-decoration:none; color:inherit; background:#101927; border:1px solid #243249; border-radius:9px; transition:.16s ease; }
 .home-page .history-entry:hover { border-color:#5f58a8; background:#152136; }
