@@ -13,6 +13,29 @@ def fail(msg): errors.append(msg)
 def latest_date():
     return max(p.stem for p in (ROOT / 'data' / 'daily').glob('20??-??-??.json'))
 
+def nav_contract(soup, date, cfg, active, category_page=False):
+    navs = soup.select('nav.global-category-nav')
+    if len(navs) != 1:
+        fail(f'{active}: expected exactly one global category nav, got {len(navs)}'); return
+    links = navs[0].select('a.global-category-link[href]')
+    if len(links) != len(cfg['categories']) + 1:
+        fail(f'{active}: global nav must contain TOP5 + {len(cfg["categories"])} categories')
+        return
+    expected_labels = ['TOP5'] + [c['label'] for c in cfg['categories']]
+    if [x.get_text(' ', strip=True) for x in links] != expected_labels:
+        fail(f'{active}: global nav labels/order drift')
+    expected_hrefs = (['../../'] + [f'../{c["id"]}/' for c in cfg['categories']]) if category_page else ([''] + [f'{date}/{c["id"]}/' for c in cfg['categories']])
+    actual_hrefs = [x.get('href') for x in links]
+    if actual_hrefs != expected_hrefs:
+        fail(f'{active}: global nav href/order drift: {actual_hrefs}')
+    active_links = navs[0].select('a.global-category-link.is-active')
+    if len(active_links) != 1:
+        fail(f'{active}: global nav must have exactly one active link')
+    else:
+        expected_active = 'TOP5' if active == 'top5' else next(c['label'] for c in cfg['categories'] if c['id'] == active)
+        if active_links[0].get_text(' ', strip=True) != expected_active:
+            fail(f'{active}: wrong active global nav item')
+
 def main():
     date = sys.argv[1] if len(sys.argv) > 1 else latest_date()
     data = json.loads((ROOT / 'data' / 'daily' / f'{date}.json').read_text('utf-8'))
@@ -39,6 +62,7 @@ def main():
     links = {a.get('href') for a in home.select('.category-nav-card[href]')}
     expected_links = {f'{date}/{c["id"]}/' for c in cfg['categories']}
     if links != expected_links: fail(f'category navigation mismatch: {links} != {expected_links}')
+    nav_contract(home, date, cfg, 'top5', category_page=False)
     for category in cfg['categories']:
         path = ROOT / date / category['id'] / 'index.html'
         if not path.exists():
@@ -46,11 +70,15 @@ def main():
         soup = BeautifulSoup(path.read_text('utf-8'), 'html.parser')
         if not soup.body or soup.body.get('data-category') != category['id']:
             fail(f'{category["id"]}: body category identity mismatch')
+        nav_contract(soup, date, cfg, category['id'], category_page=True)
         cards = soup.select('.category-card[data-intel-role="card"][data-intel-id]')
         expected = [x['id'] for x in category_items(data, category['id'])]
         actual = [x.get('data-intel-id') for x in cards]
         if actual != expected: fail(f'{category["id"]}: page item IDs/order mismatch')
         if len(cards) != 10: fail(f'{category["id"]}: category page must contain exactly 10 items, got {len(cards)}')
+        bottom = soup.select_one('nav.category-bottom-nav')
+        if not bottom or len(bottom.select('a[href]')) != 3:
+            fail(f'{category["id"]}: missing bottom previous/TOP5/next navigation')
         for card in cards:
             rid = card.get('data-intel-id')
             if not card.select_one('.quick-impact'): fail(f'{category["id"]}/{rid}: missing quick-impact')
@@ -60,6 +88,6 @@ def main():
         print('V2 INFORMATION ARCHITECTURE FAILED')
         print('\n'.join('- ' + x for x in errors))
         sys.exit(1)
-    print('V2 INFORMATION ARCHITECTURE PASS: 6x10 pools + TOP5 + next10 + category pages + no weekly overview')
+    print('V2 INFORMATION ARCHITECTURE PASS: 6x10 pools + TOP5 + next10 + sticky global navigation + category pages')
 
 if __name__ == '__main__': main()
