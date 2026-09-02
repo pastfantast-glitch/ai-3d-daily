@@ -1,39 +1,12 @@
 name: Historical regression matrix
 
 on:
-  workflow_dispatch:
   push:
-    branches:
-      - main
-    paths:
-      - '20??-??-??/index.html'
-      - 'index.html'
-      - 'styles.css'
-      - 'shared-components.css'
-      - 'daily.css'
-      - 'daily.js'
-      - 'canonical-client.js'
-      - 'scripts/check_historical_regression.py'
-      - 'scripts/build_intelligence.py'
-      - 'scripts/render_daily_navigation.py'
-      - 'scripts/render_home_archive_links.py'
-      - 'scripts/check_release_input.py'
-      - 'scripts/check_pipeline_contract.py'
-      - 'scripts/check_intelligence_contract.py'
-      - 'scripts/check_visual_contract.py'
-      - 'scripts/check_home_contract.py'
-      - 'scripts/check_daily_contract.py'
-      - 'scripts/inject_visual_previews.py'
-      - 'scripts/apply_cache_bust.py'
-      - 'requirements-pipeline.txt'
-      - '.github/workflows/historical-regression.yml'
+    branches: [main]
+  workflow_dispatch:
 
 permissions:
   contents: read
-
-concurrency:
-  group: historical-regression
-  cancel-in-progress: true
 
 jobs:
   regression:
