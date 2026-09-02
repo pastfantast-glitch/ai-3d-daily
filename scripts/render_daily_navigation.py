@@ -13,12 +13,29 @@ from normalize_archive_presentation import main as normalize_presentation
 ROOT=Path(__file__).resolve().parents[1]
 DATE_RE=re.compile(r'^20\d{2}-\d{2}-\d{2}$')
 
+
+def ensure_shared_stylesheet(soup):
+    """Ensure archive pages consume the canonical shared component stylesheet."""
+    if soup.head is None:
+        raise SystemExit('archive page missing head')
+    existing=soup.head.find('link', href=re.compile(r'^\.\./shared-components\.css(?:\?v=.*)?$'))
+    if existing:
+        return
+    link=soup.new_tag('link', rel='stylesheet', href='../shared-components.css')
+    daily=soup.head.find('link', href=re.compile(r'^\.\./daily\.css(?:\?v=.*)?$'))
+    if daily:
+        daily.insert_before(link)
+    else:
+        soup.head.append(link)
+
+
 def main():
     dirs=sorted(p for p in ROOT.iterdir() if p.is_dir() and DATE_RE.fullmatch(p.name) and (p/'index.html').exists())
     changed=[]
     for i,d in enumerate(dirs):
         path=d/'index.html'; text=path.read_text('utf-8'); soup=BeautifulSoup(text,'html.parser')
         if not soup.body: raise SystemExit(f'{d.name}: missing body')
+        ensure_shared_stylesheet(soup)
         prev=dirs[i-1].name if i else ''
         nxt=dirs[i+1].name if i+1<len(dirs) else ''
         soup.body['data-report-date']=d.name
