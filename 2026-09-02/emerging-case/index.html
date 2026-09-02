@@ -82,13 +82,13 @@
      </summary>
      <div class="detail-body">
       <h4>
-       Dynamic Reconstruction
+       動態重建
       </h4>
       <p>
        輸入只需 monocular video，研究利用 video prior 補足 unseen region，再蒸餾成可自由視角的 dynamic Gaussian scene。
       </p>
       <h4>
-       Production Potential
+       製作潛力
       </h4>
       <p>
        這條路線對低門檻動態 capture、virtual production 與 previz 很有潛力，因為不必先建立完整多機位或 game-ready mesh。
@@ -137,13 +137,13 @@
      </summary>
      <div class="detail-body">
       <h4>
-       World Model
+       技術方向
       </h4>
       <p>
        GaussianDWM++ 把語言 grounding、3D Gaussian semantic field、場景編輯與 4D generation 放進同一 driving world model。
       </p>
       <h4>
-       Semantic Editing
+       製作潛力
       </h4>
       <p>
        instruction-controlled weather 與動態車輛編輯代表 world model 開始從純生成走向有語意的場景控制，對未來 game world authoring 值得追。
@@ -181,13 +181,13 @@
      </summary>
      <div class="detail-body">
       <h4>
-       Dynamic World Generation
+       Dynamic World 生成
       </h4>
       <p>
        LivingWorld 從單張圖出發，用 global motion field 維持雲、水、煙等環境動態，在場景擴張時保持方向與尺度一致。
       </p>
       <h4>
-       Iteration Potential
+       Iteration 潛力
       </h4>
       <p>
        論文報告高階 GPU 上的 expansion 接近秒級到十秒級，這使它更接近互動 previz/world exploration，而非離線長時間生成。
@@ -225,13 +225,13 @@
      </summary>
      <div class="detail-body">
       <h4>
-       Volumetric Capture
+       技術方向
       </h4>
       <p>
        4C4D 把常見需要數十到上百相機的 4D capture 壓到四台 portable cameras，核心價值是降低 capture setup 成本。
       </p>
       <h4>
-       Sparse-View Reconstruction
+       Sparse-View 重建
       </h4>
       <p>
        Neural Decaying Function 用來強化 sparse-view geometry learning；若品質能維持，這會改變小型團隊建立 volumetric performance 的門檻。
@@ -269,13 +269,13 @@
      </summary>
      <div class="detail-body">
       <h4>
-       4D Cognition
+       技術方向
       </h4>
       <p>
        ST-Gen4D 以 global appearance graph 與 local dynamic graph 建立時空認知，再用來引導 Gaussian generation。
       </p>
       <h4>
-       Interactive World Potential
+       Interactive World 潛力
       </h4>
       <p>
        研究焦點從外觀一致性往局部動態拓樸與未來狀態 reasoning 前進，若成熟會比單純 camera flythrough 更接近可互動 world generation。
@@ -313,13 +313,13 @@
      </summary>
      <div class="detail-body">
       <h4>
-       4D Face Reconstruction
+       4D Face 重建
       </h4>
       <p>
        Face Anything 用 canonical facial coordinates + depth，把不同表情與視角映射到同一面部空間，以提高時間穩定的 geometry 與 dense tracking。
       </p>
       <h4>
-       Capture Potential
+       Capture 潛力
       </h4>
       <p>
        若穩定，可用於 facial capture、tracking 與 training-data generation，尤其對來源影像不受嚴格 capture setup 控制的情境有價值。
@@ -357,19 +357,19 @@
      </summary>
      <div class="detail-body">
       <h4>
-       Long-Sequence 4D
+       技術方向
       </h4>
       <p>
        MotionScale 專門處理大場景與長序列，而不是短 clip demo，透過 cluster-centric motion basis 與 progressive propagation 擴張 reconstruction。
       </p>
       <h4>
-       Production Relevance
+       製作潛力
       </h4>
       <p>
        background extension 與 foreground motion 分階段優化更接近實際 capture 問題，並把 transient shadow 這類非幾何變化納入處理。
       </p>
       <h4>
-       評估重點
+       成熟度判斷
       </h4>
       <p>
        值得關注 capture cleanup、camera refine、長序列 temporal stability、資料體積與 streaming，這些會決定它是否能超越研究展示。
@@ -401,19 +401,19 @@
      </summary>
      <div class="detail-body">
       <h4>
-       4D Distribution
+       技術方向
       </h4>
       <p>
        Gracia 把 4D Gaussian performance capture 從 capture/render 推到 browser、headset、phone 的串流與 delivery 問題。
       </p>
       <h4>
-       Production Value
+       製作價值
       </h4>
       <p>
        對 virtual human、XR performance 與 interactive video，能像影片一樣 delivery 才有實際部署意義；這一步比單機 demo 更接近產品化。
       </p>
       <h4>
-       Bandwidth / Quality
+       Bandwidth / 品質
       </h4>
       <p>
        高頻寬需求仍明顯，production 需把 compression、quality ladder、device decoding 與 latency 納入規格，不能只看最佳網路展示。
@@ -445,19 +445,19 @@
      </summary>
      <div class="detail-body">
       <h4>
-       Metric 3DGS
+       技術方向
       </h4>
       <p>
        Apple SHARP 把單張影像回歸成 metric Gaussian representation，metric scale 對相機移動與空間整合比純視覺 splat 更有 production 意義。
       </p>
       <h4>
-       Procedural Visual
+       製作潛力
       </h4>
       <p>
        案例再把 Gaussian 當粒子 primitive 進行 art-direct，顯示 3DGS 不只用來重建，也能作為程序化視覺素材。
       </p>
       <h4>
-       限制
+       成熟度判斷
       </h4>
       <p>
        目前仍偏展示性且資料體積是主要問題；若要擴大到 realtime content，需要壓縮、streaming、LOD 與 interaction 規格。
@@ -489,19 +489,19 @@
      </summary>
      <div class="detail-body">
       <h4>
-       3DGS Presentation
+       技術方向
       </h4>
       <p>
        Inversphere 不是 mesh generation，而是透過空間 warping 把完整 360° Gaussian environment 折進球體，探索新的內容展示方式。
       </p>
       <h4>
-       Use Case
+       製作潛力
       </h4>
       <p>
        可延伸到 memory bubble、map preview、XR gallery 等 presentation；價值在空間瀏覽與視覺化，而不是傳統 asset production。
       </p>
       <h4>
-       Production 限制
+       成熟度判斷
       </h4>
       <p>
        若進產品，需要評估 distortion、interaction、LOD、streaming 與不同視角的可讀性，避免特殊效果只在單一展示鏡頭成立。

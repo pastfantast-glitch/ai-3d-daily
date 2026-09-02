@@ -82,13 +82,13 @@
      </summary>
      <div class="detail-body">
       <h4>
-       Topology / Mesh Quality
+       拓樸與網格品質
       </h4>
       <p>
        原生 quad topology 是 P2.0 最關鍵的 production 變化，評估重點從外觀相似度進一步移到可編輯 mesh 與 edge flow。
       </p>
       <h4>
-       Game Asset Pipeline
+       遊戲資產製作流程
       </h4>
       <p>
        若輸出能穩定維持合理拓樸，AI mesh 進 Blender/Maya 後的 retopo 與 cleanup 成本會明顯下降，對角色與可變形資產尤其重要。
@@ -137,13 +137,13 @@
      </summary>
      <div class="detail-body">
       <h4>
-       Texture / Concept Workflow
+       貼圖與概念製作流程
       </h4>
       <p>
        Firefly Image 5 與 AI Assisted Editor 被放進 Photoshop 日常工作區，重點是自然語言與 mask-based instruct edit，而不是整張重新生成。
       </p>
       <h4>
-       Production Value
+       製作價值
       </h4>
       <p>
        局部指令式修改更適合 texture repair、concept variant 與 presentation cleanup，可維持既有 layer/context 並縮短小範圍返修。
@@ -181,13 +181,13 @@
      </summary>
      <div class="detail-body">
       <h4>
-       Scene Generation
+       Scene 生成
       </h4>
       <p>
        WorldGen 的重點是從一張場景圖拆出多個獨立 3D assets，並同時重建相對空間關係，而不是只生成單一物件。
       </p>
       <h4>
-       Environment Pipeline
+       場景製作流程
       </h4>
       <p>
        若分件與尺度關係可信，它對 blockout、set dressing 與快速建立場景初稿的價值會高於傳統單物件 image-to-3D。
@@ -225,13 +225,13 @@
      </summary>
      <div class="detail-body">
       <h4>
-       Agent Workflow
+       Agent 工作流
       </h4>
       <p>
        Meshy 3D Agent 的重點不是單次 text-to-3D，而是讓 brainstorm、reference 累積、系列資產與生成共享多輪上下文。
       </p>
       <h4>
-       Asset Iteration
+       生成流程
       </h4>
       <p>
        對大量 prop 或同系列資產，若上下文能維持 style、比例與修改意圖，價值會高於單純提高單顆模型品質。
@@ -269,13 +269,13 @@
      </summary>
      <div class="detail-body">
       <h4>
-       AI Rigging
+       生成流程
       </h4>
       <p>
        Flow Studio 把 AI Rigging、Neural Layer 與生成式 3D 放進同一 VFX/animation pipeline，目標是讓生成結果能接 Maya、Blender、Unreal 等 downstream。
       </p>
       <h4>
-       Rig / Output
+       Rig 與輸出
       </h4>
       <p>
        真正 production 價值取決於 export rig 是否可修改、權重是否可修、以及角色資料能否轉成標準 skeleton/curve，而不是只有自動綁定速度。
@@ -313,19 +313,19 @@
      </summary>
      <div class="detail-body">
       <h4>
-       Geometry / PBR
+       生成流程
       </h4>
       <p>
        Seed3D 2.0 把單張圖生成往 coarse-to-fine geometry 與 PBR 材質推進，目標不再只是靜態外觀還原。
       </p>
       <h4>
-       Part / Articulation
+       製作價值
       </h4>
       <p>
        部件分解與 articulation 對角色裝備、機械與可互動物件特別重要，因為它直接影響後續分件、pivot 與動作製作。
       </p>
       <h4>
-       研究判斷
+       導入測試
       </h4>
       <p>
        目前仍屬研究評估，不能把論文展示等同穩定商用輸出；應關注分件正確率、關節語意、材質分離與可編輯 mesh。
@@ -357,13 +357,13 @@
      </summary>
      <div class="detail-body">
       <h4>
-       High-Poly Generation
+       High-Poly 生成
       </h4>
       <p>
        Rodin Gen-2.5 強化高 polygon budget、LOD 與多格式輸出，定位更像 high-poly 起點，而不是直接宣稱 game-ready low-poly。
       </p>
       <h4>
-       DCC Pipeline
+       DCC 流程
       </h4>
       <p>
        如果高模細節與 silhouette 可靠，多格式輸出能降低進 Blender/Maya 前處理，後續再用既有 retopo、UV、bake 流程接手。
@@ -401,13 +401,13 @@
      </summary>
      <div class="detail-body">
       <h4>
-       Asset Workspace
+       生成流程
       </h4>
       <p>
        Workspace 3.0 把 Image、3D Model、3D Printing、Animate 等任務整合到同一資產工作區，減少生成結果散落在不同工具頁。
       </p>
       <h4>
-       Production Management
+       製作價值
       </h4>
       <p>
        對大量 prop iteration，版本、命名與資產上下文和單次生成品質同樣重要；集中工作區能否管理這些資訊才是 production 價值。
@@ -445,13 +445,13 @@
      </summary>
      <div class="detail-body">
       <h4>
-       3D-Guided Generation
+       3D-Guided 生成
       </h4>
       <p>
        AI Studio 用 3D 角色、鏡頭與 previz 當作 AI 影片/角色生成的控制層，方向是用可控 3D input 取代純 prompt 猜測。
       </p>
       <h4>
-       Character Consistency
+       生成流程
       </h4>
       <p>
        和 Character Creator/iClone 的既有角色資產結合後，3D-guided input 有機會提高人物、鏡頭與空間一致性，適合 previs 與宣傳影像。
@@ -489,13 +489,13 @@
      </summary>
      <div class="detail-body">
       <h4>
-       Motion Transfer
+       生成流程
       </h4>
       <p>
        Kling 3.0 Motion Control 以 reference image + motion video 為主要輸入，把角色外觀與動作來源分開控制。
       </p>
       <h4>
-       ComfyUI Workflow
+       ComfyUI 工作流
       </h4>
       <p>
        進入 ComfyUI 後可把不同角色、鏡頭與 motion source 做節點化批次測試，對 AI 影像 production 比單次網頁操作更容易自動化。

@@ -82,13 +82,13 @@
      </summary>
      <div class="detail-body">
       <h4>
-       UV Workflow
+       UV 製作流程
       </h4>
       <p>
        UV Flex 把 island split、merge、reshape 與 spline deformation 做成直接操作，特別適合 hard-surface 與 prop 在 unwrap 後的 cleanup。
       </p>
       <h4>
-       Production Value
+       製作價值
       </h4>
       <p>
        2D IK 與 spline reshape 能減少逐點拉 UV 的重複工作，對需要整理長條、弧形與規整 island 的資產最有價值。
@@ -137,13 +137,13 @@
      </summary>
      <div class="detail-body">
       <h4>
-       Bake Workflow
+       Bake 工作流
       </h4>
       <p>
        Zen BBQ 2.0 可把 procedural bevel 直接烘焙成 Normal、AO、Curvature、ID，並支援 selected objects/collections 與 explode。
       </p>
       <h4>
-       Hard-Surface Pipeline
+       Hard-Surface 流程
       </h4>
       <p>
        這讓 hard-surface 資產能把幾何維持在較輕、可調狀態直到 bake 階段，再把邊緣資訊固化成 production maps。
@@ -192,13 +192,13 @@
      </summary>
      <div class="detail-body">
       <h4>
-       Character Sculpt
+       製作流程
       </h4>
       <p>
        案例以真實 fighter anatomy 作為 stylization 基線，先把身體結構與比例做可信，再進角色化設計，適合當 high-poly 判斷參考。
       </p>
       <h4>
-       Character Pipeline
+       角色製作流程
       </h4>
       <p>
        ZBrush、Maya、Painter、Marmoset 到 Unreal 的完整鏈路能直接觀察 sculpt、bake、texture 與 realtime presentation 的交付節點。
@@ -236,13 +236,13 @@
      </summary>
      <div class="detail-body">
       <h4>
-       Non-Destructive Modeling
+       Non-Destructive 建模
       </h4>
       <p>
        Edge Decal Generator 用沿邊 decal 製作焊線、磨損、trim 與 edge grime，可取代部分高模雕刻並保留修改彈性。
       </p>
       <h4>
-       Engine Delivery
+       製作流程
       </h4>
       <p>
        一鍵輸出 Unreal 或合併 FBX 讓這套方法不只停在 Blender viewport，適合需要快速 art-direction iteration 的 hard-surface 資產。
@@ -280,13 +280,13 @@
      </summary>
      <div class="detail-body">
       <h4>
-       Retopology Workflow
+       Retopology 工作流
       </h4>
       <p>
        Place Ring 用少量 path 點建立可調整 quad sleeve，直接針對手臂、腿、手指、頸部等 tubular forms 的高頻 retopo 工作。
       </p>
       <h4>
-       Deformation Topology
+       製作流程
       </h4>
       <p>
        ring spacing 可調代表 edge density 能跟著關節與 deformation 區域分配，比自動均勻網格更接近角色低模需求。
@@ -324,19 +324,19 @@
      </summary>
      <div class="detail-body">
       <h4>
-       Cinematic Character
+       製作流程
       </h4>
       <p>
        案例從 Blender 轉 Maya/XGen/Arnold，使用 Dynamic Subdivision、Micropoly、UDIM 與 layered materials 追求近景角色品質。
       </p>
       <h4>
-       Cinematic vs Realtime
+       流程價值
       </h4>
       <p>
        這些方法能提升鏈甲與材質層次，但同時增加 topology、texture memory 與 render 成本，不能直接視為 game-ready 規格。
       </p>
       <h4>
-       Production Reference
+       實測
       </h4>
       <p>
        最有價值的是拿它對照 cinematic 與 realtime 的取捨：哪些細節保留在幾何、哪些 bake、哪些留給材質與 groom。
@@ -368,19 +368,19 @@
      </summary>
      <div class="detail-body">
       <h4>
-       Real-Time Character
+       製作流程
       </h4>
       <p>
        案例把 ZBrush/Maya、MetaHuman topology、Marmoset bake 與 Painter PBR 串成完整 game-character workflow，能直接觀察各交付節點。
       </p>
       <h4>
-       Topology / Lookdev
+       流程價值
       </h4>
       <p>
        早期把臉對齊 MetaHuman topology 並進 Unreal lookdev，可提早發現比例、變形與材質問題；armor 則維持可控 subdivision topology。
       </p>
       <h4>
-       SOP Reference
+       實測
       </h4>
       <p>
        可整理成 blockout → game topology → bake → material isolation → engine lookdev 的角色 SOP，並用每一段的返工點作驗收。
@@ -412,13 +412,13 @@
      </summary>
      <div class="detail-body">
       <h4>
-       Stylized Texture Workflow
+       Stylized 貼圖製作流程
       </h4>
       <p>
        Gradient Texturing 用小型 palette 取代大量 unique 高解析貼圖，將色彩與 stylized shading 資訊透過 UV 位置編碼。
       </p>
       <h4>
-       Memory / Reuse
+       製作流程
       </h4>
       <p>
        同一 palette 可服務大量資產，對 mobile、stylized environment 與需要快速改色的專案能顯著降低 texture memory 與重複貼圖製作。
@@ -456,13 +456,13 @@
      </summary>
      <div class="detail-body">
       <h4>
-       Photo Projection
+       製作流程
       </h4>
       <p>
        Matcha 把 reference camera、camera match、projection painting 與 layer 管理放在 Maya 內，適合寫實 prop/environment 的 photo-based workflow。
       </p>
       <h4>
-       Texture Pipeline
+       貼圖 流程
       </h4>
       <p>
        Pro 版能整理 UV/Projection Layers 與 mask 後輸出 PSD，可減少 Maya↔Photoshop 為投影校正反覆切換的摩擦。
@@ -500,13 +500,13 @@
      </summary>
      <div class="detail-body">
       <h4>
-       Stylized Prop
+       製作流程
       </h4>
       <p>
        案例以卡通電吉他串起 Blender modeling、texturing、outline 與特殊材質，可作為小型 stylized prop 的完整練習資產。
       </p>
       <h4>
-       NPR Pipeline
+       NPR 流程
       </h4>
       <p>
        stylized outline、液體/特殊材質與幾何輪廓需要一起設計，能觀察 NPR 外觀不是單靠最後一層 shader 解決。

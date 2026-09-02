@@ -63,13 +63,13 @@
        </summary>
        <div class="detail-body daily-analysis-body">
         <h4>
-         Topology / Mesh Quality
+         拓樸與網格品質
         </h4>
         <p>
          原生 quad topology 是 P2.0 最關鍵的 production 變化，評估重點從外觀相似度進一步移到可編輯 mesh 與 edge flow。
         </p>
         <h4>
-         Game Asset Pipeline
+         遊戲資產製作流程
         </h4>
         <p>
          若輸出能穩定維持合理拓樸，AI mesh 進 Blender/Maya 後的 retopo 與 cleanup 成本會明顯下降，對角色與可變形資產尤其重要。
@@ -120,13 +120,13 @@
        </summary>
        <div class="detail-body daily-analysis-body">
         <h4>
-         Lighting Pipeline
+         光照製作流程
         </h4>
         <p>
          Unity 6.6 把 baked lighting 建立在 Compute Shader 與 Unified Ray Tracing 上，lightmap、probe 與 APV 走向同一套技術基礎。
         </p>
         <h4>
-         Production Value
+         製作價值
         </h4>
         <p>
          對大型 URP/HDRP 場景，真正價值在 bake iteration、noise 收斂與不同硬體的穩定性；若時間下降，燈光美術的反覆成本會直接改善。
@@ -177,13 +177,13 @@
        </summary>
        <div class="detail-body daily-analysis-body">
         <h4>
-         Dynamic Reconstruction
+         動態重建
         </h4>
         <p>
          輸入只需 monocular video，研究利用 video prior 補足 unseen region，再蒸餾成可自由視角的 dynamic Gaussian scene。
         </p>
         <h4>
-         Production Potential
+         製作潛力
         </h4>
         <p>
          這條路線對低門檻動態 capture、virtual production 與 previz 很有潛力，因為不必先建立完整多機位或 game-ready mesh。
@@ -234,13 +234,13 @@
        </summary>
        <div class="detail-body daily-analysis-body">
         <h4>
-         Animation Workflow
+         動作製作流程
         </h4>
         <p>
          UE LiveLink 讓 Cascadeur 裡的調整更快回到 Unreal 預覽，Root Motion style transfer 與 collision cleanup 則進一步碰到實際動作修整流程。
         </p>
         <h4>
-         Root Motion / Cleanup
+         Root Motion 與動作清理
         </h4>
         <p>
          AI Root Motion 的價值不是取代 animator，而是降低 movement signature、碰撞與動態修正的起始成本，同時保留 keyframe 可編輯性。
@@ -291,13 +291,13 @@
        </summary>
        <div class="detail-body daily-analysis-body">
         <h4>
-         UV Workflow
+         UV 製作流程
         </h4>
         <p>
          UV Flex 把 island split、merge、reshape 與 spline deformation 做成直接操作，特別適合 hard-surface 與 prop 在 unwrap 後的 cleanup。
         </p>
         <h4>
-         Production Value
+         製作價值
         </h4>
         <p>
          2D IK 與 spline reshape 能減少逐點拉 UV 的重複工作，對需要整理長條、弧形與規整 island 的資產最有價值。
@@ -352,13 +352,13 @@
        </summary>
        <div class="detail-body daily-analysis-body">
         <h4>
-         Lighting / Rendering
+         光照與渲染
         </h4>
         <p>
          MegaLights 在 5.8 進入 production-ready，並補上 translucency、volumetric、IES 與 debug views，實際可用範圍比早期 preview 完整。
         </p>
         <h4>
-         Performance Budget
+         效能預算
         </h4>
         <p>
          固定 rays-per-pixel 讓大量 local lights 的成本更容易預測，對需要密集燈光但仍追 60fps 的場景特別重要。
@@ -404,13 +404,13 @@
        </summary>
        <div class="detail-body daily-analysis-body">
         <h4>
-         Texture / Concept Workflow
+         貼圖與概念製作流程
         </h4>
         <p>
          Firefly Image 5 與 AI Assisted Editor 被放進 Photoshop 日常工作區，重點是自然語言與 mask-based instruct edit，而不是整張重新生成。
         </p>
         <h4>
-         Production Value
+         製作價值
         </h4>
         <p>
          局部指令式修改更適合 texture repair、concept variant 與 presentation cleanup，可維持既有 layer/context 並縮短小範圍返修。
@@ -456,13 +456,13 @@
        </summary>
        <div class="detail-body daily-analysis-body">
         <h4>
-         Modeling / Skinning
+         建模與蒙皮
         </h4>
         <p>
          Smart Bevel 改善 Boolean 與不均勻 topology 的 hard-surface cleanup，ngSkinTools 內建則讓 layer-based skinning 更接近標準角色流程。
         </p>
         <h4>
-         Character Pipeline
+         角色製作流程
         </h4>
         <p>
          同一版同時碰 modeling、skinning、Bifrost 與 MotionMaker，對角色部門的影響比單一功能更新更廣，適合整體評估而非只看 AI animation。
@@ -497,13 +497,13 @@
        </summary>
        <div class="detail-body daily-analysis-body">
         <h4>
-         Asset Pipeline
+         資產製作流程
         </h4>
         <p>
          Remote Asset Libraries 讓 Blender 的共用材質、node groups 與 base assets 可以從遠端來源分發，不再只依賴共享磁碟。
         </p>
         <h4>
-         Team Workflow
+         Team 工作流
         </h4>
         <p>
          對多人角色與場景 production，價值在於集中發布與發現資產，減少各 artist 手動複製造成的版本漂移。
@@ -549,13 +549,13 @@
        </summary>
        <div class="detail-body daily-analysis-body">
         <h4>
-         Procedural Environment
+         引擎工作流
         </h4>
         <p>
          HDA 以 curve 與參數控制石材尺寸、數量、破損與 polycount，把原本一次性的環境造型轉成可重用生成器。
         </p>
         <h4>
-         Material Pipeline
+         材質 流程
         </h4>
         <p>
          Substance Designer base maps 再於 UE5 重建 procedural smart material，可降低 unique texture 依賴並讓變體更容易維護。
@@ -590,13 +590,13 @@
        </summary>
        <div class="detail-body daily-analysis-body">
         <h4>
-         Scene Generation
+         Scene 生成
         </h4>
         <p>
          WorldGen 的重點是從一張場景圖拆出多個獨立 3D assets，並同時重建相對空間關係，而不是只生成單一物件。
         </p>
         <h4>
-         Environment Pipeline
+         場景製作流程
         </h4>
         <p>
          若分件與尺度關係可信，它對 blockout、set dressing 與快速建立場景初稿的價值會高於傳統單物件 image-to-3D。
@@ -642,13 +642,13 @@
        </summary>
        <div class="detail-body daily-analysis-body">
         <h4>
-         Bake Workflow
+         Bake 工作流
         </h4>
         <p>
          Zen BBQ 2.0 可把 procedural bevel 直接烘焙成 Normal、AO、Curvature、ID，並支援 selected objects/collections 與 explode。
         </p>
         <h4>
-         Hard-Surface Pipeline
+         Hard-Surface 流程
         </h4>
         <p>
          這讓 hard-surface 資產能把幾何維持在較輕、可調狀態直到 bake 階段，再把邊緣資訊固化成 production maps。
@@ -694,13 +694,13 @@
        </summary>
        <div class="detail-body daily-analysis-body">
         <h4>
-         Character Sculpt
+         製作流程
         </h4>
         <p>
          案例以真實 fighter anatomy 作為 stylization 基線，先把身體結構與比例做可信，再進角色化設計，適合當 high-poly 判斷參考。
         </p>
         <h4>
-         Character Pipeline
+         角色製作流程
         </h4>
         <p>
          ZBrush、Maya、Painter、Marmoset 到 Unreal 的完整鏈路能直接觀察 sculpt、bake、texture 與 realtime presentation 的交付節點。
@@ -746,13 +746,13 @@
        </summary>
        <div class="detail-body daily-analysis-body">
         <h4>
-         World Model
+         技術方向
         </h4>
         <p>
          GaussianDWM++ 把語言 grounding、3D Gaussian semantic field、場景編輯與 4D generation 放進同一 driving world model。
         </p>
         <h4>
-         Semantic Editing
+         製作潛力
         </h4>
         <p>
          instruction-controlled weather 與動態車輛編輯代表 world model 開始從純生成走向有語意的場景控制，對未來 game world authoring 值得追。
@@ -798,13 +798,13 @@
        </summary>
        <div class="detail-body daily-analysis-body">
         <h4>
-         Houdini Pipeline
+         Houdini 流程
         </h4>
         <p>
          Sneak Peek 同時擴張 native Gaussian、retopo、terrain、Copernicus 與 SOP-based USD，顯示 Houdini 正把更多 production domain 收回同一 procedural context。
         </p>
         <h4>
-         Animation / KineFX
+         動作 / KineFX
         </h4>
         <p>
          KineFX、nested Motion Mixer 與 retarget recipes 對動畫 pipeline 同樣重要，代表 22 不是只有 FX 或 3DGS 更新。

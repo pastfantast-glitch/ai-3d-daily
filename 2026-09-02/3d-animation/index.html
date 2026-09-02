@@ -82,13 +82,13 @@
      </summary>
      <div class="detail-body">
       <h4>
-       Animation Workflow
+       動作製作流程
       </h4>
       <p>
        UE LiveLink 讓 Cascadeur 裡的調整更快回到 Unreal 預覽，Root Motion style transfer 與 collision cleanup 則進一步碰到實際動作修整流程。
       </p>
       <h4>
-       Root Motion / Cleanup
+       Root Motion 與動作清理
       </h4>
       <p>
        AI Root Motion 的價值不是取代 animator，而是降低 movement signature、碰撞與動態修正的起始成本，同時保留 keyframe 可編輯性。
@@ -126,13 +126,13 @@
      </summary>
      <div class="detail-body">
       <h4>
-       Performance Capture
+       效能 Capture
       </h4>
       <p>
        UE5.8 的 mono video capture 讓一般單鏡頭影片直接進 MetaHuman animation solve，顯著降低 facial/performance capture 的硬體門檻。
       </p>
       <h4>
-       Unreal Pipeline
+       Unreal 流程
       </h4>
       <p>
        結果直接落在 MetaHuman 生態系，後續 Control Rig、Sequencer 與 retarget 路徑較短，比外部 mocap 再做格式轉換更接近引擎端 workflow。
@@ -170,13 +170,13 @@
      </summary>
      <div class="detail-body">
       <h4>
-       Muscle Rigging
+       動作製作流程
       </h4>
       <p>
        案例以每側約 15 bones 配合 RBF 做 torso/arm muscle deformation，不依賴大量 blendshape 或高成本 muscle sim。
       </p>
       <h4>
-       Realtime Value
+       Realtime 價值
       </h4>
       <p>
        RBF pose response 把 deformation 綁到姿勢空間，若能 bake/輸出到標準骨架，對 realtime 角色比離線 muscle system 更容易落地。
@@ -214,13 +214,13 @@
      </summary>
      <div class="detail-body">
       <h4>
-       Markerless Mocap
+       動作製作流程
       </h4>
       <p>
        CyanPuppets 以一般 camera 或 video 做 markerless capture，宣稱同時涵蓋 body、face、finger，硬體門檻相對低。
       </p>
       <h4>
-       Rig / Output
+       Rig 與輸出
       </h4>
       <p>
        如果 body、face、finger 能在同一份資料內穩定輸出並接 Blender/Unreal，就能減少多套 capture 結果再合成的流程。
@@ -258,13 +258,13 @@
      </summary>
      <div class="detail-body">
       <h4>
-       Facial Deformation
+       動作製作流程
       </h4>
       <p>
        interpBlendShape 支援 surface UV interpolation、in-between、Bezier blending 與 GPU 加速，相較線性 blendshape 更適合大幅度與 graphic deformation。
       </p>
       <h4>
-       Stylized Rigging
+       Rig / 輸出
       </h4>
       <p>
        它同時支援 mesh 與 curve，對 detached facial features、卡通五官與非傳統臉部拓樸比一般 blendshape pipeline 更有彈性。
@@ -302,19 +302,19 @@
      </summary>
      <div class="detail-body">
       <h4>
-       Corrective Rigging
+       動作製作流程
       </h4>
       <p>
        案例先做 joint deformation，再以 bone orientation 驅動 shape target，透過 Weight Driver smooth interpolation 減少大量 corrective key。
       </p>
       <h4>
-       Animator Control
+       Rig / 輸出
       </h4>
       <p>
        這種架構的價值在於 deformation 可預測且仍可 art-direct，比單純依賴大量手工 in-between 更容易維護角色化變形。
       </p>
       <h4>
-       Engine Delivery
+       導入測試
       </h4>
       <p>
        若要用在 game rig，需評估 plugin dependency、bake 後曲線/shape、runtime 實作與 engine compatibility，避免 DCC 專用節點無法交付。
@@ -346,13 +346,13 @@
      </summary>
      <div class="detail-body">
       <h4>
-       First-Person Animation
+       First-Person 動作
       </h4>
       <p>
        FocalRig 用程序 aim/look 與自配置 Control Rig nodes，在 GASP 既有 motion matching、foot placement、vaulting 上加入 true first-person 視角。
       </p>
       <h4>
-       Animation Reuse
+       動作 Reuse
       </h4>
       <p>
        如果能沿用第三人稱 locomotion 與 traversal，能降低另做完整第一人稱動作集的部分成本，也讓視角與 body motion 更一致。
@@ -390,13 +390,13 @@
      </summary>
      <div class="detail-body">
       <h4>
-       Secondary Motion Pass
+       動作製作流程
       </h4>
       <p>
        案例用分組 controller、stiffness、frequency/amplitude 與 Record to Layer，把肌肉/脂肪 jiggle 疊加在既有 key animation 上。
       </p>
       <h4>
-       Animator Control
+       Rig / 輸出
       </h4>
       <p>
        不同身體區塊分開 stiffness 能避免全身同頻率的橡皮感，且 layer-based 做法保留 animator 對最終動作的控制。
@@ -434,19 +434,19 @@
      </summary>
      <div class="detail-body">
       <h4>
-       Facial Rig Reuse
+       動作製作流程
       </h4>
       <p>
        案例將既有 facial blendshape/skinning 轉移到另一角色，再針對不同五官比例修 shape 與 skin，展示 base rig reuse 的可行性。
       </p>
       <h4>
-       Characterization
+       Rig / 輸出
       </h4>
       <p>
        可重用 base facial rig 能降低多角色起始成本，但轉移後仍需依角色特色修正，不能視為一鍵 facial rig。
       </p>
       <h4>
-       Pipeline 建議
+       導入測試
       </h4>
       <p>
        適合建立 common FACS/base-shape library + per-character corrective 的分層架構，並明確區分可共用與必須角色化的部分。
@@ -478,13 +478,13 @@
      </summary>
      <div class="detail-body">
       <h4>
-       Animation / Silhouette
+       動作 / Silhouette
       </h4>
       <p>
        案例顯示複雜 scaled-armor silhouette 與 body arc 必須一起設計，不能等主動畫完成後才把服裝當 secondary motion 補上。
       </p>
       <h4>
-       Polish Reference
+       動作製作流程
       </h4>
       <p>
        完整 Maya modeling/rigging/animation 流程適合作為 keyframe polish、overlap、服裝控制與 presentation 的參考，而非單純動作展示。

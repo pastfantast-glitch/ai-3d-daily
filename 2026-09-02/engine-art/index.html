@@ -82,13 +82,13 @@
      </summary>
      <div class="detail-body">
       <h4>
-       Lighting Pipeline
+       光照製作流程
       </h4>
       <p>
        Unity 6.6 把 baked lighting 建立在 Compute Shader 與 Unified Ray Tracing 上，lightmap、probe 與 APV 走向同一套技術基礎。
       </p>
       <h4>
-       Production Value
+       製作價值
       </h4>
       <p>
        對大型 URP/HDRP 場景，真正價值在 bake iteration、noise 收斂與不同硬體的穩定性；若時間下降，燈光美術的反覆成本會直接改善。
@@ -137,13 +137,13 @@
      </summary>
      <div class="detail-body">
       <h4>
-       Lighting / Rendering
+       光照與渲染
       </h4>
       <p>
        MegaLights 在 5.8 進入 production-ready，並補上 translucency、volumetric、IES 與 debug views，實際可用範圍比早期 preview 完整。
       </p>
       <h4>
-       Performance Budget
+       效能預算
       </h4>
       <p>
        固定 rays-per-pixel 讓大量 local lights 的成本更容易預測，對需要密集燈光但仍追 60fps 的場景特別重要。
@@ -192,13 +192,13 @@
      </summary>
      <div class="detail-body">
       <h4>
-       Procedural Environment
+       引擎工作流
       </h4>
       <p>
        HDA 以 curve 與參數控制石材尺寸、數量、破損與 polycount，把原本一次性的環境造型轉成可重用生成器。
       </p>
       <h4>
-       Material Pipeline
+       材質 流程
       </h4>
       <p>
        Substance Designer base maps 再於 UE5 重建 procedural smart material，可降低 unique texture 依賴並讓變體更容易維護。
@@ -236,13 +236,13 @@
      </summary>
      <div class="detail-body">
       <h4>
-       Shader / Lookdev
+       引擎工作流
       </h4>
       <p>
        這套 Substrate master material 以 POM/Bump Offset、internal glow、iridescence 與 exposed parameters 組出多種晶體外觀。
       </p>
       <h4>
-       Material Reuse
+       材質 Reuse
       </h4>
       <p>
        同一 setup 可透過參數與 switch 覆蓋不同 crystal types，適合把單次 lookdev 收斂成可重用材質模板。
@@ -280,13 +280,13 @@
      </summary>
      <div class="detail-body">
       <h4>
-       GI Scalability
+       引擎工作流
       </h4>
       <p>
        UE5.8 新增約 2× 較快的 Lumen medium-quality 路徑，透過 Irradiance Field Gather 與較便宜 reflections/fog 建立新的 scalability tier。
       </p>
       <h4>
-       Stylized / 60fps
+       製作價值
       </h4>
       <p>
        對 stylized 或低階 PC/handheld 專案，這提供保留動態 GI 方向、但不必直接退回完整 baked lighting 的中間選項。
@@ -324,19 +324,19 @@
      </summary>
      <div class="detail-body">
       <h4>
-       Secondary Motion
+       引擎工作流
       </h4>
       <p>
        1.21 加入 BoneConstraint Subdivision、Fixed Substepping 與 Shared Collision，重點直接對準裙擺、配件與低 FPS 下的 realtime secondary motion。
       </p>
       <h4>
-       Production Stability
+       製作價值
       </h4>
       <p>
        這次更新的價值不是新 demo，而是 UE5.8 compatibility、穿透改善與 collision data 共用，對已使用 Kawaii Physics 的專案更實際。
       </p>
       <h4>
-       導入測試
+       平台實測
       </h4>
       <p>
        需測低 FPS、裙擺/配件 penetration、shared collision 成本、Animation Blueprint 整合與不同角色共用設定的穩定性。
@@ -368,13 +368,13 @@
      </summary>
      <div class="detail-body">
       <h4>
-       Creature Lookdev
+       引擎工作流
       </h4>
       <p>
        Headcrab 案例用完整生物角色驗證 Substrate 在皮膚、濕潤與多層材質上的實際 lookdev，而不只是 isolated shader demo。
       </p>
       <h4>
-       Character Material Pipeline
+       Character 材質 流程
       </h4>
       <p>
        從 3ds Max/ZBrush/Painter 到 UE 的完整案例可拿來抽取貼圖、layering、roughness 與 realtime lighting 的交付規格。
@@ -412,13 +412,13 @@
      </summary>
      <div class="detail-body">
       <h4>
-       Interactive Foliage
+       引擎工作流
       </h4>
       <p>
        Beta 更新強化 gamethread、physics、Packed Level Actor 與 Niagara interaction，目標是在高密度植被中保留互動效果。
       </p>
       <h4>
-       Environment Performance
+       Environment 效能
       </h4>
       <p>
        auto-calculate cast shadow 與 gamethread 優化直接碰到場景性能；interaction nodes→Niagara 也讓踩踏、風與碰撞能接既有 FX。
@@ -456,13 +456,13 @@
      </summary>
      <div class="detail-body">
       <h4>
-       Maintenance Release
+       引擎工作流
       </h4>
       <p>
        Godot 4.7.2 是 4.7 的第二個 maintenance release，重點在 regression 與 bugfix，對已上 4.7 的專案比追 dev snapshot 更實際。
       </p>
       <h4>
-       Production Value
+       製作價值
       </h4>
       <p>
        維護版的價值在降低既有專案風險，而不是新增大量功能；是否升級應看它修到的問題是否命中目前 production。
@@ -500,13 +500,13 @@
      </summary>
      <div class="detail-body">
       <h4>
-       Stylized Water
+       引擎工作流
       </h4>
       <p>
        案例用少量 scrolling textures、refraction、absorption、caustics 與 baked lighting 做 retro water，而不是高成本物理水體。
       </p>
       <h4>
-       NPR / Performance
+       NPR / 效能
       </h4>
       <p>
        對 stylized、retro 專案，簡化材質可以用較低複雜度換取強識別度，重點是 art direction 而不是模擬真實水。

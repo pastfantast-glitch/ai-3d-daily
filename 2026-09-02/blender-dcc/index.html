@@ -82,13 +82,13 @@
      </summary>
      <div class="detail-body">
       <h4>
-       Modeling / Skinning
+       建模與蒙皮
       </h4>
       <p>
        Smart Bevel 改善 Boolean 與不均勻 topology 的 hard-surface cleanup，ngSkinTools 內建則讓 layer-based skinning 更接近標準角色流程。
       </p>
       <h4>
-       Character Pipeline
+       角色製作流程
       </h4>
       <p>
        同一版同時碰 modeling、skinning、Bifrost 與 MotionMaker，對角色部門的影響比單一功能更新更廣，適合整體評估而非只看 AI animation。
@@ -126,13 +126,13 @@
      </summary>
      <div class="detail-body">
       <h4>
-       Asset Pipeline
+       資產製作流程
       </h4>
       <p>
        Remote Asset Libraries 讓 Blender 的共用材質、node groups 與 base assets 可以從遠端來源分發，不再只依賴共享磁碟。
       </p>
       <h4>
-       Team Workflow
+       Team 工作流
       </h4>
       <p>
        對多人角色與場景 production，價值在於集中發布與發現資產，減少各 artist 手動複製造成的版本漂移。
@@ -181,13 +181,13 @@
      </summary>
      <div class="detail-body">
       <h4>
-       Houdini Pipeline
+       Houdini 流程
       </h4>
       <p>
        Sneak Peek 同時擴張 native Gaussian、retopo、terrain、Copernicus 與 SOP-based USD，顯示 Houdini 正把更多 production domain 收回同一 procedural context。
       </p>
       <h4>
-       Animation / KineFX
+       動作 / KineFX
       </h4>
       <p>
        KineFX、nested Motion Mixer 與 retarget recipes 對動畫 pipeline 同樣重要，代表 22 不是只有 FX 或 3DGS 更新。
@@ -225,13 +225,13 @@
      </summary>
      <div class="detail-body">
       <h4>
-       Geometry Nodes
+       DCC 工作流
       </h4>
       <p>
        Blender 5.2 的 Bundles 與 Lists 擴張 Geometry Nodes 的資料結構能力，Geometry Bundles 還能跨 modifier/object 邊界攜帶資料。
       </p>
       <h4>
-       Procedural Pipeline
+       Procedural 流程
       </h4>
       <p>
        大型程序資產不必靠大量平行 sockets 維護狀態，node group 可更模組化，對長期維護的 GN tool 比單一新 node 更有價值。
@@ -269,19 +269,19 @@
      </summary>
      <div class="detail-body">
       <h4>
-       Maya → Blender / UE
+       DCC 工作流
       </h4>
       <p>
        MableLink 的目標不是 flatten export，而是保留 rig、animation、blendshape、camera、light、pivot、hierarchy 與 PBR materials。
       </p>
       <h4>
-       Live Re-Sync
+       製作價值
       </h4>
       <p>
        Maya→Blender/UE live re-sync 可降低反覆 FBX 匯出與手動材質重建，可攜 .mable package 也更適合跨機或跨人交付。
       </p>
       <h4>
-       導入測試
+       升版 / 導入測試
       </h4>
       <p>
        應測 constraint/bake、材質 parity、單位軸向、large scene、reference、多人版本同步與 re-sync 後是否覆蓋手動修改。
@@ -313,13 +313,13 @@
      </summary>
      <div class="detail-body">
       <h4>
-       Weight Painting
+       DCC 工作流
       </h4>
       <p>
        Weight Paint Box 用 deformation box 取代部分 brush 工作，新版可同時處理多個分離物件，對服裝與配件權重特別實用。
       </p>
       <h4>
-       Rigify Workflow
+       Rigify 工作流
       </h4>
       <p>
        Draw Bone 與 Rigify 結合後，快速建骨、權重區域調整與角色 setup 能集中在同一 addon workflow。
@@ -357,13 +357,13 @@
      </summary>
      <div class="detail-body">
       <h4>
-       Render Pipeline
+       Render 流程
       </h4>
       <p>
        Arnold 7.5.1 同步更新 Maya、Max、Houdini、C4D、Katana integrations，對 studio 的 DCC version matrix 比單一 renderer feature 更重要。
       </p>
       <h4>
-       Version Governance
+       DCC 工作流
       </h4>
       <p>
        新版 DCC 內建 plugin 未必等於最新 integration，production 需要明確鎖 renderer/plugin 版本，避免不同部門產生不可重現結果。
@@ -401,13 +401,13 @@
      </summary>
      <div class="detail-body">
       <h4>
-       3ds Max / Maya → Blender
+       DCC 工作流
       </h4>
       <p>
        Leon's Modeling Toolkit 集合 world-aligned texturing、clip、mirror、Maya-style merge、cable 等高頻功能，直接降低傳統 DCC 使用者的操作遷移成本。
       </p>
       <h4>
-       Modeling Workflow
+       建模流程
       </h4>
       <p>
        非破壞 mirror、clip、merge 與 world-aligned texture 都屬 hard-surface 日常操作，價值在減少 Blender 裡為基本行為重新組流程的時間。
@@ -445,13 +445,13 @@
      </summary>
      <div class="detail-body">
       <h4>
-       Cycles Material
+       Cycles 材質
       </h4>
       <p>
        Blender 5.3 的 Principled BSDF 加入 dispersion，玻璃、寶石與高色散材質不必再靠自建 RGB refraction shader。
       </p>
       <h4>
-       Lookdev Workflow
+       Lookdev 工作流
       </h4>
       <p>
        功能進入 Principled 後更容易標準化材質 authoring，也能降低自訂 shader node 的維護成本。
@@ -489,19 +489,19 @@
      </summary>
      <div class="detail-body">
       <h4>
-       Finishing Workflow
+       DCC 工作流
       </h4>
       <p>
        Flame 2027.1 以 ML-assisted Isolate 強化 matte/selection，並加入 ProRes RAW import，重點是減少 finishing 階段的重複準備工作。
       </p>
       <h4>
-       Technical Compositing
+       製作價值
       </h4>
       <p>
        GLSL Pixel Expression 可直接在 UI 編 shader logic，對 technical finishing 與自訂 pixel processing 比固定 node 更有彈性。
       </p>
       <h4>
-       Game Art Relevance
+       升版 / 導入測試
       </h4>
       <p>
        主要仍屬影像/VFX finishing；對 game art 的價值偏跨領域參考，除非團隊同時負責 trailer、cinematic 或 marketing finishing。
