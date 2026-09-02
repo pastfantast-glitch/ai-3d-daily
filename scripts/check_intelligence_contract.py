@@ -33,7 +33,29 @@ def inspect_cards(date,name,path,selector,recs,expected_ids):
     if extra: errors.append(f'{date} {name}: unexpected IDs: {sorted(extra)}')
     return seen
 
+def validate_depth(date, rid, record, cfg):
+    blocks=record.get('full_analysis',[])
+    fa_cfg=cfg.get('full_analysis',{})
+    min_blocks=int(fa_cfg.get('min_blocks',3))
+    min_chars=int(fa_cfg.get('min_text_chars_per_block',0))
+    if len(blocks)<min_blocks:
+        errors.append(f'{date}: {rid} full_analysis must have >={min_blocks} structured blocks')
+    for i,block in enumerate(blocks,1):
+        label=norm(block.get('label','')); text=norm(block.get('text',''))
+        if not label or not text:
+            errors.append(f'{date}: {rid} block {i} requires non-empty label and text')
+        elif min_chars and len(text)<min_chars:
+            errors.append(f'{date}: {rid} block {i} is too shallow ({len(text)} chars; need >={min_chars})')
+    required=fa_cfg.get('required_semantics',[])
+    semantic_labels=fa_cfg.get('semantic_labels',{})
+    labels=[norm(x.get('label','')).casefold() for x in blocks]
+    for semantic in required:
+        allowed=[norm(x).casefold() for x in semantic_labels.get(semantic,[])]
+        if allowed and not any(any(alias in label for alias in allowed) for label in labels):
+            errors.append(f'{date}: {rid} missing required Full Analysis semantic: {semantic}')
+
 dates=sorted(p.stem for p in (ROOT/'data'/'daily').glob('20??-??-??.json'))
+cfg=load_config()
 for date in dates:
     data=json.loads((ROOT/'data'/'daily'/f'{date}.json').read_text('utf-8')); recs={x['id']:x for x in data['items']}
     if is_v2_dataset(data):
@@ -43,7 +65,7 @@ for date in dates:
             home=inspect_cards(date,'home',ROOT/'index.html','.top-item[data-intel-role="card"][data-intel-id], .more-card[data-intel-role="card"][data-intel-id]',recs,selected)
             for rid in selected:
                 if home.get(rid)!=daily.get(rid): errors.append(f'{date}: home/daily Full Analysis drift for {rid}')
-        for cat in load_config()['categories']:
+        for cat in cfg['categories']:
             expected=[x['id'] for x in category_items(data,cat['id'])]
             inspect_cards(date,f'category:{cat["id"]}',ROOT/date/cat['id']/'index.html','.category-card[data-intel-role="card"][data-intel-id]',recs,expected)
     else:
@@ -54,9 +76,12 @@ for date in dates:
             for rid in recs:
                 if home.get(rid)!=daily.get(rid): errors.append(f'{date}: Full Analysis drift for {rid}')
     for rid,record in recs.items():
-        if len(record.get('full_analysis',[]))<3: errors.append(f'{date}: {rid} full_analysis must have >=3 structured blocks')
-        for i,block in enumerate(record.get('full_analysis',[]),1):
-            if not block.get('label','').strip() or not block.get('text','').strip(): errors.append(f'{date}: {rid} block {i} requires non-empty label and text')
+        if is_v2_dataset(data):
+            validate_depth(date,rid,record,cfg)
+        else:
+            if len(record.get('full_analysis',[]))<3: errors.append(f'{date}: {rid} full_analysis must have >=3 structured blocks')
+            for i,block in enumerate(record.get('full_analysis',[]),1):
+                if not block.get('label','').strip() or not block.get('text','').strip(): errors.append(f'{date}: {rid} block {i} requires non-empty label and text')
 if errors:
     print('INTELLIGENCE CONTRACT FAILED'); print('\n'.join('- '+e for e in errors)); sys.exit(1)
 print('INTELLIGENCE CONTRACT PASS')
