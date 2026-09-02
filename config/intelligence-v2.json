@@ -38,8 +38,16 @@
     {
       "id": "3d-production",
       "label": "3D 製作",
-      "description": "3D 建模 / 3D 製作流程",
-      "subtypes": ["modeling", "retopology", "uv", "texture", "material", "pipeline"]
+      "description": "3D 角色製作 / 3D 物件製作 / 3D 場景製作 / 製作流程",
+      "subtypes": ["character-production", "prop-production", "environment-production", "production-workflow"],
+      "collection_guidance": [
+        "Prioritize practical game-art asset creation rather than treating individual technical steps as standalone intelligence categories.",
+        "character-production covers character modeling, sculpting, hair, cloth, character textures/materials and end-to-end character workflows.",
+        "prop-production covers props, weapons, hard-surface assets, prop textures/materials and production techniques.",
+        "environment-production covers environment art, architecture, vegetation, terrain, modular environments, environment materials and asset workflows.",
+        "production-workflow covers cross-asset methods such as modeling, retopology, UV, baking, texturing, materials, scanning, procedural production, pipeline and efficiency tools when they are not specific to one asset type.",
+        "When an item is clearly about a character, prop or environment workflow, classify it by that asset type even if the technique itself is UV, texturing, materials or retopology."
+      ]
     },
     {
       "id": "3d-animation",
