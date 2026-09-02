@@ -14,6 +14,7 @@ on:
       - 'category.css'
       - 'config/intelligence-v2.json'
       - 'scripts/intelligence_v2.py'
+      - 'scripts/enrich_full_analysis_v3.py'
       - 'scripts/render_information_architecture.py'
       - 'scripts/check_information_architecture.py'
       - 'scripts/normalize_archive_presentation.py'
@@ -105,6 +106,8 @@ jobs:
       - name: Legacy 2026-08-23 stable-ID migration
         if: steps.date.outputs.value == '2026-08-23'
         run: python scripts/bootstrap_intelligence_ids.py
+      - name: Enrich canonical V3 Full Analysis depth
+        run: python scripts/enrich_full_analysis_v3.py "${{ steps.date.outputs.value }}"
       - name: Normalize current release seed semantic shell
         run: python scripts/normalize_release_seed.py "${{ steps.date.outputs.value }}"
       - name: Release-ready input preflight
@@ -146,14 +149,14 @@ jobs:
           for x in d.get('entries',[]): print(f"- {x.get('id')}: {x.get('status')} candidates={x.get('candidate_count',0)} error={x.get('error','')}")
           PY
           fi
-      - name: Atomic publish derived assets and views
+      - name: Atomic publish canonical data, derived assets and views
         id: publish_commit
         shell: bash
         run: |
           set -euo pipefail
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
-          git add assets/visual index.html
+          git add "data/daily/${{ steps.date.outputs.value }}.json" assets/visual index.html
           find . -maxdepth 2 -mindepth 2 -path './20??-??-??/index.html' -print0 | xargs -0 -r git add --
           find "${{ steps.date.outputs.value }}" -mindepth 2 -maxdepth 2 -name index.html -print0 | xargs -0 -r git add --
           if git diff --cached --quiet; then
