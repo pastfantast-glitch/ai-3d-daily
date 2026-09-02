@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 from pathlib import Path
-import json, re, sys
+import json, re, subprocess, sys
 from bs4 import BeautifulSoup
 from intelligence_v2 import is_v2_dataset
 
@@ -13,6 +13,17 @@ def archive_dates(): return sorted(p.name for p in ROOT.iterdir() if p.is_dir() 
 def latest_data():
     paths=sorted((ROOT/'data'/'daily').glob('20??-??-??.json'))
     return json.loads(paths[-1].read_text('utf-8')) if paths else {}
+
+# Design System ownership is part of the homepage contract: home.css/daily.css may
+# control layout, but shared visual properties and Full Analysis styling must stay
+# centralized in shared-components.css.
+design_guard=ROOT/'scripts'/'check_design_system_contract.py'
+if not design_guard.exists():
+    fail('Design System ownership guard missing')
+else:
+    result=subprocess.run([sys.executable,str(design_guard)],cwd=ROOT,text=True,capture_output=True)
+    if result.returncode:
+        fail('Design System ownership guard failed:\n'+(result.stdout or result.stderr).strip())
 
 if not INDEX.exists(): fail('index.html missing')
 else:
@@ -88,4 +99,4 @@ if JS.exists():
         if token not in js: fail(f'history interaction missing: {token}')
 if errors:
     print('Homepage contract QA FAILED:'); print('\n'.join(' - '+e for e in errors)); sys.exit(1)
-print('Homepage contract QA passed: V2-aware layout + shared components + searchable grouped history library + archive parity locked')
+print('Homepage contract QA passed: V2-aware layout + shared components + searchable grouped history library + archive parity + Design System ownership locked')
