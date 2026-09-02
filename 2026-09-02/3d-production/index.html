@@ -6,8 +6,8 @@
   <title>
    3D 製作｜2026-09-02｜AI 3D Daily
   </title>
-  <link href="../../styles.css?v=20260902-r1" rel="stylesheet"/>
-  <link href="../../category.css?v=20260902-r1" rel="stylesheet"/>
+  <link href="../../styles.css?v=20260902-r2" rel="stylesheet"/>
+  <link href="../../category.css?v=20260902-r2" rel="stylesheet"/>
  </head>
  <body class="category-page" data-category="3d-production" data-report-date="2026-09-02">
   <header class="category-hero">
@@ -81,28 +81,22 @@
      </summary>
      <div class="detail-body">
       <h4>
-       Production Delta
+       UV Workflow
       </h4>
       <p>
-       特別適合 hard-surface 與 prop 在 unwrap 後的 UV cleanup。 這次「UV Flex：互動式 UV Island Split / Merge / Reshape」的可驗證變化可由摘要交叉確認：把 UV island 的拆分、合併、變形與 spline 操作做成 viewport-driven 工具。 從 production 角度應把評估焦點放在實際輸出、可重複性與是否減少既有人工步驟，而不是只看展示效果。
+       UV Flex 把 island split、merge、reshape 與 spline deformation 做成直接操作，特別適合 hard-surface 與 prop 在 unwrap 後的 cleanup。
       </p>
       <h4>
-       Why It Matters
+       Production Value
       </h4>
       <p>
-       對建模與資產製作而言，價值主要反映在可編輯性、重工次數、交付一致性與 artist iteration 速度，尤其適合用同一測試資產量化節省的人工步驟。 對「UV Flex：互動式 UV Island Split / Merge / Reshape」而言，應優先判斷它影響的是前期探索、資產製作、動作處理、引擎整合還是交付維護，並用可量化的 iteration/cleanup/效能成本決定是否值得導入。
+       2D IK 與 spline reshape 能減少逐點拉 UV 的重複工作，對需要整理長條、弧形與規整 island 的資產最有價值。
       </p>
       <h4>
-       Pipeline Impact
+       實測
       </h4>
       <p>
-       2D IK / spline deformation 能減少手動逐點修島。 建議直接放入既有 high/low、retopo、UV、bake、texture 與 engine import SOP，使用同一代表性資產比較操作步數、返工時間、拓樸/貼圖一致性與交付格式。 建議先在非破壞的測試分支完成端到端驗證，再決定是否納入正式 SOP 與團隊工具鏈。
-      </p>
-      <h4>
-       Limitations / Risk
-      </h4>
-      <p>
-       應測大型 UDIM、鏡像 seam、packing 前後與 Blender 版本相容性。 風險檢查至少包含非破壞性、拓樸與 UV 可預測性、bake/材質 parity、批次穩定性、版本相容與 artist 可修正性，並以返工時間而非單次成功率作為主要指標。 驗收時應保存失敗樣本與基準結果，避免只因單一成功案例就提高 production readiness 判定。
+       建議測大型 UDIM、鏡像 seam、packing 前後、pin/selection 行為與 Blender 版本相容性，並比較傳統手修所需時間。
       </p>
      </div>
     </details>
@@ -142,28 +136,22 @@
      </summary>
      <div class="detail-body">
       <h4>
-       Production Delta
+       Bake Workflow
       </h4>
       <p>
-       可對 selected objects/collections 烘焙並支援 explode 防投射瑕疵。 這次「Zen BBQ 2.0：程序 Bevel 直接烘焙 Production Maps」的可驗證變化可由摘要交叉確認：新的 Map Baking 可把 procedural bevel 轉成 Normal/AO/Curvature/ID 等貼圖。 從 production 角度應把評估焦點放在實際輸出、可重複性與是否減少既有人工步驟，而不是只看展示效果。
+       Zen BBQ 2.0 可把 procedural bevel 直接烘焙成 Normal、AO、Curvature、ID，並支援 selected objects/collections 與 explode。
       </p>
       <h4>
-       Why It Matters
+       Hard-Surface Pipeline
       </h4>
       <p>
-       對建模與資產製作而言，價值主要反映在可編輯性、重工次數、交付一致性與 artist iteration 速度，尤其適合用同一測試資產量化節省的人工步驟。 對「Zen BBQ 2.0：程序 Bevel 直接烘焙 Production Maps」而言，應優先判斷它影響的是前期探索、資產製作、動作處理、引擎整合還是交付維護，並用可量化的 iteration/cleanup/效能成本決定是否值得導入。
+       這讓 hard-surface 資產能把幾何維持在較輕、可調狀態直到 bake 階段，再把邊緣資訊固化成 production maps。
       </p>
       <h4>
-       Pipeline Impact
+       實測
       </h4>
       <p>
-       對 hard-surface 可維持輕量幾何到 bake 階段再固化細節。 建議直接放入既有 high/low、retopo、UV、bake、texture 與 engine import SOP，使用同一代表性資產比較操作步數、返工時間、拓樸/貼圖一致性與交付格式。 建議先在非破壞的測試分支完成端到端驗證，再決定是否納入正式 SOP 與團隊工具鏈。
-      </p>
-      <h4>
-       Limitations / Risk
-      </h4>
-      <p>
-       應測 cage、命名、multiple texture set 與 Marmoset/UE/Unity 的 map parity。 風險檢查至少包含非破壞性、拓樸與 UV 可預測性、bake/材質 parity、批次穩定性、版本相容與 artist 可修正性，並以返工時間而非單次成功率作為主要指標。 驗收時應保存失敗樣本與基準結果，避免只因單一成功案例就提高 production readiness 判定。
+       需測 cage、命名、multiple texture set、硬邊與 Marmoset/Unreal/Unity map parity，確認自動流程沒有引入投射瑕疵。
       </p>
      </div>
     </details>
@@ -203,28 +191,22 @@
      </summary>
      <div class="detail-body">
       <h4>
-       Production Delta
+       Character Sculpt
       </h4>
       <p>
-       真人 anatomy 與 fighter reference 讓 stylization 建立在可信結構上，適合作為角色 high-poly 基線。 這次「Iron Mitchell：格鬥角色 Sculpt / Texture / UE Pipeline」的可驗證變化可由摘要交叉確認：以 Mike Tyson 等真實參考塑造 fighter anatomy，再將 ZBrush、Maya、Painter、Marmoset 與 Unreal 串成角色製作流程。 從 production 角度應把評估焦點放在實際輸出、可重複性與是否減少既有人工步驟，而不是只看展示效果。
+       案例以真實 fighter anatomy 作為 stylization 基線，先把身體結構與比例做可信，再進角色化設計，適合當 high-poly 判斷參考。
       </p>
       <h4>
-       Why It Matters
+       Character Pipeline
       </h4>
       <p>
-       對建模與資產製作而言，價值主要反映在可編輯性、重工次數、交付一致性與 artist iteration 速度，尤其適合用同一測試資產量化節省的人工步驟。 對「Iron Mitchell：格鬥角色 Sculpt / Texture / UE Pipeline」而言，應優先判斷它影響的是前期探索、資產製作、動作處理、引擎整合還是交付維護，並用可量化的 iteration/cleanup/效能成本決定是否值得導入。
+       ZBrush、Maya、Painter、Marmoset 到 Unreal 的完整鏈路能直接觀察 sculpt、bake、texture 與 realtime presentation 的交付節點。
       </p>
       <h4>
-       Pipeline Impact
+       驗收重點
       </h4>
       <p>
-       流程跨 ZBrush、Maya、Painter、Marmoset 與 Unreal，能觀察 sculpt→texture→realtime presentation 的交付節點。 建議直接放入既有 high/low、retopo、UV、bake、texture 與 engine import SOP，使用同一代表性資產比較操作步數、返工時間、拓樸/貼圖一致性與交付格式。 建議先在非破壞的測試分支完成端到端驗證，再決定是否納入正式 SOP 與團隊工具鏈。
-      </p>
-      <h4>
-       Limitations / Risk
-      </h4>
-      <p>
-       可抽取 skin breakup、材質層次、bake 與 realtime lighting 的角色驗收項目。 風險檢查至少包含非破壞性、拓樸與 UV 可預測性、bake/材質 parity、批次穩定性、版本相容與 artist 可修正性，並以返工時間而非單次成功率作為主要指標。 驗收時應保存失敗樣本與基準結果，避免只因單一成功案例就提高 production readiness 判定。
+       可抽取 skin breakup、材質層次、bake、silhouette 與 realtime lighting 等角色驗收項目，比單看最終 render 更有 production 價值。
       </p>
      </div>
     </details>
@@ -253,28 +235,22 @@
      </summary>
      <div class="detail-body">
       <h4>
-       Production Delta
+       Non-Destructive Modeling
       </h4>
       <p>
-       適合焊線、磨損、trim 與 edge grime 等重複細節。 這次「Edge Decal Generator 1.2：非破壞式邊緣細節」的可驗證變化可由摘要交叉確認：用沿邊 decal 取代部分高模雕刻，並可一鍵輸出到 Unreal 或合併 FBX。 從 production 角度應把評估焦點放在實際輸出、可重複性與是否減少既有人工步驟，而不是只看展示效果。
+       Edge Decal Generator 用沿邊 decal 製作焊線、磨損、trim 與 edge grime，可取代部分高模雕刻並保留修改彈性。
       </p>
       <h4>
-       Why It Matters
+       Engine Delivery
       </h4>
       <p>
-       對建模與資產製作而言，價值主要反映在可編輯性、重工次數、交付一致性與 artist iteration 速度，尤其適合用同一測試資產量化節省的人工步驟。 對「Edge Decal Generator 1.2：非破壞式邊緣細節」而言，應優先判斷它影響的是前期探索、資產製作、動作處理、引擎整合還是交付維護，並用可量化的 iteration/cleanup/效能成本決定是否值得導入。
+       一鍵輸出 Unreal 或合併 FBX 讓這套方法不只停在 Blender viewport，適合需要快速 art-direction iteration 的 hard-surface 資產。
       </p>
       <h4>
-       Pipeline Impact
+       實測
       </h4>
       <p>
-       非破壞 layer workflow 對反覆 art direction 修改很實用。 建議直接放入既有 high/low、retopo、UV、bake、texture 與 engine import SOP，使用同一代表性資產比較操作步數、返工時間、拓樸/貼圖一致性與交付格式。 建議先在非破壞的測試分支完成端到端驗證，再決定是否納入正式 SOP 與團隊工具鏈。
-      </p>
-      <h4>
-       Limitations / Risk
-      </h4>
-      <p>
-       要檢查 decal overdraw、UV projection、LOD 距離與 engine shader 成本。 風險檢查至少包含非破壞性、拓樸與 UV 可預測性、bake/材質 parity、批次穩定性、版本相容與 artist 可修正性，並以返工時間而非單次成功率作為主要指標。 驗收時應保存失敗樣本與基準結果，避免只因單一成功案例就提高 production readiness 判定。
+       要檢查 decal overdraw、UV projection、LOD 距離、透明/排序與 engine shader cost，避免建模省下的時間轉成 runtime 成本。
       </p>
      </div>
     </details>
@@ -303,28 +279,22 @@
      </summary>
      <div class="detail-body">
       <h4>
-       Production Delta
+       Retopology Workflow
       </h4>
       <p>
-       比手拉 edge loops 更接近高階角色 retopo 的高頻需求。 這次「Quad Maker：Place Ring 管狀 Retopology」的可驗證變化可由摘要交叉確認：以少量 path 點建立可調整 quad sleeve，針對手臂、腿、手指、頸部等 tubular forms。 從 production 角度應把評估焦點放在實際輸出、可重複性與是否減少既有人工步驟，而不是只看展示效果。
+       Place Ring 用少量 path 點建立可調整 quad sleeve，直接針對手臂、腿、手指、頸部等 tubular forms 的高頻 retopo 工作。
       </p>
       <h4>
-       Why It Matters
+       Deformation Topology
       </h4>
       <p>
-       對建模與資產製作而言，價值主要反映在可編輯性、重工次數、交付一致性與 artist iteration 速度，尤其適合用同一測試資產量化節省的人工步驟。 對「Quad Maker：Place Ring 管狀 Retopology」而言，應優先判斷它影響的是前期探索、資產製作、動作處理、引擎整合還是交付維護，並用可量化的 iteration/cleanup/效能成本決定是否值得導入。
+       ring spacing 可調代表 edge density 能跟著關節與 deformation 區域分配，比自動均勻網格更接近角色低模需求。
       </p>
       <h4>
-       Pipeline Impact
+       實測
       </h4>
       <p>
-       spacing 可調代表 edge density 能配合 deformation 區域。 建議直接放入既有 high/low、retopo、UV、bake、texture 與 engine import SOP，使用同一代表性資產比較操作步數、返工時間、拓樸/貼圖一致性與交付格式。 建議先在非破壞的測試分支完成端到端驗證，再決定是否納入正式 SOP 與團隊工具鏈。
-      </p>
-      <h4>
-       Limitations / Risk
-      </h4>
-      <p>
-       應和 RetopoFlow/原生 shrinkwrap 對比 topology 可預測性與 cleanup 時間。 風險檢查至少包含非破壞性、拓樸與 UV 可預測性、bake/材質 parity、批次穩定性、版本相容與 artist 可修正性，並以返工時間而非單次成功率作為主要指標。 驗收時應保存失敗樣本與基準結果，避免只因單一成功案例就提高 production readiness 判定。
+       應和 RetopoFlow、原生 shrinkwrap/Poly Build 對比 topology 可預測性、轉角品質、貼合穩定性與最後 cleanup 時間。
       </p>
      </div>
     </details>
@@ -353,28 +323,22 @@
      </summary>
      <div class="detail-body">
       <h4>
-       Production Delta
+       Cinematic Character
       </h4>
       <p>
-       Dynamic Subdivision + Micropoly 適合鏈甲等高頻細節，但不等同 game-ready。 這次「Almalexia Cinematic Character：UDIM、Micropoly 與 Arnold Lookdev」的可驗證變化可由摘要交叉確認：從 Blender 轉 Maya/XGen/Arnold 的角色案例，展示 cinematic asset 對 topology、UDIM 與 layered materials 的取捨。 從 production 角度應把評估焦點放在實際輸出、可重複性與是否減少既有人工步驟，而不是只看展示效果。
+       案例從 Blender 轉 Maya/XGen/Arnold，使用 Dynamic Subdivision、Micropoly、UDIM 與 layered materials 追求近景角色品質。
       </p>
       <h4>
-       Why It Matters
+       Cinematic vs Realtime
       </h4>
       <p>
-       對建模與資產製作而言，價值主要反映在可編輯性、重工次數、交付一致性與 artist iteration 速度，尤其適合用同一測試資產量化節省的人工步驟。 對「Almalexia Cinematic Character：UDIM、Micropoly 與 Arnold Lookdev」而言，應優先判斷它影響的是前期探索、資產製作、動作處理、引擎整合還是交付維護，並用可量化的 iteration/cleanup/效能成本決定是否值得導入。
+       這些方法能提升鏈甲與材質層次，但同時增加 topology、texture memory 與 render 成本，不能直接視為 game-ready 規格。
       </p>
       <h4>
-       Pipeline Impact
+       Production Reference
       </h4>
       <p>
-       UDIM 與 layered materials 提升近景品質，同時提高交付與記憶體成本。 建議直接放入既有 high/low、retopo、UV、bake、texture 與 engine import SOP，使用同一代表性資產比較操作步數、返工時間、拓樸/貼圖一致性與交付格式。 建議先在非破壞的測試分支完成端到端驗證，再決定是否納入正式 SOP 與團隊工具鏈。
-      </p>
-      <h4>
-       Limitations / Risk
-      </h4>
-      <p>
-       適合作為 cinematic 與 real-time 規格差異的對照案例。 風險檢查至少包含非破壞性、拓樸與 UV 可預測性、bake/材質 parity、批次穩定性、版本相容與 artist 可修正性，並以返工時間而非單次成功率作為主要指標。 驗收時應保存失敗樣本與基準結果，避免只因單一成功案例就提高 production readiness 判定。
+       最有價值的是拿它對照 cinematic 與 realtime 的取捨：哪些細節保留在幾何、哪些 bake、哪些留給材質與 groom。
       </p>
      </div>
     </details>
@@ -403,28 +367,22 @@
      </summary>
      <div class="detail-body">
       <h4>
-       Production Delta
+       Real-Time Character
       </h4>
       <p>
-       早期把臉對齊 MetaHuman topology 並進 Unreal lookdev 可提早發現結構問題。 這次「Dark Fantasy Real-Time Character：高低模到 UE 的完整管線」的可驗證變化可由摘要交叉確認：案例把 ZBrush/Maya、MetaHuman topology、Marmoset bake 與 Painter PBR 串成可驗證的 game-character workflow。 從 production 角度應把評估焦點放在實際輸出、可重複性與是否減少既有人工步驟，而不是只看展示效果。
+       案例把 ZBrush/Maya、MetaHuman topology、Marmoset bake 與 Painter PBR 串成完整 game-character workflow，能直接觀察各交付節點。
       </p>
       <h4>
-       Why It Matters
+       Topology / Lookdev
       </h4>
       <p>
-       對建模與資產製作而言，價值主要反映在可編輯性、重工次數、交付一致性與 artist iteration 速度，尤其適合用同一測試資產量化節省的人工步驟。 對「Dark Fantasy Real-Time Character：高低模到 UE 的完整管線」而言，應優先判斷它影響的是前期探索、資產製作、動作處理、引擎整合還是交付維護，並用可量化的 iteration/cleanup/效能成本決定是否值得導入。
+       早期把臉對齊 MetaHuman topology 並進 Unreal lookdev，可提早發現比例、變形與材質問題；armor 則維持可控 subdivision topology。
       </p>
       <h4>
-       Pipeline Impact
+       SOP Reference
       </h4>
       <p>
-       armor 用 Maya Quad Draw + ZBrush Dynamic Subdivision 維持可控 topology。 建議直接放入既有 high/low、retopo、UV、bake、texture 與 engine import SOP，使用同一代表性資產比較操作步數、返工時間、拓樸/貼圖一致性與交付格式。 建議先在非破壞的測試分支完成端到端驗證，再決定是否納入正式 SOP 與團隊工具鏈。
-      </p>
-      <h4>
-       Limitations / Risk
-      </h4>
-      <p>
-       可轉成角色 SOP：blockout→game topology→bake→material isolation→engine lookdev。 風險檢查至少包含非破壞性、拓樸與 UV 可預測性、bake/材質 parity、批次穩定性、版本相容與 artist 可修正性，並以返工時間而非單次成功率作為主要指標。 驗收時應保存失敗樣本與基準結果，避免只因單一成功案例就提高 production readiness 判定。
+       可整理成 blockout → game topology → bake → material isolation → engine lookdev 的角色 SOP，並用每一段的返工點作驗收。
       </p>
      </div>
     </details>
@@ -453,28 +411,22 @@
      </summary>
      <div class="detail-body">
       <h4>
-       Production Delta
+       Stylized Texture Workflow
       </h4>
       <p>
-       小型 palette 能顯著降低大量資產的 texture memory。 這次「Gradient Texturing：低記憶體 Stylized 材質標準化」的可驗證變化可由摘要交叉確認：以小型 gradient palette 取代大量 unique 高解析貼圖，將 stylized shading 資訊編碼進 UV。 從 production 角度應把評估焦點放在實際輸出、可重複性與是否減少既有人工步驟，而不是只看展示效果。
+       Gradient Texturing 用小型 palette 取代大量 unique 高解析貼圖，將色彩與 stylized shading 資訊透過 UV 位置編碼。
       </p>
       <h4>
-       Why It Matters
+       Memory / Reuse
       </h4>
       <p>
-       對建模與資產製作而言，價值主要反映在可編輯性、重工次數、交付一致性與 artist iteration 速度，尤其適合用同一測試資產量化節省的人工步驟。 對「Gradient Texturing：低記憶體 Stylized 材質標準化」而言，應優先判斷它影響的是前期探索、資產製作、動作處理、引擎整合還是交付維護，並用可量化的 iteration/cleanup/效能成本決定是否值得導入。
+       同一 palette 可服務大量資產，對 mobile、stylized environment 與需要快速改色的專案能顯著降低 texture memory 與重複貼圖製作。
       </p>
       <h4>
-       Pipeline Impact
+       導入規格
       </h4>
       <p>
-       適合 stylized mobile/indie 場景，但 UV authoring 與色帶治理必須標準化。 建議直接放入既有 high/low、retopo、UV、bake、texture 與 engine import SOP，使用同一代表性資產比較操作步數、返工時間、拓樸/貼圖一致性與交付格式。 建議先在非破壞的測試分支完成端到端驗證，再決定是否納入正式 SOP 與團隊工具鏈。
-      </p>
-      <h4>
-       Limitations / Risk
-      </h4>
-      <p>
-       需量測 memory、draw/material variation、mipmap bleeding 與 art-direction 彈性。 風險檢查至少包含非破壞性、拓樸與 UV 可預測性、bake/材質 parity、批次穩定性、版本相容與 artist 可修正性，並以返工時間而非單次成功率作為主要指標。 驗收時應保存失敗樣本與基準結果，避免只因單一成功案例就提高 production readiness 判定。
+       要把 UV authoring、palette layout、mipmap padding 與材質變體治理標準化，並量測 memory、draw/material variation 與遠距 bleeding。
       </p>
      </div>
     </details>
@@ -503,28 +455,22 @@
      </summary>
      <div class="detail-body">
       <h4>
-       Production Delta
+       Photo Projection
       </h4>
       <p>
-       對寫實 prop/environment 的 photo projection 可減少 Maya↔Photoshop 往返。 這次「Matcha for Maya：Camera Match + Projection Painting」的可驗證變化可由摘要交叉確認：把 reference camera 管理、投影貼圖、layer 與 PSD 匯出整合成 Maya 內的 photo-based workflow。 從 production 角度應把評估焦點放在實際輸出、可重複性與是否減少既有人工步驟，而不是只看展示效果。
+       Matcha 把 reference camera、camera match、projection painting 與 layer 管理放在 Maya 內，適合寫實 prop/environment 的 photo-based workflow。
       </p>
       <h4>
-       Why It Matters
+       Texture Pipeline
       </h4>
       <p>
-       對建模與資產製作而言，價值主要反映在可編輯性、重工次數、交付一致性與 artist iteration 速度，尤其適合用同一測試資產量化節省的人工步驟。 對「Matcha for Maya：Camera Match + Projection Painting」而言，應優先判斷它影響的是前期探索、資產製作、動作處理、引擎整合還是交付維護，並用可量化的 iteration/cleanup/效能成本決定是否值得導入。
+       Pro 版能整理 UV/Projection Layers 與 mask 後輸出 PSD，可減少 Maya↔Photoshop 為投影校正反覆切換的摩擦。
       </p>
       <h4>
-       Pipeline Impact
+       實測
       </h4>
       <p>
-       Pro 版把 UV/Projection Layers 與 mask 組織後輸出 PSD。 建議直接放入既有 high/low、retopo、UV、bake、texture 與 engine import SOP，使用同一代表性資產比較操作步數、返工時間、拓樸/貼圖一致性與交付格式。 建議先在非破壞的測試分支完成端到端驗證，再決定是否納入正式 SOP 與團隊工具鏈。
-      </p>
-      <h4>
-       Limitations / Risk
-      </h4>
-      <p>
-       要測色彩空間、鏡頭校正誤差、遮擋面與多鏡頭拼接 seam。 風險檢查至少包含非破壞性、拓樸與 UV 可預測性、bake/材質 parity、批次穩定性、版本相容與 artist 可修正性，並以返工時間而非單次成功率作為主要指標。 驗收時應保存失敗樣本與基準結果，避免只因單一成功案例就提高 production readiness 判定。
+       要測色彩空間、鏡頭校正誤差、遮擋面、多鏡頭拼接 seam、PSD round-trip 與 projection layer 的可維護性。
       </p>
      </div>
     </details>
@@ -553,28 +499,22 @@
      </summary>
      <div class="detail-body">
       <h4>
-       Production Delta
+       Stylized Prop
       </h4>
       <p>
-       適合檢查 Blender 接替傳統 DCC 的 prop production 可行性。 這次「Stylized Electric Guitar：Blender Prop 全流程」的可驗證變化可由摘要交叉確認：以卡通吉他為例，把 modeling、texturing、outline 與特殊材質整合成 stylized prop pipeline。 從 production 角度應把評估焦點放在實際輸出、可重複性與是否減少既有人工步驟，而不是只看展示效果。
+       案例以卡通電吉他串起 Blender modeling、texturing、outline 與特殊材質，可作為小型 stylized prop 的完整練習資產。
       </p>
       <h4>
-       Why It Matters
+       NPR Pipeline
       </h4>
       <p>
-       對建模與資產製作而言，價值主要反映在可編輯性、重工次數、交付一致性與 artist iteration 速度，尤其適合用同一測試資產量化節省的人工步驟。 對「Stylized Electric Guitar：Blender Prop 全流程」而言，應優先判斷它影響的是前期探索、資產製作、動作處理、引擎整合還是交付維護，並用可量化的 iteration/cleanup/效能成本決定是否值得導入。
+       stylized outline、液體/特殊材質與幾何輪廓需要一起設計，能觀察 NPR 外觀不是單靠最後一層 shader 解決。
       </p>
       <h4>
-       Pipeline Impact
+       實作參考
       </h4>
       <p>
-       stylized outline 與液體材質必須和幾何輪廓共同設計。 建議直接放入既有 high/low、retopo、UV、bake、texture 與 engine import SOP，使用同一代表性資產比較操作步數、返工時間、拓樸/貼圖一致性與交付格式。 建議先在非破壞的測試分支完成端到端驗證，再決定是否納入正式 SOP 與團隊工具鏈。
-      </p>
-      <h4>
-       Limitations / Risk
-      </h4>
-      <p>
-       可抽成 blockout、UV、texture、NPR presentation 的小型測試資產。 風險檢查至少包含非破壞性、拓樸與 UV 可預測性、bake/材質 parity、批次穩定性、版本相容與 artist 可修正性，並以返工時間而非單次成功率作為主要指標。 驗收時應保存失敗樣本與基準結果，避免只因單一成功案例就提高 production readiness 判定。
+       適合抽成 blockout、UV、texture、NPR presentation 的短流程測試，用來比較 Blender 與原本 DCC 的 prop 製作速度。
       </p>
      </div>
     </details>

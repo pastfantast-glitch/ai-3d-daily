@@ -6,8 +6,8 @@
   <title>
    新技術 / Case｜2026-09-02｜AI 3D Daily
   </title>
-  <link href="../../styles.css?v=20260902-r1" rel="stylesheet"/>
-  <link href="../../category.css?v=20260902-r1" rel="stylesheet"/>
+  <link href="../../styles.css?v=20260902-r2" rel="stylesheet"/>
+  <link href="../../category.css?v=20260902-r2" rel="stylesheet"/>
  </head>
  <body class="category-page" data-category="emerging-case" data-report-date="2026-09-02">
   <header class="category-hero">
@@ -81,28 +81,22 @@
      </summary>
      <div class="detail-body">
       <h4>
-       Production Delta
+       Dynamic Reconstruction
       </h4>
       <p>
-       輸入是 monocular video，目標是可自由視角的動態 3D 表示。 這次「World from Motion：單目影片生成可自由視角 Dynamic 3DGS」的可驗證變化可由摘要交叉確認：NVIDIA/Stanford 等研究用 video prior 修正 monocular reconstruction，再蒸餾回一致 dynamic Gaussian scene。 從 production 角度應把評估焦點放在實際輸出、可重複性與是否減少既有人工步驟，而不是只看展示效果。
+       輸入只需 monocular video，研究利用 video prior 補足 unseen region，再蒸餾成可自由視角的 dynamic Gaussian scene。
       </p>
       <h4>
-       Why It Matters
+       Production Potential
       </h4>
       <p>
-       這類新技術的價值主要是指出未來可能改變 capture、world building、內容表示或互動方式的路線；現階段更適合作為技術雷達與原型驗證，而非直接假定可量產。 對「World from Motion：單目影片生成可自由視角 Dynamic 3DGS」而言，應優先判斷它影響的是前期探索、資產製作、動作處理、引擎整合還是交付維護，並用可量化的 iteration/cleanup/效能成本決定是否值得導入。
+       這條路線對低門檻動態 capture、virtual production 與 previz 很有潛力，因為不必先建立完整多機位或 game-ready mesh。
       </p>
       <h4>
-       Pipeline Impact
+       成熟度判斷
       </h4>
       <p>
-       把 video generation 的 unseen-region 能力蒸餾回 3DGS 是關鍵。 建議先以隔離的 R&amp;D prototype 驗證輸入需求、輸出表示、重建/生成時間與可控性，再評估是否能轉成 mesh、animation、texture 或可被 engine 消費的中介資料。 建議先在非破壞的測試分支完成端到端驗證，再決定是否納入正式 SOP 與團隊工具鏈。
-      </p>
-      <h4>
-       Limitations / Risk
-      </h4>
-      <p>
-       對 capture/virtual production 有潛力，但目前不是 game-ready mesh pipeline。 風險主要在研究與 production 間的成熟度落差：需要區分論文指標與可操作工具，並檢查資料需求、時間穩定性、遮擋/長序列、輸出容量、streaming 與可編輯程度。 驗收時應保存失敗樣本與基準結果，避免只因單一成功案例就提高 production readiness 判定。
+       目前輸出仍是 dynamic 3DGS，不是可直接 rig、碰撞或做標準 LOD 的遊戲資產；應優先測時間一致性、遮擋與可轉換程度。
       </p>
      </div>
     </details>
@@ -142,28 +136,22 @@
      </summary>
      <div class="detail-body">
       <h4>
-       Production Delta
+       World Model
       </h4>
       <p>
-       foundation-feature Gaussian tokenizer 把視語特徵落到 3D primitives。 這次「GaussianDWM++：Language-Grounded 3D Gaussian World Model」的可驗證變化可由摘要交叉確認：把語言理解、3D Gaussian semantic field、場景編輯與 4D generation 統一到 driving world model。 從 production 角度應把評估焦點放在實際輸出、可重複性與是否減少既有人工步驟，而不是只看展示效果。
+       GaussianDWM++ 把語言 grounding、3D Gaussian semantic field、場景編輯與 4D generation 放進同一 driving world model。
       </p>
       <h4>
-       Why It Matters
+       Semantic Editing
       </h4>
       <p>
-       這類新技術的價值主要是指出未來可能改變 capture、world building、內容表示或互動方式的路線；現階段更適合作為技術雷達與原型驗證，而非直接假定可量產。 對「GaussianDWM++：Language-Grounded 3D Gaussian World Model」而言，應優先判斷它影響的是前期探索、資產製作、動作處理、引擎整合還是交付維護，並用可量化的 iteration/cleanup/效能成本決定是否值得導入。
+       instruction-controlled weather 與動態車輛編輯代表 world model 開始從純生成走向有語意的場景控制，對未來 game world authoring 值得追。
       </p>
       <h4>
-       Pipeline Impact
+       成熟度判斷
       </h4>
       <p>
-       支援 weather 與動態車輛等 instruction-controlled editing。 建議先以隔離的 R&amp;D prototype 驗證輸入需求、輸出表示、重建/生成時間與可控性，再評估是否能轉成 mesh、animation、texture 或可被 engine 消費的中介資料。 建議先在非破壞的測試分支完成端到端驗證，再決定是否納入正式 SOP 與團隊工具鏈。
-      </p>
-      <h4>
-       Limitations / Risk
-      </h4>
-      <p>
-       雖針對 driving，但對 game world semantic editing 的技術路線值得追。 風險主要在研究與 production 間的成熟度落差：需要區分論文指標與可操作工具，並檢查資料需求、時間穩定性、遮擋/長序列、輸出容量、streaming 與可編輯程度。 驗收時應保存失敗樣本與基準結果，避免只因單一成功案例就提高 production readiness 判定。
+       目前仍應視為研究路線；實務上要確認輸出表示、長序列一致性、可編輯程度，以及能否轉成 engine 可消費的資料。
       </p>
      </div>
     </details>
@@ -192,28 +180,22 @@
      </summary>
      <div class="detail-body">
       <h4>
-       Production Delta
+       Dynamic World Generation
       </h4>
       <p>
-       單圖輸入就試圖生成 scene-scale dynamics，而不只靜態 3D。 這次「LivingWorld：單張圖生成可擴張動態 4D 世界」的可驗證變化可由摘要交叉確認：用全域 motion field 維持雲、水、煙等環境動態，在場景擴張時保持方向與尺度一致。 從 production 角度應把評估焦點放在實際輸出、可重複性與是否減少既有人工步驟，而不是只看展示效果。
+       LivingWorld 從單張圖出發，用 global motion field 維持雲、水、煙等環境動態，在場景擴張時保持方向與尺度一致。
       </p>
       <h4>
-       Why It Matters
+       Iteration Potential
       </h4>
       <p>
-       這類新技術的價值主要是指出未來可能改變 capture、world building、內容表示或互動方式的路線；現階段更適合作為技術雷達與原型驗證，而非直接假定可量產。 對「LivingWorld：單張圖生成可擴張動態 4D 世界」而言，應優先判斷它影響的是前期探索、資產製作、動作處理、引擎整合還是交付維護，並用可量化的 iteration/cleanup/效能成本決定是否值得導入。
+       論文報告高階 GPU 上的 expansion 接近秒級到十秒級，這使它更接近互動 previz/world exploration，而非離線長時間生成。
       </p>
       <h4>
-       Pipeline Impact
+       成熟度判斷
       </h4>
       <p>
-       論文報告 RTX5090 上單次 expansion 約秒級到十秒級流程，接近互動 iteration。 建議先以隔離的 R&amp;D prototype 驗證輸入需求、輸出表示、重建/生成時間與可控性，再評估是否能轉成 mesh、animation、texture 或可被 engine 消費的中介資料。 建議先在非破壞的測試分支完成端到端驗證，再決定是否納入正式 SOP 與團隊工具鏈。
-      </p>
-      <h4>
-       Limitations / Risk
-      </h4>
-      <p>
-       可作為未來 environment previz/world generation 方向，尚非可直接部署的 engine asset。 風險主要在研究與 production 間的成熟度落差：需要區分論文指標與可操作工具，並檢查資料需求、時間穩定性、遮擋/長序列、輸出容量、streaming 與可編輯程度。 驗收時應保存失敗樣本與基準結果，避免只因單一成功案例就提高 production readiness 判定。
+       目前仍不是可直接部署的 engine asset；需要確認輸出表示、可控性、長時間一致性，以及能否轉成 mesh、texture 或動畫資料。
       </p>
      </div>
     </details>
@@ -242,28 +224,22 @@
      </summary>
      <div class="detail-body">
       <h4>
-       Production Delta
+       Volumetric Capture
       </h4>
       <p>
-       少相機 capture 若能維持幾何品質，會直接降低 volumetric capture 成本。 這次「4C4D：四台相機完成 4D Gaussian Splatting」的可驗證變化可由摘要交叉確認：把過去數十到上百相機的 4D capture 需求壓到四台 portable cameras。 從 production 角度應把評估焦點放在實際輸出、可重複性與是否減少既有人工步驟，而不是只看展示效果。
+       4C4D 把常見需要數十到上百相機的 4D capture 壓到四台 portable cameras，核心價值是降低 capture setup 成本。
       </p>
       <h4>
-       Why It Matters
+       Sparse-View Reconstruction
       </h4>
       <p>
-       這類新技術的價值主要是指出未來可能改變 capture、world building、內容表示或互動方式的路線；現階段更適合作為技術雷達與原型驗證，而非直接假定可量產。 對「4C4D：四台相機完成 4D Gaussian Splatting」而言，應優先判斷它影響的是前期探索、資產製作、動作處理、引擎整合還是交付維護，並用可量化的 iteration/cleanup/效能成本決定是否值得導入。
+       Neural Decaying Function 用來強化 sparse-view geometry learning；若品質能維持，這會改變小型團隊建立 volumetric performance 的門檻。
       </p>
       <h4>
-       Pipeline Impact
+       實測風險
       </h4>
       <p>
-       Neural Decaying Function 用來強化 sparse-view geometry learning。 建議先以隔離的 R&amp;D prototype 驗證輸入需求、輸出表示、重建/生成時間與可控性，再評估是否能轉成 mesh、animation、texture 或可被 engine 消費的中介資料。 建議先在非破壞的測試分支完成端到端驗證，再決定是否納入正式 SOP 與團隊工具鏈。
-      </p>
-      <h4>
-       Limitations / Risk
-      </h4>
-      <p>
-       production 要驗快速動作、遮擋、背景干擾與時間同步容錯。 風險主要在研究與 production 間的成熟度落差：需要區分論文指標與可操作工具，並檢查資料需求、時間穩定性、遮擋/長序列、輸出容量、streaming 與可編輯程度。 驗收時應保存失敗樣本與基準結果，避免只因單一成功案例就提高 production readiness 判定。
+       production 要驗快速動作、遮擋、背景干擾、時間同步與四機 calibration 容錯，因為少機位對失敗畫格會更敏感。
       </p>
      </div>
     </details>
@@ -292,28 +268,22 @@
      </summary>
      <div class="detail-body">
       <h4>
-       Production Delta
+       4D Cognition
       </h4>
       <p>
-       研究重點從外觀一致性提升到局部動態拓樸與未來狀態 reasoning。 這次「ST-Gen4D：把時空認知嵌入 4D World Model」的可驗證變化可由摘要交叉確認：以 global appearance graph + local dynamic graph 建立 4D cognition，再引導 Gaussian generation。 從 production 角度應把評估焦點放在實際輸出、可重複性與是否減少既有人工步驟，而不是只看展示效果。
+       ST-Gen4D 以 global appearance graph 與 local dynamic graph 建立時空認知，再用來引導 Gaussian generation。
       </p>
       <h4>
-       Why It Matters
+       Interactive World Potential
       </h4>
       <p>
-       這類新技術的價值主要是指出未來可能改變 capture、world building、內容表示或互動方式的路線；現階段更適合作為技術雷達與原型驗證，而非直接假定可量產。 對「ST-Gen4D：把時空認知嵌入 4D World Model」而言，應優先判斷它影響的是前期探索、資產製作、動作處理、引擎整合還是交付維護，並用可量化的 iteration/cleanup/效能成本決定是否值得導入。
+       研究焦點從外觀一致性往局部動態拓樸與未來狀態 reasoning 前進，若成熟會比單純 camera flythrough 更接近可互動 world generation。
       </p>
       <h4>
-       Pipeline Impact
+       研究判斷
       </h4>
       <p>
-       如果成熟，可影響可互動 world generation 而非只做 camera flythrough。 建議先以隔離的 R&amp;D prototype 驗證輸入需求、輸出表示、重建/生成時間與可控性，再評估是否能轉成 mesh、animation、texture 或可被 engine 消費的中介資料。 建議先在非破壞的測試分支完成端到端驗證，再決定是否納入正式 SOP 與團隊工具鏈。
-      </p>
-      <h4>
-       Limitations / Risk
-      </h4>
-      <p>
-       目前評估重點是結構一致性、可控性與可導出表示。 風險主要在研究與 production 間的成熟度落差：需要區分論文指標與可操作工具，並檢查資料需求、時間穩定性、遮擋/長序列、輸出容量、streaming 與可編輯程度。 驗收時應保存失敗樣本與基準結果，避免只因單一成功案例就提高 production readiness 判定。
+       目前應先看結構一致性、可控性、長序列與可導出表示，確認 cognition 結果能否轉成 production 可編輯的中介資料。
       </p>
      </div>
     </details>
@@ -342,28 +312,22 @@
      </summary>
      <div class="detail-body">
       <h4>
-       Production Delta
+       4D Face Reconstruction
       </h4>
       <p>
-       canonical coordinate 讓不同表情/視角映射到同一面部空間。 這次「Face Anything：任意序列的 4D Face Reconstruction」的可驗證變化可由摘要交叉確認：以 canonical facial coordinates + depth 做 temporally stable face geometry 與 dense tracking。 從 production 角度應把評估焦點放在實際輸出、可重複性與是否減少既有人工步驟，而不是只看展示效果。
+       Face Anything 用 canonical facial coordinates + depth，把不同表情與視角映射到同一面部空間，以提高時間穩定的 geometry 與 dense tracking。
       </p>
       <h4>
-       Why It Matters
+       Capture Potential
       </h4>
       <p>
-       這類新技術的價值主要是指出未來可能改變 capture、world building、內容表示或互動方式的路線；現階段更適合作為技術雷達與原型驗證，而非直接假定可量產。 對「Face Anything：任意序列的 4D Face Reconstruction」而言，應優先判斷它影響的是前期探索、資產製作、動作處理、引擎整合還是交付維護，並用可量化的 iteration/cleanup/效能成本決定是否值得導入。
+       若穩定，可用於 facial capture、tracking 與 training-data generation，尤其對來源影像不受嚴格 capture setup 控制的情境有價值。
       </p>
       <h4>
-       Pipeline Impact
+       導入風險
       </h4>
       <p>
-       若穩定可支援 facial capture、tracking 與 training-data generation。 建議先以隔離的 R&amp;D prototype 驗證輸入需求、輸出表示、重建/生成時間與可控性，再評估是否能轉成 mesh、animation、texture 或可被 engine 消費的中介資料。 建議先在非破壞的測試分支完成端到端驗證，再決定是否納入正式 SOP 與團隊工具鏈。
-      </p>
-      <h4>
-       Limitations / Risk
-      </h4>
-      <p>
-       production 導入仍需檢查遮擋、髮絲、極端表情與輸出 topology/rig 轉換。 風險主要在研究與 production 間的成熟度落差：需要區分論文指標與可操作工具，並檢查資料需求、時間穩定性、遮擋/長序列、輸出容量、streaming 與可編輯程度。 驗收時應保存失敗樣本與基準結果，避免只因單一成功案例就提高 production readiness 判定。
+       仍需檢查遮擋、髮絲、極端表情、長序列 drift，以及輸出如何轉成標準 topology、blendshape 或 rig。
       </p>
      </div>
     </details>
@@ -392,28 +356,22 @@
      </summary>
      <div class="detail-body">
       <h4>
-       Production Delta
+       Long-Sequence 4D
       </h4>
       <p>
-       針對長時間與大範圍動態重建的 scalability，而非短 clip demo。 這次「MotionScale：可擴展長序列 4D Gaussian Reconstruction」的可驗證變化可由摘要交叉確認：以 cluster-centric motion basis 與 progressive propagation 處理大場景、長序列與 transient shadow。 從 production 角度應把評估焦點放在實際輸出、可重複性與是否減少既有人工步驟，而不是只看展示效果。
+       MotionScale 專門處理大場景與長序列，而不是短 clip demo，透過 cluster-centric motion basis 與 progressive propagation 擴張 reconstruction。
       </p>
       <h4>
-       Why It Matters
+       Production Relevance
       </h4>
       <p>
-       這類新技術的價值主要是指出未來可能改變 capture、world building、內容表示或互動方式的路線；現階段更適合作為技術雷達與原型驗證，而非直接假定可量產。 對「MotionScale：可擴展長序列 4D Gaussian Reconstruction」而言，應優先判斷它影響的是前期探索、資產製作、動作處理、引擎整合還是交付維護，並用可量化的 iteration/cleanup/效能成本決定是否值得導入。
+       background extension 與 foreground motion 分階段優化更接近實際 capture 問題，並把 transient shadow 這類非幾何變化納入處理。
       </p>
       <h4>
-       Pipeline Impact
+       評估重點
       </h4>
       <p>
-       background extension 與 foreground motion 分階段優化更接近實務問題。 建議先以隔離的 R&amp;D prototype 驗證輸入需求、輸出表示、重建/生成時間與可控性，再評估是否能轉成 mesh、animation、texture 或可被 engine 消費的中介資料。 建議先在非破壞的測試分支完成端到端驗證，再決定是否納入正式 SOP 與團隊工具鏈。
-      </p>
-      <h4>
-       Limitations / Risk
-      </h4>
-      <p>
-       值得關注 capture cleanup、camera refine 與 temporal stability 的成本。 風險主要在研究與 production 間的成熟度落差：需要區分論文指標與可操作工具，並檢查資料需求、時間穩定性、遮擋/長序列、輸出容量、streaming 與可編輯程度。 驗收時應保存失敗樣本與基準結果，避免只因單一成功案例就提高 production readiness 判定。
+       值得關注 capture cleanup、camera refine、長序列 temporal stability、資料體積與 streaming，這些會決定它是否能超越研究展示。
       </p>
      </div>
     </details>
@@ -442,28 +400,22 @@
      </summary>
      <div class="detail-body">
       <h4>
-       Production Delta
+       4D Distribution
       </h4>
       <p>
-       重點從 capture/render 進一步走到 distribution。 這次「Gracia：4DGS 像影片一樣瀏覽器串流」的可驗證變化可由摘要交叉確認：4D Gaussian performance capture 可在 browser/headset/phone 串流，直接碰到 bandwidth 與 delivery 問題。 從 production 角度應把評估焦點放在實際輸出、可重複性與是否減少既有人工步驟，而不是只看展示效果。
+       Gracia 把 4D Gaussian performance capture 從 capture/render 推到 browser、headset、phone 的串流與 delivery 問題。
       </p>
       <h4>
-       Why It Matters
+       Production Value
       </h4>
       <p>
-       這類新技術的價值主要是指出未來可能改變 capture、world building、內容表示或互動方式的路線；現階段更適合作為技術雷達與原型驗證，而非直接假定可量產。 對「Gracia：4DGS 像影片一樣瀏覽器串流」而言，應優先判斷它影響的是前期探索、資產製作、動作處理、引擎整合還是交付維護，並用可量化的 iteration/cleanup/效能成本決定是否值得導入。
+       對 virtual human、XR performance 與 interactive video，能像影片一樣 delivery 才有實際部署意義；這一步比單機 demo 更接近產品化。
       </p>
       <h4>
-       Pipeline Impact
+       Bandwidth / Quality
       </h4>
       <p>
-       高頻寬需求仍明顯，代表 production 需把 compression/quality ladder 納入規格。 建議先以隔離的 R&amp;D prototype 驗證輸入需求、輸出表示、重建/生成時間與可控性，再評估是否能轉成 mesh、animation、texture 或可被 engine 消費的中介資料。 建議先在非破壞的測試分支完成端到端驗證，再決定是否納入正式 SOP 與團隊工具鏈。
-      </p>
-      <h4>
-       Limitations / Risk
-      </h4>
-      <p>
-       對 virtual human、XR performance、interactive video 有直接參考價值。 風險主要在研究與 production 間的成熟度落差：需要區分論文指標與可操作工具，並檢查資料需求、時間穩定性、遮擋/長序列、輸出容量、streaming 與可編輯程度。 驗收時應保存失敗樣本與基準結果，避免只因單一成功案例就提高 production readiness 判定。
+       高頻寬需求仍明顯，production 需把 compression、quality ladder、device decoding 與 latency 納入規格，不能只看最佳網路展示。
       </p>
      </div>
     </details>
@@ -492,28 +444,22 @@
      </summary>
      <div class="detail-body">
       <h4>
-       Production Delta
+       Metric 3DGS
       </h4>
       <p>
-       SHARP 的 metric scale 對相機移動與空間整合比純視覺 splat 更有意義。 這次「Apple SHARP × Particle Generator：單圖轉 Metric 3DGS」的可驗證變化可由摘要交叉確認：把單張影像回歸成 metric Gaussian representation，再用粒子方式 art-direct 其視覺。 從 production 角度應把評估焦點放在實際輸出、可重複性與是否減少既有人工步驟，而不是只看展示效果。
+       Apple SHARP 把單張影像回歸成 metric Gaussian representation，metric scale 對相機移動與空間整合比純視覺 splat 更有 production 意義。
       </p>
       <h4>
-       Why It Matters
+       Procedural Visual
       </h4>
       <p>
-       這類新技術的價值主要是指出未來可能改變 capture、world building、內容表示或互動方式的路線；現階段更適合作為技術雷達與原型驗證，而非直接假定可量產。 對「Apple SHARP × Particle Generator：單圖轉 Metric 3DGS」而言，應優先判斷它影響的是前期探索、資產製作、動作處理、引擎整合還是交付維護，並用可量化的 iteration/cleanup/效能成本決定是否值得導入。
+       案例再把 Gaussian 當粒子 primitive 進行 art-direct，顯示 3DGS 不只用來重建，也能作為程序化視覺素材。
       </p>
       <h4>
-       Pipeline Impact
+       限制
       </h4>
       <p>
-       案例展示 3DGS 不只重建，也能作為可程序化的視覺 primitive。 建議先以隔離的 R&amp;D prototype 驗證輸入需求、輸出表示、重建/生成時間與可控性，再評估是否能轉成 mesh、animation、texture 或可被 engine 消費的中介資料。 建議先在非破壞的測試分支完成端到端驗證，再決定是否納入正式 SOP 與團隊工具鏈。
-      </p>
-      <h4>
-       Limitations / Risk
-      </h4>
-      <p>
-       限制是資料體積與目前較偏展示性，需要壓縮/streaming 才能擴大應用。 風險主要在研究與 production 間的成熟度落差：需要區分論文指標與可操作工具，並檢查資料需求、時間穩定性、遮擋/長序列、輸出容量、streaming 與可編輯程度。 驗收時應保存失敗樣本與基準結果，避免只因單一成功案例就提高 production readiness 判定。
+       目前仍偏展示性且資料體積是主要問題；若要擴大到 realtime content，需要壓縮、streaming、LOD 與 interaction 規格。
       </p>
      </div>
     </details>
@@ -542,28 +488,22 @@
      </summary>
      <div class="detail-body">
       <h4>
-       Production Delta
+       3DGS Presentation
       </h4>
       <p>
-       技術不是 mesh generation，而是 3DGS 空間展示與視覺化。 這次「Inversphere：把 360° 3DGS 世界折進球體」的可驗證變化可由摘要交叉確認：以空間 warping 呈現完整 3D Gaussian environment，探索 splat content 的新展示與導航方式。 從 production 角度應把評估焦點放在實際輸出、可重複性與是否減少既有人工步驟，而不是只看展示效果。
+       Inversphere 不是 mesh generation，而是透過空間 warping 把完整 360° Gaussian environment 折進球體，探索新的內容展示方式。
       </p>
       <h4>
-       Why It Matters
+       Use Case
       </h4>
       <p>
-       這類新技術的價值主要是指出未來可能改變 capture、world building、內容表示或互動方式的路線；現階段更適合作為技術雷達與原型驗證，而非直接假定可量產。 對「Inversphere：把 360° 3DGS 世界折進球體」而言，應優先判斷它影響的是前期探索、資產製作、動作處理、引擎整合還是交付維護，並用可量化的 iteration/cleanup/效能成本決定是否值得導入。
+       可延伸到 memory bubble、map preview、XR gallery 等 presentation；價值在空間瀏覽與視覺化，而不是傳統 asset production。
       </p>
       <h4>
-       Pipeline Impact
+       Production 限制
       </h4>
       <p>
-       可延伸到 memory bubble、map preview、XR gallery 等 presentation。 建議先以隔離的 R&amp;D prototype 驗證輸入需求、輸出表示、重建/生成時間與可控性，再評估是否能轉成 mesh、animation、texture 或可被 engine 消費的中介資料。 建議先在非破壞的測試分支完成端到端驗證，再決定是否納入正式 SOP 與團隊工具鏈。
-      </p>
-      <h4>
-       Limitations / Risk
-      </h4>
-      <p>
-       若進 production 要評估 distortion、interaction、LOD 與 streaming。 風險主要在研究與 production 間的成熟度落差：需要區分論文指標與可操作工具，並檢查資料需求、時間穩定性、遮擋/長序列、輸出容量、streaming 與可編輯程度。 驗收時應保存失敗樣本與基準結果，避免只因單一成功案例就提高 production readiness 判定。
+       若進產品，需要評估 distortion、interaction、LOD、streaming 與不同視角的可讀性，避免特殊效果只在單一展示鏡頭成立。
       </p>
      </div>
     </details>

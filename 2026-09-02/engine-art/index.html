@@ -6,8 +6,8 @@
   <title>
    遊戲引擎｜2026-09-02｜AI 3D Daily
   </title>
-  <link href="../../styles.css?v=20260902-r1" rel="stylesheet"/>
-  <link href="../../category.css?v=20260902-r1" rel="stylesheet"/>
+  <link href="../../styles.css?v=20260902-r2" rel="stylesheet"/>
+  <link href="../../category.css?v=20260902-r2" rel="stylesheet"/>
  </head>
  <body class="category-page" data-category="engine-art" data-report-date="2026-09-02">
   <header class="category-hero">
@@ -81,28 +81,22 @@
      </summary>
      <div class="detail-body">
       <h4>
-       Production Delta
+       Lighting Pipeline
       </h4>
       <p>
-       把 baked lighting 與未來 Surface Cache GI 拉到同一 rendering technology stack。 這次「Unity 6.6 Compute Light Baker」的可驗證變化可由摘要交叉確認：新 light baker 以 Compute Shader + Unified Ray Tracing 產生 lightmap、probe 與 APV 資料。 從 production 角度應把評估焦點放在實際輸出、可重複性與是否減少既有人工步驟，而不是只看展示效果。
+       Unity 6.6 把 baked lighting 建立在 Compute Shader 與 Unified Ray Tracing 上，lightmap、probe 與 APV 走向同一套技術基礎。
       </p>
       <h4>
-       Why It Matters
+       Production Value
       </h4>
       <p>
-       對引擎端美術而言，價值在於能否改善即時畫面、工具效率或效能預算，同時維持不同平台、品質層級與既有內容管線的一致性。 對「Unity 6.6 Compute Light Baker」而言，應優先判斷它影響的是前期探索、資產製作、動作處理、引擎整合還是交付維護，並用可量化的 iteration/cleanup/效能成本決定是否值得導入。
+       對大型 URP/HDRP 場景，真正價值在 bake iteration、noise 收斂與不同硬體的穩定性；若時間下降，燈光美術的反覆成本會直接改善。
       </p>
       <h4>
-       Pipeline Impact
+       升版測試
       </h4>
       <p>
-       對 URP 場景可直接測 bake time、noise、lightmap parity 與 GPU vendor 差異。 建議建立代表性場景或角色 benchmark，從 DCC 匯入後在 Unreal/Unity 內比較畫質、shader/lighting 行為、CPU/GPU 成本、記憶體與 scalability，並保留可回退方案。 建議先在非破壞的測試分支完成端到端驗證，再決定是否納入正式 SOP 與團隊工具鏈。
-      </p>
-      <h4>
-       Limitations / Risk
-      </h4>
-      <p>
-       目前在 6.6 alpha/beta 路線，正式案應保留 Progressive Lightmapper fallback。 風險檢查至少包含 shader compile、CPU/GPU frame cost、記憶體、不同平台與 scalability、LOD/Nanite/VSM/Lumen 等交互影響，以及升版後 regression 與既有內容 fallback。 驗收時應保存失敗樣本與基準結果，避免只因單一成功案例就提高 production readiness 判定。
+       目前仍應以代表性場景比較 bake time、noise、lightmap parity、APV 結果與 GPU vendor 差異，正式案保留既有 lightmapper fallback。
       </p>
      </div>
     </details>
@@ -142,28 +136,22 @@
      </summary>
      <div class="detail-body">
       <h4>
-       Production Delta
+       Lighting / Rendering
       </h4>
       <p>
-       固定 rays-per-pixel 的架構讓大量 local lights 成本更可預測。 這次「UE5.8 MegaLights：Production Ready」的可驗證變化可由摘要交叉確認：MegaLights 在 5.8 進入 production-ready，加入 translucency、volumetric、debug views 與 60fps 導向優化。 從 production 角度應把評估焦點放在實際輸出、可重複性與是否減少既有人工步驟，而不是只看展示效果。
+       MegaLights 在 5.8 進入 production-ready，並補上 translucency、volumetric、IES 與 debug views，實際可用範圍比早期 preview 完整。
       </p>
       <h4>
-       Why It Matters
+       Performance Budget
       </h4>
       <p>
-       對引擎端美術而言，價值在於能否改善即時畫面、工具效率或效能預算，同時維持不同平台、品質層級與既有內容管線的一致性。 對「UE5.8 MegaLights：Production Ready」而言，應優先判斷它影響的是前期探索、資產製作、動作處理、引擎整合還是交付維護，並用可量化的 iteration/cleanup/效能成本決定是否值得導入。
+       固定 rays-per-pixel 讓大量 local lights 的成本更容易預測，對需要密集燈光但仍追 60fps 的場景特別重要。
       </p>
       <h4>
-       Pipeline Impact
+       平台實測
       </h4>
       <p>
-       支援 fog/translucency/IES 後，對實際場景的可用範圍比早期 preview 更完整。 建議建立代表性場景或角色 benchmark，從 DCC 匯入後在 Unreal/Unity 內比較畫質、shader/lighting 行為、CPU/GPU 成本、記憶體與 scalability，並保留可回退方案。 建議先在非破壞的測試分支完成端到端驗證，再決定是否納入正式 SOP 與團隊工具鏈。
-      </p>
-      <h4>
-       Limitations / Risk
-      </h4>
-      <p>
-       需要用目標主機測 noise、complexity hotspot、RT/VSM shadow method 與 scalability。 風險檢查至少包含 shader compile、CPU/GPU frame cost、記憶體、不同平台與 scalability、LOD/Nanite/VSM/Lumen 等交互影響，以及升版後 regression 與既有內容 fallback。 驗收時應保存失敗樣本與基準結果，避免只因單一成功案例就提高 production readiness 判定。
+       應在目標主機測 noise、complexity hotspot、RT/VSM shadow method、fog/translucency 與不同 scalability，確認畫質與 frame budget。
       </p>
      </div>
     </details>
@@ -203,28 +191,22 @@
      </summary>
      <div class="detail-body">
       <h4>
-       Production Delta
+       Procedural Environment
       </h4>
       <p>
-       HDA 用 curve 與參數驅動尺寸、數量、破損與 polycount，適合把環境造型變成可重用生成器。 這次「Procedural Stone Passage：Houdini HDA × UE5 即時材質」的可驗證變化可由摘要交叉確認：以自訂 HDA 驅動石材生成、損壞、polycount 與散佈，再把 Designer maps 重建成 UE5 procedural smart material。 從 production 角度應把評估焦點放在實際輸出、可重複性與是否減少既有人工步驟，而不是只看展示效果。
+       HDA 以 curve 與參數控制石材尺寸、數量、破損與 polycount，把原本一次性的環境造型轉成可重用生成器。
       </p>
       <h4>
-       Why It Matters
+       Material Pipeline
       </h4>
       <p>
-       對引擎端美術而言，價值在於能否改善即時畫面、工具效率或效能預算，同時維持不同平台、品質層級與既有內容管線的一致性。 對「Procedural Stone Passage：Houdini HDA × UE5 即時材質」而言，應優先判斷它影響的是前期探索、資產製作、動作處理、引擎整合還是交付維護，並用可量化的 iteration/cleanup/效能成本決定是否值得導入。
+       Substance Designer base maps 再於 UE5 重建 procedural smart material，可降低 unique texture 依賴並讓變體更容易維護。
       </p>
       <h4>
-       Pipeline Impact
+       導入測試
       </h4>
       <p>
-       Substance Designer base maps 再於 UE5 material graph 重建 procedural smart material，減少 unique texture 依賴。 建議建立代表性場景或角色 benchmark，從 DCC 匯入後在 Unreal/Unity 內比較畫質、shader/lighting 行為、CPU/GPU 成本、記憶體與 scalability，並保留可回退方案。 建議先在非破壞的測試分支完成端到端驗證，再決定是否納入正式 SOP 與團隊工具鏈。
-      </p>
-      <h4>
-       Limitations / Risk
-      </h4>
-      <p>
-       應測 HDA cook time、instance/mesh 輸出、材質 instruction 與 LOD/Nanite 交付成本。 風險檢查至少包含 shader compile、CPU/GPU frame cost、記憶體、不同平台與 scalability、LOD/Nanite/VSM/Lumen 等交互影響，以及升版後 regression 與既有內容 fallback。 驗收時應保存失敗樣本與基準結果，避免只因單一成功案例就提高 production readiness 判定。
+       應測 HDA cook time、instance/mesh 輸出、材質 instruction、LOD/Nanite 交付與 artist override，確認程序化沒有把成本轉嫁到引擎端。
       </p>
      </div>
     </details>
@@ -253,28 +235,22 @@
      </summary>
      <div class="detail-body">
       <h4>
-       Production Delta
+       Shader / Lookdev
       </h4>
       <p>
-       多層 master material 透過 exposed parameters/switches 控制 POM、內發光、色散感與色移。 這次「UE5 Substrate Crystal：多層可參數化寶石材質」的可驗證變化可由摘要交叉確認：以 Substrate、POM/Bump Offset、internal glow 與 iridescence 建立單一 master material，生成多種晶體外觀。 從 production 角度應把評估焦點放在實際輸出、可重複性與是否減少既有人工步驟，而不是只看展示效果。
+       這套 Substrate master material 以 POM/Bump Offset、internal glow、iridescence 與 exposed parameters 組出多種晶體外觀。
       </p>
       <h4>
-       Why It Matters
+       Material Reuse
       </h4>
       <p>
-       對引擎端美術而言，價值在於能否改善即時畫面、工具效率或效能預算，同時維持不同平台、品質層級與既有內容管線的一致性。 對「UE5 Substrate Crystal：多層可參數化寶石材質」而言，應優先判斷它影響的是前期探索、資產製作、動作處理、引擎整合還是交付維護，並用可量化的 iteration/cleanup/效能成本決定是否值得導入。
+       同一 setup 可透過參數與 switch 覆蓋不同 crystal types，適合把單次 lookdev 收斂成可重用材質模板。
       </p>
       <h4>
-       Pipeline Impact
+       效能實測
       </h4>
       <p>
-       同一 setup 可覆蓋多種 crystal types，適合把 lookdev 收斂為可重用材質模板。 建議建立代表性場景或角色 benchmark，從 DCC 匯入後在 Unreal/Unity 內比較畫質、shader/lighting 行為、CPU/GPU 成本、記憶體與 scalability，並保留可回退方案。 建議先在非破壞的測試分支完成端到端驗證，再決定是否納入正式 SOP 與團隊工具鏈。
-      </p>
-      <h4>
-       Limitations / Risk
-      </h4>
-      <p>
-       需 profile Substrate layer、POM sample、Lumen interaction 與不同 scalability 下的成本。 風險檢查至少包含 shader compile、CPU/GPU frame cost、記憶體、不同平台與 scalability、LOD/Nanite/VSM/Lumen 等交互影響，以及升版後 regression 與既有內容 fallback。 驗收時應保存失敗樣本與基準結果，避免只因單一成功案例就提高 production readiness 判定。
+       需要 profile Substrate layers、POM samples、Lumen interaction 與不同 scalability 的成本，確認視覺收益沒有超出 shader budget。
       </p>
      </div>
     </details>
@@ -303,28 +279,22 @@
      </summary>
      <div class="detail-body">
       <h4>
-       Production Delta
+       GI Scalability
       </h4>
       <p>
-       Irradiance Field Gather + cheaper reflections/fog 提供新的 scalability tier。 這次「UE5.8 Lumen Lite / Medium Quality」的可驗證變化可由摘要交叉確認：5.8 新增約 2× 較快的 Lumen medium-quality 路徑，目標低階 PC/handheld 與 60fps art direction。 從 production 角度應把評估焦點放在實際輸出、可重複性與是否減少既有人工步驟，而不是只看展示效果。
+       UE5.8 新增約 2× 較快的 Lumen medium-quality 路徑，透過 Irradiance Field Gather 與較便宜 reflections/fog 建立新的 scalability tier。
       </p>
       <h4>
-       Why It Matters
+       Stylized / 60fps
       </h4>
       <p>
-       對引擎端美術而言，價值在於能否改善即時畫面、工具效率或效能預算，同時維持不同平台、品質層級與既有內容管線的一致性。 對「UE5.8 Lumen Lite / Medium Quality」而言，應優先判斷它影響的是前期探索、資產製作、動作處理、引擎整合還是交付維護，並用可量化的 iteration/cleanup/效能成本決定是否值得導入。
+       對 stylized 或低階 PC/handheld 專案，這提供保留動態 GI 方向、但不必直接退回完整 baked lighting 的中間選項。
       </p>
       <h4>
-       Pipeline Impact
+       平台實測
       </h4>
       <p>
-       對 stylized game 可保留 GI 方向而不必完全退回 baked lighting。 建議建立代表性場景或角色 benchmark，從 DCC 匯入後在 Unreal/Unity 內比較畫質、shader/lighting 行為、CPU/GPU 成本、記憶體與 scalability，並保留可回退方案。 建議先在非破壞的測試分支完成端到端驗證，再決定是否納入正式 SOP 與團隊工具鏈。
-      </p>
-      <h4>
-       Limitations / Risk
-      </h4>
-      <p>
-       要特別驗室內 view dependence、probe occlusion、TAA reconstruction 與平台差異。 風險檢查至少包含 shader compile、CPU/GPU frame cost、記憶體、不同平台與 scalability、LOD/Nanite/VSM/Lumen 等交互影響，以及升版後 regression 與既有內容 fallback。 驗收時應保存失敗樣本與基準結果，避免只因單一成功案例就提高 production readiness 判定。
+       要特別驗室內 view dependence、probe occlusion、reflection quality、TAA reconstruction 與實機 frame time，不能只用 editor 場景判斷。
       </p>
      </div>
     </details>
@@ -353,28 +323,22 @@
      </summary>
      <div class="detail-body">
       <h4>
-       Production Delta
+       Secondary Motion
       </h4>
       <p>
-       BoneConstraint Subdivision、Fixed Substepping 與 Shared Collision 都直接針對 realtime character secondary motion。 這次「Kawaii Physics 1.21：UE5.8、Fixed Substepping、Shared Collision」的可驗證變化可由摘要交叉確認：UE secondary-motion plugin 更新 5.8 相容性、裙擺/腳穿透改善、低 FPS 穩定性與 collision data 共用。 從 production 角度應把評估焦點放在實際輸出、可重複性與是否減少既有人工步驟，而不是只看展示效果。
+       1.21 加入 BoneConstraint Subdivision、Fixed Substepping 與 Shared Collision，重點直接對準裙擺、配件與低 FPS 下的 realtime secondary motion。
       </p>
       <h4>
-       Why It Matters
+       Production Stability
       </h4>
       <p>
-       對引擎端美術而言，價值在於能否改善即時畫面、工具效率或效能預算，同時維持不同平台、品質層級與既有內容管線的一致性。 對「Kawaii Physics 1.21：UE5.8、Fixed Substepping、Shared Collision」而言，應優先判斷它影響的是前期探索、資產製作、動作處理、引擎整合還是交付維護，並用可量化的 iteration/cleanup/效能成本決定是否值得導入。
+       這次更新的價值不是新 demo，而是 UE5.8 compatibility、穿透改善與 collision data 共用，對已使用 Kawaii Physics 的專案更實際。
       </p>
       <h4>
-       Pipeline Impact
+       導入測試
       </h4>
       <p>
-       已用於多個商業遊戲，更新重點是 5.8 compatibility 與 production stability 而非單純 demo。 建議建立代表性場景或角色 benchmark，從 DCC 匯入後在 Unreal/Unity 內比較畫質、shader/lighting 行為、CPU/GPU 成本、記憶體與 scalability，並保留可回退方案。 建議先在非破壞的測試分支完成端到端驗證，再決定是否納入正式 SOP 與團隊工具鏈。
-      </p>
-      <h4>
-       Limitations / Risk
-      </h4>
-      <p>
-       需測低 FPS、裙擺/配件 penetration、shared collision 成本與 Animation Blueprint 整合。 風險檢查至少包含 shader compile、CPU/GPU frame cost、記憶體、不同平台與 scalability、LOD/Nanite/VSM/Lumen 等交互影響，以及升版後 regression 與既有內容 fallback。 驗收時應保存失敗樣本與基準結果，避免只因單一成功案例就提高 production readiness 判定。
+       需測低 FPS、裙擺/配件 penetration、shared collision 成本、Animation Blueprint 整合與不同角色共用設定的穩定性。
       </p>
      </div>
     </details>
@@ -403,28 +367,22 @@
      </summary>
      <div class="detail-body">
       <h4>
-       Production Delta
+       Creature Lookdev
       </h4>
       <p>
-       Substrate 的 production 價值要看 layered material 表現與 runtime 成本，不只是 shader graph 能力。 這次「UE5 Substrate 生物材質：Headcrab 62 頁案例」的可驗證變化可由摘要交叉確認：以完整角色/生物 case study 驗證 Substrate 在皮膚、濕潤與多層材質上的 lookdev 方法。 從 production 角度應把評估焦點放在實際輸出、可重複性與是否減少既有人工步驟，而不是只看展示效果。
+       Headcrab 案例用完整生物角色驗證 Substrate 在皮膚、濕潤與多層材質上的實際 lookdev，而不只是 isolated shader demo。
       </p>
       <h4>
-       Why It Matters
+       Character Material Pipeline
       </h4>
       <p>
-       對引擎端美術而言，價值在於能否改善即時畫面、工具效率或效能預算，同時維持不同平台、品質層級與既有內容管線的一致性。 對「UE5 Substrate 生物材質：Headcrab 62 頁案例」而言，應優先判斷它影響的是前期探索、資產製作、動作處理、引擎整合還是交付維護，並用可量化的 iteration/cleanup/效能成本決定是否值得導入。
+       從 3ds Max/ZBrush/Painter 到 UE 的完整案例可拿來抽取貼圖、layering、roughness 與 realtime lighting 的交付規格。
       </p>
       <h4>
-       Pipeline Impact
+       效能實測
       </h4>
       <p>
-       完整 case 可抽取 3ds Max/ZBrush/Painter→UE 的材質交付規格。 建議建立代表性場景或角色 benchmark，從 DCC 匯入後在 Unreal/Unity 內比較畫質、shader/lighting 行為、CPU/GPU 成本、記憶體與 scalability，並保留可回退方案。 建議先在非破壞的測試分支完成端到端驗證，再決定是否納入正式 SOP 與團隊工具鏈。
-      </p>
-      <h4>
-       Limitations / Risk
-      </h4>
-      <p>
-       應對比 legacy material 在 compile time、GPU cost、LOD 與平台相容性。 風險檢查至少包含 shader compile、CPU/GPU frame cost、記憶體、不同平台與 scalability、LOD/Nanite/VSM/Lumen 等交互影響，以及升版後 regression 與既有內容 fallback。 驗收時應保存失敗樣本與基準結果，避免只因單一成功案例就提高 production readiness 判定。
+       應和 legacy material 對比 compile time、GPU cost、LOD 與平台相容性，確認多層材質品質提升是否符合角色 budget。
       </p>
      </div>
     </details>
@@ -453,28 +411,22 @@
      </summary>
      <div class="detail-body">
       <h4>
-       Production Delta
+       Interactive Foliage
       </h4>
       <p>
-       auto-calculate cast shadow 與 gamethread 優化直接對場景性能有影響。 這次「UE5 Foliage Tools：互動式植被模擬 Beta」的可驗證變化可由摘要交叉確認：更新強化 gamethread、physics、Packed Level Actor 與 Niagara interaction，瞄準高密度植被。 從 production 角度應把評估焦點放在實際輸出、可重複性與是否減少既有人工步驟，而不是只看展示效果。
+       Beta 更新強化 gamethread、physics、Packed Level Actor 與 Niagara interaction，目標是在高密度植被中保留互動效果。
       </p>
       <h4>
-       Why It Matters
+       Environment Performance
       </h4>
       <p>
-       對引擎端美術而言，價值在於能否改善即時畫面、工具效率或效能預算，同時維持不同平台、品質層級與既有內容管線的一致性。 對「UE5 Foliage Tools：互動式植被模擬 Beta」而言，應優先判斷它影響的是前期探索、資產製作、動作處理、引擎整合還是交付維護，並用可量化的 iteration/cleanup/效能成本決定是否值得導入。
+       auto-calculate cast shadow 與 gamethread 優化直接碰到場景性能；interaction nodes→Niagara 也讓踩踏、風與碰撞能接既有 FX。
       </p>
       <h4>
-       Pipeline Impact
+       壓力測試
       </h4>
       <p>
-       interaction nodes→Niagara 可建立踩踏/風/碰撞等連動。 建議建立代表性場景或角色 benchmark，從 DCC 匯入後在 Unreal/Unity 內比較畫質、shader/lighting 行為、CPU/GPU 成本、記憶體與 scalability，並保留可回退方案。 建議先在非破壞的測試分支完成端到端驗證，再決定是否納入正式 SOP 與團隊工具鏈。
-      </p>
-      <h4>
-       Limitations / Risk
-      </h4>
-      <p>
-       Beta 工具需先在目標 vegetation count 下 profile CPU/GPU/streaming。 風險檢查至少包含 shader compile、CPU/GPU frame cost、記憶體、不同平台與 scalability、LOD/Nanite/VSM/Lumen 等交互影響，以及升版後 regression 與既有內容 fallback。 驗收時應保存失敗樣本與基準結果，避免只因單一成功案例就提高 production readiness 判定。
+       要在目標 vegetation count、平台與 streaming 情境下 profile CPU/GPU、physics、shadow 與 interaction，而不是只用小場景判斷。
       </p>
      </div>
     </details>
@@ -503,28 +455,22 @@
      </summary>
      <div class="detail-body">
       <h4>
-       Production Delta
+       Maintenance Release
       </h4>
       <p>
-       維護版優先處理 regression/bugfix，production 風險低於直接跳 dev snapshot。 這次「Godot 4.7.2：穩定版維護更新」的可驗證變化可由摘要交叉確認：4.7 第二個 maintenance release，適合已在 4.7 production 的專案評估安全升級。 從 production 角度應把評估焦點放在實際輸出、可重複性與是否減少既有人工步驟，而不是只看展示效果。
+       Godot 4.7.2 是 4.7 的第二個 maintenance release，重點在 regression 與 bugfix，對已上 4.7 的專案比追 dev snapshot 更實際。
       </p>
       <h4>
-       Why It Matters
+       Production Value
       </h4>
       <p>
-       對引擎端美術而言，價值在於能否改善即時畫面、工具效率或效能預算，同時維持不同平台、品質層級與既有內容管線的一致性。 對「Godot 4.7.2：穩定版維護更新」而言，應優先判斷它影響的是前期探索、資產製作、動作處理、引擎整合還是交付維護，並用可量化的 iteration/cleanup/效能成本決定是否值得導入。
+       維護版的價值在降低既有專案風險，而不是新增大量功能；是否升級應看它修到的問題是否命中目前 production。
       </p>
       <h4>
-       Pipeline Impact
+       升版測試
       </h4>
       <p>
-       仍建議以 version control + representative scene 做升版驗證。 建議建立代表性場景或角色 benchmark，從 DCC 匯入後在 Unreal/Unity 內比較畫質、shader/lighting 行為、CPU/GPU 成本、記憶體與 scalability，並保留可回退方案。 建議先在非破壞的測試分支完成端到端驗證，再決定是否納入正式 SOP 與團隊工具鏈。
-      </p>
-      <h4>
-       Limitations / Risk
-      </h4>
-      <p>
-       重點測 import、rendering、animation、shader 與平台 build regression。 風險檢查至少包含 shader compile、CPU/GPU frame cost、記憶體、不同平台與 scalability、LOD/Nanite/VSM/Lumen 等交互影響，以及升版後 regression 與既有內容 fallback。 驗收時應保存失敗樣本與基準結果，避免只因單一成功案例就提高 production readiness 判定。
+       仍建議用 version control + representative scene 測 import、rendering、animation、shader 與各平台 build regression，並保留回退點。
       </p>
      </div>
     </details>
@@ -553,28 +499,22 @@
      </summary>
      <div class="detail-body">
       <h4>
-       Production Delta
+       Stylized Water
       </h4>
       <p>
-       示例主要靠 baked lighting 與簡化材質維持風格。 這次「UE5.7 Pixelated Water：Baked-light Stylized Shader」的可驗證變化可由摘要交叉確認：以少量 scrolling textures、refraction、absorption 與 caustics 做 retro water，而非高成本物理模擬。 從 production 角度應把評估焦點放在實際輸出、可重複性與是否減少既有人工步驟，而不是只看展示效果。
+       案例用少量 scrolling textures、refraction、absorption、caustics 與 baked lighting 做 retro water，而不是高成本物理水體。
       </p>
       <h4>
-       Why It Matters
+       NPR / Performance
       </h4>
       <p>
-       對引擎端美術而言，價值在於能否改善即時畫面、工具效率或效能預算，同時維持不同平台、品質層級與既有內容管線的一致性。 對「UE5.7 Pixelated Water：Baked-light Stylized Shader」而言，應優先判斷它影響的是前期探索、資產製作、動作處理、引擎整合還是交付維護，並用可量化的 iteration/cleanup/效能成本決定是否值得導入。
+       對 stylized、retro 專案，簡化材質可以用較低複雜度換取強識別度，重點是 art direction 而不是模擬真實水。
       </p>
       <h4>
-       Pipeline Impact
+       實測
       </h4>
       <p>
-       對 stylized/retro 專案可用很低複雜度取得強識別度。 建議建立代表性場景或角色 benchmark，從 DCC 匯入後在 Unreal/Unity 內比較畫質、shader/lighting 行為、CPU/GPU 成本、記憶體與 scalability，並保留可回退方案。 建議先在非破壞的測試分支完成端到端驗證，再決定是否納入正式 SOP 與團隊工具鏈。
-      </p>
-      <h4>
-       Limitations / Risk
-      </h4>
-      <p>
-       要測 camera movement、foam transition、透明排序與低解析 texture shimmer。 風險檢查至少包含 shader compile、CPU/GPU frame cost、記憶體、不同平台與 scalability、LOD/Nanite/VSM/Lumen 等交互影響，以及升版後 regression 與既有內容 fallback。 驗收時應保存失敗樣本與基準結果，避免只因單一成功案例就提高 production readiness 判定。
+       要測 camera movement、foam transition、透明排序、低解析 texture shimmer 與不同平台 cost，確認 pixel 風格在動態畫面仍穩定。
       </p>
      </div>
     </details>
