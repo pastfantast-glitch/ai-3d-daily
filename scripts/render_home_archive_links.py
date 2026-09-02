@@ -19,9 +19,13 @@ def daily_meta(date):
     items=data.get('items',[]) if isinstance(data,dict) else []
     cats=sorted({str(x.get('category','')).strip() for x in items if isinstance(x,dict) and x.get('category')})
     terms=[]
-    for x in items[:15]:
+    for x in items:
         if not isinstance(x,dict): continue
-        terms.extend([str(x.get('title','')),str(x.get('summary',''))])
+        terms.extend([
+            str(x.get('title','')),
+            str(x.get('summary','')),
+            str(x.get('quick_impact','')),
+        ])
     return ' '.join(terms), cats
 
 def tag(soup,name,**attrs):
