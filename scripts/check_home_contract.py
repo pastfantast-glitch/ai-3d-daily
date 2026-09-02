@@ -41,6 +41,12 @@ else:
             m=re.fullmatch(r'(20\d{2}-\d{2}-\d{2})/?',a.get('href',''))
             if m: actual_archives.append(m.group(1))
         if actual_archives!=expected_archives: fail('history-list must exactly match real archives newest-first')
+        if len(soup.select('.history-controls'))!=1: fail('history library must expose exactly one control panel')
+        if len(soup.select('.history-search[type="search"]'))!=1: fail('history library search missing')
+        if not soup.select('.archive-year .archive-month .history-entry'): fail('history library must use year/month accordion entries')
+        category_filters=soup.select('[data-history-category]')
+        if v2 and len(category_filters)!=7: fail(f'V2 history library must expose all + six category filters, got {len(category_filters)}')
+        if len(soup.select('[data-history-range]'))!=3: fail('history library must expose 7/30/all date range filters')
     for label,cards in [('TOP',top),('Next10' if v2 else 'Supplemental',more)]:
         for card in cards:
             rid=card.get('data-intel-id','?')
@@ -69,7 +75,7 @@ else:
 for path in (FOUNDATION,UI,COMPONENTS,JS):
     if not path.exists(): fail(f'missing required frontend asset: {path.name}')
 css='\n'.join(p.read_text('utf-8') for p in (FOUNDATION,UI,COMPONENTS) if p.exists())
-for selector in ('.top-list','.top-item','.more-grid','.more-card','.history-list','.preference-vote','.home-full-analysis','.quick-impact','.case-preview'):
+for selector in ('.top-list','.top-item','.more-grid','.more-card','.history-list','.history-controls','.archive-year','.archive-month','.history-entry','.preference-vote','.home-full-analysis','.quick-impact','.case-preview'):
     if selector not in css: fail(f'missing required selector: {selector}')
 if is_v2_dataset(latest_data()):
     for selector in ('.category-nav-grid','.category-nav-card'):
@@ -78,6 +84,8 @@ if JS.exists():
     js=JS.read_text('utf-8')
     if 'ai3d-preferences-v1' not in js: fail('preference localStorage key missing')
     if '.top-item, .more-card' not in js: fail('card interaction selector missing')
+    for token in ('history-search','data-history-category','data-history-range'):
+        if token not in js: fail(f'history interaction missing: {token}')
 if errors:
     print('Homepage contract QA FAILED:'); print('\n'.join(' - '+e for e in errors)); sys.exit(1)
-print('Homepage contract QA passed: V2-aware layout + card structure + archive parity locked')
+print('Homepage contract QA passed: V2-aware layout + searchable grouped history library + archive parity locked')
