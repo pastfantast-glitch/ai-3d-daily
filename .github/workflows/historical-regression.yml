@@ -14,6 +14,7 @@ on:
       - '20??-??-??/index.html'
       - 'index.html'
       - 'styles.css'
+      - 'shared-components.css'
       - 'daily.css'
       - 'daily.js'
       - 'canonical-client.js'
@@ -43,6 +44,8 @@ jobs:
   regression:
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    env:
+      REQUESTED_DAYS: ${{ inputs.days || '4' }}
     steps:
       - uses: actions/checkout@v6
       - uses: actions/setup-python@v6
@@ -51,6 +54,4 @@ jobs:
       - name: Install locked pipeline dependencies
         run: pip install -r requirements-pipeline.txt
       - name: Run historical archive regression matrix
-        env:
-          REQUESTED_DAYS: ${{ github.event.inputs.days }}
-        run: python scripts/check_historical_regression.py --days "${REQUESTED_DAYS:-4}"
+        run: python scripts/check_historical_regression.py --days "$REQUESTED_DAYS"
