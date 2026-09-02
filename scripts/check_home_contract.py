@@ -5,7 +5,7 @@ from bs4 import BeautifulSoup
 from intelligence_v2 import is_v2_dataset
 
 ROOT=Path(__file__).resolve().parents[1]
-INDEX=ROOT/'index.html'; FOUNDATION=ROOT/'home.css'; UI=ROOT/'home-content.css'; COMPONENTS=ROOT/'home-components.css'; JS=ROOT/'home.js'
+INDEX=ROOT/'index.html'; FOUNDATION=ROOT/'home.css'; UI=ROOT/'home-content.css'; COMPONENTS=ROOT/'home-components.css'; SHARED=ROOT/'shared-components.css'; JS=ROOT/'home.js'
 DATE_RE=re.compile(r'^20\d{2}-\d{2}-\d{2}$'); errors=[]
 def fail(msg): errors.append(msg)
 def archive_dates(): return sorted(p.name for p in ROOT.iterdir() if p.is_dir() and DATE_RE.fullmatch(p.name) and (p/'index.html').exists())
@@ -17,7 +17,7 @@ def latest_data():
 if not INDEX.exists(): fail('index.html missing')
 else:
     html=INDEX.read_text('utf-8'); soup=BeautifulSoup(html,'html.parser'); data=latest_data(); v2=is_v2_dataset(data)
-    for asset in ('home.css?v=','home-content.css?v=','home-components.css?v=','home.js?v='):
+    for asset in ('shared-components.css?v=','home.css?v=','home-content.css?v=','home-components.css?v=','home.js?v='):
         if asset not in html: fail(f'index.html missing cache-busted asset: {asset}')
     sections=soup.select('main.home-main > section.home-section')
     expected=['today-section','more-section','category-section','history-section'] if v2 else ['today-section','more-section','test-section','history-section']
@@ -72,10 +72,10 @@ else:
         rel=set(a.get('rel') or [])
         if 'noopener' not in rel or 'noreferrer' not in rel: fail('external target=_blank link missing noopener noreferrer')
 
-for path in (FOUNDATION,UI,COMPONENTS,JS):
+for path in (FOUNDATION,UI,COMPONENTS,SHARED,JS):
     if not path.exists(): fail(f'missing required frontend asset: {path.name}')
-css='\n'.join(p.read_text('utf-8') for p in (FOUNDATION,UI,COMPONENTS) if p.exists())
-for selector in ('.top-list','.top-item','.more-grid','.more-card','.history-list','.history-controls','.archive-year','.archive-month','.history-entry','.preference-vote','.home-full-analysis','.quick-impact','.case-preview'):
+css='\n'.join(p.read_text('utf-8') for p in (FOUNDATION,UI,COMPONENTS,SHARED) if p.exists())
+for selector in ('.top-list','.top-item','.more-grid','.more-card','.history-list','.history-controls','.archive-year','.archive-month','.history-entry','.preference-vote','.detail-body','details > summary','.quick-impact','.case-preview'):
     if selector not in css: fail(f'missing required selector: {selector}')
 if is_v2_dataset(latest_data()):
     for selector in ('.category-nav-grid','.category-nav-card'):
@@ -88,4 +88,4 @@ if JS.exists():
         if token not in js: fail(f'history interaction missing: {token}')
 if errors:
     print('Homepage contract QA FAILED:'); print('\n'.join(' - '+e for e in errors)); sys.exit(1)
-print('Homepage contract QA passed: V2-aware layout + searchable grouped history library + archive parity locked')
+print('Homepage contract QA passed: V2-aware layout + shared components + searchable grouped history library + archive parity locked')
