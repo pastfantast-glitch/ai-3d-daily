@@ -12,9 +12,6 @@
  <body class="category-page" data-category="ai-generation" data-report-date="2026-09-02">
   <header class="category-hero">
    <div class="page">
-    <a class="category-back" href="../../">
-     ← 回首頁
-    </a>
     <span class="section-kicker">
      2026-09-02
     </span>
@@ -26,6 +23,31 @@
     </p>
    </div>
   </header>
+  <nav aria-label="Production Intelligence 分類" class="global-category-nav">
+   <div class="page global-category-nav-inner">
+    <a class="global-category-link" href="../../">
+     TOP5
+    </a>
+    <a class="global-category-link is-active" data-category="ai-generation" href="../ai-generation/">
+     AI 生成
+    </a>
+    <a class="global-category-link" data-category="3d-production" href="../3d-production/">
+     3D 製作
+    </a>
+    <a class="global-category-link" data-category="3d-animation" href="../3d-animation/">
+     3D 動作
+    </a>
+    <a class="global-category-link" data-category="engine-art" href="../engine-art/">
+     遊戲引擎
+    </a>
+    <a class="global-category-link" data-category="emerging-case" href="../emerging-case/">
+     新技術 / Case
+    </a>
+    <a class="global-category-link" data-category="blender-dcc" href="../blender-dcc/">
+     Blender / DCC
+    </a>
+   </div>
+  </nav>
   <main class="page category-main">
    <article class="category-card" data-intel-id="tripo-p2-native-quad" data-intel-role="card">
     <div class="category-meta">
@@ -59,22 +81,28 @@
      </summary>
      <div class="detail-body">
       <h4>
-       Production 重點
+       Production Delta
       </h4>
       <p>
-       原生 quad topology 是這次最重要的 production delta。
+       原生 quad topology 是這次最重要的 production delta。 這次「Tripo P2.0：原生 Quad Topology 生成」的可驗證變化可由摘要交叉確認：P2.0 把 AI 3D 的重點從「看起來像」推向可編輯拓樸，直接瞄準 production asset cleanup。 從 production 角度應把評估焦點放在實際輸出、可重複性與是否減少既有人工步驟，而不是只看展示效果。
       </p>
       <h4>
-       導入判斷
+       Why It Matters
       </h4>
       <p>
-       需要用角色、硬表面、薄片結構測 edge flow 與 deformation readiness。
+       對生成式資產流程而言，真正的價值不是多一個 demo，而是能否減少人工起稿、重建、清理或版本反覆，並讓結果更容易進入後續 DCC 與引擎製作。 對「Tripo P2.0：原生 Quad Topology 生成」而言，應優先判斷它影響的是前期探索、資產製作、動作處理、引擎整合還是交付維護，並用可量化的 iteration/cleanup/效能成本決定是否值得導入。
       </p>
       <h4>
-       實測 / 風險
+       Pipeline Impact
       </h4>
       <p>
-       若拓樸可穩定維持，會顯著降低 AI mesh 進 DCC 後的 retopo 成本。
+       需要用角色、硬表面、薄片結構測 edge flow 與 deformation readiness。 建議以 reference/input → 生成 → Blender/Maya 清理 → UV/材質/rig 或動畫整理 → Unreal/Unity 驗收的完整鏈路測試，並保留原始輸入、版本與輸出格式以便比較。 建議先在非破壞的測試分支完成端到端驗證，再決定是否納入正式 SOP 與團隊工具鏈。
+      </p>
+      <h4>
+       Limitations / Risk
+      </h4>
+      <p>
+       若拓樸可穩定維持，會顯著降低 AI mesh 進 DCC 後的 retopo 成本。 風險檢查至少包含幾何/影像一致性、可編輯性、失敗案例、輸出格式、雲端或本地限制、授權/資料來源與人工 cleanup 成本；不能只用最佳案例判斷可量產性。 驗收時應保存失敗樣本與基準結果，避免只因單一成功案例就提高 production readiness 判定。
       </p>
      </div>
     </details>
@@ -114,22 +142,28 @@
      </summary>
      <div class="detail-body">
       <h4>
-       Production 重點
+       Production Delta
       </h4>
       <p>
-       AI Assisted Editor 對大量材質修補、概念變體與 presentation cleanup 有直接價值。
+       AI Assisted Editor 對大量材質修補、概念變體與 presentation cleanup 有直接價值。 這次「Photoshop：Firefly Image 5 + AI Assisted Editor」的可驗證變化可由摘要交叉確認：Adobe 把自然語言編修、遮罩指令與新生成模型直接放進日常 texture/concept 編修環境。 從 production 角度應把評估焦點放在實際輸出、可重複性與是否減少既有人工步驟，而不是只看展示效果。
       </p>
       <h4>
-       導入判斷
+       Why It Matters
       </h4>
       <p>
-       Mask-based instruct edit 比整張重生更適合 production incremental edit。
+       對生成式資產流程而言，真正的價值不是多一個 demo，而是能否減少人工起稿、重建、清理或版本反覆，並讓結果更容易進入後續 DCC 與引擎製作。 對「Photoshop：Firefly Image 5 + AI Assisted Editor」而言，應優先判斷它影響的是前期探索、資產製作、動作處理、引擎整合還是交付維護，並用可量化的 iteration/cleanup/效能成本決定是否值得導入。
       </p>
       <h4>
-       實測 / 風險
+       Pipeline Impact
       </h4>
       <p>
-       需要建立不可破壞 layer、版權來源與最終人工檢查 SOP。
+       Mask-based instruct edit 比整張重生更適合 production incremental edit。 建議以 reference/input → 生成 → Blender/Maya 清理 → UV/材質/rig 或動畫整理 → Unreal/Unity 驗收的完整鏈路測試，並保留原始輸入、版本與輸出格式以便比較。 建議先在非破壞的測試分支完成端到端驗證，再決定是否納入正式 SOP 與團隊工具鏈。
+      </p>
+      <h4>
+       Limitations / Risk
+      </h4>
+      <p>
+       需要建立不可破壞 layer、版權來源與最終人工檢查 SOP。 風險檢查至少包含幾何/影像一致性、可編輯性、失敗案例、輸出格式、雲端或本地限制、授權/資料來源與人工 cleanup 成本；不能只用最佳案例判斷可量產性。 驗收時應保存失敗樣本與基準結果，避免只因單一成功案例就提高 production readiness 判定。
       </p>
      </div>
     </details>
@@ -158,22 +192,28 @@
      </summary>
      <div class="detail-body">
       <h4>
-       Production 重點
+       Production Delta
       </h4>
       <p>
-       輸入是一張場景圖，輸出方向是多個獨立 3D assets 與相對空間關係。
+       輸入是一張場景圖，輸出方向是多個獨立 3D assets 與相對空間關係。 這次「Hyper3D WorldGen：單張場景圖拆成獨立 3D 資產」的可驗證變化可由摘要交叉確認：WorldGen 從單一物件生成走向整個場景的物件分解、3D 化與空間關係重建。 從 production 角度應把評估焦點放在實際輸出、可重複性與是否減少既有人工步驟，而不是只看展示效果。
       </p>
       <h4>
-       導入判斷
+       Why It Matters
       </h4>
       <p>
-       對環境 blockout 與 set dressing 的價值高於單物件生成。
+       對生成式資產流程而言，真正的價值不是多一個 demo，而是能否減少人工起稿、重建、清理或版本反覆，並讓結果更容易進入後續 DCC 與引擎製作。 對「Hyper3D WorldGen：單張場景圖拆成獨立 3D 資產」而言，應優先判斷它影響的是前期探索、資產製作、動作處理、引擎整合還是交付維護，並用可量化的 iteration/cleanup/效能成本決定是否值得導入。
       </p>
       <h4>
-       實測 / 風險
+       Pipeline Impact
       </h4>
       <p>
-       正式導入要檢查物件邊界、遮擋區補全、比例一致性與可編輯性。
+       對環境 blockout 與 set dressing 的價值高於單物件生成。 建議以 reference/input → 生成 → Blender/Maya 清理 → UV/材質/rig 或動畫整理 → Unreal/Unity 驗收的完整鏈路測試，並保留原始輸入、版本與輸出格式以便比較。 建議先在非破壞的測試分支完成端到端驗證，再決定是否納入正式 SOP 與團隊工具鏈。
+      </p>
+      <h4>
+       Limitations / Risk
+      </h4>
+      <p>
+       正式導入要檢查物件邊界、遮擋區補全、比例一致性與可編輯性。 風險檢查至少包含幾何/影像一致性、可編輯性、失敗案例、輸出格式、雲端或本地限制、授權/資料來源與人工 cleanup 成本；不能只用最佳案例判斷可量產性。 驗收時應保存失敗樣本與基準結果，避免只因單一成功案例就提高 production readiness 判定。
       </p>
      </div>
     </details>
@@ -202,22 +242,28 @@
      </summary>
      <div class="detail-body">
       <h4>
-       Production 重點
+       Production Delta
       </h4>
       <p>
-       重點不是單次 text-to-3D，而是多輪上下文與批次資產一致性。
+       重點不是單次 text-to-3D，而是多輪上下文與批次資產一致性。 這次「Meshy 3D Agent：多步驟對話式 3D 製作」的可驗證變化可由摘要交叉確認：把 brainstorm、reference 累積、系列資產與最終 3D 生成放在同一個有上下文的 agent workflow。 從 production 角度應把評估焦點放在實際輸出、可重複性與是否減少既有人工步驟，而不是只看展示效果。
       </p>
       <h4>
-       導入判斷
+       Why It Matters
       </h4>
       <p>
-       支援多種常見 3D 輸出格式，較容易接 Blender/Engine pipeline。
+       對生成式資產流程而言，真正的價值不是多一個 demo，而是能否減少人工起稿、重建、清理或版本反覆，並讓結果更容易進入後續 DCC 與引擎製作。 對「Meshy 3D Agent：多步驟對話式 3D 製作」而言，應優先判斷它影響的是前期探索、資產製作、動作處理、引擎整合還是交付維護，並用可量化的 iteration/cleanup/效能成本決定是否值得導入。
       </p>
       <h4>
-       實測 / 風險
+       Pipeline Impact
       </h4>
       <p>
-       要測長對話後 style drift、同系列 silhouette 一致性與改稿保留程度。
+       支援多種常見 3D 輸出格式，較容易接 Blender/Engine pipeline。 建議以 reference/input → 生成 → Blender/Maya 清理 → UV/材質/rig 或動畫整理 → Unreal/Unity 驗收的完整鏈路測試，並保留原始輸入、版本與輸出格式以便比較。 建議先在非破壞的測試分支完成端到端驗證，再決定是否納入正式 SOP 與團隊工具鏈。
+      </p>
+      <h4>
+       Limitations / Risk
+      </h4>
+      <p>
+       要測長對話後 style drift、同系列 silhouette 一致性與改稿保留程度。 風險檢查至少包含幾何/影像一致性、可編輯性、失敗案例、輸出格式、雲端或本地限制、授權/資料來源與人工 cleanup 成本；不能只用最佳案例判斷可量產性。 驗收時應保存失敗樣本與基準結果，避免只因單一成功案例就提高 production readiness 判定。
       </p>
      </div>
     </details>
@@ -246,22 +292,28 @@
      </summary>
      <div class="detail-body">
       <h4>
-       Production 重點
+       Production Delta
       </h4>
       <p>
-       AI Rigging 可把角色處理接到 Maya、Blender、Unreal 等 downstream。
+       AI Rigging 可把角色處理接到 Maya、Blender、Unreal 等 downstream。 這次「Autodesk Flow Studio：AI Rigging + Neural Layer」的可驗證變化可由摘要交叉確認：AI rigging、Neural Layer 與生成式 3D 能力開始被放進 Autodesk 的 VFX/animation pipeline。 從 production 角度應把評估焦點放在實際輸出、可重複性與是否減少既有人工步驟，而不是只看展示效果。
       </p>
       <h4>
-       導入判斷
+       Why It Matters
       </h4>
       <p>
-       Trellis 2 與 Neural Layer 代表生成、分層、rigging 開始合流。
+       對生成式資產流程而言，真正的價值不是多一個 demo，而是能否減少人工起稿、重建、清理或版本反覆，並讓結果更容易進入後續 DCC 與引擎製作。 對「Autodesk Flow Studio：AI Rigging + Neural Layer」而言，應優先判斷它影響的是前期探索、資產製作、動作處理、引擎整合還是交付維護，並用可量化的 iteration/cleanup/效能成本決定是否值得導入。
       </p>
       <h4>
-       實測 / 風險
+       Pipeline Impact
       </h4>
       <p>
-       導入時要看 export rig 可修改性、權重品質、root/face/finger 支援與雲端成本。
+       Trellis 2 與 Neural Layer 代表生成、分層、rigging 開始合流。 建議以 reference/input → 生成 → Blender/Maya 清理 → UV/材質/rig 或動畫整理 → Unreal/Unity 驗收的完整鏈路測試，並保留原始輸入、版本與輸出格式以便比較。 若屬 AI Motion，還要額外確認輸入是影片、影像、文字還是既有 motion，輸出是否能落到可編輯 skeleton/curve，以及 root motion、手指、臉部、多人、foot lock、cleanup、retarget、local/cloud 與 engine integration 的實際支援程度。 建議先在非破壞的測試分支完成端到端驗證，再決定是否納入正式 SOP 與團隊工具鏈。
+      </p>
+      <h4>
+       Limitations / Risk
+      </h4>
+      <p>
+       導入時要看 export rig 可修改性、權重品質、root/face/finger 支援與雲端成本。 風險檢查至少包含幾何/影像一致性、可編輯性、失敗案例、輸出格式、雲端或本地限制、授權/資料來源與人工 cleanup 成本；不能只用最佳案例判斷可量產性。 若屬 AI Motion，還要額外確認輸入是影片、影像、文字還是既有 motion，輸出是否能落到可編輯 skeleton/curve，以及 root motion、手指、臉部、多人、foot lock、cleanup、retarget、local/cloud 與 engine integration 的實際支援程度。 驗收時應保存失敗樣本與基準結果，避免只因單一成功案例就提高 production readiness 判定。
       </p>
      </div>
     </details>
@@ -290,22 +342,28 @@
      </summary>
      <div class="detail-body">
       <h4>
-       Production 重點
+       Production Delta
       </h4>
       <p>
-       coarse-to-fine geometry 與 PBR 材質是面向 production 的關鍵方向。
+       coarse-to-fine geometry 與 PBR 材質是面向 production 的關鍵方向。 這次「Seed3D 2.0：PBR、部件分解與可動結構生成」的可驗證變化可由摘要交叉確認：研究把單張圖生成從靜態外觀推向 PBR、part decomposition 與 articulation。 從 production 角度應把評估焦點放在實際輸出、可重複性與是否減少既有人工步驟，而不是只看展示效果。
       </p>
       <h4>
-       導入判斷
+       Why It Matters
       </h4>
       <p>
-       部件分解與 articulation 對角色裝備、機械與可互動物件特別重要。
+       對生成式資產流程而言，真正的價值不是多一個 demo，而是能否減少人工起稿、重建、清理或版本反覆，並讓結果更容易進入後續 DCC 與引擎製作。 對「Seed3D 2.0：PBR、部件分解與可動結構生成」而言，應優先判斷它影響的是前期探索、資產製作、動作處理、引擎整合還是交付維護，並用可量化的 iteration/cleanup/效能成本決定是否值得導入。
       </p>
       <h4>
-       實測 / 風險
+       Pipeline Impact
       </h4>
       <p>
-       目前仍屬研究評估，不能把論文結果等同穩定商用輸出。
+       部件分解與 articulation 對角色裝備、機械與可互動物件特別重要。 建議以 reference/input → 生成 → Blender/Maya 清理 → UV/材質/rig 或動畫整理 → Unreal/Unity 驗收的完整鏈路測試，並保留原始輸入、版本與輸出格式以便比較。 建議先在非破壞的測試分支完成端到端驗證，再決定是否納入正式 SOP 與團隊工具鏈。
+      </p>
+      <h4>
+       Limitations / Risk
+      </h4>
+      <p>
+       目前仍屬研究評估，不能把論文結果等同穩定商用輸出。 風險檢查至少包含幾何/影像一致性、可編輯性、失敗案例、輸出格式、雲端或本地限制、授權/資料來源與人工 cleanup 成本；不能只用最佳案例判斷可量產性。 驗收時應保存失敗樣本與基準結果，避免只因單一成功案例就提高 production readiness 判定。
       </p>
      </div>
     </details>
@@ -334,22 +392,28 @@
      </summary>
      <div class="detail-body">
       <h4>
-       Production 重點
+       Production Delta
       </h4>
       <p>
-       可指定高 polygon budget 並提供 LOD 方向，適合 high→low 測試。
+       可指定高 polygon budget 並提供 LOD 方向，適合 high→low 測試。 這次「Hyper3D Rodin Gen-2.5：高面數 Image-to-3D」的可驗證變化可由摘要交叉確認：Rodin 強化高面數、LOD 與多格式輸出，定位更接近可作為 high-poly 起點的生成器。 從 production 角度應把評估焦點放在實際輸出、可重複性與是否減少既有人工步驟，而不是只看展示效果。
       </p>
       <h4>
-       導入判斷
+       Why It Matters
       </h4>
       <p>
-       多格式輸出降低跨 DCC/engine 的前處理成本。
+       對生成式資產流程而言，真正的價值不是多一個 demo，而是能否減少人工起稿、重建、清理或版本反覆，並讓結果更容易進入後續 DCC 與引擎製作。 對「Hyper3D Rodin Gen-2.5：高面數 Image-to-3D」而言，應優先判斷它影響的是前期探索、資產製作、動作處理、引擎整合還是交付維護，並用可量化的 iteration/cleanup/效能成本決定是否值得導入。
       </p>
       <h4>
-       實測 / 風險
+       Pipeline Impact
       </h4>
       <p>
-       要用同一測試集比較薄片、硬邊、背面補全、UV/材質與減面後 silhouette。
+       多格式輸出降低跨 DCC/engine 的前處理成本。 建議以 reference/input → 生成 → Blender/Maya 清理 → UV/材質/rig 或動畫整理 → Unreal/Unity 驗收的完整鏈路測試，並保留原始輸入、版本與輸出格式以便比較。 建議先在非破壞的測試分支完成端到端驗證，再決定是否納入正式 SOP 與團隊工具鏈。
+      </p>
+      <h4>
+       Limitations / Risk
+      </h4>
+      <p>
+       要用同一測試集比較薄片、硬邊、背面補全、UV/材質與減面後 silhouette。 風險檢查至少包含幾何/影像一致性、可編輯性、失敗案例、輸出格式、雲端或本地限制、授權/資料來源與人工 cleanup 成本；不能只用最佳案例判斷可量產性。 驗收時應保存失敗樣本與基準結果，避免只因單一成功案例就提高 production readiness 判定。
       </p>
      </div>
     </details>
@@ -378,22 +442,28 @@
      </summary>
      <div class="detail-body">
       <h4>
-       Production 重點
+       Production Delta
       </h4>
       <p>
-       統一資產管理可降低生成結果散落在不同工具頁的摩擦。
+       統一資產管理可降低生成結果散落在不同工具頁的摩擦。 這次「Meshy Workspace 3.0：任務導向生成工作區」的可驗證變化可由摘要交叉確認：Image、3D Model、3D Printing、Animate 等任務被整合到同一資產工作區。 從 production 角度應把評估焦點放在實際輸出、可重複性與是否減少既有人工步驟，而不是只看展示效果。
       </p>
       <h4>
-       導入判斷
+       Why It Matters
       </h4>
       <p>
-       對大量 prop iteration，版本與資產上下文比單次模型品質同樣重要。
+       對生成式資產流程而言，真正的價值不是多一個 demo，而是能否減少人工起稿、重建、清理或版本反覆，並讓結果更容易進入後續 DCC 與引擎製作。 對「Meshy Workspace 3.0：任務導向生成工作區」而言，應優先判斷它影響的是前期探索、資產製作、動作處理、引擎整合還是交付維護，並用可量化的 iteration/cleanup/效能成本決定是否值得導入。
       </p>
       <h4>
-       實測 / 風險
+       Pipeline Impact
       </h4>
       <p>
-       需測批次、資產命名、下載格式與多人協作是否足以支援 production。
+       對大量 prop iteration，版本與資產上下文比單次模型品質同樣重要。 建議以 reference/input → 生成 → Blender/Maya 清理 → UV/材質/rig 或動畫整理 → Unreal/Unity 驗收的完整鏈路測試，並保留原始輸入、版本與輸出格式以便比較。 建議先在非破壞的測試分支完成端到端驗證，再決定是否納入正式 SOP 與團隊工具鏈。
+      </p>
+      <h4>
+       Limitations / Risk
+      </h4>
+      <p>
+       需測批次、資產命名、下載格式與多人協作是否足以支援 production。 風險檢查至少包含幾何/影像一致性、可編輯性、失敗案例、輸出格式、雲端或本地限制、授權/資料來源與人工 cleanup 成本；不能只用最佳案例判斷可量產性。 驗收時應保存失敗樣本與基準結果，避免只因單一成功案例就提高 production readiness 判定。
       </p>
      </div>
     </details>
@@ -422,22 +492,28 @@
      </summary>
      <div class="detail-body">
       <h4>
-       Production 重點
+       Production Delta
       </h4>
       <p>
-       3D-guided input 能提高角色、鏡頭與空間一致性。
+       3D-guided input 能提高角色、鏡頭與空間一致性。 這次「Reallusion AI Studio：3D Guided AI 工作流」的可驗證變化可由摘要交叉確認：以 3D 角色、鏡頭與 previz 作為 AI 影片/角色生成的控制層，強調可導向而非純 prompt。 從 production 角度應把評估焦點放在實際輸出、可重複性與是否減少既有人工步驟，而不是只看展示效果。
       </p>
       <h4>
-       導入判斷
+       Why It Matters
       </h4>
       <p>
-       與 Character Creator/iClone 的既有角色資產能形成可控的前置層。
+       對生成式資產流程而言，真正的價值不是多一個 demo，而是能否減少人工起稿、重建、清理或版本反覆，並讓結果更容易進入後續 DCC 與引擎製作。 對「Reallusion AI Studio：3D Guided AI 工作流」而言，應優先判斷它影響的是前期探索、資產製作、動作處理、引擎整合還是交付維護，並用可量化的 iteration/cleanup/效能成本決定是否值得導入。
       </p>
       <h4>
-       實測 / 風險
+       Pipeline Impact
       </h4>
       <p>
-       需驗證生成片段回到 3D pipeline 的可編輯程度，而不只是最終影片品質。
+       與 Character Creator/iClone 的既有角色資產能形成可控的前置層。 建議以 reference/input → 生成 → Blender/Maya 清理 → UV/材質/rig 或動畫整理 → Unreal/Unity 驗收的完整鏈路測試，並保留原始輸入、版本與輸出格式以便比較。 建議先在非破壞的測試分支完成端到端驗證，再決定是否納入正式 SOP 與團隊工具鏈。
+      </p>
+      <h4>
+       Limitations / Risk
+      </h4>
+      <p>
+       需驗證生成片段回到 3D pipeline 的可編輯程度，而不只是最終影片品質。 風險檢查至少包含幾何/影像一致性、可編輯性、失敗案例、輸出格式、雲端或本地限制、授權/資料來源與人工 cleanup 成本；不能只用最佳案例判斷可量產性。 驗收時應保存失敗樣本與基準結果，避免只因單一成功案例就提高 production readiness 判定。
       </p>
      </div>
     </details>
@@ -466,22 +542,28 @@
      </summary>
      <div class="detail-body">
       <h4>
-       Production 重點
+       Production Delta
       </h4>
       <p>
-       輸入以 reference image + motion video 為主，核心是角色一致性與動作轉移。
+       輸入以 reference image + motion video 為主，核心是角色一致性與動作轉移。 這次「ComfyUI × Kling 3.0 Motion Control」的可驗證變化可由摘要交叉確認：參考角色圖綁定動作影片，讓 motion transfer 進入可節點化、自動化的 ComfyUI workflow。 從 production 角度應把評估焦點放在實際輸出、可重複性與是否減少既有人工步驟，而不是只看展示效果。
       </p>
       <h4>
-       導入判斷
+       Why It Matters
       </h4>
       <p>
-       ComfyUI 節點化適合批次測不同角色、鏡頭與動作來源。
+       對生成式資產流程而言，真正的價值不是多一個 demo，而是能否減少人工起稿、重建、清理或版本反覆，並讓結果更容易進入後續 DCC 與引擎製作。 對「ComfyUI × Kling 3.0 Motion Control」而言，應優先判斷它影響的是前期探索、資產製作、動作處理、引擎整合還是交付維護，並用可量化的 iteration/cleanup/效能成本決定是否值得導入。
       </p>
       <h4>
-       實測 / 風險
+       Pipeline Impact
       </h4>
       <p>
-       輸出仍以影像/影片為核心，若要進 game rig 還需要另一段 motion extraction/retarget。
+       ComfyUI 節點化適合批次測不同角色、鏡頭與動作來源。 建議以 reference/input → 生成 → Blender/Maya 清理 → UV/材質/rig 或動畫整理 → Unreal/Unity 驗收的完整鏈路測試，並保留原始輸入、版本與輸出格式以便比較。 若屬 AI Motion，還要額外確認輸入是影片、影像、文字還是既有 motion，輸出是否能落到可編輯 skeleton/curve，以及 root motion、手指、臉部、多人、foot lock、cleanup、retarget、local/cloud 與 engine integration 的實際支援程度。 建議先在非破壞的測試分支完成端到端驗證，再決定是否納入正式 SOP 與團隊工具鏈。
+      </p>
+      <h4>
+       Limitations / Risk
+      </h4>
+      <p>
+       輸出仍以影像/影片為核心，若要進 game rig 還需要另一段 motion extraction/retarget。 風險檢查至少包含幾何/影像一致性、可編輯性、失敗案例、輸出格式、雲端或本地限制、授權/資料來源與人工 cleanup 成本；不能只用最佳案例判斷可量產性。 若屬 AI Motion，還要額外確認輸入是影片、影像、文字還是既有 motion，輸出是否能落到可編輯 skeleton/curve，以及 root motion、手指、臉部、多人、foot lock、cleanup、retarget、local/cloud 與 engine integration 的實際支援程度。 驗收時應保存失敗樣本與基準結果，避免只因單一成功案例就提高 production readiness 判定。
       </p>
      </div>
     </details>
@@ -489,6 +571,17 @@
      來源 ↗
     </a>
    </article>
+   <nav aria-label="相鄰分類" class="category-bottom-nav">
+    <a href="../blender-dcc/">
+     ← Blender / DCC
+    </a>
+    <a href="../../">
+     TOP5
+    </a>
+    <a href="../3d-production/">
+     3D 製作 →
+    </a>
+   </nav>
   </main>
  </body>
 </html>

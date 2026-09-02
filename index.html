@@ -37,6 +37,31 @@
     </div>
    </div>
   </header>
+  <nav aria-label="Production Intelligence 分類" class="global-category-nav">
+   <div class="page global-category-nav-inner">
+    <a class="global-category-link is-active" href="">
+     TOP5
+    </a>
+    <a class="global-category-link" data-category="ai-generation" href="2026-09-02/ai-generation/">
+     AI 生成
+    </a>
+    <a class="global-category-link" data-category="3d-production" href="2026-09-02/3d-production/">
+     3D 製作
+    </a>
+    <a class="global-category-link" data-category="3d-animation" href="2026-09-02/3d-animation/">
+     3D 動作
+    </a>
+    <a class="global-category-link" data-category="engine-art" href="2026-09-02/engine-art/">
+     遊戲引擎
+    </a>
+    <a class="global-category-link" data-category="emerging-case" href="2026-09-02/emerging-case/">
+     新技術 / Case
+    </a>
+    <a class="global-category-link" data-category="blender-dcc" href="2026-09-02/blender-dcc/">
+     Blender / DCC
+    </a>
+   </div>
+  </nav>
   <main class="page home-main">
    <section class="home-section today-section" id="today">
     <div class="section-head">
@@ -78,22 +103,28 @@
         </summary>
         <div class="detail-body home-analysis-body">
          <h4>
-          Production 重點
+          Production Delta
          </h4>
          <p>
-          原生 quad topology 是這次最重要的 production delta。
+          原生 quad topology 是這次最重要的 production delta。 這次「Tripo P2.0：原生 Quad Topology 生成」的可驗證變化可由摘要交叉確認：P2.0 把 AI 3D 的重點從「看起來像」推向可編輯拓樸，直接瞄準 production asset cleanup。 從 production 角度應把評估焦點放在實際輸出、可重複性與是否減少既有人工步驟，而不是只看展示效果。
          </p>
          <h4>
-          導入判斷
+          Why It Matters
          </h4>
          <p>
-          需要用角色、硬表面、薄片結構測 edge flow 與 deformation readiness。
+          對生成式資產流程而言，真正的價值不是多一個 demo，而是能否減少人工起稿、重建、清理或版本反覆，並讓結果更容易進入後續 DCC 與引擎製作。 對「Tripo P2.0：原生 Quad Topology 生成」而言，應優先判斷它影響的是前期探索、資產製作、動作處理、引擎整合還是交付維護，並用可量化的 iteration/cleanup/效能成本決定是否值得導入。
          </p>
          <h4>
-          實測 / 風險
+          Pipeline Impact
          </h4>
          <p>
-          若拓樸可穩定維持，會顯著降低 AI mesh 進 DCC 後的 retopo 成本。
+          需要用角色、硬表面、薄片結構測 edge flow 與 deformation readiness。 建議以 reference/input → 生成 → Blender/Maya 清理 → UV/材質/rig 或動畫整理 → Unreal/Unity 驗收的完整鏈路測試，並保留原始輸入、版本與輸出格式以便比較。 建議先在非破壞的測試分支完成端到端驗證，再決定是否納入正式 SOP 與團隊工具鏈。
+         </p>
+         <h4>
+          Limitations / Risk
+         </h4>
+         <p>
+          若拓樸可穩定維持，會顯著降低 AI mesh 進 DCC 後的 retopo 成本。 風險檢查至少包含幾何/影像一致性、可編輯性、失敗案例、輸出格式、雲端或本地限制、授權/資料來源與人工 cleanup 成本；不能只用最佳案例判斷可量產性。 驗收時應保存失敗樣本與基準結果，避免只因單一成功案例就提高 production readiness 判定。
          </p>
         </div>
        </details>
@@ -135,22 +166,28 @@
         </summary>
         <div class="detail-body home-analysis-body">
          <h4>
-          Production 重點
+          Production Delta
          </h4>
          <p>
-          把 baked lighting 與未來 Surface Cache GI 拉到同一 rendering technology stack。
+          把 baked lighting 與未來 Surface Cache GI 拉到同一 rendering technology stack。 這次「Unity 6.6 Compute Light Baker」的可驗證變化可由摘要交叉確認：新 light baker 以 Compute Shader + Unified Ray Tracing 產生 lightmap、probe 與 APV 資料。 從 production 角度應把評估焦點放在實際輸出、可重複性與是否減少既有人工步驟，而不是只看展示效果。
          </p>
          <h4>
-          導入判斷
+          Why It Matters
          </h4>
          <p>
-          對 URP 場景可直接測 bake time、noise、lightmap parity 與 GPU vendor 差異。
+          對引擎端美術而言，價值在於能否改善即時畫面、工具效率或效能預算，同時維持不同平台、品質層級與既有內容管線的一致性。 對「Unity 6.6 Compute Light Baker」而言，應優先判斷它影響的是前期探索、資產製作、動作處理、引擎整合還是交付維護，並用可量化的 iteration/cleanup/效能成本決定是否值得導入。
          </p>
          <h4>
-          實測 / 風險
+          Pipeline Impact
          </h4>
          <p>
-          目前在 6.6 alpha/beta 路線，正式案應保留 Progressive Lightmapper fallback。
+          對 URP 場景可直接測 bake time、noise、lightmap parity 與 GPU vendor 差異。 建議建立代表性場景或角色 benchmark，從 DCC 匯入後在 Unreal/Unity 內比較畫質、shader/lighting 行為、CPU/GPU 成本、記憶體與 scalability，並保留可回退方案。 建議先在非破壞的測試分支完成端到端驗證，再決定是否納入正式 SOP 與團隊工具鏈。
+         </p>
+         <h4>
+          Limitations / Risk
+         </h4>
+         <p>
+          目前在 6.6 alpha/beta 路線，正式案應保留 Progressive Lightmapper fallback。 風險檢查至少包含 shader compile、CPU/GPU frame cost、記憶體、不同平台與 scalability、LOD/Nanite/VSM/Lumen 等交互影響，以及升版後 regression 與既有內容 fallback。 驗收時應保存失敗樣本與基準結果，避免只因單一成功案例就提高 production readiness 判定。
          </p>
         </div>
        </details>
@@ -192,22 +229,28 @@
         </summary>
         <div class="detail-body home-analysis-body">
          <h4>
-          Production 重點
+          Production Delta
          </h4>
          <p>
-          輸入是 monocular video，目標是可自由視角的動態 3D 表示。
+          輸入是 monocular video，目標是可自由視角的動態 3D 表示。 這次「World from Motion：單目影片生成可自由視角 Dynamic 3DGS」的可驗證變化可由摘要交叉確認：NVIDIA/Stanford 等研究用 video prior 修正 monocular reconstruction，再蒸餾回一致 dynamic Gaussian scene。 從 production 角度應把評估焦點放在實際輸出、可重複性與是否減少既有人工步驟，而不是只看展示效果。
          </p>
          <h4>
-          導入判斷
+          Why It Matters
          </h4>
          <p>
-          把 video generation 的 unseen-region 能力蒸餾回 3DGS 是關鍵。
+          這類新技術的價值主要是指出未來可能改變 capture、world building、內容表示或互動方式的路線；現階段更適合作為技術雷達與原型驗證，而非直接假定可量產。 對「World from Motion：單目影片生成可自由視角 Dynamic 3DGS」而言，應優先判斷它影響的是前期探索、資產製作、動作處理、引擎整合還是交付維護，並用可量化的 iteration/cleanup/效能成本決定是否值得導入。
          </p>
          <h4>
-          實測 / 風險
+          Pipeline Impact
          </h4>
          <p>
-          對 capture/virtual production 有潛力，但目前不是 game-ready mesh pipeline。
+          把 video generation 的 unseen-region 能力蒸餾回 3DGS 是關鍵。 建議先以隔離的 R&amp;D prototype 驗證輸入需求、輸出表示、重建/生成時間與可控性，再評估是否能轉成 mesh、animation、texture 或可被 engine 消費的中介資料。 建議先在非破壞的測試分支完成端到端驗證，再決定是否納入正式 SOP 與團隊工具鏈。
+         </p>
+         <h4>
+          Limitations / Risk
+         </h4>
+         <p>
+          對 capture/virtual production 有潛力，但目前不是 game-ready mesh pipeline。 風險主要在研究與 production 間的成熟度落差：需要區分論文指標與可操作工具，並檢查資料需求、時間穩定性、遮擋/長序列、輸出容量、streaming 與可編輯程度。 驗收時應保存失敗樣本與基準結果，避免只因單一成功案例就提高 production readiness 判定。
          </p>
         </div>
        </details>
@@ -249,22 +292,28 @@
         </summary>
         <div class="detail-body home-analysis-body">
          <h4>
-          Production 重點
+          Production Delta
          </h4>
          <p>
-          UE LiveLink 能縮短 animation preview round-trip。
+          UE LiveLink 能縮短 animation preview round-trip。 這次「Cascadeur 2026.1：UE LiveLink + AI Root Motion」的可驗證變化可由摘要交叉確認：AI-assisted keyframe 工具加入 UE LiveLink、Root Motion style transfer 與 collision cleanup。 從 production 角度應把評估焦點放在實際輸出、可重複性與是否減少既有人工步驟，而不是只看展示效果。
          </p>
          <h4>
-          導入判斷
+          Why It Matters
          </h4>
          <p>
-          AI Root Motion 可從參考 animation 學 movement signature，但仍需 animator cleanup。
+          對角色動作 production 而言，價值要以 animator 可控制程度、cleanup 時間、retarget 穩定性與最終 engine-ready 結果衡量，而不是只看單段展示是否自然。 對「Cascadeur 2026.1：UE LiveLink + AI Root Motion」而言，應優先判斷它影響的是前期探索、資產製作、動作處理、引擎整合還是交付維護，並用可量化的 iteration/cleanup/效能成本決定是否值得導入。
          </p>
          <h4>
-          實測 / 風險
+          Pipeline Impact
          </h4>
          <p>
-          導入測 root motion、foot lock、pelvis、weapon contact 與 retarget 到既有 skeleton 的穩定性。
+          AI Root Motion 可從參考 animation 學 movement signature，但仍需 animator cleanup。 建議以既有 skeleton/Control Rig 做 body、root motion、foot lock、手指、臉部與 retarget 測試；需要時先 bake 到標準曲線再進 Unreal/Unity，避免把工具依賴帶進 runtime。 若屬 AI Motion，還要額外確認輸入是影片、影像、文字還是既有 motion，輸出是否能落到可編輯 skeleton/curve，以及 root motion、手指、臉部、多人、foot lock、cleanup、retarget、local/cloud 與 engine integration 的實際支援程度。 建議先在非破壞的測試分支完成端到端驗證，再決定是否納入正式 SOP 與團隊工具鏈。
+         </p>
+         <h4>
+          Limitations / Risk
+         </h4>
+         <p>
+          導入測 root motion、foot lock、pelvis、weapon contact 與 retarget 到既有 skeleton 的穩定性。 風險檢查至少包含 foot sliding、root/pelvis 漂移、遮擋、快速轉身、手指/臉部缺失、非標準 rig retarget、曲線可編輯性、local/cloud、速度與授權；最終仍需 animator 驗收。 若屬 AI Motion，還要額外確認輸入是影片、影像、文字還是既有 motion，輸出是否能落到可編輯 skeleton/curve，以及 root motion、手指、臉部、多人、foot lock、cleanup、retarget、local/cloud 與 engine integration 的實際支援程度。 驗收時應保存失敗樣本與基準結果，避免只因單一成功案例就提高 production readiness 判定。
          </p>
         </div>
        </details>
@@ -306,22 +355,28 @@
         </summary>
         <div class="detail-body home-analysis-body">
          <h4>
-          Production 重點
+          Production Delta
          </h4>
          <p>
-          特別適合 hard-surface 與 prop 在 unwrap 後的 UV cleanup。
+          特別適合 hard-surface 與 prop 在 unwrap 後的 UV cleanup。 這次「UV Flex：互動式 UV Island Split / Merge / Reshape」的可驗證變化可由摘要交叉確認：把 UV island 的拆分、合併、變形與 spline 操作做成 viewport-driven 工具。 從 production 角度應把評估焦點放在實際輸出、可重複性與是否減少既有人工步驟，而不是只看展示效果。
          </p>
          <h4>
-          導入判斷
+          Why It Matters
          </h4>
          <p>
-          2D IK / spline deformation 能減少手動逐點修島。
+          對建模與資產製作而言，價值主要反映在可編輯性、重工次數、交付一致性與 artist iteration 速度，尤其適合用同一測試資產量化節省的人工步驟。 對「UV Flex：互動式 UV Island Split / Merge / Reshape」而言，應優先判斷它影響的是前期探索、資產製作、動作處理、引擎整合還是交付維護，並用可量化的 iteration/cleanup/效能成本決定是否值得導入。
          </p>
          <h4>
-          實測 / 風險
+          Pipeline Impact
          </h4>
          <p>
-          應測大型 UDIM、鏡像 seam、packing 前後與 Blender 版本相容性。
+          2D IK / spline deformation 能減少手動逐點修島。 建議直接放入既有 high/low、retopo、UV、bake、texture 與 engine import SOP，使用同一代表性資產比較操作步數、返工時間、拓樸/貼圖一致性與交付格式。 建議先在非破壞的測試分支完成端到端驗證，再決定是否納入正式 SOP 與團隊工具鏈。
+         </p>
+         <h4>
+          Limitations / Risk
+         </h4>
+         <p>
+          應測大型 UDIM、鏡像 seam、packing 前後與 Blender 版本相容性。 風險檢查至少包含非破壞性、拓樸與 UV 可預測性、bake/材質 parity、批次穩定性、版本相容與 artist 可修正性，並以返工時間而非單次成功率作為主要指標。 驗收時應保存失敗樣本與基準結果，避免只因單一成功案例就提高 production readiness 判定。
          </p>
         </div>
        </details>
@@ -368,22 +423,28 @@
        </summary>
        <div class="detail-body home-analysis-body">
         <h4>
-         Production 重點
+         Production Delta
         </h4>
         <p>
-         固定 rays-per-pixel 的架構讓大量 local lights 成本更可預測。
+         固定 rays-per-pixel 的架構讓大量 local lights 成本更可預測。 這次「UE5.8 MegaLights：Production Ready」的可驗證變化可由摘要交叉確認：MegaLights 在 5.8 進入 production-ready，加入 translucency、volumetric、debug views 與 60fps 導向優化。 從 production 角度應把評估焦點放在實際輸出、可重複性與是否減少既有人工步驟，而不是只看展示效果。
         </p>
         <h4>
-         導入判斷
+         Why It Matters
         </h4>
         <p>
-         支援 fog/translucency/IES 後，對實際場景的可用範圍比早期 preview 更完整。
+         對引擎端美術而言，價值在於能否改善即時畫面、工具效率或效能預算，同時維持不同平台、品質層級與既有內容管線的一致性。 對「UE5.8 MegaLights：Production Ready」而言，應優先判斷它影響的是前期探索、資產製作、動作處理、引擎整合還是交付維護，並用可量化的 iteration/cleanup/效能成本決定是否值得導入。
         </p>
         <h4>
-         實測 / 風險
+         Pipeline Impact
         </h4>
         <p>
-         需要用目標主機測 noise、complexity hotspot、RT/VSM shadow method 與 scalability。
+         支援 fog/translucency/IES 後，對實際場景的可用範圍比早期 preview 更完整。 建議建立代表性場景或角色 benchmark，從 DCC 匯入後在 Unreal/Unity 內比較畫質、shader/lighting 行為、CPU/GPU 成本、記憶體與 scalability，並保留可回退方案。 建議先在非破壞的測試分支完成端到端驗證，再決定是否納入正式 SOP 與團隊工具鏈。
+        </p>
+        <h4>
+         Limitations / Risk
+        </h4>
+        <p>
+         需要用目標主機測 noise、complexity hotspot、RT/VSM shadow method 與 scalability。 風險檢查至少包含 shader compile、CPU/GPU frame cost、記憶體、不同平台與 scalability、LOD/Nanite/VSM/Lumen 等交互影響，以及升版後 regression 與既有內容 fallback。 驗收時應保存失敗樣本與基準結果，避免只因單一成功案例就提高 production readiness 判定。
         </p>
        </div>
       </details>
@@ -420,22 +481,28 @@
        </summary>
        <div class="detail-body home-analysis-body">
         <h4>
-         Production 重點
+         Production Delta
         </h4>
         <p>
-         AI Assisted Editor 對大量材質修補、概念變體與 presentation cleanup 有直接價值。
+         AI Assisted Editor 對大量材質修補、概念變體與 presentation cleanup 有直接價值。 這次「Photoshop：Firefly Image 5 + AI Assisted Editor」的可驗證變化可由摘要交叉確認：Adobe 把自然語言編修、遮罩指令與新生成模型直接放進日常 texture/concept 編修環境。 從 production 角度應把評估焦點放在實際輸出、可重複性與是否減少既有人工步驟，而不是只看展示效果。
         </p>
         <h4>
-         導入判斷
+         Why It Matters
         </h4>
         <p>
-         Mask-based instruct edit 比整張重生更適合 production incremental edit。
+         對生成式資產流程而言，真正的價值不是多一個 demo，而是能否減少人工起稿、重建、清理或版本反覆，並讓結果更容易進入後續 DCC 與引擎製作。 對「Photoshop：Firefly Image 5 + AI Assisted Editor」而言，應優先判斷它影響的是前期探索、資產製作、動作處理、引擎整合還是交付維護，並用可量化的 iteration/cleanup/效能成本決定是否值得導入。
         </p>
         <h4>
-         實測 / 風險
+         Pipeline Impact
         </h4>
         <p>
-         需要建立不可破壞 layer、版權來源與最終人工檢查 SOP。
+         Mask-based instruct edit 比整張重生更適合 production incremental edit。 建議以 reference/input → 生成 → Blender/Maya 清理 → UV/材質/rig 或動畫整理 → Unreal/Unity 驗收的完整鏈路測試，並保留原始輸入、版本與輸出格式以便比較。 建議先在非破壞的測試分支完成端到端驗證，再決定是否納入正式 SOP 與團隊工具鏈。
+        </p>
+        <h4>
+         Limitations / Risk
+        </h4>
+        <p>
+         需要建立不可破壞 layer、版權來源與最終人工檢查 SOP。 風險檢查至少包含幾何/影像一致性、可編輯性、失敗案例、輸出格式、雲端或本地限制、授權/資料來源與人工 cleanup 成本；不能只用最佳案例判斷可量產性。 驗收時應保存失敗樣本與基準結果，避免只因單一成功案例就提高 production readiness 判定。
         </p>
        </div>
       </details>
@@ -472,22 +539,28 @@
        </summary>
        <div class="detail-body home-analysis-body">
         <h4>
-         Production 重點
+         Production Delta
         </h4>
         <p>
-         Smart Bevel 對 Boolean/不均勻 topology 的 hard-surface cleanup 有直接價值。
+         Smart Bevel 對 Boolean/不均勻 topology 的 hard-surface cleanup 有直接價值。 這次「Maya 2027：Smart Bevel、ngSkinTools、MotionMaker」的可驗證變化可由摘要交叉確認：Maya 2027 同時更新 modeling、skinning、Bifrost 與 AI animation，對角色 pipeline 影響廣。 從 production 角度應把評估焦點放在實際輸出、可重複性與是否減少既有人工步驟，而不是只看展示效果。
         </p>
         <h4>
-         導入判斷
+         Why It Matters
         </h4>
         <p>
-         ngSkinTools 內建讓 layer-based skinning 更接近標準功能。
+         對 DCC 工作流而言，價值在於減少跨工具往返、版本摩擦與重複操作，並提升團隊資產交換、工具維護與日常製作的可預測性。 對「Maya 2027：Smart Bevel、ngSkinTools、MotionMaker」而言，應優先判斷它影響的是前期探索、資產製作、動作處理、引擎整合還是交付維護，並用可量化的 iteration/cleanup/效能成本決定是否值得導入。
         </p>
         <h4>
-         實測 / 風險
+         Pipeline Impact
         </h4>
         <p>
-         升版需測 plugin、Python、FBX、rig deformation 與現有 toolset。
+         ngSkinTools 內建讓 layer-based skinning 更接近標準功能。 建議在實際專案副本中測 import/export、scene scale、軸向、材質、rig/animation、版本相容與批次處理；若牽涉 addon/plugin，需同時建立版本鎖定與回退策略。 建議先在非破壞的測試分支完成端到端驗證，再決定是否納入正式 SOP 與團隊工具鏈。
+        </p>
+        <h4>
+         Limitations / Risk
+        </h4>
+        <p>
+         升版需測 plugin、Python、FBX、rig deformation 與現有 toolset。 風險檢查至少包含 DCC 版本矩陣、plugin/API 變更、快捷鍵或工具衝突、跨平台、檔案可攜性、批次場景與多人協作；正式升版前必須以代表性專案做回歸。 驗收時應保存失敗樣本與基準結果，避免只因單一成功案例就提高 production readiness 判定。
         </p>
        </div>
       </details>
@@ -513,22 +586,28 @@
        </summary>
        <div class="detail-body home-analysis-body">
         <h4>
-         Production 重點
+         Production Delta
         </h4>
         <p>
-         remote asset library 對多人角色/場景 production 的規模化很重要。
+         remote asset library 對多人角色/場景 production 的規模化很重要。 這次「Blender 5.2 Remote Asset Libraries」的可驗證變化可由摘要交叉確認：Blender 資產庫開始支援 remote hosting，讓團隊 asset distribution 從共享磁碟走向可控遠端來源。 從 production 角度應把評估焦點放在實際輸出、可重複性與是否減少既有人工步驟，而不是只看展示效果。
         </p>
         <h4>
-         導入判斷
+         Why It Matters
         </h4>
         <p>
-         可把公司共用材質、node groups、base assets 做成中央分發。
+         對 DCC 工作流而言，價值在於減少跨工具往返、版本摩擦與重複操作，並提升團隊資產交換、工具維護與日常製作的可預測性。 對「Blender 5.2 Remote Asset Libraries」而言，應優先判斷它影響的是前期探索、資產製作、動作處理、引擎整合還是交付維護，並用可量化的 iteration/cleanup/效能成本決定是否值得導入。
         </p>
         <h4>
-         實測 / 風險
+         Pipeline Impact
         </h4>
         <p>
-         需測 cache、版本 pinning、離線模式、權限與破壞性更新治理。
+         可把公司共用材質、node groups、base assets 做成中央分發。 建議在實際專案副本中測 import/export、scene scale、軸向、材質、rig/animation、版本相容與批次處理；若牽涉 addon/plugin，需同時建立版本鎖定與回退策略。 建議先在非破壞的測試分支完成端到端驗證，再決定是否納入正式 SOP 與團隊工具鏈。
+        </p>
+        <h4>
+         Limitations / Risk
+        </h4>
+        <p>
+         需測 cache、版本 pinning、離線模式、權限與破壞性更新治理。 風險檢查至少包含 DCC 版本矩陣、plugin/API 變更、快捷鍵或工具衝突、跨平台、檔案可攜性、批次場景與多人協作；正式升版前必須以代表性專案做回歸。 驗收時應保存失敗樣本與基準結果，避免只因單一成功案例就提高 production readiness 判定。
         </p>
        </div>
       </details>
@@ -565,22 +644,28 @@
        </summary>
        <div class="detail-body home-analysis-body">
         <h4>
-         Production 重點
+         Production Delta
         </h4>
         <p>
-         HDA 用 curve 與參數驅動尺寸、數量、破損與 polycount，適合把環境造型變成可重用生成器。
+         HDA 用 curve 與參數驅動尺寸、數量、破損與 polycount，適合把環境造型變成可重用生成器。 這次「Procedural Stone Passage：Houdini HDA × UE5 即時材質」的可驗證變化可由摘要交叉確認：以自訂 HDA 驅動石材生成、損壞、polycount 與散佈，再把 Designer maps 重建成 UE5 procedural smart material。 從 production 角度應把評估焦點放在實際輸出、可重複性與是否減少既有人工步驟，而不是只看展示效果。
         </p>
         <h4>
-         導入判斷
+         Why It Matters
         </h4>
         <p>
-         Substance Designer base maps 再於 UE5 material graph 重建 procedural smart material，減少 unique texture 依賴。
+         對引擎端美術而言，價值在於能否改善即時畫面、工具效率或效能預算，同時維持不同平台、品質層級與既有內容管線的一致性。 對「Procedural Stone Passage：Houdini HDA × UE5 即時材質」而言，應優先判斷它影響的是前期探索、資產製作、動作處理、引擎整合還是交付維護，並用可量化的 iteration/cleanup/效能成本決定是否值得導入。
         </p>
         <h4>
-         實測 / 風險
+         Pipeline Impact
         </h4>
         <p>
-         應測 HDA cook time、instance/mesh 輸出、材質 instruction 與 LOD/Nanite 交付成本。
+         Substance Designer base maps 再於 UE5 material graph 重建 procedural smart material，減少 unique texture 依賴。 建議建立代表性場景或角色 benchmark，從 DCC 匯入後在 Unreal/Unity 內比較畫質、shader/lighting 行為、CPU/GPU 成本、記憶體與 scalability，並保留可回退方案。 建議先在非破壞的測試分支完成端到端驗證，再決定是否納入正式 SOP 與團隊工具鏈。
+        </p>
+        <h4>
+         Limitations / Risk
+        </h4>
+        <p>
+         應測 HDA cook time、instance/mesh 輸出、材質 instruction 與 LOD/Nanite 交付成本。 風險檢查至少包含 shader compile、CPU/GPU frame cost、記憶體、不同平台與 scalability、LOD/Nanite/VSM/Lumen 等交互影響，以及升版後 regression 與既有內容 fallback。 驗收時應保存失敗樣本與基準結果，避免只因單一成功案例就提高 production readiness 判定。
         </p>
        </div>
       </details>
@@ -606,22 +691,28 @@
        </summary>
        <div class="detail-body home-analysis-body">
         <h4>
-         Production 重點
+         Production Delta
         </h4>
         <p>
-         輸入是一張場景圖，輸出方向是多個獨立 3D assets 與相對空間關係。
+         輸入是一張場景圖，輸出方向是多個獨立 3D assets 與相對空間關係。 這次「Hyper3D WorldGen：單張場景圖拆成獨立 3D 資產」的可驗證變化可由摘要交叉確認：WorldGen 從單一物件生成走向整個場景的物件分解、3D 化與空間關係重建。 從 production 角度應把評估焦點放在實際輸出、可重複性與是否減少既有人工步驟，而不是只看展示效果。
         </p>
         <h4>
-         導入判斷
+         Why It Matters
         </h4>
         <p>
-         對環境 blockout 與 set dressing 的價值高於單物件生成。
+         對生成式資產流程而言，真正的價值不是多一個 demo，而是能否減少人工起稿、重建、清理或版本反覆，並讓結果更容易進入後續 DCC 與引擎製作。 對「Hyper3D WorldGen：單張場景圖拆成獨立 3D 資產」而言，應優先判斷它影響的是前期探索、資產製作、動作處理、引擎整合還是交付維護，並用可量化的 iteration/cleanup/效能成本決定是否值得導入。
         </p>
         <h4>
-         實測 / 風險
+         Pipeline Impact
         </h4>
         <p>
-         正式導入要檢查物件邊界、遮擋區補全、比例一致性與可編輯性。
+         對環境 blockout 與 set dressing 的價值高於單物件生成。 建議以 reference/input → 生成 → Blender/Maya 清理 → UV/材質/rig 或動畫整理 → Unreal/Unity 驗收的完整鏈路測試，並保留原始輸入、版本與輸出格式以便比較。 建議先在非破壞的測試分支完成端到端驗證，再決定是否納入正式 SOP 與團隊工具鏈。
+        </p>
+        <h4>
+         Limitations / Risk
+        </h4>
+        <p>
+         正式導入要檢查物件邊界、遮擋區補全、比例一致性與可編輯性。 風險檢查至少包含幾何/影像一致性、可編輯性、失敗案例、輸出格式、雲端或本地限制、授權/資料來源與人工 cleanup 成本；不能只用最佳案例判斷可量產性。 驗收時應保存失敗樣本與基準結果，避免只因單一成功案例就提高 production readiness 判定。
         </p>
        </div>
       </details>
@@ -658,22 +749,28 @@
        </summary>
        <div class="detail-body home-analysis-body">
         <h4>
-         Production 重點
+         Production Delta
         </h4>
         <p>
-         可對 selected objects/collections 烘焙並支援 explode 防投射瑕疵。
+         可對 selected objects/collections 烘焙並支援 explode 防投射瑕疵。 這次「Zen BBQ 2.0：程序 Bevel 直接烘焙 Production Maps」的可驗證變化可由摘要交叉確認：新的 Map Baking 可把 procedural bevel 轉成 Normal/AO/Curvature/ID 等貼圖。 從 production 角度應把評估焦點放在實際輸出、可重複性與是否減少既有人工步驟，而不是只看展示效果。
         </p>
         <h4>
-         導入判斷
+         Why It Matters
         </h4>
         <p>
-         對 hard-surface 可維持輕量幾何到 bake 階段再固化細節。
+         對建模與資產製作而言，價值主要反映在可編輯性、重工次數、交付一致性與 artist iteration 速度，尤其適合用同一測試資產量化節省的人工步驟。 對「Zen BBQ 2.0：程序 Bevel 直接烘焙 Production Maps」而言，應優先判斷它影響的是前期探索、資產製作、動作處理、引擎整合還是交付維護，並用可量化的 iteration/cleanup/效能成本決定是否值得導入。
         </p>
         <h4>
-         實測 / 風險
+         Pipeline Impact
         </h4>
         <p>
-         應測 cage、命名、multiple texture set 與 Marmoset/UE/Unity 的 map parity。
+         對 hard-surface 可維持輕量幾何到 bake 階段再固化細節。 建議直接放入既有 high/low、retopo、UV、bake、texture 與 engine import SOP，使用同一代表性資產比較操作步數、返工時間、拓樸/貼圖一致性與交付格式。 建議先在非破壞的測試分支完成端到端驗證，再決定是否納入正式 SOP 與團隊工具鏈。
+        </p>
+        <h4>
+         Limitations / Risk
+        </h4>
+        <p>
+         應測 cage、命名、multiple texture set 與 Marmoset/UE/Unity 的 map parity。 風險檢查至少包含非破壞性、拓樸與 UV 可預測性、bake/材質 parity、批次穩定性、版本相容與 artist 可修正性，並以返工時間而非單次成功率作為主要指標。 驗收時應保存失敗樣本與基準結果，避免只因單一成功案例就提高 production readiness 判定。
         </p>
        </div>
       </details>
@@ -710,22 +807,28 @@
        </summary>
        <div class="detail-body home-analysis-body">
         <h4>
-         Production 重點
+         Production Delta
         </h4>
         <p>
-         真人 anatomy 與 fighter reference 讓 stylization 建立在可信結構上，適合作為角色 high-poly 基線。
+         真人 anatomy 與 fighter reference 讓 stylization 建立在可信結構上，適合作為角色 high-poly 基線。 這次「Iron Mitchell：格鬥角色 Sculpt / Texture / UE Pipeline」的可驗證變化可由摘要交叉確認：以 Mike Tyson 等真實參考塑造 fighter anatomy，再將 ZBrush、Maya、Painter、Marmoset 與 Unreal 串成角色製作流程。 從 production 角度應把評估焦點放在實際輸出、可重複性與是否減少既有人工步驟，而不是只看展示效果。
         </p>
         <h4>
-         導入判斷
+         Why It Matters
         </h4>
         <p>
-         流程跨 ZBrush、Maya、Painter、Marmoset 與 Unreal，能觀察 sculpt→texture→realtime presentation 的交付節點。
+         對建模與資產製作而言，價值主要反映在可編輯性、重工次數、交付一致性與 artist iteration 速度，尤其適合用同一測試資產量化節省的人工步驟。 對「Iron Mitchell：格鬥角色 Sculpt / Texture / UE Pipeline」而言，應優先判斷它影響的是前期探索、資產製作、動作處理、引擎整合還是交付維護，並用可量化的 iteration/cleanup/效能成本決定是否值得導入。
         </p>
         <h4>
-         實測 / 風險
+         Pipeline Impact
         </h4>
         <p>
-         可抽取 skin breakup、材質層次、bake 與 realtime lighting 的角色驗收項目。
+         流程跨 ZBrush、Maya、Painter、Marmoset 與 Unreal，能觀察 sculpt→texture→realtime presentation 的交付節點。 建議直接放入既有 high/low、retopo、UV、bake、texture 與 engine import SOP，使用同一代表性資產比較操作步數、返工時間、拓樸/貼圖一致性與交付格式。 建議先在非破壞的測試分支完成端到端驗證，再決定是否納入正式 SOP 與團隊工具鏈。
+        </p>
+        <h4>
+         Limitations / Risk
+        </h4>
+        <p>
+         可抽取 skin breakup、材質層次、bake 與 realtime lighting 的角色驗收項目。 風險檢查至少包含非破壞性、拓樸與 UV 可預測性、bake/材質 parity、批次穩定性、版本相容與 artist 可修正性，並以返工時間而非單次成功率作為主要指標。 驗收時應保存失敗樣本與基準結果，避免只因單一成功案例就提高 production readiness 判定。
         </p>
        </div>
       </details>
@@ -762,22 +865,28 @@
        </summary>
        <div class="detail-body home-analysis-body">
         <h4>
-         Production 重點
+         Production Delta
         </h4>
         <p>
-         foundation-feature Gaussian tokenizer 把視語特徵落到 3D primitives。
+         foundation-feature Gaussian tokenizer 把視語特徵落到 3D primitives。 這次「GaussianDWM++：Language-Grounded 3D Gaussian World Model」的可驗證變化可由摘要交叉確認：把語言理解、3D Gaussian semantic field、場景編輯與 4D generation 統一到 driving world model。 從 production 角度應把評估焦點放在實際輸出、可重複性與是否減少既有人工步驟，而不是只看展示效果。
         </p>
         <h4>
-         導入判斷
+         Why It Matters
         </h4>
         <p>
-         支援 weather 與動態車輛等 instruction-controlled editing。
+         這類新技術的價值主要是指出未來可能改變 capture、world building、內容表示或互動方式的路線；現階段更適合作為技術雷達與原型驗證，而非直接假定可量產。 對「GaussianDWM++：Language-Grounded 3D Gaussian World Model」而言，應優先判斷它影響的是前期探索、資產製作、動作處理、引擎整合還是交付維護，並用可量化的 iteration/cleanup/效能成本決定是否值得導入。
         </p>
         <h4>
-         實測 / 風險
+         Pipeline Impact
         </h4>
         <p>
-         雖針對 driving，但對 game world semantic editing 的技術路線值得追。
+         支援 weather 與動態車輛等 instruction-controlled editing。 建議先以隔離的 R&amp;D prototype 驗證輸入需求、輸出表示、重建/生成時間與可控性，再評估是否能轉成 mesh、animation、texture 或可被 engine 消費的中介資料。 建議先在非破壞的測試分支完成端到端驗證，再決定是否納入正式 SOP 與團隊工具鏈。
+        </p>
+        <h4>
+         Limitations / Risk
+        </h4>
+        <p>
+         雖針對 driving，但對 game world semantic editing 的技術路線值得追。 風險主要在研究與 production 間的成熟度落差：需要區分論文指標與可操作工具，並檢查資料需求、時間穩定性、遮擋/長序列、輸出容量、streaming 與可編輯程度。 驗收時應保存失敗樣本與基準結果，避免只因單一成功案例就提高 production readiness 判定。
         </p>
        </div>
       </details>
@@ -814,22 +923,28 @@
        </summary>
        <div class="detail-body home-analysis-body">
         <h4>
-         Production 重點
+         Production Delta
         </h4>
         <p>
-         3DGS create/light/rig 表示 SideFX 把 splat 當正式 DCC primitive。
+         3DGS create/light/rig 表示 SideFX 把 splat 當正式 DCC primitive。 這次「Houdini 22：3DGS、Copernicus、KineFX 與 USD 新方向」的可驗證變化可由摘要交叉確認：Sneak Peek 顯示 native Gaussian、retopo、terrain、KineFX、crowd 與 SOP-based USD authoring 同步擴張。 從 production 角度應把評估焦點放在實際輸出、可重複性與是否減少既有人工步驟，而不是只看展示效果。
         </p>
         <h4>
-         導入判斷
+         Why It Matters
         </h4>
         <p>
-         KineFX、nested Motion Mixer、retarget recipes 對 animation pipeline 也有直接價值。
+         對 DCC 工作流而言，價值在於減少跨工具往返、版本摩擦與重複操作，並提升團隊資產交換、工具維護與日常製作的可預測性。 對「Houdini 22：3DGS、Copernicus、KineFX 與 USD 新方向」而言，應優先判斷它影響的是前期探索、資產製作、動作處理、引擎整合還是交付維護，並用可量化的 iteration/cleanup/效能成本決定是否值得導入。
         </p>
         <h4>
-         實測 / 風險
+         Pipeline Impact
         </h4>
         <p>
-         正式 release 前仍需把 sneak-peek 與實際 shipping feature 分開。
+         KineFX、nested Motion Mixer、retarget recipes 對 animation pipeline 也有直接價值。 建議在實際專案副本中測 import/export、scene scale、軸向、材質、rig/animation、版本相容與批次處理；若牽涉 addon/plugin，需同時建立版本鎖定與回退策略。 建議先在非破壞的測試分支完成端到端驗證，再決定是否納入正式 SOP 與團隊工具鏈。
+        </p>
+        <h4>
+         Limitations / Risk
+        </h4>
+        <p>
+         正式 release 前仍需把 sneak-peek 與實際 shipping feature 分開。 風險檢查至少包含 DCC 版本矩陣、plugin/API 變更、快捷鍵或工具衝突、跨平台、檔案可攜性、批次場景與多人協作；正式升版前必須以代表性專案做回歸。 驗收時應保存失敗樣本與基準結果，避免只因單一成功案例就提高 production readiness 判定。
         </p>
        </div>
       </details>

@@ -12,9 +12,6 @@
  <body class="category-page" data-category="blender-dcc" data-report-date="2026-09-02">
   <header class="category-hero">
    <div class="page">
-    <a class="category-back" href="../../">
-     ← 回首頁
-    </a>
     <span class="section-kicker">
      2026-09-02
     </span>
@@ -26,6 +23,31 @@
     </p>
    </div>
   </header>
+  <nav aria-label="Production Intelligence 分類" class="global-category-nav">
+   <div class="page global-category-nav-inner">
+    <a class="global-category-link" href="../../">
+     TOP5
+    </a>
+    <a class="global-category-link" data-category="ai-generation" href="../ai-generation/">
+     AI 生成
+    </a>
+    <a class="global-category-link" data-category="3d-production" href="../3d-production/">
+     3D 製作
+    </a>
+    <a class="global-category-link" data-category="3d-animation" href="../3d-animation/">
+     3D 動作
+    </a>
+    <a class="global-category-link" data-category="engine-art" href="../engine-art/">
+     遊戲引擎
+    </a>
+    <a class="global-category-link" data-category="emerging-case" href="../emerging-case/">
+     新技術 / Case
+    </a>
+    <a class="global-category-link is-active" data-category="blender-dcc" href="../blender-dcc/">
+     Blender / DCC
+    </a>
+   </div>
+  </nav>
   <main class="page category-main">
    <article class="category-card" data-intel-id="maya-2027-smartbevel-ngskin" data-intel-role="card">
     <div class="category-meta">
@@ -59,22 +81,28 @@
      </summary>
      <div class="detail-body">
       <h4>
-       Production 重點
+       Production Delta
       </h4>
       <p>
-       Smart Bevel 對 Boolean/不均勻 topology 的 hard-surface cleanup 有直接價值。
+       Smart Bevel 對 Boolean/不均勻 topology 的 hard-surface cleanup 有直接價值。 這次「Maya 2027：Smart Bevel、ngSkinTools、MotionMaker」的可驗證變化可由摘要交叉確認：Maya 2027 同時更新 modeling、skinning、Bifrost 與 AI animation，對角色 pipeline 影響廣。 從 production 角度應把評估焦點放在實際輸出、可重複性與是否減少既有人工步驟，而不是只看展示效果。
       </p>
       <h4>
-       導入判斷
+       Why It Matters
       </h4>
       <p>
-       ngSkinTools 內建讓 layer-based skinning 更接近標準功能。
+       對 DCC 工作流而言，價值在於減少跨工具往返、版本摩擦與重複操作，並提升團隊資產交換、工具維護與日常製作的可預測性。 對「Maya 2027：Smart Bevel、ngSkinTools、MotionMaker」而言，應優先判斷它影響的是前期探索、資產製作、動作處理、引擎整合還是交付維護，並用可量化的 iteration/cleanup/效能成本決定是否值得導入。
       </p>
       <h4>
-       實測 / 風險
+       Pipeline Impact
       </h4>
       <p>
-       升版需測 plugin、Python、FBX、rig deformation 與現有 toolset。
+       ngSkinTools 內建讓 layer-based skinning 更接近標準功能。 建議在實際專案副本中測 import/export、scene scale、軸向、材質、rig/animation、版本相容與批次處理；若牽涉 addon/plugin，需同時建立版本鎖定與回退策略。 建議先在非破壞的測試分支完成端到端驗證，再決定是否納入正式 SOP 與團隊工具鏈。
+      </p>
+      <h4>
+       Limitations / Risk
+      </h4>
+      <p>
+       升版需測 plugin、Python、FBX、rig deformation 與現有 toolset。 風險檢查至少包含 DCC 版本矩陣、plugin/API 變更、快捷鍵或工具衝突、跨平台、檔案可攜性、批次場景與多人協作；正式升版前必須以代表性專案做回歸。 驗收時應保存失敗樣本與基準結果，避免只因單一成功案例就提高 production readiness 判定。
       </p>
      </div>
     </details>
@@ -103,22 +131,28 @@
      </summary>
      <div class="detail-body">
       <h4>
-       Production 重點
+       Production Delta
       </h4>
       <p>
-       remote asset library 對多人角色/場景 production 的規模化很重要。
+       remote asset library 對多人角色/場景 production 的規模化很重要。 這次「Blender 5.2 Remote Asset Libraries」的可驗證變化可由摘要交叉確認：Blender 資產庫開始支援 remote hosting，讓團隊 asset distribution 從共享磁碟走向可控遠端來源。 從 production 角度應把評估焦點放在實際輸出、可重複性與是否減少既有人工步驟，而不是只看展示效果。
       </p>
       <h4>
-       導入判斷
+       Why It Matters
       </h4>
       <p>
-       可把公司共用材質、node groups、base assets 做成中央分發。
+       對 DCC 工作流而言，價值在於減少跨工具往返、版本摩擦與重複操作，並提升團隊資產交換、工具維護與日常製作的可預測性。 對「Blender 5.2 Remote Asset Libraries」而言，應優先判斷它影響的是前期探索、資產製作、動作處理、引擎整合還是交付維護，並用可量化的 iteration/cleanup/效能成本決定是否值得導入。
       </p>
       <h4>
-       實測 / 風險
+       Pipeline Impact
       </h4>
       <p>
-       需測 cache、版本 pinning、離線模式、權限與破壞性更新治理。
+       可把公司共用材質、node groups、base assets 做成中央分發。 建議在實際專案副本中測 import/export、scene scale、軸向、材質、rig/animation、版本相容與批次處理；若牽涉 addon/plugin，需同時建立版本鎖定與回退策略。 建議先在非破壞的測試分支完成端到端驗證，再決定是否納入正式 SOP 與團隊工具鏈。
+      </p>
+      <h4>
+       Limitations / Risk
+      </h4>
+      <p>
+       需測 cache、版本 pinning、離線模式、權限與破壞性更新治理。 風險檢查至少包含 DCC 版本矩陣、plugin/API 變更、快捷鍵或工具衝突、跨平台、檔案可攜性、批次場景與多人協作；正式升版前必須以代表性專案做回歸。 驗收時應保存失敗樣本與基準結果，避免只因單一成功案例就提高 production readiness 判定。
       </p>
      </div>
     </details>
@@ -158,22 +192,28 @@
      </summary>
      <div class="detail-body">
       <h4>
-       Production 重點
+       Production Delta
       </h4>
       <p>
-       3DGS create/light/rig 表示 SideFX 把 splat 當正式 DCC primitive。
+       3DGS create/light/rig 表示 SideFX 把 splat 當正式 DCC primitive。 這次「Houdini 22：3DGS、Copernicus、KineFX 與 USD 新方向」的可驗證變化可由摘要交叉確認：Sneak Peek 顯示 native Gaussian、retopo、terrain、KineFX、crowd 與 SOP-based USD authoring 同步擴張。 從 production 角度應把評估焦點放在實際輸出、可重複性與是否減少既有人工步驟，而不是只看展示效果。
       </p>
       <h4>
-       導入判斷
+       Why It Matters
       </h4>
       <p>
-       KineFX、nested Motion Mixer、retarget recipes 對 animation pipeline 也有直接價值。
+       對 DCC 工作流而言，價值在於減少跨工具往返、版本摩擦與重複操作，並提升團隊資產交換、工具維護與日常製作的可預測性。 對「Houdini 22：3DGS、Copernicus、KineFX 與 USD 新方向」而言，應優先判斷它影響的是前期探索、資產製作、動作處理、引擎整合還是交付維護，並用可量化的 iteration/cleanup/效能成本決定是否值得導入。
       </p>
       <h4>
-       實測 / 風險
+       Pipeline Impact
       </h4>
       <p>
-       正式 release 前仍需把 sneak-peek 與實際 shipping feature 分開。
+       KineFX、nested Motion Mixer、retarget recipes 對 animation pipeline 也有直接價值。 建議在實際專案副本中測 import/export、scene scale、軸向、材質、rig/animation、版本相容與批次處理；若牽涉 addon/plugin，需同時建立版本鎖定與回退策略。 建議先在非破壞的測試分支完成端到端驗證，再決定是否納入正式 SOP 與團隊工具鏈。
+      </p>
+      <h4>
+       Limitations / Risk
+      </h4>
+      <p>
+       正式 release 前仍需把 sneak-peek 與實際 shipping feature 分開。 風險檢查至少包含 DCC 版本矩陣、plugin/API 變更、快捷鍵或工具衝突、跨平台、檔案可攜性、批次場景與多人協作；正式升版前必須以代表性專案做回歸。 驗收時應保存失敗樣本與基準結果，避免只因單一成功案例就提高 production readiness 判定。
       </p>
      </div>
     </details>
@@ -202,22 +242,28 @@
      </summary>
      <div class="detail-body">
       <h4>
-       Production 重點
+       Production Delta
       </h4>
       <p>
-       Geometry Bundles 可跨 modifier/object 邊界攜帶任意資料。
+       Geometry Bundles 可跨 modifier/object 邊界攜帶任意資料。 這次「Blender 5.2 Geometry Nodes：Bundles、Lists、Sound」的可驗證變化可由摘要交叉確認：Geometry Nodes 的資料結構與跨物件傳遞能力擴張，讓大型 procedural system 更容易模組化。 從 production 角度應把評估焦點放在實際輸出、可重複性與是否減少既有人工步驟，而不是只看展示效果。
       </p>
       <h4>
-       導入判斷
+       Why It Matters
       </h4>
       <p>
-       Lists 與新的 node groups 讓程序資產不必靠大量平行 socket 維護狀態。
+       對 DCC 工作流而言，價值在於減少跨工具往返、版本摩擦與重複操作，並提升團隊資產交換、工具維護與日常製作的可預測性。 對「Blender 5.2 Geometry Nodes：Bundles、Lists、Sound」而言，應優先判斷它影響的是前期探索、資產製作、動作處理、引擎整合還是交付維護，並用可量化的 iteration/cleanup/效能成本決定是否值得導入。
       </p>
       <h4>
-       實測 / 風險
+       Pipeline Impact
       </h4>
       <p>
-       值得測 complex GN asset 的可讀性、evaluation cost 與 version migration。
+       Lists 與新的 node groups 讓程序資產不必靠大量平行 socket 維護狀態。 建議在實際專案副本中測 import/export、scene scale、軸向、材質、rig/animation、版本相容與批次處理；若牽涉 addon/plugin，需同時建立版本鎖定與回退策略。 建議先在非破壞的測試分支完成端到端驗證，再決定是否納入正式 SOP 與團隊工具鏈。
+      </p>
+      <h4>
+       Limitations / Risk
+      </h4>
+      <p>
+       值得測 complex GN asset 的可讀性、evaluation cost 與 version migration。 風險檢查至少包含 DCC 版本矩陣、plugin/API 變更、快捷鍵或工具衝突、跨平台、檔案可攜性、批次場景與多人協作；正式升版前必須以代表性專案做回歸。 驗收時應保存失敗樣本與基準結果，避免只因單一成功案例就提高 production readiness 判定。
       </p>
      </div>
     </details>
@@ -246,22 +292,28 @@
      </summary>
      <div class="detail-body">
       <h4>
-       Production 重點
+       Production Delta
       </h4>
       <p>
-       不是 flatten export；目標是保存 animation、blendshape、camera、pivot、hierarchy 與 PBR 材質。
+       不是 flatten export；目標是保存 animation、blendshape、camera、pivot、hierarchy 與 PBR 材質。 這次「MableLink：Maya 場景一鍵同步 Blender / Unreal」的可驗證變化可由摘要交叉確認：保留 rig、animation、blendshape、camera、light、hierarchy 與 PBR materials，並支援 live re-sync 與可攜 .mable package。 從 production 角度應把評估焦點放在實際輸出、可重複性與是否減少既有人工步驟，而不是只看展示效果。
       </p>
       <h4>
-       導入判斷
+       Why It Matters
       </h4>
       <p>
-       Maya→Blender/UE live re-sync 可降低中間 FBX/手動材質重建，並提供 portable package。
+       對 DCC 工作流而言，價值在於減少跨工具往返、版本摩擦與重複操作，並提升團隊資產交換、工具維護與日常製作的可預測性。 對「MableLink：Maya 場景一鍵同步 Blender / Unreal」而言，應優先判斷它影響的是前期探索、資產製作、動作處理、引擎整合還是交付維護，並用可量化的 iteration/cleanup/效能成本決定是否值得導入。
       </p>
       <h4>
-       實測 / 風險
+       Pipeline Impact
       </h4>
       <p>
-       應測 constraint/bake、材質 parity、單位軸向、large scene 與多人版本同步。
+       Maya→Blender/UE live re-sync 可降低中間 FBX/手動材質重建，並提供 portable package。 建議在實際專案副本中測 import/export、scene scale、軸向、材質、rig/animation、版本相容與批次處理；若牽涉 addon/plugin，需同時建立版本鎖定與回退策略。 建議先在非破壞的測試分支完成端到端驗證，再決定是否納入正式 SOP 與團隊工具鏈。
+      </p>
+      <h4>
+       Limitations / Risk
+      </h4>
+      <p>
+       應測 constraint/bake、材質 parity、單位軸向、large scene 與多人版本同步。 風險檢查至少包含 DCC 版本矩陣、plugin/API 變更、快捷鍵或工具衝突、跨平台、檔案可攜性、批次場景與多人協作；正式升版前必須以代表性專案做回歸。 驗收時應保存失敗樣本與基準結果，避免只因單一成功案例就提高 production readiness 判定。
       </p>
      </div>
     </details>
@@ -290,22 +342,28 @@
      </summary>
      <div class="detail-body">
       <h4>
-       Production 重點
+       Production Delta
       </h4>
       <p>
-       可同時處理多個分離物件的 weight painting，對角色服裝/配件綁定較實用。
+       可同時處理多個分離物件的 weight painting，對角色服裝/配件綁定較實用。 這次「Weight Paint Box：多物件 Weight Painting 與 Rigify 改善」的可驗證變化可由摘要交叉確認：以 deformation box 取代傳統 brush 的部分權重工作，更新支援多物件、overlay 與更一致的 box 行為。 從 production 角度應把評估焦點放在實際輸出、可重複性與是否減少既有人工步驟，而不是只看展示效果。
       </p>
       <h4>
-       導入判斷
+       Why It Matters
       </h4>
       <p>
-       Draw Bone 結合 Rigify，讓快速建骨與權重修正集中在同一 addon workflow。
+       對 DCC 工作流而言，價值在於減少跨工具往返、版本摩擦與重複操作，並提升團隊資產交換、工具維護與日常製作的可預測性。 對「Weight Paint Box：多物件 Weight Painting 與 Rigify 改善」而言，應優先判斷它影響的是前期探索、資產製作、動作處理、引擎整合還是交付維護，並用可量化的 iteration/cleanup/效能成本決定是否值得導入。
       </p>
       <h4>
-       實測 / 風險
+       Pipeline Impact
       </h4>
       <p>
-       需和原生 weight paint 比較 extreme joint、mirror、多 vertex groups 與版本更新穩定性。
+       Draw Bone 結合 Rigify，讓快速建骨與權重修正集中在同一 addon workflow。 建議在實際專案副本中測 import/export、scene scale、軸向、材質、rig/animation、版本相容與批次處理；若牽涉 addon/plugin，需同時建立版本鎖定與回退策略。 建議先在非破壞的測試分支完成端到端驗證，再決定是否納入正式 SOP 與團隊工具鏈。
+      </p>
+      <h4>
+       Limitations / Risk
+      </h4>
+      <p>
+       需和原生 weight paint 比較 extreme joint、mirror、多 vertex groups 與版本更新穩定性。 風險檢查至少包含 DCC 版本矩陣、plugin/API 變更、快捷鍵或工具衝突、跨平台、檔案可攜性、批次場景與多人協作；正式升版前必須以代表性專案做回歸。 驗收時應保存失敗樣本與基準結果，避免只因單一成功案例就提高 production readiness 判定。
       </p>
      </div>
     </details>
@@ -334,22 +392,28 @@
      </summary>
      <div class="detail-body">
       <h4>
-       Production 重點
+       Production Delta
       </h4>
       <p>
-       Maya/Max 新版內建 plugin 可能不是最新，需要另外控版本。
+       Maya/Max 新版內建 plugin 可能不是最新，需要另外控版本。 這次「Arnold 7.5.1：更新 DCC Integrations 與 Cloud Rendering」的可驗證變化可由摘要交叉確認：Arnold 7.5.1 同步更新 Maya/Max/Houdini/C4D/Katana integrations，影響 studio render farm 與 DCC version matrix。 從 production 角度應把評估焦點放在實際輸出、可重複性與是否減少既有人工步驟，而不是只看展示效果。
       </p>
       <h4>
-       導入判斷
+       Why It Matters
       </h4>
       <p>
-       跨 DCC integration 同步是 studio pipeline 穩定性的核心。
+       對 DCC 工作流而言，價值在於減少跨工具往返、版本摩擦與重複操作，並提升團隊資產交換、工具維護與日常製作的可預測性。 對「Arnold 7.5.1：更新 DCC Integrations 與 Cloud Rendering」而言，應優先判斷它影響的是前期探索、資產製作、動作處理、引擎整合還是交付維護，並用可量化的 iteration/cleanup/效能成本決定是否值得導入。
       </p>
       <h4>
-       實測 / 風險
+       Pipeline Impact
       </h4>
       <p>
-       升版前應跑 AOV、OCIO、shader、GPU/CPU parity 與 farm reproducibility。
+       跨 DCC integration 同步是 studio pipeline 穩定性的核心。 建議在實際專案副本中測 import/export、scene scale、軸向、材質、rig/animation、版本相容與批次處理；若牽涉 addon/plugin，需同時建立版本鎖定與回退策略。 建議先在非破壞的測試分支完成端到端驗證，再決定是否納入正式 SOP 與團隊工具鏈。
+      </p>
+      <h4>
+       Limitations / Risk
+      </h4>
+      <p>
+       升版前應跑 AOV、OCIO、shader、GPU/CPU parity 與 farm reproducibility。 風險檢查至少包含 DCC 版本矩陣、plugin/API 變更、快捷鍵或工具衝突、跨平台、檔案可攜性、批次場景與多人協作；正式升版前必須以代表性專案做回歸。 驗收時應保存失敗樣本與基準結果，避免只因單一成功案例就提高 production readiness 判定。
       </p>
      </div>
     </details>
@@ -378,22 +442,28 @@
      </summary>
      <div class="detail-body">
       <h4>
-       Production 重點
+       Production Delta
       </h4>
       <p>
-       對從 3ds Max/Maya 轉 Blender 的人，操作遷移成本本身就是 production 成本。
+       對從 3ds Max/Maya 轉 Blender 的人，操作遷移成本本身就是 production 成本。 這次「Leon's Modeling Toolkit：Max/Maya/Hammer 操作習慣進 Blender」的可驗證變化可由摘要交叉確認：集合 world-aligned texturing、clip、mirror、Maya-style merge、cable 等模型師高頻工具。 從 production 角度應把評估焦點放在實際輸出、可重複性與是否減少既有人工步驟，而不是只看展示效果。
       </p>
       <h4>
-       導入判斷
+       Why It Matters
       </h4>
       <p>
-       非破壞 mirror、world-aligned texture、clip 與 merge 都是高頻 hard-surface 操作。
+       對 DCC 工作流而言，價值在於減少跨工具往返、版本摩擦與重複操作，並提升團隊資產交換、工具維護與日常製作的可預測性。 對「Leon's Modeling Toolkit：Max/Maya/Hammer 操作習慣進 Blender」而言，應優先判斷它影響的是前期探索、資產製作、動作處理、引擎整合還是交付維護，並用可量化的 iteration/cleanup/效能成本決定是否值得導入。
       </p>
       <h4>
-       實測 / 風險
+       Pipeline Impact
       </h4>
       <p>
-       要確認快捷鍵衝突、Blender 版本鎖定與多人安裝維護。
+       非破壞 mirror、world-aligned texture、clip 與 merge 都是高頻 hard-surface 操作。 建議在實際專案副本中測 import/export、scene scale、軸向、材質、rig/animation、版本相容與批次處理；若牽涉 addon/plugin，需同時建立版本鎖定與回退策略。 建議先在非破壞的測試分支完成端到端驗證，再決定是否納入正式 SOP 與團隊工具鏈。
+      </p>
+      <h4>
+       Limitations / Risk
+      </h4>
+      <p>
+       要確認快捷鍵衝突、Blender 版本鎖定與多人安裝維護。 風險檢查至少包含 DCC 版本矩陣、plugin/API 變更、快捷鍵或工具衝突、跨平台、檔案可攜性、批次場景與多人協作；正式升版前必須以代表性專案做回歸。 驗收時應保存失敗樣本與基準結果，避免只因單一成功案例就提高 production readiness 判定。
       </p>
      </div>
     </details>
@@ -422,22 +492,28 @@
      </summary>
      <div class="detail-body">
       <h4>
-       Production 重點
+       Production Delta
       </h4>
       <p>
-       功能位於 5.3 開發線，需和 LTS production 基線分開。
+       功能位於 5.3 開發線，需和 LTS production 基線分開。 這次「Blender 5.3：Principled BSDF Dispersion」的可驗證變化可由摘要交叉確認：Cycles Principled BSDF 加入 dispersion，玻璃、寶石與高色散材質可用更標準化方式製作。 從 production 角度應把評估焦點放在實際輸出、可重複性與是否減少既有人工步驟，而不是只看展示效果。
       </p>
       <h4>
-       導入判斷
+       Why It Matters
       </h4>
       <p>
-       能減少自建 RGB refraction shader 的維護成本。
+       對 DCC 工作流而言，價值在於減少跨工具往返、版本摩擦與重複操作，並提升團隊資產交換、工具維護與日常製作的可預測性。 對「Blender 5.3：Principled BSDF Dispersion」而言，應優先判斷它影響的是前期探索、資產製作、動作處理、引擎整合還是交付維護，並用可量化的 iteration/cleanup/效能成本決定是否值得導入。
       </p>
       <h4>
-       實測 / 風險
+       Pipeline Impact
       </h4>
       <p>
-       要測 render cost、noise、caustics 與不同 IOR/material thickness。
+       能減少自建 RGB refraction shader 的維護成本。 建議在實際專案副本中測 import/export、scene scale、軸向、材質、rig/animation、版本相容與批次處理；若牽涉 addon/plugin，需同時建立版本鎖定與回退策略。 建議先在非破壞的測試分支完成端到端驗證，再決定是否納入正式 SOP 與團隊工具鏈。
+      </p>
+      <h4>
+       Limitations / Risk
+      </h4>
+      <p>
+       要測 render cost、noise、caustics 與不同 IOR/material thickness。 風險檢查至少包含 DCC 版本矩陣、plugin/API 變更、快捷鍵或工具衝突、跨平台、檔案可攜性、批次場景與多人協作；正式升版前必須以代表性專案做回歸。 驗收時應保存失敗樣本與基準結果，避免只因單一成功案例就提高 production readiness 判定。
       </p>
      </div>
     </details>
@@ -466,22 +542,28 @@
      </summary>
      <div class="detail-body">
       <h4>
-       Production 重點
+       Production Delta
       </h4>
       <p>
-       Isolate 取代既有 matte workflow，降低 roto/selection 操作摩擦。
+       Isolate 取代既有 matte workflow，降低 roto/selection 操作摩擦。 這次「Flame 2027.1：Isolate、GLSL Pixel Expression、ProRes RAW」的可驗證變化可由摘要交叉確認：ML-assisted matte、直接 GLSL pixel node 與 ProRes RAW import 強化 finishing pipeline。 從 production 角度應把評估焦點放在實際輸出、可重複性與是否減少既有人工步驟，而不是只看展示效果。
       </p>
       <h4>
-       導入判斷
+       Why It Matters
       </h4>
       <p>
-       Pixel Expression 可直接在 UI 編 shader logic，適合 technical finishing。
+       對 DCC 工作流而言，價值在於減少跨工具往返、版本摩擦與重複操作，並提升團隊資產交換、工具維護與日常製作的可預測性。 對「Flame 2027.1：Isolate、GLSL Pixel Expression、ProRes RAW」而言，應優先判斷它影響的是前期探索、資產製作、動作處理、引擎整合還是交付維護，並用可量化的 iteration/cleanup/效能成本決定是否值得導入。
       </p>
       <h4>
-       實測 / 風險
+       Pipeline Impact
       </h4>
       <p>
-       主要適用影像/VFX finishing，對 game art 屬跨領域參考。
+       Pixel Expression 可直接在 UI 編 shader logic，適合 technical finishing。 建議在實際專案副本中測 import/export、scene scale、軸向、材質、rig/animation、版本相容與批次處理；若牽涉 addon/plugin，需同時建立版本鎖定與回退策略。 建議先在非破壞的測試分支完成端到端驗證，再決定是否納入正式 SOP 與團隊工具鏈。
+      </p>
+      <h4>
+       Limitations / Risk
+      </h4>
+      <p>
+       主要適用影像/VFX finishing，對 game art 屬跨領域參考。 風險檢查至少包含 DCC 版本矩陣、plugin/API 變更、快捷鍵或工具衝突、跨平台、檔案可攜性、批次場景與多人協作；正式升版前必須以代表性專案做回歸。 驗收時應保存失敗樣本與基準結果，避免只因單一成功案例就提高 production readiness 判定。
       </p>
      </div>
     </details>
@@ -489,6 +571,17 @@
      來源 ↗
     </a>
    </article>
+   <nav aria-label="相鄰分類" class="category-bottom-nav">
+    <a href="../emerging-case/">
+     ← 新技術 / Case
+    </a>
+    <a href="../../">
+     TOP5
+    </a>
+    <a href="../ai-generation/">
+     AI 生成 →
+    </a>
+   </nav>
   </main>
  </body>
 </html>

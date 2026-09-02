@@ -12,9 +12,6 @@
  <body class="category-page" data-category="3d-animation" data-report-date="2026-09-02">
   <header class="category-hero">
    <div class="page">
-    <a class="category-back" href="../../">
-     ← 回首頁
-    </a>
     <span class="section-kicker">
      2026-09-02
     </span>
@@ -26,6 +23,31 @@
     </p>
    </div>
   </header>
+  <nav aria-label="Production Intelligence 分類" class="global-category-nav">
+   <div class="page global-category-nav-inner">
+    <a class="global-category-link" href="../../">
+     TOP5
+    </a>
+    <a class="global-category-link" data-category="ai-generation" href="../ai-generation/">
+     AI 生成
+    </a>
+    <a class="global-category-link" data-category="3d-production" href="../3d-production/">
+     3D 製作
+    </a>
+    <a class="global-category-link is-active" data-category="3d-animation" href="../3d-animation/">
+     3D 動作
+    </a>
+    <a class="global-category-link" data-category="engine-art" href="../engine-art/">
+     遊戲引擎
+    </a>
+    <a class="global-category-link" data-category="emerging-case" href="../emerging-case/">
+     新技術 / Case
+    </a>
+    <a class="global-category-link" data-category="blender-dcc" href="../blender-dcc/">
+     Blender / DCC
+    </a>
+   </div>
+  </nav>
   <main class="page category-main">
    <article class="category-card" data-intel-id="cascadeur-2026-1-livelink-rootmotion" data-intel-role="card">
     <div class="category-meta">
@@ -59,22 +81,28 @@
      </summary>
      <div class="detail-body">
       <h4>
-       Production 重點
+       Production Delta
       </h4>
       <p>
-       UE LiveLink 能縮短 animation preview round-trip。
+       UE LiveLink 能縮短 animation preview round-trip。 這次「Cascadeur 2026.1：UE LiveLink + AI Root Motion」的可驗證變化可由摘要交叉確認：AI-assisted keyframe 工具加入 UE LiveLink、Root Motion style transfer 與 collision cleanup。 從 production 角度應把評估焦點放在實際輸出、可重複性與是否減少既有人工步驟，而不是只看展示效果。
       </p>
       <h4>
-       導入判斷
+       Why It Matters
       </h4>
       <p>
-       AI Root Motion 可從參考 animation 學 movement signature，但仍需 animator cleanup。
+       對角色動作 production 而言，價值要以 animator 可控制程度、cleanup 時間、retarget 穩定性與最終 engine-ready 結果衡量，而不是只看單段展示是否自然。 對「Cascadeur 2026.1：UE LiveLink + AI Root Motion」而言，應優先判斷它影響的是前期探索、資產製作、動作處理、引擎整合還是交付維護，並用可量化的 iteration/cleanup/效能成本決定是否值得導入。
       </p>
       <h4>
-       實測 / 風險
+       Pipeline Impact
       </h4>
       <p>
-       導入測 root motion、foot lock、pelvis、weapon contact 與 retarget 到既有 skeleton 的穩定性。
+       AI Root Motion 可從參考 animation 學 movement signature，但仍需 animator cleanup。 建議以既有 skeleton/Control Rig 做 body、root motion、foot lock、手指、臉部與 retarget 測試；需要時先 bake 到標準曲線再進 Unreal/Unity，避免把工具依賴帶進 runtime。 若屬 AI Motion，還要額外確認輸入是影片、影像、文字還是既有 motion，輸出是否能落到可編輯 skeleton/curve，以及 root motion、手指、臉部、多人、foot lock、cleanup、retarget、local/cloud 與 engine integration 的實際支援程度。 建議先在非破壞的測試分支完成端到端驗證，再決定是否納入正式 SOP 與團隊工具鏈。
+      </p>
+      <h4>
+       Limitations / Risk
+      </h4>
+      <p>
+       導入測 root motion、foot lock、pelvis、weapon contact 與 retarget 到既有 skeleton 的穩定性。 風險檢查至少包含 foot sliding、root/pelvis 漂移、遮擋、快速轉身、手指/臉部缺失、非標準 rig retarget、曲線可編輯性、local/cloud、速度與授權；最終仍需 animator 驗收。 若屬 AI Motion，還要額外確認輸入是影片、影像、文字還是既有 motion，輸出是否能落到可編輯 skeleton/curve，以及 root motion、手指、臉部、多人、foot lock、cleanup、retarget、local/cloud 與 engine integration 的實際支援程度。 驗收時應保存失敗樣本與基準結果，避免只因單一成功案例就提高 production readiness 判定。
       </p>
      </div>
     </details>
@@ -103,22 +131,28 @@
      </summary>
      <div class="detail-body">
       <h4>
-       Production 重點
+       Production Delta
       </h4>
       <p>
-       單鏡頭離線 solve 降低 capture 硬體門檻。
+       單鏡頭離線 solve 降低 capture 硬體門檻。 這次「MetaHuman：單鏡頭 Markerless Performance Capture」的可驗證變化可由摘要交叉確認：UE5.8 的 mono video capture 把普通影片直接導入 MetaHuman animation solve。 從 production 角度應把評估焦點放在實際輸出、可重複性與是否減少既有人工步驟，而不是只看展示效果。
       </p>
       <h4>
-       導入判斷
+       Why It Matters
       </h4>
       <p>
-       直接落在 MetaHuman 生態系，後續 Control Rig/Sequencer/retarget 路徑較短。
+       對角色動作 production 而言，價值要以 animator 可控制程度、cleanup 時間、retarget 穩定性與最終 engine-ready 結果衡量，而不是只看單段展示是否自然。 對「MetaHuman：單鏡頭 Markerless Performance Capture」而言，應優先判斷它影響的是前期探索、資產製作、動作處理、引擎整合還是交付維護，並用可量化的 iteration/cleanup/效能成本決定是否值得導入。
       </p>
       <h4>
-       實測 / 風險
+       Pipeline Impact
       </h4>
       <p>
-       目前要特別測手部、遮擋、快速轉身、foot contact 與自訂角色 retarget 品質。
+       直接落在 MetaHuman 生態系，後續 Control Rig/Sequencer/retarget 路徑較短。 建議以既有 skeleton/Control Rig 做 body、root motion、foot lock、手指、臉部與 retarget 測試；需要時先 bake 到標準曲線再進 Unreal/Unity，避免把工具依賴帶進 runtime。 若屬 AI Motion，還要額外確認輸入是影片、影像、文字還是既有 motion，輸出是否能落到可編輯 skeleton/curve，以及 root motion、手指、臉部、多人、foot lock、cleanup、retarget、local/cloud 與 engine integration 的實際支援程度。 建議先在非破壞的測試分支完成端到端驗證，再決定是否納入正式 SOP 與團隊工具鏈。
+      </p>
+      <h4>
+       Limitations / Risk
+      </h4>
+      <p>
+       目前要特別測手部、遮擋、快速轉身、foot contact 與自訂角色 retarget 品質。 風險檢查至少包含 foot sliding、root/pelvis 漂移、遮擋、快速轉身、手指/臉部缺失、非標準 rig retarget、曲線可編輯性、local/cloud、速度與授權；最終仍需 animator 驗收。 若屬 AI Motion，還要額外確認輸入是影片、影像、文字還是既有 motion，輸出是否能落到可編輯 skeleton/curve，以及 root motion、手指、臉部、多人、foot lock、cleanup、retarget、local/cloud 與 engine integration 的實際支援程度。 驗收時應保存失敗樣本與基準結果，避免只因單一成功案例就提高 production readiness 判定。
       </p>
      </div>
     </details>
@@ -147,22 +181,28 @@
      </summary>
      <div class="detail-body">
       <h4>
-       Production 重點
+       Production Delta
       </h4>
       <p>
-       bone-based setup 對 realtime runtime 比高成本 muscle sim 更有吸引力。
+       bone-based setup 對 realtime runtime 比高成本 muscle sim 更有吸引力。 這次「RBF Muscle Rig：全骨骼肌肉變形」的可驗證變化可由摘要交叉確認：約每側 15 bones 配合 RBF 做 torso/arm muscle deformation，不依賴 blendshape。 從 production 角度應把評估焦點放在實際輸出、可重複性與是否減少既有人工步驟，而不是只看展示效果。
       </p>
       <h4>
-       導入判斷
+       Why It Matters
       </h4>
       <p>
-       RBF pose response 可把 deformation 綁到姿勢空間。
+       對角色動作 production 而言，價值要以 animator 可控制程度、cleanup 時間、retarget 穩定性與最終 engine-ready 結果衡量，而不是只看單段展示是否自然。 對「RBF Muscle Rig：全骨骼肌肉變形」而言，應優先判斷它影響的是前期探索、資產製作、動作處理、引擎整合還是交付維護，並用可量化的 iteration/cleanup/效能成本決定是否值得導入。
       </p>
       <h4>
-       實測 / 風險
+       Pipeline Impact
       </h4>
       <p>
-       需測 extreme pose、LOD bone budget、skin weight maintenance 與 engine runtime cost。
+       RBF pose response 可把 deformation 綁到姿勢空間。 建議以既有 skeleton/Control Rig 做 body、root motion、foot lock、手指、臉部與 retarget 測試；需要時先 bake 到標準曲線再進 Unreal/Unity，避免把工具依賴帶進 runtime。 若屬 AI Motion，還要額外確認輸入是影片、影像、文字還是既有 motion，輸出是否能落到可編輯 skeleton/curve，以及 root motion、手指、臉部、多人、foot lock、cleanup、retarget、local/cloud 與 engine integration 的實際支援程度。 建議先在非破壞的測試分支完成端到端驗證，再決定是否納入正式 SOP 與團隊工具鏈。
+      </p>
+      <h4>
+       Limitations / Risk
+      </h4>
+      <p>
+       需測 extreme pose、LOD bone budget、skin weight maintenance 與 engine runtime cost。 風險檢查至少包含 foot sliding、root/pelvis 漂移、遮擋、快速轉身、手指/臉部缺失、非標準 rig retarget、曲線可編輯性、local/cloud、速度與授權；最終仍需 animator 驗收。 若屬 AI Motion，還要額外確認輸入是影片、影像、文字還是既有 motion，輸出是否能落到可編輯 skeleton/curve，以及 root motion、手指、臉部、多人、foot lock、cleanup、retarget、local/cloud 與 engine integration 的實際支援程度。 驗收時應保存失敗樣本與基準結果，避免只因單一成功案例就提高 production readiness 判定。
       </p>
      </div>
     </details>
@@ -191,22 +231,28 @@
      </summary>
      <div class="detail-body">
       <h4>
-       Production 重點
+       Production Delta
       </h4>
       <p>
-       輸入是一般相機或影片，適合低成本 mocap acquisition。
+       輸入是一般相機或影片，適合低成本 mocap acquisition。 這次「CyanPuppets：影片/相機到全身動作資料」的可驗證變化可由摘要交叉確認：以 camera 或 video 做 markerless mocap，宣稱涵蓋 body、face、finger 並接 Blender/Unreal。 從 production 角度應把評估焦點放在實際輸出、可重複性與是否減少既有人工步驟，而不是只看展示效果。
       </p>
       <h4>
-       導入判斷
+       Why It Matters
       </h4>
       <p>
-       若 face/finger/body 能同時輸出，可減少多套 capture 合成。
+       對角色動作 production 而言，價值要以 animator 可控制程度、cleanup 時間、retarget 穩定性與最終 engine-ready 結果衡量，而不是只看單段展示是否自然。 對「CyanPuppets：影片/相機到全身動作資料」而言，應優先判斷它影響的是前期探索、資產製作、動作處理、引擎整合還是交付維護，並用可量化的 iteration/cleanup/效能成本決定是否值得導入。
       </p>
       <h4>
-       實測 / 風險
+       Pipeline Impact
       </h4>
       <p>
-       必測 foot sliding、occlusion、turn-around、root motion 與非標準 rig retarget。
+       若 face/finger/body 能同時輸出，可減少多套 capture 合成。 建議以既有 skeleton/Control Rig 做 body、root motion、foot lock、手指、臉部與 retarget 測試；需要時先 bake 到標準曲線再進 Unreal/Unity，避免把工具依賴帶進 runtime。 若屬 AI Motion，還要額外確認輸入是影片、影像、文字還是既有 motion，輸出是否能落到可編輯 skeleton/curve，以及 root motion、手指、臉部、多人、foot lock、cleanup、retarget、local/cloud 與 engine integration 的實際支援程度。 建議先在非破壞的測試分支完成端到端驗證，再決定是否納入正式 SOP 與團隊工具鏈。
+      </p>
+      <h4>
+       Limitations / Risk
+      </h4>
+      <p>
+       必測 foot sliding、occlusion、turn-around、root motion 與非標準 rig retarget。 風險檢查至少包含 foot sliding、root/pelvis 漂移、遮擋、快速轉身、手指/臉部缺失、非標準 rig retarget、曲線可編輯性、local/cloud、速度與授權；最終仍需 animator 驗收。 若屬 AI Motion，還要額外確認輸入是影片、影像、文字還是既有 motion，輸出是否能落到可編輯 skeleton/curve，以及 root motion、手指、臉部、多人、foot lock、cleanup、retarget、local/cloud 與 engine integration 的實際支援程度。 驗收時應保存失敗樣本與基準結果，避免只因單一成功案例就提高 production readiness 判定。
       </p>
      </div>
     </details>
@@ -235,22 +281,28 @@
      </summary>
      <div class="detail-body">
       <h4>
-       Production 重點
+       Production Delta
       </h4>
       <p>
-       相較線性 blendshape，多種 interpolation 能改善大幅表情過渡。
+       相較線性 blendshape，多種 interpolation 能改善大幅表情過渡。 這次「interpBlendShape：高階 Maya Facial Deformer」的可驗證變化可由摘要交叉確認：支援 surface UV interpolation、in-between、Bezier blending 與 GPU 加速，針對 facial rig / graphic deformation。 從 production 角度應把評估焦點放在實際輸出、可重複性與是否減少既有人工步驟，而不是只看展示效果。
       </p>
       <h4>
-       導入判斷
+       Why It Matters
       </h4>
       <p>
-       支援 mesh 與 curve，適合 detached/graphic facial 系統。
+       對角色動作 production 而言，價值要以 animator 可控制程度、cleanup 時間、retarget 穩定性與最終 engine-ready 結果衡量，而不是只看單段展示是否自然。 對「interpBlendShape：高階 Maya Facial Deformer」而言，應優先判斷它影響的是前期探索、資產製作、動作處理、引擎整合還是交付維護，並用可量化的 iteration/cleanup/效能成本決定是否值得導入。
       </p>
       <h4>
-       實測 / 風險
+       Pipeline Impact
       </h4>
       <p>
-       正式使用前需驗證 cache/export/bake、Maya 版本與 downstream engine 行為。
+       支援 mesh 與 curve，適合 detached/graphic facial 系統。 建議以既有 skeleton/Control Rig 做 body、root motion、foot lock、手指、臉部與 retarget 測試；需要時先 bake 到標準曲線再進 Unreal/Unity，避免把工具依賴帶進 runtime。 若屬 AI Motion，還要額外確認輸入是影片、影像、文字還是既有 motion，輸出是否能落到可編輯 skeleton/curve，以及 root motion、手指、臉部、多人、foot lock、cleanup、retarget、local/cloud 與 engine integration 的實際支援程度。 建議先在非破壞的測試分支完成端到端驗證，再決定是否納入正式 SOP 與團隊工具鏈。
+      </p>
+      <h4>
+       Limitations / Risk
+      </h4>
+      <p>
+       正式使用前需驗證 cache/export/bake、Maya 版本與 downstream engine 行為。 風險檢查至少包含 foot sliding、root/pelvis 漂移、遮擋、快速轉身、手指/臉部缺失、非標準 rig retarget、曲線可編輯性、local/cloud、速度與授權；最終仍需 animator 驗收。 若屬 AI Motion，還要額外確認輸入是影片、影像、文字還是既有 motion，輸出是否能落到可編輯 skeleton/curve，以及 root motion、手指、臉部、多人、foot lock、cleanup、retarget、local/cloud 與 engine integration 的實際支援程度。 驗收時應保存失敗樣本與基準結果，避免只因單一成功案例就提高 production readiness 判定。
       </p>
      </div>
     </details>
@@ -279,22 +331,28 @@
      </summary>
      <div class="detail-body">
       <h4>
-       Production 重點
+       Production Delta
       </h4>
       <p>
-       先 joint deform 再接 shape target 可提高 transformation 可控性。
+       先 joint deform 再接 shape target 可提高 transformation 可控性。 這次「SHAPES + Weight Driver：可預測的 Shape-Shifting Rig」的可驗證變化可由摘要交叉確認：以 bone orientation 驅動 blendshape，透過 smooth interpolation 取代大量手工 corrective key。 從 production 角度應把評估焦點放在實際輸出、可重複性與是否減少既有人工步驟，而不是只看展示效果。
       </p>
       <h4>
-       導入判斷
+       Why It Matters
       </h4>
       <p>
-       Weight Driver smooth interpolation 能減少 corrective shape 手工 keying。
+       對角色動作 production 而言，價值要以 animator 可控制程度、cleanup 時間、retarget 穩定性與最終 engine-ready 結果衡量，而不是只看單段展示是否自然。 對「SHAPES + Weight Driver：可預測的 Shape-Shifting Rig」而言，應優先判斷它影響的是前期探索、資產製作、動作處理、引擎整合還是交付維護，並用可量化的 iteration/cleanup/效能成本決定是否值得導入。
       </p>
       <h4>
-       實測 / 風險
+       Pipeline Impact
       </h4>
       <p>
-       若用在 game rig，要評估 plugin dependency、bake 後曲線與 engine compatibility。
+       Weight Driver smooth interpolation 能減少 corrective shape 手工 keying。 建議以既有 skeleton/Control Rig 做 body、root motion、foot lock、手指、臉部與 retarget 測試；需要時先 bake 到標準曲線再進 Unreal/Unity，避免把工具依賴帶進 runtime。 若屬 AI Motion，還要額外確認輸入是影片、影像、文字還是既有 motion，輸出是否能落到可編輯 skeleton/curve，以及 root motion、手指、臉部、多人、foot lock、cleanup、retarget、local/cloud 與 engine integration 的實際支援程度。 建議先在非破壞的測試分支完成端到端驗證，再決定是否納入正式 SOP 與團隊工具鏈。
+      </p>
+      <h4>
+       Limitations / Risk
+      </h4>
+      <p>
+       若用在 game rig，要評估 plugin dependency、bake 後曲線與 engine compatibility。 風險檢查至少包含 foot sliding、root/pelvis 漂移、遮擋、快速轉身、手指/臉部缺失、非標準 rig retarget、曲線可編輯性、local/cloud、速度與授權；最終仍需 animator 驗收。 若屬 AI Motion，還要額外確認輸入是影片、影像、文字還是既有 motion，輸出是否能落到可編輯 skeleton/curve，以及 root motion、手指、臉部、多人、foot lock、cleanup、retarget、local/cloud 與 engine integration 的實際支援程度。 驗收時應保存失敗樣本與基準結果，避免只因單一成功案例就提高 production readiness 判定。
       </p>
      </div>
     </details>
@@ -323,22 +381,28 @@
      </summary>
      <div class="detail-body">
       <h4>
-       Production 重點
+       Production Delta
       </h4>
       <p>
-       重點是程序 aim/look 與既有 GASP motion matching 共存。
+       重點是程序 aim/look 與既有 GASP motion matching 共存。 這次「FocalRig × GASP：Procedural True First Person」的可驗證變化可由摘要交叉確認：用自配置 Control Rig nodes 保留 motion matching、foot placement、vaulting 等同時加入第一人稱視角。 從 production 角度應把評估焦點放在實際輸出、可重複性與是否減少既有人工步驟，而不是只看展示效果。
       </p>
       <h4>
-       導入判斷
+       Why It Matters
       </h4>
       <p>
-       可避免傳統 first-person 另外維護完整動作集的部分成本。
+       對角色動作 production 而言，價值要以 animator 可控制程度、cleanup 時間、retarget 穩定性與最終 engine-ready 結果衡量，而不是只看單段展示是否自然。 對「FocalRig × GASP：Procedural True First Person」而言，應優先判斷它影響的是前期探索、資產製作、動作處理、引擎整合還是交付維護，並用可量化的 iteration/cleanup/效能成本決定是否值得導入。
       </p>
       <h4>
-       實測 / 風險
+       Pipeline Impact
       </h4>
       <p>
-       需測 camera sickness、weapon alignment、network replication 與極端 locomotion。
+       可避免傳統 first-person 另外維護完整動作集的部分成本。 建議以既有 skeleton/Control Rig 做 body、root motion、foot lock、手指、臉部與 retarget 測試；需要時先 bake 到標準曲線再進 Unreal/Unity，避免把工具依賴帶進 runtime。 若屬 AI Motion，還要額外確認輸入是影片、影像、文字還是既有 motion，輸出是否能落到可編輯 skeleton/curve，以及 root motion、手指、臉部、多人、foot lock、cleanup、retarget、local/cloud 與 engine integration 的實際支援程度。 建議先在非破壞的測試分支完成端到端驗證，再決定是否納入正式 SOP 與團隊工具鏈。
+      </p>
+      <h4>
+       Limitations / Risk
+      </h4>
+      <p>
+       需測 camera sickness、weapon alignment、network replication 與極端 locomotion。 風險檢查至少包含 foot sliding、root/pelvis 漂移、遮擋、快速轉身、手指/臉部缺失、非標準 rig retarget、曲線可編輯性、local/cloud、速度與授權；最終仍需 animator 驗收。 若屬 AI Motion，還要額外確認輸入是影片、影像、文字還是既有 motion，輸出是否能落到可編輯 skeleton/curve，以及 root motion、手指、臉部、多人、foot lock、cleanup、retarget、local/cloud 與 engine integration 的實際支援程度。 驗收時應保存失敗樣本與基準結果，避免只因單一成功案例就提高 production readiness 判定。
       </p>
      </div>
     </details>
@@ -367,22 +431,28 @@
      </summary>
      <div class="detail-body">
       <h4>
-       Production 重點
+       Production Delta
       </h4>
       <p>
-       適合作為 key animation 上的 secondary motion pass。
+       適合作為 key animation 上的 secondary motion pass。 這次「Maya Ragdoll Layer：肌肉與脂肪 Jiggle」的可驗證變化可由摘要交叉確認：用分組 controller、stiffness、frequency/amplitude 與 Record to Layer 疊加 secondary motion。 從 production 角度應把評估焦點放在實際輸出、可重複性與是否減少既有人工步驟，而不是只看展示效果。
       </p>
       <h4>
-       導入判斷
+       Why It Matters
       </h4>
       <p>
-       分類不同身體區塊的 stiffness 能避免全身同頻率的橡皮感。
+       對角色動作 production 而言，價值要以 animator 可控制程度、cleanup 時間、retarget 穩定性與最終 engine-ready 結果衡量，而不是只看單段展示是否自然。 對「Maya Ragdoll Layer：肌肉與脂肪 Jiggle」而言，應優先判斷它影響的是前期探索、資產製作、動作處理、引擎整合還是交付維護，並用可量化的 iteration/cleanup/效能成本決定是否值得導入。
       </p>
       <h4>
-       實測 / 風險
+       Pipeline Impact
       </h4>
       <p>
-       要保持可 bake、可 art-direct，並用 layer 方式保留 animator 最終控制。
+       分類不同身體區塊的 stiffness 能避免全身同頻率的橡皮感。 建議以既有 skeleton/Control Rig 做 body、root motion、foot lock、手指、臉部與 retarget 測試；需要時先 bake 到標準曲線再進 Unreal/Unity，避免把工具依賴帶進 runtime。 若屬 AI Motion，還要額外確認輸入是影片、影像、文字還是既有 motion，輸出是否能落到可編輯 skeleton/curve，以及 root motion、手指、臉部、多人、foot lock、cleanup、retarget、local/cloud 與 engine integration 的實際支援程度。 建議先在非破壞的測試分支完成端到端驗證，再決定是否納入正式 SOP 與團隊工具鏈。
+      </p>
+      <h4>
+       Limitations / Risk
+      </h4>
+      <p>
+       要保持可 bake、可 art-direct，並用 layer 方式保留 animator 最終控制。 風險檢查至少包含 foot sliding、root/pelvis 漂移、遮擋、快速轉身、手指/臉部缺失、非標準 rig retarget、曲線可編輯性、local/cloud、速度與授權；最終仍需 animator 驗收。 若屬 AI Motion，還要額外確認輸入是影片、影像、文字還是既有 motion，輸出是否能落到可編輯 skeleton/curve，以及 root motion、手指、臉部、多人、foot lock、cleanup、retarget、local/cloud 與 engine integration 的實際支援程度。 驗收時應保存失敗樣本與基準結果，避免只因單一成功案例就提高 production readiness 判定。
       </p>
      </div>
     </details>
@@ -411,22 +481,28 @@
      </summary>
      <div class="detail-body">
       <h4>
-       Production 重點
+       Production Delta
       </h4>
       <p>
-       可重用 base facial rig 能降低多角色製作成本。
+       可重用 base facial rig 能降低多角色製作成本。 這次「Stylized Facial Rig Transfer：基底 Shape/Skin 再角色化」的可驗證變化可由摘要交叉確認：學生短片案例將一套 facial blendshape/skinning 轉移到另一角色，再針對五官比例重修。 從 production 角度應把評估焦點放在實際輸出、可重複性與是否減少既有人工步驟，而不是只看展示效果。
       </p>
       <h4>
-       導入判斷
+       Why It Matters
       </h4>
       <p>
-       轉移後仍需針對角色特色修 shape 與 skin，不能視為一鍵流程。
+       對角色動作 production 而言，價值要以 animator 可控制程度、cleanup 時間、retarget 穩定性與最終 engine-ready 結果衡量，而不是只看單段展示是否自然。 對「Stylized Facial Rig Transfer：基底 Shape/Skin 再角色化」而言，應優先判斷它影響的是前期探索、資產製作、動作處理、引擎整合還是交付維護，並用可量化的 iteration/cleanup/效能成本決定是否值得導入。
       </p>
       <h4>
-       實測 / 風險
+       Pipeline Impact
       </h4>
       <p>
-       值得建立 common FACS/base-shape library + per-character corrective 的分層架構。
+       轉移後仍需針對角色特色修 shape 與 skin，不能視為一鍵流程。 建議以既有 skeleton/Control Rig 做 body、root motion、foot lock、手指、臉部與 retarget 測試；需要時先 bake 到標準曲線再進 Unreal/Unity，避免把工具依賴帶進 runtime。 若屬 AI Motion，還要額外確認輸入是影片、影像、文字還是既有 motion，輸出是否能落到可編輯 skeleton/curve，以及 root motion、手指、臉部、多人、foot lock、cleanup、retarget、local/cloud 與 engine integration 的實際支援程度。 建議先在非破壞的測試分支完成端到端驗證，再決定是否納入正式 SOP 與團隊工具鏈。
+      </p>
+      <h4>
+       Limitations / Risk
+      </h4>
+      <p>
+       值得建立 common FACS/base-shape library + per-character corrective 的分層架構。 風險檢查至少包含 foot sliding、root/pelvis 漂移、遮擋、快速轉身、手指/臉部缺失、非標準 rig retarget、曲線可編輯性、local/cloud、速度與授權；最終仍需 animator 驗收。 若屬 AI Motion，還要額外確認輸入是影片、影像、文字還是既有 motion，輸出是否能落到可編輯 skeleton/curve，以及 root motion、手指、臉部、多人、foot lock、cleanup、retarget、local/cloud 與 engine integration 的實際支援程度。 驗收時應保存失敗樣本與基準結果，避免只因單一成功案例就提高 production readiness 判定。
       </p>
      </div>
     </details>
@@ -455,22 +531,28 @@
      </summary>
      <div class="detail-body">
       <h4>
-       Production 重點
+       Production Delta
       </h4>
       <p>
-       複雜服裝 silhouette 與 body arc 必須一起設計，不能只在最後加 secondary motion。
+       複雜服裝 silhouette 與 body arc 必須一起設計，不能只在最後加 secondary motion。 這次「Riverskin：Maya Scaled-Armor Aerial Animation」的可驗證變化可由摘要交叉確認：完整 Maya modeling/rigging/animation 的角色短片案例，展示複雜服裝與優雅 body motion 的協同。 從 production 角度應把評估焦點放在實際輸出、可重複性與是否減少既有人工步驟，而不是只看展示效果。
       </p>
       <h4>
-       導入判斷
+       Why It Matters
       </h4>
       <p>
-       適合作為 keyframe polish、overlap 與 presentation 的參考。
+       對角色動作 production 而言，價值要以 animator 可控制程度、cleanup 時間、retarget 穩定性與最終 engine-ready 結果衡量，而不是只看單段展示是否自然。 對「Riverskin：Maya Scaled-Armor Aerial Animation」而言，應優先判斷它影響的是前期探索、資產製作、動作處理、引擎整合還是交付維護，並用可量化的 iteration/cleanup/效能成本決定是否值得導入。
       </p>
       <h4>
-       實測 / 風險
+       Pipeline Impact
       </h4>
       <p>
-       production 應把角色 rig、服裝控制與 final comp 明確拆層。
+       適合作為 keyframe polish、overlap 與 presentation 的參考。 建議以既有 skeleton/Control Rig 做 body、root motion、foot lock、手指、臉部與 retarget 測試；需要時先 bake 到標準曲線再進 Unreal/Unity，避免把工具依賴帶進 runtime。 若屬 AI Motion，還要額外確認輸入是影片、影像、文字還是既有 motion，輸出是否能落到可編輯 skeleton/curve，以及 root motion、手指、臉部、多人、foot lock、cleanup、retarget、local/cloud 與 engine integration 的實際支援程度。 建議先在非破壞的測試分支完成端到端驗證，再決定是否納入正式 SOP 與團隊工具鏈。
+      </p>
+      <h4>
+       Limitations / Risk
+      </h4>
+      <p>
+       production 應把角色 rig、服裝控制與 final comp 明確拆層。 風險檢查至少包含 foot sliding、root/pelvis 漂移、遮擋、快速轉身、手指/臉部缺失、非標準 rig retarget、曲線可編輯性、local/cloud、速度與授權；最終仍需 animator 驗收。 若屬 AI Motion，還要額外確認輸入是影片、影像、文字還是既有 motion，輸出是否能落到可編輯 skeleton/curve，以及 root motion、手指、臉部、多人、foot lock、cleanup、retarget、local/cloud 與 engine integration 的實際支援程度。 驗收時應保存失敗樣本與基準結果，避免只因單一成功案例就提高 production readiness 判定。
       </p>
      </div>
     </details>
@@ -478,6 +560,17 @@
      來源 ↗
     </a>
    </article>
+   <nav aria-label="相鄰分類" class="category-bottom-nav">
+    <a href="../3d-production/">
+     ← 3D 製作
+    </a>
+    <a href="../../">
+     TOP5
+    </a>
+    <a href="../engine-art/">
+     遊戲引擎 →
+    </a>
+   </nav>
   </main>
  </body>
 </html>
