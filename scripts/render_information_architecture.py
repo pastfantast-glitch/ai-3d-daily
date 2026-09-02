@@ -17,6 +17,20 @@ def latest_date():
     return max(p.stem for p in (ROOT / 'data' / 'daily').glob('20??-??-??.json'))
 
 
+def ensure_shared_stylesheet(soup, href):
+    """Ensure shared components are loaded after the base stylesheet and before page-specific CSS."""
+    existing = soup.find('link', href=lambda value: value and 'shared-components.css' in value)
+    if existing:
+        existing['href'] = href
+        return
+    link = soup.new_tag('link', attrs={'rel': 'stylesheet', 'href': href})
+    page_css = soup.find('link', href=lambda value: value and ('home.css' in value or 'category.css' in value))
+    if page_css:
+        page_css.insert_before(link)
+    else:
+        soup.head.append(link)
+
+
 def analysis_shell(soup, home=False):
     details = soup.new_tag('details')
     if home:
@@ -93,6 +107,7 @@ def ensure_category_section(soup, date, cfg):
 def render_home(date, data, cfg):
     path = ROOT / 'index.html'
     soup = BeautifulSoup(path.read_text('utf-8'), 'html.parser')
+    ensure_shared_stylesheet(soup, 'shared-components.css')
     top, next10 = homepage_groups(data)
     top_box = soup.select_one('#today .top-list')
     more_box = soup.select_one('#more .more-grid')
@@ -132,7 +147,7 @@ def category_page(date, category, items, cfg):
     meta = soup.new_tag('meta', attrs={'charset': 'utf-8'}); head.append(meta)
     viewport = soup.new_tag('meta', attrs={'name': 'viewport', 'content': 'width=device-width,initial-scale=1'}); head.append(viewport)
     title = soup.new_tag('title'); title.string = f'{category["label"]}｜{date}｜AI 3D Daily'; head.append(title)
-    for href in ('../../styles.css', '../../category.css'):
+    for href in ('../../styles.css', '../../shared-components.css', '../../category.css'):
         head.append(soup.new_tag('link', attrs={'rel': 'stylesheet', 'href': href}))
     body = soup.body; body['class'] = ['category-page']; body['data-report-date'] = date; body['data-category'] = category['id']
     header = soup.new_tag('header', attrs={'class': 'category-hero'})
