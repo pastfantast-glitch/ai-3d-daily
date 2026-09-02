@@ -7,6 +7,22 @@
     "top5": 5,
     "next10": 10
   },
+  "full_analysis": {
+    "min_blocks": 4,
+    "min_text_chars_per_block": 50,
+    "required_semantics": [
+      "production-delta",
+      "why-it-matters",
+      "pipeline-impact",
+      "limitations-risk"
+    ],
+    "semantic_labels": {
+      "production-delta": ["What Changed", "Production Delta", "Production 重點", "變更重點"],
+      "why-it-matters": ["Why It Matters", "Production Value", "為什麼重要", "價值判斷"],
+      "pipeline-impact": ["Pipeline Impact", "導入方式", "導入判斷", "Workflow Impact"],
+      "limitations-risk": ["Limitations / Risk", "實測 / 風險", "限制 / 風險", "測試重點"]
+    }
+  },
   "categories": [
     {
       "id": "ai-generation",
