@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
-"""Validate/repair shallow schema-v3 Full Analysis without imposing a writing template.
+"""Validate/repair shallow schema-v3 Full Analysis and normalize canonical taxonomy.
 
 This canonical-data stage follows config/intelligence-v2.json. It preserves valid
 adaptive 3–5 block analysis verbatim. It only repairs structurally shallow legacy
 records, using concise content-specific headings rather than fixed report labels.
+It also migrates legacy 3D-production technical subcategories into the current
+asset-oriented taxonomy before release preflight.
 """
 from pathlib import Path
 import json, sys
@@ -29,9 +31,78 @@ CATEGORY_TEST = {
     'blender-dcc': '在實際專案副本測 import/export、版本相容、plugin/API、材質、rig/animation 與批次處理，再決定是否更新團隊工具基線。',
 }
 
+CURRENT_3D_PRODUCTION = {
+    'character-production',
+    'prop-production',
+    'environment-production',
+    'production-workflow',
+}
+
+CHARACTER_SIGNALS = (
+    'character', 'fighter', 'face', 'facial', 'hair', 'cloth', 'skin', 'anatomy',
+    'human', 'creature', 'almalexia', 'torso', 'finger', 'fingers', 'arm', 'arms',
+    'leg', 'legs', 'neck', 'body', 'portrait',
+)
+ENVIRONMENT_SIGNALS = (
+    'environment', 'scene', 'building', 'architecture', 'foliage', 'terrain',
+    'landscape', 'vegetation', 'modular', 'ruin', 'village', 'forest', 'courtyard',
+    'world building', 'world-building',
+)
+PROP_SIGNALS = (
+    'prop', 'weapon', 'guitar', 'hard-surface', 'hard surface', 'decal', 'bevel',
+    'trim', 'asset', 'object', 'product', 'furniture', 'vehicle',
+)
+
 
 def clean(text):
     return ' '.join(str(text or '').split())
+
+
+def item_text(item):
+    parts = [item.get('id'), item.get('title'), item.get('summary'), item.get('quick_impact')]
+    for block in item.get('full_analysis') or []:
+        if isinstance(block, dict):
+            parts.extend((block.get('label'), block.get('text')))
+    return ' '.join(clean(x) for x in parts if x).casefold()
+
+
+def has_signal(text, signals):
+    return any(signal in text for signal in signals)
+
+
+def classify_3d_production(item):
+    """Map an item to the current asset-oriented 3D-production taxonomy.
+
+    Asset type wins over technique. Cross-asset technical topics fall back to
+    production-workflow. This mirrors config/intelligence-v2.json guidance.
+    """
+    current = clean(item.get('subcategory'))
+    if current in CURRENT_3D_PRODUCTION:
+        return current
+    text = item_text(item)
+    if has_signal(text, ENVIRONMENT_SIGNALS):
+        return 'environment-production'
+    if has_signal(text, CHARACTER_SIGNALS):
+        return 'character-production'
+    if has_signal(text, PROP_SIGNALS):
+        return 'prop-production'
+    return 'production-workflow'
+
+
+def normalize_3d_production_taxonomy(data):
+    changed = 0
+    for item in data.get('items', []):
+        if item.get('category') != '3d-production':
+            continue
+        target = classify_3d_production(item)
+        if item.get('subcategory') != target:
+            item['subcategory'] = target
+            changed += 1
+    if changed:
+        metadata = data.setdefault('metadata', {})
+        metadata['3d_production_taxonomy'] = 'asset-oriented-v1'
+        metadata['3d_production_taxonomy_rule'] = 'character|prop|environment first; cross-asset technique => production-workflow'
+    return changed
 
 
 def valid_blocks(item, rule):
@@ -84,18 +155,23 @@ def main():
     if int(data.get('schema_version', 0)) != 3:
         print(f'FULL ANALYSIS ENRICHMENT: legacy schema for {date}; no changes')
         return
+    taxonomy_changed = normalize_3d_production_taxonomy(data)
     rule = cfg.get('full_analysis', {})
-    changed = 0
+    analysis_changed = 0
     for item in data.get('items', []):
         if not valid_blocks(item, rule):
             item['full_analysis'] = repair(item)
-            changed += 1
-    if changed:
+            analysis_changed += 1
+    if analysis_changed:
         metadata = data.setdefault('metadata', {})
         metadata['full_analysis_depth_contract'] = 'v3-adaptive-3to5-production-depth'
         metadata['full_analysis_style_reference'] = rule.get('style_reference', '2026-09-01')
+    if taxonomy_changed or analysis_changed:
         path.write_text(json.dumps(data, ensure_ascii=False, separators=(',', ':')) + '\n', 'utf-8')
-    print(f'FULL ANALYSIS ENRICHMENT: {date} / repaired {changed} structurally shallow canonical items; valid adaptive analysis preserved')
+    print(
+        f'CANONICAL ENRICHMENT: {date} / taxonomy migrated {taxonomy_changed} 3D-production items; '
+        f'repaired {analysis_changed} structurally shallow analyses'
+    )
 
 if __name__ == '__main__':
     main()
