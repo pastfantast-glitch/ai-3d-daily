@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - 'index.html'
+      - 'shared-components.css'
       - 'home.css'
       - 'home-content.css'
       - 'home-components.css'
@@ -12,6 +13,7 @@ on:
       - 'scripts/check_home_contract.py'
       - 'scripts/repair_daily_state.py'
       - 'scripts/inject_visual_previews.py'
+      - 'requirements-pipeline.txt'
       - '.github/workflows/homepage-contract.yml'
   workflow_dispatch:
 
@@ -30,5 +32,7 @@ jobs:
       - uses: actions/setup-python@v6
         with:
           python-version: '3.12'
+      - name: Install locked pipeline dependencies
+        run: pip install -r requirements-pipeline.txt
       - name: Validate homepage structure, selectors and interactions
         run: python scripts/check_home_contract.py
