@@ -1,16 +1,20 @@
-name: Daily report contract QA
+name: Daily source contract QA
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main
     paths:
-      - '20??-??-??/index.html'
-      - 'styles.css'
       - 'daily.css'
       - 'daily.js'
-      - 'scripts/migrate_daily_reports.py'
+      - 'shared-components.css'
       - 'scripts/check_daily_contract.py'
-  workflow_dispatch:
+      - 'scripts/render_daily_navigation.py'
+      - 'scripts/render_information_architecture.py'
+      - 'scripts/check_information_architecture.py'
+      - 'scripts/check_historical_regression.py'
+      - '.github/workflows/daily-contract.yml'
+  workflow_dispatch: {}
 
 permissions:
   contents: read
@@ -18,11 +22,17 @@ permissions:
 jobs:
   contract:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v6
       - uses: actions/setup-python@v6
         with:
           python-version: '3.12'
-      - run: pip install beautifulsoup4
-      - name: Validate daily report presentation contract
-        run: python scripts/check_daily_contract.py
+      - name: Install locked pipeline dependencies
+        run: pip install -r requirements-pipeline.txt
+      - name: Validate source topology and collection contract
+        run: |
+          python scripts/check_pipeline_contract.py
+          python scripts/check_collection_contract.py
+      - name: Rebuild latest report in isolation and validate daily presentation
+        run: python scripts/check_historical_regression.py --days 4
