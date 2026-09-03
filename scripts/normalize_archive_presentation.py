@@ -12,7 +12,7 @@ from bs4 import BeautifulSoup
 
 ROOT = Path(__file__).resolve().parents[1]
 DATE_RE = re.compile(r'^20\d{2}-\d{2}-\d{2}$')
-ARCHIVE_PRESENTATION_TOKEN = 'archive-p7-shared-color-v1'
+ARCHIVE_PRESENTATION_TOKEN = 'archive-p8-unified-components-v1'
 LEGACY_PILL_COLORS = {'purple','blue','green','orange','red'}
 
 
