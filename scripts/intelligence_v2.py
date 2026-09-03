@@ -18,8 +18,12 @@ def load_config():
     ids = [c.get('id') for c in categories]
     if len(categories) != 6 or len(set(ids)) != 6 or any(not x for x in ids):
         raise ValueError('V2 config must define exactly six unique categories')
-    if int(cfg.get('category_pool_size', 0)) != 10:
-        raise ValueError('V2 category_pool_size must be 10')
+    if int(cfg.get('category_pool_max_items', 0)) != 10:
+        raise ValueError('V2 category_pool_max_items must be 10')
+    if int(cfg.get('category_pool_min_items', -1)) != 0:
+        raise ValueError('V2 category_pool_min_items must be 0')
+    if cfg.get('category_fill_policy') != 'quality_first_no_padding':
+        raise ValueError('V2 category_fill_policy must be quality_first_no_padding')
     if int(cfg.get('homepage', {}).get('top5', 0)) != 5:
         raise ValueError('V2 homepage.top5 must be 5')
     if int(cfg.get('homepage', {}).get('next10', 0)) != 10:
@@ -37,7 +41,12 @@ def category_map(cfg=None):
 
 
 def validate_v2_dataset(data, strict_pool=True):
-    """Return a list of contract errors for a schema-v3 dataset."""
+    """Return contract errors for schema-v3 data.
+
+    ``strict_pool`` is retained for call-site compatibility. Release-ready V2 now
+    means quality-first variable pools: every category may contain 0..max_items,
+    and the daily total may be below 60. No lower-bound padding is permitted.
+    """
     if not is_v2_dataset(data):
         return []
     cfg = load_config()
@@ -90,29 +99,40 @@ def validate_v2_dataset(data, strict_pool=True):
         if len(blocks) < 3:
             errors.append(f'{rid or i}: full_analysis requires at least 3 blocks')
 
+    ordered = sorted(items, key=lambda x: int(x.get('rank_global', 10**9)))
     if ranks and sorted(ranks) != list(range(1, len(items) + 1)):
         errors.append('rank_global must be a contiguous 1..N ordering')
-    if len(tiers['top5']) != 5:
-        errors.append(f'homepage top5 must contain exactly 5 items, got {len(tiers["top5"])}')
-    if len(tiers['next10']) != 10:
-        errors.append(f'homepage next10 must contain exactly 10 items, got {len(tiers["next10"])}')
-    expected_top = [x['id'] for x in sorted(items, key=lambda x: int(x.get('rank_global', 10**9)))[:5]]
-    actual_top = [x['id'] for x in sorted(tiers['top5'], key=lambda x: int(x.get('rank_global', 10**9)))]
-    if expected_top and actual_top != expected_top:
-        errors.append('top5 must equal global ranks 1-5')
-    expected_next = [x['id'] for x in sorted(items, key=lambda x: int(x.get('rank_global', 10**9)))[5:15]]
-    actual_next = [x['id'] for x in sorted(tiers['next10'], key=lambda x: int(x.get('rank_global', 10**9)))]
-    if expected_next and actual_next != expected_next:
-        errors.append('next10 must equal global ranks 6-15')
 
-    pool_size = int(cfg['category_pool_size'])
+    top_limit = int(cfg['homepage']['top5'])
+    next_limit = int(cfg['homepage']['next10'])
+    expected_top_count = min(top_limit, len(items))
+    expected_next_count = min(next_limit, max(0, len(items) - top_limit))
+    if len(tiers['top5']) != expected_top_count:
+        errors.append(f'homepage top5 must contain ranks 1-{expected_top_count}, got {len(tiers["top5"])} items')
+    if len(tiers['next10']) != expected_next_count:
+        errors.append(f'homepage next10 must contain up to {next_limit} items after TOP5, got {len(tiers["next10"])}')
+    expected_top = [x['id'] for x in ordered[:top_limit]]
+    actual_top = [x['id'] for x in sorted(tiers['top5'], key=lambda x: int(x.get('rank_global', 10**9)))]
+    if actual_top != expected_top:
+        errors.append('top5 must equal available global ranks 1-5')
+    expected_next = [x['id'] for x in ordered[top_limit:top_limit + next_limit]]
+    actual_next = [x['id'] for x in sorted(tiers['next10'], key=lambda x: int(x.get('rank_global', 10**9)))]
+    if actual_next != expected_next:
+        errors.append('next10 must equal available global ranks 6-15')
+    expected_category_only = [x['id'] for x in ordered[top_limit + next_limit:]]
+    actual_category_only = [x['id'] for x in sorted(tiers['category_only'], key=lambda x: int(x.get('rank_global', 10**9)))]
+    if actual_category_only != expected_category_only:
+        errors.append('category_only must equal available global ranks 16..N')
+
+    pool_max = int(cfg['category_pool_max_items'])
+    pool_min = int(cfg['category_pool_min_items'])
     for cid, pool in by_category.items():
-        if len(pool) > pool_size:
-            errors.append(f'{cid}: category pool exceeds {pool_size}, got {len(pool)}')
-        if strict_pool and len(pool) != pool_size:
-            errors.append(f'{cid}: release-ready V2 pool must contain exactly {pool_size}, got {len(pool)}')
-    if strict_pool and len(items) != pool_size * len(categories):
-        errors.append(f'V2 release-ready dataset must contain exactly 60 items, got {len(items)}')
+        if len(pool) > pool_max:
+            errors.append(f'{cid}: category pool exceeds maximum {pool_max}, got {len(pool)}')
+        if len(pool) < pool_min:
+            errors.append(f'{cid}: category pool below minimum {pool_min}, got {len(pool)}')
+    if len(items) > pool_max * len(categories):
+        errors.append(f'V2 dataset exceeds maximum {pool_max * len(categories)} items, got {len(items)}')
     return errors
 
 
