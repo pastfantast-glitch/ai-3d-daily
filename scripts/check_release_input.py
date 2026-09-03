@@ -1,15 +1,16 @@
 #!/usr/bin/env python3
 """Validate canonical inputs before derived rendering/publish.
 
-Schema v2 keeps the legacy TOP/Supplemental contract. Schema v3 introduces six
-10-item collection pools, global rank, TOP5 and next10 homepage tiers. Only the
-15 homepage-selected items are required in Homepage/Daily seed markup; the other
-45 canonical items are rendered into date-scoped category pages later.
+Schema v2 keeps the legacy TOP/Supplemental contract. Schema v3 uses six
+category pools, global rank, TOP5 and next10 homepage tiers. From 2026-09-04 the
+collection contract requires exactly five valid items per category (30 total).
+Only the 15 homepage-selected items are required in Homepage/Daily seed markup;
+the remaining canonical items are rendered into date-scoped category pages later.
 """
 from pathlib import Path
 import json, re, sys
 from bs4 import BeautifulSoup
-from intelligence_v2 import is_v2_dataset, validate_v2_dataset, homepage_groups
+from intelligence_v2 import is_v2_dataset, validate_v2_dataset, homepage_groups, target_fill_applies
 
 ROOT=Path(__file__).resolve().parents[1]
 DATE_RE=re.compile(r'^20\d{2}-\d{2}-\d{2}$')
@@ -118,7 +119,10 @@ def main():
         if not card.select_one('.quick-impact'): fail(f'homepage {card.get("data-intel-id","?")}: missing quick-impact')
     if errors:
         print('RELEASE INPUT CONTRACT FAILED'); print('\n'.join('- '+e for e in errors)); sys.exit(1)
-    mode='V2 6x10 / TOP5+next10' if is_v2_dataset(data) else f'{len(top)} TOP / {len(more)} Supplemental'
+    if is_v2_dataset(data):
+        mode='V2 6x5 target-fill / TOP5+next10' if target_fill_applies(data) else 'V2 legacy variable pools / TOP5+next10'
+    else:
+        mode=f'{len(top)} TOP / {len(more)} Supplemental'
     print(f'RELEASE INPUT CONTRACT PASS: {date} / {mode} / source parity OK')
 
 if __name__=='__main__': main()
