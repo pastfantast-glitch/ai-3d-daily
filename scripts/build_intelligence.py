@@ -45,7 +45,10 @@ def main():
     data = load(date)
     records = {item['id']: item for item in data['items']}
     render_target(ROOT / 'index.html', records, True, '.top-item[data-intel-role="card"][data-intel-id], .more-card[data-intel-role="card"][data-intel-id]')
-    render_target(ROOT / date / 'index.html', records, False, '#top .news[data-intel-role="card"][data-intel-id], .category-news[data-intel-role="card"][data-intel-id]')
+    # Historical daily contains TOP5 plus the selected day's supplemental items.
+    # Render both shells directly from canonical stable IDs; presentation classes
+    # may be normalized later, so do not depend on legacy category-news alone.
+    render_target(ROOT / date / 'index.html', records, False, '#top .news[data-intel-role="card"][data-intel-id], #more .daily-card-more[data-intel-role="card"][data-intel-id], .category-news[data-intel-role="card"][data-intel-id]')
     if int(data.get('schema_version', 0)) >= 3:
         # V2 category pages live exactly one directory below the daily archive:
         # YYYY-MM-DD/<category>/index.html. Render canonical Full Analysis into
