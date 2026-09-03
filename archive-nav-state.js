@@ -1,4 +1,7 @@
 (()=>{
+  if(window.__ai3dArchiveWorkspaceInit)return;
+  window.__ai3dArchiveWorkspaceInit=true;
+
   const NAV_SELECTOR='nav.global-category-nav';
   let controller=null;
 
@@ -49,12 +52,50 @@
     if(!nextBody)return;
     document.body.classList.toggle('archive-page',nextBody.classList.contains('archive-page'));
     document.body.classList.toggle('category-page',nextBody.classList.contains('category-page'));
-    const attrs=['reportDate','category','previous','next'];
-    attrs.forEach(key=>{
+    ['reportDate','category'].forEach(key=>{
       const value=nextBody.dataset[key];
       if(value===undefined)delete document.body.dataset[key];
       else document.body.dataset[key]=value;
     });
+    // Historical category pages from earlier releases may not carry neighbor
+    // metadata. Preserve the shell's known date neighbors instead of dropping
+    // the controls when only the content view changes.
+    ['previous','next'].forEach(key=>{
+      const value=nextBody.dataset[key];
+      if(value!==undefined)document.body.dataset[key]=value;
+    });
+  }
+
+  function syncControlContext(){
+    const nav=document.querySelector(NAV_SELECTOR);
+    const inner=nav?.querySelector('.global-category-nav-inner');
+    if(!inner)return;
+    const date=workspaceDate();
+    if(!date)return;
+    const category=document.body.dataset.category||'';
+    const previous=document.body.dataset.previous||'';
+    const next=document.body.dataset.next||'';
+
+    let controls=inner.querySelector('.archive-nav-controls');
+    let divider=inner.querySelector('.archive-nav-divider');
+    if(!controls){
+      controls=document.createElement('div');
+      controls.className='archive-nav-controls';
+      inner.prepend(controls);
+    }
+    if(!divider){
+      divider=document.createElement('span');
+      divider.className='archive-nav-divider';
+      divider.setAttribute('aria-hidden','true');
+      controls.after(divider);
+    }else if(divider.previousElementSibling!==controls){
+      controls.after(divider);
+    }
+
+    const homeHref=new URL(category?'../../':'../',location.href).href;
+    const prevHref=previous?new URL(category?`../../${previous}/${category}/`:`../${previous}/`,location.href).href:'';
+    const nextHref=next?new URL(category?`../../${next}/${category}/`:`../${next}/`,location.href).href:'';
+    controls.innerHTML=`<a class="archive-nav-home" href="${homeHref}">← 首頁</a><div class="archive-nav-date">${prevHref?`<a class="archive-nav-arrow" href="${prevHref}" aria-label="前一日日報">←</a>`:''}<span>${date}</span>${nextHref?`<a class="archive-nav-arrow" href="${nextHref}" aria-label="後一日日報">→</a>`:''}</div>`;
   }
 
   function syncNav(nextNav){
@@ -70,12 +111,10 @@
       if(next.hasAttribute('href'))tab.setAttribute('href',next.getAttribute('href'));
     });
 
-    const currentControls=[...nav.querySelectorAll('.archive-nav-controls a[href]')];
-    const nextControls=[...nextNav.querySelectorAll('.archive-nav-controls a[href]')];
-    currentControls.forEach((link,index)=>{
-      const next=nextControls[index];
-      if(next)link.setAttribute('href',next.getAttribute('href'));
-    });
+    // The archive shell owns its home/date controls. Content pages may be from
+    // older releases that lack those nodes, so never derive shell existence
+    // from the fetched page.
+    syncControlContext();
 
     const inner=nav.querySelector('.global-category-nav-inner');
     const active=nav.querySelector('.global-category-link.is-active');
@@ -167,6 +206,7 @@
   function init(){
     repairCategoryLinks();
     absolutizeNav();
+    syncControlContext();
     prepareDetails();
     history.scrollRestoration='manual';
     document.addEventListener('click',onClick);
