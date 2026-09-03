@@ -15,12 +15,15 @@
 .home-page,.archive-page,.category-page{background:radial-gradient(circle at 18% 0%,rgba(110,91,255,.10),transparent 30%),radial-gradient(circle at 100% 28%,rgba(67,126,255,.07),transparent 34%),var(--ds-page-bg)!important;color:var(--ds-ink);color-scheme:dark}
 .home-page::selection,.archive-page::selection,.category-page::selection{background:#5146a8;color:#fff}
 .home-page .home-hero,.archive-page .site-head,.category-page .site-head{background:linear-gradient(180deg,#0b1220 0%,#0d1422 100%);border-bottom-color:var(--ds-line)}
+/* Historical date pages behave as one tab workspace: no repeated page-title hero above the persistent tab bar. */
+.archive-page .site-head,.archive-page .daily-hero,.category-page .category-hero{display:none!important}
 .home-page .section-kicker,.archive-page .section-kicker,.category-page .section-kicker{color:#9b90ff}
 .home-page .home-section-head h2,.archive-page .block-head h2,.category-page .block-head h2{color:var(--ds-ink)}
 .home-page .home-section-head>p,.archive-page .block-head>p,.category-page .block-head>p{color:var(--ds-muted)}
 
 /* Global/category navigation */
 .global-category-nav{position:sticky;top:0;z-index:60;background:rgba(11,18,32,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--ds-line);box-shadow:0 4px 14px rgba(0,0,0,.22)}
+.global-category-nav[aria-busy="true"]{cursor:progress}
 .global-category-nav-inner{display:flex;align-items:stretch;overflow-x:auto;scrollbar-width:none;overscroll-behavior-inline:contain}.global-category-nav-inner::-webkit-scrollbar{display:none}
 .global-category-link{position:relative;flex:0 0 auto;padding:12px 13px 11px;color:#9eabcb;text-decoration:none;white-space:nowrap;font-size:.78rem;font-weight:850}
 .global-category-link:first-of-type{padding-left:13px}.global-category-link:hover{color:#d7deea;background:#142035}.global-category-link.is-active{color:#c8c0ff}.global-category-link.is-active:after{content:"";position:absolute;left:12px;right:12px;bottom:0;height:3px;border-radius:999px 999px 0 0;background:var(--ds-accent)}
