@@ -3,7 +3,7 @@
 from pathlib import Path
 import json, sys
 from bs4 import BeautifulSoup
-from intelligence_v2 import load_config, is_v2_dataset, validate_v2_dataset, homepage_groups, category_items
+from intelligence_v2 import load_config, is_v2_dataset, validate_v2_dataset, homepage_groups, category_items, target_fill_applies
 
 ROOT = Path(__file__).resolve().parents[1]
 errors = []
@@ -106,6 +106,8 @@ def main():
     if links != expected_links: fail(f'category navigation mismatch: {links} != {expected_links}')
     nav_contract(home, date, cfg, 'top5', category_page=False)
     pool_max = int(cfg['category_pool_max_items'])
+    pool_target = int(cfg['category_pool_target_items'])
+    target_mode = target_fill_applies(data, cfg)
     for category in cfg['categories']:
         path = ROOT / date / category['id'] / 'index.html'
         if not path.exists():
@@ -121,7 +123,8 @@ def main():
         expected = [x['id'] for x in category_items(data, category['id'])]
         actual = [x.get('data-intel-id') for x in cards]
         if actual != expected: fail(f'{category["id"]}: page item IDs/order mismatch')
-        if len(cards) > pool_max: fail(f'{category["id"]}: category page exceeds maximum {pool_max} items, got {len(cards)}')
+        if target_mode and len(cards) != pool_target: fail(f'{category["id"]}: target-fill category page must contain exactly {pool_target} items, got {len(cards)}')
+        if len(cards) > pool_max and target_mode: fail(f'{category["id"]}: category page exceeds maximum {pool_max} items, got {len(cards)}')
         bottom = soup.select_one('nav.category-bottom-nav')
         if not bottom or len(bottom.select('a[href]')) != 3:
             fail(f'{category["id"]}: missing bottom previous/TOP5/next navigation')
@@ -135,6 +138,7 @@ def main():
         print('\n'.join('- ' + x for x in errors))
         sys.exit(1)
     counts = ', '.join(f'{c["id"]}={len(category_items(data, c["id"]))}' for c in cfg['categories'])
-    print(f'V2 INFORMATION ARCHITECTURE PASS: quality-first pools (0..{pool_max}) + available TOP5/next10 + shared components + no-hero historical category pages / {counts}')
+    mode = f'exact {pool_target}/category target-fill' if target_mode else 'legacy variable-pool compatibility'
+    print(f'V2 INFORMATION ARCHITECTURE PASS: {mode} + available TOP5/next10 + shared components + no-hero historical category pages / {counts}')
 
 if __name__ == '__main__': main()
