@@ -27,7 +27,9 @@ def main():
     date=sys.argv[1] if len(sys.argv)>1 else latest_date()
     data=json.loads((ROOT/'data'/'daily'/f'{date}.json').read_text('utf-8'))
     rev=int(data.get('render_revision',1)); token=f"{date.replace('-','')}-r{rev}"
-    apply(ROOT/'index.html',['styles.css','shared-components.css','home.css','home-content.css','home-components.css','home.js'],token)
+    # Homepage uses the split home design-system stylesheets; do not require the
+    # legacy global styles.css when the homepage no longer references it.
+    apply(ROOT/'index.html',['shared-components.css','home.css','home-content.css','home-components.css','home.js'],token)
     apply(ROOT/date/'index.html',['../styles.css','../shared-components.css','../daily.css','../daily.js'],token)
     if int(data.get('schema_version',0))>=3:
         for path in sorted((ROOT/date).glob('*/index.html')):
