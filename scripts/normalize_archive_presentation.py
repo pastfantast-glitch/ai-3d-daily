@@ -12,7 +12,7 @@ from bs4 import BeautifulSoup
 
 ROOT = Path(__file__).resolve().parents[1]
 DATE_RE = re.compile(r'^20\d{2}-\d{2}-\d{2}$')
-ARCHIVE_PRESENTATION_TOKEN = 'archive-p11-unified-history-nav-v1'
+ARCHIVE_PRESENTATION_TOKEN = 'archive-p16-persistent-history-shell-v1'
 LEGACY_PILL_COLORS = {'purple','blue','green','orange','red'}
 CATEGORY_NAV = [('ai-generation','AI 生成'),('3d-production','3D 製作'),('3d-animation','3D 動作'),('engine-art','遊戲引擎'),('emerging-case','新技術 / Case'),('blender-dcc','Blender / DCC')]
 
