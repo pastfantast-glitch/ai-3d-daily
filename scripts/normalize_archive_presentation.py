@@ -3,8 +3,8 @@
 
 Historical reports are immutable content snapshots, while presentation and color
 semantics are shared. This normalizer may repair presentation-only wrappers,
-semantic classes, heading tags, rank labels, and Quick Impact wrappers, but never
-rewrites intelligence text, source URLs, IDs, or analysis blocks.
+semantic classes, heading tags, rank labels, navigation chrome, and Quick Impact
+wrappers, but never rewrites intelligence text, source URLs, IDs, or analysis blocks.
 """
 from pathlib import Path
 import re
@@ -12,8 +12,16 @@ from bs4 import BeautifulSoup
 
 ROOT = Path(__file__).resolve().parents[1]
 DATE_RE = re.compile(r'^20\d{2}-\d{2}-\d{2}$')
-ARCHIVE_PRESENTATION_TOKEN = 'archive-p9-dark-shared-visual-v1'
+ARCHIVE_PRESENTATION_TOKEN = 'archive-p10-shared-sticky-nav-v1'
 LEGACY_PILL_COLORS = {'purple','blue','green','orange','red'}
+CATEGORY_NAV = [
+    ('ai-generation', 'AI 生成'),
+    ('3d-production', '3D 製作'),
+    ('3d-animation', '3D 動作'),
+    ('engine-art', '遊戲引擎'),
+    ('emerging-case', '新技術 / Case'),
+    ('blender-dcc', 'Blender / DCC'),
+]
 
 
 def add_class(tag, *names):
@@ -49,6 +57,55 @@ def set_shared_asset_token(soup):
         src=tag.get('src','')
         if re.match(r'^\.\./daily\.js(?:\?v=.*)?$', src):
             tag['src']=f"{src.split('?v=',1)[0]}?v={ARCHIVE_PRESENTATION_TOKEN}"
+
+
+def ensure_shared_category_nav(soup):
+    """Make archive daily pages use the same sticky category navigation component as homepage/category pages."""
+    body=soup.body
+    if not body: return
+
+    # Retire legacy archive-only navigation shells so there is only one sticky owner.
+    for legacy in soup.select('.dailybar'):
+        legacy.decompose()
+
+    nav=soup.select_one('nav.global-category-nav')
+    if not nav:
+        nav=soup.new_tag('nav', attrs={
+            'class':'global-category-nav',
+            'aria-label':'Production Intelligence 分類',
+        })
+        inner=soup.new_tag('div', attrs={'class':'page global-category-nav-inner'})
+        nav.append(inner)
+
+        top_link=soup.new_tag('a', attrs={'class':'global-category-link is-active', 'href':'#top'})
+        top_link.string='TOP5'
+        inner.append(top_link)
+
+        for slug,label in CATEGORY_NAV:
+            link=soup.new_tag('a', attrs={
+                'class':'global-category-link',
+                'data-category':slug,
+                'href':f'{slug}/',
+            })
+            link.string=label
+            inner.append(link)
+
+        header=soup.select_one('header.site-head, header.daily-hero')
+        if header:
+            header.insert_after(nav)
+        else:
+            main=soup.select_one('main')
+            if main: main.insert_before(nav)
+            else: body.insert(0, nav)
+    else:
+        add_class(nav,'global-category-nav')
+        inner=nav.select_one('.global-category-nav-inner')
+        add_class(inner,'page','global-category-nav-inner')
+        links=nav.select('.global-category-link')
+        if links:
+            for link in links: remove_classes(link,'is-active')
+            add_class(links[0],'is-active')
+            links[0]['href']='#top'
 
 
 def normalize_section_header(soup, section, kicker):
@@ -129,7 +186,7 @@ def normalize_more_card_structure(soup, card):
 def normalize(path: Path) -> bool:
     original=path.read_text('utf-8'); soup=BeautifulSoup(original,'html.parser'); body=soup.body
     if body is None: raise SystemExit(f'{path}: missing body')
-    add_class(body,'archive-page'); add_class(soup.select_one('header.site-head'),'daily-hero'); add_class(soup.select_one('main.page'),'daily-main'); set_shared_asset_token(soup)
+    add_class(body,'archive-page'); add_class(soup.select_one('header.site-head'),'daily-hero'); add_class(soup.select_one('main.page'),'daily-main'); set_shared_asset_token(soup); ensure_shared_category_nav(soup)
     top_section=soup.select_one('#top'); more_section=soup.select_one('#more')
     normalize_section_header(soup,top_section,'TODAY'); normalize_section_header(soup,more_section,'MORE')
     for rank,card in enumerate(soup.select('#top .news'),1): normalize_top_card_structure(soup,card,rank)
