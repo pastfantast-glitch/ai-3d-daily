@@ -27,7 +27,7 @@ else:
 
 if not INDEX.exists(): fail('index.html missing')
 else:
-    html=INDEX.read_text('utf-8'); soup=BeautifulSoup(html,'html.parser'); data=latest_data(); v2=is_v2_dataset(data)
+    html=INDEX.read_text('utf-8'); soup=BeautifulSoup(html,'html.parser'); data=latest_data(); v2=is_v2_dataset(data); current_date=str(data.get('date','')).strip()
     for asset in ('shared-components.css?v=','home.css?v=','home-content.css?v=','home-components.css?v=','home.js?v='):
         if asset not in html: fail(f'index.html missing cache-busted asset: {asset}')
     sections=soup.select('main.home-main > section.home-section')
@@ -41,20 +41,32 @@ else:
         canonical_top, canonical_next = homepage_groups(data)
         if len(top)!=len(canonical_top): fail(f'V2 homepage TOP card count must match available canonical TOP5, got {len(top)} != {len(canonical_top)}')
         if len(more)!=len(canonical_next): fail(f'V2 homepage next10 card count must match available canonical ranks 6-15, got {len(more)} != {len(canonical_next)}')
-        if len(soup.select('.category-nav-card[href]'))!=6: fail('V2 homepage must expose exactly six category navigation cards')
+        if len(soup.select('.category-nav-grid .category-nav-card[href]'))!=6: fail('V2 homepage must expose exactly six category navigation cards')
         if soup.select('.week-counts,.week-summary,.week-topic'): fail('V2 homepage must not contain weekly overview UI')
     else:
         if len(top)!=5: fail(f'legacy homepage must contain exactly 5 TOP cards, got {len(top)}')
         if not 6<=len(more)<=12: fail(f'legacy Supplemental cards must be 6-12, got {len(more)}')
     if soup.select('[data-supplemental-id]'): fail('stale supplemental cards must not exist')
+
+    current_entries=soup.select('.current-report-entry')
+    if current_date:
+        if len(current_entries)!=1: fail(f'homepage must expose exactly one current report entry, got {len(current_entries)}')
+        else:
+            entry=current_entries[0]
+            if entry.get('data-current-report-date')!=current_date: fail('current report entry date differs from canonical current date')
+            link=entry.select_one(f'a.current-report-link[href="{current_date}/"]')
+            if not link: fail('current report entry must link to the current date daily page')
+            if '查看今日完整日報' not in entry.get_text(' ',strip=True): fail('current report entry label drift')
+
     histories=soup.select('.history-list')
     if len(histories)!=1: fail(f'homepage must contain one history-list, got {len(histories)}')
     else:
-        expected_archives=list(reversed(archive_dates())); actual_archives=[]
+        expected_archives=list(reversed([d for d in archive_dates() if d!=current_date])); actual_archives=[]
         for a in histories[0].select('a[href]'):
             m=re.fullmatch(r'(20\d{2}-\d{2}-\d{2})/?',a.get('href',''))
             if m: actual_archives.append(m.group(1))
-        if actual_archives!=expected_archives: fail('history-list must exactly match real archives newest-first')
+        if actual_archives!=expected_archives: fail('history-list must contain only prior real archives newest-first')
+        if current_date and current_date in actual_archives: fail('current report date must not appear inside history-list')
         if len(soup.select('.history-controls'))!=1: fail('history library must expose exactly one control panel')
         if len(soup.select('.history-search[type="search"]'))!=1: fail('history library search missing')
         if not soup.select('.archive-year .archive-month .history-entry'): fail('history library must use year/month accordion entries')
@@ -89,7 +101,7 @@ else:
 for path in (FOUNDATION,UI,COMPONENTS,SHARED,JS):
     if not path.exists(): fail(f'missing required frontend asset: {path.name}')
 css='\n'.join(p.read_text('utf-8') for p in (FOUNDATION,UI,COMPONENTS,SHARED) if p.exists())
-for selector in ('.top-list','.top-item','.more-grid','.more-card','.history-list','.history-controls','.archive-year','.archive-month','.history-entry','.preference-vote','.detail-body','details > summary','.quick-impact','.case-preview'):
+for selector in ('.top-list','.top-item','.more-grid','.more-card','.current-report-entry','.current-report-link','.history-list','.history-controls','.archive-year','.archive-month','.history-entry','.preference-vote','.detail-body','details > summary','.quick-impact','.case-preview'):
     if selector not in css: fail(f'missing required selector: {selector}')
 if is_v2_dataset(latest_data()):
     for selector in ('.category-nav-grid','.category-nav-card'):
@@ -102,4 +114,4 @@ if JS.exists():
         if token not in js: fail(f'history interaction missing: {token}')
 if errors:
     print('Homepage contract QA FAILED:'); print('\n'.join(' - '+e for e in errors)); sys.exit(1)
-print('Homepage contract QA passed: V2 quality-first variable tiers + shared components + searchable grouped history library + archive parity + Design System ownership locked')
+print('Homepage contract QA passed: current report separated from prior history + V2 shared components + searchable grouped history library + Design System ownership locked')
