@@ -253,8 +253,6 @@ def category_page(date, category, items, cfg):
     title = soup.new_tag('title'); title.string = f'{category["label"]}｜{date}｜AI 3D Daily'; head.append(title)
     for href in ('../../styles.css', '../../shared-components.css', '../../category.css'): head.append(soup.new_tag('link', attrs={'rel': 'stylesheet', 'href': href}))
     body = soup.body; body['class'] = ['category-page']; body['data-report-date'] = date; body['data-category'] = category['id']
-    header = soup.new_tag('header', attrs={'class': 'category-hero'}); page = soup.new_tag('div', attrs={'class': 'page'})
-    kicker = soup.new_tag('span', attrs={'class': 'section-kicker'}); kicker.string = date; page.append(kicker); h1 = soup.new_tag('h1'); h1.string = category['label']; page.append(h1); p = soup.new_tag('p'); p.string = category['description']; page.append(p); header.append(page); body.append(header)
     body.append(global_nav(soup, date, cfg, active=category['id'], context='category'))
     main = soup.new_tag('main', attrs={'class': 'page category-main'})
     for item in items:
