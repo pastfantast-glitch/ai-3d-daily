@@ -101,7 +101,7 @@ def main():
     home_next = [x.get('data-intel-id') for x in home.select('#more .more-card[data-intel-role="card"]')]
     if home_top != [x['id'] for x in top]: fail('homepage TOP IDs/order differ from canonical available ranks 1-5')
     if home_next != [x['id'] for x in next10]: fail('homepage next10 IDs/order differ from canonical available ranks 6-15')
-    links = {a.get('href') for a in home.select('.category-nav-card[href]')}
+    links = {a.get('href') for a in home.select('.category-nav-grid .category-nav-card[href]')}
     expected_links = {f'{date}/{c["id"]}/' for c in cfg['categories']}
     if links != expected_links: fail(f'category navigation mismatch: {links} != {expected_links}')
     nav_contract(home, date, cfg, 'top5', category_page=False)
