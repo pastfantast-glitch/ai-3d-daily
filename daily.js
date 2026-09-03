@@ -5,12 +5,13 @@ document.addEventListener('DOMContentLoaded',async()=>{
 
   // Same canonical renderer as homepage: Full Analysis + local Visual Evidence share one stable-ID source.
   // The module inherits daily.js' cache-bust token, keeping archive runtime and shell revisions aligned.
+  let shellSelf=location.href,shellToken=(date||'current').replaceAll('-','');
   try{
-    const self=[...document.scripts].find(s=>s.src.includes('/daily.js'))?.src||location.href;
-    const shellUrl=new URL(self,location.href);
-    const token=shellUrl.searchParams.get('v')||(date||'current').replaceAll('-','');
-    const moduleUrl=new URL('canonical-client.js',self);
-    moduleUrl.searchParams.set('v',token);
+    shellSelf=[...document.scripts].find(s=>s.src.includes('/daily.js'))?.src||location.href;
+    const shellUrl=new URL(shellSelf,location.href);
+    shellToken=shellUrl.searchParams.get('v')||shellToken;
+    const moduleUrl=new URL('canonical-client.js',shellSelf);
+    moduleUrl.searchParams.set('v',shellToken);
     const mod=await import(moduleUrl.href);
     await mod.hydrateCanonicalAnalysis();
   }catch(err){console.warn('Canonical intelligence renderer unavailable',err);}
@@ -30,6 +31,15 @@ document.addEventListener('DOMContentLoaded',async()=>{
     inner.prepend(controls);
     const divider=document.createElement('span');divider.className='archive-nav-divider';divider.setAttribute('aria-hidden','true');controls.after(divider);
   }
+
+  // Every historical day, including older snapshots, uses the same persistent
+  // archive shell. The module keeps 首頁 / previous / date / next visible while
+  // only the content area changes between TOP5 and category tabs.
+  try{
+    const workspaceUrl=new URL('archive-nav-state.js',shellSelf);
+    workspaceUrl.searchParams.set('v',shellToken);
+    await import(workspaceUrl.href);
+  }catch(err){console.warn('Historical workspace renderer unavailable',err);}
 
   document.querySelectorAll('a[target="_blank"]').forEach(a=>{const rel=new Set((a.getAttribute('rel')||'').split(/\s+/).filter(Boolean));rel.add('noopener');rel.add('noreferrer');a.setAttribute('rel',[...rel].join(' '));});
 });
