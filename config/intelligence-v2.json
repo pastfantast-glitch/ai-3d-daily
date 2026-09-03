@@ -2,19 +2,32 @@
   "version": 2,
   "schema_version": 3,
   "start_date": "2026-09-02",
-  "category_pool_max_items": 10,
-  "category_pool_min_items": 0,
-  "category_fill_policy": "quality_first_no_padding",
+  "collection_contract_effective_date": "2026-09-04",
+  "category_pool_target_items": 5,
+  "category_pool_max_items": 5,
+  "category_pool_min_items": 5,
+  "category_fill_policy": "target_five_priority_backfill",
   "collection": {
     "selection_principle": "production_value_first",
     "major_news_is_ranking_signal_not_admission_gate": true,
-    "discovery_windows": ["24h", "7d", "30d", "6m"],
+    "candidate_pool_target_per_category": 20,
+    "candidate_pool_stretch_per_category": 40,
+    "discovery_windows": ["24h", "7d", "30d", "6m", "evergreen"],
     "window_policy": {
-      "24h": "Prioritize fresh releases, changelogs, model/tool updates and meaningful production news.",
-      "7d": "Include practical production workflows, breakdowns, tests, add-ons, DCC/engine techniques and AI-assisted production findings even when they are not major announcements.",
-      "30d": "Backfill strong production cases, workflow breakdowns, technical art examples and community discoveries that remain operationally useful and were not previously published.",
-      "6m": "Use only for missed high-value intelligence that is still relevant and absent from the Published Intelligence Registry; never use it merely to increase item count."
+      "24h": "Prioritize fresh releases, changelogs, model/tool updates and meaningful production news. Fresh valid intelligence always gets first claim on the five category slots.",
+      "7d": "Backfill strong unpublished production workflows, breakdowns, tests, add-ons, DCC/engine techniques and AI-assisted production findings when fresh items do not fill the category target.",
+      "30d": "Backfill strong production cases, workflow breakdowns, technical-art examples and credible community/GitHub discoveries that remain operationally useful and were not previously published.",
+      "6m": "Backfill high-value research, technical references, conference material, official documentation and missed production intelligence that is still relevant and absent from the Published Intelligence Registry.",
+      "evergreen": "Final fill tier only: use verifiable, still-current official documentation, production workflow references or case studies with concrete operational value. Evergreen items must be unpublished and must never be low-value filler."
     },
+    "fill_ladder": [
+      "24h:fresh-release-update-news",
+      "7d:unpublished-production-intelligence",
+      "30d:production-case-workflow-technical-art",
+      "6m:research-reference-missed-high-value",
+      "evergreen:official-production-reference"
+    ],
+    "fill_target_policy": "For every category, continue discovery through the fill ladder until exactly 5 valid unpublished items survive Quality Gate. Search roughly 20 candidates per category and stretch toward 40 when needed. If a category is still below 5 after exhausting all tiers, fail the release-ready gate and report the category deficit; never use duplicates, unverifiable claims or low-production-value filler to satisfy the count.",
     "inclusion_tiers": {
       "A": {
         "label": "major-intelligence",
@@ -35,11 +48,11 @@
       "content-farm or unverifiable claims",
       "items with negligible relevance to 3D/game-art production",
       "previously published items without a substantive delta",
-      "old or low-production-value content used only to pad quantity"
+      "low-production-value old content used only to pad quantity"
     ],
-    "completeness_trigger_total_items": 15,
-    "completeness_trigger_policy": "If fewer than 15 items survive Quality Gate, run a second discovery pass across official changelogs/docs/forums, AI 3D, AI motion, Blender/DCC, Unity/Unreal, character/prop/environment production cases, technical-art sources, credible community/GitHub sources and the 30d/6m backfill windows. This threshold triggers more discovery; it is not a minimum publish count and must never cause padding.",
-    "ranking_guidance": "Production value, practical applicability, source verifiability and freshness drive ranking. Major-news significance increases rank but is not required for admission."
+    "completeness_trigger_total_items": 30,
+    "completeness_trigger_policy": "Release-ready target is six categories x five items = 30. If any category is below five after Quality Gate, continue discovery through 7d, 30d, 6m and evergreen tiers, expanding credible official, production-case, technical-art, research and community/GitHub sources until the five-item category target is satisfied. This is a fill requirement, not permission to lower the Quality Gate.",
+    "ranking_guidance": "Production value, practical applicability, source verifiability and freshness drive ranking. Fresh intelligence is preferred, while high-value backfill remains eligible when needed to complete a category. Major-news significance increases rank but is not required for admission."
   },
   "homepage": {
     "top5": 5,
