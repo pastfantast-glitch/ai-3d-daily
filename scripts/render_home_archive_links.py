@@ -37,6 +37,20 @@ def current_report_date(soup, dates):
     if marked in dates: return marked
     return dates[0] if dates else ''
 
+def render_current_report_entry(soup,current):
+    for old in soup.select('.current-report-entry'):
+        old.decompose()
+    if not current: return
+    history=soup.select_one('section.history-section')
+    if not history: return
+    wrap=tag(soup,'div',attrs={'class':'current-report-entry','data-current-report-date':current})
+    a=tag(soup,'a',href=f'{current}/',attrs={'class':'current-report-link','aria-label':f'查看 {current} 今日完整日報'})
+    text=tag(soup,'div',attrs={'class':'current-report-copy'})
+    eyebrow=tag(soup,'span',attrs={'class':'current-report-eyebrow'}); eyebrow.string='TODAY'; text.append(eyebrow)
+    strong=tag(soup,'strong'); strong.string='查看今日完整日報'; text.append(strong)
+    date=tag(soup,'span',attrs={'class':'current-report-date'}); date.string=current; a.append(text); a.append(date)
+    wrap.append(a); history.insert_before(wrap)
+
 def main():
     path=ROOT/'index.html'; soup=BeautifulSoup(path.read_text('utf-8'),'html.parser')
     box=soup.select_one('.history-list')
@@ -50,6 +64,7 @@ def main():
     dates=sorted((p.name for p in ROOT.iterdir() if p.is_dir() and DATE_RE.fullmatch(p.name) and (p/'index.html').exists()),reverse=True)
     current=current_report_date(soup,dates)
     history_dates=[d for d in dates if d!=current]
+    render_current_report_entry(soup,current)
 
     old=soup.select_one('.history-controls')
     if old: old.decompose()
