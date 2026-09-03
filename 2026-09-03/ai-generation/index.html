@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   AI 生成｜2026-09-03｜AI 3D Daily
+  </title>
+  <link href="../../styles.css?v=20260903-r2" rel="stylesheet"/>
+  <link href="../../shared-components.css?v=20260903-r2" rel="stylesheet"/>
+  <link href="../../category.css?v=20260903-r2" rel="stylesheet"/>
+ </head>
+ <body class="category-page" data-category="ai-generation" data-report-date="2026-09-03">
+  <header class="category-hero">
+   <div class="page">
+    <span class="section-kicker">
+     2026-09-03
+    </span>
+    <h1>
+     AI 生成
+    </h1>
+    <p>
+     AI 3D 生成 / AI 2D 生成 / AI 動作生成
+    </p>
+   </div>
+  </header>
+  <nav aria-label="Production Intelligence 分類" class="global-category-nav">
+   <div class="page global-category-nav-inner">
+    <a class="global-category-link" href="../../">
+     TOP5
+    </a>
+    <a class="global-category-link is-active" data-category="ai-generation" href="../ai-generation/">
+     AI 生成
+    </a>
+    <a class="global-category-link" data-category="3d-production" href="../3d-production/">
+     3D 製作
+    </a>
+    <a class="global-category-link" data-category="3d-animation" href="../3d-animation/">
+     3D 動作
+    </a>
+    <a class="global-category-link" data-category="engine-art" href="../engine-art/">
+     遊戲引擎
+    </a>
+    <a class="global-category-link" data-category="emerging-case" href="../emerging-case/">
+     新技術 / Case
+    </a>
+    <a class="global-category-link" data-category="blender-dcc" href="../blender-dcc/">
+     Blender / DCC
+    </a>
+   </div>
+  </nav>
+  <main class="page category-main">
+   <article class="category-card" data-intel-id="hist-docs-meshy-ai-4389fdb32b" data-intel-role="card">
+    <div class="category-meta">
+     #01 · ai-3d
+    </div>
+    <h2>
+     Meshy 7：Multi-Image to 3D API 新增 Ultra Mode
+    </h2>
+    <p class="summary">
+     Meshy 將 Ultra 高細節幾何生成擴展到多視圖輸入，API 可直接以 1–4 張參考圖生成更高保真模型。
+    </p>
+    <div class="quick-impact">
+     <span>
+      AI 3D ★★★★★
+     </span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       多視圖生成流程
+      </h4>
+      <p>
+       9 月 1 日的 API 更新把 ultra_mode 加到 Multi-Image to 3D，且僅支援 meshy-7／latest；這代表多視圖不再只提升一致性，也能直接接上 Ultra 的高細節幾何 pass。
+      </p>
+      <h4>
+       製作價值
+      </h4>
+      <p>
+       對已有 Front／Left／Back／Right 設定圖的角色與道具流程，Ultra 多視圖比單張圖更接近 production 測試需求：同時降低背面猜測與表面細節不足兩種常見返工來源。
+      </p>
+      <h4>
+       導入測試
+      </h4>
+      <p>
+       建議固定以四視圖角色、硬表面道具與薄片結構各跑一輪，記錄額外 5 credits 是否換到可量化的 cleanup 節省，並檢查輪廓、對稱、凹槽與接縫的一致性。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://docs.meshy.ai/en/api/changelog" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="reallusion-ai-studio-11-standalone" data-intel-role="card">
+    <div class="category-meta">
+     #02 · ai-2d
+    </div>
+    <h2>
+     Reallusion AI Studio 1.1：獨立 App + 3D Guided AI Workflow
+    </h2>
+    <p class="summary">
+     AI Studio 從 iClone／Character Creator 內嵌工具拆成獨立應用，並加入 Seedance 2.5、4K 輸出與升級 AI Actor Creator。
+    </p>
+    <div class="quick-impact">
+     <span>
+      AI Workflow ★★★★★
+     </span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       3D 導引工作流
+      </h4>
+      <p>
+       AI Studio 1.1 可獨立啟動，但仍保留從 iClone／Character Creator 取得 3D guidance 的路徑；這把 3D pose/camera 控制與生成任務解耦，較適合批次跑圖與影片。
+      </p>
+      <h4>
+       角色一致性
+      </h4>
+      <p>
+       新版 AI Actor Creator 強化 reference sheet 與 multi-view rendering，重點不是單張畫質，而是讓同一角色跨鏡頭生成時有較穩定的視覺資料基礎。
+      </p>
+      <h4>
+       導入風險
+      </h4>
+      <p>
+       官方討論顯示舊 history migration 與本地檔案保存方式仍需要實測；團隊導入前應先確認生成原檔、source image、版本紀錄與雲端同步是否符合可追溯需求。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://discussions.reallusion.com/t/ai-studio-1-1-major-update-standalone-application-seedance-2-5-and-upgraded-ai-actor-creator/18376" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <nav aria-label="相鄰分類" class="category-bottom-nav">
+    <a href="../blender-dcc/">
+     ← Blender / DCC
+    </a>
+    <a href="../../">
+     TOP5
+    </a>
+    <a href="../3d-production/">
+     3D 製作 →
+    </a>
+   </nav>
+  </main>
+ </body>
+</html>

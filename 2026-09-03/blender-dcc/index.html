@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   Blender / DCC｜2026-09-03｜AI 3D Daily
+  </title>
+  <link href="../../styles.css?v=20260903-r2" rel="stylesheet"/>
+  <link href="../../shared-components.css?v=20260903-r2" rel="stylesheet"/>
+  <link href="../../category.css?v=20260903-r2" rel="stylesheet"/>
+ </head>
+ <body class="category-page" data-category="blender-dcc" data-report-date="2026-09-03">
+  <header class="category-hero">
+   <div class="page">
+    <span class="section-kicker">
+     2026-09-03
+    </span>
+    <h1>
+     Blender / DCC
+    </h1>
+    <p>
+     Blender / DCC 工具與工作流 / Blender Tips
+    </p>
+   </div>
+  </header>
+  <nav aria-label="Production Intelligence 分類" class="global-category-nav">
+   <div class="page global-category-nav-inner">
+    <a class="global-category-link" href="../../">
+     TOP5
+    </a>
+    <a class="global-category-link" data-category="ai-generation" href="../ai-generation/">
+     AI 生成
+    </a>
+    <a class="global-category-link" data-category="3d-production" href="../3d-production/">
+     3D 製作
+    </a>
+    <a class="global-category-link" data-category="3d-animation" href="../3d-animation/">
+     3D 動作
+    </a>
+    <a class="global-category-link" data-category="engine-art" href="../engine-art/">
+     遊戲引擎
+    </a>
+    <a class="global-category-link" data-category="emerging-case" href="../emerging-case/">
+     新技術 / Case
+    </a>
+    <a class="global-category-link is-active" data-category="blender-dcc" href="../blender-dcc/">
+     Blender / DCC
+    </a>
+   </div>
+  </nav>
+  <main class="page category-main">
+   <article class="category-card" data-intel-id="character-creator-513-ai-studio-separation" data-intel-role="card">
+    <div class="category-meta">
+     #07 · other-dcc
+    </div>
+    <h2>
+     Character Creator 5.13：AI Studio 解耦與角色工作流修正
+    </h2>
+    <p class="summary">
+     CC 5.13 將 AI Studio 改為獨立應用並保留 Render 入口，同時修正 Hide Mesh、ZBrush Face Tools jaw deformation 等角色製作問題。
+    </p>
+    <div class="quick-impact">
+     <span>
+      Character DCC ★★★★☆
+     </span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       角色製作流程
+      </h4>
+      <p>
+       CC 5.13 與 iClone 同步把 AI Studio 從主程式拆出，但仍保留 Render menu/panel 的直接入口，讓角色建置與生成後處理不必綁在同一個程序生命週期。
+      </p>
+      <h4>
+       幾何修正
+      </h4>
+      <p>
+       這版修正 Hide Mesh 在 SubD level 切換後不同步，以及 ZBrush Face Tools 在 Jaw Bone Y/Z scale 大於 100 時可能造成 mesh distortion；對既有角色 pipeline 比單純 UI 改版更值得升版驗證。
+      </p>
+      <h4>
+       升版測試
+      </h4>
+      <p>
+       建議挑有 Hide Mesh、SubD、多表情與 ZBrush round-trip 的代表角色做 regression，特別檢查 jaw open、臉部 blendshape、LOD 與 export 後在引擎中的變形一致性。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://discussions.reallusion.com/t/character-creator-5-13-is-now-released-independent-ai-studio-workflow-enhancements-and-bug-fixes/18378" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <nav aria-label="相鄰分類" class="category-bottom-nav">
+    <a href="../emerging-case/">
+     ← 新技術 / Case
+    </a>
+    <a href="../../">
+     TOP5
+    </a>
+    <a href="../ai-generation/">
+     AI 生成 →
+    </a>
+   </nav>
+  </main>
+ </body>
+</html>
