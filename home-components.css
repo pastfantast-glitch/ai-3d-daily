@@ -8,6 +8,12 @@
 .home-page .category-nav-card:hover{transform:translateY(-1px)}
 .home-page .category-nav-card strong{font-size:.9rem}
 .home-page .category-nav-card span{font-size:.73rem;line-height:1.55}
+.home-page .current-report-entry{margin:14px 0 18px}
+.home-page .current-report-link{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:13px 15px;border:1px solid;border-radius:11px;text-decoration:none;transition:.16s ease}
+.home-page .current-report-copy{display:flex;align-items:baseline;gap:10px;min-width:0}
+.home-page .current-report-eyebrow{font-size:.66rem;font-weight:900;letter-spacing:.08em}
+.home-page .current-report-copy strong{font-size:.82rem;white-space:nowrap}
+.home-page .current-report-date{font-size:.72rem;font-weight:850;white-space:nowrap}
 .home-page .test-section>p{margin:0;padding:16px 18px;font-size:.82rem;line-height:1.7}
 
 /* Historical Intelligence Library is a homepage-specific component. */
@@ -48,4 +54,4 @@
 .home-page .preference-vote button.is-up{background:#15352f;border-color:#2a6a56;color:#7fe0ba}
 .home-page .preference-vote button.is-down{background:#3a2027;border-color:#6a3340;color:#ff9aaa}
 @media(max-width:760px){.home-page .more-grid{grid-template-columns:1fr;gap:10px}.home-page .more-grid>.more-card{padding:15px 14px}.home-page .category-nav-grid{grid-template-columns:1fr 1fr}.home-page .test-section>p{padding:14px 15px}.home-page .history-entry{grid-template-columns:1fr;gap:3px;padding:10px 11px}.home-page .archive-months{padding:8px}}
-@media(max-width:480px){.home-page .category-nav-grid{grid-template-columns:1fr}}
+@media(max-width:480px){.home-page .category-nav-grid{grid-template-columns:1fr}.home-page .current-report-link{align-items:flex-start;flex-direction:column;gap:6px}.home-page .current-report-copy{align-items:flex-start;flex-direction:column;gap:3px}}
