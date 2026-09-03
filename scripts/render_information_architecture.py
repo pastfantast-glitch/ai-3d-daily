@@ -17,6 +17,14 @@ def latest_date():
     return max(p.stem for p in (ROOT / 'data' / 'daily').glob('20??-??-??.json'))
 
 
+def archive_neighbors(date):
+    dates = sorted(p.name for p in ROOT.iterdir() if p.is_dir() and len(p.name) == 10 and p.name[:2] == '20' and (p / 'index.html').exists())
+    if date not in dates:
+        return '', ''
+    i = dates.index(date)
+    return (dates[i - 1] if i else '', dates[i + 1] if i + 1 < len(dates) else '')
+
+
 def ensure_shared_stylesheet(soup, href):
     """Ensure shared components are loaded after the base stylesheet and before page-specific CSS."""
     existing = soup.find('link', href=lambda value: value and 'shared-components.css' in value)
@@ -51,14 +59,31 @@ def impact_node(soup, text, daily=False):
 
 
 def global_nav(soup, date, cfg, active='top5', context='home'):
-    """One shared nav component; only link scope changes by page context."""
+    """One shared nav component for homepage, archive TOP5 and date-scoped category pages."""
     nav = soup.new_tag('nav', attrs={'class': 'global-category-nav', 'aria-label': 'Production Intelligence 分類'})
     inner = soup.new_tag('div', attrs={'class': 'page global-category-nav-inner'})
+
+    if context in ('archive', 'category'):
+        previous, next_date = archive_neighbors(date)
+        controls = soup.new_tag('div', attrs={'class': 'archive-nav-controls'})
+        home_href = '../' if context == 'archive' else '../../../'
+        home = soup.new_tag('a', attrs={'class': 'archive-nav-home', 'href': home_href}); home.string = '← 首頁'; controls.append(home)
+        date_wrap = soup.new_tag('div', attrs={'class': 'archive-nav-date'})
+        if previous:
+            prev_href = f'../{previous}/' if context == 'archive' else f'../../../{previous}/{active}/'
+            prev = soup.new_tag('a', attrs={'class': 'archive-nav-arrow', 'href': prev_href, 'aria-label': '前一日日報'}); prev.string = '←'; date_wrap.append(prev)
+        current = soup.new_tag('span'); current.string = date; date_wrap.append(current)
+        if next_date:
+            next_href = f'../{next_date}/' if context == 'archive' else f'../../../{next_date}/{active}/'
+            nxt = soup.new_tag('a', attrs={'class': 'archive-nav-arrow', 'href': next_href, 'aria-label': '後一日日報'}); nxt.string = '→'; date_wrap.append(nxt)
+        controls.append(date_wrap); inner.append(controls)
+        divider = soup.new_tag('span', attrs={'class': 'archive-nav-divider', 'aria-hidden': 'true'}); inner.append(divider)
+
     if context == 'home':
         top_href = '#today'
     elif context == 'archive':
         top_href = '#top'
-    else:  # category page: return to the same date archive TOP5
+    else:
         top_href = '../../#top'
     top = soup.new_tag('a', attrs={'href': top_href, 'class': 'global-category-link' + (' is-active' if active == 'top5' else '')})
     top.string = 'TOP5'; inner.append(top)
@@ -181,45 +206,30 @@ def render_daily(date, data, cfg):
     if not main:
         raise SystemExit(f'{date}: daily archive main missing')
     top, next10 = homepage_groups(data)
-
     for old in soup.select('.global-category-nav'):
         old.decompose()
     main.insert_before(global_nav(soup, date, cfg, active='top5', context='archive'))
-
     top_section = soup.select_one('section#top')
     if not top_section:
-        top_section = soup.new_tag('section', attrs={'class': 'block', 'id': 'top'})
-        main.insert(0, top_section)
+        top_section = soup.new_tag('section', attrs={'class': 'block', 'id': 'top'}); main.insert(0, top_section)
     top_section.clear()
-    head = soup.new_tag('div', attrs={'class': 'block-head'})
-    head_inner = soup.new_tag('div')
+    head = soup.new_tag('div', attrs={'class': 'block-head'}); head_inner = soup.new_tag('div')
     kicker = soup.new_tag('span'); kicker.string = date; head_inner.append(kicker)
-    h2 = soup.new_tag('h2'); h2.string = 'TOP5'; head_inner.append(h2)
-    head.append(head_inner); top_section.append(head)
-    for rank, item in enumerate(top, 1):
-        top_section.append(daily_card(soup, item, top=True, rank=rank))
-
+    h2 = soup.new_tag('h2'); h2.string = 'TOP5'; head_inner.append(h2); head.append(head_inner); top_section.append(head)
+    for rank, item in enumerate(top, 1): top_section.append(daily_card(soup, item, top=True, rank=rank))
     old_more = soup.select_one('section#more')
-    if old_more:
-        old_more.decompose()
+    if old_more: old_more.decompose()
     if next10:
-        more = soup.new_tag('section', attrs={'class': 'block daily-more', 'id': 'more'})
-        mhead = soup.new_tag('div', attrs={'class': 'block-head'})
-        minner = soup.new_tag('div')
-        mk = soup.new_tag('span'); mk.string = date; minner.append(mk)
-        mh = soup.new_tag('h2'); mh.string = '當日其他資訊'; minner.append(mh)
-        mhead.append(minner); more.append(mhead)
-        for item in next10:
-            more.append(daily_card(soup, item, top=False))
+        more = soup.new_tag('section', attrs={'class': 'block daily-more', 'id': 'more'}); mhead = soup.new_tag('div', attrs={'class': 'block-head'}); minner = soup.new_tag('div')
+        mk = soup.new_tag('span'); mk.string = date; minner.append(mk); mh = soup.new_tag('h2'); mh.string = '當日其他資訊'; minner.append(mh); mhead.append(minner); more.append(mhead)
+        for item in next10: more.append(daily_card(soup, item, top=False))
         top_section.insert_after(more)
-
     path.write_text(soup.prettify() + '\n', 'utf-8')
     print(f'V2 daily archive rendered: {date} / {len(top)} TOP + {len(next10)} other / date-scoped shared nav')
 
 
 def category_footer_nav(soup, category, cfg):
-    cats = cfg['categories']; idx = next(i for i, c in enumerate(cats) if c['id'] == category['id'])
-    prev_cat = cats[(idx - 1) % len(cats)]; next_cat = cats[(idx + 1) % len(cats)]
+    cats = cfg['categories']; idx = next(i for i, c in enumerate(cats) if c['id'] == category['id']); prev_cat = cats[(idx - 1) % len(cats)]; next_cat = cats[(idx + 1) % len(cats)]
     nav = soup.new_tag('nav', attrs={'class': 'category-bottom-nav', 'aria-label': '相鄰分類'})
     prev = soup.new_tag('a', attrs={'href': f'../{prev_cat["id"]}/'}); prev.string = f'← {prev_cat["label"]}'; nav.append(prev)
     top = soup.new_tag('a', attrs={'href': '../../#top'}); top.string = 'TOP5'; nav.append(top)
@@ -228,57 +238,35 @@ def category_footer_nav(soup, category, cfg):
 
 
 def category_page(date, category, items, cfg):
-    soup = BeautifulSoup('<!doctype html><html lang="zh-Hant"><head></head><body></body></html>', 'html.parser')
-    head = soup.head
-    meta = soup.new_tag('meta', attrs={'charset': 'utf-8'}); head.append(meta)
-    viewport = soup.new_tag('meta', attrs={'name': 'viewport', 'content': 'width=device-width,initial-scale=1'}); head.append(viewport)
+    soup = BeautifulSoup('<!doctype html><html lang="zh-Hant"><head></head><body></body></html>', 'html.parser'); head = soup.head
+    meta = soup.new_tag('meta', attrs={'charset': 'utf-8'}); head.append(meta); viewport = soup.new_tag('meta', attrs={'name': 'viewport', 'content': 'width=device-width,initial-scale=1'}); head.append(viewport)
     title = soup.new_tag('title'); title.string = f'{category["label"]}｜{date}｜AI 3D Daily'; head.append(title)
-    for href in ('../../styles.css', '../../shared-components.css', '../../category.css'):
-        head.append(soup.new_tag('link', attrs={'rel': 'stylesheet', 'href': href}))
+    for href in ('../../styles.css', '../../shared-components.css', '../../category.css'): head.append(soup.new_tag('link', attrs={'rel': 'stylesheet', 'href': href}))
     body = soup.body; body['class'] = ['category-page']; body['data-report-date'] = date; body['data-category'] = category['id']
-    header = soup.new_tag('header', attrs={'class': 'category-hero'})
-    page = soup.new_tag('div', attrs={'class': 'page'})
-    kicker = soup.new_tag('span', attrs={'class': 'section-kicker'}); kicker.string = date; page.append(kicker)
-    h1 = soup.new_tag('h1'); h1.string = category['label']; page.append(h1)
-    p = soup.new_tag('p'); p.string = category['description']; page.append(p)
-    header.append(page); body.append(header)
+    header = soup.new_tag('header', attrs={'class': 'category-hero'}); page = soup.new_tag('div', attrs={'class': 'page'})
+    kicker = soup.new_tag('span', attrs={'class': 'section-kicker'}); kicker.string = date; page.append(kicker); h1 = soup.new_tag('h1'); h1.string = category['label']; page.append(h1); p = soup.new_tag('p'); p.string = category['description']; page.append(p); header.append(page); body.append(header)
     body.append(global_nav(soup, date, cfg, active=category['id'], context='category'))
     main = soup.new_tag('main', attrs={'class': 'page category-main'})
     for item in items:
-        card = soup.new_tag('article', attrs={'class': 'category-card', 'data-intel-role': 'card', 'data-intel-id': item['id']})
-        meta = soup.new_tag('div', attrs={'class': 'category-meta'}); meta.string = f'#{int(item["rank_global"]):02d} · {item["subcategory"]}'; card.append(meta)
-        h2 = soup.new_tag('h2'); h2.string = item['title']; card.append(h2)
-        summary = soup.new_tag('p', attrs={'class': 'summary'}); summary.string = item['summary']; card.append(summary)
-        card.append(impact_node(soup, item['quick_impact']))
-        card.append(analysis_shell(soup, home=False))
-        source = soup.new_tag('a', attrs={'class': 'source', 'href': item['source_url'], 'target': '_blank', 'rel': 'noopener noreferrer'}); source.string = '來源 ↗'; card.append(source)
-        main.append(card)
-    main.append(category_footer_nav(soup, category, cfg))
-    body.append(main)
+        card = soup.new_tag('article', attrs={'class': 'category-card', 'data-intel-role': 'card', 'data-intel-id': item['id']}); meta = soup.new_tag('div', attrs={'class': 'category-meta'}); meta.string = f'#{int(item["rank_global"]):02d} · {item["subcategory"]}'; card.append(meta)
+        h2 = soup.new_tag('h2'); h2.string = item['title']; card.append(h2); summary = soup.new_tag('p', attrs={'class': 'summary'}); summary.string = item['summary']; card.append(summary); card.append(impact_node(soup, item['quick_impact'])); card.append(analysis_shell(soup, home=False))
+        source = soup.new_tag('a', attrs={'class': 'source', 'href': item['source_url'], 'target': '_blank', 'rel': 'noopener noreferrer'}); source.string = '來源 ↗'; card.append(source); main.append(card)
+    main.append(category_footer_nav(soup, category, cfg)); body.append(main)
     return soup.prettify() + '\n'
 
 
 def render_categories(date, data, cfg):
     for category in cfg['categories']:
-        folder = ROOT / date / category['id']; folder.mkdir(parents=True, exist_ok=True)
-        items = category_items(data, category['id'])
-        (folder / 'index.html').write_text(category_page(date, category, items, cfg), 'utf-8')
-        print(f'V2 category page: {category["id"]} / {len(items)} items')
+        folder = ROOT / date / category['id']; folder.mkdir(parents=True, exist_ok=True); items = category_items(data, category['id']); (folder / 'index.html').write_text(category_page(date, category, items, cfg), 'utf-8'); print(f'V2 category page: {category["id"]} / {len(items)} items')
 
 
 def main():
-    date = sys.argv[1] if len(sys.argv) > 1 else latest_date()
-    data = json.loads((ROOT / 'data' / 'daily' / f'{date}.json').read_text('utf-8'))
+    date = sys.argv[1] if len(sys.argv) > 1 else latest_date(); data = json.loads((ROOT / 'data' / 'daily' / f'{date}.json').read_text('utf-8'))
     if not is_v2_dataset(data):
-        print(f'V2 information architecture: legacy schema {data.get("schema_version")} for {date}; no V2 surfaces rendered')
-        return
+        print(f'V2 information architecture: legacy schema {data.get("schema_version")} for {date}; no V2 surfaces rendered'); return
     errors = validate_v2_dataset(data, strict_pool=True)
-    if errors:
-        raise SystemExit('V2 canonical dataset invalid:\n- ' + '\n- '.join(errors))
-    cfg = load_config()
-    render_home(date, data, cfg)
-    render_daily(date, data, cfg)
-    render_categories(date, data, cfg)
+    if errors: raise SystemExit('V2 canonical dataset invalid:\n- ' + '\n- '.join(errors))
+    cfg = load_config(); render_home(date, data, cfg); render_daily(date, data, cfg); render_categories(date, data, cfg)
 
 
 if __name__ == '__main__':
