@@ -7,32 +7,76 @@ validated data; they do not decide ranking, category membership, or homepage tie
 """
 from pathlib import Path
 import json
+import re
 
 ROOT = Path(__file__).resolve().parents[1]
 CONFIG = ROOT / 'config' / 'intelligence-v2.json'
+DATE_RE = re.compile(r'^20\d{2}-\d{2}-\d{2}$')
 
 
 def load_config():
+    """Load and self-validate the collection contract without duplicating its values.
+
+    The JSON file is the source of truth for target counts, effective date, discovery
+    depth and fill policy. Python only checks internal consistency so future contract
+    changes cannot drift across multiple hard-coded copies.
+    """
     cfg = json.loads(CONFIG.read_text('utf-8'))
     categories = cfg.get('categories') or []
     ids = [c.get('id') for c in categories]
     if len(categories) != 6 or len(set(ids)) != 6 or any(not x for x in ids):
         raise ValueError('V2 config must define exactly six unique categories')
-    if int(cfg.get('category_pool_target_items', 0)) != 5:
-        raise ValueError('V2 category_pool_target_items must be 5')
-    if int(cfg.get('category_pool_max_items', 0)) != 5:
-        raise ValueError('V2 category_pool_max_items must be 5')
-    if int(cfg.get('category_pool_min_items', -1)) != 5:
-        raise ValueError('V2 category_pool_min_items must be 5')
-    if cfg.get('category_fill_policy') != 'target_five_priority_backfill':
-        raise ValueError('V2 category_fill_policy must be target_five_priority_backfill')
+
+    try:
+        pool_target = int(cfg['category_pool_target_items'])
+        pool_max = int(cfg['category_pool_max_items'])
+        pool_min = int(cfg['category_pool_min_items'])
+    except Exception as exc:
+        raise ValueError('V2 category pool target/min/max must be integers') from exc
+    if pool_target <= 0 or pool_min < 0 or pool_max <= 0:
+        raise ValueError('V2 category pool target/min/max must be positive-compatible values')
+    if not (pool_min <= pool_target <= pool_max):
+        raise ValueError('V2 category pool values must satisfy min <= target <= max')
+    if not (pool_min == pool_target == pool_max):
+        raise ValueError('V2 target-fill contract requires min == target == max')
+
+    fill_policy = str(cfg.get('category_fill_policy', '')).strip()
+    if not fill_policy:
+        raise ValueError('V2 category_fill_policy is required')
     effective = str(cfg.get('collection_contract_effective_date', '')).strip()
-    if not effective:
-        raise ValueError('V2 collection_contract_effective_date is required')
-    if int(cfg.get('homepage', {}).get('top5', 0)) != 5:
-        raise ValueError('V2 homepage.top5 must be 5')
-    if int(cfg.get('homepage', {}).get('next10', 0)) != 10:
-        raise ValueError('V2 homepage.next10 must be 10')
+    if not DATE_RE.fullmatch(effective):
+        raise ValueError('V2 collection_contract_effective_date must be YYYY-MM-DD')
+
+    homepage = cfg.get('homepage') or {}
+    if int(homepage.get('top5', 0)) != 5:
+        raise ValueError('V2 homepage.top5 must remain 5')
+    if int(homepage.get('next10', 0)) != 10:
+        raise ValueError('V2 homepage.next10 must remain 10')
+
+    collection = cfg.get('collection') or {}
+    candidate_target = int(collection.get('candidate_pool_target_per_category', 0) or 0)
+    candidate_stretch = int(collection.get('candidate_pool_stretch_per_category', 0) or 0)
+    if candidate_target < pool_target:
+        raise ValueError('V2 candidate target must be >= category publish target')
+    if candidate_stretch < candidate_target:
+        raise ValueError('V2 candidate stretch must be >= candidate target')
+
+    windows = collection.get('discovery_windows') or []
+    if not windows or len(windows) != len(set(windows)):
+        raise ValueError('V2 discovery_windows must be a non-empty unique ordered list')
+    window_policy = collection.get('window_policy') or {}
+    if any(not str(window_policy.get(window, '')).strip() for window in windows):
+        raise ValueError('V2 every discovery window requires window_policy guidance')
+    fill_ladder = collection.get('fill_ladder') or []
+    ladder_windows = [str(x).split(':', 1)[0] for x in fill_ladder]
+    if ladder_windows != windows:
+        raise ValueError('V2 fill_ladder must cover discovery_windows in the same order')
+
+    expected_total = pool_target * len(categories)
+    if int(collection.get('completeness_trigger_total_items', 0) or 0) != expected_total:
+        raise ValueError(f'V2 completeness trigger must equal category target total {expected_total}')
+    if not str(collection.get('fill_target_policy', '')).strip():
+        raise ValueError('V2 fill_target_policy is required')
     return cfg
 
 
@@ -41,16 +85,11 @@ def is_v2_dataset(data):
 
 
 def target_fill_applies(data, cfg=None):
-    """Return True when the five-per-category collection contract applies.
-
-    Existing published schema-v3 dates remain valid historical snapshots. The new
-    exact-five contract begins on the configured effective date and is enforced for
-    all release-ready datasets from that date onward.
-    """
+    """Return True when the configured target-fill collection contract applies."""
     cfg = cfg or load_config()
     date = str(data.get('date', '')).strip()
     effective = str(cfg.get('collection_contract_effective_date', '')).strip()
-    return bool(date and effective and date >= effective)
+    return bool(DATE_RE.fullmatch(date) and date >= effective)
 
 
 def category_map(cfg=None):
@@ -61,9 +100,9 @@ def category_map(cfg=None):
 def validate_v2_dataset(data, strict_pool=True):
     """Return contract errors for schema-v3 data.
 
-    Historical V2 snapshots before the five-item contract effective date retain
-    their original variable-pool semantics. From the effective date onward,
-    release-ready V2 means exactly five valid items in each of the six categories.
+    Published schema-v3 dates before the configured target-fill effective date
+    remain valid historical snapshots. From the effective date onward, release-ready
+    data must satisfy the category target declared in config.
     """
     if not is_v2_dataset(data):
         return []
@@ -132,15 +171,15 @@ def validate_v2_dataset(data, strict_pool=True):
     expected_top = [x['id'] for x in ordered[:top_limit]]
     actual_top = [x['id'] for x in sorted(tiers['top5'], key=lambda x: int(x.get('rank_global', 10**9)))]
     if actual_top != expected_top:
-        errors.append('top5 must equal available global ranks 1-5')
+        errors.append(f'top5 must equal available global ranks 1-{top_limit}')
     expected_next = [x['id'] for x in ordered[top_limit:top_limit + next_limit]]
     actual_next = [x['id'] for x in sorted(tiers['next10'], key=lambda x: int(x.get('rank_global', 10**9)))]
     if actual_next != expected_next:
-        errors.append('next10 must equal available global ranks 6-15')
+        errors.append(f'next10 must equal available global ranks {top_limit + 1}-{top_limit + next_limit}')
     expected_category_only = [x['id'] for x in ordered[top_limit + next_limit:]]
     actual_category_only = [x['id'] for x in sorted(tiers['category_only'], key=lambda x: int(x.get('rank_global', 10**9)))]
     if actual_category_only != expected_category_only:
-        errors.append('category_only must equal available global ranks 16..N')
+        errors.append(f'category_only must equal available global ranks {top_limit + next_limit + 1}..N')
 
     if target_fill_applies(data, cfg) and strict_pool:
         pool_target = int(cfg['category_pool_target_items'])
@@ -158,11 +197,11 @@ def validate_v2_dataset(data, strict_pool=True):
         if len(pool) < pool_min:
             errors.append(f'{cid}: category pool below minimum {pool_min}, got {len(pool)}')
         if pool_target is not None and len(pool) != pool_target:
-            errors.append(f'{cid}: five-item fill target requires exactly {pool_target} items, got {len(pool)}')
+            errors.append(f'{cid}: target-fill requires exactly {pool_target} items, got {len(pool)}')
     if len(items) > pool_max * len(categories):
         errors.append(f'V2 dataset exceeds maximum {pool_max * len(categories)} items, got {len(items)}')
     if pool_target is not None and len(items) != pool_target * len(categories):
-        errors.append(f'V2 five-item fill target requires exactly {pool_target * len(categories)} items, got {len(items)}')
+        errors.append(f'V2 target-fill requires exactly {pool_target * len(categories)} items, got {len(items)}')
     return errors
 
 
