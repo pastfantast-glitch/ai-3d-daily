@@ -31,6 +31,12 @@ def daily_meta(date):
 def tag(soup,name,**attrs):
     return soup.new_tag(name,**attrs)
 
+def current_report_date(soup, dates):
+    marker=soup.select_one('.week-asof')
+    marked=marker.get_text(' ',strip=True) if marker else ''
+    if marked in dates: return marked
+    return dates[0] if dates else ''
+
 def main():
     path=ROOT/'index.html'; soup=BeautifulSoup(path.read_text('utf-8'),'html.parser')
     box=soup.select_one('.history-list')
@@ -42,7 +48,8 @@ def main():
         if m:
             span=a.find('span'); existing[m.group(1)]=span.get_text(' ',strip=True) if span else '歷史日報'
     dates=sorted((p.name for p in ROOT.iterdir() if p.is_dir() and DATE_RE.fullmatch(p.name) and (p/'index.html').exists()),reverse=True)
-    current=dates[0] if dates else ''
+    current=current_report_date(soup,dates)
+    history_dates=[d for d in dates if d!=current]
 
     old=soup.select_one('.history-controls')
     if old: old.decompose()
@@ -62,7 +69,7 @@ def main():
     box.insert_before(controls)
 
     grouped=defaultdict(lambda:defaultdict(list))
-    for d in dates:
+    for d in history_dates:
         y,m,_=d.split('-'); grouped[y][m].append(d)
     box.clear()
     for year in sorted(grouped,reverse=True):
@@ -85,5 +92,6 @@ def main():
         yd.append(months); box.append(yd)
     empty=tag(soup,'p',attrs={'class':'history-empty','hidden':''}); empty.string='找不到符合條件的歷史情報。'; box.append(empty)
     path.write_text(soup.prettify(),'utf-8')
-    print('HOME HISTORY LIBRARY:',', '.join(dates))
+    print('HOME CURRENT REPORT:',current or 'none')
+    print('HOME HISTORY LIBRARY:',', '.join(history_dates))
 if __name__=='__main__': main()
