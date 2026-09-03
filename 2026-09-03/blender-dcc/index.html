@@ -6,9 +6,9 @@
   <title>
    Blender / DCC｜2026-09-03｜AI 3D Daily
   </title>
-  <link href="../../styles.css?v=20260903-r2" rel="stylesheet"/>
-  <link href="../../shared-components.css?v=20260903-r2" rel="stylesheet"/>
-  <link href="../../category.css?v=20260903-r2" rel="stylesheet"/>
+  <link href="../../styles.css?v=20260903-r3" rel="stylesheet"/>
+  <link href="../../shared-components.css?v=20260903-r3" rel="stylesheet"/>
+  <link href="../../category.css?v=20260903-r3" rel="stylesheet"/>
  </head>
  <body class="category-page" data-category="blender-dcc" data-report-date="2026-09-03">
   <header class="category-hero">
@@ -52,7 +52,7 @@
   <main class="page category-main">
    <article class="category-card" data-intel-id="character-creator-513-ai-studio-separation" data-intel-role="card">
     <div class="category-meta">
-     #07 · other-dcc
+     #09 · other-dcc
     </div>
     <h2>
      Character Creator 5.13：AI Studio 解耦與角色工作流修正
@@ -60,6 +60,17 @@
     <p class="summary">
      CC 5.13 將 AI Studio 改為獨立應用並保留 Render 入口，同時修正 Hide Mesh、ZBrush Face Tools jaw deformation 等角色製作問題。
     </p>
+    <figure class="case-preview" data-intel-id="character-creator-513-ai-studio-separation" data-intel-role="visual" data-visual-id="character-creator-513-ai-studio-separation">
+     <a href="https://discussions.reallusion.com/t/character-creator-5-13-is-now-released-independent-ai-studio-workflow-enhancements-and-bug-fixes/18378" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-03/character-creator-513-ai-studio-separation.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
     <div class="quick-impact">
      <span>
       Character DCC ★★★★☆
@@ -91,6 +102,171 @@
      </div>
     </details>
     <a class="source" href="https://discussions.reallusion.com/t/character-creator-5-13-is-now-released-independent-ai-studio-workflow-enhancements-and-bug-fixes/18378" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="blender-gsoc-materialx-authoring" data-intel-role="card">
+    <div class="category-meta">
+     #10 · blender
+    </div>
+    <h2>
+     Blender GSoC：MaterialX 原生 Shader Authoring 與 Cycles OSL 執行
+    </h2>
+    <p class="summary">
+     Blender 的 GSoC MaterialX 專案正在把 MaterialX nodedef 做成原生 ShaderNodeMaterialX，支援圖形 authoring、import/export 與 Cycles OSL 執行原型。
+    </p>
+    <figure class="case-preview" data-intel-id="blender-gsoc-materialx-authoring" data-intel-role="visual" data-visual-id="blender-gsoc-materialx-authoring">
+     <a href="https://devtalk.blender.org/t/gsoc-2026-materialx-shader-authoring-in-blender/45211" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-03/blender-gsoc-materialx-authoring.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span>
+      Blender Shader ★★★★☆
+     </span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       材質X Authoring
+      </h4>
+      <p>
+       專案把大量 MaterialX nodedef 收斂到單一 ShaderNodeMaterialX 類型，由節點狀態切換 socket 組合，目標是讓 Blender 不只匯出 MaterialX，而能直接 author 標準節點網路。
+      </p>
+      <h4>
+       跨 DCC 價值
+      </h4>
+      <p>
+       若 round-trip 與 USD/MaterialX 串接成熟，Blender 材質在 Maya、Houdini、USD pipeline 間的語意落差可降低；對需要跨 DCC 外包或資產交換的團隊，價值高於單純新增 shader 節點。
+      </p>
+      <h4>
+       執行限制
+      </h4>
+      <p>
+       目前執行原型依賴 Cycles OSL，早期規劃明確不是 EEVEE 路徑；導入評估應把 authoring/interchange 與即時引擎 shading 分開驗證，避免把 MaterialX 可交換誤認為遊戲引擎可直接等效渲染。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://devtalk.blender.org/t/gsoc-2026-materialx-shader-authoring-in-blender/45211" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="silo-2026-2-io-upgrade" data-intel-role="card">
+    <div class="category-meta">
+     #11 · other-dcc
+    </div>
+    <h2>
+     Silo 2026.2：FBX／USD／GLB 匯入匯出與數值欄位工作流升級
+    </h2>
+    <p class="summary">
+     Silo 2026.2 加入數值欄位數學運算，並改善 FBX PBR 材質、USD smoothing groups 與 GLB embedded textures 的 I/O。
+    </p>
+    <figure class="case-preview" data-intel-id="silo-2026-2-io-upgrade" data-intel-role="visual" data-visual-id="silo-2026-2-io-upgrade">
+     <a href="https://www.cgchannel.com/2026/09/nevercenter-releases-silo-2026/" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-03/silo-2026-2-io-upgrade.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span>
+      DCC Workflow ★★★★☆
+     </span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       交換格式改善
+      </h4>
+      <p>
+       這版把改動集中在 production I/O：FBX 的 PBR material、USD smoothing groups、GLB embedded textures 都直接影響資產在 DCC 與引擎之間 round-trip 的完整度。
+      </p>
+      <h4>
+       建模操作
+      </h4>
+      <p>
+       所有 numerical input field 可直接做基本數學運算，對需要比例縮放、精準 inset/offset 或以規格值建模的工作，能減少外部計算與反覆輸入。
+      </p>
+      <h4>
+       導入測試
+      </h4>
+      <p>
+       升版前應用同一組含 hard/soft edge、PBR texture、GLB embedded image 的資產做雙向測試，特別確認 smoothing、material slot、texture path 與 scale 不因格式改善而產生新的差異。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://www.cgchannel.com/2026/09/nevercenter-releases-silo-2026/" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="freepencil2-one-click-line-art" data-intel-role="card">
+    <div class="category-meta">
+     #12 · addon
+    </div>
+    <h2>
+     FreePencil2：Blender 一鍵把 3D 模型轉成可調整 Line Art
+    </h2>
+    <p class="summary">
+     FreePencil2 以自動 vertex-color 分區加 compositor edge detection 產生線稿，並自動處理分割角度、鄰接區域著色、微小區域合併與 rig 分區。
+    </p>
+    <figure class="case-preview" data-intel-id="freepencil2-one-click-line-art" data-intel-role="visual" data-visual-id="freepencil2-one-click-line-art">
+     <a href="https://80.lv/articles/one-click-line-art-from-any-3d-model-in-blender" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-03/freepencil2-one-click-line-art.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span>
+      Blender NPR ★★★★☆
+     </span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       線稿生成流程
+      </h4>
+      <p>
+       工具先自動把模型依區域寫入 vertex color，再於 compositor 以顏色邊界做 edge detection；核心價值是把最麻煩的『怎麼分區著色』前處理自動化，而不是只套一個 outline filter。
+      </p>
+      <h4>
+       效能與規模
+      </h4>
+      <p>
+       作者展示 155 parts 約 5.5 秒完成，並表示 128 萬 polygon 模型可在 30 秒內處理；這使它更接近可放進 NPR look-dev 的批次工具，而不只是單一模型 demo。
+      </p>
+      <h4>
+       導入邊界
+      </h4>
+      <p>
+       自動分區仍可能與 art direction 想要的線條層級不同；實際使用應測 touching parts、角色骨架分區、細碎配件與不同鏡頭距離，並保留 artist 後續調整 line volume 的步驟。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://80.lv/articles/one-click-line-art-from-any-3d-model-in-blender" rel="noopener noreferrer" target="_blank">
      來源 ↗
     </a>
    </article>

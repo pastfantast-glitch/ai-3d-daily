@@ -6,9 +6,9 @@
   <title>
    遊戲引擎｜2026-09-03｜AI 3D Daily
   </title>
-  <link href="../../styles.css?v=20260903-r2" rel="stylesheet"/>
-  <link href="../../shared-components.css?v=20260903-r2" rel="stylesheet"/>
-  <link href="../../category.css?v=20260903-r2" rel="stylesheet"/>
+  <link href="../../styles.css?v=20260903-r3" rel="stylesheet"/>
+  <link href="../../shared-components.css?v=20260903-r3" rel="stylesheet"/>
+  <link href="../../category.css?v=20260903-r3" rel="stylesheet"/>
  </head>
  <body class="category-page" data-category="engine-art" data-report-date="2026-09-03">
   <header class="category-hero">
@@ -52,7 +52,7 @@
   <main class="page category-main">
    <article class="category-card" data-intel-id="vizibeat-ue5-music-procedural-animation" data-intel-role="card">
     <div class="category-meta">
-     #04 · tools
+     #05 · tools
     </div>
     <h2>
      Vizibeat：UE5 以音樂節拍程序化驅動 Camera／Light／Material／Particle
@@ -60,6 +60,17 @@
     <p class="summary">
      Vizibeat 將音訊節拍映射到 UE5 場景參數，讓鏡頭、燈光、材質與粒子可依不同節奏程序化動畫，減少逐拍 keyframe。
     </p>
+    <figure class="case-preview" data-intel-id="vizibeat-ue5-music-procedural-animation" data-intel-role="visual" data-visual-id="vizibeat-ue5-music-procedural-animation">
+     <a href="https://80.lv/articles/create-procedural-ue5-animations-based-on-music-with-this-tool" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-03/vizibeat-ue5-music-procedural-animation.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
     <div class="quick-impact">
      <span>
       UE5 Tools ★★★★☆
@@ -91,6 +102,61 @@
      </div>
     </details>
     <a class="source" href="https://80.lv/articles/create-procedural-ue5-animations-based-on-music-with-this-tool" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="unity-urp-ssr-preview" data-intel-role="card">
+    <div class="category-meta">
+     #07 · rendering
+    </div>
+    <h2>
+     Unity URP：Screen Space Reflections 預覽進入 6.7 Alpha
+    </h2>
+    <p class="summary">
+     Unity 正在 URP 導入 Screen Space Reflections，以螢幕空間 ray marching 取樣 camera color/depth，並在資訊不足時回退 reflection probe 或 skybox。
+    </p>
+    <figure class="case-preview" data-intel-id="unity-urp-ssr-preview" data-intel-role="visual" data-visual-id="unity-urp-ssr-preview">
+     <a href="https://discussions.unity.com/t/preview-of-screen-space-reflections-for-urp/1721494" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-03/unity-urp-ssr-preview.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span>
+      Unity Rendering ★★★★☆
+     </span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       反射流程
+      </h4>
+      <p>
+       URP SSR 以螢幕空間 ray marching 取樣相機 color/depth buffer，因此可即時反映畫面中可見物件，不需要為每個表面另外烘焙反射資訊。
+      </p>
+      <h4>
+       遊戲美術價值
+      </h4>
+      <p>
+       對濕地面、水面、金屬與高 smoothness 材質，SSR 可補強 reflection probe 的空間細節；若專案原本為了反射大量佈 probe，這會改變環境材質與燈光 authoring 的取捨。
+      </p>
+      <h4>
+       限制與測試
+      </h4>
+      <p>
+       螢幕外或被遮蔽物件無法命中，Unity 會回退 probe/skybox；導入時需在實機測試解析度、ray length、roughness、camera movement 與 fallback 接縫，不能只看靜態畫面。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://discussions.unity.com/t/preview-of-screen-space-reflections-for-urp/1721494" rel="noopener noreferrer" target="_blank">
      來源 ↗
     </a>
    </article>
