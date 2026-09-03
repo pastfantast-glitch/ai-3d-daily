@@ -38,9 +38,16 @@ if (ROOT/'config'/'intelligence-v2.json').exists():
     try:
         cfg=json.loads((ROOT/'config'/'intelligence-v2.json').read_text('utf-8'))
         if len(cfg.get('categories') or [])!=6: fail('V2 config must define exactly six categories')
-        if cfg.get('category_pool_max_items')!=10: fail('V2 category pool maximum must be 10')
-        if cfg.get('category_pool_min_items')!=0: fail('V2 category pool minimum must be 0')
-        if cfg.get('category_fill_policy')!='quality_first_no_padding': fail('V2 category fill policy must forbid padding')
+        if cfg.get('collection_contract_effective_date')!='2026-09-04': fail('V2 five-item fill contract effective date drift')
+        if cfg.get('category_pool_target_items')!=5: fail('V2 category pool target must be 5')
+        if cfg.get('category_pool_max_items')!=5: fail('V2 category pool maximum must be 5')
+        if cfg.get('category_pool_min_items')!=5: fail('V2 category pool minimum must be 5')
+        if cfg.get('category_fill_policy')!='target_five_priority_backfill': fail('V2 category fill policy must be target_five_priority_backfill')
+        collection=cfg.get('collection') or {}
+        if collection.get('candidate_pool_target_per_category',0)<20: fail('V2 discovery candidate target must be at least 20 per category')
+        if collection.get('candidate_pool_stretch_per_category',0)<40: fail('V2 discovery candidate stretch must be at least 40 per category')
+        if collection.get('discovery_windows')!=['24h','7d','30d','6m','evergreen']: fail('V2 discovery fill ladder windows drift')
+        if collection.get('completeness_trigger_total_items')!=30: fail('V2 completeness trigger must equal 30 items')
         if cfg.get('homepage',{}).get('top5')!=5 or cfg.get('homepage',{}).get('next10')!=10: fail('V2 homepage selection limits must be TOP5 + next10')
     except Exception as exc: fail(f'V2 config unreadable: {exc}')
 
@@ -109,4 +116,4 @@ else:
     if "if(!id&&date==='2026-08-23')" not in text or 'LEGACY_20260823_RULES' not in text: fail('legacy identity fallback scope changed')
 if errors:
     print('PIPELINE CONTRACT FAILED'); print('\n'.join('- '+e for e in errors)); sys.exit(1)
-print('PIPELINE CONTRACT PASS: one writer + ready-only push trigger + V2 max-10 quality-first IA + latest-main checkout + semantic visual compatibility + cache/category coverage + fail-closed QA')
+print('PIPELINE CONTRACT PASS: one writer + ready-only push trigger + V2 six-by-five target-fill IA + 20-40 candidate discovery + latest-main checkout + semantic visual compatibility + cache/category coverage + fail-closed QA')
