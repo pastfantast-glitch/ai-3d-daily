@@ -19,5 +19,7 @@ jobs:
           python-version: '3.12'
       - name: Install locked pipeline dependencies
         run: pip install -r requirements-pipeline.txt
+      - name: Run config-driven collection contract dry run
+        run: python scripts/check_collection_contract.py
       - name: Run historical archive regression matrix
         run: python scripts/check_historical_regression.py --days 4
