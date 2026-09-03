@@ -1,31 +1,106 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>AI / 3D Production Intelligence</title>
-<link rel="stylesheet" href="shared-components.css?v=20260903">
-<link rel="stylesheet" href="home.css?v=20260903">
-<link rel="stylesheet" href="home-content.css?v=20260903">
-<link rel="stylesheet" href="home-components.css?v=20260903">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>AI / 3D Production Intelligence</title>
+  <link rel="stylesheet" href="shared-components.css?v=20260903">
+  <link rel="stylesheet" href="home.css?v=20260903">
+  <link rel="stylesheet" href="home-content.css?v=20260903">
+  <link rel="stylesheet" href="home-components.css?v=20260903">
 </head>
 <body class="home-page">
-<header class="home-hero"><div class="page"><p class="eyebrow">AI / 3D / GAME ART</p><h1>Production Intelligence</h1><p class="week-asof">2026-09-03</p>
-<nav class="global-category-nav"><a class="global-category-link is-active" href="">TOP5</a><a class="global-category-link" href="2026-09-03/ai-generation/">AI 生成</a><a class="global-category-link" href="2026-09-03/3d-production/">3D 製作</a><a class="global-category-link" href="2026-09-03/3d-animation/">3D 動作</a><a class="global-category-link" href="2026-09-03/engine-art/">遊戲引擎</a><a class="global-category-link" href="2026-09-03/emerging-case/">新技術 / Case</a><a class="global-category-link" href="2026-09-03/blender-dcc/">Blender / DCC</a></nav></div></header>
+<header class="home-hero">
+  <div class="page">
+    <p class="eyebrow">AI / 3D / GAME ART</p>
+    <h1>Production Intelligence</h1>
+    <p class="week-asof">2026-09-03</p>
+    <nav class="global-category-nav">
+      <a class="global-category-link is-active" href="">TOP5</a>
+      <a class="global-category-link" href="2026-09-03/ai-generation/">AI 生成</a>
+      <a class="global-category-link" href="2026-09-03/3d-production/">3D 製作</a>
+      <a class="global-category-link" href="2026-09-03/3d-animation/">3D 動作</a>
+      <a class="global-category-link" href="2026-09-03/engine-art/">遊戲引擎</a>
+      <a class="global-category-link" href="2026-09-03/emerging-case/">新技術 / Case</a>
+      <a class="global-category-link" href="2026-09-03/blender-dcc/">Blender / DCC</a>
+    </nav>
+  </div>
+</header>
 <main class="page home-main">
-<section id="today" class="home-section today-section"><div class="block-head"><div><span>TODAY</span><h2>TOP5</h2></div></div><div class="top-list">
-<article class="top-item" data-intel-role="card" data-intel-id="meshy7-multiview-ultra-api"><h3>Meshy 7：Multi-Image to 3D API 新增 Ultra Mode</h3><p class="summary">Meshy 將 Ultra 高細節幾何生成擴展到多視圖輸入，API 可直接以 1–4 張參考圖生成更高保真模型。</p><p class="quick-impact">AI 3D ★★★★★</p><details class="home-full-analysis"><summary>完整分析</summary><div class="detail-body home-analysis-body"><section><h4>多視圖生成流程</h4><p>9 月 1 日的 API 更新把 ultra_mode 加到 Multi-Image to 3D，且僅支援 meshy-7／latest；這代表多視圖不再只提升一致性，也能直接接上 Ultra 的高細節幾何 pass。</p></section><section><h4>製作價值</h4><p>對已有 Front／Left／Back／Right 設定圖的角色與道具流程，Ultra 多視圖比單張圖更接近 production 測試需求：同時降低背面猜測與表面細節不足兩種常見返工來源。</p></section><section><h4>導入測試</h4><p>建議固定以四視圖角色、硬表面道具與薄片結構各跑一輪，記錄額外 5 credits 是否換到可量化的 cleanup 節省，並檢查輪廓、對稱、凹槽與接縫的一致性。</p></section></div></details><a class="source" href="https://docs.meshy.ai/en/api/changelog" target="_blank" rel="noopener noreferrer">來源</a></article>
-<article class="top-item" data-intel-role="card" data-intel-id="reallusion-ai-studio-11-standalone"><h3>Reallusion AI Studio 1.1：獨立 App + 3D Guided AI Workflow</h3><p class="summary">AI Studio 從 iClone／Character Creator 內嵌工具拆成獨立應用，並加入 Seedance 2.5、4K 輸出與升級 AI Actor Creator。</p><p class="quick-impact">AI Workflow ★★★★★</p><details class="home-full-analysis"><summary>完整分析</summary><div class="detail-body home-analysis-body"><section><h4>3D 導引工作流</h4><p>AI Studio 1.1 可獨立啟動，但仍保留從 iClone／Character Creator 取得 3D guidance 的路徑；這把 3D pose/camera 控制與生成任務解耦，較適合批次跑圖與影片。</p></section><section><h4>角色一致性</h4><p>新版 AI Actor Creator 強化 reference sheet 與 multi-view rendering，重點不是單張畫質，而是讓同一角色跨鏡頭生成時有較穩定的視覺資料基礎。</p></section><section><h4>導入風險</h4><p>官方討論顯示舊 history migration 與本地檔案保存方式仍需要實測；團隊導入前應先確認生成原檔、source image、版本紀錄與雲端同步是否符合可追溯需求。</p></section></div></details><a class="source" href="https://discussions.reallusion.com/t/ai-studio-1-1-major-update-standalone-application-seedance-2-5-and-upgraded-ai-actor-creator/18376" target="_blank" rel="noopener noreferrer">來源</a></article>
-<article class="top-item" data-intel-role="card" data-intel-id="iclone-875-ai-studio-workflow"><h3>iClone 8.75：AI Studio 改為獨立執行並保留直接送出流程</h3><p class="summary">iClone 8.75 把 AI Studio 從內嵌程序移出，降低主程式負載，同時保留 Render 選單直接擷取影像／影片送入 AI Studio。</p><p class="quick-impact">Animation ★★★★☆</p><details class="home-full-analysis"><summary>完整分析</summary><div class="detail-body home-analysis-body"><section><h4>動畫到生成流程</h4><p>8.75 的核心變化是把 AI Studio 執行程序拆離 iClone，但仍可從 Render panel 直接 capture image/video；動畫師能保留 iClone 的鏡頭與角色控制，再把結果送往生成階段。</p></section><section><h4>製作穩定性</h4><p>拆出獨立程序可降低 iClone 主程式同時承擔生成工作負載的壓力，對長時間 animation session 或多角色場景，比純新增模型更直接影響日常穩定性。</p></section><section><h4>實測</h4><p>應以既有角色動畫測 capture 後的解析度、色彩、camera framing、frame range 與 AI Studio round-trip，並驗證舊 motion related 設定修正後是否仍有 crash regression。</p></section></div></details><a class="source" href="https://discussions.reallusion.com/t/iclone-8-75-is-now-released-independent-ai-studio-workflow-enhancements-and-bug-fixes/18377" target="_blank" rel="noopener noreferrer">來源</a></article>
-<article class="top-item" data-intel-role="card" data-intel-id="vizibeat-ue5-music-procedural-animation"><h3>Vizibeat：UE5 以音樂節拍程序化驅動 Camera／Light／Material／Particle</h3><p class="summary">Vizibeat 將音訊節拍映射到 UE5 場景參數，讓鏡頭、燈光、材質與粒子可依不同節奏程序化動畫，減少逐拍 keyframe。</p><p class="quick-impact">UE5 Tools ★★★★☆</p><details class="home-full-analysis"><summary>完整分析</summary><div class="detail-body home-analysis-body"><section><h4>程序動畫流程</h4><p>Vizibeat 以 node graph 把音訊 amplitude／beat 映射到 UE5 的 camera、light、material 與 particle 控制，並以 bars/beats 而非單純 frames 來定位音樂事件。</p></section><section><h4>製作價值</h4><p>對音樂視覺、VJ、節奏型宣傳片與需要大量同步變化的場景，最大的價值是把重複逐拍 keyframe 轉成可重用規則，再由 artist 做關鍵段落修整。</p></section><section><h4>導入邊界</h4><p>它適合節奏驅動的 scene animation，不等同角色 body animation；導入時應測 tempo change、非四四拍、音樂重剪後的可維護性，以及 node graph 是否能被團隊版本控管。</p></section></div></details><a class="source" href="https://80.lv/articles/create-procedural-ue5-animations-based-on-music-with-this-tool" target="_blank" rel="noopener noreferrer">來源</a></article>
-<article class="top-item" data-intel-role="card" data-intel-id="blighted-harbour-environment-production-case"><h3>Blighted Harbour：Blender→ZBrush→Substance→UE 的環境製作 Case</h3><p class="summary">Helena Hansen 分享以 Blender、ZBrush、Substance、SpeedTree、Houdini 與 Unreal Engine 完成幻想港口場景的資產與組裝流程。</p><p class="quick-impact">Environment ★★★★☆</p><details class="home-full-analysis"><summary>完整分析</summary><div class="detail-body home-analysis-body"><section><h4>環境資產流程</h4><p>案例將 blockout 視為構圖草圖，主要資產在 Blender blockout、ZBrush sculpt、回 Blender retopo/UV，再進 Substance Painter；這種跨 DCC 分工很接近實際環境美術 production。</p></section><section><h4>材質與場景一致性</h4><p>作者不是只在單一資產上確認貼圖，而是把已貼圖資產放回 Unreal 的中性光環境互相比對，並用 gradient shader 打破共用木材 kit 的重複感，這是可直接套用的 art-direction 檢查點。</p></section><section><h4>導入做法</h4><p>對固定視角或模組化場景，可借用其『先構圖／尺度、再資產細化、最後以光影和值域支持焦點』順序；尤其適合避免每個資產都精緻但組起來讀不清楚的問題。</p></section></div></details><a class="source" href="https://80.lv/articles/building-a-creepy-3d-fantasy-environment-inspired-by-greek-mythology" target="_blank" rel="noopener noreferrer">來源</a></article>
-</div></section>
-<section id="more" class="home-section more-section"><div class="block-head"><div><span>MORE</span><h2>今天還有什麼</h2></div></div><div class="more-grid">
-<article class="more-card" data-intel-role="card" data-intel-id="navel-orange-3dgs-specular-reconstruction"><h3>3DGS：弱紋理／高反光物體的高保真重建實驗</h3><p class="summary">Scientific Reports 9 月 2 日研究以改良影像配準加 3D Gaussian Splatting，改善弱紋理、高反光柳橙表面的重建與 novel-view 品質。</p><p class="quick-impact">3DGS ★★★★☆</p><details class="home-full-analysis"><summary>完整分析</summary><div class="detail-body home-analysis-body"><section><h4>重建能力</h4><p>研究針對弱紋理與高 specular 表面這類傳統 SfM 容易失配的輸入，先改善影像註冊，再以 3DGS 做 dense reconstruction 與 neural rendering。</p></section><section><h4>製作潛力</h4><p>雖然題材是農業數位化，但它對掃描資產流程的啟示在於：光滑、重複紋理或高反射物件不一定要直接放棄影像式重建，可透過 registration 與 representation 組合提高可用率。</p></section><section><h4>限制</h4><p>輸出仍偏向高保真視覺重建而非 game-ready mesh；若用於遊戲美術，仍需另外評估 mesh extraction、UV／材質轉換、碰撞與 LOD，不能把 novel-view 品質直接等同可編輯資產品質。</p></section></div></details><a class="source" href="https://www.nature.com/articles/s41598-026-69081-6" target="_blank" rel="noopener noreferrer">來源</a></article>
-<article class="more-card" data-intel-role="card" data-intel-id="character-creator-513-ai-studio-separation"><h3>Character Creator 5.13：AI Studio 解耦與角色工作流修正</h3><p class="summary">CC 5.13 將 AI Studio 改為獨立應用並保留 Render 入口，同時修正 Hide Mesh、ZBrush Face Tools jaw deformation 等角色製作問題。</p><p class="quick-impact">Character DCC ★★★★☆</p><details class="home-full-analysis"><summary>完整分析</summary><div class="detail-body home-analysis-body"><section><h4>角色製作流程</h4><p>CC 5.13 與 iClone 同步把 AI Studio 從主程式拆出，但仍保留 Render menu/panel 的直接入口，讓角色建置與生成後處理不必綁在同一個程序生命週期。</p></section><section><h4>幾何修正</h4><p>這版修正 Hide Mesh 在 SubD level 切換後不同步，以及 ZBrush Face Tools 在 Jaw Bone Y/Z scale 大於 100 時可能造成 mesh distortion；對既有角色 pipeline 比單純 UI 改版更值得升版驗證。</p></section><section><h4>升版測試</h4><p>建議挑有 Hide Mesh、SubD、多表情與 ZBrush round-trip 的代表角色做 regression，特別檢查 jaw open、臉部 blendshape、LOD 與 export 後在引擎中的變形一致性。</p></section></div></details><a class="source" href="https://discussions.reallusion.com/t/character-creator-5-13-is-now-released-independent-ai-studio-workflow-enhancements-and-bug-fixes/18378" target="_blank" rel="noopener noreferrer">來源</a></article>
-</div></section>
-<section id="categories" class="home-section category-section"><div class="block-head"><div><span>POOLS</span><h2>六大分類</h2></div></div><div class="category-nav-grid"><a class="category-nav-card" href="2026-09-03/ai-generation/"><strong>AI 生成</strong><span>查看今日分類</span></a><a class="category-nav-card" href="2026-09-03/3d-production/"><strong>3D 製作</strong><span>查看今日分類</span></a><a class="category-nav-card" href="2026-09-03/3d-animation/"><strong>3D 動作</strong><span>查看今日分類</span></a><a class="category-nav-card" href="2026-09-03/engine-art/"><strong>遊戲引擎</strong><span>查看今日分類</span></a><a class="category-nav-card" href="2026-09-03/emerging-case/"><strong>新技術 / Case</strong><span>查看今日分類</span></a><a class="category-nav-card" href="2026-09-03/blender-dcc/"><strong>Blender / DCC</strong><span>查看今日分類</span></a></div></section>
-<section id="history" class="home-section history-section"><div class="block-head"><div><span>ARCHIVE</span><h2>歷史日報</h2></div></div><div class="history-controls"><input class="history-search" type="search" placeholder="搜尋歷史情報"><div><button data-history-category="all">全部</button><button data-history-category="ai-generation">AI 生成</button><button data-history-category="3d-production">3D 製作</button><button data-history-category="3d-animation">3D 動作</button><button data-history-category="engine-art">遊戲引擎</button><button data-history-category="emerging-case">新技術 / Case</button><button data-history-category="blender-dcc">Blender / DCC</button></div><div><button data-history-range="7">最近 7 天</button><button data-history-range="30">30 天</button><button data-history-range="all">全部日期</button></div></div><div class="history-list"><details class="archive-year" open><summary>2026</summary><details class="archive-month" open><summary>9 月</summary><a class="history-entry" href="2026-09-03/"><strong>2026-09-03</strong><span>歷史日報</span></a></details></details></div></section>
+<section id="today" class="home-section today-section">
+  <div class="block-head"><div><span>TODAY</span><h2>TOP5</h2></div></div>
+  <div class="top-list">
+    <article class="top-item" data-intel-role="card" data-intel-id="hist-docs-meshy-ai-4389fdb32b">
+      <h3>Meshy 7：Multi-Image to 3D API 新增 Ultra Mode</h3>
+      <p class="summary">Meshy 將 Ultra 高細節幾何生成擴展到多視圖輸入，API 可直接以 1–4 張參考圖生成更高保真模型。</p>
+      <p class="quick-impact">AI 3D ★★★★★</p>
+      <details class="home-full-analysis"><summary>完整分析</summary><div class="detail-body home-analysis-body"></div></details>
+      <a class="source" href="https://docs.meshy.ai/en/api/changelog" target="_blank" rel="noopener noreferrer">來源</a>
+    </article>
+    <article class="top-item" data-intel-role="card" data-intel-id="reallusion-ai-studio-11-standalone">
+      <h3>Reallusion AI Studio 1.1：獨立 App + 3D Guided AI Workflow</h3>
+      <p class="summary">AI Studio 從 iClone／Character Creator 內嵌工具拆成獨立應用，並加入 Seedance 2.5、4K 輸出與升級 AI Actor Creator。</p>
+      <p class="quick-impact">AI Workflow ★★★★★</p>
+      <details class="home-full-analysis"><summary>完整分析</summary><div class="detail-body home-analysis-body"></div></details>
+      <a class="source" href="https://discussions.reallusion.com/t/ai-studio-1-1-major-update-standalone-application-seedance-2-5-and-upgraded-ai-actor-creator/18376" target="_blank" rel="noopener noreferrer">來源</a>
+    </article>
+    <article class="top-item" data-intel-role="card" data-intel-id="iclone-875-ai-studio-workflow">
+      <h3>iClone 8.75：AI Studio 改為獨立執行並保留直接送出流程</h3>
+      <p class="summary">iClone 8.75 把 AI Studio 從內嵌程序移出，降低主程式負載，同時保留 Render 選單直接擷取影像／影片送入 AI Studio。</p>
+      <p class="quick-impact">Animation ★★★★☆</p>
+      <details class="home-full-analysis"><summary>完整分析</summary><div class="detail-body home-analysis-body"></div></details>
+      <a class="source" href="https://discussions.reallusion.com/t/iclone-8-75-is-now-released-independent-ai-studio-workflow-enhancements-and-bug-fixes/18377" target="_blank" rel="noopener noreferrer">來源</a>
+    </article>
+    <article class="top-item" data-intel-role="card" data-intel-id="vizibeat-ue5-music-procedural-animation">
+      <h3>Vizibeat：UE5 以音樂節拍程序化驅動 Camera／Light／Material／Particle</h3>
+      <p class="summary">Vizibeat 將音訊節拍映射到 UE5 場景參數，讓鏡頭、燈光、材質與粒子可依不同節奏程序化動畫，減少逐拍 keyframe。</p>
+      <p class="quick-impact">UE5 Tools ★★★★☆</p>
+      <details class="home-full-analysis"><summary>完整分析</summary><div class="detail-body home-analysis-body"></div></details>
+      <a class="source" href="https://80.lv/articles/create-procedural-ue5-animations-based-on-music-with-this-tool" target="_blank" rel="noopener noreferrer">來源</a>
+    </article>
+    <article class="top-item" data-intel-role="card" data-intel-id="blighted-harbour-environment-production-case">
+      <h3>Blighted Harbour：Blender→ZBrush→Substance→UE 的環境製作 Case</h3>
+      <p class="summary">Helena Hansen 分享以 Blender、ZBrush、Substance、SpeedTree、Houdini 與 Unreal Engine 完成幻想港口場景的資產與組裝流程。</p>
+      <p class="quick-impact">Environment ★★★★☆</p>
+      <details class="home-full-analysis"><summary>完整分析</summary><div class="detail-body home-analysis-body"></div></details>
+      <a class="source" href="https://80.lv/articles/building-a-creepy-3d-fantasy-environment-inspired-by-greek-mythology" target="_blank" rel="noopener noreferrer">來源</a>
+    </article>
+  </div>
+</section>
+<section id="more" class="home-section more-section">
+  <div class="block-head"><div><span>MORE</span><h2>今天還有什麼</h2></div></div>
+  <div class="more-grid">
+    <article class="more-card" data-intel-role="card" data-intel-id="navel-orange-3dgs-specular-reconstruction">
+      <h3>3DGS：弱紋理／高反光物體的高保真重建實驗</h3>
+      <p class="summary">Scientific Reports 9 月 2 日研究以改良影像配準加 3D Gaussian Splatting，改善弱紋理、高反光柳橙表面的重建與 novel-view 品質。</p>
+      <p class="quick-impact">3DGS ★★★★☆</p>
+      <details class="home-full-analysis"><summary>完整分析</summary><div class="detail-body home-analysis-body"></div></details>
+      <a class="source" href="https://www.nature.com/articles/s41598-026-69081-6" target="_blank" rel="noopener noreferrer">來源</a>
+    </article>
+    <article class="more-card" data-intel-role="card" data-intel-id="character-creator-513-ai-studio-separation">
+      <h3>Character Creator 5.13：AI Studio 解耦與角色工作流修正</h3>
+      <p class="summary">CC 5.13 將 AI Studio 改為獨立應用並保留 Render 入口，同時修正 Hide Mesh、ZBrush Face Tools jaw deformation 等角色製作問題。</p>
+      <p class="quick-impact">Character DCC ★★★★☆</p>
+      <details class="home-full-analysis"><summary>完整分析</summary><div class="detail-body home-analysis-body"></div></details>
+      <a class="source" href="https://discussions.reallusion.com/t/character-creator-5-13-is-now-released-independent-ai-studio-workflow-enhancements-and-bug-fixes/18378" target="_blank" rel="noopener noreferrer">來源</a>
+    </article>
+  </div>
+</section>
+<section id="categories" class="home-section category-section">
+  <div class="block-head"><div><span>POOLS</span><h2>六大分類</h2></div></div>
+  <div class="category-nav-grid">
+    <a class="category-nav-card" href="2026-09-03/ai-generation/"><strong>AI 生成</strong><span>查看今日分類</span></a>
+    <a class="category-nav-card" href="2026-09-03/3d-production/"><strong>3D 製作</strong><span>查看今日分類</span></a>
+    <a class="category-nav-card" href="2026-09-03/3d-animation/"><strong>3D 動作</strong><span>查看今日分類</span></a>
+    <a class="category-nav-card" href="2026-09-03/engine-art/"><strong>遊戲引擎</strong><span>查看今日分類</span></a>
+    <a class="category-nav-card" href="2026-09-03/emerging-case/"><strong>新技術 / Case</strong><span>查看今日分類</span></a>
+    <a class="category-nav-card" href="2026-09-03/blender-dcc/"><strong>Blender / DCC</strong><span>查看今日分類</span></a>
+  </div>
+</section>
+<section id="history" class="home-section history-section">
+  <div class="block-head"><div><span>ARCHIVE</span><h2>歷史日報</h2></div></div>
+  <div class="history-list"><a href="2026-09-03/"><span>歷史日報</span></a></div>
+</section>
 </main>
 <script src="home.js?v=20260903"></script>
 </body>
