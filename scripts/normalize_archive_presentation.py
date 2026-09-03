@@ -12,7 +12,7 @@ from bs4 import BeautifulSoup
 
 ROOT = Path(__file__).resolve().parents[1]
 DATE_RE = re.compile(r'^20\d{2}-\d{2}-\d{2}$')
-ARCHIVE_PRESENTATION_TOKEN = 'archive-p6-quick-impact-shell-v1'
+ARCHIVE_PRESENTATION_TOKEN = 'archive-p7-shared-color-v1'
 LEGACY_PILL_COLORS = {'purple','blue','green','orange','red'}
 
 
@@ -52,9 +52,12 @@ def normalize_quick_impact_structure(soup, impact):
 
 
 def set_shared_asset_token(soup):
+    # All shared archive presentation assets must move together. In particular,
+    # leaving shared-components.css unversioned allowed old archive HTML to mix a
+    # cached/current component palette with separately versioned styles/daily CSS.
     for tag in soup.find_all('link', href=True):
         href=tag.get('href','')
-        if re.match(r'^\.\./(?:styles|daily)\.css(?:\?v=.*)?$', href):
+        if re.match(r'^\.\./(?:styles|shared-components|daily)\.css(?:\?v=.*)?$', href):
             tag['href']=f"{href.split('?v=',1)[0]}?v={ARCHIVE_PRESENTATION_TOKEN}"
     for tag in soup.find_all('script', src=True):
         src=tag.get('src','')
