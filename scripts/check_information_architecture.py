@@ -80,12 +80,13 @@ def main():
         fail(f'V2 homepage section order drift: {roles}')
     home_top = [x.get('data-intel-id') for x in home.select('#today .top-item[data-intel-role="card"]')]
     home_next = [x.get('data-intel-id') for x in home.select('#more .more-card[data-intel-role="card"]')]
-    if home_top != [x['id'] for x in top]: fail('homepage TOP IDs/order differ from canonical global ranks 1-5')
-    if home_next != [x['id'] for x in next10]: fail('homepage next10 IDs/order differ from canonical global ranks 6-15')
+    if home_top != [x['id'] for x in top]: fail('homepage TOP IDs/order differ from canonical available ranks 1-5')
+    if home_next != [x['id'] for x in next10]: fail('homepage next10 IDs/order differ from canonical available ranks 6-15')
     links = {a.get('href') for a in home.select('.category-nav-card[href]')}
     expected_links = {f'{date}/{c["id"]}/' for c in cfg['categories']}
     if links != expected_links: fail(f'category navigation mismatch: {links} != {expected_links}')
     nav_contract(home, date, cfg, 'top5', category_page=False)
+    pool_max = int(cfg['category_pool_max_items'])
     for category in cfg['categories']:
         path = ROOT / date / category['id'] / 'index.html'
         if not path.exists():
@@ -99,7 +100,7 @@ def main():
         expected = [x['id'] for x in category_items(data, category['id'])]
         actual = [x.get('data-intel-id') for x in cards]
         if actual != expected: fail(f'{category["id"]}: page item IDs/order mismatch')
-        if len(cards) != 10: fail(f'{category["id"]}: category page must contain exactly 10 items, got {len(cards)}')
+        if len(cards) > pool_max: fail(f'{category["id"]}: category page exceeds maximum {pool_max} items, got {len(cards)}')
         bottom = soup.select_one('nav.category-bottom-nav')
         if not bottom or len(bottom.select('a[href]')) != 3:
             fail(f'{category["id"]}: missing bottom previous/TOP5/next navigation')
@@ -112,6 +113,7 @@ def main():
         print('V2 INFORMATION ARCHITECTURE FAILED')
         print('\n'.join('- ' + x for x in errors))
         sys.exit(1)
-    print('V2 INFORMATION ARCHITECTURE PASS: 6x10 pools + TOP5 + next10 + shared components + sticky global navigation + category pages')
+    counts = ', '.join(f'{c["id"]}={len(category_items(data, c["id"]))}' for c in cfg['categories'])
+    print(f'V2 INFORMATION ARCHITECTURE PASS: quality-first pools (0..{pool_max}) + available TOP5/next10 + shared components + sticky global navigation + category pages / {counts}')
 
 if __name__ == '__main__': main()
