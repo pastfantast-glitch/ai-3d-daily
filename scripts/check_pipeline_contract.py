@@ -17,9 +17,8 @@ if not MAIN.exists(): fail('intelligence-build.yml missing'); main=''
 else:
     main=MAIN.read_text('utf-8')
     required=[
-        "- 'data/publish/*.ready'","- 'styles.css'","- 'home.css'","- 'home-content.css'","- 'home-components.css'","- 'daily.css'","- 'category.css'",
-        "- 'config/intelligence-v2.json'","- 'scripts/intelligence_v2.py'","- 'scripts/render_information_architecture.py'","- 'scripts/check_information_architecture.py'",
-        "- 'scripts/normalize_archive_presentation.py'",'group: canonical-intelligence-publish','cancel-in-progress: false','pip install -r requirements-pipeline.txt',
+        "paths:\n      - 'data/publish/*.ready'\n  workflow_dispatch:",
+        'group: canonical-intelligence-publish','cancel-in-progress: false','pip install -r requirements-pipeline.txt',
         'check_release_input.py','check_registry_contract.py','render_daily_navigation.py','render_home_archive_links.py','render_information_architecture.py','build_intelligence.py',
         'extract_visual_assets.py','inject_visual_previews.py','apply_cache_bust.py','check_intelligence_contract.py','check_visual_contract.py','check_home_contract.py',
         'check_daily_contract.py','check_information_architecture.py','check_historical_regression.py --days 4','verify_pages_publish.py','write_publish_receipt.py','restore_publish_snapshot.py',
@@ -39,8 +38,10 @@ if (ROOT/'config'/'intelligence-v2.json').exists():
     try:
         cfg=json.loads((ROOT/'config'/'intelligence-v2.json').read_text('utf-8'))
         if len(cfg.get('categories') or [])!=6: fail('V2 config must define exactly six categories')
-        if cfg.get('category_pool_size')!=10: fail('V2 category pool size must be 10')
-        if cfg.get('homepage',{}).get('top5')!=5 or cfg.get('homepage',{}).get('next10')!=10: fail('V2 homepage selection must be TOP5 + next10')
+        if cfg.get('category_pool_max_items')!=10: fail('V2 category pool maximum must be 10')
+        if cfg.get('category_pool_min_items')!=0: fail('V2 category pool minimum must be 0')
+        if cfg.get('category_fill_policy')!='quality_first_no_padding': fail('V2 category fill policy must forbid padding')
+        if cfg.get('homepage',{}).get('top5')!=5 or cfg.get('homepage',{}).get('next10')!=10: fail('V2 homepage selection limits must be TOP5 + next10')
     except Exception as exc: fail(f'V2 config unreadable: {exc}')
 
 normalizer=ROOT/'scripts'/'normalize_archive_presentation.py'; nav_renderer=ROOT/'scripts'/'render_daily_navigation.py'
@@ -108,4 +109,4 @@ else:
     if "if(!id&&date==='2026-08-23')" not in text or 'LEGACY_20260823_RULES' not in text: fail('legacy identity fallback scope changed')
 if errors:
     print('PIPELINE CONTRACT FAILED'); print('\n'.join('- '+e for e in errors)); sys.exit(1)
-print('PIPELINE CONTRACT PASS: one writer + V2 modular IA + latest-main checkout + semantic visual compatibility + cache/category coverage + fail-closed QA')
+print('PIPELINE CONTRACT PASS: one writer + ready-only push trigger + V2 max-10 quality-first IA + latest-main checkout + semantic visual compatibility + cache/category coverage + fail-closed QA')
