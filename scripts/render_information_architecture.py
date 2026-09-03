@@ -39,6 +39,15 @@ def ensure_shared_stylesheet(soup, href):
         soup.head.append(link)
 
 
+def ensure_archive_nav_state_script(soup, src):
+    existing = soup.find('script', src=lambda value: value and 'archive-nav-state.js' in value)
+    if existing:
+        existing['src'] = src
+        existing['defer'] = ''
+        return
+    soup.body.append(soup.new_tag('script', attrs={'src': src, 'defer': ''}))
+
+
 def analysis_shell(soup, home=False, daily=False):
     details = soup.new_tag('details')
     if home:
@@ -224,6 +233,7 @@ def render_daily(date, data, cfg):
         mk = soup.new_tag('span'); mk.string = date; minner.append(mk); mh = soup.new_tag('h2'); mh.string = '當日其他資訊'; minner.append(mh); mhead.append(minner); more.append(mhead)
         for item in next10: more.append(daily_card(soup, item, top=False))
         top_section.insert_after(more)
+    ensure_archive_nav_state_script(soup, '../archive-nav-state.js')
     path.write_text(soup.prettify() + '\n', 'utf-8')
     print(f'V2 daily archive rendered: {date} / {len(top)} TOP + {len(next10)} other / date-scoped shared nav')
 
@@ -252,6 +262,7 @@ def category_page(date, category, items, cfg):
         h2 = soup.new_tag('h2'); h2.string = item['title']; card.append(h2); summary = soup.new_tag('p', attrs={'class': 'summary'}); summary.string = item['summary']; card.append(summary); card.append(impact_node(soup, item['quick_impact'])); card.append(analysis_shell(soup, home=False))
         source = soup.new_tag('a', attrs={'class': 'source', 'href': item['source_url'], 'target': '_blank', 'rel': 'noopener noreferrer'}); source.string = '來源 ↗'; card.append(source); main.append(card)
     main.append(category_footer_nav(soup, category, cfg)); body.append(main)
+    ensure_archive_nav_state_script(soup, '../../archive-nav-state.js')
     return soup.prettify() + '\n'
 
 
