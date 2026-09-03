@@ -39,11 +39,18 @@ def validate_archive_snapshot(d,all_dirs):
     rows.append((date,'snapshot','PASS' if not any(e.startswith(date+':') for e in errors) else 'FAIL'))
 
 def validate_home_archive_links(all_dirs):
-    soup=BeautifulSoup((ROOT/'index.html').read_text('utf-8'),'html.parser'); expected=[d.name for d in reversed(all_dirs)]; actual=[]
+    soup=BeautifulSoup((ROOT/'index.html').read_text('utf-8'),'html.parser')
+    marker=soup.select_one('.week-asof'); current=marker.get_text(' ',strip=True) if marker else ''
+    known={d.name for d in all_dirs}
+    if current not in known: current=all_dirs[-1].name if all_dirs else ''
+    expected=[d.name for d in reversed(all_dirs) if d.name!=current]; actual=[]
     for a in soup.select('.history-list a[href]'):
         m=re.fullmatch(r'(20\d{2}-\d{2}-\d{2})/?',a.get('href',''))
         if m: actual.append(m.group(1))
-    if actual!=expected: fail('home',f'history archive list mismatch: expected {expected}, got {actual}')
+    if actual!=expected: fail('home',f'history archive list mismatch: expected prior archives {expected}, got {actual}')
+    entry=soup.select_one('.current-report-entry')
+    if current and (not entry or entry.get('data-current-report-date')!=current or not entry.select_one(f'a.current-report-link[href="{current}/"]')):
+        fail('home',f'current report entry missing or mismatched for {current}')
 
 def selected_ids(data):
     if int(data.get('schema_version',0))>=3:
