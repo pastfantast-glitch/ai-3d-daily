@@ -26,14 +26,49 @@ def latest_date():
 
 def load_entries(date):
     data = json.loads((ROOT/'data'/'daily'/f'{date}.json').read_text('utf-8'))
+    explicit = data.get('visual_evidence') or {}
     entries = []
-    for intel_id, cfg in (data.get('visual_evidence') or {}).items():
+    seen = set()
+
+    # Explicit visual evidence remains authoritative when provided.
+    for intel_id, cfg in explicit.items():
         if cfg.get('enabled', True) is False:
+            seen.add(intel_id)
             continue
         page_url = cfg.get('source_url')
         if not page_url:
             continue
-        entries.append({'id':intel_id,'page_url':page_url,'keywords':cfg.get('keywords',[]),'label':cfg.get('label','SOURCE PREVIEW'),'confidence':cfg.get('confidence','candidate')})
+        entries.append({
+            'id': intel_id,
+            'page_url': page_url,
+            'keywords': cfg.get('keywords', []),
+            'label': cfg.get('label', 'SOURCE PREVIEW'),
+            'confidence': cfg.get('confidence', 'candidate'),
+        })
+        seen.add(intel_id)
+
+    # Fail-safe fallback: canonical items with a source URL are valid visual
+    # candidates even when upstream omitted visual_evidence. This prevents an
+    # empty manifest from silently disabling all representative images while
+    # preserving per-item diagnostics when a source blocks extraction.
+    for item in data.get('items') or []:
+        intel_id = item.get('id')
+        page_url = item.get('source_url')
+        if not intel_id or not page_url or intel_id in seen:
+            continue
+        title = str(item.get('title') or '')
+        category = str(item.get('category') or '')
+        subcategory = str(item.get('subcategory') or '')
+        keywords = [x for x in re.split(r'[^A-Za-z0-9_+.-]+', f'{title} {category} {subcategory}') if len(x) >= 3][:12]
+        entries.append({
+            'id': intel_id,
+            'page_url': page_url,
+            'keywords': keywords,
+            'label': 'SOURCE PREVIEW',
+            'confidence': 'canonical-source-fallback',
+        })
+        seen.add(intel_id)
+
     return entries
 
 
