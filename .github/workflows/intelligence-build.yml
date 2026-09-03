@@ -71,6 +71,8 @@ jobs:
       - name: Legacy 2026-08-23 stable-ID migration
         if: steps.date.outputs.value == '2026-08-23'
         run: python scripts/bootstrap_intelligence_ids.py
+      - name: Normalize current canonical against published registry
+        run: python scripts/normalize_registry_identity.py "${{ steps.date.outputs.value }}"
       - name: Enrich canonical V3 Full Analysis depth
         run: python scripts/enrich_full_analysis_v3.py "${{ steps.date.outputs.value }}"
       - name: Normalize current release seed semantic shell
