@@ -1,18 +1,23 @@
 {
   "date": "2026-09-03",
   "schema_version": 3,
-  "render_revision": 2,
+  "render_revision": 3,
   "information_architecture": "v2",
   "metadata": {
-    "discovery_windows": ["24h", "7d", "6m"],
+    "discovery_windows": [
+      "24h",
+      "7d",
+      "6m"
+    ],
     "category_pool_max_items": 10,
     "category_fill_policy": "quality_first_no_padding",
-    "total_items": 7,
+    "total_items": 15,
     "ranking_policy": "production value + freshness + verifiability + diversity penalty",
     "generated_for": "2026-09-03",
     "full_analysis_depth_contract": "v3-adaptive-3to5-production-depth",
     "full_analysis_style_reference": "2026-09-01",
-    "full_analysis_heading_language": "zh-Hant"
+    "full_analysis_heading_language": "zh-Hant",
+    "discovery_completeness": "second_pass_completed_after_under_15_quality_gate"
   },
   "visual_evidence": {},
   "items": [
@@ -30,9 +35,18 @@
       "rank_global": 1,
       "homepage_tier": "top5",
       "full_analysis": [
-        {"label": "多視圖生成流程", "text": "9 月 1 日的 API 更新把 ultra_mode 加到 Multi-Image to 3D，且僅支援 meshy-7／latest；這代表多視圖不再只提升一致性，也能直接接上 Ultra 的高細節幾何 pass。"},
-        {"label": "製作價值", "text": "對已有 Front／Left／Back／Right 設定圖的角色與道具流程，Ultra 多視圖比單張圖更接近 production 測試需求：同時降低背面猜測與表面細節不足兩種常見返工來源。"},
-        {"label": "導入測試", "text": "建議固定以四視圖角色、硬表面道具與薄片結構各跑一輪，記錄額外 5 credits 是否換到可量化的 cleanup 節省，並檢查輪廓、對稱、凹槽與接縫的一致性。"}
+        {
+          "label": "多視圖生成流程",
+          "text": "9 月 1 日的 API 更新把 ultra_mode 加到 Multi-Image to 3D，且僅支援 meshy-7／latest；這代表多視圖不再只提升一致性，也能直接接上 Ultra 的高細節幾何 pass。"
+        },
+        {
+          "label": "製作價值",
+          "text": "對已有 Front／Left／Back／Right 設定圖的角色與道具流程，Ultra 多視圖比單張圖更接近 production 測試需求：同時降低背面猜測與表面細節不足兩種常見返工來源。"
+        },
+        {
+          "label": "導入測試",
+          "text": "建議固定以四視圖角色、硬表面道具與薄片結構各跑一輪，記錄額外 5 credits 是否換到可量化的 cleanup 節省，並檢查輪廓、對稱、凹槽與接縫的一致性。"
+        }
       ]
     },
     {
@@ -47,9 +61,18 @@
       "rank_global": 2,
       "homepage_tier": "top5",
       "full_analysis": [
-        {"label": "3D 導引工作流", "text": "AI Studio 1.1 可獨立啟動，但仍保留從 iClone／Character Creator 取得 3D guidance 的路徑；這把 3D pose/camera 控制與生成任務解耦，較適合批次跑圖與影片。"},
-        {"label": "角色一致性", "text": "新版 AI Actor Creator 強化 reference sheet 與 multi-view rendering，重點不是單張畫質，而是讓同一角色跨鏡頭生成時有較穩定的視覺資料基礎。"},
-        {"label": "導入風險", "text": "官方討論顯示舊 history migration 與本地檔案保存方式仍需要實測；團隊導入前應先確認生成原檔、source image、版本紀錄與雲端同步是否符合可追溯需求。"}
+        {
+          "label": "3D 導引工作流",
+          "text": "AI Studio 1.1 可獨立啟動，但仍保留從 iClone／Character Creator 取得 3D guidance 的路徑；這把 3D pose/camera 控制與生成任務解耦，較適合批次跑圖與影片。"
+        },
+        {
+          "label": "角色一致性",
+          "text": "新版 AI Actor Creator 強化 reference sheet 與 multi-view rendering，重點不是單張畫質，而是讓同一角色跨鏡頭生成時有較穩定的視覺資料基礎。"
+        },
+        {
+          "label": "導入風險",
+          "text": "官方討論顯示舊 history migration 與本地檔案保存方式仍需要實測；團隊導入前應先確認生成原檔、source image、版本紀錄與雲端同步是否符合可追溯需求。"
+        }
       ]
     },
     {
@@ -64,9 +87,44 @@
       "rank_global": 3,
       "homepage_tier": "top5",
       "full_analysis": [
-        {"label": "動畫到生成流程", "text": "8.75 的核心變化是把 AI Studio 執行程序拆離 iClone，但仍可從 Render panel 直接 capture image/video；動畫師能保留 iClone 的鏡頭與角色控制，再把結果送往生成階段。"},
-        {"label": "製作穩定性", "text": "拆出獨立程序可降低 iClone 主程式同時承擔生成工作負載的壓力，對長時間 animation session 或多角色場景，比純新增模型更直接影響日常穩定性。"},
-        {"label": "實測", "text": "應以既有角色動畫測 capture 後的解析度、色彩、camera framing、frame range 與 AI Studio round-trip，並驗證舊 motion related 設定修正後是否仍有 crash regression。"}
+        {
+          "label": "動畫到生成流程",
+          "text": "8.75 的核心變化是把 AI Studio 執行程序拆離 iClone，但仍可從 Render panel 直接 capture image/video；動畫師能保留 iClone 的鏡頭與角色控制，再把結果送往生成階段。"
+        },
+        {
+          "label": "製作穩定性",
+          "text": "拆出獨立程序可降低 iClone 主程式同時承擔生成工作負載的壓力，對長時間 animation session 或多角色場景，比純新增模型更直接影響日常穩定性。"
+        },
+        {
+          "label": "實測",
+          "text": "應以既有角色動畫測 capture 後的解析度、色彩、camera framing、frame range 與 AI Studio round-trip，並驗證舊 motion related 設定修正後是否仍有 crash regression。"
+        }
+      ]
+    },
+    {
+      "id": "onimusha-multi-actor-monster-mocap",
+      "title": "Onimusha：四名演員協作完成多臂怪物 Motion Capture",
+      "summary": "CAPCOM 為多對手臂的怪物同時拍攝四名演員，將真人動作拆成多組肢體來源，再組合成非人型角色動畫。",
+      "quick_impact": "Mocap ★★★★★",
+      "source_url": "https://80.lv/articles/how-onimusha-way-of-the-sword-s-team-used-motion-capture-for-animating-monsters",
+      "category": "3d-animation",
+      "subcategory": "mocap",
+      "ranking_score": 92,
+      "rank_global": 4,
+      "homepage_tier": "top5",
+      "full_analysis": [
+        {
+          "label": "多演員動作來源",
+          "text": "這個案例不是用單一演員硬模擬非人型骨架，而是由四名演員分別提供不同手臂組的動作來源；對多肢體生物而言，capture design 本身就是 rig 與動畫解題的一部分。"
+        },
+        {
+          "label": "動畫製作價值",
+          "text": "真人協作可以保留各肢體的重量、節奏與互相干涉，再由動畫團隊統整成怪物表演；相較完全手 K，多肢體同步的基礎節奏更容易先建立，再把非人化比例與 timing 推得更誇張。"
+        },
+        {
+          "label": "導入測試",
+          "text": "若採類似流程，應先定義每位演員對應的骨架區段、同步 cue、root/reference actor 與後續 retarget 規則，並特別檢查肢體交叉、碰撞與 cleanup 後是否仍保留整體動勢。"
+        }
       ]
     },
     {
@@ -78,12 +136,21 @@
       "category": "engine-art",
       "subcategory": "tools",
       "ranking_score": 91,
-      "rank_global": 4,
+      "rank_global": 5,
       "homepage_tier": "top5",
       "full_analysis": [
-        {"label": "程序動畫流程", "text": "Vizibeat 以 node graph 把音訊 amplitude／beat 映射到 UE5 的 camera、light、material 與 particle 控制，並以 bars/beats 而非單純 frames 來定位音樂事件。"},
-        {"label": "製作價值", "text": "對音樂視覺、VJ、節奏型宣傳片與需要大量同步變化的場景，最大的價值是把重複逐拍 keyframe 轉成可重用規則，再由 artist 做關鍵段落修整。"},
-        {"label": "導入邊界", "text": "它適合節奏驅動的 scene animation，不等同角色 body animation；導入時應測 tempo change、非四四拍、音樂重剪後的可維護性，以及 node graph 是否能被團隊版本控管。"}
+        {
+          "label": "程序動畫流程",
+          "text": "Vizibeat 以 node graph 把音訊 amplitude／beat 映射到 UE5 的 camera、light、material 與 particle 控制，並以 bars/beats 而非單純 frames 來定位音樂事件。"
+        },
+        {
+          "label": "製作價值",
+          "text": "對音樂視覺、VJ、節奏型宣傳片與需要大量同步變化的場景，最大的價值是把重複逐拍 keyframe 轉成可重用規則，再由 artist 做關鍵段落修整。"
+        },
+        {
+          "label": "導入邊界",
+          "text": "它適合節奏驅動的 scene animation，不等同角色 body animation；導入時應測 tempo change、非四四拍、音樂重剪後的可維護性，以及 node graph 是否能被團隊版本控管。"
+        }
       ]
     },
     {
@@ -95,12 +162,47 @@
       "category": "3d-production",
       "subcategory": "environment-production",
       "ranking_score": 89,
-      "rank_global": 5,
-      "homepage_tier": "top5",
+      "rank_global": 6,
+      "homepage_tier": "next10",
       "full_analysis": [
-        {"label": "環境資產流程", "text": "案例將 blockout 視為構圖草圖，主要資產在 Blender blockout、ZBrush sculpt、回 Blender retopo/UV，再進 Substance Painter；這種跨 DCC 分工很接近實際環境美術 production。"},
-        {"label": "材質與場景一致性", "text": "作者不是只在單一資產上確認貼圖，而是把已貼圖資產放回 Unreal 的中性光環境互相比對，並用 gradient shader 打破共用木材 kit 的重複感，這是可直接套用的 art-direction 檢查點。"},
-        {"label": "導入做法", "text": "對固定視角或模組化場景，可借用其『先構圖／尺度、再資產細化、最後以光影和值域支持焦點』順序；尤其適合避免每個資產都精緻但組起來讀不清楚的問題。"}
+        {
+          "label": "環境資產流程",
+          "text": "案例將 blockout 視為構圖草圖，主要資產在 Blender blockout、ZBrush sculpt、回 Blender retopo/UV，再進 Substance Painter；這種跨 DCC 分工很接近實際環境美術 production。"
+        },
+        {
+          "label": "材質與場景一致性",
+          "text": "作者不是只在單一資產上確認貼圖，而是把已貼圖資產放回 Unreal 的中性光環境互相比對，並用 gradient shader 打破共用木材 kit 的重複感，這是可直接套用的 art-direction 檢查點。"
+        },
+        {
+          "label": "導入做法",
+          "text": "對固定視角或模組化場景，可借用其『先構圖／尺度、再資產細化、最後以光影和值域支持焦點』順序；尤其適合避免每個資產都精緻但組起來讀不清楚的問題。"
+        }
+      ]
+    },
+    {
+      "id": "unity-urp-ssr-preview",
+      "title": "Unity URP：Screen Space Reflections 預覽進入 6.7 Alpha",
+      "summary": "Unity 正在 URP 導入 Screen Space Reflections，以螢幕空間 ray marching 取樣 camera color/depth，並在資訊不足時回退 reflection probe 或 skybox。",
+      "quick_impact": "Unity Rendering ★★★★☆",
+      "source_url": "https://discussions.unity.com/t/preview-of-screen-space-reflections-for-urp/1721494",
+      "category": "engine-art",
+      "subcategory": "rendering",
+      "ranking_score": 88,
+      "rank_global": 7,
+      "homepage_tier": "next10",
+      "full_analysis": [
+        {
+          "label": "反射流程",
+          "text": "URP SSR 以螢幕空間 ray marching 取樣相機 color/depth buffer，因此可即時反映畫面中可見物件，不需要為每個表面另外烘焙反射資訊。"
+        },
+        {
+          "label": "遊戲美術價值",
+          "text": "對濕地面、水面、金屬與高 smoothness 材質，SSR 可補強 reflection probe 的空間細節；若專案原本為了反射大量佈 probe，這會改變環境材質與燈光 authoring 的取捨。"
+        },
+        {
+          "label": "限制與測試",
+          "text": "螢幕外或被遮蔽物件無法命中，Unity 會回退 probe/skybox；導入時需在實機測試解析度、ray length、roughness、camera movement 與 fallback 接縫，不能只看靜態畫面。"
+        }
       ]
     },
     {
@@ -112,12 +214,21 @@
       "category": "emerging-case",
       "subcategory": "research",
       "ranking_score": 87,
-      "rank_global": 6,
+      "rank_global": 8,
       "homepage_tier": "next10",
       "full_analysis": [
-        {"label": "重建能力", "text": "研究針對弱紋理與高 specular 表面這類傳統 SfM 容易失配的輸入，先改善影像註冊，再以 3DGS 做 dense reconstruction 與 neural rendering。"},
-        {"label": "製作潛力", "text": "雖然題材是農業數位化，但它對掃描資產流程的啟示在於：光滑、重複紋理或高反射物件不一定要直接放棄影像式重建，可透過 registration 與 representation 組合提高可用率。"},
-        {"label": "限制", "text": "輸出仍偏向高保真視覺重建而非 game-ready mesh；若用於遊戲美術，仍需另外評估 mesh extraction、UV／材質轉換、碰撞與 LOD，不能把 novel-view 品質直接等同可編輯資產品質。"}
+        {
+          "label": "重建能力",
+          "text": "研究針對弱紋理與高 specular 表面這類傳統 SfM 容易失配的輸入，先改善影像註冊，再以 3DGS 做 dense reconstruction 與 neural rendering。"
+        },
+        {
+          "label": "製作潛力",
+          "text": "雖然題材是農業數位化，但它對掃描資產流程的啟示在於：光滑、重複紋理或高反射物件不一定要直接放棄影像式重建，可透過 registration 與 representation 組合提高可用率。"
+        },
+        {
+          "label": "限制",
+          "text": "輸出仍偏向高保真視覺重建而非 game-ready mesh；若用於遊戲美術，仍需另外評估 mesh extraction、UV／材質轉換、碰撞與 LOD，不能把 novel-view 品質直接等同可編輯資產品質。"
+        }
       ]
     },
     {
@@ -129,12 +240,177 @@
       "category": "blender-dcc",
       "subcategory": "other-dcc",
       "ranking_score": 85,
-      "rank_global": 7,
+      "rank_global": 9,
       "homepage_tier": "next10",
       "full_analysis": [
-        {"label": "角色製作流程", "text": "CC 5.13 與 iClone 同步把 AI Studio 從主程式拆出，但仍保留 Render menu/panel 的直接入口，讓角色建置與生成後處理不必綁在同一個程序生命週期。"},
-        {"label": "幾何修正", "text": "這版修正 Hide Mesh 在 SubD level 切換後不同步，以及 ZBrush Face Tools 在 Jaw Bone Y/Z scale 大於 100 時可能造成 mesh distortion；對既有角色 pipeline 比單純 UI 改版更值得升版驗證。"},
-        {"label": "升版測試", "text": "建議挑有 Hide Mesh、SubD、多表情與 ZBrush round-trip 的代表角色做 regression，特別檢查 jaw open、臉部 blendshape、LOD 與 export 後在引擎中的變形一致性。"}
+        {
+          "label": "角色製作流程",
+          "text": "CC 5.13 與 iClone 同步把 AI Studio 從主程式拆出，但仍保留 Render menu/panel 的直接入口，讓角色建置與生成後處理不必綁在同一個程序生命週期。"
+        },
+        {
+          "label": "幾何修正",
+          "text": "這版修正 Hide Mesh 在 SubD level 切換後不同步，以及 ZBrush Face Tools 在 Jaw Bone Y/Z scale 大於 100 時可能造成 mesh distortion；對既有角色 pipeline 比單純 UI 改版更值得升版驗證。"
+        },
+        {
+          "label": "升版測試",
+          "text": "建議挑有 Hide Mesh、SubD、多表情與 ZBrush round-trip 的代表角色做 regression，特別檢查 jaw open、臉部 blendshape、LOD 與 export 後在引擎中的變形一致性。"
+        }
+      ]
+    },
+    {
+      "id": "blender-gsoc-materialx-authoring",
+      "title": "Blender GSoC：MaterialX 原生 Shader Authoring 與 Cycles OSL 執行",
+      "summary": "Blender 的 GSoC MaterialX 專案正在把 MaterialX nodedef 做成原生 ShaderNodeMaterialX，支援圖形 authoring、import/export 與 Cycles OSL 執行原型。",
+      "quick_impact": "Blender Shader ★★★★☆",
+      "source_url": "https://devtalk.blender.org/t/gsoc-2026-materialx-shader-authoring-in-blender/45211",
+      "category": "blender-dcc",
+      "subcategory": "blender",
+      "ranking_score": 84,
+      "rank_global": 10,
+      "homepage_tier": "next10",
+      "full_analysis": [
+        {
+          "label": "MaterialX Authoring",
+          "text": "專案把大量 MaterialX nodedef 收斂到單一 ShaderNodeMaterialX 類型，由節點狀態切換 socket 組合，目標是讓 Blender 不只匯出 MaterialX，而能直接 author 標準節點網路。"
+        },
+        {
+          "label": "跨 DCC 價值",
+          "text": "若 round-trip 與 USD/MaterialX 串接成熟，Blender 材質在 Maya、Houdini、USD pipeline 間的語意落差可降低；對需要跨 DCC 外包或資產交換的團隊，價值高於單純新增 shader 節點。"
+        },
+        {
+          "label": "執行限制",
+          "text": "目前執行原型依賴 Cycles OSL，早期規劃明確不是 EEVEE 路徑；導入評估應把 authoring/interchange 與即時引擎 shading 分開驗證，避免把 MaterialX 可交換誤認為遊戲引擎可直接等效渲染。"
+        }
+      ]
+    },
+    {
+      "id": "iron-mitchell-character-pipeline",
+      "title": "Iron Mitchell：MetaHuman 基底到 ZBrush／Maya／Substance／UE 的角色流程",
+      "summary": "Josh Linao 以 MetaHuman 作基底，結合 ZBrush 雕刻、Maya retopo/UV、Marmoset bake、Substance 貼圖與 XGen groom，完成 fighting-game 角色。",
+      "quick_impact": "Character Art ★★★★☆",
+      "source_url": "https://80.lv/articles/how-to-sculpt-and-texture-a-3d-fighter-character-with-zbrush-and-substance-3d",
+      "category": "3d-production",
+      "subcategory": "character-production",
+      "ranking_score": 83,
+      "rank_global": 11,
+      "homepage_tier": "next10",
+      "full_analysis": [
+        {
+          "label": "角色幾何流程",
+          "text": "案例從 MetaHuman base 出發，在 ZBrush 做比例與臉部塑形，再以 Maya Quad Draw、UV 與 Marmoset bake 接到 Substance；這是一條兼顧既有 rig 生態與自訂造型的 production 路徑。"
+        },
+        {
+          "label": "Rig 相容策略",
+          "text": "保留 MetaHuman vertex order 的思路能降低回到既有 facial/animation rig 時的成本；對角色美術而言，這提醒 sculpt/retopo 階段必須提早決定哪些區域可以重拓、哪些拓樸身份需要保留。"
+        },
+        {
+          "label": "材質與引擎驗證",
+          "text": "作者頻繁把 Painter 結果送回 Unreal 檢查，而不是最後才一次整合；這種短回圈能更早發現 skin roughness、groom、燈光與 path-traced presentation 之間的落差。"
+        }
+      ]
+    },
+    {
+      "id": "silo-2026-2-io-upgrade",
+      "title": "Silo 2026.2：FBX／USD／GLB 匯入匯出與數值欄位工作流升級",
+      "summary": "Silo 2026.2 加入數值欄位數學運算，並改善 FBX PBR 材質、USD smoothing groups 與 GLB embedded textures 的 I/O。",
+      "quick_impact": "DCC Workflow ★★★★☆",
+      "source_url": "https://www.cgchannel.com/2026/09/nevercenter-releases-silo-2026/",
+      "category": "blender-dcc",
+      "subcategory": "other-dcc",
+      "ranking_score": 82,
+      "rank_global": 12,
+      "homepage_tier": "next10",
+      "full_analysis": [
+        {
+          "label": "交換格式改善",
+          "text": "這版把改動集中在 production I/O：FBX 的 PBR material、USD smoothing groups、GLB embedded textures 都直接影響資產在 DCC 與引擎之間 round-trip 的完整度。"
+        },
+        {
+          "label": "建模操作",
+          "text": "所有 numerical input field 可直接做基本數學運算，對需要比例縮放、精準 inset/offset 或以規格值建模的工作，能減少外部計算與反覆輸入。"
+        },
+        {
+          "label": "導入測試",
+          "text": "升版前應用同一組含 hard/soft edge、PBR texture、GLB embedded image 的資產做雙向測試，特別確認 smoothing、material slot、texture path 與 scale 不因格式改善而產生新的差異。"
+        }
+      ]
+    },
+    {
+      "id": "freepencil2-one-click-line-art",
+      "title": "FreePencil2：Blender 一鍵把 3D 模型轉成可調整 Line Art",
+      "summary": "FreePencil2 以自動 vertex-color 分區加 compositor edge detection 產生線稿，並自動處理分割角度、鄰接區域著色、微小區域合併與 rig 分區。",
+      "quick_impact": "Blender NPR ★★★★☆",
+      "source_url": "https://80.lv/articles/one-click-line-art-from-any-3d-model-in-blender",
+      "category": "blender-dcc",
+      "subcategory": "addon",
+      "ranking_score": 81,
+      "rank_global": 13,
+      "homepage_tier": "next10",
+      "full_analysis": [
+        {
+          "label": "線稿生成流程",
+          "text": "工具先自動把模型依區域寫入 vertex color，再於 compositor 以顏色邊界做 edge detection；核心價值是把最麻煩的『怎麼分區著色』前處理自動化，而不是只套一個 outline filter。"
+        },
+        {
+          "label": "效能與規模",
+          "text": "作者展示 155 parts 約 5.5 秒完成，並表示 128 萬 polygon 模型可在 30 秒內處理；這使它更接近可放進 NPR look-dev 的批次工具，而不只是單一模型 demo。"
+        },
+        {
+          "label": "導入邊界",
+          "text": "自動分區仍可能與 art direction 想要的線條層級不同；實際使用應測 touching parts、角色骨架分區、細碎配件與不同鏡頭距離，並保留 artist 後續調整 line volume 的步驟。"
+        }
+      ]
+    },
+    {
+      "id": "woodland-pizzeria-handpaint-environment",
+      "title": "WoodLand Pizzeria：把 2D 手繪感轉成 Unreal 3D 環境",
+      "summary": "Shuming Zhang 從 2D illustration 出發，使用 Maya、ZBrush、SpeedTree、Substance 與 Unreal，並以季節、時間與程序化流程測試手繪視覺的一致性。",
+      "quick_impact": "Stylized Environment ★★★★☆",
+      "source_url": "https://80.lv/articles/turning-a-2d-illustration-into-a-3d-environment-with-a-hand-painted-look",
+      "category": "3d-production",
+      "subcategory": "environment-production",
+      "ranking_score": 80,
+      "rank_global": 14,
+      "homepage_tier": "next10",
+      "full_analysis": [
+        {
+          "label": "2D 到 3D 轉譯",
+          "text": "這個 case 的核心不是把概念圖逐物件複製，而是把手繪圖中的形狀語言、色塊與氛圍拆成可在 3D 場景維持的規則，讓模型與材質服務畫面而不是追求寫實。"
+        },
+        {
+          "label": "場景變體測試",
+          "text": "作者特別測試不同季節與時間，這能驗證 stylized asset 是否只在單一 lighting setup 成立；對遊戲場景而言，材質值域與色彩分層能否跨 lighting condition 保持 readability 是實際 production 問題。"
+        },
+        {
+          "label": "程序化工作流",
+          "text": "以程序化方法輔助重複資產與自然元素，可在保留手繪方向的同時降低手工變體成本；導入時應把可參數化部分與必須由美術手調的 hero shape 分開，避免 procedural noise 稀釋 art direction。"
+        }
+      ]
+    },
+    {
+      "id": "maya-bifrost-detached-facial-features",
+      "title": "Maya Bifrost：Detached Facial Features 角色表情 Rig",
+      "summary": "Farid M. Panah 以 Maya Bifrost 實作 Detached Facial Features，將嘴部從頭部拓樸解耦，以取得更誇張的 stylized facial animation。",
+      "quick_impact": "Facial Rig ★★★★☆",
+      "source_url": "https://80.lv/articles/pixar-style-detached-facial-features-rig-with-bifrost",
+      "category": "3d-animation",
+      "subcategory": "facial",
+      "ranking_score": 79,
+      "rank_global": 15,
+      "homepage_tier": "next10",
+      "full_analysis": [
+        {
+          "label": "拓樸解耦",
+          "text": "Detached Facial Features 把嘴部等表情元件從頭部 surface topology 分離，讓 animator 能獨立移動、重塑與誇張表情，不必完全受傳統 edge-loop 變形限制。"
+        },
+        {
+          "label": "風格化價值",
+          "text": "對卡通角色與高度圖形化的臉，這種 rig 能把 silhouette、嘴型位置與比例推到一般 blendshape 難以維持的程度；特別適合需要 2D-like expression 的 NPR 專案。"
+        },
+        {
+          "label": "導入風險",
+          "text": "目前案例偏技術展示，完整 breakdown 資源仍有限；production 導入前需要實測嘴部與臉皮的遮擋、camera angle、lip-sync、facial control UX，以及輸出到引擎後是否需要額外 geometry/runtime 支援。"
+        }
       ]
     }
   ]
