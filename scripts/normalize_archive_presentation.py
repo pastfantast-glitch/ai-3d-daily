@@ -12,7 +12,7 @@ from bs4 import BeautifulSoup
 
 ROOT = Path(__file__).resolve().parents[1]
 DATE_RE = re.compile(r'^20\d{2}-\d{2}-\d{2}$')
-ARCHIVE_PRESENTATION_TOKEN = 'archive-p16-persistent-history-shell-v1'
+ARCHIVE_PRESENTATION_TOKEN = 'archive-p17-history-nav-no-hero-v1'
 LEGACY_PILL_COLORS = {'purple','blue','green','orange','red'}
 CATEGORY_NAV = [('ai-generation','AI 生成'),('3d-production','3D 製作'),('3d-animation','3D 動作'),('engine-art','遊戲引擎'),('emerging-case','新技術 / Case'),('blender-dcc','Blender / DCC')]
 
@@ -126,7 +126,9 @@ def normalize_more_card_structure(soup,card):
 def normalize(path):
     original=path.read_text('utf-8');soup=BeautifulSoup(original,'html.parser');body=soup.body
     if body is None:raise SystemExit(f'{path}: missing body')
-    add_class(body,'archive-page');add_class(soup.select_one('header.site-head'),'daily-hero');add_class(soup.select_one('main.page'),'daily-main');set_shared_asset_token(soup);ensure_shared_category_nav(soup)
+    add_class(body,'archive-page')
+    for hero in soup.select('header.site-head, header.daily-hero'):hero.decompose()
+    add_class(soup.select_one('main.page'),'daily-main');set_shared_asset_token(soup);ensure_shared_category_nav(soup)
     top_section=soup.select_one('#top');more_section=soup.select_one('#more');normalize_section_header(soup,top_section,'TODAY');normalize_section_header(soup,more_section,'MORE')
     for rank,card in enumerate(soup.select('#top .news'),1):normalize_top_card_structure(soup,card,rank)
     if more_section:
