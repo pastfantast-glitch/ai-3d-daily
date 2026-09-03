@@ -38,18 +38,40 @@ def nav_contract(soup, date, cfg, active, category_page=False):
     navs = soup.select('nav.global-category-nav')
     if len(navs) != 1:
         fail(f'{active}: expected exactly one global category nav, got {len(navs)}'); return
-    links = navs[0].select('a.global-category-link[href]')
+    nav = navs[0]
+    links = nav.select('a.global-category-link[href]')
     if len(links) != len(cfg['categories']) + 1:
         fail(f'{active}: global nav must contain TOP5 + {len(cfg["categories"])} categories')
         return
     expected_labels = ['TOP5'] + [c['label'] for c in cfg['categories']]
     if [x.get_text(' ', strip=True) for x in links] != expected_labels:
         fail(f'{active}: global nav labels/order drift')
-    expected_hrefs = (['../../'] + [f'../{c["id"]}/' for c in cfg['categories']]) if category_page else ([''] + [f'{date}/{c["id"]}/' for c in cfg['categories']])
+
+    # Homepage TOP5 is the in-page today anchor. Date-scoped category pages
+    # return to that same date's archive TOP5 anchor; category links stay in the
+    # selected date scope. These are the canonical shared-nav href contracts.
+    expected_hrefs = (
+        ['../../#top'] + [f'../{c["id"]}/' for c in cfg['categories']]
+        if category_page
+        else ['#today'] + [f'{date}/{c["id"]}/' for c in cfg['categories']]
+    )
     actual_hrefs = [x.get('href') for x in links]
     if actual_hrefs != expected_hrefs:
         fail(f'{active}: global nav href/order drift: {actual_hrefs}')
-    active_links = navs[0].select('a.global-category-link.is-active')
+
+    if category_page:
+        controls = nav.select_one('.archive-nav-controls')
+        divider = nav.select_one('.archive-nav-divider')
+        if not controls or not divider:
+            fail(f'{active}: category page must share archive date controls + divider with TOP5')
+        else:
+            if not controls.select_one('a.archive-nav-home[href="../../../"]'):
+                fail(f'{active}: category page archive home control drift')
+            date_node = controls.select_one('.archive-nav-date span')
+            if not date_node or date_node.get_text(' ', strip=True) != date:
+                fail(f'{active}: category page archive date control drift')
+
+    active_links = nav.select('a.global-category-link.is-active')
     if len(active_links) != 1:
         fail(f'{active}: global nav must have exactly one active link')
     else:
