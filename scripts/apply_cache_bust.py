@@ -4,6 +4,7 @@ from pathlib import Path
 import json, re, sys
 
 ROOT=Path(__file__).resolve().parents[1]
+WORKSPACE_REV='workspace-v1'
 
 def latest_date():
     dates=sorted(p.stem for p in (ROOT/'data'/'daily').glob('20??-??-??.json'))
@@ -26,13 +27,13 @@ def apply(path, assets, token):
 def main():
     date=sys.argv[1] if len(sys.argv)>1 else latest_date()
     data=json.loads((ROOT/'data'/'daily'/f'{date}.json').read_text('utf-8'))
-    rev=int(data.get('render_revision',1)); token=f"{date.replace('-','')}-r{rev}"
+    rev=int(data.get('render_revision',1)); token=f"{date.replace('-','')}-r{rev}-{WORKSPACE_REV}"
     # Homepage uses the split home design-system stylesheets; do not require the
     # legacy global styles.css when the homepage no longer references it.
     apply(ROOT/'index.html',['shared-components.css','home.css','home-content.css','home-components.css','home.js'],token)
-    apply(ROOT/date/'index.html',['../styles.css','../shared-components.css','../daily.css','../daily.js'],token)
+    apply(ROOT/date/'index.html',['../styles.css','../shared-components.css','../daily.css','../daily.js','../archive-nav-state.js'],token)
     if int(data.get('schema_version',0))>=3:
         for path in sorted((ROOT/date).glob('*/index.html')):
-            apply(path,['../../styles.css','../../shared-components.css','../../category.css'],token)
+            apply(path,['../../styles.css','../../shared-components.css','../../category.css','../../archive-nav-state.js'],token)
 
 if __name__=='__main__': main()
