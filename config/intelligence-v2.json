@@ -5,6 +5,42 @@
   "category_pool_max_items": 10,
   "category_pool_min_items": 0,
   "category_fill_policy": "quality_first_no_padding",
+  "collection": {
+    "selection_principle": "production_value_first",
+    "major_news_is_ranking_signal_not_admission_gate": true,
+    "discovery_windows": ["24h", "7d", "30d", "6m"],
+    "window_policy": {
+      "24h": "Prioritize fresh releases, changelogs, model/tool updates and meaningful production news.",
+      "7d": "Include practical production workflows, breakdowns, tests, add-ons, DCC/engine techniques and AI-assisted production findings even when they are not major announcements.",
+      "30d": "Backfill strong production cases, workflow breakdowns, technical art examples and community discoveries that remain operationally useful and were not previously published.",
+      "6m": "Use only for missed high-value intelligence that is still relevant and absent from the Published Intelligence Registry; never use it merely to increase item count."
+    },
+    "inclusion_tiers": {
+      "A": {
+        "label": "major-intelligence",
+        "guidance": "New models, major versions, meaningful feature/workflow changes, pricing/licensing/availability changes, or major engine/DCC/AI production developments. Strong TOP5 candidates when production impact is high."
+      },
+      "B": {
+        "label": "production-intelligence",
+        "guidance": "Practical character/prop/environment workflows, modeling, retopology, UV, texturing, material/shader, rigging, animation, mocap, cleanup, retarget, Unity/Unreal production techniques, AI 3D or AI motion tests, pipeline/tooling improvements and measurable production lessons. These are valid intelligence even without a major product announcement."
+      },
+      "C": {
+        "label": "case-tip-community",
+        "guidance": "Credible case studies, production breakdowns, useful Blender/DCC add-ons, GitHub tools, technical demonstrations, research prototypes and community workflows are admissible when the source is verifiable and there is a concrete production takeaway. Rank below stronger A/B items when impact is narrower."
+      }
+    },
+    "exclude": [
+      "pure portfolio/showcase with no reproducible workflow or production insight",
+      "marketing-only content with no concrete capability or workflow detail",
+      "content-farm or unverifiable claims",
+      "items with negligible relevance to 3D/game-art production",
+      "previously published items without a substantive delta",
+      "old or low-production-value content used only to pad quantity"
+    ],
+    "completeness_trigger_total_items": 15,
+    "completeness_trigger_policy": "If fewer than 15 items survive Quality Gate, run a second discovery pass across official changelogs/docs/forums, AI 3D, AI motion, Blender/DCC, Unity/Unreal, character/prop/environment production cases, technical-art sources, credible community/GitHub sources and the 30d/6m backfill windows. This threshold triggers more discovery; it is not a minimum publish count and must never cause padding.",
+    "ranking_guidance": "Production value, practical applicability, source verifiability and freshness drive ranking. Major-news significance increases rank but is not required for admission."
+  },
   "homepage": {
     "top5": 5,
     "next10": 10
