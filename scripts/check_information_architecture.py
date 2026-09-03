@@ -47,9 +47,6 @@ def nav_contract(soup, date, cfg, active, category_page=False):
     if [x.get_text(' ', strip=True) for x in links] != expected_labels:
         fail(f'{active}: global nav labels/order drift')
 
-    # Homepage TOP5 is the in-page today anchor. Date-scoped category pages
-    # return to that same date's archive TOP5 anchor; category links stay in the
-    # selected date scope. These are the canonical shared-nav href contracts.
     expected_hrefs = (
         ['../../#top'] + [f'../{c["id"]}/' for c in cfg['categories']]
         if category_page
@@ -117,6 +114,8 @@ def main():
         shared_component_contract(soup, category['id'])
         if not soup.body or soup.body.get('data-category') != category['id']:
             fail(f'{category["id"]}: body category identity mismatch')
+        if soup.select_one('header.category-hero'):
+            fail(f'{category["id"]}: category hero/title must not render above historical tabs')
         nav_contract(soup, date, cfg, category['id'], category_page=True)
         cards = soup.select('.category-card[data-intel-role="card"][data-intel-id]')
         expected = [x['id'] for x in category_items(data, category['id'])]
@@ -136,6 +135,6 @@ def main():
         print('\n'.join('- ' + x for x in errors))
         sys.exit(1)
     counts = ', '.join(f'{c["id"]}={len(category_items(data, c["id"]))}' for c in cfg['categories'])
-    print(f'V2 INFORMATION ARCHITECTURE PASS: quality-first pools (0..{pool_max}) + available TOP5/next10 + shared components + sticky global navigation + category pages / {counts}')
+    print(f'V2 INFORMATION ARCHITECTURE PASS: quality-first pools (0..{pool_max}) + available TOP5/next10 + shared components + no-hero historical category pages / {counts}')
 
 if __name__ == '__main__': main()
