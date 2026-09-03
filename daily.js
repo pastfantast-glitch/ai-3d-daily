@@ -5,13 +5,13 @@ document.addEventListener('DOMContentLoaded',async()=>{
 
   // Same canonical renderer as homepage: Full Analysis + local Visual Evidence share one stable-ID source.
   // The module inherits daily.js' cache-bust token, keeping archive runtime and shell revisions aligned.
-  let shellSelf=location.href,shellToken=(date||'current').replaceAll('-','');
+  let shellSelf=location.href,token=(date||'current').replaceAll('-','');
   try{
     shellSelf=[...document.scripts].find(s=>s.src.includes('/daily.js'))?.src||location.href;
     const shellUrl=new URL(shellSelf,location.href);
-    shellToken=shellUrl.searchParams.get('v')||shellToken;
+    token=shellUrl.searchParams.get('v')||token;
     const moduleUrl=new URL('canonical-client.js',shellSelf);
-    moduleUrl.searchParams.set('v',shellToken);
+    moduleUrl.searchParams.set('v',token);
     const mod=await import(moduleUrl.href);
     await mod.hydrateCanonicalAnalysis();
   }catch(err){console.warn('Canonical intelligence renderer unavailable',err);}
@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded',async()=>{
   // only the content area changes between TOP5 and category tabs.
   try{
     const workspaceUrl=new URL('archive-nav-state.js',shellSelf);
-    workspaceUrl.searchParams.set('v',shellToken);
+    workspaceUrl.searchParams.set('v',token);
     await import(workspaceUrl.href);
   }catch(err){console.warn('Historical workspace renderer unavailable',err);}
 
