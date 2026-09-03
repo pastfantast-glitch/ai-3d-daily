@@ -1,0 +1,139 @@
+{
+  "date": "2026-09-03",
+  "schema_version": 3,
+  "render_revision": 2,
+  "information_architecture": "v2",
+  "metadata": {
+    "discovery_windows": ["24h", "7d", "6m"],
+    "category_pool_max_items": 10,
+    "category_fill_policy": "quality_first_no_padding",
+    "total_items": 7,
+    "ranking_policy": "production value + freshness + verifiability + diversity penalty",
+    "generated_for": "2026-09-03",
+    "full_analysis_depth_contract": "v3-adaptive-3to5-production-depth",
+    "full_analysis_style_reference": "2026-09-01",
+    "full_analysis_heading_language": "zh-Hant"
+  },
+  "visual_evidence": {},
+  "items": [
+    {
+      "id": "meshy7-multiview-ultra-api",
+      "title": "Meshy 7：Multi-Image to 3D API 新增 Ultra Mode",
+      "summary": "Meshy 將 Ultra 高細節幾何生成擴展到多視圖輸入，API 可直接以 1–4 張參考圖生成更高保真模型。",
+      "quick_impact": "AI 3D ★★★★★",
+      "source_url": "https://docs.meshy.ai/en/api/changelog",
+      "category": "ai-generation",
+      "subcategory": "ai-3d",
+      "ranking_score": 99,
+      "rank_global": 1,
+      "homepage_tier": "top5",
+      "full_analysis": [
+        {"label": "多視圖生成流程", "text": "9 月 1 日的 API 更新把 ultra_mode 加到 Multi-Image to 3D，且僅支援 meshy-7／latest；這代表多視圖不再只提升一致性，也能直接接上 Ultra 的高細節幾何 pass。"},
+        {"label": "製作價值", "text": "對已有 Front／Left／Back／Right 設定圖的角色與道具流程，Ultra 多視圖比單張圖更接近 production 測試需求：同時降低背面猜測與表面細節不足兩種常見返工來源。"},
+        {"label": "導入測試", "text": "建議固定以四視圖角色、硬表面道具與薄片結構各跑一輪，記錄額外 5 credits 是否換到可量化的 cleanup 節省，並檢查輪廓、對稱、凹槽與接縫的一致性。"}
+      ]
+    },
+    {
+      "id": "reallusion-ai-studio-11-standalone",
+      "title": "Reallusion AI Studio 1.1：獨立 App + 3D Guided AI Workflow",
+      "summary": "AI Studio 從 iClone／Character Creator 內嵌工具拆成獨立應用，並加入 Seedance 2.5、4K 輸出與升級 AI Actor Creator。",
+      "quick_impact": "AI Workflow ★★★★★",
+      "source_url": "https://discussions.reallusion.com/t/ai-studio-1-1-major-update-standalone-application-seedance-2-5-and-upgraded-ai-actor-creator/18376",
+      "category": "ai-generation",
+      "subcategory": "ai-2d",
+      "ranking_score": 96,
+      "rank_global": 2,
+      "homepage_tier": "top5",
+      "full_analysis": [
+        {"label": "3D 導引工作流", "text": "AI Studio 1.1 可獨立啟動，但仍保留從 iClone／Character Creator 取得 3D guidance 的路徑；這把 3D pose/camera 控制與生成任務解耦，較適合批次跑圖與影片。"},
+        {"label": "角色一致性", "text": "新版 AI Actor Creator 強化 reference sheet 與 multi-view rendering，重點不是單張畫質，而是讓同一角色跨鏡頭生成時有較穩定的視覺資料基礎。"},
+        {"label": "導入風險", "text": "官方討論顯示舊 history migration 與本地檔案保存方式仍需要實測；團隊導入前應先確認生成原檔、source image、版本紀錄與雲端同步是否符合可追溯需求。"}
+      ]
+    },
+    {
+      "id": "iclone-875-ai-studio-workflow",
+      "title": "iClone 8.75：AI Studio 改為獨立執行並保留直接送出流程",
+      "summary": "iClone 8.75 把 AI Studio 從內嵌程序移出，降低主程式負載，同時保留 Render 選單直接擷取影像／影片送入 AI Studio。",
+      "quick_impact": "Animation ★★★★☆",
+      "source_url": "https://discussions.reallusion.com/t/iclone-8-75-is-now-released-independent-ai-studio-workflow-enhancements-and-bug-fixes/18377",
+      "category": "3d-animation",
+      "subcategory": "animation",
+      "ranking_score": 93,
+      "rank_global": 3,
+      "homepage_tier": "top5",
+      "full_analysis": [
+        {"label": "動畫到生成流程", "text": "8.75 的核心變化是把 AI Studio 執行程序拆離 iClone，但仍可從 Render panel 直接 capture image/video；動畫師能保留 iClone 的鏡頭與角色控制，再把結果送往生成階段。"},
+        {"label": "製作穩定性", "text": "拆出獨立程序可降低 iClone 主程式同時承擔生成工作負載的壓力，對長時間 animation session 或多角色場景，比純新增模型更直接影響日常穩定性。"},
+        {"label": "實測", "text": "應以既有角色動畫測 capture 後的解析度、色彩、camera framing、frame range 與 AI Studio round-trip，並驗證舊 motion related 設定修正後是否仍有 crash regression。"}
+      ]
+    },
+    {
+      "id": "vizibeat-ue5-music-procedural-animation",
+      "title": "Vizibeat：UE5 以音樂節拍程序化驅動 Camera／Light／Material／Particle",
+      "summary": "Vizibeat 將音訊節拍映射到 UE5 場景參數，讓鏡頭、燈光、材質與粒子可依不同節奏程序化動畫，減少逐拍 keyframe。",
+      "quick_impact": "UE5 Tools ★★★★☆",
+      "source_url": "https://80.lv/articles/create-procedural-ue5-animations-based-on-music-with-this-tool",
+      "category": "engine-art",
+      "subcategory": "tools",
+      "ranking_score": 91,
+      "rank_global": 4,
+      "homepage_tier": "top5",
+      "full_analysis": [
+        {"label": "程序動畫流程", "text": "Vizibeat 以 node graph 把音訊 amplitude／beat 映射到 UE5 的 camera、light、material 與 particle 控制，並以 bars/beats 而非單純 frames 來定位音樂事件。"},
+        {"label": "製作價值", "text": "對音樂視覺、VJ、節奏型宣傳片與需要大量同步變化的場景，最大的價值是把重複逐拍 keyframe 轉成可重用規則，再由 artist 做關鍵段落修整。"},
+        {"label": "導入邊界", "text": "它適合節奏驅動的 scene animation，不等同角色 body animation；導入時應測 tempo change、非四四拍、音樂重剪後的可維護性，以及 node graph 是否能被團隊版本控管。"}
+      ]
+    },
+    {
+      "id": "blighted-harbour-environment-production-case",
+      "title": "Blighted Harbour：Blender→ZBrush→Substance→UE 的環境製作 Case",
+      "summary": "Helena Hansen 分享以 Blender、ZBrush、Substance、SpeedTree、Houdini 與 Unreal Engine 完成幻想港口場景的資產與組裝流程。",
+      "quick_impact": "Environment ★★★★☆",
+      "source_url": "https://80.lv/articles/building-a-creepy-3d-fantasy-environment-inspired-by-greek-mythology",
+      "category": "3d-production",
+      "subcategory": "environment-production",
+      "ranking_score": 89,
+      "rank_global": 5,
+      "homepage_tier": "top5",
+      "full_analysis": [
+        {"label": "環境資產流程", "text": "案例將 blockout 視為構圖草圖，主要資產在 Blender blockout、ZBrush sculpt、回 Blender retopo/UV，再進 Substance Painter；這種跨 DCC 分工很接近實際環境美術 production。"},
+        {"label": "材質與場景一致性", "text": "作者不是只在單一資產上確認貼圖，而是把已貼圖資產放回 Unreal 的中性光環境互相比對，並用 gradient shader 打破共用木材 kit 的重複感，這是可直接套用的 art-direction 檢查點。"},
+        {"label": "導入做法", "text": "對固定視角或模組化場景，可借用其『先構圖／尺度、再資產細化、最後以光影和值域支持焦點』順序；尤其適合避免每個資產都精緻但組起來讀不清楚的問題。"}
+      ]
+    },
+    {
+      "id": "navel-orange-3dgs-specular-reconstruction",
+      "title": "3DGS：弱紋理／高反光物體的高保真重建實驗",
+      "summary": "Scientific Reports 9 月 2 日研究以改良影像配準加 3D Gaussian Splatting，改善弱紋理、高反光柳橙表面的重建與 novel-view 品質。",
+      "quick_impact": "3DGS ★★★★☆",
+      "source_url": "https://www.nature.com/articles/s41598-026-69081-6",
+      "category": "emerging-case",
+      "subcategory": "research",
+      "ranking_score": 87,
+      "rank_global": 6,
+      "homepage_tier": "next10",
+      "full_analysis": [
+        {"label": "重建能力", "text": "研究針對弱紋理與高 specular 表面這類傳統 SfM 容易失配的輸入，先改善影像註冊，再以 3DGS 做 dense reconstruction 與 neural rendering。"},
+        {"label": "製作潛力", "text": "雖然題材是農業數位化，但它對掃描資產流程的啟示在於：光滑、重複紋理或高反射物件不一定要直接放棄影像式重建，可透過 registration 與 representation 組合提高可用率。"},
+        {"label": "限制", "text": "輸出仍偏向高保真視覺重建而非 game-ready mesh；若用於遊戲美術，仍需另外評估 mesh extraction、UV／材質轉換、碰撞與 LOD，不能把 novel-view 品質直接等同可編輯資產品質。"}
+      ]
+    },
+    {
+      "id": "character-creator-513-ai-studio-separation",
+      "title": "Character Creator 5.13：AI Studio 解耦與角色工作流修正",
+      "summary": "CC 5.13 將 AI Studio 改為獨立應用並保留 Render 入口，同時修正 Hide Mesh、ZBrush Face Tools jaw deformation 等角色製作問題。",
+      "quick_impact": "Character DCC ★★★★☆",
+      "source_url": "https://discussions.reallusion.com/t/character-creator-5-13-is-now-released-independent-ai-studio-workflow-enhancements-and-bug-fixes/18378",
+      "category": "blender-dcc",
+      "subcategory": "other-dcc",
+      "ranking_score": 85,
+      "rank_global": 7,
+      "homepage_tier": "next10",
+      "full_analysis": [
+        {"label": "角色製作流程", "text": "CC 5.13 與 iClone 同步把 AI Studio 從主程式拆出，但仍保留 Render menu/panel 的直接入口，讓角色建置與生成後處理不必綁在同一個程序生命週期。"},
+        {"label": "幾何修正", "text": "這版修正 Hide Mesh 在 SubD level 切換後不同步，以及 ZBrush Face Tools 在 Jaw Bone Y/Z scale 大於 100 時可能造成 mesh distortion；對既有角色 pipeline 比單純 UI 改版更值得升版驗證。"},
+        {"label": "升版測試", "text": "建議挑有 Hide Mesh、SubD、多表情與 ZBrush round-trip 的代表角色做 regression，特別檢查 jaw open、臉部 blendshape、LOD 與 export 後在引擎中的變形一致性。"}
+      ]
+    }
+  ]
+}
