@@ -38,8 +38,8 @@ def validate_archive_snapshot(d,all_dirs):
                 if not asset or not (ROOT/asset.lstrip('/')).exists(): fail(date,f'visual asset missing: {asset}')
     rows.append((date,'snapshot','PASS' if not any(e.startswith(date+':') for e in errors) else 'FAIL'))
 
-def validate_home_archive_links(all_dirs):
-    soup=BeautifulSoup((ROOT/'index.html').read_text('utf-8'),'html.parser')
+def validate_home_archive_links(all_dirs,root=ROOT):
+    soup=BeautifulSoup((root/'index.html').read_text('utf-8'),'html.parser')
     marker=soup.select_one('.week-asof'); current=marker.get_text(' ',strip=True) if marker else ''
     known={d.name for d in all_dirs}
     if current not in known: current=all_dirs[-1].name if all_dirs else ''
@@ -91,6 +91,9 @@ def canonical_rebuild_simulation(date):
             run(work,sys.executable,'scripts/check_home_contract.py')
             run(work,sys.executable,'scripts/check_daily_contract.py')
             run(work,sys.executable,'scripts/check_information_architecture.py',date)
+            before=len(errors)
+            validate_home_archive_links(archive_dirs(work),root=work)
+            if len(errors)!=before: raise RuntimeError('rebuilt homepage archive contract failed')
         except Exception as exc:
             fail(date,f'canonical rebuild simulation failed: {exc}'); rows.append((date,'canonical-rebuild','FAIL'))
         else: rows.append((date,'canonical-rebuild','PASS'))
@@ -98,7 +101,7 @@ def canonical_rebuild_simulation(date):
 def main():
     ap=argparse.ArgumentParser(); ap.add_argument('--days',type=int,default=4); args=ap.parse_args(); all_dirs=archive_dirs(ROOT)
     if not all_dirs: print('HISTORICAL REGRESSION FAILED: no archive directories'); return 1
-    selected=all_dirs[-max(1,args.days):]; print('Historical regression archives:',', '.join(d.name for d in selected)); validate_home_archive_links(all_dirs)
+    selected=all_dirs[-max(1,args.days):]; print('Historical regression archives:',', '.join(d.name for d in selected))
     for d in selected: validate_archive_snapshot(d,all_dirs)
     for d in selected: canonical_rebuild_simulation(d.name)
     print('\nHISTORICAL REGRESSION MATRIX')

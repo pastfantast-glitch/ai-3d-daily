@@ -48,7 +48,7 @@ def nav_contract(soup, date, cfg, active, category_page=False):
         fail(f'{active}: global nav labels/order drift')
 
     expected_hrefs = (
-        ['../../#top'] + [f'../{c["id"]}/' for c in cfg['categories']]
+        ['../#top'] + [f'../{c["id"]}/' for c in cfg['categories']]
         if category_page
         else ['#today'] + [f'{date}/{c["id"]}/' for c in cfg['categories']]
     )
@@ -62,11 +62,15 @@ def nav_contract(soup, date, cfg, active, category_page=False):
         if not controls or not divider:
             fail(f'{active}: category page must share archive date controls + divider with TOP5')
         else:
-            if not controls.select_one('a.archive-nav-home[href="../../../"]'):
+            if not controls.select_one('a.archive-nav-home[href="../../"]'):
                 fail(f'{active}: category page archive home control drift')
             date_node = controls.select_one('.archive-nav-date span')
             if not date_node or date_node.get_text(' ', strip=True) != date:
                 fail(f'{active}: category page archive date control drift')
+            for arrow in controls.select('a.archive-nav-arrow[href]'):
+                href = arrow.get('href','')
+                if not href.startswith('../../') or not href.endswith(f'/{active}/'):
+                    fail(f'{active}: category page archive neighbor href drift: {href}')
 
     active_links = nav.select('a.global-category-link.is-active')
     if len(active_links) != 1:
@@ -128,6 +132,17 @@ def main():
         bottom = soup.select_one('nav.category-bottom-nav')
         if not bottom or len(bottom.select('a[href]')) != 3:
             fail(f'{category["id"]}: missing bottom previous/TOP5/next navigation')
+        else:
+            cats = cfg['categories']
+            idx = next(i for i, c in enumerate(cats) if c['id'] == category['id'])
+            expected_bottom = [
+                f'../{cats[(idx - 1) % len(cats)]["id"]}/',
+                '../#top',
+                f'../{cats[(idx + 1) % len(cats)]["id"]}/',
+            ]
+            actual_bottom = [a.get('href') for a in bottom.select('a[href]')]
+            if actual_bottom != expected_bottom:
+                fail(f'{category["id"]}: bottom navigation href drift: {actual_bottom}')
         for card in cards:
             rid = card.get('data-intel-id')
             if not card.select_one('.quick-impact'): fail(f'{category["id"]}/{rid}: missing quick-impact')
@@ -139,6 +154,6 @@ def main():
         sys.exit(1)
     counts = ', '.join(f'{c["id"]}={len(category_items(data, c["id"]))}' for c in cfg['categories'])
     mode = f'exact {pool_target}/category target-fill' if target_mode else 'legacy variable-pool compatibility'
-    print(f'V2 INFORMATION ARCHITECTURE PASS: {mode} + available TOP5/next10 + shared components + no-hero historical category pages / {counts}')
+    print(f'V2 INFORMATION ARCHITECTURE PASS: {mode} + available TOP5/next10 + shared components + no-hero historical category pages + direct-link-safe navigation / {counts}')
 
 if __name__ == '__main__': main()

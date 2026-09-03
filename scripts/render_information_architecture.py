@@ -75,15 +75,15 @@ def global_nav(soup, date, cfg, active='top5', context='home'):
     if context in ('archive', 'category'):
         previous, next_date = archive_neighbors(date)
         controls = soup.new_tag('div', attrs={'class': 'archive-nav-controls'})
-        home_href = '../' if context == 'archive' else '../../../'
+        home_href = '../' if context == 'archive' else '../../'
         home = soup.new_tag('a', attrs={'class': 'archive-nav-home', 'href': home_href}); home.string = '← 首頁'; controls.append(home)
         date_wrap = soup.new_tag('div', attrs={'class': 'archive-nav-date'})
         if previous:
-            prev_href = f'../{previous}/' if context == 'archive' else f'../../../{previous}/{active}/'
+            prev_href = f'../{previous}/' if context == 'archive' else f'../../{previous}/{active}/'
             prev = soup.new_tag('a', attrs={'class': 'archive-nav-arrow', 'href': prev_href, 'aria-label': '前一日日報'}); prev.string = '←'; date_wrap.append(prev)
         current = soup.new_tag('span'); current.string = date; date_wrap.append(current)
         if next_date:
-            next_href = f'../{next_date}/' if context == 'archive' else f'../../../{next_date}/{active}/'
+            next_href = f'../{next_date}/' if context == 'archive' else f'../../{next_date}/{active}/'
             nxt = soup.new_tag('a', attrs={'class': 'archive-nav-arrow', 'href': next_href, 'aria-label': '後一日日報'}); nxt.string = '→'; date_wrap.append(nxt)
         controls.append(date_wrap); inner.append(controls)
         divider = soup.new_tag('span', attrs={'class': 'archive-nav-divider', 'aria-hidden': 'true'}); inner.append(divider)
@@ -93,7 +93,7 @@ def global_nav(soup, date, cfg, active='top5', context='home'):
     elif context == 'archive':
         top_href = '#top'
     else:
-        top_href = '../../#top'
+        top_href = '../#top'
     top = soup.new_tag('a', attrs={'href': top_href, 'class': 'global-category-link' + (' is-active' if active == 'top5' else '')})
     top.string = 'TOP5'; inner.append(top)
     for cat in cfg['categories']:
@@ -242,7 +242,7 @@ def category_footer_nav(soup, category, cfg):
     cats = cfg['categories']; idx = next(i for i, c in enumerate(cats) if c['id'] == category['id']); prev_cat = cats[(idx - 1) % len(cats)]; next_cat = cats[(idx + 1) % len(cats)]
     nav = soup.new_tag('nav', attrs={'class': 'category-bottom-nav', 'aria-label': '相鄰分類'})
     prev = soup.new_tag('a', attrs={'href': f'../{prev_cat["id"]}/'}); prev.string = f'← {prev_cat["label"]}'; nav.append(prev)
-    top = soup.new_tag('a', attrs={'href': '../../#top'}); top.string = 'TOP5'; nav.append(top)
+    top = soup.new_tag('a', attrs={'href': '../#top'}); top.string = 'TOP5'; nav.append(top)
     nxt = soup.new_tag('a', attrs={'href': f'../{next_cat["id"]}/'}); nxt.string = f'{next_cat["label"]} →'; nav.append(nxt)
     return nav
 
