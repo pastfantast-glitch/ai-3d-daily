@@ -2,7 +2,7 @@
 from pathlib import Path
 import json, re, subprocess, sys
 from bs4 import BeautifulSoup
-from intelligence_v2 import is_v2_dataset
+from intelligence_v2 import is_v2_dataset, homepage_groups
 
 ROOT=Path(__file__).resolve().parents[1]
 INDEX=ROOT/'index.html'; FOUNDATION=ROOT/'home.css'; UI=ROOT/'home-content.css'; COMPONENTS=ROOT/'home-components.css'; SHARED=ROOT/'shared-components.css'; JS=ROOT/'home.js'
@@ -37,12 +37,15 @@ else:
         classes=set(section.get('class',[])); matched=[x for x in expected if x in classes]; actual.append(matched[0] if len(matched)==1 else '?')
     if actual!=expected: fail(f'homepage section order drift: {actual} != {expected}')
     top=soup.select('.top-item'); more=soup.select('.more-card')
-    if len(top)!=5: fail(f'homepage must contain exactly 5 TOP cards, got {len(top)}')
     if v2:
-        if len(more)!=10: fail(f'V2 homepage must contain exactly 10 next items, got {len(more)}')
+        canonical_top, canonical_next = homepage_groups(data)
+        if len(top)!=len(canonical_top): fail(f'V2 homepage TOP card count must match available canonical TOP5, got {len(top)} != {len(canonical_top)}')
+        if len(more)!=len(canonical_next): fail(f'V2 homepage next10 card count must match available canonical ranks 6-15, got {len(more)} != {len(canonical_next)}')
         if len(soup.select('.category-nav-card[href]'))!=6: fail('V2 homepage must expose exactly six category navigation cards')
         if soup.select('.week-counts,.week-summary,.week-topic'): fail('V2 homepage must not contain weekly overview UI')
-    elif not 6<=len(more)<=12: fail(f'legacy Supplemental cards must be 6-12, got {len(more)}')
+    else:
+        if len(top)!=5: fail(f'legacy homepage must contain exactly 5 TOP cards, got {len(top)}')
+        if not 6<=len(more)<=12: fail(f'legacy Supplemental cards must be 6-12, got {len(more)}')
     if soup.select('[data-supplemental-id]'): fail('stale supplemental cards must not exist')
     histories=soup.select('.history-list')
     if len(histories)!=1: fail(f'homepage must contain one history-list, got {len(histories)}')
@@ -99,4 +102,4 @@ if JS.exists():
         if token not in js: fail(f'history interaction missing: {token}')
 if errors:
     print('Homepage contract QA FAILED:'); print('\n'.join(' - '+e for e in errors)); sys.exit(1)
-print('Homepage contract QA passed: V2-aware layout + shared components + searchable grouped history library + archive parity + Design System ownership locked')
+print('Homepage contract QA passed: V2 quality-first variable tiers + shared components + searchable grouped history library + archive parity + Design System ownership locked')
