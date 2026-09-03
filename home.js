@@ -83,6 +83,11 @@ document.addEventListener('DOMContentLoaded',()=>{
     });
   }
 
+  function absolutizeContent(root,baseUrl){
+    root.querySelectorAll('[src]').forEach(node=>{try{node.setAttribute('src',new URL(node.getAttribute('src'),baseUrl).href);}catch(_){}});
+    root.querySelectorAll('a[href]').forEach(node=>{try{node.setAttribute('href',new URL(node.getAttribute('href'),baseUrl).href);}catch(_){}});
+  }
+
   function ensureCategoryStyles(doc,targetUrl){
     const already=[...document.querySelectorAll('link[rel="stylesheet"][href]')].some(link=>new URL(link.href,location.href).pathname.endsWith('/category.css'));
     if(already)return Promise.resolve();
@@ -105,6 +110,7 @@ document.addEventListener('DOMContentLoaded',()=>{
       const doc=new DOMParser().parseFromString(html,'text/html');
       const nextMain=doc.querySelector('main.category-main');
       if(!nextMain)throw new Error('category content missing');
+      absolutizeContent(nextMain,sourceUrl.href);
       await ensureCategoryStyles(doc,sourceUrl.href);
       const imported=document.importNode(nextMain,true);
       prepareCategoryMain(imported);
