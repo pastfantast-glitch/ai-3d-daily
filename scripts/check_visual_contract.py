@@ -11,6 +11,30 @@ def latest_date():
     if not dates: raise SystemExit('No canonical daily datasets found')
     return dates[-1]
 
+def visual_candidates(data):
+    """Mirror extractor candidate semantics.
+
+    Explicit visual_evidence is authoritative when present. Canonical items with
+    source_url are fallback visual candidates when upstream omitted an explicit
+    entry. Explicitly disabled IDs remain excluded.
+    """
+    explicit=data.get('visual_evidence') or {}
+    candidates={}
+    disabled=set()
+    for intel_id,cfg in explicit.items():
+        if cfg.get('enabled',True) is False:
+            disabled.add(intel_id)
+            continue
+        source=cfg.get('source_url')
+        if source:
+            candidates[intel_id]={'source_url':source,'explicit':True}
+    for item in data.get('items') or []:
+        intel_id=item.get('id'); source=item.get('source_url')
+        if not intel_id or not source or intel_id in disabled or intel_id in candidates:
+            continue
+        candidates[intel_id]={'source_url':source,'explicit':False}
+    return candidates
+
 def assert_preview(errors,view,path,prefix,intel_id,rec):
     if not path.exists(): errors.append(f'{view}: page missing'); return
     soup=BeautifulSoup(path.read_text('utf-8'),'html.parser')
@@ -24,7 +48,7 @@ def assert_preview(errors,view,path,prefix,intel_id,rec):
 
 def main():
     date=sys.argv[1] if len(sys.argv)>1 else latest_date(); data=json.loads((ROOT/'data'/'daily'/f'{date}.json').read_text('utf-8'))
-    enabled={k:v for k,v in (data.get('visual_evidence') or {}).items() if v.get('enabled',True) is not False}
+    enabled=visual_candidates(data)
     manifest_path=ROOT/'assets'/'visual'/'manifest.json'; snapshot_manifest=ROOT/'assets'/'visual'/date/'manifest.json'; errors=[]
     manifest=json.loads(manifest_path.read_text('utf-8')) if manifest_path.exists() else {'entries':[]}
     if not manifest_path.exists(): errors.append('assets/visual/manifest.json missing')
