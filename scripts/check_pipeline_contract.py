@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Guard publishing topology, runtime integrity and V2 information architecture."""
 from pathlib import Path
-import re, sys, tempfile, json
+import re, sys, tempfile
 from bs4 import BeautifulSoup
 
 ROOT=Path(__file__).resolve().parents[1]; WF=ROOT/'.github'/'workflows'; MAIN=WF/'intelligence-build.yml'; LOCK=ROOT/'requirements-pipeline.txt'; errors=[]
@@ -31,25 +31,34 @@ else:
     if "- 'data/daily/**'" in main: fail('canonical publish must not trigger on data/daily/** before ready')
     if 'contents: write' not in main: fail('canonical publisher requires contents: write')
 
-# V2 modular contract must exist independently from renderer/presentation.
-for path in (ROOT/'config'/'intelligence-v2.json',ROOT/'scripts'/'intelligence_v2.py',ROOT/'scripts'/'render_information_architecture.py',ROOT/'scripts'/'check_information_architecture.py',ROOT/'category.css'):
+# V2 contract values live in config. Python validates consistency rather than
+# repeating target/date/count literals that can drift during contract changes.
+for path in (
+    ROOT/'config'/'intelligence-v2.json', ROOT/'scripts'/'intelligence_v2.py',
+    ROOT/'scripts'/'check_collection_contract.py', ROOT/'scripts'/'render_information_architecture.py',
+    ROOT/'scripts'/'check_information_architecture.py', ROOT/'category.css'
+):
     if not path.exists(): fail(f'V2 module missing: {path.relative_to(ROOT)}')
-if (ROOT/'config'/'intelligence-v2.json').exists():
+if (ROOT/'config'/'intelligence-v2.json').exists() and (ROOT/'scripts'/'intelligence_v2.py').exists():
     try:
-        cfg=json.loads((ROOT/'config'/'intelligence-v2.json').read_text('utf-8'))
-        if len(cfg.get('categories') or [])!=6: fail('V2 config must define exactly six categories')
-        if cfg.get('collection_contract_effective_date')!='2026-09-04': fail('V2 five-item fill contract effective date drift')
-        if cfg.get('category_pool_target_items')!=5: fail('V2 category pool target must be 5')
-        if cfg.get('category_pool_max_items')!=5: fail('V2 category pool maximum must be 5')
-        if cfg.get('category_pool_min_items')!=5: fail('V2 category pool minimum must be 5')
-        if cfg.get('category_fill_policy')!='target_five_priority_backfill': fail('V2 category fill policy must be target_five_priority_backfill')
-        collection=cfg.get('collection') or {}
-        if collection.get('candidate_pool_target_per_category',0)<20: fail('V2 discovery candidate target must be at least 20 per category')
-        if collection.get('candidate_pool_stretch_per_category',0)<40: fail('V2 discovery candidate stretch must be at least 40 per category')
-        if collection.get('discovery_windows')!=['24h','7d','30d','6m','evergreen']: fail('V2 discovery fill ladder windows drift')
-        if collection.get('completeness_trigger_total_items')!=30: fail('V2 completeness trigger must equal 30 items')
-        if cfg.get('homepage',{}).get('top5')!=5 or cfg.get('homepage',{}).get('next10')!=10: fail('V2 homepage selection limits must be TOP5 + next10')
-    except Exception as exc: fail(f'V2 config unreadable: {exc}')
+        scripts_dir=str(ROOT/'scripts')
+        if scripts_dir not in sys.path: sys.path.insert(0,scripts_dir)
+        from intelligence_v2 import load_config
+        cfg=load_config(); categories=cfg.get('categories') or []; collection=cfg.get('collection') or {}
+        target=int(cfg['category_pool_target_items']); expected_total=target*len(categories)
+        if int(collection.get('completeness_trigger_total_items',0))!=expected_total:
+            fail(f'V2 completeness trigger must equal configured category total {expected_total}')
+        candidate_target=int(collection.get('candidate_pool_target_per_category',0) or 0)
+        candidate_stretch=int(collection.get('candidate_pool_stretch_per_category',0) or 0)
+        if candidate_target<target: fail('V2 discovery candidate target must be >= configured publish target')
+        if candidate_stretch<candidate_target: fail('V2 discovery candidate stretch must be >= candidate target')
+    except Exception as exc: fail(f'V2 config contract unreadable/inconsistent: {exc}')
+
+history_wf=WF/'historical-regression.yml'
+if not history_wf.exists():
+    fail('historical-regression.yml missing')
+elif 'check_collection_contract.py' not in history_wf.read_text('utf-8'):
+    fail('historical regression must run config-driven collection contract dry run')
 
 normalizer=ROOT/'scripts'/'normalize_archive_presentation.py'; nav_renderer=ROOT/'scripts'/'render_daily_navigation.py'
 if not normalizer.exists(): fail('archive presentation normalizer missing')
@@ -116,4 +125,4 @@ else:
     if "if(!id&&date==='2026-08-23')" not in text or 'LEGACY_20260823_RULES' not in text: fail('legacy identity fallback scope changed')
 if errors:
     print('PIPELINE CONTRACT FAILED'); print('\n'.join('- '+e for e in errors)); sys.exit(1)
-print('PIPELINE CONTRACT PASS: one writer + ready-only push trigger + V2 six-by-five target-fill IA + 20-40 candidate discovery + latest-main checkout + semantic visual compatibility + cache/category coverage + fail-closed QA')
+print('PIPELINE CONTRACT PASS: one writer + ready-only push trigger + config-driven target-fill IA + synthetic future-day dry run + latest-main checkout + semantic visual compatibility + cache/category coverage + fail-closed QA')
