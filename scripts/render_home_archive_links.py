@@ -44,7 +44,7 @@ def render_current_report_entry(soup,current):
     history=soup.select_one('section.history-section')
     if not history: return
     wrap=tag(soup,'div',attrs={'class':'current-report-entry','data-current-report-date':current})
-    a=tag(soup,'a',href=f'{current}/',attrs={'class':'current-report-link','aria-label':f'查看 {current} 今日完整日報'})
+    a=tag(soup,'a',href=f'{current}/',attrs={'class':'category-nav-card current-report-link','aria-label':f'查看 {current} 今日完整日報'})
     text=tag(soup,'div',attrs={'class':'current-report-copy'})
     eyebrow=tag(soup,'span',attrs={'class':'current-report-eyebrow'}); eyebrow.string='TODAY'; text.append(eyebrow)
     strong=tag(soup,'strong'); strong.string='查看今日完整日報'; text.append(strong)
