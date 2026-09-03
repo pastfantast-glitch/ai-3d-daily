@@ -4,7 +4,7 @@ from pathlib import Path
 import json, re, sys
 
 ROOT=Path(__file__).resolve().parents[1]
-WORKSPACE_REV='workspace-v2'
+WORKSPACE_REV='workspace-v3'
 
 def latest_date():
     dates=sorted(p.stem for p in (ROOT/'data'/'daily').glob('20??-??-??.json'))
