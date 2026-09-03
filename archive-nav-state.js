@@ -9,6 +9,10 @@
     return !!doc.body?.classList.contains('category-page');
   }
 
+  function removeWorkspaceTitles(doc=document){
+    doc.querySelectorAll('header.site-head,header.daily-hero,header.category-hero').forEach(node=>node.remove());
+  }
+
   function repairCategoryLinks(doc=document,baseUrl=location.href){
     if(!bodyIsCategory(doc))return;
     const nav=doc.querySelector(NAV_SELECTOR);
@@ -168,6 +172,7 @@
       if(!response.ok)throw new Error(`HTTP ${response.status}`);
       const html=await response.text();
       const nextDoc=new DOMParser().parseFromString(html,'text/html');
+      removeWorkspaceTitles(nextDoc);
       const nextMain=nextDoc.querySelector('main');
       const currentMain=document.querySelector('main');
       const nextNav=nextDoc.querySelector(NAV_SELECTOR);
@@ -204,6 +209,7 @@
   }
 
   function init(){
+    removeWorkspaceTitles();
     repairCategoryLinks();
     absolutizeNav();
     syncControlContext();
