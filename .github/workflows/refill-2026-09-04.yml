@@ -1,0 +1,93 @@
+name: Refill 2026-09-04
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/refill-2026-09-04.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  refill:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - name: Install pipeline dependencies
+        run: pip install -r requirements-pipeline.txt
+      - name: Replace seven registry duplicates with fresh verified intelligence
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path('data/daily/2026-09-04.json')
+          d=json.loads(p.read_text('utf-8'))
+          repl={
+            'shell-grotto-procedural-material-system': {
+              'id':'iron-mitchell-fighter-character-workflow','title':'Iron Mitchell：ZBrush 雕刻到 Substance 貼圖的格鬥角色製作流程','summary':'Josh Linao 拆解以 Mike Tyson 為臉部參考的格鬥角色，從造型研究、ZBrush 雕刻到 Substance 3D Painter 貼圖與即時展示，適合檢視角色資產從形體到材質的完整製作鏈。','quick_impact':'Character Workflow ★★★★☆','source_url':'https://80.lv/articles/how-to-sculpt-and-texture-a-3d-fighter-character-with-zbrush-and-substance-3d','category':'3d-production','subcategory':'character-production','full_analysis':[{'label':'角色製作流程','text':'案例從真實拳擊手參考切入，先建立可辨識的頭部比例與主要形體，再逐步細化皮膚、服裝與配件，適合拿來檢查角色 blocking 到 detail 的分階段決策。'},{'label':'貼圖與交付','text':'Substance 3D Painter 承接高模資訊與材質分區，重點不是單張效果圖，而是如何維持皮膚、布料與硬表面之間的材質辨識。'},{'label':'導入測試','text':'可用現有角色 SOP 比較 sculpt、bake、texture 與 engine lookdev 的返工點，確認哪些步驟值得標準化。'}]},
+            'almalexia-cinematic-character-udim-xgen': {
+              'id':'woodland-pizzeria-handpainted-environment','title':'WoodLand Pizzeria：用程序材質與 Shader 將 2D 插畫轉成可探索 3D 場景','summary':'Shuming Zhang 將手繪插畫重建為 Unreal 場景，結合 Maya、SpeedTree、ZBrush 與 Substance 的程序工作流，重點放在保留手繪感、季節／時段變體與可探索環境。','quick_impact':'Environment Workflow ★★★★☆','source_url':'https://80.lv/articles/turning-a-2d-illustration-into-a-3d-environment-with-a-hand-painted-look','category':'3d-production','subcategory':'environment-production','full_analysis':[{'label':'場景轉譯','text':'流程先把 2D 插畫拆成可重建的形體、色塊與層次，再用 3D 資產與 shader 重組，而不是直接追求寫實材質。'},{'label':'程序化價值','text':'程序材質與節點式處理讓季節、時間與表面變化可重用，對 stylized environment 的版本管理比逐張手改更穩定。'},{'label':'導入測試','text':'可挑一個既有 stylized 場景，測試程序材質是否能在不破壞美術控制的前提下降低變體製作成本。'}]},
+            'blender-mocap-retarget-proportion-matching': {
+              'id':'maya-bifrost-detached-facial-features-rig','title':'Bifrost Detached Facial Features：把嘴部脫離頭部拓樸以取得更誇張的表情控制','summary':'Farid M. Panah 以 Maya Bifrost 實作 Detached Facial Features，將嘴部從頭部 topology 限制中分離，讓動畫師能更自由推拉、重塑與誇張表情。','quick_impact':'Facial Rig ★★★★☆','source_url':'https://80.lv/articles/pixar-style-detached-facial-features-rig-with-bifrost','category':'3d-animation','subcategory':'facial','full_analysis':[{'label':'Rig 架構','text':'DFF 的核心不是增加更多 blendshape，而是把部分五官控制從基礎頭部 topology 解耦，換取更大的造型空間。'},{'label':'動畫價值','text':'對 stylized 角色而言，這種設計能讓嘴型和表情超出傳統皮膚變形極限，同時減少為極端 pose 重做 topology 的需求。'},{'label':'導入風險','text':'需實測 deformation 邊界、口周遮罩與下游 export，確認進入 game rig 或引擎後是否仍能保留同樣控制力。'}]},
+            'ue58-megalights-diagnostics-performance': {
+              'id':'ue5-shape-cage-runtime-static-mesh-deform','title':'UE5 Shape Cage：用 GPU WPO 在 Runtime 變形 Static Mesh，不依賴 Soft-body Solver','summary':'Shape Cage 以 27 點 cage 與 World Position Offset 在 GPU 端計算受擊變形，避免 CPU mesh 更新與 soft-body simulation，並支援網路同步與 Nanite。','quick_impact':'Runtime Deform ★★★★☆','source_url':'https://80.lv/articles/this-ue5-tool-can-deform-any-static-mesh-at-runtime','category':'engine-art','subcategory':'tools','full_analysis':[{'label':'變形方式','text':'系統把碰撞輸入縮減成位置、方向與力度，再由 vertex shader 重建大形變，讓 deformation 成本主要落在 GPU，而不是 CPU mesh 重算。'},{'label':'遊戲製作價值','text':'適合需要可見凹陷、擠壓但不需要真實物理解算的互動物件，特別是多人遊戲中可避免同步整張變形 mesh。'},{'label':'效能測試','text':'應以實際目標平台測物件數、頂點量、同時變形數與 Nanite 開關，確認視覺收益是否值得 shader 成本。'}]},
+            'blender-freepencil2-line-art': {
+              'id':'blender-zenbbq2-map-baking','title':'Zen BBQ 2.0：把程序 Bevel 直接烘成 Normal／AO／Curvature／ID Maps','summary':'Zen BBQ 2.0 新增 Map Baking，可在 Blender 內將非破壞 bevel 轉為 production-ready texture maps，並支援 collection、合併 texture set 與 explode 防投射錯誤。','quick_impact':'Blender Baking ★★★★☆','source_url':'https://80.lv/articles/this-blender-add-on-for-customizable-bevels-gets-a-new-map-baking-system','category':'blender-dcc','subcategory':'addon','full_analysis':[{'label':'烘焙流程','text':'程序 bevel 可在建模階段維持可調，交付前再一次烘成 Normal、AO、Curvature、ID 等 maps，減少過早 destructive apply。'},{'label':'硬表面價值','text':'對大量 hard-surface 資產，可把建模與 baking 放在同一 DCC 內完成，降低切換工具與重建 cage／命名的摩擦。'},{'label':'導入測試','text':'用一組現有低模資產測 collection bake、texture set 合併、explode 與命名規則，確認能否接既有 Painter／engine SOP。'}]},
+            'blender-krita-paintbridge-live-link': {
+              'id':'maya-blender-stylized-hair-strip-shader','title':'Stylized Hair：讓 Polygon Hair Strips 呈現 Curve-like 外觀的 Maya／Blender 做法','summary':'Stephen Davidian 展示在 Maya/Arnold 中讓 polygon hair strips 呈現更接近 curves 的視覺方法，並已有 Blender 版本；特色是保持較輕量幾何，同時保留 stylized 髮束感。','quick_impact':'Stylized Hair ★★★★☆','source_url':'https://80.lv/articles/how-to-make-stylized-hair-look-like-curves-in-maya','category':'blender-dcc','subcategory':'maya','full_analysis':[{'label':'髮型表示','text':'做法仍以 polygon strips 為基礎，但透過 shading 與造型控制讓髮束更接近 curve groom 的連續感，適合 stylized 角色。'},{'label':'製作價值','text':'相比完整 groom，polygon hair 對遊戲資產的拓樸、LOD 與引擎相容性通常更直接，這套方法提供較低成本的視覺折衷。'},{'label':'導入測試','text':'可用同一髮型同時做 hair cards 與此 shader 版本，比較輪廓、aliasing、LOD 與 engine shader 成本。'}]},
+            'nomad-sculpt-blender-live-link': {
+              'id':'mablelink-maya-blender-unreal-scene-sync','title':'MableLink：Maya→Blender／UE5 一鍵傳遞 Rig、Animation、Blendshape、Material 並可 Live Re-sync','summary':'MableLink 將 Maya scene 直接送入 Blender 或 Unreal，保留 rig、animation、blend shape、camera、light、pivot、hierarchy 與多種 PBR materials，Pro 版支援持續 Update Sync。','quick_impact':'DCC Interop ★★★★☆','source_url':'https://80.lv/articles/move-animated-maya-scenes-to-blender-ue5-in-one-click','category':'blender-dcc','subcategory':'other-dcc','full_analysis':[{'label':'跨 DCC 傳輸','text':'它不是把場景壓平成單一 FBX，而是盡量保留 rig、動畫、blendshape、階層與材質語意，降低 Maya→Blender／UE 的資料損失。'},{'label':'協作價值','text':'可攜式 package 與 live re-sync 適合頻繁迭代的角色或 cinematic pipeline，能減少每輪手動 export/import 與材質重接。'},{'label':'導入測試','text':'先用一個含 skin、blendshape、camera、透明／SSS 材質的代表場景驗證 round-trip 與版本相容性，再決定是否進 production。'}]}
+          }
+          seen=set()
+          for i,item in enumerate(d['items']):
+            rid=item['id']
+            if rid in repl:
+              new=dict(repl[rid])
+              for k in ('ranking_score','rank_global','homepage_tier'):
+                new[k]=item[k]
+              d['items'][i]=new
+              seen.add(rid)
+          missing=set(repl)-seen
+          if missing:
+            raise SystemExit(f'missing replacement ids: {sorted(missing)}')
+          d['metadata']['discovery_completeness']='post-registry refill completed; seven historical duplicates replaced with fresh verified sources'
+          d['metadata']['registry_identity_normalization']={'dropped_count':0,'rewritten_count':0,'policy':'published-source-without-substantive-delta-skip; pre-ready refill required'}
+          p.write_text(json.dumps(d,ensure_ascii=False,indent=2)+'\n','utf-8')
+          PY
+      - name: Registry normalize and verify exact category survivors
+        shell: bash
+        run: |
+          python scripts/normalize_registry_identity.py 2026-09-04
+          git checkout -- index.html 2026-09-04/index.html || true
+          python - <<'PY'
+          import json
+          from collections import Counter
+          d=json.load(open('data/daily/2026-09-04.json',encoding='utf-8'))
+          c=Counter(x['category'] for x in d['items'])
+          expected={'ai-generation':5,'3d-production':5,'3d-animation':5,'engine-art':5,'emerging-case':5,'blender-dcc':5}
+          if len(d['items'])!=30 or c!=expected:
+            raise SystemExit(f'post-registry refill incomplete: total={len(d["items"])} counts={dict(c)}')
+          print('POST-REGISTRY REFILL PASS',dict(c))
+          PY
+          python scripts/check_registry_contract.py
+          python scripts/check_collection_contract.py
+      - name: Mark ready and commit canonical refill
+        shell: bash
+        run: |
+          set -euo pipefail
+          printf 'READY 2026-09-04 post-registry-refill\n' > data/publish/2026-09-04.ready
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git rm .github/workflows/refill-2026-09-04.yml
+          git add data/daily/2026-09-04.json data/publish/2026-09-04.ready
+          git commit -m 'Refill and mark 2026-09-04 ready'
+          git pull --rebase origin main
+          git push origin HEAD:main
