@@ -126,6 +126,11 @@ jobs:
           git add "data/daily/${{ steps.date.outputs.value }}.json" assets/visual index.html
           find . -maxdepth 2 -mindepth 2 -path './20??-??-??/index.html' -print0 | xargs -0 -r git add --
           find "${{ steps.date.outputs.value }}" -mindepth 2 -maxdepth 2 -name index.html -print0 | xargs -0 -r git add --
+          # Renderers may legitimately update additional tracked derived files.
+          # Stage tracked modifications/deletions without admitting unrelated untracked files.
+          git add -u
+          echo 'Atomic publish worktree status:'
+          git status --short
           if git diff --cached --quiet; then
             publish_sha="$(git log -1 --format=%H --grep="^Publish canonical intelligence ${{ steps.date.outputs.value }}$")"
             test -n "$publish_sha" || { echo "No prior publish commit found for current rendered state"; exit 1; }
