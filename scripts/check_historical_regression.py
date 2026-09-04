@@ -10,6 +10,11 @@ DATE_RE=re.compile(r'^20\d{2}-\d{2}-\d{2}$'); errors=[]; rows=[]
 def fail(date,message): errors.append(f'{date}: {message}')
 def archive_dirs(root): return sorted(p for p in root.iterdir() if p.is_dir() and DATE_RE.fullmatch(p.name) and (p/'index.html').exists())
 def canonical_dates(): return sorted(p.stem for p in (ROOT/'data'/'daily').glob('20??-??-??.json'))
+def is_done(date):
+    path=ROOT/'data'/'publish'/f'{date}.done.json'
+    if not path.exists(): return False
+    try: return str(json.loads(path.read_text('utf-8')).get('state','')).upper()=='DONE'
+    except Exception: return False
 
 def validate_archive_snapshot(d,all_dirs):
     date=d.name; text=(d/'index.html').read_text('utf-8'); soup=BeautifulSoup(text,'html.parser'); body=soup.body
@@ -79,6 +84,10 @@ def canonical_rebuild_simulation(date):
         work=Path(td)/'repo'; shutil.copytree(ROOT,work,ignore=shutil.ignore_patterns('.git','__pycache__','.pytest_cache'))
         try:
             if date=='2026-08-23': run(work,sys.executable,'scripts/bootstrap_intelligence_ids.py')
+            # Match the canonical writer's upstream data order before release-input validation.
+            run(work,sys.executable,'scripts/normalize_registry_identity.py',date)
+            run(work,sys.executable,'scripts/enrich_full_analysis_v3.py',date)
+            run(work,sys.executable,'scripts/normalize_release_seed.py',date)
             run(work,sys.executable,'scripts/check_release_input.py',date)
             run(work,sys.executable,'scripts/render_daily_navigation.py')
             run(work,sys.executable,'scripts/render_home_archive_links.py')
@@ -101,9 +110,15 @@ def canonical_rebuild_simulation(date):
 def main():
     ap=argparse.ArgumentParser(); ap.add_argument('--days',type=int,default=4); args=ap.parse_args(); all_dirs=archive_dirs(ROOT)
     if not all_dirs: print('HISTORICAL REGRESSION FAILED: no archive directories'); return 1
-    selected=all_dirs[-max(1,args.days):]; print('Historical regression archives:',', '.join(d.name for d in selected))
-    for d in selected: validate_archive_snapshot(d,all_dirs)
-    for d in selected: canonical_rebuild_simulation(d.name)
+    cds=canonical_dates(); staging=cds[-1] if cds and not is_done(cds[-1]) else ''
+    # An un-DONE latest date is a release seed, not an immutable historical snapshot yet.
+    stable_dirs=[d for d in all_dirs if d.name!=staging]
+    selected=stable_dirs[-max(1,args.days):]
+    modes=list(selected)
+    if staging and any(d.name==staging for d in all_dirs): modes.append(next(d for d in all_dirs if d.name==staging))
+    print('Historical regression archives:',', '.join(d.name for d in modes))
+    for d in selected: validate_archive_snapshot(d,stable_dirs)
+    for d in modes: canonical_rebuild_simulation(d.name)
     print('\nHISTORICAL REGRESSION MATRIX')
     for date,mode,status in rows: print(f'- {date:<10} | {mode:<17} | {status}')
     if errors:
