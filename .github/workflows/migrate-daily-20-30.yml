@@ -1,0 +1,58 @@
+name: Migrate daily 20-30 contract
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/migrate-daily-20-30.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  migrate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - name: Install locked pipeline dependencies
+        run: pip install -r requirements-pipeline.txt
+      - name: Apply guarded migration
+        run: python scripts/migrate_daily_20_30_once.py
+      - name: Validate collection and registry contracts
+        shell: bash
+        run: |
+          set -euo pipefail
+          python scripts/check_collection_contract.py
+          python scripts/normalize_registry_identity.py 2026-09-04
+          python scripts/check_registry_contract.py
+          python - <<'PY'
+          import json
+          from collections import Counter
+          d=json.load(open('data/daily/2026-09-04.json',encoding='utf-8'))
+          n=len(d['items'])
+          assert 20 <= n <= 30, n
+          ids={x['id'] for x in d['items']}
+          assert 'cascadeur-2026-2-layers' in ids
+          assert 'cascadeur-2026-2-animation-layers' not in ids
+          print('TODAY RELEASE-GATE PASS:',n,dict(Counter(x['category'] for x in d['items'])))
+          PY
+          python scripts/check_historical_regression.py --days 4
+      - name: Commit contract and ready marker
+        shell: bash
+        run: |
+          set -euo pipefail
+          printf 'READY 2026-09-04 daily-total-20-30\n' > data/publish/2026-09-04.ready
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git rm .github/workflows/migrate-daily-20-30.yml scripts/migrate_daily_20_30_once.py
+          git add config/intelligence-v2.json scripts/intelligence_v2.py scripts/normalize_registry_identity.py scripts/check_collection_contract.py scripts/check_information_architecture.py scripts/check_release_input.py scripts/check_pipeline_contract.py data/daily/2026-09-04.json data/publish/2026-09-04.ready
+          git commit -m 'Adopt 20-30 daily release gate and ready 2026-09-04'
+          git pull --rebase origin main
+          git push origin HEAD:main
