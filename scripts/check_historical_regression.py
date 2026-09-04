@@ -76,6 +76,12 @@ def run(work,*cmd):
     proc=subprocess.run(cmd,cwd=work,text=True,stdout=subprocess.PIPE,stderr=subprocess.STDOUT); print(f"$ {' '.join(cmd)}"); print(proc.stdout,end='' if proc.stdout.endswith('\n') else '\n')
     if proc.returncode: raise RuntimeError(f"command failed ({proc.returncode}): {' '.join(cmd)}")
 
+def run_registry_normalization(work,date):
+    cmd=(sys.executable,'scripts/normalize_registry_identity.py',date)
+    proc=subprocess.run(cmd,cwd=work,text=True,stdout=subprocess.PIPE,stderr=subprocess.STDOUT)
+    print(f"$ {' '.join(cmd)}"); print(proc.stdout,end='' if proc.stdout.endswith('\n') else '\n')
+    return proc.returncode
+
 def canonical_rebuild_simulation(date):
     cds=canonical_dates()
     if date not in cds: rows.append((date,'canonical-rebuild','SKIP (legacy snapshot: no canonical JSON)')); return
@@ -84,8 +90,16 @@ def canonical_rebuild_simulation(date):
         work=Path(td)/'repo'; shutil.copytree(ROOT,work,ignore=shutil.ignore_patterns('.git','__pycache__','.pytest_cache'))
         try:
             if date=='2026-08-23': run(work,sys.executable,'scripts/bootstrap_intelligence_ids.py')
-            # Match the canonical writer's upstream data order before release-input validation.
-            run(work,sys.executable,'scripts/normalize_registry_identity.py',date)
+            # Registry normalization belongs to collection-before-ready. For an un-DONE
+            # staging date, exit 2 is a healthy NEEDS-REFILL state, not a historical
+            # regression failure. The collection writer must continue discovery and
+            # must not create .ready until normalization returns 0.
+            registry_rc=run_registry_normalization(work,date)
+            if registry_rc==2 and not is_done(date):
+                rows.append((date,'canonical-rebuild','NEEDS-REFILL (staging; not release-ready)'))
+                return
+            if registry_rc:
+                raise RuntimeError(f'registry normalization failed ({registry_rc})')
             run(work,sys.executable,'scripts/enrich_full_analysis_v3.py',date)
             run(work,sys.executable,'scripts/normalize_release_seed.py',date)
             run(work,sys.executable,'scripts/check_release_input.py',date)
