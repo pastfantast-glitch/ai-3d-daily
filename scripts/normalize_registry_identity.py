@@ -1,21 +1,29 @@
 #!/usr/bin/env python3
-"""Normalize current canonical identity against published daily history.
+"""Normalize a canonical daily dataset against published daily history.
+
+This script is a COLLECTION-STAGE operation and must run before a .ready marker is
+created. It never edits derived HTML or presentation surfaces.
 
 Rules:
 - Published daily datasets are the source-of-truth registry.
 - Same normalized source URL without substantive delta => SKIP current item.
 - Same normalized source URL with status=UPDATE + non-empty delta => preserve the
   historical stable ID, never mint a new one.
-- Re-rank the surviving current dataset and synchronize current homepage/daily
-  seed card identities so release preflight sees the same canonical selection.
+- Re-rank surviving canonical items.
+- After normalization, compute per-category deficits from the current repo config.
+  A deficit means discovery is NOT complete: collection must continue through the
+  configured fill ladder before .ready may be created.
 
-This is generic and date-independent. Historical datasets/content are never rewritten.
+Exit codes:
+- 0: registry-clean and category targets are satisfied.
+- 2: normalization succeeded but one or more categories require refill.
+- 1: usage/data error.
 """
+from collections import Counter
 from pathlib import Path
 import json
 import re
 import sys
-from bs4 import BeautifulSoup
 
 ROOT = Path(__file__).resolve().parents[1]
 DATE_RE = re.compile(r'^20\d{2}-\d{2}-\d{2}$')
@@ -26,7 +34,7 @@ def norm_url(url):
 
 
 def load_config():
-    return json.loads((ROOT/'config'/'intelligence-v2.json').read_text('utf-8'))
+    return json.loads((ROOT / 'config' / 'intelligence-v2.json').read_text('utf-8'))
 
 
 def selected_tier(rank, total, top5, next10):
@@ -40,12 +48,12 @@ def selected_tier(rank, total, top5, next10):
 def prior_registry(target_date):
     owners = {}
     ids = set()
-    for p in sorted((ROOT/'data'/'daily').glob('20??-??-??.json')):
+    for p in sorted((ROOT / 'data' / 'daily').glob('20??-??-??.json')):
         if p.stem >= target_date:
             continue
         data = json.loads(p.read_text('utf-8'))
         for item in data.get('items', []):
-            rid = str(item.get('id','')).strip()
+            rid = str(item.get('id', '')).strip()
             src = norm_url(item.get('source_url'))
             if rid:
                 ids.add(rid)
@@ -54,34 +62,24 @@ def prior_registry(target_date):
     return owners, ids
 
 
-def sync_seed(path, keep_ids, id_rewrites):
-    if not path.exists():
-        return False
-    original = path.read_text('utf-8')
-    soup = BeautifulSoup(original, 'html.parser')
-    changed = False
-    for card in list(soup.select('[data-intel-role="card"][data-intel-id]')):
-        cid = card.get('data-intel-id')
-        if cid in id_rewrites:
-            card['data-intel-id'] = id_rewrites[cid]
-            cid = id_rewrites[cid]
-            changed = True
-        if cid not in keep_ids:
-            card.decompose()
-            changed = True
-    if changed:
-        rendered = soup.prettify()
-        if not rendered.endswith('\n'):
-            rendered += '\n'
-        path.write_text(rendered, 'utf-8')
-    return changed
+def category_deficits(cfg, items):
+    target = int(cfg['category_pool_target_items'])
+    counts = Counter(str(item.get('category', '')).strip() for item in items)
+    deficits = {}
+    for category in cfg['categories']:
+        cid = category['id']
+        got = counts.get(cid, 0)
+        if got < target:
+            deficits[cid] = {'have': got, 'target': target, 'missing': target - got}
+    return deficits
 
 
 def main():
     target = sys.argv[1] if len(sys.argv) > 1 else ''
     if not DATE_RE.fullmatch(target):
         raise SystemExit('Usage: normalize_registry_identity.py YYYY-MM-DD')
-    data_path = ROOT/'data'/'daily'/f'{target}.json'
+
+    data_path = ROOT / 'data' / 'daily' / f'{target}.json'
     if not data_path.exists():
         raise SystemExit(f'Missing canonical dataset: {data_path}')
 
@@ -93,10 +91,10 @@ def main():
     rewrites = {}
 
     for item in data.get('items', []):
-        rid = str(item.get('id','')).strip()
+        rid = str(item.get('id', '')).strip()
         src = norm_url(item.get('source_url'))
-        status = str(item.get('status','')).strip().upper()
-        delta = str(item.get('delta','')).strip()
+        status = str(item.get('status', '')).strip().upper()
+        delta = str(item.get('delta', '')).strip()
         historical_owner = owners.get(src) if src else None
 
         if historical_owner:
@@ -106,14 +104,24 @@ def main():
                     item['id'] = historical_owner
                 kept.append(item)
             else:
-                dropped.append({'id': rid, 'source_url': src, 'historical_id': historical_owner, 'reason': 'published-source-no-substantive-delta'})
+                dropped.append({
+                    'id': rid,
+                    'source_url': src,
+                    'historical_id': historical_owner,
+                    'reason': 'published-source-no-substantive-delta',
+                })
             continue
 
         if rid in prior_ids:
             if status == 'UPDATE' and delta:
                 kept.append(item)
             else:
-                dropped.append({'id': rid, 'source_url': src, 'historical_id': rid, 'reason': 'repeated-stable-id-no-substantive-delta'})
+                dropped.append({
+                    'id': rid,
+                    'source_url': src,
+                    'historical_id': rid,
+                    'reason': 'repeated-stable-id-no-substantive-delta',
+                })
             continue
 
         kept.append(item)
@@ -131,10 +139,15 @@ def main():
     collection = cfg.get('collection') or {}
     if collection.get('discovery_windows'):
         meta['discovery_windows'] = collection['discovery_windows']
+
+    deficits = category_deficits(cfg, kept)
     meta['registry_identity_normalization'] = {
         'dropped_count': len(dropped),
         'rewritten_count': len(rewrites),
-        'policy': 'published-source-without-substantive-delta-skip'
+        'policy': 'published-source-without-substantive-delta-skip',
+        'stage': 'collection-before-ready',
+        'refill_required': bool(deficits),
+        'category_deficits': deficits,
     }
 
     visual = data.get('visual_evidence') or {}
@@ -146,16 +159,22 @@ def main():
     data['visual_evidence'] = visual
 
     data_path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + '\n', 'utf-8')
-    keep_ids = {str(x.get('id','')) for x in kept}
-    home_changed = sync_seed(ROOT/'index.html', keep_ids, rewrites)
-    daily_changed = sync_seed(ROOT/target/'index.html', keep_ids, rewrites)
 
     print(f'REGISTRY IDENTITY NORMALIZED: kept={len(kept)} dropped={len(dropped)} rewritten={len(rewrites)}')
     for rec in dropped:
         print(f"SKIP {rec['id']} -> historical {rec['historical_id']} source={rec['source_url']}")
     for old, new in rewrites.items():
         print(f'REWRITE {old} -> {new}')
-    print(f'SEED SYNC: homepage={home_changed} daily={daily_changed}')
+
+    if deficits:
+        print('REGISTRY REFILL REQUIRED: collection is not release-ready')
+        for cid, rec in deficits.items():
+            print(f"- {cid}: have={rec['have']} target={rec['target']} missing={rec['missing']}")
+        print('Continue discovery through the configured fill ladder; do not create .ready yet.')
+        sys.exit(2)
+
+    print('REGISTRY REFILL COMPLETE: all category targets survive Published Intelligence Registry dedupe')
+
 
 if __name__ == '__main__':
     main()
