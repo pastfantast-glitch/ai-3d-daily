@@ -23,8 +23,12 @@ jobs:
           python-version: '3.12'
       - name: Install locked pipeline dependencies
         run: pip install -r requirements-pipeline.txt
-      - name: Apply 20-30 migration
-        run: python scripts/migrate_daily_20_30_once.py
+      - name: Apply 20-30 migration and selector fix
+        shell: bash
+        run: |
+          set -euo pipefail
+          python scripts/migrate_daily_20_30_once.py
+          python scripts/fix_daily_selector_once.py
       - name: Registry and collection gate
         shell: bash
         run: |
@@ -68,7 +72,7 @@ jobs:
           printf 'READY 2026-09-04 daily-total-20-30\n' > data/publish/2026-09-04.ready
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
-          git rm .github/workflows/migrate-daily-20-30.yml scripts/migrate_daily_20_30_once.py
+          git rm .github/workflows/migrate-daily-20-30.yml scripts/migrate_daily_20_30_once.py scripts/fix_daily_selector_once.py
           git add -A
           git commit -m 'Adopt 20-30 daily release gate and ready 2026-09-04'
           git pull --rebase origin main
