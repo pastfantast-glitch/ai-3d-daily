@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
-"""Synthetic dry run for the next-day V2 collection contract.
+"""Synthetic dry run for the V2 collection contract.
 
 This test never writes canonical data or .ready markers. It builds in-memory fixtures
 from config and proves that the configured target passes while common incomplete or
-corrupt releases fail closed. Historical pre-effective variable pools are also kept
-compatible.
+corrupt releases fail closed. Critically, the target is defined on items that SURVIVE
+Published Intelligence Registry dedupe: a collection that first reaches the numeric
+target and then loses an item to registry dedupe is not release-ready and must refill.
+Historical pre-effective variable pools are also kept compatible.
 """
 from copy import deepcopy
 from datetime import date, timedelta
@@ -51,6 +53,13 @@ def target_fixture(cfg):
     return {
         'date': cfg['collection_contract_effective_date'],
         'schema_version': int(cfg.get('schema_version', 3)),
+        'metadata': {
+            'registry_identity_normalization': {
+                'stage': 'collection-before-ready',
+                'refill_required': False,
+                'category_deficits': {},
+            }
+        },
         'items': items,
     }
 
@@ -93,11 +102,22 @@ def main():
     total = target * len(cfg['categories'])
     base = target_fixture(cfg)
 
-    expect_pass(f'exact configured target ({len(cfg["categories"])} x {target} = {total})', base)
+    expect_pass(f'exact configured post-registry target ({len(cfg["categories"])} x {target} = {total})', base)
 
-    missing = deepcopy(base)
-    missing['items'].pop()
-    expect_fail(f'one item missing ({total - 1} total / one category below target)', missing, 'target-fill')
+    post_registry_missing = deepcopy(base)
+    post_registry_missing['items'].pop()
+    post_registry_missing['metadata']['registry_identity_normalization'] = {
+        'stage': 'collection-before-ready',
+        'refill_required': True,
+        'category_deficits': {
+            cfg['categories'][-1]['id']: {'have': target - 1, 'target': target, 'missing': 1}
+        },
+    }
+    expect_fail(
+        f'post-registry dedupe removes one item ({total - 1} survivors); collection must refill before ready',
+        post_registry_missing,
+        'target-fill',
+    )
 
     duplicate_source = deepcopy(base)
     duplicate_source['items'][-1]['source_url'] = duplicate_source['items'][0]['source_url']
@@ -108,7 +128,10 @@ def main():
     expect_fail('non-contiguous global rank', bad_rank, 'rank_global must be a contiguous')
 
     expect_pass('pre-effective historical variable-pool compatibility', historical_fixture(cfg))
-    print(f'COLLECTION CONTRACT DRY RUN PASS: config target={target}/category total={total}; no files written')
+    print(
+        f'COLLECTION CONTRACT DRY RUN PASS: config target={target}/category total={total}; '
+        'target is measured after registry dedupe; no files written'
+    )
 
 
 if __name__ == '__main__':
