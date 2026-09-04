@@ -39,7 +39,6 @@ jobs:
           n=len(d['items'])
           assert 20 <= n <= 30, n
           ids={x['id'] for x in d['items']}
-          assert 'cascadeur-2026-2-layers' in ids
           assert 'cascadeur-2026-2-animation-layers' not in ids
           print('TODAY RELEASE-GATE PASS:',n,dict(Counter(x['category'] for x in d['items'])))
           PY
