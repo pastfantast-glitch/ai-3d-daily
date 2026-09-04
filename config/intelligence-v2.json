@@ -4,15 +4,21 @@
   "start_date": "2026-09-02",
   "collection_contract_effective_date": "2026-09-04",
   "category_pool_target_items": 5,
-  "category_pool_max_items": 5,
-  "category_pool_min_items": 5,
-  "category_fill_policy": "target_five_priority_backfill",
+  "category_pool_max_items": 30,
+  "category_pool_min_items": 0,
+  "category_fill_policy": "daily_total_20_30_quality_first",
   "collection": {
     "selection_principle": "production_value_first",
     "major_news_is_ranking_signal_not_admission_gate": true,
     "candidate_pool_target_per_category": 20,
     "candidate_pool_stretch_per_category": 40,
-    "discovery_windows": ["24h", "7d", "30d", "6m", "evergreen"],
+    "discovery_windows": [
+      "24h",
+      "7d",
+      "30d",
+      "6m",
+      "evergreen"
+    ],
     "window_policy": {
       "24h": "Prioritize fresh releases, changelogs, model/tool updates and meaningful production news. Fresh valid intelligence always gets first claim on the five category slots.",
       "7d": "Backfill strong unpublished production workflows, breakdowns, tests, add-ons, DCC/engine techniques and AI-assisted production findings when fresh items do not fill the category target.",
@@ -27,7 +33,7 @@
       "6m:research-reference-missed-high-value",
       "evergreen:official-production-reference"
     ],
-    "fill_target_policy": "For every category, continue discovery through the fill ladder until exactly 5 valid unpublished items survive Quality Gate. Search roughly 20 candidates per category and stretch toward 40 when needed. If a category is still below 5 after exhausting all tiers, fail the release-ready gate and report the category deficit; never use duplicates, unverifiable claims or low-production-value filler to satisfy the count.",
+    "fill_target_policy": "Continue discovery through the configured fill ladder aiming for 30 total valid unpublished items after Published Intelligence Registry dedupe and Quality Gate. Twenty items is the release floor, not a discovery stop signal. Category counts are diversity diagnostics, not release quotas. After reasonable exhaustion of all configured tiers, 20-29 valid items may publish; never pad with duplicates, unverifiable claims or low-production-value filler.",
     "inclusion_tiers": {
       "A": {
         "label": "major-intelligence",
@@ -51,8 +57,11 @@
       "low-production-value old content used only to pad quantity"
     ],
     "completeness_trigger_total_items": 30,
-    "completeness_trigger_policy": "Release-ready target is six categories x five items = 30. If any category is below five after Quality Gate, continue discovery through 7d, 30d, 6m and evergreen tiers, expanding credible official, production-case, technical-art, research and community/GitHub sources until the five-item category target is satisfied. This is a fill requirement, not permission to lower the Quality Gate.",
-    "ranking_guidance": "Production value, practical applicability, source verifiability and freshness drive ranking. Fresh intelligence is preferred, while high-value backfill remains eligible when needed to complete a category. Major-news significance increases rank but is not required for admission."
+    "completeness_trigger_policy": "Release-ready when 20-30 valid unpublished items survive Published Intelligence Registry dedupe and Quality Gate after the configured discovery ladder has been reasonably exhausted. Target and maximum are 30. Category shortages do not block release and must never be padded.",
+    "ranking_guidance": "Production value, practical applicability, source verifiability and freshness drive ranking. Aim for broad six-category coverage without enforcing equal quotas. Continue discovery toward 30 even after reaching the 20-item release floor.",
+    "daily_min_items": 20,
+    "daily_target_items": 30,
+    "daily_max_items": 30
   },
   "homepage": {
     "top5": 5,
@@ -86,13 +95,22 @@
       "id": "ai-generation",
       "label": "AI 生成",
       "description": "AI 3D 生成 / AI 2D 生成 / AI 動作生成",
-      "subtypes": ["ai-3d", "ai-2d", "ai-motion"]
+      "subtypes": [
+        "ai-3d",
+        "ai-2d",
+        "ai-motion"
+      ]
     },
     {
       "id": "3d-production",
       "label": "3D 製作",
       "description": "3D 角色製作 / 3D 物件製作 / 3D 場景製作 / 製作流程",
-      "subtypes": ["character-production", "prop-production", "environment-production", "production-workflow"],
+      "subtypes": [
+        "character-production",
+        "prop-production",
+        "environment-production",
+        "production-workflow"
+      ],
       "collection_guidance": [
         "Prioritize practical game-art asset creation rather than treating individual technical steps as standalone intelligence categories.",
         "character-production covers character modeling, sculpting, hair, cloth, character textures/materials and end-to-end character workflows.",
@@ -106,25 +124,53 @@
       "id": "3d-animation",
       "label": "3D 動作",
       "description": "3D 動作 / 3D 動作製作流程",
-      "subtypes": ["rigging", "animation", "mocap", "retarget", "cleanup", "facial"]
+      "subtypes": [
+        "rigging",
+        "animation",
+        "mocap",
+        "retarget",
+        "cleanup",
+        "facial"
+      ]
     },
     {
       "id": "engine-art",
       "label": "遊戲引擎",
       "description": "遊戲引擎 / 引擎端美術內容",
-      "subtypes": ["unreal", "unity", "shader", "rendering", "tools", "optimization"]
+      "subtypes": [
+        "unreal",
+        "unity",
+        "shader",
+        "rendering",
+        "tools",
+        "optimization"
+      ]
     },
     {
       "id": "emerging-case",
       "label": "新技術 / Case",
       "description": "新技術 / Production Case",
-      "subtypes": ["research", "case-study", "procedural", "world-model", "4d"]
+      "subtypes": [
+        "research",
+        "case-study",
+        "procedural",
+        "world-model",
+        "4d"
+      ]
     },
     {
       "id": "blender-dcc",
       "label": "Blender / DCC",
       "description": "Blender / DCC 工具與工作流 / Blender Tips",
-      "subtypes": ["blender", "blender-tip", "addon", "maya", "houdini", "substance", "other-dcc"]
+      "subtypes": [
+        "blender",
+        "blender-tip",
+        "addon",
+        "maya",
+        "houdini",
+        "substance",
+        "other-dcc"
+      ]
     }
   ]
 }

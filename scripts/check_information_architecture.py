@@ -110,7 +110,6 @@ def main():
     if links != expected_links: fail(f'category navigation mismatch: {links} != {expected_links}')
     nav_contract(home, date, cfg, 'top5', category_page=False)
     pool_max = int(cfg['category_pool_max_items'])
-    pool_target = int(cfg['category_pool_target_items'])
     target_mode = target_fill_applies(data, cfg)
     for category in cfg['categories']:
         path = ROOT / date / category['id'] / 'index.html'
@@ -127,7 +126,6 @@ def main():
         expected = [x['id'] for x in category_items(data, category['id'])]
         actual = [x.get('data-intel-id') for x in cards]
         if actual != expected: fail(f'{category["id"]}: page item IDs/order mismatch')
-        if target_mode and len(cards) != pool_target: fail(f'{category["id"]}: target-fill category page must contain exactly {pool_target} items, got {len(cards)}')
         if len(cards) > pool_max and target_mode: fail(f'{category["id"]}: category page exceeds maximum {pool_max} items, got {len(cards)}')
         bottom = soup.select_one('nav.category-bottom-nav')
         if not bottom or len(bottom.select('a[href]')) != 3:
@@ -153,7 +151,7 @@ def main():
         print('\n'.join('- ' + x for x in errors))
         sys.exit(1)
     counts = ', '.join(f'{c["id"]}={len(category_items(data, c["id"]))}' for c in cfg['categories'])
-    mode = f'exact {pool_target}/category target-fill' if target_mode else 'legacy variable-pool compatibility'
+    col=cfg.get('collection') or {}; mode = f'daily {col.get("daily_min_items")}-{col.get("daily_max_items")} target {col.get("daily_target_items")}' if target_mode else 'legacy variable-pool compatibility'
     print(f'V2 INFORMATION ARCHITECTURE PASS: {mode} + available TOP5/next10 + shared components + no-hero historical category pages + direct-link-safe navigation / {counts}')
 
 if __name__ == '__main__': main()

@@ -95,7 +95,7 @@ def main():
     if not home_date or home_date.get_text(' ',strip=True)!=date: fail('homepage current date does not match canonical date')
     if not daily.body or daily.body.get('data-report-date')!=date: fail('daily body data-report-date does not match canonical date')
     home_top=card_ids(home,'.top-item','homepage TOP'); home_more=card_ids(home,'.more-card','homepage Supplemental')
-    daily_top=card_ids(daily,'#top .news','daily TOP'); daily_more=card_ids(daily,'.category-news','daily Supplemental')
+    daily_top=card_ids(daily,'#top .news','daily TOP'); daily_more=card_ids(daily,'.daily-card-more','daily Supplemental')
     if home_top!=top: fail(f'homepage TOP order/IDs differ from canonical: {home_top} != {top}')
     if home_more!=more: fail(f'homepage Supplemental order/IDs differ from canonical: {home_more} != {more}')
     if daily_top!=top: fail(f'daily TOP order/IDs differ from canonical: {daily_top} != {top}')
@@ -104,13 +104,13 @@ def main():
     if set(home_top+home_more)!=expected_home: fail('homepage selected ID set mismatch')
     if set(daily_top+daily_more)!=expected_home: fail('daily selected ID set mismatch')
 
-    home_sources=source_map(home,'.top-item,.more-card','homepage'); daily_sources=source_map(daily,'#top .news,.category-news','daily')
+    home_sources=source_map(home,'.top-item,.more-card','homepage'); daily_sources=source_map(daily,'#top .news,.daily-card-more','daily')
     records={x['id']:x for x in items}
     for rid in expected_home:
         hs=home_sources.get(rid); ds=daily_sources.get(rid); canonical=norm_url(records[rid].get('source_url'))
         if hs and ds and hs!=ds: fail(f'{rid}: homepage/daily source URL drift: {hs} != {ds}')
         if canonical and hs and canonical!=hs: fail(f'{rid}: homepage source differs from canonical source_url')
-    for label,soup,selector in [('homepage',home,'.top-item,.more-card'),('daily',daily,'#top .news,.category-news')]:
+    for label,soup,selector in [('homepage',home,'.top-item,.more-card'),('daily',daily,'#top .news,.daily-card-more')]:
         for card in soup.select(selector):
             rid=card.get('data-intel-id','?')
             if not card.select_one('details .detail-body'): fail(f'{label} {rid}: missing Full Analysis shell')
@@ -120,8 +120,8 @@ def main():
         print('RELEASE INPUT CONTRACT FAILED'); print('\n'.join('- '+e for e in errors)); sys.exit(1)
     if is_v2_dataset(data):
         cfg=load_config()
-        target=int(cfg['category_pool_target_items']); categories=len(cfg['categories'])
-        mode=f'V2 {categories}x{target} target-fill / TOP5+next10' if target_fill_applies(data,cfg) else 'V2 legacy variable pools / TOP5+next10'
+        col=cfg.get('collection') or {}
+        mode=f'V2 daily {col.get("daily_min_items")}-{col.get("daily_max_items")} target {col.get("daily_target_items")} / TOP5+next10' if target_fill_applies(data,cfg) else 'V2 legacy variable pools / TOP5+next10'
     else:
         mode=f'{len(top)} TOP / {len(more)} Supplemental'
     print(f'RELEASE INPUT CONTRACT PASS: {date} / {mode} / source parity OK')

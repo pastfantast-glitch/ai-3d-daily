@@ -1,19 +1,921 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="zh-Hant">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>2026-09-04｜AI 3D Daily</title>
-  <link rel="stylesheet" href="../styles.css">
-  <link rel="stylesheet" href="../shared-components.css">
-  <link rel="stylesheet" href="../daily.css">
-</head>
-<body class="archive-page" data-report-date="2026-09-04">
-  <header class="site-head daily-hero"></header>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   2026-09-04｜AI 3D Daily
+  </title>
+  <link href="../styles.css?v=20260904-r3-workspace-v5" rel="stylesheet"/>
+  <link href="../shared-components.css?v=20260904-r3-workspace-v5" rel="stylesheet"/>
+  <link href="../daily.css?v=20260904-r3-workspace-v5" rel="stylesheet"/>
+ </head>
+ <body class="archive-page" data-next="" data-previous="2026-09-03" data-report-date="2026-09-04">
+  <nav aria-label="Production Intelligence 分類" class="global-category-nav">
+   <div class="page global-category-nav-inner">
+    <div class="archive-nav-controls">
+     <a class="archive-nav-home" href="../">
+      ← 首頁
+     </a>
+     <div class="archive-nav-date">
+      <a aria-label="前一日日報" class="archive-nav-arrow" href="../2026-09-03/">
+       ←
+      </a>
+      <span>
+       2026-09-04
+      </span>
+     </div>
+    </div>
+    <span aria-hidden="true" class="archive-nav-divider">
+    </span>
+    <a class="global-category-link is-active" href="#top">
+     TOP5
+    </a>
+    <a class="global-category-link" data-category="ai-generation" href="ai-generation/">
+     AI 生成
+    </a>
+    <a class="global-category-link" data-category="3d-production" href="3d-production/">
+     3D 製作
+    </a>
+    <a class="global-category-link" data-category="3d-animation" href="3d-animation/">
+     3D 動作
+    </a>
+    <a class="global-category-link" data-category="engine-art" href="engine-art/">
+     遊戲引擎
+    </a>
+    <a class="global-category-link" data-category="emerging-case" href="emerging-case/">
+     新技術 / Case
+    </a>
+    <a class="global-category-link" data-category="blender-dcc" href="blender-dcc/">
+     Blender / DCC
+    </a>
+   </div>
+  </nav>
   <main class="page daily-main">
-    <section class="block" id="top"></section>
-    <section class="block" id="more"></section>
+   <section class="block" id="top">
+    <div class="block-head">
+     <div>
+      <span>
+       2026-09-04
+      </span>
+      <h2>
+       TOP5
+      </h2>
+     </div>
+    </div>
+    <article class="news daily-card daily-card-top" data-intel-id="nvidia-dlss5-3d-guided-neural-rendering" data-intel-role="card">
+     <div class="news-rank">
+      01
+     </div>
+     <div class="news-main">
+      <div class="meta">
+       <span class="pill">
+        rendering
+       </span>
+      </div>
+      <h3>
+       DLSS 5：3D-Guided Neural Rendering 將材質與光照納入可控神經渲染
+      </h3>
+      <p class="summary">
+       NVIDIA 公布 DLSS 5 的 3D-Guided Neural Rendering，讓開發者以場景幾何與引擎資料引導神經渲染，並提供藝術控制項調整材質、光照與最終視覺。
+      </p>
+      <figure class="case-preview daily-visual" data-intel-id="nvidia-dlss5-3d-guided-neural-rendering" data-intel-role="visual" data-visual-id="nvidia-dlss5-3d-guided-neural-rendering">
+       <a href="https://www.nvidia.com/en-eu/geforce/news/dlss-5-3d-guided-neural-rendering/" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-09-04/nvidia-dlss5-3d-guided-neural-rendering.jpg"/>
+       </a>
+       <figcaption>
+        <span>
+         SOURCE PREVIEW
+        </span>
+        · Local visual evidence · 點圖開啟原始來源
+       </figcaption>
+      </figure>
+      <div class="quick-impact daily-impact">
+       <span>
+        Engine AI ★★★★★
+       </span>
+      </div>
+      <details class="daily-full-analysis">
+       <summary>
+        完整分析
+       </summary>
+       <div class="detail-body daily-analysis-body">
+        <h4>
+         渲染流程變化
+        </h4>
+        <p>
+         DLSS 5 不再只把 AI 放在升頻或補幀階段，而是把 3D 場景資訊納入神經渲染，使引擎提供的幾何與畫面資料直接參與最終材質與光照重建。
+        </p>
+        <h4>
+         製作價值
+        </h4>
+        <p>
+         重點是畫質提升能否在目標平台以可接受成本穩定重現。
+        </p>
+        <h4>
+         平台實測
+        </h4>
+        <p>
+         固定場景比較畫質、GPU/CPU、記憶體、scalability 與 fallback。
+        </p>
+       </div>
+      </details>
+      <a class="source daily-source" href="https://www.nvidia.com/en-eu/geforce/news/dlss-5-3d-guided-neural-rendering/" rel="noopener noreferrer" target="_blank">
+       來源
+      </a>
+     </div>
+    </article>
+    <article class="news daily-card daily-card-top" data-intel-id="nvidia-videomatgen-pbr-material-generation" data-intel-role="card">
+     <div class="news-rank">
+      02
+     </div>
+     <div class="news-main">
+      <div class="meta">
+       <span class="pill">
+        ai-3d
+       </span>
+      </div>
+      <h3>
+       VideoMatGen：由幾何 + 文字聯合生成 Base Color／Roughness／Metallic／Height
+      </h3>
+      <p class="summary">
+       NVIDIA 研究提出以影片擴散架構對幾何條件與文字描述進行 PBR 材質聯合生成，一次預測多個常用材質通道。
+      </p>
+      <figure class="case-preview daily-visual" data-intel-id="nvidia-videomatgen-pbr-material-generation" data-intel-role="visual" data-visual-id="nvidia-videomatgen-pbr-material-generation">
+       <a href="https://research.nvidia.com/labs/rtr/publication/hasselgren2026videomatgen/" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-09-04/nvidia-videomatgen-pbr-material-generation.jpg"/>
+       </a>
+       <figcaption>
+        <span>
+         SOURCE PREVIEW
+        </span>
+        · Local visual evidence · 點圖開啟原始來源
+       </figcaption>
+      </figure>
+      <div class="quick-impact daily-impact">
+       <span>
+        AI Material ★★★★★
+       </span>
+      </div>
+      <details class="daily-full-analysis">
+       <summary>
+        完整分析
+       </summary>
+       <div class="detail-body daily-analysis-body">
+        <h4>
+         生成內容
+        </h4>
+        <p>
+         VideoMatGen 同時建模 Base Color、Roughness、Metallicity 與 Height。
+        </p>
+        <h4>
+         製作價值
+        </h4>
+        <p>
+         評估重點是輸出可控性、可編輯性與人工 cleanup 是否真的下降。
+        </p>
+        <h4>
+         導入測試
+        </h4>
+        <p>
+         用代表性 input 驗一致性、格式、DCC/engine 接續與授權風險。
+        </p>
+       </div>
+      </details>
+      <a class="source daily-source" href="https://research.nvidia.com/labs/rtr/publication/hasselgren2026videomatgen/" rel="noopener noreferrer" target="_blank">
+       來源
+      </a>
+     </div>
+    </article>
+    <article class="news daily-card daily-card-top" data-intel-id="motionstruct4d-motion-structure-gs" data-intel-role="card">
+     <div class="news-rank">
+      03
+     </div>
+     <div class="news-main">
+      <div class="meta">
+       <span class="pill">
+        research
+       </span>
+      </div>
+      <h3>
+       MotionStruct4D：從 Video-to-4D 中分離可重用的運動結構
+      </h3>
+      <p class="summary">
+       MotionStruct4D 針對 Gaussian Splatting 的動態重建，把影片中的運動結構顯式建模，目標是提升 4D 場景的可解釋性與可控性。
+      </p>
+      <div class="quick-impact daily-impact">
+       <span>
+        4D Research ★★★★★
+       </span>
+      </div>
+      <details class="daily-full-analysis">
+       <summary>
+        完整分析
+       </summary>
+       <div class="detail-body daily-analysis-body">
+        <h4>
+         技術變化
+        </h4>
+        <p>
+         與只追求逐幀外觀重建的 4DGS 相比，MotionStruct4D 把 motion structure 當成可發現、可組織的中介表示。
+        </p>
+        <h4>
+         製作潛力
+        </h4>
+        <p>
+         先判斷研究輸出是否能轉成 DCC／engine 可消費、可控制的資料。
+        </p>
+        <h4>
+         成熟度判斷
+        </h4>
+        <p>
+         以隔離 R&amp;D 測可控性、一致性、輸出表示與量產成本。
+        </p>
+       </div>
+      </details>
+      <a class="source daily-source" href="https://link.springer.com/article/10.1007/s11263-026-02656-2" rel="noopener noreferrer" target="_blank">
+       來源
+      </a>
+     </div>
+    </article>
+    <article class="news daily-card daily-card-top" data-intel-id="cult-tsar-fish-decaying-church-workflow" data-intel-role="card">
+     <div class="news-rank">
+      04
+     </div>
+     <div class="news-main">
+      <div class="meta">
+       <span class="pill">
+        environment-production
+       </span>
+      </div>
+      <h3>
+       腐朽沼澤教堂：ZBrush→Designer/Painter→SpeedTree→UE 的分層環境製作
+      </h3>
+      <p class="summary">
+       Nicolas Pablos 拆解 Cult of the Tsar Fish 場景，從雕刻、材質到分層沼澤植被與 Unreal 組裝，提供完整環境 Production Case。
+      </p>
+      <figure class="case-preview daily-visual" data-intel-id="cult-tsar-fish-decaying-church-workflow" data-intel-role="visual" data-visual-id="cult-tsar-fish-decaying-church-workflow">
+       <a href="https://80.lv/articles/breakdown-creating-a-3d-scene-of-a-decaying-orthodox-church-in-a-swamp" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-09-04/cult-tsar-fish-decaying-church-workflow.jpg"/>
+       </a>
+       <figcaption>
+        <span>
+         SOURCE PREVIEW
+        </span>
+        · Local visual evidence · 點圖開啟原始來源
+       </figcaption>
+      </figure>
+      <div class="quick-impact daily-impact">
+       <span>
+        Environment ★★★★★
+       </span>
+      </div>
+      <details class="daily-full-analysis">
+       <summary>
+        完整分析
+       </summary>
+       <div class="detail-body daily-analysis-body">
+        <h4>
+         資產拆解
+        </h4>
+        <p>
+         案例以建築主體、雕刻細節、程序材質與多層植被分工，避免整個場景用單一高成本方法完成；這種分層方式更接近實際 environment pipeline。
+        </p>
+        <h4>
+         流程價值
+        </h4>
+        <p>
+         重點是是否減少建模、材質、拓樸或場景組裝的返工。
+        </p>
+        <h4>
+         實測
+        </h4>
+        <p>
+         用同一代表資產比較工時、品質、可維護性與 engine 交付。
+        </p>
+       </div>
+      </details>
+      <a class="source daily-source" href="https://80.lv/articles/breakdown-creating-a-3d-scene-of-a-decaying-orthodox-church-in-a-swamp" rel="noopener noreferrer" target="_blank">
+       來源
+      </a>
+     </div>
+    </article>
+    <article class="news daily-card daily-card-top" data-intel-id="avatar-sdk-move-text-to-animation" data-intel-role="card">
+     <div class="news-rank">
+      05
+     </div>
+     <div class="news-main">
+      <div class="meta">
+       <span class="pill">
+        ai-motion
+       </span>
+      </div>
+      <h3>
+       Avatar SDK Move：文字直接生成可匯出 FBX／GLB 的角色動作
+      </h3>
+      <p class="summary">
+       Avatar SDK Move 開放 Beta，可由自然語言生成走路、跑步、手勢與舞蹈等角色動畫，並直接套用至 MetaPerson 後輸出標準 3D 格式。
+      </p>
+      <figure class="case-preview daily-visual" data-intel-id="avatar-sdk-move-text-to-animation" data-intel-role="visual" data-visual-id="avatar-sdk-move-text-to-animation">
+       <a href="https://avatarsdk.com/blog/2026/07/27/avatar-sdk-move-beta-text-to-animation/" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-09-04/avatar-sdk-move-text-to-animation.jpg"/>
+       </a>
+       <figcaption>
+        <span>
+         SOURCE PREVIEW
+        </span>
+        · Local visual evidence · 點圖開啟原始來源
+       </figcaption>
+      </figure>
+      <div class="quick-impact daily-impact">
+       <span>
+        AI Motion ★★★★★
+       </span>
+      </div>
+      <details class="daily-full-analysis">
+       <summary>
+        完整分析
+       </summary>
+       <div class="detail-body daily-analysis-body">
+        <h4>
+         動作生成流程
+        </h4>
+        <p>
+         Move 將 prompt 直接轉成 avatar animation，並提供 FBX／GLB 輸出，代表它可被放在 blocking 或 NPC 動作草稿的前段。
+        </p>
+        <h4>
+         製作價值
+        </h4>
+        <p>
+         評估重點是輸出可控性、可編輯性與人工 cleanup 是否真的下降。
+        </p>
+        <h4>
+         導入測試
+        </h4>
+        <p>
+         用代表性 input 驗一致性、格式、DCC/engine 接續與授權風險。
+        </p>
+       </div>
+      </details>
+      <a class="source daily-source" href="https://avatarsdk.com/blog/2026/07/27/avatar-sdk-move-beta-text-to-animation/" rel="noopener noreferrer" target="_blank">
+       來源
+      </a>
+     </div>
+    </article>
+   </section>
+   <section class="block daily-more" id="more">
+    <div class="block-head">
+     <div>
+      <span>
+       2026-09-04
+      </span>
+      <h2>
+       當日其他資訊
+      </h2>
+     </div>
+    </div>
+    <article class="daily-card daily-card-more category-news" data-intel-id="nvidia-dlss45-ray-reconstruction-gamescom" data-intel-role="card">
+     <div class="meta">
+      <span class="pill">
+       rendering
+      </span>
+     </div>
+     <h3>
+      DLSS 4.5 Ray Reconstruction：第二代 Transformer 強化時序穩定並開放更細 Temporal Control
+     </h3>
+     <p class="summary">
+      NVIDIA Gamescom 2026 更新 Ray Reconstruction，新模型增加計算與參數量、擴大資料集，並提供開發者更細的 temporal accumulation…
+     </p>
+     <figure class="case-preview daily-visual" data-intel-id="nvidia-dlss45-ray-reconstruction-gamescom" data-intel-role="visual" data-visual-id="nvidia-dlss45-ray-reconstruction-gamescom">
+      <a href="https://www.nvidia.com/en-us/geforce/news/gamescom-2026-nvidia-geforce-rtx-dlss-4-5-announcements/" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+       <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-09-04/nvidia-dlss45-ray-reconstruction-gamescom.jpg"/>
+      </a>
+      <figcaption>
+       <span>
+        SOURCE PREVIEW
+       </span>
+       · Local visual evidence · 點圖開啟原始來源
+      </figcaption>
+     </figure>
+     <div class="quick-impact daily-impact">
+      <span>
+       Rendering ★★★★★
+      </span>
+     </div>
+     <details class="daily-full-analysis">
+      <summary>
+       完整分析
+      </summary>
+      <div class="detail-body daily-analysis-body">
+       <h4>
+        畫質變化
+       </h4>
+       <p>
+        新版 Ray Reconstruction 針對 ray/path-traced lighting 的 temporal stability、motion clar…
+       </p>
+       <h4>
+        製作價值
+       </h4>
+       <p>
+        重點是畫質提升能否在目標平台以可接受成本穩定重現。
+       </p>
+       <h4>
+        平台實測
+       </h4>
+       <p>
+        固定場景比較畫質、GPU/CPU、記憶體、scalability 與 fallback。
+       </p>
+      </div>
+     </details>
+     <a class="source daily-source" href="https://www.nvidia.com/en-us/geforce/news/gamescom-2026-nvidia-geforce-rtx-dlss-4-5-announcements/" rel="noopener noreferrer" target="_blank">
+      來源
+     </a>
+    </article>
+    <article class="daily-card daily-card-more category-news" data-intel-id="firefly-production-workflow-builder" data-intel-role="card">
+     <div class="meta">
+      <span class="pill">
+       ai-2d
+      </span>
+     </div>
+     <h3>
+      Adobe Firefly Production：節點式生成工作流可批次串接輸入、生成、編輯與輸出
+     </h3>
+     <p class="summary">
+      Firefly 的 Production Workflow Builder 以節點連接文字、影像、影片、生成與轉換步驟，目標是把重複生成任務做成可重用批次流程。
+     </p>
+     <div class="quick-impact daily-impact">
+      <span>
+       AI Workflow ★★★★★
+      </span>
+     </div>
+     <details class="daily-full-analysis">
+      <summary>
+       完整分析
+      </summary>
+      <div class="detail-body daily-analysis-body">
+       <h4>
+        工作流變化
+       </h4>
+       <p>
+        節點化之後，生成不再是單次 prompt 操作，而能把 input、generate/edit/transform 與 output 固定成流程。
+       </p>
+       <h4>
+        製作價值
+       </h4>
+       <p>
+        評估重點是輸出可控性、可編輯性與人工 cleanup 是否真的下降。
+       </p>
+       <h4>
+        導入測試
+       </h4>
+       <p>
+        用代表性 input 驗一致性、格式、DCC/engine 接續與授權風險。
+       </p>
+      </div>
+     </details>
+     <a class="source daily-source" href="https://helpx.adobe.com/firefly/web/work-with-enterprise-features/creative-production/build-custom-workflows.html" rel="noopener noreferrer" target="_blank">
+      來源
+     </a>
+    </article>
+    <article class="daily-card daily-card-more category-news" data-intel-id="clock-saint-zbrush-material-hierarchy" data-intel-role="card">
+     <div class="meta">
+      <span class="pill">
+       character-production
+      </span>
+     </div>
+     <h3>
+      CLOCK SAINT：以四區塊雕刻與 Roughness 階層管理複雜暗黑角色
+     </h3>
+     <p class="summary">
+      Kang Jeong 將角色分為上身、下身、頭與手臂四大區塊，在 ZBrush 完成主要設計，再以金、石、青銅與黑鐵建立材質階層。
+     </p>
+     <figure class="case-preview daily-visual" data-intel-id="clock-saint-zbrush-material-hierarchy" data-intel-role="visual" data-visual-id="clock-saint-zbrush-material-hierarchy">
+      <a href="https://80.lv/articles/sculpting-a-dark-fantasy-character-with-clockwork-elements-religious-imagery" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+       <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-09-04/clock-saint-zbrush-material-hierarchy.jpg"/>
+      </a>
+      <figcaption>
+       <span>
+        SOURCE PREVIEW
+       </span>
+       · Local visual evidence · 點圖開啟原始來源
+      </figcaption>
+     </figure>
+     <div class="quick-impact daily-impact">
+      <span>
+       Character ★★★★☆
+      </span>
+     </div>
+     <details class="daily-full-analysis">
+      <summary>
+       完整分析
+      </summary>
+      <div class="detail-body daily-analysis-body">
+       <h4>
+        複雜度管理
+       </h4>
+       <p>
+        大型角色以主要區塊分治，搭配可重用 IMM／base meshes，能把大量齒輪與硬表面元素的反覆建模成本降到可控範圍。
+       </p>
+       <h4>
+        流程價值
+       </h4>
+       <p>
+        重點是是否減少建模、材質、拓樸或場景組裝的返工。
+       </p>
+       <h4>
+        實測
+       </h4>
+       <p>
+        用同一代表資產比較工時、品質、可維護性與 engine 交付。
+       </p>
+      </div>
+     </details>
+     <a class="source daily-source" href="https://80.lv/articles/sculpting-a-dark-fantasy-character-with-clockwork-elements-religious-imagery" rel="noopener noreferrer" target="_blank">
+      來源
+     </a>
+    </article>
+    <article class="daily-card daily-card-more category-news" data-intel-id="nymera-character-retopo-mari-arnold" data-intel-role="card">
+     <div class="meta">
+      <span class="pill">
+       character-production
+      </span>
+     </div>
+     <h3>
+      Nymera：為 Rig 提前規劃 Retopo，並以程序 Mari 材質支撐多人並行修改
+     </h3>
+     <p class="summary">
+      Ronja Stucken 的 Alien Shaman 專案在 ZBrush 建模後，以 rigging 為前提於 Maya 重拓樸，服裝利用 Marvelous 2D patter…
+     </p>
+     <figure class="case-preview daily-visual" data-intel-id="nymera-character-retopo-mari-arnold" data-intel-role="visual" data-visual-id="nymera-character-retopo-mari-arnold">
+      <a href="https://80.lv/articles/creating-an-alien-shaman-cg-character-using-zbrush-mari-maya" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+       <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-09-04/nymera-character-retopo-mari-arnold.jpg"/>
+      </a>
+      <figcaption>
+       <span>
+        SOURCE PREVIEW
+       </span>
+       · Local visual evidence · 點圖開啟原始來源
+      </figcaption>
+     </figure>
+     <div class="quick-impact daily-impact">
+      <span>
+       Character Pipeline ★★★★★
+      </span>
+     </div>
+     <details class="daily-full-analysis">
+      <summary>
+       完整分析
+      </summary>
+      <div class="detail-body daily-analysis-body">
+       <h4>
+        Rig 前置
+       </h4>
+       <p>
+        作者在 retopology 階段就與 rigger 溝通，代表 topology 不是造型完成後才補的交付步驟；嘴、臉與身體變形需求應提前影響 edge flow。
+       </p>
+       <h4>
+        流程價值
+       </h4>
+       <p>
+        重點是是否減少建模、材質、拓樸或場景組裝的返工。
+       </p>
+       <h4>
+        實測
+       </h4>
+       <p>
+        用同一代表資產比較工時、品質、可維護性與 engine 交付。
+       </p>
+      </div>
+     </details>
+     <a class="source daily-source" href="https://80.lv/articles/creating-an-alien-shaman-cg-character-using-zbrush-mari-maya" rel="noopener noreferrer" target="_blank">
+      來源
+     </a>
+    </article>
+    <article class="daily-card daily-card-more category-news" data-intel-id="ue58-mesh-terrain-production" data-intel-role="card">
+     <div class="meta">
+      <span class="pill">
+       unreal
+      </span>
+     </div>
+     <h3>
+      UE5.8 Mesh Terrain：真 3D 地形 + Non-destructive Modifiers + World Partition
+     </h3>
+     <p class="summary">
+      Mesh Terrain 以 3D mesh 取代傳統純 heightfield 限制，可建立懸崖、洞穴與 overhang，並以 modifiers、weight channels …
+     </p>
+     <figure class="case-preview daily-visual" data-intel-id="ue58-mesh-terrain-production" data-intel-role="visual" data-visual-id="ue58-mesh-terrain-production">
+      <a href="https://dev.epicgames.com/documentation/unreal-engine/mesh-terrain-in-unreal-engine" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+       <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-09-04/ue58-mesh-terrain-production.jpg"/>
+      </a>
+      <figcaption>
+       <span>
+        SOURCE PREVIEW
+       </span>
+       · Local visual evidence · 點圖開啟原始來源
+      </figcaption>
+     </figure>
+     <div class="quick-impact daily-impact">
+      <span>
+       UE5 Worldbuilding ★★★★★
+      </span>
+     </div>
+     <details class="daily-full-analysis">
+      <summary>
+       完整分析
+      </summary>
+      <div class="detail-body daily-analysis-body">
+       <h4>
+        世界製作方式
+       </h4>
+       <p>
+        Mesh Terrain 的基礎不是固定解析度 heightfield，可把重要區域給更高密度、遠區更低密度，並允許 overhang/tunnel 等真正 3D 形體。
+       </p>
+       <h4>
+        製作價值
+       </h4>
+       <p>
+        重點是畫質提升能否在目標平台以可接受成本穩定重現。
+       </p>
+       <h4>
+        平台實測
+       </h4>
+       <p>
+        固定場景比較畫質、GPU/CPU、記憶體、scalability 與 fallback。
+       </p>
+      </div>
+     </details>
+     <a class="source daily-source" href="https://dev.epicgames.com/documentation/unreal-engine/mesh-terrain-in-unreal-engine" rel="noopener noreferrer" target="_blank">
+      來源
+     </a>
+    </article>
+    <article class="daily-card daily-card-more category-news" data-intel-id="firefly-scene-to-image-3d-reference" data-intel-role="card">
+     <div class="meta">
+      <span class="pill">
+       ai-2d
+      </span>
+     </div>
+     <h3>
+      Firefly Scene to Image：用簡單 3D 場景鎖定構圖、鏡頭與深度再生成影像
+     </h3>
+     <p class="summary">
+      Adobe Firefly 可用 Project Neo 形狀建立 3D 場景，將相機角度、構圖與深度作為生成影像的結構參考。
+     </p>
+     <div class="quick-impact daily-impact">
+      <span>
+       Concept Control ★★★★☆
+      </span>
+     </div>
+     <details class="daily-full-analysis">
+      <summary>
+       完整分析
+      </summary>
+      <div class="detail-body daily-analysis-body">
+       <h4>
+        控制方式
+       </h4>
+       <p>
+        Scene to Image 把 3D blockout 變成生成條件，artist 可以先鎖定 camera、物件相對位置與 depth，再讓模型處理風格與細節。
+       </p>
+       <h4>
+        製作價值
+       </h4>
+       <p>
+        評估重點是輸出可控性、可編輯性與人工 cleanup 是否真的下降。
+       </p>
+       <h4>
+        導入測試
+       </h4>
+       <p>
+        用代表性 input 驗一致性、格式、DCC/engine 接續與授權風險。
+       </p>
+      </div>
+     </details>
+     <a class="source daily-source" href="https://helpx.adobe.com/firefly/web/generate-images-with-text-to-image/generate-images-using-3d-scenes/scene-to-image.html" rel="noopener noreferrer" target="_blank">
+      來源
+     </a>
+    </article>
+    <article class="daily-card daily-card-more category-news" data-intel-id="4dgs-wam-object-centric-world-model" data-intel-role="card">
+     <div class="meta">
+      <span class="pill">
+       world-model
+      </span>
+     </div>
+     <h3>
+      4DGS-WAM：以 4D Gaussian Splatting 建立 Object-Centric World Action Model
+     </h3>
+     <p class="summary">
+      4DGS-WAM 將動態 Gaussian 表示與 action-conditioned world model 結合，探索可被行為驅動、以物件為中心的 4D 場景預測。
+     </p>
+     <figure class="case-preview daily-visual" data-intel-id="4dgs-wam-object-centric-world-model" data-intel-role="visual" data-visual-id="4dgs-wam-object-centric-world-model">
+      <a href="https://arxiv.org/abs/2608.25956" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+       <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-09-04/4dgs-wam-object-centric-world-model.jpg"/>
+      </a>
+      <figcaption>
+       <span>
+        SOURCE PREVIEW
+       </span>
+       · Local visual evidence · 點圖開啟原始來源
+      </figcaption>
+     </figure>
+     <div class="quick-impact daily-impact">
+      <span>
+       World Model ★★★★★
+      </span>
+     </div>
+     <details class="daily-full-analysis">
+      <summary>
+       完整分析
+      </summary>
+      <div class="detail-body daily-analysis-body">
+       <h4>
+        研究方向
+       </h4>
+       <p>
+        它把 4DGS 從被動重播的動態場景推向 action-conditioned prediction，核心價值是場景表示開始包含『物件如何因行為改變』。
+       </p>
+       <h4>
+        製作潛力
+       </h4>
+       <p>
+        先判斷研究輸出是否能轉成 DCC／engine 可消費、可控制的資料。
+       </p>
+       <h4>
+        成熟度判斷
+       </h4>
+       <p>
+        以隔離 R&amp;D 測可控性、一致性、輸出表示與量產成本。
+       </p>
+      </div>
+     </details>
+     <a class="source daily-source" href="https://arxiv.org/abs/2608.25956" rel="noopener noreferrer" target="_blank">
+      來源
+     </a>
+    </article>
+    <article class="daily-card daily-card-more category-news" data-intel-id="nvidia-physics-informed-articulated-3d-assets" data-intel-role="card">
+     <div class="meta">
+      <span class="pill">
+       ai-3d
+      </span>
+     </div>
+     <h3>
+      NVIDIA GTC 案例：生成式 3D 從外觀走向關節、分件與物理屬性
+     </h3>
+     <p class="summary">
+      NVIDIA GTC 2026 技術場次展示將影像或文字轉成具語意關節、part-aware mesh 與物理屬性的可驅動 3D 資產方法。
+     </p>
+     <div class="quick-impact daily-impact">
+      <span>
+       AI 3D Research ★★★★☆
+      </span>
+     </div>
+     <details class="daily-full-analysis">
+      <summary>
+       完整分析
+      </summary>
+      <div class="detail-body daily-analysis-body">
+       <h4>
+        生成目標改變
+       </h4>
+       <p>
+        方法把輸出目標從『看起來像的 mesh』提高到 articulated asset：包含關節估計、分件幾何與物理屬性，直接對應互動內容需要的結構。
+       </p>
+       <h4>
+        製作價值
+       </h4>
+       <p>
+        評估重點是輸出可控性、可編輯性與人工 cleanup 是否真的下降。
+       </p>
+       <h4>
+        導入測試
+       </h4>
+       <p>
+        用代表性 input 驗一致性、格式、DCC/engine 接續與授權風險。
+       </p>
+      </div>
+     </details>
+     <a class="source daily-source" href="https://www.nvidia.com/en-us/on-demand/session/gtc26-s81935/" rel="noopener noreferrer" target="_blank">
+      來源
+     </a>
+    </article>
+    <article class="daily-card daily-card-more category-news" data-intel-id="mllmsplat-3dgs-understanding-generation-editing" data-intel-role="card">
+     <div class="meta">
+      <span class="pill">
+       research
+      </span>
+     </div>
+     <h3>
+      MLLMSplat：讓 2D MLLM 同時理解、生成與編輯 3D Gaussian 場景
+     </h3>
+     <p class="summary">
+      CVPR 2026 的 MLLMSplat 透過 3DGS tokenizer/de-tokenizer 把 Gaussian representation 接入既有 2D multi…
+     </p>
+     <figure class="case-preview daily-visual" data-intel-id="mllmsplat-3dgs-understanding-generation-editing" data-intel-role="visual" data-visual-id="mllmsplat-3dgs-understanding-generation-editing">
+      <a href="https://openaccess.thecvf.com/content/CVPR2026/html/Xiu_MLLMSplat_A_2D_MLLM-Powered_Framework_for_3D_Gaussian_Splatting_Understanding_CVPR_2026_paper.html" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+       <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-09-04/mllmsplat-3dgs-understanding-generation-editing.jpg"/>
+      </a>
+      <figcaption>
+       <span>
+        SOURCE PREVIEW
+       </span>
+       · Local visual evidence · 點圖開啟原始來源
+      </figcaption>
+     </figure>
+     <div class="quick-impact daily-impact">
+      <span>
+       3D AI Research ★★★★☆
+      </span>
+     </div>
+     <details class="daily-full-analysis">
+      <summary>
+       完整分析
+      </summary>
+      <div class="detail-body daily-analysis-body">
+       <h4>
+        技術重點
+       </h4>
+       <p>
+        MLLMSplat 不是另訓一個封閉 3D 模型，而是設計 tokenizer/de-tokenizer 將 3DGS 接到 2D MLLM。
+       </p>
+       <h4>
+        製作潛力
+       </h4>
+       <p>
+        先判斷研究輸出是否能轉成 DCC／engine 可消費、可控制的資料。
+       </p>
+       <h4>
+        成熟度判斷
+       </h4>
+       <p>
+        以隔離 R&amp;D 測可控性、一致性、輸出表示與量產成本。
+       </p>
+      </div>
+     </details>
+     <a class="source daily-source" href="https://openaccess.thecvf.com/content/CVPR2026/html/Xiu_MLLMSplat_A_2D_MLLM-Powered_Framework_for_3D_Gaussian_Splatting_Understanding_CVPR_2026_paper.html" rel="noopener noreferrer" target="_blank">
+      來源
+     </a>
+    </article>
+    <article class="daily-card daily-card-more category-news" data-intel-id="blender-vat-animation-to-ue5" data-intel-role="card">
+     <div class="meta">
+      <span class="pill">
+       animation
+      </span>
+     </div>
+     <h3>
+      Blender→UE5：用 Vertex Animation Texture 傳遞非骨架動畫
+     </h3>
+     <p class="summary">
+      一套 Blender 到 Unreal 的 VAT workflow 將任意頂點動畫烘焙到 texture，再在 UE5 重建，適合模組變形或不適合 skeletal rig 的效果。
+     </p>
+     <figure class="case-preview daily-visual" data-intel-id="blender-vat-animation-to-ue5" data-intel-role="visual" data-visual-id="blender-vat-animation-to-ue5">
+      <a href="https://80.lv/articles/how-to-export-any-animation-from-blender-to-unreal-engine-5" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+       <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-09-04/blender-vat-animation-to-ue5.jpg"/>
+      </a>
+      <figcaption>
+       <span>
+        SOURCE PREVIEW
+       </span>
+       · Local visual evidence · 點圖開啟原始來源
+      </figcaption>
+     </figure>
+     <div class="quick-impact daily-impact">
+      <span>
+       Animation Pipeline ★★★★☆
+      </span>
+     </div>
+     <details class="daily-full-analysis">
+      <summary>
+       完整分析
+      </summary>
+      <div class="detail-body daily-analysis-body">
+       <h4>
+        傳輸方式
+       </h4>
+       <p>
+        VAT 把逐頂點位置／法線變化從傳統骨架或 cache 轉成 texture sampling。
+       </p>
+       <h4>
+        動作價值
+       </h4>
+       <p>
+        重點是減少 retarget、接觸點、root motion 與曲線 cleanup 工時。
+       </p>
+       <h4>
+        導入測試
+       </h4>
+       <p>
+        用既有 skeleton 驗 foot contact、retarget、root 與引擎回放。
+       </p>
+      </div>
+     </details>
+     <a class="source daily-source" href="https://80.lv/articles/how-to-export-any-animation-from-blender-to-unreal-engine-5" rel="noopener noreferrer" target="_blank">
+      來源
+     </a>
+    </article>
+   </section>
   </main>
-  <script src="../daily.js"></script>
-</body>
+  <script src="../daily.js?v=20260904-r3-workspace-v5">
+  </script>
+  <script defer="" src="../archive-nav-state.js?v=20260904-r3-workspace-v5">
+  </script>
+ </body>
 </html>

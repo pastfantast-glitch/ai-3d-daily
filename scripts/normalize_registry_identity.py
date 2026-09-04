@@ -62,16 +62,14 @@ def prior_registry(target_date):
     return owners, ids
 
 
-def category_deficits(cfg, items):
-    target = int(cfg['category_pool_target_items'])
+def daily_gate(cfg, items):
+    collection = cfg.get('collection') or {}
+    have = len(items)
+    minimum = int(collection['daily_min_items'])
+    target = int(collection['daily_target_items'])
+    maximum = int(collection['daily_max_items'])
     counts = Counter(str(item.get('category', '')).strip() for item in items)
-    deficits = {}
-    for category in cfg['categories']:
-        cid = category['id']
-        got = counts.get(cid, 0)
-        if got < target:
-            deficits[cid] = {'have': got, 'target': target, 'missing': target - got}
-    return deficits
+    return {'have':have,'min':minimum,'target':target,'max':maximum,'missing_to_min':max(0,minimum-have),'missing_to_target':max(0,target-have),'release_ready':minimum <= have <= maximum,'category_counts':{c['id']:counts.get(c['id'],0) for c in cfg['categories']}}
 
 
 def main():
@@ -140,14 +138,15 @@ def main():
     if collection.get('discovery_windows'):
         meta['discovery_windows'] = collection['discovery_windows']
 
-    deficits = category_deficits(cfg, kept)
+    gate = daily_gate(cfg, kept)
     meta['registry_identity_normalization'] = {
         'dropped_count': len(dropped),
         'rewritten_count': len(rewrites),
         'policy': 'published-source-without-substantive-delta-skip',
         'stage': 'collection-before-ready',
-        'refill_required': bool(deficits),
-        'category_deficits': deficits,
+        'refill_required': not gate['release_ready'],
+        'category_deficits': {},
+        'daily_release_gate': gate,
     }
 
     visual = data.get('visual_evidence') or {}
@@ -166,14 +165,14 @@ def main():
     for old, new in rewrites.items():
         print(f'REWRITE {old} -> {new}')
 
-    if deficits:
-        print('REGISTRY REFILL REQUIRED: collection is not release-ready')
-        for cid, rec in deficits.items():
-            print(f"- {cid}: have={rec['have']} target={rec['target']} missing={rec['missing']}")
-        print('Continue discovery through the configured fill ladder; do not create .ready yet.')
+    if gate['have'] > gate['max']:
+        print(f"REGISTRY RELEASE BLOCKED: have={gate['have']} exceeds daily maximum={gate['max']}")
+        sys.exit(1)
+    if gate['have'] < gate['min']:
+        print(f"REGISTRY REFILL REQUIRED: have={gate['have']} minimum={gate['min']} missing={gate['missing_to_min']} target={gate['target']}")
+        print('Continue discovery toward the daily target through the configured fill ladder; do not create .ready yet.')
         sys.exit(2)
-
-    print('REGISTRY REFILL COMPLETE: all category targets survive Published Intelligence Registry dedupe')
+    print(f"REGISTRY RELEASE GATE PASS: have={gate['have']} minimum={gate['min']} target={gate['target']} maximum={gate['max']} category_counts={gate['category_counts']}")
 
 
 if __name__ == '__main__':

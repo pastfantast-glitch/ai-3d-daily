@@ -37,8 +37,6 @@ def load_config():
         raise ValueError('V2 category pool target/min/max must be positive-compatible values')
     if not (pool_min <= pool_target <= pool_max):
         raise ValueError('V2 category pool values must satisfy min <= target <= max')
-    if not (pool_min == pool_target == pool_max):
-        raise ValueError('V2 target-fill contract requires min == target == max')
 
     fill_policy = str(cfg.get('category_fill_policy', '')).strip()
     if not fill_policy:
@@ -72,9 +70,13 @@ def load_config():
     if ladder_windows != windows:
         raise ValueError('V2 fill_ladder must cover discovery_windows in the same order')
 
-    expected_total = pool_target * len(categories)
-    if int(collection.get('completeness_trigger_total_items', 0) or 0) != expected_total:
-        raise ValueError(f'V2 completeness trigger must equal category target total {expected_total}')
+    daily_min = int(collection.get('daily_min_items', 0) or 0)
+    daily_target = int(collection.get('daily_target_items', 0) or 0)
+    daily_max = int(collection.get('daily_max_items', 0) or 0)
+    if not (0 < daily_min <= daily_target <= daily_max):
+        raise ValueError('V2 daily totals must satisfy 0 < min <= target <= max')
+    if int(collection.get('completeness_trigger_total_items', 0) or 0) != daily_target:
+        raise ValueError(f'V2 completeness trigger must equal daily target {daily_target}')
     if not str(collection.get('fill_target_policy', '')).strip():
         raise ValueError('V2 fill_target_policy is required')
     return cfg
@@ -182,26 +184,27 @@ def validate_v2_dataset(data, strict_pool=True):
         errors.append(f'category_only must equal available global ranks {top_limit + next_limit + 1}..N')
 
     if target_fill_applies(data, cfg) and strict_pool:
-        pool_target = int(cfg['category_pool_target_items'])
+        collection = cfg.get('collection') or {}
         pool_max = int(cfg['category_pool_max_items'])
         pool_min = int(cfg['category_pool_min_items'])
+        daily_min = int(collection['daily_min_items'])
+        daily_max = int(collection['daily_max_items'])
     else:
         metadata = data.get('metadata') or {}
-        pool_target = None
         pool_max = int(metadata.get('category_pool_max_items', 10) or 10)
         pool_min = 0
+        daily_min = 0
+        daily_max = pool_max * len(categories)
 
     for cid, pool in by_category.items():
         if len(pool) > pool_max:
             errors.append(f'{cid}: category pool exceeds maximum {pool_max}, got {len(pool)}')
         if len(pool) < pool_min:
             errors.append(f'{cid}: category pool below minimum {pool_min}, got {len(pool)}')
-        if pool_target is not None and len(pool) != pool_target:
-            errors.append(f'{cid}: target-fill requires exactly {pool_target} items, got {len(pool)}')
-    if len(items) > pool_max * len(categories):
-        errors.append(f'V2 dataset exceeds maximum {pool_max * len(categories)} items, got {len(items)}')
-    if pool_target is not None and len(items) != pool_target * len(categories):
-        errors.append(f'V2 target-fill requires exactly {pool_target * len(categories)} items, got {len(items)}')
+    if len(items) < daily_min:
+        errors.append(f'V2 daily release minimum is {daily_min} items, got {len(items)}')
+    if len(items) > daily_max:
+        errors.append(f'V2 daily release maximum is {daily_max} items, got {len(items)}')
     return errors
 
 

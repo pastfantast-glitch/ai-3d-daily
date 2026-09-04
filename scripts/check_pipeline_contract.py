@@ -45,12 +45,12 @@ if (ROOT/'config'/'intelligence-v2.json').exists() and (ROOT/'scripts'/'intellig
         if scripts_dir not in sys.path: sys.path.insert(0,scripts_dir)
         from intelligence_v2 import load_config
         cfg=load_config(); categories=cfg.get('categories') or []; collection=cfg.get('collection') or {}
-        target=int(cfg['category_pool_target_items']); expected_total=target*len(categories)
-        if int(collection.get('completeness_trigger_total_items',0))!=expected_total:
-            fail(f'V2 completeness trigger must equal configured category total {expected_total}')
+        soft_target=int(cfg['category_pool_target_items']); daily_target=int(collection.get('daily_target_items',0) or 0)
+        if int(collection.get('completeness_trigger_total_items',0))!=daily_target:
+            fail(f'V2 completeness trigger must equal configured daily target {daily_target}')
         candidate_target=int(collection.get('candidate_pool_target_per_category',0) or 0)
         candidate_stretch=int(collection.get('candidate_pool_stretch_per_category',0) or 0)
-        if candidate_target<target: fail('V2 discovery candidate target must be >= configured publish target')
+        if candidate_target<soft_target: fail('V2 discovery candidate target must be >= category balancing target')
         if candidate_stretch<candidate_target: fail('V2 discovery candidate stretch must be >= candidate target')
     except Exception as exc: fail(f'V2 config contract unreadable/inconsistent: {exc}')
 
@@ -125,4 +125,4 @@ else:
     if "if(!id&&date==='2026-08-23')" not in text or 'LEGACY_20260823_RULES' not in text: fail('legacy identity fallback scope changed')
 if errors:
     print('PIPELINE CONTRACT FAILED'); print('\n'.join('- '+e for e in errors)); sys.exit(1)
-print('PIPELINE CONTRACT PASS: one writer + ready-only push trigger + config-driven target-fill IA + synthetic future-day dry run + latest-main checkout + semantic visual compatibility + cache/category coverage + fail-closed QA')
+print('PIPELINE CONTRACT PASS: one writer + ready-only push trigger + config-driven daily 20-30 release-gate IA + synthetic future-day dry run + latest-main checkout + semantic visual compatibility + cache/category coverage + fail-closed QA')

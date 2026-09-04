@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   3D 動作｜2026-09-04｜AI 3D Daily
+  </title>
+  <link href="../../styles.css?v=20260904-r3-workspace-v5" rel="stylesheet"/>
+  <link href="../../shared-components.css?v=20260904-r3-workspace-v5" rel="stylesheet"/>
+  <link href="../../category.css?v=20260904-r3-workspace-v5" rel="stylesheet"/>
+ </head>
+ <body class="category-page" data-category="3d-animation" data-report-date="2026-09-04">
+  <nav aria-label="Production Intelligence 分類" class="global-category-nav">
+   <div class="page global-category-nav-inner">
+    <div class="archive-nav-controls">
+     <a class="archive-nav-home" href="../../">
+      ← 首頁
+     </a>
+     <div class="archive-nav-date">
+      <a aria-label="前一日日報" class="archive-nav-arrow" href="../../2026-09-03/3d-animation/">
+       ←
+      </a>
+      <span>
+       2026-09-04
+      </span>
+     </div>
+    </div>
+    <span aria-hidden="true" class="archive-nav-divider">
+    </span>
+    <a class="global-category-link" href="../#top">
+     TOP5
+    </a>
+    <a class="global-category-link" data-category="ai-generation" href="../ai-generation/">
+     AI 生成
+    </a>
+    <a class="global-category-link" data-category="3d-production" href="../3d-production/">
+     3D 製作
+    </a>
+    <a class="global-category-link is-active" data-category="3d-animation" href="../3d-animation/">
+     3D 動作
+    </a>
+    <a class="global-category-link" data-category="engine-art" href="../engine-art/">
+     遊戲引擎
+    </a>
+    <a class="global-category-link" data-category="emerging-case" href="../emerging-case/">
+     新技術 / Case
+    </a>
+    <a class="global-category-link" data-category="blender-dcc" href="../blender-dcc/">
+     Blender / DCC
+    </a>
+   </div>
+  </nav>
+  <main class="page category-main">
+   <article class="category-card" data-intel-id="blender-vat-animation-to-ue5" data-intel-role="card">
+    <div class="category-meta">
+     #15 · animation
+    </div>
+    <h2>
+     Blender→UE5：用 Vertex Animation Texture 傳遞非骨架動畫
+    </h2>
+    <p class="summary">
+     一套 Blender 到 Unreal 的 VAT workflow 將任意頂點動畫烘焙到 texture，再在 UE5 重建，適合模組變形或不適合 skeletal rig 的效果。
+    </p>
+    <figure class="case-preview" data-intel-id="blender-vat-animation-to-ue5" data-intel-role="visual" data-visual-id="blender-vat-animation-to-ue5">
+     <a href="https://80.lv/articles/how-to-export-any-animation-from-blender-to-unreal-engine-5" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-04/blender-vat-animation-to-ue5.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span>
+      Animation Pipeline ★★★★☆
+     </span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       傳輸方式
+      </h4>
+      <p>
+       VAT 把逐頂點位置／法線變化從傳統骨架或 cache 轉成 texture sampling。
+      </p>
+      <h4>
+       動作價值
+      </h4>
+      <p>
+       重點是減少 retarget、接觸點、root motion 與曲線 cleanup 工時。
+      </p>
+      <h4>
+       導入測試
+      </h4>
+      <p>
+       用既有 skeleton 驗 foot contact、retarget、root 與引擎回放。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://80.lv/articles/how-to-export-any-animation-from-blender-to-unreal-engine-5" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="houdini-kinefx-combat-retarget-pipeline" data-intel-role="card">
+    <div class="category-meta">
+     #17 · mocap
+    </div>
+    <h2>
+     Houdini KineFX：Mocap Retarget、Motion Editing 與 Combo 拆段後再送 UE5
+    </h2>
+    <p class="summary">
+     實務案例把 capture take 送入 Houdini KineFX 完成 retarget、速度調整、combo 分段與技術邏輯，再輸出 Unreal，臉部 capture 則分…
+    </p>
+    <figure class="case-preview" data-intel-id="houdini-kinefx-combat-retarget-pipeline" data-intel-role="visual" data-visual-id="houdini-kinefx-combat-retarget-pipeline">
+     <a href="https://80.lv/articles/working-on-games-and-films-with-unreal-houdini-and-blender" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-04/houdini-kinefx-combat-retarget-pipeline.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span>
+      Combat Animation ★★★★☆
+     </span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       技術動畫流程
+      </h4>
+      <p>
+       KineFX 不只做骨架映射，而是把 retarget、motion edit、acceleration 與 combo segment 放在同一程序化階段。
+      </p>
+      <h4>
+       動作價值
+      </h4>
+      <p>
+       重點是減少 retarget、接觸點、root motion 與曲線 cleanup 工時。
+      </p>
+      <h4>
+       導入測試
+      </h4>
+      <p>
+       用既有 skeleton 驗 foot contact、retarget、root 與引擎回放。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://80.lv/articles/working-on-games-and-films-with-unreal-houdini-and-blender" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="over-shoulder-clothing-rig-weight-paint" data-intel-role="card">
+    <div class="category-meta">
+     #18 · rigging
+    </div>
+    <h2>
+     肩披服裝 Rig：以精細 Weight Paint 解決跨肩褶邊與配件自然變形
+    </h2>
+    <p class="summary">
+     AldoTheVamp 展示 VRChat 角色肩部褶邊與服裝的權重配置，提供可直接觀察的 deformation/weight paint 參考。
+    </p>
+    <figure class="case-preview" data-intel-id="over-shoulder-clothing-rig-weight-paint" data-intel-role="visual" data-visual-id="over-shoulder-clothing-rig-weight-paint">
+     <a href="https://80.lv/articles/perfectly-natural-over-the-shoulder-clothing-rig" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-04/over-shoulder-clothing-rig-weight-paint.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span>
+      Rigging ★★★★☆
+     </span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       變形難點
+      </h4>
+      <p>
+       跨肩服裝同時受鎖骨、上臂與軀幹驅動，若權重只依距離自動分配，抬臂時很容易塌陷或被肩膀拉扯；案例的可視化 weights 對診斷很有參考價值。
+      </p>
+      <h4>
+       動作價值
+      </h4>
+      <p>
+       重點是減少 retarget、接觸點、root motion 與曲線 cleanup 工時。
+      </p>
+      <h4>
+       導入測試
+      </h4>
+      <p>
+       用既有 skeleton 驗 foot contact、retarget、root 與引擎回放。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://80.lv/articles/perfectly-natural-over-the-shoulder-clothing-rig" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <nav aria-label="相鄰分類" class="category-bottom-nav">
+    <a href="../3d-production/">
+     ← 3D 製作
+    </a>
+    <a href="../#top">
+     TOP5
+    </a>
+    <a href="../engine-art/">
+     遊戲引擎 →
+    </a>
+   </nav>
+  </main>
+  <script defer="" src="../../archive-nav-state.js?v=20260904-r3-workspace-v5">
+  </script>
+ </body>
+</html>

@@ -102,11 +102,11 @@ def canonical_rebuild_simulation(date):
                 raise RuntimeError(f'registry normalization failed ({registry_rc})')
             run(work,sys.executable,'scripts/enrich_full_analysis_v3.py',date)
             run(work,sys.executable,'scripts/normalize_release_seed.py',date)
-            run(work,sys.executable,'scripts/check_release_input.py',date)
             run(work,sys.executable,'scripts/render_daily_navigation.py')
             run(work,sys.executable,'scripts/render_home_archive_links.py')
             run(work,sys.executable,'scripts/render_information_architecture.py',date)
             run(work,sys.executable,'scripts/build_intelligence.py',date)
+            run(work,sys.executable,'scripts/check_release_input.py',date)
             run(work,sys.executable,'scripts/inject_visual_previews.py',date)
             run(work,sys.executable,'scripts/apply_cache_bust.py',date)
             run(work,sys.executable,'scripts/check_intelligence_contract.py')
@@ -131,7 +131,10 @@ def main():
     modes=list(selected)
     if staging and any(d.name==staging for d in all_dirs): modes.append(next(d for d in all_dirs if d.name==staging))
     print('Historical regression archives:',', '.join(d.name for d in modes))
-    for d in selected: validate_archive_snapshot(d,stable_dirs)
+    # Snapshot content remains strict, but previous/next navigation is intentionally
+    # dynamic as a newly published adjacent archive becomes available. Validate nav
+    # against the complete current archive universe, including the staging/latest day.
+    for d in selected: validate_archive_snapshot(d,all_dirs)
     for d in modes: canonical_rebuild_simulation(d.name)
     print('\nHISTORICAL REGRESSION MATRIX')
     for date,mode,status in rows: print(f'- {date:<10} | {mode:<17} | {status}')

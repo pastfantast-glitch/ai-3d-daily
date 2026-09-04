@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   新技術 / Case｜2026-09-04｜AI 3D Daily
+  </title>
+  <link href="../../styles.css?v=20260904-r3-workspace-v5" rel="stylesheet"/>
+  <link href="../../shared-components.css?v=20260904-r3-workspace-v5" rel="stylesheet"/>
+  <link href="../../category.css?v=20260904-r3-workspace-v5" rel="stylesheet"/>
+ </head>
+ <body class="category-page" data-category="emerging-case" data-report-date="2026-09-04">
+  <nav aria-label="Production Intelligence 分類" class="global-category-nav">
+   <div class="page global-category-nav-inner">
+    <div class="archive-nav-controls">
+     <a class="archive-nav-home" href="../../">
+      ← 首頁
+     </a>
+     <div class="archive-nav-date">
+      <a aria-label="前一日日報" class="archive-nav-arrow" href="../../2026-09-03/emerging-case/">
+       ←
+      </a>
+      <span>
+       2026-09-04
+      </span>
+     </div>
+    </div>
+    <span aria-hidden="true" class="archive-nav-divider">
+    </span>
+    <a class="global-category-link" href="../#top">
+     TOP5
+    </a>
+    <a class="global-category-link" data-category="ai-generation" href="../ai-generation/">
+     AI 生成
+    </a>
+    <a class="global-category-link" data-category="3d-production" href="../3d-production/">
+     3D 製作
+    </a>
+    <a class="global-category-link" data-category="3d-animation" href="../3d-animation/">
+     3D 動作
+    </a>
+    <a class="global-category-link" data-category="engine-art" href="../engine-art/">
+     遊戲引擎
+    </a>
+    <a class="global-category-link is-active" data-category="emerging-case" href="../emerging-case/">
+     新技術 / Case
+    </a>
+    <a class="global-category-link" data-category="blender-dcc" href="../blender-dcc/">
+     Blender / DCC
+    </a>
+   </div>
+  </nav>
+  <main class="page category-main">
+   <article class="category-card" data-intel-id="motionstruct4d-motion-structure-gs" data-intel-role="card">
+    <div class="category-meta">
+     #03 · research
+    </div>
+    <h2>
+     MotionStruct4D：從 Video-to-4D 中分離可重用的運動結構
+    </h2>
+    <p class="summary">
+     MotionStruct4D 針對 Gaussian Splatting 的動態重建，把影片中的運動結構顯式建模，目標是提升 4D 場景的可解釋性與可控性。
+    </p>
+    <div class="quick-impact">
+     <span>
+      4D Research ★★★★★
+     </span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       技術變化
+      </h4>
+      <p>
+       與只追求逐幀外觀重建的 4DGS 相比，MotionStruct4D 把 motion structure 當成可發現、可組織的中介表示。
+      </p>
+      <h4>
+       製作潛力
+      </h4>
+      <p>
+       先判斷研究輸出是否能轉成 DCC／engine 可消費、可控制的資料。
+      </p>
+      <h4>
+       成熟度判斷
+      </h4>
+      <p>
+       以隔離 R&amp;D 測可控性、一致性、輸出表示與量產成本。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://link.springer.com/article/10.1007/s11263-026-02656-2" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="4dgs-wam-object-centric-world-model" data-intel-role="card">
+    <div class="category-meta">
+     #12 · world-model
+    </div>
+    <h2>
+     4DGS-WAM：以 4D Gaussian Splatting 建立 Object-Centric World Action Model
+    </h2>
+    <p class="summary">
+     4DGS-WAM 將動態 Gaussian 表示與 action-conditioned world model 結合，探索可被行為驅動、以物件為中心的 4D 場景預測。
+    </p>
+    <figure class="case-preview" data-intel-id="4dgs-wam-object-centric-world-model" data-intel-role="visual" data-visual-id="4dgs-wam-object-centric-world-model">
+     <a href="https://arxiv.org/abs/2608.25956" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-04/4dgs-wam-object-centric-world-model.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span>
+      World Model ★★★★★
+     </span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       研究方向
+      </h4>
+      <p>
+       它把 4DGS 從被動重播的動態場景推向 action-conditioned prediction，核心價值是場景表示開始包含『物件如何因行為改變』。
+      </p>
+      <h4>
+       製作潛力
+      </h4>
+      <p>
+       先判斷研究輸出是否能轉成 DCC／engine 可消費、可控制的資料。
+      </p>
+      <h4>
+       成熟度判斷
+      </h4>
+      <p>
+       以隔離 R&amp;D 測可控性、一致性、輸出表示與量產成本。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://arxiv.org/abs/2608.25956" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="mllmsplat-3dgs-understanding-generation-editing" data-intel-role="card">
+    <div class="category-meta">
+     #14 · research
+    </div>
+    <h2>
+     MLLMSplat：讓 2D MLLM 同時理解、生成與編輯 3D Gaussian 場景
+    </h2>
+    <p class="summary">
+     CVPR 2026 的 MLLMSplat 透過 3DGS tokenizer/de-tokenizer 把 Gaussian representation 接入既有 2D multi…
+    </p>
+    <figure class="case-preview" data-intel-id="mllmsplat-3dgs-understanding-generation-editing" data-intel-role="visual" data-visual-id="mllmsplat-3dgs-understanding-generation-editing">
+     <a href="https://openaccess.thecvf.com/content/CVPR2026/html/Xiu_MLLMSplat_A_2D_MLLM-Powered_Framework_for_3D_Gaussian_Splatting_Understanding_CVPR_2026_paper.html" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-04/mllmsplat-3dgs-understanding-generation-editing.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span>
+      3D AI Research ★★★★☆
+     </span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       技術重點
+      </h4>
+      <p>
+       MLLMSplat 不是另訓一個封閉 3D 模型，而是設計 tokenizer/de-tokenizer 將 3DGS 接到 2D MLLM。
+      </p>
+      <h4>
+       製作潛力
+      </h4>
+      <p>
+       先判斷研究輸出是否能轉成 DCC／engine 可消費、可控制的資料。
+      </p>
+      <h4>
+       成熟度判斷
+      </h4>
+      <p>
+       以隔離 R&amp;D 測可控性、一致性、輸出表示與量產成本。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://openaccess.thecvf.com/content/CVPR2026/html/Xiu_MLLMSplat_A_2D_MLLM-Powered_Framework_for_3D_Gaussian_Splatting_Understanding_CVPR_2026_paper.html" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="gaussianfluent-fracture-mixed-materials" data-intel-role="card">
+    <div class="category-meta">
+     #16 · research
+    </div>
+    <h2>
+     GaussianFluent：Gaussian 場景加入 Mixed-Material 與 Brittle Fracture 模擬
+    </h2>
+    <p class="summary">
+     CVPR 2026 的 GaussianFluent 生成物體內部 Gaussians，並結合 damage-aware MPM，讓 Gaussian representation 可…
+    </p>
+    <figure class="case-preview" data-intel-id="gaussianfluent-fracture-mixed-materials" data-intel-role="visual" data-visual-id="gaussianfluent-fracture-mixed-materials">
+     <a href="https://openaccess.thecvf.com/content/CVPR2026/html/Huang_GaussianFluent_Gaussian_Simulation_for_Dynamic_Scenes_with_Mixed_Materials_CVPR_2026_paper.html" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-04/gaussianfluent-fracture-mixed-materials.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span>
+      Simulation Research ★★★★☆
+     </span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       突破點
+      </h4>
+      <p>
+       一般 3DGS 擅長外觀但沒有可靠內部體積；GaussianFluent 先補內部表徵，再把 fracture-aware simulation 接進動態表示。
+      </p>
+      <h4>
+       製作潛力
+      </h4>
+      <p>
+       先判斷研究輸出是否能轉成 DCC／engine 可消費、可控制的資料。
+      </p>
+      <h4>
+       成熟度判斷
+      </h4>
+      <p>
+       以隔離 R&amp;D 測可控性、一致性、輸出表示與量產成本。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://openaccess.thecvf.com/content/CVPR2026/html/Huang_GaussianFluent_Gaussian_Simulation_for_Dynamic_Scenes_with_Mixed_Materials_CVPR_2026_paper.html" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="avatarpointillist-4d-gaussian-avatar" data-intel-role="card">
+    <div class="category-meta">
+     #20 · research
+    </div>
+    <h2>
+     AvatarPointillist：單張 Portrait 生成可動畫的 4D Gaussian Avatar
+    </h2>
+    <p class="summary">
+     CVPR 2026 的 AvatarPointillist 以 autoregressive point generation 建立 3D Gaussians，同時預測 binding…
+    </p>
+    <figure class="case-preview" data-intel-id="avatarpointillist-4d-gaussian-avatar" data-intel-role="visual" data-visual-id="avatarpointillist-4d-gaussian-avatar">
+     <a href="https://openaccess.thecvf.com/content/CVPR2026/html/Liu_AvatarPointillist_AutoRegressive_4D_Gaussian_Avatarization_CVPR_2026_paper.html" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-04/avatarpointillist-4d-gaussian-avatar.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span>
+      Avatar Research ★★★★☆
+     </span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       生成結構
+      </h4>
+      <p>
+       模型不是固定輸出相同點數，而會依角色複雜度自回歸決定 point density，並在生成時預測 binding，讓 avatar 後續可動畫。
+      </p>
+      <h4>
+       製作潛力
+      </h4>
+      <p>
+       先判斷研究輸出是否能轉成 DCC／engine 可消費、可控制的資料。
+      </p>
+      <h4>
+       成熟度判斷
+      </h4>
+      <p>
+       以隔離 R&amp;D 測可控性、一致性、輸出表示與量產成本。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://openaccess.thecvf.com/content/CVPR2026/html/Liu_AvatarPointillist_AutoRegressive_4D_Gaussian_Avatarization_CVPR_2026_paper.html" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <nav aria-label="相鄰分類" class="category-bottom-nav">
+    <a href="../engine-art/">
+     ← 遊戲引擎
+    </a>
+    <a href="../#top">
+     TOP5
+    </a>
+    <a href="../blender-dcc/">
+     Blender / DCC →
+    </a>
+   </nav>
+  </main>
+  <script defer="" src="../../archive-nav-state.js?v=20260904-r3-workspace-v5">
+  </script>
+ </body>
+</html>

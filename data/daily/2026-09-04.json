@@ -1,1 +1,627 @@
-{"date":"2026-09-04","schema_version":3,"render_revision":3,"information_architecture":"v2","metadata":{"discovery_windows":["24h","7d","30d","6m","evergreen"],"category_pool_target_items":5,"category_pool_min_items":5,"category_pool_max_items":5,"category_fill_policy":"target_fill_quality_gate_no_padding","candidate_pool_target_per_category":20,"candidate_pool_stretch_per_category":40,"total_items":30,"ranking_policy":"production value + freshness + verifiability + diversity penalty","generated_for":"2026-09-04","full_analysis_depth_contract":"v3-adaptive-3to5-production-depth","full_analysis_heading_language":"zh-Hant","discovery_completeness":"24h->7d->30d->6m->evergreen exhausted to exact target; low-value and duplicate candidates excluded","registry_identity_normalization":{"dropped_count":0,"rewritten_count":0,"policy":"published-source-without-substantive-delta-skip"}},"visual_evidence":{},"items":[{"id":"nvidia-dlss5-3d-guided-neural-rendering","title":"DLSS 5：3D-Guided Neural Rendering 將材質與光照納入可控神經渲染","summary":"NVIDIA 公布 DLSS 5 的 3D-Guided Neural Rendering，讓開發者以場景幾何與引擎資料引導神經渲染，並提供藝術控制項調整材質、光照與最終視覺。","quick_impact":"Engine AI ★★★★★","source_url":"https://www.nvidia.com/en-eu/geforce/news/dlss-5-3d-guided-neural-rendering/","category":"engine-art","subcategory":"rendering","ranking_score":100,"rank_global":1,"homepage_tier":"top5","full_analysis":[{"label":"渲染流程變化","text":"DLSS 5 不再只把 AI 放在升頻或補幀階段，而是把 3D 場景資訊納入神經渲染，使引擎提供的幾何與畫面資料直接參與最終材質與光照重建。"},{"label":"製作價值","text":"重點是畫質提升能否在目標平台以可接受成本穩定重現。"},{"label":"平台實測","text":"固定場景比較畫質、GPU/CPU、記憶體、scalability 與 fallback。"}]},{"id":"nvidia-videomatgen-pbr-material-generation","title":"VideoMatGen：由幾何 + 文字聯合生成 Base Color／Roughness／Metallic／Height","summary":"NVIDIA 研究提出以影片擴散架構對幾何條件與文字描述進行 PBR 材質聯合生成，一次預測多個常用材質通道。","quick_impact":"AI Material ★★★★★","source_url":"https://research.nvidia.com/labs/rtr/publication/hasselgren2026videomatgen/","category":"ai-generation","subcategory":"ai-3d","ranking_score":98,"rank_global":2,"homepage_tier":"top5","full_analysis":[{"label":"生成內容","text":"VideoMatGen 同時建模 Base Color、Roughness、Metallicity 與 Height。"},{"label":"製作價值","text":"評估重點是輸出可控性、可編輯性與人工 cleanup 是否真的下降。"},{"label":"導入測試","text":"用代表性 input 驗一致性、格式、DCC/engine 接續與授權風險。"}]},{"id":"motionstruct4d-motion-structure-gs","title":"MotionStruct4D：從 Video-to-4D 中分離可重用的運動結構","summary":"MotionStruct4D 針對 Gaussian Splatting 的動態重建，把影片中的運動結構顯式建模，目標是提升 4D 場景的可解釋性與可控性。","quick_impact":"4D Research ★★★★★","source_url":"https://link.springer.com/article/10.1007/s11263-026-02656-2","category":"emerging-case","subcategory":"research","ranking_score":97,"rank_global":3,"homepage_tier":"top5","full_analysis":[{"label":"技術變化","text":"與只追求逐幀外觀重建的 4DGS 相比，MotionStruct4D 把 motion structure 當成可發現、可組織的中介表示。"},{"label":"製作潛力","text":"先判斷研究輸出是否能轉成 DCC／engine 可消費、可控制的資料。"},{"label":"成熟度判斷","text":"以隔離 R&D 測可控性、一致性、輸出表示與量產成本。"}]},{"id":"cult-tsar-fish-decaying-church-workflow","title":"腐朽沼澤教堂：ZBrush→Designer/Painter→SpeedTree→UE 的分層環境製作","summary":"Nicolas Pablos 拆解 Cult of the Tsar Fish 場景，從雕刻、材質到分層沼澤植被與 Unreal 組裝，提供完整環境 Production Case。","quick_impact":"Environment ★★★★★","source_url":"https://80.lv/articles/breakdown-creating-a-3d-scene-of-a-decaying-orthodox-church-in-a-swamp","category":"3d-production","subcategory":"environment-production","ranking_score":96,"rank_global":4,"homepage_tier":"top5","full_analysis":[{"label":"資產拆解","text":"案例以建築主體、雕刻細節、程序材質與多層植被分工，避免整個場景用單一高成本方法完成；這種分層方式更接近實際 environment pipeline。"},{"label":"流程價值","text":"重點是是否減少建模、材質、拓樸或場景組裝的返工。"},{"label":"實測","text":"用同一代表資產比較工時、品質、可維護性與 engine 交付。"}]},{"id":"cascadeur-2026-2-animation-layers","title":"Cascadeur 2026.2：Animation Layers、Easing 與 AI Inbetweening/Motion Generation 更新","summary":"Cascadeur 2026.2 加入動畫圖層與插值 easing 控制，同時更新 AI inbetweening、motion generation 並支援 BVH 匯入。","quick_impact":"Animation Tools ★★★★★","source_url":"https://www.cgchannel.com/2026/08/nekki-releases-cascadeur-2026-2-with-animation-layers/","category":"3d-animation","subcategory":"animation","ranking_score":95,"rank_global":5,"homepage_tier":"top5","full_analysis":[{"label":"非破壞動畫","text":"Animation Layers 讓 base motion 與修正能分層處理，對 mocap cleanup、動作誇張化與版本比較比直接破壞原曲線更安全。"},{"label":"動作價值","text":"重點是減少 retarget、接觸點、root motion 與曲線 cleanup 工時。"},{"label":"導入測試","text":"用既有 skeleton 驗 foot contact、retarget、root 與引擎回放。"}]},{"id":"avatar-sdk-move-text-to-animation","title":"Avatar SDK Move：文字直接生成可匯出 FBX／GLB 的角色動作","summary":"Avatar SDK Move 開放 Beta，可由自然語言生成走路、跑步、手勢與舞蹈等角色動畫，並直接套用至 MetaPerson 後輸出標準 3D 格式。","quick_impact":"AI Motion ★★★★★","source_url":"https://avatarsdk.com/blog/2026/07/27/avatar-sdk-move-beta-text-to-animation/","category":"ai-generation","subcategory":"ai-motion","ranking_score":94,"rank_global":6,"homepage_tier":"next10","full_analysis":[{"label":"動作生成流程","text":"Move 將 prompt 直接轉成 avatar animation，並提供 FBX／GLB 輸出，代表它可被放在 blocking 或 NPC 動作草稿的前段。"},{"label":"製作價值","text":"評估重點是輸出可控性、可編輯性與人工 cleanup 是否真的下降。"},{"label":"導入測試","text":"用代表性 input 驗一致性、格式、DCC/engine 接續與授權風險。"}]},{"id":"shell-grotto-procedural-material-system","title":"Shell Grotto：兩套程序貝殼生成器 + 4K 材質在 UE 以 Nanite Displacement 組裝","summary":"Coraline Lyu 用 Substance 3D Designer 建立可重用的 shell/snail generators，再以 spline/scatter 組成八種牆面設…","quick_impact":"Material Production ★★★★★","source_url":"https://80.lv/articles/building-a-procedural-shell-grotto-with-substance-3d-designer-unreal-engine","category":"3d-production","subcategory":"environment-production","ranking_score":93,"rank_global":7,"homepage_tier":"next10","full_analysis":[{"label":"程序化設計","text":"作者把單顆貝殼與牆面排列拆成不同 graph：前者控制形狀／磨損／色彩，後者以 spline 與 scatter 建立大型圖樣，讓有限資產能產生多種可控變體。"},{"label":"流程價值","text":"重點是是否減少建模、材質、拓樸或場景組裝的返工。"},{"label":"實測","text":"用同一代表資產比較工時、品質、可維護性與 engine 交付。"}]},{"id":"nvidia-dlss45-ray-reconstruction-gamescom","title":"DLSS 4.5 Ray Reconstruction：第二代 Transformer 強化時序穩定並開放更細 Temporal Control","summary":"NVIDIA Gamescom 2026 更新 Ray Reconstruction，新模型增加計算與參數量、擴大資料集，並提供開發者更細的 temporal accumulation…","quick_impact":"Rendering ★★★★★","source_url":"https://www.nvidia.com/en-us/geforce/news/gamescom-2026-nvidia-geforce-rtx-dlss-4-5-announcements/","category":"engine-art","subcategory":"rendering","ranking_score":92,"rank_global":8,"homepage_tier":"next10","full_analysis":[{"label":"畫質變化","text":"新版 Ray Reconstruction 針對 ray/path-traced lighting 的 temporal stability、motion clar…"},{"label":"製作價值","text":"重點是畫質提升能否在目標平台以可接受成本穩定重現。"},{"label":"平台實測","text":"固定場景比較畫質、GPU/CPU、記憶體、scalability 與 fallback。"}]},{"id":"firefly-production-workflow-builder","title":"Adobe Firefly Production：節點式生成工作流可批次串接輸入、生成、編輯與輸出","summary":"Firefly 的 Production Workflow Builder 以節點連接文字、影像、影片、生成與轉換步驟，目標是把重複生成任務做成可重用批次流程。","quick_impact":"AI Workflow ★★★★★","source_url":"https://helpx.adobe.com/firefly/web/work-with-enterprise-features/creative-production/build-custom-workflows.html","category":"ai-generation","subcategory":"ai-2d","ranking_score":91,"rank_global":9,"homepage_tier":"next10","full_analysis":[{"label":"工作流變化","text":"節點化之後，生成不再是單次 prompt 操作，而能把 input、generate/edit/transform 與 output 固定成流程。"},{"label":"製作價值","text":"評估重點是輸出可控性、可編輯性與人工 cleanup 是否真的下降。"},{"label":"導入測試","text":"用代表性 input 驗一致性、格式、DCC/engine 接續與授權風險。"}]},{"id":"clock-saint-zbrush-material-hierarchy","title":"CLOCK SAINT：以四區塊雕刻與 Roughness 階層管理複雜暗黑角色","summary":"Kang Jeong 將角色分為上身、下身、頭與手臂四大區塊，在 ZBrush 完成主要設計，再以金、石、青銅與黑鐵建立材質階層。","quick_impact":"Character ★★★★☆","source_url":"https://80.lv/articles/sculpting-a-dark-fantasy-character-with-clockwork-elements-religious-imagery","category":"3d-production","subcategory":"character-production","ranking_score":90,"rank_global":10,"homepage_tier":"next10","full_analysis":[{"label":"複雜度管理","text":"大型角色以主要區塊分治，搭配可重用 IMM／base meshes，能把大量齒輪與硬表面元素的反覆建模成本降到可控範圍。"},{"label":"流程價值","text":"重點是是否減少建模、材質、拓樸或場景組裝的返工。"},{"label":"實測","text":"用同一代表資產比較工時、品質、可維護性與 engine 交付。"}]},{"id":"nymera-character-retopo-mari-arnold","title":"Nymera：為 Rig 提前規劃 Retopo，並以程序 Mari 材質支撐多人並行修改","summary":"Ronja Stucken 的 Alien Shaman 專案在 ZBrush 建模後，以 rigging 為前提於 Maya 重拓樸，服裝利用 Marvelous 2D patter…","quick_impact":"Character Pipeline ★★★★★","source_url":"https://80.lv/articles/creating-an-alien-shaman-cg-character-using-zbrush-mari-maya","category":"3d-production","subcategory":"character-production","ranking_score":89,"rank_global":11,"homepage_tier":"next10","full_analysis":[{"label":"Rig 前置","text":"作者在 retopology 階段就與 rigger 溝通，代表 topology 不是造型完成後才補的交付步驟；嘴、臉與身體變形需求應提前影響 edge flow。"},{"label":"流程價值","text":"重點是是否減少建模、材質、拓樸或場景組裝的返工。"},{"label":"實測","text":"用同一代表資產比較工時、品質、可維護性與 engine 交付。"}]},{"id":"ue58-mesh-terrain-production","title":"UE5.8 Mesh Terrain：真 3D 地形 + Non-destructive Modifiers + World Partition","summary":"Mesh Terrain 以 3D mesh 取代傳統純 heightfield 限制，可建立懸崖、洞穴與 overhang，並以 modifiers、weight channels …","quick_impact":"UE5 Worldbuilding ★★★★★","source_url":"https://dev.epicgames.com/documentation/unreal-engine/mesh-terrain-in-unreal-engine","category":"engine-art","subcategory":"unreal","ranking_score":88,"rank_global":12,"homepage_tier":"next10","full_analysis":[{"label":"世界製作方式","text":"Mesh Terrain 的基礎不是固定解析度 heightfield，可把重要區域給更高密度、遠區更低密度，並允許 overhang/tunnel 等真正 3D 形體。"},{"label":"製作價值","text":"重點是畫質提升能否在目標平台以可接受成本穩定重現。"},{"label":"平台實測","text":"固定場景比較畫質、GPU/CPU、記憶體、scalability 與 fallback。"}]},{"id":"blender-freepencil2-line-art","title":"FreePencil2：Blender 一鍵將 3D Model 轉 Line Art，155 Parts 約 5.5 秒完成","summary":"FreePencil2 透過自動區域著色與 compositor edge detection 產生線稿，並以角度分析、graph coloring、細區域合併與 rig-aware …","quick_impact":"Blender NPR ★★★★★","source_url":"https://80.lv/articles/one-click-line-art-from-any-3d-model-in-blender","category":"blender-dcc","subcategory":"addon","ranking_score":88,"rank_global":13,"homepage_tier":"next10","full_analysis":[{"label":"NPR 流程","text":"工具先自動把相鄰區域分成不同 vertex colors，再以 compositor edge detection 取線，關鍵價值是把最麻煩的區域著色前處理自動化。"},{"label":"製作價值","text":"重點是是否降低跨工具操作、重複建模或貼圖／輸出摩擦。"},{"label":"升版 / 導入測試","text":"在專案副本驗版本、plugin、import/export、材質與批次相容性。"}]},{"id":"blender-mocap-retarget-proportion-matching","title":"Blender Mocap Retarget：先匹配 Hip 與肢體比例再轉移，可顯著減少 Foot Sliding","summary":"Good Good 的 Blender retargeting workflow 將 source armature 先依 target 的 hip 與 limb proportion…","quick_impact":"Retarget ★★★★★","source_url":"https://80.lv/articles/try-this-new-mocap-retargeting-tool-for-blender","category":"3d-animation","subcategory":"retarget","ranking_score":87,"rank_global":14,"homepage_tier":"next10","full_analysis":[{"label":"問題來源","text":"retarget 常見 foot sliding 不只來自 solver，也來自 source/target 骨架的 hip 高度與肢體比例不同。"},{"label":"動作價值","text":"重點是減少 retarget、接觸點、root motion 與曲線 cleanup 工時。"},{"label":"導入測試","text":"用既有 skeleton 驗 foot contact、retarget、root 與引擎回放。"}]},{"id":"firefly-scene-to-image-3d-reference","title":"Firefly Scene to Image：用簡單 3D 場景鎖定構圖、鏡頭與深度再生成影像","summary":"Adobe Firefly 可用 Project Neo 形狀建立 3D 場景，將相機角度、構圖與深度作為生成影像的結構參考。","quick_impact":"Concept Control ★★★★☆","source_url":"https://helpx.adobe.com/firefly/web/generate-images-with-text-to-image/generate-images-using-3d-scenes/scene-to-image.html","category":"ai-generation","subcategory":"ai-2d","ranking_score":86,"rank_global":15,"homepage_tier":"next10","full_analysis":[{"label":"控制方式","text":"Scene to Image 把 3D blockout 變成生成條件，artist 可以先鎖定 camera、物件相對位置與 depth，再讓模型處理風格與細節。"},{"label":"製作價值","text":"評估重點是輸出可控性、可編輯性與人工 cleanup 是否真的下降。"},{"label":"導入測試","text":"用代表性 input 驗一致性、格式、DCC/engine 接續與授權風險。"}]},{"id":"4dgs-wam-object-centric-world-model","title":"4DGS-WAM：以 4D Gaussian Splatting 建立 Object-Centric World Action Model","summary":"4DGS-WAM 將動態 Gaussian 表示與 action-conditioned world model 結合，探索可被行為驅動、以物件為中心的 4D 場景預測。","quick_impact":"World Model ★★★★★","source_url":"https://arxiv.org/abs/2608.25956","category":"emerging-case","subcategory":"world-model","ranking_score":85,"rank_global":16,"homepage_tier":"category_only","full_analysis":[{"label":"研究方向","text":"它把 4DGS 從被動重播的動態場景推向 action-conditioned prediction，核心價值是場景表示開始包含『物件如何因行為改變』。"},{"label":"製作潛力","text":"先判斷研究輸出是否能轉成 DCC／engine 可消費、可控制的資料。"},{"label":"成熟度判斷","text":"以隔離 R&D 測可控性、一致性、輸出表示與量產成本。"}]},{"id":"nvidia-physics-informed-articulated-3d-assets","title":"NVIDIA GTC 案例：生成式 3D 從外觀走向關節、分件與物理屬性","summary":"NVIDIA GTC 2026 技術場次展示將影像或文字轉成具語意關節、part-aware mesh 與物理屬性的可驅動 3D 資產方法。","quick_impact":"AI 3D Research ★★★★☆","source_url":"https://www.nvidia.com/en-us/on-demand/session/gtc26-s81935/","category":"ai-generation","subcategory":"ai-3d","ranking_score":84,"rank_global":17,"homepage_tier":"category_only","full_analysis":[{"label":"生成目標改變","text":"方法把輸出目標從『看起來像的 mesh』提高到 articulated asset：包含關節估計、分件幾何與物理屬性，直接對應互動內容需要的結構。"},{"label":"製作價值","text":"評估重點是輸出可控性、可編輯性與人工 cleanup 是否真的下降。"},{"label":"導入測試","text":"用代表性 input 驗一致性、格式、DCC/engine 接續與授權風險。"}]},{"id":"mllmsplat-3dgs-understanding-generation-editing","title":"MLLMSplat：讓 2D MLLM 同時理解、生成與編輯 3D Gaussian 場景","summary":"CVPR 2026 的 MLLMSplat 透過 3DGS tokenizer/de-tokenizer 把 Gaussian representation 接入既有 2D multi…","quick_impact":"3D AI Research ★★★★☆","source_url":"https://openaccess.thecvf.com/content/CVPR2026/html/Xiu_MLLMSplat_A_2D_MLLM-Powered_Framework_for_3D_Gaussian_Splatting_Understanding_CVPR_2026_paper.html","category":"emerging-case","subcategory":"research","ranking_score":83,"rank_global":18,"homepage_tier":"category_only","full_analysis":[{"label":"技術重點","text":"MLLMSplat 不是另訓一個封閉 3D 模型，而是設計 tokenizer/de-tokenizer 將 3DGS 接到 2D MLLM。"},{"label":"製作潛力","text":"先判斷研究輸出是否能轉成 DCC／engine 可消費、可控制的資料。"},{"label":"成熟度判斷","text":"以隔離 R&D 測可控性、一致性、輸出表示與量產成本。"}]},{"id":"blender-krita-paintbridge-live-link","title":"PaintBridge：Blender↔Krita Live Link，直接 Paintover 後投射回 3D Mesh","summary":"PaintBridge 讓 Krita 控制 Blender viewport、直接在 2D 畫面 paint over，再把結果 project 回模型，並可與 layer-base…","quick_impact":"Texture Workflow ★★★★☆","source_url":"https://80.lv/articles/this-tool-connects-blender-krita-for-texture-painting","category":"blender-dcc","subcategory":"addon","ranking_score":82,"rank_global":19,"homepage_tier":"category_only","full_analysis":[{"label":"工作流變化","text":"它把 Blender Quick Edit 類流程變成持續 live connection，減少來回存圖、切 app、重新載入的操作成本。"},{"label":"製作價值","text":"重點是是否降低跨工具操作、重複建模或貼圖／輸出摩擦。"},{"label":"升版 / 導入測試","text":"在專案副本驗版本、plugin、import/export、材質與批次相容性。"}]},{"id":"almalexia-cinematic-character-udim-xgen","title":"Almalexia：從即時角色轉向 Cinematic 的 UDIM／XGen／Arnold 工作流","summary":"Margarida Coelho 以 ZBrush、Maya、Substance Painter、XGen 與 Arnold 重製 Almalexia，並以 UDIM、layered …","quick_impact":"Character Lookdev ★★★★☆","source_url":"https://80.lv/articles/recreating-almalexia-from-the-elder-scrolls-as-a-cinematic-character","category":"3d-production","subcategory":"character-production","ranking_score":81,"rank_global":20,"homepage_tier":"category_only","full_analysis":[{"label":"管線轉換","text":"案例清楚展示 real-time 與 cinematic 的取捨：UDIM、XGen、Arnold layered materials 優先細節與 lookdev。"},{"label":"流程價值","text":"重點是是否減少建模、材質、拓樸或場景組裝的返工。"},{"label":"實測","text":"用同一代表資產比較工時、品質、可維護性與 engine 交付。"}]},{"id":"ue58-megalights-diagnostics-performance","title":"UE5.8 MegaLights：新增診斷視圖、Transmission 與光源 Early Cull","summary":"UE5.8 Release Notes 顯示 MegaLights 增加 shadow caster 診斷、ray visualization、transmission 與光源 pow…","quick_impact":"UE5 Lighting ★★★★☆","source_url":"https://dev.epicgames.com/documentation/unreal-engine/unreal-engine-5-8-release-notes","category":"engine-art","subcategory":"unreal","ranking_score":80,"rank_global":21,"homepage_tier":"category_only","full_analysis":[{"label":"工具成熟度","text":"比起只增加可放更多燈，5.8 更值得注意的是 shadow caster mismatch、ray iteration 等可視化。"},{"label":"製作價值","text":"重點是畫質提升能否在目標平台以可接受成本穩定重現。"},{"label":"平台實測","text":"固定場景比較畫質、GPU/CPU、記憶體、scalability 與 fallback。"}]},{"id":"blender-vat-animation-to-ue5","title":"Blender→UE5：用 Vertex Animation Texture 傳遞非骨架動畫","summary":"一套 Blender 到 Unreal 的 VAT workflow 將任意頂點動畫烘焙到 texture，再在 UE5 重建，適合模組變形或不適合 skeletal rig 的效果。","quick_impact":"Animation Pipeline ★★★★☆","source_url":"https://80.lv/articles/how-to-export-any-animation-from-blender-to-unreal-engine-5","category":"3d-animation","subcategory":"animation","ranking_score":79,"rank_global":22,"homepage_tier":"category_only","full_analysis":[{"label":"傳輸方式","text":"VAT 把逐頂點位置／法線變化從傳統骨架或 cache 轉成 texture sampling。"},{"label":"動作價值","text":"重點是減少 retarget、接觸點、root motion 與曲線 cleanup 工時。"},{"label":"導入測試","text":"用既有 skeleton 驗 foot contact、retarget、root 與引擎回放。"}]},{"id":"gaussianfluent-fracture-mixed-materials","title":"GaussianFluent：Gaussian 場景加入 Mixed-Material 與 Brittle Fracture 模擬","summary":"CVPR 2026 的 GaussianFluent 生成物體內部 Gaussians，並結合 damage-aware MPM，讓 Gaussian representation 可…","quick_impact":"Simulation Research ★★★★☆","source_url":"https://openaccess.thecvf.com/content/CVPR2026/html/Huang_GaussianFluent_Gaussian_Simulation_for_Dynamic_Scenes_with_Mixed_Materials_CVPR_2026_paper.html","category":"emerging-case","subcategory":"research","ranking_score":78,"rank_global":23,"homepage_tier":"category_only","full_analysis":[{"label":"突破點","text":"一般 3DGS 擅長外觀但沒有可靠內部體積；GaussianFluent 先補內部表徵，再把 fracture-aware simulation 接進動態表示。"},{"label":"製作潛力","text":"先判斷研究輸出是否能轉成 DCC／engine 可消費、可控制的資料。"},{"label":"成熟度判斷","text":"以隔離 R&D 測可控性、一致性、輸出表示與量產成本。"}]},{"id":"houdini-kinefx-combat-retarget-pipeline","title":"Houdini KineFX：Mocap Retarget、Motion Editing 與 Combo 拆段後再送 UE5","summary":"實務案例把 capture take 送入 Houdini KineFX 完成 retarget、速度調整、combo 分段與技術邏輯，再輸出 Unreal，臉部 capture 則分…","quick_impact":"Combat Animation ★★★★☆","source_url":"https://80.lv/articles/working-on-games-and-films-with-unreal-houdini-and-blender","category":"3d-animation","subcategory":"mocap","ranking_score":77,"rank_global":24,"homepage_tier":"category_only","full_analysis":[{"label":"技術動畫流程","text":"KineFX 不只做骨架映射，而是把 retarget、motion edit、acceleration 與 combo segment 放在同一程序化階段。"},{"label":"動作價值","text":"重點是減少 retarget、接觸點、root motion 與曲線 cleanup 工時。"},{"label":"導入測試","text":"用既有 skeleton 驗 foot contact、retarget、root 與引擎回放。"}]},{"id":"over-shoulder-clothing-rig-weight-paint","title":"肩披服裝 Rig：以精細 Weight Paint 解決跨肩褶邊與配件自然變形","summary":"AldoTheVamp 展示 VRChat 角色肩部褶邊與服裝的權重配置，提供可直接觀察的 deformation/weight paint 參考。","quick_impact":"Rigging ★★★★☆","source_url":"https://80.lv/articles/perfectly-natural-over-the-shoulder-clothing-rig","category":"3d-animation","subcategory":"rigging","ranking_score":76,"rank_global":25,"homepage_tier":"category_only","full_analysis":[{"label":"變形難點","text":"跨肩服裝同時受鎖骨、上臂與軀幹驅動，若權重只依距離自動分配，抬臂時很容易塌陷或被肩膀拉扯；案例的可視化 weights 對診斷很有參考價值。"},{"label":"動作價值","text":"重點是減少 retarget、接觸點、root motion 與曲線 cleanup 工時。"},{"label":"導入測試","text":"用既有 skeleton 驗 foot contact、retarget、root 與引擎回放。"}]},{"id":"nvidia-streamline-single-integration","title":"NVIDIA Streamline：以單一 Plugin Framework 統一接入多種 Upscaling／Graphics Effects","summary":"Streamline 讓引擎一次標記 motion vectors、depth 等資源，再由 plugin 接入不同超解析與圖形技術，降低每套 SDK 各自維護的整合成本。","quick_impact":"Engine Integration ★★★★☆","source_url":"https://developer.nvidia.com/rtx/streamline","category":"engine-art","subcategory":"tools","ranking_score":75,"rank_global":26,"homepage_tier":"category_only","full_analysis":[{"label":"整合架構","text":"Streamline 位於 render API 與遊戲之間，重點是先定義 shared resources 與執行位置，再以 plug-in 接上不同技術。"},{"label":"製作價值","text":"重點是畫質提升能否在目標平台以可接受成本穩定重現。"},{"label":"平台實測","text":"固定場景比較畫質、GPU/CPU、記憶體、scalability 與 fallback。"}]},{"id":"nomad-sculpt-blender-live-link","title":"Nomad Sculpt 2.9.24：iPad／Android 與 Blender 雙向即時同步 Sculpt/PBR Vertex Paint","summary":"Nomad Sculpt 新增同網路 App Linking，可把 mobile sculpt 與 PBR vertex painting 即時同步到 Blender，也可把 Blen…","quick_impact":"DCC Interop ★★★★☆","source_url":"https://80.lv/articles/nomad-sculpt-adds-direct-app-linking-to-blender-zbrush","category":"blender-dcc","subcategory":"other-dcc","ranking_score":74,"rank_global":27,"homepage_tier":"category_only","full_analysis":[{"label":"跨裝置流程","text":"mobile sculpt 不再需要每輪 OBJ/FBX 手動輸出；vertex paint 也能對應到 Blender 正確 slots。"},{"label":"製作價值","text":"重點是是否降低跨工具操作、重複建模或貼圖／輸出摩擦。"},{"label":"升版 / 導入測試","text":"在專案副本驗版本、plugin、import/export、材質與批次相容性。"}]},{"id":"avatarpointillist-4d-gaussian-avatar","title":"AvatarPointillist：單張 Portrait 生成可動畫的 4D Gaussian Avatar","summary":"CVPR 2026 的 AvatarPointillist 以 autoregressive point generation 建立 3D Gaussians，同時預測 binding…","quick_impact":"Avatar Research ★★★★☆","source_url":"https://openaccess.thecvf.com/content/CVPR2026/html/Liu_AvatarPointillist_AutoRegressive_4D_Gaussian_Avatarization_CVPR_2026_paper.html","category":"emerging-case","subcategory":"research","ranking_score":73,"rank_global":28,"homepage_tier":"category_only","full_analysis":[{"label":"生成結構","text":"模型不是固定輸出相同點數，而會依角色複雜度自回歸決定 point density，並在生成時預測 binding，讓 avatar 後續可動畫。"},{"label":"製作潛力","text":"先判斷研究輸出是否能轉成 DCC／engine 可消費、可控制的資料。"},{"label":"成熟度判斷","text":"以隔離 R&D 測可控性、一致性、輸出表示與量產成本。"}]},{"id":"edgy-blender-c4d-nondestructive-damage","title":"Edgy：Blender／Cinema 4D 以 Non-destructive Mesh Damage 直接改變輪廓","summary":"Edgy 會在封閉 mesh 的邊緣與表面切出實際破損，原始物件保留不變，破損在任何鏡頭距離與 renderer 都能影響 silhouette。","quick_impact":"Modeling Tool ★★★★☆","source_url":"https://80.lv/articles/check-out-this-plug-in-for-c4d-blender-that-created-realistic-damage","category":"blender-dcc","subcategory":"addon","ranking_score":71,"rank_global":29,"homepage_tier":"category_only","full_analysis":[{"label":"建模方式","text":"與只貼 normal/height damage 不同，Edgy 直接建立幾何破損，所以遠近距離都能改變 silhouette，同時保留原 mesh 做非破壞迭代。"},{"label":"製作價值","text":"重點是是否降低跨工具操作、重複建模或貼圖／輸出摩擦。"},{"label":"升版 / 導入測試","text":"在專案副本驗版本、plugin、import/export、材質與批次相容性。"}]},{"id":"maya-2027-1-smart-bevel-lookdevx-usd","title":"Maya 2027.1：Smart Bevel 強化、LookdevX Texture Projection 與 USD Variant Edit","summary":"Maya 2027.1 更新 Smart Bevel、Sequencer、MotionMaker，LookdevX 2.1 增加免 UV texture projection，USD …","quick_impact":"Maya Pipeline ★★★★☆","source_url":"https://help.autodesk.com/cloudhelp/ENU/MayaCRE-WhatsNew/files/GUID-6E7C1780-3909-45B9-9357-CBC37F2B1C91.htm","category":"blender-dcc","subcategory":"maya","ranking_score":70,"rank_global":30,"homepage_tier":"category_only","full_analysis":[{"label":"建模與 Lookdev","text":"Smart Bevel 對複雜幾何的容錯提升，LookdevX texture projection 則讓早期 lookdev 可以先不綁定最終 UV。"},{"label":"製作價值","text":"重點是是否降低跨工具操作、重複建模或貼圖／輸出摩擦。"},{"label":"升版 / 導入測試","text":"在專案副本驗版本、plugin、import/export、材質與批次相容性。"}]}]}
+{
+  "date": "2026-09-04",
+  "schema_version": 3,
+  "render_revision": 3,
+  "information_architecture": "v2",
+  "metadata": {
+    "discovery_windows": [
+      "24h",
+      "7d",
+      "30d",
+      "6m",
+      "evergreen"
+    ],
+    "category_pool_target_items": 5,
+    "category_pool_min_items": 0,
+    "category_pool_max_items": 30,
+    "category_fill_policy": "daily_total_20_30_quality_first",
+    "candidate_pool_target_per_category": 20,
+    "candidate_pool_stretch_per_category": 40,
+    "total_items": 22,
+    "ranking_policy": "production value + freshness + verifiability + diversity penalty",
+    "generated_for": "2026-09-04",
+    "full_analysis_depth_contract": "v3-adaptive-3to5-production-depth",
+    "full_analysis_heading_language": "zh-Hant",
+    "discovery_completeness": "24h->7d->30d->6m->evergreen exhausted to exact target; low-value and duplicate candidates excluded",
+    "registry_identity_normalization": {
+      "dropped_count": 8,
+      "rewritten_count": 0,
+      "policy": "published-source-without-substantive-delta-skip",
+      "stage": "collection-before-ready",
+      "refill_required": false,
+      "category_deficits": {},
+      "daily_release_gate": {
+        "have": 22,
+        "min": 20,
+        "target": 30,
+        "max": 30,
+        "missing_to_min": 0,
+        "missing_to_target": 8,
+        "release_ready": true,
+        "category_counts": {
+          "ai-generation": 5,
+          "3d-production": 3,
+          "3d-animation": 3,
+          "engine-art": 4,
+          "emerging-case": 5,
+          "blender-dcc": 2
+        }
+      }
+    }
+  },
+  "visual_evidence": {},
+  "items": [
+    {
+      "id": "nvidia-dlss5-3d-guided-neural-rendering",
+      "title": "DLSS 5：3D-Guided Neural Rendering 將材質與光照納入可控神經渲染",
+      "summary": "NVIDIA 公布 DLSS 5 的 3D-Guided Neural Rendering，讓開發者以場景幾何與引擎資料引導神經渲染，並提供藝術控制項調整材質、光照與最終視覺。",
+      "quick_impact": "Engine AI ★★★★★",
+      "source_url": "https://www.nvidia.com/en-eu/geforce/news/dlss-5-3d-guided-neural-rendering/",
+      "category": "engine-art",
+      "subcategory": "rendering",
+      "ranking_score": 100,
+      "rank_global": 1,
+      "homepage_tier": "top5",
+      "full_analysis": [
+        {
+          "label": "渲染流程變化",
+          "text": "DLSS 5 不再只把 AI 放在升頻或補幀階段，而是把 3D 場景資訊納入神經渲染，使引擎提供的幾何與畫面資料直接參與最終材質與光照重建。"
+        },
+        {
+          "label": "製作價值",
+          "text": "重點是畫質提升能否在目標平台以可接受成本穩定重現。"
+        },
+        {
+          "label": "平台實測",
+          "text": "固定場景比較畫質、GPU/CPU、記憶體、scalability 與 fallback。"
+        }
+      ]
+    },
+    {
+      "id": "nvidia-videomatgen-pbr-material-generation",
+      "title": "VideoMatGen：由幾何 + 文字聯合生成 Base Color／Roughness／Metallic／Height",
+      "summary": "NVIDIA 研究提出以影片擴散架構對幾何條件與文字描述進行 PBR 材質聯合生成，一次預測多個常用材質通道。",
+      "quick_impact": "AI Material ★★★★★",
+      "source_url": "https://research.nvidia.com/labs/rtr/publication/hasselgren2026videomatgen/",
+      "category": "ai-generation",
+      "subcategory": "ai-3d",
+      "ranking_score": 98,
+      "rank_global": 2,
+      "homepage_tier": "top5",
+      "full_analysis": [
+        {
+          "label": "生成內容",
+          "text": "VideoMatGen 同時建模 Base Color、Roughness、Metallicity 與 Height。"
+        },
+        {
+          "label": "製作價值",
+          "text": "評估重點是輸出可控性、可編輯性與人工 cleanup 是否真的下降。"
+        },
+        {
+          "label": "導入測試",
+          "text": "用代表性 input 驗一致性、格式、DCC/engine 接續與授權風險。"
+        }
+      ]
+    },
+    {
+      "id": "motionstruct4d-motion-structure-gs",
+      "title": "MotionStruct4D：從 Video-to-4D 中分離可重用的運動結構",
+      "summary": "MotionStruct4D 針對 Gaussian Splatting 的動態重建，把影片中的運動結構顯式建模，目標是提升 4D 場景的可解釋性與可控性。",
+      "quick_impact": "4D Research ★★★★★",
+      "source_url": "https://link.springer.com/article/10.1007/s11263-026-02656-2",
+      "category": "emerging-case",
+      "subcategory": "research",
+      "ranking_score": 97,
+      "rank_global": 3,
+      "homepage_tier": "top5",
+      "full_analysis": [
+        {
+          "label": "技術變化",
+          "text": "與只追求逐幀外觀重建的 4DGS 相比，MotionStruct4D 把 motion structure 當成可發現、可組織的中介表示。"
+        },
+        {
+          "label": "製作潛力",
+          "text": "先判斷研究輸出是否能轉成 DCC／engine 可消費、可控制的資料。"
+        },
+        {
+          "label": "成熟度判斷",
+          "text": "以隔離 R&D 測可控性、一致性、輸出表示與量產成本。"
+        }
+      ]
+    },
+    {
+      "id": "cult-tsar-fish-decaying-church-workflow",
+      "title": "腐朽沼澤教堂：ZBrush→Designer/Painter→SpeedTree→UE 的分層環境製作",
+      "summary": "Nicolas Pablos 拆解 Cult of the Tsar Fish 場景，從雕刻、材質到分層沼澤植被與 Unreal 組裝，提供完整環境 Production Case。",
+      "quick_impact": "Environment ★★★★★",
+      "source_url": "https://80.lv/articles/breakdown-creating-a-3d-scene-of-a-decaying-orthodox-church-in-a-swamp",
+      "category": "3d-production",
+      "subcategory": "environment-production",
+      "ranking_score": 96,
+      "rank_global": 4,
+      "homepage_tier": "top5",
+      "full_analysis": [
+        {
+          "label": "資產拆解",
+          "text": "案例以建築主體、雕刻細節、程序材質與多層植被分工，避免整個場景用單一高成本方法完成；這種分層方式更接近實際 environment pipeline。"
+        },
+        {
+          "label": "流程價值",
+          "text": "重點是是否減少建模、材質、拓樸或場景組裝的返工。"
+        },
+        {
+          "label": "實測",
+          "text": "用同一代表資產比較工時、品質、可維護性與 engine 交付。"
+        }
+      ]
+    },
+    {
+      "id": "avatar-sdk-move-text-to-animation",
+      "title": "Avatar SDK Move：文字直接生成可匯出 FBX／GLB 的角色動作",
+      "summary": "Avatar SDK Move 開放 Beta，可由自然語言生成走路、跑步、手勢與舞蹈等角色動畫，並直接套用至 MetaPerson 後輸出標準 3D 格式。",
+      "quick_impact": "AI Motion ★★★★★",
+      "source_url": "https://avatarsdk.com/blog/2026/07/27/avatar-sdk-move-beta-text-to-animation/",
+      "category": "ai-generation",
+      "subcategory": "ai-motion",
+      "ranking_score": 94,
+      "rank_global": 5,
+      "homepage_tier": "top5",
+      "full_analysis": [
+        {
+          "label": "動作生成流程",
+          "text": "Move 將 prompt 直接轉成 avatar animation，並提供 FBX／GLB 輸出，代表它可被放在 blocking 或 NPC 動作草稿的前段。"
+        },
+        {
+          "label": "製作價值",
+          "text": "評估重點是輸出可控性、可編輯性與人工 cleanup 是否真的下降。"
+        },
+        {
+          "label": "導入測試",
+          "text": "用代表性 input 驗一致性、格式、DCC/engine 接續與授權風險。"
+        }
+      ]
+    },
+    {
+      "id": "nvidia-dlss45-ray-reconstruction-gamescom",
+      "title": "DLSS 4.5 Ray Reconstruction：第二代 Transformer 強化時序穩定並開放更細 Temporal Control",
+      "summary": "NVIDIA Gamescom 2026 更新 Ray Reconstruction，新模型增加計算與參數量、擴大資料集，並提供開發者更細的 temporal accumulation…",
+      "quick_impact": "Rendering ★★★★★",
+      "source_url": "https://www.nvidia.com/en-us/geforce/news/gamescom-2026-nvidia-geforce-rtx-dlss-4-5-announcements/",
+      "category": "engine-art",
+      "subcategory": "rendering",
+      "ranking_score": 92,
+      "rank_global": 6,
+      "homepage_tier": "next10",
+      "full_analysis": [
+        {
+          "label": "畫質變化",
+          "text": "新版 Ray Reconstruction 針對 ray/path-traced lighting 的 temporal stability、motion clar…"
+        },
+        {
+          "label": "製作價值",
+          "text": "重點是畫質提升能否在目標平台以可接受成本穩定重現。"
+        },
+        {
+          "label": "平台實測",
+          "text": "固定場景比較畫質、GPU/CPU、記憶體、scalability 與 fallback。"
+        }
+      ]
+    },
+    {
+      "id": "firefly-production-workflow-builder",
+      "title": "Adobe Firefly Production：節點式生成工作流可批次串接輸入、生成、編輯與輸出",
+      "summary": "Firefly 的 Production Workflow Builder 以節點連接文字、影像、影片、生成與轉換步驟，目標是把重複生成任務做成可重用批次流程。",
+      "quick_impact": "AI Workflow ★★★★★",
+      "source_url": "https://helpx.adobe.com/firefly/web/work-with-enterprise-features/creative-production/build-custom-workflows.html",
+      "category": "ai-generation",
+      "subcategory": "ai-2d",
+      "ranking_score": 91,
+      "rank_global": 7,
+      "homepage_tier": "next10",
+      "full_analysis": [
+        {
+          "label": "工作流變化",
+          "text": "節點化之後，生成不再是單次 prompt 操作，而能把 input、generate/edit/transform 與 output 固定成流程。"
+        },
+        {
+          "label": "製作價值",
+          "text": "評估重點是輸出可控性、可編輯性與人工 cleanup 是否真的下降。"
+        },
+        {
+          "label": "導入測試",
+          "text": "用代表性 input 驗一致性、格式、DCC/engine 接續與授權風險。"
+        }
+      ]
+    },
+    {
+      "id": "clock-saint-zbrush-material-hierarchy",
+      "title": "CLOCK SAINT：以四區塊雕刻與 Roughness 階層管理複雜暗黑角色",
+      "summary": "Kang Jeong 將角色分為上身、下身、頭與手臂四大區塊，在 ZBrush 完成主要設計，再以金、石、青銅與黑鐵建立材質階層。",
+      "quick_impact": "Character ★★★★☆",
+      "source_url": "https://80.lv/articles/sculpting-a-dark-fantasy-character-with-clockwork-elements-religious-imagery",
+      "category": "3d-production",
+      "subcategory": "character-production",
+      "ranking_score": 90,
+      "rank_global": 8,
+      "homepage_tier": "next10",
+      "full_analysis": [
+        {
+          "label": "複雜度管理",
+          "text": "大型角色以主要區塊分治，搭配可重用 IMM／base meshes，能把大量齒輪與硬表面元素的反覆建模成本降到可控範圍。"
+        },
+        {
+          "label": "流程價值",
+          "text": "重點是是否減少建模、材質、拓樸或場景組裝的返工。"
+        },
+        {
+          "label": "實測",
+          "text": "用同一代表資產比較工時、品質、可維護性與 engine 交付。"
+        }
+      ]
+    },
+    {
+      "id": "nymera-character-retopo-mari-arnold",
+      "title": "Nymera：為 Rig 提前規劃 Retopo，並以程序 Mari 材質支撐多人並行修改",
+      "summary": "Ronja Stucken 的 Alien Shaman 專案在 ZBrush 建模後，以 rigging 為前提於 Maya 重拓樸，服裝利用 Marvelous 2D patter…",
+      "quick_impact": "Character Pipeline ★★★★★",
+      "source_url": "https://80.lv/articles/creating-an-alien-shaman-cg-character-using-zbrush-mari-maya",
+      "category": "3d-production",
+      "subcategory": "character-production",
+      "ranking_score": 89,
+      "rank_global": 9,
+      "homepage_tier": "next10",
+      "full_analysis": [
+        {
+          "label": "Rig 前置",
+          "text": "作者在 retopology 階段就與 rigger 溝通，代表 topology 不是造型完成後才補的交付步驟；嘴、臉與身體變形需求應提前影響 edge flow。"
+        },
+        {
+          "label": "流程價值",
+          "text": "重點是是否減少建模、材質、拓樸或場景組裝的返工。"
+        },
+        {
+          "label": "實測",
+          "text": "用同一代表資產比較工時、品質、可維護性與 engine 交付。"
+        }
+      ]
+    },
+    {
+      "id": "ue58-mesh-terrain-production",
+      "title": "UE5.8 Mesh Terrain：真 3D 地形 + Non-destructive Modifiers + World Partition",
+      "summary": "Mesh Terrain 以 3D mesh 取代傳統純 heightfield 限制，可建立懸崖、洞穴與 overhang，並以 modifiers、weight channels …",
+      "quick_impact": "UE5 Worldbuilding ★★★★★",
+      "source_url": "https://dev.epicgames.com/documentation/unreal-engine/mesh-terrain-in-unreal-engine",
+      "category": "engine-art",
+      "subcategory": "unreal",
+      "ranking_score": 88,
+      "rank_global": 10,
+      "homepage_tier": "next10",
+      "full_analysis": [
+        {
+          "label": "世界製作方式",
+          "text": "Mesh Terrain 的基礎不是固定解析度 heightfield，可把重要區域給更高密度、遠區更低密度，並允許 overhang/tunnel 等真正 3D 形體。"
+        },
+        {
+          "label": "製作價值",
+          "text": "重點是畫質提升能否在目標平台以可接受成本穩定重現。"
+        },
+        {
+          "label": "平台實測",
+          "text": "固定場景比較畫質、GPU/CPU、記憶體、scalability 與 fallback。"
+        }
+      ]
+    },
+    {
+      "id": "firefly-scene-to-image-3d-reference",
+      "title": "Firefly Scene to Image：用簡單 3D 場景鎖定構圖、鏡頭與深度再生成影像",
+      "summary": "Adobe Firefly 可用 Project Neo 形狀建立 3D 場景，將相機角度、構圖與深度作為生成影像的結構參考。",
+      "quick_impact": "Concept Control ★★★★☆",
+      "source_url": "https://helpx.adobe.com/firefly/web/generate-images-with-text-to-image/generate-images-using-3d-scenes/scene-to-image.html",
+      "category": "ai-generation",
+      "subcategory": "ai-2d",
+      "ranking_score": 86,
+      "rank_global": 11,
+      "homepage_tier": "next10",
+      "full_analysis": [
+        {
+          "label": "控制方式",
+          "text": "Scene to Image 把 3D blockout 變成生成條件，artist 可以先鎖定 camera、物件相對位置與 depth，再讓模型處理風格與細節。"
+        },
+        {
+          "label": "製作價值",
+          "text": "評估重點是輸出可控性、可編輯性與人工 cleanup 是否真的下降。"
+        },
+        {
+          "label": "導入測試",
+          "text": "用代表性 input 驗一致性、格式、DCC/engine 接續與授權風險。"
+        }
+      ]
+    },
+    {
+      "id": "4dgs-wam-object-centric-world-model",
+      "title": "4DGS-WAM：以 4D Gaussian Splatting 建立 Object-Centric World Action Model",
+      "summary": "4DGS-WAM 將動態 Gaussian 表示與 action-conditioned world model 結合，探索可被行為驅動、以物件為中心的 4D 場景預測。",
+      "quick_impact": "World Model ★★★★★",
+      "source_url": "https://arxiv.org/abs/2608.25956",
+      "category": "emerging-case",
+      "subcategory": "world-model",
+      "ranking_score": 85,
+      "rank_global": 12,
+      "homepage_tier": "next10",
+      "full_analysis": [
+        {
+          "label": "研究方向",
+          "text": "它把 4DGS 從被動重播的動態場景推向 action-conditioned prediction，核心價值是場景表示開始包含『物件如何因行為改變』。"
+        },
+        {
+          "label": "製作潛力",
+          "text": "先判斷研究輸出是否能轉成 DCC／engine 可消費、可控制的資料。"
+        },
+        {
+          "label": "成熟度判斷",
+          "text": "以隔離 R&D 測可控性、一致性、輸出表示與量產成本。"
+        }
+      ]
+    },
+    {
+      "id": "nvidia-physics-informed-articulated-3d-assets",
+      "title": "NVIDIA GTC 案例：生成式 3D 從外觀走向關節、分件與物理屬性",
+      "summary": "NVIDIA GTC 2026 技術場次展示將影像或文字轉成具語意關節、part-aware mesh 與物理屬性的可驅動 3D 資產方法。",
+      "quick_impact": "AI 3D Research ★★★★☆",
+      "source_url": "https://www.nvidia.com/en-us/on-demand/session/gtc26-s81935/",
+      "category": "ai-generation",
+      "subcategory": "ai-3d",
+      "ranking_score": 84,
+      "rank_global": 13,
+      "homepage_tier": "next10",
+      "full_analysis": [
+        {
+          "label": "生成目標改變",
+          "text": "方法把輸出目標從『看起來像的 mesh』提高到 articulated asset：包含關節估計、分件幾何與物理屬性，直接對應互動內容需要的結構。"
+        },
+        {
+          "label": "製作價值",
+          "text": "評估重點是輸出可控性、可編輯性與人工 cleanup 是否真的下降。"
+        },
+        {
+          "label": "導入測試",
+          "text": "用代表性 input 驗一致性、格式、DCC/engine 接續與授權風險。"
+        }
+      ]
+    },
+    {
+      "id": "mllmsplat-3dgs-understanding-generation-editing",
+      "title": "MLLMSplat：讓 2D MLLM 同時理解、生成與編輯 3D Gaussian 場景",
+      "summary": "CVPR 2026 的 MLLMSplat 透過 3DGS tokenizer/de-tokenizer 把 Gaussian representation 接入既有 2D multi…",
+      "quick_impact": "3D AI Research ★★★★☆",
+      "source_url": "https://openaccess.thecvf.com/content/CVPR2026/html/Xiu_MLLMSplat_A_2D_MLLM-Powered_Framework_for_3D_Gaussian_Splatting_Understanding_CVPR_2026_paper.html",
+      "category": "emerging-case",
+      "subcategory": "research",
+      "ranking_score": 83,
+      "rank_global": 14,
+      "homepage_tier": "next10",
+      "full_analysis": [
+        {
+          "label": "技術重點",
+          "text": "MLLMSplat 不是另訓一個封閉 3D 模型，而是設計 tokenizer/de-tokenizer 將 3DGS 接到 2D MLLM。"
+        },
+        {
+          "label": "製作潛力",
+          "text": "先判斷研究輸出是否能轉成 DCC／engine 可消費、可控制的資料。"
+        },
+        {
+          "label": "成熟度判斷",
+          "text": "以隔離 R&D 測可控性、一致性、輸出表示與量產成本。"
+        }
+      ]
+    },
+    {
+      "id": "blender-vat-animation-to-ue5",
+      "title": "Blender→UE5：用 Vertex Animation Texture 傳遞非骨架動畫",
+      "summary": "一套 Blender 到 Unreal 的 VAT workflow 將任意頂點動畫烘焙到 texture，再在 UE5 重建，適合模組變形或不適合 skeletal rig 的效果。",
+      "quick_impact": "Animation Pipeline ★★★★☆",
+      "source_url": "https://80.lv/articles/how-to-export-any-animation-from-blender-to-unreal-engine-5",
+      "category": "3d-animation",
+      "subcategory": "animation",
+      "ranking_score": 79,
+      "rank_global": 15,
+      "homepage_tier": "next10",
+      "full_analysis": [
+        {
+          "label": "傳輸方式",
+          "text": "VAT 把逐頂點位置／法線變化從傳統骨架或 cache 轉成 texture sampling。"
+        },
+        {
+          "label": "動作價值",
+          "text": "重點是減少 retarget、接觸點、root motion 與曲線 cleanup 工時。"
+        },
+        {
+          "label": "導入測試",
+          "text": "用既有 skeleton 驗 foot contact、retarget、root 與引擎回放。"
+        }
+      ]
+    },
+    {
+      "id": "gaussianfluent-fracture-mixed-materials",
+      "title": "GaussianFluent：Gaussian 場景加入 Mixed-Material 與 Brittle Fracture 模擬",
+      "summary": "CVPR 2026 的 GaussianFluent 生成物體內部 Gaussians，並結合 damage-aware MPM，讓 Gaussian representation 可…",
+      "quick_impact": "Simulation Research ★★★★☆",
+      "source_url": "https://openaccess.thecvf.com/content/CVPR2026/html/Huang_GaussianFluent_Gaussian_Simulation_for_Dynamic_Scenes_with_Mixed_Materials_CVPR_2026_paper.html",
+      "category": "emerging-case",
+      "subcategory": "research",
+      "ranking_score": 78,
+      "rank_global": 16,
+      "homepage_tier": "category_only",
+      "full_analysis": [
+        {
+          "label": "突破點",
+          "text": "一般 3DGS 擅長外觀但沒有可靠內部體積；GaussianFluent 先補內部表徵，再把 fracture-aware simulation 接進動態表示。"
+        },
+        {
+          "label": "製作潛力",
+          "text": "先判斷研究輸出是否能轉成 DCC／engine 可消費、可控制的資料。"
+        },
+        {
+          "label": "成熟度判斷",
+          "text": "以隔離 R&D 測可控性、一致性、輸出表示與量產成本。"
+        }
+      ]
+    },
+    {
+      "id": "houdini-kinefx-combat-retarget-pipeline",
+      "title": "Houdini KineFX：Mocap Retarget、Motion Editing 與 Combo 拆段後再送 UE5",
+      "summary": "實務案例把 capture take 送入 Houdini KineFX 完成 retarget、速度調整、combo 分段與技術邏輯，再輸出 Unreal，臉部 capture 則分…",
+      "quick_impact": "Combat Animation ★★★★☆",
+      "source_url": "https://80.lv/articles/working-on-games-and-films-with-unreal-houdini-and-blender",
+      "category": "3d-animation",
+      "subcategory": "mocap",
+      "ranking_score": 77,
+      "rank_global": 17,
+      "homepage_tier": "category_only",
+      "full_analysis": [
+        {
+          "label": "技術動畫流程",
+          "text": "KineFX 不只做骨架映射，而是把 retarget、motion edit、acceleration 與 combo segment 放在同一程序化階段。"
+        },
+        {
+          "label": "動作價值",
+          "text": "重點是減少 retarget、接觸點、root motion 與曲線 cleanup 工時。"
+        },
+        {
+          "label": "導入測試",
+          "text": "用既有 skeleton 驗 foot contact、retarget、root 與引擎回放。"
+        }
+      ]
+    },
+    {
+      "id": "over-shoulder-clothing-rig-weight-paint",
+      "title": "肩披服裝 Rig：以精細 Weight Paint 解決跨肩褶邊與配件自然變形",
+      "summary": "AldoTheVamp 展示 VRChat 角色肩部褶邊與服裝的權重配置，提供可直接觀察的 deformation/weight paint 參考。",
+      "quick_impact": "Rigging ★★★★☆",
+      "source_url": "https://80.lv/articles/perfectly-natural-over-the-shoulder-clothing-rig",
+      "category": "3d-animation",
+      "subcategory": "rigging",
+      "ranking_score": 76,
+      "rank_global": 18,
+      "homepage_tier": "category_only",
+      "full_analysis": [
+        {
+          "label": "變形難點",
+          "text": "跨肩服裝同時受鎖骨、上臂與軀幹驅動，若權重只依距離自動分配，抬臂時很容易塌陷或被肩膀拉扯；案例的可視化 weights 對診斷很有參考價值。"
+        },
+        {
+          "label": "動作價值",
+          "text": "重點是減少 retarget、接觸點、root motion 與曲線 cleanup 工時。"
+        },
+        {
+          "label": "導入測試",
+          "text": "用既有 skeleton 驗 foot contact、retarget、root 與引擎回放。"
+        }
+      ]
+    },
+    {
+      "id": "nvidia-streamline-single-integration",
+      "title": "NVIDIA Streamline：以單一 Plugin Framework 統一接入多種 Upscaling／Graphics Effects",
+      "summary": "Streamline 讓引擎一次標記 motion vectors、depth 等資源，再由 plugin 接入不同超解析與圖形技術，降低每套 SDK 各自維護的整合成本。",
+      "quick_impact": "Engine Integration ★★★★☆",
+      "source_url": "https://developer.nvidia.com/rtx/streamline",
+      "category": "engine-art",
+      "subcategory": "tools",
+      "ranking_score": 75,
+      "rank_global": 19,
+      "homepage_tier": "category_only",
+      "full_analysis": [
+        {
+          "label": "整合架構",
+          "text": "Streamline 位於 render API 與遊戲之間，重點是先定義 shared resources 與執行位置，再以 plug-in 接上不同技術。"
+        },
+        {
+          "label": "製作價值",
+          "text": "重點是畫質提升能否在目標平台以可接受成本穩定重現。"
+        },
+        {
+          "label": "平台實測",
+          "text": "固定場景比較畫質、GPU/CPU、記憶體、scalability 與 fallback。"
+        }
+      ]
+    },
+    {
+      "id": "avatarpointillist-4d-gaussian-avatar",
+      "title": "AvatarPointillist：單張 Portrait 生成可動畫的 4D Gaussian Avatar",
+      "summary": "CVPR 2026 的 AvatarPointillist 以 autoregressive point generation 建立 3D Gaussians，同時預測 binding…",
+      "quick_impact": "Avatar Research ★★★★☆",
+      "source_url": "https://openaccess.thecvf.com/content/CVPR2026/html/Liu_AvatarPointillist_AutoRegressive_4D_Gaussian_Avatarization_CVPR_2026_paper.html",
+      "category": "emerging-case",
+      "subcategory": "research",
+      "ranking_score": 73,
+      "rank_global": 20,
+      "homepage_tier": "category_only",
+      "full_analysis": [
+        {
+          "label": "生成結構",
+          "text": "模型不是固定輸出相同點數，而會依角色複雜度自回歸決定 point density，並在生成時預測 binding，讓 avatar 後續可動畫。"
+        },
+        {
+          "label": "製作潛力",
+          "text": "先判斷研究輸出是否能轉成 DCC／engine 可消費、可控制的資料。"
+        },
+        {
+          "label": "成熟度判斷",
+          "text": "以隔離 R&D 測可控性、一致性、輸出表示與量產成本。"
+        }
+      ]
+    },
+    {
+      "id": "edgy-blender-c4d-nondestructive-damage",
+      "title": "Edgy：Blender／Cinema 4D 以 Non-destructive Mesh Damage 直接改變輪廓",
+      "summary": "Edgy 會在封閉 mesh 的邊緣與表面切出實際破損，原始物件保留不變，破損在任何鏡頭距離與 renderer 都能影響 silhouette。",
+      "quick_impact": "Modeling Tool ★★★★☆",
+      "source_url": "https://80.lv/articles/check-out-this-plug-in-for-c4d-blender-that-created-realistic-damage",
+      "category": "blender-dcc",
+      "subcategory": "addon",
+      "ranking_score": 71,
+      "rank_global": 21,
+      "homepage_tier": "category_only",
+      "full_analysis": [
+        {
+          "label": "建模方式",
+          "text": "與只貼 normal/height damage 不同，Edgy 直接建立幾何破損，所以遠近距離都能改變 silhouette，同時保留原 mesh 做非破壞迭代。"
+        },
+        {
+          "label": "製作價值",
+          "text": "重點是是否降低跨工具操作、重複建模或貼圖／輸出摩擦。"
+        },
+        {
+          "label": "升版 / 導入測試",
+          "text": "在專案副本驗版本、plugin、import/export、材質與批次相容性。"
+        }
+      ]
+    },
+    {
+      "id": "maya-2027-1-smart-bevel-lookdevx-usd",
+      "title": "Maya 2027.1：Smart Bevel 強化、LookdevX Texture Projection 與 USD Variant Edit",
+      "summary": "Maya 2027.1 更新 Smart Bevel、Sequencer、MotionMaker，LookdevX 2.1 增加免 UV texture projection，USD …",
+      "quick_impact": "Maya Pipeline ★★★★☆",
+      "source_url": "https://help.autodesk.com/cloudhelp/ENU/MayaCRE-WhatsNew/files/GUID-6E7C1780-3909-45B9-9357-CBC37F2B1C91.htm",
+      "category": "blender-dcc",
+      "subcategory": "maya",
+      "ranking_score": 70,
+      "rank_global": 22,
+      "homepage_tier": "category_only",
+      "full_analysis": [
+        {
+          "label": "建模與 Lookdev",
+          "text": "Smart Bevel 對複雜幾何的容錯提升，LookdevX texture projection 則讓早期 lookdev 可以先不綁定最終 UV。"
+        },
+        {
+          "label": "製作價值",
+          "text": "重點是是否降低跨工具操作、重複建模或貼圖／輸出摩擦。"
+        },
+        {
+          "label": "升版 / 導入測試",
+          "text": "在專案副本驗版本、plugin、import/export、材質與批次相容性。"
+        }
+      ]
+    }
+  ]
+}

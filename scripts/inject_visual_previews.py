@@ -50,8 +50,10 @@ def inject(path,prefix,records,is_archive=False):
 
 def main():
     date=sys.argv[1] if len(sys.argv)>1 else latest_date()
-    if not MANIFEST.exists(): raise SystemExit('visual manifest missing; run extract_visual_assets.py first')
-    manifest=json.loads(MANIFEST.read_text('utf-8'))
+    date_manifest=ROOT/'assets'/'visual'/date/'manifest.json'
+    manifest_path=date_manifest if date_manifest.exists() else MANIFEST
+    if not manifest_path.exists(): raise SystemExit('visual manifest missing; run extract_visual_assets.py first')
+    manifest=json.loads(manifest_path.read_text('utf-8'))
     if manifest.get('date')!=date: raise SystemExit(f"visual manifest date mismatch: {manifest.get('date')} != {date}")
     if manifest.get('asset_versioning')!='daily-snapshot': raise SystemExit('visual manifest must use daily-snapshot asset versioning')
     records={x['id']:x for x in manifest.get('entries',[]) if x.get('status')=='ok'}
