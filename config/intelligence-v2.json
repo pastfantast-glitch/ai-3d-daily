@@ -1,1 +1,607 @@
-{"version":2,"schema_version":3,"start_date":"2026-09-02","collection_contract_effective_date":"2026-09-04","preference_contract_effective_date":"2026-09-06","category_pool_target_items":5,"category_pool_max_items":30,"category_pool_min_items":0,"category_fill_policy":"daily_total_20_30_quality_first","collection":{"selection_principle":"production_value_first","major_news_is_ranking_signal_not_admission_gate":true,"candidate_pool_target_per_category":20,"candidate_pool_stretch_per_category":40,"discovery_windows":["24h","7d","30d","6m","evergreen"],"window_policy":{"24h":"Fresh releases/updates/news first when production value is comparable.","7d":"Backfill unpublished production workflows, tests, add-ons, DCC/engine techniques and AI-assisted findings.","30d":"Backfill production cases, workflow breakdowns, technical-art examples and credible community/GitHub discoveries.","6m":"Backfill high-value research, references, conference material and missed production intelligence.","evergreen":"Final tier: verifiable still-current official references, workflows or cases with concrete production value."},"fill_ladder":["24h:fresh-release-update-news","7d:unpublished-production-intelligence","30d:production-case-workflow-technical-art","6m:research-reference-missed-high-value","evergreen:official-production-reference"],"fill_target_policy":"Aim for 30 valid unpublished items after registry dedupe and Quality Gate. 20 is the release floor, not a discovery stop. Category counts are diversity diagnostics, never quotas. Exhaust configured backfill tiers before accepting shortage; 20-29 may publish after reasonable exhaustion; never pad.","inclusion_tiers":{"A":{"label":"major-intelligence","guidance":"Major models/versions, meaningful features/workflows, pricing/licensing/availability or major engine/DCC/AI production changes."},"B":{"label":"production-intelligence","guidance":"Practical asset, modeling, retopo, UV, texture/material/shader, rig/animation, mocap/retarget, engine, AI 3D/motion, pipeline and tooling lessons."},"C":{"label":"case-tip-community","guidance":"Verifiable cases, breakdowns, add-ons, GitHub tools, demos, research prototypes and community workflows with concrete takeaways."}},"exclude":["content-farm or unverifiable claims","negligible 3D/game-art relevance","previously published without substantive delta","old low-value filler","pure hype with no evidence or operational takeaway"],"completeness_trigger_total_items":30,"completeness_trigger_policy":"Release-ready at 20-30 valid unpublished items after dedupe, Quality Gate and reasonable fill-ladder exhaustion. Target/max 30; category shortages never block or justify padding.","ranking_guidance":"Production value first; then user-interest fit, practical testability, source reliability, novelty/substantive delta and freshness. Freshness must not outrank materially more useful production intelligence. Preferences are signals, not quotas.","daily_min_items":20,"daily_target_items":30,"daily_max_items":30},"production_intelligence_profile":{"purpose":"Surface intelligence most likely to improve game-art production quality, efficiency, pipeline decisions, testing priorities or workflows over the next 6-24 months.","category_quota_policy":"Interest scores and preferences guide discovery/ranking only; never create per-category quotas or filler.","ranking":{"dimensions_in_priority_order":["production_value","user_interest_fit","practical_testability","source_reliability","novelty_or_substantive_delta","freshness"],"freshness_rule":"Prefer newer when value is comparable; allow 1-6 month or evergreen material to outrank fresh low-value news.","source_rule":"Official, community, video, case, GitHub and research sources are all admissible when verifiable; source type alone does not determine rank.","selection_rule":"Mixed slate: consequential updates first, then strongest tests, workflows, breakdowns, tools and cases."},"global_positive_signals":["measurable quality/efficiency gain","reproducible workflow","high-quality comparison/test","DCC-engine integration or automation","concrete game-art breakdown","NPR/toon/stylized technical value","clear risk/limitation/failure analysis","credible near-term production breakthrough"],"global_downrank":["known-tool reintroduction without delta","minor update without workflow consequence","showcase with little production detail unless category permits reference value","old content used mainly to fill quantity"],"global_hard_exclude":["unverifiable/content-farm","published identity/source without substantive delta","unrelated to game-art and not transferable","generic hype/prediction without evidence"],"category_preferences":{"ai-generation":{"interest_scores":{"ai-3d":5,"ai-2d":4,"ai-motion":3},"selection_mode":"mixed_updates_tests_workflows","priority_topics":["new model/version","image/text-to-3D quality","API/batch automation","high-poly quality","low-poly/game-ready","retopology","character generation","environment generation","multi-view","UV","PBR texture","part segmentation","hard surface"],"tool_tiers":{"tier1":["Meshy","Tripo","Hunyuan3D"],"tier2":["Rodin","TRELLIS"],"emerging":"include on meaningful breakthrough"},"high_admission":["major model/version","meaningful quality gain","new production feature","artist/user production test","substantive YouTube test"],"conditional_admission":["UI change","official benchmark","Reddit experience","open-source 3D model","not-yet-usable paper","pricing","API","funding/business"],"ai2d_priorities":["game-art assets","concept art","character design","environment design","texture generation","image edit/local edit","upscale/print","multi-view/sheets","image consistency","ComfyUI","major image-model news","high-reference-value AI showcase"],"ai2d_downrank":["seamless-texture-only","style-consistency-only","Photoshop/DCC integration without meaningful gain"],"ai_motion_priorities":["motion quality","cleanup","foot lock","retarget","Unity/UE","speed"],"ai_motion_video_rule":"Video-only character motion may qualify without skeletal export when it has concrete animation reference/previs/production value.","downrank":["generic AI hype","repeat known-tool intro"],"backfill":"actively allow 1-6m/evergreen unpublished production tests and workflows"},"3d-production":{"interest_scores":{"character-production":5,"prop-production":4,"environment-production":4,"production-workflow":4},"selection_mode":"mixed_asset_breakdowns_and_workflows","character_priorities":["ZBrush/sculpt","head/face","anatomy","hair/groom","cloth","armor/equipment","retopo","character material","character texture","NPR/toon","low-poly/mobile","full breakdown","procedural/semi-auto"],"environment_priorities":["full environment breakdown","terrain/landscape","DCC lighting","modular","natural assets","texture/material","open world","decal","optimization/LOD/HLOD","stylized/NPR","procedural"],"prop_policy":"Hard-surface, weapons, mechanical assets, vehicles and game props are high priority.","workflow_priorities":["DCC-to-Unity/Unreal","modeling","procedural","baking","material","retopo","texturing","UV","batch automation","outsourcing/asset validation"],"style_policy":"Stylized, NPR, semi-realistic and realistic/AAA all score 5; style is not a gate.","tutorial_policy":"Good tutorials qualify; boost new methods and measurable quality/efficiency gains.","breakdown_policy":"Industry breakdowns are high priority.","hard_exclude":["pure portfolio/ArtStation without production info","beginner content with little transferable value","breakdown without actual method"],"backfill":"older strong cases qualify but rank below equally valuable recent material"},"3d-animation":{"interest_scores":{"rigging":5,"animation":5,"mocap":3,"retarget":4,"cleanup":3,"facial":4},"selection_mode":"mixed_animation_rig_mocap_retarget_facial_tools","animation_priorities":["character workflow","creature","stylized","gameplay pipeline","animation layers/non-linear","physics-assisted"],"rig_priorities":["character rig","facial rig","control rig","auto rig","Unreal Control Rig","Blender rig","Maya rig","deformation/skinning"],"mocap_priorities":["quality","fingers","face","real-time","mobile","engine-direct"],"retarget_priorities":["different proportions","different skeletons","UE5 IK Retargeter","Unity Humanoid"],"facial_priorities":["Audio-to-Face","Video-to-Face","iPhone capture","neural facial","lip sync","eye animation"],"gameplay_cinematic":"equal","breakdown_policy":"high priority even when not news","showcase_policy":"pure showcase only when quality/reference value is exceptional","tool_policy":"actively discover rig/retarget/pose/motion-edit/mocap-cleanup/procedural-animation tools","tool_tiers":{"tier1":["Unreal Engine","Unity","Maya","Blender"],"tier2":["MotionBuilder","Cascadeur","Rokoko","MetaHuman Animator"],"tier3":["Move AI","DeepMotion","AccuRIG"]}},"engine-art":{"interest_scores":{"unreal":5,"unity":5,"shader":5,"rendering":4,"tools":4,"optimization":3},"selection_mode":"production_value_no_engine_quota","unreal_priorities":["Material","NPR/toon","lighting","Lumen","VSM/shadow","landscape/environment","character rendering","editor/art tools","Blueprint art workflow","new art-impacting version features","MetaHuman"],"unity_priorities":["URP","HDRP","Shader Graph","NPR/toon","lighting","character rendering","environment rendering","runtime art pipeline","technical art"],"shader_priorities":["NPR/toon","stylized","character","hair","facial","environment","post-process","lighting models","SDF/Ramp/MatCap","Unity/UE shader logic comparison"],"optimization_priorities":["draw calls/batching","lighting performance","large-scene performance","art-asset standards","stylized-project optimization"],"high_value_sources":["official feature+implementation","technical-art test","project case","shader breakdown","GitHub/open source","art-pipeline tool"],"hard_exclude":["pure programming/engineering with no material art-production relevance"]},"emerging-case":{"interest_scores":{"research":4,"case-study":4,"procedural":5,"world-model":3,"4d":4},"selection_mode":"rank_by_6_24m_workflow_impact","case_priorities":["AAA","mobile game","stylized/NPR","character","environment","technical art","shader/rendering","AI-in-production"],"research_policy":"Novel research can enter discovery; selection favors production potential and near-usability.","open_source_policy":"research code/GitHub qualifies only with clear production potential","gaussian_nerf":"normal priority; boost on productionization","world_model":"include with credible game/3D production potential","4d":"include with credible production potential","procedural_priorities":["AI + procedural hybrid workflow"],"conference_policy":"allow GDC/SIGGRAPH/Unreal Fest/GTC/Unity backfill; newer wins when value is equal","failure_case_policy":"qualify only with cause/cost/quality/pipeline analysis","hard_exclude":["empty future-will-change-industry article","pure mathematical derivation without production consequence"]},"blender-dcc":{"selection_mode":"production_value_no_dcc_quota","tool_interest_scores":{"Blender":5,"3ds Max":3,"Maya":4,"Houdini":3,"Substance Painter/Designer":5,"ZBrush":5,"Marvelous Designer/CLO":5,"Marmoset Toolbag":5,"Other/new DCC":4},"blender_priorities":["modeling","sculpt","Geometry Nodes","UV","retopo","rigging","animation","material/shader","rendering","add-on","Blender-to-Unity/UE","new version"],"blender_tip_policy":"useful small tips qualify when they save time, improve quality or simplify workflow","addon_priorities":["modeling","retopo","rig","animation","material/texture","environment/scatter","AI-assisted"],"3ds_max_priorities":["modeling","modifier workflow","rig/animation","MaxScript/automation","export/engine","plugin/tool","new version"],"maya_policy":"include when method has cross-DCC transferable value","houdini_policy":"all major Houdini production areas discoverable; rank by value","substance_priorities":["Painter","Designer","Smart Material","baking","UDIM","stylized","character","environment","Unity/UE integration"],"zbrush_priorities":["sculpt","character sculpt","hard surface","ZRemesher/retopo","plugin/macro","new version"],"new_tool_policy":"include niche DCC tools only with clear production value","hard_exclude":["DCC use unrelated to game art and not transferable"]}}},"homepage":{"top5":5,"next10":10},"full_analysis":{"style_reference":"2026-09-01","min_blocks":3,"max_blocks":5,"adaptive_labels":true,"fixed_semantic_labels":false,"heading_language":"zh-Hant","quality_rule":"Each block must add one distinct, source-supported production insight; do not pad or restate summary/quick_impact.","required_semantics":["production-change-or-workflow","production-value-or-pipeline-impact","adoption-test-risk-or-limitation"],"writing_guidance":["Use concise Traditional Chinese headings; keep product/DCC/engine abbreviations when useful.","Choose 3-5 content-specific analysis angles rather than fixed template headings.","State concrete capability/delta, workflow value, then adoption/test/risk judgment.","Keep V3 depth without filler or repeated context.","For AI motion, when supported, cover input/output rig compatibility, root/fingers/face/multi-person, cleanup/foot lock, retarget, local/cloud, speed, licensing and engine integration.","Use 2026-09-01 as readability reference; do not rewrite historical pages."]},"categories":[{"id":"ai-generation","label":"AI 生成","description":"AI 3D 生成 / AI 2D 生成 / AI 動作生成","subtypes":["ai-3d","ai-2d","ai-motion"]},{"id":"3d-production","label":"3D 製作","description":"3D 角色製作 / 3D 物件製作 / 3D 場景製作 / 製作流程","subtypes":["character-production","prop-production","environment-production","production-workflow"],"collection_guidance":["Classify asset-specific techniques by character/prop/environment; use production-workflow for cross-asset methods."]},{"id":"3d-animation","label":"3D 動作","description":"3D 動作 / 3D 動作製作流程","subtypes":["rigging","animation","mocap","retarget","cleanup","facial"]},{"id":"engine-art","label":"遊戲引擎","description":"遊戲引擎 / 引擎端美術內容","subtypes":["unreal","unity","shader","rendering","tools","optimization"]},{"id":"emerging-case","label":"新技術 / Case","description":"新技術 / Production Case","subtypes":["research","case-study","procedural","world-model","4d"]},{"id":"blender-dcc","label":"Blender / DCC","description":"Blender / DCC 工具與工作流 / Blender Tips","subtypes":["blender","blender-tip","addon","maya","houdini","substance","other-dcc"]}]}
+{
+  "version": 2,
+  "schema_version": 3,
+  "start_date": "2026-09-02",
+  "collection_contract_effective_date": "2026-09-04",
+  "preference_contract_effective_date": "2026-09-06",
+  "category_pool_target_items": 5,
+  "category_pool_max_items": 30,
+  "category_pool_min_items": 0,
+  "category_fill_policy": "daily_total_20_30_quality_first",
+  "collection": {
+    "selection_principle": "production_value_first",
+    "major_news_is_ranking_signal_not_admission_gate": true,
+    "candidate_pool_target_per_category": 20,
+    "candidate_pool_stretch_per_category": 40,
+    "discovery_windows": [
+      "24h",
+      "7d",
+      "30d",
+      "6m",
+      "evergreen"
+    ],
+    "window_policy": {
+      "24h": "Prioritize fresh releases, changelogs, model/tool updates and meaningful production news. Fresh valid intelligence always gets first claim on the five category slots.",
+      "7d": "Backfill strong unpublished production workflows, breakdowns, tests, add-ons, DCC/engine techniques and AI-assisted production findings when fresh items do not fill the category target.",
+      "30d": "Backfill strong production cases, workflow breakdowns, technical-art examples and credible community/GitHub discoveries that remain operationally useful and were not previously published.",
+      "6m": "Backfill high-value research, technical references, conference material, official documentation and missed production intelligence that is still relevant and absent from the Published Intelligence Registry.",
+      "evergreen": "Final fill tier only: use verifiable, still-current official documentation, production workflow references or case studies with concrete operational value. Evergreen items must be unpublished and must never be low-value filler."
+    },
+    "fill_ladder": [
+      "24h:fresh-release-update-news",
+      "7d:unpublished-production-intelligence",
+      "30d:production-case-workflow-technical-art",
+      "6m:research-reference-missed-high-value",
+      "evergreen:official-production-reference"
+    ],
+    "fill_target_policy": "Continue discovery through the configured fill ladder aiming for 30 total valid unpublished items after Published Intelligence Registry dedupe and Quality Gate. Twenty items is the release floor, not a discovery stop signal. Category counts are diversity diagnostics, not release quotas. After reasonable exhaustion of all configured tiers, 20-29 valid items may publish; never pad with duplicates, unverifiable claims or low-production-value filler.",
+    "inclusion_tiers": {
+      "A": {
+        "label": "major-intelligence",
+        "guidance": "New models, major versions, meaningful feature/workflow changes, pricing/licensing/availability changes, or major engine/DCC/AI production developments. Strong TOP5 candidates when production impact is high."
+      },
+      "B": {
+        "label": "production-intelligence",
+        "guidance": "Practical character/prop/environment workflows, modeling, retopology, UV, texturing, material/shader, rigging, animation, mocap, cleanup, retarget, Unity/Unreal production techniques, AI 3D or AI motion tests, pipeline/tooling improvements and measurable production lessons. These are valid intelligence even without a major product announcement."
+      },
+      "C": {
+        "label": "case-tip-community",
+        "guidance": "Credible case studies, production breakdowns, useful Blender/DCC add-ons, GitHub tools, technical demonstrations, research prototypes and community workflows are admissible when the source is verifiable and there is a concrete production takeaway. Rank below stronger A/B items when impact is narrower."
+      }
+    },
+    "exclude": [
+      "pure portfolio/showcase with no reproducible workflow or production insight",
+      "marketing-only content with no concrete capability or workflow detail",
+      "content-farm or unverifiable claims",
+      "items with negligible relevance to 3D/game-art production",
+      "previously published items without a substantive delta",
+      "low-production-value old content used only to pad quantity"
+    ],
+    "completeness_trigger_total_items": 30,
+    "completeness_trigger_policy": "Release-ready when 20-30 valid unpublished items survive Published Intelligence Registry dedupe and Quality Gate after the configured discovery ladder has been reasonably exhausted. Target and maximum are 30. Category shortages do not block release and must never be padded.",
+    "ranking_guidance": "Production value, practical applicability, source verifiability and freshness drive ranking. Aim for broad six-category coverage without enforcing equal quotas. Continue discovery toward 30 even after reaching the 20-item release floor.",
+    "daily_min_items": 20,
+    "daily_target_items": 30,
+    "daily_max_items": 30
+  },
+  "production_intelligence_profile": {
+    "purpose": "Surface intelligence most likely to improve game-art production quality, efficiency, pipeline decisions, testing priorities or workflows over the next 6-24 months.",
+    "category_quota_policy": "Interest scores and preferences guide discovery/ranking only; never create per-category quotas or filler.",
+    "ranking": {
+      "dimensions_in_priority_order": [
+        "production_value",
+        "user_interest_fit",
+        "practical_testability",
+        "source_reliability",
+        "novelty_or_substantive_delta",
+        "freshness"
+      ],
+      "freshness_rule": "Prefer newer when production value is comparable; allow 1-6 month or evergreen material to outrank fresh low-value news.",
+      "source_rule": "Official, community, video, case, GitHub and research sources are all admissible when verifiable; source type alone does not determine rank.",
+      "selection_rule": "Use a mixed slate: consequential updates first, then the strongest tests, workflows, breakdowns, tools and cases. Category and tool preferences are ranking/discovery signals, not quotas."
+    },
+    "global_positive_signals": [
+      "measurable quality or efficiency gain",
+      "reproducible workflow",
+      "high-quality comparison or production test",
+      "DCC-engine integration or automation",
+      "concrete game-art production breakdown",
+      "NPR, toon or stylized technical value",
+      "clear risk, limitation or failure analysis",
+      "credible near-term production breakthrough"
+    ],
+    "global_downrank": [
+      "known-tool reintroduction without substantive delta",
+      "minor update without workflow consequence",
+      "showcase with little production detail unless its category explicitly permits strong reference value",
+      "old content used mainly to fill quantity"
+    ],
+    "global_hard_exclude": [
+      "unverifiable or content-farm material",
+      "published identity or normalized source without substantive delta",
+      "unrelated to game art and not meaningfully transferable",
+      "generic hype or prediction without evidence"
+    ],
+    "category_preferences": {
+      "ai-generation": {
+        "interest_scores": {
+          "ai-3d": 5,
+          "ai-2d": 4,
+          "ai-motion": 3
+        },
+        "selection_mode": "mixed_updates_tests_workflows",
+        "priority_topics": [
+          "new model or major version",
+          "image-to-3D or text-to-3D quality",
+          "API, batch and automation pipeline",
+          "high-poly quality",
+          "low-poly and game-ready output",
+          "retopology",
+          "character generation",
+          "environment generation",
+          "multi-view generation",
+          "UV",
+          "PBR texture generation",
+          "part segmentation",
+          "hard surface"
+        ],
+        "tool_tiers": {
+          "tier1": [
+            "Meshy",
+            "Tripo",
+            "Hunyuan3D"
+          ],
+          "tier2": [
+            "Rodin",
+            "TRELLIS"
+          ],
+          "emerging": "Other new tools qualify when they show a meaningful breakthrough."
+        },
+        "high_admission": [
+          "major model or version",
+          "meaningful generation-quality improvement",
+          "new production feature",
+          "artist or user production test",
+          "substantive YouTube production test"
+        ],
+        "conditional_admission": [
+          "UI change",
+          "official benchmark",
+          "Reddit experience",
+          "open-source 3D model or system",
+          "paper not yet production-ready",
+          "pricing change",
+          "API update",
+          "funding or business news"
+        ],
+        "ai2d_priorities": [
+          "game-art asset generation",
+          "concept art",
+          "character design",
+          "environment design",
+          "texture generation",
+          "image editing and local editing",
+          "upscale and print-quality enlargement",
+          "multi-view and character sheets",
+          "image consistency",
+          "ComfyUI workflow",
+          "major image-model news",
+          "high-reference-value AI showcase"
+        ],
+        "ai2d_downrank": [
+          "seamless-texture-only content",
+          "style-consistency-only content",
+          "Photoshop or DCC integration without meaningful workflow gain"
+        ],
+        "ai_motion_priorities": [
+          "motion quality",
+          "cleanup",
+          "foot lock",
+          "retarget",
+          "Unity or Unreal integration",
+          "generation speed"
+        ],
+        "ai_motion_video_rule": "Video-only character motion may qualify without skeletal export when it provides concrete animation reference, previs or production value.",
+        "downrank": [
+          "generic AI hype",
+          "repeat introduction of a known tool without delta"
+        ],
+        "backfill": "Actively allow unpublished 1-6 month and evergreen production tests or workflows when they provide strong production value."
+      },
+      "3d-production": {
+        "interest_scores": {
+          "character-production": 5,
+          "prop-production": 4,
+          "environment-production": 4,
+          "production-workflow": 4
+        },
+        "selection_mode": "mixed_asset_breakdowns_and_workflows",
+        "character_priorities": [
+          "ZBrush and sculpt",
+          "head and face",
+          "anatomy",
+          "hair and groom",
+          "cloth",
+          "armor and equipment",
+          "retopology",
+          "character material",
+          "character texturing",
+          "NPR and toon",
+          "low-poly and mobile character",
+          "full character breakdown",
+          "procedural or semi-automatic character workflow"
+        ],
+        "environment_priorities": [
+          "full environment breakdown",
+          "terrain and landscape",
+          "DCC lighting",
+          "modular environment",
+          "natural assets",
+          "environment texture and material",
+          "open-world production",
+          "decal",
+          "optimization, LOD and HLOD",
+          "stylized and NPR environment",
+          "procedural environment"
+        ],
+        "prop_policy": "Hard-surface assets, weapons, mechanical assets, vehicles and game props are high priority.",
+        "workflow_priorities": [
+          "DCC-to-Unity or Unreal pipeline",
+          "modeling workflow",
+          "procedural workflow",
+          "baking",
+          "material workflow",
+          "retopology",
+          "texturing",
+          "UV",
+          "batch automation",
+          "outsourcing and asset validation"
+        ],
+        "style_policy": "Stylized, NPR, semi-realistic and realistic or AAA all score 5; style is not an admission gate.",
+        "tutorial_policy": "Useful tutorials may qualify; boost tutorials that introduce a newer method or clearly improve production quality or efficiency.",
+        "breakdown_policy": "Industry production breakdowns are high priority.",
+        "hard_exclude": [
+          "pure portfolio or ArtStation showcase without production information",
+          "beginner content with little transferable production value",
+          "breakdown that does not explain an actual production method"
+        ],
+        "backfill": "Older strong production cases qualify but rank below equally valuable recent material."
+      },
+      "3d-animation": {
+        "interest_scores": {
+          "rigging": 5,
+          "animation": 5,
+          "mocap": 3,
+          "retarget": 4,
+          "cleanup": 3,
+          "facial": 4
+        },
+        "selection_mode": "mixed_animation_rig_mocap_retarget_facial_tools",
+        "animation_priorities": [
+          "character animation workflow",
+          "creature animation",
+          "stylized animation",
+          "gameplay animation pipeline",
+          "animation layers and non-linear workflow",
+          "physics-assisted animation"
+        ],
+        "rig_priorities": [
+          "character rig",
+          "facial rig",
+          "control rig",
+          "auto rig",
+          "Unreal Control Rig",
+          "Blender rigging",
+          "Maya rigging",
+          "deformation and skinning"
+        ],
+        "mocap_priorities": [
+          "mocap quality",
+          "finger capture",
+          "facial capture",
+          "real-time mocap",
+          "mobile mocap",
+          "engine-direct usability"
+        ],
+        "retarget_priorities": [
+          "different character proportions",
+          "different skeletons",
+          "UE5 IK Retargeter",
+          "Unity Humanoid"
+        ],
+        "facial_priorities": [
+          "Audio-to-Face",
+          "Video-to-Face",
+          "iPhone facial capture",
+          "neural facial animation",
+          "lip sync",
+          "eye animation"
+        ],
+        "gameplay_cinematic": "Gameplay and cinematic animation have equal baseline priority; production value decides rank.",
+        "breakdown_policy": "High-quality animation breakdowns are high priority even when they are not news.",
+        "showcase_policy": "Pure animation showcase may qualify when animation quality or reference value is strong enough despite limited workflow detail.",
+        "tool_policy": "Actively discover rig, retarget, pose, motion-editing, mocap-cleanup and procedural-animation production tools.",
+        "tool_tiers": {
+          "tier1": [
+            "Unreal Engine",
+            "Unity",
+            "Maya",
+            "Blender"
+          ],
+          "tier2": [
+            "MotionBuilder",
+            "Cascadeur",
+            "Rokoko",
+            "MetaHuman Animator"
+          ],
+          "tier3": [
+            "Move AI",
+            "DeepMotion",
+            "AccuRIG"
+          ]
+        }
+      },
+      "engine-art": {
+        "interest_scores": {
+          "unreal": 5,
+          "unity": 5,
+          "shader": 5,
+          "rendering": 4,
+          "tools": 4,
+          "optimization": 3
+        },
+        "selection_mode": "production_value_no_engine_quota",
+        "unreal_priorities": [
+          "Material",
+          "NPR and toon shader",
+          "lighting",
+          "Lumen",
+          "VSM and shadow",
+          "landscape and environment workflow",
+          "character rendering",
+          "editor and art tools",
+          "Blueprint-assisted art workflow",
+          "new version features with art-production impact",
+          "MetaHuman and MetaHuman Animator"
+        ],
+        "unity_priorities": [
+          "URP",
+          "HDRP",
+          "Shader Graph",
+          "NPR and toon shader",
+          "lighting",
+          "character rendering",
+          "environment rendering",
+          "runtime art pipeline",
+          "technical-art workflow"
+        ],
+        "shader_priorities": [
+          "NPR and toon",
+          "stylized rendering",
+          "character shader",
+          "hair shader",
+          "facial shading",
+          "environment shader",
+          "post-process",
+          "lighting models",
+          "SDF, Ramp and MatCap techniques",
+          "Unity and Unreal shader-logic comparison"
+        ],
+        "optimization_priorities": [
+          "draw calls and batching",
+          "lighting performance",
+          "large-scene performance",
+          "art-asset standards",
+          "stylized-project optimization"
+        ],
+        "high_value_sources": [
+          "official feature plus implementation guidance",
+          "technical-art test",
+          "project case",
+          "shader breakdown",
+          "GitHub or open-source tool",
+          "art-pipeline tool"
+        ],
+        "hard_exclude": [
+          "pure programming or engineering content with no material art-production relevance"
+        ]
+      },
+      "emerging-case": {
+        "interest_scores": {
+          "research": 4,
+          "case-study": 4,
+          "procedural": 5,
+          "world-model": 3,
+          "4d": 4
+        },
+        "selection_mode": "rank_by_6_24m_workflow_impact",
+        "case_priorities": [
+          "AAA game production",
+          "mobile game production",
+          "stylized and NPR production",
+          "character production",
+          "environment production",
+          "technical art",
+          "shader and rendering",
+          "AI adoption in production"
+        ],
+        "research_policy": "Novel research may enter discovery, but selection should favor credible production potential and near-usability.",
+        "open_source_policy": "Research code or GitHub projects qualify only when they show clear production potential.",
+        "gaussian_nerf": "Normal priority; boost when Gaussian Splatting, NeRF or novel-view work becomes materially productionized.",
+        "world_model": "Include when there is credible game or 3D-production potential.",
+        "4d": "Include dynamic 3D or 4D research when it has credible production potential.",
+        "procedural_priorities": [
+          "AI plus procedural hybrid workflow"
+        ],
+        "conference_policy": "Allow GDC, SIGGRAPH, Unreal Fest, GTC, Unity and similar conference backfill; newer material wins when production value is equal.",
+        "failure_case_policy": "Failure cases qualify only when they explain causes, cost, quality limits or pipeline consequences.",
+        "hard_exclude": [
+          "empty future-will-change-industry article",
+          "pure mathematical derivation without production consequence"
+        ]
+      },
+      "blender-dcc": {
+        "selection_mode": "production_value_no_dcc_quota",
+        "tool_interest_scores": {
+          "Blender": 5,
+          "3ds Max": 3,
+          "Maya": 4,
+          "Houdini": 3,
+          "Substance Painter/Designer": 5,
+          "ZBrush": 5,
+          "Marvelous Designer/CLO": 5,
+          "Marmoset Toolbag": 5,
+          "Other/new DCC": 4
+        },
+        "blender_priorities": [
+          "modeling",
+          "sculpt",
+          "Geometry Nodes",
+          "UV",
+          "retopology",
+          "rigging",
+          "animation",
+          "material and shader",
+          "rendering",
+          "add-on",
+          "Blender-to-Unity or Unreal pipeline",
+          "new version features"
+        ],
+        "blender_tip_policy": "Useful small Blender tips qualify when they save time, improve quality or simplify workflow.",
+        "addon_priorities": [
+          "modeling",
+          "retopology",
+          "rigging",
+          "animation",
+          "material and texture",
+          "environment and scatter",
+          "AI-assisted add-on"
+        ],
+        "3ds_max_priorities": [
+          "modeling",
+          "modifier workflow",
+          "rig and animation",
+          "MaxScript and automation",
+          "export and engine pipeline",
+          "plugin and tool",
+          "new version features"
+        ],
+        "maya_policy": "Include Maya content when its production method has meaningful cross-DCC transferable value.",
+        "houdini_policy": "All major Houdini production areas are discoverable; rank by production value rather than enforcing a Houdini quota.",
+        "substance_priorities": [
+          "Painter workflow",
+          "Designer procedural material",
+          "Smart Material",
+          "baking",
+          "UDIM",
+          "stylized texturing",
+          "character texturing",
+          "environment texturing",
+          "Unity and Unreal integration"
+        ],
+        "zbrush_priorities": [
+          "sculpt workflow",
+          "character sculpt",
+          "hard surface",
+          "ZRemesher and retopology",
+          "plugin and macro",
+          "new version features"
+        ],
+        "new_tool_policy": "Include niche or new DCC tools only when they have clear production value.",
+        "hard_exclude": [
+          "DCC use unrelated to game art and not meaningfully transferable"
+        ]
+      }
+    }
+  },
+  "homepage": {
+    "top5": 5,
+    "next10": 10
+  },
+  "full_analysis": {
+    "style_reference": "2026-09-01",
+    "min_blocks": 3,
+    "max_blocks": 5,
+    "adaptive_labels": true,
+    "fixed_semantic_labels": false,
+    "heading_language": "zh-Hant",
+    "quality_rule": "Each block must add one distinct, source-supported production insight; do not pad to a character quota or restate summary/quick_impact.",
+    "required_semantics": [
+      "production-change-or-workflow",
+      "production-value-or-pipeline-impact",
+      "adoption-test-risk-or-limitation"
+    ],
+    "writing_guidance": [
+      "All Full Analysis block headings must be concise Traditional Chinese. Keep necessary product names, DCC/engine names, abbreviations and technical terms such as UE5, UV, AI, Meshy or Blender when they improve precision, but do not use English-only or English-dominant headings.",
+      "Use concise content-specific Traditional Chinese headings such as 動作製作流程、Rig / Retarget 流程、貼圖工作流、遊戲資產流程、製作價值、導入測試 or 實測 instead of fixed report-template headings.",
+      "Choose 3 to 5 analysis angles according to the item itself. Do not force every item into the same four headings.",
+      "Prefer fast-scanning production notes: state the concrete capability or delta, explain the practical workflow value, then give an adoption/test/risk judgment when relevant.",
+      "Keep V3 information depth, but avoid verbosity, filler, repeated context, and minimum-character padding.",
+      "For AI motion/animation, when supported by the source, prioritize input, output/rig compatibility, root motion/fingers/face/multi-person, cleanup/foot lock, retarget, local/cloud, speed, licensing and engine integration.",
+      "The 2026-09-01 Full Analysis tone and structure is the readability reference; do not rewrite historical pages to the new schema."
+    ]
+  },
+  "categories": [
+    {
+      "id": "ai-generation",
+      "label": "AI 生成",
+      "description": "AI 3D 生成 / AI 2D 生成 / AI 動作生成",
+      "subtypes": [
+        "ai-3d",
+        "ai-2d",
+        "ai-motion"
+      ]
+    },
+    {
+      "id": "3d-production",
+      "label": "3D 製作",
+      "description": "3D 角色製作 / 3D 物件製作 / 3D 場景製作 / 製作流程",
+      "subtypes": [
+        "character-production",
+        "prop-production",
+        "environment-production",
+        "production-workflow"
+      ],
+      "collection_guidance": [
+        "Prioritize practical game-art asset creation rather than treating individual technical steps as standalone intelligence categories.",
+        "character-production covers character modeling, sculpting, hair, cloth, character textures/materials and end-to-end character workflows.",
+        "prop-production covers props, weapons, hard-surface assets, prop textures/materials and production techniques.",
+        "environment-production covers environment art, architecture, vegetation, terrain, modular environments, environment materials and asset workflows.",
+        "production-workflow covers cross-asset methods such as modeling, retopology, UV, baking, texturing, materials, scanning, procedural production, pipeline and efficiency tools when they are not specific to one asset type.",
+        "When an item is clearly about a character, prop or environment workflow, classify it by that asset type even if the technique itself is UV, texturing, materials or retopology."
+      ]
+    },
+    {
+      "id": "3d-animation",
+      "label": "3D 動作",
+      "description": "3D 動作 / 3D 動作製作流程",
+      "subtypes": [
+        "rigging",
+        "animation",
+        "mocap",
+        "retarget",
+        "cleanup",
+        "facial"
+      ]
+    },
+    {
+      "id": "engine-art",
+      "label": "遊戲引擎",
+      "description": "遊戲引擎 / 引擎端美術內容",
+      "subtypes": [
+        "unreal",
+        "unity",
+        "shader",
+        "rendering",
+        "tools",
+        "optimization"
+      ]
+    },
+    {
+      "id": "emerging-case",
+      "label": "新技術 / Case",
+      "description": "新技術 / Production Case",
+      "subtypes": [
+        "research",
+        "case-study",
+        "procedural",
+        "world-model",
+        "4d"
+      ]
+    },
+    {
+      "id": "blender-dcc",
+      "label": "Blender / DCC",
+      "description": "Blender / DCC 工具與工作流 / Blender Tips",
+      "subtypes": [
+        "blender",
+        "blender-tip",
+        "addon",
+        "maya",
+        "houdini",
+        "substance",
+        "other-dcc"
+      ]
+    }
+  ]
+}
