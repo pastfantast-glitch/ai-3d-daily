@@ -2,8 +2,9 @@
 """Shared AI 3D Daily V2 information-architecture contract.
 
 This module is intentionally presentation-agnostic. It defines the six daily
-collection pools and validates schema-v3 canonical records. Renderers consume the
-validated data; they do not decide ranking, category membership, or homepage tier.
+collection pools, the repository-owned Production Intelligence preference profile,
+and validates schema-v3 canonical records. Renderers consume validated data; they
+do not decide ranking, category membership, preference weights, or homepage tier.
 """
 from pathlib import Path
 import json
@@ -14,12 +15,80 @@ CONFIG = ROOT / 'config' / 'intelligence-v2.json'
 DATE_RE = re.compile(r'^20\d{2}-\d{2}-\d{2}$')
 
 
-def load_config():
-    """Load and self-validate the collection contract without duplicating its values.
+def _validate_score_map(name, scores, allowed_keys=None):
+    if not isinstance(scores, dict) or not scores:
+        raise ValueError(f'V2 {name} must be a non-empty object')
+    if allowed_keys is not None:
+        unknown = set(scores) - set(allowed_keys)
+        if unknown:
+            raise ValueError(f'V2 {name} has unknown keys: {sorted(unknown)}')
+    for key, value in scores.items():
+        if isinstance(value, bool) or not isinstance(value, int) or not 0 <= value <= 5:
+            raise ValueError(f'V2 {name}.{key} must be an integer from 0 to 5')
 
-    The JSON file is the source of truth for target counts, effective date, discovery
-    depth and fill policy. Python only checks internal consistency so future contract
-    changes cannot drift across multiple hard-coded copies.
+
+def _validate_preference_profile(cfg, categories):
+    effective = str(cfg.get('preference_contract_effective_date', '')).strip()
+    if not DATE_RE.fullmatch(effective):
+        raise ValueError('V2 preference_contract_effective_date must be YYYY-MM-DD')
+
+    profile = cfg.get('production_intelligence_profile') or {}
+    for key in ('purpose', 'category_quota_policy'):
+        if not str(profile.get(key, '')).strip():
+            raise ValueError(f'V2 production_intelligence_profile.{key} is required')
+
+    ranking = profile.get('ranking') or {}
+    dimensions = ranking.get('dimensions_in_priority_order') or []
+    if not dimensions or len(dimensions) != len(set(dimensions)):
+        raise ValueError('V2 ranking dimensions must be a non-empty unique ordered list')
+    for key in ('freshness_rule', 'source_rule', 'selection_rule'):
+        if not str(ranking.get(key, '')).strip():
+            raise ValueError(f'V2 production_intelligence_profile.ranking.{key} is required')
+
+    category_preferences = profile.get('category_preferences') or {}
+    category_ids = [c['id'] for c in categories]
+    if set(category_preferences) != set(category_ids):
+        missing = sorted(set(category_ids) - set(category_preferences))
+        extra = sorted(set(category_preferences) - set(category_ids))
+        raise ValueError(
+            f'V2 preference categories must exactly match configured categories; '
+            f'missing={missing} extra={extra}'
+        )
+
+    category_by_id = {c['id']: c for c in categories}
+    for cid, pref in category_preferences.items():
+        if not isinstance(pref, dict):
+            raise ValueError(f'V2 preference {cid} must be an object')
+        if not str(pref.get('selection_mode', '')).strip():
+            raise ValueError(f'V2 preference {cid}.selection_mode is required')
+        scores = pref.get('interest_scores')
+        if scores is not None:
+            _validate_score_map(
+                f'production_intelligence_profile.category_preferences.{cid}.interest_scores',
+                scores,
+                category_by_id[cid].get('subtypes', []),
+            )
+        tool_scores = pref.get('tool_interest_scores')
+        if tool_scores is not None:
+            _validate_score_map(
+                f'production_intelligence_profile.category_preferences.{cid}.tool_interest_scores',
+                tool_scores,
+            )
+
+    hard = profile.get('global_hard_exclude') or []
+    downrank = profile.get('global_downrank') or []
+    positive = profile.get('global_positive_signals') or []
+    if not all(isinstance(x, str) and x.strip() for x in hard + downrank + positive):
+        raise ValueError('V2 global preference signal lists must contain non-empty strings')
+
+
+def load_config():
+    """Load and self-validate the collection and preference contracts.
+
+    The JSON file is the sole source of truth for targets, effective dates,
+    discovery/fill policy, user-interest preferences and ranking guidance.
+    Python only checks internal consistency so future changes cannot drift across
+    hard-coded copies in schedulers, QA scripts or renderers.
     """
     cfg = json.loads(CONFIG.read_text('utf-8'))
     categories = cfg.get('categories') or []
@@ -79,6 +148,8 @@ def load_config():
         raise ValueError(f'V2 completeness trigger must equal daily target {daily_target}')
     if not str(collection.get('fill_target_policy', '')).strip():
         raise ValueError('V2 fill_target_policy is required')
+
+    _validate_preference_profile(cfg, categories)
     return cfg
 
 
@@ -94,9 +165,29 @@ def target_fill_applies(data, cfg=None):
     return bool(DATE_RE.fullmatch(date) and date >= effective)
 
 
+def preference_profile_applies(data_or_date, cfg=None):
+    """Return True when repository-owned preference guidance applies to a date."""
+    cfg = cfg or load_config()
+    if isinstance(data_or_date, dict):
+        value = str(data_or_date.get('date', '')).strip()
+    else:
+        value = str(data_or_date or '').strip()
+    effective = str(cfg.get('preference_contract_effective_date', '')).strip()
+    return bool(DATE_RE.fullmatch(value) and value >= effective)
+
+
 def category_map(cfg=None):
     cfg = cfg or load_config()
     return {c['id']: c for c in cfg['categories']}
+
+
+def category_preference(category_id, cfg=None):
+    """Return the source-of-truth preference object for one configured category."""
+    cfg = cfg or load_config()
+    prefs = cfg['production_intelligence_profile']['category_preferences']
+    if category_id not in prefs:
+        raise KeyError(f'Unknown V2 category preference: {category_id}')
+    return prefs[category_id]
 
 
 def validate_v2_dataset(data, strict_pool=True):
@@ -104,7 +195,8 @@ def validate_v2_dataset(data, strict_pool=True):
 
     Published schema-v3 dates before the configured target-fill effective date
     remain valid historical snapshots. From the effective date onward, release-ready
-    data must satisfy the category target declared in config.
+    data must satisfy the daily total contract. Category preferences never create
+    per-category quotas.
     """
     if not is_v2_dataset(data):
         return []
