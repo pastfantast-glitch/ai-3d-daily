@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   遊戲引擎｜2026-09-06｜AI 3D Daily
+  </title>
+  <link href="../../styles.css?v=20260906-r1-workspace-v5" rel="stylesheet"/>
+  <link href="../../shared-components.css?v=20260906-r1-workspace-v5" rel="stylesheet"/>
+  <link href="../../category.css?v=20260906-r1-workspace-v5" rel="stylesheet"/>
+ </head>
+ <body class="category-page" data-category="engine-art" data-report-date="2026-09-06">
+  <nav aria-label="Production Intelligence 分類" class="global-category-nav">
+   <div class="page global-category-nav-inner">
+    <div class="archive-nav-controls">
+     <a class="archive-nav-home" href="../../">
+      ← 首頁
+     </a>
+     <div class="archive-nav-date">
+      <a aria-label="前一日日報" class="archive-nav-arrow" href="../../2026-09-04/engine-art/">
+       ←
+      </a>
+      <span>
+       2026-09-06
+      </span>
+     </div>
+    </div>
+    <span aria-hidden="true" class="archive-nav-divider">
+    </span>
+    <a class="global-category-link" href="../#top">
+     TOP5
+    </a>
+    <a class="global-category-link" data-category="ai-generation" href="../ai-generation/">
+     AI 生成
+    </a>
+    <a class="global-category-link" data-category="3d-production" href="../3d-production/">
+     3D 製作
+    </a>
+    <a class="global-category-link" data-category="3d-animation" href="../3d-animation/">
+     3D 動作
+    </a>
+    <a class="global-category-link is-active" data-category="engine-art" href="../engine-art/">
+     遊戲引擎
+    </a>
+    <a class="global-category-link" data-category="emerging-case" href="../emerging-case/">
+     新技術 / Case
+    </a>
+    <a class="global-category-link" data-category="blender-dcc" href="../blender-dcc/">
+     Blender / DCC
+    </a>
+   </div>
+  </nav>
+  <main class="page category-main">
+   <article class="category-card" data-intel-id="ue58-production-art" data-intel-role="card">
+    <div class="category-meta">
+     #08 · unreal
+    </div>
+    <h2>
+     Unreal Engine 5.8：Mesh Terrain、PCG、LLM MCP 與更成熟的角色／世界製作
+    </h2>
+    <p class="summary">
+     UE 5.8 強化 worldbuilding、terrain、vegetation、character/animation 與 iteration，並加入 Experimental MCP plugin、Sandboxes；Epic 同時提醒 Beta/Experimental 功能不可直接視為 production-ready。
+    </p>
+    <figure class="case-preview" data-intel-id="ue58-production-art" data-intel-role="visual" data-visual-id="ue58-production-art">
+     <a href="https://www.unrealengine.com/news/unreal-engine-5-8-is-now-available" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-06/ue58-production-art.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span>
+      ★★★★★｜對場景、TA 與美術工具鏈都有高密度改動。
+     </span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       引擎工作流
+      </h4>
+      <p>
+       Mesh Terrain、PCG 與 vegetation authoring 直接影響大型場景製作方式；統一 Gizmo 也改善 DCC artist 在引擎內操作的一致性。
+      </p>
+      <h4>
+       製作價值
+      </h4>
+      <p>
+       Experimental MCP 能讓 LLM 接觸 Blueprint、asset、level、material、mesh 等核心系統，適合做自動檢查、批次工具與 editor assistance 原型。
+      </p>
+      <h4>
+       導入測試
+      </h4>
+      <p>
+       導入要區分 Production Ready、Beta、Experimental；先在代表性場景測 shader compile、memory、landscape/PCG compatibility 與 source-control merge，再決定升版。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://www.unrealengine.com/news/unreal-engine-5-8-is-now-available" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="fluidninja-live2" data-intel-role="card">
+    <div class="category-meta">
+     #13 · tools
+    </div>
+    <h2>
+     FluidNinja LIVE-2 重構 UE VFX：CPU Blueprint 邏輯大幅移向 GPU／Niagara Simulation Stages
+    </h2>
+    <p class="summary">
+     FluidNinja Live 2 重新設計底層，把更多 Blueprint function 搬到 GPU，fluid simulation 改用 Niagara Simulation Stages，並新增 surface alignment、preset 與更多輸入來源。
+    </p>
+    <figure class="case-preview" data-intel-id="fluidninja-live2" data-intel-role="visual" data-visual-id="fluidninja-live2">
+     <a href="https://www.cgchannel.com/2026/09/andras-ketzer-releases-fluidninja-live-2-for-unreal-engine/" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-06/fluidninja-live2.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span>
+      ★★★★☆｜對 UE 大型即時 VFX 的效能與工具化很有 production value。
+     </span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       引擎工作流
+      </h4>
+      <p>
+       LIVE-2 是重構而非小更新，核心目標是降低 CPU 成本並把 simulation 更完整放進 Niagara GPU pipeline。
+      </p>
+      <h4>
+       製作價值
+      </h4>
+      <p>
+       新的 surface alignment、單一 preset、Mesh Distance Field/Chaos input 能降低大型水、煙、沙雪效果反覆配置的負擔。
+      </p>
+      <h4>
+       導入測試
+      </h4>
+      <p>
+       目前 Live 2 只支援 Windows，正式專案若含 console/mobile 必須把平台限制列為 gate，不能因 PC Demo 效能好就直接替換 Live 1。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://www.cgchannel.com/2026/09/andras-ketzer-releases-fluidninja-live-2-for-unreal-engine/" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="shape-cage-ue5-wpo" data-intel-role="card">
+    <div class="category-meta">
+     #14 · tools
+    </div>
+    <h2>
+     Shape Cage 用 WPO 做 UE5 Runtime Mesh Deformation：軟體感變形但不跑真正 Soft Body
+    </h2>
+    <p class="summary">
+     Shape Cage 以 Material World Position Offset 在 GPU 端對 static mesh 做壓、彎、凹與 curtain 類變形，支援碰撞驅動、狀態同步與 Nanite。
+    </p>
+    <div class="quick-impact">
+     <span>
+      ★★★★☆｜適合需要低成本局部變形、又不想導入 Skeletal/Soft Body 的遊戲表現。
+     </span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       引擎工作流
+      </h4>
+      <p>
+       工具把 Box/Sphere/Curtain cage 與 WPO 結合，讓 static mesh 在 runtime 有受力感，同時避開 CPU mesh deformation 與完整 soft-body solver。
+      </p>
+      <h4>
+       製作價值
+      </h4>
+      <p>
+       支援 network sync、join-in-progress state 與停止後自動停 Tick，表示它不只是視覺 Demo，而有考慮實際遊戲狀態管理。
+      </p>
+      <h4>
+       導入測試
+      </h4>
+      <p>
+       限制是 WPO 變形不等同碰撞幾何與真實物理；測試時要確認 shadow、Nanite、collision、LOD 與 multiplayer replication 是否符合需求。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://3dnchu.com/archives/shape-cage/" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="metahuman57-body-conforming" data-intel-role="card">
+    <div class="category-meta">
+     #20 · tools
+    </div>
+    <h2>
+     MetaHuman 5.7 Body Conforming：FBX Round-trip、任意 Pose 與極端比例 Joint Fitting 大幅放寬
+    </h2>
+    <p class="summary">
+     MetaHuman 5.7 以 UV-space vertex correspondence 解決外部 DCC FBX round-trip，並放寬 A/T Pose、高度限制，新增 volumetric joint fitting 與 mesh/joint import。
+    </p>
+    <figure class="case-preview" data-intel-id="metahuman57-body-conforming" data-intel-role="visual" data-visual-id="metahuman57-body-conforming">
+     <a href="https://www.metahuman.com/news/metahuman-5-7-brings-major-improvements-to-body-conforming-with-more-to-come" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-06/metahuman57-body-conforming.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span>
+      ★★★★☆｜對自製角色接 MetaHuman Rig 的實際障礙有直接改善。
+     </span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       引擎工作流
+      </h4>
+      <p>
+       UV mapping 可保留 vertex ID correspondence，讓 Blender、ZBrush 等不支援 DNA 的 DCC 也能 sculpt 後用 FBX 回 MetaHuman Creator。
+      </p>
+      <h4>
+       製作價值
+      </h4>
+      <p>
+       Volumetric joint fitting 對 troll 類極端比例角色更友善，且 import mesh/joints 能保留核心 skeleton，方便做角色變體共用動畫。
+      </p>
+      <h4>
+       導入測試
+      </h4>
+      <p>
+       仍要測極端比例的 deformation、corrective system、眼口與 cloth compatibility；官方也明確表示比例越極端結果越可能變動。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://www.metahuman.com/news/metahuman-5-7-brings-major-improvements-to-body-conforming-with-more-to-come" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="unity-asset-import-presets" data-intel-role="card">
+    <div class="category-meta">
+     #21 · optimization
+    </div>
+    <h2>
+     Unity 官方示範用 Preset 自動化 Texture／Model Import：把資產規範前移到 Import Gate
+    </h2>
+    <p class="summary">
+     Unity 技術文章說明用 Preset Manager 統一 texture、video、3D model 等 import 設定，特別強調 mipmap、Max Size 與團隊共享 preset，避免錯誤資產設定進 Build。
+    </p>
+    <figure class="case-preview" data-intel-id="unity-asset-import-presets" data-intel-role="visual" data-visual-id="unity-asset-import-presets">
+     <a href="https://discussions.unity.com/t/optimize-and-automate-your-asset-import-configuration-settings/1717084" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-06/unity-asset-import-presets.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span>
+      ★★★★☆｜非常接近可直接落地的美術 Asset Validation／Import SOP。
+     </span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       引擎工作流
+      </h4>
+      <p>
+       把 Max Size、mipmap 等規則變成 import preset，可從『事後找超規資產』轉成『資產一進專案就套規範』，降低 memory 問題累積。
+      </p>
+      <h4>
+       製作價值
+      </h4>
+      <p>
+       Preset 本身是可版控的 asset，可跨專案共享，適合做團隊 texture/model import baseline，而不是靠每位美術記住設定。
+      </p>
+      <h4>
+       導入測試
+      </h4>
+      <p>
+       注意 Preset Manager 只影響新 import；既有資產要 reimport/reset，所以導入時應先跑 inventory，避免新舊資產規則不一致。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://discussions.unity.com/t/optimize-and-automate-your-asset-import-configuration-settings/1717084" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="unity-rendergraph-viewer" data-intel-role="card">
+    <div class="category-meta">
+     #27 · rendering
+    </div>
+    <h2>
+     Unity Render Graph Viewer：用 Pass／Resource 關係直接檢查 URP 自訂 Renderer Feature 的成本
+    </h2>
+    <p class="summary">
+     Unity 官方教學示範 Render Graph Viewer 如何查看 URP pass、texture/resource read-write 關係，協助找 redundant buffers、pass fragmentation 與 custom Renderer Feature 的效能影響。
+    </p>
+    <figure class="case-preview" data-intel-id="unity-rendergraph-viewer" data-intel-role="visual" data-visual-id="unity-rendergraph-viewer">
+     <a href="https://discussions.unity.com/t/migrating-to-render-graph-tutorial-the-render-graph-viewer/1715694" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-06/unity-rendergraph-viewer.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span>
+      ★★★★☆｜Shader/Rendering 與美術效能之間的可視化橋樑。
+     </span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       引擎工作流
+      </h4>
+      <p>
+       Render Graph Viewer 能把 SSAO、opaque、transparent 等 pass 對 resource 的 read/write 直接展開，比只看最終 profiler 數字更容易定位美術 feature 造成的額外 buffer。
+      </p>
+      <h4>
+       製作價值
+      </h4>
+      <p>
+       對 URP Renderer Feature/自訂後處理特別有用：可以先看 pass 插入位置與資源生命週期，再決定 shader 或 feature 是否值得保留。
+      </p>
+      <h4>
+       導入測試
+      </h4>
+      <p>
+       導入建議建立代表性 toon/character 場景，把 SSAO、outline、custom pass 逐一開關，對照 GPU profiler 與 Render Graph，形成可重複的 TA 檢查流程。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://discussions.unity.com/t/migrating-to-render-graph-tutorial-the-render-graph-viewer/1715694" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <nav aria-label="相鄰分類" class="category-bottom-nav">
+    <a href="../3d-animation/">
+     ← 3D 動作
+    </a>
+    <a href="../#top">
+     TOP5
+    </a>
+    <a href="../emerging-case/">
+     新技術 / Case →
+    </a>
+   </nav>
+  </main>
+  <script defer="" src="../../archive-nav-state.js?v=20260906-r1-workspace-v5">
+  </script>
+ </body>
+</html>

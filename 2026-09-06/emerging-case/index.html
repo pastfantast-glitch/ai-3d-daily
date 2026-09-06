@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   新技術 / Case｜2026-09-06｜AI 3D Daily
+  </title>
+  <link href="../../styles.css?v=20260906-r1-workspace-v5" rel="stylesheet"/>
+  <link href="../../shared-components.css?v=20260906-r1-workspace-v5" rel="stylesheet"/>
+  <link href="../../category.css?v=20260906-r1-workspace-v5" rel="stylesheet"/>
+ </head>
+ <body class="category-page" data-category="emerging-case" data-report-date="2026-09-06">
+  <nav aria-label="Production Intelligence 分類" class="global-category-nav">
+   <div class="page global-category-nav-inner">
+    <div class="archive-nav-controls">
+     <a class="archive-nav-home" href="../../">
+      ← 首頁
+     </a>
+     <div class="archive-nav-date">
+      <a aria-label="前一日日報" class="archive-nav-arrow" href="../../2026-09-04/emerging-case/">
+       ←
+      </a>
+      <span>
+       2026-09-06
+      </span>
+     </div>
+    </div>
+    <span aria-hidden="true" class="archive-nav-divider">
+    </span>
+    <a class="global-category-link" href="../#top">
+     TOP5
+    </a>
+    <a class="global-category-link" data-category="ai-generation" href="../ai-generation/">
+     AI 生成
+    </a>
+    <a class="global-category-link" data-category="3d-production" href="../3d-production/">
+     3D 製作
+    </a>
+    <a class="global-category-link" data-category="3d-animation" href="../3d-animation/">
+     3D 動作
+    </a>
+    <a class="global-category-link" data-category="engine-art" href="../engine-art/">
+     遊戲引擎
+    </a>
+    <a class="global-category-link is-active" data-category="emerging-case" href="../emerging-case/">
+     新技術 / Case
+    </a>
+    <a class="global-category-link" data-category="blender-dcc" href="../blender-dcc/">
+     Blender / DCC
+    </a>
+   </div>
+  </nav>
+  <main class="page category-main">
+   <article class="category-card" data-intel-id="onimusha-re-engine-art-pipeline" data-intel-role="card">
+    <div class="category-meta">
+     #04 · case-study
+    </div>
+    <h2>
+     《鬼武者 Way of the Sword》公開 RE ENGINE 美術 Pipeline：模組場景、角色、光照到資料管理
+    </h2>
+    <p class="summary">
+     Capcom 詳細拆解從歷史研究、whitebox/greybox、模組資產、角色 Sculpt/Texturing，到 RE ENGINE 內 layout、VFX、lighting 與 collision 的完整流程，Maya 作為最終 DCC 輸出中心。
+    </p>
+    <figure class="case-preview" data-intel-id="onimusha-re-engine-art-pipeline" data-intel-role="visual" data-visual-id="onimusha-re-engine-art-pipeline">
+     <a href="https://80.lv/articles/how-capcom-built-onimushas-real-time-sword-combat-re-engine" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-06/onimusha-re-engine-art-pipeline.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span>
+      ★★★★★｜完整度很高的 AAA 遊戲 Production Case，可直接對照團隊資產與引擎責任切分。
+     </span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       案例流程
+      </h4>
+      <p>
+       環境流程把 gameplay whitebox、技術可行性與 asset cost estimation 放在正式資產製作前，之後再拆成 modular assets 並回引擎做 lighting/VFX/collision polish。
+      </p>
+      <h4>
+       製作價值
+      </h4>
+      <p>
+       角色流程維持 Concept→Proxy→Sculpt→Texture→Secondary Motion；Maya 是角色與場景的最終 DCC deliverable，RE ENGINE 集中 VFX 與 lighting。
+      </p>
+      <h4>
+       導入判斷
+      </h4>
+      <p>
+       值得借鑑的是早期建立 lighting/visibility 品質標準與集中資料出口；可對照現有外包驗收、版本控管與 engine integration 是否也有清楚 ownership。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://80.lv/articles/how-capcom-built-onimushas-real-time-sword-combat-re-engine" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="milk-vfx-unreal-finishing" data-intel-role="card">
+    <div class="category-meta">
+     #10 · case-study
+    </div>
+    <h2>
+     Milk VFX 用 Unreal 從 Previs 一路做到 Finishing：100+ 環境與大量生物的跨部門 Pipeline
+    </h2>
+    <p class="summary">
+     《Surviving Earth》案例顯示 Milk VFX 在 1,000+ shots、73 種 hero creature、100+ environments 規模下，使用 Unreal 做 previs、virtual art department、real-time environment 甚至 finishing。
+    </p>
+    <figure class="case-preview" data-intel-id="milk-vfx-unreal-finishing" data-intel-role="visual" data-visual-id="milk-vfx-unreal-finishing">
+     <a href="https://www.cgchannel.com/2026/09/discover-milk-vfxs-unreal-engine-pipeline-for-surviving-earth/" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-06/milk-vfx-unreal-finishing.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span>
+      ★★★★☆｜雖偏 VFX，但 Unreal 作為跨階段 production hub 的做法非常可借鑑。
+     </span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       案例流程
+      </h4>
+      <p>
+       Unreal 不只做 previs，而是讓部分環境從早期設計逐步演進到 final-shot quality，降低前期 prototype 與最終資產完全斷裂的成本。
+      </p>
+      <h4>
+       製作價值
+      </h4>
+      <p>
+       大量 creature/environment 也使用 USD 與變體管理思路，說明即時引擎要進大型 production，資產 identity/variant 管理和畫面本身同樣重要。
+      </p>
+      <h4>
+       導入判斷
+      </h4>
+      <p>
+       遊戲團隊可借鑑『單一即時場景貫穿多階段』，但要注意 VFX finishing 的 frame budget、版本管理與遊戲 runtime 限制並不相同。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://www.cgchannel.com/2026/09/discover-milk-vfxs-unreal-engine-pipeline-for-surviving-earth/" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <nav aria-label="相鄰分類" class="category-bottom-nav">
+    <a href="../engine-art/">
+     ← 遊戲引擎
+    </a>
+    <a href="../#top">
+     TOP5
+    </a>
+    <a href="../blender-dcc/">
+     Blender / DCC →
+    </a>
+   </nav>
+  </main>
+  <script defer="" src="../../archive-nav-state.js?v=20260906-r1-workspace-v5">
+  </script>
+ </body>
+</html>

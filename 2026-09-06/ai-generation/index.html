@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   AI 生成｜2026-09-06｜AI 3D Daily
+  </title>
+  <link href="../../styles.css?v=20260906-r1-workspace-v5" rel="stylesheet"/>
+  <link href="../../shared-components.css?v=20260906-r1-workspace-v5" rel="stylesheet"/>
+  <link href="../../category.css?v=20260906-r1-workspace-v5" rel="stylesheet"/>
+ </head>
+ <body class="category-page" data-category="ai-generation" data-report-date="2026-09-06">
+  <nav aria-label="Production Intelligence 分類" class="global-category-nav">
+   <div class="page global-category-nav-inner">
+    <div class="archive-nav-controls">
+     <a class="archive-nav-home" href="../../">
+      ← 首頁
+     </a>
+     <div class="archive-nav-date">
+      <a aria-label="前一日日報" class="archive-nav-arrow" href="../../2026-09-04/ai-generation/">
+       ←
+      </a>
+      <span>
+       2026-09-06
+      </span>
+     </div>
+    </div>
+    <span aria-hidden="true" class="archive-nav-divider">
+    </span>
+    <a class="global-category-link" href="../#top">
+     TOP5
+    </a>
+    <a class="global-category-link is-active" data-category="ai-generation" href="../ai-generation/">
+     AI 生成
+    </a>
+    <a class="global-category-link" data-category="3d-production" href="../3d-production/">
+     3D 製作
+    </a>
+    <a class="global-category-link" data-category="3d-animation" href="../3d-animation/">
+     3D 動作
+    </a>
+    <a class="global-category-link" data-category="engine-art" href="../engine-art/">
+     遊戲引擎
+    </a>
+    <a class="global-category-link" data-category="emerging-case" href="../emerging-case/">
+     新技術 / Case
+    </a>
+    <a class="global-category-link" data-category="blender-dcc" href="../blender-dcc/">
+     Blender / DCC
+    </a>
+   </div>
+  </nav>
+  <main class="page category-main">
+   <article class="category-card" data-intel-id="tripo-one-day-character-pipeline" data-intel-role="card">
+    <div class="category-meta">
+     #01 · ai-3d
+    </div>
+    <h2>
+     Tripo 展示一日完成遊戲角色：AI 3D 從拆件、Quad 到 UE 的完整 Pipeline
+    </h2>
+    <p class="summary">
+     Tripo 公開一套從概念圖、部件拆分、P2.0 Quad 網格、8K 來源貼圖、DCC Bridge，到 Maya/Marmoset/Substance/Unreal 的完整角色製作案例，總面數控制在 30K triangles 以下。
+    </p>
+    <figure class="case-preview" data-intel-id="tripo-one-day-character-pipeline" data-intel-role="visual" data-visual-id="tripo-one-day-character-pipeline">
+     <a href="https://www.tripo3d.ai/blog/game-industry-character-workflow" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-06/tripo-one-day-character-pipeline.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span>
+      ★★★★★｜非常接近可直接拿來做 AI 3D 角色 Production Test 的基準流程。
+     </span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       生成流程
+      </h4>
+      <p>
+       流程把 AI 放在 blockout、高模、retopo 與 first-pass texture 的中段，最終組裝、UV、Bake、貼圖精修與 Rig 仍回到傳統 DCC，適合拿來評估 AI 真正能省掉多少機械工。
+      </p>
+      <h4>
+       製作價值
+      </h4>
+      <p>
+       案例明確給出部件式生成、Quad topology、分部件 polygon budget 與 30K 以下總預算；這比單看單一生成結果更接近遊戲角色驗收。
+      </p>
+      <h4>
+       導入測試
+      </h4>
+      <p>
+       來源也承認非流形、孔洞與 Rig 尚需人工處理，因此導入測試應記錄重試率、局部修網時間、UV/texture transfer 成本與最終 rig deformation。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://www.tripo3d.ai/blog/game-industry-character-workflow" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="meshy6-ultra-multiview" data-intel-role="card">
+    <div class="category-meta">
+     #02 · ai-3d
+    </div>
+    <h2>
+     Meshy 6 Ultra 擴大到 4 張輸入圖：多視圖結構忠實度與幾何清理再提升
+    </h2>
+    <p class="summary">
+     Meshy 9 月 changelog 顯示 Meshy 6 Ultra 支援最多四張參考圖，並強化結構忠實度、geometry clean-up 與生成速度，直接對應多視圖角色與遊戲資產生成。
+    </p>
+    <div class="quick-impact">
+     <span>
+      ★★★★★｜多視圖與 clean geometry 都是目前 AI 3D 最值得實測的核心能力。
+     </span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       生成流程
+      </h4>
+      <p>
+       最多四張輸入圖讓正、側、背資訊能同時參與生成，對角色四視圖與不對稱道具比單張 Image-to-3D 更有實際意義。
+      </p>
+      <h4>
+       製作價值
+      </h4>
+      <p>
+       應把重點放在高模輪廓、背面可靠度、薄片結構、配件分離與 clean-up 後是否仍保留設計，而不是只比較正面相似度。
+      </p>
+      <h4>
+       導入測試
+      </h4>
+      <p>
+       建議與 Tripo P2.0 用同一組四視圖跑 A/B Test，記錄生成時間、錯面、人工修模、retopo/UV 接續與最終低模可用性。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://help.meshy.ai/en/articles/9991804-meshy-changelog" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="tripo-p2-quad-preview" data-intel-role="card">
+    <div class="category-meta">
+     #06 · ai-3d
+    </div>
+    <h2>
+     Tripo P2.0 Preview：單圖／多視圖直接生成原生 Quad，最高 25K Quad
+    </h2>
+    <p class="summary">
+     Tripo P2.0 Preview 將 Smart Mesh 推向原生四邊面拓樸，可從單圖或四視圖生成，Quad 上限 25K，並主打可編輯、可 Rig、可進遊戲 Production 的 edge flow。
+    </p>
+    <figure class="case-preview" data-intel-id="tripo-p2-quad-preview" data-intel-role="visual" data-visual-id="tripo-p2-quad-preview">
+     <a href="https://www.tripo3d.ai/ko/blog/tripo-p2-0-preview" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-06/tripo-p2-quad-preview.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span>
+      ★★★★★｜目前 AI 3D 的關鍵不是更密，而是生成後能不能真的編輯與 Rig。
+     </span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       生成流程
+      </h4>
+      <p>
+       P2.0 直接把 Quad topology 當生成輸出，而不是事後單純減面，理論上能降低 retopology 的中間工序。
+      </p>
+      <h4>
+       製作價值
+      </h4>
+      <p>
+       多視圖可同時使用正、左、右、背四個角度，對角色與硬表面背面結構的可信度比單圖更值得測。
+      </p>
+      <h4>
+       導入測試
+      </h4>
+      <p>
+       仍應用 deformation test 驗肩、肘、膝、嘴眼 loop，以及 hard-surface chamfer/孔洞；『看起來是 Quad』不等於動畫與 UV 真的可用。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://www.tripo3d.ai/ko/blog/tripo-p2-0-preview" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="tripo-image-gen-batch3d" data-intel-role="card">
+    <div class="category-meta">
+     #18 · ai-2d
+    </div>
+    <h2>
+     Tripo Image Gen 更新：角色／場景拆件、4K、Cutout 與 Batch-to-3D 串成資產量產前段
+    </h2>
+    <p class="summary">
+     Tripo 把 Character Extraction、Asset Extraction、Variants、4K enhancement、Cutout 與最多 30 張 Batch to 3D 串成 2D→3D 的前處理流程。
+    </p>
+    <figure class="case-preview" data-intel-id="tripo-image-gen-batch3d" data-intel-role="visual" data-visual-id="tripo-image-gen-batch3d">
+     <a href="https://www.tripo3d.ai/blog/tripo-image-gen-update" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-06/tripo-image-gen-batch3d.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span>
+      ★★★★☆｜AI 2D 不只出圖，而是直接服務後續 3D 資產拆件與批量轉換。
+     </span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       生成流程
+      </h4>
+      <p>
+       Character Extraction 可把頭、軀幹、肢體與配件拆成獨立圖，再送 Batch-to-3D，這比完整角色單圖生成更接近可控分件 pipeline。
+      </p>
+      <h4>
+       製作價值
+      </h4>
+      <p>
+       場景 Asset Extraction 與 style-consistent variants 可用來建立同風格 prop set，最多 30 張 batch 對大量遊戲資產特別值得做成本測試。
+      </p>
+      <h4>
+       導入測試
+      </h4>
+      <p>
+       要實測的不是 2D 圖美不美，而是 Cutout 邊界、部件比例、3D 後組裝誤差、風格一致性與 batch failure rate。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://www.tripo3d.ai/blog/tripo-image-gen-update" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <nav aria-label="相鄰分類" class="category-bottom-nav">
+    <a href="../blender-dcc/">
+     ← Blender / DCC
+    </a>
+    <a href="../#top">
+     TOP5
+    </a>
+    <a href="../3d-production/">
+     3D 製作 →
+    </a>
+   </nav>
+  </main>
+  <script defer="" src="../../archive-nav-state.js?v=20260906-r1-workspace-v5">
+  </script>
+ </body>
+</html>
