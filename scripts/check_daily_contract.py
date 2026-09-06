@@ -21,7 +21,9 @@ for i,d in enumerate(dirs):
     if top_section: need(bool(top_section.select_one(':scope > .block-head')),'TOP section missing block-head')
     if more_section: need(bool(more_section.select_one(':scope > .block-head')),'Supplemental section missing block-head')
 
-    top_cards=soup.select('#top .news'); more_cards=soup.select('.category-news')
+    top_cards=soup.select('#top .news')
+    # V3 renderer uses daily-card-more. Keep category-news only as a legacy fallback.
+    more_cards=soup.select('#more .daily-card-more') if v2 else soup.select('.category-news')
     if v2:
         expected_top,expected_next=homepage_groups(data)
         need(len(top_cards)==len(expected_top),f'V2 TOP section must match available canonical ranks 1-5, got {len(top_cards)} != {len(expected_top)}')
