@@ -8,6 +8,11 @@ ROOT=Path(__file__).resolve().parents[1]; errors=[]
 def norm(s): return re.sub(r'\s+',' ',s).strip()
 def canonical_text(record): return norm(' '.join(f"{b['label']} {b['text']}" for b in record['full_analysis']))
 def has_han(s): return bool(re.search(r'[\u3400-\u4dbf\u4e00-\u9fff]',s))
+def is_done(date):
+    path=ROOT/'data'/'publish'/f'{date}.done.json'
+    if not path.exists(): return False
+    try: return str(json.loads(path.read_text('utf-8')).get('state','')).strip().upper()=='DONE'
+    except Exception: return False
 
 def inspect_cards(date,name,path,selector,recs,expected_ids):
     seen={}
@@ -52,31 +57,44 @@ def validate_depth(date,rid,record,cfg):
     for i,text in enumerate(texts,1):
         if text and (text==summary or text==impact): errors.append(f'{date}: {rid} block {i} merely repeats summary/quick_impact')
 
-dates=sorted(p.stem for p in (ROOT/'data'/'daily').glob('20??-??-??.json')); cfg=load_config()
-for date in dates:
-    data=json.loads((ROOT/'data'/'daily'/f'{date}.json').read_text('utf-8')); recs={x['id']:x for x in data['items']}
-    if is_v2_dataset(data):
-        top,next10=homepage_groups(data); selected=[x['id'] for x in top+next10]
-        daily=inspect_cards(date,'daily',ROOT/date/'index.html','#top .news[data-intel-role="card"][data-intel-id], .category-news[data-intel-role="card"][data-intel-id]',recs,selected)
-        if date==dates[-1]:
-            home=inspect_cards(date,'home',ROOT/'index.html','.top-item[data-intel-role="card"][data-intel-id], .more-card[data-intel-role="card"][data-intel-id]',recs,selected)
-            for rid in selected:
-                if home.get(rid)!=daily.get(rid): errors.append(f'{date}: home/daily Full Analysis drift for {rid}')
-        for cat in cfg['categories']:
-            expected=[x['id'] for x in category_items(data,cat['id'])]
-            inspect_cards(date,f'category:{cat["id"]}',ROOT/date/cat['id']/'index.html','.category-card[data-intel-role="card"][data-intel-id]',recs,expected)
-    else:
-        expected=list(recs); daily=inspect_cards(date,'daily',ROOT/date/'index.html','#top .news[data-intel-role="card"][data-intel-id], .category-news[data-intel-role="card"][data-intel-id]',recs,expected)
-        if date==dates[-1]:
-            home=inspect_cards(date,'home',ROOT/'index.html','.top-item[data-intel-role="card"][data-intel-id], .more-card[data-intel-role="card"][data-intel-id]',recs,expected)
-            for rid in recs:
-                if home.get(rid)!=daily.get(rid): errors.append(f'{date}: Full Analysis drift for {rid}')
-    for rid,record in recs.items():
-        if is_v2_dataset(data): validate_depth(date,rid,record,cfg)
+def selected_dates(candidate=''):
+    out=[]
+    for p in sorted((ROOT/'data'/'daily').glob('20??-??-??.json')):
+        if is_done(p.stem) or p.stem==candidate: out.append(p.stem)
+    return out
+
+def main():
+    candidate=sys.argv[1] if len(sys.argv)>1 else ''
+    if candidate and not re.fullmatch(r'20\d{2}-\d{2}-\d{2}',candidate): raise SystemExit('Usage: check_intelligence_contract.py [YYYY-MM-DD]')
+    if candidate and not (ROOT/'data'/'daily'/f'{candidate}.json').exists(): raise SystemExit(f'Missing candidate canonical dataset: {candidate}')
+    dates=selected_dates(candidate); cfg=load_config()
+    current=candidate or (dates[-1] if dates else '')
+    for date in dates:
+        data=json.loads((ROOT/'data'/'daily'/f'{date}.json').read_text('utf-8')); recs={x['id']:x for x in data['items']}
+        if is_v2_dataset(data):
+            top,next10=homepage_groups(data); selected=[x['id'] for x in top+next10]
+            daily=inspect_cards(date,'daily',ROOT/date/'index.html','#top .news[data-intel-role="card"][data-intel-id], #more .daily-card-more[data-intel-role="card"][data-intel-id], .category-news[data-intel-role="card"][data-intel-id]',recs,selected)
+            if date==current:
+                home=inspect_cards(date,'home',ROOT/'index.html','.top-item[data-intel-role="card"][data-intel-id], .more-card[data-intel-role="card"][data-intel-id]',recs,selected)
+                for rid in selected:
+                    if home.get(rid)!=daily.get(rid): errors.append(f'{date}: home/daily Full Analysis drift for {rid}')
+            for cat in cfg['categories']:
+                expected=[x['id'] for x in category_items(data,cat['id'])]
+                inspect_cards(date,f'category:{cat["id"]}',ROOT/date/cat['id']/'index.html','.category-card[data-intel-role="card"][data-intel-id]',recs,expected)
         else:
-            if len(record.get('full_analysis',[]))<3: errors.append(f'{date}: {rid} full_analysis must have >=3 structured blocks')
-            for i,block in enumerate(record.get('full_analysis',[]),1):
-                if not block.get('label','').strip() or not block.get('text','').strip(): errors.append(f'{date}: {rid} block {i} requires non-empty label and text')
-if errors:
-    print('INTELLIGENCE CONTRACT FAILED'); print('\n'.join('- '+e for e in errors)); sys.exit(1)
-print('INTELLIGENCE CONTRACT PASS')
+            expected=list(recs); daily=inspect_cards(date,'daily',ROOT/date/'index.html','#top .news[data-intel-role="card"][data-intel-id], #more .daily-card-more[data-intel-role="card"][data-intel-id], .category-news[data-intel-role="card"][data-intel-id]',recs,expected)
+            if date==current:
+                home=inspect_cards(date,'home',ROOT/'index.html','.top-item[data-intel-role="card"][data-intel-id], .more-card[data-intel-role="card"][data-intel-id]',recs,expected)
+                for rid in recs:
+                    if home.get(rid)!=daily.get(rid): errors.append(f'{date}: Full Analysis drift for {rid}')
+        for rid,record in recs.items():
+            if is_v2_dataset(data): validate_depth(date,rid,record,cfg)
+            else:
+                if len(record.get('full_analysis',[]))<3: errors.append(f'{date}: {rid} full_analysis must have >=3 structured blocks')
+                for i,block in enumerate(record.get('full_analysis',[]),1):
+                    if not block.get('label','').strip() or not block.get('text','').strip(): errors.append(f'{date}: {rid} block {i} requires non-empty label and text')
+    if errors:
+        print('INTELLIGENCE CONTRACT FAILED'); print('\n'.join('- '+e for e in errors)); sys.exit(1)
+    scope=f'DONE history + candidate {candidate}' if candidate else 'DONE history only'
+    print(f'INTELLIGENCE CONTRACT PASS: {scope}')
+if __name__=='__main__': main()
