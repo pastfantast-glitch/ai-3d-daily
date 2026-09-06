@@ -1,32 +1,748 @@
-{"date":"2026-09-07","schema_version":3,"metadata":{"total_items":30,"collection_mode":"production-intelligence-preference-v1","collection_contract_effective_date":"2026-09-04","preference_contract_effective_date":"2026-09-06","discovery_windows":["24h","7d","30d","6m","evergreen"]},"items":[
-{"id":"orbitals-retro-anime-rendering","title":"《Orbitals》拆解 UE5 復古動畫渲染：Cel／背景分離、Bloom Mask 與底片後製","summary":"Shapefarm 公開如何在 UE5 內改造預設渲染管線，將 cel character、painted environment 與 film effects 分層處理，並透過 Material Editor 維持美術可迭代性。","quick_impact":"★★★★★","source_url":"https://www.unrealengine.com/tech-blog/stepping-inside-a-retro-anime-inspired-game-a-look-into-the-rendering-of-orbitals","category":"engine-art","subcategory":"shader","ranking_score":100,"rank_global":1,"homepage_tier":"top5","full_analysis":[{"label":"技術重點","text":"Cel character、背景與 film effects 分層，並以自訂 render buffer／post-process 模擬 80–90 年代動畫的類比限制。"},{"label":"Production 價值","text":"核心不是單一 toon shader，而是讓 art team 在 Material Editor 內持續調整，同時把背景與角色的 shading responsibility 分開。"},{"label":"導入測試","text":"用同角色／同場景測 cel、painted environment、masked bloom、grain/halation 四層，記錄 render cost 與美術修改回合數。"}]},
-{"id":"city-sample-ue58-pcg-mcp","title":"UE 5.8 City Sample 重建：PCG＋Unreal MCP 把大型城市程序化留在引擎內","summary":"新版 City Sample 以 UE5.8 PCG、World Partition、Nanite Foliage、Megaplants 與 Unreal MCP 重建兩個新城市關卡，示範大型世界在引擎內維持可編輯程序化流程。","quick_impact":"★★★★★","source_url":"https://www.unrealengine.com/learning/city-sample-gets-a-major-update-with-pcg-and-unreal-mcp-workflows","category":"engine-art","subcategory":"tools","ranking_score":99,"rank_global":2,"homepage_tier":"top5","full_analysis":[{"label":"技術重點","text":"新版城市不再依賴外部 Houdini 建構，PCG graphs、shape grammar、World Partition 與植被都留在 Unreal 內。"},{"label":"Production 價值","text":"大型世界的關鍵是生成後仍可編輯；MCP/LLM 被放在操作 PCG 的輔助層，而不是不可回溯的黑盒生成。"},{"label":"導入測試","text":"以一個街區測道路、建築、植被三種 PCG graph，記錄 artist override、重生成穩定性與 World Partition 串接。"}]},
-{"id":"game-animation-sample-ue58","title":"Game Animation Sample 升級 UE5.8：Physics Control、Motion Matching、Chooser 與 Smart Objects","summary":"Epic 更新 Game Animation Sample，加入 Physics Control Component/Asset、Chooser 內多 Pose Search DB、Blend Spaces 與 Smart Object 互動範例，適合直接做 gameplay animation baseline。","quick_impact":"★★★★★","source_url":"https://www.unrealengine.com/tech-blog/download-the-latest-game-animation-sample-project-now-updated-for-ue-5-8","category":"3d-animation","subcategory":"animation","ranking_score":98,"rank_global":3,"homepage_tier":"top5","full_analysis":[{"label":"動畫流程","text":"UE5.8 sample 把 Physics Control、Chooser、Motion Matching、Blend Space 與 Smart Object 互動放進同一套可下載範例。"},{"label":"Production 價值","text":"比單看文件更適合做團隊 baseline，可直接拆解 locomotion、ragdoll、interaction 與 selector responsibility。"},{"label":"導入測試","text":"挑現有角色替換 sample skeleton，測 motion matching DB、slope blend、physics profile 與 Smart Object 互動的 retarget 成本。"}]},
-{"id":"rokoko-vision-3","title":"Rokoko Vision 3.0 重建單鏡頭 AI Mocap Solver，整合 Video/Text-to-Motion 與 Studio 清理","summary":"Vision 3.0 改用重建 solver，主打更乾淨動作、更快處理，並把 Video-to-Motion、Text-to-Motion、Studio 編輯、retarget 與 FBX/BVH export 串成同一套流程。","quick_impact":"★★★★★","source_url":"https://www.rokoko.com/products/vision","category":"ai-generation","subcategory":"ai-motion","ranking_score":97,"rank_global":4,"homepage_tier":"top5","full_analysis":[{"label":"生成流程","text":"單鏡頭影片進 Vision 3.0 後可進 Rokoko Studio cleanup/loop/retarget，再輸出 FBX/BVH 到 Blender、Maya、Unity 或 Unreal。"},{"label":"Production 價值","text":"值得測的是 solver 重建後的 foot sliding、weight shift 與快速動作，而不是只比較 processing speed。"},{"label":"導入測試","text":"用走跑跳、轉身與雙人遮擋片段做同素材 A/B，記錄 cleanup 分鐘數、腳底鎖定與 retarget 後曲線品質。"}]},
-{"id":"frame-by-plane-72","title":"Frame By Plane 7.2：Blender 5.2 的 2.5D／Cutout／Multiplane Production 工具大更新","summary":"Frame By Plane 7.2 強化 Grease Pencil 雙色、相機格式、timeline、effects 與 safer import/render，並支援 layered image、cutout、parallax 與 2.5D 場景管理。","quick_impact":"★★★★★","source_url":"https://extensions.blender.org/add-ons/frame-by-plane/","category":"blender-dcc","subcategory":"addon","ranking_score":96,"rank_global":5,"homepage_tier":"top5","full_analysis":[{"label":"DCC 工作流","text":"把 image sequence、cutout、layer tree、multiplane camera、parallax、mask 與 shader/GN effects 做成 Blender 內一致工作流。"},{"label":"Production 價值","text":"對固定視角 2.5D 場景與分層貼片特別有價值，可降低 Photoshop/After Effects/Blender 間反覆整理 layer 的成本。"},{"label":"導入測試","text":"用一個近中遠三層遊戲場景測 folder import、camera fit、parallax、alpha cutout、效果 stack 與輸出穩定性。"}]},
-{"id":"epic-learning-aug-ue58","title":"Epic 8 月 UE5.8 教學包：Mesh Terrain、Networked Physics、Material 與優化工作流","summary":"Epic 集中發布 UE5.8 的 Mesh Terrain、Networked Physics、Accumulation DOF、Material 與 project optimization 教學，適合建立引擎美術新功能的測試清單。","quick_impact":"★★★★☆","source_url":"https://www.unrealengine.com/learning/augusts-epic-learning-content-networked-physics-dynamic-audio-and-more","category":"engine-art","subcategory":"unreal","ranking_score":95,"rank_global":6,"homepage_tier":"next10","full_analysis":[{"label":"技術重點","text":"內容涵蓋 Mesh Terrain、Material、project optimization 與高品質 DOF，能直接對應場景與 rendering 測試。"},{"label":"Production 價值","text":"適合把 5.8 新功能從『知道有』轉成可重複 benchmark，尤其是 Mesh Terrain 與材質流程。"},{"label":"導入測試","text":"建立一個固定測試 map，逐項記錄 terrain editing、draw cost、材質編譯、cinematic DOF 與版本相容。"}]},
-{"id":"zero-company-ue5-production","title":"《Star Wars Zero Company》UE5 製作訪談：策略遊戲如何選擇引擎與組織大型內容","summary":"Bit Reactor 說明團隊以 UE5 製作戰術 RPG 的技術與內容選擇，提供世界、角色與迭代流程的 production case，可作為中大型專案引擎決策參考。","quick_impact":"★★★★☆","source_url":"https://www.unrealengine.com/developer-interviews/star-wars-zero-company-bit-reactor-crafts-a-galaxy-of-tactical-possibilities-with-ue5","category":"emerging-case","subcategory":"case-study","ranking_score":94,"rank_global":7,"homepage_tier":"next10","full_analysis":[{"label":"案例重點","text":"訪談聚焦 UE5 在戰術 RPG 的內容組織與製作選擇，而不是單一 feature showcase。"},{"label":"可轉移經驗","text":"可對照自己的專案規模，檢查世界、角色、工具與引擎責任是否在早期就有清楚 ownership。"},{"label":"導入判斷","text":"不要直接照搬大型團隊流程；先挑一個 level/character vertical slice 比較 iteration speed 與跨部門 handoff。"}]},
-{"id":"aimocap-video-mocap","title":"AIMoCap：單影片同時抓 Body＋Finger，支援自訂角色、Mixamo／CC／Roblox 與 120fps","summary":"AIMoCap 提供瀏覽器 video mocap，強調 body/finger 同步、減少 foot sliding、自訂 humanoid 綁定與多種角色／機器人輸出目標，可作為 AI mocap 新候選工具。","quick_impact":"★★★★☆","source_url":"https://aimocap.net/docs","category":"ai-generation","subcategory":"ai-motion","ranking_score":93,"rank_global":8,"homepage_tier":"next10","full_analysis":[{"label":"生成流程","text":"影片可選多種 humanoid target 或自訂角色，並輸出 24/30/60/120fps，方便比較不同下游動畫流程。"},{"label":"Production 價值","text":"Body＋Finger 同步與 foot sliding 抑制是實際 animation cleanup 的核心成本點，值得與既有單鏡頭解法比較。"},{"label":"導入測試","text":"測手指、快速重心轉移、遮擋與地面接觸四類片段，記錄輸出骨架、cleanup 與引擎 retarget 結果。"}]},
-{"id":"quickmagic-fullbody-hand-face","title":"QuickMagic：單影片 Body／Hand／Face AI Mocap，輸出 UE／Unity／Maya／3ds Max 管線","summary":"QuickMagic 將一般影片轉成可編輯 3D motion，支援 body、hand、face 與多種 FBX/BVH/UE preset，並明確展示 Cascadeur cleanup、UE retarget 等 production workflow。","quick_impact":"★★★★☆","source_url":"https://www.quickmagic.ai/tools/video-to-3d-animation","category":"ai-generation","subcategory":"ai-motion","ranking_score":92,"rank_global":9,"homepage_tier":"next10","full_analysis":[{"label":"生成流程","text":"影片可輸出 body/hand/face motion，再進 Cascadeur、Unreal、Blender、Maya 或 MotionBuilder 編輯。"},{"label":"Production 價值","text":"來源有展示生成後 cleanup/retarget，而不是把 AI 輸出當最終動畫，這更符合 production 評估方式。"},{"label":"導入測試","text":"與 Rokoko/AIMoCap 用同一段素材，比較 raw jitter、foot lock、finger、face 與修到可用所需時間。"}]},
-{"id":"exea-jiggle-110","title":"EXea Jiggle 1.1：Blender 骨架次級動態加入 Jiggle Layers 與可 Bake Keyframes 流程","summary":"EXea Jiggle 1.1 新增 Jiggle Layers、bone grouping、mute 與 Blender 5.x 相容性，可用於髮尾、衣服、尾巴等骨架次級動態並烘焙成 keyframes。","quick_impact":"★★★★☆","source_url":"https://extensions.blender.org/add-ons/exea-jiggle/","category":"3d-animation","subcategory":"rigging","ranking_score":91,"rank_global":10,"homepage_tier":"next10","full_analysis":[{"label":"動畫流程","text":"Layer 化管理 hair/clothing/tail bone chains，播放時即時看 secondary motion，完成後 bake 回 keyframes。"},{"label":"Production 價值","text":"適合把大量次級骨鏈從手動 offset key 減成可調 solver，又保留最終可編輯 keyframe。"},{"label":"導入測試","text":"用髮束與裙擺各一組 chain，測 bake 前後曲線、穿插、速度變化與 animator 手改成本。"}]},
-{"id":"vrm-addon-470","title":"VRM Add-on 4.7：T-Pose 套用與匯入循環節點修正，強化 Avatar 交換流程","summary":"VRM Add-on 4.7 新增 selected VRM T-pose 套用按鈕並修正 cyclic node recursion；對 Blender↔VRM humanoid、MToon 與 avatar export 有直接維護價值。","quick_impact":"★★★★☆","source_url":"https://extensions.blender.org/add-ons/vrm/","category":"blender-dcc","subcategory":"addon","ranking_score":90,"rank_global":11,"homepage_tier":"next10","full_analysis":[{"label":"DCC 工作流","text":"VRM 4.7 針對 T-pose 與 import node recursion 修正，直接影響 humanoid exchange 的可靠性。"},{"label":"Production 價值","text":"如果團隊有 avatar/VTuber/VRM 輸出，pose normalization 與 MToon/material import 穩定性比新增 UI 更重要。"},{"label":"導入測試","text":"用一個含 blendshape、MToon、spring bone 的角色做 Blender→VRM→Blender round-trip，檢查 pose、材質與骨架。"}]},
-{"id":"polyquilt-1468","title":"PolyQuilt 1.46.8 修正 Blender 5.2 Retopo 相容性與 Merge-on-Move","summary":"PolyQuilt 的 1.46.8 更新修正 move merge 問題並針對 Blender 5.1/5.2 維護相容性，適合作為免費手動 retopology 工具的近期測試點。","quick_impact":"★★★★☆","source_url":"https://extensions.blender.org/add-ons/polyquilt-fork/","category":"3d-production","subcategory":"production-workflow","ranking_score":89,"rank_global":12,"homepage_tier":"next10","full_analysis":[{"label":"製作流程","text":"PolyQuilt 提供直接貼著高模的 quad retopo 操作，近期更新重點是 Blender 5.2 相容與 merge 行為。"},{"label":"Production 價值","text":"免費 retopo 工具若能穩定支援 5.2，可降低角色／道具手工 retopo 的工具切換成本。"},{"label":"導入測試","text":"用頭部與 hard-surface 各測 20 分鐘，檢查 snap、merge、symmetry、edge flow 與高密度 viewport 穩定。"}]},
-{"id":"cloudrig-2228","title":"CloudRig 2.2.28 新增 Simple Spine：Blender Studio Rig Generation 持續模組化","summary":"Blender Studio 的 CloudRig 新增 experimental Simple Spine component；CloudRig 以 metarig 產生 helper bones、constraints、drivers，適合研究可維護 rig component 架構。","quick_impact":"★★★★☆","source_url":"https://extensions.blender.org/add-ons/cloudrig/","category":"3d-animation","subcategory":"rigging","ranking_score":88,"rank_global":13,"homepage_tier":"next10","full_analysis":[{"label":"動畫流程","text":"CloudRig 以 metarig/component 產生正式 control rig，新 Simple Spine 提供更精簡的 spine setup。"},{"label":"Production 價值","text":"可借鑑的是 rig component 化與 generation，而非只使用某一個 spine；這有利於角色規格統一與重建。"},{"label":"導入測試","text":"拿現有 humanoid 比較 Rigify/CloudRig/手工 rig 的生成、customization、regenerate 與 animator usability。"}]},
-{"id":"hair-bone-generator-110","title":"Hair Bone Generator 1.1：曲線髮束快速產生骨鏈，支援端點控制與重建","summary":"Hair Bone Generator 1.1 強化 hair root/tip 控制、同範圍重新生成修正與 Blender 5.2.1 測試，可縮短角色髮絲 secondary rig 的重複工作。","quick_impact":"★★★★☆","source_url":"https://extensions.blender.org/add-ons/hair-bone-generator/","category":"3d-animation","subcategory":"rigging","ranking_score":87,"rank_global":14,"homepage_tier":"next10","full_analysis":[{"label":"動畫流程","text":"從髮束範圍生成 bone chain，允許 root/tip 端點調整且重跑時修正既有 chain。"},{"label":"Production 價值","text":"角色長髮、辮子、飾帶常有大量規律骨鏈，這類工具能直接減少命名、對位與重建時間。"},{"label":"導入測試","text":"以 20 條髮束測生成時間、bone orientation、權重、鏡像與後續 jiggle/physics 串接。"}]},
-{"id":"edit-poly-modifier-102","title":"Edit Poly Modifier 1.0.2：把局部 Mesh Edit 放進 Blender 非破壞 Modifier Stack","summary":"Edit Poly Modifier 讓人工頂點編輯可存在 Bevel 與 Subdivision 中間並即時同步 upstream 變化，對 hard-surface 與迭代型 modeling workflow 很接近 3ds Max Edit Poly 思路。","quick_impact":"★★★★☆","source_url":"https://extensions.blender.org/add-ons/edit-mesh-modifier/","category":"3d-production","subcategory":"prop-production","ranking_score":86,"rank_global":15,"homepage_tier":"next10","full_analysis":[{"label":"製作流程","text":"局部 mesh edit 可放在 modifier stack 中間，承接 upstream deformation 並繼續餵給 downstream subdiv。"},{"label":"Production 價值","text":"對熟悉 3ds Max Edit Poly stack 的模型師很有吸引力，可降低為了局部修形而 apply modifier 的破壞性操作。"},{"label":"導入測試","text":"用 Bevel→Edit Poly→Subdivision 的 hard-surface asset 測 upstream sync、fork/rebuild 與 dense mesh edit 延遲。"}]},
-{"id":"node-orthogonalizer-212","title":"Node Orthogonalizer 2.1.2：Shader／Geometry Nodes 自動 90° 路由與大型 Node Graph 整理","summary":"Node Orthogonalizer 可自動把 Shader、Compositor、Geometry Nodes 連線整理成 90° 路由，支援 nested groups、frames 與 debounced processing，降低複雜材質／GN 圖的維護成本。","quick_impact":"★★★★☆","source_url":"https://extensions.blender.org/add-ons/node-orthogonalizer/","category":"blender-dcc","subcategory":"addon","ranking_score":85,"rank_global":16,"homepage_tier":"category_only","full_analysis":[{"label":"DCC 工作流","text":"支援 Shader/Compositor/GN 與 nested groups，自動建立 reroute 並以 debounce 降低大型 graph 反覆計算。"},{"label":"Production 價值","text":"複雜 NPR shader 或 procedural graph 的維護成本常來自可讀性；自動 layout 能改善 review 與交接。"},{"label":"導入測試","text":"在一個 100+ nodes 的現有材質測自動 routing、frame 保留、手動修改後穩定性與額外 reroute 數量。"}]},
-{"id":"gamiflow-1100","title":"GamiFlow 1.10：Blender 遊戲資產 UV／Bake／Export Pipeline 增加 GN Set 與 Bone Parenting","summary":"GamiFlow 針對 game asset workflow 提供 unwrap、UDIM、bake cage、set generation、export anchor；1.10 加入 GN set inputs、bone parenting 與 Blender 5.2 修正。","quick_impact":"★★★★☆","source_url":"https://extensions.blender.org/add-ons/gamiflow/","category":"3d-production","subcategory":"production-workflow","ranking_score":84,"rank_global":17,"homepage_tier":"category_only","full_analysis":[{"label":"製作流程","text":"把 sculpt/decals、unwrap/UDIM、bake cage、asset set 與 export anchor 串成 Blender 內 game asset pipeline。"},{"label":"Production 價值","text":"適合有大量重複資產輸出的團隊，把 UV 命名、bake position 與 export center 這些易錯步驟標準化。"},{"label":"導入測試","text":"選一組 modular props 做 high→low→UV→bake→FBX/glTF，記錄自動步驟與人工 override 是否符合現有規範。"}]},
-{"id":"remi-blender-retopo","title":"Remi：Blender 內整合 Mesh Repair、Simplify、Instant Meshes Retopo 與 Rebake","summary":"Remi 將破面修補、voxel/volume rebuild、decimation、native Instant Meshes guided quad retopo 與 bake 串在 Blender 內，特別適合 AI/scanned dense mesh cleanup。","quick_impact":"★★★★☆","source_url":"https://github.com/shaderko/remi-blender-addon","category":"3d-production","subcategory":"production-workflow","ranking_score":83,"rank_global":18,"homepage_tier":"category_only","full_analysis":[{"label":"製作流程","text":"同一外掛可做 repair、remesh、decimate、guided quad retopo 與 bake，且 source mesh 保留不被破壞。"},{"label":"Production 價值","text":"對 AI 3D／scan 常見的孔洞、碎片、超高密度 mesh，可把多工具 cleanup 串回 Blender。"},{"label":"導入測試","text":"拿三種壞 mesh 測 closing、voxel、Instant Meshes guide、UV validation 與 rebake，記錄失敗模式與修正時間。"}]},
-{"id":"terracotta-blender-ai-graph","title":"Terracotta：在 Blender 用 Node Graph 串 Tripo、Gemini、Retopo、Segmentation、Rig 與 Export","summary":"Terracotta 把 AI 3D asset generation 做成 Blender node graph，可串概念圖、Tripo mesh、retopo、texture、segment、rig、animation 與 export，適合測試批次 AI asset pipeline。","quick_impact":"★★★★☆","source_url":"https://github.com/ShamanAndrey/blender-terracotta","category":"ai-generation","subcategory":"ai-3d","ranking_score":82,"rank_global":19,"homepage_tier":"category_only","full_analysis":[{"label":"生成流程","text":"以 node graph 串 Gemini reference、Tripo generation、retopo、texture、segmentation、rig、animation 與 export。"},{"label":"Production 價值","text":"最大價值是把 AI 3D 變成可重跑 graph，而不是每個 asset 手動點 web UI；適合批次與可追蹤 pipeline。"},{"label":"導入測試","text":"建立 concept→mesh→retopo→rig→export 最短 graph，測失敗重跑、成本、API key 管理與輸出一致性。"}]},
-{"id":"alpha3d-blender-pipeline","title":"Alpha3D Blender Plugin：Text/Image-to-3D 後直接 Retopo、Segment、Auto-Rig","summary":"Alpha3D plugin 把 cloud generation、retopology、segmentation 與 auto-rig 放進 Blender sidebar，重點在生成後處理是否能減少往返 web app 的 pipeline friction。","quick_impact":"★★★★☆","source_url":"https://github.com/ig-shadow-walker/AlphaPlugin-Blender","category":"ai-generation","subcategory":"ai-3d","ranking_score":81,"rank_global":20,"homepage_tier":"category_only","full_analysis":[{"label":"生成流程","text":"Text/Image-to-3D 後可直接在 Blender 觸發 retopo、segment 與 auto-rig，雲端 credit 與本地 DCC 操作整合。"},{"label":"Production 價值","text":"如果後處理品質可接受，可減少 web→download→import→再處理的反覆切換。"},{"label":"導入測試","text":"用角色與 hard-surface 各一件測生成、分件、quad quality、rig deformation、材質與 export round-trip。"}]},
-{"id":"web3d-asset-compiler-101","title":"Web3D Asset Compiler 1.0.1：Blender Lightmap、Mesh Optimization、Bake 與 glTF/Three.js Export","summary":"Web3D Asset Compiler 將 lightmap baking、mesh optimization、texture bake、animation export 與 TypeScript generator 串成自動化輸出；1.0.1 改用 Blender native UV packing。","quick_impact":"★★★☆☆","source_url":"https://extensions.blender.org/add-ons/web3d-asset-compiler/","category":"3d-production","subcategory":"production-workflow","ranking_score":80,"rank_global":21,"homepage_tier":"category_only","full_analysis":[{"label":"製作流程","text":"從 Blender 自動處理 lightmap UV、texture bake、mesh optimization、glTF/GLB 與 web runtime 輸出。"},{"label":"Production 價值","text":"雖然偏 Web3D，但其 bake/export automation 可參考成遊戲資產 compiler 的設計：單一入口、固定輸出與驗證。"},{"label":"導入測試","text":"用一個含 animation/material 的 asset 測 UV、bake、mesh reduction 與 GLB parity，確認 native pack 的可預測性。"}]},
-{"id":"pivot-tools-1491","title":"Pivot Tools 1.49.1：Blender Pivot Workflow 擴充 Curve 與混合選取","summary":"Pivot Tools 讓 artist 可快速 pick、儲存與批次套用 pivot，1.49.1 加入 Curve 與 mixed Mesh/Curve 支援，對 modular asset、weapon/prop 對位與 export anchor 有實際效率收益。","quick_impact":"★★★☆☆","source_url":"https://extensions.blender.org/add-ons/pivottools/","category":"3d-production","subcategory":"prop-production","ranking_score":79,"rank_global":22,"homepage_tier":"category_only","full_analysis":[{"label":"製作流程","text":"支援 geometry pick、bounding box target、saved pivot 與多物件套用，且不必破壞 object transform。"},{"label":"Production 價值","text":"Pivot 是 modular asset、武器握點、門件、VFX socket 與 engine placement 的高頻錯誤來源，標準化很有價值。"},{"label":"導入測試","text":"用一組 modular props 測 bottom/center/custom pivot、mixed curve/mesh、Apply Transform 與 Unity/UE import 對位。"}]},
-{"id":"rmkit-1016","title":"rmKit 1.0.16 修正 Blender 5.2 Quick Material，相容 Hard-surface Modeling 工具組","summary":"rmKit 聚合 hard-surface modeling 與 selection/transform 工具，1.0.16 針對 Blender 5.2 修正 Quick Material；適合從 3ds Max 轉 Blender 時評估操作補強。","quick_impact":"★★★☆☆","source_url":"https://extensions.blender.org/add-ons/rmkit/","category":"blender-dcc","subcategory":"addon","ranking_score":78,"rank_global":23,"homepage_tier":"category_only","full_analysis":[{"label":"DCC 工作流","text":"rmKit 聚合 modeling、selection、transform 等高頻操作，近期重點是 Blender 5.2 Quick Material 相容。"},{"label":"Production 價值","text":"對 3ds Max 使用者，這類 workflow addon 的價值是補足操作節奏，而不是取代 Blender 核心 modeling。"},{"label":"導入測試","text":"用同一 hard-surface prop 分別跑原生 Blender 與 rmKit，記錄選取、loop、transform、material assignment 操作數。"}]},
-{"id":"booltron-334","title":"Booltron 3.3.4 補 Blender 5.2 相容性：Boolean Stack 與 Bake Modifier Workflow","summary":"Booltron 為 Blender boolean 工作流提供工具與 modifier bake，3.3.4 修正 5.2 的 Randomize Location 問題；對 hard-surface 高頻 boolean 生產有維護價值。","quick_impact":"★★★☆☆","source_url":"https://extensions.blender.org/add-ons/booltron/","category":"3d-production","subcategory":"prop-production","ranking_score":77,"rank_global":24,"homepage_tier":"category_only","full_analysis":[{"label":"製作流程","text":"集中處理 boolean 建立、保留 cutter 與 modifier bake，讓 hard-surface stack 更快操作。"},{"label":"Production 價值","text":"Boolean 工具最重要的是在版本更新後仍不破壞 stack；5.2 相容修正值得在正式升版前驗證。"},{"label":"導入測試","text":"拿一個 20+ cutters 的 prop 測建立、排序、bake、undo 與重開檔，觀察 topology 與 shading 是否穩定。"}]},
-{"id":"sculpt-stroke-replay-020","title":"Sculpt Stroke Replay 0.2：Multires Sculpt Stroke 重播與正負 Strength Preview","summary":"0.2 新增 Multires 支援、不同 viewport/sculpt subdivision level 與 live strength preview，可把重複 sculpt stroke 變成可調操作，適合高模局部修形。","quick_impact":"★★★☆☆","source_url":"https://extensions.blender.org/add-ons/sculpt-stroke-replay/","category":"3d-production","subcategory":"character-production","ranking_score":76,"rank_global":25,"homepage_tier":"category_only","full_analysis":[{"label":"製作流程","text":"最後一次 sculpt stroke 可重播並調 strength，0.2 加入 Multires 與不同 subdivision level 支援。"},{"label":"Production 價值","text":"對角色高模中需要重複但精準控制的皺褶、肌理與局部修形，可降低手勢重做成本。"},{"label":"導入測試","text":"在 Multires 頭部測不同 brush、正負 strength、重播與 undo，確認不留下 helper object 或破壞 sculpt state。"}]},
-{"id":"handheld-loop-190","title":"Handheld Loop 1.9：可完美循環的 Procedural Camera Motion，非破壞加入鏡頭微動","summary":"Handheld Loop 1.9 提供 standing、documentary、shoulder、walking 等 procedural camera preset，能在不破壞既有動畫下生成可 loop 的位置與旋轉微動。","quick_impact":"★★★☆☆","source_url":"https://extensions.blender.org/add-ons/handheld-loop/","category":"3d-animation","subcategory":"animation","ranking_score":75,"rank_global":26,"homepage_tier":"category_only","full_analysis":[{"label":"動畫流程","text":"以 procedural noise/preset 疊加 camera movement，不直接改壞原有 camera animation，且可設定 seamless loop。"},{"label":"Production 價值","text":"適合 previs、展示、UI 背景與循環鏡頭快速增加自然感，但 cinematic hero shot 仍需人工 art direction。"},{"label":"導入測試","text":"同一鏡頭比較手 key 與 preset，檢查 loop seam、motion sickness、焦距感受與 bake 後可編輯性。"}]},
-{"id":"easeit-203","title":"Easeit 2.0.3：Dope Sheet／Graph Editor 一鍵套用 Easing Preset","summary":"Easeit 提供常用 easing presets，直接對選取 keyframes 套用，可減少 Graph Editor 的重複 curve shaping，適合快速 gameplay/UI/prop animation polish。","quick_impact":"★★★☆☆","source_url":"https://extensions.blender.org/add-ons/easeit/","category":"3d-animation","subcategory":"animation","ranking_score":74,"rank_global":27,"homepage_tier":"category_only","full_analysis":[{"label":"動畫流程","text":"在 Dope Sheet/Graph Editor 對選取 key 套 easing preset，適合快速建立 consistent timing。"},{"label":"Production 價值","text":"小工具但高頻；若團隊有固定 ease 規範，可把常見曲線從手調變成一致 preset。"},{"label":"導入測試","text":"用 UI、prop、camera 三類 animation 測 preset 是否造成 overshoot、curve 污染或與 engine bake 不一致。"}]},
-{"id":"frame-relief-rebake-100","title":"Relief Rebake 1.0：把高密度 Relief 轉成 Height-field Quad Mesh 的 Blender 工具","summary":"Relief Rebake 將浮雕表面重建為規則 height-field mesh 並估算 quad count；對浮雕、徽章、機台裝飾等高密度掃描/雕刻資產的簡化有特定價值。","quick_impact":"★★★☆☆","source_url":"https://extensions.blender.org/add-ons/relief-rebake/","category":"3d-production","subcategory":"prop-production","ranking_score":73,"rank_global":28,"homepage_tier":"category_only","full_analysis":[{"label":"製作流程","text":"將 relief 投影成 height field，再重建規則 mesh；適合沒有 undercut 的徽章、面板與裝飾面。"},{"label":"Production 價值","text":"可把雕刻或 scan 的過密幾何快速變成可控 quad count，再接 normal/height bake。"},{"label":"導入測試","text":"用一個有淺浮雕與一個有 undercut 的模型測，確認何時資訊被 height-field 假設吃掉。"}]},
-{"id":"inu-tools-gta-232","title":"INU Tools 2.3.2：Blender 原生 GTA SA 全資產 Pipeline 新增 Time Cycle 與 Auto Collision","summary":"INU Tools 從 DFF/COL/TXD/IDE/IPL/IMG 到動畫、lighting、materials 都在 Blender 內 round-trip；2.3.2 新增 timecyc lighting 預覽與 Auto-COL，提供完整 game-mod asset pipeline case。","quick_impact":"★★★☆☆","source_url":"https://extensions.blender.org/add-ons/inu-tools-gta-sa/","category":"emerging-case","subcategory":"case-study","ranking_score":72,"rank_global":29,"homepage_tier":"category_only","full_analysis":[{"label":"案例重點","text":"它把舊遊戲格式、map、vehicle、ped animation、collision、lighting 與 material 都整合進 Blender round-trip。"},{"label":"可轉移經驗","text":"即使不是 GTA pipeline，也很值得參考『DCC 內驗證＋一鍵輸出多資產格式』的工具設計。"},{"label":"導入判斷","text":"可拆解其 naming、validation、collision generation 與 packaging 做法，對自家遊戲外包/資產 compiler 有參考價值。"}]},
-{"id":"substance-painter-1212-security","title":"Substance 3D Painter 12.1.2 舊版有重大安全修補需求：Production Workstation 應升級","summary":"Adobe 8 月 25 日安全公告指出 Painter 12.1.2 及更早版本有 critical/important vulnerabilities，可能造成任意程式碼執行；這屬於內容工具鏈的 production maintenance 風險。","quick_impact":"★★★☆☆","source_url":"https://helpx.adobe.com/security/products/substance3d_painter/apsb26-129.html","category":"blender-dcc","subcategory":"substance","ranking_score":71,"rank_global":30,"homepage_tier":"category_only","full_analysis":[{"label":"DCC 工作流","text":"安全公告影響 Painter 12.1.2 及更早版本，Adobe 建議透過 Creative Cloud 更新到最新版本。"},{"label":"Production 價值","text":"美術工作站常開啟外部 SBSAR、貼圖與專案檔；任意程式碼執行風險應納入 DCC 版本鎖定與 IT patch SOP。"},{"label":"導入測試","text":"升級前先複製代表性專案，驗 plugin、export preset、color management、bake 與 automation，再推團隊版本。"}]}
-]}
+{
+  "date": "2026-09-07",
+  "schema_version": 3,
+  "metadata": {
+    "total_items": 27,
+    "collection_mode": "production-intelligence-preference-v1",
+    "collection_contract_effective_date": "2026-09-04",
+    "preference_contract_effective_date": "2026-09-06",
+    "discovery_windows": [
+      "24h",
+      "7d",
+      "30d",
+      "6m",
+      "evergreen"
+    ],
+    "registry_identity_normalization": {
+      "dropped_count": 3,
+      "rewritten_count": 0,
+      "policy": "verified-DONE-published-canonical-source-without-substantive-delta-skip",
+      "url_identity": "scripts/url_identity.py",
+      "stage": "collection-before-ready",
+      "refill_required": false,
+      "category_deficits": {},
+      "daily_release_gate": {
+        "have": 27,
+        "min": 20,
+        "target": 30,
+        "max": 30,
+        "missing_to_min": 0,
+        "missing_to_target": 3,
+        "release_ready": true,
+        "category_counts": {
+          "ai-generation": 5,
+          "3d-production": 8,
+          "3d-animation": 5,
+          "engine-art": 3,
+          "emerging-case": 2,
+          "blender-dcc": 4
+        }
+      }
+    }
+  },
+  "items": [
+    {
+      "id": "orbitals-retro-anime-rendering",
+      "title": "《Orbitals》拆解 UE5 復古動畫渲染：Cel／背景分離、Bloom Mask 與底片後製",
+      "summary": "Shapefarm 公開如何在 UE5 內改造預設渲染管線，將 cel character、painted environment 與 film effects 分層處理，並透過 Material Editor 維持美術可迭代性。",
+      "quick_impact": "★★★★★",
+      "source_url": "https://www.unrealengine.com/tech-blog/stepping-inside-a-retro-anime-inspired-game-a-look-into-the-rendering-of-orbitals",
+      "category": "engine-art",
+      "subcategory": "shader",
+      "ranking_score": 100,
+      "rank_global": 1,
+      "homepage_tier": "top5",
+      "full_analysis": [
+        {
+          "label": "技術重點",
+          "text": "Cel character、背景與 film effects 分層，並以自訂 render buffer／post-process 模擬 80–90 年代動畫的類比限制。"
+        },
+        {
+          "label": "Production 價值",
+          "text": "核心不是單一 toon shader，而是讓 art team 在 Material Editor 內持續調整，同時把背景與角色的 shading responsibility 分開。"
+        },
+        {
+          "label": "導入測試",
+          "text": "用同角色／同場景測 cel、painted environment、masked bloom、grain/halation 四層，記錄 render cost 與美術修改回合數。"
+        }
+      ]
+    },
+    {
+      "id": "city-sample-ue58-pcg-mcp",
+      "title": "UE 5.8 City Sample 重建：PCG＋Unreal MCP 把大型城市程序化留在引擎內",
+      "summary": "新版 City Sample 以 UE5.8 PCG、World Partition、Nanite Foliage、Megaplants 與 Unreal MCP 重建兩個新城市關卡，示範大型世界在引擎內維持可編輯程序化流程。",
+      "quick_impact": "★★★★★",
+      "source_url": "https://www.unrealengine.com/learning/city-sample-gets-a-major-update-with-pcg-and-unreal-mcp-workflows",
+      "category": "engine-art",
+      "subcategory": "tools",
+      "ranking_score": 99,
+      "rank_global": 2,
+      "homepage_tier": "top5",
+      "full_analysis": [
+        {
+          "label": "技術重點",
+          "text": "新版城市不再依賴外部 Houdini 建構，PCG graphs、shape grammar、World Partition 與植被都留在 Unreal 內。"
+        },
+        {
+          "label": "Production 價值",
+          "text": "大型世界的關鍵是生成後仍可編輯；MCP/LLM 被放在操作 PCG 的輔助層，而不是不可回溯的黑盒生成。"
+        },
+        {
+          "label": "導入測試",
+          "text": "以一個街區測道路、建築、植被三種 PCG graph，記錄 artist override、重生成穩定性與 World Partition 串接。"
+        }
+      ]
+    },
+    {
+      "id": "game-animation-sample-ue58",
+      "title": "Game Animation Sample 升級 UE5.8：Physics Control、Motion Matching、Chooser 與 Smart Objects",
+      "summary": "Epic 更新 Game Animation Sample，加入 Physics Control Component/Asset、Chooser 內多 Pose Search DB、Blend Spaces 與 Smart Object 互動範例，適合直接做 gameplay animation baseline。",
+      "quick_impact": "★★★★★",
+      "source_url": "https://www.unrealengine.com/tech-blog/download-the-latest-game-animation-sample-project-now-updated-for-ue-5-8",
+      "category": "3d-animation",
+      "subcategory": "animation",
+      "ranking_score": 98,
+      "rank_global": 3,
+      "homepage_tier": "top5",
+      "full_analysis": [
+        {
+          "label": "動畫流程",
+          "text": "UE5.8 sample 把 Physics Control、Chooser、Motion Matching、Blend Space 與 Smart Object 互動放進同一套可下載範例。"
+        },
+        {
+          "label": "Production 價值",
+          "text": "比單看文件更適合做團隊 baseline，可直接拆解 locomotion、ragdoll、interaction 與 selector responsibility。"
+        },
+        {
+          "label": "導入測試",
+          "text": "挑現有角色替換 sample skeleton，測 motion matching DB、slope blend、physics profile 與 Smart Object 互動的 retarget 成本。"
+        }
+      ]
+    },
+    {
+      "id": "rokoko-vision-3",
+      "title": "Rokoko Vision 3.0 重建單鏡頭 AI Mocap Solver，整合 Video/Text-to-Motion 與 Studio 清理",
+      "summary": "Vision 3.0 改用重建 solver，主打更乾淨動作、更快處理，並把 Video-to-Motion、Text-to-Motion、Studio 編輯、retarget 與 FBX/BVH export 串成同一套流程。",
+      "quick_impact": "★★★★★",
+      "source_url": "https://www.rokoko.com/products/vision",
+      "category": "ai-generation",
+      "subcategory": "ai-motion",
+      "ranking_score": 97,
+      "rank_global": 4,
+      "homepage_tier": "top5",
+      "full_analysis": [
+        {
+          "label": "生成流程",
+          "text": "單鏡頭影片進 Vision 3.0 後可進 Rokoko Studio cleanup/loop/retarget，再輸出 FBX/BVH 到 Blender、Maya、Unity 或 Unreal。"
+        },
+        {
+          "label": "Production 價值",
+          "text": "值得測的是 solver 重建後的 foot sliding、weight shift 與快速動作，而不是只比較 processing speed。"
+        },
+        {
+          "label": "導入測試",
+          "text": "用走跑跳、轉身與雙人遮擋片段做同素材 A/B，記錄 cleanup 分鐘數、腳底鎖定與 retarget 後曲線品質。"
+        }
+      ]
+    },
+    {
+      "id": "frame-by-plane-72",
+      "title": "Frame By Plane 7.2：Blender 5.2 的 2.5D／Cutout／Multiplane Production 工具大更新",
+      "summary": "Frame By Plane 7.2 強化 Grease Pencil 雙色、相機格式、timeline、effects 與 safer import/render，並支援 layered image、cutout、parallax 與 2.5D 場景管理。",
+      "quick_impact": "★★★★★",
+      "source_url": "https://extensions.blender.org/add-ons/frame-by-plane/",
+      "category": "blender-dcc",
+      "subcategory": "addon",
+      "ranking_score": 96,
+      "rank_global": 5,
+      "homepage_tier": "top5",
+      "full_analysis": [
+        {
+          "label": "DCC 工作流",
+          "text": "把 image sequence、cutout、layer tree、multiplane camera、parallax、mask 與 shader/GN effects 做成 Blender 內一致工作流。"
+        },
+        {
+          "label": "Production 價值",
+          "text": "對固定視角 2.5D 場景與分層貼片特別有價值，可降低 Photoshop/After Effects/Blender 間反覆整理 layer 的成本。"
+        },
+        {
+          "label": "導入測試",
+          "text": "用一個近中遠三層遊戲場景測 folder import、camera fit、parallax、alpha cutout、效果 stack 與輸出穩定性。"
+        }
+      ]
+    },
+    {
+      "id": "epic-learning-aug-ue58",
+      "title": "Epic 8 月 UE5.8 教學包：Mesh Terrain、Networked Physics、Material 與優化工作流",
+      "summary": "Epic 集中發布 UE5.8 的 Mesh Terrain、Networked Physics、Accumulation DOF、Material 與 project optimization 教學，適合建立引擎美術新功能的測試清單。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://www.unrealengine.com/learning/augusts-epic-learning-content-networked-physics-dynamic-audio-and-more",
+      "category": "engine-art",
+      "subcategory": "unreal",
+      "ranking_score": 95,
+      "rank_global": 6,
+      "homepage_tier": "next10",
+      "full_analysis": [
+        {
+          "label": "技術重點",
+          "text": "內容涵蓋 Mesh Terrain、Material、project optimization 與高品質 DOF，能直接對應場景與 rendering 測試。"
+        },
+        {
+          "label": "Production 價值",
+          "text": "適合把 5.8 新功能從『知道有』轉成可重複 benchmark，尤其是 Mesh Terrain 與材質流程。"
+        },
+        {
+          "label": "導入測試",
+          "text": "建立一個固定測試 map，逐項記錄 terrain editing、draw cost、材質編譯、cinematic DOF 與版本相容。"
+        }
+      ]
+    },
+    {
+      "id": "zero-company-ue5-production",
+      "title": "《Star Wars Zero Company》UE5 製作訪談：策略遊戲如何選擇引擎與組織大型內容",
+      "summary": "Bit Reactor 說明團隊以 UE5 製作戰術 RPG 的技術與內容選擇，提供世界、角色與迭代流程的 production case，可作為中大型專案引擎決策參考。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://www.unrealengine.com/developer-interviews/star-wars-zero-company-bit-reactor-crafts-a-galaxy-of-tactical-possibilities-with-ue5",
+      "category": "emerging-case",
+      "subcategory": "case-study",
+      "ranking_score": 94,
+      "rank_global": 7,
+      "homepage_tier": "next10",
+      "full_analysis": [
+        {
+          "label": "案例重點",
+          "text": "訪談聚焦 UE5 在戰術 RPG 的內容組織與製作選擇，而不是單一 feature showcase。"
+        },
+        {
+          "label": "可轉移經驗",
+          "text": "可對照自己的專案規模，檢查世界、角色、工具與引擎責任是否在早期就有清楚 ownership。"
+        },
+        {
+          "label": "導入判斷",
+          "text": "不要直接照搬大型團隊流程；先挑一個 level/character vertical slice 比較 iteration speed 與跨部門 handoff。"
+        }
+      ]
+    },
+    {
+      "id": "aimocap-video-mocap",
+      "title": "AIMoCap：單影片同時抓 Body＋Finger，支援自訂角色、Mixamo／CC／Roblox 與 120fps",
+      "summary": "AIMoCap 提供瀏覽器 video mocap，強調 body/finger 同步、減少 foot sliding、自訂 humanoid 綁定與多種角色／機器人輸出目標，可作為 AI mocap 新候選工具。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://aimocap.net/docs",
+      "category": "ai-generation",
+      "subcategory": "ai-motion",
+      "ranking_score": 93,
+      "rank_global": 8,
+      "homepage_tier": "next10",
+      "full_analysis": [
+        {
+          "label": "生成流程",
+          "text": "影片可選多種 humanoid target 或自訂角色，並輸出 24/30/60/120fps，方便比較不同下游動畫流程。"
+        },
+        {
+          "label": "Production 價值",
+          "text": "Body＋Finger 同步與 foot sliding 抑制是實際 animation cleanup 的核心成本點，值得與既有單鏡頭解法比較。"
+        },
+        {
+          "label": "導入測試",
+          "text": "測手指、快速重心轉移、遮擋與地面接觸四類片段，記錄輸出骨架、cleanup 與引擎 retarget 結果。"
+        }
+      ]
+    },
+    {
+      "id": "quickmagic-fullbody-hand-face",
+      "title": "QuickMagic：單影片 Body／Hand／Face AI Mocap，輸出 UE／Unity／Maya／3ds Max 管線",
+      "summary": "QuickMagic 將一般影片轉成可編輯 3D motion，支援 body、hand、face 與多種 FBX/BVH/UE preset，並明確展示 Cascadeur cleanup、UE retarget 等 production workflow。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://www.quickmagic.ai/tools/video-to-3d-animation",
+      "category": "ai-generation",
+      "subcategory": "ai-motion",
+      "ranking_score": 92,
+      "rank_global": 9,
+      "homepage_tier": "next10",
+      "full_analysis": [
+        {
+          "label": "生成流程",
+          "text": "影片可輸出 body/hand/face motion，再進 Cascadeur、Unreal、Blender、Maya 或 MotionBuilder 編輯。"
+        },
+        {
+          "label": "Production 價值",
+          "text": "來源有展示生成後 cleanup/retarget，而不是把 AI 輸出當最終動畫，這更符合 production 評估方式。"
+        },
+        {
+          "label": "導入測試",
+          "text": "與 Rokoko/AIMoCap 用同一段素材，比較 raw jitter、foot lock、finger、face 與修到可用所需時間。"
+        }
+      ]
+    },
+    {
+      "id": "exea-jiggle-110",
+      "title": "EXea Jiggle 1.1：Blender 骨架次級動態加入 Jiggle Layers 與可 Bake Keyframes 流程",
+      "summary": "EXea Jiggle 1.1 新增 Jiggle Layers、bone grouping、mute 與 Blender 5.x 相容性，可用於髮尾、衣服、尾巴等骨架次級動態並烘焙成 keyframes。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://extensions.blender.org/add-ons/exea-jiggle/",
+      "category": "3d-animation",
+      "subcategory": "rigging",
+      "ranking_score": 91,
+      "rank_global": 10,
+      "homepage_tier": "next10",
+      "full_analysis": [
+        {
+          "label": "動畫流程",
+          "text": "Layer 化管理 hair/clothing/tail bone chains，播放時即時看 secondary motion，完成後 bake 回 keyframes。"
+        },
+        {
+          "label": "Production 價值",
+          "text": "適合把大量次級骨鏈從手動 offset key 減成可調 solver，又保留最終可編輯 keyframe。"
+        },
+        {
+          "label": "導入測試",
+          "text": "用髮束與裙擺各一組 chain，測 bake 前後曲線、穿插、速度變化與 animator 手改成本。"
+        }
+      ]
+    },
+    {
+      "id": "vrm-addon-470",
+      "title": "VRM Add-on 4.7：T-Pose 套用與匯入循環節點修正，強化 Avatar 交換流程",
+      "summary": "VRM Add-on 4.7 新增 selected VRM T-pose 套用按鈕並修正 cyclic node recursion；對 Blender↔VRM humanoid、MToon 與 avatar export 有直接維護價值。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://extensions.blender.org/add-ons/vrm/",
+      "category": "blender-dcc",
+      "subcategory": "addon",
+      "ranking_score": 90,
+      "rank_global": 11,
+      "homepage_tier": "next10",
+      "full_analysis": [
+        {
+          "label": "DCC 工作流",
+          "text": "VRM 4.7 針對 T-pose 與 import node recursion 修正，直接影響 humanoid exchange 的可靠性。"
+        },
+        {
+          "label": "Production 價值",
+          "text": "如果團隊有 avatar/VTuber/VRM 輸出，pose normalization 與 MToon/material import 穩定性比新增 UI 更重要。"
+        },
+        {
+          "label": "導入測試",
+          "text": "用一個含 blendshape、MToon、spring bone 的角色做 Blender→VRM→Blender round-trip，檢查 pose、材質與骨架。"
+        }
+      ]
+    },
+    {
+      "id": "polyquilt-1468",
+      "title": "PolyQuilt 1.46.8 修正 Blender 5.2 Retopo 相容性與 Merge-on-Move",
+      "summary": "PolyQuilt 的 1.46.8 更新修正 move merge 問題並針對 Blender 5.1/5.2 維護相容性，適合作為免費手動 retopology 工具的近期測試點。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://extensions.blender.org/add-ons/polyquilt-fork/",
+      "category": "3d-production",
+      "subcategory": "production-workflow",
+      "ranking_score": 89,
+      "rank_global": 12,
+      "homepage_tier": "next10",
+      "full_analysis": [
+        {
+          "label": "製作流程",
+          "text": "PolyQuilt 提供直接貼著高模的 quad retopo 操作，近期更新重點是 Blender 5.2 相容與 merge 行為。"
+        },
+        {
+          "label": "Production 價值",
+          "text": "免費 retopo 工具若能穩定支援 5.2，可降低角色／道具手工 retopo 的工具切換成本。"
+        },
+        {
+          "label": "導入測試",
+          "text": "用頭部與 hard-surface 各測 20 分鐘，檢查 snap、merge、symmetry、edge flow 與高密度 viewport 穩定。"
+        }
+      ]
+    },
+    {
+      "id": "cloudrig-2228",
+      "title": "CloudRig 2.2.28 新增 Simple Spine：Blender Studio Rig Generation 持續模組化",
+      "summary": "Blender Studio 的 CloudRig 新增 experimental Simple Spine component；CloudRig 以 metarig 產生 helper bones、constraints、drivers，適合研究可維護 rig component 架構。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://extensions.blender.org/add-ons/cloudrig/",
+      "category": "3d-animation",
+      "subcategory": "rigging",
+      "ranking_score": 88,
+      "rank_global": 13,
+      "homepage_tier": "next10",
+      "full_analysis": [
+        {
+          "label": "動畫流程",
+          "text": "CloudRig 以 metarig/component 產生正式 control rig，新 Simple Spine 提供更精簡的 spine setup。"
+        },
+        {
+          "label": "Production 價值",
+          "text": "可借鑑的是 rig component 化與 generation，而非只使用某一個 spine；這有利於角色規格統一與重建。"
+        },
+        {
+          "label": "導入測試",
+          "text": "拿現有 humanoid 比較 Rigify/CloudRig/手工 rig 的生成、customization、regenerate 與 animator usability。"
+        }
+      ]
+    },
+    {
+      "id": "hair-bone-generator-110",
+      "title": "Hair Bone Generator 1.1：曲線髮束快速產生骨鏈，支援端點控制與重建",
+      "summary": "Hair Bone Generator 1.1 強化 hair root/tip 控制、同範圍重新生成修正與 Blender 5.2.1 測試，可縮短角色髮絲 secondary rig 的重複工作。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://extensions.blender.org/add-ons/hair-bone-generator/",
+      "category": "3d-animation",
+      "subcategory": "rigging",
+      "ranking_score": 87,
+      "rank_global": 14,
+      "homepage_tier": "next10",
+      "full_analysis": [
+        {
+          "label": "動畫流程",
+          "text": "從髮束範圍生成 bone chain，允許 root/tip 端點調整且重跑時修正既有 chain。"
+        },
+        {
+          "label": "Production 價值",
+          "text": "角色長髮、辮子、飾帶常有大量規律骨鏈，這類工具能直接減少命名、對位與重建時間。"
+        },
+        {
+          "label": "導入測試",
+          "text": "以 20 條髮束測生成時間、bone orientation、權重、鏡像與後續 jiggle/physics 串接。"
+        }
+      ]
+    },
+    {
+      "id": "edit-poly-modifier-102",
+      "title": "Edit Poly Modifier 1.0.2：把局部 Mesh Edit 放進 Blender 非破壞 Modifier Stack",
+      "summary": "Edit Poly Modifier 讓人工頂點編輯可存在 Bevel 與 Subdivision 中間並即時同步 upstream 變化，對 hard-surface 與迭代型 modeling workflow 很接近 3ds Max Edit Poly 思路。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://extensions.blender.org/add-ons/edit-mesh-modifier/",
+      "category": "3d-production",
+      "subcategory": "prop-production",
+      "ranking_score": 86,
+      "rank_global": 15,
+      "homepage_tier": "next10",
+      "full_analysis": [
+        {
+          "label": "製作流程",
+          "text": "局部 mesh edit 可放在 modifier stack 中間，承接 upstream deformation 並繼續餵給 downstream subdiv。"
+        },
+        {
+          "label": "Production 價值",
+          "text": "對熟悉 3ds Max Edit Poly stack 的模型師很有吸引力，可降低為了局部修形而 apply modifier 的破壞性操作。"
+        },
+        {
+          "label": "導入測試",
+          "text": "用 Bevel→Edit Poly→Subdivision 的 hard-surface asset 測 upstream sync、fork/rebuild 與 dense mesh edit 延遲。"
+        }
+      ]
+    },
+    {
+      "id": "node-orthogonalizer-212",
+      "title": "Node Orthogonalizer 2.1.2：Shader／Geometry Nodes 自動 90° 路由與大型 Node Graph 整理",
+      "summary": "Node Orthogonalizer 可自動把 Shader、Compositor、Geometry Nodes 連線整理成 90° 路由，支援 nested groups、frames 與 debounced processing，降低複雜材質／GN 圖的維護成本。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://extensions.blender.org/add-ons/node-orthogonalizer/",
+      "category": "blender-dcc",
+      "subcategory": "addon",
+      "ranking_score": 85,
+      "rank_global": 16,
+      "homepage_tier": "category_only",
+      "full_analysis": [
+        {
+          "label": "DCC 工作流",
+          "text": "支援 Shader/Compositor/GN 與 nested groups，自動建立 reroute 並以 debounce 降低大型 graph 反覆計算。"
+        },
+        {
+          "label": "Production 價值",
+          "text": "複雜 NPR shader 或 procedural graph 的維護成本常來自可讀性；自動 layout 能改善 review 與交接。"
+        },
+        {
+          "label": "導入測試",
+          "text": "在一個 100+ nodes 的現有材質測自動 routing、frame 保留、手動修改後穩定性與額外 reroute 數量。"
+        }
+      ]
+    },
+    {
+      "id": "gamiflow-1100",
+      "title": "GamiFlow 1.10：Blender 遊戲資產 UV／Bake／Export Pipeline 增加 GN Set 與 Bone Parenting",
+      "summary": "GamiFlow 針對 game asset workflow 提供 unwrap、UDIM、bake cage、set generation、export anchor；1.10 加入 GN set inputs、bone parenting 與 Blender 5.2 修正。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://extensions.blender.org/add-ons/gamiflow/",
+      "category": "3d-production",
+      "subcategory": "production-workflow",
+      "ranking_score": 84,
+      "rank_global": 17,
+      "homepage_tier": "category_only",
+      "full_analysis": [
+        {
+          "label": "製作流程",
+          "text": "把 sculpt/decals、unwrap/UDIM、bake cage、asset set 與 export anchor 串成 Blender 內 game asset pipeline。"
+        },
+        {
+          "label": "Production 價值",
+          "text": "適合有大量重複資產輸出的團隊，把 UV 命名、bake position 與 export center 這些易錯步驟標準化。"
+        },
+        {
+          "label": "導入測試",
+          "text": "選一組 modular props 做 high→low→UV→bake→FBX/glTF，記錄自動步驟與人工 override 是否符合現有規範。"
+        }
+      ]
+    },
+    {
+      "id": "remi-blender-retopo",
+      "title": "Remi：Blender 內整合 Mesh Repair、Simplify、Instant Meshes Retopo 與 Rebake",
+      "summary": "Remi 將破面修補、voxel/volume rebuild、decimation、native Instant Meshes guided quad retopo 與 bake 串在 Blender 內，特別適合 AI/scanned dense mesh cleanup。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://github.com/shaderko/remi-blender-addon",
+      "category": "3d-production",
+      "subcategory": "production-workflow",
+      "ranking_score": 83,
+      "rank_global": 18,
+      "homepage_tier": "category_only",
+      "full_analysis": [
+        {
+          "label": "製作流程",
+          "text": "同一外掛可做 repair、remesh、decimate、guided quad retopo 與 bake，且 source mesh 保留不被破壞。"
+        },
+        {
+          "label": "Production 價值",
+          "text": "對 AI 3D／scan 常見的孔洞、碎片、超高密度 mesh，可把多工具 cleanup 串回 Blender。"
+        },
+        {
+          "label": "導入測試",
+          "text": "拿三種壞 mesh 測 closing、voxel、Instant Meshes guide、UV validation 與 rebake，記錄失敗模式與修正時間。"
+        }
+      ]
+    },
+    {
+      "id": "terracotta-blender-ai-graph",
+      "title": "Terracotta：在 Blender 用 Node Graph 串 Tripo、Gemini、Retopo、Segmentation、Rig 與 Export",
+      "summary": "Terracotta 把 AI 3D asset generation 做成 Blender node graph，可串概念圖、Tripo mesh、retopo、texture、segment、rig、animation 與 export，適合測試批次 AI asset pipeline。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://github.com/ShamanAndrey/blender-terracotta",
+      "category": "ai-generation",
+      "subcategory": "ai-3d",
+      "ranking_score": 82,
+      "rank_global": 19,
+      "homepage_tier": "category_only",
+      "full_analysis": [
+        {
+          "label": "生成流程",
+          "text": "以 node graph 串 Gemini reference、Tripo generation、retopo、texture、segmentation、rig、animation 與 export。"
+        },
+        {
+          "label": "Production 價值",
+          "text": "最大價值是把 AI 3D 變成可重跑 graph，而不是每個 asset 手動點 web UI；適合批次與可追蹤 pipeline。"
+        },
+        {
+          "label": "導入測試",
+          "text": "建立 concept→mesh→retopo→rig→export 最短 graph，測失敗重跑、成本、API key 管理與輸出一致性。"
+        }
+      ]
+    },
+    {
+      "id": "alpha3d-blender-pipeline",
+      "title": "Alpha3D Blender Plugin：Text/Image-to-3D 後直接 Retopo、Segment、Auto-Rig",
+      "summary": "Alpha3D plugin 把 cloud generation、retopology、segmentation 與 auto-rig 放進 Blender sidebar，重點在生成後處理是否能減少往返 web app 的 pipeline friction。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://github.com/ig-shadow-walker/AlphaPlugin-Blender",
+      "category": "ai-generation",
+      "subcategory": "ai-3d",
+      "ranking_score": 81,
+      "rank_global": 20,
+      "homepage_tier": "category_only",
+      "full_analysis": [
+        {
+          "label": "生成流程",
+          "text": "Text/Image-to-3D 後可直接在 Blender 觸發 retopo、segment 與 auto-rig，雲端 credit 與本地 DCC 操作整合。"
+        },
+        {
+          "label": "Production 價值",
+          "text": "如果後處理品質可接受，可減少 web→download→import→再處理的反覆切換。"
+        },
+        {
+          "label": "導入測試",
+          "text": "用角色與 hard-surface 各一件測生成、分件、quad quality、rig deformation、材質與 export round-trip。"
+        }
+      ]
+    },
+    {
+      "id": "pivot-tools-1491",
+      "title": "Pivot Tools 1.49.1：Blender Pivot Workflow 擴充 Curve 與混合選取",
+      "summary": "Pivot Tools 讓 artist 可快速 pick、儲存與批次套用 pivot，1.49.1 加入 Curve 與 mixed Mesh/Curve 支援，對 modular asset、weapon/prop 對位與 export anchor 有實際效率收益。",
+      "quick_impact": "★★★☆☆",
+      "source_url": "https://extensions.blender.org/add-ons/pivottools/",
+      "category": "3d-production",
+      "subcategory": "prop-production",
+      "ranking_score": 79,
+      "rank_global": 21,
+      "homepage_tier": "category_only",
+      "full_analysis": [
+        {
+          "label": "製作流程",
+          "text": "支援 geometry pick、bounding box target、saved pivot 與多物件套用，且不必破壞 object transform。"
+        },
+        {
+          "label": "Production 價值",
+          "text": "Pivot 是 modular asset、武器握點、門件、VFX socket 與 engine placement 的高頻錯誤來源，標準化很有價值。"
+        },
+        {
+          "label": "導入測試",
+          "text": "用一組 modular props 測 bottom/center/custom pivot、mixed curve/mesh、Apply Transform 與 Unity/UE import 對位。"
+        }
+      ]
+    },
+    {
+      "id": "booltron-334",
+      "title": "Booltron 3.3.4 補 Blender 5.2 相容性：Boolean Stack 與 Bake Modifier Workflow",
+      "summary": "Booltron 為 Blender boolean 工作流提供工具與 modifier bake，3.3.4 修正 5.2 的 Randomize Location 問題；對 hard-surface 高頻 boolean 生產有維護價值。",
+      "quick_impact": "★★★☆☆",
+      "source_url": "https://extensions.blender.org/add-ons/booltron/",
+      "category": "3d-production",
+      "subcategory": "prop-production",
+      "ranking_score": 77,
+      "rank_global": 22,
+      "homepage_tier": "category_only",
+      "full_analysis": [
+        {
+          "label": "製作流程",
+          "text": "集中處理 boolean 建立、保留 cutter 與 modifier bake，讓 hard-surface stack 更快操作。"
+        },
+        {
+          "label": "Production 價值",
+          "text": "Boolean 工具最重要的是在版本更新後仍不破壞 stack；5.2 相容修正值得在正式升版前驗證。"
+        },
+        {
+          "label": "導入測試",
+          "text": "拿一個 20+ cutters 的 prop 測建立、排序、bake、undo 與重開檔，觀察 topology 與 shading 是否穩定。"
+        }
+      ]
+    },
+    {
+      "id": "sculpt-stroke-replay-020",
+      "title": "Sculpt Stroke Replay 0.2：Multires Sculpt Stroke 重播與正負 Strength Preview",
+      "summary": "0.2 新增 Multires 支援、不同 viewport/sculpt subdivision level 與 live strength preview，可把重複 sculpt stroke 變成可調操作，適合高模局部修形。",
+      "quick_impact": "★★★☆☆",
+      "source_url": "https://extensions.blender.org/add-ons/sculpt-stroke-replay/",
+      "category": "3d-production",
+      "subcategory": "character-production",
+      "ranking_score": 76,
+      "rank_global": 23,
+      "homepage_tier": "category_only",
+      "full_analysis": [
+        {
+          "label": "製作流程",
+          "text": "最後一次 sculpt stroke 可重播並調 strength，0.2 加入 Multires 與不同 subdivision level 支援。"
+        },
+        {
+          "label": "Production 價值",
+          "text": "對角色高模中需要重複但精準控制的皺褶、肌理與局部修形，可降低手勢重做成本。"
+        },
+        {
+          "label": "導入測試",
+          "text": "在 Multires 頭部測不同 brush、正負 strength、重播與 undo，確認不留下 helper object 或破壞 sculpt state。"
+        }
+      ]
+    },
+    {
+      "id": "easeit-203",
+      "title": "Easeit 2.0.3：Dope Sheet／Graph Editor 一鍵套用 Easing Preset",
+      "summary": "Easeit 提供常用 easing presets，直接對選取 keyframes 套用，可減少 Graph Editor 的重複 curve shaping，適合快速 gameplay/UI/prop animation polish。",
+      "quick_impact": "★★★☆☆",
+      "source_url": "https://extensions.blender.org/add-ons/easeit/",
+      "category": "3d-animation",
+      "subcategory": "animation",
+      "ranking_score": 74,
+      "rank_global": 24,
+      "homepage_tier": "category_only",
+      "full_analysis": [
+        {
+          "label": "動畫流程",
+          "text": "在 Dope Sheet/Graph Editor 對選取 key 套 easing preset，適合快速建立 consistent timing。"
+        },
+        {
+          "label": "Production 價值",
+          "text": "小工具但高頻；若團隊有固定 ease 規範，可把常見曲線從手調變成一致 preset。"
+        },
+        {
+          "label": "導入測試",
+          "text": "用 UI、prop、camera 三類 animation 測 preset 是否造成 overshoot、curve 污染或與 engine bake 不一致。"
+        }
+      ]
+    },
+    {
+      "id": "frame-relief-rebake-100",
+      "title": "Relief Rebake 1.0：把高密度 Relief 轉成 Height-field Quad Mesh 的 Blender 工具",
+      "summary": "Relief Rebake 將浮雕表面重建為規則 height-field mesh 並估算 quad count；對浮雕、徽章、機台裝飾等高密度掃描/雕刻資產的簡化有特定價值。",
+      "quick_impact": "★★★☆☆",
+      "source_url": "https://extensions.blender.org/add-ons/relief-rebake/",
+      "category": "3d-production",
+      "subcategory": "prop-production",
+      "ranking_score": 73,
+      "rank_global": 25,
+      "homepage_tier": "category_only",
+      "full_analysis": [
+        {
+          "label": "製作流程",
+          "text": "將 relief 投影成 height field，再重建規則 mesh；適合沒有 undercut 的徽章、面板與裝飾面。"
+        },
+        {
+          "label": "Production 價值",
+          "text": "可把雕刻或 scan 的過密幾何快速變成可控 quad count，再接 normal/height bake。"
+        },
+        {
+          "label": "導入測試",
+          "text": "用一個有淺浮雕與一個有 undercut 的模型測，確認何時資訊被 height-field 假設吃掉。"
+        }
+      ]
+    },
+    {
+      "id": "inu-tools-gta-232",
+      "title": "INU Tools 2.3.2：Blender 原生 GTA SA 全資產 Pipeline 新增 Time Cycle 與 Auto Collision",
+      "summary": "INU Tools 從 DFF/COL/TXD/IDE/IPL/IMG 到動畫、lighting、materials 都在 Blender 內 round-trip；2.3.2 新增 timecyc lighting 預覽與 Auto-COL，提供完整 game-mod asset pipeline case。",
+      "quick_impact": "★★★☆☆",
+      "source_url": "https://extensions.blender.org/add-ons/inu-tools-gta-sa/",
+      "category": "emerging-case",
+      "subcategory": "case-study",
+      "ranking_score": 72,
+      "rank_global": 26,
+      "homepage_tier": "category_only",
+      "full_analysis": [
+        {
+          "label": "案例重點",
+          "text": "它把舊遊戲格式、map、vehicle、ped animation、collision、lighting 與 material 都整合進 Blender round-trip。"
+        },
+        {
+          "label": "可轉移經驗",
+          "text": "即使不是 GTA pipeline，也很值得參考『DCC 內驗證＋一鍵輸出多資產格式』的工具設計。"
+        },
+        {
+          "label": "導入判斷",
+          "text": "可拆解其 naming、validation、collision generation 與 packaging 做法，對自家遊戲外包/資產 compiler 有參考價值。"
+        }
+      ]
+    },
+    {
+      "id": "substance-painter-1212-security",
+      "title": "Substance 3D Painter 12.1.2 舊版有重大安全修補需求：Production Workstation 應升級",
+      "summary": "Adobe 8 月 25 日安全公告指出 Painter 12.1.2 及更早版本有 critical/important vulnerabilities，可能造成任意程式碼執行；這屬於內容工具鏈的 production maintenance 風險。",
+      "quick_impact": "★★★☆☆",
+      "source_url": "https://helpx.adobe.com/security/products/substance3d_painter/apsb26-129.html",
+      "category": "blender-dcc",
+      "subcategory": "substance",
+      "ranking_score": 71,
+      "rank_global": 27,
+      "homepage_tier": "category_only",
+      "full_analysis": [
+        {
+          "label": "DCC 工作流",
+          "text": "安全公告影響 Painter 12.1.2 及更早版本，Adobe 建議透過 Creative Cloud 更新到最新版本。"
+        },
+        {
+          "label": "Production 價值",
+          "text": "美術工作站常開啟外部 SBSAR、貼圖與專案檔；任意程式碼執行風險應納入 DCC 版本鎖定與 IT patch SOP。"
+        },
+        {
+          "label": "導入測試",
+          "text": "升級前先複製代表性專案，驗 plugin、export preset、color management、bake 與 automation，再推團隊版本。"
+        }
+      ]
+    }
+  ],
+  "visual_evidence": {}
+}

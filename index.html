@@ -22,7 +22,7 @@
      Production Intelligence
     </h1>
     <p class="week-asof">
-     2026-09-06
+     2026-09-07
     </p>
    </div>
   </header>
@@ -64,30 +64,26 @@
      </div>
     </div>
     <div class="top-list">
-     <article class="home-card top-item" data-intel-id="tripo-one-day-character-pipeline" data-intel-role="card">
+     <article class="top-item" data-intel-id="orbitals-retro-anime-rendering" data-intel-role="card">
       <div class="top-no">
        01
       </div>
       <div class="top-main">
+       <div class="meta">
+        <span class="pill">
+         shader
+        </span>
+       </div>
        <h2>
-        Tripo 展示一日完成遊戲角色：AI 3D 從拆件、Quad 到 UE 的完整 Pipeline
+        《Orbitals》拆解 UE5 復古動畫渲染：Cel／背景分離、Bloom Mask 與底片後製
        </h2>
-       <p class="summary">
-        Tripo 公開一套從概念圖、部件拆分、P2.0 Quad 網格、8K 來源貼圖、DCC Bridge，到 Maya/Marmoset/Substance/Unreal 的完整角色製作案例，總面數控制在 30K triangles 以下。
+       <p>
+        Shapefarm 公開如何在 UE5 內改造預設渲染管線，將 cel character、painted environment 與 film effects 分層處理，並透過 Material Editor 維持美術可迭代性。
        </p>
-       <figure class="case-preview" data-intel-id="tripo-one-day-character-pipeline" data-intel-role="visual" data-visual-id="tripo-one-day-character-pipeline">
-        <a href="https://www.tripo3d.ai/blog/game-industry-character-workflow" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
-         <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-09-06/tripo-one-day-character-pipeline.jpg"/>
-        </a>
-        <figcaption>
-         <span>
-          SOURCE PREVIEW
-         </span>
-         · Local visual evidence · 點圖開啟原始來源
-        </figcaption>
-       </figure>
        <div class="quick-impact">
-        <span><b class="quick-impact-label">AI 3D</b> ★★★★★</span>
+        <span>
+         ★★★★★
+        </span>
        </div>
        <details class="home-full-analysis">
         <summary>
@@ -95,43 +91,152 @@
         </summary>
         <div class="detail-body home-analysis-body">
          <h4>
-          生成流程
+          技術重點
          </h4>
          <p>
-          流程把 AI 放在 blockout、高模、retopo 與 first-pass texture 的中段，最終組裝、UV、Bake、貼圖精修與 Rig 仍回到傳統 DCC，適合拿來評估 AI 真正能省掉多少機械工。
+          Cel character、背景與 film effects 分層，並以自訂 render buffer／post-process 模擬 80–90 年代動畫的類比限制。
          </p>
          <h4>
-          製作價值
+          Production 價值
          </h4>
          <p>
-          案例明確給出部件式生成、Quad topology、分部件 polygon budget 與 30K 以下總預算；這比單看單一生成結果更接近遊戲角色驗收。
+          核心不是單一 toon shader，而是讓 art team 在 Material Editor 內持續調整，同時把背景與角色的 shading responsibility 分開。
          </p>
          <h4>
           導入測試
          </h4>
          <p>
-          來源也承認非流形、孔洞與 Rig 尚需人工處理，因此導入測試應記錄重試率、局部修網時間、UV/texture transfer 成本與最終 rig deformation。
+          用同角色／同場景測 cel、painted environment、masked bloom、grain/halation 四層，記錄 render cost 與美術修改回合數。
          </p>
         </div>
        </details>
-       <a class="source" href="https://www.tripo3d.ai/blog/game-industry-character-workflow" rel="noopener noreferrer" target="_blank">
+       <a class="source" href="https://www.unrealengine.com/tech-blog/stepping-inside-a-retro-anime-inspired-game-a-look-into-the-rendering-of-orbitals">
         來源
        </a>
       </div>
      </article>
-     <article class="home-card top-item" data-intel-id="meshy6-ultra-multiview" data-intel-role="card">
+     <article class="top-item" data-intel-id="city-sample-ue58-pcg-mcp" data-intel-role="card">
       <div class="top-no">
        02
       </div>
       <div class="top-main">
+       <div class="meta">
+        <span class="pill">
+         tools
+        </span>
+       </div>
        <h2>
-        Meshy 6 Ultra 擴大到 4 張輸入圖：多視圖結構忠實度與幾何清理再提升
+        UE 5.8 City Sample 重建：PCG＋Unreal MCP 把大型城市程序化留在引擎內
        </h2>
-       <p class="summary">
-        Meshy 9 月 changelog 顯示 Meshy 6 Ultra 支援最多四張參考圖，並強化結構忠實度、geometry clean-up 與生成速度，直接對應多視圖角色與遊戲資產生成。
+       <p>
+        新版 City Sample 以 UE5.8 PCG、World Partition、Nanite Foliage、Megaplants 與 Unreal MCP 重建兩個新城市關卡，示範大型世界在引擎內維持可編輯程序化流程。
        </p>
        <div class="quick-impact">
-        <span><b class="quick-impact-label">AI 3D</b> ★★★★★</span>
+        <span>
+         ★★★★★
+        </span>
+       </div>
+       <details class="home-full-analysis">
+        <summary>
+         完整分析
+        </summary>
+        <div class="detail-body home-analysis-body">
+         <h4>
+          技術重點
+         </h4>
+         <p>
+          新版城市不再依賴外部 Houdini 建構，PCG graphs、shape grammar、World Partition 與植被都留在 Unreal 內。
+         </p>
+         <h4>
+          Production 價值
+         </h4>
+         <p>
+          大型世界的關鍵是生成後仍可編輯；MCP/LLM 被放在操作 PCG 的輔助層，而不是不可回溯的黑盒生成。
+         </p>
+         <h4>
+          導入測試
+         </h4>
+         <p>
+          以一個街區測道路、建築、植被三種 PCG graph，記錄 artist override、重生成穩定性與 World Partition 串接。
+         </p>
+        </div>
+       </details>
+       <a class="source" href="https://www.unrealengine.com/learning/city-sample-gets-a-major-update-with-pcg-and-unreal-mcp-workflows">
+        來源
+       </a>
+      </div>
+     </article>
+     <article class="top-item" data-intel-id="game-animation-sample-ue58" data-intel-role="card">
+      <div class="top-no">
+       03
+      </div>
+      <div class="top-main">
+       <div class="meta">
+        <span class="pill">
+         animation
+        </span>
+       </div>
+       <h2>
+        Game Animation Sample 升級 UE5.8：Physics Control、Motion Matching、Chooser 與 Smart Objects
+       </h2>
+       <p>
+        Epic 更新 Game Animation Sample，加入 Physics Control Component/Asset、Chooser 內多 Pose Search DB、Blend Spaces 與 Smart Object 互動範例，適合直接做 gameplay animation baseline。
+       </p>
+       <div class="quick-impact">
+        <span>
+         ★★★★★
+        </span>
+       </div>
+       <details class="home-full-analysis">
+        <summary>
+         完整分析
+        </summary>
+        <div class="detail-body home-analysis-body">
+         <h4>
+          動畫流程
+         </h4>
+         <p>
+          UE5.8 sample 把 Physics Control、Chooser、Motion Matching、Blend Space 與 Smart Object 互動放進同一套可下載範例。
+         </p>
+         <h4>
+          Production 價值
+         </h4>
+         <p>
+          比單看文件更適合做團隊 baseline，可直接拆解 locomotion、ragdoll、interaction 與 selector responsibility。
+         </p>
+         <h4>
+          導入測試
+         </h4>
+         <p>
+          挑現有角色替換 sample skeleton，測 motion matching DB、slope blend、physics profile 與 Smart Object 互動的 retarget 成本。
+         </p>
+        </div>
+       </details>
+       <a class="source" href="https://www.unrealengine.com/tech-blog/download-the-latest-game-animation-sample-project-now-updated-for-ue-5-8">
+        來源
+       </a>
+      </div>
+     </article>
+     <article class="top-item" data-intel-id="rokoko-vision-3" data-intel-role="card">
+      <div class="top-no">
+       04
+      </div>
+      <div class="top-main">
+       <div class="meta">
+        <span class="pill">
+         ai-motion
+        </span>
+       </div>
+       <h2>
+        Rokoko Vision 3.0 重建單鏡頭 AI Mocap Solver，整合 Video/Text-to-Motion 與 Studio 清理
+       </h2>
+       <p>
+        Vision 3.0 改用重建 solver，主打更乾淨動作、更快處理，並把 Video-to-Motion、Text-to-Motion、Studio 編輯、retarget 與 FBX/BVH export 串成同一套流程。
+       </p>
+       <div class="quick-impact">
+        <span>
+         ★★★★★
+        </span>
        </div>
        <details class="home-full-analysis">
         <summary>
@@ -142,51 +247,47 @@
           生成流程
          </h4>
          <p>
-          最多四張輸入圖讓正、側、背資訊能同時參與生成，對角色四視圖與不對稱道具比單張 Image-to-3D 更有實際意義。
+          單鏡頭影片進 Vision 3.0 後可進 Rokoko Studio cleanup/loop/retarget，再輸出 FBX/BVH 到 Blender、Maya、Unity 或 Unreal。
          </p>
          <h4>
-          製作價值
+          Production 價值
          </h4>
          <p>
-          應把重點放在高模輪廓、背面可靠度、薄片結構、配件分離與 clean-up 後是否仍保留設計，而不是只比較正面相似度。
+          值得測的是 solver 重建後的 foot sliding、weight shift 與快速動作，而不是只比較 processing speed。
          </p>
          <h4>
           導入測試
          </h4>
          <p>
-          建議與 Tripo P2.0 用同一組四視圖跑 A/B Test，記錄生成時間、錯面、人工修模、retopo/UV 接續與最終低模可用性。
+          用走跑跳、轉身與雙人遮擋片段做同素材 A/B，記錄 cleanup 分鐘數、腳底鎖定與 retarget 後曲線品質。
          </p>
         </div>
        </details>
-       <a class="source" href="https://help.meshy.ai/en/articles/9991804-meshy-changelog" rel="noopener noreferrer" target="_blank">
+       <a class="source" href="https://www.rokoko.com/products/vision">
         來源
        </a>
       </div>
      </article>
-     <article class="home-card top-item" data-intel-id="armorpaint-1-0" data-intel-role="card">
+     <article class="top-item" data-intel-id="frame-by-plane-72" data-intel-role="card">
       <div class="top-no">
-       03
+       05
       </div>
       <div class="top-main">
+       <div class="meta">
+        <span class="pill">
+         addon
+        </span>
+       </div>
        <h2>
-        ArmorPaint 1.0 正式脫離 Early Access：C 重寫、UV/雕刻、動畫預覽與本地 Neural Nodes
+        Frame By Plane 7.2：Blender 5.2 的 2.5D／Cutout／Multiplane Production 工具大更新
        </h2>
-       <p class="summary">
-        ArmorPaint 1.0 以 C 重寫核心，提升大資產與高解析圖層互動效能，並加入基礎雕刻、UV 編輯、skinned mesh timeline、AI upscale 與 photo-to-material 等功能。
+       <p>
+        Frame By Plane 7.2 強化 Grease Pencil 雙色、相機格式、timeline、effects 與 safer import/render，並支援 layered image、cutout、parallax 與 2.5D 場景管理。
        </p>
-       <figure class="case-preview" data-intel-id="armorpaint-1-0" data-intel-role="visual" data-visual-id="armorpaint-1-0">
-        <a href="https://www.cgchannel.com/2026/09/armorpaint-1-0-is-out-after-eight-years-in-early-access/" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
-         <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-09-06/armorpaint-1-0.jpg"/>
-        </a>
-        <figcaption>
-         <span>
-          SOURCE PREVIEW
-         </span>
-         · Local visual evidence · 點圖開啟原始來源
-        </figcaption>
-       </figure>
        <div class="quick-impact">
-        <span><b class="quick-impact-label">其他 DCC</b> ★★★★★</span>
+        <span>
+         ★★★★★
+        </span>
        </div>
        <details class="home-full-analysis">
         <summary>
@@ -197,133 +298,23 @@
           DCC 工作流
          </h4>
          <p>
-          1.0 不只是版本號更新，而是底層重寫與 painting、UV、sculpt、animation preview、AI nodes 同時擴張，工作流覆蓋度明顯提高。
+          把 image sequence、cutout、layer tree、multiplane camera、parallax、mask 與 shader/GN effects 做成 Blender 內一致工作流。
          </p>
          <h4>
-          製作價值
+          Production 價值
          </h4>
          <p>
-          對遊戲美術最值得測的是高解析多層專案的互動速度、PBR 輸出、Blender/Unity/UE Live Link，以及本地 AI 的 photo-to-material 品質。
-         </p>
-         <h4>
-          導入測試
-         </h4>
-         <p>
-          正式導入前仍要驗 Live Link 插件版本、PSD/Substance 互通需求、色彩管理與團隊共用材質規範，避免只因低價就替換成熟管線。
-         </p>
-        </div>
-       </details>
-       <a class="source" href="https://www.cgchannel.com/2026/09/armorpaint-1-0-is-out-after-eight-years-in-early-access/" rel="noopener noreferrer" target="_blank">
-        來源
-       </a>
-      </div>
-     </article>
-     <article class="home-card top-item" data-intel-id="onimusha-re-engine-art-pipeline" data-intel-role="card">
-      <div class="top-no">
-       04
-      </div>
-      <div class="top-main">
-       <h2>
-        《鬼武者 Way of the Sword》公開 RE ENGINE 美術 Pipeline：模組場景、角色、光照到資料管理
-       </h2>
-       <p class="summary">
-        Capcom 詳細拆解從歷史研究、whitebox/greybox、模組資產、角色 Sculpt/Texturing，到 RE ENGINE 內 layout、VFX、lighting 與 collision 的完整流程，Maya 作為最終 DCC 輸出中心。
-       </p>
-       <figure class="case-preview" data-intel-id="onimusha-re-engine-art-pipeline" data-intel-role="visual" data-visual-id="onimusha-re-engine-art-pipeline">
-        <a href="https://80.lv/articles/how-capcom-built-onimushas-real-time-sword-combat-re-engine" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
-         <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-09-06/onimusha-re-engine-art-pipeline.jpg"/>
-        </a>
-        <figcaption>
-         <span>
-          SOURCE PREVIEW
-         </span>
-         · Local visual evidence · 點圖開啟原始來源
-        </figcaption>
-       </figure>
-       <div class="quick-impact">
-        <span><b class="quick-impact-label">製作案例</b> ★★★★★</span>
-       </div>
-       <details class="home-full-analysis">
-        <summary>
-         完整分析
-        </summary>
-        <div class="detail-body home-analysis-body">
-         <h4>
-          案例流程
-         </h4>
-         <p>
-          環境流程把 gameplay whitebox、技術可行性與 asset cost estimation 放在正式資產製作前，之後再拆成 modular assets 並回引擎做 lighting/VFX/collision polish。
-         </p>
-         <h4>
-          製作價值
-         </h4>
-         <p>
-          角色流程維持 Concept→Proxy→Sculpt→Texture→Secondary Motion；Maya 是角色與場景的最終 DCC deliverable，RE ENGINE 集中 VFX 與 lighting。
-         </p>
-         <h4>
-          導入判斷
-         </h4>
-         <p>
-          值得借鑑的是早期建立 lighting/visibility 品質標準與集中資料出口；可對照現有外包驗收、版本控管與 engine integration 是否也有清楚 ownership。
-         </p>
-        </div>
-       </details>
-       <a class="source" href="https://80.lv/articles/how-capcom-built-onimushas-real-time-sword-combat-re-engine" rel="noopener noreferrer" target="_blank">
-        來源
-       </a>
-      </div>
-     </article>
-     <article class="home-card top-item" data-intel-id="jolan-large-scale-environment-tools" data-intel-role="card">
-      <div class="top-no">
-       05
-      </div>
-      <div class="top-main">
-       <h2>
-        Jolan Huijskes 用 Blender＋UE5 工具化大型場景：把 Level Artist 控制權留在引擎
-       </h2>
-       <p class="summary">
-        Environment Artist Jolan Huijskes 公開一套為大型可玩場景打造的 Blender/Unreal 工具，重點不是單一漂亮場景，而是用技術工具支援大尺度環境快速迭代。
-       </p>
-       <figure class="case-preview" data-intel-id="jolan-large-scale-environment-tools" data-intel-role="visual" data-visual-id="jolan-large-scale-environment-tools">
-        <a href="https://80.lv/articles/developing-tools-for-large-scale-3d-game-environments" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
-         <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-09-06/jolan-large-scale-environment-tools.jpg"/>
-        </a>
-        <figcaption>
-         <span>
-          SOURCE PREVIEW
-         </span>
-         · Local visual evidence · 點圖開啟原始來源
-        </figcaption>
-       </figure>
-       <div class="quick-impact">
-        <span><b class="quick-impact-label">場景製作</b> ★★★★★</span>
-       </div>
-       <details class="home-full-analysis">
-        <summary>
-         完整分析
-        </summary>
-        <div class="detail-body home-analysis-body">
-         <h4>
-          製作流程
-         </h4>
-         <p>
-          案例把大型環境拆成可重複使用的工具與 artist-facing controls，目標是讓 Level Artist 在不回 DCC 重做所有內容的情況下維持高可控性。
-         </p>
-         <h4>
-          製作價值
-         </h4>
-         <p>
-          這種做法比單次手工場景更有 production value：工具一旦穩定，可把分布、變體、尺度與迭代成本從資產數量中解耦。
+          對固定視角 2.5D 場景與分層貼片特別有價值，可降低 Photoshop/After Effects/Blender 間反覆整理 layer 的成本。
          </p>
          <h4>
           導入測試
          </h4>
          <p>
-          導入時應測工具輸出是否可預測、版本升級是否穩定、烘焙/LOD/collision 是否能接既有規範，以及非作者是否能維護。
+          用一個近中遠三層遊戲場景測 folder import、camera fit、parallax、alpha cutout、效果 stack 與輸出穩定性。
          </p>
         </div>
        </details>
-       <a class="source" href="https://80.lv/articles/developing-tools-for-large-scale-3d-game-environments" rel="noopener noreferrer" target="_blank">
+       <a class="source" href="https://extensions.blender.org/add-ons/frame-by-plane/">
         來源
        </a>
       </div>
@@ -342,26 +333,114 @@
      </div>
     </div>
     <div class="more-grid">
-     <article class="home-card more-card" data-intel-id="tripo-p2-quad-preview" data-intel-role="card">
-      <h4>
-       Tripo P2.0 Preview：單圖／多視圖直接生成原生 Quad，最高 25K Quad
-      </h4>
-      <p class="summary">
-       Tripo P2.0 Preview 將 Smart Mesh 推向原生四邊面拓樸，可從單圖或四視圖生成，Quad 上限 25K，並主打可編輯、可 Rig、可進遊戲 Production 的 edge flow。
+     <article class="more-card" data-intel-id="epic-learning-aug-ue58" data-intel-role="card">
+      <div class="meta">
+       <span class="pill">
+        unreal
+       </span>
+      </div>
+      <h3>
+       Epic 8 月 UE5.8 教學包：Mesh Terrain、Networked Physics、Material 與優化工作流
+      </h3>
+      <p>
+       Epic 集中發布 UE5.8 的 Mesh Terrain、Networked Physics、Accumulation DOF、Material 與 project optimization 教學，適合建立引擎美術新功能的測試清單。
       </p>
-      <figure class="case-preview" data-intel-id="tripo-p2-quad-preview" data-intel-role="visual" data-visual-id="tripo-p2-quad-preview">
-       <a href="https://www.tripo3d.ai/ko/blog/tripo-p2-0-preview" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
-        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-09-06/tripo-p2-quad-preview.jpg"/>
-       </a>
-       <figcaption>
-        <span>
-         SOURCE PREVIEW
-        </span>
-        · Local visual evidence · 點圖開啟原始來源
-       </figcaption>
-      </figure>
       <div class="quick-impact">
-       <span><b class="quick-impact-label">AI 3D</b> ★★★★★</span>
+       <span>
+        ★★★★☆
+       </span>
+      </div>
+      <details class="home-full-analysis">
+       <summary>
+        完整分析
+       </summary>
+       <div class="detail-body home-analysis-body">
+        <h4>
+         技術重點
+        </h4>
+        <p>
+         內容涵蓋 Mesh Terrain、Material、project optimization 與高品質 DOF，能直接對應場景與 rendering 測試。
+        </p>
+        <h4>
+         Production 價值
+        </h4>
+        <p>
+         適合把 5.8 新功能從『知道有』轉成可重複 benchmark，尤其是 Mesh Terrain 與材質流程。
+        </p>
+        <h4>
+         導入測試
+        </h4>
+        <p>
+         建立一個固定測試 map，逐項記錄 terrain editing、draw cost、材質編譯、cinematic DOF 與版本相容。
+        </p>
+       </div>
+      </details>
+      <a class="source" href="https://www.unrealengine.com/learning/augusts-epic-learning-content-networked-physics-dynamic-audio-and-more">
+       來源
+      </a>
+     </article>
+     <article class="more-card" data-intel-id="zero-company-ue5-production" data-intel-role="card">
+      <div class="meta">
+       <span class="pill">
+        case-study
+       </span>
+      </div>
+      <h3>
+       《Star Wars Zero Company》UE5 製作訪談：策略遊戲如何選擇引擎與組織大型內容
+      </h3>
+      <p>
+       Bit Reactor 說明團隊以 UE5 製作戰術 RPG 的技術與內容選擇，提供世界、角色與迭代流程的 production case，可作為中大型專案引擎決策參考。
+      </p>
+      <div class="quick-impact">
+       <span>
+        ★★★★☆
+       </span>
+      </div>
+      <details class="home-full-analysis">
+       <summary>
+        完整分析
+       </summary>
+       <div class="detail-body home-analysis-body">
+        <h4>
+         案例重點
+        </h4>
+        <p>
+         訪談聚焦 UE5 在戰術 RPG 的內容組織與製作選擇，而不是單一 feature showcase。
+        </p>
+        <h4>
+         可轉移經驗
+        </h4>
+        <p>
+         可對照自己的專案規模，檢查世界、角色、工具與引擎責任是否在早期就有清楚 ownership。
+        </p>
+        <h4>
+         導入判斷
+        </h4>
+        <p>
+         不要直接照搬大型團隊流程；先挑一個 level/character vertical slice 比較 iteration speed 與跨部門 handoff。
+        </p>
+       </div>
+      </details>
+      <a class="source" href="https://www.unrealengine.com/developer-interviews/star-wars-zero-company-bit-reactor-crafts-a-galaxy-of-tactical-possibilities-with-ue5">
+       來源
+      </a>
+     </article>
+     <article class="more-card" data-intel-id="aimocap-video-mocap" data-intel-role="card">
+      <div class="meta">
+       <span class="pill">
+        ai-motion
+       </span>
+      </div>
+      <h3>
+       AIMoCap：單影片同時抓 Body＋Finger，支援自訂角色、Mixamo／CC／Roblox 與 120fps
+      </h3>
+      <p>
+       AIMoCap 提供瀏覽器 video mocap，強調 body/finger 同步、減少 foot sliding、自訂 humanoid 綁定與多種角色／機器人輸出目標，可作為 AI mocap 新候選工具。
+      </p>
+      <div class="quick-impact">
+       <span>
+        ★★★★☆
+       </span>
       </div>
       <details class="home-full-analysis">
        <summary>
@@ -372,46 +451,134 @@
          生成流程
         </h4>
         <p>
-         P2.0 直接把 Quad topology 當生成輸出，而不是事後單純減面，理論上能降低 retopology 的中間工序。
+         影片可選多種 humanoid target 或自訂角色，並輸出 24/30/60/120fps，方便比較不同下游動畫流程。
         </p>
         <h4>
-         製作價值
+         Production 價值
         </h4>
         <p>
-         多視圖可同時使用正、左、右、背四個角度，對角色與硬表面背面結構的可信度比單圖更值得測。
+         Body＋Finger 同步與 foot sliding 抑制是實際 animation cleanup 的核心成本點，值得與既有單鏡頭解法比較。
         </p>
         <h4>
          導入測試
         </h4>
         <p>
-         仍應用 deformation test 驗肩、肘、膝、嘴眼 loop，以及 hard-surface chamfer/孔洞；『看起來是 Quad』不等於動畫與 UV 真的可用。
+         測手指、快速重心轉移、遮擋與地面接觸四類片段，記錄輸出骨架、cleanup 與引擎 retarget 結果。
         </p>
        </div>
       </details>
-      <a class="source" href="https://www.tripo3d.ai/ko/blog/tripo-p2-0-preview" rel="noopener noreferrer" target="_blank">
+      <a class="source" href="https://aimocap.net/docs">
        來源
       </a>
      </article>
-     <article class="home-card more-card" data-intel-id="maya-2027-production-tools" data-intel-role="card">
-      <h4>
-       Maya 2027 把 MotionMaker、ngSkinTools 式 Skin Tools、Smart Bevel 與 USD Asset Build 推進主流程
-      </h4>
-      <p class="summary">
-       Maya 2027 聚焦 AI MotionMaker、整合式 layer-based skinning、Smart Bevel、USD Component/Variant workflows、Flow Studio 連接與 Arnold/Bifrost 更新。
+     <article class="more-card" data-intel-id="quickmagic-fullbody-hand-face" data-intel-role="card">
+      <div class="meta">
+       <span class="pill">
+        ai-motion
+       </span>
+      </div>
+      <h3>
+       QuickMagic：單影片 Body／Hand／Face AI Mocap，輸出 UE／Unity／Maya／3ds Max 管線
+      </h3>
+      <p>
+       QuickMagic 將一般影片轉成可編輯 3D motion，支援 body、hand、face 與多種 FBX/BVH/UE preset，並明確展示 Cascadeur cleanup、UE retarget 等 production workflow。
       </p>
-      <figure class="case-preview" data-intel-id="maya-2027-production-tools" data-intel-role="visual" data-visual-id="maya-2027-production-tools">
-       <a href="https://help.autodesk.com/cloudhelp/2027/ENU/Maya-WhatsNew/files/GUID-D24D261B-4A78-47C2-918B-6EA461ADB002.htm" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
-        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-09-06/maya-2027-production-tools.jpg"/>
-       </a>
-       <figcaption>
-        <span>
-         SOURCE PREVIEW
-        </span>
-        · Local visual evidence · 點圖開啟原始來源
-       </figcaption>
-      </figure>
       <div class="quick-impact">
-       <span><b class="quick-impact-label">Maya</b> ★★★★★</span>
+       <span>
+        ★★★★☆
+       </span>
+      </div>
+      <details class="home-full-analysis">
+       <summary>
+        完整分析
+       </summary>
+       <div class="detail-body home-analysis-body">
+        <h4>
+         生成流程
+        </h4>
+        <p>
+         影片可輸出 body/hand/face motion，再進 Cascadeur、Unreal、Blender、Maya 或 MotionBuilder 編輯。
+        </p>
+        <h4>
+         Production 價值
+        </h4>
+        <p>
+         來源有展示生成後 cleanup/retarget，而不是把 AI 輸出當最終動畫，這更符合 production 評估方式。
+        </p>
+        <h4>
+         導入測試
+        </h4>
+        <p>
+         與 Rokoko/AIMoCap 用同一段素材，比較 raw jitter、foot lock、finger、face 與修到可用所需時間。
+        </p>
+       </div>
+      </details>
+      <a class="source" href="https://www.quickmagic.ai/tools/video-to-3d-animation">
+       來源
+      </a>
+     </article>
+     <article class="more-card" data-intel-id="exea-jiggle-110" data-intel-role="card">
+      <div class="meta">
+       <span class="pill">
+        rigging
+       </span>
+      </div>
+      <h3>
+       EXea Jiggle 1.1：Blender 骨架次級動態加入 Jiggle Layers 與可 Bake Keyframes 流程
+      </h3>
+      <p>
+       EXea Jiggle 1.1 新增 Jiggle Layers、bone grouping、mute 與 Blender 5.x 相容性，可用於髮尾、衣服、尾巴等骨架次級動態並烘焙成 keyframes。
+      </p>
+      <div class="quick-impact">
+       <span>
+        ★★★★☆
+       </span>
+      </div>
+      <details class="home-full-analysis">
+       <summary>
+        完整分析
+       </summary>
+       <div class="detail-body home-analysis-body">
+        <h4>
+         動畫流程
+        </h4>
+        <p>
+         Layer 化管理 hair/clothing/tail bone chains，播放時即時看 secondary motion，完成後 bake 回 keyframes。
+        </p>
+        <h4>
+         Production 價值
+        </h4>
+        <p>
+         適合把大量次級骨鏈從手動 offset key 減成可調 solver，又保留最終可編輯 keyframe。
+        </p>
+        <h4>
+         導入測試
+        </h4>
+        <p>
+         用髮束與裙擺各一組 chain，測 bake 前後曲線、穿插、速度變化與 animator 手改成本。
+        </p>
+       </div>
+      </details>
+      <a class="source" href="https://extensions.blender.org/add-ons/exea-jiggle/">
+       來源
+      </a>
+     </article>
+     <article class="more-card" data-intel-id="vrm-addon-470" data-intel-role="card">
+      <div class="meta">
+       <span class="pill">
+        addon
+       </span>
+      </div>
+      <h3>
+       VRM Add-on 4.7：T-Pose 套用與匯入循環節點修正，強化 Avatar 交換流程
+      </h3>
+      <p>
+       VRM Add-on 4.7 新增 selected VRM T-pose 套用按鈕並修正 cyclic node recursion；對 Blender↔VRM humanoid、MToon 與 avatar export 有直接維護價值。
+      </p>
+      <div class="quick-impact">
+       <span>
+        ★★★★☆
+       </span>
       </div>
       <details class="home-full-analysis">
        <summary>
@@ -422,246 +589,42 @@
          DCC 工作流
         </h4>
         <p>
-         MotionMaker 已延伸到 equine，並改善 path adherence 與編輯操作；對 procedural/AI motion 的價值在於能否保持可編輯曲線與既有 skeleton 工作方式。
+         VRM 4.7 針對 T-pose 與 import node recursion 修正，直接影響 humanoid exchange 的可靠性。
         </p>
         <h4>
-         製作價值
+         Production 價值
         </h4>
         <p>
-         整合式 Skin Tools 採 layer-based skinning、mask、mirror，若團隊原本依賴 ngSkinTools 類插件，值得評估是否能減少外掛相依與版本風險。
-        </p>
-        <h4>
-         導入測試
-        </h4>
-        <p>
-         USD Component Creator/Variant Manager、Flow Studio 與 FBX user normals 等改動牽涉 pipeline，升版應用代表資產做 round-trip、skin file、USD variant 與 exporter regression。
-        </p>
-       </div>
-      </details>
-      <a class="source" href="https://help.autodesk.com/cloudhelp/2027/ENU/Maya-WhatsNew/files/GUID-D24D261B-4A78-47C2-918B-6EA461ADB002.htm" rel="noopener noreferrer" target="_blank">
-       來源
-      </a>
-     </article>
-     <article class="home-card more-card" data-intel-id="ue58-production-art" data-intel-role="card">
-      <h4>
-       Unreal Engine 5.8：Mesh Terrain、PCG、LLM MCP 與更成熟的角色／世界製作
-      </h4>
-      <p class="summary">
-       UE 5.8 強化 worldbuilding、terrain、vegetation、character/animation 與 iteration，並加入 Experimental MCP plugin、Sandboxes；Epic 同時提醒 Beta/Experimental 功能不可直接視為 production-ready。
-      </p>
-      <figure class="case-preview" data-intel-id="ue58-production-art" data-intel-role="visual" data-visual-id="ue58-production-art">
-       <a href="https://www.unrealengine.com/news/unreal-engine-5-8-is-now-available" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
-        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-09-06/ue58-production-art.jpg"/>
-       </a>
-       <figcaption>
-        <span>
-         SOURCE PREVIEW
-        </span>
-        · Local visual evidence · 點圖開啟原始來源
-       </figcaption>
-      </figure>
-      <div class="quick-impact">
-       <span><b class="quick-impact-label">Unreal</b> ★★★★★</span>
-      </div>
-      <details class="home-full-analysis">
-       <summary>
-        完整分析
-       </summary>
-       <div class="detail-body home-analysis-body">
-        <h4>
-         引擎工作流
-        </h4>
-        <p>
-         Mesh Terrain、PCG 與 vegetation authoring 直接影響大型場景製作方式；統一 Gizmo 也改善 DCC artist 在引擎內操作的一致性。
-        </p>
-        <h4>
-         製作價值
-        </h4>
-        <p>
-         Experimental MCP 能讓 LLM 接觸 Blueprint、asset、level、material、mesh 等核心系統，適合做自動檢查、批次工具與 editor assistance 原型。
+         如果團隊有 avatar/VTuber/VRM 輸出，pose normalization 與 MToon/material import 穩定性比新增 UI 更重要。
         </p>
         <h4>
          導入測試
         </h4>
         <p>
-         導入要區分 Production Ready、Beta、Experimental；先在代表性場景測 shader compile、memory、landscape/PCG compatibility 與 source-control merge，再決定升版。
+         用一個含 blendshape、MToon、spring bone 的角色做 Blender→VRM→Blender round-trip，檢查 pose、材質與骨架。
         </p>
        </div>
       </details>
-      <a class="source" href="https://www.unrealengine.com/news/unreal-engine-5-8-is-now-available" rel="noopener noreferrer" target="_blank">
+      <a class="source" href="https://extensions.blender.org/add-ons/vrm/">
        來源
       </a>
      </article>
-     <article class="home-card more-card" data-intel-id="houdini22-production" data-intel-role="card">
-      <h4>
-       Houdini 22 正式進入 Production：Quad Remesh、Copernicus、Gaussian Splats 與世界製作一起升級
-      </h4>
-      <p class="summary">
-       Houdini 22 把 Quad Remesh、production-ready Gaussian Splats、Copernicus baking/texturing、character tools、GPU Pyro、terrain/ocean 等多個流程推進 production。
-      </p>
-      <figure class="case-preview" data-intel-id="houdini22-production" data-intel-role="visual" data-visual-id="houdini22-production">
-       <a href="https://www.sidefx.com/products/whats-new-in-h22/" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
-        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-09-06/houdini22-production.jpg"/>
-       </a>
-       <figcaption>
-        <span>
-         SOURCE PREVIEW
-        </span>
-        · Local visual evidence · 點圖開啟原始來源
-       </figcaption>
-      </figure>
-      <div class="quick-impact">
-       <span><b class="quick-impact-label">Houdini</b> ★★★★★</span>
+     <article class="more-card" data-intel-id="polyquilt-1468" data-intel-role="card">
+      <div class="meta">
+       <span class="pill">
+        production-workflow
+       </span>
       </div>
-      <details class="home-full-analysis">
-       <summary>
-        完整分析
-       </summary>
-       <div class="detail-body home-analysis-body">
-        <h4>
-         DCC 工作流
-        </h4>
-        <p>
-         Quad Remesh 改善 hard-edge、CAD、symmetry 與 organic edge flow，對從程序高模或掃描結果轉遊戲資產尤其值得測。
-        </p>
-        <h4>
-         製作價值
-        </h4>
-        <p>
-         Copernicus 把 texture、bake、terrain/ocean 與 GPU workflow 拉進同一系統，能減少 SOP/COP/外部貼圖工具之間的資料搬運。
-        </p>
-        <h4>
-         導入測試
-        </h4>
-        <p>
-         H22 範圍很大，正式導入應拆成 modeling、character、lookdev、world-building 四組 benchmark，不宜一次整包升級後才找 regression。
-        </p>
-       </div>
-      </details>
-      <a class="source" href="https://www.sidefx.com/products/whats-new-in-h22/" rel="noopener noreferrer" target="_blank">
-       來源
-      </a>
-     </article>
-     <article class="home-card more-card" data-intel-id="milk-vfx-unreal-finishing" data-intel-role="card">
-      <h4>
-       Milk VFX 用 Unreal 從 Previs 一路做到 Finishing：100+ 環境與大量生物的跨部門 Pipeline
-      </h4>
-      <p class="summary">
-       《Surviving Earth》案例顯示 Milk VFX 在 1,000+ shots、73 種 hero creature、100+ environments 規模下，使用 Unreal 做 previs、virtual art department、real-time environment 甚至 finishing。
+      <h3>
+       PolyQuilt 1.46.8 修正 Blender 5.2 Retopo 相容性與 Merge-on-Move
+      </h3>
+      <p>
+       PolyQuilt 的 1.46.8 更新修正 move merge 問題並針對 Blender 5.1/5.2 維護相容性，適合作為免費手動 retopology 工具的近期測試點。
       </p>
-      <figure class="case-preview" data-intel-id="milk-vfx-unreal-finishing" data-intel-role="visual" data-visual-id="milk-vfx-unreal-finishing">
-       <a href="https://www.cgchannel.com/2026/09/discover-milk-vfxs-unreal-engine-pipeline-for-surviving-earth/" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
-        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-09-06/milk-vfx-unreal-finishing.jpg"/>
-       </a>
-       <figcaption>
-        <span>
-         SOURCE PREVIEW
-        </span>
-        · Local visual evidence · 點圖開啟原始來源
-       </figcaption>
-      </figure>
       <div class="quick-impact">
-       <span><b class="quick-impact-label">製作案例</b> ★★★★☆</span>
-      </div>
-      <details class="home-full-analysis">
-       <summary>
-        完整分析
-       </summary>
-       <div class="detail-body home-analysis-body">
-        <h4>
-         案例流程
-        </h4>
-        <p>
-         Unreal 不只做 previs，而是讓部分環境從早期設計逐步演進到 final-shot quality，降低前期 prototype 與最終資產完全斷裂的成本。
-        </p>
-        <h4>
-         製作價值
-        </h4>
-        <p>
-         大量 creature/environment 也使用 USD 與變體管理思路，說明即時引擎要進大型 production，資產 identity/variant 管理和畫面本身同樣重要。
-        </p>
-        <h4>
-         導入判斷
-        </h4>
-        <p>
-         遊戲團隊可借鑑『單一即時場景貫穿多階段』，但要注意 VFX finishing 的 frame budget、版本管理與遊戲 runtime 限制並不相同。
-        </p>
-       </div>
-      </details>
-      <a class="source" href="https://www.cgchannel.com/2026/09/discover-milk-vfxs-unreal-engine-pipeline-for-surviving-earth/" rel="noopener noreferrer" target="_blank">
-       來源
-      </a>
-     </article>
-     <article class="home-card more-card" data-intel-id="animo10-maya-animation-toolkit" data-intel-role="card">
-      <h4>
-       Animo v10 把 500+ Maya Animation Tools 收進同一套工具箱
-      </h4>
-      <p class="summary">
-       Animo v10 新增直接在 Maya 內加入影片/GIF/圖片 reference、六個 animation sliders 與 Tools Editor，可集中存取超過 500 個動畫工具並綁 hotkey/shelf。
-      </p>
-      <figure class="case-preview" data-intel-id="animo10-maya-animation-toolkit" data-intel-role="visual" data-visual-id="animo10-maya-animation-toolkit">
-       <a href="https://80.lv/articles/over-500-free-maya-animation-tools-are-now-available-in-one-place" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
-        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-09-06/animo10-maya-animation-toolkit.jpg"/>
-       </a>
-       <figcaption>
-        <span>
-         SOURCE PREVIEW
-        </span>
-        · Local visual evidence · 點圖開啟原始來源
-       </figcaption>
-      </figure>
-      <div class="quick-impact">
-       <span><b class="quick-impact-label">動畫</b> ★★★★☆</span>
-      </div>
-      <details class="home-full-analysis">
-       <summary>
-        完整分析
-       </summary>
-       <div class="detail-body home-analysis-body">
-        <h4>
-         動作製作流程
-        </h4>
-        <p>
-         工具價值在於把零散 animator utilities 收斂成可搜尋、可 hotkey、可 shelf 的統一入口，降低重複操作與工具切換。
-        </p>
-        <h4>
-         製作價值
-        </h4>
-        <p>
-         reference media 直接進 Maya 對 blocking/polish 對照很實用；animation sliders 則值得看是否能穩定處理 pose、timing 或 curve 編輯。
-        </p>
-        <h4>
-         導入測試
-        </h4>
-        <p>
-         導入前先測 scene contamination、namespace/reference 相容、undo 穩定性與大型 rig 效能，再決定是否納入團隊標準 shelf。
-        </p>
-       </div>
-      </details>
-      <a class="source" href="https://80.lv/articles/over-500-free-maya-animation-tools-are-now-available-in-one-place" rel="noopener noreferrer" target="_blank">
-       來源
-      </a>
-     </article>
-     <article class="home-card more-card" data-intel-id="uri-human-tree-character-workflow" data-intel-role="card">
-      <h4>
-       Uri 人樹角色 Breakdown：ZBrush＋Maya＋Substance 的輪廓、拓樸與材質取捨
-      </h4>
-      <p class="summary">
-       Character Artist Andrea Buitrago 詳解把小說中的人樹角色轉成可讀性強的 3D 雕塑，從 silhouette、形體、材質到 Maya/ZBrush/Substance 的完整角色製作。
-      </p>
-      <figure class="case-preview" data-intel-id="uri-human-tree-character-workflow" data-intel-role="visual" data-visual-id="uri-human-tree-character-workflow">
-       <a href="https://80.lv/articles/book-character-to-a-3d-piece-sculpting-human-tree-character-in-zbrush-and-maya" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
-        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-09-06/uri-human-tree-character-workflow.jpg"/>
-       </a>
-       <figcaption>
-        <span>
-         SOURCE PREVIEW
-        </span>
-        · Local visual evidence · 點圖開啟原始來源
-       </figcaption>
-      </figure>
-      <div class="quick-impact">
-       <span><b class="quick-impact-label">角色製作</b> ★★★★☆</span>
+       <span>
+        ★★★★☆
+       </span>
       </div>
       <details class="home-full-analysis">
        <summary>
@@ -672,46 +635,42 @@
          製作流程
         </h4>
         <p>
-         角色由抽象敘事概念出發，製作重點先鎖定 silhouette 與脆弱、植物化的人體語言，再往表面細節推進，避免雕刻細節壓過設計。
+         PolyQuilt 提供直接貼著高模的 quad retopo 操作，近期更新重點是 Blender 5.2 相容與 merge 行為。
         </p>
         <h4>
-         製作價值
+         Production 價值
         </h4>
         <p>
-         ZBrush/Maya/Substance 的分工提供一個可重現的角色 pipeline，適合作為 stylized/semi-realistic sculpt 與 texture 參考。
+         免費 retopo 工具若能穩定支援 5.2，可降低角色／道具手工 retopo 的工具切換成本。
         </p>
         <h4>
          導入測試
         </h4>
         <p>
-         實務上可觀察哪些 detail 真正需要 geometry、哪些交給 texture/material；這對高模時間、retopo 成本與最終展示讀性都有直接影響。
+         用頭部與 hard-surface 各測 20 分鐘，檢查 snap、merge、symmetry、edge flow 與高密度 viewport 穩定。
         </p>
        </div>
       </details>
-      <a class="source" href="https://80.lv/articles/book-character-to-a-3d-piece-sculpting-human-tree-character-in-zbrush-and-maya" rel="noopener noreferrer" target="_blank">
+      <a class="source" href="https://extensions.blender.org/add-ons/polyquilt-fork/">
        來源
       </a>
      </article>
-     <article class="home-card more-card" data-intel-id="fluidninja-live2" data-intel-role="card">
-      <h4>
-       FluidNinja LIVE-2 重構 UE VFX：CPU Blueprint 邏輯大幅移向 GPU／Niagara Simulation Stages
-      </h4>
-      <p class="summary">
-       FluidNinja Live 2 重新設計底層，把更多 Blueprint function 搬到 GPU，fluid simulation 改用 Niagara Simulation Stages，並新增 surface alignment、preset 與更多輸入來源。
+     <article class="more-card" data-intel-id="cloudrig-2228" data-intel-role="card">
+      <div class="meta">
+       <span class="pill">
+        rigging
+       </span>
+      </div>
+      <h3>
+       CloudRig 2.2.28 新增 Simple Spine：Blender Studio Rig Generation 持續模組化
+      </h3>
+      <p>
+       Blender Studio 的 CloudRig 新增 experimental Simple Spine component；CloudRig 以 metarig 產生 helper bones、constraints、drivers，適合研究可維護 rig component 架構。
       </p>
-      <figure class="case-preview" data-intel-id="fluidninja-live2" data-intel-role="visual" data-visual-id="fluidninja-live2">
-       <a href="https://www.cgchannel.com/2026/09/andras-ketzer-releases-fluidninja-live-2-for-unreal-engine/" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
-        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-09-06/fluidninja-live2.jpg"/>
-       </a>
-       <figcaption>
-        <span>
-         SOURCE PREVIEW
-        </span>
-        · Local visual evidence · 點圖開啟原始來源
-       </figcaption>
-      </figure>
       <div class="quick-impact">
-       <span><b class="quick-impact-label">引擎工具</b> ★★★★☆</span>
+       <span>
+        ★★★★☆
+       </span>
       </div>
       <details class="home-full-analysis">
        <summary>
@@ -719,38 +678,45 @@
        </summary>
        <div class="detail-body home-analysis-body">
         <h4>
-         引擎工作流
+         動畫流程
         </h4>
         <p>
-         LIVE-2 是重構而非小更新，核心目標是降低 CPU 成本並把 simulation 更完整放進 Niagara GPU pipeline。
+         CloudRig 以 metarig/component 產生正式 control rig，新 Simple Spine 提供更精簡的 spine setup。
         </p>
         <h4>
-         製作價值
+         Production 價值
         </h4>
         <p>
-         新的 surface alignment、單一 preset、Mesh Distance Field/Chaos input 能降低大型水、煙、沙雪效果反覆配置的負擔。
+         可借鑑的是 rig component 化與 generation，而非只使用某一個 spine；這有利於角色規格統一與重建。
         </p>
         <h4>
          導入測試
         </h4>
         <p>
-         目前 Live 2 只支援 Windows，正式專案若含 console/mobile 必須把平台限制列為 gate，不能因 PC Demo 效能好就直接替換 Live 1。
+         拿現有 humanoid 比較 Rigify/CloudRig/手工 rig 的生成、customization、regenerate 與 animator usability。
         </p>
        </div>
       </details>
-      <a class="source" href="https://www.cgchannel.com/2026/09/andras-ketzer-releases-fluidninja-live-2-for-unreal-engine/" rel="noopener noreferrer" target="_blank">
+      <a class="source" href="https://extensions.blender.org/add-ons/cloudrig/">
        來源
       </a>
      </article>
-     <article class="home-card more-card" data-intel-id="shape-cage-ue5-wpo" data-intel-role="card">
-      <h4>
-       Shape Cage 用 WPO 做 UE5 Runtime Mesh Deformation：軟體感變形但不跑真正 Soft Body
-      </h4>
-      <p class="summary">
-       Shape Cage 以 Material World Position Offset 在 GPU 端對 static mesh 做壓、彎、凹與 curtain 類變形，支援碰撞驅動、狀態同步與 Nanite。
+     <article class="more-card" data-intel-id="hair-bone-generator-110" data-intel-role="card">
+      <div class="meta">
+       <span class="pill">
+        rigging
+       </span>
+      </div>
+      <h3>
+       Hair Bone Generator 1.1：曲線髮束快速產生骨鏈，支援端點控制與重建
+      </h3>
+      <p>
+       Hair Bone Generator 1.1 強化 hair root/tip 控制、同範圍重新生成修正與 Blender 5.2.1 測試，可縮短角色髮絲 secondary rig 的重複工作。
       </p>
       <div class="quick-impact">
-       <span><b class="quick-impact-label">引擎工具</b> ★★★★☆</span>
+       <span>
+        ★★★★☆
+       </span>
       </div>
       <details class="home-full-analysis">
        <summary>
@@ -758,49 +724,45 @@
        </summary>
        <div class="detail-body home-analysis-body">
         <h4>
-         引擎工作流
+         動畫流程
         </h4>
         <p>
-         工具把 Box/Sphere/Curtain cage 與 WPO 結合，讓 static mesh 在 runtime 有受力感，同時避開 CPU mesh deformation 與完整 soft-body solver。
+         從髮束範圍生成 bone chain，允許 root/tip 端點調整且重跑時修正既有 chain。
         </p>
         <h4>
-         製作價值
+         Production 價值
         </h4>
         <p>
-         支援 network sync、join-in-progress state 與停止後自動停 Tick，表示它不只是視覺 Demo，而有考慮實際遊戲狀態管理。
+         角色長髮、辮子、飾帶常有大量規律骨鏈，這類工具能直接減少命名、對位與重建時間。
         </p>
         <h4>
          導入測試
         </h4>
         <p>
-         限制是 WPO 變形不等同碰撞幾何與真實物理；測試時要確認 shadow、Nanite、collision、LOD 與 multiplayer replication 是否符合需求。
+         以 20 條髮束測生成時間、bone orientation、權重、鏡像與後續 jiggle/physics 串接。
         </p>
        </div>
       </details>
-      <a class="source" href="https://3dnchu.com/archives/shape-cage/" rel="noopener noreferrer" target="_blank">
+      <a class="source" href="https://extensions.blender.org/add-ons/hair-bone-generator/">
        來源
       </a>
      </article>
-     <article class="home-card more-card" data-intel-id="tyflow21-vehicle-gaussian" data-intel-role="card">
-      <h4>
-       tyFlow 2.1：PhysX 車輛 Rig/Simulation＋Gaussian Splat 工作流進入 3ds Max
-      </h4>
-      <p class="summary">
-       tyFlow 2.1 新增 PhysX vehicle operators/helpers/presets，可做 cars、trucks、tanks 等物理動畫，並接上 3ds Max 2027.2 Gaussian Splat 能力。
+     <article class="more-card" data-intel-id="edit-poly-modifier-102" data-intel-role="card">
+      <div class="meta">
+       <span class="pill">
+        prop-production
+       </span>
+      </div>
+      <h3>
+       Edit Poly Modifier 1.0.2：把局部 Mesh Edit 放進 Blender 非破壞 Modifier Stack
+      </h3>
+      <p>
+       Edit Poly Modifier 讓人工頂點編輯可存在 Bevel 與 Subdivision 中間並即時同步 upstream 變化，對 hard-surface 與迭代型 modeling workflow 很接近 3ds Max Edit Poly 思路。
       </p>
-      <figure class="case-preview" data-intel-id="tyflow21-vehicle-gaussian" data-intel-role="visual" data-visual-id="tyflow21-vehicle-gaussian">
-       <a href="https://www.cgchannel.com/2026/09/tyflow-2-1-adds-physx-powered-vehicle-rigging-and-simulation/" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
-        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-09-06/tyflow21-vehicle-gaussian.jpg"/>
-       </a>
-       <figcaption>
-        <span>
-         SOURCE PREVIEW
-        </span>
-        · Local visual evidence · 點圖開啟原始來源
-       </figcaption>
-      </figure>
       <div class="quick-impact">
-       <span><b class="quick-impact-label">其他 DCC</b> ★★★★☆</span>
+       <span>
+        ★★★★☆
+       </span>
       </div>
       <details class="home-full-analysis">
        <summary>
@@ -808,26 +770,26 @@
        </summary>
        <div class="detail-body home-analysis-body">
         <h4>
-         DCC 工作流
+         製作流程
         </h4>
         <p>
-         車輛工具包含 suspension、tow physics、procedural skids，可從手工 rig 轉成 physics-assisted animation，適合大量背景車與事故場景。
+         局部 mesh edit 可放在 modifier stack 中間，承接 upstream deformation 並繼續餵給 downstream subdiv。
         </p>
         <h4>
-         製作價值
+         Production 價值
         </h4>
         <p>
-         Gaussian Splat 能透過 Birth Flow/tyMesher import，並從 tyFlow/tyCache export，代表 splat 開始進傳統 DCC procedural pipeline。
+         對熟悉 3ds Max Edit Poly stack 的模型師很有吸引力，可降低為了局部修形而 apply modifier 的破壞性操作。
         </p>
         <h4>
          導入測試
         </h4>
         <p>
-         若用於遊戲內容，需測 cache/export 格式、sim determinism、與 engine 端最終表示；Free 版也缺多執行緒、GPU acceleration 與 cache export。
+         用 Bevel→Edit Poly→Subdivision 的 hard-surface asset 測 upstream sync、fork/rebuild 與 dense mesh edit 延遲。
         </p>
        </div>
       </details>
-      <a class="source" href="https://www.cgchannel.com/2026/09/tyflow-2-1-adds-physx-powered-vehicle-rigging-and-simulation/" rel="noopener noreferrer" target="_blank">
+      <a class="source" href="https://extensions.blender.org/add-ons/edit-mesh-modifier/">
        來源
       </a>
      </article>
@@ -1105,3 +1067,4 @@
   </script>
  </body>
 </html>
+
