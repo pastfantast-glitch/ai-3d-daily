@@ -42,11 +42,16 @@ def main() -> int:
     if not isinstance(recent_days, int) or recent_days < 1:
         fail('historical_regression.recent_days must be an integer >= 1')
     sentinels = history.get('sentinel_dates') or []
+    modes = history.get('sentinel_modes') or {}
+    allowed_modes = {'snapshot_only', 'canonical_parity'}
     if not isinstance(sentinels, list) or not sentinels:
         fail('historical_regression.sentinel_dates must be a non-empty list')
     else:
         if len(set(sentinels)) != len(sentinels):
             fail('historical_regression.sentinel_dates must be unique')
+        if not isinstance(modes, dict):
+            fail('historical_regression.sentinel_modes must be an object')
+            modes = {}
         for date in sentinels:
             if not isinstance(date, str) or not DATE_RE.fullmatch(date):
                 fail(f'invalid sentinel date: {date!r}')
@@ -54,6 +59,12 @@ def main() -> int:
             archive = ROOT / date / 'index.html'
             if not archive.exists():
                 fail(f'sentinel archive missing: {archive.relative_to(ROOT)}')
+            mode = modes.get(date)
+            if mode not in allowed_modes:
+                fail(f'sentinel {date} mode must be one of {sorted(allowed_modes)}, got {mode!r}')
+        stale_modes = sorted(set(modes) - set(sentinels))
+        if stale_modes:
+            fail('sentinel_modes contains dates not listed in sentinel_dates: ' + ', '.join(stale_modes))
 
     pages = cfg.get('pages_verify') or {}
     attempts = pages.get('minimum_attempts')
@@ -82,7 +93,7 @@ def main() -> int:
     wiring = {
         ROOT / 'scripts' / 'normalize_registry_identity.py': ('from url_identity import canonicalize_url',),
         ROOT / 'scripts' / 'check_registry_contract.py': ('from url_identity import canonicalize_url',),
-        ROOT / 'scripts' / 'check_historical_regression.py': ('stability-contract.json', 'sentinel_dates'),
+        ROOT / 'scripts' / 'check_historical_regression.py': ('stability-contract.json', 'sentinel_dates', 'sentinel_modes'),
         ROOT / 'scripts' / 'verify_pages_publish.py': ('stability-contract.json', 'minimum_attempts'),
     }
     for path, tokens in wiring.items():
@@ -110,6 +121,7 @@ def main() -> int:
         'STABILITY CONTRACT PASS: canonical URL identity + sentinel historical regression + '
         f'Pages retry floor attempts={attempts} delay={delay}s timeout={timeout}s'
     )
+    print('SENTINEL MODES:', ', '.join(f'{date}={modes[date]}' for date in sentinels))
     print('BRANCH PROTECTION NOTICE: desired=true; enforcement requires GitHub repository administration outside repo code.')
     return 0
 
