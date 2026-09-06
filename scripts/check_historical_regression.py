@@ -13,6 +13,7 @@ def archive_dirs(root): return sorted(p for p in root.iterdir() if p.is_dir() an
 def canonical_dates(): return sorted(p.stem for p in (ROOT/'data'/'daily').glob('20??-??-??.json'))
 def load_stability(): return json.loads(STABILITY.read_text('utf-8'))
 def sentinel_dates(): return list((load_stability().get('historical_regression') or {}).get('sentinel_dates') or [])
+def sentinel_modes(): return dict((load_stability().get('historical_regression') or {}).get('sentinel_modes') or {})
 def configured_recent_days(): return int((load_stability().get('historical_regression') or {}).get('recent_days',4))
 def is_done(date):
     path=ROOT/'data'/'publish'/f'{date}.done.json'
@@ -37,11 +38,6 @@ def validate_archive_snapshot(d,all_dirs,staging=''):
     idx=all_dirs.index(d); expected_prev=all_dirs[idx-1].name if idx else ''; expected_next=all_dirs[idx+1].name if idx+1<len(all_dirs) else ''
     if body.get('data-previous','')!=expected_prev: fail(date,f'previous mismatch: expected {expected_prev!r}')
     actual_next=body.get('data-next','')
-    # During publish QA the renderer intentionally prepares the last stable archive
-    # to point at the un-DONE staging report before the atomic publish commit exists.
-    # The committed pre-publish snapshot may still have an empty next link. Accept
-    # either state only for that single boundary. Once DONE exists, staging is empty
-    # and the normal strict adjacency check is restored automatically.
     staging_boundary_ok=bool(staging and not expected_next and actual_next in {'',staging})
     if actual_next!=expected_next and not staging_boundary_ok: fail(date,f'next mismatch: expected {expected_next!r}')
     manifest=ROOT/'assets'/'visual'/date/'manifest.json'
@@ -93,19 +89,20 @@ def run_registry_normalization(work,date):
     print(f"$ {' '.join(cmd)}"); print(proc.stdout,end='' if proc.stdout.endswith('\n') else '\n')
     return proc.returncode
 
-def canonical_rebuild_simulation(date):
+def canonical_rebuild_simulation(date,parity=True):
     cds=canonical_dates()
     if date not in cds: rows.append((date,'canonical-rebuild','SKIP (legacy snapshot: no canonical JSON)')); return
-    if date!=cds[-1]: validate_canonical_archive_parity(date); rows.append((date,'canonical-rebuild','SKIP (older canonical date; archive parity used)')); return
+    if date!=cds[-1]:
+        if parity:
+            validate_canonical_archive_parity(date)
+        else:
+            rows.append((date,'canonical-parity','SKIP (sentinel snapshot_only)'))
+        rows.append((date,'canonical-rebuild','SKIP (older canonical date; archive parity/snapshot used)')); return
     staging=not is_done(date)
     with tempfile.TemporaryDirectory(prefix=f'ai3d-regression-{date}-') as td:
         work=Path(td)/'repo'; shutil.copytree(ROOT,work,ignore=shutil.ignore_patterns('.git','__pycache__','.pytest_cache'))
         try:
             if date=='2026-08-23': run(work,sys.executable,'scripts/bootstrap_intelligence_ids.py')
-            # Registry normalization belongs to collection-before-ready. For an un-DONE
-            # staging date, exit 2 is a healthy NEEDS-REFILL state, not a historical
-            # regression failure. The collection writer must continue discovery and
-            # must not create .ready until normalization returns 0.
             registry_rc=run_registry_normalization(work,date)
             if registry_rc==2 and staging:
                 rows.append((date,'canonical-rebuild','NEEDS-REFILL (staging; not release-ready)'))
@@ -119,10 +116,6 @@ def canonical_rebuild_simulation(date):
             run(work,sys.executable,'scripts/render_information_architecture.py',date)
             run(work,sys.executable,'scripts/build_intelligence.py',date)
             run(work,sys.executable,'scripts/check_release_input.py',date)
-            # Visual extraction/injection is a publish-stage network operation. An
-            # un-DONE staging date must not be forced to consume the previous day's
-            # root manifest during read-only historical regression. Once DONE exists,
-            # visual injection and visual contract checks remain mandatory.
             if not staging:
                 run(work,sys.executable,'scripts/inject_visual_previews.py',date)
             run(work,sys.executable,'scripts/apply_cache_bust.py',date)
@@ -143,10 +136,10 @@ def main():
     ap=argparse.ArgumentParser(); ap.add_argument('--days',type=int,default=4); args=ap.parse_args(); all_dirs=archive_dirs(ROOT)
     if not all_dirs: print('HISTORICAL REGRESSION FAILED: no archive directories'); return 1
     cds=canonical_dates(); staging=cds[-1] if cds and not is_done(cds[-1]) else ''
-    # An un-DONE latest date is a release seed, not an immutable historical snapshot yet.
     stable_dirs=[d for d in all_dirs if d.name!=staging]
     recent_days=max(1,args.days,configured_recent_days())
     chosen={d.name:d for d in stable_dirs[-recent_days:]}
+    configured_modes=sentinel_modes()
     for sentinel in sentinel_dates():
         match=next((d for d in stable_dirs if d.name==sentinel),None)
         if match is None:
@@ -157,13 +150,12 @@ def main():
     modes=list(selected)
     if staging and any(d.name==staging for d in all_dirs): modes.append(next(d for d in all_dirs if d.name==staging))
     print('Historical regression archives:',', '.join(d.name for d in modes))
-    print('Configured sentinel dates:',', '.join(sentinel_dates()))
-    # Before a staging date is published, the committed last stable archive may still
-    # have no next link, while the in-flight publish worktree may already point it at
-    # staging. validate_archive_snapshot accepts only those two boundary states.
+    print('Configured sentinel dates:',', '.join(f'{d}({configured_modes.get(d,"canonical_parity")})' for d in sentinel_dates()))
     snapshot_universe=stable_dirs if staging else all_dirs
     for d in selected: validate_archive_snapshot(d,snapshot_universe,staging=staging)
-    for d in modes: canonical_rebuild_simulation(d.name)
+    for d in modes:
+        parity=configured_modes.get(d.name,'canonical_parity')!='snapshot_only'
+        canonical_rebuild_simulation(d.name,parity=parity)
     print('\nHISTORICAL REGRESSION MATRIX')
     for date,mode,status in rows: print(f'- {date:<10} | {mode:<17} | {status}')
     if errors:
