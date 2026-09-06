@@ -21,6 +21,11 @@ from bs4 import BeautifulSoup
 from intelligence_v2 import is_v2_dataset, load_config, homepage_groups, category_items
 
 ROOT = Path(__file__).resolve().parents[1]
+STABILITY = ROOT / 'config' / 'stability-contract.json'
+
+
+def load_stability() -> dict:
+    return json.loads(STABILITY.read_text('utf-8'))
 
 
 def load_canonical(date: str) -> dict:
@@ -147,6 +152,18 @@ def main() -> int:
     args = ap.parse_args()
     if not args.base_url:
         raise SystemExit("SITE_URL / --base-url is required")
+
+    stability = load_stability()
+    page_policy = stability.get('pages_verify') or {}
+    minimum_attempts = int(page_policy.get('minimum_attempts', 8))
+    minimum_delay = int(page_policy.get('minimum_delay_seconds', 15))
+    configured_timeout = int(page_policy.get('timeout_seconds', 20))
+    # Workflow CLI values may request more resilience, but never less than the
+    # repository stability contract. This keeps the source of truth in repo config.
+    args.attempts = max(args.attempts, minimum_attempts)
+    args.delay = max(args.delay, minimum_delay)
+    args.timeout = max(args.timeout, configured_timeout)
+    print(f"PAGES VERIFY POLICY: attempts={args.attempts} delay={args.delay}s timeout={args.timeout}s")
 
     data = load_canonical(args.date)
     if not data.get("items"):
