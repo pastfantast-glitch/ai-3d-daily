@@ -80,7 +80,7 @@ jobs:
       - name: Release-ready input preflight
         run: python scripts/check_release_input.py "${{ steps.date.outputs.value }}"
       - name: Validate published registry / dedupe contract
-        run: python scripts/check_registry_contract.py
+        run: python scripts/check_registry_contract.py "${{ steps.date.outputs.value }}"
       - name: Render archive previous/next navigation and shared presentation
         run: python scripts/render_daily_navigation.py
       - name: Render homepage history list from actual archives
