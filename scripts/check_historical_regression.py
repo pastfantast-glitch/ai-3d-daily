@@ -86,6 +86,7 @@ def canonical_rebuild_simulation(date):
     cds=canonical_dates()
     if date not in cds: rows.append((date,'canonical-rebuild','SKIP (legacy snapshot: no canonical JSON)')); return
     if date!=cds[-1]: validate_canonical_archive_parity(date); rows.append((date,'canonical-rebuild','SKIP (older canonical date; archive parity used)')); return
+    staging=not is_done(date)
     with tempfile.TemporaryDirectory(prefix=f'ai3d-regression-{date}-') as td:
         work=Path(td)/'repo'; shutil.copytree(ROOT,work,ignore=shutil.ignore_patterns('.git','__pycache__','.pytest_cache'))
         try:
@@ -95,7 +96,7 @@ def canonical_rebuild_simulation(date):
             # regression failure. The collection writer must continue discovery and
             # must not create .ready until normalization returns 0.
             registry_rc=run_registry_normalization(work,date)
-            if registry_rc==2 and not is_done(date):
+            if registry_rc==2 and staging:
                 rows.append((date,'canonical-rebuild','NEEDS-REFILL (staging; not release-ready)'))
                 return
             if registry_rc:
@@ -107,10 +108,16 @@ def canonical_rebuild_simulation(date):
             run(work,sys.executable,'scripts/render_information_architecture.py',date)
             run(work,sys.executable,'scripts/build_intelligence.py',date)
             run(work,sys.executable,'scripts/check_release_input.py',date)
-            run(work,sys.executable,'scripts/inject_visual_previews.py',date)
+            # Visual extraction/injection is a publish-stage network operation. An
+            # un-DONE staging date must not be forced to consume the previous day's
+            # root manifest during read-only historical regression. Once DONE exists,
+            # visual injection and visual contract checks remain mandatory.
+            if not staging:
+                run(work,sys.executable,'scripts/inject_visual_previews.py',date)
             run(work,sys.executable,'scripts/apply_cache_bust.py',date)
             run(work,sys.executable,'scripts/check_intelligence_contract.py')
-            run(work,sys.executable,'scripts/check_visual_contract.py',date)
+            if not staging:
+                run(work,sys.executable,'scripts/check_visual_contract.py',date)
             run(work,sys.executable,'scripts/check_home_contract.py')
             run(work,sys.executable,'scripts/check_daily_contract.py')
             run(work,sys.executable,'scripts/check_information_architecture.py',date)
@@ -131,10 +138,11 @@ def main():
     modes=list(selected)
     if staging and any(d.name==staging for d in all_dirs): modes.append(next(d for d in all_dirs if d.name==staging))
     print('Historical regression archives:',', '.join(d.name for d in modes))
-    # Snapshot content remains strict, but previous/next navigation is intentionally
-    # dynamic as a newly published adjacent archive becomes available. Validate nav
-    # against the complete current archive universe, including the staging/latest day.
-    for d in selected: validate_archive_snapshot(d,all_dirs)
+    # Before a staging date is published, stable historical navigation must remain
+    # unchanged. After its DONE receipt exists, it joins all_dirs and the normal
+    # adjacency checks require the publisher-updated previous/next links.
+    snapshot_universe=stable_dirs if staging else all_dirs
+    for d in selected: validate_archive_snapshot(d,snapshot_universe)
     for d in modes: canonical_rebuild_simulation(d.name)
     print('\nHISTORICAL REGRESSION MATRIX')
     for date,mode,status in rows: print(f'- {date:<10} | {mode:<17} | {status}')
