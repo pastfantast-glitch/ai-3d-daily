@@ -112,7 +112,8 @@ jobs:
             git rm -f "$request"
             if ! git diff --cached --quiet; then
               git commit -m "Normalize intelligence candidate $DATE; refill required"
-              git pull --rebase origin main
+              # This workflow is the sole canonical writer and is concurrency-locked.
+              # Push directly; a non-fast-forward external change fails closed.
               git push origin HEAD:main
             fi
             echo "PRE-READY REFILL REQUIRED for $DATE; normalized canonical persisted; no .ready created."
@@ -127,7 +128,9 @@ jobs:
           git add "data/daily/$DATE.json" "data/publish/$DATE.ready" index.html "$DATE/index.html"
           git rm -f "$request"
           git commit -m "Prepare canonical intelligence $DATE"
-          git pull --rebase origin main
+          # Do not rebase a runner worktree after pre-ready normalization. The global
+          # concurrency lock guarantees a single canonical writer; non-fast-forward
+          # pushes remain fail-closed if main changes externally.
           git push origin HEAD:main
           echo "PRE-READY HANDOFF COMPLETE: repo script generated and pushed data/publish/$DATE.ready"
 
