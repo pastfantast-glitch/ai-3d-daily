@@ -8,8 +8,8 @@ Rules:
 - Only daily datasets with data/publish/YYYY-MM-DD.done.json state=DONE belong to
   the Published Intelligence Registry. Failed/WIP daily JSON must not reserve IDs
   or source URLs.
-- Same normalized source URL without substantive delta => SKIP current item.
-- Same normalized source URL with status=UPDATE + non-empty delta => preserve the
+- Same canonical source URL without substantive delta => SKIP current item.
+- Same canonical source URL with status=UPDATE + non-empty delta => preserve the
   historical stable ID, never mint a new one.
 - Re-rank surviving canonical items.
 - After normalization, apply the current repo daily release gate. A deficit means
@@ -28,11 +28,16 @@ import re
 import sys
 
 ROOT = Path(__file__).resolve().parents[1]
+SCRIPTS = ROOT / 'scripts'
+if str(SCRIPTS) not in sys.path:
+    sys.path.insert(0, str(SCRIPTS))
+from url_identity import canonicalize_url
+
 DATE_RE = re.compile(r'^20\d{2}-\d{2}-\d{2}$')
 
 
 def norm_url(url):
-    return (url or '').strip().rstrip('/')
+    return canonicalize_url(url)
 
 
 def load_config():
@@ -164,7 +169,8 @@ def main():
     meta['registry_identity_normalization'] = {
         'dropped_count': len(dropped),
         'rewritten_count': len(rewrites),
-        'policy': 'verified-DONE-published-source-without-substantive-delta-skip',
+        'policy': 'verified-DONE-published-canonical-source-without-substantive-delta-skip',
+        'url_identity': 'scripts/url_identity.py',
         'stage': 'collection-before-ready',
         'refill_required': not gate['release_ready'],
         'category_deficits': {},
