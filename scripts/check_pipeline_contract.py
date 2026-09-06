@@ -19,17 +19,35 @@ else:
     required=[
         "paths:\n      - 'data/publish/*.ready'\n  workflow_dispatch:",
         'group: canonical-intelligence-publish','cancel-in-progress: false','pip install -r requirements-pipeline.txt',
-        'check_release_input.py','check_registry_contract.py','render_daily_navigation.py','render_home_archive_links.py','render_information_architecture.py','build_intelligence.py',
+        'check_ready_contract.py','check_release_input.py','check_registry_contract.py','render_daily_navigation.py','render_home_archive_links.py','render_information_architecture.py','build_intelligence.py',
         'extract_visual_assets.py','inject_visual_previews.py','apply_cache_bust.py','check_intelligence_contract.py','check_visual_contract.py','check_home_contract.py',
         'check_daily_contract.py','check_information_architecture.py','check_historical_regression.py --days 4','verify_pages_publish.py','write_publish_receipt.py','restore_publish_snapshot.py',
         "find \"${{ steps.date.outputs.value }}\" -mindepth 2 -maxdepth 2 -name index.html",'Publish canonical intelligence','Record verified publish','recovery_sha','ref: main']
     for token in required:
         if token not in main: fail(f'intelligence-build missing required stage/token: {token}')
+    if 'normalize_registry_identity.py' in main: fail('registry normalization must happen before .ready, never inside canonical publisher')
     if main.count('ref: main')<2: fail('canonical publish and recovery checkouts must both refresh to latest main')
     if 'cancel-in-progress: true' in main: fail('canonical writer must never cancel an active publish')
     if "- 'data/publish/**'" in main: fail('receipt metadata must not retrigger canonical publish')
     if "- 'data/daily/**'" in main: fail('canonical publish must not trigger on data/daily/** before ready')
     if 'contents: write' not in main: fail('canonical publisher requires contents: write')
+
+# Collection-stage identity mutation and .ready creation must be a single fail-closed
+# pre-ready operation; the publisher only verifies the resulting canonical hash.
+for path in (
+    ROOT/'scripts'/'prepare_release_candidate.py', ROOT/'scripts'/'check_ready_contract.py',
+    ROOT/'scripts'/'normalize_registry_identity.py'
+):
+    if not path.exists(): fail(f'pre-ready pipeline module missing: {path.relative_to(ROOT)}')
+if (ROOT/'scripts'/'prepare_release_candidate.py').exists():
+    prep=(ROOT/'scripts'/'prepare_release_candidate.py').read_text('utf-8')
+    for token in ('normalize_registry_identity.py','enrich_full_analysis_v3.py','normalize_release_seed.py','check_release_input.py','check_registry_contract.py','canonical_sha256','registry_normalized_before_ready','preflight_passed_before_ready'):
+        if token not in prep: fail(f'pre-ready preparation missing required stage/token: {token}')
+    if "ready_path.write_text" not in prep: fail('pre-ready preparation must be the code path that writes .ready')
+if (ROOT/'scripts'/'check_ready_contract.py').exists():
+    ready_check=(ROOT/'scripts'/'check_ready_contract.py').read_text('utf-8')
+    for token in ('canonical_sha256','prepared_by','registry_normalized_before_ready','preflight_passed_before_ready','sha256_file'):
+        if token not in ready_check: fail(f'ready contract missing required attestation/token: {token}')
 
 # V2 contract values live in config. Python validates consistency rather than
 # repeating target/date/count literals that can drift during contract changes.
@@ -125,4 +143,4 @@ else:
     if "if(!id&&date==='2026-08-23')" not in text or 'LEGACY_20260823_RULES' not in text: fail('legacy identity fallback scope changed')
 if errors:
     print('PIPELINE CONTRACT FAILED'); print('\n'.join('- '+e for e in errors)); sys.exit(1)
-print('PIPELINE CONTRACT PASS: one writer + ready-only push trigger + config-driven daily 20-30 release-gate IA + synthetic future-day dry run + latest-main checkout + semantic visual compatibility + cache/category coverage + fail-closed QA')
+print('PIPELINE CONTRACT PASS: one writer + pre-ready registry normalization/hash attestation + ready-only push trigger + config-driven daily 20-30 release-gate IA + synthetic future-day dry run + latest-main checkout + semantic visual compatibility + cache/category coverage + fail-closed QA')
