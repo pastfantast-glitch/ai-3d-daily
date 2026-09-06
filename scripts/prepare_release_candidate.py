@@ -69,6 +69,10 @@ def main() -> None:
         # Repository topology/config must be internally consistent first.
         run('check_pipeline_contract.py')
         run('check_collection_contract.py')
+        # quick_impact is a compact rating field. From the configured effective
+        # date onward it must contain star glyphs only; production commentary
+        # belongs in summary/full_analysis instead of the rating surface.
+        run('check_quick_impact_contract.py', date)
 
         # Identity normalization is a collection-stage mutation. Exit 2 means the
         # normalized canonical is intentionally kept so discovery can refill it.
