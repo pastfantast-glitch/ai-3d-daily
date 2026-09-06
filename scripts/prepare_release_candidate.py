@@ -66,9 +66,11 @@ def main() -> None:
     ready_path.unlink(missing_ok=True)
 
     try:
-        # Repository topology/config must be internally consistent first.
+        # Repository topology/config and cross-pipeline stability controls must be
+        # internally consistent before any identity mutation occurs.
         run('check_pipeline_contract.py')
         run('check_collection_contract.py')
+        run('check_stability_contract.py')
         # quick_impact is a compact rating field. From the configured effective
         # date onward it must contain star glyphs only; production commentary
         # belongs in summary/full_analysis instead of the rating surface.
