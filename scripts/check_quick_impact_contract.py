@@ -29,13 +29,23 @@ def main() -> int:
         'version': 1,
         'field': 'quick_impact',
         'format': 'stars_only',
-        'presentation': 'rating_only',
-        'legacy_presentation_policy': 'extract_leading_stars',
+        'presentation': 'label_plus_rating',
+        'label_source': 'subcategory',
+        'label_language': 'zh-Hant',
+        'legacy_presentation_policy': 'extract_leading_stars_and_prepend_subtype_label',
     }
     for key, expected in required.items():
         if cfg.get(key) != expected:
             print(f'QUICK IMPACT CONTRACT FAIL: config {key} must be {expected!r}, got {cfg.get(key)!r}')
             return 1
+
+    labels = cfg.get('subtype_labels') or {}
+    if not isinstance(labels, dict) or not labels:
+        print('QUICK IMPACT CONTRACT FAIL: subtype_labels must be a non-empty mapping')
+        return 1
+    if any(not str(key).strip() or not str(value).strip() for key, value in labels.items()):
+        print('QUICK IMPACT CONTRACT FAIL: subtype_labels cannot contain empty keys or labels')
+        return 1
 
     effective = str(cfg.get('effective_date', ''))
     if not DATE_RE.fullmatch(effective):
@@ -57,9 +67,12 @@ def main() -> int:
     for item in data.get('items') or []:
         intel_id = str(item.get('id') or '<missing-id>')
         value = str(item.get('quick_impact') or '').strip()
+        subtype = str(item.get('subcategory') or '').strip()
         if not value:
             errors.append(f'{intel_id}: quick_impact missing')
             continue
+        if not subtype or subtype not in labels:
+            errors.append(f'{intel_id}: subcategory {subtype!r} has no quick-impact display label')
         if legacy:
             if not STAR_PREFIX_RE.match(value):
                 errors.append(f'{intel_id}: legacy quick_impact must start with 1-5 star glyphs: {value!r}')
@@ -72,7 +85,7 @@ def main() -> int:
             print('-', error)
         return 1
 
-    mode = 'legacy-compatible/display-stars-only' if legacy else 'stars-only'
+    mode = 'legacy-compatible/label+rating' if legacy else 'label+rating'
     print(f'QUICK IMPACT CONTRACT PASS: {date} / mode={mode} / items={len(data.get("items") or [])}')
     return 0
 
