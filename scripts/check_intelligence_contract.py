@@ -58,9 +58,16 @@ def validate_depth(date,rid,record,cfg):
         if text and (text==summary or text==impact): errors.append(f'{date}: {rid} block {i} merely repeats summary/quick_impact')
 
 def default_candidate():
+    """Only the newest canonical date may be an implicit staging candidate.
+
+    Older un-DONE JSON files are abandoned/WIP inputs, not published history and
+    must not become the active candidate after a newer date has already reached
+    DONE. This mirrors the Published Intelligence Registry's DONE-only semantics.
+    """
     dates=sorted(p.stem for p in (ROOT/'data'/'daily').glob('20??-??-??.json'))
-    pending=[d for d in dates if not is_done(d)]
-    return pending[-1] if pending else ''
+    if not dates: return ''
+    latest=dates[-1]
+    return latest if not is_done(latest) else ''
 
 def selected_dates(candidate=''):
     out=[]
