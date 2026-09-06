@@ -1,32 +1,803 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="zh-Hant">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>2026-09-06｜AI 3D Daily</title>
-  <link rel="stylesheet" href="../styles.css">
-  <link rel="stylesheet" href="../shared-components.css">
-  <link rel="stylesheet" href="../daily.css">
-</head>
-<body class="archive-page" data-report-date="2026-09-06">
-  <nav class="global-category-nav" aria-label="Production Intelligence 分類">
-    <div class="page global-category-nav-inner">
-      <div class="archive-nav-controls"><a class="archive-nav-home" href="../">← 首頁</a><div class="archive-nav-date"><span>2026-09-06</span></div></div>
-      <span class="archive-nav-divider" aria-hidden="true"></span>
-      <a class="global-category-link is-active" href="#top">TOP5</a>
-      <a class="global-category-link" data-category="ai-generation" href="ai-generation/">AI 生成</a>
-      <a class="global-category-link" data-category="3d-production" href="3d-production/">3D 製作</a>
-      <a class="global-category-link" data-category="3d-animation" href="3d-animation/">3D 動作</a>
-      <a class="global-category-link" data-category="engine-art" href="engine-art/">遊戲引擎</a>
-      <a class="global-category-link" data-category="emerging-case" href="emerging-case/">新技術 / Case</a>
-      <a class="global-category-link" data-category="blender-dcc" href="blender-dcc/">Blender / DCC</a>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   2026-09-06｜AI 3D Daily
+  </title>
+  <link href="../styles.css" rel="stylesheet"/>
+  <link href="../shared-components.css" rel="stylesheet"/>
+  <link href="../daily.css" rel="stylesheet"/>
+ </head>
+ <body class="archive-page" data-report-date="2026-09-06">
+  <nav aria-label="Production Intelligence 分類" class="global-category-nav">
+   <div class="page global-category-nav-inner">
+    <div class="archive-nav-controls">
+     <a class="archive-nav-home" href="../">
+      ← 首頁
+     </a>
+     <div class="archive-nav-date">
+      <span>
+       2026-09-06
+      </span>
+     </div>
     </div>
+    <span aria-hidden="true" class="archive-nav-divider">
+    </span>
+    <a class="global-category-link is-active" href="#top">
+     TOP5
+    </a>
+    <a class="global-category-link" data-category="ai-generation" href="ai-generation/">
+     AI 生成
+    </a>
+    <a class="global-category-link" data-category="3d-production" href="3d-production/">
+     3D 製作
+    </a>
+    <a class="global-category-link" data-category="3d-animation" href="3d-animation/">
+     3D 動作
+    </a>
+    <a class="global-category-link" data-category="engine-art" href="engine-art/">
+     遊戲引擎
+    </a>
+    <a class="global-category-link" data-category="emerging-case" href="emerging-case/">
+     新技術 / Case
+    </a>
+    <a class="global-category-link" data-category="blender-dcc" href="blender-dcc/">
+     Blender / DCC
+    </a>
+   </div>
   </nav>
-  <header class="site-head daily-hero"><div class="page"><p>AI／3D／遊戲美術 Production Intelligence</p><h1>2026-09-06 日報</h1></div></header>
+  <header class="site-head daily-hero">
+   <div class="page">
+    <p>
+     AI／3D／遊戲美術 Production Intelligence
+    </p>
+    <h1>
+     2026-09-06 日報
+    </h1>
+   </div>
+  </header>
   <main class="page daily-main">
-    <section class="block" id="top"><div class="block-head"><div><span>2026-09-06</span><h2>TOP5</h2></div></div></section>
-    <section class="block" id="more"><div class="block-head"><div><h2>更多情報</h2></div></div></section>
+   <section class="block" id="top">
+    <div class="block-head">
+     <div>
+      <span>
+       2026-09-06
+      </span>
+      <h2>
+       TOP5
+      </h2>
+     </div>
+    </div>
+    <article class="news daily-card daily-card-top" data-intel-id="tripo-one-day-character-pipeline" data-intel-role="card">
+     <div class="news-rank">
+      01
+     </div>
+     <div class="news-main">
+      <div class="meta">
+       <span class="pill">
+        ai-3d
+       </span>
+      </div>
+      <h3>
+       Tripo 展示一日完成遊戲角色：AI 3D 從拆件、Quad 到 UE 的完整 Pipeline
+      </h3>
+      <p class="summary">
+       Tripo 公開一套從概念圖、部件拆分、P2.0 Quad 網格、8K 來源貼圖、DCC Bridge，到 Maya/Marmoset/Substance/Unreal 的完整角色製作案例，總面數控制在 30K triangles 以下。
+      </p>
+      <div class="quick-impact daily-impact">
+       <span>
+        ★★★★★｜非常接近可直接拿來做 AI 3D 角色 Production Test 的基準流程。
+       </span>
+      </div>
+      <details class="daily-full-analysis">
+       <summary>
+        完整分析
+       </summary>
+       <div class="detail-body daily-analysis-body">
+        <h4>
+         生成流程
+        </h4>
+        <p>
+         流程把 AI 放在 blockout、高模、retopo 與 first-pass texture 的中段，最終組裝、UV、Bake、貼圖精修與 Rig 仍回到傳統 DCC，適合拿來評估 AI 真正能省掉多少機械工。
+        </p>
+        <h4>
+         製作價值
+        </h4>
+        <p>
+         案例明確給出部件式生成、Quad topology、分部件 polygon budget 與 30K 以下總預算；這比單看單一生成結果更接近遊戲角色驗收。
+        </p>
+        <h4>
+         導入測試
+        </h4>
+        <p>
+         來源也承認非流形、孔洞與 Rig 尚需人工處理，因此導入測試應記錄重試率、局部修網時間、UV/texture transfer 成本與最終 rig deformation。
+        </p>
+       </div>
+      </details>
+      <a class="source daily-source" href="https://www.tripo3d.ai/blog/game-industry-character-workflow">
+       來源
+      </a>
+     </div>
+    </article>
+    <article class="news daily-card daily-card-top" data-intel-id="meshy6-ultra-multiview" data-intel-role="card">
+     <div class="news-rank">
+      02
+     </div>
+     <div class="news-main">
+      <div class="meta">
+       <span class="pill">
+        ai-3d
+       </span>
+      </div>
+      <h3>
+       Meshy 6 Ultra 擴大到 4 張輸入圖：多視圖結構忠實度與幾何清理再提升
+      </h3>
+      <p class="summary">
+       Meshy 9 月 changelog 顯示 Meshy 6 Ultra 支援最多四張參考圖，並強化結構忠實度、geometry clean-up 與生成速度，直接對應多視圖角色與遊戲資產生成。
+      </p>
+      <div class="quick-impact daily-impact">
+       <span>
+        ★★★★★｜多視圖與 clean geometry 都是目前 AI 3D 最值得實測的核心能力。
+       </span>
+      </div>
+      <details class="daily-full-analysis">
+       <summary>
+        完整分析
+       </summary>
+       <div class="detail-body daily-analysis-body">
+        <h4>
+         生成流程
+        </h4>
+        <p>
+         最多四張輸入圖讓正、側、背資訊能同時參與生成，對角色四視圖與不對稱道具比單張 Image-to-3D 更有實際意義。
+        </p>
+        <h4>
+         製作價值
+        </h4>
+        <p>
+         應把重點放在高模輪廓、背面可靠度、薄片結構、配件分離與 clean-up 後是否仍保留設計，而不是只比較正面相似度。
+        </p>
+        <h4>
+         導入測試
+        </h4>
+        <p>
+         建議與 Tripo P2.0 用同一組四視圖跑 A/B Test，記錄生成時間、錯面、人工修模、retopo/UV 接續與最終低模可用性。
+        </p>
+       </div>
+      </details>
+      <a class="source daily-source" href="https://help.meshy.ai/en/articles/9991804-meshy-changelog">
+       來源
+      </a>
+     </div>
+    </article>
+    <article class="news daily-card daily-card-top" data-intel-id="armorpaint-1-0" data-intel-role="card">
+     <div class="news-rank">
+      03
+     </div>
+     <div class="news-main">
+      <div class="meta">
+       <span class="pill">
+        other-dcc
+       </span>
+      </div>
+      <h3>
+       ArmorPaint 1.0 正式脫離 Early Access：C 重寫、UV/雕刻、動畫預覽與本地 Neural Nodes
+      </h3>
+      <p class="summary">
+       ArmorPaint 1.0 以 C 重寫核心，提升大資產與高解析圖層互動效能，並加入基礎雕刻、UV 編輯、skinned mesh timeline、AI upscale 與 photo-to-material 等功能。
+      </p>
+      <div class="quick-impact daily-impact">
+       <span>
+        ★★★★★｜有機會成為低成本遊戲貼圖工具鏈的實際替代方案。
+       </span>
+      </div>
+      <details class="daily-full-analysis">
+       <summary>
+        完整分析
+       </summary>
+       <div class="detail-body daily-analysis-body">
+        <h4>
+         DCC 工作流
+        </h4>
+        <p>
+         1.0 不只是版本號更新，而是底層重寫與 painting、UV、sculpt、animation preview、AI nodes 同時擴張，工作流覆蓋度明顯提高。
+        </p>
+        <h4>
+         製作價值
+        </h4>
+        <p>
+         對遊戲美術最值得測的是高解析多層專案的互動速度、PBR 輸出、Blender/Unity/UE Live Link，以及本地 AI 的 photo-to-material 品質。
+        </p>
+        <h4>
+         導入測試
+        </h4>
+        <p>
+         正式導入前仍要驗 Live Link 插件版本、PSD/Substance 互通需求、色彩管理與團隊共用材質規範，避免只因低價就替換成熟管線。
+        </p>
+       </div>
+      </details>
+      <a class="source daily-source" href="https://www.cgchannel.com/2026/09/armorpaint-1-0-is-out-after-eight-years-in-early-access/">
+       來源
+      </a>
+     </div>
+    </article>
+    <article class="news daily-card daily-card-top" data-intel-id="onimusha-re-engine-art-pipeline" data-intel-role="card">
+     <div class="news-rank">
+      04
+     </div>
+     <div class="news-main">
+      <div class="meta">
+       <span class="pill">
+        case-study
+       </span>
+      </div>
+      <h3>
+       《鬼武者 Way of the Sword》公開 RE ENGINE 美術 Pipeline：模組場景、角色、光照到資料管理
+      </h3>
+      <p class="summary">
+       Capcom 詳細拆解從歷史研究、whitebox/greybox、模組資產、角色 Sculpt/Texturing，到 RE ENGINE 內 layout、VFX、lighting 與 collision 的完整流程，Maya 作為最終 DCC 輸出中心。
+      </p>
+      <div class="quick-impact daily-impact">
+       <span>
+        ★★★★★｜完整度很高的 AAA 遊戲 Production Case，可直接對照團隊資產與引擎責任切分。
+       </span>
+      </div>
+      <details class="daily-full-analysis">
+       <summary>
+        完整分析
+       </summary>
+       <div class="detail-body daily-analysis-body">
+        <h4>
+         案例流程
+        </h4>
+        <p>
+         環境流程把 gameplay whitebox、技術可行性與 asset cost estimation 放在正式資產製作前，之後再拆成 modular assets 並回引擎做 lighting/VFX/collision polish。
+        </p>
+        <h4>
+         製作價值
+        </h4>
+        <p>
+         角色流程維持 Concept→Proxy→Sculpt→Texture→Secondary Motion；Maya 是角色與場景的最終 DCC deliverable，RE ENGINE 集中 VFX 與 lighting。
+        </p>
+        <h4>
+         導入判斷
+        </h4>
+        <p>
+         值得借鑑的是早期建立 lighting/visibility 品質標準與集中資料出口；可對照現有外包驗收、版本控管與 engine integration 是否也有清楚 ownership。
+        </p>
+       </div>
+      </details>
+      <a class="source daily-source" href="https://80.lv/articles/how-capcom-built-onimushas-real-time-sword-combat-re-engine">
+       來源
+      </a>
+     </div>
+    </article>
+    <article class="news daily-card daily-card-top" data-intel-id="jolan-large-scale-environment-tools" data-intel-role="card">
+     <div class="news-rank">
+      05
+     </div>
+     <div class="news-main">
+      <div class="meta">
+       <span class="pill">
+        environment-production
+       </span>
+      </div>
+      <h3>
+       Jolan Huijskes 用 Blender＋UE5 工具化大型場景：把 Level Artist 控制權留在引擎
+      </h3>
+      <p class="summary">
+       Environment Artist Jolan Huijskes 公開一套為大型可玩場景打造的 Blender/Unreal 工具，重點不是單一漂亮場景，而是用技術工具支援大尺度環境快速迭代。
+      </p>
+      <div class="quick-impact daily-impact">
+       <span>
+        ★★★★★｜高度符合場景 Production Tool／流程自動化需求。
+       </span>
+      </div>
+      <details class="daily-full-analysis">
+       <summary>
+        完整分析
+       </summary>
+       <div class="detail-body daily-analysis-body">
+        <h4>
+         製作流程
+        </h4>
+        <p>
+         案例把大型環境拆成可重複使用的工具與 artist-facing controls，目標是讓 Level Artist 在不回 DCC 重做所有內容的情況下維持高可控性。
+        </p>
+        <h4>
+         製作價值
+        </h4>
+        <p>
+         這種做法比單次手工場景更有 production value：工具一旦穩定，可把分布、變體、尺度與迭代成本從資產數量中解耦。
+        </p>
+        <h4>
+         導入測試
+        </h4>
+        <p>
+         導入時應測工具輸出是否可預測、版本升級是否穩定、烘焙/LOD/collision 是否能接既有規範，以及非作者是否能維護。
+        </p>
+       </div>
+      </details>
+      <a class="source daily-source" href="https://80.lv/articles/developing-tools-for-large-scale-3d-game-environments">
+       來源
+      </a>
+     </div>
+    </article>
+   </section>
+   <section class="block" id="more">
+    <div class="block-head">
+     <div>
+      <h2>
+       更多情報
+      </h2>
+     </div>
+    </div>
+    <article class="category-news daily-card daily-card-more" data-intel-id="tripo-p2-quad-preview" data-intel-role="card">
+     <div class="meta">
+      <span class="pill">
+       ai-3d
+      </span>
+     </div>
+     <h4>
+      Tripo P2.0 Preview：單圖／多視圖直接生成原生 Quad，最高 25K Quad
+     </h4>
+     <p class="summary">
+      Tripo P2.0 Preview 將 Smart Mesh 推向原生四邊面拓樸，可從單圖或四視圖生成，Quad 上限 25K，並主打可編輯、可 Rig、可進遊戲 Production 的 edge flow。
+     </p>
+     <div class="quick-impact daily-impact">
+      <span>
+       ★★★★★｜目前 AI 3D 的關鍵不是更密，而是生成後能不能真的編輯與 Rig。
+      </span>
+     </div>
+     <details class="daily-full-analysis">
+      <summary>
+       完整分析
+      </summary>
+      <div class="detail-body daily-analysis-body">
+       <h4>
+        生成流程
+       </h4>
+       <p>
+        P2.0 直接把 Quad topology 當生成輸出，而不是事後單純減面，理論上能降低 retopology 的中間工序。
+       </p>
+       <h4>
+        製作價值
+       </h4>
+       <p>
+        多視圖可同時使用正、左、右、背四個角度，對角色與硬表面背面結構的可信度比單圖更值得測。
+       </p>
+       <h4>
+        導入測試
+       </h4>
+       <p>
+        仍應用 deformation test 驗肩、肘、膝、嘴眼 loop，以及 hard-surface chamfer/孔洞；『看起來是 Quad』不等於動畫與 UV 真的可用。
+       </p>
+      </div>
+     </details>
+     <a class="source daily-source" href="https://www.tripo3d.ai/ko/blog/tripo-p2-0-preview">
+      來源
+     </a>
+    </article>
+    <article class="category-news daily-card daily-card-more" data-intel-id="maya-2027-production-tools" data-intel-role="card">
+     <div class="meta">
+      <span class="pill">
+       maya
+      </span>
+     </div>
+     <h4>
+      Maya 2027 把 MotionMaker、ngSkinTools 式 Skin Tools、Smart Bevel 與 USD Asset Build 推進主流程
+     </h4>
+     <p class="summary">
+      Maya 2027 聚焦 AI MotionMaker、整合式 layer-based skinning、Smart Bevel、USD Component/Variant workflows、Flow Studio 連接與 Arnold/Bifrost 更新。
+     </p>
+     <div class="quick-impact daily-impact">
+      <span>
+       ★★★★★｜Rig/Animation、Skinning 與 USD 資產流程都有直接 Production 影響。
+      </span>
+     </div>
+     <details class="daily-full-analysis">
+      <summary>
+       完整分析
+      </summary>
+      <div class="detail-body daily-analysis-body">
+       <h4>
+        DCC 工作流
+       </h4>
+       <p>
+        MotionMaker 已延伸到 equine，並改善 path adherence 與編輯操作；對 procedural/AI motion 的價值在於能否保持可編輯曲線與既有 skeleton 工作方式。
+       </p>
+       <h4>
+        製作價值
+       </h4>
+       <p>
+        整合式 Skin Tools 採 layer-based skinning、mask、mirror，若團隊原本依賴 ngSkinTools 類插件，值得評估是否能減少外掛相依與版本風險。
+       </p>
+       <h4>
+        導入測試
+       </h4>
+       <p>
+        USD Component Creator/Variant Manager、Flow Studio 與 FBX user normals 等改動牽涉 pipeline，升版應用代表資產做 round-trip、skin file、USD variant 與 exporter regression。
+       </p>
+      </div>
+     </details>
+     <a class="source daily-source" href="https://help.autodesk.com/cloudhelp/2027/ENU/Maya-WhatsNew/files/GUID-D24D261B-4A78-47C2-918B-6EA461ADB002.htm">
+      來源
+     </a>
+    </article>
+    <article class="category-news daily-card daily-card-more" data-intel-id="ue58-production-art" data-intel-role="card">
+     <div class="meta">
+      <span class="pill">
+       unreal
+      </span>
+     </div>
+     <h4>
+      Unreal Engine 5.8：Mesh Terrain、PCG、LLM MCP 與更成熟的角色／世界製作
+     </h4>
+     <p class="summary">
+      UE 5.8 強化 worldbuilding、terrain、vegetation、character/animation 與 iteration，並加入 Experimental MCP plugin、Sandboxes；Epic 同時提醒 Beta/Experimental 功能不可直接視為 production-ready。
+     </p>
+     <div class="quick-impact daily-impact">
+      <span>
+       ★★★★★｜對場景、TA 與美術工具鏈都有高密度改動。
+      </span>
+     </div>
+     <details class="daily-full-analysis">
+      <summary>
+       完整分析
+      </summary>
+      <div class="detail-body daily-analysis-body">
+       <h4>
+        引擎工作流
+       </h4>
+       <p>
+        Mesh Terrain、PCG 與 vegetation authoring 直接影響大型場景製作方式；統一 Gizmo 也改善 DCC artist 在引擎內操作的一致性。
+       </p>
+       <h4>
+        製作價值
+       </h4>
+       <p>
+        Experimental MCP 能讓 LLM 接觸 Blueprint、asset、level、material、mesh 等核心系統，適合做自動檢查、批次工具與 editor assistance 原型。
+       </p>
+       <h4>
+        導入測試
+       </h4>
+       <p>
+        導入要區分 Production Ready、Beta、Experimental；先在代表性場景測 shader compile、memory、landscape/PCG compatibility 與 source-control merge，再決定升版。
+       </p>
+      </div>
+     </details>
+     <a class="source daily-source" href="https://www.unrealengine.com/news/unreal-engine-5-8-is-now-available">
+      來源
+     </a>
+    </article>
+    <article class="category-news daily-card daily-card-more" data-intel-id="houdini22-production" data-intel-role="card">
+     <div class="meta">
+      <span class="pill">
+       houdini
+      </span>
+     </div>
+     <h4>
+      Houdini 22 正式進入 Production：Quad Remesh、Copernicus、Gaussian Splats 與世界製作一起升級
+     </h4>
+     <p class="summary">
+      Houdini 22 把 Quad Remesh、production-ready Gaussian Splats、Copernicus baking/texturing、character tools、GPU Pyro、terrain/ocean 等多個流程推進 production。
+     </p>
+     <div class="quick-impact daily-impact">
+      <span>
+       ★★★★★｜Procedural 是本類最高偏好，H22 幾乎橫跨建模、角色、材質、VFX 與場景。
+      </span>
+     </div>
+     <details class="daily-full-analysis">
+      <summary>
+       完整分析
+      </summary>
+      <div class="detail-body daily-analysis-body">
+       <h4>
+        DCC 工作流
+       </h4>
+       <p>
+        Quad Remesh 改善 hard-edge、CAD、symmetry 與 organic edge flow，對從程序高模或掃描結果轉遊戲資產尤其值得測。
+       </p>
+       <h4>
+        製作價值
+       </h4>
+       <p>
+        Copernicus 把 texture、bake、terrain/ocean 與 GPU workflow 拉進同一系統，能減少 SOP/COP/外部貼圖工具之間的資料搬運。
+       </p>
+       <h4>
+        導入測試
+       </h4>
+       <p>
+        H22 範圍很大，正式導入應拆成 modeling、character、lookdev、world-building 四組 benchmark，不宜一次整包升級後才找 regression。
+       </p>
+      </div>
+     </details>
+     <a class="source daily-source" href="https://www.sidefx.com/products/whats-new-in-h22/">
+      來源
+     </a>
+    </article>
+    <article class="category-news daily-card daily-card-more" data-intel-id="milk-vfx-unreal-finishing" data-intel-role="card">
+     <div class="meta">
+      <span class="pill">
+       case-study
+      </span>
+     </div>
+     <h4>
+      Milk VFX 用 Unreal 從 Previs 一路做到 Finishing：100+ 環境與大量生物的跨部門 Pipeline
+     </h4>
+     <p class="summary">
+      《Surviving Earth》案例顯示 Milk VFX 在 1,000+ shots、73 種 hero creature、100+ environments 規模下，使用 Unreal 做 previs、virtual art department、real-time environment 甚至 finishing。
+     </p>
+     <div class="quick-impact daily-impact">
+      <span>
+       ★★★★☆｜雖偏 VFX，但 Unreal 作為跨階段 production hub 的做法非常可借鑑。
+      </span>
+     </div>
+     <details class="daily-full-analysis">
+      <summary>
+       完整分析
+      </summary>
+      <div class="detail-body daily-analysis-body">
+       <h4>
+        案例流程
+       </h4>
+       <p>
+        Unreal 不只做 previs，而是讓部分環境從早期設計逐步演進到 final-shot quality，降低前期 prototype 與最終資產完全斷裂的成本。
+       </p>
+       <h4>
+        製作價值
+       </h4>
+       <p>
+        大量 creature/environment 也使用 USD 與變體管理思路，說明即時引擎要進大型 production，資產 identity/variant 管理和畫面本身同樣重要。
+       </p>
+       <h4>
+        導入判斷
+       </h4>
+       <p>
+        遊戲團隊可借鑑『單一即時場景貫穿多階段』，但要注意 VFX finishing 的 frame budget、版本管理與遊戲 runtime 限制並不相同。
+       </p>
+      </div>
+     </details>
+     <a class="source daily-source" href="https://www.cgchannel.com/2026/09/discover-milk-vfxs-unreal-engine-pipeline-for-surviving-earth/">
+      來源
+     </a>
+    </article>
+    <article class="category-news daily-card daily-card-more" data-intel-id="animo10-maya-animation-toolkit" data-intel-role="card">
+     <div class="meta">
+      <span class="pill">
+       animation
+      </span>
+     </div>
+     <h4>
+      Animo v10 把 500+ Maya Animation Tools 收進同一套工具箱
+     </h4>
+     <p class="summary">
+      Animo v10 新增直接在 Maya 內加入影片/GIF/圖片 reference、六個 animation sliders 與 Tools Editor，可集中存取超過 500 個動畫工具並綁 hotkey/shelf。
+     </p>
+     <div class="quick-impact daily-impact">
+      <span>
+       ★★★★☆｜不是大模型新聞，但很可能直接節省 Animator 日常操作時間。
+      </span>
+     </div>
+     <details class="daily-full-analysis">
+      <summary>
+       完整分析
+      </summary>
+      <div class="detail-body daily-analysis-body">
+       <h4>
+        動作製作流程
+       </h4>
+       <p>
+        工具價值在於把零散 animator utilities 收斂成可搜尋、可 hotkey、可 shelf 的統一入口，降低重複操作與工具切換。
+       </p>
+       <h4>
+        製作價值
+       </h4>
+       <p>
+        reference media 直接進 Maya 對 blocking/polish 對照很實用；animation sliders 則值得看是否能穩定處理 pose、timing 或 curve 編輯。
+       </p>
+       <h4>
+        導入測試
+       </h4>
+       <p>
+        導入前先測 scene contamination、namespace/reference 相容、undo 穩定性與大型 rig 效能，再決定是否納入團隊標準 shelf。
+       </p>
+      </div>
+     </details>
+     <a class="source daily-source" href="https://80.lv/articles/over-500-free-maya-animation-tools-are-now-available-in-one-place">
+      來源
+     </a>
+    </article>
+    <article class="category-news daily-card daily-card-more" data-intel-id="uri-human-tree-character-workflow" data-intel-role="card">
+     <div class="meta">
+      <span class="pill">
+       character-production
+      </span>
+     </div>
+     <h4>
+      Uri 人樹角色 Breakdown：ZBrush＋Maya＋Substance 的輪廓、拓樸與材質取捨
+     </h4>
+     <p class="summary">
+      Character Artist Andrea Buitrago 詳解把小說中的人樹角色轉成可讀性強的 3D 雕塑，從 silhouette、形體、材質到 Maya/ZBrush/Substance 的完整角色製作。
+     </p>
+     <div class="quick-impact daily-impact">
+      <span>
+       ★★★★☆｜高品質角色 Breakdown，重點是設計翻譯與可讀性，而不是純作品展示。
+      </span>
+     </div>
+     <details class="daily-full-analysis">
+      <summary>
+       完整分析
+      </summary>
+      <div class="detail-body daily-analysis-body">
+       <h4>
+        製作流程
+       </h4>
+       <p>
+        角色由抽象敘事概念出發，製作重點先鎖定 silhouette 與脆弱、植物化的人體語言，再往表面細節推進，避免雕刻細節壓過設計。
+       </p>
+       <h4>
+        製作價值
+       </h4>
+       <p>
+        ZBrush/Maya/Substance 的分工提供一個可重現的角色 pipeline，適合作為 stylized/semi-realistic sculpt 與 texture 參考。
+       </p>
+       <h4>
+        導入測試
+       </h4>
+       <p>
+        實務上可觀察哪些 detail 真正需要 geometry、哪些交給 texture/material；這對高模時間、retopo 成本與最終展示讀性都有直接影響。
+       </p>
+      </div>
+     </details>
+     <a class="source daily-source" href="https://80.lv/articles/book-character-to-a-3d-piece-sculpting-human-tree-character-in-zbrush-and-maya">
+      來源
+     </a>
+    </article>
+    <article class="category-news daily-card daily-card-more" data-intel-id="fluidninja-live2" data-intel-role="card">
+     <div class="meta">
+      <span class="pill">
+       tools
+      </span>
+     </div>
+     <h4>
+      FluidNinja LIVE-2 重構 UE VFX：CPU Blueprint 邏輯大幅移向 GPU／Niagara Simulation Stages
+     </h4>
+     <p class="summary">
+      FluidNinja Live 2 重新設計底層，把更多 Blueprint function 搬到 GPU，fluid simulation 改用 Niagara Simulation Stages，並新增 surface alignment、preset 與更多輸入來源。
+     </p>
+     <div class="quick-impact daily-impact">
+      <span>
+       ★★★★☆｜對 UE 大型即時 VFX 的效能與工具化很有 production value。
+      </span>
+     </div>
+     <details class="daily-full-analysis">
+      <summary>
+       完整分析
+      </summary>
+      <div class="detail-body daily-analysis-body">
+       <h4>
+        引擎工作流
+       </h4>
+       <p>
+        LIVE-2 是重構而非小更新，核心目標是降低 CPU 成本並把 simulation 更完整放進 Niagara GPU pipeline。
+       </p>
+       <h4>
+        製作價值
+       </h4>
+       <p>
+        新的 surface alignment、單一 preset、Mesh Distance Field/Chaos input 能降低大型水、煙、沙雪效果反覆配置的負擔。
+       </p>
+       <h4>
+        導入測試
+       </h4>
+       <p>
+        目前 Live 2 只支援 Windows，正式專案若含 console/mobile 必須把平台限制列為 gate，不能因 PC Demo 效能好就直接替換 Live 1。
+       </p>
+      </div>
+     </details>
+     <a class="source daily-source" href="https://www.cgchannel.com/2026/09/andras-ketzer-releases-fluidninja-live-2-for-unreal-engine/">
+      來源
+     </a>
+    </article>
+    <article class="category-news daily-card daily-card-more" data-intel-id="shape-cage-ue5-wpo" data-intel-role="card">
+     <div class="meta">
+      <span class="pill">
+       tools
+      </span>
+     </div>
+     <h4>
+      Shape Cage 用 WPO 做 UE5 Runtime Mesh Deformation：軟體感變形但不跑真正 Soft Body
+     </h4>
+     <p class="summary">
+      Shape Cage 以 Material World Position Offset 在 GPU 端對 static mesh 做壓、彎、凹與 curtain 類變形，支援碰撞驅動、狀態同步與 Nanite。
+     </p>
+     <div class="quick-impact daily-impact">
+      <span>
+       ★★★★☆｜適合需要低成本局部變形、又不想導入 Skeletal/Soft Body 的遊戲表現。
+      </span>
+     </div>
+     <details class="daily-full-analysis">
+      <summary>
+       完整分析
+      </summary>
+      <div class="detail-body daily-analysis-body">
+       <h4>
+        引擎工作流
+       </h4>
+       <p>
+        工具把 Box/Sphere/Curtain cage 與 WPO 結合，讓 static mesh 在 runtime 有受力感，同時避開 CPU mesh deformation 與完整 soft-body solver。
+       </p>
+       <h4>
+        製作價值
+       </h4>
+       <p>
+        支援 network sync、join-in-progress state 與停止後自動停 Tick，表示它不只是視覺 Demo，而有考慮實際遊戲狀態管理。
+       </p>
+       <h4>
+        導入測試
+       </h4>
+       <p>
+        限制是 WPO 變形不等同碰撞幾何與真實物理；測試時要確認 shadow、Nanite、collision、LOD 與 multiplayer replication 是否符合需求。
+       </p>
+      </div>
+     </details>
+     <a class="source daily-source" href="https://3dnchu.com/archives/shape-cage/">
+      來源
+     </a>
+    </article>
+    <article class="category-news daily-card daily-card-more" data-intel-id="tyflow21-vehicle-gaussian" data-intel-role="card">
+     <div class="meta">
+      <span class="pill">
+       other-dcc
+      </span>
+     </div>
+     <h4>
+      tyFlow 2.1：PhysX 車輛 Rig/Simulation＋Gaussian Splat 工作流進入 3ds Max
+     </h4>
+     <p class="summary">
+      tyFlow 2.1 新增 PhysX vehicle operators/helpers/presets，可做 cars、trucks、tanks 等物理動畫，並接上 3ds Max 2027.2 Gaussian Splat 能力。
+     </p>
+     <div class="quick-impact daily-impact">
+      <span>
+       ★★★★☆｜對 3ds Max 動畫/VFX 與新型 3D 表示都有明確工具價值。
+      </span>
+     </div>
+     <details class="daily-full-analysis">
+      <summary>
+       完整分析
+      </summary>
+      <div class="detail-body daily-analysis-body">
+       <h4>
+        DCC 工作流
+       </h4>
+       <p>
+        車輛工具包含 suspension、tow physics、procedural skids，可從手工 rig 轉成 physics-assisted animation，適合大量背景車與事故場景。
+       </p>
+       <h4>
+        製作價值
+       </h4>
+       <p>
+        Gaussian Splat 能透過 Birth Flow/tyMesher import，並從 tyFlow/tyCache export，代表 splat 開始進傳統 DCC procedural pipeline。
+       </p>
+       <h4>
+        導入測試
+       </h4>
+       <p>
+        若用於遊戲內容，需測 cache/export 格式、sim determinism、與 engine 端最終表示；Free 版也缺多執行緒、GPU acceleration 與 cache export。
+       </p>
+      </div>
+     </details>
+     <a class="source daily-source" href="https://www.cgchannel.com/2026/09/tyflow-2-1-adds-physx-powered-vehicle-rigging-and-simulation/">
+      來源
+     </a>
+    </article>
+   </section>
   </main>
-  <script src="../daily.js" defer></script>
-</body>
+  <script defer="" src="../daily.js">
+  </script>
+ </body>
 </html>
+

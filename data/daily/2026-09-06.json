@@ -1,32 +1,747 @@
-{"date":"2026-09-06","schema_version":3,"metadata":{"total_items":30,"collection_mode":"production-intelligence-preference-v1","collection_contract_effective_date":"2026-09-04","preference_contract_effective_date":"2026-09-06","discovery_windows":["24h","7d","30d","6m","evergreen"]},"items":[
-{"id":"tripo-one-day-character-pipeline","title":"Tripo 展示一日完成遊戲角色：AI 3D 從拆件、Quad 到 UE 的完整 Pipeline","summary":"Tripo 公開一套從概念圖、部件拆分、P2.0 Quad 網格、8K 來源貼圖、DCC Bridge，到 Maya/Marmoset/Substance/Unreal 的完整角色製作案例，總面數控制在 30K triangles 以下。","quick_impact":"★★★★★｜非常接近可直接拿來做 AI 3D 角色 Production Test 的基準流程。","source_url":"https://www.tripo3d.ai/blog/game-industry-character-workflow","category":"ai-generation","subcategory":"ai-3d","ranking_score":100,"rank_global":1,"homepage_tier":"top5","full_analysis":[{"label":"生成流程","text":"流程把 AI 放在 blockout、高模、retopo 與 first-pass texture 的中段，最終組裝、UV、Bake、貼圖精修與 Rig 仍回到傳統 DCC，適合拿來評估 AI 真正能省掉多少機械工。"},{"label":"製作價值","text":"案例明確給出部件式生成、Quad topology、分部件 polygon budget 與 30K 以下總預算；這比單看單一生成結果更接近遊戲角色驗收。"},{"label":"導入測試","text":"來源也承認非流形、孔洞與 Rig 尚需人工處理，因此導入測試應記錄重試率、局部修網時間、UV/texture transfer 成本與最終 rig deformation。"}]},
-{"id":"meshy6-ultra-multiview","title":"Meshy 6 Ultra 擴大到 4 張輸入圖：多視圖結構忠實度與幾何清理再提升","summary":"Meshy 9 月 changelog 顯示 Meshy 6 Ultra 支援最多四張參考圖，並強化結構忠實度、geometry clean-up 與生成速度，直接對應多視圖角色與遊戲資產生成。","quick_impact":"★★★★★｜多視圖與 clean geometry 都是目前 AI 3D 最值得實測的核心能力。","source_url":"https://help.meshy.ai/en/articles/9991804-meshy-changelog","category":"ai-generation","subcategory":"ai-3d","ranking_score":99,"rank_global":2,"homepage_tier":"top5","full_analysis":[{"label":"生成流程","text":"最多四張輸入圖讓正、側、背資訊能同時參與生成，對角色四視圖與不對稱道具比單張 Image-to-3D 更有實際意義。"},{"label":"製作價值","text":"應把重點放在高模輪廓、背面可靠度、薄片結構、配件分離與 clean-up 後是否仍保留設計，而不是只比較正面相似度。"},{"label":"導入測試","text":"建議與 Tripo P2.0 用同一組四視圖跑 A/B Test，記錄生成時間、錯面、人工修模、retopo/UV 接續與最終低模可用性。"}]},
-{"id":"armorpaint-1-0","title":"ArmorPaint 1.0 正式脫離 Early Access：C 重寫、UV/雕刻、動畫預覽與本地 Neural Nodes","summary":"ArmorPaint 1.0 以 C 重寫核心，提升大資產與高解析圖層互動效能，並加入基礎雕刻、UV 編輯、skinned mesh timeline、AI upscale 與 photo-to-material 等功能。","quick_impact":"★★★★★｜有機會成為低成本遊戲貼圖工具鏈的實際替代方案。","source_url":"https://www.cgchannel.com/2026/09/armorpaint-1-0-is-out-after-eight-years-in-early-access/","category":"blender-dcc","subcategory":"other-dcc","ranking_score":98,"rank_global":3,"homepage_tier":"top5","full_analysis":[{"label":"DCC 工作流","text":"1.0 不只是版本號更新，而是底層重寫與 painting、UV、sculpt、animation preview、AI nodes 同時擴張，工作流覆蓋度明顯提高。"},{"label":"製作價值","text":"對遊戲美術最值得測的是高解析多層專案的互動速度、PBR 輸出、Blender/Unity/UE Live Link，以及本地 AI 的 photo-to-material 品質。"},{"label":"導入測試","text":"正式導入前仍要驗 Live Link 插件版本、PSD/Substance 互通需求、色彩管理與團隊共用材質規範，避免只因低價就替換成熟管線。"}]},
-{"id":"onimusha-re-engine-art-pipeline","title":"《鬼武者 Way of the Sword》公開 RE ENGINE 美術 Pipeline：模組場景、角色、光照到資料管理","summary":"Capcom 詳細拆解從歷史研究、whitebox/greybox、模組資產、角色 Sculpt/Texturing，到 RE ENGINE 內 layout、VFX、lighting 與 collision 的完整流程，Maya 作為最終 DCC 輸出中心。","quick_impact":"★★★★★｜完整度很高的 AAA 遊戲 Production Case，可直接對照團隊資產與引擎責任切分。","source_url":"https://80.lv/articles/how-capcom-built-onimushas-real-time-sword-combat-re-engine","category":"emerging-case","subcategory":"case-study","ranking_score":97,"rank_global":4,"homepage_tier":"top5","full_analysis":[{"label":"案例流程","text":"環境流程把 gameplay whitebox、技術可行性與 asset cost estimation 放在正式資產製作前，之後再拆成 modular assets 並回引擎做 lighting/VFX/collision polish。"},{"label":"製作價值","text":"角色流程維持 Concept→Proxy→Sculpt→Texture→Secondary Motion；Maya 是角色與場景的最終 DCC deliverable，RE ENGINE 集中 VFX 與 lighting。"},{"label":"導入判斷","text":"值得借鑑的是早期建立 lighting/visibility 品質標準與集中資料出口；可對照現有外包驗收、版本控管與 engine integration 是否也有清楚 ownership。"}]},
-{"id":"jolan-large-scale-environment-tools","title":"Jolan Huijskes 用 Blender＋UE5 工具化大型場景：把 Level Artist 控制權留在引擎","summary":"Environment Artist Jolan Huijskes 公開一套為大型可玩場景打造的 Blender/Unreal 工具，重點不是單一漂亮場景，而是用技術工具支援大尺度環境快速迭代。","quick_impact":"★★★★★｜高度符合場景 Production Tool／流程自動化需求。","source_url":"https://80.lv/articles/developing-tools-for-large-scale-3d-game-environments","category":"3d-production","subcategory":"environment-production","ranking_score":96,"rank_global":5,"homepage_tier":"top5","full_analysis":[{"label":"製作流程","text":"案例把大型環境拆成可重複使用的工具與 artist-facing controls，目標是讓 Level Artist 在不回 DCC 重做所有內容的情況下維持高可控性。"},{"label":"製作價值","text":"這種做法比單次手工場景更有 production value：工具一旦穩定，可把分布、變體、尺度與迭代成本從資產數量中解耦。"},{"label":"導入測試","text":"導入時應測工具輸出是否可預測、版本升級是否穩定、烘焙/LOD/collision 是否能接既有規範，以及非作者是否能維護。"}]},
-{"id":"tripo-p2-quad-preview","title":"Tripo P2.0 Preview：單圖／多視圖直接生成原生 Quad，最高 25K Quad","summary":"Tripo P2.0 Preview 將 Smart Mesh 推向原生四邊面拓樸，可從單圖或四視圖生成，Quad 上限 25K，並主打可編輯、可 Rig、可進遊戲 Production 的 edge flow。","quick_impact":"★★★★★｜目前 AI 3D 的關鍵不是更密，而是生成後能不能真的編輯與 Rig。","source_url":"https://www.tripo3d.ai/ko/blog/tripo-p2-0-preview","category":"ai-generation","subcategory":"ai-3d","ranking_score":95,"rank_global":6,"homepage_tier":"next10","full_analysis":[{"label":"生成流程","text":"P2.0 直接把 Quad topology 當生成輸出，而不是事後單純減面，理論上能降低 retopology 的中間工序。"},{"label":"製作價值","text":"多視圖可同時使用正、左、右、背四個角度，對角色與硬表面背面結構的可信度比單圖更值得測。"},{"label":"導入測試","text":"仍應用 deformation test 驗肩、肘、膝、嘴眼 loop，以及 hard-surface chamfer/孔洞；『看起來是 Quad』不等於動畫與 UV 真的可用。"}]},
-{"id":"maya-2027-production-tools","title":"Maya 2027 把 MotionMaker、ngSkinTools 式 Skin Tools、Smart Bevel 與 USD Asset Build 推進主流程","summary":"Maya 2027 聚焦 AI MotionMaker、整合式 layer-based skinning、Smart Bevel、USD Component/Variant workflows、Flow Studio 連接與 Arnold/Bifrost 更新。","quick_impact":"★★★★★｜Rig/Animation、Skinning 與 USD 資產流程都有直接 Production 影響。","source_url":"https://help.autodesk.com/cloudhelp/2027/ENU/Maya-WhatsNew/files/GUID-D24D261B-4A78-47C2-918B-6EA461ADB002.htm","category":"blender-dcc","subcategory":"maya","ranking_score":94,"rank_global":7,"homepage_tier":"next10","full_analysis":[{"label":"DCC 工作流","text":"MotionMaker 已延伸到 equine，並改善 path adherence 與編輯操作；對 procedural/AI motion 的價值在於能否保持可編輯曲線與既有 skeleton 工作方式。"},{"label":"製作價值","text":"整合式 Skin Tools 採 layer-based skinning、mask、mirror，若團隊原本依賴 ngSkinTools 類插件，值得評估是否能減少外掛相依與版本風險。"},{"label":"導入測試","text":"USD Component Creator/Variant Manager、Flow Studio 與 FBX user normals 等改動牽涉 pipeline，升版應用代表資產做 round-trip、skin file、USD variant 與 exporter regression。"}]},
-{"id":"ue58-production-art","title":"Unreal Engine 5.8：Mesh Terrain、PCG、LLM MCP 與更成熟的角色／世界製作","summary":"UE 5.8 強化 worldbuilding、terrain、vegetation、character/animation 與 iteration，並加入 Experimental MCP plugin、Sandboxes；Epic 同時提醒 Beta/Experimental 功能不可直接視為 production-ready。","quick_impact":"★★★★★｜對場景、TA 與美術工具鏈都有高密度改動。","source_url":"https://www.unrealengine.com/news/unreal-engine-5-8-is-now-available","category":"engine-art","subcategory":"unreal","ranking_score":93,"rank_global":8,"homepage_tier":"next10","full_analysis":[{"label":"引擎工作流","text":"Mesh Terrain、PCG 與 vegetation authoring 直接影響大型場景製作方式；統一 Gizmo 也改善 DCC artist 在引擎內操作的一致性。"},{"label":"製作價值","text":"Experimental MCP 能讓 LLM 接觸 Blueprint、asset、level、material、mesh 等核心系統，適合做自動檢查、批次工具與 editor assistance 原型。"},{"label":"導入測試","text":"導入要區分 Production Ready、Beta、Experimental；先在代表性場景測 shader compile、memory、landscape/PCG compatibility 與 source-control merge，再決定升版。"}]},
-{"id":"houdini22-production","title":"Houdini 22 正式進入 Production：Quad Remesh、Copernicus、Gaussian Splats 與世界製作一起升級","summary":"Houdini 22 把 Quad Remesh、production-ready Gaussian Splats、Copernicus baking/texturing、character tools、GPU Pyro、terrain/ocean 等多個流程推進 production。","quick_impact":"★★★★★｜Procedural 是本類最高偏好，H22 幾乎橫跨建模、角色、材質、VFX 與場景。","source_url":"https://www.sidefx.com/products/whats-new-in-h22/","category":"blender-dcc","subcategory":"houdini","ranking_score":92,"rank_global":9,"homepage_tier":"next10","full_analysis":[{"label":"DCC 工作流","text":"Quad Remesh 改善 hard-edge、CAD、symmetry 與 organic edge flow，對從程序高模或掃描結果轉遊戲資產尤其值得測。"},{"label":"製作價值","text":"Copernicus 把 texture、bake、terrain/ocean 與 GPU workflow 拉進同一系統，能減少 SOP/COP/外部貼圖工具之間的資料搬運。"},{"label":"導入測試","text":"H22 範圍很大，正式導入應拆成 modeling、character、lookdev、world-building 四組 benchmark，不宜一次整包升級後才找 regression。"}]},
-{"id":"milk-vfx-unreal-finishing","title":"Milk VFX 用 Unreal 從 Previs 一路做到 Finishing：100+ 環境與大量生物的跨部門 Pipeline","summary":"《Surviving Earth》案例顯示 Milk VFX 在 1,000+ shots、73 種 hero creature、100+ environments 規模下，使用 Unreal 做 previs、virtual art department、real-time environment 甚至 finishing。","quick_impact":"★★★★☆｜雖偏 VFX，但 Unreal 作為跨階段 production hub 的做法非常可借鑑。","source_url":"https://www.cgchannel.com/2026/09/discover-milk-vfxs-unreal-engine-pipeline-for-surviving-earth/","category":"emerging-case","subcategory":"case-study","ranking_score":91,"rank_global":10,"homepage_tier":"next10","full_analysis":[{"label":"案例流程","text":"Unreal 不只做 previs，而是讓部分環境從早期設計逐步演進到 final-shot quality，降低前期 prototype 與最終資產完全斷裂的成本。"},{"label":"製作價值","text":"大量 creature/environment 也使用 USD 與變體管理思路，說明即時引擎要進大型 production，資產 identity/variant 管理和畫面本身同樣重要。"},{"label":"導入判斷","text":"遊戲團隊可借鑑『單一即時場景貫穿多階段』，但要注意 VFX finishing 的 frame budget、版本管理與遊戲 runtime 限制並不相同。"}]},
-{"id":"animo10-maya-animation-toolkit","title":"Animo v10 把 500+ Maya Animation Tools 收進同一套工具箱","summary":"Animo v10 新增直接在 Maya 內加入影片/GIF/圖片 reference、六個 animation sliders 與 Tools Editor，可集中存取超過 500 個動畫工具並綁 hotkey/shelf。","quick_impact":"★★★★☆｜不是大模型新聞，但很可能直接節省 Animator 日常操作時間。","source_url":"https://80.lv/articles/over-500-free-maya-animation-tools-are-now-available-in-one-place","category":"3d-animation","subcategory":"animation","ranking_score":90,"rank_global":11,"homepage_tier":"next10","full_analysis":[{"label":"動作製作流程","text":"工具價值在於把零散 animator utilities 收斂成可搜尋、可 hotkey、可 shelf 的統一入口，降低重複操作與工具切換。"},{"label":"製作價值","text":"reference media 直接進 Maya 對 blocking/polish 對照很實用；animation sliders 則值得看是否能穩定處理 pose、timing 或 curve 編輯。"},{"label":"導入測試","text":"導入前先測 scene contamination、namespace/reference 相容、undo 穩定性與大型 rig 效能，再決定是否納入團隊標準 shelf。"}]},
-{"id":"uri-human-tree-character-workflow","title":"Uri 人樹角色 Breakdown：ZBrush＋Maya＋Substance 的輪廓、拓樸與材質取捨","summary":"Character Artist Andrea Buitrago 詳解把小說中的人樹角色轉成可讀性強的 3D 雕塑，從 silhouette、形體、材質到 Maya/ZBrush/Substance 的完整角色製作。","quick_impact":"★★★★☆｜高品質角色 Breakdown，重點是設計翻譯與可讀性，而不是純作品展示。","source_url":"https://80.lv/articles/book-character-to-a-3d-piece-sculpting-human-tree-character-in-zbrush-and-maya","category":"3d-production","subcategory":"character-production","ranking_score":89,"rank_global":12,"homepage_tier":"next10","full_analysis":[{"label":"製作流程","text":"角色由抽象敘事概念出發，製作重點先鎖定 silhouette 與脆弱、植物化的人體語言，再往表面細節推進，避免雕刻細節壓過設計。"},{"label":"製作價值","text":"ZBrush/Maya/Substance 的分工提供一個可重現的角色 pipeline，適合作為 stylized/semi-realistic sculpt 與 texture 參考。"},{"label":"導入測試","text":"實務上可觀察哪些 detail 真正需要 geometry、哪些交給 texture/material；這對高模時間、retopo 成本與最終展示讀性都有直接影響。"}]},
-{"id":"cult-tsar-fish-environment","title":"Cult of the Tsar Fish：從雕刻、Designer 材質到分層沼澤植被的完整環境流程","summary":"Nicolas Pablos 拆解沉沒教堂場景，涵蓋 ZBrush→Substance 3D Designer/Painter 的 sculpt-to-texture pipeline、建築材質與多層 swamp vegetation。","quick_impact":"★★★★☆｜很完整的 Environment Production Breakdown，可直接拆成場景 SOP。","source_url":"https://80.lv/articles/breakdown-creating-a-3d-scene-of-a-decaying-orthodox-church-in-a-swamp","category":"3d-production","subcategory":"environment-production","ranking_score":88,"rank_global":13,"homepage_tier":"next10","full_analysis":[{"label":"製作流程","text":"案例先用 composition/focal point 控制遠距可讀性，再安排 detail/noise 與 rest area，對固定視角或戰鬥場景同樣適用。"},{"label":"製作價值","text":"資產流程不是只做單棟教堂，而是把 sculpt、材質與植被建立成能反覆組合的 production components。"},{"label":"導入測試","text":"導入參考時應拆出材質重用率、vegetation layer 數量、shader 複雜度與 UE runtime cost，避免把 portfolio 密度直接搬進遊戲。"}]},
-{"id":"fluidninja-live2","title":"FluidNinja LIVE-2 重構 UE VFX：CPU Blueprint 邏輯大幅移向 GPU／Niagara Simulation Stages","summary":"FluidNinja Live 2 重新設計底層，把更多 Blueprint function 搬到 GPU，fluid simulation 改用 Niagara Simulation Stages，並新增 surface alignment、preset 與更多輸入來源。","quick_impact":"★★★★☆｜對 UE 大型即時 VFX 的效能與工具化很有 production value。","source_url":"https://www.cgchannel.com/2026/09/andras-ketzer-releases-fluidninja-live-2-for-unreal-engine/","category":"engine-art","subcategory":"tools","ranking_score":87,"rank_global":14,"homepage_tier":"next10","full_analysis":[{"label":"引擎工作流","text":"LIVE-2 是重構而非小更新，核心目標是降低 CPU 成本並把 simulation 更完整放進 Niagara GPU pipeline。"},{"label":"製作價值","text":"新的 surface alignment、單一 preset、Mesh Distance Field/Chaos input 能降低大型水、煙、沙雪效果反覆配置的負擔。"},{"label":"導入測試","text":"目前 Live 2 只支援 Windows，正式專案若含 console/mobile 必須把平台限制列為 gate，不能因 PC Demo 效能好就直接替換 Live 1。"}]},
-{"id":"shape-cage-ue5-wpo","title":"Shape Cage 用 WPO 做 UE5 Runtime Mesh Deformation：軟體感變形但不跑真正 Soft Body","summary":"Shape Cage 以 Material World Position Offset 在 GPU 端對 static mesh 做壓、彎、凹與 curtain 類變形，支援碰撞驅動、狀態同步與 Nanite。","quick_impact":"★★★★☆｜適合需要低成本局部變形、又不想導入 Skeletal/Soft Body 的遊戲表現。","source_url":"https://3dnchu.com/archives/shape-cage/","category":"engine-art","subcategory":"tools","ranking_score":86,"rank_global":15,"homepage_tier":"next10","full_analysis":[{"label":"引擎工作流","text":"工具把 Box/Sphere/Curtain cage 與 WPO 結合，讓 static mesh 在 runtime 有受力感，同時避開 CPU mesh deformation 與完整 soft-body solver。"},{"label":"製作價值","text":"支援 network sync、join-in-progress state 與停止後自動停 Tick，表示它不只是視覺 Demo，而有考慮實際遊戲狀態管理。"},{"label":"導入測試","text":"限制是 WPO 變形不等同碰撞幾何與真實物理；測試時要確認 shadow、Nanite、collision、LOD 與 multiplayer replication 是否符合需求。"}]},
-{"id":"tyflow21-vehicle-gaussian","title":"tyFlow 2.1：PhysX 車輛 Rig/Simulation＋Gaussian Splat 工作流進入 3ds Max","summary":"tyFlow 2.1 新增 PhysX vehicle operators/helpers/presets，可做 cars、trucks、tanks 等物理動畫，並接上 3ds Max 2027.2 Gaussian Splat 能力。","quick_impact":"★★★★☆｜對 3ds Max 動畫/VFX 與新型 3D 表示都有明確工具價值。","source_url":"https://www.cgchannel.com/2026/09/tyflow-2-1-adds-physx-powered-vehicle-rigging-and-simulation/","category":"blender-dcc","subcategory":"other-dcc","ranking_score":85,"rank_global":16,"homepage_tier":"category_only","full_analysis":[{"label":"DCC 工作流","text":"車輛工具包含 suspension、tow physics、procedural skids，可從手工 rig 轉成 physics-assisted animation，適合大量背景車與事故場景。"},{"label":"製作價值","text":"Gaussian Splat 能透過 Birth Flow/tyMesher import，並從 tyFlow/tyCache export，代表 splat 開始進傳統 DCC procedural pipeline。"},{"label":"導入測試","text":"若用於遊戲內容，需測 cache/export 格式、sim determinism、與 engine 端最終表示；Free 版也缺多執行緒、GPU acceleration 與 cache export。"}]},
-{"id":"retopoly-3dsmax-modifier","title":"retoPoly：3ds Max 內直接在高模表面建立可非破壞編輯的 Retopo Modifier","summary":"retoPoly 提供 3ds Max 原生 modifier 式 retopology，可直接貼著高解析 surface 建新 topology，並保留 modifier stack 的非破壞調整方式。","quick_impact":"★★★★☆｜對仍以 3ds Max 為主的角色／道具流程，是很值得測的局部效率工具。","source_url":"https://3dnchu.com/archives/retopoly/","category":"3d-production","subcategory":"production-workflow","ranking_score":84,"rank_global":17,"homepage_tier":"category_only","full_analysis":[{"label":"製作流程","text":"把 retopo 放進 Modifier Stack 的最大價值是可回頭調整高模或 retopo 設定，而不是把結果變成一次性 mesh operation。"},{"label":"製作價值","text":"對角色與硬表面應分開測 edge loop、surface snapping、symmetry、密度控制與複雜交界處，確認不是只適合簡單展示模型。"},{"label":"導入測試","text":"如果能穩定保留 stack、快捷鍵與大模型互動效能，可能比 Max 內外來回 Blender/Topogun 更省資料交換成本。"}]},
-{"id":"woodland-pizzeria-handpaint","title":"WoodLand Pizzeria：用 UE＋Maya＋Substance 把 2D 手繪插畫翻成可切換季節／時間的 3D 場景","summary":"Shuming Zhang 拆解手繪風場景，從 2D concept 分析、procedural workflow、SpeedTree/材質，到 Unreal 內季節與時間變體，重點是保留 painting-like 視覺語言。","quick_impact":"★★★★☆｜Stylized/NPR Environment 與程序化變體都高度符合偏好。","source_url":"https://80.lv/articles/turning-a-2d-illustration-into-a-3d-environment-with-a-hand-painted-look","category":"3d-production","subcategory":"environment-production","ranking_score":83,"rank_global":18,"homepage_tier":"category_only","full_analysis":[{"label":"製作流程","text":"場景不是把插畫逐物件照抄，而是先分析形狀、色塊與視覺節奏，再決定哪些內容由 geometry、material 或 vegetation system 承擔。"},{"label":"製作價值","text":"季節/時間變體讓同一套資產產生更多視覺狀態，這類 parameterized art direction 比單一漂亮畫面更有 production reuse 價值。"},{"label":"導入測試","text":"若轉進遊戲，可特別測 hand-painted texture 與實時 lighting 的衝突、風格化 normal/roughness 強度，以及變體對 memory/material instance 的成本。"}]},
-{"id":"overgrown-blender-production-logs","title":"Blender Studio 開放 OVERGROWN 製作日誌：Rig、毛髮、Shader、場景、Lighting、水與 Compositing 全流程","summary":"OVERGROWN 的多份 production logs 涵蓋 animation、rigging、fur、shading、set construction、lighting、water effects 與 final compositing，還包含 painterly shadows 教學。","quick_impact":"★★★★☆｜不是單一 Tip，而是一套可回溯的 Blender Production Case 資料庫。","source_url":"https://80.lv/articles/blender-studio-opens-overgrown-s-free-behind-the-scenes-archive","category":"blender-dcc","subcategory":"blender","ranking_score":82,"rank_global":19,"homepage_tier":"category_only","full_analysis":[{"label":"DCC 工作流","text":"六份 production logs 可以看到同一專案如何從 asset/rig/shading 一路走到 shot、lighting 與 compositing，比零散教學更能理解跨部門依賴。"},{"label":"製作價值","text":"Painterly Shadows 與 handcrafted shading 對 NPR/stylized production 特別有參考價值，可拆出哪些效果應在 shader、lighting 或 comp 階段完成。"},{"label":"導入測試","text":"因為內容源自動畫製作，轉到遊戲時要再檢查 runtime shader、hair/fur、water 與 comp technique 是否能以 realtime 等價方案實現。"}]},
-{"id":"tripo-image-gen-batch3d","title":"Tripo Image Gen 更新：角色／場景拆件、4K、Cutout 與 Batch-to-3D 串成資產量產前段","summary":"Tripo 把 Character Extraction、Asset Extraction、Variants、4K enhancement、Cutout 與最多 30 張 Batch to 3D 串成 2D→3D 的前處理流程。","quick_impact":"★★★★☆｜AI 2D 不只出圖，而是直接服務後續 3D 資產拆件與批量轉換。","source_url":"https://www.tripo3d.ai/blog/tripo-image-gen-update","category":"ai-generation","subcategory":"ai-2d","ranking_score":81,"rank_global":20,"homepage_tier":"category_only","full_analysis":[{"label":"生成流程","text":"Character Extraction 可把頭、軀幹、肢體與配件拆成獨立圖，再送 Batch-to-3D，這比完整角色單圖生成更接近可控分件 pipeline。"},{"label":"製作價值","text":"場景 Asset Extraction 與 style-consistent variants 可用來建立同風格 prop set，最多 30 張 batch 對大量遊戲資產特別值得做成本測試。"},{"label":"導入測試","text":"要實測的不是 2D 圖美不美，而是 Cutout 邊界、部件比例、3D 後組裝誤差、風格一致性與 batch failure rate。"}]},
-{"id":"substance-painter12-warp","title":"Substance 3D Painter 12：Warp to Geometry 讓 Decal／Trim 能貼著複雜曲面即時包覆","summary":"Painter 12 的 Warp to Geometry 以可編輯 projection grid 貼合 mesh curvature，可在孔洞、不平表面與複雜曲面上降低 decal 投射拉伸，並搭配 layer-stack flatten 等改進。","quick_impact":"★★★★☆｜屬於很具體、能直接省貼圖返工時間的功能。","source_url":"https://blog.adobe.com/en/publish/2026/03/09/more-control-less-friction-texturing-workflows-latest-substance-3d-innovations","category":"blender-dcc","subcategory":"substance","ranking_score":80,"rank_global":21,"homepage_tier":"category_only","full_analysis":[{"label":"DCC 工作流","text":"傳統 planar projection 遇到曲面與孔洞容易 stretch/fade，Warp to Geometry 把 grid 動態吸附表面，減少反覆切相機與手修 mask。"},{"label":"製作價值","text":"對角色裝甲、硬表面 decal、縫線與 trim 都有直接價值，特別適合常需要把平面圖案套到複雜曲率的資產。"},{"label":"導入測試","text":"導入測試可用同一套 decal 比較舊 projection 與 Warp 的操作時間、邊界失真、跨 UV seam 結果與後續可編輯性。"}]},
-{"id":"metahuman57-body-conforming","title":"MetaHuman 5.7 Body Conforming：FBX Round-trip、任意 Pose 與極端比例 Joint Fitting 大幅放寬","summary":"MetaHuman 5.7 以 UV-space vertex correspondence 解決外部 DCC FBX round-trip，並放寬 A/T Pose、高度限制，新增 volumetric joint fitting 與 mesh/joint import。","quick_impact":"★★★★☆｜對自製角色接 MetaHuman Rig 的實際障礙有直接改善。","source_url":"https://www.metahuman.com/news/metahuman-5-7-brings-major-improvements-to-body-conforming-with-more-to-come","category":"engine-art","subcategory":"tools","ranking_score":79,"rank_global":22,"homepage_tier":"category_only","full_analysis":[{"label":"引擎工作流","text":"UV mapping 可保留 vertex ID correspondence，讓 Blender、ZBrush 等不支援 DNA 的 DCC 也能 sculpt 後用 FBX 回 MetaHuman Creator。"},{"label":"製作價值","text":"Volumetric joint fitting 對 troll 類極端比例角色更友善，且 import mesh/joints 能保留核心 skeleton，方便做角色變體共用動畫。"},{"label":"導入測試","text":"仍要測極端比例的 deformation、corrective system、眼口與 cloth compatibility；官方也明確表示比例越極端結果越可能變動。"}]},
-{"id":"unity-asset-import-presets","title":"Unity 官方示範用 Preset 自動化 Texture／Model Import：把資產規範前移到 Import Gate","summary":"Unity 技術文章說明用 Preset Manager 統一 texture、video、3D model 等 import 設定，特別強調 mipmap、Max Size 與團隊共享 preset，避免錯誤資產設定進 Build。","quick_impact":"★★★★☆｜非常接近可直接落地的美術 Asset Validation／Import SOP。","source_url":"https://discussions.unity.com/t/optimize-and-automate-your-asset-import-configuration-settings/1717084","category":"engine-art","subcategory":"optimization","ranking_score":78,"rank_global":23,"homepage_tier":"category_only","full_analysis":[{"label":"引擎工作流","text":"把 Max Size、mipmap 等規則變成 import preset，可從『事後找超規資產』轉成『資產一進專案就套規範』，降低 memory 問題累積。"},{"label":"製作價值","text":"Preset 本身是可版控的 asset，可跨專案共享，適合做團隊 texture/model import baseline，而不是靠每位美術記住設定。"},{"label":"導入測試","text":"注意 Preset Manager 只影響新 import；既有資產要 reimport/reset，所以導入時應先跑 inventory，避免新舊資產規則不一致。"}]},
-{"id":"blender52-lts","title":"Blender 5.2 LTS：兩年支援，Geometry Nodes Physics、Remote Asset Libraries 與 Render/Automation 持續成熟","summary":"Blender 5.2 LTS 提供至 2028 的長期維護，包含 Geometry Nodes 音訊/物理、online asset libraries、Cycles texture cache、Thin Wall，以及 5.2.1 的多項穩定修正。","quick_impact":"★★★★☆｜對要把 Blender 納入正式 Pipeline 的團隊，LTS 比單純追最新版更值得關注。","source_url":"https://www.blender.org/download/releases/5-2/","category":"blender-dcc","subcategory":"blender","ranking_score":77,"rank_global":24,"homepage_tier":"category_only","full_analysis":[{"label":"DCC 工作流","text":"5.2 LTS 的價值在於兩年 bug-fix window，適合 production 固定版本；remote asset libraries 也讓共用資產庫更接近團隊化部署。"},{"label":"製作價值","text":"Geometry Nodes、Python API 與 background GPU 能力持續增強，對 procedural、batch、工具開發的價值高於單一 UI 功能。"},{"label":"導入測試","text":"升版仍需用既有 FBX/rig/UV/add-on 專案做 regression，尤其是 animation、linked asset、EEVEE/Cycles material 與第三方插件相容。"}]},
-{"id":"houdini22-character-rig","title":"Houdini 22 Character：APEX/KineFX 加強 Rig Template、Retarget、Motion Mixer 與 Full Body IK","summary":"H22 的角色系統加入 reusable rig templates、enhanced retargeting、rig inversion、Nested Clips、Full Body IK、Ragdoll 與 facial rig 改進。","quick_impact":"★★★★☆｜對 Rigging 5/5、Animation 5/5 的偏好非常對題。","source_url":"https://www.sidefx.com/products/whats-new-in-h22/characters/","category":"3d-animation","subcategory":"rigging","ranking_score":76,"rank_global":25,"homepage_tier":"category_only","full_analysis":[{"label":"動作製作流程","text":"Reusable rig templates 與 rig inversion 將 procedural rig 從單角色技術 demo 推向可複用 pipeline，能降低不同角色重建 control rig 的時間。"},{"label":"製作價值","text":"Motion Mixer Nested Clips 與 transition clips 支援 non-destructive animation layering，符合對 Animation Layer / nonlinear workflow 的高興趣。"},{"label":"導入測試","text":"實測要看 retarget 到不同 skeleton/比例時的 foot contact、curve editability、APEX debug 成本與 UE/Unity export，而不只看 Houdini 內播放。"}]},
-{"id":"houdini22-lookdev-unreal","title":"Houdini 22 Copernicus Lookdev：Baking、Procedural Texture 與 Unreal Session Sync 更接近即時材質 Pipeline","summary":"H22 Lookdev 讓 Copernicus 提供 production baking、grunge/fabric/bark procedural maps、2D/3D paint，並以 Session Sync 和 Unreal 維持 procedural texture 互動同步。","quick_impact":"★★★★☆｜AI/Procedural 之外，這是很實際的 DCC→Engine Material Workflow。","source_url":"https://www.sidefx.com/products/whats-new-in-h22/lookdev/","category":"blender-dcc","subcategory":"houdini","ranking_score":75,"rank_global":26,"homepage_tier":"category_only","full_analysis":[{"label":"DCC 工作流","text":"Bake Pre-Process/viewport debugging 把 seam、intersection、cage/ray 問題提前可視化，可減少 bake error 到 Painter/Engine 才被發現。"},{"label":"製作價值","text":"Copernicus procedural maps 與 Unreal Session Sync 讓材質調整可以在 DCC 與引擎之間更快迭代，適合大型場景和 procedural asset。"},{"label":"導入測試","text":"真正導入要測同步穩定性、texture resolution/cache、source-control 與最終 cook/export，確認 live workflow 不會變成只有作者機器可跑。"}]},
-{"id":"blender-mocap-retarget-grounding","title":"Blender Mocap Retarget Tool 聚焦 Hip／Limb 比例匹配，直接處理 Foot Sliding 與 Ground Contact","summary":"Pro Constantinou 的 Blender retarget 工具以先匹配 source/target hip placement 與 limb proportions 的方法，降低不同骨架比例造成的腳滑、彈跳與不接地。","quick_impact":"★★★★☆｜很符合 Retarget、Foot Lock 與 Cleanup 的實務需求。","source_url":"https://80.lv/articles/try-this-new-mocap-retargeting-tool-for-blender","category":"3d-animation","subcategory":"retarget","ranking_score":74,"rank_global":27,"homepage_tier":"category_only","full_analysis":[{"label":"動作製作流程","text":"核心觀念不是單純 scale 整副骨架，而是先對齊 hip，再處理 limb proportion，使 source motion 的相對關節位置更接近 target。"},{"label":"製作價值","text":"這能直接攻擊 retarget 最常見的 foot sliding/ground contact 問題，也比事後逐幀 cleanup 更可能節省 animator 時間。"},{"label":"導入測試","text":"應用同一段走跑/轉身 mocap 測不同身高比例角色，記錄 foot error、stretch/squash、deformation 與 cleanup 時間，才知道工具是否真的有收益。"}]},
-{"id":"arcane-vi-painterly-character","title":"Arcane Vi 角色 Breakdown：把 Lighting、SSS 與 Stylized Normal 部分畫進貼圖","summary":"Alexandre Mougenot 拆解從 production-ready face basemesh、QuadDraw、UV，到 Substance 手繪光影、Stylized normals 與 Marmoset realtime presentation 的角色流程。","quick_impact":"★★★★☆｜NPR/Toon、角色貼圖與可重用 Basemesh 三個方向都高度相關。","source_url":"https://80.lv/articles/creating-arcane-s-vi-based-on-2d-concept-with-zbrush-maya-substance-3d-marmoset","category":"3d-production","subcategory":"character-production","ranking_score":73,"rank_global":28,"homepage_tier":"category_only","full_analysis":[{"label":"製作流程","text":"作者用已經通過 facial animation 專案的 face basemesh 重用 topology/UV，把時間集中到 likeness 與 style，而不是每次從零 retopo。"},{"label":"製作價值","text":"BaseColor 中主動畫 light/shadow、SSS 感，再用 normal 控制實時光反應，是一種介於 Unlit 與完整 PBR 間的 stylized shading strategy。"},{"label":"導入測試","text":"要轉成遊戲 shader，應測動態主光角度變化時 baked lighting 是否穿幫，並拆清楚哪些資訊應留 BaseColor、Normal、Ramp 或真正 lighting。"}]},
-{"id":"lyoba-realtime-character","title":"Lyoba Real-time Character：MetaHuman Wrap、XGen Afro Groom 與 UE5 Micro-Wetness 的角色實戰","summary":"Lena Holmfridardottir 展示 ZBrush→MetaHuman Wrap→Marvelous→Maya retopo/XGen→Substance→UE5.6 的高品質 realtime character pipeline，並用 inverted curvature 驅動皮膚微濕感。","quick_impact":"★★★★☆｜完整角色＋Hair＋Shader＋Engine 整合，Production 可操作資訊很密。","source_url":"https://80.lv/articles/creating-a-mesmerizing-and-cinematic-real-time-character-using-zbrush-and-unreal-engine-5","category":"3d-production","subcategory":"character-production","ranking_score":72,"rank_global":29,"homepage_tier":"category_only","full_analysis":[{"label":"製作流程","text":"MetaHuman base wrap 讓自訂 sculpt 取得成熟 UV 與 facial rig compatibility，能把角色高模與動畫規格接在一起，而不是最後才重做 topology。"},{"label":"製作價值","text":"Afro groom 以 Clump、Coil、Noise 分層建立 silhouette→secondary breakup→flyaway，這種層級方法對任何 stylized/realistic groom 都可借鑑。"},{"label":"導入測試","text":"UE 端 inverted curvature 驅動 pore valley wetness 是很具體的 skin material trick；但要同時測不同光線、LOD/groom cost 與 MetaHuman layered eye clipping。"}]},
-{"id":"unity-rendergraph-viewer","title":"Unity Render Graph Viewer：用 Pass／Resource 關係直接檢查 URP 自訂 Renderer Feature 的成本","summary":"Unity 官方教學示範 Render Graph Viewer 如何查看 URP pass、texture/resource read-write 關係，協助找 redundant buffers、pass fragmentation 與 custom Renderer Feature 的效能影響。","quick_impact":"★★★★☆｜Shader/Rendering 與美術效能之間的可視化橋樑。","source_url":"https://discussions.unity.com/t/migrating-to-render-graph-tutorial-the-render-graph-viewer/1715694","category":"engine-art","subcategory":"rendering","ranking_score":71,"rank_global":30,"homepage_tier":"category_only","full_analysis":[{"label":"引擎工作流","text":"Render Graph Viewer 能把 SSAO、opaque、transparent 等 pass 對 resource 的 read/write 直接展開，比只看最終 profiler 數字更容易定位美術 feature 造成的額外 buffer。"},{"label":"製作價值","text":"對 URP Renderer Feature/自訂後處理特別有用：可以先看 pass 插入位置與資源生命週期，再決定 shader 或 feature 是否值得保留。"},{"label":"導入測試","text":"導入建議建立代表性 toon/character 場景，把 SSAO、outline、custom pass 逐一開關，對照 GPU profiler 與 Render Graph，形成可重複的 TA 檢查流程。"}]}
-],"visual_evidence":{}}
+{
+  "date": "2026-09-06",
+  "schema_version": 3,
+  "metadata": {
+    "total_items": 27,
+    "collection_mode": "production-intelligence-preference-v1",
+    "collection_contract_effective_date": "2026-09-04",
+    "preference_contract_effective_date": "2026-09-06",
+    "discovery_windows": [
+      "24h",
+      "7d",
+      "30d",
+      "6m",
+      "evergreen"
+    ],
+    "registry_identity_normalization": {
+      "dropped_count": 3,
+      "rewritten_count": 0,
+      "policy": "verified-DONE-published-source-without-substantive-delta-skip",
+      "stage": "collection-before-ready",
+      "refill_required": false,
+      "category_deficits": {},
+      "daily_release_gate": {
+        "have": 27,
+        "min": 20,
+        "target": 30,
+        "max": 30,
+        "missing_to_min": 0,
+        "missing_to_target": 3,
+        "release_ready": true,
+        "category_counts": {
+          "ai-generation": 4,
+          "3d-production": 5,
+          "3d-animation": 2,
+          "engine-art": 6,
+          "emerging-case": 2,
+          "blender-dcc": 8
+        }
+      }
+    }
+  },
+  "items": [
+    {
+      "id": "tripo-one-day-character-pipeline",
+      "title": "Tripo 展示一日完成遊戲角色：AI 3D 從拆件、Quad 到 UE 的完整 Pipeline",
+      "summary": "Tripo 公開一套從概念圖、部件拆分、P2.0 Quad 網格、8K 來源貼圖、DCC Bridge，到 Maya/Marmoset/Substance/Unreal 的完整角色製作案例，總面數控制在 30K triangles 以下。",
+      "quick_impact": "★★★★★｜非常接近可直接拿來做 AI 3D 角色 Production Test 的基準流程。",
+      "source_url": "https://www.tripo3d.ai/blog/game-industry-character-workflow",
+      "category": "ai-generation",
+      "subcategory": "ai-3d",
+      "ranking_score": 100,
+      "rank_global": 1,
+      "homepage_tier": "top5",
+      "full_analysis": [
+        {
+          "label": "生成流程",
+          "text": "流程把 AI 放在 blockout、高模、retopo 與 first-pass texture 的中段，最終組裝、UV、Bake、貼圖精修與 Rig 仍回到傳統 DCC，適合拿來評估 AI 真正能省掉多少機械工。"
+        },
+        {
+          "label": "製作價值",
+          "text": "案例明確給出部件式生成、Quad topology、分部件 polygon budget 與 30K 以下總預算；這比單看單一生成結果更接近遊戲角色驗收。"
+        },
+        {
+          "label": "導入測試",
+          "text": "來源也承認非流形、孔洞與 Rig 尚需人工處理，因此導入測試應記錄重試率、局部修網時間、UV/texture transfer 成本與最終 rig deformation。"
+        }
+      ]
+    },
+    {
+      "id": "meshy6-ultra-multiview",
+      "title": "Meshy 6 Ultra 擴大到 4 張輸入圖：多視圖結構忠實度與幾何清理再提升",
+      "summary": "Meshy 9 月 changelog 顯示 Meshy 6 Ultra 支援最多四張參考圖，並強化結構忠實度、geometry clean-up 與生成速度，直接對應多視圖角色與遊戲資產生成。",
+      "quick_impact": "★★★★★｜多視圖與 clean geometry 都是目前 AI 3D 最值得實測的核心能力。",
+      "source_url": "https://help.meshy.ai/en/articles/9991804-meshy-changelog",
+      "category": "ai-generation",
+      "subcategory": "ai-3d",
+      "ranking_score": 99,
+      "rank_global": 2,
+      "homepage_tier": "top5",
+      "full_analysis": [
+        {
+          "label": "生成流程",
+          "text": "最多四張輸入圖讓正、側、背資訊能同時參與生成，對角色四視圖與不對稱道具比單張 Image-to-3D 更有實際意義。"
+        },
+        {
+          "label": "製作價值",
+          "text": "應把重點放在高模輪廓、背面可靠度、薄片結構、配件分離與 clean-up 後是否仍保留設計，而不是只比較正面相似度。"
+        },
+        {
+          "label": "導入測試",
+          "text": "建議與 Tripo P2.0 用同一組四視圖跑 A/B Test，記錄生成時間、錯面、人工修模、retopo/UV 接續與最終低模可用性。"
+        }
+      ]
+    },
+    {
+      "id": "armorpaint-1-0",
+      "title": "ArmorPaint 1.0 正式脫離 Early Access：C 重寫、UV/雕刻、動畫預覽與本地 Neural Nodes",
+      "summary": "ArmorPaint 1.0 以 C 重寫核心，提升大資產與高解析圖層互動效能，並加入基礎雕刻、UV 編輯、skinned mesh timeline、AI upscale 與 photo-to-material 等功能。",
+      "quick_impact": "★★★★★｜有機會成為低成本遊戲貼圖工具鏈的實際替代方案。",
+      "source_url": "https://www.cgchannel.com/2026/09/armorpaint-1-0-is-out-after-eight-years-in-early-access/",
+      "category": "blender-dcc",
+      "subcategory": "other-dcc",
+      "ranking_score": 98,
+      "rank_global": 3,
+      "homepage_tier": "top5",
+      "full_analysis": [
+        {
+          "label": "DCC 工作流",
+          "text": "1.0 不只是版本號更新，而是底層重寫與 painting、UV、sculpt、animation preview、AI nodes 同時擴張，工作流覆蓋度明顯提高。"
+        },
+        {
+          "label": "製作價值",
+          "text": "對遊戲美術最值得測的是高解析多層專案的互動速度、PBR 輸出、Blender/Unity/UE Live Link，以及本地 AI 的 photo-to-material 品質。"
+        },
+        {
+          "label": "導入測試",
+          "text": "正式導入前仍要驗 Live Link 插件版本、PSD/Substance 互通需求、色彩管理與團隊共用材質規範，避免只因低價就替換成熟管線。"
+        }
+      ]
+    },
+    {
+      "id": "onimusha-re-engine-art-pipeline",
+      "title": "《鬼武者 Way of the Sword》公開 RE ENGINE 美術 Pipeline：模組場景、角色、光照到資料管理",
+      "summary": "Capcom 詳細拆解從歷史研究、whitebox/greybox、模組資產、角色 Sculpt/Texturing，到 RE ENGINE 內 layout、VFX、lighting 與 collision 的完整流程，Maya 作為最終 DCC 輸出中心。",
+      "quick_impact": "★★★★★｜完整度很高的 AAA 遊戲 Production Case，可直接對照團隊資產與引擎責任切分。",
+      "source_url": "https://80.lv/articles/how-capcom-built-onimushas-real-time-sword-combat-re-engine",
+      "category": "emerging-case",
+      "subcategory": "case-study",
+      "ranking_score": 97,
+      "rank_global": 4,
+      "homepage_tier": "top5",
+      "full_analysis": [
+        {
+          "label": "案例流程",
+          "text": "環境流程把 gameplay whitebox、技術可行性與 asset cost estimation 放在正式資產製作前，之後再拆成 modular assets 並回引擎做 lighting/VFX/collision polish。"
+        },
+        {
+          "label": "製作價值",
+          "text": "角色流程維持 Concept→Proxy→Sculpt→Texture→Secondary Motion；Maya 是角色與場景的最終 DCC deliverable，RE ENGINE 集中 VFX 與 lighting。"
+        },
+        {
+          "label": "導入判斷",
+          "text": "值得借鑑的是早期建立 lighting/visibility 品質標準與集中資料出口；可對照現有外包驗收、版本控管與 engine integration 是否也有清楚 ownership。"
+        }
+      ]
+    },
+    {
+      "id": "jolan-large-scale-environment-tools",
+      "title": "Jolan Huijskes 用 Blender＋UE5 工具化大型場景：把 Level Artist 控制權留在引擎",
+      "summary": "Environment Artist Jolan Huijskes 公開一套為大型可玩場景打造的 Blender/Unreal 工具，重點不是單一漂亮場景，而是用技術工具支援大尺度環境快速迭代。",
+      "quick_impact": "★★★★★｜高度符合場景 Production Tool／流程自動化需求。",
+      "source_url": "https://80.lv/articles/developing-tools-for-large-scale-3d-game-environments",
+      "category": "3d-production",
+      "subcategory": "environment-production",
+      "ranking_score": 96,
+      "rank_global": 5,
+      "homepage_tier": "top5",
+      "full_analysis": [
+        {
+          "label": "製作流程",
+          "text": "案例把大型環境拆成可重複使用的工具與 artist-facing controls，目標是讓 Level Artist 在不回 DCC 重做所有內容的情況下維持高可控性。"
+        },
+        {
+          "label": "製作價值",
+          "text": "這種做法比單次手工場景更有 production value：工具一旦穩定，可把分布、變體、尺度與迭代成本從資產數量中解耦。"
+        },
+        {
+          "label": "導入測試",
+          "text": "導入時應測工具輸出是否可預測、版本升級是否穩定、烘焙/LOD/collision 是否能接既有規範，以及非作者是否能維護。"
+        }
+      ]
+    },
+    {
+      "id": "tripo-p2-quad-preview",
+      "title": "Tripo P2.0 Preview：單圖／多視圖直接生成原生 Quad，最高 25K Quad",
+      "summary": "Tripo P2.0 Preview 將 Smart Mesh 推向原生四邊面拓樸，可從單圖或四視圖生成，Quad 上限 25K，並主打可編輯、可 Rig、可進遊戲 Production 的 edge flow。",
+      "quick_impact": "★★★★★｜目前 AI 3D 的關鍵不是更密，而是生成後能不能真的編輯與 Rig。",
+      "source_url": "https://www.tripo3d.ai/ko/blog/tripo-p2-0-preview",
+      "category": "ai-generation",
+      "subcategory": "ai-3d",
+      "ranking_score": 95,
+      "rank_global": 6,
+      "homepage_tier": "next10",
+      "full_analysis": [
+        {
+          "label": "生成流程",
+          "text": "P2.0 直接把 Quad topology 當生成輸出，而不是事後單純減面，理論上能降低 retopology 的中間工序。"
+        },
+        {
+          "label": "製作價值",
+          "text": "多視圖可同時使用正、左、右、背四個角度，對角色與硬表面背面結構的可信度比單圖更值得測。"
+        },
+        {
+          "label": "導入測試",
+          "text": "仍應用 deformation test 驗肩、肘、膝、嘴眼 loop，以及 hard-surface chamfer/孔洞；『看起來是 Quad』不等於動畫與 UV 真的可用。"
+        }
+      ]
+    },
+    {
+      "id": "maya-2027-production-tools",
+      "title": "Maya 2027 把 MotionMaker、ngSkinTools 式 Skin Tools、Smart Bevel 與 USD Asset Build 推進主流程",
+      "summary": "Maya 2027 聚焦 AI MotionMaker、整合式 layer-based skinning、Smart Bevel、USD Component/Variant workflows、Flow Studio 連接與 Arnold/Bifrost 更新。",
+      "quick_impact": "★★★★★｜Rig/Animation、Skinning 與 USD 資產流程都有直接 Production 影響。",
+      "source_url": "https://help.autodesk.com/cloudhelp/2027/ENU/Maya-WhatsNew/files/GUID-D24D261B-4A78-47C2-918B-6EA461ADB002.htm",
+      "category": "blender-dcc",
+      "subcategory": "maya",
+      "ranking_score": 94,
+      "rank_global": 7,
+      "homepage_tier": "next10",
+      "full_analysis": [
+        {
+          "label": "DCC 工作流",
+          "text": "MotionMaker 已延伸到 equine，並改善 path adherence 與編輯操作；對 procedural/AI motion 的價值在於能否保持可編輯曲線與既有 skeleton 工作方式。"
+        },
+        {
+          "label": "製作價值",
+          "text": "整合式 Skin Tools 採 layer-based skinning、mask、mirror，若團隊原本依賴 ngSkinTools 類插件，值得評估是否能減少外掛相依與版本風險。"
+        },
+        {
+          "label": "導入測試",
+          "text": "USD Component Creator/Variant Manager、Flow Studio 與 FBX user normals 等改動牽涉 pipeline，升版應用代表資產做 round-trip、skin file、USD variant 與 exporter regression。"
+        }
+      ]
+    },
+    {
+      "id": "ue58-production-art",
+      "title": "Unreal Engine 5.8：Mesh Terrain、PCG、LLM MCP 與更成熟的角色／世界製作",
+      "summary": "UE 5.8 強化 worldbuilding、terrain、vegetation、character/animation 與 iteration，並加入 Experimental MCP plugin、Sandboxes；Epic 同時提醒 Beta/Experimental 功能不可直接視為 production-ready。",
+      "quick_impact": "★★★★★｜對場景、TA 與美術工具鏈都有高密度改動。",
+      "source_url": "https://www.unrealengine.com/news/unreal-engine-5-8-is-now-available",
+      "category": "engine-art",
+      "subcategory": "unreal",
+      "ranking_score": 93,
+      "rank_global": 8,
+      "homepage_tier": "next10",
+      "full_analysis": [
+        {
+          "label": "引擎工作流",
+          "text": "Mesh Terrain、PCG 與 vegetation authoring 直接影響大型場景製作方式；統一 Gizmo 也改善 DCC artist 在引擎內操作的一致性。"
+        },
+        {
+          "label": "製作價值",
+          "text": "Experimental MCP 能讓 LLM 接觸 Blueprint、asset、level、material、mesh 等核心系統，適合做自動檢查、批次工具與 editor assistance 原型。"
+        },
+        {
+          "label": "導入測試",
+          "text": "導入要區分 Production Ready、Beta、Experimental；先在代表性場景測 shader compile、memory、landscape/PCG compatibility 與 source-control merge，再決定升版。"
+        }
+      ]
+    },
+    {
+      "id": "houdini22-production",
+      "title": "Houdini 22 正式進入 Production：Quad Remesh、Copernicus、Gaussian Splats 與世界製作一起升級",
+      "summary": "Houdini 22 把 Quad Remesh、production-ready Gaussian Splats、Copernicus baking/texturing、character tools、GPU Pyro、terrain/ocean 等多個流程推進 production。",
+      "quick_impact": "★★★★★｜Procedural 是本類最高偏好，H22 幾乎橫跨建模、角色、材質、VFX 與場景。",
+      "source_url": "https://www.sidefx.com/products/whats-new-in-h22/",
+      "category": "blender-dcc",
+      "subcategory": "houdini",
+      "ranking_score": 92,
+      "rank_global": 9,
+      "homepage_tier": "next10",
+      "full_analysis": [
+        {
+          "label": "DCC 工作流",
+          "text": "Quad Remesh 改善 hard-edge、CAD、symmetry 與 organic edge flow，對從程序高模或掃描結果轉遊戲資產尤其值得測。"
+        },
+        {
+          "label": "製作價值",
+          "text": "Copernicus 把 texture、bake、terrain/ocean 與 GPU workflow 拉進同一系統，能減少 SOP/COP/外部貼圖工具之間的資料搬運。"
+        },
+        {
+          "label": "導入測試",
+          "text": "H22 範圍很大，正式導入應拆成 modeling、character、lookdev、world-building 四組 benchmark，不宜一次整包升級後才找 regression。"
+        }
+      ]
+    },
+    {
+      "id": "milk-vfx-unreal-finishing",
+      "title": "Milk VFX 用 Unreal 從 Previs 一路做到 Finishing：100+ 環境與大量生物的跨部門 Pipeline",
+      "summary": "《Surviving Earth》案例顯示 Milk VFX 在 1,000+ shots、73 種 hero creature、100+ environments 規模下，使用 Unreal 做 previs、virtual art department、real-time environment 甚至 finishing。",
+      "quick_impact": "★★★★☆｜雖偏 VFX，但 Unreal 作為跨階段 production hub 的做法非常可借鑑。",
+      "source_url": "https://www.cgchannel.com/2026/09/discover-milk-vfxs-unreal-engine-pipeline-for-surviving-earth/",
+      "category": "emerging-case",
+      "subcategory": "case-study",
+      "ranking_score": 91,
+      "rank_global": 10,
+      "homepage_tier": "next10",
+      "full_analysis": [
+        {
+          "label": "案例流程",
+          "text": "Unreal 不只做 previs，而是讓部分環境從早期設計逐步演進到 final-shot quality，降低前期 prototype 與最終資產完全斷裂的成本。"
+        },
+        {
+          "label": "製作價值",
+          "text": "大量 creature/environment 也使用 USD 與變體管理思路，說明即時引擎要進大型 production，資產 identity/variant 管理和畫面本身同樣重要。"
+        },
+        {
+          "label": "導入判斷",
+          "text": "遊戲團隊可借鑑『單一即時場景貫穿多階段』，但要注意 VFX finishing 的 frame budget、版本管理與遊戲 runtime 限制並不相同。"
+        }
+      ]
+    },
+    {
+      "id": "animo10-maya-animation-toolkit",
+      "title": "Animo v10 把 500+ Maya Animation Tools 收進同一套工具箱",
+      "summary": "Animo v10 新增直接在 Maya 內加入影片/GIF/圖片 reference、六個 animation sliders 與 Tools Editor，可集中存取超過 500 個動畫工具並綁 hotkey/shelf。",
+      "quick_impact": "★★★★☆｜不是大模型新聞，但很可能直接節省 Animator 日常操作時間。",
+      "source_url": "https://80.lv/articles/over-500-free-maya-animation-tools-are-now-available-in-one-place",
+      "category": "3d-animation",
+      "subcategory": "animation",
+      "ranking_score": 90,
+      "rank_global": 11,
+      "homepage_tier": "next10",
+      "full_analysis": [
+        {
+          "label": "動作製作流程",
+          "text": "工具價值在於把零散 animator utilities 收斂成可搜尋、可 hotkey、可 shelf 的統一入口，降低重複操作與工具切換。"
+        },
+        {
+          "label": "製作價值",
+          "text": "reference media 直接進 Maya 對 blocking/polish 對照很實用；animation sliders 則值得看是否能穩定處理 pose、timing 或 curve 編輯。"
+        },
+        {
+          "label": "導入測試",
+          "text": "導入前先測 scene contamination、namespace/reference 相容、undo 穩定性與大型 rig 效能，再決定是否納入團隊標準 shelf。"
+        }
+      ]
+    },
+    {
+      "id": "uri-human-tree-character-workflow",
+      "title": "Uri 人樹角色 Breakdown：ZBrush＋Maya＋Substance 的輪廓、拓樸與材質取捨",
+      "summary": "Character Artist Andrea Buitrago 詳解把小說中的人樹角色轉成可讀性強的 3D 雕塑，從 silhouette、形體、材質到 Maya/ZBrush/Substance 的完整角色製作。",
+      "quick_impact": "★★★★☆｜高品質角色 Breakdown，重點是設計翻譯與可讀性，而不是純作品展示。",
+      "source_url": "https://80.lv/articles/book-character-to-a-3d-piece-sculpting-human-tree-character-in-zbrush-and-maya",
+      "category": "3d-production",
+      "subcategory": "character-production",
+      "ranking_score": 89,
+      "rank_global": 12,
+      "homepage_tier": "next10",
+      "full_analysis": [
+        {
+          "label": "製作流程",
+          "text": "角色由抽象敘事概念出發，製作重點先鎖定 silhouette 與脆弱、植物化的人體語言，再往表面細節推進，避免雕刻細節壓過設計。"
+        },
+        {
+          "label": "製作價值",
+          "text": "ZBrush/Maya/Substance 的分工提供一個可重現的角色 pipeline，適合作為 stylized/semi-realistic sculpt 與 texture 參考。"
+        },
+        {
+          "label": "導入測試",
+          "text": "實務上可觀察哪些 detail 真正需要 geometry、哪些交給 texture/material；這對高模時間、retopo 成本與最終展示讀性都有直接影響。"
+        }
+      ]
+    },
+    {
+      "id": "fluidninja-live2",
+      "title": "FluidNinja LIVE-2 重構 UE VFX：CPU Blueprint 邏輯大幅移向 GPU／Niagara Simulation Stages",
+      "summary": "FluidNinja Live 2 重新設計底層，把更多 Blueprint function 搬到 GPU，fluid simulation 改用 Niagara Simulation Stages，並新增 surface alignment、preset 與更多輸入來源。",
+      "quick_impact": "★★★★☆｜對 UE 大型即時 VFX 的效能與工具化很有 production value。",
+      "source_url": "https://www.cgchannel.com/2026/09/andras-ketzer-releases-fluidninja-live-2-for-unreal-engine/",
+      "category": "engine-art",
+      "subcategory": "tools",
+      "ranking_score": 87,
+      "rank_global": 13,
+      "homepage_tier": "next10",
+      "full_analysis": [
+        {
+          "label": "引擎工作流",
+          "text": "LIVE-2 是重構而非小更新，核心目標是降低 CPU 成本並把 simulation 更完整放進 Niagara GPU pipeline。"
+        },
+        {
+          "label": "製作價值",
+          "text": "新的 surface alignment、單一 preset、Mesh Distance Field/Chaos input 能降低大型水、煙、沙雪效果反覆配置的負擔。"
+        },
+        {
+          "label": "導入測試",
+          "text": "目前 Live 2 只支援 Windows，正式專案若含 console/mobile 必須把平台限制列為 gate，不能因 PC Demo 效能好就直接替換 Live 1。"
+        }
+      ]
+    },
+    {
+      "id": "shape-cage-ue5-wpo",
+      "title": "Shape Cage 用 WPO 做 UE5 Runtime Mesh Deformation：軟體感變形但不跑真正 Soft Body",
+      "summary": "Shape Cage 以 Material World Position Offset 在 GPU 端對 static mesh 做壓、彎、凹與 curtain 類變形，支援碰撞驅動、狀態同步與 Nanite。",
+      "quick_impact": "★★★★☆｜適合需要低成本局部變形、又不想導入 Skeletal/Soft Body 的遊戲表現。",
+      "source_url": "https://3dnchu.com/archives/shape-cage/",
+      "category": "engine-art",
+      "subcategory": "tools",
+      "ranking_score": 86,
+      "rank_global": 14,
+      "homepage_tier": "next10",
+      "full_analysis": [
+        {
+          "label": "引擎工作流",
+          "text": "工具把 Box/Sphere/Curtain cage 與 WPO 結合，讓 static mesh 在 runtime 有受力感，同時避開 CPU mesh deformation 與完整 soft-body solver。"
+        },
+        {
+          "label": "製作價值",
+          "text": "支援 network sync、join-in-progress state 與停止後自動停 Tick，表示它不只是視覺 Demo，而有考慮實際遊戲狀態管理。"
+        },
+        {
+          "label": "導入測試",
+          "text": "限制是 WPO 變形不等同碰撞幾何與真實物理；測試時要確認 shadow、Nanite、collision、LOD 與 multiplayer replication 是否符合需求。"
+        }
+      ]
+    },
+    {
+      "id": "tyflow21-vehicle-gaussian",
+      "title": "tyFlow 2.1：PhysX 車輛 Rig/Simulation＋Gaussian Splat 工作流進入 3ds Max",
+      "summary": "tyFlow 2.1 新增 PhysX vehicle operators/helpers/presets，可做 cars、trucks、tanks 等物理動畫，並接上 3ds Max 2027.2 Gaussian Splat 能力。",
+      "quick_impact": "★★★★☆｜對 3ds Max 動畫/VFX 與新型 3D 表示都有明確工具價值。",
+      "source_url": "https://www.cgchannel.com/2026/09/tyflow-2-1-adds-physx-powered-vehicle-rigging-and-simulation/",
+      "category": "blender-dcc",
+      "subcategory": "other-dcc",
+      "ranking_score": 85,
+      "rank_global": 15,
+      "homepage_tier": "next10",
+      "full_analysis": [
+        {
+          "label": "DCC 工作流",
+          "text": "車輛工具包含 suspension、tow physics、procedural skids，可從手工 rig 轉成 physics-assisted animation，適合大量背景車與事故場景。"
+        },
+        {
+          "label": "製作價值",
+          "text": "Gaussian Splat 能透過 Birth Flow/tyMesher import，並從 tyFlow/tyCache export，代表 splat 開始進傳統 DCC procedural pipeline。"
+        },
+        {
+          "label": "導入測試",
+          "text": "若用於遊戲內容，需測 cache/export 格式、sim determinism、與 engine 端最終表示；Free 版也缺多執行緒、GPU acceleration 與 cache export。"
+        }
+      ]
+    },
+    {
+      "id": "retopoly-3dsmax-modifier",
+      "title": "retoPoly：3ds Max 內直接在高模表面建立可非破壞編輯的 Retopo Modifier",
+      "summary": "retoPoly 提供 3ds Max 原生 modifier 式 retopology，可直接貼著高解析 surface 建新 topology，並保留 modifier stack 的非破壞調整方式。",
+      "quick_impact": "★★★★☆｜對仍以 3ds Max 為主的角色／道具流程，是很值得測的局部效率工具。",
+      "source_url": "https://3dnchu.com/archives/retopoly/",
+      "category": "3d-production",
+      "subcategory": "production-workflow",
+      "ranking_score": 84,
+      "rank_global": 16,
+      "homepage_tier": "category_only",
+      "full_analysis": [
+        {
+          "label": "製作流程",
+          "text": "把 retopo 放進 Modifier Stack 的最大價值是可回頭調整高模或 retopo 設定，而不是把結果變成一次性 mesh operation。"
+        },
+        {
+          "label": "製作價值",
+          "text": "對角色與硬表面應分開測 edge loop、surface snapping、symmetry、密度控制與複雜交界處，確認不是只適合簡單展示模型。"
+        },
+        {
+          "label": "導入測試",
+          "text": "如果能穩定保留 stack、快捷鍵與大模型互動效能，可能比 Max 內外來回 Blender/Topogun 更省資料交換成本。"
+        }
+      ]
+    },
+    {
+      "id": "overgrown-blender-production-logs",
+      "title": "Blender Studio 開放 OVERGROWN 製作日誌：Rig、毛髮、Shader、場景、Lighting、水與 Compositing 全流程",
+      "summary": "OVERGROWN 的多份 production logs 涵蓋 animation、rigging、fur、shading、set construction、lighting、water effects 與 final compositing，還包含 painterly shadows 教學。",
+      "quick_impact": "★★★★☆｜不是單一 Tip，而是一套可回溯的 Blender Production Case 資料庫。",
+      "source_url": "https://80.lv/articles/blender-studio-opens-overgrown-s-free-behind-the-scenes-archive",
+      "category": "blender-dcc",
+      "subcategory": "blender",
+      "ranking_score": 82,
+      "rank_global": 17,
+      "homepage_tier": "category_only",
+      "full_analysis": [
+        {
+          "label": "DCC 工作流",
+          "text": "六份 production logs 可以看到同一專案如何從 asset/rig/shading 一路走到 shot、lighting 與 compositing，比零散教學更能理解跨部門依賴。"
+        },
+        {
+          "label": "製作價值",
+          "text": "Painterly Shadows 與 handcrafted shading 對 NPR/stylized production 特別有參考價值，可拆出哪些效果應在 shader、lighting 或 comp 階段完成。"
+        },
+        {
+          "label": "導入測試",
+          "text": "因為內容源自動畫製作，轉到遊戲時要再檢查 runtime shader、hair/fur、water 與 comp technique 是否能以 realtime 等價方案實現。"
+        }
+      ]
+    },
+    {
+      "id": "tripo-image-gen-batch3d",
+      "title": "Tripo Image Gen 更新：角色／場景拆件、4K、Cutout 與 Batch-to-3D 串成資產量產前段",
+      "summary": "Tripo 把 Character Extraction、Asset Extraction、Variants、4K enhancement、Cutout 與最多 30 張 Batch to 3D 串成 2D→3D 的前處理流程。",
+      "quick_impact": "★★★★☆｜AI 2D 不只出圖，而是直接服務後續 3D 資產拆件與批量轉換。",
+      "source_url": "https://www.tripo3d.ai/blog/tripo-image-gen-update",
+      "category": "ai-generation",
+      "subcategory": "ai-2d",
+      "ranking_score": 81,
+      "rank_global": 18,
+      "homepage_tier": "category_only",
+      "full_analysis": [
+        {
+          "label": "生成流程",
+          "text": "Character Extraction 可把頭、軀幹、肢體與配件拆成獨立圖，再送 Batch-to-3D，這比完整角色單圖生成更接近可控分件 pipeline。"
+        },
+        {
+          "label": "製作價值",
+          "text": "場景 Asset Extraction 與 style-consistent variants 可用來建立同風格 prop set，最多 30 張 batch 對大量遊戲資產特別值得做成本測試。"
+        },
+        {
+          "label": "導入測試",
+          "text": "要實測的不是 2D 圖美不美，而是 Cutout 邊界、部件比例、3D 後組裝誤差、風格一致性與 batch failure rate。"
+        }
+      ]
+    },
+    {
+      "id": "substance-painter12-warp",
+      "title": "Substance 3D Painter 12：Warp to Geometry 讓 Decal／Trim 能貼著複雜曲面即時包覆",
+      "summary": "Painter 12 的 Warp to Geometry 以可編輯 projection grid 貼合 mesh curvature，可在孔洞、不平表面與複雜曲面上降低 decal 投射拉伸，並搭配 layer-stack flatten 等改進。",
+      "quick_impact": "★★★★☆｜屬於很具體、能直接省貼圖返工時間的功能。",
+      "source_url": "https://blog.adobe.com/en/publish/2026/03/09/more-control-less-friction-texturing-workflows-latest-substance-3d-innovations",
+      "category": "blender-dcc",
+      "subcategory": "substance",
+      "ranking_score": 80,
+      "rank_global": 19,
+      "homepage_tier": "category_only",
+      "full_analysis": [
+        {
+          "label": "DCC 工作流",
+          "text": "傳統 planar projection 遇到曲面與孔洞容易 stretch/fade，Warp to Geometry 把 grid 動態吸附表面，減少反覆切相機與手修 mask。"
+        },
+        {
+          "label": "製作價值",
+          "text": "對角色裝甲、硬表面 decal、縫線與 trim 都有直接價值，特別適合常需要把平面圖案套到複雜曲率的資產。"
+        },
+        {
+          "label": "導入測試",
+          "text": "導入測試可用同一套 decal 比較舊 projection 與 Warp 的操作時間、邊界失真、跨 UV seam 結果與後續可編輯性。"
+        }
+      ]
+    },
+    {
+      "id": "metahuman57-body-conforming",
+      "title": "MetaHuman 5.7 Body Conforming：FBX Round-trip、任意 Pose 與極端比例 Joint Fitting 大幅放寬",
+      "summary": "MetaHuman 5.7 以 UV-space vertex correspondence 解決外部 DCC FBX round-trip，並放寬 A/T Pose、高度限制，新增 volumetric joint fitting 與 mesh/joint import。",
+      "quick_impact": "★★★★☆｜對自製角色接 MetaHuman Rig 的實際障礙有直接改善。",
+      "source_url": "https://www.metahuman.com/news/metahuman-5-7-brings-major-improvements-to-body-conforming-with-more-to-come",
+      "category": "engine-art",
+      "subcategory": "tools",
+      "ranking_score": 79,
+      "rank_global": 20,
+      "homepage_tier": "category_only",
+      "full_analysis": [
+        {
+          "label": "引擎工作流",
+          "text": "UV mapping 可保留 vertex ID correspondence，讓 Blender、ZBrush 等不支援 DNA 的 DCC 也能 sculpt 後用 FBX 回 MetaHuman Creator。"
+        },
+        {
+          "label": "製作價值",
+          "text": "Volumetric joint fitting 對 troll 類極端比例角色更友善，且 import mesh/joints 能保留核心 skeleton，方便做角色變體共用動畫。"
+        },
+        {
+          "label": "導入測試",
+          "text": "仍要測極端比例的 deformation、corrective system、眼口與 cloth compatibility；官方也明確表示比例越極端結果越可能變動。"
+        }
+      ]
+    },
+    {
+      "id": "unity-asset-import-presets",
+      "title": "Unity 官方示範用 Preset 自動化 Texture／Model Import：把資產規範前移到 Import Gate",
+      "summary": "Unity 技術文章說明用 Preset Manager 統一 texture、video、3D model 等 import 設定，特別強調 mipmap、Max Size 與團隊共享 preset，避免錯誤資產設定進 Build。",
+      "quick_impact": "★★★★☆｜非常接近可直接落地的美術 Asset Validation／Import SOP。",
+      "source_url": "https://discussions.unity.com/t/optimize-and-automate-your-asset-import-configuration-settings/1717084",
+      "category": "engine-art",
+      "subcategory": "optimization",
+      "ranking_score": 78,
+      "rank_global": 21,
+      "homepage_tier": "category_only",
+      "full_analysis": [
+        {
+          "label": "引擎工作流",
+          "text": "把 Max Size、mipmap 等規則變成 import preset，可從『事後找超規資產』轉成『資產一進專案就套規範』，降低 memory 問題累積。"
+        },
+        {
+          "label": "製作價值",
+          "text": "Preset 本身是可版控的 asset，可跨專案共享，適合做團隊 texture/model import baseline，而不是靠每位美術記住設定。"
+        },
+        {
+          "label": "導入測試",
+          "text": "注意 Preset Manager 只影響新 import；既有資產要 reimport/reset，所以導入時應先跑 inventory，避免新舊資產規則不一致。"
+        }
+      ]
+    },
+    {
+      "id": "blender52-lts",
+      "title": "Blender 5.2 LTS：兩年支援，Geometry Nodes Physics、Remote Asset Libraries 與 Render/Automation 持續成熟",
+      "summary": "Blender 5.2 LTS 提供至 2028 的長期維護，包含 Geometry Nodes 音訊/物理、online asset libraries、Cycles texture cache、Thin Wall，以及 5.2.1 的多項穩定修正。",
+      "quick_impact": "★★★★☆｜對要把 Blender 納入正式 Pipeline 的團隊，LTS 比單純追最新版更值得關注。",
+      "source_url": "https://www.blender.org/download/releases/5-2/",
+      "category": "blender-dcc",
+      "subcategory": "blender",
+      "ranking_score": 77,
+      "rank_global": 22,
+      "homepage_tier": "category_only",
+      "full_analysis": [
+        {
+          "label": "DCC 工作流",
+          "text": "5.2 LTS 的價值在於兩年 bug-fix window，適合 production 固定版本；remote asset libraries 也讓共用資產庫更接近團隊化部署。"
+        },
+        {
+          "label": "製作價值",
+          "text": "Geometry Nodes、Python API 與 background GPU 能力持續增強，對 procedural、batch、工具開發的價值高於單一 UI 功能。"
+        },
+        {
+          "label": "導入測試",
+          "text": "升版仍需用既有 FBX/rig/UV/add-on 專案做 regression，尤其是 animation、linked asset、EEVEE/Cycles material 與第三方插件相容。"
+        }
+      ]
+    },
+    {
+      "id": "houdini22-character-rig",
+      "title": "Houdini 22 Character：APEX/KineFX 加強 Rig Template、Retarget、Motion Mixer 與 Full Body IK",
+      "summary": "H22 的角色系統加入 reusable rig templates、enhanced retargeting、rig inversion、Nested Clips、Full Body IK、Ragdoll 與 facial rig 改進。",
+      "quick_impact": "★★★★☆｜對 Rigging 5/5、Animation 5/5 的偏好非常對題。",
+      "source_url": "https://www.sidefx.com/products/whats-new-in-h22/characters/",
+      "category": "3d-animation",
+      "subcategory": "rigging",
+      "ranking_score": 76,
+      "rank_global": 23,
+      "homepage_tier": "category_only",
+      "full_analysis": [
+        {
+          "label": "動作製作流程",
+          "text": "Reusable rig templates 與 rig inversion 將 procedural rig 從單角色技術 demo 推向可複用 pipeline，能降低不同角色重建 control rig 的時間。"
+        },
+        {
+          "label": "製作價值",
+          "text": "Motion Mixer Nested Clips 與 transition clips 支援 non-destructive animation layering，符合對 Animation Layer / nonlinear workflow 的高興趣。"
+        },
+        {
+          "label": "導入測試",
+          "text": "實測要看 retarget 到不同 skeleton/比例時的 foot contact、curve editability、APEX debug 成本與 UE/Unity export，而不只看 Houdini 內播放。"
+        }
+      ]
+    },
+    {
+      "id": "houdini22-lookdev-unreal",
+      "title": "Houdini 22 Copernicus Lookdev：Baking、Procedural Texture 與 Unreal Session Sync 更接近即時材質 Pipeline",
+      "summary": "H22 Lookdev 讓 Copernicus 提供 production baking、grunge/fabric/bark procedural maps、2D/3D paint，並以 Session Sync 和 Unreal 維持 procedural texture 互動同步。",
+      "quick_impact": "★★★★☆｜AI/Procedural 之外，這是很實際的 DCC→Engine Material Workflow。",
+      "source_url": "https://www.sidefx.com/products/whats-new-in-h22/lookdev/",
+      "category": "blender-dcc",
+      "subcategory": "houdini",
+      "ranking_score": 75,
+      "rank_global": 24,
+      "homepage_tier": "category_only",
+      "full_analysis": [
+        {
+          "label": "DCC 工作流",
+          "text": "Bake Pre-Process/viewport debugging 把 seam、intersection、cage/ray 問題提前可視化，可減少 bake error 到 Painter/Engine 才被發現。"
+        },
+        {
+          "label": "製作價值",
+          "text": "Copernicus procedural maps 與 Unreal Session Sync 讓材質調整可以在 DCC 與引擎之間更快迭代，適合大型場景和 procedural asset。"
+        },
+        {
+          "label": "導入測試",
+          "text": "真正導入要測同步穩定性、texture resolution/cache、source-control 與最終 cook/export，確認 live workflow 不會變成只有作者機器可跑。"
+        }
+      ]
+    },
+    {
+      "id": "arcane-vi-painterly-character",
+      "title": "Arcane Vi 角色 Breakdown：把 Lighting、SSS 與 Stylized Normal 部分畫進貼圖",
+      "summary": "Alexandre Mougenot 拆解從 production-ready face basemesh、QuadDraw、UV，到 Substance 手繪光影、Stylized normals 與 Marmoset realtime presentation 的角色流程。",
+      "quick_impact": "★★★★☆｜NPR/Toon、角色貼圖與可重用 Basemesh 三個方向都高度相關。",
+      "source_url": "https://80.lv/articles/creating-arcane-s-vi-based-on-2d-concept-with-zbrush-maya-substance-3d-marmoset",
+      "category": "3d-production",
+      "subcategory": "character-production",
+      "ranking_score": 73,
+      "rank_global": 25,
+      "homepage_tier": "category_only",
+      "full_analysis": [
+        {
+          "label": "製作流程",
+          "text": "作者用已經通過 facial animation 專案的 face basemesh 重用 topology/UV，把時間集中到 likeness 與 style，而不是每次從零 retopo。"
+        },
+        {
+          "label": "製作價值",
+          "text": "BaseColor 中主動畫 light/shadow、SSS 感，再用 normal 控制實時光反應，是一種介於 Unlit 與完整 PBR 間的 stylized shading strategy。"
+        },
+        {
+          "label": "導入測試",
+          "text": "要轉成遊戲 shader，應測動態主光角度變化時 baked lighting 是否穿幫，並拆清楚哪些資訊應留 BaseColor、Normal、Ramp 或真正 lighting。"
+        }
+      ]
+    },
+    {
+      "id": "lyoba-realtime-character",
+      "title": "Lyoba Real-time Character：MetaHuman Wrap、XGen Afro Groom 與 UE5 Micro-Wetness 的角色實戰",
+      "summary": "Lena Holmfridardottir 展示 ZBrush→MetaHuman Wrap→Marvelous→Maya retopo/XGen→Substance→UE5.6 的高品質 realtime character pipeline，並用 inverted curvature 驅動皮膚微濕感。",
+      "quick_impact": "★★★★☆｜完整角色＋Hair＋Shader＋Engine 整合，Production 可操作資訊很密。",
+      "source_url": "https://80.lv/articles/creating-a-mesmerizing-and-cinematic-real-time-character-using-zbrush-and-unreal-engine-5",
+      "category": "3d-production",
+      "subcategory": "character-production",
+      "ranking_score": 72,
+      "rank_global": 26,
+      "homepage_tier": "category_only",
+      "full_analysis": [
+        {
+          "label": "製作流程",
+          "text": "MetaHuman base wrap 讓自訂 sculpt 取得成熟 UV 與 facial rig compatibility，能把角色高模與動畫規格接在一起，而不是最後才重做 topology。"
+        },
+        {
+          "label": "製作價值",
+          "text": "Afro groom 以 Clump、Coil、Noise 分層建立 silhouette→secondary breakup→flyaway，這種層級方法對任何 stylized/realistic groom 都可借鑑。"
+        },
+        {
+          "label": "導入測試",
+          "text": "UE 端 inverted curvature 驅動 pore valley wetness 是很具體的 skin material trick；但要同時測不同光線、LOD/groom cost 與 MetaHuman layered eye clipping。"
+        }
+      ]
+    },
+    {
+      "id": "unity-rendergraph-viewer",
+      "title": "Unity Render Graph Viewer：用 Pass／Resource 關係直接檢查 URP 自訂 Renderer Feature 的成本",
+      "summary": "Unity 官方教學示範 Render Graph Viewer 如何查看 URP pass、texture/resource read-write 關係，協助找 redundant buffers、pass fragmentation 與 custom Renderer Feature 的效能影響。",
+      "quick_impact": "★★★★☆｜Shader/Rendering 與美術效能之間的可視化橋樑。",
+      "source_url": "https://discussions.unity.com/t/migrating-to-render-graph-tutorial-the-render-graph-viewer/1715694",
+      "category": "engine-art",
+      "subcategory": "rendering",
+      "ranking_score": 71,
+      "rank_global": 27,
+      "homepage_tier": "category_only",
+      "full_analysis": [
+        {
+          "label": "引擎工作流",
+          "text": "Render Graph Viewer 能把 SSAO、opaque、transparent 等 pass 對 resource 的 read/write 直接展開，比只看最終 profiler 數字更容易定位美術 feature 造成的額外 buffer。"
+        },
+        {
+          "label": "製作價值",
+          "text": "對 URP Renderer Feature/自訂後處理特別有用：可以先看 pass 插入位置與資源生命週期，再決定 shader 或 feature 是否值得保留。"
+        },
+        {
+          "label": "導入測試",
+          "text": "導入建議建立代表性 toon/character 場景，把 SSAO、outline、custom pass 逐一開關，對照 GPU profiler 與 Render Graph，形成可重複的 TA 檢查流程。"
+        }
+      ]
+    }
+  ],
+  "visual_evidence": {}
+}
