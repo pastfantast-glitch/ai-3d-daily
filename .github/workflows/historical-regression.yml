@@ -19,9 +19,10 @@ jobs:
           python-version: '3.12'
       - name: Install locked pipeline dependencies
         run: pip install -r requirements-pipeline.txt
-      - name: Validate publishing topology and config wiring
-        run: python scripts/check_pipeline_contract.py
-      - name: Run config-driven collection contract dry run
-        run: python scripts/check_collection_contract.py
-      - name: Run historical archive regression matrix
+      - name: Validate publishing topology, collection and stability wiring
+        run: |
+          python scripts/check_pipeline_contract.py
+          python scripts/check_collection_contract.py
+          python scripts/check_stability_contract.py
+      - name: Run historical archive regression matrix with sentinels
         run: python scripts/check_historical_regression.py --days 4
