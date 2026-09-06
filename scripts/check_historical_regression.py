@@ -6,10 +6,14 @@ from pathlib import Path
 from bs4 import BeautifulSoup
 
 ROOT=Path(__file__).resolve().parents[1]
+STABILITY=ROOT/'config'/'stability-contract.json'
 DATE_RE=re.compile(r'^20\d{2}-\d{2}-\d{2}$'); errors=[]; rows=[]
 def fail(date,message): errors.append(f'{date}: {message}')
 def archive_dirs(root): return sorted(p for p in root.iterdir() if p.is_dir() and DATE_RE.fullmatch(p.name) and (p/'index.html').exists())
 def canonical_dates(): return sorted(p.stem for p in (ROOT/'data'/'daily').glob('20??-??-??.json'))
+def load_stability(): return json.loads(STABILITY.read_text('utf-8'))
+def sentinel_dates(): return list((load_stability().get('historical_regression') or {}).get('sentinel_dates') or [])
+def configured_recent_days(): return int((load_stability().get('historical_regression') or {}).get('recent_days',4))
 def is_done(date):
     path=ROOT/'data'/'publish'/f'{date}.done.json'
     if not path.exists(): return False
@@ -141,10 +145,19 @@ def main():
     cds=canonical_dates(); staging=cds[-1] if cds and not is_done(cds[-1]) else ''
     # An un-DONE latest date is a release seed, not an immutable historical snapshot yet.
     stable_dirs=[d for d in all_dirs if d.name!=staging]
-    selected=stable_dirs[-max(1,args.days):]
+    recent_days=max(1,args.days,configured_recent_days())
+    chosen={d.name:d for d in stable_dirs[-recent_days:]}
+    for sentinel in sentinel_dates():
+        match=next((d for d in stable_dirs if d.name==sentinel),None)
+        if match is None:
+            fail(sentinel,'configured sentinel archive missing')
+        else:
+            chosen[match.name]=match
+    selected=sorted(chosen.values(),key=lambda d:d.name)
     modes=list(selected)
     if staging and any(d.name==staging for d in all_dirs): modes.append(next(d for d in all_dirs if d.name==staging))
     print('Historical regression archives:',', '.join(d.name for d in modes))
+    print('Configured sentinel dates:',', '.join(sentinel_dates()))
     # Before a staging date is published, the committed last stable archive may still
     # have no next link, while the in-flight publish worktree may already point it at
     # staging. validate_archive_snapshot accepts only those two boundary states.
