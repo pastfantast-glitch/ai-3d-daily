@@ -79,7 +79,7 @@ def main() -> None:
         run('enrich_full_analysis_v3.py', date)
         run('normalize_release_seed.py', date)
         run('check_release_input.py', date)
-        run('check_registry_contract.py')
+        run('check_registry_contract.py', date)
     except SystemExit as exc:
         ready_path.unlink(missing_ok=True)
         code = int(exc.code) if isinstance(exc.code, int) else 1
