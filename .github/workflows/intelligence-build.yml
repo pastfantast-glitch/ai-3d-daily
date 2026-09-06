@@ -16,8 +16,6 @@ on:
         description: 'Optional known-good Publish commit SHA to restore derived publication surfaces'
         required: false
         type: string
-  issues:
-    types: [opened, reopened]
 
 permissions:
   contents: write
@@ -46,7 +44,6 @@ jobs:
           AFTER_SHA: ${{ github.sha }}
           REQUESTED_DATE: ${{ github.event.inputs.date }}
           RECOVERY_SHA: ${{ github.event.inputs.recovery_sha }}
-          ISSUE_TITLE: ${{ github.event.issue.title }}
         run: |
           set -euo pipefail
           extract_date() { printf '%s\n' "$1" | grep -oE '20[0-9]{2}-[0-9]{2}-[0-9]{2}' | head -1 || true; }
@@ -65,8 +62,6 @@ jobs:
             if [ -n "${RECOVERY_SHA:-}" ]; then mode="recovery"
             else mode="publish"; date="$(extract_date "${REQUESTED_DATE:-}")"
             fi
-          elif [ "${EVENT_NAME:-}" = "issues" ] && [[ "${ISSUE_TITLE:-}" == rerun-canonical:* ]]; then
-            mode="publish"; date="$(extract_date "$ISSUE_TITLE")"
           fi
           echo "mode=$mode" >> "$GITHUB_OUTPUT"
           echo "date=$date" >> "$GITHUB_OUTPUT"
@@ -135,8 +130,8 @@ jobs:
           echo "PRE-READY HANDOFF COMPLETE: repo script generated and pushed data/publish/$DATE.ready"
 
   publish:
-    needs: route
-    if: needs.route.outputs.mode == 'ready' || needs.route.outputs.mode == 'publish'
+    needs: [route, prepare]
+    if: always() && (needs.route.outputs.mode == 'ready' || needs.route.outputs.mode == 'publish' || (needs.route.outputs.mode == 'request' && needs.prepare.result == 'success'))
     runs-on: ubuntu-latest
     timeout-minutes: 45
     steps:
@@ -157,7 +152,6 @@ jobs:
         env:
           ROUTED_DATE: ${{ needs.route.outputs.date }}
           REQUESTED_DATE: ${{ github.event.inputs.date }}
-          ISSUE_TITLE: ${{ github.event.issue.title }}
           EVENT_NAME: ${{ github.event_name }}
           BEFORE_SHA: ${{ github.event.before }}
           AFTER_SHA: ${{ github.sha }}
@@ -165,8 +159,8 @@ jobs:
           set -euo pipefail
           extract_date() { printf '%s\n' "$1" | grep -oE '20[0-9]{2}-[0-9]{2}-[0-9]{2}' | head -1 || true; }
           candidate="$(extract_date "${ROUTED_DATE:-}")"; source="route"
-          if [ -z "$candidate" ] && [ -n "${REQUESTED_DATE:-}" ]; then candidate="$(extract_date "$REQUESTED_DATE")"; source="workflow_dispatch"
-          elif [ -z "$candidate" ] && [ "${EVENT_NAME:-}" = "issues" ] && [[ "${ISSUE_TITLE:-}" == rerun-canonical:* ]]; then candidate="$(extract_date "$ISSUE_TITLE")"; source="issue_title"
+          if [ -z "$candidate" ] && [ -n "${REQUESTED_DATE:-}" ]; then
+            candidate="$(extract_date "$REQUESTED_DATE")"; source="workflow_dispatch"
           fi
           if [ -z "$candidate" ]; then candidate="$(find data/daily -maxdepth 1 -name '20??-??-??.json' -printf '%f\n' | sed 's/.json$//' | sort | tail -1)"; source="latest_dataset"; fi
           if ! [[ "$candidate" =~ ^20[0-9]{2}-[0-9]{2}-[0-9]{2}$ ]]; then echo "Invalid canonical date resolved from $source: '$candidate'"; exit 1; fi
