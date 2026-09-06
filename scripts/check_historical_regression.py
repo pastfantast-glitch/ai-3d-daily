@@ -16,7 +16,7 @@ def is_done(date):
     try: return str(json.loads(path.read_text('utf-8')).get('state','')).upper()=='DONE'
     except Exception: return False
 
-def validate_archive_snapshot(d,all_dirs):
+def validate_archive_snapshot(d,all_dirs,staging=''):
     date=d.name; text=(d/'index.html').read_text('utf-8'); soup=BeautifulSoup(text,'html.parser'); body=soup.body
     if body is None: fail(date,'missing body'); rows.append((date,'snapshot','FAIL')); return
     if 'null' in text.lower(): fail(date,'literal null present')
@@ -32,7 +32,14 @@ def validate_archive_snapshot(d,all_dirs):
         if not {'noopener','noreferrer'}<=set(a.get('rel',[])): fail(date,'unsafe target=_blank link'); break
     idx=all_dirs.index(d); expected_prev=all_dirs[idx-1].name if idx else ''; expected_next=all_dirs[idx+1].name if idx+1<len(all_dirs) else ''
     if body.get('data-previous','')!=expected_prev: fail(date,f'previous mismatch: expected {expected_prev!r}')
-    if body.get('data-next','')!=expected_next: fail(date,f'next mismatch: expected {expected_next!r}')
+    actual_next=body.get('data-next','')
+    # During publish QA the renderer intentionally prepares the last stable archive
+    # to point at the un-DONE staging report before the atomic publish commit exists.
+    # The committed pre-publish snapshot may still have an empty next link. Accept
+    # either state only for that single boundary. Once DONE exists, staging is empty
+    # and the normal strict adjacency check is restored automatically.
+    staging_boundary_ok=bool(staging and not expected_next and actual_next in {'',staging})
+    if actual_next!=expected_next and not staging_boundary_ok: fail(date,f'next mismatch: expected {expected_next!r}')
     manifest=ROOT/'assets'/'visual'/date/'manifest.json'
     if manifest.exists():
         data=json.loads(manifest.read_text('utf-8'))
@@ -138,11 +145,11 @@ def main():
     modes=list(selected)
     if staging and any(d.name==staging for d in all_dirs): modes.append(next(d for d in all_dirs if d.name==staging))
     print('Historical regression archives:',', '.join(d.name for d in modes))
-    # Before a staging date is published, stable historical navigation must remain
-    # unchanged. After its DONE receipt exists, it joins all_dirs and the normal
-    # adjacency checks require the publisher-updated previous/next links.
+    # Before a staging date is published, the committed last stable archive may still
+    # have no next link, while the in-flight publish worktree may already point it at
+    # staging. validate_archive_snapshot accepts only those two boundary states.
     snapshot_universe=stable_dirs if staging else all_dirs
-    for d in selected: validate_archive_snapshot(d,snapshot_universe)
+    for d in selected: validate_archive_snapshot(d,snapshot_universe,staging=staging)
     for d in modes: canonical_rebuild_simulation(d.name)
     print('\nHISTORICAL REGRESSION MATRIX')
     for date,mode,status in rows: print(f'- {date:<10} | {mode:<17} | {status}')
