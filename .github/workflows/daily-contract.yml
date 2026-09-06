@@ -5,22 +5,38 @@ on:
     branches:
       - main
     paths:
+      - 'styles.css'
       - 'daily.css'
       - 'daily.js'
       - 'shared-components.css'
+      - 'home.css'
+      - 'home-content.css'
+      - 'home-components.css'
+      - 'category.css'
       - 'config/intelligence-v2.json'
+      - 'config/quick-impact-contract.json'
       - 'scripts/intelligence_v2.py'
       - 'scripts/check_collection_contract.py'
+      - 'scripts/check_quick_impact_contract.py'
       - 'scripts/prepare_release_candidate.py'
       - 'scripts/check_ready_contract.py'
       - 'scripts/normalize_registry_identity.py'
+      - 'scripts/enrich_full_analysis_v3.py'
+      - 'scripts/normalize_release_seed.py'
       - 'scripts/check_release_input.py'
       - 'scripts/check_registry_contract.py'
       - 'scripts/check_pipeline_contract.py'
       - 'scripts/check_daily_contract.py'
+      - 'scripts/check_home_contract.py'
       - 'scripts/render_daily_navigation.py'
+      - 'scripts/render_home_archive_links.py'
+      - 'scripts/normalize_archive_presentation.py'
       - 'scripts/render_information_architecture.py'
       - 'scripts/check_information_architecture.py'
+      - 'scripts/build_intelligence.py'
+      - 'scripts/extract_visual_assets.py'
+      - 'scripts/inject_visual_previews.py'
+      - 'scripts/apply_cache_bust.py'
       - 'scripts/check_historical_regression.py'
       - '.github/workflows/intelligence-build.yml'
       - '.github/workflows/daily-contract.yml'
@@ -44,5 +60,5 @@ jobs:
         run: |
           python scripts/check_pipeline_contract.py
           python scripts/check_collection_contract.py
-      - name: Rebuild latest report in isolation and validate daily presentation
+      - name: Rebuild latest stable reports in isolation and validate presentation
         run: python scripts/check_historical_regression.py --days 4
