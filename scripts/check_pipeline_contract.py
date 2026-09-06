@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Guard publishing topology, runtime integrity and V2 information architecture."""
 from pathlib import Path
-import re, sys, tempfile
+import json, re, sys, tempfile
 from bs4 import BeautifulSoup
 
 ROOT=Path(__file__).resolve().parents[1]; WF=ROOT/'.github'/'workflows'; MAIN=WF/'intelligence-build.yml'; LOCK=ROOT/'requirements-pipeline.txt'; errors=[]
@@ -19,7 +19,7 @@ else:
     required=[
         "- 'data/publish/*.request'", "- 'data/publish/*.ready'",
         'group: canonical-intelligence-publish','cancel-in-progress: false','pip install -r requirements-pipeline.txt',
-        'prepare_release_candidate.py','PRE-READY HANDOFF COMPLETE','check_ready_contract.py','check_release_input.py','check_registry_contract.py',
+        'prepare_release_candidate.py','PRE-READY HANDOFF COMPLETE','check_ready_contract.py','check_release_input.py','check_registry_contract.py','check_quick_impact_contract.py',
         'render_daily_navigation.py','render_home_archive_links.py','render_information_architecture.py','build_intelligence.py',
         'extract_visual_assets.py','inject_visual_previews.py','apply_cache_bust.py','check_intelligence_contract.py','check_visual_contract.py','check_home_contract.py',
         'check_daily_contract.py','check_information_architecture.py','check_historical_regression.py --days 4','verify_pages_publish.py','write_publish_receipt.py','restore_publish_snapshot.py',
@@ -30,29 +30,49 @@ else:
     if 'normalize_registry_identity.py' in publish_section: fail('registry normalization must happen before .ready, never inside canonical publish job')
     if "needs.route.outputs.mode == 'request'" not in main: fail('same canonical workflow must route .request to pre-ready preparation')
     if "needs.route.outputs.mode == 'ready'" not in main: fail('same canonical workflow must route generated .ready to publish')
+    if "needs: [route, prepare]" not in main or "needs.prepare.result == 'success'" not in main:
+        fail('request-mode prepare must continue into publish in the same workflow run; do not rely on GITHUB_TOKEN push retrigger')
     if 'git push origin HEAD:main' not in main: fail('canonical workflow must persist pre-ready/publish results through its sole writer path')
     if main.count('ref: main')<3: fail('route, canonical writer and recovery checkouts must refresh to latest main')
     if 'cancel-in-progress: true' in main: fail('canonical writer must never cancel an active prepare/publish')
     if "- 'data/publish/**'" in main: fail('receipt metadata must not retrigger canonical workflow')
     if "- 'data/daily/**'" in main: fail('canonical workflow must not trigger on data/daily/** before request/ready')
     if 'contents: write' not in main: fail('canonical publisher requires contents: write')
+    if re.search(r'^\s{2}issues:\s*$', main, re.M) or 'rerun-canonical:' in main:
+        fail('issue-based canonical publish trigger is forbidden; automated handoff must use .request/.ready only')
 
 # Collection-stage identity mutation and .ready creation must be a single fail-closed
 # pre-ready operation; the publisher only verifies the resulting canonical hash.
 for path in (
     ROOT/'scripts'/'prepare_release_candidate.py', ROOT/'scripts'/'check_ready_contract.py',
-    ROOT/'scripts'/'normalize_registry_identity.py'
+    ROOT/'scripts'/'normalize_registry_identity.py', ROOT/'scripts'/'check_quick_impact_contract.py',
+    ROOT/'config'/'quick-impact-contract.json'
 ):
     if not path.exists(): fail(f'pre-ready pipeline module missing: {path.relative_to(ROOT)}')
 if (ROOT/'scripts'/'prepare_release_candidate.py').exists():
     prep=(ROOT/'scripts'/'prepare_release_candidate.py').read_text('utf-8')
-    for token in ('normalize_registry_identity.py','enrich_full_analysis_v3.py','normalize_release_seed.py','check_release_input.py','check_registry_contract.py','canonical_sha256','registry_normalized_before_ready','preflight_passed_before_ready'):
+    for token in ('check_pipeline_contract.py','check_collection_contract.py','check_quick_impact_contract.py','normalize_registry_identity.py','enrich_full_analysis_v3.py','normalize_release_seed.py','check_release_input.py','check_registry_contract.py','canonical_sha256','registry_normalized_before_ready','preflight_passed_before_ready'):
         if token not in prep: fail(f'pre-ready preparation missing required stage/token: {token}')
     if "ready_path.write_text" not in prep: fail('pre-ready preparation must be the code path that writes .ready')
 if (ROOT/'scripts'/'check_ready_contract.py').exists():
     ready_check=(ROOT/'scripts'/'check_ready_contract.py').read_text('utf-8')
     for token in ('canonical_sha256','prepared_by','registry_normalized_before_ready','preflight_passed_before_ready','sha256_file'):
         if token not in ready_check: fail(f'ready contract missing required attestation/token: {token}')
+
+# Quick-impact canonical data is rating-only; presentation derives one compact
+# label from the canonical subtype. Every configured subtype must have a label.
+qcfg_path=ROOT/'config'/'quick-impact-contract.json'
+if qcfg_path.exists():
+    try:
+        qcfg=json.loads(qcfg_path.read_text('utf-8'))
+        required_q={
+            'format':'stars_only','presentation':'label_plus_rating','label_source':'subcategory','label_language':'zh-Hant'
+        }
+        for key,expected in required_q.items():
+            if qcfg.get(key)!=expected: fail(f'quick-impact contract {key} must be {expected!r}')
+        labels=qcfg.get('subtype_labels') or {}
+        if not isinstance(labels,dict) or not labels: fail('quick-impact subtype_labels must be a non-empty mapping')
+    except Exception as exc: fail(f'quick-impact contract unreadable/inconsistent: {exc}')
 
 # V2 contract values live in config. Python validates consistency rather than
 # repeating target/date/count literals that can drift during contract changes.
@@ -75,6 +95,13 @@ if (ROOT/'config'/'intelligence-v2.json').exists() and (ROOT/'scripts'/'intellig
         candidate_stretch=int(collection.get('candidate_pool_stretch_per_category',0) or 0)
         if candidate_target<soft_target: fail('V2 discovery candidate target must be >= category balancing target')
         if candidate_stretch<candidate_target: fail('V2 discovery candidate stretch must be >= candidate target')
+        if qcfg_path.exists():
+            qcfg=json.loads(qcfg_path.read_text('utf-8')); labels=qcfg.get('subtype_labels') or {}
+            configured_subtypes={sub for cat in categories for sub in (cat.get('subtypes') or [])}
+            missing=sorted(configured_subtypes-set(labels))
+            stale=sorted(set(labels)-configured_subtypes)
+            if missing: fail('quick-impact labels missing configured subtypes: '+', '.join(missing))
+            if stale: fail('quick-impact labels contain stale/unconfigured subtypes: '+', '.join(stale))
     except Exception as exc: fail(f'V2 config contract unreadable/inconsistent: {exc}')
 
 history_wf=WF/'historical-regression.yml'
@@ -124,6 +151,8 @@ else:
     if "(?:\\?v=[^\"\\']+)?" not in text: fail('cache bust must support unversioned and already-versioned refs')
     if 'cache bust verification failed' not in text: fail('cache bust must verify current token')
     if 'category.css' not in text: fail('cache bust must cover V2 category pages')
+    if 'quick-impact-label' not in text or 'subtype_labels' not in text:
+        fail('cache/presentation normalization must render subtype label beside quick-impact stars')
 
 for path in sorted(WF.glob('*.yml')):
     text=path.read_text('utf-8')
@@ -148,4 +177,4 @@ else:
     if "if(!id&&date==='2026-08-23')" not in text or 'LEGACY_20260823_RULES' not in text: fail('legacy identity fallback scope changed')
 if errors:
     print('PIPELINE CONTRACT FAILED'); print('\n'.join('- '+e for e in errors)); sys.exit(1)
-print('PIPELINE CONTRACT PASS: one canonical writer workflow + request-to-ready preflight handoff + registry normalization/hash attestation before publish + config-driven daily 20-30 release-gate IA + latest-main checkout + semantic visual compatibility + cache/category coverage + fail-closed QA')
+print('PIPELINE CONTRACT PASS: one canonical writer workflow + same-run request-to-ready-to-publish handoff + registry normalization/hash attestation before publish + config-driven daily release gate IA + quick-impact label contract + latest-main checkout + semantic visual compatibility + cache/category coverage + fail-closed QA')
