@@ -1,22 +1,24 @@
 #!/usr/bin/env python3
-"""Normalize a canonical daily dataset against published daily history.
+"""Normalize a canonical daily dataset against verified published history.
 
 This script is a COLLECTION-STAGE operation and must run before a .ready marker is
 created. It never edits derived HTML or presentation surfaces.
 
 Rules:
-- Published daily datasets are the source-of-truth registry.
+- Only daily datasets with data/publish/YYYY-MM-DD.done.json state=DONE belong to
+  the Published Intelligence Registry. Failed/WIP daily JSON must not reserve IDs
+  or source URLs.
 - Same normalized source URL without substantive delta => SKIP current item.
 - Same normalized source URL with status=UPDATE + non-empty delta => preserve the
   historical stable ID, never mint a new one.
 - Re-rank surviving canonical items.
-- After normalization, compute per-category deficits from the current repo config.
-  A deficit means discovery is NOT complete: collection must continue through the
-  configured fill ladder before .ready may be created.
+- After normalization, apply the current repo daily release gate. A deficit means
+  discovery is NOT complete: collection must continue through the configured fill
+  ladder before .ready may be created.
 
 Exit codes:
-- 0: registry-clean and category targets are satisfied.
-- 2: normalization succeeded but one or more categories require refill.
+- 0: registry-clean and current daily release gate is satisfied.
+- 2: normalization succeeded but discovery/refill is still required.
 - 1: usage/data error.
 """
 from collections import Counter
@@ -45,11 +47,22 @@ def selected_tier(rank, total, top5, next10):
     return 'category_only'
 
 
+def is_verified_published(date):
+    receipt_path = ROOT / 'data' / 'publish' / f'{date}.done.json'
+    if not receipt_path.exists():
+        return False
+    try:
+        receipt = json.loads(receipt_path.read_text('utf-8'))
+    except Exception:
+        return False
+    return str(receipt.get('state', '')).strip().upper() == 'DONE'
+
+
 def prior_registry(target_date):
     owners = {}
     ids = set()
     for p in sorted((ROOT / 'data' / 'daily').glob('20??-??-??.json')):
-        if p.stem >= target_date:
+        if p.stem >= target_date or not is_verified_published(p.stem):
             continue
         data = json.loads(p.read_text('utf-8'))
         for item in data.get('items', []):
@@ -69,7 +82,16 @@ def daily_gate(cfg, items):
     target = int(collection['daily_target_items'])
     maximum = int(collection['daily_max_items'])
     counts = Counter(str(item.get('category', '')).strip() for item in items)
-    return {'have':have,'min':minimum,'target':target,'max':maximum,'missing_to_min':max(0,minimum-have),'missing_to_target':max(0,target-have),'release_ready':minimum <= have <= maximum,'category_counts':{c['id']:counts.get(c['id'],0) for c in cfg['categories']}}
+    return {
+        'have': have,
+        'min': minimum,
+        'target': target,
+        'max': maximum,
+        'missing_to_min': max(0, minimum - have),
+        'missing_to_target': max(0, target - have),
+        'release_ready': minimum <= have <= maximum,
+        'category_counts': {c['id']: counts.get(c['id'], 0) for c in cfg['categories']},
+    }
 
 
 def main():
@@ -142,7 +164,7 @@ def main():
     meta['registry_identity_normalization'] = {
         'dropped_count': len(dropped),
         'rewritten_count': len(rewrites),
-        'policy': 'published-source-without-substantive-delta-skip',
+        'policy': 'verified-DONE-published-source-without-substantive-delta-skip',
         'stage': 'collection-before-ready',
         'refill_required': not gate['release_ready'],
         'category_deficits': {},
