@@ -11,11 +11,18 @@ on:
       - 'config/intelligence-v2.json'
       - 'scripts/intelligence_v2.py'
       - 'scripts/check_collection_contract.py'
+      - 'scripts/prepare_release_candidate.py'
+      - 'scripts/check_ready_contract.py'
+      - 'scripts/normalize_registry_identity.py'
+      - 'scripts/check_release_input.py'
+      - 'scripts/check_registry_contract.py'
+      - 'scripts/check_pipeline_contract.py'
       - 'scripts/check_daily_contract.py'
       - 'scripts/render_daily_navigation.py'
       - 'scripts/render_information_architecture.py'
       - 'scripts/check_information_architecture.py'
       - 'scripts/check_historical_regression.py'
+      - '.github/workflows/intelligence-build.yml'
       - '.github/workflows/daily-contract.yml'
   workflow_dispatch: {}
 
