@@ -11,12 +11,19 @@ def load(date):
     return json.loads((ROOT / 'data' / 'daily' / f'{date}.json').read_text('utf-8'))
 
 
-def analysis_html(soup, blocks, home=False):
+def analysis_html(soup, blocks, home=False, daily=False):
     details = soup.new_tag('details')
     if home:
         details['class'] = ['home-full-analysis']
+    elif daily:
+        details['class'] = ['daily-full-analysis']
     summary = soup.new_tag('summary'); summary.string = '完整分析'; details.append(summary)
-    body = soup.new_tag('div'); body['class'] = ['detail-body'] + (['home-analysis-body'] if home else [])
+    body_classes = ['detail-body']
+    if home:
+        body_classes.append('home-analysis-body')
+    elif daily:
+        body_classes.append('daily-analysis-body')
+    body = soup.new_tag('div'); body['class'] = body_classes
     for block in blocks:
         heading = soup.new_tag('h4'); heading.string = block['label']
         paragraph = soup.new_tag('p'); paragraph.string = block['text']
@@ -25,7 +32,7 @@ def analysis_html(soup, blocks, home=False):
     return details
 
 
-def render_target(path, records, home, selector):
+def render_target(path, records, home, selector, daily=False):
     if not path.exists(): return 0
     soup = BeautifulSoup(path.read_text('utf-8'), 'html.parser')
     rendered = 0
@@ -34,7 +41,7 @@ def render_target(path, records, home, selector):
         if not record: continue
         old = card.find('details')
         if not old: continue
-        old.replace_with(analysis_html(soup, record['full_analysis'], home)); rendered += 1
+        old.replace_with(analysis_html(soup, record['full_analysis'], home=home, daily=daily)); rendered += 1
     path.write_text(soup.prettify(), 'utf-8')
     print(f'{path.relative_to(ROOT)}: rendered {rendered} canonical analyses')
     return rendered
@@ -46,9 +53,13 @@ def main():
     records = {item['id']: item for item in data['items']}
     render_target(ROOT / 'index.html', records, True, '.top-item[data-intel-role="card"][data-intel-id], .more-card[data-intel-role="card"][data-intel-id]')
     # Historical daily contains TOP5 plus the selected day's supplemental items.
-    # Render both shells directly from canonical stable IDs; presentation classes
-    # may be normalized later, so do not depend on legacy category-news alone.
-    render_target(ROOT / date / 'index.html', records, False, '#top .news[data-intel-role="card"][data-intel-id], #more .daily-card-more[data-intel-role="card"][data-intel-id], .category-news[data-intel-role="card"][data-intel-id]')
+    # Render both shells directly from canonical stable IDs while preserving the
+    # daily presentation classes expected by daily.css and the contract checks.
+    render_target(
+        ROOT / date / 'index.html', records, False,
+        '#top .news[data-intel-role="card"][data-intel-id], #more .daily-card-more[data-intel-role="card"][data-intel-id], .category-news[data-intel-role="card"][data-intel-id]',
+        daily=True,
+    )
     if int(data.get('schema_version', 0)) >= 3:
         # V2 category pages live exactly one directory below the daily archive:
         # YYYY-MM-DD/<category>/index.html. Render canonical Full Analysis into
