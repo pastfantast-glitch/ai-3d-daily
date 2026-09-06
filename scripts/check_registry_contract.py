@@ -7,8 +7,8 @@ pre-ready/publish candidate may be supplied as YYYY-MM-DD and is validated again
 that DONE history without making failed/WIP dates reserve IDs or source URLs.
 
 Reusing a stable ID on a later published/candidate date means an UPDATE and requires
-a non-empty delta. Reusing the same source URL under a new ID is identity drift and
-fails publication.
+a non-empty delta. Reusing the same canonical source URL under a new ID is identity
+drift and fails publication.
 """
 from pathlib import Path
 import json
@@ -17,6 +17,11 @@ import sys
 from bs4 import BeautifulSoup
 
 ROOT = Path(__file__).resolve().parents[1]
+SCRIPTS = ROOT / 'scripts'
+if str(SCRIPTS) not in sys.path:
+    sys.path.insert(0, str(SCRIPTS))
+from url_identity import canonicalize_url
+
 DATE_RE = re.compile(r'^20\d{2}-\d{2}-\d{2}$')
 errors = []
 history = {}
@@ -24,7 +29,7 @@ source_owner = {}
 
 
 def norm_url(url):
-    return (url or '').strip().rstrip('/')
+    return canonicalize_url(url)
 
 
 def is_verified_published(date):
@@ -93,7 +98,7 @@ def main():
         print('\n'.join('- ' + e for e in errors))
         sys.exit(1)
     scope = f'DONE history + candidate {candidate}' if candidate else 'DONE history only'
-    print(f'PUBLISHED REGISTRY CONTRACT PASS: {len(history)} stable IDs / {len(source_owner)} sources / {scope}')
+    print(f'PUBLISHED REGISTRY CONTRACT PASS: {len(history)} stable IDs / {len(source_owner)} canonical sources / {scope}')
 
 
 if __name__ == '__main__':
