@@ -15,8 +15,11 @@ on:
       - 'category.css'
       - 'config/intelligence-v2.json'
       - 'config/quick-impact-contract.json'
+      - 'config/stability-contract.json'
       - 'scripts/intelligence_v2.py'
+      - 'scripts/url_identity.py'
       - 'scripts/check_collection_contract.py'
+      - 'scripts/check_stability_contract.py'
       - 'scripts/check_quick_impact_contract.py'
       - 'scripts/prepare_release_candidate.py'
       - 'scripts/check_ready_contract.py'
@@ -38,8 +41,10 @@ on:
       - 'scripts/inject_visual_previews.py'
       - 'scripts/apply_cache_bust.py'
       - 'scripts/check_historical_regression.py'
+      - 'scripts/verify_pages_publish.py'
       - '.github/workflows/intelligence-build.yml'
       - '.github/workflows/daily-contract.yml'
+      - '.github/workflows/historical-regression.yml'
   workflow_dispatch: {}
 
 permissions:
@@ -56,9 +61,10 @@ jobs:
           python-version: '3.12'
       - name: Install locked pipeline dependencies
         run: pip install -r requirements-pipeline.txt
-      - name: Validate source topology and collection contract
+      - name: Validate source topology, collection and stability contracts
         run: |
           python scripts/check_pipeline_contract.py
           python scripts/check_collection_contract.py
-      - name: Rebuild latest stable reports in isolation and validate presentation
+          python scripts/check_stability_contract.py
+      - name: Rebuild stable sentinels and latest reports in isolation
         run: python scripts/check_historical_regression.py --days 4
