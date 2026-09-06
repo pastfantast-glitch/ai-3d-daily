@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "historical_regression": {
+    "recent_days": 4,
+    "sentinel_dates": [
+      "2026-08-23",
+      "2026-09-01"
+    ]
+  },
+  "pages_verify": {
+    "minimum_attempts": 12,
+    "minimum_delay_seconds": 15,
+    "timeout_seconds": 20
+  },
+  "branch_protection": {
+    "desired": true,
+    "enforcement": "external_admin_setting",
+    "note": "Repository code cannot enforce GitHub main-branch rulesets; configure this through GitHub administration when available."
+  }
+}
