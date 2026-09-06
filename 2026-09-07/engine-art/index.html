@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   遊戲引擎｜2026-09-07｜AI 3D Daily
+  </title>
+  <link href="../../styles.css?v=20260907-r1-workspace-v6" rel="stylesheet"/>
+  <link href="../../shared-components.css?v=20260907-r1-workspace-v6" rel="stylesheet"/>
+  <link href="../../category.css?v=20260907-r1-workspace-v6" rel="stylesheet"/>
+ </head>
+ <body class="category-page" data-category="engine-art" data-report-date="2026-09-07">
+  <nav aria-label="Production Intelligence 分類" class="global-category-nav">
+   <div class="page global-category-nav-inner">
+    <div class="archive-nav-controls">
+     <a class="archive-nav-home" href="../../">
+      ← 首頁
+     </a>
+     <div class="archive-nav-date">
+      <a aria-label="前一日日報" class="archive-nav-arrow" href="../../2026-09-06/engine-art/">
+       ←
+      </a>
+      <span>
+       2026-09-07
+      </span>
+     </div>
+    </div>
+    <span aria-hidden="true" class="archive-nav-divider">
+    </span>
+    <a class="global-category-link" href="../#top">
+     TOP5
+    </a>
+    <a class="global-category-link" data-category="ai-generation" href="../ai-generation/">
+     AI 生成
+    </a>
+    <a class="global-category-link" data-category="3d-production" href="../3d-production/">
+     3D 製作
+    </a>
+    <a class="global-category-link" data-category="3d-animation" href="../3d-animation/">
+     3D 動作
+    </a>
+    <a class="global-category-link is-active" data-category="engine-art" href="../engine-art/">
+     遊戲引擎
+    </a>
+    <a class="global-category-link" data-category="emerging-case" href="../emerging-case/">
+     新技術 / Case
+    </a>
+    <a class="global-category-link" data-category="blender-dcc" href="../blender-dcc/">
+     Blender / DCC
+    </a>
+   </div>
+  </nav>
+  <main class="page category-main">
+   <article class="category-card" data-intel-id="orbitals-retro-anime-rendering" data-intel-role="card">
+    <div class="category-meta">
+     #01 · shader
+    </div>
+    <h2>
+     《Orbitals》拆解 UE5 復古動畫渲染：Cel／背景分離、Bloom Mask 與底片後製
+    </h2>
+    <p class="summary">
+     Shapefarm 公開如何在 UE5 內改造預設渲染管線，將 cel character、painted environment 與 film effects 分層處理，並透過 Material Editor 維持美術可迭代性。
+    </p>
+    <figure class="case-preview" data-intel-id="orbitals-retro-anime-rendering" data-intel-role="visual" data-visual-id="orbitals-retro-anime-rendering">
+     <a href="https://www.unrealengine.com/tech-blog/stepping-inside-a-retro-anime-inspired-game-a-look-into-the-rendering-of-orbitals" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-07/orbitals-retro-anime-rendering.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">Shader</b> ★★★★★</span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       技術重點
+      </h4>
+      <p>
+       Cel character、背景與 film effects 分層，並以自訂 render buffer／post-process 模擬 80–90 年代動畫的類比限制。
+      </p>
+      <h4>
+       Production 價值
+      </h4>
+      <p>
+       核心不是單一 toon shader，而是讓 art team 在 Material Editor 內持續調整，同時把背景與角色的 shading responsibility 分開。
+      </p>
+      <h4>
+       導入測試
+      </h4>
+      <p>
+       用同角色／同場景測 cel、painted environment、masked bloom、grain/halation 四層，記錄 render cost 與美術修改回合數。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://www.unrealengine.com/tech-blog/stepping-inside-a-retro-anime-inspired-game-a-look-into-the-rendering-of-orbitals" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="city-sample-ue58-pcg-mcp" data-intel-role="card">
+    <div class="category-meta">
+     #02 · tools
+    </div>
+    <h2>
+     UE 5.8 City Sample 重建：PCG＋Unreal MCP 把大型城市程序化留在引擎內
+    </h2>
+    <p class="summary">
+     新版 City Sample 以 UE5.8 PCG、World Partition、Nanite Foliage、Megaplants 與 Unreal MCP 重建兩個新城市關卡，示範大型世界在引擎內維持可編輯程序化流程。
+    </p>
+    <figure class="case-preview" data-intel-id="city-sample-ue58-pcg-mcp" data-intel-role="visual" data-visual-id="city-sample-ue58-pcg-mcp">
+     <a href="https://www.unrealengine.com/learning/city-sample-gets-a-major-update-with-pcg-and-unreal-mcp-workflows" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-07/city-sample-ue58-pcg-mcp.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">引擎工具</b> ★★★★★</span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       技術重點
+      </h4>
+      <p>
+       新版城市不再依賴外部 Houdini 建構，PCG graphs、shape grammar、World Partition 與植被都留在 Unreal 內。
+      </p>
+      <h4>
+       Production 價值
+      </h4>
+      <p>
+       大型世界的關鍵是生成後仍可編輯；MCP/LLM 被放在操作 PCG 的輔助層，而不是不可回溯的黑盒生成。
+      </p>
+      <h4>
+       導入測試
+      </h4>
+      <p>
+       以一個街區測道路、建築、植被三種 PCG graph，記錄 artist override、重生成穩定性與 World Partition 串接。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://www.unrealengine.com/learning/city-sample-gets-a-major-update-with-pcg-and-unreal-mcp-workflows" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="epic-learning-aug-ue58" data-intel-role="card">
+    <div class="category-meta">
+     #06 · unreal
+    </div>
+    <h2>
+     Epic 8 月 UE5.8 教學包：Mesh Terrain、Networked Physics、Material 與優化工作流
+    </h2>
+    <p class="summary">
+     Epic 集中發布 UE5.8 的 Mesh Terrain、Networked Physics、Accumulation DOF、Material 與 project optimization 教學，適合建立引擎美術新功能的測試清單。
+    </p>
+    <figure class="case-preview" data-intel-id="epic-learning-aug-ue58" data-intel-role="visual" data-visual-id="epic-learning-aug-ue58">
+     <a href="https://www.unrealengine.com/learning/augusts-epic-learning-content-networked-physics-dynamic-audio-and-more" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-07/epic-learning-aug-ue58.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">Unreal</b> ★★★★☆</span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       技術重點
+      </h4>
+      <p>
+       內容涵蓋 Mesh Terrain、Material、project optimization 與高品質 DOF，能直接對應場景與 rendering 測試。
+      </p>
+      <h4>
+       Production 價值
+      </h4>
+      <p>
+       適合把 5.8 新功能從『知道有』轉成可重複 benchmark，尤其是 Mesh Terrain 與材質流程。
+      </p>
+      <h4>
+       導入測試
+      </h4>
+      <p>
+       建立一個固定測試 map，逐項記錄 terrain editing、draw cost、材質編譯、cinematic DOF 與版本相容。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://www.unrealengine.com/learning/augusts-epic-learning-content-networked-physics-dynamic-audio-and-more" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <nav aria-label="相鄰分類" class="category-bottom-nav">
+    <a href="../3d-animation/">
+     ← 3D 動作
+    </a>
+    <a href="../#top">
+     TOP5
+    </a>
+    <a href="../emerging-case/">
+     新技術 / Case →
+    </a>
+   </nav>
+  </main>
+  <script defer="" src="../../archive-nav-state.js?v=20260907-r1-workspace-v6">
+  </script>
+ </body>
+</html>

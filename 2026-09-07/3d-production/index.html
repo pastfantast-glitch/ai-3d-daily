@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   3D 製作｜2026-09-07｜AI 3D Daily
+  </title>
+  <link href="../../styles.css?v=20260907-r1-workspace-v6" rel="stylesheet"/>
+  <link href="../../shared-components.css?v=20260907-r1-workspace-v6" rel="stylesheet"/>
+  <link href="../../category.css?v=20260907-r1-workspace-v6" rel="stylesheet"/>
+ </head>
+ <body class="category-page" data-category="3d-production" data-report-date="2026-09-07">
+  <nav aria-label="Production Intelligence 分類" class="global-category-nav">
+   <div class="page global-category-nav-inner">
+    <div class="archive-nav-controls">
+     <a class="archive-nav-home" href="../../">
+      ← 首頁
+     </a>
+     <div class="archive-nav-date">
+      <a aria-label="前一日日報" class="archive-nav-arrow" href="../../2026-09-06/3d-production/">
+       ←
+      </a>
+      <span>
+       2026-09-07
+      </span>
+     </div>
+    </div>
+    <span aria-hidden="true" class="archive-nav-divider">
+    </span>
+    <a class="global-category-link" href="../#top">
+     TOP5
+    </a>
+    <a class="global-category-link" data-category="ai-generation" href="../ai-generation/">
+     AI 生成
+    </a>
+    <a class="global-category-link is-active" data-category="3d-production" href="../3d-production/">
+     3D 製作
+    </a>
+    <a class="global-category-link" data-category="3d-animation" href="../3d-animation/">
+     3D 動作
+    </a>
+    <a class="global-category-link" data-category="engine-art" href="../engine-art/">
+     遊戲引擎
+    </a>
+    <a class="global-category-link" data-category="emerging-case" href="../emerging-case/">
+     新技術 / Case
+    </a>
+    <a class="global-category-link" data-category="blender-dcc" href="../blender-dcc/">
+     Blender / DCC
+    </a>
+   </div>
+  </nav>
+  <main class="page category-main">
+   <article class="category-card" data-intel-id="polyquilt-1468" data-intel-role="card">
+    <div class="category-meta">
+     #12 · production-workflow
+    </div>
+    <h2>
+     PolyQuilt 1.46.8 修正 Blender 5.2 Retopo 相容性與 Merge-on-Move
+    </h2>
+    <p class="summary">
+     PolyQuilt 的 1.46.8 更新修正 move merge 問題並針對 Blender 5.1/5.2 維護相容性，適合作為免費手動 retopology 工具的近期測試點。
+    </p>
+    <figure class="case-preview" data-intel-id="polyquilt-1468" data-intel-role="visual" data-visual-id="polyquilt-1468">
+     <a href="https://extensions.blender.org/add-ons/polyquilt-fork/" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-07/polyquilt-1468.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">製作流程</b> ★★★★☆</span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       製作流程
+      </h4>
+      <p>
+       PolyQuilt 提供直接貼著高模的 quad retopo 操作，近期更新重點是 Blender 5.2 相容與 merge 行為。
+      </p>
+      <h4>
+       Production 價值
+      </h4>
+      <p>
+       免費 retopo 工具若能穩定支援 5.2，可降低角色／道具手工 retopo 的工具切換成本。
+      </p>
+      <h4>
+       導入測試
+      </h4>
+      <p>
+       用頭部與 hard-surface 各測 20 分鐘，檢查 snap、merge、symmetry、edge flow 與高密度 viewport 穩定。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://extensions.blender.org/add-ons/polyquilt-fork/" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="edit-poly-modifier-102" data-intel-role="card">
+    <div class="category-meta">
+     #15 · prop-production
+    </div>
+    <h2>
+     Edit Poly Modifier 1.0.2：把局部 Mesh Edit 放進 Blender 非破壞 Modifier Stack
+    </h2>
+    <p class="summary">
+     Edit Poly Modifier 讓人工頂點編輯可存在 Bevel 與 Subdivision 中間並即時同步 upstream 變化，對 hard-surface 與迭代型 modeling workflow 很接近 3ds Max Edit Poly 思路。
+    </p>
+    <figure class="case-preview" data-intel-id="edit-poly-modifier-102" data-intel-role="visual" data-visual-id="edit-poly-modifier-102">
+     <a href="https://extensions.blender.org/add-ons/edit-mesh-modifier/" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-07/edit-poly-modifier-102.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">物件製作</b> ★★★★☆</span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       製作流程
+      </h4>
+      <p>
+       局部 mesh edit 可放在 modifier stack 中間，承接 upstream deformation 並繼續餵給 downstream subdiv。
+      </p>
+      <h4>
+       Production 價值
+      </h4>
+      <p>
+       對熟悉 3ds Max Edit Poly stack 的模型師很有吸引力，可降低為了局部修形而 apply modifier 的破壞性操作。
+      </p>
+      <h4>
+       導入測試
+      </h4>
+      <p>
+       用 Bevel→Edit Poly→Subdivision 的 hard-surface asset 測 upstream sync、fork/rebuild 與 dense mesh edit 延遲。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://extensions.blender.org/add-ons/edit-mesh-modifier/" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="gamiflow-1100" data-intel-role="card">
+    <div class="category-meta">
+     #17 · production-workflow
+    </div>
+    <h2>
+     GamiFlow 1.10：Blender 遊戲資產 UV／Bake／Export Pipeline 增加 GN Set 與 Bone Parenting
+    </h2>
+    <p class="summary">
+     GamiFlow 針對 game asset workflow 提供 unwrap、UDIM、bake cage、set generation、export anchor；1.10 加入 GN set inputs、bone parenting 與 Blender 5.2 修正。
+    </p>
+    <figure class="case-preview" data-intel-id="gamiflow-1100" data-intel-role="visual" data-visual-id="gamiflow-1100">
+     <a href="https://extensions.blender.org/add-ons/gamiflow/" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-07/gamiflow-1100.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">製作流程</b> ★★★★☆</span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       製作流程
+      </h4>
+      <p>
+       把 sculpt/decals、unwrap/UDIM、bake cage、asset set 與 export anchor 串成 Blender 內 game asset pipeline。
+      </p>
+      <h4>
+       Production 價值
+      </h4>
+      <p>
+       適合有大量重複資產輸出的團隊，把 UV 命名、bake position 與 export center 這些易錯步驟標準化。
+      </p>
+      <h4>
+       導入測試
+      </h4>
+      <p>
+       選一組 modular props 做 high→low→UV→bake→FBX/glTF，記錄自動步驟與人工 override 是否符合現有規範。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://extensions.blender.org/add-ons/gamiflow/" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="remi-blender-retopo" data-intel-role="card">
+    <div class="category-meta">
+     #18 · production-workflow
+    </div>
+    <h2>
+     Remi：Blender 內整合 Mesh Repair、Simplify、Instant Meshes Retopo 與 Rebake
+    </h2>
+    <p class="summary">
+     Remi 將破面修補、voxel/volume rebuild、decimation、native Instant Meshes guided quad retopo 與 bake 串在 Blender 內，特別適合 AI/scanned dense mesh cleanup。
+    </p>
+    <figure class="case-preview" data-intel-id="remi-blender-retopo" data-intel-role="visual" data-visual-id="remi-blender-retopo">
+     <a href="https://github.com/shaderko/remi-blender-addon" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-07/remi-blender-retopo.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">製作流程</b> ★★★★☆</span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       製作流程
+      </h4>
+      <p>
+       同一外掛可做 repair、remesh、decimate、guided quad retopo 與 bake，且 source mesh 保留不被破壞。
+      </p>
+      <h4>
+       Production 價值
+      </h4>
+      <p>
+       對 AI 3D／scan 常見的孔洞、碎片、超高密度 mesh，可把多工具 cleanup 串回 Blender。
+      </p>
+      <h4>
+       導入測試
+      </h4>
+      <p>
+       拿三種壞 mesh 測 closing、voxel、Instant Meshes guide、UV validation 與 rebake，記錄失敗模式與修正時間。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://github.com/shaderko/remi-blender-addon" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="pivot-tools-1491" data-intel-role="card">
+    <div class="category-meta">
+     #21 · prop-production
+    </div>
+    <h2>
+     Pivot Tools 1.49.1：Blender Pivot Workflow 擴充 Curve 與混合選取
+    </h2>
+    <p class="summary">
+     Pivot Tools 讓 artist 可快速 pick、儲存與批次套用 pivot，1.49.1 加入 Curve 與 mixed Mesh/Curve 支援，對 modular asset、weapon/prop 對位與 export anchor 有實際效率收益。
+    </p>
+    <figure class="case-preview" data-intel-id="pivot-tools-1491" data-intel-role="visual" data-visual-id="pivot-tools-1491">
+     <a href="https://extensions.blender.org/add-ons/pivottools/" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-07/pivot-tools-1491.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">物件製作</b> ★★★☆☆</span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       製作流程
+      </h4>
+      <p>
+       支援 geometry pick、bounding box target、saved pivot 與多物件套用，且不必破壞 object transform。
+      </p>
+      <h4>
+       Production 價值
+      </h4>
+      <p>
+       Pivot 是 modular asset、武器握點、門件、VFX socket 與 engine placement 的高頻錯誤來源，標準化很有價值。
+      </p>
+      <h4>
+       導入測試
+      </h4>
+      <p>
+       用一組 modular props 測 bottom/center/custom pivot、mixed curve/mesh、Apply Transform 與 Unity/UE import 對位。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://extensions.blender.org/add-ons/pivottools/" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="booltron-334" data-intel-role="card">
+    <div class="category-meta">
+     #22 · prop-production
+    </div>
+    <h2>
+     Booltron 3.3.4 補 Blender 5.2 相容性：Boolean Stack 與 Bake Modifier Workflow
+    </h2>
+    <p class="summary">
+     Booltron 為 Blender boolean 工作流提供工具與 modifier bake，3.3.4 修正 5.2 的 Randomize Location 問題；對 hard-surface 高頻 boolean 生產有維護價值。
+    </p>
+    <figure class="case-preview" data-intel-id="booltron-334" data-intel-role="visual" data-visual-id="booltron-334">
+     <a href="https://extensions.blender.org/add-ons/booltron/" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-07/booltron-334.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">物件製作</b> ★★★☆☆</span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       製作流程
+      </h4>
+      <p>
+       集中處理 boolean 建立、保留 cutter 與 modifier bake，讓 hard-surface stack 更快操作。
+      </p>
+      <h4>
+       Production 價值
+      </h4>
+      <p>
+       Boolean 工具最重要的是在版本更新後仍不破壞 stack；5.2 相容修正值得在正式升版前驗證。
+      </p>
+      <h4>
+       導入測試
+      </h4>
+      <p>
+       拿一個 20+ cutters 的 prop 測建立、排序、bake、undo 與重開檔，觀察 topology 與 shading 是否穩定。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://extensions.blender.org/add-ons/booltron/" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="sculpt-stroke-replay-020" data-intel-role="card">
+    <div class="category-meta">
+     #23 · character-production
+    </div>
+    <h2>
+     Sculpt Stroke Replay 0.2：Multires Sculpt Stroke 重播與正負 Strength Preview
+    </h2>
+    <p class="summary">
+     0.2 新增 Multires 支援、不同 viewport/sculpt subdivision level 與 live strength preview，可把重複 sculpt stroke 變成可調操作，適合高模局部修形。
+    </p>
+    <figure class="case-preview" data-intel-id="sculpt-stroke-replay-020" data-intel-role="visual" data-visual-id="sculpt-stroke-replay-020">
+     <a href="https://extensions.blender.org/add-ons/sculpt-stroke-replay/" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-07/sculpt-stroke-replay-020.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">角色製作</b> ★★★☆☆</span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       製作流程
+      </h4>
+      <p>
+       最後一次 sculpt stroke 可重播並調 strength，0.2 加入 Multires 與不同 subdivision level 支援。
+      </p>
+      <h4>
+       Production 價值
+      </h4>
+      <p>
+       對角色高模中需要重複但精準控制的皺褶、肌理與局部修形，可降低手勢重做成本。
+      </p>
+      <h4>
+       導入測試
+      </h4>
+      <p>
+       在 Multires 頭部測不同 brush、正負 strength、重播與 undo，確認不留下 helper object 或破壞 sculpt state。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://extensions.blender.org/add-ons/sculpt-stroke-replay/" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="frame-relief-rebake-100" data-intel-role="card">
+    <div class="category-meta">
+     #25 · prop-production
+    </div>
+    <h2>
+     Relief Rebake 1.0：把高密度 Relief 轉成 Height-field Quad Mesh 的 Blender 工具
+    </h2>
+    <p class="summary">
+     Relief Rebake 將浮雕表面重建為規則 height-field mesh 並估算 quad count；對浮雕、徽章、機台裝飾等高密度掃描/雕刻資產的簡化有特定價值。
+    </p>
+    <figure class="case-preview" data-intel-id="frame-relief-rebake-100" data-intel-role="visual" data-visual-id="frame-relief-rebake-100">
+     <a href="https://extensions.blender.org/add-ons/relief-rebake/" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-07/frame-relief-rebake-100.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">物件製作</b> ★★★☆☆</span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       製作流程
+      </h4>
+      <p>
+       將 relief 投影成 height field，再重建規則 mesh；適合沒有 undercut 的徽章、面板與裝飾面。
+      </p>
+      <h4>
+       Production 價值
+      </h4>
+      <p>
+       可把雕刻或 scan 的過密幾何快速變成可控 quad count，再接 normal/height bake。
+      </p>
+      <h4>
+       導入測試
+      </h4>
+      <p>
+       用一個有淺浮雕與一個有 undercut 的模型測，確認何時資訊被 height-field 假設吃掉。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://extensions.blender.org/add-ons/relief-rebake/" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <nav aria-label="相鄰分類" class="category-bottom-nav">
+    <a href="../ai-generation/">
+     ← AI 生成
+    </a>
+    <a href="../#top">
+     TOP5
+    </a>
+    <a href="../3d-animation/">
+     3D 動作 →
+    </a>
+   </nav>
+  </main>
+  <script defer="" src="../../archive-nav-state.js?v=20260907-r1-workspace-v6">
+  </script>
+ </body>
+</html>

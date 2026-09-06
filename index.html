@@ -7,10 +7,10 @@
    AI / 3D Production Intelligence
   </title>
   <link href="styles.css?v=20260903-r2" rel="stylesheet"/>
-  <link href="shared-components.css?v=20260906-r1-workspace-v6" rel="stylesheet"/>
-  <link href="home.css?v=20260906-r1-workspace-v6" rel="stylesheet"/>
-  <link href="home-content.css?v=20260906-r1-workspace-v6" rel="stylesheet"/>
-  <link href="home-components.css?v=20260906-r1-workspace-v6" rel="stylesheet"/>
+  <link href="shared-components.css?v=20260907-r1-workspace-v6" rel="stylesheet"/>
+  <link href="home.css?v=20260907-r1-workspace-v6" rel="stylesheet"/>
+  <link href="home-content.css?v=20260907-r1-workspace-v6" rel="stylesheet"/>
+  <link href="home-components.css?v=20260907-r1-workspace-v6" rel="stylesheet"/>
  </head>
  <body class="home-page">
   <header class="home-hero">
@@ -31,22 +31,22 @@
     <a class="global-category-link is-active" href="#today">
      TOP5
     </a>
-    <a class="global-category-link" data-category="ai-generation" href="2026-09-06/ai-generation/">
+    <a class="global-category-link" data-category="ai-generation" href="2026-09-07/ai-generation/">
      AI 生成
     </a>
-    <a class="global-category-link" data-category="3d-production" href="2026-09-06/3d-production/">
+    <a class="global-category-link" data-category="3d-production" href="2026-09-07/3d-production/">
      3D 製作
     </a>
-    <a class="global-category-link" data-category="3d-animation" href="2026-09-06/3d-animation/">
+    <a class="global-category-link" data-category="3d-animation" href="2026-09-07/3d-animation/">
      3D 動作
     </a>
-    <a class="global-category-link" data-category="engine-art" href="2026-09-06/engine-art/">
+    <a class="global-category-link" data-category="engine-art" href="2026-09-07/engine-art/">
      遊戲引擎
     </a>
-    <a class="global-category-link" data-category="emerging-case" href="2026-09-06/emerging-case/">
+    <a class="global-category-link" data-category="emerging-case" href="2026-09-07/emerging-case/">
      新技術 / Case
     </a>
-    <a class="global-category-link" data-category="blender-dcc" href="2026-09-06/blender-dcc/">
+    <a class="global-category-link" data-category="blender-dcc" href="2026-09-07/blender-dcc/">
      Blender / DCC
     </a>
    </div>
@@ -64,26 +64,30 @@
      </div>
     </div>
     <div class="top-list">
-     <article class="top-item" data-intel-id="orbitals-retro-anime-rendering" data-intel-role="card">
+     <article class="home-card top-item" data-intel-id="orbitals-retro-anime-rendering" data-intel-role="card">
       <div class="top-no">
        01
       </div>
       <div class="top-main">
-       <div class="meta">
-        <span class="pill">
-         shader
-        </span>
-       </div>
        <h2>
         《Orbitals》拆解 UE5 復古動畫渲染：Cel／背景分離、Bloom Mask 與底片後製
        </h2>
-       <p>
+       <p class="summary">
         Shapefarm 公開如何在 UE5 內改造預設渲染管線，將 cel character、painted environment 與 film effects 分層處理，並透過 Material Editor 維持美術可迭代性。
        </p>
+       <figure class="case-preview" data-intel-id="orbitals-retro-anime-rendering" data-intel-role="visual" data-visual-id="orbitals-retro-anime-rendering">
+        <a href="https://www.unrealengine.com/tech-blog/stepping-inside-a-retro-anime-inspired-game-a-look-into-the-rendering-of-orbitals" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+         <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-09-07/orbitals-retro-anime-rendering.jpg"/>
+        </a>
+        <figcaption>
+         <span>
+          SOURCE PREVIEW
+         </span>
+         · Local visual evidence · 點圖開啟原始來源
+        </figcaption>
+       </figure>
        <div class="quick-impact">
-        <span>
-         ★★★★★
-        </span>
+        <span><b class="quick-impact-label">Shader</b> ★★★★★</span>
        </div>
        <details class="home-full-analysis">
         <summary>
@@ -110,31 +114,35 @@
          </p>
         </div>
        </details>
-       <a class="source" href="https://www.unrealengine.com/tech-blog/stepping-inside-a-retro-anime-inspired-game-a-look-into-the-rendering-of-orbitals">
+       <a class="source" href="https://www.unrealengine.com/tech-blog/stepping-inside-a-retro-anime-inspired-game-a-look-into-the-rendering-of-orbitals" rel="noopener noreferrer" target="_blank">
         來源
        </a>
       </div>
      </article>
-     <article class="top-item" data-intel-id="city-sample-ue58-pcg-mcp" data-intel-role="card">
+     <article class="home-card top-item" data-intel-id="city-sample-ue58-pcg-mcp" data-intel-role="card">
       <div class="top-no">
        02
       </div>
       <div class="top-main">
-       <div class="meta">
-        <span class="pill">
-         tools
-        </span>
-       </div>
        <h2>
         UE 5.8 City Sample 重建：PCG＋Unreal MCP 把大型城市程序化留在引擎內
        </h2>
-       <p>
+       <p class="summary">
         新版 City Sample 以 UE5.8 PCG、World Partition、Nanite Foliage、Megaplants 與 Unreal MCP 重建兩個新城市關卡，示範大型世界在引擎內維持可編輯程序化流程。
        </p>
+       <figure class="case-preview" data-intel-id="city-sample-ue58-pcg-mcp" data-intel-role="visual" data-visual-id="city-sample-ue58-pcg-mcp">
+        <a href="https://www.unrealengine.com/learning/city-sample-gets-a-major-update-with-pcg-and-unreal-mcp-workflows" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+         <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-09-07/city-sample-ue58-pcg-mcp.jpg"/>
+        </a>
+        <figcaption>
+         <span>
+          SOURCE PREVIEW
+         </span>
+         · Local visual evidence · 點圖開啟原始來源
+        </figcaption>
+       </figure>
        <div class="quick-impact">
-        <span>
-         ★★★★★
-        </span>
+        <span><b class="quick-impact-label">引擎工具</b> ★★★★★</span>
        </div>
        <details class="home-full-analysis">
         <summary>
@@ -161,31 +169,35 @@
          </p>
         </div>
        </details>
-       <a class="source" href="https://www.unrealengine.com/learning/city-sample-gets-a-major-update-with-pcg-and-unreal-mcp-workflows">
+       <a class="source" href="https://www.unrealengine.com/learning/city-sample-gets-a-major-update-with-pcg-and-unreal-mcp-workflows" rel="noopener noreferrer" target="_blank">
         來源
        </a>
       </div>
      </article>
-     <article class="top-item" data-intel-id="game-animation-sample-ue58" data-intel-role="card">
+     <article class="home-card top-item" data-intel-id="game-animation-sample-ue58" data-intel-role="card">
       <div class="top-no">
        03
       </div>
       <div class="top-main">
-       <div class="meta">
-        <span class="pill">
-         animation
-        </span>
-       </div>
        <h2>
         Game Animation Sample 升級 UE5.8：Physics Control、Motion Matching、Chooser 與 Smart Objects
        </h2>
-       <p>
+       <p class="summary">
         Epic 更新 Game Animation Sample，加入 Physics Control Component/Asset、Chooser 內多 Pose Search DB、Blend Spaces 與 Smart Object 互動範例，適合直接做 gameplay animation baseline。
        </p>
+       <figure class="case-preview" data-intel-id="game-animation-sample-ue58" data-intel-role="visual" data-visual-id="game-animation-sample-ue58">
+        <a href="https://www.unrealengine.com/tech-blog/download-the-latest-game-animation-sample-project-now-updated-for-ue-5-8" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+         <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-09-07/game-animation-sample-ue58.jpg"/>
+        </a>
+        <figcaption>
+         <span>
+          SOURCE PREVIEW
+         </span>
+         · Local visual evidence · 點圖開啟原始來源
+        </figcaption>
+       </figure>
        <div class="quick-impact">
-        <span>
-         ★★★★★
-        </span>
+        <span><b class="quick-impact-label">動畫</b> ★★★★★</span>
        </div>
        <details class="home-full-analysis">
         <summary>
@@ -212,31 +224,35 @@
          </p>
         </div>
        </details>
-       <a class="source" href="https://www.unrealengine.com/tech-blog/download-the-latest-game-animation-sample-project-now-updated-for-ue-5-8">
+       <a class="source" href="https://www.unrealengine.com/tech-blog/download-the-latest-game-animation-sample-project-now-updated-for-ue-5-8" rel="noopener noreferrer" target="_blank">
         來源
        </a>
       </div>
      </article>
-     <article class="top-item" data-intel-id="rokoko-vision-3" data-intel-role="card">
+     <article class="home-card top-item" data-intel-id="rokoko-vision-3" data-intel-role="card">
       <div class="top-no">
        04
       </div>
       <div class="top-main">
-       <div class="meta">
-        <span class="pill">
-         ai-motion
-        </span>
-       </div>
        <h2>
         Rokoko Vision 3.0 重建單鏡頭 AI Mocap Solver，整合 Video/Text-to-Motion 與 Studio 清理
        </h2>
-       <p>
+       <p class="summary">
         Vision 3.0 改用重建 solver，主打更乾淨動作、更快處理，並把 Video-to-Motion、Text-to-Motion、Studio 編輯、retarget 與 FBX/BVH export 串成同一套流程。
        </p>
+       <figure class="case-preview" data-intel-id="rokoko-vision-3" data-intel-role="visual" data-visual-id="rokoko-vision-3">
+        <a href="https://www.rokoko.com/products/vision" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+         <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-09-07/rokoko-vision-3.jpg"/>
+        </a>
+        <figcaption>
+         <span>
+          SOURCE PREVIEW
+         </span>
+         · Local visual evidence · 點圖開啟原始來源
+        </figcaption>
+       </figure>
        <div class="quick-impact">
-        <span>
-         ★★★★★
-        </span>
+        <span><b class="quick-impact-label">AI 動作</b> ★★★★★</span>
        </div>
        <details class="home-full-analysis">
         <summary>
@@ -263,31 +279,35 @@
          </p>
         </div>
        </details>
-       <a class="source" href="https://www.rokoko.com/products/vision">
+       <a class="source" href="https://www.rokoko.com/products/vision" rel="noopener noreferrer" target="_blank">
         來源
        </a>
       </div>
      </article>
-     <article class="top-item" data-intel-id="frame-by-plane-72" data-intel-role="card">
+     <article class="home-card top-item" data-intel-id="frame-by-plane-72" data-intel-role="card">
       <div class="top-no">
        05
       </div>
       <div class="top-main">
-       <div class="meta">
-        <span class="pill">
-         addon
-        </span>
-       </div>
        <h2>
         Frame By Plane 7.2：Blender 5.2 的 2.5D／Cutout／Multiplane Production 工具大更新
        </h2>
-       <p>
+       <p class="summary">
         Frame By Plane 7.2 強化 Grease Pencil 雙色、相機格式、timeline、effects 與 safer import/render，並支援 layered image、cutout、parallax 與 2.5D 場景管理。
        </p>
+       <figure class="case-preview" data-intel-id="frame-by-plane-72" data-intel-role="visual" data-visual-id="frame-by-plane-72">
+        <a href="https://extensions.blender.org/add-ons/frame-by-plane/" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+         <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-09-07/frame-by-plane-72.jpg"/>
+        </a>
+        <figcaption>
+         <span>
+          SOURCE PREVIEW
+         </span>
+         · Local visual evidence · 點圖開啟原始來源
+        </figcaption>
+       </figure>
        <div class="quick-impact">
-        <span>
-         ★★★★★
-        </span>
+        <span><b class="quick-impact-label">外掛</b> ★★★★★</span>
        </div>
        <details class="home-full-analysis">
         <summary>
@@ -314,7 +334,7 @@
          </p>
         </div>
        </details>
-       <a class="source" href="https://extensions.blender.org/add-ons/frame-by-plane/">
+       <a class="source" href="https://extensions.blender.org/add-ons/frame-by-plane/" rel="noopener noreferrer" target="_blank">
         來源
        </a>
       </div>
@@ -333,22 +353,26 @@
      </div>
     </div>
     <div class="more-grid">
-     <article class="more-card" data-intel-id="epic-learning-aug-ue58" data-intel-role="card">
-      <div class="meta">
-       <span class="pill">
-        unreal
-       </span>
-      </div>
-      <h3>
+     <article class="home-card more-card" data-intel-id="epic-learning-aug-ue58" data-intel-role="card">
+      <h4>
        Epic 8 月 UE5.8 教學包：Mesh Terrain、Networked Physics、Material 與優化工作流
-      </h3>
-      <p>
+      </h4>
+      <p class="summary">
        Epic 集中發布 UE5.8 的 Mesh Terrain、Networked Physics、Accumulation DOF、Material 與 project optimization 教學，適合建立引擎美術新功能的測試清單。
       </p>
+      <figure class="case-preview" data-intel-id="epic-learning-aug-ue58" data-intel-role="visual" data-visual-id="epic-learning-aug-ue58">
+       <a href="https://www.unrealengine.com/learning/augusts-epic-learning-content-networked-physics-dynamic-audio-and-more" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-09-07/epic-learning-aug-ue58.jpg"/>
+       </a>
+       <figcaption>
+        <span>
+         SOURCE PREVIEW
+        </span>
+        · Local visual evidence · 點圖開啟原始來源
+       </figcaption>
+      </figure>
       <div class="quick-impact">
-       <span>
-        ★★★★☆
-       </span>
+       <span><b class="quick-impact-label">Unreal</b> ★★★★☆</span>
       </div>
       <details class="home-full-analysis">
        <summary>
@@ -375,26 +399,30 @@
         </p>
        </div>
       </details>
-      <a class="source" href="https://www.unrealengine.com/learning/augusts-epic-learning-content-networked-physics-dynamic-audio-and-more">
+      <a class="source" href="https://www.unrealengine.com/learning/augusts-epic-learning-content-networked-physics-dynamic-audio-and-more" rel="noopener noreferrer" target="_blank">
        來源
       </a>
      </article>
-     <article class="more-card" data-intel-id="zero-company-ue5-production" data-intel-role="card">
-      <div class="meta">
-       <span class="pill">
-        case-study
-       </span>
-      </div>
-      <h3>
+     <article class="home-card more-card" data-intel-id="zero-company-ue5-production" data-intel-role="card">
+      <h4>
        《Star Wars Zero Company》UE5 製作訪談：策略遊戲如何選擇引擎與組織大型內容
-      </h3>
-      <p>
+      </h4>
+      <p class="summary">
        Bit Reactor 說明團隊以 UE5 製作戰術 RPG 的技術與內容選擇，提供世界、角色與迭代流程的 production case，可作為中大型專案引擎決策參考。
       </p>
+      <figure class="case-preview" data-intel-id="zero-company-ue5-production" data-intel-role="visual" data-visual-id="zero-company-ue5-production">
+       <a href="https://www.unrealengine.com/developer-interviews/star-wars-zero-company-bit-reactor-crafts-a-galaxy-of-tactical-possibilities-with-ue5" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-09-07/zero-company-ue5-production.jpg"/>
+       </a>
+       <figcaption>
+        <span>
+         SOURCE PREVIEW
+        </span>
+        · Local visual evidence · 點圖開啟原始來源
+       </figcaption>
+      </figure>
       <div class="quick-impact">
-       <span>
-        ★★★★☆
-       </span>
+       <span><b class="quick-impact-label">製作案例</b> ★★★★☆</span>
       </div>
       <details class="home-full-analysis">
        <summary>
@@ -421,26 +449,30 @@
         </p>
        </div>
       </details>
-      <a class="source" href="https://www.unrealengine.com/developer-interviews/star-wars-zero-company-bit-reactor-crafts-a-galaxy-of-tactical-possibilities-with-ue5">
+      <a class="source" href="https://www.unrealengine.com/developer-interviews/star-wars-zero-company-bit-reactor-crafts-a-galaxy-of-tactical-possibilities-with-ue5" rel="noopener noreferrer" target="_blank">
        來源
       </a>
      </article>
-     <article class="more-card" data-intel-id="aimocap-video-mocap" data-intel-role="card">
-      <div class="meta">
-       <span class="pill">
-        ai-motion
-       </span>
-      </div>
-      <h3>
+     <article class="home-card more-card" data-intel-id="aimocap-video-mocap" data-intel-role="card">
+      <h4>
        AIMoCap：單影片同時抓 Body＋Finger，支援自訂角色、Mixamo／CC／Roblox 與 120fps
-      </h3>
-      <p>
+      </h4>
+      <p class="summary">
        AIMoCap 提供瀏覽器 video mocap，強調 body/finger 同步、減少 foot sliding、自訂 humanoid 綁定與多種角色／機器人輸出目標，可作為 AI mocap 新候選工具。
       </p>
+      <figure class="case-preview" data-intel-id="aimocap-video-mocap" data-intel-role="visual" data-visual-id="aimocap-video-mocap">
+       <a href="https://aimocap.net/docs" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-09-07/aimocap-video-mocap.jpg"/>
+       </a>
+       <figcaption>
+        <span>
+         SOURCE PREVIEW
+        </span>
+        · Local visual evidence · 點圖開啟原始來源
+       </figcaption>
+      </figure>
       <div class="quick-impact">
-       <span>
-        ★★★★☆
-       </span>
+       <span><b class="quick-impact-label">AI 動作</b> ★★★★☆</span>
       </div>
       <details class="home-full-analysis">
        <summary>
@@ -467,26 +499,30 @@
         </p>
        </div>
       </details>
-      <a class="source" href="https://aimocap.net/docs">
+      <a class="source" href="https://aimocap.net/docs" rel="noopener noreferrer" target="_blank">
        來源
       </a>
      </article>
-     <article class="more-card" data-intel-id="quickmagic-fullbody-hand-face" data-intel-role="card">
-      <div class="meta">
-       <span class="pill">
-        ai-motion
-       </span>
-      </div>
-      <h3>
+     <article class="home-card more-card" data-intel-id="quickmagic-fullbody-hand-face" data-intel-role="card">
+      <h4>
        QuickMagic：單影片 Body／Hand／Face AI Mocap，輸出 UE／Unity／Maya／3ds Max 管線
-      </h3>
-      <p>
+      </h4>
+      <p class="summary">
        QuickMagic 將一般影片轉成可編輯 3D motion，支援 body、hand、face 與多種 FBX/BVH/UE preset，並明確展示 Cascadeur cleanup、UE retarget 等 production workflow。
       </p>
+      <figure class="case-preview" data-intel-id="quickmagic-fullbody-hand-face" data-intel-role="visual" data-visual-id="quickmagic-fullbody-hand-face">
+       <a href="https://www.quickmagic.ai/tools/video-to-3d-animation" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-09-07/quickmagic-fullbody-hand-face.jpg"/>
+       </a>
+       <figcaption>
+        <span>
+         SOURCE PREVIEW
+        </span>
+        · Local visual evidence · 點圖開啟原始來源
+       </figcaption>
+      </figure>
       <div class="quick-impact">
-       <span>
-        ★★★★☆
-       </span>
+       <span><b class="quick-impact-label">AI 動作</b> ★★★★☆</span>
       </div>
       <details class="home-full-analysis">
        <summary>
@@ -513,26 +549,30 @@
         </p>
        </div>
       </details>
-      <a class="source" href="https://www.quickmagic.ai/tools/video-to-3d-animation">
+      <a class="source" href="https://www.quickmagic.ai/tools/video-to-3d-animation" rel="noopener noreferrer" target="_blank">
        來源
       </a>
      </article>
-     <article class="more-card" data-intel-id="exea-jiggle-110" data-intel-role="card">
-      <div class="meta">
-       <span class="pill">
-        rigging
-       </span>
-      </div>
-      <h3>
+     <article class="home-card more-card" data-intel-id="exea-jiggle-110" data-intel-role="card">
+      <h4>
        EXea Jiggle 1.1：Blender 骨架次級動態加入 Jiggle Layers 與可 Bake Keyframes 流程
-      </h3>
-      <p>
+      </h4>
+      <p class="summary">
        EXea Jiggle 1.1 新增 Jiggle Layers、bone grouping、mute 與 Blender 5.x 相容性，可用於髮尾、衣服、尾巴等骨架次級動態並烘焙成 keyframes。
       </p>
+      <figure class="case-preview" data-intel-id="exea-jiggle-110" data-intel-role="visual" data-visual-id="exea-jiggle-110">
+       <a href="https://extensions.blender.org/add-ons/exea-jiggle/" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-09-07/exea-jiggle-110.jpg"/>
+       </a>
+       <figcaption>
+        <span>
+         SOURCE PREVIEW
+        </span>
+        · Local visual evidence · 點圖開啟原始來源
+       </figcaption>
+      </figure>
       <div class="quick-impact">
-       <span>
-        ★★★★☆
-       </span>
+       <span><b class="quick-impact-label">綁定</b> ★★★★☆</span>
       </div>
       <details class="home-full-analysis">
        <summary>
@@ -559,26 +599,30 @@
         </p>
        </div>
       </details>
-      <a class="source" href="https://extensions.blender.org/add-ons/exea-jiggle/">
+      <a class="source" href="https://extensions.blender.org/add-ons/exea-jiggle/" rel="noopener noreferrer" target="_blank">
        來源
       </a>
      </article>
-     <article class="more-card" data-intel-id="vrm-addon-470" data-intel-role="card">
-      <div class="meta">
-       <span class="pill">
-        addon
-       </span>
-      </div>
-      <h3>
+     <article class="home-card more-card" data-intel-id="vrm-addon-470" data-intel-role="card">
+      <h4>
        VRM Add-on 4.7：T-Pose 套用與匯入循環節點修正，強化 Avatar 交換流程
-      </h3>
-      <p>
+      </h4>
+      <p class="summary">
        VRM Add-on 4.7 新增 selected VRM T-pose 套用按鈕並修正 cyclic node recursion；對 Blender↔VRM humanoid、MToon 與 avatar export 有直接維護價值。
       </p>
+      <figure class="case-preview" data-intel-id="vrm-addon-470" data-intel-role="visual" data-visual-id="vrm-addon-470">
+       <a href="https://extensions.blender.org/add-ons/vrm/" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-09-07/vrm-addon-470.jpg"/>
+       </a>
+       <figcaption>
+        <span>
+         SOURCE PREVIEW
+        </span>
+        · Local visual evidence · 點圖開啟原始來源
+       </figcaption>
+      </figure>
       <div class="quick-impact">
-       <span>
-        ★★★★☆
-       </span>
+       <span><b class="quick-impact-label">外掛</b> ★★★★☆</span>
       </div>
       <details class="home-full-analysis">
        <summary>
@@ -605,26 +649,30 @@
         </p>
        </div>
       </details>
-      <a class="source" href="https://extensions.blender.org/add-ons/vrm/">
+      <a class="source" href="https://extensions.blender.org/add-ons/vrm/" rel="noopener noreferrer" target="_blank">
        來源
       </a>
      </article>
-     <article class="more-card" data-intel-id="polyquilt-1468" data-intel-role="card">
-      <div class="meta">
-       <span class="pill">
-        production-workflow
-       </span>
-      </div>
-      <h3>
+     <article class="home-card more-card" data-intel-id="polyquilt-1468" data-intel-role="card">
+      <h4>
        PolyQuilt 1.46.8 修正 Blender 5.2 Retopo 相容性與 Merge-on-Move
-      </h3>
-      <p>
+      </h4>
+      <p class="summary">
        PolyQuilt 的 1.46.8 更新修正 move merge 問題並針對 Blender 5.1/5.2 維護相容性，適合作為免費手動 retopology 工具的近期測試點。
       </p>
+      <figure class="case-preview" data-intel-id="polyquilt-1468" data-intel-role="visual" data-visual-id="polyquilt-1468">
+       <a href="https://extensions.blender.org/add-ons/polyquilt-fork/" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-09-07/polyquilt-1468.jpg"/>
+       </a>
+       <figcaption>
+        <span>
+         SOURCE PREVIEW
+        </span>
+        · Local visual evidence · 點圖開啟原始來源
+       </figcaption>
+      </figure>
       <div class="quick-impact">
-       <span>
-        ★★★★☆
-       </span>
+       <span><b class="quick-impact-label">製作流程</b> ★★★★☆</span>
       </div>
       <details class="home-full-analysis">
        <summary>
@@ -651,26 +699,30 @@
         </p>
        </div>
       </details>
-      <a class="source" href="https://extensions.blender.org/add-ons/polyquilt-fork/">
+      <a class="source" href="https://extensions.blender.org/add-ons/polyquilt-fork/" rel="noopener noreferrer" target="_blank">
        來源
       </a>
      </article>
-     <article class="more-card" data-intel-id="cloudrig-2228" data-intel-role="card">
-      <div class="meta">
-       <span class="pill">
-        rigging
-       </span>
-      </div>
-      <h3>
+     <article class="home-card more-card" data-intel-id="cloudrig-2228" data-intel-role="card">
+      <h4>
        CloudRig 2.2.28 新增 Simple Spine：Blender Studio Rig Generation 持續模組化
-      </h3>
-      <p>
+      </h4>
+      <p class="summary">
        Blender Studio 的 CloudRig 新增 experimental Simple Spine component；CloudRig 以 metarig 產生 helper bones、constraints、drivers，適合研究可維護 rig component 架構。
       </p>
+      <figure class="case-preview" data-intel-id="cloudrig-2228" data-intel-role="visual" data-visual-id="cloudrig-2228">
+       <a href="https://extensions.blender.org/add-ons/cloudrig/" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-09-07/cloudrig-2228.jpg"/>
+       </a>
+       <figcaption>
+        <span>
+         SOURCE PREVIEW
+        </span>
+        · Local visual evidence · 點圖開啟原始來源
+       </figcaption>
+      </figure>
       <div class="quick-impact">
-       <span>
-        ★★★★☆
-       </span>
+       <span><b class="quick-impact-label">綁定</b> ★★★★☆</span>
       </div>
       <details class="home-full-analysis">
        <summary>
@@ -697,26 +749,30 @@
         </p>
        </div>
       </details>
-      <a class="source" href="https://extensions.blender.org/add-ons/cloudrig/">
+      <a class="source" href="https://extensions.blender.org/add-ons/cloudrig/" rel="noopener noreferrer" target="_blank">
        來源
       </a>
      </article>
-     <article class="more-card" data-intel-id="hair-bone-generator-110" data-intel-role="card">
-      <div class="meta">
-       <span class="pill">
-        rigging
-       </span>
-      </div>
-      <h3>
+     <article class="home-card more-card" data-intel-id="hair-bone-generator-110" data-intel-role="card">
+      <h4>
        Hair Bone Generator 1.1：曲線髮束快速產生骨鏈，支援端點控制與重建
-      </h3>
-      <p>
+      </h4>
+      <p class="summary">
        Hair Bone Generator 1.1 強化 hair root/tip 控制、同範圍重新生成修正與 Blender 5.2.1 測試，可縮短角色髮絲 secondary rig 的重複工作。
       </p>
+      <figure class="case-preview" data-intel-id="hair-bone-generator-110" data-intel-role="visual" data-visual-id="hair-bone-generator-110">
+       <a href="https://extensions.blender.org/add-ons/hair-bone-generator/" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-09-07/hair-bone-generator-110.jpg"/>
+       </a>
+       <figcaption>
+        <span>
+         SOURCE PREVIEW
+        </span>
+        · Local visual evidence · 點圖開啟原始來源
+       </figcaption>
+      </figure>
       <div class="quick-impact">
-       <span>
-        ★★★★☆
-       </span>
+       <span><b class="quick-impact-label">綁定</b> ★★★★☆</span>
       </div>
       <details class="home-full-analysis">
        <summary>
@@ -743,26 +799,30 @@
         </p>
        </div>
       </details>
-      <a class="source" href="https://extensions.blender.org/add-ons/hair-bone-generator/">
+      <a class="source" href="https://extensions.blender.org/add-ons/hair-bone-generator/" rel="noopener noreferrer" target="_blank">
        來源
       </a>
      </article>
-     <article class="more-card" data-intel-id="edit-poly-modifier-102" data-intel-role="card">
-      <div class="meta">
-       <span class="pill">
-        prop-production
-       </span>
-      </div>
-      <h3>
+     <article class="home-card more-card" data-intel-id="edit-poly-modifier-102" data-intel-role="card">
+      <h4>
        Edit Poly Modifier 1.0.2：把局部 Mesh Edit 放進 Blender 非破壞 Modifier Stack
-      </h3>
-      <p>
+      </h4>
+      <p class="summary">
        Edit Poly Modifier 讓人工頂點編輯可存在 Bevel 與 Subdivision 中間並即時同步 upstream 變化，對 hard-surface 與迭代型 modeling workflow 很接近 3ds Max Edit Poly 思路。
       </p>
+      <figure class="case-preview" data-intel-id="edit-poly-modifier-102" data-intel-role="visual" data-visual-id="edit-poly-modifier-102">
+       <a href="https://extensions.blender.org/add-ons/edit-mesh-modifier/" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-09-07/edit-poly-modifier-102.jpg"/>
+       </a>
+       <figcaption>
+        <span>
+         SOURCE PREVIEW
+        </span>
+        · Local visual evidence · 點圖開啟原始來源
+       </figcaption>
+      </figure>
       <div class="quick-impact">
-       <span>
-        ★★★★☆
-       </span>
+       <span><b class="quick-impact-label">物件製作</b> ★★★★☆</span>
       </div>
       <details class="home-full-analysis">
        <summary>
@@ -789,7 +849,7 @@
         </p>
        </div>
       </details>
-      <a class="source" href="https://extensions.blender.org/add-ons/edit-mesh-modifier/">
+      <a class="source" href="https://extensions.blender.org/add-ons/edit-mesh-modifier/" rel="noopener noreferrer" target="_blank">
        來源
       </a>
      </article>
@@ -802,7 +862,7 @@
      </h2>
     </div>
     <div class="category-nav-grid">
-     <a class="category-nav-card" href="2026-09-06/ai-generation/">
+     <a class="category-nav-card" href="2026-09-07/ai-generation/">
       <strong>
        AI 生成
       </strong>
@@ -810,7 +870,7 @@
        AI 3D 生成 / AI 2D 生成 / AI 動作生成
       </span>
      </a>
-     <a class="category-nav-card" href="2026-09-06/3d-production/">
+     <a class="category-nav-card" href="2026-09-07/3d-production/">
       <strong>
        3D 製作
       </strong>
@@ -818,7 +878,7 @@
        3D 角色製作 / 3D 物件製作 / 3D 場景製作 / 製作流程
       </span>
      </a>
-     <a class="category-nav-card" href="2026-09-06/3d-animation/">
+     <a class="category-nav-card" href="2026-09-07/3d-animation/">
       <strong>
        3D 動作
       </strong>
@@ -826,7 +886,7 @@
        3D 動作 / 3D 動作製作流程
       </span>
      </a>
-     <a class="category-nav-card" href="2026-09-06/engine-art/">
+     <a class="category-nav-card" href="2026-09-07/engine-art/">
       <strong>
        遊戲引擎
       </strong>
@@ -834,7 +894,7 @@
        遊戲引擎 / 引擎端美術內容
       </span>
      </a>
-     <a class="category-nav-card" href="2026-09-06/emerging-case/">
+     <a class="category-nav-card" href="2026-09-07/emerging-case/">
       <strong>
        新技術 / Case
       </strong>
@@ -842,7 +902,7 @@
        新技術 / Production Case
       </span>
      </a>
-     <a class="category-nav-card" href="2026-09-06/blender-dcc/">
+     <a class="category-nav-card" href="2026-09-07/blender-dcc/">
       <strong>
        Blender / DCC
       </strong>
@@ -852,8 +912,8 @@
      </a>
     </div>
    </section>
-   <div class="current-report-entry" data-current-report-date="2026-09-06">
-    <a aria-label="查看 2026-09-06 今日完整日報" class="category-nav-card current-report-link" href="2026-09-06/">
+   <div class="current-report-entry" data-current-report-date="2026-09-07">
+    <a aria-label="查看 2026-09-07 今日完整日報" class="category-nav-card current-report-link" href="2026-09-07/">
      <div class="current-report-copy">
       <span class="current-report-eyebrow">
        TODAY
@@ -863,7 +923,7 @@
       </strong>
      </div>
      <span class="current-report-date">
-      2026-09-06
+      2026-09-07
      </span>
     </a>
    </div>
@@ -926,6 +986,14 @@
          9 月
         </summary>
         <div class="archive-entries">
+         <a class="history-entry" data-history-categories="3d-animation 3d-production ai-generation blender-dcc emerging-case engine-art" data-history-date="2026-09-06" data-history-search="2026-09-06 歷史日報 tripo 展示一日完成遊戲角色：ai 3d 從拆件、quad 到 ue 的完整 pipeline tripo 公開一套從概念圖、部件拆分、p2.0 quad 網格、8k 來源貼圖、dcc bridge，到 maya/marmoset/substance/unreal 的完整角色製作案例，總面數控制在 30k triangles 以下。 ★★★★★｜非常接近可直接拿來做 ai 3d 角色 production test 的基準流程。 meshy 6 ultra 擴大到 4 張輸入圖：多視圖結構忠實度與幾何清理再提升 meshy 9 月 changelog 顯示 meshy 6 ultra 支援最多四張參考圖，並強化結構忠實度、geometry clean-up 與生成速度，直接對應多視圖角色與遊戲資產生成。 ★★★★★｜多視圖與 clean geometry 都是目前 ai 3d 最值得實測的核心能力。 armorpaint 1.0 正式脫離 early access：c 重寫、uv/雕刻、動畫預覽與本地 neural nodes armorpaint 1.0 以 c 重寫核心，提升大資產與高解析圖層互動效能，並加入基礎雕刻、uv 編輯、skinned mesh timeline、ai upscale 與 photo-to-material 等功能。 ★★★★★｜有機會成為低成本遊戲貼圖工具鏈的實際替代方案。 《鬼武者 way of the sword》公開 re engine 美術 pipeline：模組場景、角色、光照到資料管理 capcom 詳細拆解從歷史研究、whitebox/greybox、模組資產、角色 sculpt/texturing，到 re engine 內 layout、vfx、lighting 與 collision 的完整流程，maya 作為最終 dcc 輸出中心。 ★★★★★｜完整度很高的 aaa 遊戲 production case，可直接對照團隊資產與引擎責任切分。 jolan huijskes 用 blender＋ue5 工具化大型場景：把 level artist 控制權留在引擎 environment artist jolan huijskes 公開一套為大型可玩場景打造的 blender/unreal 工具，重點不是單一漂亮場景，而是用技術工具支援大尺度環境快速迭代。 ★★★★★｜高度符合場景 production tool／流程自動化需求。 tripo p2.0 preview：單圖／多視圖直接生成原生 quad，最高 25k quad tripo p2.0 preview 將 smart mesh 推向原生四邊面拓樸，可從單圖或四視圖生成，quad 上限 25k，並主打可編輯、可 rig、可進遊戲 production 的 edge flow。 ★★★★★｜目前 ai 3d 的關鍵不是更密，而是生成後能不能真的編輯與 rig。 maya 2027 把 motionmaker、ngskintools 式 skin tools、smart bevel 與 usd asset build 推進主流程 maya 2027 聚焦 ai motionmaker、整合式 layer-based skinning、smart bevel、usd component/variant workflows、flow studio 連接與 arnold/bifrost 更新。 ★★★★★｜rig/animation、skinning 與 usd 資產流程都有直接 production 影響。 unreal engine 5.8：mesh terrain、pcg、llm mcp 與更成熟的角色／世界製作 ue 5.8 強化 worldbuilding、terrain、vegetation、character/animation 與 iteration，並加入 experimental mcp plugin、sandboxes；epic 同時提醒 beta/experimental 功能不可直接視為 production-ready。 ★★★★★｜對場景、ta 與美術工具鏈都有高密度改動。 houdini 22 正式進入 production：quad remesh、copernicus、gaussian splats 與世界製作一起升級 houdini 22 把 quad remesh、production-ready gaussian splats、copernicus baking/texturing、character tools、gpu pyro、terrain/ocean 等多個流程推進 production。 ★★★★★｜procedural 是本類最高偏好，h22 幾乎橫跨建模、角色、材質、vfx 與場景。 milk vfx 用 unreal 從 previs 一路做到 finishing：100+ 環境與大量生物的跨部門 pipeline 《surviving earth》案例顯示 milk vfx 在 1,000+ shots、73 種 hero creature、100+ environments 規模下，使用 unreal 做 previs、virtual art department、real-time environment 甚至 finishing。 ★★★★☆｜雖偏 vfx，但 unreal 作為跨階段 production hub 的做法非常可借鑑。 animo v10 把 500+ maya animation tools 收進同一套工具箱 animo v10 新增直接在 maya 內加入影片/gif/圖片 reference、六個 animation sliders 與 tools editor，可集中存取超過 500 個動畫工具並綁 hotkey/shelf。 ★★★★☆｜不是大模型新聞，但很可能直接節省 animator 日常操作時間。 uri 人樹角色 breakdown：zbrush＋maya＋substance 的輪廓、拓樸與材質取捨 character artist andrea buitrago 詳解把小說中的人樹角色轉成可讀性強的 3d 雕塑，從 silhouette、形體、材質到 maya/zbrush/substance 的完整角色製作。 ★★★★☆｜高品質角色 breakdown，重點是設計翻譯與可讀性，而不是純作品展示。 fluidninja live-2 重構 ue vfx：cpu blueprint 邏輯大幅移向 gpu／niagara simulation stages fluidninja live 2 重新設計底層，把更多 blueprint function 搬到 gpu，fluid simulation 改用 niagara simulation stages，並新增 surface alignment、preset 與更多輸入來源。 ★★★★☆｜對 ue 大型即時 vfx 的效能與工具化很有 production value。 shape cage 用 wpo 做 ue5 runtime mesh deformation：軟體感變形但不跑真正 soft body shape cage 以 material world position offset 在 gpu 端對 static mesh 做壓、彎、凹與 curtain 類變形，支援碰撞驅動、狀態同步與 nanite。 ★★★★☆｜適合需要低成本局部變形、又不想導入 skeletal/soft body 的遊戲表現。 tyflow 2.1：physx 車輛 rig/simulation＋gaussian splat 工作流進入 3ds max tyflow 2.1 新增 physx vehicle operators/helpers/presets，可做 cars、trucks、tanks 等物理動畫，並接上 3ds max 2027.2 gaussian splat 能力。 ★★★★☆｜對 3ds max 動畫/vfx 與新型 3d 表示都有明確工具價值。 retopoly：3ds max 內直接在高模表面建立可非破壞編輯的 retopo modifier retopoly 提供 3ds max 原生 modifier 式 retopology，可直接貼著高解析 surface 建新 topology，並保留 modifier stack 的非破壞調整方式。 ★★★★☆｜對仍以 3ds max 為主的角色／道具流程，是很值得測的局部效率工具。 blender studio 開放 overgrown 製作日誌：rig、毛髮、shader、場景、lighting、水與 compositing 全流程 overgrown 的多份 production logs 涵蓋 animation、rigging、fur、shading、set construction、lighting、water effects 與 final compositing，還包含 painterly shadows 教學。 ★★★★☆｜不是單一 tip，而是一套可回溯的 blender production case 資料庫。 tripo image gen 更新：角色／場景拆件、4k、cutout 與 batch-to-3d 串成資產量產前段 tripo 把 character extraction、asset extraction、variants、4k enhancement、cutout 與最多 30 張 batch to 3d 串成 2d→3d 的前處理流程。 ★★★★☆｜ai 2d 不只出圖，而是直接服務後續 3d 資產拆件與批量轉換。 substance 3d painter 12：warp to geometry 讓 decal／trim 能貼著複雜曲面即時包覆 painter 12 的 warp to geometry 以可編輯 projection grid 貼合 mesh curvature，可在孔洞、不平表面與複雜曲面上降低 decal 投射拉伸，並搭配 layer-stack flatten 等改進。 ★★★★☆｜屬於很具體、能直接省貼圖返工時間的功能。 metahuman 5.7 body conforming：fbx round-trip、任意 pose 與極端比例 joint fitting 大幅放寬 metahuman 5.7 以 uv-space vertex correspondence 解決外部 dcc fbx round-trip，並放寬 a/t pose、高度限制，新增 volumetric joint fitting 與 mesh/joint import。 ★★★★☆｜對自製角色接 metahuman rig 的實際障礙有直接改善。 unity 官方示範用 preset 自動化 texture／model import：把資產規範前移到 import gate unity 技術文章說明用 preset manager 統一 texture、video、3d model 等 import 設定，特別強調 mipmap、max size 與團隊共享 preset，避免錯誤資產設定進 build。 ★★★★☆｜非常接近可直接落地的美術 asset validation／import sop。 blender 5.2 lts：兩年支援，geometry nodes physics、remote asset libraries 與 render/automation 持續成熟 blender 5.2 lts 提供至 2028 的長期維護，包含 geometry nodes 音訊/物理、online asset libraries、cycles texture cache、thin wall，以及 5.2.1 的多項穩定修正。 ★★★★☆｜對要把 blender 納入正式 pipeline 的團隊，lts 比單純追最新版更值得關注。 houdini 22 character：apex/kinefx 加強 rig template、retarget、motion mixer 與 full body ik h22 的角色系統加入 reusable rig templates、enhanced retargeting、rig inversion、nested clips、full body ik、ragdoll 與 facial rig 改進。 ★★★★☆｜對 rigging 5/5、animation 5/5 的偏好非常對題。 houdini 22 copernicus lookdev：baking、procedural texture 與 unreal session sync 更接近即時材質 pipeline h22 lookdev 讓 copernicus 提供 production baking、grunge/fabric/bark procedural maps、2d/3d paint，並以 session sync 和 unreal 維持 procedural texture 互動同步。 ★★★★☆｜ai/procedural 之外，這是很實際的 dcc→engine material workflow。 arcane vi 角色 breakdown：把 lighting、sss 與 stylized normal 部分畫進貼圖 alexandre mougenot 拆解從 production-ready face basemesh、quaddraw、uv，到 substance 手繪光影、stylized normals 與 marmoset realtime presentation 的角色流程。 ★★★★☆｜npr/toon、角色貼圖與可重用 basemesh 三個方向都高度相關。 lyoba real-time character：metahuman wrap、xgen afro groom 與 ue5 micro-wetness 的角色實戰 lena holmfridardottir 展示 zbrush→metahuman wrap→marvelous→maya retopo/xgen→substance→ue5.6 的高品質 realtime character pipeline，並用 inverted curvature 驅動皮膚微濕感。 ★★★★☆｜完整角色＋hair＋shader＋engine 整合，production 可操作資訊很密。 unity render graph viewer：用 pass／resource 關係直接檢查 urp 自訂 renderer feature 的成本 unity 官方教學示範 render graph viewer 如何查看 urp pass、texture/resource read-write 關係，協助找 redundant buffers、pass fragmentation 與 custom renderer feature 的效能影響。 ★★★★☆｜shader/rendering 與美術效能之間的可視化橋樑。" href="2026-09-06/">
+          <strong>
+           2026-09-06
+          </strong>
+          <span>
+           歷史日報
+          </span>
+         </a>
          <a class="history-entry" data-history-categories="3d-animation 3d-production ai-generation blender-dcc emerging-case engine-art" data-history-date="2026-09-04" data-history-search="2026-09-04 歷史日報 dlss 5：3d-guided neural rendering 將材質與光照納入可控神經渲染 nvidia 公布 dlss 5 的 3d-guided neural rendering，讓開發者以場景幾何與引擎資料引導神經渲染，並提供藝術控制項調整材質、光照與最終視覺。 engine ai ★★★★★ videomatgen：由幾何 + 文字聯合生成 base color／roughness／metallic／height nvidia 研究提出以影片擴散架構對幾何條件與文字描述進行 pbr 材質聯合生成，一次預測多個常用材質通道。 ai material ★★★★★ motionstruct4d：從 video-to-4d 中分離可重用的運動結構 motionstruct4d 針對 gaussian splatting 的動態重建，把影片中的運動結構顯式建模，目標是提升 4d 場景的可解釋性與可控性。 4d research ★★★★★ 腐朽沼澤教堂：zbrush→designer/painter→speedtree→ue 的分層環境製作 nicolas pablos 拆解 cult of the tsar fish 場景，從雕刻、材質到分層沼澤植被與 unreal 組裝，提供完整環境 production case。 environment ★★★★★ avatar sdk move：文字直接生成可匯出 fbx／glb 的角色動作 avatar sdk move 開放 beta，可由自然語言生成走路、跑步、手勢與舞蹈等角色動畫，並直接套用至 metaperson 後輸出標準 3d 格式。 ai motion ★★★★★ dlss 4.5 ray reconstruction：第二代 transformer 強化時序穩定並開放更細 temporal control nvidia gamescom 2026 更新 ray reconstruction，新模型增加計算與參數量、擴大資料集，並提供開發者更細的 temporal accumulation… rendering ★★★★★ adobe firefly production：節點式生成工作流可批次串接輸入、生成、編輯與輸出 firefly 的 production workflow builder 以節點連接文字、影像、影片、生成與轉換步驟，目標是把重複生成任務做成可重用批次流程。 ai workflow ★★★★★ clock saint：以四區塊雕刻與 roughness 階層管理複雜暗黑角色 kang jeong 將角色分為上身、下身、頭與手臂四大區塊，在 zbrush 完成主要設計，再以金、石、青銅與黑鐵建立材質階層。 character ★★★★☆ nymera：為 rig 提前規劃 retopo，並以程序 mari 材質支撐多人並行修改 ronja stucken 的 alien shaman 專案在 zbrush 建模後，以 rigging 為前提於 maya 重拓樸，服裝利用 marvelous 2d patter… character pipeline ★★★★★ ue5.8 mesh terrain：真 3d 地形 + non-destructive modifiers + world partition mesh terrain 以 3d mesh 取代傳統純 heightfield 限制，可建立懸崖、洞穴與 overhang，並以 modifiers、weight channels … ue5 worldbuilding ★★★★★ firefly scene to image：用簡單 3d 場景鎖定構圖、鏡頭與深度再生成影像 adobe firefly 可用 project neo 形狀建立 3d 場景，將相機角度、構圖與深度作為生成影像的結構參考。 concept control ★★★★☆ 4dgs-wam：以 4d gaussian splatting 建立 object-centric world action model 4dgs-wam 將動態 gaussian 表示與 action-conditioned world model 結合，探索可被行為驅動、以物件為中心的 4d 場景預測。 world model ★★★★★ nvidia gtc 案例：生成式 3d 從外觀走向關節、分件與物理屬性 nvidia gtc 2026 技術場次展示將影像或文字轉成具語意關節、part-aware mesh 與物理屬性的可驅動 3d 資產方法。 ai 3d research ★★★★☆ mllmsplat：讓 2d mllm 同時理解、生成與編輯 3d gaussian 場景 cvpr 2026 的 mllmsplat 透過 3dgs tokenizer/de-tokenizer 把 gaussian representation 接入既有 2d multi… 3d ai research ★★★★☆ blender→ue5：用 vertex animation texture 傳遞非骨架動畫 一套 blender 到 unreal 的 vat workflow 將任意頂點動畫烘焙到 texture，再在 ue5 重建，適合模組變形或不適合 skeletal rig 的效果。 animation pipeline ★★★★☆ gaussianfluent：gaussian 場景加入 mixed-material 與 brittle fracture 模擬 cvpr 2026 的 gaussianfluent 生成物體內部 gaussians，並結合 damage-aware mpm，讓 gaussian representation 可… simulation research ★★★★☆ houdini kinefx：mocap retarget、motion editing 與 combo 拆段後再送 ue5 實務案例把 capture take 送入 houdini kinefx 完成 retarget、速度調整、combo 分段與技術邏輯，再輸出 unreal，臉部 capture 則分… combat animation ★★★★☆ 肩披服裝 rig：以精細 weight paint 解決跨肩褶邊與配件自然變形 aldothevamp 展示 vrchat 角色肩部褶邊與服裝的權重配置，提供可直接觀察的 deformation/weight paint 參考。 rigging ★★★★☆ nvidia streamline：以單一 plugin framework 統一接入多種 upscaling／graphics effects streamline 讓引擎一次標記 motion vectors、depth 等資源，再由 plugin 接入不同超解析與圖形技術，降低每套 sdk 各自維護的整合成本。 engine integration ★★★★☆ avatarpointillist：單張 portrait 生成可動畫的 4d gaussian avatar cvpr 2026 的 avatarpointillist 以 autoregressive point generation 建立 3d gaussians，同時預測 binding… avatar research ★★★★☆ edgy：blender／cinema 4d 以 non-destructive mesh damage 直接改變輪廓 edgy 會在封閉 mesh 的邊緣與表面切出實際破損，原始物件保留不變，破損在任何鏡頭距離與 renderer 都能影響 silhouette。 modeling tool ★★★★☆ maya 2027.1：smart bevel 強化、lookdevx texture projection 與 usd variant edit maya 2027.1 更新 smart bevel、sequencer、motionmaker，lookdevx 2.1 增加免 uv texture projection，usd … maya pipeline ★★★★☆" href="2026-09-04/">
           <strong>
            2026-09-04
@@ -1063,8 +1131,7 @@
     </div>
    </section>
   </main>
-  <script src="home.js?v=20260906-r1-workspace-v6">
+  <script src="home.js?v=20260907-r1-workspace-v6">
   </script>
  </body>
 </html>
-
