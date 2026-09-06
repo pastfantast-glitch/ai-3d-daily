@@ -4,6 +4,7 @@ on:
   push:
     branches: [main]
     paths:
+      - 'data/publish/*.request'
       - 'data/publish/*.ready'
   workflow_dispatch:
     inputs:
@@ -26,10 +27,113 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  route:
+    runs-on: ubuntu-latest
+    outputs:
+      mode: ${{ steps.route.outputs.mode }}
+      date: ${{ steps.route.outputs.date }}
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: main
+          fetch-depth: 0
+      - name: Route canonical event
+        id: route
+        shell: bash
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          BEFORE_SHA: ${{ github.event.before }}
+          AFTER_SHA: ${{ github.sha }}
+          REQUESTED_DATE: ${{ github.event.inputs.date }}
+          RECOVERY_SHA: ${{ github.event.inputs.recovery_sha }}
+          ISSUE_TITLE: ${{ github.event.issue.title }}
+        run: |
+          set -euo pipefail
+          extract_date() { printf '%s\n' "$1" | grep -oE '20[0-9]{2}-[0-9]{2}-[0-9]{2}' | head -1 || true; }
+          mode="skip"; date=""
+          if [ "${EVENT_NAME:-}" = "push" ]; then
+            files=""
+            if [ -n "${BEFORE_SHA:-}" ] && git cat-file -e "$BEFORE_SHA^{commit}" 2>/dev/null; then
+              files="$(git diff --name-only "$BEFORE_SHA" "$AFTER_SHA")"
+            fi
+            ready="$(printf '%s\n' "$files" | grep -E '^data/publish/20[0-9]{2}-[0-9]{2}-[0-9]{2}\.ready$' | sort | tail -1 || true)"
+            request="$(printf '%s\n' "$files" | grep -E '^data/publish/20[0-9]{2}-[0-9]{2}-[0-9]{2}\.request$' | sort | tail -1 || true)"
+            if [ -n "$ready" ]; then mode="ready"; date="$(extract_date "$ready")"
+            elif [ -n "$request" ]; then mode="request"; date="$(extract_date "$request")"
+            fi
+          elif [ "${EVENT_NAME:-}" = "workflow_dispatch" ]; then
+            if [ -n "${RECOVERY_SHA:-}" ]; then mode="recovery"
+            else mode="publish"; date="$(extract_date "${REQUESTED_DATE:-}")"
+            fi
+          elif [ "${EVENT_NAME:-}" = "issues" ] && [[ "${ISSUE_TITLE:-}" == rerun-canonical:* ]]; then
+            mode="publish"; date="$(extract_date "$ISSUE_TITLE")"
+          fi
+          echo "mode=$mode" >> "$GITHUB_OUTPUT"
+          echo "date=$date" >> "$GITHUB_OUTPUT"
+          echo "Canonical route: mode=$mode date=${date:-auto}"
+
+  prepare:
+    needs: route
+    if: needs.route.outputs.mode == 'request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - name: Install locked pipeline dependencies
+        run: pip install -r requirements-pipeline.txt
+      - name: Run repository pre-ready gate and persist its generated marker
+        shell: bash
+        env:
+          DATE: ${{ needs.route.outputs.date }}
+        run: |
+          set -uo pipefail
+          test -n "$DATE" || { echo 'Request event did not resolve a canonical date'; exit 1; }
+          request="data/publish/$DATE.request"
+          test -f "$request" || { echo "Missing pre-ready request: $request"; exit 1; }
+
+          set +e
+          python scripts/prepare_release_candidate.py "$DATE"
+          rc=$?
+          set -e
+
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+
+          if [ "$rc" -eq 2 ]; then
+            # Registry normalization is intentionally preserved so collection can
+            # refill the clean survivor set. No .ready exists on this path.
+            git add "data/daily/$DATE.json"
+            git rm -f "$request"
+            if ! git diff --cached --quiet; then
+              git commit -m "Normalize intelligence candidate $DATE; refill required"
+              git pull --rebase origin main
+              git push origin HEAD:main
+            fi
+            echo "PRE-READY REFILL REQUIRED for $DATE; normalized canonical persisted; no .ready created."
+            exit 2
+          fi
+          if [ "$rc" -ne 0 ]; then
+            echo "PRE-READY FAILED for $DATE with exit code $rc; no repository mutation committed."
+            exit "$rc"
+          fi
+
+          test -f "data/publish/$DATE.ready" || { echo 'prepare_release_candidate.py returned success without .ready'; exit 1; }
+          git add "data/daily/$DATE.json" "data/publish/$DATE.ready" index.html "$DATE/index.html"
+          git rm -f "$request"
+          git commit -m "Prepare canonical intelligence $DATE"
+          git pull --rebase origin main
+          git push origin HEAD:main
+          echo "PRE-READY HANDOFF COMPLETE: repo script generated and pushed data/publish/$DATE.ready"
+
   publish:
-    if: >-
-      (github.event_name != 'issues' || startsWith(github.event.issue.title, 'rerun-canonical:')) &&
-      (github.event_name != 'workflow_dispatch' || github.event.inputs.recovery_sha == '')
+    needs: route
+    if: needs.route.outputs.mode == 'ready' || needs.route.outputs.mode == 'publish'
     runs-on: ubuntu-latest
     timeout-minutes: 45
     steps:
@@ -48,6 +152,7 @@ jobs:
         id: date
         shell: bash
         env:
+          ROUTED_DATE: ${{ needs.route.outputs.date }}
           REQUESTED_DATE: ${{ github.event.inputs.date }}
           ISSUE_TITLE: ${{ github.event.issue.title }}
           EVENT_NAME: ${{ github.event_name }}
@@ -56,13 +161,9 @@ jobs:
         run: |
           set -euo pipefail
           extract_date() { printf '%s\n' "$1" | grep -oE '20[0-9]{2}-[0-9]{2}-[0-9]{2}' | head -1 || true; }
-          candidate=""; source="latest"
-          if [ -n "${REQUESTED_DATE:-}" ]; then candidate="$(extract_date "$REQUESTED_DATE")"; source="workflow_dispatch"
-          elif [ "${EVENT_NAME:-}" = "issues" ] && [[ "${ISSUE_TITLE:-}" == rerun-canonical:* ]]; then candidate="$(extract_date "$ISSUE_TITLE")"; source="issue_title"
-          elif [ "${EVENT_NAME:-}" = "push" ]; then
-            ready=""
-            if [ -n "${BEFORE_SHA:-}" ] && git cat-file -e "$BEFORE_SHA^{commit}" 2>/dev/null; then ready="$(git diff --name-only "$BEFORE_SHA" "$AFTER_SHA" -- 'data/publish/*.ready' | sort | tail -1)"; fi
-            if [ -n "$ready" ]; then candidate="$(extract_date "$(basename "$ready" .ready)")"; source="ready_marker"; fi
+          candidate="$(extract_date "${ROUTED_DATE:-}")"; source="route"
+          if [ -z "$candidate" ] && [ -n "${REQUESTED_DATE:-}" ]; then candidate="$(extract_date "$REQUESTED_DATE")"; source="workflow_dispatch"
+          elif [ -z "$candidate" ] && [ "${EVENT_NAME:-}" = "issues" ] && [[ "${ISSUE_TITLE:-}" == rerun-canonical:* ]]; then candidate="$(extract_date "$ISSUE_TITLE")"; source="issue_title"
           fi
           if [ -z "$candidate" ]; then candidate="$(find data/daily -maxdepth 1 -name '20??-??-??.json' -printf '%f\n' | sed 's/.json$//' | sort | tail -1)"; source="latest_dataset"; fi
           if ! [[ "$candidate" =~ ^20[0-9]{2}-[0-9]{2}-[0-9]{2}$ ]]; then echo "Invalid canonical date resolved from $source: '$candidate'"; exit 1; fi
@@ -126,8 +227,6 @@ jobs:
           git add "data/daily/${{ steps.date.outputs.value }}.json" assets/visual index.html
           find . -maxdepth 2 -mindepth 2 -path './20??-??-??/index.html' -print0 | xargs -0 -r git add --
           find "${{ steps.date.outputs.value }}" -mindepth 2 -maxdepth 2 -name index.html -print0 | xargs -0 -r git add --
-          # Renderers may legitimately update additional tracked derived files.
-          # Stage tracked modifications/deletions without admitting unrelated untracked files.
           git add -u
           echo 'Atomic publish worktree status:'
           git status --short
@@ -172,8 +271,10 @@ jobs:
         run: |
           echo "## Canonical publish FAILED" >> "$GITHUB_STEP_SUMMARY"
           echo "- No DONE receipt is written on failure." >> "$GITHUB_STEP_SUMMARY"
+
   recovery:
-    if: github.event_name == 'workflow_dispatch' && github.event.inputs.recovery_sha != ''
+    needs: route
+    if: needs.route.outputs.mode == 'recovery'
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
