@@ -57,6 +57,11 @@ def validate_depth(date,rid,record,cfg):
     for i,text in enumerate(texts,1):
         if text and (text==summary or text==impact): errors.append(f'{date}: {rid} block {i} merely repeats summary/quick_impact')
 
+def default_candidate():
+    dates=sorted(p.stem for p in (ROOT/'data'/'daily').glob('20??-??-??.json'))
+    pending=[d for d in dates if not is_done(d)]
+    return pending[-1] if pending else ''
+
 def selected_dates(candidate=''):
     out=[]
     for p in sorted((ROOT/'data'/'daily').glob('20??-??-??.json')):
@@ -64,7 +69,7 @@ def selected_dates(candidate=''):
     return out
 
 def main():
-    candidate=sys.argv[1] if len(sys.argv)>1 else ''
+    candidate=sys.argv[1] if len(sys.argv)>1 else default_candidate()
     if candidate and not re.fullmatch(r'20\d{2}-\d{2}-\d{2}',candidate): raise SystemExit('Usage: check_intelligence_contract.py [YYYY-MM-DD]')
     if candidate and not (ROOT/'data'/'daily'/f'{candidate}.json').exists(): raise SystemExit(f'Missing candidate canonical dataset: {candidate}')
     dates=selected_dates(candidate); cfg=load_config()
