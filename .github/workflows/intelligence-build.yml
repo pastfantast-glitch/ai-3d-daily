@@ -120,7 +120,9 @@ jobs:
           fi
 
           test -f "data/publish/$DATE.ready" || { echo 'prepare_release_candidate.py returned success without .ready'; exit 1; }
-          git add "data/daily/$DATE.json" "data/publish/$DATE.ready" index.html "$DATE/index.html"
+          # Pre-ready may persist canonical mutations and the generated marker only.
+          # Public HTML/assets are exclusively committed by Atomic Publish.
+          git add "data/daily/$DATE.json" "data/publish/$DATE.ready"
           git rm -f "$request"
           git commit -m "Prepare canonical intelligence $DATE"
           # Do not rebase a runner worktree after pre-ready normalization. The global
@@ -145,7 +147,9 @@ jobs:
       - name: Install locked pipeline dependencies
         run: pip install -r requirements-pipeline.txt
       - name: Validate publishing topology
-        run: python scripts/check_pipeline_contract.py
+        run: |
+          python scripts/check_release_architecture.py
+          python scripts/check_pipeline_contract.py
       - name: Resolve canonical date
         id: date
         shell: bash
