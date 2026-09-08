@@ -85,6 +85,7 @@ def main() -> None:
         # Contract stage token: normalize_registry_identity.py
         # The hybrid wrapper delegates normal Registry identity handling to that core gate.
         run('normalize_registry_identity_hybrid.py', date)
+        run('apply_analysis_overrides.py', date)
         run('enrich_full_analysis_v3.py', date)
         run('normalize_release_seed.py', date)
         # Contract stage token: check_release_input.py
