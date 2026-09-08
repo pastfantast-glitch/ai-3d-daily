@@ -4,10 +4,15 @@ import json,re,sys
 from bs4 import BeautifulSoup
 from intelligence_v2 import is_v2_dataset, homepage_groups, category_items, load_config
 
-ROOT=Path(__file__).resolve().parents[1]; errors=[]
+ROOT=Path(__file__).resolve().parents[1]
+DEPTH_PATH=ROOT/'config'/'full-analysis-depth.json'
+errors=[]
+
 def norm(s): return re.sub(r'\s+',' ',s).strip()
+def char_count(s): return len(re.sub(r'\s+','',norm(s)))
 def canonical_text(record): return norm(' '.join(f"{b['label']} {b['text']}" for b in record['full_analysis']))
 def has_han(s): return bool(re.search(r'[\u3400-\u4dbf\u4e00-\u9fff]',s))
+
 def is_done(date):
     path=ROOT/'data'/'publish'/f'{date}.done.json'
     if not path.exists(): return False
@@ -39,7 +44,7 @@ def inspect_cards(date,name,path,selector,recs,expected_ids):
     if extra: errors.append(f'{date} {name}: unexpected IDs: {sorted(extra)}')
     return seen
 
-def validate_depth(date,rid,record,cfg):
+def validate_depth(date,rid,record,cfg,depth_cfg):
     blocks=record.get('full_analysis',[]); fa=cfg.get('full_analysis',{})
     min_blocks=int(fa.get('min_blocks',3)); max_blocks=int(fa.get('max_blocks',5))
     require_zh_hant=fa.get('heading_language')=='zh-Hant'
@@ -57,13 +62,25 @@ def validate_depth(date,rid,record,cfg):
     for i,text in enumerate(texts,1):
         if text and (text==summary or text==impact): errors.append(f'{date}: {rid} block {i} merely repeats summary/quick_impact')
 
-def default_candidate():
-    """Only the newest canonical date may be an implicit staging candidate.
+    if date < str(depth_cfg.get('effective_date','9999-12-31')):
+        return
+    min_block_chars=int(depth_cfg.get('min_block_chars',0))
+    min_total_chars=int(depth_cfg.get('min_total_text_chars',0))
+    total=0
+    original_labels=[]
+    for i,block in enumerate(blocks,1):
+        text=norm(block.get('text','')); label=norm(block.get('label',''))
+        n=char_count(text); total+=n; original_labels.append(label)
+        if min_block_chars and n<min_block_chars:
+            errors.append(f'{date}: {rid} block {i} Full Analysis too shallow ({n}<{min_block_chars} non-space chars)')
+    if min_total_chars and total<min_total_chars:
+        errors.append(f'{date}: {rid} Full Analysis total depth too shallow ({total}<{min_total_chars} non-space chars)')
+    joined=' '.join(original_labels)
+    for group,keywords in (depth_cfg.get('required_semantic_groups') or {}).items():
+        if not any(str(keyword) in joined for keyword in keywords):
+            errors.append(f'{date}: {rid} Full Analysis missing semantic angle: {group}')
 
-    Older un-DONE JSON files are abandoned/WIP inputs, not published history and
-    must not become the active candidate after a newer date has already reached
-    DONE. This mirrors the Published Intelligence Registry's DONE-only semantics.
-    """
+def default_candidate():
     dates=sorted(p.stem for p in (ROOT/'data'/'daily').glob('20??-??-??.json'))
     if not dates: return ''
     latest=dates[-1]
@@ -79,7 +96,7 @@ def main():
     candidate=sys.argv[1] if len(sys.argv)>1 else default_candidate()
     if candidate and not re.fullmatch(r'20\d{2}-\d{2}-\d{2}',candidate): raise SystemExit('Usage: check_intelligence_contract.py [YYYY-MM-DD]')
     if candidate and not (ROOT/'data'/'daily'/f'{candidate}.json').exists(): raise SystemExit(f'Missing candidate canonical dataset: {candidate}')
-    dates=selected_dates(candidate); cfg=load_config()
+    dates=selected_dates(candidate); cfg=load_config(); depth_cfg=json.loads(DEPTH_PATH.read_text('utf-8'))
     current=candidate or (dates[-1] if dates else '')
     for date in dates:
         data=json.loads((ROOT/'data'/'daily'/f'{date}.json').read_text('utf-8')); recs={x['id']:x for x in data['items']}
@@ -100,7 +117,7 @@ def main():
                 for rid in recs:
                     if home.get(rid)!=daily.get(rid): errors.append(f'{date}: Full Analysis drift for {rid}')
         for rid,record in recs.items():
-            if is_v2_dataset(data): validate_depth(date,rid,record,cfg)
+            if is_v2_dataset(data): validate_depth(date,rid,record,cfg,depth_cfg)
             else:
                 if len(record.get('full_analysis',[]))<3: errors.append(f'{date}: {rid} full_analysis must have >=3 structured blocks')
                 for i,block in enumerate(record.get('full_analysis',[]),1):
