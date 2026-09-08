@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   3D 動作｜2026-09-08｜AI 3D Daily
+  </title>
+  <link href="../../styles.css?v=20260908-r1-workspace-v6" rel="stylesheet"/>
+  <link href="../../shared-components.css?v=20260908-r1-workspace-v6" rel="stylesheet"/>
+  <link href="../../category.css?v=20260908-r1-workspace-v6" rel="stylesheet"/>
+ </head>
+ <body class="category-page" data-category="3d-animation" data-report-date="2026-09-08">
+  <nav aria-label="Production Intelligence 分類" class="global-category-nav">
+   <div class="page global-category-nav-inner">
+    <div class="archive-nav-controls">
+     <a class="archive-nav-home" href="../../">
+      ← 首頁
+     </a>
+     <div class="archive-nav-date">
+      <a aria-label="前一日日報" class="archive-nav-arrow" href="../../2026-09-07/3d-animation/">
+       ←
+      </a>
+      <span>
+       2026-09-08
+      </span>
+     </div>
+    </div>
+    <span aria-hidden="true" class="archive-nav-divider">
+    </span>
+    <a class="global-category-link" href="../#top">
+     TOP5
+    </a>
+    <a class="global-category-link" data-category="ai-generation" href="../ai-generation/">
+     AI 生成
+    </a>
+    <a class="global-category-link" data-category="3d-production" href="../3d-production/">
+     3D 製作
+    </a>
+    <a class="global-category-link is-active" data-category="3d-animation" href="../3d-animation/">
+     3D 動作
+    </a>
+    <a class="global-category-link" data-category="engine-art" href="../engine-art/">
+     遊戲引擎
+    </a>
+    <a class="global-category-link" data-category="emerging-case" href="../emerging-case/">
+     新技術 / Case
+    </a>
+    <a class="global-category-link" data-category="blender-dcc" href="../blender-dcc/">
+     Blender / DCC
+    </a>
+   </div>
+  </nav>
+  <main class="page category-main">
+   <article class="category-card" data-intel-id="blaze-autopose-blender" data-intel-role="card">
+    <div class="category-meta">
+     #12 · animation
+    </div>
+    <h2>
+     Blaze AutoPose：在既有 Blender Rig 上用位置／旋轉約束快速完成姿勢
+    </h2>
+    <p class="summary">
+     Blaze AutoPose 把 Cascadeur 類型的 auto-posing 工作流帶進 Blender，可在 viewport 放置 position、rotation、look-at constraints，再直接把結果套到既有 FK controllers；支援 Rigify、Auto-Rig Pro、Mixamo 等常見 rig。
+    </p>
+    <figure class="case-preview" data-intel-id="blaze-autopose-blender" data-intel-role="visual" data-visual-id="blaze-autopose-blender">
+     <a href="https://blenderartists.org/t/auto-pose-in-blender/1651968" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-08/blaze-autopose-blender.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">動畫</b> ★★★★☆</span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       姿勢製作流程
+      </h4>
+      <p>
+       工具不是另建一套骨架，而是用少量空間約束求解全身姿勢並回寫既有 FK controllers，降低 blocking 階段逐骨調整成本。
+      </p>
+      <h4>
+       Rig 相容性
+      </h4>
+      <p>
+       已有 Rigify、Auto-Rig Pro、CloudRig、Mixamo 與 Puppet Studio preset，自訂 humanoid 也可做一次性 control mapping。
+      </p>
+      <h4>
+       導入測試
+      </h4>
+      <p>
+       應用既有角色測手腳接觸、look-at、重心與極端姿勢，再比較人工 blocking 的控制感與修正時間。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://blenderartists.org/t/auto-pose-in-blender/1651968" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="mocapanything-v2" data-intel-role="card">
+    <div class="category-meta">
+     #13 · mocap
+    </div>
+    <h2>
+     MoCapAnything V2：單目影片直接輸出任意 Skeleton 的 BVH-ready Rotations
+    </h2>
+    <p class="summary">
+     MoCapAnything V2 從 monocular video 直接預測 3D pose 與 animation-ready joint rotations，支援人、動物、物件與自訂 skeleton，並可帶入自己的 rigged FBX 做骨架拓樸與 reference pose 前處理。
+    </p>
+    <figure class="case-preview" data-intel-id="mocapanything-v2" data-intel-role="visual" data-visual-id="mocapanything-v2">
+     <a href="https://github.com/phongdaot/MocapAnything" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-08/mocapanything-v2.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">動作捕捉</b> ★★★★★</span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       動作輸入輸出
+      </h4>
+      <p>
+       流程直接從影片推到 joint rotations 與 BVH，不先依賴特定人體 mesh model，對非標準骨架與 creature motion 特別有研究價值。
+      </p>
+      <h4>
+       Retarget 潛力
+      </h4>
+      <p>
+       自訂 rigged FBX 可生成 skeleton topology、joint-name embedding 與 reference poses，讓不同骨架有機會共用同一 mocap pipeline。
+      </p>
+      <h4>
+       驗證方式
+      </h4>
+      <p>
+       應測 humanoid、四足與比例差異角色的 foot contact、root motion、快速轉身與 BVH 回 Blender/UE 的可用性。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://github.com/phongdaot/MocapAnything" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <nav aria-label="相鄰分類" class="category-bottom-nav">
+    <a href="../3d-production/">
+     ← 3D 製作
+    </a>
+    <a href="../#top">
+     TOP5
+    </a>
+    <a href="../engine-art/">
+     遊戲引擎 →
+    </a>
+   </nav>
+  </main>
+  <script defer="" src="../../archive-nav-state.js?v=20260908-r1-workspace-v6">
+  </script>
+ </body>
+</html>

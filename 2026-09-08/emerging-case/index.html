@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   新技術 / Case｜2026-09-08｜AI 3D Daily
+  </title>
+  <link href="../../styles.css?v=20260908-r1-workspace-v6" rel="stylesheet"/>
+  <link href="../../shared-components.css?v=20260908-r1-workspace-v6" rel="stylesheet"/>
+  <link href="../../category.css?v=20260908-r1-workspace-v6" rel="stylesheet"/>
+ </head>
+ <body class="category-page" data-category="emerging-case" data-report-date="2026-09-08">
+  <nav aria-label="Production Intelligence 分類" class="global-category-nav">
+   <div class="page global-category-nav-inner">
+    <div class="archive-nav-controls">
+     <a class="archive-nav-home" href="../../">
+      ← 首頁
+     </a>
+     <div class="archive-nav-date">
+      <a aria-label="前一日日報" class="archive-nav-arrow" href="../../2026-09-07/emerging-case/">
+       ←
+      </a>
+      <span>
+       2026-09-08
+      </span>
+     </div>
+    </div>
+    <span aria-hidden="true" class="archive-nav-divider">
+    </span>
+    <a class="global-category-link" href="../#top">
+     TOP5
+    </a>
+    <a class="global-category-link" data-category="ai-generation" href="../ai-generation/">
+     AI 生成
+    </a>
+    <a class="global-category-link" data-category="3d-production" href="../3d-production/">
+     3D 製作
+    </a>
+    <a class="global-category-link" data-category="3d-animation" href="../3d-animation/">
+     3D 動作
+    </a>
+    <a class="global-category-link" data-category="engine-art" href="../engine-art/">
+     遊戲引擎
+    </a>
+    <a class="global-category-link is-active" data-category="emerging-case" href="../emerging-case/">
+     新技術 / Case
+    </a>
+    <a class="global-category-link" data-category="blender-dcc" href="../blender-dcc/">
+     Blender / DCC
+    </a>
+   </div>
+  </nav>
+  <main class="page category-main">
+   <article class="category-card" data-intel-id="raga-gaussian-shadows" data-intel-role="card">
+    <div class="category-meta">
+     #15 · 4d
+    </div>
+    <h2>
+     RAGA：3DGS Avatar／Scene Interaction 的 Real-time Gaussian Ray-traced Shadows
+    </h2>
+    <p class="summary">
+     RAGA 直接在 Gaussian space 進行 ray-traced shadow casting，不依賴 mesh reconstruction，並以 avatar proxy 穩定服裝變形時的陰影；論文報告約 50 FPS。
+    </p>
+    <figure class="case-preview" data-intel-id="raga-gaussian-shadows" data-intel-role="visual" data-visual-id="raga-gaussian-shadows">
+     <a href="https://arxiv.org/abs/2606.29329" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-08/raga-gaussian-shadows.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">4D</b> ★★★★☆</span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       動態 3DGS 渲染
+      </h4>
+      <p>
+       方法直接計算 ray-Gaussian opacity integral，讓 animated Gaussian avatar 在既有 Gaussian scene 裡能有更一致的陰影互動。
+      </p>
+      <h4>
+       Production 潛力
+      </h4>
+      <p>
+       若 3DGS 逐步進入 virtual production 或 real-time avatar 場景，陰影一致性是從展示走向可用 rendering pipeline 的重要缺口。
+      </p>
+      <h4>
+       限制與測試
+      </h4>
+      <p>
+       目前依賴 CUDA/OptiX；應先測多角色、透明衣物、快速動作與不同 Gaussian density 下的 temporal stability。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://arxiv.org/abs/2606.29329" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="fastgha-fewshot-avatar" data-intel-role="card">
+    <div class="category-meta">
+     #16 · research
+    </div>
+    <h2>
+     FastGHA：Few-shot Images 直接生成可 Real-time Animation 的 3D Gaussian Head Avatar
+    </h2>
+    <p class="summary">
+     Disney Research 等提出 FastGHA，以少量影像 feed-forward 生成高品質 Gaussian head avatar，並以輕量 MLP 根據 expression codes 預測 Gaussian deformation，支援 real-time animation。
+    </p>
+    <figure class="case-preview" data-intel-id="fastgha-fewshot-avatar" data-intel-role="visual" data-visual-id="fastgha-fewshot-avatar">
+     <a href="https://studios.disneyresearch.com/2026/04/22/fastgha-generalized-few-shot-3d-gaussian-head-avatars-with-real-time-animation/" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-08/fastgha-fewshot-avatar.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">研究</b> ★★★★☆</span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       Avatar 生成
+      </h4>
+      <p>
+       few-shot feed-forward 路線避免每個角色長時間 per-identity optimization，對大量 avatar 建立更接近可擴展 production 模式。
+      </p>
+      <h4>
+       動畫控制
+      </h4>
+      <p>
+       每個 Gaussian 帶 feature，再由輕量 dynamic network 依 expression code 預測 deformation，使重建與即時 facial driving 能放在同一 representation。
+      </p>
+      <h4>
+       成熟度判斷
+      </h4>
+      <p>
+       仍屬研究型 Gaussian avatar；應比較 capture 張數、側後視角、極端表情與轉成傳統 mesh/rig pipeline 的成本。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://studios.disneyresearch.com/2026/04/22/fastgha-generalized-few-shot-3d-gaussian-head-avatars-with-real-time-animation/" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <nav aria-label="相鄰分類" class="category-bottom-nav">
+    <a href="../engine-art/">
+     ← 遊戲引擎
+    </a>
+    <a href="../#top">
+     TOP5
+    </a>
+    <a href="../blender-dcc/">
+     Blender / DCC →
+    </a>
+   </nav>
+  </main>
+  <script defer="" src="../../archive-nav-state.js?v=20260908-r1-workspace-v6">
+  </script>
+ </body>
+</html>

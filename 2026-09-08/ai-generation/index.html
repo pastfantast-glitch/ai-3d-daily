@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   AI 生成｜2026-09-08｜AI 3D Daily
+  </title>
+  <link href="../../styles.css?v=20260908-r1-workspace-v6" rel="stylesheet"/>
+  <link href="../../shared-components.css?v=20260908-r1-workspace-v6" rel="stylesheet"/>
+  <link href="../../category.css?v=20260908-r1-workspace-v6" rel="stylesheet"/>
+ </head>
+ <body class="category-page" data-category="ai-generation" data-report-date="2026-09-08">
+  <nav aria-label="Production Intelligence 分類" class="global-category-nav">
+   <div class="page global-category-nav-inner">
+    <div class="archive-nav-controls">
+     <a class="archive-nav-home" href="../../">
+      ← 首頁
+     </a>
+     <div class="archive-nav-date">
+      <a aria-label="前一日日報" class="archive-nav-arrow" href="../../2026-09-07/ai-generation/">
+       ←
+      </a>
+      <span>
+       2026-09-08
+      </span>
+     </div>
+    </div>
+    <span aria-hidden="true" class="archive-nav-divider">
+    </span>
+    <a class="global-category-link" href="../#top">
+     TOP5
+    </a>
+    <a class="global-category-link is-active" data-category="ai-generation" href="../ai-generation/">
+     AI 生成
+    </a>
+    <a class="global-category-link" data-category="3d-production" href="../3d-production/">
+     3D 製作
+    </a>
+    <a class="global-category-link" data-category="3d-animation" href="../3d-animation/">
+     3D 動作
+    </a>
+    <a class="global-category-link" data-category="engine-art" href="../engine-art/">
+     遊戲引擎
+    </a>
+    <a class="global-category-link" data-category="emerging-case" href="../emerging-case/">
+     新技術 / Case
+    </a>
+    <a class="global-category-link" data-category="blender-dcc" href="../blender-dcc/">
+     Blender / DCC
+    </a>
+   </div>
+  </nav>
+  <main class="page category-main">
+   <article class="category-card" data-intel-id="tripo-multiview-api" data-intel-role="card">
+    <div class="category-meta">
+     #08 · ai-3d
+    </div>
+    <h2>
+     Tripo OpenAPI 多視圖工作流：單圖生成／獨立編輯 views 再直接串 model generation
+    </h2>
+    <p class="summary">
+     Tripo API 1.9.6 加入 generate_multiview_image、edit_multiview_image，並允許 multiview_to_model 直接接 original_task_id，減少重傳與人工預處理。
+    </p>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">AI 3D</b> ★★★★☆</span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       API 流程
+      </h4>
+      <p>
+       多視圖生成、單 view 編輯與 3D generation 可用 task id 串接。
+      </p>
+      <h4>
+       Production 價值
+      </h4>
+      <p>
+       適合批次生成與自動化驗證 pipeline。
+      </p>
+      <h4>
+       驗證方式
+      </h4>
+      <p>
+       測單圖→四視圖→局部修正→模型的全自動 job。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://docs.tripo3d.ai/get-started/changelog.html" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="tripo-h31-quad" data-intel-role="card">
+    <div class="category-meta">
+     #09 · ai-3d
+    </div>
+    <h2>
+     Tripo H3.1：200 萬面、PBR、Quad FBX 與 Smart Low-poly 的生成選項
+    </h2>
+    <p class="summary">
+     Tripo H3.1 官方模型頁列出最高 200 萬面、Text/Image/Multiview、PBR、Quad mesh FBX、Smart low-poly 與 Generate in parts，可直接用於生成品質與拓樸測試。
+    </p>
+    <figure class="case-preview" data-intel-id="tripo-h31-quad" data-intel-role="visual" data-visual-id="tripo-h31-quad">
+     <a href="https://developers.tripo3d.ai/en/models/v3-1" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-08/tripo-h31-quad.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">AI 3D</b> ★★★★☆</span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       生成能力
+      </h4>
+      <p>
+       同一模型提供 high-detail、quad、smart low-poly 與 parts 選項。
+      </p>
+      <h4>
+       Production 價值
+      </h4>
+      <p>
+       可把生成、retopo、分件視為同一 benchmark。
+      </p>
+      <h4>
+       驗證方式
+      </h4>
+      <p>
+       用同角色比較 quad/smart low-poly 與高模輸出的可編輯性。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://developers.tripo3d.ai/en/models/v3-1" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <nav aria-label="相鄰分類" class="category-bottom-nav">
+    <a href="../blender-dcc/">
+     ← Blender / DCC
+    </a>
+    <a href="../#top">
+     TOP5
+    </a>
+    <a href="../3d-production/">
+     3D 製作 →
+    </a>
+   </nav>
+  </main>
+  <script defer="" src="../../archive-nav-state.js?v=20260908-r1-workspace-v6">
+  </script>
+ </body>
+</html>

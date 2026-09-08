@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   Blender / DCC｜2026-09-08｜AI 3D Daily
+  </title>
+  <link href="../../styles.css?v=20260908-r1-workspace-v6" rel="stylesheet"/>
+  <link href="../../shared-components.css?v=20260908-r1-workspace-v6" rel="stylesheet"/>
+  <link href="../../category.css?v=20260908-r1-workspace-v6" rel="stylesheet"/>
+ </head>
+ <body class="category-page" data-category="blender-dcc" data-report-date="2026-09-08">
+  <nav aria-label="Production Intelligence 分類" class="global-category-nav">
+   <div class="page global-category-nav-inner">
+    <div class="archive-nav-controls">
+     <a class="archive-nav-home" href="../../">
+      ← 首頁
+     </a>
+     <div class="archive-nav-date">
+      <a aria-label="前一日日報" class="archive-nav-arrow" href="../../2026-09-07/blender-dcc/">
+       ←
+      </a>
+      <span>
+       2026-09-08
+      </span>
+     </div>
+    </div>
+    <span aria-hidden="true" class="archive-nav-divider">
+    </span>
+    <a class="global-category-link" href="../#top">
+     TOP5
+    </a>
+    <a class="global-category-link" data-category="ai-generation" href="../ai-generation/">
+     AI 生成
+    </a>
+    <a class="global-category-link" data-category="3d-production" href="../3d-production/">
+     3D 製作
+    </a>
+    <a class="global-category-link" data-category="3d-animation" href="../3d-animation/">
+     3D 動作
+    </a>
+    <a class="global-category-link" data-category="engine-art" href="../engine-art/">
+     遊戲引擎
+    </a>
+    <a class="global-category-link" data-category="emerging-case" href="../emerging-case/">
+     新技術 / Case
+    </a>
+    <a class="global-category-link is-active" data-category="blender-dcc" href="../blender-dcc/">
+     Blender / DCC
+    </a>
+   </div>
+  </nav>
+  <main class="page category-main">
+   <article class="category-card" data-intel-id="substance-painter-1214" data-intel-role="card">
+    <div class="category-meta">
+     #01 · substance
+    </div>
+    <h2>
+     Substance 3D Painter 12.1.4 修正非 ASCII 檔名匯入／匯出崩潰
+    </h2>
+    <p class="summary">
+     Adobe 於 9 月 4 日釋出 Painter 12.1.4，修正含非 ASCII 字元檔名在匯入或匯出時造成的崩潰，對中文／日文命名資產管線是直接的穩定性修正。
+    </p>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">Substance</b> ★★★★★</span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       Production 重點
+      </h4>
+      <p>
+       非 ASCII 檔名 crash 修正直接影響亞洲團隊資產命名與交換穩定性。
+      </p>
+      <h4>
+       導入價值
+      </h4>
+      <p>
+       升版前以中文檔名專案做 import/export regression。
+      </p>
+      <h4>
+       驗證方式
+      </h4>
+      <p>
+       測 SBSAR、貼圖、專案與 network path 的非 ASCII 名稱。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://experienceleague.adobe.com/en/docs/substance-3d-painter/using/release-notes/all-changes" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="substance-designer-1606" data-intel-role="card">
+    <div class="category-meta">
+     #02 · substance
+    </div>
+    <h2>
+     Substance 3D Designer 16.0.6 強化穩定性與 TGA／TIFF 安全修正
+    </h2>
+    <p class="summary">
+     Designer 16.0.6 修正 shader 編譯關閉時與非 ASCII 路徑輸出的崩潰，同時處理 TGA/TIFF 解析安全問題，適合工作室升版前納入驗證。
+    </p>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">Substance</b> ★★★★★</span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       Production 重點
+      </h4>
+      <p>
+       穩定性、非 ASCII 輸出與影像解析安全同時修正。
+      </p>
+      <h4>
+       導入價值
+      </h4>
+      <p>
+       對大量批次輸出與共享路徑團隊特別重要。
+      </p>
+      <h4>
+       驗證方式
+      </h4>
+      <p>
+       以現有 graph 做 compile/close、TGA/TIFF 與中文路徑測試。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://experienceleague.adobe.com/en/docs/substance-3d-designer/using/release-notes/all-changes" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="seamless-painter-blender" data-intel-role="card">
+    <div class="category-meta">
+     #05 · blender-tip
+    </div>
+    <h2>
+     Blender Seamless Painter：內建 Texture Paint 的無縫貼圖與自動化 canvas
+    </h2>
+    <p class="summary">
+     Omar Faruq Tawsif 示範以 Blender Texture Paint 建立 seamless texture，搭配免費自動化 add-on 快速建立畫布；工具已測試 Blender 3.6–5.2。
+    </p>
+    <figure class="case-preview" data-intel-id="seamless-painter-blender" data-intel-role="visual" data-visual-id="seamless-painter-blender">
+     <a href="https://80.lv/articles/how-to-paint-seamlessly-in-blender-s-texture-paint-mode" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-08/seamless-painter-blender.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">Blender 技巧</b> ★★★★☆</span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       DCC 技巧
+      </h4>
+      <p>
+       自動建立 seamless canvas，降低手動 offset/preview 循環。
+      </p>
+      <h4>
+       Production 價值
+      </h4>
+      <p>
+       對 stylized tileable texture 與 NPR 素材快速迭代有用。
+      </p>
+      <h4>
+       驗證方式
+      </h4>
+      <p>
+       測 1K/2K tile、邊界與 engine mip 下的 seam。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://80.lv/articles/how-to-paint-seamlessly-in-blender-s-texture-paint-mode" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="painter12-flatten-warp" data-intel-role="card">
+    <div class="category-meta">
+     #07 · substance
+    </div>
+    <h2>
+     Painter 12.0：Layer Flatten、Warp to Geometry 與批次輸出改善貼圖迭代
+    </h2>
+    <p class="summary">
+     Painter 12.0 可在 layer stack 直接 flatten 群組、批次輸出 layer/mask，並以 Warp to Geometry 改善 decal 貼合複雜曲面，降低跨軟體迭代成本。
+    </p>
+    <figure class="case-preview" data-intel-id="painter12-flatten-warp" data-intel-role="visual" data-visual-id="painter12-flatten-warp">
+     <a href="https://experienceleague.adobe.com/en/docs/substance-3d-painter/using/release-notes/version-12-0" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-08/painter12-flatten-warp.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">Substance</b> ★★★★☆</span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       貼圖流程
+      </h4>
+      <p>
+       Flatten 與 Warp to Geometry 都直接針對常見 production friction。
+      </p>
+      <h4>
+       Production 價值
+      </h4>
+      <p>
+       可降低 layer stack 過重與 decal 曲面貼合的人工處理。
+      </p>
+      <h4>
+       驗證方式
+      </h4>
+      <p>
+       用複雜曲面 decal 與大型 layer stack 做 A/B。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://experienceleague.adobe.com/en/docs/substance-3d-painter/using/release-notes/version-12-0" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="retopoly-3dsmax" data-intel-role="card">
+    <div class="category-meta">
+     #14 · other-dcc
+    </div>
+    <h2>
+     retoPoly：3ds Max 原生 Modifier Stack 內直接做 Manual Retopology
+    </h2>
+    <p class="summary">
+     retoPoly 是新的 3ds Max native modifier，可直接在 high-res mesh 上繪製與編輯 topology，提供 contour、bridge、patch、guide、brush、mask 與 live conform，保留 Max modifier-stack 工作流。
+    </p>
+    <figure class="case-preview" data-intel-id="retopoly-3dsmax" data-intel-role="visual" data-visual-id="retopoly-3dsmax">
+     <a href="https://80.lv/articles/new-native-retopology-modifier-for-3ds-max-released" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-08/retopoly-3dsmax.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">其他 DCC</b> ★★★★☆</span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       Retopo 工作流
+      </h4>
+      <p>
+       工具把 manual retopology 放回 modifier stack，能在不離開 3ds Max 的情況下對 high-res asset 直接拉 edge flow。
+      </p>
+      <h4>
+       製作價值
+      </h4>
+      <p>
+       對仍以 3ds Max 為主要建模 DCC 的團隊，可減少 ZBrush/TopoGun/Blender 間的 round-trip。
+      </p>
+      <h4>
+       實測
+      </h4>
+      <p>
+       用角色頭部與 hard-surface 兩類資產測 live conform、橋接、patch 與高密度參考網格效能。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://80.lv/articles/new-native-retopology-modifier-for-3ds-max-released" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <nav aria-label="相鄰分類" class="category-bottom-nav">
+    <a href="../emerging-case/">
+     ← 新技術 / Case
+    </a>
+    <a href="../#top">
+     TOP5
+    </a>
+    <a href="../ai-generation/">
+     AI 生成 →
+    </a>
+   </nav>
+  </main>
+  <script defer="" src="../../archive-nav-state.js?v=20260908-r1-workspace-v6">
+  </script>
+ </body>
+</html>
