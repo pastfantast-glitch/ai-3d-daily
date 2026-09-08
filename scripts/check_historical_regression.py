@@ -84,7 +84,10 @@ def run(work,*cmd):
     if proc.returncode: raise RuntimeError(f"command failed ({proc.returncode}): {' '.join(cmd)}")
 
 def run_registry_normalization(work,date):
-    cmd=(sys.executable,'scripts/normalize_registry_identity.py',date)
+    # Rebuild simulation must use the same Hybrid-aware Registry gate as prepare.
+    # Otherwise a verified LOW_VOLUME_COMPLETE DONE day is incorrectly rejected by
+    # the normal 20-item floor during historical regression.
+    cmd=(sys.executable,'scripts/normalize_registry_identity_hybrid.py',date)
     proc=subprocess.run(cmd,cwd=work,text=True,stdout=subprocess.PIPE,stderr=subprocess.STDOUT)
     print(f"$ {' '.join(cmd)}"); print(proc.stdout,end='' if proc.stdout.endswith('\n') else '\n')
     return proc.returncode
@@ -109,6 +112,7 @@ def canonical_rebuild_simulation(date,parity=True):
                 return
             if registry_rc:
                 raise RuntimeError(f'registry normalization failed ({registry_rc})')
+            run(work,sys.executable,'scripts/apply_analysis_overrides.py',date)
             run(work,sys.executable,'scripts/enrich_full_analysis_v3.py',date)
             run(work,sys.executable,'scripts/normalize_release_seed.py',date)
             run(work,sys.executable,'scripts/render_daily_navigation.py')
