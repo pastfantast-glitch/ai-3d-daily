@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 """Prepare one canonical intelligence date and create .ready only after all pre-ready gates pass.
 
-Hybrid discovery extends the canonical prepare sequence without moving .ready
-creation out of this file. The repository topology contract can therefore verify
-the complete pre-ready chain directly.
+Hybrid discovery extends the canonical prepare sequence without publishing derived
+homepage/daily surfaces. Public presentation files are generated temporarily for
+preflight, then restored before the prepare commit so a failed publish can never
+leak a half-prepared homepage to GitHub Pages.
 """
 from pathlib import Path
 import hashlib
@@ -33,6 +34,21 @@ def run(script: str, *args: str) -> None:
         raise SystemExit(proc.returncode)
 
 
+def snapshot(path: Path):
+    if path.exists():
+        return True, path.read_bytes()
+    return False, b''
+
+
+def restore(path: Path, state) -> None:
+    existed, payload = state
+    if existed:
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_bytes(payload)
+    else:
+        path.unlink(missing_ok=True)
+
+
 def main() -> None:
     date = sys.argv[1] if len(sys.argv) > 1 else ''
     if not DATE_RE.fullmatch(date):
@@ -54,6 +70,11 @@ def main() -> None:
 
     ready_path.unlink(missing_ok=True)
 
+    # normalize_release_seed.py writes these derived public surfaces for preflight.
+    # Snapshot and restore them so prepare never publishes a half-ready site.
+    public_paths = [ROOT / 'index.html', ROOT / date / 'index.html']
+    public_snapshots = {path: snapshot(path) for path in public_paths}
+
     try:
         run('check_pipeline_contract.py')
         run('check_collection_contract.py')
@@ -61,13 +82,9 @@ def main() -> None:
         run('check_stability_contract.py')
         run('check_quick_impact_contract.py', date)
 
-        # Hybrid wrapper delegates normal identity handling to normalize_registry_identity.py
-        # and only permits the audited LOW_VOLUME_COMPLETE exception when applicable.
         run('normalize_registry_identity_hybrid.py', date)
-
         run('enrich_full_analysis_v3.py', date)
         run('normalize_release_seed.py', date)
-        # Hybrid release-input wrapper delegates the normal path to check_release_input.py.
         run('check_release_input_hybrid.py', date)
         run('check_registry_contract.py', date)
     except SystemExit as exc:
@@ -78,6 +95,10 @@ def main() -> None:
         else:
             print('PRE-READY FAILED: no .ready created.')
         raise
+    finally:
+        for path, state in public_snapshots.items():
+            restore(path, state)
+        print('PRE-READY PUBLIC SURFACES RESTORED: prepare did not publish homepage/daily HTML.')
 
     data = json.loads(data_path.read_text('utf-8'))
     items = data.get('items') or []
@@ -89,6 +110,7 @@ def main() -> None:
         'prepared_by': 'scripts/prepare_release_candidate.py',
         'registry_normalized_before_ready': True,
         'preflight_passed_before_ready': True,
+        'public_surfaces_committed_before_publish': False,
     }
     ready_path.parent.mkdir(parents=True, exist_ok=True)
     ready_path.write_text(json.dumps(marker, ensure_ascii=False, indent=2) + '\n', 'utf-8')

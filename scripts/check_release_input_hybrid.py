@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-import check_release_input as core
+"""Hybrid-aware release input gate used by both prepare and publish."""
+import check_release_input_core as core
 from discovery_hybrid import low_volume_release_allowed
 
 ORIGINAL_VALIDATE = core.validate_v2_dataset
