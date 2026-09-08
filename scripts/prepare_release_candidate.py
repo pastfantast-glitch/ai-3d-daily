@@ -76,6 +76,7 @@ def main() -> None:
     public_snapshots = {path: snapshot(path) for path in public_paths}
 
     try:
+        run('check_release_architecture.py')
         run('check_pipeline_contract.py')
         run('check_collection_contract.py')
         run('check_discovery_hybrid_contract.py')
