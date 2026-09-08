@@ -91,6 +91,7 @@ if MAIN.exists():
         'enrich_full_analysis_v3.py',
         'check_release_input.py',
         'check_intelligence_contract.py',
+        'python scripts/check_release_architecture.py',
         'Atomic publish canonical data, derived assets and views',
         'Verify public GitHub Pages release',
         'Write verified publish receipt',
@@ -118,9 +119,23 @@ if MAIN.exists():
     if all(p >= 0 for p in positions) and positions != sorted(positions):
         fail('canonical publish stage order regressed: ready/depth/preflight/QA/atomic/Pages/DONE must remain ordered')
 
+    prepare_section = main.split('\n  prepare:', 1)[1].split('\n  publish:', 1)[0] if '\n  prepare:' in main and '\n  publish:' in main else ''
     publish_section = main.split('\n  publish:', 1)[1].split('\n  recovery:', 1)[0] if '\n  publish:' in main else ''
+
+    # Prepare may persist canonical JSON + repo-generated .ready only. Public
+    # HTML/assets belong exclusively to Atomic Publish. This prevents a future
+    # restore/preflight regression from leaking half-built Pages content.
+    prepare_git_add_lines = [line.strip() for line in prepare_section.splitlines() if line.strip().startswith('git add ')]
+    for line in prepare_git_add_lines:
+        if 'index.html' in line or 'assets/visual' in line or '$DATE/' in line:
+            fail(f'prepare stages public publication surface: {line}')
+    if 'git add "data/daily/$DATE.json" "data/publish/$DATE.ready"' not in prepare_section:
+        fail('prepare must stage canonical JSON + repo-generated .ready on successful handoff')
+
     if 'normalize_registry_identity.py' in publish_section:
         fail('Registry normalization must remain pre-ready, not inside publish')
+    if 'python scripts/check_release_architecture.py' not in publish_section:
+        fail('publish must re-run release architecture guard, including direct .ready/workflow_dispatch paths')
     if 'write_publish_receipt.py' in main and main.find('write_publish_receipt.py') < main.find('verify_pages_publish.py'):
         fail('DONE receipt wiring must occur after Pages verification')
 
@@ -153,4 +168,4 @@ if errors:
     print('RELEASE ARCHITECTURE CONTRACT FAILED')
     print('\n'.join('- ' + e for e in errors))
     sys.exit(1)
-print('RELEASE ARCHITECTURE CONTRACT PASS: hybrid discovery + Full Analysis depth + single-writer handoff + ordered QA/atomic/Pages/DONE + daily source-QA coverage')
+print('RELEASE ARCHITECTURE CONTRACT PASS: hybrid discovery + Full Analysis depth + strict pre-ready/public boundary + single-writer handoff + ordered QA/atomic/Pages/DONE + daily source-QA coverage')
