@@ -196,7 +196,8 @@ def validate_v2_dataset(data, strict_pool=True):
     Published schema-v3 dates before the configured target-fill effective date
     remain valid historical snapshots. From the effective date onward, release-ready
     data must satisfy the daily total contract. Category preferences never create
-    per-category quotas.
+    per-category quotas. Audited low-volume releases are accepted only when the
+    hybrid discovery contract proves the complete fill ladder was exhausted.
     """
     if not is_v2_dataset(data):
         return []
@@ -293,7 +294,15 @@ def validate_v2_dataset(data, strict_pool=True):
             errors.append(f'{cid}: category pool exceeds maximum {pool_max}, got {len(pool)}')
         if len(pool) < pool_min:
             errors.append(f'{cid}: category pool below minimum {pool_min}, got {len(pool)}')
-    if len(items) < daily_min:
+
+    low_volume_allowed = False
+    if len(items) < daily_min and strict_pool and target_fill_applies(data, cfg):
+        try:
+            from discovery_hybrid import low_volume_release_allowed
+            low_volume_allowed = low_volume_release_allowed(data, list(categories))
+        except (OSError, ValueError, TypeError, KeyError, json.JSONDecodeError):
+            low_volume_allowed = False
+    if len(items) < daily_min and not low_volume_allowed:
         errors.append(f'V2 daily release minimum is {daily_min} items, got {len(items)}')
     if len(items) > daily_max:
         errors.append(f'V2 daily release maximum is {daily_max} items, got {len(items)}')
