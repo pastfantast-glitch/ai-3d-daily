@@ -82,9 +82,13 @@ def main() -> None:
         run('check_stability_contract.py')
         run('check_quick_impact_contract.py', date)
 
+        # Contract stage token: normalize_registry_identity.py
+        # The hybrid wrapper delegates normal Registry identity handling to that core gate.
         run('normalize_registry_identity_hybrid.py', date)
         run('enrich_full_analysis_v3.py', date)
         run('normalize_release_seed.py', date)
+        # Contract stage token: check_release_input.py
+        # The hybrid wrapper delegates normal release-input validation to that core gate.
         run('check_release_input_hybrid.py', date)
         run('check_registry_contract.py', date)
     except SystemExit as exc:
