@@ -1,1 +1,515 @@
-{"date":"2026-09-08","schema_version":3,"metadata":{"total_items":20,"collection_mode":"production-intelligence-preference-v1-hybrid","collection_contract_effective_date":"2026-09-04","preference_contract_effective_date":"2026-09-06","discovery_windows":["24h","7d","30d","6m","evergreen"],"discovery_coverage":{"fill_ladder_exhausted":true,"backlog_checked":true,"backlog_remaining_eligible":0,"targeted_refill_performed":true,"quality_first_confirmed":true,"windows":{"24h":{"status":"exhausted","candidates_found":4},"7d":{"status":"exhausted","candidates_found":15},"30d":{"status":"exhausted","candidates_found":21},"6m":{"status":"exhausted","candidates_found":18},"evergreen":{"status":"exhausted","candidates_found":8}},"category_candidates":{"ai-generation":{"candidates_considered":12},"3d-production":{"candidates_considered":18},"3d-animation":{"candidates_considered":17},"engine-art":{"candidates_considered":12},"emerging-case":{"candidates_considered":16},"blender-dcc":{"candidates_considered":19}},"notes":"Hybrid rerun completed broad discovery plus targeted refill for zero/low categories. Rolling backlog was empty before refill; no eligible backlog remained after selection."}},"items":[{"id":"substance-painter-1214","title":"Substance 3D Painter 12.1.4 修正非 ASCII 檔名匯入／匯出崩潰","summary":"Adobe 於 9 月 4 日釋出 Painter 12.1.4，修正含非 ASCII 字元檔名在匯入或匯出時造成的崩潰，對中文／日文命名資產管線是直接的穩定性修正。","quick_impact":"★★★★★","source_url":"https://experienceleague.adobe.com/en/docs/substance-3d-painter/using/release-notes/all-changes","category":"blender-dcc","subcategory":"substance","ranking_score":100,"rank_global":1,"homepage_tier":"top5","full_analysis":[{"label":"Production 重點","text":"非 ASCII 檔名 crash 修正直接影響亞洲團隊資產命名與交換穩定性。"},{"label":"導入價值","text":"升版前以中文檔名專案做 import/export regression。"},{"label":"驗證方式","text":"測 SBSAR、貼圖、專案與 network path 的非 ASCII 名稱。"}]},{"id":"substance-designer-1606","title":"Substance 3D Designer 16.0.6 強化穩定性與 TGA／TIFF 安全修正","summary":"Designer 16.0.6 修正 shader 編譯關閉時與非 ASCII 路徑輸出的崩潰，同時處理 TGA/TIFF 解析安全問題，適合工作室升版前納入驗證。","quick_impact":"★★★★★","source_url":"https://experienceleague.adobe.com/en/docs/substance-3d-designer/using/release-notes/all-changes","category":"blender-dcc","subcategory":"substance","ranking_score":99,"rank_global":2,"homepage_tier":"top5","full_analysis":[{"label":"Production 重點","text":"穩定性、非 ASCII 輸出與影像解析安全同時修正。"},{"label":"導入價值","text":"對大量批次輸出與共享路徑團隊特別重要。"},{"label":"驗證方式","text":"以現有 graph 做 compile/close、TGA/TIFF 與中文路徑測試。"}]},{"id":"punk-knight-2d-look","title":"Punk Knight：把 2D 概念直接投射到 ZBrush 雕刻以鎖定造型與配色","summary":"David Papunashvili 分享 stylized character 流程，直接把 2D concept 投射到 sculpt 作比例與色彩比對，並以 PolyPaint 建立插畫式 3D 外觀。","quick_impact":"★★★★☆","source_url":"https://80.lv/articles/creating-a-stylized-3d-character-in-a-2d-illustrated-look-with-zbrush","category":"3d-production","subcategory":"character-production","ranking_score":95,"rank_global":3,"homepage_tier":"top5","full_analysis":[{"label":"角色流程","text":"2D concept 直接投射到 sculpt 可降低 stylized 轉 3D 時比例漂移。"},{"label":"Production 價值","text":"適合強設計語言角色的 shape/color matching。"},{"label":"驗證方式","text":"用正側概念比較傳統 eyeballing 與投射參考的修正回合。"}]},{"id":"evil-jester-engine-integration","title":"Evil Jester 角色拆解：服裝、妝容到可動畫角色的完整交付","summary":"Sia Melnychenko 分享從雕刻、Marvelous Designer 服裝、Painter 貼圖到 Maya 動畫與 Unreal 呈現的角色製作，包含動畫化時遇到的技術問題。","quick_impact":"★★★★☆","source_url":"https://80.lv/articles/breakdown-sculpting-and-animating-a-detailed-evil-jester-character","category":"3d-production","subcategory":"character-production","ranking_score":93,"rank_global":4,"homepage_tier":"top5","full_analysis":[{"label":"角色流程","text":"案例從 sculpt 一路走到 animation-ready，而非停在靜態展示。"},{"label":"Production 價值","text":"能對照服裝與妝容設計如何影響 deformation。"},{"label":"驗證方式","text":"檢查服裝拓樸、skin deformation 與 Unreal 最終材質。"}]},{"id":"scifi-prop-wear","title":"科幻道具磨損製作：以四組 Texture Set 管理金屬、玻璃與塑膠","summary":"Dragoslav Vugdelija 拆解科幻 prop 的表面損傷與材質規劃，將資產拆成四組 texture sets，適合對照高品質道具的 texel／材質責任分配。","quick_impact":"★★★★☆","source_url":"https://80.lv/articles/how-to-sculpt-surface-damage-and-wear-on-a-sci-fi-prop","category":"3d-production","subcategory":"prop-production","ranking_score":92,"rank_global":5,"homepage_tier":"top5","full_analysis":[{"label":"道具流程","text":"以材質族群與視覺重要性拆 texture sets，而非單純按零件切。"},{"label":"Production 價值","text":"可作高品質 hero prop 的 texture budget 參考。"},{"label":"驗證方式","text":"比較 1/2/4 texture sets 的畫質、記憶體與 authoring 成本。"}]},{"id":"seamless-painter-blender","title":"Blender Seamless Painter：內建 Texture Paint 的無縫貼圖與自動化 canvas","summary":"Omar Faruq Tawsif 示範以 Blender Texture Paint 建立 seamless texture，搭配免費自動化 add-on 快速建立畫布；工具已測試 Blender 3.6–5.2。","quick_impact":"★★★★☆","source_url":"https://80.lv/articles/how-to-paint-seamlessly-in-blender-s-texture-paint-mode","category":"blender-dcc","subcategory":"blender-tip","ranking_score":89,"rank_global":6,"homepage_tier":"next10","full_analysis":[{"label":"DCC 技巧","text":"自動建立 seamless canvas，降低手動 offset/preview 循環。"},{"label":"Production 價值","text":"對 stylized tileable texture 與 NPR 素材快速迭代有用。"},{"label":"驗證方式","text":"測 1K/2K tile、邊界與 engine mip 下的 seam。"}]},{"id":"pokemaniac-64-sprite","title":"64×64 sprite 轉 3D：以 pose 建模與 stylized PBR 保留像素角色辨識度","summary":"Paul Thureau 從 Pokémon 64×64 sprite 建立 stylized 3D 角色，採直接 pose 建模並針對眼睛與服裝設計貼圖，適合作為低資訊概念轉 3D 的案例。","quick_impact":"★★★★☆","source_url":"https://80.lv/articles/creating-a-stylized-3d-character-based-on-a-64-64-pixel-sprite-from-pok-mon","category":"3d-production","subcategory":"character-production","ranking_score":87,"rank_global":7,"homepage_tier":"next10","full_analysis":[{"label":"角色設計","text":"低解析 reference 需要先保 silhouette 與辨識特徵，再補 3D 合理性。"},{"label":"Production 價值","text":"適合 retro IP 或概念資訊不足的 stylized character。"},{"label":"驗證方式","text":"用縮圖與正交視圖同時檢查辨識度。"}]},{"id":"painter12-flatten-warp","title":"Painter 12.0：Layer Flatten、Warp to Geometry 與批次輸出改善貼圖迭代","summary":"Painter 12.0 可在 layer stack 直接 flatten 群組、批次輸出 layer/mask，並以 Warp to Geometry 改善 decal 貼合複雜曲面，降低跨軟體迭代成本。","quick_impact":"★★★★☆","source_url":"https://experienceleague.adobe.com/en/docs/substance-3d-painter/using/release-notes/version-12-0","category":"blender-dcc","subcategory":"substance","ranking_score":86,"rank_global":8,"homepage_tier":"next10","full_analysis":[{"label":"貼圖流程","text":"Flatten 與 Warp to Geometry 都直接針對常見 production friction。"},{"label":"Production 價值","text":"可降低 layer stack 過重與 decal 曲面貼合的人工處理。"},{"label":"驗證方式","text":"用複雜曲面 decal 與大型 layer stack 做 A/B。"}]},{"id":"tripo-multiview-api","title":"Tripo OpenAPI 多視圖工作流：單圖生成／獨立編輯 views 再直接串 model generation","summary":"Tripo API 1.9.6 加入 generate_multiview_image、edit_multiview_image，並允許 multiview_to_model 直接接 original_task_id，減少重傳與人工預處理。","quick_impact":"★★★★☆","source_url":"https://docs.tripo3d.ai/get-started/changelog.html","category":"ai-generation","subcategory":"ai-3d","ranking_score":85,"rank_global":9,"homepage_tier":"next10","full_analysis":[{"label":"API 流程","text":"多視圖生成、單 view 編輯與 3D generation 可用 task id 串接。"},{"label":"Production 價值","text":"適合批次生成與自動化驗證 pipeline。"},{"label":"驗證方式","text":"測單圖→四視圖→局部修正→模型的全自動 job。"}]},{"id":"tripo-h31-quad","title":"Tripo H3.1：200 萬面、PBR、Quad FBX 與 Smart Low-poly 的生成選項","summary":"Tripo H3.1 官方模型頁列出最高 200 萬面、Text/Image/Multiview、PBR、Quad mesh FBX、Smart low-poly 與 Generate in parts，可直接用於生成品質與拓樸測試。","quick_impact":"★★★★☆","source_url":"https://developers.tripo3d.ai/en/models/v3-1","category":"ai-generation","subcategory":"ai-3d","ranking_score":84,"rank_global":10,"homepage_tier":"next10","full_analysis":[{"label":"生成能力","text":"同一模型提供 high-detail、quad、smart low-poly 與 parts 選項。"},{"label":"Production 價值","text":"可把生成、retopo、分件視為同一 benchmark。"},{"label":"驗證方式","text":"用同角色比較 quad/smart low-poly 與高模輸出的可編輯性。"}]},{"id":"stylized-water3-river","title":"Unity Stylized Water 3 River Modeler 重製：Spline 河流、Burst／Jobs 與自動 VFX/SFX","summary":"River Modeler 正重建為 Stylized Water 3 extension，採 spline 河流建模、segmented output、Burst/Job System，並整合 VFX/SFX，適合 stylized environment workflow。","quick_impact":"★★★★☆","source_url":"https://80.lv/articles/unity-s-stylized-water-3-is-getting-spline-based-river-modeler-tool","category":"engine-art","subcategory":"unity","ranking_score":83,"rank_global":11,"homepage_tier":"next10","full_analysis":[{"label":"Unity 場景工具","text":"Spline authoring 與 segmented output 讓河流更適合長距離場景。"},{"label":"Production 價值","text":"自動 VFX/SFX 可減少環境美術與特效重複配置。"},{"label":"驗證方式","text":"用一段彎曲河道測 authoring、runtime cost 與 LOD。"}]},{"id":"fantasy-village-2d3d","title":"Blender＋Photoshop 2D/3D 概念流程：從 reference、blockout 到 final paintover","summary":"Eugenia Chernova 展示環境概念如何先在 Blender 建立 3D scene，再進 Photoshop paintover，適合快速控制透視、構圖與場景層次的 concept workflow。","quick_impact":"★★★★☆","source_url":"https://80.lv/articles/creating-fantasy-village-concept-art-using-blender","category":"3d-production","subcategory":"production-workflow","ranking_score":82,"rank_global":12,"homepage_tier":"next10","full_analysis":[{"label":"概念流程","text":"3D blockout 先解決透視與空間，再由 2D paintover 完成風格。"},{"label":"Production 價值","text":"對需後續拆成 3D 場景的概念尤其有用。"},{"label":"驗證方式","text":"用同場景比較純 2D 與 3D-assisted 的修改速度。"}]},{"id":"blaze-autopose-blender","title":"Blaze AutoPose：在既有 Blender Rig 上用位置／旋轉約束快速完成姿勢","summary":"Blaze AutoPose 把 Cascadeur 類型的 auto-posing 工作流帶進 Blender，可在 viewport 放置 position、rotation、look-at constraints，再直接把結果套到既有 FK controllers；支援 Rigify、Auto-Rig Pro、Mixamo 等常見 rig。","quick_impact":"★★★★☆","source_url":"https://blenderartists.org/t/auto-pose-in-blender/1651968","category":"3d-animation","subcategory":"animation","ranking_score":81,"rank_global":13,"homepage_tier":"next10","full_analysis":[{"label":"姿勢製作流程","text":"工具不是另建一套骨架，而是用少量空間約束求解全身姿勢並回寫既有 FK controllers，降低 blocking 階段逐骨調整成本。"},{"label":"Rig 相容性","text":"已有 Rigify、Auto-Rig Pro、CloudRig、Mixamo 與 Puppet Studio preset，自訂 humanoid 也可做一次性 control mapping。"},{"label":"導入測試","text":"應用既有角色測手腳接觸、look-at、重心與極端姿勢，再比較人工 blocking 的控制感與修正時間。"}]},{"id":"mocapanything-v2","title":"MoCapAnything V2：單目影片直接輸出任意 Skeleton 的 BVH-ready Rotations","summary":"MoCapAnything V2 從 monocular video 直接預測 3D pose 與 animation-ready joint rotations，支援人、動物、物件與自訂 skeleton，並可帶入自己的 rigged FBX 做骨架拓樸與 reference pose 前處理。","quick_impact":"★★★★★","source_url":"https://github.com/phongdaot/MocapAnything","category":"3d-animation","subcategory":"mocap","ranking_score":80,"rank_global":14,"homepage_tier":"next10","full_analysis":[{"label":"動作輸入輸出","text":"流程直接從影片推到 joint rotations 與 BVH，不先依賴特定人體 mesh model，對非標準骨架與 creature motion 特別有研究價值。"},{"label":"Retarget 潛力","text":"自訂 rigged FBX 可生成 skeleton topology、joint-name embedding 與 reference poses，讓不同骨架有機會共用同一 mocap pipeline。"},{"label":"驗證方式","text":"應測 humanoid、四足與比例差異角色的 foot contact、root motion、快速轉身與 BVH 回 Blender/UE 的可用性。"}]},{"id":"overgrown-production-archive","title":"Blender Studio OVERGROWN：公開 Animation／Rigging／Fur／Lighting 的完整 Production Logs","summary":"Blender Studio 開放 OVERGROWN 幕後 production archive，涵蓋 animation、rigging、fur、shading、sets、lighting、water FX 與 compositing，可作為 Blender 全流程製作案例。","quick_impact":"★★★★☆","source_url":"https://80.lv/articles/blender-studio-opens-overgrown-s-free-behind-the-scenes-archive","category":"3d-animation","subcategory":"animation","ranking_score":79,"rank_global":15,"homepage_tier":"next10","full_analysis":[{"label":"動畫製作案例","text":"資料不是單點教學，而是同一專案跨 animation、rigging、lookdev、FX 到 compositing 的連續 production logs，適合分析部門交接。"},{"label":"Production 價值","text":"對建立 Blender-centered pipeline 的團隊，可直接觀察角色與場景資產如何一路進入 shot production。"},{"label":"採用方式","text":"優先整理 rig/animation 與 shading/lighting 的依賴關係，轉成內部 Blender pipeline checklist。"}]},{"id":"mablelink-maya-blender-ue","title":"MableLink：Animated Maya Scene 一鍵同步 Blender／UE5 並保留 Rig、Blendshape 與材質","summary":"MableLink 針對 Maya 場景同步 Blender 與 Unreal，保留 rigs、animation、blend shapes、camera、light、pivot、hierarchy 與多種 PBR 材質，並支援 live re-sync。","quick_impact":"★★★★☆","source_url":"https://80.lv/articles/move-animated-maya-scenes-to-blender-ue5-in-one-click","category":"3d-animation","subcategory":"retarget","ranking_score":78,"rank_global":16,"homepage_tier":"category_only","full_analysis":[{"label":"跨 DCC 動畫流程","text":"重點不是單純 FBX export，而是維持 animated scene 的 hierarchy、rig、blendshape、camera 與材質上下文再進 Blender/UE。"},{"label":"Pipeline 價值","text":"若 live re-sync 穩定，可降低 Maya 動畫修改後重新整理場景與材質的重複工作。"},{"label":"導入測試","text":"應用一個含 facial blendshape、constraint、camera 與多材質的角色 shot 驗證 round-trip parity。"}]},{"id":"interpblendshape-maya","title":"interpBlendShape：Maya 高階 Facial Rig 的 UV Interpolation 與 Bezier Blend Deformer","summary":"interpBlendShape 是免費 Maya deformer，提供 surface UV interpolation、in-between、Bezier-style blending、mesh/curve support 與 GPU acceleration，瞄準高階 facial deformation 與 2D-style 變形。","quick_impact":"★★★★☆","source_url":"https://80.lv/articles/free-custom-maya-deformer-for-high-end-facial-rigging","category":"3d-animation","subcategory":"facial","ranking_score":77,"rank_global":17,"homepage_tier":"category_only","full_analysis":[{"label":"臉部變形","text":"UV interpolation 與非線性 blending 可補足傳統 blendshape 在局部表面傳播與中間形狀控制上的限制。"},{"label":"Stylized 價值","text":"除寫實 facial rig 外，也適合需要圖形化、2D-like deformation 的 NPR 角色。"},{"label":"導入測試","text":"以嘴角、眼皮與誇張表情測 deformation continuity、GPU performance、undo 與 Maya 版本相容性。"}]},{"id":"retopoly-3dsmax","title":"retoPoly：3ds Max 原生 Modifier Stack 內直接做 Manual Retopology","summary":"retoPoly 是新的 3ds Max native modifier，可直接在 high-res mesh 上繪製與編輯 topology，提供 contour、bridge、patch、guide、brush、mask 與 live conform，保留 Max modifier-stack 工作流。","quick_impact":"★★★★☆","source_url":"https://80.lv/articles/new-native-retopology-modifier-for-3ds-max-released","category":"blender-dcc","subcategory":"other-dcc","ranking_score":76,"rank_global":18,"homepage_tier":"category_only","full_analysis":[{"label":"Retopo 工作流","text":"工具把 manual retopology 放回 modifier stack，能在不離開 3ds Max 的情況下對 high-res asset 直接拉 edge flow。"},{"label":"製作價值","text":"對仍以 3ds Max 為主要建模 DCC 的團隊，可減少 ZBrush/TopoGun/Blender 間的 round-trip。"},{"label":"實測","text":"用角色頭部與 hard-surface 兩類資產測 live conform、橋接、patch 與高密度參考網格效能。"}]},{"id":"raga-gaussian-shadows","title":"RAGA：3DGS Avatar／Scene Interaction 的 Real-time Gaussian Ray-traced Shadows","summary":"RAGA 直接在 Gaussian space 進行 ray-traced shadow casting，不依賴 mesh reconstruction，並以 avatar proxy 穩定服裝變形時的陰影；論文報告約 50 FPS。","quick_impact":"★★★★☆","source_url":"https://arxiv.org/abs/2606.29329","category":"emerging-case","subcategory":"4d","ranking_score":75,"rank_global":19,"homepage_tier":"category_only","full_analysis":[{"label":"動態 3DGS 渲染","text":"方法直接計算 ray-Gaussian opacity integral，讓 animated Gaussian avatar 在既有 Gaussian scene 裡能有更一致的陰影互動。"},{"label":"Production 潛力","text":"若 3DGS 逐步進入 virtual production 或 real-time avatar 場景，陰影一致性是從展示走向可用 rendering pipeline 的重要缺口。"},{"label":"限制與測試","text":"目前依賴 CUDA/OptiX；應先測多角色、透明衣物、快速動作與不同 Gaussian density 下的 temporal stability。"}]},{"id":"fastgha-fewshot-avatar","title":"FastGHA：Few-shot Images 直接生成可 Real-time Animation 的 3D Gaussian Head Avatar","summary":"Disney Research 等提出 FastGHA，以少量影像 feed-forward 生成高品質 Gaussian head avatar，並以輕量 MLP 根據 expression codes 預測 Gaussian deformation，支援 real-time animation。","quick_impact":"★★★★☆","source_url":"https://studios.disneyresearch.com/2026/04/22/fastgha-generalized-few-shot-3d-gaussian-head-avatars-with-real-time-animation/","category":"emerging-case","subcategory":"research","ranking_score":74,"rank_global":20,"homepage_tier":"category_only","full_analysis":[{"label":"Avatar 生成","text":"few-shot feed-forward 路線避免每個角色長時間 per-identity optimization，對大量 avatar 建立更接近可擴展 production 模式。"},{"label":"動畫控制","text":"每個 Gaussian 帶 feature，再由輕量 dynamic network 依 expression code 預測 deformation，使重建與即時 facial driving 能放在同一 representation。"},{"label":"成熟度判斷","text":"仍屬研究型 Gaussian avatar；應比較 capture 張數、側後視角、極端表情與轉成傳統 mesh/rig pipeline 的成本。"}]}],"visual_evidence":{}}
+{
+  "date": "2026-09-08",
+  "schema_version": 3,
+  "metadata": {
+    "total_items": 16,
+    "collection_mode": "production-intelligence-preference-v1-hybrid",
+    "collection_contract_effective_date": "2026-09-04",
+    "preference_contract_effective_date": "2026-09-06",
+    "discovery_windows": [
+      "24h",
+      "7d",
+      "30d",
+      "6m",
+      "evergreen"
+    ],
+    "discovery_coverage": {
+      "fill_ladder_exhausted": true,
+      "backlog_checked": true,
+      "backlog_remaining_eligible": 0,
+      "targeted_refill_performed": true,
+      "quality_first_confirmed": true,
+      "windows": {
+        "24h": {
+          "status": "exhausted",
+          "candidates_found": 4
+        },
+        "7d": {
+          "status": "exhausted",
+          "candidates_found": 15
+        },
+        "30d": {
+          "status": "exhausted",
+          "candidates_found": 21
+        },
+        "6m": {
+          "status": "exhausted",
+          "candidates_found": 18
+        },
+        "evergreen": {
+          "status": "exhausted",
+          "candidates_found": 8
+        }
+      },
+      "category_candidates": {
+        "ai-generation": {
+          "candidates_considered": 12
+        },
+        "3d-production": {
+          "candidates_considered": 18
+        },
+        "3d-animation": {
+          "candidates_considered": 17
+        },
+        "engine-art": {
+          "candidates_considered": 12
+        },
+        "emerging-case": {
+          "candidates_considered": 16
+        },
+        "blender-dcc": {
+          "candidates_considered": 19
+        }
+      },
+      "notes": "Hybrid rerun completed broad discovery plus targeted refill for zero/low categories. Rolling backlog was empty before refill; no eligible backlog remained after selection."
+    },
+    "registry_identity_normalization": {
+      "dropped_count": 4,
+      "rewritten_count": 0,
+      "policy": "verified-DONE-published-canonical-source-without-substantive-delta-skip",
+      "url_identity": "scripts/url_identity.py",
+      "stage": "collection-before-ready",
+      "refill_required": false,
+      "category_deficits": {},
+      "daily_release_gate": {
+        "have": 16,
+        "min": 12,
+        "target": 30,
+        "max": 30,
+        "missing_to_min": 4,
+        "missing_to_target": 14,
+        "release_ready": true,
+        "category_counts": {
+          "ai-generation": 2,
+          "3d-production": 4,
+          "3d-animation": 2,
+          "engine-art": 1,
+          "emerging-case": 2,
+          "blender-dcc": 5
+        },
+        "normal_min": 20,
+        "release_mode": "LOW_VOLUME_COMPLETE",
+        "low_volume_authorized": true
+      }
+    }
+  },
+  "items": [
+    {
+      "id": "substance-painter-1214",
+      "title": "Substance 3D Painter 12.1.4 修正非 ASCII 檔名匯入／匯出崩潰",
+      "summary": "Adobe 於 9 月 4 日釋出 Painter 12.1.4，修正含非 ASCII 字元檔名在匯入或匯出時造成的崩潰，對中文／日文命名資產管線是直接的穩定性修正。",
+      "quick_impact": "★★★★★",
+      "source_url": "https://experienceleague.adobe.com/en/docs/substance-3d-painter/using/release-notes/all-changes",
+      "category": "blender-dcc",
+      "subcategory": "substance",
+      "ranking_score": 100,
+      "rank_global": 1,
+      "homepage_tier": "top5",
+      "full_analysis": [
+        {
+          "label": "Production 重點",
+          "text": "非 ASCII 檔名 crash 修正直接影響亞洲團隊資產命名與交換穩定性。"
+        },
+        {
+          "label": "導入價值",
+          "text": "升版前以中文檔名專案做 import/export regression。"
+        },
+        {
+          "label": "驗證方式",
+          "text": "測 SBSAR、貼圖、專案與 network path 的非 ASCII 名稱。"
+        }
+      ]
+    },
+    {
+      "id": "substance-designer-1606",
+      "title": "Substance 3D Designer 16.0.6 強化穩定性與 TGA／TIFF 安全修正",
+      "summary": "Designer 16.0.6 修正 shader 編譯關閉時與非 ASCII 路徑輸出的崩潰，同時處理 TGA/TIFF 解析安全問題，適合工作室升版前納入驗證。",
+      "quick_impact": "★★★★★",
+      "source_url": "https://experienceleague.adobe.com/en/docs/substance-3d-designer/using/release-notes/all-changes",
+      "category": "blender-dcc",
+      "subcategory": "substance",
+      "ranking_score": 99,
+      "rank_global": 2,
+      "homepage_tier": "top5",
+      "full_analysis": [
+        {
+          "label": "Production 重點",
+          "text": "穩定性、非 ASCII 輸出與影像解析安全同時修正。"
+        },
+        {
+          "label": "導入價值",
+          "text": "對大量批次輸出與共享路徑團隊特別重要。"
+        },
+        {
+          "label": "驗證方式",
+          "text": "以現有 graph 做 compile/close、TGA/TIFF 與中文路徑測試。"
+        }
+      ]
+    },
+    {
+      "id": "punk-knight-2d-look",
+      "title": "Punk Knight：把 2D 概念直接投射到 ZBrush 雕刻以鎖定造型與配色",
+      "summary": "David Papunashvili 分享 stylized character 流程，直接把 2D concept 投射到 sculpt 作比例與色彩比對，並以 PolyPaint 建立插畫式 3D 外觀。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://80.lv/articles/creating-a-stylized-3d-character-in-a-2d-illustrated-look-with-zbrush",
+      "category": "3d-production",
+      "subcategory": "character-production",
+      "ranking_score": 95,
+      "rank_global": 3,
+      "homepage_tier": "top5",
+      "full_analysis": [
+        {
+          "label": "角色流程",
+          "text": "2D concept 直接投射到 sculpt 可降低 stylized 轉 3D 時比例漂移。"
+        },
+        {
+          "label": "Production 價值",
+          "text": "適合強設計語言角色的 shape/color matching。"
+        },
+        {
+          "label": "驗證方式",
+          "text": "用正側概念比較傳統 eyeballing 與投射參考的修正回合。"
+        }
+      ]
+    },
+    {
+      "id": "scifi-prop-wear",
+      "title": "科幻道具磨損製作：以四組 Texture Set 管理金屬、玻璃與塑膠",
+      "summary": "Dragoslav Vugdelija 拆解科幻 prop 的表面損傷與材質規劃，將資產拆成四組 texture sets，適合對照高品質道具的 texel／材質責任分配。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://80.lv/articles/how-to-sculpt-surface-damage-and-wear-on-a-sci-fi-prop",
+      "category": "3d-production",
+      "subcategory": "prop-production",
+      "ranking_score": 92,
+      "rank_global": 4,
+      "homepage_tier": "top5",
+      "full_analysis": [
+        {
+          "label": "道具流程",
+          "text": "以材質族群與視覺重要性拆 texture sets，而非單純按零件切。"
+        },
+        {
+          "label": "Production 價值",
+          "text": "可作高品質 hero prop 的 texture budget 參考。"
+        },
+        {
+          "label": "驗證方式",
+          "text": "比較 1/2/4 texture sets 的畫質、記憶體與 authoring 成本。"
+        }
+      ]
+    },
+    {
+      "id": "seamless-painter-blender",
+      "title": "Blender Seamless Painter：內建 Texture Paint 的無縫貼圖與自動化 canvas",
+      "summary": "Omar Faruq Tawsif 示範以 Blender Texture Paint 建立 seamless texture，搭配免費自動化 add-on 快速建立畫布；工具已測試 Blender 3.6–5.2。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://80.lv/articles/how-to-paint-seamlessly-in-blender-s-texture-paint-mode",
+      "category": "blender-dcc",
+      "subcategory": "blender-tip",
+      "ranking_score": 89,
+      "rank_global": 5,
+      "homepage_tier": "top5",
+      "full_analysis": [
+        {
+          "label": "DCC 技巧",
+          "text": "自動建立 seamless canvas，降低手動 offset/preview 循環。"
+        },
+        {
+          "label": "Production 價值",
+          "text": "對 stylized tileable texture 與 NPR 素材快速迭代有用。"
+        },
+        {
+          "label": "驗證方式",
+          "text": "測 1K/2K tile、邊界與 engine mip 下的 seam。"
+        }
+      ]
+    },
+    {
+      "id": "pokemaniac-64-sprite",
+      "title": "64×64 sprite 轉 3D：以 pose 建模與 stylized PBR 保留像素角色辨識度",
+      "summary": "Paul Thureau 從 Pokémon 64×64 sprite 建立 stylized 3D 角色，採直接 pose 建模並針對眼睛與服裝設計貼圖，適合作為低資訊概念轉 3D 的案例。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://80.lv/articles/creating-a-stylized-3d-character-based-on-a-64-64-pixel-sprite-from-pok-mon",
+      "category": "3d-production",
+      "subcategory": "character-production",
+      "ranking_score": 87,
+      "rank_global": 6,
+      "homepage_tier": "next10",
+      "full_analysis": [
+        {
+          "label": "角色設計",
+          "text": "低解析 reference 需要先保 silhouette 與辨識特徵，再補 3D 合理性。"
+        },
+        {
+          "label": "Production 價值",
+          "text": "適合 retro IP 或概念資訊不足的 stylized character。"
+        },
+        {
+          "label": "驗證方式",
+          "text": "用縮圖與正交視圖同時檢查辨識度。"
+        }
+      ]
+    },
+    {
+      "id": "painter12-flatten-warp",
+      "title": "Painter 12.0：Layer Flatten、Warp to Geometry 與批次輸出改善貼圖迭代",
+      "summary": "Painter 12.0 可在 layer stack 直接 flatten 群組、批次輸出 layer/mask，並以 Warp to Geometry 改善 decal 貼合複雜曲面，降低跨軟體迭代成本。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://experienceleague.adobe.com/en/docs/substance-3d-painter/using/release-notes/version-12-0",
+      "category": "blender-dcc",
+      "subcategory": "substance",
+      "ranking_score": 86,
+      "rank_global": 7,
+      "homepage_tier": "next10",
+      "full_analysis": [
+        {
+          "label": "貼圖流程",
+          "text": "Flatten 與 Warp to Geometry 都直接針對常見 production friction。"
+        },
+        {
+          "label": "Production 價值",
+          "text": "可降低 layer stack 過重與 decal 曲面貼合的人工處理。"
+        },
+        {
+          "label": "驗證方式",
+          "text": "用複雜曲面 decal 與大型 layer stack 做 A/B。"
+        }
+      ]
+    },
+    {
+      "id": "tripo-multiview-api",
+      "title": "Tripo OpenAPI 多視圖工作流：單圖生成／獨立編輯 views 再直接串 model generation",
+      "summary": "Tripo API 1.9.6 加入 generate_multiview_image、edit_multiview_image，並允許 multiview_to_model 直接接 original_task_id，減少重傳與人工預處理。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://docs.tripo3d.ai/get-started/changelog.html",
+      "category": "ai-generation",
+      "subcategory": "ai-3d",
+      "ranking_score": 85,
+      "rank_global": 8,
+      "homepage_tier": "next10",
+      "full_analysis": [
+        {
+          "label": "API 流程",
+          "text": "多視圖生成、單 view 編輯與 3D generation 可用 task id 串接。"
+        },
+        {
+          "label": "Production 價值",
+          "text": "適合批次生成與自動化驗證 pipeline。"
+        },
+        {
+          "label": "驗證方式",
+          "text": "測單圖→四視圖→局部修正→模型的全自動 job。"
+        }
+      ]
+    },
+    {
+      "id": "tripo-h31-quad",
+      "title": "Tripo H3.1：200 萬面、PBR、Quad FBX 與 Smart Low-poly 的生成選項",
+      "summary": "Tripo H3.1 官方模型頁列出最高 200 萬面、Text/Image/Multiview、PBR、Quad mesh FBX、Smart low-poly 與 Generate in parts，可直接用於生成品質與拓樸測試。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://developers.tripo3d.ai/en/models/v3-1",
+      "category": "ai-generation",
+      "subcategory": "ai-3d",
+      "ranking_score": 84,
+      "rank_global": 9,
+      "homepage_tier": "next10",
+      "full_analysis": [
+        {
+          "label": "生成能力",
+          "text": "同一模型提供 high-detail、quad、smart low-poly 與 parts 選項。"
+        },
+        {
+          "label": "Production 價值",
+          "text": "可把生成、retopo、分件視為同一 benchmark。"
+        },
+        {
+          "label": "驗證方式",
+          "text": "用同角色比較 quad/smart low-poly 與高模輸出的可編輯性。"
+        }
+      ]
+    },
+    {
+      "id": "stylized-water3-river",
+      "title": "Unity Stylized Water 3 River Modeler 重製：Spline 河流、Burst／Jobs 與自動 VFX/SFX",
+      "summary": "River Modeler 正重建為 Stylized Water 3 extension，採 spline 河流建模、segmented output、Burst/Job System，並整合 VFX/SFX，適合 stylized environment workflow。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://80.lv/articles/unity-s-stylized-water-3-is-getting-spline-based-river-modeler-tool",
+      "category": "engine-art",
+      "subcategory": "unity",
+      "ranking_score": 83,
+      "rank_global": 10,
+      "homepage_tier": "next10",
+      "full_analysis": [
+        {
+          "label": "Unity 場景工具",
+          "text": "Spline authoring 與 segmented output 讓河流更適合長距離場景。"
+        },
+        {
+          "label": "Production 價值",
+          "text": "自動 VFX/SFX 可減少環境美術與特效重複配置。"
+        },
+        {
+          "label": "驗證方式",
+          "text": "用一段彎曲河道測 authoring、runtime cost 與 LOD。"
+        }
+      ]
+    },
+    {
+      "id": "fantasy-village-2d3d",
+      "title": "Blender＋Photoshop 2D/3D 概念流程：從 reference、blockout 到 final paintover",
+      "summary": "Eugenia Chernova 展示環境概念如何先在 Blender 建立 3D scene，再進 Photoshop paintover，適合快速控制透視、構圖與場景層次的 concept workflow。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://80.lv/articles/creating-fantasy-village-concept-art-using-blender",
+      "category": "3d-production",
+      "subcategory": "production-workflow",
+      "ranking_score": 82,
+      "rank_global": 11,
+      "homepage_tier": "next10",
+      "full_analysis": [
+        {
+          "label": "概念流程",
+          "text": "3D blockout 先解決透視與空間，再由 2D paintover 完成風格。"
+        },
+        {
+          "label": "Production 價值",
+          "text": "對需後續拆成 3D 場景的概念尤其有用。"
+        },
+        {
+          "label": "驗證方式",
+          "text": "用同場景比較純 2D 與 3D-assisted 的修改速度。"
+        }
+      ]
+    },
+    {
+      "id": "blaze-autopose-blender",
+      "title": "Blaze AutoPose：在既有 Blender Rig 上用位置／旋轉約束快速完成姿勢",
+      "summary": "Blaze AutoPose 把 Cascadeur 類型的 auto-posing 工作流帶進 Blender，可在 viewport 放置 position、rotation、look-at constraints，再直接把結果套到既有 FK controllers；支援 Rigify、Auto-Rig Pro、Mixamo 等常見 rig。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://blenderartists.org/t/auto-pose-in-blender/1651968",
+      "category": "3d-animation",
+      "subcategory": "animation",
+      "ranking_score": 81,
+      "rank_global": 12,
+      "homepage_tier": "next10",
+      "full_analysis": [
+        {
+          "label": "姿勢製作流程",
+          "text": "工具不是另建一套骨架，而是用少量空間約束求解全身姿勢並回寫既有 FK controllers，降低 blocking 階段逐骨調整成本。"
+        },
+        {
+          "label": "Rig 相容性",
+          "text": "已有 Rigify、Auto-Rig Pro、CloudRig、Mixamo 與 Puppet Studio preset，自訂 humanoid 也可做一次性 control mapping。"
+        },
+        {
+          "label": "導入測試",
+          "text": "應用既有角色測手腳接觸、look-at、重心與極端姿勢，再比較人工 blocking 的控制感與修正時間。"
+        }
+      ]
+    },
+    {
+      "id": "mocapanything-v2",
+      "title": "MoCapAnything V2：單目影片直接輸出任意 Skeleton 的 BVH-ready Rotations",
+      "summary": "MoCapAnything V2 從 monocular video 直接預測 3D pose 與 animation-ready joint rotations，支援人、動物、物件與自訂 skeleton，並可帶入自己的 rigged FBX 做骨架拓樸與 reference pose 前處理。",
+      "quick_impact": "★★★★★",
+      "source_url": "https://github.com/phongdaot/MocapAnything",
+      "category": "3d-animation",
+      "subcategory": "mocap",
+      "ranking_score": 80,
+      "rank_global": 13,
+      "homepage_tier": "next10",
+      "full_analysis": [
+        {
+          "label": "動作輸入輸出",
+          "text": "流程直接從影片推到 joint rotations 與 BVH，不先依賴特定人體 mesh model，對非標準骨架與 creature motion 特別有研究價值。"
+        },
+        {
+          "label": "Retarget 潛力",
+          "text": "自訂 rigged FBX 可生成 skeleton topology、joint-name embedding 與 reference poses，讓不同骨架有機會共用同一 mocap pipeline。"
+        },
+        {
+          "label": "驗證方式",
+          "text": "應測 humanoid、四足與比例差異角色的 foot contact、root motion、快速轉身與 BVH 回 Blender/UE 的可用性。"
+        }
+      ]
+    },
+    {
+      "id": "retopoly-3dsmax",
+      "title": "retoPoly：3ds Max 原生 Modifier Stack 內直接做 Manual Retopology",
+      "summary": "retoPoly 是新的 3ds Max native modifier，可直接在 high-res mesh 上繪製與編輯 topology，提供 contour、bridge、patch、guide、brush、mask 與 live conform，保留 Max modifier-stack 工作流。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://80.lv/articles/new-native-retopology-modifier-for-3ds-max-released",
+      "category": "blender-dcc",
+      "subcategory": "other-dcc",
+      "ranking_score": 76,
+      "rank_global": 14,
+      "homepage_tier": "next10",
+      "full_analysis": [
+        {
+          "label": "Retopo 工作流",
+          "text": "工具把 manual retopology 放回 modifier stack，能在不離開 3ds Max 的情況下對 high-res asset 直接拉 edge flow。"
+        },
+        {
+          "label": "製作價值",
+          "text": "對仍以 3ds Max 為主要建模 DCC 的團隊，可減少 ZBrush/TopoGun/Blender 間的 round-trip。"
+        },
+        {
+          "label": "實測",
+          "text": "用角色頭部與 hard-surface 兩類資產測 live conform、橋接、patch 與高密度參考網格效能。"
+        }
+      ]
+    },
+    {
+      "id": "raga-gaussian-shadows",
+      "title": "RAGA：3DGS Avatar／Scene Interaction 的 Real-time Gaussian Ray-traced Shadows",
+      "summary": "RAGA 直接在 Gaussian space 進行 ray-traced shadow casting，不依賴 mesh reconstruction，並以 avatar proxy 穩定服裝變形時的陰影；論文報告約 50 FPS。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://arxiv.org/abs/2606.29329",
+      "category": "emerging-case",
+      "subcategory": "4d",
+      "ranking_score": 75,
+      "rank_global": 15,
+      "homepage_tier": "next10",
+      "full_analysis": [
+        {
+          "label": "動態 3DGS 渲染",
+          "text": "方法直接計算 ray-Gaussian opacity integral，讓 animated Gaussian avatar 在既有 Gaussian scene 裡能有更一致的陰影互動。"
+        },
+        {
+          "label": "Production 潛力",
+          "text": "若 3DGS 逐步進入 virtual production 或 real-time avatar 場景，陰影一致性是從展示走向可用 rendering pipeline 的重要缺口。"
+        },
+        {
+          "label": "限制與測試",
+          "text": "目前依賴 CUDA/OptiX；應先測多角色、透明衣物、快速動作與不同 Gaussian density 下的 temporal stability。"
+        }
+      ]
+    },
+    {
+      "id": "fastgha-fewshot-avatar",
+      "title": "FastGHA：Few-shot Images 直接生成可 Real-time Animation 的 3D Gaussian Head Avatar",
+      "summary": "Disney Research 等提出 FastGHA，以少量影像 feed-forward 生成高品質 Gaussian head avatar，並以輕量 MLP 根據 expression codes 預測 Gaussian deformation，支援 real-time animation。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://studios.disneyresearch.com/2026/04/22/fastgha-generalized-few-shot-3d-gaussian-head-avatars-with-real-time-animation/",
+      "category": "emerging-case",
+      "subcategory": "research",
+      "ranking_score": 74,
+      "rank_global": 16,
+      "homepage_tier": "category_only",
+      "full_analysis": [
+        {
+          "label": "Avatar 生成",
+          "text": "few-shot feed-forward 路線避免每個角色長時間 per-identity optimization，對大量 avatar 建立更接近可擴展 production 模式。"
+        },
+        {
+          "label": "動畫控制",
+          "text": "每個 Gaussian 帶 feature，再由輕量 dynamic network 依 expression code 預測 deformation，使重建與即時 facial driving 能放在同一 representation。"
+        },
+        {
+          "label": "成熟度判斷",
+          "text": "仍屬研究型 Gaussian avatar；應比較 capture 張數、側後視角、極端表情與轉成傳統 mesh/rig pipeline 的成本。"
+        }
+      ]
+    }
+  ],
+  "visual_evidence": {}
+}
