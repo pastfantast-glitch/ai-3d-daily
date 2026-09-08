@@ -82,22 +82,22 @@
      </summary>
      <div class="detail-body">
       <h4>
-       Unity 場景工具
+       引擎工作流
       </h4>
       <p>
-       Spline authoring 與 segmented output 讓河流更適合長距離場景。
+       Stylized Water 3 的 River Modeler 改以 spline 建立河道，搭配 segmented output、Burst／Job System 與自動 VFX／SFX 配置，方向是把長距離河流的 authoring、切段與效果配置放進同一套 Unity 工具。
       </p>
       <h4>
-       Production 價值
+       製作價值
       </h4>
       <p>
-       自動 VFX/SFX 可減少環境美術與特效重複配置。
+       對 stylized environment，spline 可降低改河道時重做 mesh 的成本，segmented output 也較適合 culling／LOD；自動 VFX/SFX 則能減少環境美術與特效、音效重複放置，但仍要確認 runtime 負擔。
       </p>
       <h4>
-       驗證方式
+       平台實測
       </h4>
       <p>
-       用一段彎曲河道測 authoring、runtime cost 與 LOD。
+       建立一條長距離、多彎道河流，在目標平台測 spline 修改速度、segment 數、CPU/GPU、記憶體、culling／LOD 與 VFX/SFX 同步，並比較整條單 mesh 與分段輸出的實際成本。
       </p>
      </div>
     </details>

@@ -82,22 +82,22 @@
      </summary>
      <div class="detail-body">
       <h4>
-       角色流程
+       角色製作流程
       </h4>
       <p>
-       2D concept 直接投射到 sculpt 可降低 stylized 轉 3D 時比例漂移。
+       這個流程不是只把 2D concept 放在旁邊參考，而是直接投射到 ZBrush sculpt 上，用原畫的比例、輪廓與色彩位置持續校正 3D 造型，再以 PolyPaint 建立接近插畫的表面方向。
       </p>
       <h4>
-       Production 價值
+       製作價值
       </h4>
       <p>
-       適合強設計語言角色的 shape/color matching。
+       對設計語言強、比例刻意誇張的 stylized character，投射參考可把「像不像原畫」變成可直接對照的判斷，降低 sculpt 過程逐步寫實化或局部比例漂移後再大幅回修的機率。
       </p>
       <h4>
-       驗證方式
+       實測
       </h4>
       <p>
-       用正側概念比較傳統 eyeballing 與投射參考的修正回合。
+       用同一份正面／側面概念各做一次傳統 eyeballing 與投射參考流程，記錄 blockout 到 final sculpt 的修改回合，並比較 silhouette、五官位置、服裝色塊與最終遊戲鏡頭下的辨識度。
       </p>
      </div>
     </details>
@@ -135,22 +135,22 @@
      </summary>
      <div class="detail-body">
       <h4>
-       道具流程
+       道具製作流程
       </h4>
       <p>
-       以材質族群與視覺重要性拆 texture sets，而非單純按零件切。
+       案例把科幻道具的金屬、玻璃、塑膠與其他表面責任拆成四組 Texture Set，再配合表面損傷與磨耗雕刻處理，重點是依材質族群與畫面重要性規劃貼圖資源，而不是單純依零件切組。
       </p>
       <h4>
-       Production 價值
+       製作價值
       </h4>
       <p>
-       可作高品質 hero prop 的 texture budget 參考。
+       Texture Set 數量會同時影響 texel density、Substance authoring 隔離性、材質 slot、記憶體與 draw cost；對 hero prop 而言，四組配置提供一個可量化的畫質與效能取捨基準。
       </p>
       <h4>
-       驗證方式
+       實測
       </h4>
       <p>
-       比較 1/2/4 texture sets 的畫質、記憶體與 authoring 成本。
+       拿同一件道具做 1／2／4 組 Texture Set A/B，固定最終解析度需求，比較可見細節、貼圖容量、材質 slot、engine 記憶體與 draw calls，同時記錄 Painter 內修改單一材質時的返工時間。
       </p>
      </div>
     </details>
@@ -188,22 +188,22 @@
      </summary>
      <div class="detail-body">
       <h4>
-       角色設計
+       角色製作流程
       </h4>
       <p>
-       低解析 reference 需要先保 silhouette 與辨識特徵，再補 3D 合理性。
+       從 64×64 sprite 建 3D 時，可用資訊非常有限，因此流程先鎖定 silhouette、主要色塊與角色招牌特徵，再以直接 pose 建模和眼睛／服裝貼圖補足 3D 所需資訊，而不是先追求寫實解剖細節。
       </p>
       <h4>
-       Production 價值
+       製作價值
       </h4>
       <p>
-       適合 retro IP 或概念資訊不足的 stylized character。
+       這種做法適合 retro IP、舊遊戲重製或只有低解析概念的角色：評估標準應優先放在縮圖與遊戲鏡頭的辨識度，避免新增過多 3D 細節反而破壞原本像素角色的視覺記憶。
       </p>
       <h4>
-       驗證方式
+       實測
       </h4>
       <p>
-       用縮圖與正交視圖同時檢查辨識度。
+       用原 sprite、正交 render 與實際 game-camera render 同時比對 silhouette、頭身比例、眼睛位置、服裝主色與 pose，並在縮小尺寸後做辨識測試，再決定哪些 3D 細節值得保留。
       </p>
      </div>
     </details>
@@ -241,22 +241,22 @@
      </summary>
      <div class="detail-body">
       <h4>
-       概念流程
+       場景製作流程
       </h4>
       <p>
-       3D blockout 先解決透視與空間，再由 2D paintover 完成風格。
+       這套 Blender＋Photoshop 流程先用 3D blockout 解決透視、相機、建築尺度與前中遠景關係，再把 render 帶進 Photoshop paintover 完成氣氛與風格，因此空間設計與最終插畫可以分階段迭代。
       </p>
       <h4>
-       Production 價值
+       製作價值
       </h4>
       <p>
-       對需後續拆成 3D 場景的概念尤其有用。
+       如果 concept 後續還要拆成 3D 遊戲場景，先建立可重用的相機與 blockout 能降低概念圖很漂亮、但回到 3D 後透視與尺寸無法落地的風險，也方便設計修改時快速重出底稿。
       </p>
       <h4>
-       驗證方式
+       實測
       </h4>
       <p>
-       用同場景比較純 2D 與 3D-assisted 的修改速度。
+       用同一個近／中／遠三層場景比較純 2D 與 3D-assisted concept，記錄改相機、移建築、調比例與最終 paintover 的時間，並檢查 3D blockout 是否能直接交給後續場景製作繼續使用。
       </p>
      </div>
     </details>

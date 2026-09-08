@@ -71,22 +71,22 @@
      </summary>
      <div class="detail-body">
       <h4>
-       API 流程
+       生成流程
       </h4>
       <p>
-       多視圖生成、單 view 編輯與 3D generation 可用 task id 串接。
+       Tripo OpenAPI 1.9.6 將 generate_multiview_image、edit_multiview_image 與 multiview_to_model 串成可延續的 task 流程，並可直接使用 original_task_id，減少多視圖資料反覆下載、重傳與人工整理。
       </p>
       <h4>
-       Production 價值
+       製作價值
       </h4>
       <p>
-       適合批次生成與自動化驗證 pipeline。
+       對批次 AI 3D production，真正提升在於多視圖生成、單一 view 修正與模型生成可以留在同一個可追蹤 job graph；這讓失敗重試、版本記錄與自動 QA 比純 UI 操作更容易標準化。
       </p>
       <h4>
-       驗證方式
+       導入測試
       </h4>
       <p>
-       測單圖→四視圖→局部修正→模型的全自動 job。
+       固定同一張角色或道具圖，跑「單圖→多視圖→指定 view 修正→multiview-to-model」批次流程，記錄 API request 次數、延遲、失敗恢復、視圖一致性與最後模型幾何品質。
       </p>
      </div>
     </details>
@@ -124,22 +124,22 @@
      </summary>
      <div class="detail-body">
       <h4>
-       生成能力
+       生成流程
       </h4>
       <p>
-       同一模型提供 high-detail、quad、smart low-poly 與 parts 選項。
+       Tripo H3.1 在同一模型系列提供最高 200 萬面 high-detail、PBR、Quad FBX、Smart Low-poly 與 Generate in parts，代表可直接用同一輸入比較高模、可編輯拓樸、低模與分件輸出。
       </p>
       <h4>
-       Production 價值
+       製作價值
       </h4>
       <p>
-       可把生成、retopo、分件視為同一 benchmark。
+       這比只看單一漂亮高模更接近實際遊戲資產評估，因為可以觀察 high-detail 到 low-poly／quad／parts 是否保持造型一致，以及分件、UV、PBR 與後續 DCC 編輯是否真的省下人工。
       </p>
       <h4>
-       驗證方式
+       導入測試
       </h4>
       <p>
-       用同角色比較 quad/smart low-poly 與高模輸出的可編輯性。
+       用同一個角色與 hard-surface 道具分別生成 high-detail、quad、smart low-poly、parts，檢查 edge flow、面數分布、UV/PBR、分件接縫與 Blender／3ds Max 匯入後的可選取與修改成本。
       </p>
      </div>
     </details>

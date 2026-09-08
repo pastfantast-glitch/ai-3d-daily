@@ -71,22 +71,22 @@
      </summary>
      <div class="detail-body">
       <h4>
-       Production 重點
+       DCC 工作流
       </h4>
       <p>
-       非 ASCII 檔名 crash 修正直接影響亞洲團隊資產命名與交換穩定性。
+       Painter 12.1.4 修正含非 ASCII 字元檔名在匯入／匯出時觸發的崩潰，對使用中文、日文或混合語系命名的貼圖、專案與交換資產，直接改善日常資產流轉的穩定性。
       </p>
       <h4>
-       導入價值
+       製作價值
       </h4>
       <p>
-       升版前以中文檔名專案做 import/export regression。
+       這類修正的價值不只是單機不再 crash，而是團隊不必為了避錯強制改成 ASCII 命名，能減少重新命名、重新連結與共享路徑轉換造成的額外返工與版本風險。
       </p>
       <h4>
-       驗證方式
+       升版 / 導入測試
       </h4>
       <p>
-       測 SBSAR、貼圖、專案與 network path 的非 ASCII 名稱。
+       在 production 專案副本用中文／日文檔名測貼圖、SBSAR、Painter 專案、export preset 與 network path，完整跑 import、reopen、export、batch export，再比較升版前後 crash 與 relink 狀況。
       </p>
      </div>
     </details>
@@ -113,22 +113,22 @@
      </summary>
      <div class="detail-body">
       <h4>
-       Production 重點
+       DCC 工作流
       </h4>
       <p>
-       穩定性、非 ASCII 輸出與影像解析安全同時修正。
+       Designer 16.0.6 同時處理 shader 編譯關閉情境、非 ASCII 輸出路徑與 TGA／TIFF 解析相關問題，代表這次更新主要落在實際 graph authoring、輸出與影像 I/O 的穩定性。
       </p>
       <h4>
-       導入價值
+       製作價值
       </h4>
       <p>
-       對大量批次輸出與共享路徑團隊特別重要。
+       對大量 graph 批次輸出、共享網路路徑與多語系資產命名的團隊，穩定性與影像解析安全會直接影響 overnight build、素材交換與版本升級風險，不只是一般 UI 修補。
       </p>
       <h4>
-       驗證方式
+       升版 / 導入測試
       </h4>
       <p>
-       以現有 graph 做 compile/close、TGA/TIFF 與中文路徑測試。
+       以既有大型 graph 做 compile、關閉／重開、中文輸出路徑、TGA／TIFF import/export 與自動化 batch 測試，並檢查輸出一致性、異常檔處理與舊專案相容性後再升團隊基線。
       </p>
      </div>
     </details>
@@ -166,22 +166,22 @@
      </summary>
      <div class="detail-body">
       <h4>
-       DCC 技巧
+       DCC 工作流
       </h4>
       <p>
-       自動建立 seamless canvas，降低手動 offset/preview 循環。
+       Seamless Painter 以 Blender 既有 Texture Paint 為核心，自動建立可重複繪製的 seamless canvas，將原本反覆 offset、檢查邊界再回頭修圖的循環集中在同一個 DCC 內完成。
       </p>
       <h4>
-       Production 價值
+       製作價值
       </h4>
       <p>
-       對 stylized tileable texture 與 NPR 素材快速迭代有用。
+       對 stylized、NPR 或需要快速建立 tileable surface 的場景資產，這種流程可縮短 Blender 與外部 2D 工具之間的往返；真正價值在於快速迭代，而不是取代完整的 Substance 材質製作。
       </p>
       <h4>
-       驗證方式
+       升版 / 導入測試
       </h4>
       <p>
-       測 1K/2K tile、邊界與 engine mip 下的 seam。
+       用 1K／2K 高對比 tile 測 X/Y 邊界、筆刷跨界、縮放旋轉與多次保存，之後匯入 Unity／Unreal 檢查 mip、filtering 與遠距離 seam，並確認 Blender 3.6–5.2 專案相容性。
       </p>
      </div>
     </details>
@@ -219,22 +219,22 @@
      </summary>
      <div class="detail-body">
       <h4>
-       貼圖流程
+       貼圖製作流程
       </h4>
       <p>
-       Flatten 與 Warp to Geometry 都直接針對常見 production friction。
+       Painter 12.0 的 Layer Flatten 可把複雜群組壓平，layer/mask 批次輸出則改善資料交換；Warp to Geometry 讓 decal 能直接順應曲面，三者都針對大型 layer stack 與曲面貼花的常見製作摩擦。
       </p>
       <h4>
-       Production 價值
+       製作價值
       </h4>
       <p>
-       可降低 layer stack 過重與 decal 曲面貼合的人工處理。
+       對長期迭代的資產，Flatten 能降低 stack 複雜度但會犧牲部分可回編輯性，Warp to Geometry 則可減少為了貼合曲面而往返其他 DCC 修 UV／幾何的時間，因此重點是何時使用而不是全部套用。
       </p>
       <h4>
-       驗證方式
+       升版 / 導入測試
       </h4>
       <p>
-       用複雜曲面 decal 與大型 layer stack 做 A/B。
+       準備一個大型 layer stack 與一個高曲率 decal 資產，分別測 flatten 前後檔案大小、操作速度與回修改成本，再比較傳統 projection 與 Warp to Geometry 的邊緣拉伸、接縫及 engine 最終效果。
       </p>
      </div>
     </details>
