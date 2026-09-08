@@ -24,6 +24,21 @@ def replace_asset(text, asset, token):
     pattern=rf'({re.escape(asset)})(?:\?v=[^"\']+)?'
     return re.sub(pattern, rf'\1?v={token}', text)
 
+def normalize_legacy_asset_alias(text, asset):
+    """Map stale <relative>/assets/<file> references to the canonical root asset.
+
+    Some pre-atomic release seeds from the transition period used paths such as
+    ../assets/styles.css even though shared CSS/JS live at repository root. The
+    public renderer must converge those aliases before cache verification so a
+    stale seed cannot either break Pages or fail a valid release after rendering.
+    """
+    if '/' not in asset:
+        return text
+    prefix, name = asset.rsplit('/', 1)
+    legacy = f'{prefix}/assets/{name}'
+    pattern = rf'{re.escape(legacy)}(?:\?v=[^"\']+)?'
+    return re.sub(pattern, asset, text)
+
 def quick_impact_labels(data):
     cfg=json.loads(QUICK_IMPACT_CONFIG.read_text('utf-8'))
     if cfg.get('presentation')!='label_plus_rating':
@@ -71,7 +86,9 @@ def apply(path, assets, token, label_by_id):
     if not path.exists(): raise SystemExit(f'missing page for cache bust: {path}')
     text=path.read_text('utf-8'); old=text
     text,normalized=normalize_quick_impact(text,path,label_by_id)
-    for asset in assets: text=replace_asset(text,asset,token)
+    for asset in assets:
+        text=normalize_legacy_asset_alias(text,asset)
+        text=replace_asset(text,asset,token)
     missing=[asset for asset in assets if f'{asset}?v={token}' not in text]
     if missing: raise SystemExit(f"cache bust verification failed for {path.relative_to(ROOT)}: {', '.join(missing)}")
     if text!=old: path.write_text(text,'utf-8')
