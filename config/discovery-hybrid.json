@@ -1,0 +1,48 @@
+{
+  "version": 1,
+  "effective_date": "2026-09-08",
+  "coverage_audit": {
+    "required_windows": ["24h", "7d", "30d", "6m", "evergreen"],
+    "required_categories": [
+      "ai-generation",
+      "3d-production",
+      "3d-animation",
+      "engine-art",
+      "emerging-case",
+      "blender-dcc"
+    ],
+    "require_window_counts": true,
+    "require_category_counts": true,
+    "require_targeted_refill": true,
+    "require_backlog_check": true,
+    "require_quality_first_confirmation": true,
+    "exhaustion_status": "exhausted"
+  },
+  "rolling_backlog": {
+    "path": "data/candidates/rolling-backlog.json",
+    "max_age_days": 180,
+    "max_items": 240,
+    "admission": "verified-unpublished-quality-pass-only",
+    "refresh_before_use": true,
+    "remove_when_published_or_invalid": true
+  },
+  "targeted_refill": {
+    "enabled": true,
+    "trigger_category_count_lte": 1,
+    "prioritize_zero_categories": true,
+    "rerun_registry_after_refill": true
+  },
+  "low_volume_release": {
+    "enabled": true,
+    "normal_floor": 20,
+    "fallback_floor": 12,
+    "maximum": 30,
+    "requires_full_coverage_audit": true,
+    "requires_fill_ladder_exhausted": true,
+    "requires_backlog_checked": true,
+    "requires_no_remaining_eligible_backlog": true,
+    "requires_targeted_refill": true,
+    "requires_quality_first_confirmation": true,
+    "release_mode": "LOW_VOLUME_COMPLETE"
+  }
+}
