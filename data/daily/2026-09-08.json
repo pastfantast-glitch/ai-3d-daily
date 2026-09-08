@@ -2,32 +2,357 @@
   "date": "2026-09-08",
   "schema_version": 3,
   "metadata": {
-    "total_items": 20,
+    "total_items": 12,
     "collection_mode": "production-intelligence-preference-v1",
     "collection_contract_effective_date": "2026-09-04",
     "preference_contract_effective_date": "2026-09-06",
-    "discovery_windows": ["24h", "7d", "30d", "6m", "evergreen"]
+    "discovery_windows": [
+      "24h",
+      "7d",
+      "30d",
+      "6m",
+      "evergreen"
+    ],
+    "registry_identity_normalization": {
+      "dropped_count": 8,
+      "rewritten_count": 0,
+      "policy": "verified-DONE-published-canonical-source-without-substantive-delta-skip",
+      "url_identity": "scripts/url_identity.py",
+      "stage": "collection-before-ready",
+      "refill_required": true,
+      "category_deficits": {},
+      "daily_release_gate": {
+        "have": 12,
+        "min": 20,
+        "target": 30,
+        "max": 30,
+        "missing_to_min": 8,
+        "missing_to_target": 18,
+        "release_ready": false,
+        "category_counts": {
+          "ai-generation": 2,
+          "3d-production": 5,
+          "3d-animation": 0,
+          "engine-art": 1,
+          "emerging-case": 0,
+          "blender-dcc": 4
+        }
+      }
+    }
   },
   "items": [
-    {"id":"substance-painter-1214","title":"Substance 3D Painter 12.1.4 修正非 ASCII 檔名匯入／匯出崩潰","summary":"Adobe 於 9 月 4 日釋出 Painter 12.1.4，修正含非 ASCII 字元檔名在匯入或匯出時造成的崩潰，對中文／日文命名資產管線是直接的穩定性修正。","quick_impact":"★★★★★","source_url":"https://experienceleague.adobe.com/en/docs/substance-3d-painter/using/release-notes/all-changes","category":"blender-dcc","subcategory":"substance","ranking_score":100,"rank_global":1,"homepage_tier":"top5","full_analysis":[{"label":"Production 重點","text":"非 ASCII 檔名 crash 修正直接影響亞洲團隊資產命名與交換穩定性。"},{"label":"導入價值","text":"升版前以中文檔名專案做 import/export regression。"},{"label":"驗證方式","text":"測 SBSAR、貼圖、專案與 network path 的非 ASCII 名稱。"}]},
-    {"id":"substance-designer-1606","title":"Substance 3D Designer 16.0.6 強化穩定性與 TGA／TIFF 安全修正","summary":"Designer 16.0.6 修正 shader 編譯關閉時與非 ASCII 路徑輸出的崩潰，同時處理 TGA/TIFF 解析安全問題，適合工作室升版前納入驗證。","quick_impact":"★★★★★","source_url":"https://experienceleague.adobe.com/en/docs/substance-3d-designer/using/release-notes/all-changes","category":"blender-dcc","subcategory":"substance","ranking_score":99,"rank_global":2,"homepage_tier":"top5","full_analysis":[{"label":"Production 重點","text":"穩定性、非 ASCII 輸出與影像解析安全同時修正。"},{"label":"導入價值","text":"對大量批次輸出與共享路徑團隊特別重要。"},{"label":"驗證方式","text":"以現有 graph 做 compile/close、TGA/TIFF 與中文路徑測試。"}]},
-    {"id":"blighted-harbour-environment","title":"Blighted Harbour 場景拆解：Blender／Houdini／UE5 串出可動態敘事的環境流程","summary":"Helena Hansen 拆解希臘神話場景，涵蓋 Blender、Houdini、ZBrush、Painter 與 Unreal 的環境製作，重點是以動態元素讓空間更有生命感。","quick_impact":"★★★★★","source_url":"https://80.lv/articles/building-a-creepy-3d-fantasy-environment-inspired-by-greek-mythology","category":"3d-production","subcategory":"environment-production","ranking_score":98,"rank_global":3,"homepage_tier":"top5","full_analysis":[{"label":"Production 重點","text":"跨 DCC 的環境製作重點落在可重複場景語彙與動態元素。"},{"label":"導入價值","text":"可對照固定視角與大型場景的層次、動線與 atmosphere 建構。"},{"label":"驗證方式","text":"挑一個小區塊重做，記錄 Blender/Houdini/UE handoff。"}]},
-    {"id":"fpom-ue5","title":"FPOM：UE5 以較低成本逼近 Nanite Displacement 的方向感知 POM","summary":"FPOM 支援 Landscape、Mesh Terrain、mesh 與 decal，能跟隨 UV 方向與坡度；作者測試 base pass 成本約為 Nanite displacement 的 0.2 倍。","quick_impact":"★★★★★","source_url":"https://80.lv/articles/pom-shader-that-achieves-nanite-like-displacement-at-lower-cost","category":"engine-art","subcategory":"shader","ranking_score":97,"rank_global":4,"homepage_tier":"top5","full_analysis":[{"label":"技術重點","text":"方向感知 POM 可跨 Landscape、Mesh Terrain、mesh 與 decal 使用。"},{"label":"Production 價值","text":"提供 Nanite displacement 與傳統 POM 間的效能／品質折衷。"},{"label":"驗證方式","text":"同材質比較 grazing angle、base pass、shadow 與 motion。"}]},
-    {"id":"houdini-passage-hda","title":"Houdini HDA＋UE5 程序化石道：曲線驅動岩石、散佈與即時材質","summary":"The Passage 以自訂 Houdini HDA 沿曲線生成岩石，可調尺寸、數量、破損與面數，並在 UE5 內用程序化材質與植被散佈完成場景。","quick_impact":"★★★★★","source_url":"https://80.lv/articles/procedural-stone-passage-built-with-a-custom-houdini-hda-in-unreal-engine-5","category":"3d-production","subcategory":"environment-production","ranking_score":96,"rank_global":5,"homepage_tier":"top5","full_analysis":[{"label":"程序化流程","text":"HDA 將 curve、岩石參數與 polygon budget 暴露給場景美術。"},{"label":"Production 價值","text":"把重複自然結構轉成可迭代工具，而非一次性生成。"},{"label":"驗證方式","text":"用兩種路徑長度測生成速度、artist override 與 UE 更新穩定性。"}]},
-    {"id":"punk-knight-2d-look","title":"Punk Knight：把 2D 概念直接投射到 ZBrush 雕刻以鎖定造型與配色","summary":"David Papunashvili 分享 stylized character 流程，直接把 2D concept 投射到 sculpt 作比例與色彩比對，並以 PolyPaint 建立插畫式 3D 外觀。","quick_impact":"★★★★☆","source_url":"https://80.lv/articles/creating-a-stylized-3d-character-in-a-2d-illustrated-look-with-zbrush","category":"3d-production","subcategory":"character-production","ranking_score":95,"rank_global":6,"homepage_tier":"next10","full_analysis":[{"label":"角色流程","text":"2D concept 直接投射到 sculpt 可降低 stylized 轉 3D 時比例漂移。"},{"label":"Production 價值","text":"適合強設計語言角色的 shape/color matching。"},{"label":"驗證方式","text":"用正側概念比較傳統 eyeballing 與投射參考的修正回合。"}]},
-    {"id":"headcrab-substrate","title":"Headcrab 62 頁製作案例：用 UE5 Substrate 驗證生物材質流程","summary":"Emanuel Pessel 以 ZBrush、3ds Max、Substance、Akeytsu 與 UE5.7.4 重製 Headcrab，核心是用生物題材系統性測試 Substrate，並公開完整案例。","quick_impact":"★★★★☆","source_url":"https://80.lv/articles/3d-artist-reimagined-half-life-2-s-headcrab-with-unreal-engine-5-s-substrate","category":"engine-art","subcategory":"shader","ranking_score":94,"rank_global":7,"homepage_tier":"next10","full_analysis":[{"label":"材質研究","text":"以生物材質而非車漆案例測 Substrate，可看到多層表面在角色上的實際責任。"},{"label":"Production 價值","text":"完整 62 頁案例適合作為材質研究 baseline。"},{"label":"驗證方式","text":"挑皮膚、濕潤與硬殼三區做 Default Lit/Substrate A/B。"}]},
-    {"id":"evil-jester-character","title":"Evil Jester 角色拆解：服裝、妝容到可動畫角色的完整交付","summary":"Sia Melnychenko 分享從雕刻、Marvelous Designer 服裝、Painter 貼圖到 Maya 動畫與 Unreal 呈現的角色製作，包含動畫化時遇到的技術問題。","quick_impact":"★★★★☆","source_url":"https://80.lv/articles/breakdown-sculpting-and-animating-a-detailed-evil-jester-character","category":"3d-production","subcategory":"character-production","ranking_score":93,"rank_global":8,"homepage_tier":"next10","full_analysis":[{"label":"角色流程","text":"案例從 sculpt 一路走到 animation-ready，而非停在靜態展示。"},{"label":"Production 價值","text":"能對照服裝與妝容設計如何影響 deformation。"},{"label":"驗證方式","text":"檢查服裝拓樸、skin deformation 與 Unreal 最終材質。"}]},
-    {"id":"scifi-prop-wear","title":"科幻道具磨損製作：以四組 Texture Set 管理金屬、玻璃與塑膠","summary":"Dragoslav Vugdelija 拆解科幻 prop 的表面損傷與材質規劃，將資產拆成四組 texture sets，適合對照高品質道具的 texel／材質責任分配。","quick_impact":"★★★★☆","source_url":"https://80.lv/articles/how-to-sculpt-surface-damage-and-wear-on-a-sci-fi-prop","category":"3d-production","subcategory":"prop-production","ranking_score":92,"rank_global":9,"homepage_tier":"next10","full_analysis":[{"label":"道具流程","text":"以材質族群與視覺重要性拆 texture sets，而非單純按零件切。"},{"label":"Production 價值","text":"可作高品質 hero prop 的 texture budget 參考。"},{"label":"驗證方式","text":"比較 1/2/4 texture sets 的畫質、記憶體與 authoring 成本。"}]},
-    {"id":"zen-bbq-20","title":"Zen BBQ 2.0：Blender 程序 bevel 可直接烘焙成 production maps","summary":"Zen BBQ 2.0 新增 Map Baking，可把程序 bevel 直接烘焙 Normal、AO、Curvature、ID 等貼圖，並支援 collection、合併 texture set 與 explode 防穿幫。","quick_impact":"★★★★☆","source_url":"https://80.lv/articles/this-blender-add-on-for-customizable-bevels-gets-a-new-map-baking-system","category":"blender-dcc","subcategory":"addon","ranking_score":91,"rank_global":10,"homepage_tier":"next10","full_analysis":[{"label":"DCC 工作流","text":"程序 bevel 到 baked maps 的閉環可減少 hard-surface 重複操作。"},{"label":"Production 價值","text":"Explode baking 與 collection batch 對大量 prop 特別實用。"},{"label":"驗證方式","text":"用一組機械件比較傳統 bake 與 Zen BBQ 的時間與 artifact。"}]},
-    {"id":"matplus-13","title":"MatPlus 1.3：在 Blender 內建立 Painter 式 layer／UDIM／game-ready 貼圖流程","summary":"MatPlus 以 non-destructive layer stack 管理 color、roughness、metallic、normal、bump，支援 UDIM 與 Unreal/Unity 貼圖輸出；1.3 加入 auto-cache、Smart Masks 與 Display 模組。","quick_impact":"★★★★☆","source_url":"https://80.lv/articles/matplus-brings-substance-3d-painter-inspired-texture-painting-to-blender","category":"blender-dcc","subcategory":"addon","ranking_score":90,"rank_global":11,"homepage_tier":"next10","full_analysis":[{"label":"貼圖流程","text":"將 Painter 式 layer stack 與 UDIM 留在 Blender。"},{"label":"Production 價值","text":"適合評估是否能減少 Blender↔Painter round-trip。"},{"label":"驗證方式","text":"用同一角色比較 Painter 與 MatPlus 的 mask、UDIM、export。"}]},
-    {"id":"seamless-painter-blender","title":"Blender Seamless Painter：內建 Texture Paint 的無縫貼圖與自動化 canvas","summary":"Omar Faruq Tawsif 示範以 Blender Texture Paint 建立 seamless texture，搭配免費自動化 add-on 快速建立畫布；工具已測試 Blender 3.6–5.2。","quick_impact":"★★★★☆","source_url":"https://80.lv/articles/how-to-paint-seamlessly-in-blender-s-texture-paint-mode","category":"blender-dcc","subcategory":"blender-tip","ranking_score":89,"rank_global":12,"homepage_tier":"next10","full_analysis":[{"label":"DCC 技巧","text":"自動建立 seamless canvas，降低手動 offset/preview 循環。"},{"label":"Production 價值","text":"對 stylized tileable texture 與 NPR 素材快速迭代有用。"},{"label":"驗證方式","text":"測 1K/2K tile、邊界與 engine mip 下的 seam。"}]},
-    {"id":"blender-53-dispersion","title":"Blender 5.3 Alpha：Principled BSDF 在 Cycles 原生加入 dispersion","summary":"Cycles 的 Principled BSDF 已合併 RGB-based dispersion，可直接製作寶石、玻璃與稜鏡彩散；同時 5.3 開發版也出現對 NPR 有價值的 lighting nodes。","quick_impact":"★★★★☆","source_url":"https://80.lv/articles/principled-bsdf-in-blender-s-cycles-now-supports-dispersion","category":"blender-dcc","subcategory":"blender","ranking_score":88,"rank_global":13,"homepage_tier":"next10","full_analysis":[{"label":"渲染變更","text":"Principled 原生 dispersion 減少複雜 glass node workaround。"},{"label":"限制","text":"目前是 RGB-based 且位於 5.3 Alpha，不應直接進正式 production。"},{"label":"驗證方式","text":"用寶石材質比較舊 node setup 與新 dispersion 的品質/時間。"}]},
-    {"id":"pokemaniac-64-sprite","title":"64×64 sprite 轉 3D：以 pose 建模與 stylized PBR 保留像素角色辨識度","summary":"Paul Thureau 從 Pokémon 64×64 sprite 建立 stylized 3D 角色，採直接 pose 建模並針對眼睛與服裝設計貼圖，適合作為低資訊概念轉 3D 的案例。","quick_impact":"★★★★☆","source_url":"https://80.lv/articles/creating-a-stylized-3d-character-based-on-a-64-64-pixel-sprite-from-pok-mon","category":"3d-production","subcategory":"character-production","ranking_score":87,"rank_global":14,"homepage_tier":"next10","full_analysis":[{"label":"角色設計","text":"低解析 reference 需要先保 silhouette 與辨識特徵，再補 3D 合理性。"},{"label":"Production 價值","text":"適合 retro IP 或概念資訊不足的 stylized character。"},{"label":"驗證方式","text":"用縮圖與正交視圖同時檢查辨識度。"}]},
-    {"id":"painter12-flatten-warp","title":"Painter 12.0：Layer Flatten、Warp to Geometry 與批次輸出改善貼圖迭代","summary":"Painter 12.0 可在 layer stack 直接 flatten 群組、批次輸出 layer/mask，並以 Warp to Geometry 改善 decal 貼合複雜曲面，降低跨軟體迭代成本。","quick_impact":"★★★★☆","source_url":"https://experienceleague.adobe.com/en/docs/substance-3d-painter/using/release-notes/version-12-0","category":"blender-dcc","subcategory":"substance","ranking_score":86,"rank_global":15,"homepage_tier":"next10","full_analysis":[{"label":"貼圖流程","text":"Flatten 與 Warp to Geometry 都直接針對常見 production friction。"},{"label":"Production 價值","text":"可降低 layer stack 過重與 decal 曲面貼合的人工處理。"},{"label":"驗證方式","text":"用複雜曲面 decal 與大型 layer stack 做 A/B。"}]},
-    {"id":"tripo-multiview-api","title":"Tripo OpenAPI 多視圖工作流：單圖生成／獨立編輯 views 再直接串 model generation","summary":"Tripo API 1.9.6 加入 generate_multiview_image、edit_multiview_image，並允許 multiview_to_model 直接接 original_task_id，減少重傳與人工預處理。","quick_impact":"★★★★☆","source_url":"https://docs.tripo3d.ai/get-started/changelog.html","category":"ai-generation","subcategory":"ai-3d","ranking_score":85,"rank_global":16,"homepage_tier":"more","full_analysis":[{"label":"API 流程","text":"多視圖生成、單 view 編輯與 3D generation 可用 task id 串接。"},{"label":"Production 價值","text":"適合批次生成與自動化驗證 pipeline。"},{"label":"驗證方式","text":"測單圖→四視圖→局部修正→模型的全自動 job。"}]},
-    {"id":"tripo-h31-quad","title":"Tripo H3.1：200 萬面、PBR、Quad FBX 與 Smart Low-poly 的生成選項","summary":"Tripo H3.1 官方模型頁列出最高 200 萬面、Text/Image/Multiview、PBR、Quad mesh FBX、Smart low-poly 與 Generate in parts，可直接用於生成品質與拓樸測試。","quick_impact":"★★★★☆","source_url":"https://developers.tripo3d.ai/en/models/v3-1","category":"ai-generation","subcategory":"ai-3d","ranking_score":84,"rank_global":17,"homepage_tier":"more","full_analysis":[{"label":"生成能力","text":"同一模型提供 high-detail、quad、smart low-poly 與 parts 選項。"},{"label":"Production 價值","text":"可把生成、retopo、分件視為同一 benchmark。"},{"label":"驗證方式","text":"用同角色比較 quad/smart low-poly 與高模輸出的可編輯性。"}]},
-    {"id":"stylized-water3-river","title":"Unity Stylized Water 3 River Modeler 重製：Spline 河流、Burst／Jobs 與自動 VFX/SFX","summary":"River Modeler 正重建為 Stylized Water 3 extension，採 spline 河流建模、segmented output、Burst/Job System，並整合 VFX/SFX，適合 stylized environment workflow。","quick_impact":"★★★★☆","source_url":"https://80.lv/articles/unity-s-stylized-water-3-is-getting-spline-based-river-modeler-tool","category":"engine-art","subcategory":"unity","ranking_score":83,"rank_global":18,"homepage_tier":"more","full_analysis":[{"label":"Unity 場景工具","text":"Spline authoring 與 segmented output 讓河流更適合長距離場景。"},{"label":"Production 價值","text":"自動 VFX/SFX 可減少環境美術與特效重複配置。"},{"label":"驗證方式","text":"用一段彎曲河道測 authoring、runtime cost 與 LOD。"}]},
-    {"id":"fantasy-village-2d3d","title":"Blender＋Photoshop 2D/3D 概念流程：從 reference、blockout 到 final paintover","summary":"Eugenia Chernova 展示環境概念如何先在 Blender 建立 3D scene，再進 Photoshop paintover，適合快速控制透視、構圖與場景層次的 concept workflow。","quick_impact":"★★★★☆","source_url":"https://80.lv/articles/creating-fantasy-village-concept-art-using-blender","category":"3d-production","subcategory":"production-workflow","ranking_score":82,"rank_global":19,"homepage_tier":"more","full_analysis":[{"label":"概念流程","text":"3D blockout 先解決透視與空間，再由 2D paintover 完成風格。"},{"label":"Production 價值","text":"對需後續拆成 3D 場景的概念尤其有用。"},{"label":"驗證方式","text":"用同場景比較純 2D 與 3D-assisted 的修改速度。"}]},
-    {"id":"blender-52-lts","title":"Blender 5.2 LTS：Node Physics、Remote Asset Library 與兩年 production 支援","summary":"Blender 5.2 LTS 提供兩年支援，加入 Geometry Nodes 實驗性 hair/cloth physics、remote asset libraries、建模與 Grease Pencil 改善；5.2.1 已於 8 月 25 日更新。","quick_impact":"★★★★☆","source_url":"https://www.blender.org/releases/5-2/","category":"blender-dcc","subcategory":"blender","ranking_score":81,"rank_global":20,"homepage_tier":"more","full_analysis":[{"label":"版本策略","text":"LTS 到 2028，適合作為新 production 的穩定版本候選。"},{"label":"Production 價值","text":"Remote Asset Library 與 node physics 對團隊資產與程序流程有長期價值。"},{"label":"驗證方式","text":"先以 5.2.1 複製現有專案測 addon、FBX、render 與 animation。"}]}
-  ]
+    {
+      "id": "substance-painter-1214",
+      "title": "Substance 3D Painter 12.1.4 修正非 ASCII 檔名匯入／匯出崩潰",
+      "summary": "Adobe 於 9 月 4 日釋出 Painter 12.1.4，修正含非 ASCII 字元檔名在匯入或匯出時造成的崩潰，對中文／日文命名資產管線是直接的穩定性修正。",
+      "quick_impact": "★★★★★",
+      "source_url": "https://experienceleague.adobe.com/en/docs/substance-3d-painter/using/release-notes/all-changes",
+      "category": "blender-dcc",
+      "subcategory": "substance",
+      "ranking_score": 100,
+      "rank_global": 1,
+      "homepage_tier": "top5",
+      "full_analysis": [
+        {
+          "label": "Production 重點",
+          "text": "非 ASCII 檔名 crash 修正直接影響亞洲團隊資產命名與交換穩定性。"
+        },
+        {
+          "label": "導入價值",
+          "text": "升版前以中文檔名專案做 import/export regression。"
+        },
+        {
+          "label": "驗證方式",
+          "text": "測 SBSAR、貼圖、專案與 network path 的非 ASCII 名稱。"
+        }
+      ]
+    },
+    {
+      "id": "substance-designer-1606",
+      "title": "Substance 3D Designer 16.0.6 強化穩定性與 TGA／TIFF 安全修正",
+      "summary": "Designer 16.0.6 修正 shader 編譯關閉時與非 ASCII 路徑輸出的崩潰，同時處理 TGA/TIFF 解析安全問題，適合工作室升版前納入驗證。",
+      "quick_impact": "★★★★★",
+      "source_url": "https://experienceleague.adobe.com/en/docs/substance-3d-designer/using/release-notes/all-changes",
+      "category": "blender-dcc",
+      "subcategory": "substance",
+      "ranking_score": 99,
+      "rank_global": 2,
+      "homepage_tier": "top5",
+      "full_analysis": [
+        {
+          "label": "Production 重點",
+          "text": "穩定性、非 ASCII 輸出與影像解析安全同時修正。"
+        },
+        {
+          "label": "導入價值",
+          "text": "對大量批次輸出與共享路徑團隊特別重要。"
+        },
+        {
+          "label": "驗證方式",
+          "text": "以現有 graph 做 compile/close、TGA/TIFF 與中文路徑測試。"
+        }
+      ]
+    },
+    {
+      "id": "punk-knight-2d-look",
+      "title": "Punk Knight：把 2D 概念直接投射到 ZBrush 雕刻以鎖定造型與配色",
+      "summary": "David Papunashvili 分享 stylized character 流程，直接把 2D concept 投射到 sculpt 作比例與色彩比對，並以 PolyPaint 建立插畫式 3D 外觀。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://80.lv/articles/creating-a-stylized-3d-character-in-a-2d-illustrated-look-with-zbrush",
+      "category": "3d-production",
+      "subcategory": "character-production",
+      "ranking_score": 95,
+      "rank_global": 3,
+      "homepage_tier": "top5",
+      "full_analysis": [
+        {
+          "label": "角色流程",
+          "text": "2D concept 直接投射到 sculpt 可降低 stylized 轉 3D 時比例漂移。"
+        },
+        {
+          "label": "Production 價值",
+          "text": "適合強設計語言角色的 shape/color matching。"
+        },
+        {
+          "label": "驗證方式",
+          "text": "用正側概念比較傳統 eyeballing 與投射參考的修正回合。"
+        }
+      ]
+    },
+    {
+      "id": "evil-jester-character",
+      "title": "Evil Jester 角色拆解：服裝、妝容到可動畫角色的完整交付",
+      "summary": "Sia Melnychenko 分享從雕刻、Marvelous Designer 服裝、Painter 貼圖到 Maya 動畫與 Unreal 呈現的角色製作，包含動畫化時遇到的技術問題。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://80.lv/articles/breakdown-sculpting-and-animating-a-detailed-evil-jester-character",
+      "category": "3d-production",
+      "subcategory": "character-production",
+      "ranking_score": 93,
+      "rank_global": 4,
+      "homepage_tier": "top5",
+      "full_analysis": [
+        {
+          "label": "角色流程",
+          "text": "案例從 sculpt 一路走到 animation-ready，而非停在靜態展示。"
+        },
+        {
+          "label": "Production 價值",
+          "text": "能對照服裝與妝容設計如何影響 deformation。"
+        },
+        {
+          "label": "驗證方式",
+          "text": "檢查服裝拓樸、skin deformation 與 Unreal 最終材質。"
+        }
+      ]
+    },
+    {
+      "id": "scifi-prop-wear",
+      "title": "科幻道具磨損製作：以四組 Texture Set 管理金屬、玻璃與塑膠",
+      "summary": "Dragoslav Vugdelija 拆解科幻 prop 的表面損傷與材質規劃，將資產拆成四組 texture sets，適合對照高品質道具的 texel／材質責任分配。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://80.lv/articles/how-to-sculpt-surface-damage-and-wear-on-a-sci-fi-prop",
+      "category": "3d-production",
+      "subcategory": "prop-production",
+      "ranking_score": 92,
+      "rank_global": 5,
+      "homepage_tier": "top5",
+      "full_analysis": [
+        {
+          "label": "道具流程",
+          "text": "以材質族群與視覺重要性拆 texture sets，而非單純按零件切。"
+        },
+        {
+          "label": "Production 價值",
+          "text": "可作高品質 hero prop 的 texture budget 參考。"
+        },
+        {
+          "label": "驗證方式",
+          "text": "比較 1/2/4 texture sets 的畫質、記憶體與 authoring 成本。"
+        }
+      ]
+    },
+    {
+      "id": "seamless-painter-blender",
+      "title": "Blender Seamless Painter：內建 Texture Paint 的無縫貼圖與自動化 canvas",
+      "summary": "Omar Faruq Tawsif 示範以 Blender Texture Paint 建立 seamless texture，搭配免費自動化 add-on 快速建立畫布；工具已測試 Blender 3.6–5.2。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://80.lv/articles/how-to-paint-seamlessly-in-blender-s-texture-paint-mode",
+      "category": "blender-dcc",
+      "subcategory": "blender-tip",
+      "ranking_score": 89,
+      "rank_global": 6,
+      "homepage_tier": "next10",
+      "full_analysis": [
+        {
+          "label": "DCC 技巧",
+          "text": "自動建立 seamless canvas，降低手動 offset/preview 循環。"
+        },
+        {
+          "label": "Production 價值",
+          "text": "對 stylized tileable texture 與 NPR 素材快速迭代有用。"
+        },
+        {
+          "label": "驗證方式",
+          "text": "測 1K/2K tile、邊界與 engine mip 下的 seam。"
+        }
+      ]
+    },
+    {
+      "id": "pokemaniac-64-sprite",
+      "title": "64×64 sprite 轉 3D：以 pose 建模與 stylized PBR 保留像素角色辨識度",
+      "summary": "Paul Thureau 從 Pokémon 64×64 sprite 建立 stylized 3D 角色，採直接 pose 建模並針對眼睛與服裝設計貼圖，適合作為低資訊概念轉 3D 的案例。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://80.lv/articles/creating-a-stylized-3d-character-based-on-a-64-64-pixel-sprite-from-pok-mon",
+      "category": "3d-production",
+      "subcategory": "character-production",
+      "ranking_score": 87,
+      "rank_global": 7,
+      "homepage_tier": "next10",
+      "full_analysis": [
+        {
+          "label": "角色設計",
+          "text": "低解析 reference 需要先保 silhouette 與辨識特徵，再補 3D 合理性。"
+        },
+        {
+          "label": "Production 價值",
+          "text": "適合 retro IP 或概念資訊不足的 stylized character。"
+        },
+        {
+          "label": "驗證方式",
+          "text": "用縮圖與正交視圖同時檢查辨識度。"
+        }
+      ]
+    },
+    {
+      "id": "painter12-flatten-warp",
+      "title": "Painter 12.0：Layer Flatten、Warp to Geometry 與批次輸出改善貼圖迭代",
+      "summary": "Painter 12.0 可在 layer stack 直接 flatten 群組、批次輸出 layer/mask，並以 Warp to Geometry 改善 decal 貼合複雜曲面，降低跨軟體迭代成本。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://experienceleague.adobe.com/en/docs/substance-3d-painter/using/release-notes/version-12-0",
+      "category": "blender-dcc",
+      "subcategory": "substance",
+      "ranking_score": 86,
+      "rank_global": 8,
+      "homepage_tier": "next10",
+      "full_analysis": [
+        {
+          "label": "貼圖流程",
+          "text": "Flatten 與 Warp to Geometry 都直接針對常見 production friction。"
+        },
+        {
+          "label": "Production 價值",
+          "text": "可降低 layer stack 過重與 decal 曲面貼合的人工處理。"
+        },
+        {
+          "label": "驗證方式",
+          "text": "用複雜曲面 decal 與大型 layer stack 做 A/B。"
+        }
+      ]
+    },
+    {
+      "id": "tripo-multiview-api",
+      "title": "Tripo OpenAPI 多視圖工作流：單圖生成／獨立編輯 views 再直接串 model generation",
+      "summary": "Tripo API 1.9.6 加入 generate_multiview_image、edit_multiview_image，並允許 multiview_to_model 直接接 original_task_id，減少重傳與人工預處理。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://docs.tripo3d.ai/get-started/changelog.html",
+      "category": "ai-generation",
+      "subcategory": "ai-3d",
+      "ranking_score": 85,
+      "rank_global": 9,
+      "homepage_tier": "next10",
+      "full_analysis": [
+        {
+          "label": "API 流程",
+          "text": "多視圖生成、單 view 編輯與 3D generation 可用 task id 串接。"
+        },
+        {
+          "label": "Production 價值",
+          "text": "適合批次生成與自動化驗證 pipeline。"
+        },
+        {
+          "label": "驗證方式",
+          "text": "測單圖→四視圖→局部修正→模型的全自動 job。"
+        }
+      ]
+    },
+    {
+      "id": "tripo-h31-quad",
+      "title": "Tripo H3.1：200 萬面、PBR、Quad FBX 與 Smart Low-poly 的生成選項",
+      "summary": "Tripo H3.1 官方模型頁列出最高 200 萬面、Text/Image/Multiview、PBR、Quad mesh FBX、Smart low-poly 與 Generate in parts，可直接用於生成品質與拓樸測試。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://developers.tripo3d.ai/en/models/v3-1",
+      "category": "ai-generation",
+      "subcategory": "ai-3d",
+      "ranking_score": 84,
+      "rank_global": 10,
+      "homepage_tier": "next10",
+      "full_analysis": [
+        {
+          "label": "生成能力",
+          "text": "同一模型提供 high-detail、quad、smart low-poly 與 parts 選項。"
+        },
+        {
+          "label": "Production 價值",
+          "text": "可把生成、retopo、分件視為同一 benchmark。"
+        },
+        {
+          "label": "驗證方式",
+          "text": "用同角色比較 quad/smart low-poly 與高模輸出的可編輯性。"
+        }
+      ]
+    },
+    {
+      "id": "stylized-water3-river",
+      "title": "Unity Stylized Water 3 River Modeler 重製：Spline 河流、Burst／Jobs 與自動 VFX/SFX",
+      "summary": "River Modeler 正重建為 Stylized Water 3 extension，採 spline 河流建模、segmented output、Burst/Job System，並整合 VFX/SFX，適合 stylized environment workflow。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://80.lv/articles/unity-s-stylized-water-3-is-getting-spline-based-river-modeler-tool",
+      "category": "engine-art",
+      "subcategory": "unity",
+      "ranking_score": 83,
+      "rank_global": 11,
+      "homepage_tier": "next10",
+      "full_analysis": [
+        {
+          "label": "Unity 場景工具",
+          "text": "Spline authoring 與 segmented output 讓河流更適合長距離場景。"
+        },
+        {
+          "label": "Production 價值",
+          "text": "自動 VFX/SFX 可減少環境美術與特效重複配置。"
+        },
+        {
+          "label": "驗證方式",
+          "text": "用一段彎曲河道測 authoring、runtime cost 與 LOD。"
+        }
+      ]
+    },
+    {
+      "id": "fantasy-village-2d3d",
+      "title": "Blender＋Photoshop 2D/3D 概念流程：從 reference、blockout 到 final paintover",
+      "summary": "Eugenia Chernova 展示環境概念如何先在 Blender 建立 3D scene，再進 Photoshop paintover，適合快速控制透視、構圖與場景層次的 concept workflow。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://80.lv/articles/creating-fantasy-village-concept-art-using-blender",
+      "category": "3d-production",
+      "subcategory": "production-workflow",
+      "ranking_score": 82,
+      "rank_global": 12,
+      "homepage_tier": "next10",
+      "full_analysis": [
+        {
+          "label": "概念流程",
+          "text": "3D blockout 先解決透視與空間，再由 2D paintover 完成風格。"
+        },
+        {
+          "label": "Production 價值",
+          "text": "對需後續拆成 3D 場景的概念尤其有用。"
+        },
+        {
+          "label": "驗證方式",
+          "text": "用同場景比較純 2D 與 3D-assisted 的修改速度。"
+        }
+      ]
+    }
+  ],
+  "visual_evidence": {}
 }
