@@ -8,6 +8,9 @@ Rules:
 - Only daily datasets with data/publish/YYYY-MM-DD.done.json state=DONE belong to
   the Published Intelligence Registry. Failed/WIP daily JSON must not reserve IDs
   or source URLs.
+- Historical source identity is resolved the same way as registry QA: prefer the
+  source URL embedded in the published daily HTML card for a stable ID, then fall
+  back to the canonical JSON source_url if the published surface is unavailable.
 - Same canonical source URL without substantive delta => SKIP current item.
 - Same canonical source URL with status=UPDATE + non-empty delta => preserve the
   historical stable ID, never mint a new one.
@@ -26,6 +29,8 @@ from pathlib import Path
 import json
 import re
 import sys
+
+from bs4 import BeautifulSoup
 
 ROOT = Path(__file__).resolve().parents[1]
 SCRIPTS = ROOT / 'scripts'
@@ -63,6 +68,31 @@ def is_verified_published(date):
     return str(receipt.get('state', '')).strip().upper() == 'DONE'
 
 
+def published_source_by_id(date):
+    """Return source identity from the immutable published daily surface.
+
+    Registry QA intentionally prefers the source URL rendered on the published
+    card because that is the identity users actually received. Keep collection
+    normalization in lockstep with that rule so a source cannot pass normalization
+    and then fail later as identity drift.
+    """
+    daily_path = ROOT / date / 'index.html'
+    sources = {}
+    if not daily_path.exists():
+        return sources
+
+    soup = BeautifulSoup(daily_path.read_text('utf-8'), 'html.parser')
+    for card in soup.select('[data-intel-role="card"][data-intel-id]'):
+        rid = str(card.get('data-intel-id', '')).strip()
+        anchor = card.select_one('a.source[href]')
+        if not rid or not anchor:
+            continue
+        source = norm_url(anchor.get('href'))
+        if source:
+            sources[rid] = source
+    return sources
+
+
 def prior_registry(target_date):
     owners = {}
     ids = set()
@@ -70,9 +100,10 @@ def prior_registry(target_date):
         if p.stem >= target_date or not is_verified_published(p.stem):
             continue
         data = json.loads(p.read_text('utf-8'))
+        source_by_id = published_source_by_id(p.stem)
         for item in data.get('items', []):
             rid = str(item.get('id', '')).strip()
-            src = norm_url(item.get('source_url'))
+            src = source_by_id.get(rid) or norm_url(item.get('source_url'))
             if rid:
                 ids.add(rid)
             if rid and src and src not in owners:
@@ -170,6 +201,7 @@ def main():
         'dropped_count': len(dropped),
         'rewritten_count': len(rewrites),
         'policy': 'verified-DONE-published-canonical-source-without-substantive-delta-skip',
+        'source_identity_precedence': 'published-daily-html-card-then-canonical-json',
         'url_identity': 'scripts/url_identity.py',
         'stage': 'collection-before-ready',
         'refill_required': not gate['release_ready'],
