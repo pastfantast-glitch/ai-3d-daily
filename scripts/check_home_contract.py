@@ -5,7 +5,7 @@ from bs4 import BeautifulSoup
 from intelligence_v2 import is_v2_dataset, homepage_groups
 
 ROOT=Path(__file__).resolve().parents[1]
-INDEX=ROOT/'index.html'; FOUNDATION=ROOT/'home.css'; UI=ROOT/'home-content.css'; COMPONENTS=ROOT/'home-components.css'; SHARED=ROOT/'shared-components.css'; JS=ROOT/'home.js'
+INDEX=ROOT/'index.html'; FOUNDATION=ROOT/'home.css'; UI=ROOT/'home-content.css'; COMPONENTS=ROOT/'home-components.css'; SHARED=ROOT/'shared-components.css'; JS=ROOT/'home.js'; PREF=ROOT/'preference.js'
 DATE_RE=re.compile(r'^20\d{2}-\d{2}-\d{2}$'); errors=[]
 def fail(msg): errors.append(msg)
 def archive_dates(): return sorted(p.name for p in ROOT.iterdir() if p.is_dir() and DATE_RE.fullmatch(p.name) and (p/'index.html').exists())
@@ -98,7 +98,7 @@ else:
         rel=set(a.get('rel') or [])
         if 'noopener' not in rel or 'noreferrer' not in rel: fail('external target=_blank link missing noopener noreferrer')
 
-for path in (FOUNDATION,UI,COMPONENTS,SHARED,JS):
+for path in (FOUNDATION,UI,COMPONENTS,SHARED,JS,PREF):
     if not path.exists(): fail(f'missing required frontend asset: {path.name}')
 css='\n'.join(p.read_text('utf-8') for p in (FOUNDATION,UI,COMPONENTS,SHARED) if p.exists())
 for selector in ('.top-list','.top-item','.more-grid','.more-card','.current-report-entry','.current-report-link','.history-list','.history-controls','.archive-year','.archive-month','.history-entry','.preference-vote','.detail-body','details > summary','.quick-impact','.case-preview'):
@@ -108,10 +108,14 @@ if is_v2_dataset(latest_data()):
         if selector not in css: fail(f'missing V2 selector: {selector}')
 if JS.exists():
     js=JS.read_text('utf-8')
-    if 'ai3d-preferences-v1' not in js: fail('preference localStorage key missing')
     if '.top-item, .more-card' not in js: fail('card interaction selector missing')
     for token in ('history-search','data-history-category','data-history-range'):
         if token not in js: fail(f'history interaction missing: {token}')
+if PREF.exists():
+    pref=PREF.read_text('utf-8')
+    if 'ai3d-preferences-v2' not in pref: fail('shared preference v2 localStorage key missing')
+    if 'ai3d-preferences-v1' not in pref: fail('shared preference legacy migration key missing')
+    if '[data-intel-role="card"][data-intel-id]' not in pref: fail('shared stable-ID card preference selector missing')
 if errors:
     print('Homepage contract QA FAILED:'); print('\n'.join(' - '+e for e in errors)); sys.exit(1)
-print('Homepage contract QA passed: current report separated from prior history + V2 shared components + searchable grouped history library + Design System ownership locked')
+print('Homepage contract QA passed: current report separated from prior history + V2 shared components + searchable grouped history library + shared preference v2 + Design System ownership locked')
