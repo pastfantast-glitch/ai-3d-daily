@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   3D 製作｜2026-09-09｜AI 3D Daily
+  </title>
+  <link href="../../styles.css?v=20260909-r1-workspace-v6" rel="stylesheet"/>
+  <link href="../../shared-components.css?v=20260909-r1-workspace-v6" rel="stylesheet"/>
+  <link href="../../category.css?v=20260909-r1-workspace-v6" rel="stylesheet"/>
+ </head>
+ <body class="category-page" data-category="3d-production" data-report-date="2026-09-09">
+  <nav aria-label="Production Intelligence 分類" class="global-category-nav">
+   <div class="page global-category-nav-inner">
+    <div class="archive-nav-controls">
+     <a class="archive-nav-home" href="../../">
+      ← 首頁
+     </a>
+     <div class="archive-nav-date">
+      <a aria-label="前一日日報" class="archive-nav-arrow" href="../../2026-09-08/3d-production/">
+       ←
+      </a>
+      <span>
+       2026-09-09
+      </span>
+     </div>
+    </div>
+    <span aria-hidden="true" class="archive-nav-divider">
+    </span>
+    <a class="global-category-link" href="../#top">
+     TOP5
+    </a>
+    <a class="global-category-link" data-category="ai-generation" href="../ai-generation/">
+     AI 生成
+    </a>
+    <a class="global-category-link is-active" data-category="3d-production" href="../3d-production/">
+     3D 製作
+    </a>
+    <a class="global-category-link" data-category="3d-animation" href="../3d-animation/">
+     3D 動作
+    </a>
+    <a class="global-category-link" data-category="engine-art" href="../engine-art/">
+     遊戲引擎
+    </a>
+    <a class="global-category-link" data-category="emerging-case" href="../emerging-case/">
+     新技術 / Case
+    </a>
+    <a class="global-category-link" data-category="blender-dcc" href="../blender-dcc/">
+     Blender / DCC
+    </a>
+   </div>
+  </nav>
+  <main class="page category-main">
+   <article class="category-card" data-intel-id="bioscope-usage-wear" data-intel-role="card">
+    <div class="category-meta">
+     #10 · prop-production
+    </div>
+    <h2>
+     印度 Bioscope 道具：用「實際接觸區」而非隨機 grunge 決定磨損
+    </h2>
+    <p class="summary">
+     PixelDhara 的 Bioscope breakdown 從歷史研究、3ds Max high/low poly、Painter baking/texturing 到 UE5 MRQ，核心是依觸摸、保護區與積塵位置設計可信磨損。
+    </p>
+    <figure class="case-preview" data-intel-id="bioscope-usage-wear" data-intel-role="visual" data-visual-id="bioscope-usage-wear">
+     <a href="https://80.lv/articles/bringing-a-piece-of-indian-cultural-history-to-life-in-3d" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-09/bioscope-usage-wear.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">物件製作</b> ★★★★★</span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       製作流程
+      </h4>
+      <p>
+       流程先研究 Bioscope 的真實構造與使用方式，再以 3ds Max blockout/high-poly、低模與 UV 進 Painter baking/texturing。鏈條與膠帶用 Path Deform 沿 spline 建立，材質磨損則依「哪裡常被手摸、哪裡受保護、哪裡會積塵」分區，而不是平均撒 grunge。
+      </p>
+      <h4>
+       流程價值
+      </h4>
+      <p>
+       這種 usage-driven wear 對遊戲 prop 特別可轉移：同一套 smart material 若不理解使用情境，很容易把每條邊都磨亮。把接觸頻率、重力積塵與材質老化寫成檢查表，可提高 outsourcing 與內部驗收的一致性，也更容易講出資產故事。
+      </p>
+      <h4>
+       實測
+      </h4>
+      <p>
+       挑三件不同使用情境的 prop，先標 touch map、protected map 與 dirt accumulation zone，再與純 generator 版本盲測；比較視覺可信度、手工修正時間與不同 lighting 下 roughness 是否成立，最後在 UE5 Sequencer/MRQ 檢查高光是否把磨損放大過頭。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://80.lv/articles/bringing-a-piece-of-indian-cultural-history-to-life-in-3d" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="stylized-scythe-pbr" data-intel-role="card">
+    <div class="category-meta">
+     #11 · prop-production
+    </div>
+    <h2>
+     Wayfinder 風格鐮刀：ZRemesher 分層雕刻＋高對比 Base Color 驅動 Roughness／Metallic
+    </h2>
+    <p class="summary">
+     Artem Romanov 的 stylized scythe 流程用 Blender blockout、ZBrush ZRemesher/Divide、UVPackmaster、Marmoset baking，再以 Painter 高對比 Base Color、anchor points 與 hand-painting 建立 stylized PBR。
+    </p>
+    <figure class="case-preview" data-intel-id="stylized-scythe-pbr" data-intel-role="visual" data-visual-id="stylized-scythe-pbr">
+     <a href="https://80.lv/articles/how-to-sculpt-and-texture-a-stylized-wayfinder-inspired-scythe" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-09/stylized-scythe-pbr.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">物件製作</b> ★★★★★</span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       製作流程
+      </h4>
+      <p>
+       硬表面先在 Blender 以低模、crease、subdivision 建好乾淨形，再進 ZBrush；有機主體用 sphere + DynaMesh 起形，之後改用 ZRemesher/Divide，在低 subdivision 調大形、高 subdivision 拋光細節。UV 回 Blender 用 UVPackmaster，4K maps 在 Marmoset 烘焙。
+      </p>
+      <h4>
+       流程價值
+      </h4>
+      <p>
+       貼圖重點是先把 Base Color 做出足夠的亮暗、gradient、cavity/convexity 與色相變化，再以 anchor points 衍生 Roughness/Metallic，最後手繪修正。這種做法讓 stylized PBR 的材質反應跟著設計好的色塊，而不是靠金屬度與粗糙度各自亂長。
+      </p>
+      <h4>
+       實測
+      </h4>
+      <p>
+       用同一 prop 做「先 PBR 通道」與「先高對比 Base Color 再 anchor」兩版，在 Marmoset 與 UE/Unity 不同 HDRI 下比較讀形、材質分離與跨 renderer 穩定性；也要檢查 Sharpen/Height 是否在低 mip 或遠距造成閃爍。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://80.lv/articles/how-to-sculpt-and-texture-a-stylized-wayfinder-inspired-scythe" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <nav aria-label="相鄰分類" class="category-bottom-nav">
+    <a href="../ai-generation/">
+     ← AI 生成
+    </a>
+    <a href="../#top">
+     TOP5
+    </a>
+    <a href="../3d-animation/">
+     3D 動作 →
+    </a>
+   </nav>
+  </main>
+  <script defer="" src="../../archive-nav-state.js?v=20260909-r1-workspace-v6">
+  </script>
+ </body>
+</html>

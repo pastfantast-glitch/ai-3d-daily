@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   Blender / DCC｜2026-09-09｜AI 3D Daily
+  </title>
+  <link href="../../styles.css?v=20260909-r1-workspace-v6" rel="stylesheet"/>
+  <link href="../../shared-components.css?v=20260909-r1-workspace-v6" rel="stylesheet"/>
+  <link href="../../category.css?v=20260909-r1-workspace-v6" rel="stylesheet"/>
+ </head>
+ <body class="category-page" data-category="blender-dcc" data-report-date="2026-09-09">
+  <nav aria-label="Production Intelligence 分類" class="global-category-nav">
+   <div class="page global-category-nav-inner">
+    <div class="archive-nav-controls">
+     <a class="archive-nav-home" href="../../">
+      ← 首頁
+     </a>
+     <div class="archive-nav-date">
+      <a aria-label="前一日日報" class="archive-nav-arrow" href="../../2026-09-08/blender-dcc/">
+       ←
+      </a>
+      <span>
+       2026-09-09
+      </span>
+     </div>
+    </div>
+    <span aria-hidden="true" class="archive-nav-divider">
+    </span>
+    <a class="global-category-link" href="../#top">
+     TOP5
+    </a>
+    <a class="global-category-link" data-category="ai-generation" href="../ai-generation/">
+     AI 生成
+    </a>
+    <a class="global-category-link" data-category="3d-production" href="../3d-production/">
+     3D 製作
+    </a>
+    <a class="global-category-link" data-category="3d-animation" href="../3d-animation/">
+     3D 動作
+    </a>
+    <a class="global-category-link" data-category="engine-art" href="../engine-art/">
+     遊戲引擎
+    </a>
+    <a class="global-category-link" data-category="emerging-case" href="../emerging-case/">
+     新技術 / Case
+    </a>
+    <a class="global-category-link is-active" data-category="blender-dcc" href="../blender-dcc/">
+     Blender / DCC
+    </a>
+   </div>
+  </nav>
+  <main class="page category-main">
+   <article class="category-card" data-intel-id="blender-cycles-gsplat-wip" data-intel-role="card">
+    <div class="category-meta">
+     #09 · blender
+    </div>
+    <h2>
+     Blender Cycles 開始整合 Gaussian Splat：多種 compute backend 已通過初步測試
+    </h2>
+    <p class="summary">
+     Blender 9 月 Render &amp; Cycles meeting 顯示 GSplat 初始 Cycles rendering support 正在開發，CPU、CUDA、OptiX、oneAPI、HIP、Metal 與硬體 RT 已完成初步手動測試。
+    </p>
+    <figure class="case-preview" data-intel-id="blender-cycles-gsplat-wip" data-intel-role="visual" data-visual-id="blender-cycles-gsplat-wip">
+     <a href="https://devtalk.blender.org/t/2026-09-01-render-cycles-meeting/45749" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-09/blender-cycles-gsplat-wip.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">Blender</b> ★★★★☆</span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       DCC 工作流
+      </h4>
+      <p>
+       Cycles 團隊正在把 Gaussian Splat rendering support 拆成可審查的多個 patch，會議紀錄指出 CPU、CUDA、OptiX、oneAPI、HIP、Metal 與部分硬體 RT 已通過初步 manual test，並抽出 Quaternion attribute 等基礎支援。
+      </p>
+      <h4>
+       製作價值
+      </h4>
+      <p>
+       這代表 3DGS 有機會從外部 viewer 或特殊 renderer 逐步進入 Blender 正規 lighting/render pipeline。對掃描場景、reference capture、虛實整合與 look-dev 而言，能在同一 DCC 內混用 mesh、材質與 splat 會比來回轉工具更實用。
+      </p>
+      <h4>
+       升版 / 導入測試
+      </h4>
+      <p>
+       目前仍是 WIP，不適合當成 Blender 5.2 的 production 承諾。等功能進 daily build 後，應測大場景 VRAM、透明排序、camera motion、Cycles denoise、mesh/splat 混合遮擋與各 GPU backend parity，再決定是否納入正式 pipeline。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://devtalk.blender.org/t/2026-09-01-render-cycles-meeting/45749" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="blender-remote-assets" data-intel-role="card">
+    <div class="category-meta">
+     #12 · blender
+    </div>
+    <h2>
+     Blender 5.2 Remote Asset Libraries：資產可從伺服器按需下載並本地快取
+    </h2>
+    <p class="summary">
+     Blender 5.2 支援以 URL 註冊 Remote Asset Library，Asset Browser 可按需下載並快取；自架 library 需生成 JSON listing 與 preview，外部依賴則必須打包進獨立 .blend。
+    </p>
+    <figure class="case-preview" data-intel-id="blender-remote-assets" data-intel-role="visual" data-visual-id="blender-remote-assets">
+     <a href="https://code.blender.org/2026/07/remote-asset-libraries/" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-09/blender-remote-assets.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">Blender</b> ★★★★★</span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       DCC 工作流
+      </h4>
+      <p>
+       Remote Asset Libraries 把 Blender Asset Library 從本機資料夾擴展到 URL：資產在 Asset Browser/Asset Shelf 看到時可按需下載，下載後走 local cache。團隊也能自行 host library，透過 Blender CLI 生成 listing JSON 與 WebP/PNG preview。
+      </p>
+      <h4>
+       製作價值
+      </h4>
+      <p>
+       這很接近小型工作室需要的『輕量資產庫』：不用把所有 HDRI、base mesh、node group 或材質包進 repo，也能讓藝術家在 DCC 內搜尋與拉取。對分散團隊、外包共用工具與大型 library，可降低初始同步量與版本庫壓力。
+      </p>
+      <h4>
+       升版 / 導入測試
+      </h4>
+      <p>
+       限制是每個 .blend 必須自包含，Blender 也沒有完整的 asset version 概念；導入前要測權限、cache invalidation、library 更新、離線模式與 texture packing。若要 production 使用，仍需在 URL/library listing 外加團隊自己的版本與審核規則。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://code.blender.org/2026/07/remote-asset-libraries/" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="blender-cycles-texture-cache" data-intel-role="card">
+    <div class="category-meta">
+     #13 · blender
+    </div>
+    <h2>
+     Blender 5.2 Cycles Texture Cache：只載入需要的 tile／mip，壓低大量貼圖場景記憶體
+    </h2>
+    <p class="summary">
+     Cycles 5.2 的 Texture Cache 會自動產生 .tx，只載入 render 當下需要的 tile 與解析度，並配合 tiled rendering 淘汰未使用貼圖，針對大量 4K–16K texture 場景降低記憶體。
+    </p>
+    <figure class="case-preview" data-intel-id="blender-cycles-texture-cache" data-intel-role="visual" data-visual-id="blender-cycles-texture-cache">
+     <a href="https://code.blender.org/2026/05/cycles-texture-cache/" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-09/blender-cycles-texture-cache.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">Blender</b> ★★★★★</span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       DCC 工作流
+      </h4>
+      <p>
+       開啟 Texture Cache 與 Auto Generate 後，Cycles 會在貼圖旁建立 blender_tx/.tx，render 時只讀需要的 tile/mipmap；cache eviction 會利用 render tile 節奏移除近期未使用影像，而不是把整張高解析貼圖永久留在記憶體。
+      </p>
+      <h4>
+       製作價值
+      </h4>
+      <p>
+       對角色 UDIM、掃描場景或大量 4K/8K/16K texture 的 shot，這能把『VRAM/RAM 不夠』從硬上限變成可管理的 streaming 問題。官方觀察指出高解析 tiled render 的 texture cache 記憶體可接近固定，render farm 也有額外控制。
+      </p>
+      <h4>
+       升版 / 導入測試
+      </h4>
+      <p>
+       先用現有最重 shot 測 cache on/off 的 peak RAM/VRAM、time to first pixel、總 render time 與 network storage I/O；較小 tile 可能省記憶體但犧牲效能，packed textures、viewport interaction 等仍有待改善，不能只看單一峰值。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://code.blender.org/2026/05/cycles-texture-cache/" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="maya2027-usd-component" data-intel-role="card">
+    <div class="category-meta">
+     #14 · maya
+    </div>
+    <h2>
+     Maya 2027 USD Component Creator／Variant Manager：直接在 Maya 建 production-ready USD Asset
+    </h2>
+    <p class="summary">
+     Maya 2027 的 USD workflow 新增 Component Creator 與 Variant Manager，可把 scene objects 一鍵組成自包含 USD stage，並用 template 控制 prim hierarchy 與集中管理 variants。
+    </p>
+    <figure class="case-preview" data-intel-id="maya2027-usd-component" data-intel-role="visual" data-visual-id="maya2027-usd-component">
+     <a href="https://help.autodesk.com/cloudhelp/2027/ENU/Maya-WhatsNew/files/GUID-93ED1C8E-AF46-4F5A-BC07-8B66C7C3D32E.htm" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-09/maya2027-usd-component.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">Maya</b> ★★★★★</span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       DCC 工作流
+      </h4>
+      <p>
+       Component Creator 可把 Maya 選取物件轉成結構化 USD stage，決定合成成單一 asset 或 variants，並套 template 約束 prim hierarchy；Variant Manager 則集中新增、移除、切換 variant sets，讓 asset build 不必離開 Maya UI。
+      </p>
+      <h4>
+       製作價值
+      </h4>
+      <p>
+       USD pipeline 最常見問題不是能不能 export，而是每個人 export 出不同 hierarchy、variant 命名與 path。Template-driven component build 可把 studio conventions 前移到 authoring 階段，減少 publish 後才用 script 修 stage 的成本，也更適合外包資產標準化。
+      </p>
+      <h4>
+       升版 / 導入測試
+      </h4>
+      <p>
+       拿一件有 LOD、材質 variant、可替換配件的 hero asset 建模板，驗 prim path、payload/reference、relative path、material binding 與 downstream Houdini/Unreal ingest；同時測 artist 誤操作時能否重建而不破壞 stable paths，才能判斷是否取代自研 exporter。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://help.autodesk.com/cloudhelp/2027/ENU/Maya-WhatsNew/files/GUID-93ED1C8E-AF46-4F5A-BC07-8B66C7C3D32E.htm" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="arnold-max-593-gsplat-npr" data-intel-role="card">
+    <div class="category-meta">
+     #15 · other-dcc
+    </div>
+    <h2>
+     Arnold for 3ds Max 5.9.3：原生 3DGS、Shader to RGBA 與 Tone Zones 強化 NPR／混合場景
+    </h2>
+    <p class="summary">
+     3ds Max 2027.2 內的 Arnold 5.9.3 可直接 render 3D Gaussian Splatting，並新增 Shader to RGBA、tone zones、較快 GPU scene update 與改善 noice denoiser。
+    </p>
+    <figure class="case-preview" data-intel-id="arnold-max-593-gsplat-npr" data-intel-role="visual" data-visual-id="arnold-max-593-gsplat-npr">
+     <a href="https://help.autodesk.com/cloudhelp/2027/ENU/3dsMax-WhatsNew/files/whats_new_in_3ds_max_2027.2/GUID-BE5A5907-54D4-455C-9B0F-AD06B52FB711.html" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-09/arnold-max-593-gsplat-npr.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">其他 DCC</b> ★★★★★</span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       DCC 工作流
+      </h4>
+      <p>
+       MAXtoA 5.9.3 可讀取原生 3ds Max 3DGS/points data，在 Arnold 中直接 render splats，並支援 Point Instance；同版新增 Shader to RGBA 與 tone zones 給 NPR，GPU scene update 也更快，讓 scan/splat、mesh 與 stylized shading 能在同一 renderer 交會。
+      </p>
+      <h4>
+       製作價值
+      </h4>
+      <p>
+       對 3ds Max 使用者，3DGS 不再必須外掛 viewer 才能進正式 lighting/render；tone zones 與 Shader to RGBA 也對 toon/NPR look-dev 有直接價值。若 production 同時有掃描環境、傳統 mesh hero asset 與非寫實角色，可減少跨 renderer 合成。
+      </p>
+      <h4>
+       升版 / 導入測試
+      </h4>
+      <p>
+       建立 mesh+splat 混合場景，測 Min Pixel Width、透明排序、motion、AOV、denoise 與 GPU VRAM；NPR nodes 則要驗輪廓／色階在 batch render 與 EXR pipeline 的一致性。Flow Render 仍是 Tech Preview，不能與正式 Arnold render farm SLA 混為一談。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://help.autodesk.com/cloudhelp/2027/ENU/3dsMax-WhatsNew/files/whats_new_in_3ds_max_2027.2/GUID-BE5A5907-54D4-455C-9B0F-AD06B52FB711.html" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <nav aria-label="相鄰分類" class="category-bottom-nav">
+    <a href="../emerging-case/">
+     ← 新技術 / Case
+    </a>
+    <a href="../#top">
+     TOP5
+    </a>
+    <a href="../ai-generation/">
+     AI 生成 →
+    </a>
+   </nav>
+  </main>
+  <script defer="" src="../../archive-nav-state.js?v=20260909-r1-workspace-v6">
+  </script>
+ </body>
+</html>

@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   新技術 / Case｜2026-09-09｜AI 3D Daily
+  </title>
+  <link href="../../styles.css?v=20260909-r1-workspace-v6" rel="stylesheet"/>
+  <link href="../../shared-components.css?v=20260909-r1-workspace-v6" rel="stylesheet"/>
+  <link href="../../category.css?v=20260909-r1-workspace-v6" rel="stylesheet"/>
+ </head>
+ <body class="category-page" data-category="emerging-case" data-report-date="2026-09-09">
+  <nav aria-label="Production Intelligence 分類" class="global-category-nav">
+   <div class="page global-category-nav-inner">
+    <div class="archive-nav-controls">
+     <a class="archive-nav-home" href="../../">
+      ← 首頁
+     </a>
+     <div class="archive-nav-date">
+      <a aria-label="前一日日報" class="archive-nav-arrow" href="../../2026-09-08/emerging-case/">
+       ←
+      </a>
+      <span>
+       2026-09-09
+      </span>
+     </div>
+    </div>
+    <span aria-hidden="true" class="archive-nav-divider">
+    </span>
+    <a class="global-category-link" href="../#top">
+     TOP5
+    </a>
+    <a class="global-category-link" data-category="ai-generation" href="../ai-generation/">
+     AI 生成
+    </a>
+    <a class="global-category-link" data-category="3d-production" href="../3d-production/">
+     3D 製作
+    </a>
+    <a class="global-category-link" data-category="3d-animation" href="../3d-animation/">
+     3D 動作
+    </a>
+    <a class="global-category-link" data-category="engine-art" href="../engine-art/">
+     遊戲引擎
+    </a>
+    <a class="global-category-link is-active" data-category="emerging-case" href="../emerging-case/">
+     新技術 / Case
+    </a>
+    <a class="global-category-link" data-category="blender-dcc" href="../blender-dcc/">
+     Blender / DCC
+    </a>
+   </div>
+  </nav>
+  <main class="page category-main">
+   <article class="category-card" data-intel-id="hunyuan-worldclaw" data-intel-role="card">
+    <div class="category-meta">
+     #06 · world-model
+    </div>
+    <h2>
+     Hunyuan3D WorldClaw：Agentic 粗到細流程生成可編輯 3D Open World
+    </h2>
+    <p class="summary">
+     WorldClaw 以規劃 agent 把文字需求拆成區域、地形、資產、材質與空間關係，再透過 Blender 與多個生成／分割模組建立可編輯場景，代表 world generation 往 production orchestration 前進。
+    </p>
+    <figure class="case-preview" data-intel-id="hunyuan-worldclaw" data-intel-role="visual" data-visual-id="hunyuan-worldclaw">
+     <a href="https://github.com/Tencent-Hunyuan/Hunyuan3D-WorldClaw" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-09/hunyuan-worldclaw.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">世界模型</b> ★★★★☆</span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       技術方向
+      </h4>
+      <p>
+       WorldClaw 採 coarse-to-fine agentic pipeline：先把 prompt 轉成結構化世界規格，再建立全域 terrain、放置 instance-level 3D assets，最後根據自己的 render 做視覺檢查與 refinement；公開資料顯示流程會協調 LLM、影像生成、SAM 3D、Hunyuan3D 與 Blender/MCP。
+      </p>
+      <h4>
+       製作潛力
+      </h4>
+      <p>
+       對場景美術真正有價值的不是「一句話出世界」，而是把地形、資產、材質與 placement 變成可分層控制的規格。若 instance 與 terrain 都保持可編輯，未來可能用在 blockout、世界配置提案、open-world variation 與自動化佈景，而不是只產生不可拆的 3DGS。
+      </p>
+      <h4>
+       成熟度判斷
+      </h4>
+      <p>
+       目前官方專案仍偏研究展示，不能把它視為現成遊戲關卡生成器。導入前要驗輸出是否有碰撞、LOD、導航、材質預算與 stable asset IDs；也要測 agent 重跑是否能只修改指定區域，而非整個世界重新生成。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://github.com/Tencent-Hunyuan/Hunyuan3D-WorldClaw" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="r-dmesh-video-animation" data-intel-role="card">
+    <div class="category-meta">
+     #07 · 4d
+    </div>
+    <h2>
+     R-DMesh：以參考影片驅動靜態 Mesh，直接輸出時間一致的 4D 動態網格
+    </h2>
+    <p class="summary">
+     SIGGRAPH 2026 的 R-DMesh 可把靜態 mesh 對齊參考影片起始姿勢並生成時間一致的動態 mesh，同時支援 pose／motion retarget，程式與 checkpoint 已公開。
+    </p>
+    <figure class="case-preview" data-intel-id="r-dmesh-video-animation" data-intel-role="visual" data-visual-id="r-dmesh-video-animation">
+     <a href="https://github.com/Tencent-Hunyuan/R-DMesh" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-09/r-dmesh-video-animation.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">4D</b> ★★★★☆</span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       技術方向
+      </h4>
+      <p>
+       R-DMesh 針對靜態 mesh 與參考影片起始 pose 不一致的問題，先做 pose rectification，再以 dynamic-mesh VAE 與 rectified-flow DiT 生成整段動態網格；官方也把 pose retarget、motion retarget 與 4D generation 列為下游用途。
+      </p>
+      <h4>
+       製作潛力
+      </h4>
+      <p>
+       它與傳統骨架 retarget 的差別在於輸出可包含每幀幾何變化，因此對衣物、軟體變形或非標準拓樸角色有研究價值。若能穩定轉成 morph/mesh cache，可能成為 previs、特殊角色與參考動作轉換的補充工具。
+      </p>
+      <h4>
+       成熟度判斷
+      </h4>
+      <p>
+       目前完整流程依賴 Wan2.2-TI2V-5B、custom CUDA extensions 與 GPU 計算，示範輸出甚至以 morph animation 為主，離即時 gameplay skeleton 還有距離。測試要檢 topology identity、幀間抖動、接縫、匯出大小，以及是否能再轉成骨架或 VAT。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://github.com/Tencent-Hunyuan/R-DMesh" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="detram-human-mesh-tracking" data-intel-role="card">
+    <div class="category-meta">
+     #08 · research
+    </div>
+    <h2>
+     DETRAM：單一 Transformer 同時做人形 Mesh 重建、多人追蹤與 Prompt 指定人物
+    </h2>
+    <p class="summary">
+     NVIDIA 研究 DETRAM 以持續跨幀的 query 同時完成多人偵測、human mesh recovery 與 tracking，並可用 prompt 指定人物，在 PoseTrack21、3DPW 等資料集展示競爭力。
+    </p>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">研究</b> ★★★☆☆</span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       技術方向
+      </h4>
+      <p>
+       DETRAM 把傳統分開的人體 detector、mesh recovery 與 tracker 收斂到同一 transformer decoder：detection query 找新人、tracking query 維持既有人物身份、prompt query 追蹤使用者指定對象，因此跨幀身份管理直接成為模型狀態。
+      </p>
+      <h4>
+       製作潛力
+      </h4>
+      <p>
+       對 mocap 前處理、群眾參考與影片轉 3D 的價值在於少掉獨立 detector 串接與 ID switch 修補；如果之後能輸出穩定骨架或 SMPL 類參數，可作為多演員 video-to-animation 的上游資料來源，也有利於挑選特定表演者。
+      </p>
+      <h4>
+       成熟度判斷
+      </h4>
+      <p>
+       目前是 ECCV 2026 研究而不是動畫商品；benchmark 的 tracking/HMR 準確率不等於可直接用於遊戲動作。實測要特別看遮擋後 identity、手腳細節、root trajectory、鏡頭切換與長序列 drift，再評估後續 retarget/cleanup 工時。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://research.nvidia.com/labs/amri/publication/lee2026detram/" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <nav aria-label="相鄰分類" class="category-bottom-nav">
+    <a href="../engine-art/">
+     ← 遊戲引擎
+    </a>
+    <a href="../#top">
+     TOP5
+    </a>
+    <a href="../blender-dcc/">
+     Blender / DCC →
+    </a>
+   </nav>
+  </main>
+  <script defer="" src="../../archive-nav-state.js?v=20260909-r1-workspace-v6">
+  </script>
+ </body>
+</html>

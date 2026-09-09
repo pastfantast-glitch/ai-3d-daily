@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   AI 生成｜2026-09-09｜AI 3D Daily
+  </title>
+  <link href="../../styles.css?v=20260909-r1-workspace-v6" rel="stylesheet"/>
+  <link href="../../shared-components.css?v=20260909-r1-workspace-v6" rel="stylesheet"/>
+  <link href="../../category.css?v=20260909-r1-workspace-v6" rel="stylesheet"/>
+ </head>
+ <body class="category-page" data-category="ai-generation" data-report-date="2026-09-09">
+  <nav aria-label="Production Intelligence 分類" class="global-category-nav">
+   <div class="page global-category-nav-inner">
+    <div class="archive-nav-controls">
+     <a class="archive-nav-home" href="../../">
+      ← 首頁
+     </a>
+     <div class="archive-nav-date">
+      <a aria-label="前一日日報" class="archive-nav-arrow" href="../../2026-09-08/ai-generation/">
+       ←
+      </a>
+      <span>
+       2026-09-09
+      </span>
+     </div>
+    </div>
+    <span aria-hidden="true" class="archive-nav-divider">
+    </span>
+    <a class="global-category-link" href="../#top">
+     TOP5
+    </a>
+    <a class="global-category-link is-active" data-category="ai-generation" href="../ai-generation/">
+     AI 生成
+    </a>
+    <a class="global-category-link" data-category="3d-production" href="../3d-production/">
+     3D 製作
+    </a>
+    <a class="global-category-link" data-category="3d-animation" href="../3d-animation/">
+     3D 動作
+    </a>
+    <a class="global-category-link" data-category="engine-art" href="../engine-art/">
+     遊戲引擎
+    </a>
+    <a class="global-category-link" data-category="emerging-case" href="../emerging-case/">
+     新技術 / Case
+    </a>
+    <a class="global-category-link" data-category="blender-dcc" href="../blender-dcc/">
+     Blender / DCC
+    </a>
+   </div>
+  </nav>
+  <main class="page category-main">
+   <article class="category-card" data-intel-id="tripo-smart-mesh-p10" data-intel-role="card">
+    <div class="category-meta">
+     #01 · ai-3d
+    </div>
+    <h2>
+     Tripo Smart Mesh P1.0：2 秒生成乾淨 Low-Poly 拓樸，直接瞄準即時資產
+    </h2>
+    <p class="summary">
+     Tripo 將 Smart Mesh P1.0 定位成 H3.1 高模生成的即時資產搭檔，主打約 2 秒輸出結構化 low-poly topology，降低 AI 網格進入遊戲管線前的重拓樸成本。
+    </p>
+    <figure class="case-preview" data-intel-id="tripo-smart-mesh-p10" data-intel-role="visual" data-visual-id="tripo-smart-mesh-p10">
+     <a href="https://www.tripo3d.ai/blog/introducing-smart-mesh-v1" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-09/tripo-smart-mesh-p10.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">AI 3D</b> ★★★★★</span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       生成流程
+      </h4>
+      <p>
+       Smart Mesh P1.0 不是單純對既有高模做 decimation，而是把乾淨、結構化的 low-poly topology 當成生成結果的一部分；官方將它與 H3.1 的 high-poly 角色分工，前者面向遊戲、XR 與大量即時資產，後者保留高細節輸出。
+      </p>
+      <h4>
+       製作價值
+      </h4>
+      <p>
+       對遊戲美術最直接的價值是把「生成後重新拓樸」從固定工時改成可選的品質修整。若輸出 edge flow、輪廓與 UV 後續能維持穩定，批量 prop、環境小物與 live-ops 資產的 lead time 有機會明顯下降，也更適合接自動化資產工廠。
+      </p>
+      <h4>
+       導入測試
+      </h4>
+      <p>
+       先用角色、硬表面 prop、非對稱有機物三組基準測試，固定目標面數比較 Smart Mesh 與人工 retopo 的 silhouette、edge flow、UV、normal bake、骨架變形與 Unreal/Unity import；官方宣稱的 2 秒只代表生成速度，真正 gate 應是 cleanup 分鐘數與引擎可用率。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://www.tripo3d.ai/blog/introducing-smart-mesh-v1" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="meshy-multiview-texture" data-intel-role="card">
+    <div class="category-meta">
+     #02 · ai-3d
+    </div>
+    <h2>
+     Meshy Multi-View Texture：四視圖同時約束幾何與 2K–8K Base Color
+    </h2>
+    <p class="summary">
+     Meshy 的 Multi-View 升級讓 Geometry 與 Texture 都可讀取主視圖加左／後／右輔助視圖，並輸出原生 2K、4K 或 8K Base Color，強化角色與圖案一致性。
+    </p>
+    <figure class="case-preview" data-intel-id="meshy-multiview-texture" data-intel-role="visual" data-visual-id="meshy-multiview-texture">
+     <a href="https://www.meshy.ai/blog/multiview-upgrade" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-09/meshy-multiview-texture.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">AI 3D</b> ★★★★★</span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       生成流程
+      </h4>
+      <p>
+       新版 Multi-View 將 Main View 與最多三張 Left、Back、Right 輔助視圖同時送入 Geometry 與 Texture 階段；缺少的輔助角度仍可由系統補推，因此可以從單圖開始，也可以用完整 turnaround 降低背面與側面的猜測量。
+      </p>
+      <h4>
+       製作價值
+      </h4>
+      <p>
+       這對角色、機台外殼、帶 Logo 或規則花紋的資產特別重要，因為多視圖同時限制輪廓、部件位置與表面圖案，能減少單圖生成常見的背面亂補與左右不一致。Texture 可出 2K/4K/8K Base Color，較適合後續進 Painter 或 DCC 做人工收尾。
+      </p>
+      <h4>
+       導入測試
+      </h4>
+      <p>
+       用同一角色四視圖做單圖與四視圖 A/B，量化正側背 silhouette 偏差、五官／配件位置、文字圖案錯位與 seam；另外要注意目前多視圖貼圖主打 Base Color，PBR 通道能力與高解析度是否真的改善遊戲資產，不應只看 8K 數字。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://www.meshy.ai/blog/multiview-upgrade" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="meshy7-geometry-alignment" data-intel-role="card">
+    <div class="category-meta">
+     #03 · ai-3d
+    </div>
+    <h2>
+     Meshy 7 幾何對齊：開始用比例、空間分布與表面細節量化 Image-to-3D
+    </h2>
+    <p class="summary">
+     Meshy 7 將 image-to-3D 重點放在 geometry alignment，並公開以比例、空間分布與表面細節比較輸入圖與參考模型的 benchmark，同時承認規則重複結構仍會漂移。
+    </p>
+    <figure class="case-preview" data-intel-id="meshy7-geometry-alignment" data-intel-role="visual" data-visual-id="meshy7-geometry-alignment">
+     <a href="https://www.meshy.ai/blog/meshy-7-image-to-3d-geometry-alignment" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-09/meshy7-geometry-alignment.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">AI 3D</b> ★★★★★</span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       生成流程
+      </h4>
+      <p>
+       Meshy 7 的重點不是只把模型做得更細，而是把幾何與輸入圖的對齊拆成整體比例、空間分布與表面細節來評估。官方案例顯示角色表情、機械部件與浮雕細節改善，但規則樓層、重複窗格等需要精確週期性的結構仍可能累積漂移。
+      </p>
+      <h4>
+       製作價值
+      </h4>
+      <p>
+       對 production 而言，alignment 比單張漂亮 render 更接近真正的可用性指標：角色比例、裝備位置或機械零件只要偏掉，後續雕刻與拓樸都會被迫重做。公開限制也讓 Meshy 7 更適合被放進有 acceptance criteria 的測試，而不是以主觀觀感決定是否導入。
+      </p>
+      <h4>
+       導入測試
+      </h4>
+      <p>
+       建立 10–20 個固定基準，分角色、硬表面、規則建築與 stylized prop，保留 reference mesh 或多角度標記點；比較 Meshy 6/7 的輪廓誤差、部件中心偏移、細節保留與人工修正時間，特別把重複圖樣與對稱件列為 fail case。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://www.meshy.ai/blog/meshy-7-image-to-3d-geometry-alignment" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="tripo-comfyui-pipeline" data-intel-role="card">
+    <div class="category-meta">
+     #04 · ai-3d
+    </div>
+    <h2>
+     Tripo 官方 ComfyUI Nodes：生成、分件、拓樸、Rig、Retarget 串成可自動化 3D 流程
+    </h2>
+    <p class="summary">
+     Tripo 的官方 ComfyUI extension 已把文字／單圖／多視圖生成、模型匯入、分件、低模、retopology、rigging、animation retarget 與格式轉換放進同一節點流程。
+    </p>
+    <figure class="case-preview" data-intel-id="tripo-comfyui-pipeline" data-intel-role="visual" data-visual-id="tripo-comfyui-pipeline">
+     <a href="https://developers.tripo3d.ai/en/docs/comfyui-nodes" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-09/tripo-comfyui-pipeline.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">AI 3D</b> ★★★★★</span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       生成流程
+      </h4>
+      <p>
+       官方 ComfyUI-Tripo 不只提供 text/image/multiview-to-3D，而是把 import、Mesh Segmentation、低模優化、retopology、rigging、animation retarget 與格式轉換都做成節點；近期節點也加入 Mesh Segmentation v2 與 URL model import，適合由外部資產進入流程。
+      </p>
+      <h4>
+       製作價值
+      </h4>
+      <p>
+       這比單次 web 生成更接近 production automation：同一工作流可以固定參數、保存節點版本並批次跑資產，讓 AI 3D 從「人工下載 GLB」轉為可測試的 pipeline component。分件與 retopo 節點也能把生成結果分流到不同後製路徑。
+      </p>
+      <h4>
+       導入測試
+      </h4>
+      <p>
+       先做 20 個 prop 的夜間 batch，記錄每個節點成功率、輸出命名、模型尺度、分件合理性、目標面數、UV/材質保留與失敗重跑成本；ComfyUI package 與 API 版本要鎖定，否則節點更新可能造成不可重現的產出差異。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://developers.tripo3d.ai/en/docs/comfyui-nodes" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="hunyuan3d-buffalo" data-intel-role="card">
+    <div class="category-meta">
+     #05 · ai-3d
+    </div>
+    <h2>
+     Hunyuan3D-Buffalo 1.0：把 3D 理解、生成、指令編輯與零件生成統一
+    </h2>
+    <p class="summary">
+     騰訊 Hunyuan3D-Buffalo 1.0 以同一多模態框架處理 3D understanding、text-to-3D、instruction-guided editing 與 part-level generation，研究重點從一次生成推向可理解、可編輯資產。
+    </p>
+    <figure class="case-preview" data-intel-id="hunyuan3d-buffalo" data-intel-role="visual" data-visual-id="hunyuan3d-buffalo">
+     <a href="https://github.com/Tencent-Hunyuan/Hunyuan3D-Buffalo1.0" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-09/hunyuan3d-buffalo.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">AI 3D</b> ★★★★☆</span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       生成流程
+      </h4>
+      <p>
+       Buffalo 1.0 以 Hunyuan3D-VLM 連接語意、結構與空間理解，再由 Hunyuan3D DiT 執行生成；同一框架同時涵蓋 3D QA、文字生成、指令式編輯與文字定位的 part generation，目標是讓生成模型理解既有物件後再局部修改。
+      </p>
+      <h4>
+       製作價值
+      </h4>
+      <p>
+       若這條路線成熟，價值會高於單次 text-to-3D：遊戲資產最常見需求是保留已核准的大結構，只改武器、配件、材質區或某一零件。可理解與局部生成有機會降低每次修改都重新抽卡、再重新 cleanup 的浪費。
+      </p>
+      <h4>
+       導入測試
+      </h4>
+      <p>
+       目前仍以研究框架看待，先用相同 mesh 做 10 組局部編輯指令，檢查未編輯區域的幾何漂移、part boundary、材質／UV 保存與可回復性；再測生成零件能否維持尺度與接合面，沒有穩定輸出前不應直接進正式資產庫。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://github.com/Tencent-Hunyuan/Hunyuan3D-Buffalo1.0" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <nav aria-label="相鄰分類" class="category-bottom-nav">
+    <a href="../blender-dcc/">
+     ← Blender / DCC
+    </a>
+    <a href="../#top">
+     TOP5
+    </a>
+    <a href="../3d-production/">
+     3D 製作 →
+    </a>
+   </nav>
+  </main>
+  <script defer="" src="../../archive-nav-state.js?v=20260909-r1-workspace-v6">
+  </script>
+ </body>
+</html>

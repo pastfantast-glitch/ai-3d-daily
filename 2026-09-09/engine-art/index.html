@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   遊戲引擎｜2026-09-09｜AI 3D Daily
+  </title>
+  <link href="../../styles.css?v=20260909-r1-workspace-v6" rel="stylesheet"/>
+  <link href="../../shared-components.css?v=20260909-r1-workspace-v6" rel="stylesheet"/>
+  <link href="../../category.css?v=20260909-r1-workspace-v6" rel="stylesheet"/>
+ </head>
+ <body class="category-page" data-category="engine-art" data-report-date="2026-09-09">
+  <nav aria-label="Production Intelligence 分類" class="global-category-nav">
+   <div class="page global-category-nav-inner">
+    <div class="archive-nav-controls">
+     <a class="archive-nav-home" href="../../">
+      ← 首頁
+     </a>
+     <div class="archive-nav-date">
+      <a aria-label="前一日日報" class="archive-nav-arrow" href="../../2026-09-08/engine-art/">
+       ←
+      </a>
+      <span>
+       2026-09-09
+      </span>
+     </div>
+    </div>
+    <span aria-hidden="true" class="archive-nav-divider">
+    </span>
+    <a class="global-category-link" href="../#top">
+     TOP5
+    </a>
+    <a class="global-category-link" data-category="ai-generation" href="../ai-generation/">
+     AI 生成
+    </a>
+    <a class="global-category-link" data-category="3d-production" href="../3d-production/">
+     3D 製作
+    </a>
+    <a class="global-category-link" data-category="3d-animation" href="../3d-animation/">
+     3D 動作
+    </a>
+    <a class="global-category-link is-active" data-category="engine-art" href="../engine-art/">
+     遊戲引擎
+    </a>
+    <a class="global-category-link" data-category="emerging-case" href="../emerging-case/">
+     新技術 / Case
+    </a>
+    <a class="global-category-link" data-category="blender-dcc" href="../blender-dcc/">
+     Blender / DCC
+    </a>
+   </div>
+  </nav>
+  <main class="page category-main">
+   <article class="category-card" data-intel-id="unity-material-generator" data-intel-role="card">
+    <div class="category-meta">
+     #16 · unity
+    </div>
+    <h2>
+     Unity Material Generator：Editor 內從文字／參考圖產生可直接受光的 Tileable PBR Placeholder
+    </h2>
+    <p class="summary">
+     Unity AI Material Generator 可在 Unity Editor 內用 prompt 與 optional reference image 建立 tileable PBR material，官方明確把它定位在 prototype／placeholder，而不是直接取代 final art。
+    </p>
+    <figure class="case-preview" data-intel-id="unity-material-generator" data-intel-role="visual" data-visual-id="unity-material-generator">
+     <a href="https://unity.com/blog/unity-ai-material-generator" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-09/unity-material-generator.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">Unity</b> ★★★★☆</span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       引擎工作流
+      </h4>
+      <p>
+       Material Generator 直接在 Unity Editor 內用文字描述與可選參考圖生成 tileable PBR surface，輸出可像一般材質一樣在場景受光。它屬於 Unity AI Generators，與 Texture2D、Terrain Layer、Sprite、Animation 等生成器共用 editor 端 workflow。
+      </p>
+      <h4>
+       製作價值
+      </h4>
+      <p>
+       官方把它定位成 prototype placeholder 很合理：level/design 團隊可以在 greybox 階段先看到會受真實 lighting 影響的木、石、金屬等表面，不必等待最終材質。這可改善 early art direction 判斷，也避免把最早的純色材質誤當成最終亮度基準。
+      </p>
+      <h4>
+       平台實測
+      </h4>
+      <p>
+       用 20 個 prompt 測 tile seam、normal/roughness 合理性、色彩空間、不同 lighting 下的一致性與重新生成可控度；正式導入要明確標記 AI metadata、placeholder 狀態與 replacement owner，避免 prototype 資產無意間一路進 shipping build。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://unity.com/blog/unity-ai-material-generator" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="unity-3d-object-generator" data-intel-role="card">
+    <div class="category-meta">
+     #17 · tools
+    </div>
+    <h2>
+     Unity 3D Object Generator：直接在 Editor 以文字／參考圖生成靜態 3D Prefab 做灰盒替身
+    </h2>
+    <p class="summary">
+     Unity AI 的 3D Object Generator 可在 Editor 內從文字或 reference image 生成 static 3D mesh prefab，官方建議用於單一部件 prop、環境細節與 prototype placeholder。
+    </p>
+    <figure class="case-preview" data-intel-id="unity-3d-object-generator" data-intel-role="visual" data-visual-id="unity-3d-object-generator">
+     <a href="https://unity.com/blog/unity-ai-3d-object-generator" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-09/unity-3d-object-generator.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">引擎工具</b> ★★★★☆</span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       引擎工作流
+      </h4>
+      <p>
+       3D Object Generator 把 text/reference-image-to-3D 放在 Unity Editor 內，輸出 static mesh prefab；官方特別指出最適合 household prop、environment detail、decorative object 等不需要獨立活動的單件物體，定位相當清楚。
+      </p>
+      <h4>
+       製作價值
+      </h4>
+      <p>
+       這種 editor-native 生成最適合 blockout 與 design iteration：設計師可先用有體積、能吃 lighting/collision 的 placeholder 驗 gameplay readability，而不是等 DCC 交件。若之後能保留 prefab references，再替換 final asset，對關卡製作會比外部下載 GLB 更順。
+      </p>
+      <h4>
+       平台實測
+      </h4>
+      <p>
+       測生成後的 scale、pivot、collider、polycount、UV/material、lightmap 與 prefab replacement；也要建立『placeholder 不得成 final』的 validation。對需要多部件、rigging 或嚴格 topology 的資產應直接排除，避免把生成器能力範圍誤用到 hero asset。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://unity.com/blog/unity-ai-3d-object-generator" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="unity-dynamic-wireframe" data-intel-role="card">
+    <div class="category-meta">
+     #18 · shader
+    </div>
+    <h2>
+     Unity Dynamic Wireframe Shader：不預處理 Mesh，直接用真實 Topology 畫即時線框
+    </h2>
+    <p class="summary">
+     Dynamic Wireframe Shader 以 Shader Graph/GPU 直接渲染 mesh 真實 topology，不需 duplicate mesh 或離線 preprocessing，支援 BIRP、URP、HDRP，但要求 tessellation-capable GPU。
+    </p>
+    <figure class="case-preview" data-intel-id="unity-dynamic-wireframe" data-intel-role="visual" data-visual-id="unity-dynamic-wireframe">
+     <a href="https://80.lv/articles/render-wireframe-effects-in-unity-with-this-shader" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-09/unity-dynamic-wireframe.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">Shader</b> ★★★☆☆</span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       引擎工作流
+      </h4>
+      <p>
+       這個 shader 直接從 mesh topology 在 GPU 產生 wireframe visual，不需要預先轉線框或複製一份 mesh，並提供 Shader Graph 控制；同一方案可跨 BIRP、URP、HDRP，適合 debug visual、掃描感、科技 UI 或 gameplay feedback。
+      </p>
+      <h4>
+       製作價值
+      </h4>
+      <p>
+       對 technical art 的價值是把線框從特殊資產製作轉成材質效果，同一模型可切換 normal/wireframe 狀態，減少額外 mesh 與同步問題。由於它反映真實 topology，也可快速暴露不均勻 triangulation 或 retopo 問題，作為內部檢視工具。
+      </p>
+      <h4>
+       平台實測
+      </h4>
+      <p>
+       最大的限制是需要支援 tessellation 的 GPU，因此要先跑目標 PC/console/mobile compatibility matrix；另外測 skinned mesh、LOD、Nan/degenerate triangles、透明與 MSAA。若只為 debug，可保留 editor/development build，避免 shipping 平台被不必要的 shader variant 拖累。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://80.lv/articles/render-wireframe-effects-in-unity-with-this-shader" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <nav aria-label="相鄰分類" class="category-bottom-nav">
+    <a href="../3d-animation/">
+     ← 3D 動作
+    </a>
+    <a href="../#top">
+     TOP5
+    </a>
+    <a href="../emerging-case/">
+     新技術 / Case →
+    </a>
+   </nav>
+  </main>
+  <script defer="" src="../../archive-nav-state.js?v=20260909-r1-workspace-v6">
+  </script>
+ </body>
+</html>
