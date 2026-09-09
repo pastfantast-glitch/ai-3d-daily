@@ -222,3 +222,9 @@
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});
   else init();
 })();
+
+(()=>{
+  const self=[...document.scripts].find(script=>script.src.includes('/archive-nav-state.js'))?.src;
+  if(!self)return;
+  import(new URL('preference.js',self).href).catch(err=>console.warn('Preference feedback unavailable',err));
+})();
