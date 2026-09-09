@@ -1,6 +1,6 @@
 {
-  "version": 1,
-  "effective_date": "2026-09-08",
+  "version": 2,
+  "effective_date": "2026-09-09",
   "coverage_audit": {
     "required_windows": ["24h", "7d", "30d", "6m", "evergreen"],
     "required_categories": [
@@ -26,11 +26,58 @@
     "refresh_before_use": true,
     "remove_when_published_or_invalid": true
   },
+  "category_discovery_profiles": {
+    "3d-animation": {
+      "always_discover": true,
+      "purpose": "Broaden animation intelligence beyond AI motion and tool news to include durable fundamentals and production-ready rigging education.",
+      "content_mix": [
+        "animation tools and production workflows",
+        "foundational animation and keypose tutorials",
+        "character rigging and deformation tutorials",
+        "mocap, cleanup, retarget and facial animation"
+      ],
+      "fundamental_animation_topics": [
+        "key pose and keypose planning",
+        "blocking and stepped-key workflow",
+        "timing and spacing",
+        "weight, balance and center of gravity",
+        "arcs and clean motion paths",
+        "anticipation",
+        "follow-through and overlap",
+        "body mechanics",
+        "walk, run, idle, attack and locomotion cycles",
+        "pose readability, silhouette and line of action"
+      ],
+      "rigging_topics": [
+        "skeleton hierarchy and joint placement",
+        "FK and IK fundamentals",
+        "constraints and controller design",
+        "skin weighting and deformation",
+        "twist joints and corrective deformation",
+        "facial rig fundamentals",
+        "game-ready character rigs",
+        "Maya rigging",
+        "Blender rigging",
+        "Unreal Control Rig",
+        "rig export and engine compatibility"
+      ],
+      "source_preferences": [
+        "official DCC or engine documentation and training",
+        "experienced animator or rigging educator tutorials",
+        "studio or professional production breakdowns",
+        "GDC, SIGGRAPH or reputable training material"
+      ],
+      "tutorial_policy": "High-quality foundational tutorials are valid production intelligence even when evergreen or beginner-accessible. Favor reproducible teaching, strong visual explanation and direct production transfer; do not require a new product announcement.",
+      "freshness_policy": "Fresh material wins when quality is comparable, but strong 1-6 month and evergreen keypose, body-mechanics and rigging tutorials remain eligible.",
+      "diversity_guard": "Tutorials enrich discovery and ranking but never create a per-topic quota. Avoid allowing one DCC, one educator or one tutorial theme to dominate the category."
+    }
+  },
   "targeted_refill": {
     "enabled": true,
     "trigger_category_count_lte": 1,
     "prioritize_zero_categories": true,
-    "rerun_registry_after_refill": true
+    "rerun_registry_after_refill": true,
+    "use_category_discovery_profiles": true
   },
   "low_volume_release": {
     "enabled": true,
