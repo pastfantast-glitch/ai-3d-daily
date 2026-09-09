@@ -5,12 +5,18 @@ Only the current release seed is regenerated. Historical intelligence remains
 immutable. Presentation/runtime classes are normalized here so release preflight
 validates the same canonical IDs, order, source URLs and Full Analysis shells
 that downstream renderers consume.
+
+A brand-new report date does not yet have a public YYYY-MM-DD/index.html on main.
+In that case this script bootstraps a temporary seed from the most recent prior
+archive. prepare_release_candidate.py snapshots/restores that path, so pre-ready
+validation can exercise the real daily shell without publishing it early.
 """
 from pathlib import Path
-import json, sys
+import json, re, sys
 from bs4 import BeautifulSoup
 
 ROOT = Path(__file__).resolve().parents[1]
+DATE_RE = re.compile(r'^20\d{2}-\d{2}-\d{2}$')
 
 def add_class(tag, *names):
     if not tag: return
@@ -141,9 +147,42 @@ def normalize_home(date,data):
         add_class(soup.select_one(f'#{sid}'),'home-section',role)
     path.write_text(soup.prettify()+'\n','utf-8')
 
+def latest_prior_daily(date):
+    candidates=[]
+    for child in ROOT.iterdir():
+        if not child.is_dir() or not DATE_RE.fullmatch(child.name) or child.name >= date:
+            continue
+        index=child/'index.html'
+        if index.exists(): candidates.append(index)
+    if not candidates:
+        raise SystemExit(f'No prior daily archive available to bootstrap release seed for {date}')
+    return max(candidates, key=lambda p:p.parent.name)
+
+def load_daily_seed(date,path):
+    if path.exists():
+        return path.read_text('utf-8')
+    template=latest_prior_daily(date)
+    print(f'RELEASE SEED BOOTSTRAP: {date} from {template.relative_to(ROOT)}')
+    return template.read_text('utf-8')
+
 def normalize_daily(date,data):
-    path=ROOT/date/'index.html'; soup=BeautifulSoup(path.read_text('utf-8'),'html.parser')
+    path=ROOT/date/'index.html'
+    soup=BeautifulSoup(load_daily_seed(date,path),'html.parser')
     add_class(soup.body,'archive-page'); soup.body['data-report-date']=date
+    soup.body['data-next']=''
+    prior=latest_prior_daily(date).parent.name
+    soup.body['data-previous']=prior
+
+    title=soup.select_one('title')
+    if title: title.string=f'AI／3D／遊戲美術 Production Intelligence — {date}'
+    nav_date=soup.select_one('.archive-nav-date span')
+    if nav_date: nav_date.string=date
+    prev_link=soup.select_one('.archive-nav-date .archive-nav-arrow')
+    if prev_link:
+        prev_link['href']=f'../{prior}/'; prev_link['aria-label']='前一日日報'
+    top_date=soup.select_one('#top .block-head span')
+    if top_date: top_date.string=date
+
     add_class(soup.select_one('header.site-head'),'daily-hero'); add_class(soup.select_one('main.page'),'daily-main')
     top,more=selected(data)
 
@@ -154,6 +193,7 @@ def normalize_daily(date,data):
     more_sec=ensure_section(soup,'more',top_sec); add_class(more_sec,'block')
     for old in list(more_sec.select(':scope > .news, :scope > .category-news, :scope > [data-intel-role="card"]')): old.decompose()
     for item in more: more_sec.append(daily_more_card(soup,item))
+    path.parent.mkdir(parents=True,exist_ok=True)
     path.write_text(soup.prettify()+'\n','utf-8')
 
 def main():
