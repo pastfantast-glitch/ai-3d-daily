@@ -1,3 +1,5 @@
+import(new URL('./preference.js',import.meta.url).href).catch(err=>console.warn('Preference feedback unavailable',err));
+
 const LEGACY_20260823_RULES=[
 ['blender-52-geometry-nodes-physics',['geometry-nodes-physics'],['Geometry Nodes Physics']],
 ['retopoflow-419',['retopoflow'],['RetopoFlow 4.1.9']],
