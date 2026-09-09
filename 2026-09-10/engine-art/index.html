@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   遊戲引擎｜2026-09-10｜AI 3D Daily
+  </title>
+  <link href="../../styles.css?v=20260910-r1-workspace-v6" rel="stylesheet"/>
+  <link href="../../shared-components.css?v=20260910-r1-workspace-v6" rel="stylesheet"/>
+  <link href="../../category.css?v=20260910-r1-workspace-v6" rel="stylesheet"/>
+ </head>
+ <body class="category-page" data-category="engine-art" data-report-date="2026-09-10">
+  <nav aria-label="Production Intelligence 分類" class="global-category-nav">
+   <div class="page global-category-nav-inner">
+    <div class="archive-nav-controls">
+     <a class="archive-nav-home" href="../../">
+      ← 首頁
+     </a>
+     <div class="archive-nav-date">
+      <a aria-label="前一日日報" class="archive-nav-arrow" href="../../2026-09-09/engine-art/">
+       ←
+      </a>
+      <span>
+       2026-09-10
+      </span>
+     </div>
+    </div>
+    <span aria-hidden="true" class="archive-nav-divider">
+    </span>
+    <a class="global-category-link" href="../#top">
+     TOP5
+    </a>
+    <a class="global-category-link" data-category="ai-generation" href="../ai-generation/">
+     AI 生成
+    </a>
+    <a class="global-category-link" data-category="3d-production" href="../3d-production/">
+     3D 製作
+    </a>
+    <a class="global-category-link" data-category="3d-animation" href="../3d-animation/">
+     3D 動作
+    </a>
+    <a class="global-category-link is-active" data-category="engine-art" href="../engine-art/">
+     遊戲引擎
+    </a>
+    <a class="global-category-link" data-category="emerging-case" href="../emerging-case/">
+     新技術 / Case
+    </a>
+    <a class="global-category-link" data-category="blender-dcc" href="../blender-dcc/">
+     Blender / DCC
+    </a>
+   </div>
+  </nav>
+  <main class="page category-main">
+   <article class="category-card" data-intel-id="ue58-lumen-surface-cache-cards" data-intel-role="card">
+    <div class="category-meta">
+     #10 · rendering
+    </div>
+    <h2>
+     Lumen Surface Cache：複雜 Mesh 的 Cards 覆蓋與材質邏輯會直接影響 GI／Reflection 正確性
+    </h2>
+    <p class="summary">
+     Epic Lumen 技術文件說明 Surface Cache 以多角度 Cards 快取材質；複雜室內、view-dependent material 與未被 Cards 覆蓋區域可能造成黑反射或間接光缺失。
+    </p>
+    <figure class="case-preview" data-intel-id="ue58-lumen-surface-cache-cards" data-intel-role="visual" data-visual-id="ue58-lumen-surface-cache-cards">
+     <a href="https://dev.epicgames.com/documentation/unreal-engine/lumen-technical-details-in-unreal-engine" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-10/ue58-lumen-surface-cache-cards.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">渲染</b> ★★★★☆</span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       引擎工作流
+      </h4>
+      <p>
+       Lumen 會為附近表面建立 Surface Cache，離線從多個角度捕捉材質；預設每個 mesh 只放 12 張 Cards。未覆蓋區域在 debug view 會顯示粉紅，並可能缺少 bounce light 或在 reflection 中變黑，複雜 mesh 可提高 Max Lumen Mesh Cards。
+      </p>
+      <h4>
+       製作價值
+      </h4>
+      <p>
+       這直接影響場景模型拆分規範：整間房連家具合成一個複雜 mesh 並不是 Lumen 預期用法，牆、地板、天花板分開通常更穩定。View-dependent material 邏輯也可能在 Surface Cache 捕捉時得到錯誤結果。
+      </p>
+      <h4>
+       平台實測
+      </h4>
+      <p>
+       建立 Lumen debug checklist，檢查 Card Placement 與 Surface Cache 覆蓋；對大型建築比較拆分前後的 GI、reflection 與更新成本。含 Camera Vector、Pixel Depth 等材質則測 Ray Tracing Quality Switch，避免只在主視角看起來正常。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://dev.epicgames.com/documentation/unreal-engine/lumen-technical-details-in-unreal-engine" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="ue58-nanite-aggregate-geometry" data-intel-role="card">
+    <div class="category-meta">
+     #14 · optimization
+    </div>
+    <h2>
+     Nanite Aggregate Geometry：草、葉、毛髮類大量薄片會破壞像素尺度化假設，需用 Overdraw 實測
+    </h2>
+    <p class="summary">
+     Epic 的 Nanite 使用指南指出 foliage、hair、grass 等大量斷開薄片會降低 LOD 簡化與 occlusion culling 效率，可能造成高 overdraw。
+    </p>
+    <figure class="case-preview" data-intel-id="ue58-nanite-aggregate-geometry" data-intel-role="visual" data-visual-id="ue58-nanite-aggregate-geometry">
+     <a href="https://dev.epicgames.com/documentation/unreal-engine/working-with-naniteenabled-content" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-10/ue58-nanite-aggregate-geometry.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">效能優化</b> ★★★★☆</span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       引擎工作流
+      </h4>
+      <p>
+       Nanite 對連續表面能依螢幕像素縮減幾何，但 foliage、hair、grass 這類 aggregate geometry 由大量斷開小片組成，遠處仍像半透明雲團，既難合併成更粗 cluster，也需要更多深度層才能完成 occlusion。
+      </p>
+      <h4>
+       製作價值
+      </h4>
+      <p>
+       因此所有高模都開 Nanite 不能取代內容型態判斷。樹葉卡片、密集草與多層毛片可能在同樣像素覆蓋下畫更多 triangles 並產生 overdraw，場景美術需要把材質遮罩、幾何密度與距離策略一起評估。
+      </p>
+      <h4>
+       平台實測
+      </h4>
+      <p>
+       用同一片植被建立傳統 LOD 與 Nanite 版本，在近中遠距離記錄 triangles、overdraw、GPU time 與記憶體；再改葉片大小與層數找甜蜜點。決策應由 profiler 驗證，不以單張 editor screenshot 判斷。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://dev.epicgames.com/documentation/unreal-engine/working-with-naniteenabled-content" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="ue58-shading-model-selection" data-intel-role="card">
+    <div class="category-meta">
+     #16 · shader
+    </div>
+    <h2>
+     UE5.8 Shading Models：Default Lit、Unlit、Hair、Cloth 等材質模型應視為 production 規格而非外觀開關
+    </h2>
+    <p class="summary">
+     Epic 的 Shading Models 文件整理不同光照模型的適用表面；選錯模型會改變材質輸入的解讀與最終光照反應。
+    </p>
+    <figure class="case-preview" data-intel-id="ue58-shading-model-selection" data-intel-role="visual" data-visual-id="ue58-shading-model-selection">
+     <a href="https://dev.epicgames.com/documentation/unreal-engine/shading-models-in-unreal-engine" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-10/ue58-shading-model-selection.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">Shader</b> ★★★☆☆</span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       引擎工作流
+      </h4>
+      <p>
+       Shading Model 決定材質如何解讀 incoming light 與各輸入，Default Lit 適合通用表面，Hair、Cloth、Clear Coat 等則針對特定光學行為；Unlit 主要只輸出 Emissive。這不是最後一步風格切換，而是材質資料與光照模型的基礎契約。
+      </p>
+      <h4>
+       製作價值
+      </h4>
+      <p>
+       對 NPR 專案尤其值得明確化：哪些材質要保留引擎光照、哪些完全由自訂 Ramp 或 Emissive 控制，應在材質架構初期決定。否則角色不同部位可能因 shading model 混用而出現亮度、反射與陰影邏輯不一致。
+      </p>
+      <h4>
+       平台實測
+      </h4>
+      <p>
+       建立同一 Base Color 與 Normal 的 Default Lit、Unlit 與特殊 shading model 對照球，在主光、點光、陰影與 Lumen 下量化輸出；再把角色皮膚、頭髮、布料逐一套用，確認美術規範與效能成本是否符合專案。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://dev.epicgames.com/documentation/unreal-engine/shading-models-in-unreal-engine" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <nav aria-label="相鄰分類" class="category-bottom-nav">
+    <a href="../3d-animation/">
+     ← 3D 動作
+    </a>
+    <a href="../#top">
+     TOP5
+    </a>
+    <a href="../emerging-case/">
+     新技術 / Case →
+    </a>
+   </nav>
+  </main>
+  <script defer="" src="../../archive-nav-state.js?v=20260910-r1-workspace-v6">
+  </script>
+ </body>
+</html>

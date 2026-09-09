@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   3D 動作｜2026-09-10｜AI 3D Daily
+  </title>
+  <link href="../../styles.css?v=20260910-r1-workspace-v6" rel="stylesheet"/>
+  <link href="../../shared-components.css?v=20260910-r1-workspace-v6" rel="stylesheet"/>
+  <link href="../../category.css?v=20260910-r1-workspace-v6" rel="stylesheet"/>
+ </head>
+ <body class="category-page" data-category="3d-animation" data-report-date="2026-09-10">
+  <nav aria-label="Production Intelligence 分類" class="global-category-nav">
+   <div class="page global-category-nav-inner">
+    <div class="archive-nav-controls">
+     <a class="archive-nav-home" href="../../">
+      ← 首頁
+     </a>
+     <div class="archive-nav-date">
+      <a aria-label="前一日日報" class="archive-nav-arrow" href="../../2026-09-09/3d-animation/">
+       ←
+      </a>
+      <span>
+       2026-09-10
+      </span>
+     </div>
+    </div>
+    <span aria-hidden="true" class="archive-nav-divider">
+    </span>
+    <a class="global-category-link" href="../#top">
+     TOP5
+    </a>
+    <a class="global-category-link" data-category="ai-generation" href="../ai-generation/">
+     AI 生成
+    </a>
+    <a class="global-category-link" data-category="3d-production" href="../3d-production/">
+     3D 製作
+    </a>
+    <a class="global-category-link is-active" data-category="3d-animation" href="../3d-animation/">
+     3D 動作
+    </a>
+    <a class="global-category-link" data-category="engine-art" href="../engine-art/">
+     遊戲引擎
+    </a>
+    <a class="global-category-link" data-category="emerging-case" href="../emerging-case/">
+     新技術 / Case
+    </a>
+    <a class="global-category-link" data-category="blender-dcc" href="../blender-dcc/">
+     Blender / DCC
+    </a>
+   </div>
+  </nav>
+  <main class="page category-main">
+   <article class="category-card" data-intel-id="maya-realtime-creature-rigging" data-intel-role="card">
+    <div class="category-meta">
+     #04 · rigging
+    </div>
+    <h2>
+     Autodesk Realtime Creature Rigging：從骨架、Skin Weight、IK/FK 到遊戲引擎輸出的完整綁定基礎
+    </h2>
+    <p class="summary">
+     Autodesk 的 18 單元 realtime rigging 課程從 joint skeleton、skin binding、weight painting 到 IK/FK、space switching、twist／roll 與引擎輸出。
+    </p>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">綁定</b> ★★★★★</span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       動作製作流程
+      </h4>
+      <p>
+       這套課程完整覆蓋模型準備、joint skeleton、skin binding、weight painting、控制器整理，以及四肢 IK/FK，後段再加入 space swapping、twist、roll、squash 與 stretch。它把綁定視為可供動畫師與遊戲引擎共同使用的系統，而非單純把骨頭綁上網格。
+      </p>
+      <h4>
+       Rig 與輸出
+      </h4>
+      <p>
+       對建立基礎 rig 規範非常適合，因為每個步驟都能轉成外包檢查項：骨架比例、旋轉軸、權重、控制器、IK/FK 切換與最終 export。即使團隊使用 auto-rig，也需要理解這些底層條件才能判斷生成結果是否真的可用。
+      </p>
+      <h4>
+       導入測試
+      </h4>
+      <p>
+       用同一隻雙足角色建立一份最小 realtime rig，要求完成手腳 IK/FK、肩髖極限 pose、twist 與 Unity/Unreal 匯入；把破面、骨架尺度、root motion、骨數與動畫 baking 列成 checklist，作為後續自動綁定工具的比較基線。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://www.autodesk.com/learn/ondemand/collection/realtime-creature-rigging" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="maya2027-skin-tools-layers" data-intel-role="card">
+    <div class="category-meta">
+     #05 · rigging
+    </div>
+    <h2>
+     Maya 2027 Skin Tools：分層 Weight Painting 讓變形修正更接近可回溯的非破壞流程
+    </h2>
+    <p class="summary">
+     Maya 2027 Skin Tools quickstart 說明初始化 skin layers、分層 painting、mirroring 與 refinement，為複雜權重提供比單層直接塗改更可管理的方式。
+    </p>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">綁定</b> ★★★★★</span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       動作製作流程
+      </h4>
+      <p>
+       Skin Tools 在既有 skinCluster 上初始化 skin layers，讓權重可以分層建立、調整與鏡像，而不是所有修正都直接寫進同一組最終數值。對肩、髖、手指等需要反覆疊加修正的區域，這種結構更容易追蹤每一次變形處理。
+      </p>
+      <h4>
+       Rig 與輸出
+      </h4>
+      <p>
+       分層權重能把基礎 bind、關節修正、左右差異等工作拆開，降低多人接手或外包回修時不知道哪一筆修改造成問題的風險。對角色量大的專案，也比較容易把權重模板與鏡像規則標準化。
+      </p>
+      <h4>
+       導入測試
+      </h4>
+      <p>
+       選一個肩膀與髖部容易塌陷的角色，用傳統 Paint Skin Weights 與 Skin Tools 各修一版，記錄極限 pose 的體積保持、修改步驟、回退能力與檔案相容性；再測 export/bake 是否留下預期的最終 skinCluster。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://help.autodesk.com/cloudhelp/2027/ENU/Maya-CharacterAnimation/files/GUID-2ABD18C8-8CCF-44B9-99E0-EDEE4A56A3E6.htm" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="ue58-layered-control-rig-animation" data-intel-role="card">
+    <div class="category-meta">
+     #06 · animation
+    </div>
+    <h2>
+     UE5.8 Layered Control Rig：在 Sequencer 疊加 Pose 修正，不必先把 Animation Sequence 全部 Bake 掉
+    </h2>
+    <p class="summary">
+     Epic 文件說明 Layered Control Rig 可把多個 Control Rig 疊在既有 Animation Sequence 上，並以 order 與 weight 控制局部修正。
+    </p>
+    <figure class="case-preview" data-intel-id="ue58-layered-control-rig-animation" data-intel-role="visual" data-visual-id="ue58-layered-control-rig-animation">
+     <a href="https://dev.epicgames.com/documentation/unreal-engine/animating-with-control-rig-in-unreal-engine" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-10/ue58-layered-control-rig-animation.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">動畫</b> ★★★★★</span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       動作製作流程
+      </h4>
+      <p>
+       Layered Control Rig 允許 Animation Sequence 先作為底層，再疊加一個或多個 Control Rig track，並透過 Backwards Solve 把結果帶入控制器。每層都有 order 與 weight，因此可以把手部、視線或接觸修正拆成非破壞的局部層。
+      </p>
+      <h4>
+       Rig 與輸出
+      </h4>
+      <p>
+       這對遊戲 cinematic、動捕 cleanup 與現場改 pose 特別有用，因為不必為每個小修正都回 DCC 重 bake 整段動畫。它也讓 animator 可以保留原始 clip，同時在引擎內做 shot-specific correction，縮短 DCC 到 engine 往返。
+      </p>
+      <h4>
+       導入測試
+      </h4>
+      <p>
+       選一段現有 locomotion 或 mocap，分別疊加腳底 contact、手持道具與頭部 look-at 三個 layer，測試 track order、weight 與 key reduction；同時檢查大量 Control Rig layer 對 Sequencer 可讀性與效能的影響。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://dev.epicgames.com/documentation/unreal-engine/animating-with-control-rig-in-unreal-engine" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="ue58-create-control-rig-fk-hierarchy" data-intel-role="card">
+    <div class="category-meta">
+     #09 · rigging
+    </div>
+    <h2>
+     UE5.8 Control Rig 基礎：從 Skeleton 建 FK Control，並把控制層級與骨架層級分離
+    </h2>
+    <p class="summary">
+     Epic 的 Control Rig 教學示範從骨架建立 FK control，並建議把控制器從 skeleton hierarchy 解耦，建立獨立可維護的 control hierarchy。
+    </p>
+    <figure class="case-preview" data-intel-id="ue58-create-control-rig-fk-hierarchy" data-intel-role="visual" data-visual-id="ue58-create-control-rig-fk-hierarchy">
+     <a href="https://dev.epicgames.com/documentation/unreal-engine/how-to-create-control-rigs-in-unreal-engine" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-10/ue58-create-control-rig-fk-hierarchy.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">綁定</b> ★★★★☆</span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       動作製作流程
+      </h4>
+      <p>
+       Epic 的基礎流程先在 Rig Hierarchy 找到骨頭並建立同位置、同方向的 control，再建議將 control 從 skeleton hierarchy unparent，改成獨立的控制層級。這把 deformation skeleton 與 animator-facing controls 分開，是可維護 rig 的核心概念。
+      </p>
+      <h4>
+       Rig 與輸出
+      </h4>
+      <p>
+       對從 Maya 或 Blender 轉到引擎端綁定的人，最值得學的是骨架不是控制器。控制層獨立後才能安全加入 offset、space switch、procedural logic，而不直接污染輸出骨架，也更容易與 Sequencer、Animation Blueprint 串接。
+      </p>
+      <h4>
+       導入測試
+      </h4>
+      <p>
+       先用手臂做最小 rig：建立 FK controls、獨立 hierarchy、測試旋轉軸與父子關係，再擴到 IK。最後與 DCC 匯入動畫混合測試，確認 control rig 的修改不會破壞原始 skeleton、root motion 與 retarget chain。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://dev.epicgames.com/documentation/unreal-engine/how-to-create-control-rigs-in-unreal-engine" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="blender-ar-module-20260908" data-intel-role="card">
+    <div class="category-meta">
+     #17 · animation
+    </div>
+    <h2>
+     Blender Animation &amp; Rigging 9/8 模組會議：追蹤綁定與動畫核心功能的近期開發方向
+    </h2>
+    <p class="summary">
+     Blender Animation &amp; Rigging 模組在 9 月 8 日召開公開會議，持續追蹤該模組的 issues、pull requests 與長期開發焦點。
+    </p>
+    <figure class="case-preview" data-intel-id="blender-ar-module-20260908" data-intel-role="visual" data-visual-id="blender-ar-module-20260908">
+     <a href="https://devtalk.blender.org/t/2026-09-08-animation-rigging-module-meeting/45784" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-10/blender-ar-module-20260908.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">動畫</b> ★★★☆☆</span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       動作製作流程
+      </h4>
+      <p>
+       這類模組會議不是教學或版本發佈，而是 Blender 動畫與綁定核心維護者定期整理 issues、pull requests 與長期焦點的工作紀錄。它的價值在於能比正式 release notes 更早看到哪些動畫或 rig 問題正在進入實作或評估。
+      </p>
+      <h4>
+       Rig 與輸出
+      </h4>
+      <p>
+       對需要長期把 Blender 納入角色管線的團隊，提前掌握 Animation &amp; Rigging 模組走向可以避免把內部工具綁死在即將改動的 API 或工作流上；但會議討論不等於承諾功能，不能直接當成 production roadmap。
+      </p>
+      <h4>
+       導入測試
+      </h4>
+      <p>
+       建議只把已合併或進入明確 milestone 的項目列入測試清單，對純討論項目保留觀察。若團隊有自製 rig addon，可每月對照一次模組會議與 nightly build，提早發現相容性風險。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://devtalk.blender.org/t/2026-09-08-animation-rigging-module-meeting/45784" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <nav aria-label="相鄰分類" class="category-bottom-nav">
+    <a href="../3d-production/">
+     ← 3D 製作
+    </a>
+    <a href="../#top">
+     TOP5
+    </a>
+    <a href="../engine-art/">
+     遊戲引擎 →
+    </a>
+   </nav>
+  </main>
+  <script defer="" src="../../archive-nav-state.js?v=20260910-r1-workspace-v6">
+  </script>
+ </body>
+</html>

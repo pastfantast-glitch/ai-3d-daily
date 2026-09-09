@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   新技術 / Case｜2026-09-10｜AI 3D Daily
+  </title>
+  <link href="../../styles.css?v=20260910-r1-workspace-v6" rel="stylesheet"/>
+  <link href="../../shared-components.css?v=20260910-r1-workspace-v6" rel="stylesheet"/>
+  <link href="../../category.css?v=20260910-r1-workspace-v6" rel="stylesheet"/>
+ </head>
+ <body class="category-page" data-category="emerging-case" data-report-date="2026-09-10">
+  <nav aria-label="Production Intelligence 分類" class="global-category-nav">
+   <div class="page global-category-nav-inner">
+    <div class="archive-nav-controls">
+     <a class="archive-nav-home" href="../../">
+      ← 首頁
+     </a>
+     <div class="archive-nav-date">
+      <a aria-label="前一日日報" class="archive-nav-arrow" href="../../2026-09-09/emerging-case/">
+       ←
+      </a>
+      <span>
+       2026-09-10
+      </span>
+     </div>
+    </div>
+    <span aria-hidden="true" class="archive-nav-divider">
+    </span>
+    <a class="global-category-link" href="../#top">
+     TOP5
+    </a>
+    <a class="global-category-link" data-category="ai-generation" href="../ai-generation/">
+     AI 生成
+    </a>
+    <a class="global-category-link" data-category="3d-production" href="../3d-production/">
+     3D 製作
+    </a>
+    <a class="global-category-link" data-category="3d-animation" href="../3d-animation/">
+     3D 動作
+    </a>
+    <a class="global-category-link" data-category="engine-art" href="../engine-art/">
+     遊戲引擎
+    </a>
+    <a class="global-category-link is-active" data-category="emerging-case" href="../emerging-case/">
+     新技術 / Case
+    </a>
+    <a class="global-category-link" data-category="blender-dcc" href="../blender-dcc/">
+     Blender / DCC
+    </a>
+   </div>
+  </nav>
+  <main class="page category-main">
+   <article class="category-card" data-intel-id="siggraph26-gaussian-point-splatting" data-intel-role="card">
+    <div class="category-meta">
+     #07 · research
+    </div>
+    <h2>
+     SIGGRAPH 2026 Gaussian Point Splatting：數億 Gaussian 的即時渲染改用隨機點取樣與 GPU atomics
+    </h2>
+    <p class="summary">
+     研究提出 Gaussian point splatting，以像素大小的不透明點、64-bit atomics 與階層式 frustum／occlusion culling 渲染大量 Gaussian，展示數億 splats 的即時能力。
+    </p>
+    <figure class="case-preview" data-intel-id="siggraph26-gaussian-point-splatting" data-intel-role="visual" data-visual-id="siggraph26-gaussian-point-splatting">
+     <a href="https://momentsingraphics.de/Siggraph2026.html" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-10/siggraph26-gaussian-point-splatting.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">研究</b> ★★★★☆</span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       技術方向
+      </h4>
+      <p>
+       傳統 Gaussian splatting 需要處理大量半透明 splat 的排序與混合；這項方法改成從每個 Gaussian 隨機取樣像素大小的不透明點，以 64-bit atomics 寫入 framebuffer，再用數學方式校正每個 Gaussian 的取樣量與 opacity。
+      </p>
+      <h4>
+       製作潛力
+      </h4>
+      <p>
+       若能把數億 Gaussian 保持在即時範圍，對大型掃描場景、數位孿生或 neural capture 的可視化很有吸引力；階層式 frustum 與 occlusion culling 也更接近實際引擎需要的規模化策略，而不是只展示小型 benchmark。
+      </p>
+      <h4>
+       成熟度判斷
+      </h4>
+      <p>
+       目前仍是研究型渲染方法，輸出與傳統 splatting 之間會有輕微 noise 與 aliasing 差異。導入前應用動態鏡頭、薄幾何、透明邊緣與 VR 解析度測 temporal stability，再評估是否適合 production，而非只看靜態 FPS。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://momentsingraphics.de/Siggraph2026.html" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="siggraph26-ctrl-g-generative-games" data-intel-role="card">
+    <div class="category-meta">
+     #18 · research
+    </div>
+    <h2>
+     CTRL-G：遊戲生成式圖形的下一個門檻從能生成轉向即時可控制與可接管線
+    </h2>
+    <p class="summary">
+     NVIDIA、Epic 與學界在 SIGGRAPH Frontiers 的 CTRL-G 聚焦 controllable generative graphics，討論生成系統如何回應玩家意圖並整合到現代遊戲引擎。
+    </p>
+    <figure class="case-preview" data-intel-id="siggraph26-ctrl-g-generative-games" data-intel-role="visual" data-visual-id="siggraph26-ctrl-g-generative-games">
+     <a href="https://research.nvidia.com/index.php/publication/2026-07_ctrl-g-controllable-generative-graphics-games" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-10/siggraph26-ctrl-g-generative-games.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">研究</b> ★★★★☆</span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       技術方向
+      </h4>
+      <p>
+       CTRL-G 把問題從生成畫面或內容提升到 controllability：生成系統必須能即時接受控制、對玩家意圖保持一致，並可被現有引擎與 production pipeline 約束。參與者橫跨 NVIDIA、Epic 與遊戲 AI 或 graphics 研究，反映這已成為跨領域議題。
+      </p>
+      <h4>
+       製作潛力
+      </h4>
+      <p>
+       對遊戲美術而言，真正可用的生成系統不能每次都重新猜測場景，而要能鎖定角色、空間、材質與互動狀態。這與目前 AI 3D 從單次 mesh 走向 editable、part-aware、engine-ready 的趨勢一致，控制能力會比單張品質更重要。
+      </p>
+      <h4>
+       成熟度判斷
+      </h4>
+      <p>
+       現階段更適合作為技術雷達而非立即採購項目。團隊可先把可重現 seed、局部鎖定、狀態持續、延遲、引擎 API 列為未來生成工具評測欄位；若產品只展示離線影片，應與真正 interactive pipeline 分開評分。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://research.nvidia.com/index.php/publication/2026-07_ctrl-g-controllable-generative-graphics-games" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <nav aria-label="相鄰分類" class="category-bottom-nav">
+    <a href="../engine-art/">
+     ← 遊戲引擎
+    </a>
+    <a href="../#top">
+     TOP5
+    </a>
+    <a href="../blender-dcc/">
+     Blender / DCC →
+    </a>
+   </nav>
+  </main>
+  <script defer="" src="../../archive-nav-state.js?v=20260910-r1-workspace-v6">
+  </script>
+ </body>
+</html>
