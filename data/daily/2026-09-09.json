@@ -1,1 +1,571 @@
-{"date":"2026-09-09","schema_version":3,"metadata":{"total_items":30,"collection_mode":"production-intelligence-preference-v1-hybrid","collection_contract_effective_date":"2026-09-04","preference_contract_effective_date":"2026-09-06","discovery_windows":["24h","7d","30d","6m","evergreen"],"discovery_coverage":{"fill_ladder_exhausted":true,"backlog_checked":true,"backlog_remaining_eligible":0,"targeted_refill_performed":true,"quality_first_confirmed":true,"windows":{"24h":{"status":"exhausted","candidates_found":4},"7d":{"status":"exhausted","candidates_found":23},"30d":{"status":"exhausted","candidates_found":38},"6m":{"status":"exhausted","candidates_found":31},"evergreen":{"status":"exhausted","candidates_found":11}},"category_candidates":{"ai-generation":{"candidates_considered":17},"3d-production":{"candidates_considered":27},"3d-animation":{"candidates_considered":21},"engine-art":{"candidates_considered":19},"emerging-case":{"candidates_considered":18},"blender-dcc":{"candidates_considered":30}},"notes":"Completed candidate-pool discovery across all configured windows. Rolling backlog was empty. Broad search was followed by targeted refill for AI generation, animation, engine-art and emerging-case preference topics; all selected records were source-verified and quality-first ranked before Registry normalization."},"full_analysis_depth_contract":"v4-source-supported-production-depth","full_analysis_style_reference":"2026-09-01","full_analysis_heading_language":"zh-Hant"},"items":[{"id":"tripo-smart-mesh-p10","title":"Tripo Smart Mesh P1.0：2 秒生成乾淨 Low-Poly 拓樸，直接瞄準即時資產","summary":"Tripo 將 Smart Mesh P1.0 定位成 H3.1 高模生成的即時資產搭檔，主打約 2 秒輸出結構化 low-poly topology，降低 AI 網格進入遊戲管線前的重拓樸成本。","quick_impact":"★★★★★","source_url":"https://www.tripo3d.ai/blog/introducing-smart-mesh-v1","category":"ai-generation","subcategory":"ai-3d","ranking_score":100,"full_analysis":[{"label":"生成流程","text":"Smart Mesh P1.0 不是單純對既有高模做 decimation，而是把乾淨、結構化的 low-poly topology 當成生成結果的一部分；官方將它與 H3.1 的 high-poly 角色分工，前者面向遊戲、XR 與大量即時資產，後者保留高細節輸出。"},{"label":"製作價值","text":"對遊戲美術最直接的價值是把「生成後重新拓樸」從固定工時改成可選的品質修整。若輸出 edge flow、輪廓與 UV 後續能維持穩定，批量 prop、環境小物與 live-ops 資產的 lead time 有機會明顯下降，也更適合接自動化資產工廠。"},{"label":"導入測試","text":"先用角色、硬表面 prop、非對稱有機物三組基準測試，固定目標面數比較 Smart Mesh 與人工 retopo 的 silhouette、edge flow、UV、normal bake、骨架變形與 Unreal/Unity import；官方宣稱的 2 秒只代表生成速度，真正 gate 應是 cleanup 分鐘數與引擎可用率。"}],"rank_global":1,"homepage_tier":"top5"},{"id":"meshy-multiview-texture","title":"Meshy Multi-View Texture：四視圖同時約束幾何與 2K–8K Base Color","summary":"Meshy 的 Multi-View 升級讓 Geometry 與 Texture 都可讀取主視圖加左／後／右輔助視圖，並輸出原生 2K、4K 或 8K Base Color，強化角色與圖案一致性。","quick_impact":"★★★★★","source_url":"https://www.meshy.ai/blog/multiview-upgrade","category":"ai-generation","subcategory":"ai-3d","ranking_score":99,"full_analysis":[{"label":"生成流程","text":"新版 Multi-View 將 Main View 與最多三張 Left、Back、Right 輔助視圖同時送入 Geometry 與 Texture 階段；缺少的輔助角度仍可由系統補推，因此可以從單圖開始，也可以用完整 turnaround 降低背面與側面的猜測量。"},{"label":"製作價值","text":"這對角色、機台外殼、帶 Logo 或規則花紋的資產特別重要，因為多視圖同時限制輪廓、部件位置與表面圖案，能減少單圖生成常見的背面亂補與左右不一致。Texture 可出 2K/4K/8K Base Color，較適合後續進 Painter 或 DCC 做人工收尾。"},{"label":"導入測試","text":"用同一角色四視圖做單圖與四視圖 A/B，量化正側背 silhouette 偏差、五官／配件位置、文字圖案錯位與 seam；另外要注意目前多視圖貼圖主打 Base Color，PBR 通道能力與高解析度是否真的改善遊戲資產，不應只看 8K 數字。"}],"rank_global":2,"homepage_tier":"top5"},{"id":"meshy7-geometry-alignment","title":"Meshy 7 幾何對齊：開始用比例、空間分布與表面細節量化 Image-to-3D","summary":"Meshy 7 將 image-to-3D 重點放在 geometry alignment，並公開以比例、空間分布與表面細節比較輸入圖與參考模型的 benchmark，同時承認規則重複結構仍會漂移。","quick_impact":"★★★★★","source_url":"https://www.meshy.ai/blog/meshy-7-image-to-3d-geometry-alignment","category":"ai-generation","subcategory":"ai-3d","ranking_score":98,"full_analysis":[{"label":"生成流程","text":"Meshy 7 的重點不是只把模型做得更細，而是把幾何與輸入圖的對齊拆成整體比例、空間分布與表面細節來評估。官方案例顯示角色表情、機械部件與浮雕細節改善，但規則樓層、重複窗格等需要精確週期性的結構仍可能累積漂移。"},{"label":"製作價值","text":"對 production 而言，alignment 比單張漂亮 render 更接近真正的可用性指標：角色比例、裝備位置或機械零件只要偏掉，後續雕刻與拓樸都會被迫重做。公開限制也讓 Meshy 7 更適合被放進有 acceptance criteria 的測試，而不是以主觀觀感決定是否導入。"},{"label":"導入測試","text":"建立 10–20 個固定基準，分角色、硬表面、規則建築與 stylized prop，保留 reference mesh 或多角度標記點；比較 Meshy 6/7 的輪廓誤差、部件中心偏移、細節保留與人工修正時間，特別把重複圖樣與對稱件列為 fail case。"}],"rank_global":3,"homepage_tier":"top5"},{"id":"tripo-comfyui-pipeline","title":"Tripo 官方 ComfyUI Nodes：生成、分件、拓樸、Rig、Retarget 串成可自動化 3D 流程","summary":"Tripo 的官方 ComfyUI extension 已把文字／單圖／多視圖生成、模型匯入、分件、低模、retopology、rigging、animation retarget 與格式轉換放進同一節點流程。","quick_impact":"★★★★★","source_url":"https://developers.tripo3d.ai/en/docs/comfyui-nodes","category":"ai-generation","subcategory":"ai-3d","ranking_score":97,"full_analysis":[{"label":"生成流程","text":"官方 ComfyUI-Tripo 不只提供 text/image/multiview-to-3D，而是把 import、Mesh Segmentation、低模優化、retopology、rigging、animation retarget 與格式轉換都做成節點；近期節點也加入 Mesh Segmentation v2 與 URL model import，適合由外部資產進入流程。"},{"label":"製作價值","text":"這比單次 web 生成更接近 production automation：同一工作流可以固定參數、保存節點版本並批次跑資產，讓 AI 3D 從「人工下載 GLB」轉為可測試的 pipeline component。分件與 retopo 節點也能把生成結果分流到不同後製路徑。"},{"label":"導入測試","text":"先做 20 個 prop 的夜間 batch，記錄每個節點成功率、輸出命名、模型尺度、分件合理性、目標面數、UV/材質保留與失敗重跑成本；ComfyUI package 與 API 版本要鎖定，否則節點更新可能造成不可重現的產出差異。"}],"rank_global":4,"homepage_tier":"top5"},{"id":"hunyuan3d-buffalo","title":"Hunyuan3D-Buffalo 1.0：把 3D 理解、生成、指令編輯與零件生成統一","summary":"騰訊 Hunyuan3D-Buffalo 1.0 以同一多模態框架處理 3D understanding、text-to-3D、instruction-guided editing 與 part-level generation，研究重點從一次生成推向可理解、可編輯資產。","quick_impact":"★★★★☆","source_url":"https://github.com/Tencent-Hunyuan/Hunyuan3D-Buffalo1.0","category":"ai-generation","subcategory":"ai-3d","ranking_score":96,"full_analysis":[{"label":"生成流程","text":"Buffalo 1.0 以 Hunyuan3D-VLM 連接語意、結構與空間理解，再由 Hunyuan3D DiT 執行生成；同一框架同時涵蓋 3D QA、文字生成、指令式編輯與文字定位的 part generation，目標是讓生成模型理解既有物件後再局部修改。"},{"label":"製作價值","text":"若這條路線成熟，價值會高於單次 text-to-3D：遊戲資產最常見需求是保留已核准的大結構，只改武器、配件、材質區或某一零件。可理解與局部生成有機會降低每次修改都重新抽卡、再重新 cleanup 的浪費。"},{"label":"導入測試","text":"目前仍以研究框架看待，先用相同 mesh 做 10 組局部編輯指令，檢查未編輯區域的幾何漂移、part boundary、材質／UV 保存與可回復性；再測生成零件能否維持尺度與接合面，沒有穩定輸出前不應直接進正式資產庫。"}],"rank_global":5,"homepage_tier":"top5"},{"id":"hunyuan-worldclaw","title":"Hunyuan3D WorldClaw：Agentic 粗到細流程生成可編輯 3D Open World","summary":"WorldClaw 以規劃 agent 把文字需求拆成區域、地形、資產、材質與空間關係，再透過 Blender 與多個生成／分割模組建立可編輯場景，代表 world generation 往 production orchestration 前進。","quick_impact":"★★★★☆","source_url":"https://github.com/Tencent-Hunyuan/Hunyuan3D-WorldClaw","category":"emerging-case","subcategory":"world-model","ranking_score":95,"full_analysis":[{"label":"技術方向","text":"WorldClaw 採 coarse-to-fine agentic pipeline：先把 prompt 轉成結構化世界規格，再建立全域 terrain、放置 instance-level 3D assets，最後根據自己的 render 做視覺檢查與 refinement；公開資料顯示流程會協調 LLM、影像生成、SAM 3D、Hunyuan3D 與 Blender/MCP。"},{"label":"製作潛力","text":"對場景美術真正有價值的不是「一句話出世界」，而是把地形、資產、材質與 placement 變成可分層控制的規格。若 instance 與 terrain 都保持可編輯，未來可能用在 blockout、世界配置提案、open-world variation 與自動化佈景，而不是只產生不可拆的 3DGS。"},{"label":"成熟度判斷","text":"目前官方專案仍偏研究展示，不能把它視為現成遊戲關卡生成器。導入前要驗輸出是否有碰撞、LOD、導航、材質預算與 stable asset IDs；也要測 agent 重跑是否能只修改指定區域，而非整個世界重新生成。"}],"rank_global":6,"homepage_tier":"next10"},{"id":"r-dmesh-video-animation","title":"R-DMesh：以參考影片驅動靜態 Mesh，直接輸出時間一致的 4D 動態網格","summary":"SIGGRAPH 2026 的 R-DMesh 可把靜態 mesh 對齊參考影片起始姿勢並生成時間一致的動態 mesh，同時支援 pose／motion retarget，程式與 checkpoint 已公開。","quick_impact":"★★★★☆","source_url":"https://github.com/Tencent-Hunyuan/R-DMesh","category":"emerging-case","subcategory":"4d","ranking_score":94,"full_analysis":[{"label":"技術方向","text":"R-DMesh 針對靜態 mesh 與參考影片起始 pose 不一致的問題，先做 pose rectification，再以 dynamic-mesh VAE 與 rectified-flow DiT 生成整段動態網格；官方也把 pose retarget、motion retarget 與 4D generation 列為下游用途。"},{"label":"製作潛力","text":"它與傳統骨架 retarget 的差別在於輸出可包含每幀幾何變化，因此對衣物、軟體變形或非標準拓樸角色有研究價值。若能穩定轉成 morph/mesh cache，可能成為 previs、特殊角色與參考動作轉換的補充工具。"},{"label":"成熟度判斷","text":"目前完整流程依賴 Wan2.2-TI2V-5B、custom CUDA extensions 與 GPU 計算，示範輸出甚至以 morph animation 為主，離即時 gameplay skeleton 還有距離。測試要檢 topology identity、幀間抖動、接縫、匯出大小，以及是否能再轉成骨架或 VAT。"}],"rank_global":7,"homepage_tier":"next10"},{"id":"detram-human-mesh-tracking","title":"DETRAM：單一 Transformer 同時做人形 Mesh 重建、多人追蹤與 Prompt 指定人物","summary":"NVIDIA 研究 DETRAM 以持續跨幀的 query 同時完成多人偵測、human mesh recovery 與 tracking，並可用 prompt 指定人物，在 PoseTrack21、3DPW 等資料集展示競爭力。","quick_impact":"★★★☆☆","source_url":"https://research.nvidia.com/labs/amri/publication/lee2026detram/","category":"emerging-case","subcategory":"research","ranking_score":93,"full_analysis":[{"label":"技術方向","text":"DETRAM 把傳統分開的人體 detector、mesh recovery 與 tracker 收斂到同一 transformer decoder：detection query 找新人、tracking query 維持既有人物身份、prompt query 追蹤使用者指定對象，因此跨幀身份管理直接成為模型狀態。"},{"label":"製作潛力","text":"對 mocap 前處理、群眾參考與影片轉 3D 的價值在於少掉獨立 detector 串接與 ID switch 修補；如果之後能輸出穩定骨架或 SMPL 類參數，可作為多演員 video-to-animation 的上游資料來源，也有利於挑選特定表演者。"},{"label":"成熟度判斷","text":"目前是 ECCV 2026 研究而不是動畫商品；benchmark 的 tracking/HMR 準確率不等於可直接用於遊戲動作。實測要特別看遮擋後 identity、手腳細節、root trajectory、鏡頭切換與長序列 drift，再評估後續 retarget/cleanup 工時。"}],"rank_global":8,"homepage_tier":"next10"},{"id":"blender-cycles-gsplat-wip","title":"Blender Cycles 開始整合 Gaussian Splat：多種 compute backend 已通過初步測試","summary":"Blender 9 月 Render & Cycles meeting 顯示 GSplat 初始 Cycles rendering support 正在開發，CPU、CUDA、OptiX、oneAPI、HIP、Metal 與硬體 RT 已完成初步手動測試。","quick_impact":"★★★★☆","source_url":"https://devtalk.blender.org/t/2026-09-01-render-cycles-meeting/45749","category":"blender-dcc","subcategory":"blender","ranking_score":92,"full_analysis":[{"label":"DCC 工作流","text":"Cycles 團隊正在把 Gaussian Splat rendering support 拆成可審查的多個 patch，會議紀錄指出 CPU、CUDA、OptiX、oneAPI、HIP、Metal 與部分硬體 RT 已通過初步 manual test，並抽出 Quaternion attribute 等基礎支援。"},{"label":"製作價值","text":"這代表 3DGS 有機會從外部 viewer 或特殊 renderer 逐步進入 Blender 正規 lighting/render pipeline。對掃描場景、reference capture、虛實整合與 look-dev 而言，能在同一 DCC 內混用 mesh、材質與 splat 會比來回轉工具更實用。"},{"label":"升版 / 導入測試","text":"目前仍是 WIP，不適合當成 Blender 5.2 的 production 承諾。等功能進 daily build 後，應測大場景 VRAM、透明排序、camera motion、Cycles denoise、mesh/splat 混合遮擋與各 GPU backend parity，再決定是否納入正式 pipeline。"}],"rank_global":9,"homepage_tier":"next10"},{"id":"bioscope-usage-wear","title":"印度 Bioscope 道具：用「實際接觸區」而非隨機 grunge 決定磨損","summary":"PixelDhara 的 Bioscope breakdown 從歷史研究、3ds Max high/low poly、Painter baking/texturing 到 UE5 MRQ，核心是依觸摸、保護區與積塵位置設計可信磨損。","quick_impact":"★★★★★","source_url":"https://80.lv/articles/bringing-a-piece-of-indian-cultural-history-to-life-in-3d","category":"3d-production","subcategory":"prop-production","ranking_score":91,"full_analysis":[{"label":"製作流程","text":"流程先研究 Bioscope 的真實構造與使用方式，再以 3ds Max blockout/high-poly、低模與 UV 進 Painter baking/texturing。鏈條與膠帶用 Path Deform 沿 spline 建立，材質磨損則依「哪裡常被手摸、哪裡受保護、哪裡會積塵」分區，而不是平均撒 grunge。"},{"label":"流程價值","text":"這種 usage-driven wear 對遊戲 prop 特別可轉移：同一套 smart material 若不理解使用情境，很容易把每條邊都磨亮。把接觸頻率、重力積塵與材質老化寫成檢查表，可提高 outsourcing 與內部驗收的一致性，也更容易講出資產故事。"},{"label":"實測","text":"挑三件不同使用情境的 prop，先標 touch map、protected map 與 dirt accumulation zone，再與純 generator 版本盲測；比較視覺可信度、手工修正時間與不同 lighting 下 roughness 是否成立，最後在 UE5 Sequencer/MRQ 檢查高光是否把磨損放大過頭。"}],"rank_global":10,"homepage_tier":"next10"},{"id":"large-scale-env-tools","title":"大型遊戲環境工具化：Blender＋Houdini＋UE5 把 Level Artist 控制權留在參數層","summary":"Jolan Huijskes 分享為大型可玩沙漠場景建立 Blender、Houdini 與 Unreal Engine 工具的流程，重點不是自動生成越多越好，而是讓 Level Artist 可調整、可重用與可局部覆寫。","quick_impact":"★★★★★","source_url":"https://80.lv/articles/developing-tools-for-large-scale-3d-game-environments","category":"3d-production","subcategory":"environment-production","ranking_score":90,"full_analysis":[{"label":"製作流程","text":"案例以大型可玩環境為目標，把重複建模、散佈與場景生成拆成工具，同時保留 Level Artist 可直接控制的參數與 override。Blender、Houdini 與 UE5 各自負責適合的程序化階段，而不是把所有邏輯塞進單一黑盒生成器。"},{"label":"流程價值","text":"大型場景真正昂貴的是設計反覆改動後的連鎖返工。工具若能保留 art direction、局部手調與 deterministic output，就能讓道路、地形、建築或散佈在需求變更時重算，而不破壞藝術家已確認的區域，這比單次快速生成更有 production 價值。"},{"label":"實測","text":"拿一個 1 km² 測試關卡定義三次設計變更：道路改線、密度提升、地標搬移；比較純手工與工具化流程的重建時間、手工 override 保存率、draw calls/instance 數與 source-control diff，可回溯性不夠的程序工具不應進正式關卡。"}],"rank_global":11,"homepage_tier":"next10"},{"id":"handpainted-env-shader-pcg","title":"2D 插畫轉 3D 手繪場景：Nanite、PCG Snow、Slope Blur 與分層 foliage shader","summary":"Shuming Zhang 的場景流程用 UE blockout 對齊插畫構圖，再以 Nanite displacement、PCG 雪、Designer Slope Blur、foliage 分層色塊與 outline material 重建手繪感。","quick_impact":"★★★★★","source_url":"https://80.lv/articles/turning-a-2d-illustration-into-a-3d-environment-with-a-hand-painted-look","category":"3d-production","subcategory":"environment-production","ranking_score":89,"full_analysis":[{"label":"製作流程","text":"資產以 Maya/ZBrush/Painter 為主，材質大量使用 Substance Designer；磚牆與屋瓦改用 Nanite + displacement 省掉部分 sculpt/bake，雪則用 PCG Snow Coverage 搭配 triplanar shader。Base Color 與 Normal 以 Slope Blur 打破規則邊緣，模擬水彩與筆觸。"},{"label":"流程價值","text":"最值得抄的是「不把 NPR 全壓在 Base Color」：foliage shader 把 Gradient、Bottom Shadow、Front Color、Top Highlight 拆成可控模組，並依 camera distance 簡化 self-shadow。這讓 2D 色塊邏輯在即時光照下仍可維持，而不是只在單張截圖成立。"},{"label":"實測","text":"建立同一棵樹的傳統 PBR、手繪 Base Color、分層 shader 三版，在近中遠距與不同主光方向比較形體辨識、色塊穩定與 GPU cost；PCG snow 也要測坡度、交界、LOD 和 runtime virtual texture/貼花衝突，確認不是只適合 hero shot。"}],"rank_global":12,"homepage_tier":"next10"},{"id":"blighted-harbour-env","title":"Blighted Harbour：第一次 Blender／SpeedTree 專案也能用 UE Control Rig 把靜態場景變成動態空間","summary":"Helena Hansen 的希臘神話場景從 moodboard、資產拆解到 Unreal Engine rigging，將環境中的動態元素直接放進 UE Control Rig，讓場景不只停留在 still render。","quick_impact":"★★★★☆","source_url":"https://80.lv/articles/building-a-creepy-3d-fantasy-environment-inspired-by-greek-mythology","category":"3d-production","subcategory":"environment-production","ranking_score":88,"full_analysis":[{"label":"製作流程","text":"專案不硬套單張 concept，而是先用 moodboard 鎖定色彩、氛圍與 shape language，再針對船、建築與材質分別研究損壞、尺寸與構造。Blender、SpeedTree、ZBrush、Houdini 與 Painter 分工建立資產，最後在 UE 內學習 Control Rig 讓環境動起來。"},{"label":"流程價值","text":"對環境美術的提醒是：動態需求最好在資產切件階段就納入。若繩索、機械、布、燈具或 props 到最後才決定要動，pivot、skin、碰撞與材質會增加返工；把簡單 rig 留在 engine 端可讓 level artist 直接調節節奏與鏡頭。"},{"label":"實測","text":"挑一個原本純靜態的中景模組，預先定義可動零件、pivot 和骨架，再比較 DCC baked animation 與 UE Control Rig 的修改迭代；驗收除了畫面，也要看 Sequencer 易用性、runtime cost、LOD/instancing 失效與版本控制 diff。"}],"rank_global":13,"homepage_tier":"next10"},{"id":"courtyard-modular-shader","title":"Courtyard 環境：3m／4.5m／6m 模組尺度＋多層 Shader 降低建築重複感","summary":"Elie Paquiet 的 The Courtyard breakdown 以多尺度 modular building kit、multi-layer shader 與實拍植物參考建立高細節場景，適合當 AAA 環境資產規格的對照案例。","quick_impact":"★★★★☆","source_url":"https://80.lv/articles/modeling-and-texturing-assets-and-foliage-for-a-detailed-3d-environment","category":"3d-production","subcategory":"environment-production","ranking_score":87,"full_analysis":[{"label":"製作流程","text":"案例把建築模組預先規劃成 3m、4.5m、6m 等尺度，再搭配多層材質系統與獨立 foliage 製作，避免整個場景靠大量唯一資產堆出細節。植物則以真實照片與材質觀察作基準，將可重用資產與 hero detail 分開處理。"},{"label":"流程價值","text":"模組尺寸若只有單一網格往往會造成節奏過度規則；多尺度 kit 能保留 snap 與重用優勢，同時讓立面有較自然的變化。配合 layer shader 把髒污、色差與局部材質變化移到材質層，可降低唯一貼圖數與重製成本。"},{"label":"實測","text":"用一段 30–50m 建築立面做單尺度與多尺度 kit A/B，固定 texture budget，比較模組數、唯一資產數、材質 instance、draw calls、記憶體與肉眼重複感；若多尺度造成組合爆炸，需用命名與 prefab/Blueprint 規範控制。"}],"rank_global":14,"homepage_tier":"next10"},{"id":"stylized-scythe-pbr","title":"Wayfinder 風格鐮刀：ZRemesher 分層雕刻＋高對比 Base Color 驅動 Roughness／Metallic","summary":"Artem Romanov 的 stylized scythe 流程用 Blender blockout、ZBrush ZRemesher/Divide、UVPackmaster、Marmoset baking，再以 Painter 高對比 Base Color、anchor points 與 hand-painting 建立 stylized PBR。","quick_impact":"★★★★★","source_url":"https://80.lv/articles/how-to-sculpt-and-texture-a-stylized-wayfinder-inspired-scythe","category":"3d-production","subcategory":"prop-production","ranking_score":86,"full_analysis":[{"label":"製作流程","text":"硬表面先在 Blender 以低模、crease、subdivision 建好乾淨形，再進 ZBrush；有機主體用 sphere + DynaMesh 起形，之後改用 ZRemesher/Divide，在低 subdivision 調大形、高 subdivision 拋光細節。UV 回 Blender 用 UVPackmaster，4K maps 在 Marmoset 烘焙。"},{"label":"流程價值","text":"貼圖重點是先把 Base Color 做出足夠的亮暗、gradient、cavity/convexity 與色相變化，再以 anchor points 衍生 Roughness/Metallic，最後手繪修正。這種做法讓 stylized PBR 的材質反應跟著設計好的色塊，而不是靠金屬度與粗糙度各自亂長。"},{"label":"實測","text":"用同一 prop 做「先 PBR 通道」與「先高對比 Base Color 再 anchor」兩版，在 Marmoset 與 UE/Unity 不同 HDRI 下比較讀形、材質分離與跨 renderer 穩定性；也要檢查 Sharpen/Height 是否在低 mip 或遠距造成閃爍。"}],"rank_global":15,"homepage_tier":"next10"},{"id":"almalexia-maya-xgen","title":"Almalexia 角色：從 Blender 轉 Maya，以 XGen／Arnold 重建電影級角色管線","summary":"Margarida Coelho 以 ZBrush 手雕臉、肌肉與裝甲，再刻意轉換到 Maya、XGen 與 Arnold 完成角色，案例可用來檢視跨 DCC 學習成本與 cinematic character 流程。","quick_impact":"★★★★☆","source_url":"https://80.lv/articles/recreating-almalexia-from-the-elder-scrolls-as-a-cinematic-character","category":"3d-production","subcategory":"character-production","ranking_score":85,"full_analysis":[{"label":"製作流程","text":"角色先分析原版低解析貼圖與官方 artwork，再用既有 base mesh 在 ZBrush 重做比例、臉與肌肉；皮帶與 chainmail 透過 mask/extract、ZRemesher 與 Dynamic Subdivision/Micropoly 建立。專案同時把既有 Blender 習慣轉到 Maya，並導入 XGen groom 與 Arnold render。"},{"label":"流程價值","text":"這類案例的 production 價值在於把「換 DCC」視為明確技術目標，而非邊做邊換。角色每一階段都保留可驗收成果，能分辨哪些能力來自 sculpt/texturing 本身、哪些來自 XGen/Arnold；對團隊評估 Maya character pipeline 很有參考性。"},{"label":"實測","text":"若團隊考慮 Blender→Maya 的角色轉換，可用同一頭像做兩條小型 pipeline，比較 groom 建置、cache/export、材質對應、skin/normal、render consistency 與 source-control 體積；不要用最終美圖判斷，應記錄每階段返工與工具依賴。"}],"rank_global":16,"homepage_tier":"category_only"},{"id":"pixar-dff-bifrost","title":"Detached Facial Features：用 Bifrost 把嘴部從頭部拓樸解耦，換取更誇張表情","summary":"Farid M. Panah 以 Maya Bifrost 實作 Pixar《Win or Lose》類型的 Detached Facial Features 思路，將嘴部與頭部 topology 分離，讓表情不再完全受面網格限制。","quick_impact":"★★★★★","source_url":"https://80.lv/articles/pixar-style-detached-facial-features-rig-with-bifrost","category":"3d-animation","subcategory":"rigging","ranking_score":84,"full_analysis":[{"label":"動作製作流程","text":"DFF 的核心是把嘴部等 facial feature 從頭部表面拓樸解耦，讓 animator 可獨立移動、重塑甚至誇張變形；案例以 Maya Bifrost 建立系統，目標是保留 stylized expression 的自由度，而不是維持傳統單一連續面部 mesh。"},{"label":"Rig / 輸出","text":"這會把部分『表情極限』從 blendshape topology 問題轉成 rig/deformer 問題，對 toon 角色尤其有吸引力；但分離特徵也會增加遮擋、接縫、陰影、法線與 engine export 的責任，電影 rig 能做不代表遊戲 runtime 可以原樣搬。"},{"label":"導入測試","text":"先做嘴角大位移、張嘴、側臉與近距鏡頭四組 extreme pose，檢查 feature 與 head 的接縫、depth order、skin shadow、LOD 與 bake/export；若目標 UE/Unity，需要提早決定是輸出 bones、blendshapes 還是 runtime deformer。"}],"rank_global":17,"homepage_tier":"category_only"},{"id":"cascadeur-2026-2","title":"Cascadeur 2026.2：Animation Layers、BVH Import 與 Python／MCP 擴充","summary":"Cascadeur 2026.2 新增 animation layers，並補上 BVH motion capture import、簡易 MCP server、PySide UI 與 Python API IntelliSense，讓 physics-assisted animation 更容易接到既有動作管線。","quick_impact":"★★★★★","source_url":"https://www.cgchannel.com/2026/08/nekki-releases-cascadeur-2026-2-with-animation-layers/","category":"3d-animation","subcategory":"animation","ranking_score":83,"full_analysis":[{"label":"動作製作流程","text":"2026.2 的 animation layers 讓 animator 可以在不破壞 base motion 的前提下疊加修正，BVH import 則打開常見 mocap 資料入口；同時提供簡易 MCP server、PySide 自訂 UI 與 Python API IntelliSense，開始補齊 pipeline automation。"},{"label":"Rig / 輸出","text":"對 production 的意義是 Cascadeur 不再只是獨立 physics pose 工具，而更容易插進『mocap/BVH → physics-assisted cleanup → DCC/engine』鏈。Animation layers 尤其適合保留原始表演、分層修 root/重心/手腳，降低 destructive edit 的風險。"},{"label":"導入測試","text":"用一段 20–30 秒 BVH 做完整往返，檢查骨架映射、root motion、foot contact、layer merge、FBX export 與 Maya/Blender/UE 對齊；免費版輸出限制與商業授權也要列入成本，MCP 目前只適合 R&D，不應直接給 production agent 寫入正式檔。"}],"rank_global":18,"homepage_tier":"category_only"},{"id":"blender-mocap-retarget","title":"Blender Mocap Retarget 工具：先匹配髖部與肢體比例，專門處理 foot sliding","summary":"Pro Constantinou 的 Blender retarget tool 把 source/target 的 hip placement 與 limb proportion 對齊視為核心步驟，目標是降低 mocap retarget 後腳滑、彈跳與角色不落地。","quick_impact":"★★★★☆","source_url":"https://80.lv/articles/try-this-new-mocap-retargeting-tool-for-blender","category":"3d-animation","subcategory":"retarget","ranking_score":82,"full_analysis":[{"label":"動作製作流程","text":"工具的關鍵不是再多一個 bone mapping UI，而是先讓 source armature 尺度、髖部位置與四肢比例貼近 target，再進行 pose matching。作者指出只縮放整體仍不足，髖到腿與脊椎的相對位置偏差會直接造成腳滑與 bounce。"},{"label":"Rig / 輸出","text":"這把 retarget 問題從『動畫曲線怎麼補』往 skeleton proportion 預處理移動。對體型差很大的遊戲角色，若能在不破壞 deformation 的前提下暫時調整 source/target 比例，可減少後面逐幀修 foot lock 與 root height 的 cleanup。"},{"label":"導入測試","text":"選矮胖、長腿、標準人體三個 target，用同一 mocap 比較普通 retarget 與比例匹配流程，量 foot-contact 誤差、root vertical jitter、手部 reach 與 cleanup key 數；要額外驗證 limb scaling 是否造成不接受的 squash/stretch 或 skin deformation。"}],"rank_global":19,"homepage_tier":"category_only"},{"id":"ue58-stylized-facial-rig","title":"UE5.8 Stylized Facial Rig：Shape Authoring、Deformer 與 Direct Mesh Controls 進入角色表情流程","summary":"Epic 技術動畫師示範 UE5.8 以 shape authoring、deformer、bones 與 blend shapes 建立 stylized facial rig，Zebra Character Sample 也提供 Direct Mesh Controls 實例。","quick_impact":"★★★★★","source_url":"https://80.lv/articles/building-stylized-facial-rigs-with-control-rig-in-unreal-engine-5-8","category":"3d-animation","subcategory":"facial","ranking_score":81,"full_analysis":[{"label":"動作製作流程","text":"UE5.8 的示範把 facial rig 從單純 Control Rig 骨架控制擴展到 shape authoring、deformer、bone-based system 與 blend shapes 的組合；Direct Mesh Controls 則讓 animator 可直接在角色表面選取控制區，而不是在畫面塞滿 control shapes。"},{"label":"Rig / 輸出","text":"如果這套流程成熟，角色表情的 sculpt、rig、shot correction 可更多留在 engine 內，減少 Maya↔UE 的來回 export。對 stylized 角色尤其有利，因為誇張表情常需要骨架與 shape 同時作用，而非單一 blendshape library。"},{"label":"導入測試","text":"用現有角色複製一套小型臉 rig，測 10 個極端表情、Sequencer shot sculpt、LOD、runtime deformer cost 與多人角色場景；Direct Mesh Controls/部分 deformer 若仍標 experimental，就只能放在 R&D 分支，不能當 shipping 依賴。"}],"rank_global":20,"homepage_tier":"category_only"},{"id":"ue58-focalrig-firstperson","title":"FocalRig：10 分鐘把 UE5.8 GASP 改成 True First-Person，保留 Motion Matching 與 Foot Placement","summary":"Maks Maisak 示範以自配置 FocalRig nodes 將 Game Animation Sample 改成第一人稱，同時保留 motion matching、foot placement、vault、slide 與同步攻擊。","quick_impact":"★★★★☆","source_url":"https://80.lv/articles/true-first-person-mode-in-unreal-engine-s-game-animation-sample-project","category":"3d-animation","subcategory":"animation","ranking_score":80,"full_analysis":[{"label":"動作製作流程","text":"案例不是重做一套第一人稱動畫，而是在 UE5.8 Game Animation Sample 既有 motion matching 與 locomotion 上加入少量 FocalRig 自配置節點，讓鏡頭可以跟著 vault/takedown 的 animation，再平順回到玩家控制。"},{"label":"Rig / 輸出","text":"如果同一套第三人稱資料能維持第一人稱 camera framing，會減少雙套動畫庫與 aim offset 維護成本，也較容易保留 foot placement、滑行與同步攻擊等 GASP 行為。對需要 true-body first-person 的專案，這是值得驗證的程序化 rig 路線。"},{"label":"導入測試","text":"先用走跑、跳、vault、近戰 takedown 測 camera clipping、頭部抖動、weapon alignment、motion sickness 與 network replication；案例宣稱 10 分鐘是 setup demo，不代表所有 skeleton/weapon 都可直接套用，需把特殊動作與鏡頭遮擋列為 fail list。"}],"rank_global":21,"homepage_tier":"category_only"},{"id":"blender-remote-assets","title":"Blender 5.2 Remote Asset Libraries：資產可從伺服器按需下載並本地快取","summary":"Blender 5.2 支援以 URL 註冊 Remote Asset Library，Asset Browser 可按需下載並快取；自架 library 需生成 JSON listing 與 preview，外部依賴則必須打包進獨立 .blend。","quick_impact":"★★★★★","source_url":"https://code.blender.org/2026/07/remote-asset-libraries/","category":"blender-dcc","subcategory":"blender","ranking_score":79,"full_analysis":[{"label":"DCC 工作流","text":"Remote Asset Libraries 把 Blender Asset Library 從本機資料夾擴展到 URL：資產在 Asset Browser/Asset Shelf 看到時可按需下載，下載後走 local cache。團隊也能自行 host library，透過 Blender CLI 生成 listing JSON 與 WebP/PNG preview。"},{"label":"製作價值","text":"這很接近小型工作室需要的『輕量資產庫』：不用把所有 HDRI、base mesh、node group 或材質包進 repo，也能讓藝術家在 DCC 內搜尋與拉取。對分散團隊、外包共用工具與大型 library，可降低初始同步量與版本庫壓力。"},{"label":"升版 / 導入測試","text":"限制是每個 .blend 必須自包含，Blender 也沒有完整的 asset version 概念；導入前要測權限、cache invalidation、library 更新、離線模式與 texture packing。若要 production 使用，仍需在 URL/library listing 外加團隊自己的版本與審核規則。"}],"rank_global":22,"homepage_tier":"category_only"},{"id":"blender-cycles-texture-cache","title":"Blender 5.2 Cycles Texture Cache：只載入需要的 tile／mip，壓低大量貼圖場景記憶體","summary":"Cycles 5.2 的 Texture Cache 會自動產生 .tx，只載入 render 當下需要的 tile 與解析度，並配合 tiled rendering 淘汰未使用貼圖，針對大量 4K–16K texture 場景降低記憶體。","quick_impact":"★★★★★","source_url":"https://code.blender.org/2026/05/cycles-texture-cache/","category":"blender-dcc","subcategory":"blender","ranking_score":78,"full_analysis":[{"label":"DCC 工作流","text":"開啟 Texture Cache 與 Auto Generate 後，Cycles 會在貼圖旁建立 blender_tx/.tx，render 時只讀需要的 tile/mipmap；cache eviction 會利用 render tile 節奏移除近期未使用影像，而不是把整張高解析貼圖永久留在記憶體。"},{"label":"製作價值","text":"對角色 UDIM、掃描場景或大量 4K/8K/16K texture 的 shot，這能把『VRAM/RAM 不夠』從硬上限變成可管理的 streaming 問題。官方觀察指出高解析 tiled render 的 texture cache 記憶體可接近固定，render farm 也有額外控制。"},{"label":"升版 / 導入測試","text":"先用現有最重 shot 測 cache on/off 的 peak RAM/VRAM、time to first pixel、總 render time 與 network storage I/O；較小 tile 可能省記憶體但犧牲效能，packed textures、viewport interaction 等仍有待改善，不能只看單一峰值。"}],"rank_global":23,"homepage_tier":"category_only"},{"id":"blender-gn-physics","title":"Blender 5.2 Geometry Nodes Physics：XPBD Cloth／Hair 以內建 Node Group 形式進入 DCC","summary":"Blender 5.2 LTS 首版 Geometry Nodes Physics 用 XPBD Solver 封裝成內建 hair/cloth node group assets，讓模擬流程可與程序化幾何節點結合，但 UI 仍標示 experimental。","quick_impact":"★★★★★","source_url":"https://code.blender.org/2026/07/geometry-nodes-physics/","category":"blender-dcc","subcategory":"blender","ranking_score":77,"full_analysis":[{"label":"DCC 工作流","text":"Blender 5.2 將新的 hair/cloth dynamics 建在通用 declarative XPBD simulation framework 上，上層以內建 node group assets 封裝，藝術家可先用高階 cloth/hair group，不必直接理解底層 XPBD Solver，仍可往節點內深入客製。"},{"label":"製作價值","text":"對 stylized hair、布料與 procedural asset 而言，模擬和 Geometry Nodes 共用資料流意味著生成、約束、碰撞後處理可以留在同一 graph，不必頻繁 bake/convert。這也利於把 studio 規則封成 node group，讓角色或場景資產重複使用。"},{"label":"升版 / 導入測試","text":"目前仍是 experimental，先在非關鍵 shot 測 ponytail、cape、secondary cloth 三種案例，比較舊 Cloth/Hair 的穩定性、cache、重開檔一致性與 render farm 行為；節點 API/design 可能改動，正式資產要保留 bake 或舊流程 fallback。"}],"rank_global":24,"homepage_tier":"category_only"},{"id":"maya2027-usd-component","title":"Maya 2027 USD Component Creator／Variant Manager：直接在 Maya 建 production-ready USD Asset","summary":"Maya 2027 的 USD workflow 新增 Component Creator 與 Variant Manager，可把 scene objects 一鍵組成自包含 USD stage，並用 template 控制 prim hierarchy 與集中管理 variants。","quick_impact":"★★★★★","source_url":"https://help.autodesk.com/cloudhelp/2027/ENU/Maya-WhatsNew/files/GUID-93ED1C8E-AF46-4F5A-BC07-8B66C7C3D32E.htm","category":"blender-dcc","subcategory":"maya","ranking_score":76,"full_analysis":[{"label":"DCC 工作流","text":"Component Creator 可把 Maya 選取物件轉成結構化 USD stage，決定合成成單一 asset 或 variants，並套 template 約束 prim hierarchy；Variant Manager 則集中新增、移除、切換 variant sets，讓 asset build 不必離開 Maya UI。"},{"label":"製作價值","text":"USD pipeline 最常見問題不是能不能 export，而是每個人 export 出不同 hierarchy、variant 命名與 path。Template-driven component build 可把 studio conventions 前移到 authoring 階段，減少 publish 後才用 script 修 stage 的成本，也更適合外包資產標準化。"},{"label":"升版 / 導入測試","text":"拿一件有 LOD、材質 variant、可替換配件的 hero asset 建模板，驗 prim path、payload/reference、relative path、material binding 與 downstream Houdini/Unreal ingest；同時測 artist 誤操作時能否重建而不破壞 stable paths，才能判斷是否取代自研 exporter。"}],"rank_global":25,"homepage_tier":"category_only"},{"id":"arnold-max-593-gsplat-npr","title":"Arnold for 3ds Max 5.9.3：原生 3DGS、Shader to RGBA 與 Tone Zones 強化 NPR／混合場景","summary":"3ds Max 2027.2 內的 Arnold 5.9.3 可直接 render 3D Gaussian Splatting，並新增 Shader to RGBA、tone zones、較快 GPU scene update 與改善 noice denoiser。","quick_impact":"★★★★★","source_url":"https://help.autodesk.com/cloudhelp/2027/ENU/3dsMax-WhatsNew/files/whats_new_in_3ds_max_2027.2/GUID-BE5A5907-54D4-455C-9B0F-AD06B52FB711.html","category":"blender-dcc","subcategory":"other-dcc","ranking_score":75,"full_analysis":[{"label":"DCC 工作流","text":"MAXtoA 5.9.3 可讀取原生 3ds Max 3DGS/points data，在 Arnold 中直接 render splats，並支援 Point Instance；同版新增 Shader to RGBA 與 tone zones 給 NPR，GPU scene update 也更快，讓 scan/splat、mesh 與 stylized shading 能在同一 renderer 交會。"},{"label":"製作價值","text":"對 3ds Max 使用者，3DGS 不再必須外掛 viewer 才能進正式 lighting/render；tone zones 與 Shader to RGBA 也對 toon/NPR look-dev 有直接價值。若 production 同時有掃描環境、傳統 mesh hero asset 與非寫實角色，可減少跨 renderer 合成。"},{"label":"升版 / 導入測試","text":"建立 mesh+splat 混合場景，測 Min Pixel Width、透明排序、motion、AOV、denoise 與 GPU VRAM；NPR nodes 則要驗輪廓／色階在 batch render 與 EXR pipeline 的一致性。Flow Render 仍是 Tech Preview，不能與正式 Arnold render farm SLA 混為一談。"}],"rank_global":26,"homepage_tier":"category_only"},{"id":"houdini-commercial-procedural","title":"Houdini 商業動畫：把 client feedback 變成 HDA 參數，而不是每次重做資產","summary":"Ezequiel Grand 分享 commercial/VFX 的 procedural thinking，將 house generator、球員特效與 robot variation 拆成可替換 input 與 HDA controls，讓大量版本與客戶修改能沿網路自動傳遞。","quick_impact":"★★★★☆","source_url":"https://80.lv/articles/breakdown-how-houdini-is-reshaping-commercial-animation","category":"blender-dcc","subcategory":"houdini","ranking_score":74,"full_analysis":[{"label":"DCC 工作流","text":"案例把 Houdini 視為可組合 building blocks，而非只做 FX。房屋 generator 暴露樓層、窗、屋頂與比例；FIFA 22 的球員圖形效果則讓 player geometry 成為 network input，收到新模型時只替換上游，lines/particles/type 等下游層自動重算。"},{"label":"製作價值","text":"這種設計直接針對 commercial 與 game production 的高頻需求：『再高一點』『換角色』『多做 20 版』。把變動點暴露成 HDA parameter，可把 feedback 成本從重做變成調參，同時保持 visual language 一致，特別適合 procedural props、環境與特效。"},{"label":"升版 / 導入測試","text":"挑一個每週反覆改規格的資產做 HDA，先列出真正會被 art director 改的 5–10 個參數，測 20 次 variation 的合法範圍、cache、seed reproducibility 與 downstream UV/material；不要把所有 node 都暴露，否則只會把 network 複雜度轉嫁給使用者。"}],"rank_global":27,"homepage_tier":"category_only"},{"id":"unity-material-generator","title":"Unity Material Generator：Editor 內從文字／參考圖產生可直接受光的 Tileable PBR Placeholder","summary":"Unity AI Material Generator 可在 Unity Editor 內用 prompt 與 optional reference image 建立 tileable PBR material，官方明確把它定位在 prototype／placeholder，而不是直接取代 final art。","quick_impact":"★★★★☆","source_url":"https://unity.com/blog/unity-ai-material-generator","category":"engine-art","subcategory":"unity","ranking_score":73,"full_analysis":[{"label":"引擎工作流","text":"Material Generator 直接在 Unity Editor 內用文字描述與可選參考圖生成 tileable PBR surface，輸出可像一般材質一樣在場景受光。它屬於 Unity AI Generators，與 Texture2D、Terrain Layer、Sprite、Animation 等生成器共用 editor 端 workflow。"},{"label":"製作價值","text":"官方把它定位成 prototype placeholder 很合理：level/design 團隊可以在 greybox 階段先看到會受真實 lighting 影響的木、石、金屬等表面，不必等待最終材質。這可改善 early art direction 判斷，也避免把最早的純色材質誤當成最終亮度基準。"},{"label":"平台實測","text":"用 20 個 prompt 測 tile seam、normal/roughness 合理性、色彩空間、不同 lighting 下的一致性與重新生成可控度；正式導入要明確標記 AI metadata、placeholder 狀態與 replacement owner，避免 prototype 資產無意間一路進 shipping build。"}],"rank_global":28,"homepage_tier":"category_only"},{"id":"unity-3d-object-generator","title":"Unity 3D Object Generator：直接在 Editor 以文字／參考圖生成靜態 3D Prefab 做灰盒替身","summary":"Unity AI 的 3D Object Generator 可在 Editor 內從文字或 reference image 生成 static 3D mesh prefab，官方建議用於單一部件 prop、環境細節與 prototype placeholder。","quick_impact":"★★★★☆","source_url":"https://unity.com/blog/unity-ai-3d-object-generator","category":"engine-art","subcategory":"tools","ranking_score":72,"full_analysis":[{"label":"引擎工作流","text":"3D Object Generator 把 text/reference-image-to-3D 放在 Unity Editor 內，輸出 static mesh prefab；官方特別指出最適合 household prop、environment detail、decorative object 等不需要獨立活動的單件物體，定位相當清楚。"},{"label":"製作價值","text":"這種 editor-native 生成最適合 blockout 與 design iteration：設計師可先用有體積、能吃 lighting/collision 的 placeholder 驗 gameplay readability，而不是等 DCC 交件。若之後能保留 prefab references，再替換 final asset，對關卡製作會比外部下載 GLB 更順。"},{"label":"平台實測","text":"測生成後的 scale、pivot、collider、polycount、UV/material、lightmap 與 prefab replacement；也要建立『placeholder 不得成 final』的 validation。對需要多部件、rigging 或嚴格 topology 的資產應直接排除，避免把生成器能力範圍誤用到 hero asset。"}],"rank_global":29,"homepage_tier":"category_only"},{"id":"unity-dynamic-wireframe","title":"Unity Dynamic Wireframe Shader：不預處理 Mesh，直接用真實 Topology 畫即時線框","summary":"Dynamic Wireframe Shader 以 Shader Graph/GPU 直接渲染 mesh 真實 topology，不需 duplicate mesh 或離線 preprocessing，支援 BIRP、URP、HDRP，但要求 tessellation-capable GPU。","quick_impact":"★★★☆☆","source_url":"https://80.lv/articles/render-wireframe-effects-in-unity-with-this-shader","category":"engine-art","subcategory":"shader","ranking_score":71,"full_analysis":[{"label":"引擎工作流","text":"這個 shader 直接從 mesh topology 在 GPU 產生 wireframe visual，不需要預先轉線框或複製一份 mesh，並提供 Shader Graph 控制；同一方案可跨 BIRP、URP、HDRP，適合 debug visual、掃描感、科技 UI 或 gameplay feedback。"},{"label":"製作價值","text":"對 technical art 的價值是把線框從特殊資產製作轉成材質效果，同一模型可切換 normal/wireframe 狀態，減少額外 mesh 與同步問題。由於它反映真實 topology，也可快速暴露不均勻 triangulation 或 retopo 問題，作為內部檢視工具。"},{"label":"平台實測","text":"最大的限制是需要支援 tessellation 的 GPU，因此要先跑目標 PC/console/mobile compatibility matrix；另外測 skinned mesh、LOD、Nan/degenerate triangles、透明與 MSAA。若只為 debug，可保留 editor/development build，避免 shipping 平台被不必要的 shader variant 拖累。"}],"rank_global":30,"homepage_tier":"category_only"}],"visual_evidence":{}}
+{
+  "date": "2026-09-09",
+  "schema_version": 3,
+  "metadata": {
+    "total_items": 18,
+    "collection_mode": "production-intelligence-preference-v1-hybrid",
+    "collection_contract_effective_date": "2026-09-04",
+    "preference_contract_effective_date": "2026-09-06",
+    "discovery_windows": [
+      "24h",
+      "7d",
+      "30d",
+      "6m",
+      "evergreen"
+    ],
+    "discovery_coverage": {
+      "fill_ladder_exhausted": true,
+      "backlog_checked": true,
+      "backlog_remaining_eligible": 0,
+      "targeted_refill_performed": true,
+      "quality_first_confirmed": true,
+      "windows": {
+        "24h": {
+          "status": "exhausted",
+          "candidates_found": 4
+        },
+        "7d": {
+          "status": "exhausted",
+          "candidates_found": 23
+        },
+        "30d": {
+          "status": "exhausted",
+          "candidates_found": 38
+        },
+        "6m": {
+          "status": "exhausted",
+          "candidates_found": 31
+        },
+        "evergreen": {
+          "status": "exhausted",
+          "candidates_found": 11
+        }
+      },
+      "category_candidates": {
+        "ai-generation": {
+          "candidates_considered": 17
+        },
+        "3d-production": {
+          "candidates_considered": 27
+        },
+        "3d-animation": {
+          "candidates_considered": 21
+        },
+        "engine-art": {
+          "candidates_considered": 19
+        },
+        "emerging-case": {
+          "candidates_considered": 18
+        },
+        "blender-dcc": {
+          "candidates_considered": 30
+        }
+      },
+      "notes": "Completed candidate-pool discovery across all configured windows. Rolling backlog was empty. Broad search was followed by targeted refill for AI generation, animation, engine-art and emerging-case preference topics; all selected records were source-verified and quality-first ranked before Registry normalization."
+    },
+    "full_analysis_depth_contract": "v4-source-supported-production-depth",
+    "full_analysis_style_reference": "2026-09-01",
+    "full_analysis_heading_language": "zh-Hant",
+    "registry_identity_normalization": {
+      "dropped_count": 12,
+      "rewritten_count": 0,
+      "policy": "verified-DONE-published-canonical-source-without-substantive-delta-skip",
+      "source_identity_precedence": "published-daily-html-card-then-canonical-json",
+      "url_identity": "scripts/url_identity.py",
+      "stage": "collection-before-ready",
+      "refill_required": false,
+      "category_deficits": {},
+      "daily_release_gate": {
+        "have": 18,
+        "min": 12,
+        "target": 30,
+        "max": 30,
+        "missing_to_min": 2,
+        "missing_to_target": 12,
+        "release_ready": true,
+        "category_counts": {
+          "ai-generation": 5,
+          "3d-production": 2,
+          "3d-animation": 0,
+          "engine-art": 3,
+          "emerging-case": 3,
+          "blender-dcc": 5
+        },
+        "normal_min": 20,
+        "release_mode": "LOW_VOLUME_COMPLETE",
+        "low_volume_authorized": true
+      }
+    }
+  },
+  "items": [
+    {
+      "id": "tripo-smart-mesh-p10",
+      "title": "Tripo Smart Mesh P1.0：2 秒生成乾淨 Low-Poly 拓樸，直接瞄準即時資產",
+      "summary": "Tripo 將 Smart Mesh P1.0 定位成 H3.1 高模生成的即時資產搭檔，主打約 2 秒輸出結構化 low-poly topology，降低 AI 網格進入遊戲管線前的重拓樸成本。",
+      "quick_impact": "★★★★★",
+      "source_url": "https://www.tripo3d.ai/blog/introducing-smart-mesh-v1",
+      "category": "ai-generation",
+      "subcategory": "ai-3d",
+      "ranking_score": 100,
+      "full_analysis": [
+        {
+          "label": "生成流程",
+          "text": "Smart Mesh P1.0 不是單純對既有高模做 decimation，而是把乾淨、結構化的 low-poly topology 當成生成結果的一部分；官方將它與 H3.1 的 high-poly 角色分工，前者面向遊戲、XR 與大量即時資產，後者保留高細節輸出。"
+        },
+        {
+          "label": "製作價值",
+          "text": "對遊戲美術最直接的價值是把「生成後重新拓樸」從固定工時改成可選的品質修整。若輸出 edge flow、輪廓與 UV 後續能維持穩定，批量 prop、環境小物與 live-ops 資產的 lead time 有機會明顯下降，也更適合接自動化資產工廠。"
+        },
+        {
+          "label": "導入測試",
+          "text": "先用角色、硬表面 prop、非對稱有機物三組基準測試，固定目標面數比較 Smart Mesh 與人工 retopo 的 silhouette、edge flow、UV、normal bake、骨架變形與 Unreal/Unity import；官方宣稱的 2 秒只代表生成速度，真正 gate 應是 cleanup 分鐘數與引擎可用率。"
+        }
+      ],
+      "rank_global": 1,
+      "homepage_tier": "top5"
+    },
+    {
+      "id": "meshy-multiview-texture",
+      "title": "Meshy Multi-View Texture：四視圖同時約束幾何與 2K–8K Base Color",
+      "summary": "Meshy 的 Multi-View 升級讓 Geometry 與 Texture 都可讀取主視圖加左／後／右輔助視圖，並輸出原生 2K、4K 或 8K Base Color，強化角色與圖案一致性。",
+      "quick_impact": "★★★★★",
+      "source_url": "https://www.meshy.ai/blog/multiview-upgrade",
+      "category": "ai-generation",
+      "subcategory": "ai-3d",
+      "ranking_score": 99,
+      "full_analysis": [
+        {
+          "label": "生成流程",
+          "text": "新版 Multi-View 將 Main View 與最多三張 Left、Back、Right 輔助視圖同時送入 Geometry 與 Texture 階段；缺少的輔助角度仍可由系統補推，因此可以從單圖開始，也可以用完整 turnaround 降低背面與側面的猜測量。"
+        },
+        {
+          "label": "製作價值",
+          "text": "這對角色、機台外殼、帶 Logo 或規則花紋的資產特別重要，因為多視圖同時限制輪廓、部件位置與表面圖案，能減少單圖生成常見的背面亂補與左右不一致。Texture 可出 2K/4K/8K Base Color，較適合後續進 Painter 或 DCC 做人工收尾。"
+        },
+        {
+          "label": "導入測試",
+          "text": "用同一角色四視圖做單圖與四視圖 A/B，量化正側背 silhouette 偏差、五官／配件位置、文字圖案錯位與 seam；另外要注意目前多視圖貼圖主打 Base Color，PBR 通道能力與高解析度是否真的改善遊戲資產，不應只看 8K 數字。"
+        }
+      ],
+      "rank_global": 2,
+      "homepage_tier": "top5"
+    },
+    {
+      "id": "meshy7-geometry-alignment",
+      "title": "Meshy 7 幾何對齊：開始用比例、空間分布與表面細節量化 Image-to-3D",
+      "summary": "Meshy 7 將 image-to-3D 重點放在 geometry alignment，並公開以比例、空間分布與表面細節比較輸入圖與參考模型的 benchmark，同時承認規則重複結構仍會漂移。",
+      "quick_impact": "★★★★★",
+      "source_url": "https://www.meshy.ai/blog/meshy-7-image-to-3d-geometry-alignment",
+      "category": "ai-generation",
+      "subcategory": "ai-3d",
+      "ranking_score": 98,
+      "full_analysis": [
+        {
+          "label": "生成流程",
+          "text": "Meshy 7 的重點不是只把模型做得更細，而是把幾何與輸入圖的對齊拆成整體比例、空間分布與表面細節來評估。官方案例顯示角色表情、機械部件與浮雕細節改善，但規則樓層、重複窗格等需要精確週期性的結構仍可能累積漂移。"
+        },
+        {
+          "label": "製作價值",
+          "text": "對 production 而言，alignment 比單張漂亮 render 更接近真正的可用性指標：角色比例、裝備位置或機械零件只要偏掉，後續雕刻與拓樸都會被迫重做。公開限制也讓 Meshy 7 更適合被放進有 acceptance criteria 的測試，而不是以主觀觀感決定是否導入。"
+        },
+        {
+          "label": "導入測試",
+          "text": "建立 10–20 個固定基準，分角色、硬表面、規則建築與 stylized prop，保留 reference mesh 或多角度標記點；比較 Meshy 6/7 的輪廓誤差、部件中心偏移、細節保留與人工修正時間，特別把重複圖樣與對稱件列為 fail case。"
+        }
+      ],
+      "rank_global": 3,
+      "homepage_tier": "top5"
+    },
+    {
+      "id": "tripo-comfyui-pipeline",
+      "title": "Tripo 官方 ComfyUI Nodes：生成、分件、拓樸、Rig、Retarget 串成可自動化 3D 流程",
+      "summary": "Tripo 的官方 ComfyUI extension 已把文字／單圖／多視圖生成、模型匯入、分件、低模、retopology、rigging、animation retarget 與格式轉換放進同一節點流程。",
+      "quick_impact": "★★★★★",
+      "source_url": "https://developers.tripo3d.ai/en/docs/comfyui-nodes",
+      "category": "ai-generation",
+      "subcategory": "ai-3d",
+      "ranking_score": 97,
+      "full_analysis": [
+        {
+          "label": "生成流程",
+          "text": "官方 ComfyUI-Tripo 不只提供 text/image/multiview-to-3D，而是把 import、Mesh Segmentation、低模優化、retopology、rigging、animation retarget 與格式轉換都做成節點；近期節點也加入 Mesh Segmentation v2 與 URL model import，適合由外部資產進入流程。"
+        },
+        {
+          "label": "製作價值",
+          "text": "這比單次 web 生成更接近 production automation：同一工作流可以固定參數、保存節點版本並批次跑資產，讓 AI 3D 從「人工下載 GLB」轉為可測試的 pipeline component。分件與 retopo 節點也能把生成結果分流到不同後製路徑。"
+        },
+        {
+          "label": "導入測試",
+          "text": "先做 20 個 prop 的夜間 batch，記錄每個節點成功率、輸出命名、模型尺度、分件合理性、目標面數、UV/材質保留與失敗重跑成本；ComfyUI package 與 API 版本要鎖定，否則節點更新可能造成不可重現的產出差異。"
+        }
+      ],
+      "rank_global": 4,
+      "homepage_tier": "top5"
+    },
+    {
+      "id": "hunyuan3d-buffalo",
+      "title": "Hunyuan3D-Buffalo 1.0：把 3D 理解、生成、指令編輯與零件生成統一",
+      "summary": "騰訊 Hunyuan3D-Buffalo 1.0 以同一多模態框架處理 3D understanding、text-to-3D、instruction-guided editing 與 part-level generation，研究重點從一次生成推向可理解、可編輯資產。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://github.com/Tencent-Hunyuan/Hunyuan3D-Buffalo1.0",
+      "category": "ai-generation",
+      "subcategory": "ai-3d",
+      "ranking_score": 96,
+      "full_analysis": [
+        {
+          "label": "生成流程",
+          "text": "Buffalo 1.0 以 Hunyuan3D-VLM 連接語意、結構與空間理解，再由 Hunyuan3D DiT 執行生成；同一框架同時涵蓋 3D QA、文字生成、指令式編輯與文字定位的 part generation，目標是讓生成模型理解既有物件後再局部修改。"
+        },
+        {
+          "label": "製作價值",
+          "text": "若這條路線成熟，價值會高於單次 text-to-3D：遊戲資產最常見需求是保留已核准的大結構，只改武器、配件、材質區或某一零件。可理解與局部生成有機會降低每次修改都重新抽卡、再重新 cleanup 的浪費。"
+        },
+        {
+          "label": "導入測試",
+          "text": "目前仍以研究框架看待，先用相同 mesh 做 10 組局部編輯指令，檢查未編輯區域的幾何漂移、part boundary、材質／UV 保存與可回復性；再測生成零件能否維持尺度與接合面，沒有穩定輸出前不應直接進正式資產庫。"
+        }
+      ],
+      "rank_global": 5,
+      "homepage_tier": "top5"
+    },
+    {
+      "id": "hunyuan-worldclaw",
+      "title": "Hunyuan3D WorldClaw：Agentic 粗到細流程生成可編輯 3D Open World",
+      "summary": "WorldClaw 以規劃 agent 把文字需求拆成區域、地形、資產、材質與空間關係，再透過 Blender 與多個生成／分割模組建立可編輯場景，代表 world generation 往 production orchestration 前進。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://github.com/Tencent-Hunyuan/Hunyuan3D-WorldClaw",
+      "category": "emerging-case",
+      "subcategory": "world-model",
+      "ranking_score": 95,
+      "full_analysis": [
+        {
+          "label": "技術方向",
+          "text": "WorldClaw 採 coarse-to-fine agentic pipeline：先把 prompt 轉成結構化世界規格，再建立全域 terrain、放置 instance-level 3D assets，最後根據自己的 render 做視覺檢查與 refinement；公開資料顯示流程會協調 LLM、影像生成、SAM 3D、Hunyuan3D 與 Blender/MCP。"
+        },
+        {
+          "label": "製作潛力",
+          "text": "對場景美術真正有價值的不是「一句話出世界」，而是把地形、資產、材質與 placement 變成可分層控制的規格。若 instance 與 terrain 都保持可編輯，未來可能用在 blockout、世界配置提案、open-world variation 與自動化佈景，而不是只產生不可拆的 3DGS。"
+        },
+        {
+          "label": "成熟度判斷",
+          "text": "目前官方專案仍偏研究展示，不能把它視為現成遊戲關卡生成器。導入前要驗輸出是否有碰撞、LOD、導航、材質預算與 stable asset IDs；也要測 agent 重跑是否能只修改指定區域，而非整個世界重新生成。"
+        }
+      ],
+      "rank_global": 6,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "r-dmesh-video-animation",
+      "title": "R-DMesh：以參考影片驅動靜態 Mesh，直接輸出時間一致的 4D 動態網格",
+      "summary": "SIGGRAPH 2026 的 R-DMesh 可把靜態 mesh 對齊參考影片起始姿勢並生成時間一致的動態 mesh，同時支援 pose／motion retarget，程式與 checkpoint 已公開。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://github.com/Tencent-Hunyuan/R-DMesh",
+      "category": "emerging-case",
+      "subcategory": "4d",
+      "ranking_score": 94,
+      "full_analysis": [
+        {
+          "label": "技術方向",
+          "text": "R-DMesh 針對靜態 mesh 與參考影片起始 pose 不一致的問題，先做 pose rectification，再以 dynamic-mesh VAE 與 rectified-flow DiT 生成整段動態網格；官方也把 pose retarget、motion retarget 與 4D generation 列為下游用途。"
+        },
+        {
+          "label": "製作潛力",
+          "text": "它與傳統骨架 retarget 的差別在於輸出可包含每幀幾何變化，因此對衣物、軟體變形或非標準拓樸角色有研究價值。若能穩定轉成 morph/mesh cache，可能成為 previs、特殊角色與參考動作轉換的補充工具。"
+        },
+        {
+          "label": "成熟度判斷",
+          "text": "目前完整流程依賴 Wan2.2-TI2V-5B、custom CUDA extensions 與 GPU 計算，示範輸出甚至以 morph animation 為主，離即時 gameplay skeleton 還有距離。測試要檢 topology identity、幀間抖動、接縫、匯出大小，以及是否能再轉成骨架或 VAT。"
+        }
+      ],
+      "rank_global": 7,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "detram-human-mesh-tracking",
+      "title": "DETRAM：單一 Transformer 同時做人形 Mesh 重建、多人追蹤與 Prompt 指定人物",
+      "summary": "NVIDIA 研究 DETRAM 以持續跨幀的 query 同時完成多人偵測、human mesh recovery 與 tracking，並可用 prompt 指定人物，在 PoseTrack21、3DPW 等資料集展示競爭力。",
+      "quick_impact": "★★★☆☆",
+      "source_url": "https://research.nvidia.com/labs/amri/publication/lee2026detram/",
+      "category": "emerging-case",
+      "subcategory": "research",
+      "ranking_score": 93,
+      "full_analysis": [
+        {
+          "label": "技術方向",
+          "text": "DETRAM 把傳統分開的人體 detector、mesh recovery 與 tracker 收斂到同一 transformer decoder：detection query 找新人、tracking query 維持既有人物身份、prompt query 追蹤使用者指定對象，因此跨幀身份管理直接成為模型狀態。"
+        },
+        {
+          "label": "製作潛力",
+          "text": "對 mocap 前處理、群眾參考與影片轉 3D 的價值在於少掉獨立 detector 串接與 ID switch 修補；如果之後能輸出穩定骨架或 SMPL 類參數，可作為多演員 video-to-animation 的上游資料來源，也有利於挑選特定表演者。"
+        },
+        {
+          "label": "成熟度判斷",
+          "text": "目前是 ECCV 2026 研究而不是動畫商品；benchmark 的 tracking/HMR 準確率不等於可直接用於遊戲動作。實測要特別看遮擋後 identity、手腳細節、root trajectory、鏡頭切換與長序列 drift，再評估後續 retarget/cleanup 工時。"
+        }
+      ],
+      "rank_global": 8,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "blender-cycles-gsplat-wip",
+      "title": "Blender Cycles 開始整合 Gaussian Splat：多種 compute backend 已通過初步測試",
+      "summary": "Blender 9 月 Render & Cycles meeting 顯示 GSplat 初始 Cycles rendering support 正在開發，CPU、CUDA、OptiX、oneAPI、HIP、Metal 與硬體 RT 已完成初步手動測試。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://devtalk.blender.org/t/2026-09-01-render-cycles-meeting/45749",
+      "category": "blender-dcc",
+      "subcategory": "blender",
+      "ranking_score": 92,
+      "full_analysis": [
+        {
+          "label": "DCC 工作流",
+          "text": "Cycles 團隊正在把 Gaussian Splat rendering support 拆成可審查的多個 patch，會議紀錄指出 CPU、CUDA、OptiX、oneAPI、HIP、Metal 與部分硬體 RT 已通過初步 manual test，並抽出 Quaternion attribute 等基礎支援。"
+        },
+        {
+          "label": "製作價值",
+          "text": "這代表 3DGS 有機會從外部 viewer 或特殊 renderer 逐步進入 Blender 正規 lighting/render pipeline。對掃描場景、reference capture、虛實整合與 look-dev 而言，能在同一 DCC 內混用 mesh、材質與 splat 會比來回轉工具更實用。"
+        },
+        {
+          "label": "升版 / 導入測試",
+          "text": "目前仍是 WIP，不適合當成 Blender 5.2 的 production 承諾。等功能進 daily build 後，應測大場景 VRAM、透明排序、camera motion、Cycles denoise、mesh/splat 混合遮擋與各 GPU backend parity，再決定是否納入正式 pipeline。"
+        }
+      ],
+      "rank_global": 9,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "bioscope-usage-wear",
+      "title": "印度 Bioscope 道具：用「實際接觸區」而非隨機 grunge 決定磨損",
+      "summary": "PixelDhara 的 Bioscope breakdown 從歷史研究、3ds Max high/low poly、Painter baking/texturing 到 UE5 MRQ，核心是依觸摸、保護區與積塵位置設計可信磨損。",
+      "quick_impact": "★★★★★",
+      "source_url": "https://80.lv/articles/bringing-a-piece-of-indian-cultural-history-to-life-in-3d",
+      "category": "3d-production",
+      "subcategory": "prop-production",
+      "ranking_score": 91,
+      "full_analysis": [
+        {
+          "label": "製作流程",
+          "text": "流程先研究 Bioscope 的真實構造與使用方式，再以 3ds Max blockout/high-poly、低模與 UV 進 Painter baking/texturing。鏈條與膠帶用 Path Deform 沿 spline 建立，材質磨損則依「哪裡常被手摸、哪裡受保護、哪裡會積塵」分區，而不是平均撒 grunge。"
+        },
+        {
+          "label": "流程價值",
+          "text": "這種 usage-driven wear 對遊戲 prop 特別可轉移：同一套 smart material 若不理解使用情境，很容易把每條邊都磨亮。把接觸頻率、重力積塵與材質老化寫成檢查表，可提高 outsourcing 與內部驗收的一致性，也更容易講出資產故事。"
+        },
+        {
+          "label": "實測",
+          "text": "挑三件不同使用情境的 prop，先標 touch map、protected map 與 dirt accumulation zone，再與純 generator 版本盲測；比較視覺可信度、手工修正時間與不同 lighting 下 roughness 是否成立，最後在 UE5 Sequencer/MRQ 檢查高光是否把磨損放大過頭。"
+        }
+      ],
+      "rank_global": 10,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "stylized-scythe-pbr",
+      "title": "Wayfinder 風格鐮刀：ZRemesher 分層雕刻＋高對比 Base Color 驅動 Roughness／Metallic",
+      "summary": "Artem Romanov 的 stylized scythe 流程用 Blender blockout、ZBrush ZRemesher/Divide、UVPackmaster、Marmoset baking，再以 Painter 高對比 Base Color、anchor points 與 hand-painting 建立 stylized PBR。",
+      "quick_impact": "★★★★★",
+      "source_url": "https://80.lv/articles/how-to-sculpt-and-texture-a-stylized-wayfinder-inspired-scythe",
+      "category": "3d-production",
+      "subcategory": "prop-production",
+      "ranking_score": 86,
+      "full_analysis": [
+        {
+          "label": "製作流程",
+          "text": "硬表面先在 Blender 以低模、crease、subdivision 建好乾淨形，再進 ZBrush；有機主體用 sphere + DynaMesh 起形，之後改用 ZRemesher/Divide，在低 subdivision 調大形、高 subdivision 拋光細節。UV 回 Blender 用 UVPackmaster，4K maps 在 Marmoset 烘焙。"
+        },
+        {
+          "label": "流程價值",
+          "text": "貼圖重點是先把 Base Color 做出足夠的亮暗、gradient、cavity/convexity 與色相變化，再以 anchor points 衍生 Roughness/Metallic，最後手繪修正。這種做法讓 stylized PBR 的材質反應跟著設計好的色塊，而不是靠金屬度與粗糙度各自亂長。"
+        },
+        {
+          "label": "實測",
+          "text": "用同一 prop 做「先 PBR 通道」與「先高對比 Base Color 再 anchor」兩版，在 Marmoset 與 UE/Unity 不同 HDRI 下比較讀形、材質分離與跨 renderer 穩定性；也要檢查 Sharpen/Height 是否在低 mip 或遠距造成閃爍。"
+        }
+      ],
+      "rank_global": 11,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "blender-remote-assets",
+      "title": "Blender 5.2 Remote Asset Libraries：資產可從伺服器按需下載並本地快取",
+      "summary": "Blender 5.2 支援以 URL 註冊 Remote Asset Library，Asset Browser 可按需下載並快取；自架 library 需生成 JSON listing 與 preview，外部依賴則必須打包進獨立 .blend。",
+      "quick_impact": "★★★★★",
+      "source_url": "https://code.blender.org/2026/07/remote-asset-libraries/",
+      "category": "blender-dcc",
+      "subcategory": "blender",
+      "ranking_score": 79,
+      "full_analysis": [
+        {
+          "label": "DCC 工作流",
+          "text": "Remote Asset Libraries 把 Blender Asset Library 從本機資料夾擴展到 URL：資產在 Asset Browser/Asset Shelf 看到時可按需下載，下載後走 local cache。團隊也能自行 host library，透過 Blender CLI 生成 listing JSON 與 WebP/PNG preview。"
+        },
+        {
+          "label": "製作價值",
+          "text": "這很接近小型工作室需要的『輕量資產庫』：不用把所有 HDRI、base mesh、node group 或材質包進 repo，也能讓藝術家在 DCC 內搜尋與拉取。對分散團隊、外包共用工具與大型 library，可降低初始同步量與版本庫壓力。"
+        },
+        {
+          "label": "升版 / 導入測試",
+          "text": "限制是每個 .blend 必須自包含，Blender 也沒有完整的 asset version 概念；導入前要測權限、cache invalidation、library 更新、離線模式與 texture packing。若要 production 使用，仍需在 URL/library listing 外加團隊自己的版本與審核規則。"
+        }
+      ],
+      "rank_global": 12,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "blender-cycles-texture-cache",
+      "title": "Blender 5.2 Cycles Texture Cache：只載入需要的 tile／mip，壓低大量貼圖場景記憶體",
+      "summary": "Cycles 5.2 的 Texture Cache 會自動產生 .tx，只載入 render 當下需要的 tile 與解析度，並配合 tiled rendering 淘汰未使用貼圖，針對大量 4K–16K texture 場景降低記憶體。",
+      "quick_impact": "★★★★★",
+      "source_url": "https://code.blender.org/2026/05/cycles-texture-cache/",
+      "category": "blender-dcc",
+      "subcategory": "blender",
+      "ranking_score": 78,
+      "full_analysis": [
+        {
+          "label": "DCC 工作流",
+          "text": "開啟 Texture Cache 與 Auto Generate 後，Cycles 會在貼圖旁建立 blender_tx/.tx，render 時只讀需要的 tile/mipmap；cache eviction 會利用 render tile 節奏移除近期未使用影像，而不是把整張高解析貼圖永久留在記憶體。"
+        },
+        {
+          "label": "製作價值",
+          "text": "對角色 UDIM、掃描場景或大量 4K/8K/16K texture 的 shot，這能把『VRAM/RAM 不夠』從硬上限變成可管理的 streaming 問題。官方觀察指出高解析 tiled render 的 texture cache 記憶體可接近固定，render farm 也有額外控制。"
+        },
+        {
+          "label": "升版 / 導入測試",
+          "text": "先用現有最重 shot 測 cache on/off 的 peak RAM/VRAM、time to first pixel、總 render time 與 network storage I/O；較小 tile 可能省記憶體但犧牲效能，packed textures、viewport interaction 等仍有待改善，不能只看單一峰值。"
+        }
+      ],
+      "rank_global": 13,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "maya2027-usd-component",
+      "title": "Maya 2027 USD Component Creator／Variant Manager：直接在 Maya 建 production-ready USD Asset",
+      "summary": "Maya 2027 的 USD workflow 新增 Component Creator 與 Variant Manager，可把 scene objects 一鍵組成自包含 USD stage，並用 template 控制 prim hierarchy 與集中管理 variants。",
+      "quick_impact": "★★★★★",
+      "source_url": "https://help.autodesk.com/cloudhelp/2027/ENU/Maya-WhatsNew/files/GUID-93ED1C8E-AF46-4F5A-BC07-8B66C7C3D32E.htm",
+      "category": "blender-dcc",
+      "subcategory": "maya",
+      "ranking_score": 76,
+      "full_analysis": [
+        {
+          "label": "DCC 工作流",
+          "text": "Component Creator 可把 Maya 選取物件轉成結構化 USD stage，決定合成成單一 asset 或 variants，並套 template 約束 prim hierarchy；Variant Manager 則集中新增、移除、切換 variant sets，讓 asset build 不必離開 Maya UI。"
+        },
+        {
+          "label": "製作價值",
+          "text": "USD pipeline 最常見問題不是能不能 export，而是每個人 export 出不同 hierarchy、variant 命名與 path。Template-driven component build 可把 studio conventions 前移到 authoring 階段，減少 publish 後才用 script 修 stage 的成本，也更適合外包資產標準化。"
+        },
+        {
+          "label": "升版 / 導入測試",
+          "text": "拿一件有 LOD、材質 variant、可替換配件的 hero asset 建模板，驗 prim path、payload/reference、relative path、material binding 與 downstream Houdini/Unreal ingest；同時測 artist 誤操作時能否重建而不破壞 stable paths，才能判斷是否取代自研 exporter。"
+        }
+      ],
+      "rank_global": 14,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "arnold-max-593-gsplat-npr",
+      "title": "Arnold for 3ds Max 5.9.3：原生 3DGS、Shader to RGBA 與 Tone Zones 強化 NPR／混合場景",
+      "summary": "3ds Max 2027.2 內的 Arnold 5.9.3 可直接 render 3D Gaussian Splatting，並新增 Shader to RGBA、tone zones、較快 GPU scene update 與改善 noice denoiser。",
+      "quick_impact": "★★★★★",
+      "source_url": "https://help.autodesk.com/cloudhelp/2027/ENU/3dsMax-WhatsNew/files/whats_new_in_3ds_max_2027.2/GUID-BE5A5907-54D4-455C-9B0F-AD06B52FB711.html",
+      "category": "blender-dcc",
+      "subcategory": "other-dcc",
+      "ranking_score": 75,
+      "full_analysis": [
+        {
+          "label": "DCC 工作流",
+          "text": "MAXtoA 5.9.3 可讀取原生 3ds Max 3DGS/points data，在 Arnold 中直接 render splats，並支援 Point Instance；同版新增 Shader to RGBA 與 tone zones 給 NPR，GPU scene update 也更快，讓 scan/splat、mesh 與 stylized shading 能在同一 renderer 交會。"
+        },
+        {
+          "label": "製作價值",
+          "text": "對 3ds Max 使用者，3DGS 不再必須外掛 viewer 才能進正式 lighting/render；tone zones 與 Shader to RGBA 也對 toon/NPR look-dev 有直接價值。若 production 同時有掃描環境、傳統 mesh hero asset 與非寫實角色，可減少跨 renderer 合成。"
+        },
+        {
+          "label": "升版 / 導入測試",
+          "text": "建立 mesh+splat 混合場景，測 Min Pixel Width、透明排序、motion、AOV、denoise 與 GPU VRAM；NPR nodes 則要驗輪廓／色階在 batch render 與 EXR pipeline 的一致性。Flow Render 仍是 Tech Preview，不能與正式 Arnold render farm SLA 混為一談。"
+        }
+      ],
+      "rank_global": 15,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "unity-material-generator",
+      "title": "Unity Material Generator：Editor 內從文字／參考圖產生可直接受光的 Tileable PBR Placeholder",
+      "summary": "Unity AI Material Generator 可在 Unity Editor 內用 prompt 與 optional reference image 建立 tileable PBR material，官方明確把它定位在 prototype／placeholder，而不是直接取代 final art。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://unity.com/blog/unity-ai-material-generator",
+      "category": "engine-art",
+      "subcategory": "unity",
+      "ranking_score": 73,
+      "full_analysis": [
+        {
+          "label": "引擎工作流",
+          "text": "Material Generator 直接在 Unity Editor 內用文字描述與可選參考圖生成 tileable PBR surface，輸出可像一般材質一樣在場景受光。它屬於 Unity AI Generators，與 Texture2D、Terrain Layer、Sprite、Animation 等生成器共用 editor 端 workflow。"
+        },
+        {
+          "label": "製作價值",
+          "text": "官方把它定位成 prototype placeholder 很合理：level/design 團隊可以在 greybox 階段先看到會受真實 lighting 影響的木、石、金屬等表面，不必等待最終材質。這可改善 early art direction 判斷，也避免把最早的純色材質誤當成最終亮度基準。"
+        },
+        {
+          "label": "平台實測",
+          "text": "用 20 個 prompt 測 tile seam、normal/roughness 合理性、色彩空間、不同 lighting 下的一致性與重新生成可控度；正式導入要明確標記 AI metadata、placeholder 狀態與 replacement owner，避免 prototype 資產無意間一路進 shipping build。"
+        }
+      ],
+      "rank_global": 16,
+      "homepage_tier": "category_only"
+    },
+    {
+      "id": "unity-3d-object-generator",
+      "title": "Unity 3D Object Generator：直接在 Editor 以文字／參考圖生成靜態 3D Prefab 做灰盒替身",
+      "summary": "Unity AI 的 3D Object Generator 可在 Editor 內從文字或 reference image 生成 static 3D mesh prefab，官方建議用於單一部件 prop、環境細節與 prototype placeholder。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://unity.com/blog/unity-ai-3d-object-generator",
+      "category": "engine-art",
+      "subcategory": "tools",
+      "ranking_score": 72,
+      "full_analysis": [
+        {
+          "label": "引擎工作流",
+          "text": "3D Object Generator 把 text/reference-image-to-3D 放在 Unity Editor 內，輸出 static mesh prefab；官方特別指出最適合 household prop、environment detail、decorative object 等不需要獨立活動的單件物體，定位相當清楚。"
+        },
+        {
+          "label": "製作價值",
+          "text": "這種 editor-native 生成最適合 blockout 與 design iteration：設計師可先用有體積、能吃 lighting/collision 的 placeholder 驗 gameplay readability，而不是等 DCC 交件。若之後能保留 prefab references，再替換 final asset，對關卡製作會比外部下載 GLB 更順。"
+        },
+        {
+          "label": "平台實測",
+          "text": "測生成後的 scale、pivot、collider、polycount、UV/material、lightmap 與 prefab replacement；也要建立『placeholder 不得成 final』的 validation。對需要多部件、rigging 或嚴格 topology 的資產應直接排除，避免把生成器能力範圍誤用到 hero asset。"
+        }
+      ],
+      "rank_global": 17,
+      "homepage_tier": "category_only"
+    },
+    {
+      "id": "unity-dynamic-wireframe",
+      "title": "Unity Dynamic Wireframe Shader：不預處理 Mesh，直接用真實 Topology 畫即時線框",
+      "summary": "Dynamic Wireframe Shader 以 Shader Graph/GPU 直接渲染 mesh 真實 topology，不需 duplicate mesh 或離線 preprocessing，支援 BIRP、URP、HDRP，但要求 tessellation-capable GPU。",
+      "quick_impact": "★★★☆☆",
+      "source_url": "https://80.lv/articles/render-wireframe-effects-in-unity-with-this-shader",
+      "category": "engine-art",
+      "subcategory": "shader",
+      "ranking_score": 71,
+      "full_analysis": [
+        {
+          "label": "引擎工作流",
+          "text": "這個 shader 直接從 mesh topology 在 GPU 產生 wireframe visual，不需要預先轉線框或複製一份 mesh，並提供 Shader Graph 控制；同一方案可跨 BIRP、URP、HDRP，適合 debug visual、掃描感、科技 UI 或 gameplay feedback。"
+        },
+        {
+          "label": "製作價值",
+          "text": "對 technical art 的價值是把線框從特殊資產製作轉成材質效果，同一模型可切換 normal/wireframe 狀態，減少額外 mesh 與同步問題。由於它反映真實 topology，也可快速暴露不均勻 triangulation 或 retopo 問題，作為內部檢視工具。"
+        },
+        {
+          "label": "平台實測",
+          "text": "最大的限制是需要支援 tessellation 的 GPU，因此要先跑目標 PC/console/mobile compatibility matrix；另外測 skinned mesh、LOD、Nan/degenerate triangles、透明與 MSAA。若只為 debug，可保留 editor/development build，避免 shipping 平台被不必要的 shader variant 拖累。"
+        }
+      ],
+      "rank_global": 18,
+      "homepage_tier": "category_only"
+    }
+  ],
+  "visual_evidence": {}
+}
