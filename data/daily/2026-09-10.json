@@ -1,0 +1,431 @@
+{
+  "date": "2026-09-10",
+  "schema_version": 3,
+  "metadata": {
+    "total_items": 23,
+    "collection_mode": "production-intelligence-preference-v1-hybrid",
+    "collection_contract_effective_date": "2026-09-04",
+    "preference_contract_effective_date": "2026-09-06",
+    "discovery_windows": ["24h", "7d", "30d", "6m", "evergreen"],
+    "discovery_coverage": {
+      "fill_ladder_exhausted": true,
+      "backlog_checked": true,
+      "backlog_remaining_eligible": 0,
+      "targeted_refill_performed": true,
+      "quality_first_confirmed": true,
+      "windows": {
+        "24h": {"status": "exhausted", "candidates_found": 4},
+        "7d": {"status": "exhausted", "candidates_found": 18},
+        "30d": {"status": "exhausted", "candidates_found": 27},
+        "6m": {"status": "exhausted", "candidates_found": 58},
+        "evergreen": {"status": "exhausted", "candidates_found": 34}
+      },
+      "category_candidates": {
+        "ai-generation": {"candidates_considered": 28},
+        "3d-production": {"candidates_considered": 32},
+        "3d-animation": {"candidates_considered": 37},
+        "engine-art": {"candidates_considered": 29},
+        "emerging-case": {"candidates_considered": 22},
+        "blender-dcc": {"candidates_considered": 31}
+      },
+      "notes": "Completed candidate-pool discovery across all configured windows. Rolling backlog was refreshed first and was empty. Targeted searches covered all six categories, including the always-discover 3D animation profile for key pose/blocking/body mechanics and rigging. Selected sources were verifiable and capable of supporting source-grounded production analysis; weak, duplicated, showcase-only, or already-covered candidates were rejected. No remaining verified unpublished quality-pass backlog candidate was left eligible."
+    },
+    "full_analysis_depth_contract": "v1-source-supported-production-depth",
+    "full_analysis_style_reference": "2026-09-01",
+    "full_analysis_heading_language": "zh-Hant"
+  },
+  "items": [
+    {
+      "id": "gpt-image-25-production-editing",
+      "title": "ChatGPT Images 2.5：參考圖保真、局部編輯與多輪一致性直接對準美術迭代",
+      "summary": "OpenAI 於 9 月 8 日發布 ChatGPT Images 2.5，強化參考圖主體保留、局部精準編輯、多輪修改一致性與透明背景，並宣稱相較 Images 2.0 最多降低 50% 生成延遲。",
+      "quick_impact": "★★★★★",
+      "source_url": "https://openai.com/index/introducing-chatgpt-images-2-5/",
+      "category": "ai-generation",
+      "subcategory": "ai-2d",
+      "ranking_score": 100,
+      "full_analysis": [
+        {"label": "生成與編輯流程", "text": "Images 2.5 的核心不是單純提高單張成圖品質，而是改善參考圖保真、只修改指定元素，以及連續多輪編輯時保留先前決策。官方同時加入 Sketch、圖片註解與透明背景等控制方式，讓生成流程更接近可反覆修稿的美術工具。"},
+        {"label": "製作價值", "text": "對遊戲概念、角色設定、機台素材與宣傳圖而言，真正節省工時的是改一處不破壞其他區域。若角色輪廓、構圖與品牌元素能在多輪修改中維持，AI 圖像就更容易從一次性草圖轉成可持續迭代的 production asset。"},
+        {"label": "導入測試", "text": "建議用固定角色與場景做 10 輪局部修改 A/B 測試，記錄臉部、服裝、構圖、文字與透明邊緣的漂移率，再比較 Images 2.0 與 2.5 的返工次數與生成時間。官方速度數字不等於實際交付效率，仍需用自己的素材驗證。"}
+      ],
+      "rank_global": 1,
+      "homepage_tier": "top5"
+    },
+    {
+      "id": "tripo-p20-native-quad-topology",
+      "title": "Tripo P2.0 預覽：原生四邊面拓樸把 AI 3D 從外觀生成推向可編輯網格",
+      "summary": "Tripo 在 9 月初隨融資消息公開 P2.0 預覽，主打端到端生成原生 quad topology，並把引擎可用、可綁定與可編輯作為工業化目標。",
+      "quick_impact": "★★★★★",
+      "source_url": "https://www.3dnatives.com/en/tripo-ai-raises-3-billion-yuan-04092026/",
+      "category": "ai-generation",
+      "subcategory": "ai-3d",
+      "ranking_score": 99,
+      "full_analysis": [
+        {"label": "生成流程", "text": "P2.0 的關鍵方向是讓拓樸不再只是高模生成後的外掛式重建，而是在基礎模型階段直接產生四邊面網格。這比單純 decimation 更值得關注，因為後續 sculpt、UV、skin 與動畫都依賴可預測的網格結構。"},
+        {"label": "製作價值", "text": "如果原生 quad 的 edge flow 在角色關節、硬表面轉折與薄片結構上足夠穩定，就有機會壓縮 AI 3D 最大的人工成本之一：重拓樸與清理。對大量 prop 或快速角色原型尤其有價值，但目前仍屬預覽訊號，不能只依宣稱判定 production ready。"},
+        {"label": "導入測試", "text": "應用同一組角色、機械件與非對稱有機物，對照既有自動拓樸與 P2.0 的 pole 分布、四邊面比例、輪廓誤差、UV、法線烘焙與 skin deformation；只有人工修整時間與引擎成功率顯著改善，才算真正跨過工作流門檻。"}
+      ],
+      "rank_global": 2,
+      "homepage_tier": "top5"
+    },
+    {
+      "id": "houdini21-procedural-character-rig-first",
+      "title": "Houdini 21 Procedural Character：Rig-first 把建模、服裝、Blend Shape、Groom 與綁定串成可回溯系統",
+      "summary": "SideFX 的 Procedural Character 課程展示 rig-first 角色流程，從造型到 skinning、rigging、groom 與 lookdev 都保留程序化連動。",
+      "quick_impact": "★★★★★",
+      "source_url": "https://www.sidefx.com/tutorials/character-creation/",
+      "category": "3d-production",
+      "subcategory": "character-production",
+      "ranking_score": 98,
+      "full_analysis": [
+        {"label": "角色製作流程", "text": "這套 Houdini 21 流程把角色從初始設計、建模、服裝、blend shape、groom、skinning 到 rigging 放在同一程序化系統內，並採 rig-first 思維，讓骨架與變形需求更早進入造型決策，而不是最後才處理。"},
+        {"label": "製作價值", "text": "對需要大量角色變體或反覆改比例的專案，程序化連動能降低上游修改造成的整串返工。它尤其適合建立可重用角色模板，但成本是前期系統設計與 Houdini 技術門檻較高，不一定適合只做單一英雄角色的短期任務。"},
+        {"label": "導入測試", "text": "可用一個既有角色做比例、服裝厚度與臉型三種變更，測量傳統 DCC 流程與 Houdini rig-first 從修改到重新可動畫的時間；同時檢查 blend shape、skin weight、groom 與輸出到引擎後是否保持穩定。"}
+      ],
+      "rank_global": 3,
+      "homepage_tier": "top5"
+    },
+    {
+      "id": "maya-realtime-creature-rigging",
+      "title": "Autodesk Realtime Creature Rigging：從骨架、Skin Weight、IK/FK 到遊戲引擎輸出的完整綁定基礎",
+      "summary": "Autodesk 的 18 單元 realtime rigging 課程從 joint skeleton、skin binding、weight painting 到 IK/FK、space switching、twist／roll 與引擎輸出。",
+      "quick_impact": "★★★★★",
+      "source_url": "https://www.autodesk.com/learn/ondemand/collection/realtime-creature-rigging",
+      "category": "3d-animation",
+      "subcategory": "rigging",
+      "ranking_score": 97,
+      "full_analysis": [
+        {"label": "動作製作流程", "text": "這套課程完整覆蓋模型準備、joint skeleton、skin binding、weight painting、控制器整理，以及四肢 IK/FK，後段再加入 space swapping、twist、roll、squash 與 stretch。它把綁定視為可供動畫師與遊戲引擎共同使用的系統，而非單純把骨頭綁上網格。"},
+        {"label": "Rig 與輸出", "text": "對建立基礎 rig 規範非常適合，因為每個步驟都能轉成外包檢查項：骨架比例、旋轉軸、權重、控制器、IK/FK 切換與最終 export。即使團隊使用 auto-rig，也需要理解這些底層條件才能判斷生成結果是否真的可用。"},
+        {"label": "導入測試", "text": "用同一隻雙足角色建立一份最小 realtime rig，要求完成手腳 IK/FK、肩髖極限 pose、twist 與 Unity/Unreal 匯入；把破面、骨架尺度、root motion、骨數與動畫 baking 列成 checklist，作為後續自動綁定工具的比較基線。"}
+      ],
+      "rank_global": 4,
+      "homepage_tier": "top5"
+    },
+    {
+      "id": "ue58-lumen-medium-quality",
+      "title": "UE5.8 Lumen Medium：以較低成本把動態 GI／Reflection 推向低階 PC 與掌機",
+      "summary": "UE5.8 Release Notes 新增 Lumen Medium Quality，官方稱相較 High 約快 2 倍，透過 Irradiance Field Gather、較便宜反射與透明／霧 GI 降低成本。",
+      "quick_impact": "★★★★★",
+      "source_url": "https://dev.epicgames.com/documentation/unreal-engine/unreal-engine-5-8-release-notes",
+      "category": "engine-art",
+      "subcategory": "rendering",
+      "ranking_score": 96,
+      "full_analysis": [
+        {"label": "引擎工作流", "text": "Lumen Medium 不是單純把取樣數砍半，而是組合較快的 opaque GI、reflections、transparency/fog GI 與 Lumen Scene。Opaque GI 採 Irradiance Field Gather，使用 probe occlusion、自動 probe placement 與既有 World Space Radiance Cache。"},
+        {"label": "製作價值", "text": "官方把目標直接指向低階 PC 與 handheld，代表美術可以在不完全放棄動態 GI 的前提下建立更低的 scalability tier。對需要同時支援高階 PC 與掌機的專案，比維護完全不同的 baked lighting 路線更值得測試。"},
+        {"label": "平台實測", "text": "用室內、開放世界與大量透明／霧三個場景，比 High 與 Medium 的 GPU ms、漏光、反射穩定性與移動時 view-dependent artifact。官方也指出 probe 從幾何內移出的機制仍可能造成室內視角依賴，因此畫質 gate 要包含動態鏡頭。"}
+      ],
+      "rank_global": 5,
+      "homepage_tier": "top5"
+    },
+    {
+      "id": "maya2027-skin-tools-layers",
+      "title": "Maya 2027 Skin Tools：分層 Weight Painting 讓變形修正更接近可回溯的非破壞流程",
+      "summary": "Maya 2027 Skin Tools quickstart 說明初始化 skin layers、分層 painting、mirroring 與 refinement，為複雜權重提供比單層直接塗改更可管理的方式。",
+      "quick_impact": "★★★★★",
+      "source_url": "https://help.autodesk.com/cloudhelp/2027/ENU/Maya-CharacterAnimation/files/GUID-2ABD18C8-8CCF-44B9-99E0-EDEE4A56A3E6.htm",
+      "category": "3d-animation",
+      "subcategory": "rigging",
+      "ranking_score": 95,
+      "full_analysis": [
+        {"label": "動作製作流程", "text": "Skin Tools 在既有 skinCluster 上初始化 skin layers，讓權重可以分層建立、調整與鏡像，而不是所有修正都直接寫進同一組最終數值。對肩、髖、手指等需要反覆疊加修正的區域，這種結構更容易追蹤每一次變形處理。"},
+        {"label": "Rig 與輸出", "text": "分層權重能把基礎 bind、關節修正、左右差異等工作拆開，降低多人接手或外包回修時不知道哪一筆修改造成問題的風險。對角色量大的專案，也比較容易把權重模板與鏡像規則標準化。"},
+        {"label": "導入測試", "text": "選一個肩膀與髖部容易塌陷的角色，用傳統 Paint Skin Weights 與 Skin Tools 各修一版，記錄極限 pose 的體積保持、修改步驟、回退能力與檔案相容性；再測 export/bake 是否留下預期的最終 skinCluster。"}
+      ],
+      "rank_global": 6,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "ue58-layered-control-rig-animation",
+      "title": "UE5.8 Layered Control Rig：在 Sequencer 疊加 Pose 修正，不必先把 Animation Sequence 全部 Bake 掉",
+      "summary": "Epic 文件說明 Layered Control Rig 可把多個 Control Rig 疊在既有 Animation Sequence 上，並以 order 與 weight 控制局部修正。",
+      "quick_impact": "★★★★★",
+      "source_url": "https://dev.epicgames.com/documentation/unreal-engine/animating-with-control-rig-in-unreal-engine",
+      "category": "3d-animation",
+      "subcategory": "animation",
+      "ranking_score": 94,
+      "full_analysis": [
+        {"label": "動作製作流程", "text": "Layered Control Rig 允許 Animation Sequence 先作為底層，再疊加一個或多個 Control Rig track，並透過 Backwards Solve 把結果帶入控制器。每層都有 order 與 weight，因此可以把手部、視線或接觸修正拆成非破壞的局部層。"},
+        {"label": "Rig 與輸出", "text": "這對遊戲 cinematic、動捕 cleanup 與現場改 pose 特別有用，因為不必為每個小修正都回 DCC 重 bake 整段動畫。它也讓 animator 可以保留原始 clip，同時在引擎內做 shot-specific correction，縮短 DCC 到 engine 往返。"},
+        {"label": "導入測試", "text": "選一段現有 locomotion 或 mocap，分別疊加腳底 contact、手持道具與頭部 look-at 三個 layer，測試 track order、weight 與 key reduction；同時檢查大量 Control Rig layer 對 Sequencer 可讀性與效能的影響。"}
+      ],
+      "rank_global": 7,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "siggraph26-gaussian-point-splatting",
+      "title": "SIGGRAPH 2026 Gaussian Point Splatting：數億 Gaussian 的即時渲染改用隨機點取樣與 GPU atomics",
+      "summary": "研究提出 Gaussian point splatting，以像素大小的不透明點、64-bit atomics 與階層式 frustum／occlusion culling 渲染大量 Gaussian，展示數億 splats 的即時能力。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://momentsingraphics.de/Siggraph2026.html",
+      "category": "emerging-case",
+      "subcategory": "research",
+      "ranking_score": 93,
+      "full_analysis": [
+        {"label": "技術方向", "text": "傳統 Gaussian splatting 需要處理大量半透明 splat 的排序與混合；這項方法改成從每個 Gaussian 隨機取樣像素大小的不透明點，以 64-bit atomics 寫入 framebuffer，再用數學方式校正每個 Gaussian 的取樣量與 opacity。"},
+        {"label": "製作潛力", "text": "若能把數億 Gaussian 保持在即時範圍，對大型掃描場景、數位孿生或 neural capture 的可視化很有吸引力；階層式 frustum 與 occlusion culling 也更接近實際引擎需要的規模化策略，而不是只展示小型 benchmark。"},
+        {"label": "成熟度判斷", "text": "目前仍是研究型渲染方法，輸出與傳統 splatting 之間會有輕微 noise 與 aliasing 差異。導入前應用動態鏡頭、薄幾何、透明邊緣與 VR 解析度測 temporal stability，再評估是否適合 production，而非只看靜態 FPS。"}
+      ],
+      "rank_global": 8,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "houdini21-procedural-cities-games",
+      "title": "Houdini 21 Procedural Cities for Games：把城市資產組裝變成可重複的世界建構工具",
+      "summary": "SideFX 的進階遊戲課程聚焦 procedural cities，展示以 Houdini 21 建立可重用城市生成工作流，而非逐棟手工擺放。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://www.sidefx.com/tutorials/build-procedural-cities-for-games/",
+      "category": "3d-production",
+      "subcategory": "environment-production",
+      "ranking_score": 92,
+      "full_analysis": [
+        {"label": "場景製作流程", "text": "課程將城市建構視為規則、模組與程序化組裝問題，而不是單純模型堆疊。對遊戲場景而言，這種方式可把道路、街廓、建築模組與變體規則包成工具，讓 layout 與資產規則在同一流程中反覆調整。"},
+        {"label": "流程價值", "text": "程序化城市最適合需要大量重複但又不能完全一致的中大型場景，可把環境美術工時從逐物件擺放轉移到規則設計與例外修整。真正效益取決於模組規格是否一致，以及工具是否能讓非 TD 美術也安全使用。"},
+        {"label": "實測", "text": "先用一個小街區做基準，固定 10 至 20 個模組與道路規則，比較人工 layout 與程序化輸出的速度、重複感、碰撞、LOD/HLOD 與 Unreal 導入成本；若例外修整過多，就要回頭降低規則複雜度。"}
+      ],
+      "rank_global": 9,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "ue58-create-control-rig-fk-hierarchy",
+      "title": "UE5.8 Control Rig 基礎：從 Skeleton 建 FK Control，並把控制層級與骨架層級分離",
+      "summary": "Epic 的 Control Rig 教學示範從骨架建立 FK control，並建議把控制器從 skeleton hierarchy 解耦，建立獨立可維護的 control hierarchy。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://dev.epicgames.com/documentation/unreal-engine/how-to-create-control-rigs-in-unreal-engine",
+      "category": "3d-animation",
+      "subcategory": "rigging",
+      "ranking_score": 91,
+      "full_analysis": [
+        {"label": "動作製作流程", "text": "Epic 的基礎流程先在 Rig Hierarchy 找到骨頭並建立同位置、同方向的 control，再建議將 control 從 skeleton hierarchy unparent，改成獨立的控制層級。這把 deformation skeleton 與 animator-facing controls 分開，是可維護 rig 的核心概念。"},
+        {"label": "Rig 與輸出", "text": "對從 Maya 或 Blender 轉到引擎端綁定的人，最值得學的是骨架不是控制器。控制層獨立後才能安全加入 offset、space switch、procedural logic，而不直接污染輸出骨架，也更容易與 Sequencer、Animation Blueprint 串接。"},
+        {"label": "導入測試", "text": "先用手臂做最小 rig：建立 FK controls、獨立 hierarchy、測試旋轉軸與父子關係，再擴到 IK。最後與 DCC 匯入動畫混合測試，確認 control rig 的修改不會破壞原始 skeleton、root motion 與 retarget chain。"}
+      ],
+      "rank_global": 10,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "ue58-lumen-surface-cache-cards",
+      "title": "Lumen Surface Cache：複雜 Mesh 的 Cards 覆蓋與材質邏輯會直接影響 GI／Reflection 正確性",
+      "summary": "Epic Lumen 技術文件說明 Surface Cache 以多角度 Cards 快取材質；複雜室內、view-dependent material 與未被 Cards 覆蓋區域可能造成黑反射或間接光缺失。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://dev.epicgames.com/documentation/unreal-engine/lumen-technical-details-in-unreal-engine",
+      "category": "engine-art",
+      "subcategory": "rendering",
+      "ranking_score": 90,
+      "full_analysis": [
+        {"label": "引擎工作流", "text": "Lumen 會為附近表面建立 Surface Cache，離線從多個角度捕捉材質；預設每個 mesh 只放 12 張 Cards。未覆蓋區域在 debug view 會顯示粉紅，並可能缺少 bounce light 或在 reflection 中變黑，複雜 mesh 可提高 Max Lumen Mesh Cards。"},
+        {"label": "製作價值", "text": "這直接影響場景模型拆分規範：整間房連家具合成一個複雜 mesh 並不是 Lumen 預期用法，牆、地板、天花板分開通常更穩定。View-dependent material 邏輯也可能在 Surface Cache 捕捉時得到錯誤結果。"},
+        {"label": "平台實測", "text": "建立 Lumen debug checklist，檢查 Card Placement 與 Surface Cache 覆蓋；對大型建築比較拆分前後的 GI、reflection 與更新成本。含 Camera Vector、Pixel Depth 等材質則測 Ray Tracing Quality Switch，避免只在主視角看起來正常。"}
+      ],
+      "rank_global": 11,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "substance-painter-character-texturing-course",
+      "title": "Substance 3D Painter 角色貼圖流程：從皮膚細節到 Roughness／SSS 的完整官方教學",
+      "summary": "Adobe 官方角色貼圖課程由角色美術示範從皮膚細節、base color、layer refinement 到 roughness 與 subsurface scattering 的完整流程。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://www.adobe.com/learn/substance-3d-painter/web/texturing-characters-in-substance-3d-painter",
+      "category": "3d-production",
+      "subcategory": "character-production",
+      "ranking_score": 89,
+      "full_analysis": [
+        {"label": "角色製作流程", "text": "這套教學不是只講單一 smart material，而是從場景設定、皮膚細節、base color 分層一路到 roughness 與 SSS，強調不同材質訊號要分開控制。對角色來說，這能避免只靠 base color 畫明暗、造成引擎換光後質感崩壞。"},
+        {"label": "流程價值", "text": "角色皮膚最容易在 roughness、微細節與次表面之間失衡，官方完整流程適合作為外包檢收或內部新人 training 的共同基準。即使專案最後採 NPR，也可借用分層思路，把色彩、材質反應與細節遮罩拆開管理。"},
+        {"label": "實測", "text": "挑一顆現有頭模重做一版，固定同一 HDRI 與引擎燈光，比較舊貼圖與分層流程在正面、側光、暗部的 roughness 與 SSS 穩定性；同時記錄 layer 數量與修改成本，避免流程變得過度複雜。"}
+      ],
+      "rank_global": 12,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "qwen-edit-multiview-character-reference",
+      "title": "Qwen Edit 多角度角色 LoRA：把單張角色轉成多視角參考的 ComfyUI 實務路線",
+      "summary": "Stable Diffusion Art 整理的 Qwen Image Edit 多角度工作流，透過 LoRA 與 ComfyUI 將角色轉成不同相機角度，可用於 3D 生成前的輔助視圖準備。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://stable-diffusion-art.com/qwen-image-edit-multiple-angle-lora/",
+      "category": "ai-generation",
+      "subcategory": "ai-2d",
+      "ranking_score": 88,
+      "full_analysis": [
+        {"label": "生成流程", "text": "這套做法不是直接生成 3D，而是先把單一角色圖透過 Qwen Edit LoRA 轉成多個指定角度，再把結果作為後續 image-to-3D 或人工建模的視覺約束。工作流可在 ComfyUI 中固定節點、模型與相機方向，具備可重現性。"},
+        {"label": "製作價值", "text": "對缺少正式 turnaround 的角色概念，補左、右、後視圖能降低 3D 模型在背面與側面完全猜測的比例，也能讓多視圖生成獲得更多約束。不過生成出的輔助視圖本身不是設計真值，仍可能把錯誤一致地傳入 3D。"},
+        {"label": "導入測試", "text": "挑選有真實四視圖答案的角色，先只給正面生成其餘角度，再比較輪廓、配件位置、臉部比例與服裝接縫誤差。若多視圖彼此衝突，應在送入 3D 前人工修正，而不是把一致性問題留給幾何生成器。"}
+      ],
+      "rank_global": 13,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "maya2027-automatic-retopology",
+      "title": "Maya 2027 自動 Retopologize：Remesh→Retopo→Transfer Attributes 的可控重拓樸流程",
+      "summary": "Autodesk 文件說明以 Remesh 與 Retopologize 修復密集或不均勻網格，並提供 Preserve Hard Edges、Topology Regularity、Anisotropy 與 UV transfer 等控制。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://help.autodesk.com/cloudhelp/2027/ENU/Maya-Modeling/files/GUID-083D2387-5553-4C03-BCB1-9231293626AD.htm",
+      "category": "3d-production",
+      "subcategory": "production-workflow",
+      "ranking_score": 87,
+      "full_analysis": [
+        {"label": "製作流程", "text": "Maya 的建議流程是先 Remesh 再 Retopologize，密集網格可先 preprocess，硬表面則提高 topology regularity 與 face uniformity、降低 anisotropy，並可保留 hard edges。完成後還能用 Transfer Attributes 把原始 UV 轉到新網格。"},
+        {"label": "流程價值", "text": "這條流程適合掃描、雕刻或 AI 生成後需要快速得到較規整 quad 網格的資產，尤其在進 Painter、烘焙或做中距離 prop 前可先降低人工整理量。不過它仍是幾何重建，不保證角色關節所需的動畫 edge flow。"},
+        {"label": "實測", "text": "用有機角色、硬表面與高密度掃描各一組，固定目標面數比較輪廓、硬邊、UV transfer、normal bake 與處理時間；角色樣本再加肩、肘、膝 deformation test，確認自動 quad 是否真的能進 rig，而不只是視覺乾淨。"}
+      ],
+      "rank_global": 14,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "ue58-nanite-aggregate-geometry",
+      "title": "Nanite Aggregate Geometry：草、葉、毛髮類大量薄片會破壞像素尺度化假設，需用 Overdraw 實測",
+      "summary": "Epic 的 Nanite 使用指南指出 foliage、hair、grass 等大量斷開薄片會降低 LOD 簡化與 occlusion culling 效率，可能造成高 overdraw。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://dev.epicgames.com/documentation/unreal-engine/working-with-naniteenabled-content",
+      "category": "engine-art",
+      "subcategory": "optimization",
+      "ranking_score": 86,
+      "full_analysis": [
+        {"label": "引擎工作流", "text": "Nanite 對連續表面能依螢幕像素縮減幾何，但 foliage、hair、grass 這類 aggregate geometry 由大量斷開小片組成，遠處仍像半透明雲團，既難合併成更粗 cluster，也需要更多深度層才能完成 occlusion。"},
+        {"label": "製作價值", "text": "因此所有高模都開 Nanite 不能取代內容型態判斷。樹葉卡片、密集草與多層毛片可能在同樣像素覆蓋下畫更多 triangles 並產生 overdraw，場景美術需要把材質遮罩、幾何密度與距離策略一起評估。"},
+        {"label": "平台實測", "text": "用同一片植被建立傳統 LOD 與 Nanite 版本，在近中遠距離記錄 triangles、overdraw、GPU time 與記憶體；再改葉片大小與層數找甜蜜點。決策應由 profiler 驗證，不以單張 editor screenshot 判斷。"}
+      ],
+      "rank_global": 15,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "houdini-project-grot-procedural-ruins",
+      "title": "Project GROT：從粗 Blockout 生成高模廢墟的 Houdini→Unreal 程序化場景範例",
+      "summary": "SideFX Project GROT 教學將粗略 blockout 轉成高模程序化廢墟，並延伸到橋樑、熔岩地形、煙霧 VDB 等 Unreal 場景工具。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://www.sidefx.com/learn/collections/project-grot/",
+      "category": "3d-production",
+      "subcategory": "environment-production",
+      "ranking_score": 85,
+      "full_analysis": [
+        {"label": "場景製作流程", "text": "Project GROT 的重點是讓粗 blockout 成為程序化工具的輸入，再由 Houdini 產生可用於 Unreal 的細節高模；同一系列也用曲線驅動橋樑、solver 生成熔岩地形，並把 loopable smoke 以 VDB 帶入引擎。"},
+        {"label": "流程價值", "text": "這種做法把環境美術的反覆修改從重做資產變成調整輸入與規則，對關卡尺寸與構圖尚未鎖定的階段很有價值。尤其適合岩壁、廢墟、肉質結構等可程序化變形的自然或有機場景。"},
+        {"label": "實測", "text": "先只重做一段牆或橋樑工具，要求能在三種長度與轉角下保持 UV、碰撞、Nanite 與材質一致；記錄每次關卡改尺寸後的修正分鐘數。若工具維護時間高於重做成本，就不應過早擴成完整系統。"}
+      ],
+      "rank_global": 16,
+      "homepage_tier": "category_only"
+    },
+    {
+      "id": "blender-unity-rig-humanoid",
+      "title": "Unity Rig：在 Blender 直接建立／轉換 Unity Humanoid 相容骨架，減少 Rigify 匯出整理",
+      "summary": "Unity Rig 擴充可建立 Unity Humanoid-compatible rig，或把 Rigify 轉為符合 Unity 命名與 hierarchy 的輸出骨架。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://extensions.blender.org/add-ons/unity-rig/",
+      "category": "blender-dcc",
+      "subcategory": "addon",
+      "ranking_score": 84,
+      "full_analysis": [
+        {"label": "DCC 工作流", "text": "Unity Rig 的定位是解決 Rigify 控制骨架與 Unity Humanoid 自動 mapping 之間的結構落差：可以直接建立 Unity-native rig，也能把既有 Rigify 轉成較符合 Unity 命名與 hierarchy 的輸出骨架，減少手動刪控制骨與改名。"},
+        {"label": "製作價值", "text": "對 Blender 到 Unity 的角色管線，穩定的 deformation skeleton 比 DCC 內控制器多寡更重要。若轉換能固定骨名、父子關係與 Humanoid mapping，就能把匯出 SOP 變成可重複工具，而不是每位美術各自處理。"},
+        {"label": "升版與導入測試", "text": "用現有 Rigify 角色轉換後輸出 FBX，檢查 Unity Avatar Mapping、T-pose、root、finger、scale 與 10 段既有動畫；再比較原始 Rigify Only Deform Bones 的結果。只有映射成功率與返工時間更好，才值得替換既有 SOP。"}
+      ],
+      "rank_global": 17,
+      "homepage_tier": "category_only"
+    },
+    {
+      "id": "ue58-shading-model-selection",
+      "title": "UE5.8 Shading Models：Default Lit、Unlit、Hair、Cloth 等材質模型應視為 production 規格而非外觀開關",
+      "summary": "Epic 的 Shading Models 文件整理不同光照模型的適用表面；選錯模型會改變材質輸入的解讀與最終光照反應。",
+      "quick_impact": "★★★☆☆",
+      "source_url": "https://dev.epicgames.com/documentation/unreal-engine/shading-models-in-unreal-engine",
+      "category": "engine-art",
+      "subcategory": "shader",
+      "ranking_score": 80,
+      "full_analysis": [
+        {"label": "引擎工作流", "text": "Shading Model 決定材質如何解讀 incoming light 與各輸入，Default Lit 適合通用表面，Hair、Cloth、Clear Coat 等則針對特定光學行為；Unlit 主要只輸出 Emissive。這不是最後一步風格切換，而是材質資料與光照模型的基礎契約。"},
+        {"label": "製作價值", "text": "對 NPR 專案尤其值得明確化：哪些材質要保留引擎光照、哪些完全由自訂 Ramp 或 Emissive 控制，應在材質架構初期決定。否則角色不同部位可能因 shading model 混用而出現亮度、反射與陰影邏輯不一致。"},
+        {"label": "平台實測", "text": "建立同一 Base Color 與 Normal 的 Default Lit、Unlit 與特殊 shading model 對照球，在主光、點光、陰影與 Lumen 下量化輸出；再把角色皮膚、頭髮、布料逐一套用，確認美術規範與效能成本是否符合專案。"}
+      ],
+      "rank_global": 18,
+      "homepage_tier": "category_only"
+    },
+    {
+      "id": "blender-ar-module-20260908",
+      "title": "Blender Animation & Rigging 9/8 模組會議：追蹤綁定與動畫核心功能的近期開發方向",
+      "summary": "Blender Animation & Rigging 模組在 9 月 8 日召開公開會議，持續追蹤該模組的 issues、pull requests 與長期開發焦點。",
+      "quick_impact": "★★★☆☆",
+      "source_url": "https://devtalk.blender.org/t/2026-09-08-animation-rigging-module-meeting/45784",
+      "category": "3d-animation",
+      "subcategory": "animation",
+      "ranking_score": 79,
+      "full_analysis": [
+        {"label": "動作製作流程", "text": "這類模組會議不是教學或版本發佈，而是 Blender 動畫與綁定核心維護者定期整理 issues、pull requests 與長期焦點的工作紀錄。它的價值在於能比正式 release notes 更早看到哪些動畫或 rig 問題正在進入實作或評估。"},
+        {"label": "Rig 與輸出", "text": "對需要長期把 Blender 納入角色管線的團隊，提前掌握 Animation & Rigging 模組走向可以避免把內部工具綁死在即將改動的 API 或工作流上；但會議討論不等於承諾功能，不能直接當成 production roadmap。"},
+        {"label": "導入測試", "text": "建議只把已合併或進入明確 milestone 的項目列入測試清單，對純討論項目保留觀察。若團隊有自製 rig addon，可每月對照一次模組會議與 nightly build，提早發現相容性風險。"}
+      ],
+      "rank_global": 19,
+      "homepage_tier": "category_only"
+    },
+    {
+      "id": "siggraph26-ctrl-g-generative-games",
+      "title": "CTRL-G：遊戲生成式圖形的下一個門檻從能生成轉向即時可控制與可接管線",
+      "summary": "NVIDIA、Epic 與學界在 SIGGRAPH Frontiers 的 CTRL-G 聚焦 controllable generative graphics，討論生成系統如何回應玩家意圖並整合到現代遊戲引擎。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://research.nvidia.com/index.php/publication/2026-07_ctrl-g-controllable-generative-graphics-games",
+      "category": "emerging-case",
+      "subcategory": "research",
+      "ranking_score": 78,
+      "full_analysis": [
+        {"label": "技術方向", "text": "CTRL-G 把問題從生成畫面或內容提升到 controllability：生成系統必須能即時接受控制、對玩家意圖保持一致，並可被現有引擎與 production pipeline 約束。參與者橫跨 NVIDIA、Epic 與遊戲 AI 或 graphics 研究，反映這已成為跨領域議題。"},
+        {"label": "製作潛力", "text": "對遊戲美術而言，真正可用的生成系統不能每次都重新猜測場景，而要能鎖定角色、空間、材質與互動狀態。這與目前 AI 3D 從單次 mesh 走向 editable、part-aware、engine-ready 的趨勢一致，控制能力會比單張品質更重要。"},
+        {"label": "成熟度判斷", "text": "現階段更適合作為技術雷達而非立即採購項目。團隊可先把可重現 seed、局部鎖定、狀態持續、延遲、引擎 API 列為未來生成工具評測欄位；若產品只展示離線影片，應與真正 interactive pipeline 分開評分。"}
+      ],
+      "rank_global": 20,
+      "homepage_tier": "category_only"
+    },
+    {
+      "id": "blender-molecularnodes-520",
+      "title": "Molecular Nodes 520：Blender Geometry Nodes 的科學資料匯入與動畫工具持續擴充",
+      "summary": "Molecular Nodes 在 9 月 5 日更新至 520.0.0，持續提供分子、軌跡與 cryo-EM 等資料匯入，以及 Geometry Nodes 內的選取、造型與動畫節點。",
+      "quick_impact": "★★★☆☆",
+      "source_url": "https://extensions.blender.org/add-ons/molecularnodes/",
+      "category": "blender-dcc",
+      "subcategory": "addon",
+      "ranking_score": 77,
+      "full_analysis": [
+        {"label": "DCC 工作流", "text": "Molecular Nodes 把原子、小分子、蛋白質、分子動力學 trajectory、cryo-EM 或 tomography 等資料直接帶進 Blender，並提供預製 Geometry Nodes 用於 selection、styling 與 animation。這代表複雜科學資料不必先手工轉成一般 mesh 才能視覺化。"},
+        {"label": "製作價值", "text": "它不是典型遊戲資產工具，但對需要醫療、科學、科幻 UI 或程序化有機結構參考的美術很有價值；更重要的是展示 Geometry Nodes 作為專業資料到可視幾何中介層的成熟用法，可借鑑到其他 pipeline 工具。"},
+        {"label": "升版與導入測試", "text": "若專案有資料視覺化需求，可用一組 trajectory 測匯入時間、節點可編輯性、幾何數量與 Eevee 或 Cycles 效能。一般遊戲專案則不需直接導入，但可以拆解其 node group 設計，作為程序化工具 UI 與資料映射參考。"}
+      ],
+      "rank_global": 21,
+      "homepage_tier": "category_only"
+    },
+    {
+      "id": "substance-painter-1214-nonascii-fix",
+      "title": "Substance 3D Painter 12.1.4：修正非 ASCII 檔名匯入／匯出 Crash，亞洲團隊管線風險下降",
+      "summary": "Painter 12.1.4 於 9 月 4 日發布，修正匯入或匯出含非 ASCII 字元檔名時可能 crash 的問題。",
+      "quick_impact": "★★★☆☆",
+      "source_url": "https://experienceleague.adobe.com/en/docs/substance-3d-painter/using/release-notes/all-changes",
+      "category": "blender-dcc",
+      "subcategory": "substance",
+      "ranking_score": 76,
+      "full_analysis": [
+        {"label": "DCC 工作流", "text": "12.1.4 是小型修正版，核心變更是修正檔名含非 ASCII 字元時的 import/export crash。它沒有新增大型美術功能，但對使用中文、日文或其他本地化命名的資產庫而言，這屬於會直接中斷批次輸出的穩定性問題。"},
+        {"label": "製作價值", "text": "若公司內部或外包檔名包含中文角色名、場景名，舊版 crash 可能迫使團隊臨時改名，進而破壞 DCC、版本控制與引擎資產引用。這類穩定性修正的 production value 高於一般 UI 微調，尤其對跨語系管線。"},
+        {"label": "升版與導入測試", "text": "升級前可準備含中文、日文、空格與長路徑的 FBX 或貼圖專案，跑一次 import、texture export 與自動化批次。確認插件與 shelf 相容後再推團隊版本；若目前全部採 ASCII naming，則可降低升級優先度。"}
+      ],
+      "rank_global": 22,
+      "homepage_tier": "category_only"
+    },
+    {
+      "id": "substance-designer-1606-stability",
+      "title": "Substance 3D Designer 16.0.6：Shader compile／非 ASCII export 與多個影像解析漏洞修正",
+      "summary": "Designer 16.0.6 於 9 月 4 日更新，修正關閉時 shader compile crash、非 ASCII 路徑 export crash，並包含 TGA/TIFF 解析安全修正。",
+      "quick_impact": "★★★☆☆",
+      "source_url": "https://experienceleague.adobe.com/en/docs/substance-3d-designer/using/release-notes/all-changes",
+      "category": "blender-dcc",
+      "subcategory": "substance",
+      "ranking_score": 75,
+      "full_analysis": [
+        {"label": "DCC 工作流", "text": "16.0.6 聚焦穩定與安全：修正關閉程式時仍在編譯 shader 的 crash、輸出到含非 ASCII 字元路徑的 crash，並處理 TGA/TIFF parser 的 out-of-bounds 與 null pointer 問題。這是典型 production maintenance release。"},
+        {"label": "製作價值", "text": "對 Designer 常駐批次出圖、共享網路路徑或亞洲語系專案，路徑與關閉階段 crash 都會增加不可預測的工時；解析器安全修正也提醒團隊不要把來源不明的紋理檔直接納入自動化流程。"},
+        {"label": "升版與導入測試", "text": "在 staging 機器先跑既有 SBS/SBSAR、GPU shader compile、批次 export 與含中文路徑的測試，再確認自訂 Python plugin 與 renderer 行為。這版不需要因新功能全面改流程，但穩定性敏感的工作站值得優先更新。"}
+      ],
+      "rank_global": 23,
+      "homepage_tier": "category_only"
+    }
+  ],
+  "visual_evidence": {}
+}
