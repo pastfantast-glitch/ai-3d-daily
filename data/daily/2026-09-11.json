@@ -2,11 +2,17 @@
   "date": "2026-09-11",
   "schema_version": 3,
   "metadata": {
-    "total_items": 15,
+    "total_items": 14,
     "collection_mode": "production-intelligence-preference-v1-hybrid",
     "collection_contract_effective_date": "2026-09-04",
     "preference_contract_effective_date": "2026-09-06",
-    "discovery_windows": ["24h", "7d", "30d", "6m", "evergreen"],
+    "discovery_windows": [
+      "24h",
+      "7d",
+      "30d",
+      "6m",
+      "evergreen"
+    ],
     "discovery_coverage": {
       "fill_ladder_exhausted": true,
       "backlog_checked": true,
@@ -14,25 +20,82 @@
       "targeted_refill_performed": true,
       "quality_first_confirmed": true,
       "windows": {
-        "24h": {"status": "exhausted", "candidates_found": 3},
-        "7d": {"status": "exhausted", "candidates_found": 11},
-        "30d": {"status": "exhausted", "candidates_found": 19},
-        "6m": {"status": "exhausted", "candidates_found": 31},
-        "evergreen": {"status": "exhausted", "candidates_found": 22}
+        "24h": {
+          "status": "exhausted",
+          "candidates_found": 3
+        },
+        "7d": {
+          "status": "exhausted",
+          "candidates_found": 11
+        },
+        "30d": {
+          "status": "exhausted",
+          "candidates_found": 19
+        },
+        "6m": {
+          "status": "exhausted",
+          "candidates_found": 31
+        },
+        "evergreen": {
+          "status": "exhausted",
+          "candidates_found": 22
+        }
       },
       "category_candidates": {
-        "ai-generation": {"candidates_considered": 17},
-        "3d-production": {"candidates_considered": 16},
-        "3d-animation": {"candidates_considered": 19},
-        "engine-art": {"candidates_considered": 14},
-        "emerging-case": {"candidates_considered": 13},
-        "blender-dcc": {"candidates_considered": 12}
+        "ai-generation": {
+          "candidates_considered": 17
+        },
+        "3d-production": {
+          "candidates_considered": 16
+        },
+        "3d-animation": {
+          "candidates_considered": 19
+        },
+        "engine-art": {
+          "candidates_considered": 14
+        },
+        "emerging-case": {
+          "candidates_considered": 13
+        },
+        "blender-dcc": {
+          "candidates_considered": 12
+        }
       },
       "notes": "Completed candidate-pool discovery across all configured windows using fresh and evergreen searches. The rolling backlog was refreshed first and contained no eligible items. Targeted refill was performed across low-volume categories and specifically used the always-discover 3D-animation profile for key pose, blocking, body mechanics, rigging and engine-side pose workflows. Candidates were screened for source verifiability, production transfer, canonical-source duplication and substantive value; weak marketing-only, showcase-only and redundant items were rejected. No verified unpublished quality-pass backlog candidate remained eligible after selection."
     },
-    "full_analysis_depth_contract": "source-supported-production-depth",
+    "full_analysis_depth_contract": "v4-source-supported-production-depth",
     "full_analysis_style_reference": "2026-09-01",
-    "full_analysis_heading_language": "zh-Hant"
+    "full_analysis_heading_language": "zh-Hant",
+    "registry_identity_normalization": {
+      "dropped_count": 1,
+      "rewritten_count": 0,
+      "policy": "verified-DONE-published-canonical-source-without-substantive-delta-skip",
+      "source_identity_precedence": "published-daily-html-card-then-canonical-json",
+      "url_identity": "scripts/url_identity.py",
+      "stage": "collection-before-ready",
+      "refill_required": false,
+      "category_deficits": {},
+      "daily_release_gate": {
+        "have": 14,
+        "min": 12,
+        "target": 30,
+        "max": 30,
+        "missing_to_min": 6,
+        "missing_to_target": 16,
+        "release_ready": true,
+        "category_counts": {
+          "ai-generation": 3,
+          "3d-production": 3,
+          "3d-animation": 3,
+          "engine-art": 2,
+          "emerging-case": 2,
+          "blender-dcc": 1
+        },
+        "normal_min": 20,
+        "release_mode": "LOW_VOLUME_COMPLETE",
+        "low_volume_authorized": true
+      }
+    }
   },
   "items": [
     {
@@ -45,9 +108,18 @@
       "subcategory": "rendering",
       "ranking_score": 100,
       "full_analysis": [
-        {"label": "引擎工作流", "text": "Adreno Neural Fusion 把 neural processing、AI super resolution 與 frame generation 合到 GPU graphics pipeline，並以每個 GPU slice 內的 Matrix Cores 與 18MB High Performance Memory 讓 AI workload 更靠近圖形資料。對 Unity/Unreal 團隊而言，重點是供應商宣稱已有引擎整合，而非要求每個遊戲自行搭一套 NPU pipeline。"},
-        {"label": "製作價值", "text": "若實際裝置能用較低 internal resolution 維持可接受畫質，再以 AI upscale/frame generation 補輸出，行動專案就可能把 GPU 預算讓給更複雜材質、陰影或角色數量。這會直接影響 art budget 設計，但生成幀造成的 latency、UI/alpha artifact 與特定內容 ghosting 仍可能限制使用場景。"},
-        {"label": "平台實測", "text": "應在支援晶片的實機建立固定 benchmark scene，比較原生解析度、只 upscale、upscale＋frame generation 的 GPU time、功耗、熱降頻、input latency 與 artifact；特別測細線 toon outline、粒子、透明髮絲、快速鏡頭與 UI。官方宣稱不能替代實機 capture，必須把 QA 納入不同畫質檔。"}
+        {
+          "label": "引擎工作流",
+          "text": "Adreno Neural Fusion 把 neural processing、AI super resolution 與 frame generation 合到 GPU graphics pipeline，並以每個 GPU slice 內的 Matrix Cores 與 18MB High Performance Memory 讓 AI workload 更靠近圖形資料。對 Unity/Unreal 團隊而言，重點是供應商宣稱已有引擎整合，而非要求每個遊戲自行搭一套 NPU pipeline。"
+        },
+        {
+          "label": "製作價值",
+          "text": "若實際裝置能用較低 internal resolution 維持可接受畫質，再以 AI upscale/frame generation 補輸出，行動專案就可能把 GPU 預算讓給更複雜材質、陰影或角色數量。這會直接影響 art budget 設計，但生成幀造成的 latency、UI/alpha artifact 與特定內容 ghosting 仍可能限制使用場景。"
+        },
+        {
+          "label": "平台實測",
+          "text": "應在支援晶片的實機建立固定 benchmark scene，比較原生解析度、只 upscale、upscale＋frame generation 的 GPU time、功耗、熱降頻、input latency 與 artifact；特別測細線 toon outline、粒子、透明髮絲、快速鏡頭與 UI。官方宣稱不能替代實機 capture，必須把 QA 納入不同畫質檔。"
+        }
       ],
       "rank_global": 1,
       "homepage_tier": "top5"
@@ -62,9 +134,18 @@
       "subcategory": "animation",
       "ranking_score": 99,
       "full_analysis": [
-        {"label": "動作製作流程", "text": "教學從 reference 與 thumbnail 開始，再以 stepped curves 建立 blocking；角色接近物件時手臂先用 FK 保留自然 arc，接觸重物後改成 IK 鎖住手部。關鍵不是逐格抄 reference，而是挑出 contact、passing 與力量轉換的 key pose，並在 spline 前先補足 breakdown 與 offset。"},
-        {"label": "製作價值", "text": "這套方法直接對應遊戲動作常見的『看起來有動，但沒有重量』問題。透過降低重心、用髖與 torso 推動力量、保持手腳 contact，可讓 attack、push、pull、climb 等動作在少量 key pose 下仍有清楚意圖；同時 clean keys 也降低 spline 後 curve 爆掉與 cleanup 的成本。"},
-        {"label": "導入測試", "text": "用同一角色製作 2–3 秒推箱動作，第一版只做主要 key pose，第二版在 blocking 階段加入 breakdown、overlap 與 IK contact，再比較 spline 後 foot/hand sliding、曲線修正次數與讀姿清晰度。最後進引擎檢查 root motion 與碰撞節點，確保 Maya 內成立的重量感沒有在 retarget 後消失。"}
+        {
+          "label": "動作製作流程",
+          "text": "教學從 reference 與 thumbnail 開始，再以 stepped curves 建立 blocking；角色接近物件時手臂先用 FK 保留自然 arc，接觸重物後改成 IK 鎖住手部。關鍵不是逐格抄 reference，而是挑出 contact、passing 與力量轉換的 key pose，並在 spline 前先補足 breakdown 與 offset。"
+        },
+        {
+          "label": "製作價值",
+          "text": "這套方法直接對應遊戲動作常見的『看起來有動，但沒有重量』問題。透過降低重心、用髖與 torso 推動力量、保持手腳 contact，可讓 attack、push、pull、climb 等動作在少量 key pose 下仍有清楚意圖；同時 clean keys 也降低 spline 後 curve 爆掉與 cleanup 的成本。"
+        },
+        {
+          "label": "導入測試",
+          "text": "用同一角色製作 2–3 秒推箱動作，第一版只做主要 key pose，第二版在 blocking 階段加入 breakdown、overlap 與 IK contact，再比較 spline 後 foot/hand sliding、曲線修正次數與讀姿清晰度。最後進引擎檢查 root motion 與碰撞節點，確保 Maya 內成立的重量感沒有在 retarget 後消失。"
+        }
       ],
       "rank_global": 2,
       "homepage_tier": "top5"
@@ -79,9 +160,18 @@
       "subcategory": "ai-3d",
       "ranking_score": 98,
       "full_analysis": [
-        {"label": "生成與製作流程", "text": "這份流程把 AI 網格明確放在 production chain 的前段，而不是成品端；生成後仍保留 topology cleanup、UV、PBR texture、rigging、QA、engine export 與 approval，並要求記錄 prompt、設定、人工修改與授權資訊。這種設計更接近遊戲團隊真正需要的可追溯資產流程。"},
-        {"label": "流程價值", "text": "對大量背景物件、原型角色或變體資產，價值在於把重複的 first pass 壓縮，而不是省略美術與 TA 驗收。若團隊能把 poly budget、UV、材質通道、骨架與命名規範寫成固定 gate，AI 產出才有機會穩定進入 Unity／Unreal，而不是把返工延後到引擎端。"},
-        {"label": "導入測試", "text": "建議選一個角色與兩個 prop 跑完整 A/B：傳統流程對照 Tripo 生成＋整理，記錄人工修網時間、UV 重做率、PBR 修正、skin deformation、匯入錯誤與最終 draw/mesh budget。指南來自供應商，效率敘述不可直接當 benchmark，必須以團隊自己的交付標準驗證。"}
+        {
+          "label": "生成與製作流程",
+          "text": "這份流程把 AI 網格明確放在 production chain 的前段，而不是成品端；生成後仍保留 topology cleanup、UV、PBR texture、rigging、QA、engine export 與 approval，並要求記錄 prompt、設定、人工修改與授權資訊。這種設計更接近遊戲團隊真正需要的可追溯資產流程。"
+        },
+        {
+          "label": "流程價值",
+          "text": "對大量背景物件、原型角色或變體資產，價值在於把重複的 first pass 壓縮，而不是省略美術與 TA 驗收。若團隊能把 poly budget、UV、材質通道、骨架與命名規範寫成固定 gate，AI 產出才有機會穩定進入 Unity／Unreal，而不是把返工延後到引擎端。"
+        },
+        {
+          "label": "導入測試",
+          "text": "建議選一個角色與兩個 prop 跑完整 A/B：傳統流程對照 Tripo 生成＋整理，記錄人工修網時間、UV 重做率、PBR 修正、skin deformation、匯入錯誤與最終 draw/mesh budget。指南來自供應商，效率敘述不可直接當 benchmark，必須以團隊自己的交付標準驗證。"
+        }
       ],
       "rank_global": 3,
       "homepage_tier": "top5"
@@ -96,9 +186,18 @@
       "subcategory": "ai-3d",
       "ranking_score": 97,
       "full_analysis": [
-        {"label": "API 與生成流程", "text": "這個 API surface 不只負責 text/image-to-3D，也把 Smart Mesh、segmentation、part completion、texture 與 rigging 放在同一條可呼叫鏈上，最後能以 FBX 或 GLB 輸出。對 production 而言，重要變化是每個後處理階段可以被 job system、DCC plugin 或資產管理流程明確觸發與記錄。"},
-        {"label": "製作價值", "text": "當生成與後處理能批次化後，團隊可以建立輸入 reference、生成多版本、topology/texture gate、engine import 的半自動流程，尤其適合大量 prop 與早期 prototype。真正瓶頸會從按按鈕轉成品質檢查、失敗重試、版本追蹤與成本控制，因此 API 可用不等於可無人值守。"},
-        {"label": "導入測試", "text": "先以 20 個不同類型資產測試每階段成功率、平均 credit、輸出面數、UV/PBR 完整度、pivot、FBX skeleton 與 Unity/Unreal import。另要故意加入透明材質、薄片、非對稱角色與複雜硬表面，觀察 segmentation/retopo 是否失真，再決定哪些步驟能自動通過、哪些必須人工 gate。"}
+        {
+          "label": "API 與生成流程",
+          "text": "這個 API surface 不只負責 text/image-to-3D，也把 Smart Mesh、segmentation、part completion、texture 與 rigging 放在同一條可呼叫鏈上，最後能以 FBX 或 GLB 輸出。對 production 而言，重要變化是每個後處理階段可以被 job system、DCC plugin 或資產管理流程明確觸發與記錄。"
+        },
+        {
+          "label": "製作價值",
+          "text": "當生成與後處理能批次化後，團隊可以建立輸入 reference、生成多版本、topology/texture gate、engine import 的半自動流程，尤其適合大量 prop 與早期 prototype。真正瓶頸會從按按鈕轉成品質檢查、失敗重試、版本追蹤與成本控制，因此 API 可用不等於可無人值守。"
+        },
+        {
+          "label": "導入測試",
+          "text": "先以 20 個不同類型資產測試每階段成功率、平均 credit、輸出面數、UV/PBR 完整度、pivot、FBX skeleton 與 Unity/Unreal import。另要故意加入透明材質、薄片、非對稱角色與複雜硬表面，觀察 segmentation/retopo 是否失真，再決定哪些步驟能自動通過、哪些必須人工 gate。"
+        }
       ],
       "rank_global": 4,
       "homepage_tier": "top5"
@@ -113,9 +212,18 @@
       "subcategory": "production-workflow",
       "ranking_score": 96,
       "full_analysis": [
-        {"label": "製作流程", "text": "這份 breakdown 把 stylized handpaint 拆成 Blockout、Sculpting、Optimization、Substance Setup、Material Setup 與 Texturing，而不是只展示最終貼圖。Blender、ZBrush、Substance 的角色被清楚分工：形體、細化、低模與材質流程彼此接續，能直接轉成團隊 SOP。"},
-        {"label": "流程價值", "text": "作者明確以 game-ready 與 real-time constraints 為前提，並指出同一流程能套到 prop、weapon、outfit，這比只針對單一作品的技巧更有 production 價值。對 NPR／Toon 專案尤其值得關注，因為 handpaint 的視覺控制可以和較低材質複雜度結合，保持清楚的形體層級。"},
-        {"label": "導入測試", "text": "選一件武器與一件服裝照此 pipeline 重做，記錄 sculpt 到 lowpoly 的輪廓保留、bake artifact、Substance layer 數、手繪時間與引擎中的光照依賴。若要轉成外包規範，需再把貼圖尺寸、texel density、材質通道與可接受的 AO/lighting 烘焙程度量化。"}
+        {
+          "label": "製作流程",
+          "text": "這份 breakdown 把 stylized handpaint 拆成 Blockout、Sculpting、Optimization、Substance Setup、Material Setup 與 Texturing，而不是只展示最終貼圖。Blender、ZBrush、Substance 的角色被清楚分工：形體、細化、低模與材質流程彼此接續，能直接轉成團隊 SOP。"
+        },
+        {
+          "label": "流程價值",
+          "text": "作者明確以 game-ready 與 real-time constraints 為前提，並指出同一流程能套到 prop、weapon、outfit，這比只針對單一作品的技巧更有 production 價值。對 NPR／Toon 專案尤其值得關注，因為 handpaint 的視覺控制可以和較低材質複雜度結合，保持清楚的形體層級。"
+        },
+        {
+          "label": "導入測試",
+          "text": "選一件武器與一件服裝照此 pipeline 重做，記錄 sculpt 到 lowpoly 的輪廓保留、bake artifact、Substance layer 數、手繪時間與引擎中的光照依賴。若要轉成外包規範，需再把貼圖尺寸、texel density、材質通道與可接受的 AO/lighting 烘焙程度量化。"
+        }
       ],
       "rank_global": 5,
       "homepage_tier": "top5"
@@ -130,9 +238,18 @@
       "subcategory": "animation",
       "ranking_score": 95,
       "full_analysis": [
-        {"label": "動作製作流程", "text": "UE5.8 Animation Mode 把 Pose、Tween、Snapper、Motion Trails 與 temporary Pivot 集中到同一套工具；Pose Tool 可以儲存 Control Rig controls、選取對應 controls、鏡像或混合 pose，並在套用時直接產生 keyframe。這讓建立與重用 key pose 不必每次從 DCC 重做或 bake 整段動畫。"},
-        {"label": "Rig 與輸出", "text": "對 gameplay animation，Pose Asset library 可成為 idle、attack anticipation、hit reaction 等姿勢基準，並與 Control Rig 的 engine-side edit 結合。它不會取代 Maya/Blender 的完整 animation workflow，但能把 retarget 後的小修、左右姿勢變體與 staging 調整留在 Unreal，縮短 round-trip。"},
-        {"label": "導入測試", "text": "先建立 10 個常用 combat key poses，驗證左右鏡像、blend pose、keyframe 寫入與不同骨架比例下的可重用程度，再把同一 animation sequence 分別用 DCC 回修與 Unreal Pose Tool 修正，記錄往返時間與失真。需要特別檢查 Control Rig 命名一致性與 pose 套用後的肩髖 deformation。"}
+        {
+          "label": "動作製作流程",
+          "text": "UE5.8 Animation Mode 把 Pose、Tween、Snapper、Motion Trails 與 temporary Pivot 集中到同一套工具；Pose Tool 可以儲存 Control Rig controls、選取對應 controls、鏡像或混合 pose，並在套用時直接產生 keyframe。這讓建立與重用 key pose 不必每次從 DCC 重做或 bake 整段動畫。"
+        },
+        {
+          "label": "Rig 與輸出",
+          "text": "對 gameplay animation，Pose Asset library 可成為 idle、attack anticipation、hit reaction 等姿勢基準，並與 Control Rig 的 engine-side edit 結合。它不會取代 Maya/Blender 的完整 animation workflow，但能把 retarget 後的小修、左右姿勢變體與 staging 調整留在 Unreal，縮短 round-trip。"
+        },
+        {
+          "label": "導入測試",
+          "text": "先建立 10 個常用 combat key poses，驗證左右鏡像、blend pose、keyframe 寫入與不同骨架比例下的可重用程度，再把同一 animation sequence 分別用 DCC 回修與 Unreal Pose Tool 修正，記錄往返時間與失真。需要特別檢查 Control Rig 命名一致性與 pose 套用後的肩髖 deformation。"
+        }
       ],
       "rank_global": 6,
       "homepage_tier": "next10"
@@ -147,9 +264,18 @@
       "subcategory": "unity",
       "ranking_score": 94,
       "full_analysis": [
-        {"label": "引擎工作流", "text": "講座把 Unity 6 世代 Render Graph 的目的、API 使用與 custom post-processing migration 放在一起，並明確提醒 6.3 以前仍可依賴的 compatibility mode 在 6.4 之後不再是長期方案。對有自製 Renderer Feature、NPR pass、outline 或特殊後處理的專案，這是架構層而非單一 shader 的升版工作。"},
-        {"label": "製作影響", "text": "Render Graph 會改變 render pass 對資源生命週期、讀寫依賴與暫存 texture 的管理方式。對技術美術而言，最大的風險不是畫面立刻壞掉，而是既有 custom pass 在升版時編譯或執行順序出問題；如果團隊有大量 URP 擴充，應把 migration 當成版本計畫的一部分。"},
-        {"label": "平台實測", "text": "先列出專案所有 Renderer Features、custom post effects、camera stack 與 temporary RT 使用點，在 6.3 建 baseline，再於 6.4 branch 逐項改為 Render Graph 實作。比較 Frame Debugger、GPU capture、記憶體與畫面 parity；NPR 專案尤其要檢查 depth/normal texture availability、透明排序與多 camera 行為。"}
+        {
+          "label": "引擎工作流",
+          "text": "講座把 Unity 6 世代 Render Graph 的目的、API 使用與 custom post-processing migration 放在一起，並明確提醒 6.3 以前仍可依賴的 compatibility mode 在 6.4 之後不再是長期方案。對有自製 Renderer Feature、NPR pass、outline 或特殊後處理的專案，這是架構層而非單一 shader 的升版工作。"
+        },
+        {
+          "label": "製作影響",
+          "text": "Render Graph 會改變 render pass 對資源生命週期、讀寫依賴與暫存 texture 的管理方式。對技術美術而言，最大的風險不是畫面立刻壞掉，而是既有 custom pass 在升版時編譯或執行順序出問題；如果團隊有大量 URP 擴充，應把 migration 當成版本計畫的一部分。"
+        },
+        {
+          "label": "平台實測",
+          "text": "先列出專案所有 Renderer Features、custom post effects、camera stack 與 temporary RT 使用點，在 6.3 建 baseline，再於 6.4 branch 逐項改為 Render Graph 實作。比較 Frame Debugger、GPU capture、記憶體與畫面 parity；NPR 專案尤其要檢查 depth/normal texture availability、透明排序與多 camera 行為。"
+        }
       ],
       "rank_global": 7,
       "homepage_tier": "next10"
@@ -164,9 +290,18 @@
       "subcategory": "research",
       "ranking_score": 93,
       "full_analysis": [
-        {"label": "技術方向", "text": "方法把 Gaussian 的 rasterization 轉成採樣像素大小的不透明 points，再以 64-bit atomics 平行寫入 framebuffer，並處理同一 pixel 多點命中時的 opacity 分布；再搭配 hierarchical frustum 與 occlusion culling。核心方向是把大量 Gaussians 的工作切成高度平行的小單位。"},
-        {"label": "製作潛力", "text": "若這類 renderer 能在實務 GPU 與工具鏈中成熟，超大型 scan/world capture、數位場景與混合傳統 mesh 的 viewport 可能獲得更高可視規模。對遊戲美術的價值不只是 FPS，而是能否讓 splat asset 進入可編輯、可 LOD、可遮擋與可 streaming 的 production 管線。"},
-        {"label": "成熟度判斷", "text": "建議先在 R&D branch 用同一大型 3DGS scene 比較既有 renderer 與 point splatting 的 FPS、VRAM、aliasing、noise、camera motion 穩定性與不同 opacity 分布；論文指出輸出仍有輕微 noise/aliasing 差異，因此目前更適合作為 rendering research benchmark，而非直接替代 mesh pipeline。"}
+        {
+          "label": "技術方向",
+          "text": "方法把 Gaussian 的 rasterization 轉成採樣像素大小的不透明 points，再以 64-bit atomics 平行寫入 framebuffer，並處理同一 pixel 多點命中時的 opacity 分布；再搭配 hierarchical frustum 與 occlusion culling。核心方向是把大量 Gaussians 的工作切成高度平行的小單位。"
+        },
+        {
+          "label": "製作潛力",
+          "text": "若這類 renderer 能在實務 GPU 與工具鏈中成熟，超大型 scan/world capture、數位場景與混合傳統 mesh 的 viewport 可能獲得更高可視規模。對遊戲美術的價值不只是 FPS，而是能否讓 splat asset 進入可編輯、可 LOD、可遮擋與可 streaming 的 production 管線。"
+        },
+        {
+          "label": "成熟度判斷",
+          "text": "建議先在 R&D branch 用同一大型 3DGS scene 比較既有 renderer 與 point splatting 的 FPS、VRAM、aliasing、noise、camera motion 穩定性與不同 opacity 分布；論文指出輸出仍有輕微 noise/aliasing 差異，因此目前更適合作為 rendering research benchmark，而非直接替代 mesh pipeline。"
+        }
       ],
       "rank_global": 8,
       "homepage_tier": "next10"
@@ -181,9 +316,18 @@
       "subcategory": "animation",
       "ranking_score": 92,
       "full_analysis": [
-        {"label": "動作製作流程", "text": "課程把複雜 fight shot 拆成 planning/reference、spline-blocking、straight-ahead 段落、多角色 physical interaction 與 moving camera，而不是只靠 pose-to-pose。這對高動態鏡頭很重要，因為角色接觸、相對速度與鏡頭運動會互相影響，單獨把每個角色做完再合併通常會增加返工。"},
-        {"label": "製作價值", "text": "對 boss attack、摔技、雙人處決或 cinematic combat，最大的 production 風險是接觸點漂移與鏡頭切換後 silhouette 失效。先把整個 shot 當成關係系統規劃，可讓 primary action、secondary reaction 與 camera rhythm 同時被 review，減少最後 polish 才發現 staging 不成立。"},
-        {"label": "導入測試", "text": "可用兩角色 3–5 秒 grapple/throw 測試：先鎖 camera 與 contact beats，再分層完成 blocking、interaction constraint 與 polish，記錄每次 review 的返工來源。若是 gameplay animation，還要拆出可重用 clip、root motion、hit frame 與 gameplay event，避免 cinematic 方法直接套用後失去可控性。"}
+        {
+          "label": "動作製作流程",
+          "text": "課程把複雜 fight shot 拆成 planning/reference、spline-blocking、straight-ahead 段落、多角色 physical interaction 與 moving camera，而不是只靠 pose-to-pose。這對高動態鏡頭很重要，因為角色接觸、相對速度與鏡頭運動會互相影響，單獨把每個角色做完再合併通常會增加返工。"
+        },
+        {
+          "label": "製作價值",
+          "text": "對 boss attack、摔技、雙人處決或 cinematic combat，最大的 production 風險是接觸點漂移與鏡頭切換後 silhouette 失效。先把整個 shot 當成關係系統規劃，可讓 primary action、secondary reaction 與 camera rhythm 同時被 review，減少最後 polish 才發現 staging 不成立。"
+        },
+        {
+          "label": "導入測試",
+          "text": "可用兩角色 3–5 秒 grapple/throw 測試：先鎖 camera 與 contact beats，再分層完成 blocking、interaction constraint 與 polish，記錄每次 review 的返工來源。若是 gameplay animation，還要拆出可重用 clip、root motion、hit frame 與 gameplay event，避免 cinematic 方法直接套用後失去可控性。"
+        }
       ],
       "rank_global": 9,
       "homepage_tier": "next10"
@@ -198,9 +342,18 @@
       "subcategory": "ai-3d",
       "ranking_score": 91,
       "full_analysis": [
-        {"label": "生成流程", "text": "官方教學把 text-to-3D、image-to-3D、Remesh、AI Texturing、Rig 與動畫預設放進連續操作，降低資產在不同服務間來回轉檔的摩擦。這類 all-in-one 流程最適合快速判斷角色比例、服裝量體與動作方向，但每個階段仍可能累積誤差。"},
-        {"label": "製作價值", "text": "對 pre-production 或大量 NPC prototype，單一平台能快速產生可旋轉、可上材質、可動的版本，讓企劃與美術更早做選擇。不過真正 game-ready 仍取決於網格 edge flow、skin weight、動畫接觸、骨架命名與引擎材質，因此它比較像縮短前期探索，而不是替代最終角色製作。"},
-        {"label": "導入測試", "text": "用同一張 A-pose 角色 reference，完整跑 Meshy 流程後進 Unity/Unreal，檢查 Remesh 輪廓損失、UV seam、normal、肩髖 skin、foot contact 與 root motion。再與手工低模＋既有 rig 比較從 input 到可在遊戲中播放 idle/run/attack 的總工時，避免只比較生成秒數。"}
+        {
+          "label": "生成流程",
+          "text": "官方教學把 text-to-3D、image-to-3D、Remesh、AI Texturing、Rig 與動畫預設放進連續操作，降低資產在不同服務間來回轉檔的摩擦。這類 all-in-one 流程最適合快速判斷角色比例、服裝量體與動作方向，但每個階段仍可能累積誤差。"
+        },
+        {
+          "label": "製作價值",
+          "text": "對 pre-production 或大量 NPC prototype，單一平台能快速產生可旋轉、可上材質、可動的版本，讓企劃與美術更早做選擇。不過真正 game-ready 仍取決於網格 edge flow、skin weight、動畫接觸、骨架命名與引擎材質，因此它比較像縮短前期探索，而不是替代最終角色製作。"
+        },
+        {
+          "label": "導入測試",
+          "text": "用同一張 A-pose 角色 reference，完整跑 Meshy 流程後進 Unity/Unreal，檢查 Remesh 輪廓損失、UV seam、normal、肩髖 skin、foot contact 與 root motion。再與手工低模＋既有 rig 比較從 input 到可在遊戲中播放 idle/run/attack 的總工時，避免只比較生成秒數。"
+        }
       ],
       "rank_global": 10,
       "homepage_tier": "next10"
@@ -215,9 +368,18 @@
       "subcategory": "environment-production",
       "ranking_score": 90,
       "full_analysis": [
-        {"label": "場景製作流程", "text": "課程從乾淨基礎幾何開始，透過 fracture、reshape 與 variation 組成可重複使用的 rock generator，並把 artist control 保留在程序參數中。這種做法和手工雕一顆岩石的最大差異，是輸出可以依尺寸、形狀與場景需求持續衍生，而不必複製後逐件修改。"},
-        {"label": "製作價值", "text": "對大量自然場景與關卡 dressing，程序化岩石最適合解決一致性與變體量：同一規則可產出家族化造型，又能避免完全隨機造成美術失控。前期建立 HDA 的成本較高，但只要資產使用量足夠，就能把後續 blockout、更換比例與 LOD 前處理變成批次工作。"},
-        {"label": "導入測試", "text": "建立 20 個尺寸與 silhouette 不同的岩石變體，檢查 topology、UV/bake、碰撞、LOD 與 Unreal/Unity instancing 成本，再與手工複製修改比較總工時。測試重點不是 generator 能不能出圖，而是參數是否能讓美術快速得到需要的那顆且不引入難以維護的例外。"}
+        {
+          "label": "場景製作流程",
+          "text": "課程從乾淨基礎幾何開始，透過 fracture、reshape 與 variation 組成可重複使用的 rock generator，並把 artist control 保留在程序參數中。這種做法和手工雕一顆岩石的最大差異，是輸出可以依尺寸、形狀與場景需求持續衍生，而不必複製後逐件修改。"
+        },
+        {
+          "label": "製作價值",
+          "text": "對大量自然場景與關卡 dressing，程序化岩石最適合解決一致性與變體量：同一規則可產出家族化造型，又能避免完全隨機造成美術失控。前期建立 HDA 的成本較高，但只要資產使用量足夠，就能把後續 blockout、更換比例與 LOD 前處理變成批次工作。"
+        },
+        {
+          "label": "導入測試",
+          "text": "建立 20 個尺寸與 silhouette 不同的岩石變體，檢查 topology、UV/bake、碰撞、LOD 與 Unreal/Unity instancing 成本，再與手工複製修改比較總工時。測試重點不是 generator 能不能出圖，而是參數是否能讓美術快速得到需要的那顆且不引入難以維護的例外。"
+        }
       ],
       "rank_global": 11,
       "homepage_tier": "next10"
@@ -232,9 +394,18 @@
       "subcategory": "character-production",
       "ranking_score": 89,
       "full_analysis": [
-        {"label": "角色製作流程", "text": "這場 ZBrush 2026 直播從 blockout 走到 polish，核心不是新工具清單，而是風格化角色如何先用大形、比例與 silhouette 建立辨識，再逐步增加次級與表面細節。對角色美術而言，這種順序能避免早期就陷入局部雕刻，尤其適合要維持卡通化或遊戲視距可讀性的角色。"},
-        {"label": "製作價值", "text": "AI 生成與自動細化越快，手工 blockout 的判斷反而更適合作為品質 gate：頭身比例、手腳誇張、面部節奏與裝備量體如果沒有先成立，後續高頻細節只會放大錯誤。這類專業直播可用來校準團隊對 stylized sculpt 的共同語言與 review 節點。"},
-        {"label": "導入測試", "text": "可把團隊現有角色 review 拆成 blockout、secondary form、polish 三關，每關只允許對應層級資訊，並用同一角色比較先細節與先 silhouette 的返工次數。直播屬教學與示範，具體 brush 或操作技巧應以實際影片驗證，不能從活動頁面延伸未顯示的功能細節。"}
+        {
+          "label": "角色製作流程",
+          "text": "這場 ZBrush 2026 直播從 blockout 走到 polish，核心不是新工具清單，而是風格化角色如何先用大形、比例與 silhouette 建立辨識，再逐步增加次級與表面細節。對角色美術而言，這種順序能避免早期就陷入局部雕刻，尤其適合要維持卡通化或遊戲視距可讀性的角色。"
+        },
+        {
+          "label": "製作價值",
+          "text": "AI 生成與自動細化越快，手工 blockout 的判斷反而更適合作為品質 gate：頭身比例、手腳誇張、面部節奏與裝備量體如果沒有先成立，後續高頻細節只會放大錯誤。這類專業直播可用來校準團隊對 stylized sculpt 的共同語言與 review 節點。"
+        },
+        {
+          "label": "導入測試",
+          "text": "可把團隊現有角色 review 拆成 blockout、secondary form、polish 三關，每關只允許對應層級資訊，並用同一角色比較先細節與先 silhouette 的返工次數。直播屬教學與示範，具體 brush 或操作技巧應以實際影片驗證，不能從活動頁面延伸未顯示的功能細節。"
+        }
       ],
       "rank_global": 12,
       "homepage_tier": "next10"
@@ -249,9 +420,18 @@
       "subcategory": "other-dcc",
       "ranking_score": 88,
       "full_analysis": [
-        {"label": "DCC 工作流", "text": "Redshift 2026.9 讓 Redshift Live 支援 anisotropy 與 HDR compression，使 brushed metal 等方向性高光材質能在即時 preview 中更接近最終效果；核心 renderer 同時升到 OCIO 2.5。Maya 端增加 USD/Alembic proxy instance 與 nParticles 中 USD proxy 的支援，改善大量重複資產工作流。"},
-        {"label": "製作價值", "text": "對 lookdev 團隊，Live preview 能正確看到 anisotropic response 會減少材質在互動預覽與 final render 間的落差；OCIO 2.5 則有利於與現行 VFX color pipeline 對齊。USD/Alembic instancing 對大場景的價值在於更有效地重用 cache/proxy，而不是複製完整幾何。"},
-        {"label": "升版 / 導入測試", "text": "挑一組髮絲或拉絲金屬、HDR highlight 與大量 USD proxy 場景，對照前版與 2026.9 的 viewport/final parity、顯存、instance 數與 color transform；並確認現有 DCC plugin、OCIO config、render farm 與 Houdini/Maya 版本相容。屬點版更新，應先在副本專案回歸再升 production baseline。"}
+        {
+          "label": "DCC 工作流",
+          "text": "Redshift 2026.9 讓 Redshift Live 支援 anisotropy 與 HDR compression，使 brushed metal 等方向性高光材質能在即時 preview 中更接近最終效果；核心 renderer 同時升到 OCIO 2.5。Maya 端增加 USD/Alembic proxy instance 與 nParticles 中 USD proxy 的支援，改善大量重複資產工作流。"
+        },
+        {
+          "label": "製作價值",
+          "text": "對 lookdev 團隊，Live preview 能正確看到 anisotropic response 會減少材質在互動預覽與 final render 間的落差；OCIO 2.5 則有利於與現行 VFX color pipeline 對齊。USD/Alembic instancing 對大場景的價值在於更有效地重用 cache/proxy，而不是複製完整幾何。"
+        },
+        {
+          "label": "升版 / 導入測試",
+          "text": "挑一組髮絲或拉絲金屬、HDR highlight 與大量 USD proxy 場景，對照前版與 2026.9 的 viewport/final parity、顯存、instance 數與 color transform；並確認現有 DCC plugin、OCIO config、render farm 與 Houdini/Maya 版本相容。屬點版更新，應先在副本專案回歸再升 production baseline。"
+        }
       ],
       "rank_global": 13,
       "homepage_tier": "next10"
@@ -266,28 +446,20 @@
       "subcategory": "research",
       "ranking_score": 87,
       "full_analysis": [
-        {"label": "技術方向", "text": "GS-2M 的重點是把 3D Gaussian Splatting 與 material-aware optimization 結合，針對 multi-view image 中高反射表面容易讓幾何與光照互相污染的問題，同時考慮 mesh reconstruction 與材質或光照分解。這比單純把 splat 轉 mesh 更接近可再打光的資產需求。"},
-        {"label": "製作潛力", "text": "對掃描道具、汽車、金屬設備或商品資產，反射往往是 photogrammetry/reconstruction 的難點；如果能更可靠分離幾何、反射與 illumination，輸出就比較有機會進入 PBR lookdev，而不是只能保留拍攝光照的 baked appearance。這對遊戲與虛擬製作的可重用性很關鍵。"},
-        {"label": "成熟度判斷", "text": "R&D 測試應選 matte、brushed metal、glossy plastic 三組物件，對照 photogrammetry 與 GS-2M 類方法的 geometry error、normal、roughness/reflectance 可編輯性與重新打光一致性。研究論文證明方法方向，但工具可用性、最佳化時間與商用 pipeline 整合仍需另外驗證。"}
+        {
+          "label": "技術方向",
+          "text": "GS-2M 的重點是把 3D Gaussian Splatting 與 material-aware optimization 結合，針對 multi-view image 中高反射表面容易讓幾何與光照互相污染的問題，同時考慮 mesh reconstruction 與材質或光照分解。這比單純把 splat 轉 mesh 更接近可再打光的資產需求。"
+        },
+        {
+          "label": "製作潛力",
+          "text": "對掃描道具、汽車、金屬設備或商品資產，反射往往是 photogrammetry/reconstruction 的難點；如果能更可靠分離幾何、反射與 illumination，輸出就比較有機會進入 PBR lookdev，而不是只能保留拍攝光照的 baked appearance。這對遊戲與虛擬製作的可重用性很關鍵。"
+        },
+        {
+          "label": "成熟度判斷",
+          "text": "R&D 測試應選 matte、brushed metal、glossy plastic 三組物件，對照 photogrammetry 與 GS-2M 類方法的 geometry error、normal、roughness/reflectance 可編輯性與重新打光一致性。研究論文證明方法方向，但工具可用性、最佳化時間與商用 pipeline 整合仍需另外驗證。"
+        }
       ],
       "rank_global": 14,
-      "homepage_tier": "next10"
-    },
-    {
-      "id": "substance-painter-12-1-4-nonascii-fix",
-      "title": "Substance 3D Painter 12.1.4：修正非 ASCII 檔名 Import/Export Crash，對亞洲團隊是實際穩定性補丁",
-      "summary": "Painter 12.1.4 於 9 月 4 日發布，重點修正匯入或匯出檔名含 non-ASCII 字元時可能 crash，雖是小版但直接影響中文／日文資產命名環境。",
-      "quick_impact": "★★★☆☆",
-      "source_url": "https://experienceleague.adobe.com/en/docs/substance-3d-painter/using/release-notes/all-changes",
-      "category": "blender-dcc",
-      "subcategory": "substance",
-      "ranking_score": 86,
-      "full_analysis": [
-        {"label": "DCC 工作流", "text": "12.1.4 的變更很小，但修正點直接落在檔案 I/O：匯入或匯出時，檔名含 non-ASCII 字元可能造成 crash。對使用中文、日文、韓文專案名或外包交付資料夾的團隊，這不是新功能，而是會影響批次處理與日常穩定性的實際修補。"},
-        {"label": "製作價值", "text": "美術 pipeline 常在 Painter、版本控制、網路磁碟與 engine export 間交換大量檔案，一個字元編碼 crash 可能造成難以重現的阻塞。若團隊已有全英文命名規範，收益有限；若歷史專案或外包來源常含本地語系字元，這版的升級價值就明顯提高。"},
-        {"label": "升版 / 導入測試", "text": "建立包含中文、日文、emoji 與混合路徑的 texture/project 測試集，覆蓋 import resource、export textures、network path 與 automation preset；在升版前後跑相同操作並確認無 crash、輸出命名不變。因為是 minor fix，不應跳過既有 plugin、Substance Engine 與 export preset regression。"}
-      ],
-      "rank_global": 15,
       "homepage_tier": "next10"
     }
   ],
