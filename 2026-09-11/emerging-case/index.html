@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   新技術 / Case｜2026-09-11｜AI 3D Daily
+  </title>
+  <link href="../../styles.css?v=20260911-r1-workspace-v6" rel="stylesheet"/>
+  <link href="../../shared-components.css?v=20260911-r1-workspace-v6" rel="stylesheet"/>
+  <link href="../../category.css?v=20260911-r1-workspace-v6" rel="stylesheet"/>
+ </head>
+ <body class="category-page" data-category="emerging-case" data-report-date="2026-09-11">
+  <nav aria-label="Production Intelligence 分類" class="global-category-nav">
+   <div class="page global-category-nav-inner">
+    <div class="archive-nav-controls">
+     <a class="archive-nav-home" href="../../">
+      ← 首頁
+     </a>
+     <div class="archive-nav-date">
+      <a aria-label="前一日日報" class="archive-nav-arrow" href="../../2026-09-10/emerging-case/">
+       ←
+      </a>
+      <span>
+       2026-09-11
+      </span>
+     </div>
+    </div>
+    <span aria-hidden="true" class="archive-nav-divider">
+    </span>
+    <a class="global-category-link" href="../#top">
+     TOP5
+    </a>
+    <a class="global-category-link" data-category="ai-generation" href="../ai-generation/">
+     AI 生成
+    </a>
+    <a class="global-category-link" data-category="3d-production" href="../3d-production/">
+     3D 製作
+    </a>
+    <a class="global-category-link" data-category="3d-animation" href="../3d-animation/">
+     3D 動作
+    </a>
+    <a class="global-category-link" data-category="engine-art" href="../engine-art/">
+     遊戲引擎
+    </a>
+    <a class="global-category-link is-active" data-category="emerging-case" href="../emerging-case/">
+     新技術 / Case
+    </a>
+    <a class="global-category-link" data-category="blender-dcc" href="../blender-dcc/">
+     Blender / DCC
+    </a>
+   </div>
+  </nav>
+  <main class="page category-main">
+   <article class="category-card" data-intel-id="gaussian-point-splatting-siggraph26" data-intel-role="card">
+    <div class="category-meta">
+     #08 · research
+    </div>
+    <h2>
+     SIGGRAPH 2026 Gaussian Point Splatting：以像素級 stochastic points 把數億 Gaussians 推向即時渲染
+    </h2>
+    <p class="summary">
+     ACM TOG/SIGGRAPH 2026 的 Gaussian Point Splatting 使用 64-bit atomics、平行 point splatting 與階層式 frustum/occlusion culling，展示數億 Gaussian 的 real-time rendering。
+    </p>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">研究</b> ★★★★★</span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       技術方向
+      </h4>
+      <p>
+       方法把 Gaussian 的 rasterization 轉成採樣像素大小的不透明 points，再以 64-bit atomics 平行寫入 framebuffer，並處理同一 pixel 多點命中時的 opacity 分布；再搭配 hierarchical frustum 與 occlusion culling。核心方向是把大量 Gaussians 的工作切成高度平行的小單位。
+      </p>
+      <h4>
+       製作潛力
+      </h4>
+      <p>
+       若這類 renderer 能在實務 GPU 與工具鏈中成熟，超大型 scan/world capture、數位場景與混合傳統 mesh 的 viewport 可能獲得更高可視規模。對遊戲美術的價值不只是 FPS，而是能否讓 splat asset 進入可編輯、可 LOD、可遮擋與可 streaming 的 production 管線。
+      </p>
+      <h4>
+       成熟度判斷
+      </h4>
+      <p>
+       建議先在 R&amp;D branch 用同一大型 3DGS scene 比較既有 renderer 與 point splatting 的 FPS、VRAM、aliasing、noise、camera motion 穩定性與不同 opacity 分布；論文指出輸出仍有輕微 noise/aliasing 差異，因此目前更適合作為 rendering research benchmark，而非直接替代 mesh pipeline。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://doi.org/10.1145/3811272" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="gs2m-material-aware-mesh-reconstruction" data-intel-role="card">
+    <div class="category-meta">
+     #14 · research
+    </div>
+    <h2>
+     GS-2M：Material-aware Gaussian Splatting 把高反射物的 Mesh Reconstruction 與材質分解一起處理
+    </h2>
+    <p class="summary">
+     Computer Graphics Forum 2026 的 GS-2M 以 material-aware optimization 從 multi-view images 重建高品質 mesh，特別處理高反射表面在 geometry／reflectance／lighting 分解上的困難。
+    </p>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">研究</b> ★★★★☆</span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       技術方向
+      </h4>
+      <p>
+       GS-2M 的重點是把 3D Gaussian Splatting 與 material-aware optimization 結合，針對 multi-view image 中高反射表面容易讓幾何與光照互相污染的問題，同時考慮 mesh reconstruction 與材質或光照分解。這比單純把 splat 轉 mesh 更接近可再打光的資產需求。
+      </p>
+      <h4>
+       製作潛力
+      </h4>
+      <p>
+       對掃描道具、汽車、金屬設備或商品資產，反射往往是 photogrammetry/reconstruction 的難點；如果能更可靠分離幾何、反射與 illumination，輸出就比較有機會進入 PBR lookdev，而不是只能保留拍攝光照的 baked appearance。這對遊戲與虛擬製作的可重用性很關鍵。
+      </p>
+      <h4>
+       成熟度判斷
+      </h4>
+      <p>
+       R&amp;D 測試應選 matte、brushed metal、glossy plastic 三組物件，對照 photogrammetry 與 GS-2M 類方法的 geometry error、normal、roughness/reflectance 可編輯性與重新打光一致性。研究論文證明方法方向，但工具可用性、最佳化時間與商用 pipeline 整合仍需另外驗證。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://onlinelibrary.wiley.com/doi/10.1111/cgf.70347" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <nav aria-label="相鄰分類" class="category-bottom-nav">
+    <a href="../engine-art/">
+     ← 遊戲引擎
+    </a>
+    <a href="../#top">
+     TOP5
+    </a>
+    <a href="../blender-dcc/">
+     Blender / DCC →
+    </a>
+   </nav>
+  </main>
+  <script defer="" src="../../archive-nav-state.js?v=20260911-r1-workspace-v6">
+  </script>
+ </body>
+</html>

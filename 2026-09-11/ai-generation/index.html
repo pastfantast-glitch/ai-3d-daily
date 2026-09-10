@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   AI 生成｜2026-09-11｜AI 3D Daily
+  </title>
+  <link href="../../styles.css?v=20260911-r1-workspace-v6" rel="stylesheet"/>
+  <link href="../../shared-components.css?v=20260911-r1-workspace-v6" rel="stylesheet"/>
+  <link href="../../category.css?v=20260911-r1-workspace-v6" rel="stylesheet"/>
+ </head>
+ <body class="category-page" data-category="ai-generation" data-report-date="2026-09-11">
+  <nav aria-label="Production Intelligence 分類" class="global-category-nav">
+   <div class="page global-category-nav-inner">
+    <div class="archive-nav-controls">
+     <a class="archive-nav-home" href="../../">
+      ← 首頁
+     </a>
+     <div class="archive-nav-date">
+      <a aria-label="前一日日報" class="archive-nav-arrow" href="../../2026-09-10/ai-generation/">
+       ←
+      </a>
+      <span>
+       2026-09-11
+      </span>
+     </div>
+    </div>
+    <span aria-hidden="true" class="archive-nav-divider">
+    </span>
+    <a class="global-category-link" href="../#top">
+     TOP5
+    </a>
+    <a class="global-category-link is-active" data-category="ai-generation" href="../ai-generation/">
+     AI 生成
+    </a>
+    <a class="global-category-link" data-category="3d-production" href="../3d-production/">
+     3D 製作
+    </a>
+    <a class="global-category-link" data-category="3d-animation" href="../3d-animation/">
+     3D 動作
+    </a>
+    <a class="global-category-link" data-category="engine-art" href="../engine-art/">
+     遊戲引擎
+    </a>
+    <a class="global-category-link" data-category="emerging-case" href="../emerging-case/">
+     新技術 / Case
+    </a>
+    <a class="global-category-link" data-category="blender-dcc" href="../blender-dcc/">
+     Blender / DCC
+    </a>
+   </div>
+  </nav>
+  <main class="page category-main">
+   <article class="category-card" data-intel-id="tripo-ai-game-asset-pipeline-2026" data-intel-role="card">
+    <div class="category-meta">
+     #03 · ai-3d
+    </div>
+    <h2>
+     Tripo 完整 AI 3D 遊戲資產流程：把生成視為起點，補上拓樸、Rig、QA 與引擎驗收
+    </h2>
+    <p class="summary">
+     Tripo 的遊戲工作流指南把 AI 3D 放進完整資產生命週期：概念、生成、拓樸整理、UV/PBR、Rig、QA、引擎匯出與製作紀錄，重點不是生成即完成。
+    </p>
+    <figure class="case-preview" data-intel-id="tripo-ai-game-asset-pipeline-2026" data-intel-role="visual" data-visual-id="tripo-ai-game-asset-pipeline-2026">
+     <a href="https://www.tripo3d.ai/blog/ai-3d-asset-pipeline-for-game-studios" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-11/tripo-ai-game-asset-pipeline-2026.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">AI 3D</b> ★★★★★</span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       生成與製作流程
+      </h4>
+      <p>
+       這份流程把 AI 網格明確放在 production chain 的前段，而不是成品端；生成後仍保留 topology cleanup、UV、PBR texture、rigging、QA、engine export 與 approval，並要求記錄 prompt、設定、人工修改與授權資訊。這種設計更接近遊戲團隊真正需要的可追溯資產流程。
+      </p>
+      <h4>
+       流程價值
+      </h4>
+      <p>
+       對大量背景物件、原型角色或變體資產，價值在於把重複的 first pass 壓縮，而不是省略美術與 TA 驗收。若團隊能把 poly budget、UV、材質通道、骨架與命名規範寫成固定 gate，AI 產出才有機會穩定進入 Unity／Unreal，而不是把返工延後到引擎端。
+      </p>
+      <h4>
+       導入測試
+      </h4>
+      <p>
+       建議選一個角色與兩個 prop 跑完整 A/B：傳統流程對照 Tripo 生成＋整理，記錄人工修網時間、UV 重做率、PBR 修正、skin deformation、匯入錯誤與最終 draw/mesh budget。指南來自供應商，效率敘述不可直接當 benchmark，必須以團隊自己的交付標準驗證。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://www.tripo3d.ai/blog/ai-3d-asset-pipeline-for-game-studios" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="tripo-api-production-chain-2026" data-intel-role="card">
+    <div class="category-meta">
+     #04 · ai-3d
+    </div>
+    <h2>
+     Tripo API 串起生成、Smart Mesh、分件、貼圖與 Rig：AI 3D 開始具備可批次化 production surface
+    </h2>
+    <p class="summary">
+     Tripo 的遊戲管線 API 指南列出 generation、Smart Mesh、segmentation、texture、rigging 與 FBX/GLB export，顯示 AI 3D 可從單次網頁操作轉向可重複自動化。
+    </p>
+    <figure class="case-preview" data-intel-id="tripo-api-production-chain-2026" data-intel-role="visual" data-visual-id="tripo-api-production-chain-2026">
+     <a href="https://www.tripo3d.ai/blog/3d-model-generation-apis-for-game-development-pipelines" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-11/tripo-api-production-chain-2026.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">AI 3D</b> ★★★★★</span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       API 與生成流程
+      </h4>
+      <p>
+       這個 API surface 不只負責 text/image-to-3D，也把 Smart Mesh、segmentation、part completion、texture 與 rigging 放在同一條可呼叫鏈上，最後能以 FBX 或 GLB 輸出。對 production 而言，重要變化是每個後處理階段可以被 job system、DCC plugin 或資產管理流程明確觸發與記錄。
+      </p>
+      <h4>
+       製作價值
+      </h4>
+      <p>
+       當生成與後處理能批次化後，團隊可以建立輸入 reference、生成多版本、topology/texture gate、engine import 的半自動流程，尤其適合大量 prop 與早期 prototype。真正瓶頸會從按按鈕轉成品質檢查、失敗重試、版本追蹤與成本控制，因此 API 可用不等於可無人值守。
+      </p>
+      <h4>
+       導入測試
+      </h4>
+      <p>
+       先以 20 個不同類型資產測試每階段成功率、平均 credit、輸出面數、UV/PBR 完整度、pivot、FBX skeleton 與 Unity/Unreal import。另要故意加入透明材質、薄片、非對稱角色與複雜硬表面，觀察 segmentation/retopo 是否失真，再決定哪些步驟能自動通過、哪些必須人工 gate。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://www.tripo3d.ai/blog/3d-model-generation-apis-for-game-development-pipelines" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="meshy-all-in-one-animation-workflow" data-intel-role="card">
+    <div class="category-meta">
+     #10 · ai-3d
+    </div>
+    <h2>
+     Meshy 一站式 3D→Rig→Animation 流程：生成角色後直接接 Remesh、AI Texturing 與動作預設
+    </h2>
+    <p class="summary">
+     Meshy 的官方教學示範 text/image-to-3D、Remesh、AI Texturing、Rig 與 Animation 串成單一流程，適合評估從概念到可動角色的快速原型效率。
+    </p>
+    <figure class="case-preview" data-intel-id="meshy-all-in-one-animation-workflow" data-intel-role="visual" data-visual-id="meshy-all-in-one-animation-workflow">
+     <a href="https://www.meshy.ai/tutorials/meshy-all-in-one-ai-workflow-text-image-3d-animation-video" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-11/meshy-all-in-one-animation-workflow.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">AI 3D</b> ★★★★☆</span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       生成流程
+      </h4>
+      <p>
+       官方教學把 text-to-3D、image-to-3D、Remesh、AI Texturing、Rig 與動畫預設放進連續操作，降低資產在不同服務間來回轉檔的摩擦。這類 all-in-one 流程最適合快速判斷角色比例、服裝量體與動作方向，但每個階段仍可能累積誤差。
+      </p>
+      <h4>
+       製作價值
+      </h4>
+      <p>
+       對 pre-production 或大量 NPC prototype，單一平台能快速產生可旋轉、可上材質、可動的版本，讓企劃與美術更早做選擇。不過真正 game-ready 仍取決於網格 edge flow、skin weight、動畫接觸、骨架命名與引擎材質，因此它比較像縮短前期探索，而不是替代最終角色製作。
+      </p>
+      <h4>
+       導入測試
+      </h4>
+      <p>
+       用同一張 A-pose 角色 reference，完整跑 Meshy 流程後進 Unity/Unreal，檢查 Remesh 輪廓損失、UV seam、normal、肩髖 skin、foot contact 與 root motion。再與手工低模＋既有 rig 比較從 input 到可在遊戲中播放 idle/run/attack 的總工時，避免只比較生成秒數。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://www.meshy.ai/tutorials/meshy-all-in-one-ai-workflow-text-image-3d-animation-video" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <nav aria-label="相鄰分類" class="category-bottom-nav">
+    <a href="../blender-dcc/">
+     ← Blender / DCC
+    </a>
+    <a href="../#top">
+     TOP5
+    </a>
+    <a href="../3d-production/">
+     3D 製作 →
+    </a>
+   </nav>
+  </main>
+  <script defer="" src="../../archive-nav-state.js?v=20260911-r1-workspace-v6">
+  </script>
+ </body>
+</html>

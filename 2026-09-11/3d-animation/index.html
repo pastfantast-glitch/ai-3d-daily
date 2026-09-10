@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   3D 動作｜2026-09-11｜AI 3D Daily
+  </title>
+  <link href="../../styles.css?v=20260911-r1-workspace-v6" rel="stylesheet"/>
+  <link href="../../shared-components.css?v=20260911-r1-workspace-v6" rel="stylesheet"/>
+  <link href="../../category.css?v=20260911-r1-workspace-v6" rel="stylesheet"/>
+ </head>
+ <body class="category-page" data-category="3d-animation" data-report-date="2026-09-11">
+  <nav aria-label="Production Intelligence 分類" class="global-category-nav">
+   <div class="page global-category-nav-inner">
+    <div class="archive-nav-controls">
+     <a class="archive-nav-home" href="../../">
+      ← 首頁
+     </a>
+     <div class="archive-nav-date">
+      <a aria-label="前一日日報" class="archive-nav-arrow" href="../../2026-09-10/3d-animation/">
+       ←
+      </a>
+      <span>
+       2026-09-11
+      </span>
+     </div>
+    </div>
+    <span aria-hidden="true" class="archive-nav-divider">
+    </span>
+    <a class="global-category-link" href="../#top">
+     TOP5
+    </a>
+    <a class="global-category-link" data-category="ai-generation" href="../ai-generation/">
+     AI 生成
+    </a>
+    <a class="global-category-link" data-category="3d-production" href="../3d-production/">
+     3D 製作
+    </a>
+    <a class="global-category-link is-active" data-category="3d-animation" href="../3d-animation/">
+     3D 動作
+    </a>
+    <a class="global-category-link" data-category="engine-art" href="../engine-art/">
+     遊戲引擎
+    </a>
+    <a class="global-category-link" data-category="emerging-case" href="../emerging-case/">
+     新技術 / Case
+    </a>
+    <a class="global-category-link" data-category="blender-dcc" href="../blender-dcc/">
+     Blender / DCC
+    </a>
+   </div>
+  </nav>
+  <main class="page category-main">
+   <article class="category-card" data-intel-id="animation-mentor-push-pull-body-mechanics" data-intel-role="card">
+    <div class="category-meta">
+     #02 · animation
+    </div>
+    <h2>
+     Animation Mentor Push/Pull：從 Reference、Stepped Blocking 到 IK Contact 的 Body Mechanics 實戰
+    </h2>
+    <p class="summary">
+     Joseph White 以 Maya 示範推拉重物，從拍攝 reference、blocking、FK/IK 切換、重心與接觸 pose 到 breakdown，再進 spline/polish。
+    </p>
+    <figure class="case-preview" data-intel-id="animation-mentor-push-pull-body-mechanics" data-intel-role="visual" data-visual-id="animation-mentor-push-pull-body-mechanics">
+     <a href="https://www.animationmentor.com/blog/tutorial-animating-pushing-and-pulling-motions/" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-11/animation-mentor-push-pull-body-mechanics.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">動畫</b> ★★★★★</span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       動作製作流程
+      </h4>
+      <p>
+       教學從 reference 與 thumbnail 開始，再以 stepped curves 建立 blocking；角色接近物件時手臂先用 FK 保留自然 arc，接觸重物後改成 IK 鎖住手部。關鍵不是逐格抄 reference，而是挑出 contact、passing 與力量轉換的 key pose，並在 spline 前先補足 breakdown 與 offset。
+      </p>
+      <h4>
+       製作價值
+      </h4>
+      <p>
+       這套方法直接對應遊戲動作常見的『看起來有動，但沒有重量』問題。透過降低重心、用髖與 torso 推動力量、保持手腳 contact，可讓 attack、push、pull、climb 等動作在少量 key pose 下仍有清楚意圖；同時 clean keys 也降低 spline 後 curve 爆掉與 cleanup 的成本。
+      </p>
+      <h4>
+       導入測試
+      </h4>
+      <p>
+       用同一角色製作 2–3 秒推箱動作，第一版只做主要 key pose，第二版在 blocking 階段加入 breakdown、overlap 與 IK contact，再比較 spline 後 foot/hand sliding、曲線修正次數與讀姿清晰度。最後進引擎檢查 root motion 與碰撞節點，確保 Maya 內成立的重量感沒有在 retarget 後消失。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://www.animationmentor.com/blog/tutorial-animating-pushing-and-pulling-motions/" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="ue58-animation-mode-pose-tool" data-intel-role="card">
+    <div class="category-meta">
+     #06 · animation
+    </div>
+    <h2>
+     UE5.8 Animation Editor Mode：Pose Tool、Tween、Snapper 與 Motion Trails 讓 Key Pose 調整更靠近引擎內完成
+    </h2>
+    <p class="summary">
+     Epic 的 5.8 文件整理 Animation Mode 工具，其中 Control Rig Pose Tool 可保存、鏡像、混合 pose 並在套用時直接建立 keyframe，適合建立 keypose library。
+    </p>
+    <figure class="case-preview" data-intel-id="ue58-animation-mode-pose-tool" data-intel-role="visual" data-visual-id="ue58-animation-mode-pose-tool">
+     <a href="https://dev.epicgames.com/documentation/unreal-engine/animation-editor-mode-in-unreal-engine" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-11/ue58-animation-mode-pose-tool.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">動畫</b> ★★★★★</span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       動作製作流程
+      </h4>
+      <p>
+       UE5.8 Animation Mode 把 Pose、Tween、Snapper、Motion Trails 與 temporary Pivot 集中到同一套工具；Pose Tool 可以儲存 Control Rig controls、選取對應 controls、鏡像或混合 pose，並在套用時直接產生 keyframe。這讓建立與重用 key pose 不必每次從 DCC 重做或 bake 整段動畫。
+      </p>
+      <h4>
+       Rig 與輸出
+      </h4>
+      <p>
+       對 gameplay animation，Pose Asset library 可成為 idle、attack anticipation、hit reaction 等姿勢基準，並與 Control Rig 的 engine-side edit 結合。它不會取代 Maya/Blender 的完整 animation workflow，但能把 retarget 後的小修、左右姿勢變體與 staging 調整留在 Unreal，縮短 round-trip。
+      </p>
+      <h4>
+       導入測試
+      </h4>
+      <p>
+       先建立 10 個常用 combat key poses，驗證左右鏡像、blend pose、keyframe 寫入與不同骨架比例下的可重用程度，再把同一 animation sequence 分別用 DCC 回修與 Unreal Pose Tool 修正，記錄往返時間與失真。需要特別檢查 Control Rig 命名一致性與 pose 套用後的肩髖 deformation。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://dev.epicgames.com/documentation/unreal-engine/animation-editor-mode-in-unreal-engine" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="gnomon-complex-fight-body-mechanics" data-intel-role="card">
+    <div class="category-meta">
+     #09 · animation
+    </div>
+    <h2>
+     Gnomon 複雜打鬥動畫：Planning、Spline-Blocking、多角色接觸與 Moving Camera 的高階 Body Mechanics
+    </h2>
+    <p class="summary">
+     Peter Dang 的 Maya workshop 從 reference planning 到 spline-blocking、straight-ahead、多角色互動、移動鏡頭與 polish，聚焦高強度動作的物理感。
+    </p>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">動畫</b> ★★★★☆</span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       動作製作流程
+      </h4>
+      <p>
+       課程把複雜 fight shot 拆成 planning/reference、spline-blocking、straight-ahead 段落、多角色 physical interaction 與 moving camera，而不是只靠 pose-to-pose。這對高動態鏡頭很重要，因為角色接觸、相對速度與鏡頭運動會互相影響，單獨把每個角色做完再合併通常會增加返工。
+      </p>
+      <h4>
+       製作價值
+      </h4>
+      <p>
+       對 boss attack、摔技、雙人處決或 cinematic combat，最大的 production 風險是接觸點漂移與鏡頭切換後 silhouette 失效。先把整個 shot 當成關係系統規劃，可讓 primary action、secondary reaction 與 camera rhythm 同時被 review，減少最後 polish 才發現 staging 不成立。
+      </p>
+      <h4>
+       導入測試
+      </h4>
+      <p>
+       可用兩角色 3–5 秒 grapple/throw 測試：先鎖 camera 與 contact beats，再分層完成 blocking、interaction constraint 與 polish，記錄每次 review 的返工來源。若是 gameplay animation，還要拆出可重用 clip、root motion、hit frame 與 gameplay event，避免 cinematic 方法直接套用後失去可控性。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://www.thegnomonworkshop.com/workshops/animating-a-complex-fight-action-sequence-in-maya" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <nav aria-label="相鄰分類" class="category-bottom-nav">
+    <a href="../3d-production/">
+     ← 3D 製作
+    </a>
+    <a href="../#top">
+     TOP5
+    </a>
+    <a href="../engine-art/">
+     遊戲引擎 →
+    </a>
+   </nav>
+  </main>
+  <script defer="" src="../../archive-nav-state.js?v=20260911-r1-workspace-v6">
+  </script>
+ </body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   Blender / DCC｜2026-09-11｜AI 3D Daily
+  </title>
+  <link href="../../styles.css?v=20260911-r1-workspace-v6" rel="stylesheet"/>
+  <link href="../../shared-components.css?v=20260911-r1-workspace-v6" rel="stylesheet"/>
+  <link href="../../category.css?v=20260911-r1-workspace-v6" rel="stylesheet"/>
+ </head>
+ <body class="category-page" data-category="blender-dcc" data-report-date="2026-09-11">
+  <nav aria-label="Production Intelligence 分類" class="global-category-nav">
+   <div class="page global-category-nav-inner">
+    <div class="archive-nav-controls">
+     <a class="archive-nav-home" href="../../">
+      ← 首頁
+     </a>
+     <div class="archive-nav-date">
+      <a aria-label="前一日日報" class="archive-nav-arrow" href="../../2026-09-10/blender-dcc/">
+       ←
+      </a>
+      <span>
+       2026-09-11
+      </span>
+     </div>
+    </div>
+    <span aria-hidden="true" class="archive-nav-divider">
+    </span>
+    <a class="global-category-link" href="../#top">
+     TOP5
+    </a>
+    <a class="global-category-link" data-category="ai-generation" href="../ai-generation/">
+     AI 生成
+    </a>
+    <a class="global-category-link" data-category="3d-production" href="../3d-production/">
+     3D 製作
+    </a>
+    <a class="global-category-link" data-category="3d-animation" href="../3d-animation/">
+     3D 動作
+    </a>
+    <a class="global-category-link" data-category="engine-art" href="../engine-art/">
+     遊戲引擎
+    </a>
+    <a class="global-category-link" data-category="emerging-case" href="../emerging-case/">
+     新技術 / Case
+    </a>
+    <a class="global-category-link is-active" data-category="blender-dcc" href="../blender-dcc/">
+     Blender / DCC
+    </a>
+   </div>
+  </nav>
+  <main class="page category-main">
+   <article class="category-card" data-intel-id="redshift-2026-9-live-anisotropy" data-intel-role="card">
+    <div class="category-meta">
+     #13 · other-dcc
+    </div>
+    <h2>
+     Redshift 2026.9：Live Renderer 補上 Anisotropy／HDR Compression，Maya USD/Alembic Instancing 也擴充
+    </h2>
+    <p class="summary">
+     Redshift 2026.9 更新 Live real-time renderer 的 anisotropy 與 HDR compression，支援 OCIO 2.5，並擴充 Maya 的 USD/Alembic proxy instancing。
+    </p>
+    <figure class="case-preview" data-intel-id="redshift-2026-9-live-anisotropy" data-intel-role="visual" data-visual-id="redshift-2026-9-live-anisotropy">
+     <a href="https://www.cgchannel.com/2026/09/maxon-releases-redshift-2026-9/" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-11/redshift-2026-9-live-anisotropy.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">其他 DCC</b> ★★★★☆</span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       DCC 工作流
+      </h4>
+      <p>
+       Redshift 2026.9 讓 Redshift Live 支援 anisotropy 與 HDR compression，使 brushed metal 等方向性高光材質能在即時 preview 中更接近最終效果；核心 renderer 同時升到 OCIO 2.5。Maya 端增加 USD/Alembic proxy instance 與 nParticles 中 USD proxy 的支援，改善大量重複資產工作流。
+      </p>
+      <h4>
+       製作價值
+      </h4>
+      <p>
+       對 lookdev 團隊，Live preview 能正確看到 anisotropic response 會減少材質在互動預覽與 final render 間的落差；OCIO 2.5 則有利於與現行 VFX color pipeline 對齊。USD/Alembic instancing 對大場景的價值在於更有效地重用 cache/proxy，而不是複製完整幾何。
+      </p>
+      <h4>
+       升版 / 導入測試
+      </h4>
+      <p>
+       挑一組髮絲或拉絲金屬、HDR highlight 與大量 USD proxy 場景，對照前版與 2026.9 的 viewport/final parity、顯存、instance 數與 color transform；並確認現有 DCC plugin、OCIO config、render farm 與 Houdini/Maya 版本相容。屬點版更新，應先在副本專案回歸再升 production baseline。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://www.cgchannel.com/2026/09/maxon-releases-redshift-2026-9/" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <nav aria-label="相鄰分類" class="category-bottom-nav">
+    <a href="../emerging-case/">
+     ← 新技術 / Case
+    </a>
+    <a href="../#top">
+     TOP5
+    </a>
+    <a href="../ai-generation/">
+     AI 生成 →
+    </a>
+   </nav>
+  </main>
+  <script defer="" src="../../archive-nav-state.js?v=20260911-r1-workspace-v6">
+  </script>
+ </body>
+</html>

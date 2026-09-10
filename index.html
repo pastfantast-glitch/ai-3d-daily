@@ -7,10 +7,10 @@
    AI / 3D Production Intelligence
   </title>
   <link href="styles.css?v=20260903-r2" rel="stylesheet"/>
-  <link href="shared-components.css?v=20260910-r1-workspace-v6" rel="stylesheet"/>
-  <link href="home.css?v=20260910-r1-workspace-v6" rel="stylesheet"/>
-  <link href="home-content.css?v=20260910-r1-workspace-v6" rel="stylesheet"/>
-  <link href="home-components.css?v=20260910-r1-workspace-v6" rel="stylesheet"/>
+  <link href="shared-components.css?v=20260911-r1-workspace-v6" rel="stylesheet"/>
+  <link href="home.css?v=20260911-r1-workspace-v6" rel="stylesheet"/>
+  <link href="home-content.css?v=20260911-r1-workspace-v6" rel="stylesheet"/>
+  <link href="home-components.css?v=20260911-r1-workspace-v6" rel="stylesheet"/>
  </head>
  <body class="home-page">
   <header class="home-hero">
@@ -22,7 +22,7 @@
      Production Intelligence
     </h1>
     <p class="week-asof">
-     2026-09-10
+     2026-09-11
     </p>
    </div>
   </header>
@@ -31,22 +31,22 @@
     <a class="global-category-link is-active" href="#today">
      TOP5
     </a>
-    <a class="global-category-link" data-category="ai-generation" href="2026-09-10/ai-generation/">
+    <a class="global-category-link" data-category="ai-generation" href="2026-09-11/ai-generation/">
      AI 生成
     </a>
-    <a class="global-category-link" data-category="3d-production" href="2026-09-10/3d-production/">
+    <a class="global-category-link" data-category="3d-production" href="2026-09-11/3d-production/">
      3D 製作
     </a>
-    <a class="global-category-link" data-category="3d-animation" href="2026-09-10/3d-animation/">
+    <a class="global-category-link" data-category="3d-animation" href="2026-09-11/3d-animation/">
      3D 動作
     </a>
-    <a class="global-category-link" data-category="engine-art" href="2026-09-10/engine-art/">
+    <a class="global-category-link" data-category="engine-art" href="2026-09-11/engine-art/">
      遊戲引擎
     </a>
-    <a class="global-category-link" data-category="emerging-case" href="2026-09-10/emerging-case/">
+    <a class="global-category-link" data-category="emerging-case" href="2026-09-11/emerging-case/">
      新技術 / Case
     </a>
-    <a class="global-category-link" data-category="blender-dcc" href="2026-09-10/blender-dcc/">
+    <a class="global-category-link" data-category="blender-dcc" href="2026-09-11/blender-dcc/">
      Blender / DCC
     </a>
    </div>
@@ -64,20 +64,20 @@
      </div>
     </div>
     <div class="top-list">
-     <article class="home-card top-item" data-intel-id="gpt-image-25-production-editing" data-intel-role="card">
+     <article class="home-card top-item" data-intel-id="qualcomm-adreno-neural-fusion" data-intel-role="card">
       <div class="top-no">
        01
       </div>
       <div class="top-main">
        <h2>
-        ChatGPT Images 2.5：參考圖保真、局部編輯與多輪一致性直接對準美術迭代
+        Qualcomm Adreno Neural Fusion：AI Super Resolution＋Frame Generation 直接進 Unity／Unreal 行動渲染路徑
        </h2>
        <p class="summary">
-        OpenAI 於 9 月 8 日發布 ChatGPT Images 2.5，強化參考圖主體保留、局部精準編輯、多輪修改一致性與透明背景，並宣稱相較 Images 2.0 最多降低 50% 生成延遲。
+        Qualcomm 公開 Adreno Neural Fusion，透過 GPU 內 Matrix Cores、18MB HPM、AI super resolution 與 frame generation，並宣稱支援 Unity/Unreal 整合。
        </p>
-       <figure class="case-preview" data-intel-id="gpt-image-25-production-editing" data-intel-role="visual" data-visual-id="gpt-image-25-production-editing">
-        <a href="https://openai.com/index/introducing-chatgpt-images-2-5/" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
-         <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-09-10/gpt-image-25-production-editing.jpg"/>
+       <figure class="case-preview" data-intel-id="qualcomm-adreno-neural-fusion" data-intel-role="visual" data-visual-id="qualcomm-adreno-neural-fusion">
+        <a href="https://www.qualcomm.com/news/onq/2026/09/adreno-neural-fusion-ai-rendering" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+         <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-09-11/qualcomm-adreno-neural-fusion.jpg"/>
         </a>
         <figcaption>
          <span>
@@ -87,7 +87,7 @@
         </figcaption>
        </figure>
        <div class="quick-impact">
-        <span><b class="quick-impact-label">AI 2D</b> ★★★★★</span>
+        <span><b class="quick-impact-label">渲染</b> ★★★★★</span>
        </div>
        <details class="home-full-analysis">
         <summary>
@@ -95,44 +95,99 @@
         </summary>
         <div class="detail-body home-analysis-body">
          <h4>
-          生成與編輯流程
+          引擎工作流
          </h4>
          <p>
-          Images 2.5 的核心不是單純提高單張成圖品質，而是改善參考圖保真、只修改指定元素，以及連續多輪編輯時保留先前決策。官方同時加入 Sketch、圖片註解與透明背景等控制方式，讓生成流程更接近可反覆修稿的美術工具。
+          Adreno Neural Fusion 把 neural processing、AI super resolution 與 frame generation 合到 GPU graphics pipeline，並以每個 GPU slice 內的 Matrix Cores 與 18MB High Performance Memory 讓 AI workload 更靠近圖形資料。對 Unity/Unreal 團隊而言，重點是供應商宣稱已有引擎整合，而非要求每個遊戲自行搭一套 NPU pipeline。
          </p>
          <h4>
           製作價值
          </h4>
          <p>
-          對遊戲概念、角色設定、機台素材與宣傳圖而言，真正節省工時的是改一處不破壞其他區域。若角色輪廓、構圖與品牌元素能在多輪修改中維持，AI 圖像就更容易從一次性草圖轉成可持續迭代的 production asset。
+          若實際裝置能用較低 internal resolution 維持可接受畫質，再以 AI upscale/frame generation 補輸出，行動專案就可能把 GPU 預算讓給更複雜材質、陰影或角色數量。這會直接影響 art budget 設計，但生成幀造成的 latency、UI/alpha artifact 與特定內容 ghosting 仍可能限制使用場景。
          </p>
          <h4>
-          導入測試
+          平台實測
          </h4>
          <p>
-          建議用固定角色與場景做 10 輪局部修改 A/B 測試，記錄臉部、服裝、構圖、文字與透明邊緣的漂移率，再比較 Images 2.0 與 2.5 的返工次數與生成時間。官方速度數字不等於實際交付效率，仍需用自己的素材驗證。
+          應在支援晶片的實機建立固定 benchmark scene，比較原生解析度、只 upscale、upscale＋frame generation 的 GPU time、功耗、熱降頻、input latency 與 artifact；特別測細線 toon outline、粒子、透明髮絲、快速鏡頭與 UI。官方宣稱不能替代實機 capture，必須把 QA 納入不同畫質檔。
          </p>
         </div>
        </details>
-       <a class="source" href="https://openai.com/index/introducing-chatgpt-images-2-5/" rel="noopener noreferrer" target="_blank">
+       <a class="source" href="https://www.qualcomm.com/news/onq/2026/09/adreno-neural-fusion-ai-rendering" rel="noopener noreferrer" target="_blank">
         來源
        </a>
       </div>
      </article>
-     <article class="home-card top-item" data-intel-id="tripo-p20-native-quad-topology" data-intel-role="card">
+     <article class="home-card top-item" data-intel-id="animation-mentor-push-pull-body-mechanics" data-intel-role="card">
       <div class="top-no">
        02
       </div>
       <div class="top-main">
        <h2>
-        Tripo P2.0 預覽：原生四邊面拓樸把 AI 3D 從外觀生成推向可編輯網格
+        Animation Mentor Push/Pull：從 Reference、Stepped Blocking 到 IK Contact 的 Body Mechanics 實戰
        </h2>
        <p class="summary">
-        Tripo 在 9 月初隨融資消息公開 P2.0 預覽，主打端到端生成原生 quad topology，並把引擎可用、可綁定與可編輯作為工業化目標。
+        Joseph White 以 Maya 示範推拉重物，從拍攝 reference、blocking、FK/IK 切換、重心與接觸 pose 到 breakdown，再進 spline/polish。
        </p>
-       <figure class="case-preview" data-intel-id="tripo-p20-native-quad-topology" data-intel-role="visual" data-visual-id="tripo-p20-native-quad-topology">
-        <a href="https://www.3dnatives.com/en/tripo-ai-raises-3-billion-yuan-04092026/" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
-         <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-09-10/tripo-p20-native-quad-topology.jpg"/>
+       <figure class="case-preview" data-intel-id="animation-mentor-push-pull-body-mechanics" data-intel-role="visual" data-visual-id="animation-mentor-push-pull-body-mechanics">
+        <a href="https://www.animationmentor.com/blog/tutorial-animating-pushing-and-pulling-motions/" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+         <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-09-11/animation-mentor-push-pull-body-mechanics.jpg"/>
+        </a>
+        <figcaption>
+         <span>
+          SOURCE PREVIEW
+         </span>
+         · Local visual evidence · 點圖開啟原始來源
+        </figcaption>
+       </figure>
+       <div class="quick-impact">
+        <span><b class="quick-impact-label">動畫</b> ★★★★★</span>
+       </div>
+       <details class="home-full-analysis">
+        <summary>
+         完整分析
+        </summary>
+        <div class="detail-body home-analysis-body">
+         <h4>
+          動作製作流程
+         </h4>
+         <p>
+          教學從 reference 與 thumbnail 開始，再以 stepped curves 建立 blocking；角色接近物件時手臂先用 FK 保留自然 arc，接觸重物後改成 IK 鎖住手部。關鍵不是逐格抄 reference，而是挑出 contact、passing 與力量轉換的 key pose，並在 spline 前先補足 breakdown 與 offset。
+         </p>
+         <h4>
+          製作價值
+         </h4>
+         <p>
+          這套方法直接對應遊戲動作常見的『看起來有動，但沒有重量』問題。透過降低重心、用髖與 torso 推動力量、保持手腳 contact，可讓 attack、push、pull、climb 等動作在少量 key pose 下仍有清楚意圖；同時 clean keys 也降低 spline 後 curve 爆掉與 cleanup 的成本。
+         </p>
+         <h4>
+          導入測試
+         </h4>
+         <p>
+          用同一角色製作 2–3 秒推箱動作，第一版只做主要 key pose，第二版在 blocking 階段加入 breakdown、overlap 與 IK contact，再比較 spline 後 foot/hand sliding、曲線修正次數與讀姿清晰度。最後進引擎檢查 root motion 與碰撞節點，確保 Maya 內成立的重量感沒有在 retarget 後消失。
+         </p>
+        </div>
+       </details>
+       <a class="source" href="https://www.animationmentor.com/blog/tutorial-animating-pushing-and-pulling-motions/" rel="noopener noreferrer" target="_blank">
+        來源
+       </a>
+      </div>
+     </article>
+     <article class="home-card top-item" data-intel-id="tripo-ai-game-asset-pipeline-2026" data-intel-role="card">
+      <div class="top-no">
+       03
+      </div>
+      <div class="top-main">
+       <h2>
+        Tripo 完整 AI 3D 遊戲資產流程：把生成視為起點，補上拓樸、Rig、QA 與引擎驗收
+       </h2>
+       <p class="summary">
+        Tripo 的遊戲工作流指南把 AI 3D 放進完整資產生命週期：概念、生成、拓樸整理、UV/PBR、Rig、QA、引擎匯出與製作紀錄，重點不是生成即完成。
+       </p>
+       <figure class="case-preview" data-intel-id="tripo-ai-game-asset-pipeline-2026" data-intel-role="visual" data-visual-id="tripo-ai-game-asset-pipeline-2026">
+        <a href="https://www.tripo3d.ai/blog/ai-3d-asset-pipeline-for-game-studios" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+         <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-09-11/tripo-ai-game-asset-pipeline-2026.jpg"/>
         </a>
         <figcaption>
          <span>
@@ -150,44 +205,44 @@
         </summary>
         <div class="detail-body home-analysis-body">
          <h4>
-          生成流程
+          生成與製作流程
          </h4>
          <p>
-          P2.0 的關鍵方向是讓拓樸不再只是高模生成後的外掛式重建，而是在基礎模型階段直接產生四邊面網格。這比單純 decimation 更值得關注，因為後續 sculpt、UV、skin 與動畫都依賴可預測的網格結構。
+          這份流程把 AI 網格明確放在 production chain 的前段，而不是成品端；生成後仍保留 topology cleanup、UV、PBR texture、rigging、QA、engine export 與 approval，並要求記錄 prompt、設定、人工修改與授權資訊。這種設計更接近遊戲團隊真正需要的可追溯資產流程。
          </p>
          <h4>
-          製作價值
+          流程價值
          </h4>
          <p>
-          如果原生 quad 的 edge flow 在角色關節、硬表面轉折與薄片結構上足夠穩定，就有機會壓縮 AI 3D 最大的人工成本之一：重拓樸與清理。對大量 prop 或快速角色原型尤其有價值，但目前仍屬預覽訊號，不能只依宣稱判定 production ready。
+          對大量背景物件、原型角色或變體資產，價值在於把重複的 first pass 壓縮，而不是省略美術與 TA 驗收。若團隊能把 poly budget、UV、材質通道、骨架與命名規範寫成固定 gate，AI 產出才有機會穩定進入 Unity／Unreal，而不是把返工延後到引擎端。
          </p>
          <h4>
           導入測試
          </h4>
          <p>
-          應用同一組角色、機械件與非對稱有機物，對照既有自動拓樸與 P2.0 的 pole 分布、四邊面比例、輪廓誤差、UV、法線烘焙與 skin deformation；只有人工修整時間與引擎成功率顯著改善，才算真正跨過工作流門檻。
+          建議選一個角色與兩個 prop 跑完整 A/B：傳統流程對照 Tripo 生成＋整理，記錄人工修網時間、UV 重做率、PBR 修正、skin deformation、匯入錯誤與最終 draw/mesh budget。指南來自供應商，效率敘述不可直接當 benchmark，必須以團隊自己的交付標準驗證。
          </p>
         </div>
        </details>
-       <a class="source" href="https://www.3dnatives.com/en/tripo-ai-raises-3-billion-yuan-04092026/" rel="noopener noreferrer" target="_blank">
+       <a class="source" href="https://www.tripo3d.ai/blog/ai-3d-asset-pipeline-for-game-studios" rel="noopener noreferrer" target="_blank">
         來源
        </a>
       </div>
      </article>
-     <article class="home-card top-item" data-intel-id="houdini21-procedural-character-rig-first" data-intel-role="card">
+     <article class="home-card top-item" data-intel-id="tripo-api-production-chain-2026" data-intel-role="card">
       <div class="top-no">
-       03
+       04
       </div>
       <div class="top-main">
        <h2>
-        Houdini 21 Procedural Character：Rig-first 把建模、服裝、Blend Shape、Groom 與綁定串成可回溯系統
+        Tripo API 串起生成、Smart Mesh、分件、貼圖與 Rig：AI 3D 開始具備可批次化 production surface
        </h2>
        <p class="summary">
-        SideFX 的 Procedural Character 課程展示 rig-first 角色流程，從造型到 skinning、rigging、groom 與 lookdev 都保留程序化連動。
+        Tripo 的遊戲管線 API 指南列出 generation、Smart Mesh、segmentation、texture、rigging 與 FBX/GLB export，顯示 AI 3D 可從單次網頁操作轉向可重複自動化。
        </p>
-       <figure class="case-preview" data-intel-id="houdini21-procedural-character-rig-first" data-intel-role="visual" data-visual-id="houdini21-procedural-character-rig-first">
-        <a href="https://www.sidefx.com/tutorials/character-creation/" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
-         <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-09-10/houdini21-procedural-character-rig-first.jpg"/>
+       <figure class="case-preview" data-intel-id="tripo-api-production-chain-2026" data-intel-role="visual" data-visual-id="tripo-api-production-chain-2026">
+        <a href="https://www.tripo3d.ai/blog/3d-model-generation-apis-for-game-development-pipelines" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+         <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-09-11/tripo-api-production-chain-2026.jpg"/>
         </a>
         <figcaption>
          <span>
@@ -197,7 +252,7 @@
         </figcaption>
        </figure>
        <div class="quick-impact">
-        <span><b class="quick-impact-label">角色製作</b> ★★★★★</span>
+        <span><b class="quick-impact-label">AI 3D</b> ★★★★★</span>
        </div>
        <details class="home-full-analysis">
         <summary>
@@ -205,87 +260,43 @@
         </summary>
         <div class="detail-body home-analysis-body">
          <h4>
-          角色製作流程
+          API 與生成流程
          </h4>
          <p>
-          這套 Houdini 21 流程把角色從初始設計、建模、服裝、blend shape、groom、skinning 到 rigging 放在同一程序化系統內，並採 rig-first 思維，讓骨架與變形需求更早進入造型決策，而不是最後才處理。
+          這個 API surface 不只負責 text/image-to-3D，也把 Smart Mesh、segmentation、part completion、texture 與 rigging 放在同一條可呼叫鏈上，最後能以 FBX 或 GLB 輸出。對 production 而言，重要變化是每個後處理階段可以被 job system、DCC plugin 或資產管理流程明確觸發與記錄。
          </p>
          <h4>
           製作價值
          </h4>
          <p>
-          對需要大量角色變體或反覆改比例的專案，程序化連動能降低上游修改造成的整串返工。它尤其適合建立可重用角色模板，但成本是前期系統設計與 Houdini 技術門檻較高，不一定適合只做單一英雄角色的短期任務。
+          當生成與後處理能批次化後，團隊可以建立輸入 reference、生成多版本、topology/texture gate、engine import 的半自動流程，尤其適合大量 prop 與早期 prototype。真正瓶頸會從按按鈕轉成品質檢查、失敗重試、版本追蹤與成本控制，因此 API 可用不等於可無人值守。
          </p>
          <h4>
           導入測試
          </h4>
          <p>
-          可用一個既有角色做比例、服裝厚度與臉型三種變更，測量傳統 DCC 流程與 Houdini rig-first 從修改到重新可動畫的時間；同時檢查 blend shape、skin weight、groom 與輸出到引擎後是否保持穩定。
+          先以 20 個不同類型資產測試每階段成功率、平均 credit、輸出面數、UV/PBR 完整度、pivot、FBX skeleton 與 Unity/Unreal import。另要故意加入透明材質、薄片、非對稱角色與複雜硬表面，觀察 segmentation/retopo 是否失真，再決定哪些步驟能自動通過、哪些必須人工 gate。
          </p>
         </div>
        </details>
-       <a class="source" href="https://www.sidefx.com/tutorials/character-creation/" rel="noopener noreferrer" target="_blank">
+       <a class="source" href="https://www.tripo3d.ai/blog/3d-model-generation-apis-for-game-development-pipelines" rel="noopener noreferrer" target="_blank">
         來源
        </a>
       </div>
      </article>
-     <article class="home-card top-item" data-intel-id="maya-realtime-creature-rigging" data-intel-role="card">
-      <div class="top-no">
-       04
-      </div>
-      <div class="top-main">
-       <h2>
-        Autodesk Realtime Creature Rigging：從骨架、Skin Weight、IK/FK 到遊戲引擎輸出的完整綁定基礎
-       </h2>
-       <p class="summary">
-        Autodesk 的 18 單元 realtime rigging 課程從 joint skeleton、skin binding、weight painting 到 IK/FK、space switching、twist／roll 與引擎輸出。
-       </p>
-       <div class="quick-impact">
-        <span><b class="quick-impact-label">綁定</b> ★★★★★</span>
-       </div>
-       <details class="home-full-analysis">
-        <summary>
-         完整分析
-        </summary>
-        <div class="detail-body home-analysis-body">
-         <h4>
-          動作製作流程
-         </h4>
-         <p>
-          這套課程完整覆蓋模型準備、joint skeleton、skin binding、weight painting、控制器整理，以及四肢 IK/FK，後段再加入 space swapping、twist、roll、squash 與 stretch。它把綁定視為可供動畫師與遊戲引擎共同使用的系統，而非單純把骨頭綁上網格。
-         </p>
-         <h4>
-          Rig 與輸出
-         </h4>
-         <p>
-          對建立基礎 rig 規範非常適合，因為每個步驟都能轉成外包檢查項：骨架比例、旋轉軸、權重、控制器、IK/FK 切換與最終 export。即使團隊使用 auto-rig，也需要理解這些底層條件才能判斷生成結果是否真的可用。
-         </p>
-         <h4>
-          導入測試
-         </h4>
-         <p>
-          用同一隻雙足角色建立一份最小 realtime rig，要求完成手腳 IK/FK、肩髖極限 pose、twist 與 Unity/Unreal 匯入；把破面、骨架尺度、root motion、骨數與動畫 baking 列成 checklist，作為後續自動綁定工具的比較基線。
-         </p>
-        </div>
-       </details>
-       <a class="source" href="https://www.autodesk.com/learn/ondemand/collection/realtime-creature-rigging" rel="noopener noreferrer" target="_blank">
-        來源
-       </a>
-      </div>
-     </article>
-     <article class="home-card top-item" data-intel-id="maya2027-skin-tools-layers" data-intel-role="card">
+     <article class="home-card top-item" data-intel-id="ubisoft-stylized-handpaint-breakdown" data-intel-role="card">
       <div class="top-no">
        05
       </div>
       <div class="top-main">
        <h2>
-        Maya 2027 Skin Tools：分層 Weight Painting 讓變形修正更接近可回溯的非破壞流程
+        Ubisoft 風格化 Handpaint 全流程：Blender、ZBrush、Substance 串成可擴展的遊戲資產製作模板
        </h2>
        <p class="summary">
-        Maya 2027 Skin Tools quickstart 說明初始化 skin layers、分層 painting、mirroring 與 refinement，為複雜權重提供比單層直接塗改更可管理的方式。
+        Ubisoft Paris 美術分享從 blockout、sculpt、optimization、Substance setup 到 handpaint texturing，並說明流程可擴展到 props、weapons 與 outfits。
        </p>
        <div class="quick-impact">
-        <span><b class="quick-impact-label">綁定</b> ★★★★★</span>
+        <span><b class="quick-impact-label">製作流程</b> ★★★★★</span>
        </div>
        <details class="home-full-analysis">
         <summary>
@@ -293,26 +304,26 @@
         </summary>
         <div class="detail-body home-analysis-body">
          <h4>
-          動作製作流程
+          製作流程
          </h4>
          <p>
-          Skin Tools 在既有 skinCluster 上初始化 skin layers，讓權重可以分層建立、調整與鏡像，而不是所有修正都直接寫進同一組最終數值。對肩、髖、手指等需要反覆疊加修正的區域，這種結構更容易追蹤每一次變形處理。
+          這份 breakdown 把 stylized handpaint 拆成 Blockout、Sculpting、Optimization、Substance Setup、Material Setup 與 Texturing，而不是只展示最終貼圖。Blender、ZBrush、Substance 的角色被清楚分工：形體、細化、低模與材質流程彼此接續，能直接轉成團隊 SOP。
          </p>
          <h4>
-          Rig 與輸出
+          流程價值
          </h4>
          <p>
-          分層權重能把基礎 bind、關節修正、左右差異等工作拆開，降低多人接手或外包回修時不知道哪一筆修改造成問題的風險。對角色量大的專案，也比較容易把權重模板與鏡像規則標準化。
+          作者明確以 game-ready 與 real-time constraints 為前提，並指出同一流程能套到 prop、weapon、outfit，這比只針對單一作品的技巧更有 production 價值。對 NPR／Toon 專案尤其值得關注，因為 handpaint 的視覺控制可以和較低材質複雜度結合，保持清楚的形體層級。
          </p>
          <h4>
           導入測試
          </h4>
          <p>
-          選一個肩膀與髖部容易塌陷的角色，用傳統 Paint Skin Weights 與 Skin Tools 各修一版，記錄極限 pose 的體積保持、修改步驟、回退能力與檔案相容性；再測 export/bake 是否留下預期的最終 skinCluster。
+          選一件武器與一件服裝照此 pipeline 重做，記錄 sculpt 到 lowpoly 的輪廓保留、bake artifact、Substance layer 數、手繪時間與引擎中的光照依賴。若要轉成外包規範，需再把貼圖尺寸、texel density、材質通道與可接受的 AO/lighting 烘焙程度量化。
          </p>
         </div>
        </details>
-       <a class="source" href="https://help.autodesk.com/cloudhelp/2027/ENU/Maya-CharacterAnimation/files/GUID-2ABD18C8-8CCF-44B9-99E0-EDEE4A56A3E6.htm" rel="noopener noreferrer" target="_blank">
+       <a class="source" href="https://brianvalentin.artstation.com/projects/GvD5EQ" rel="noopener noreferrer" target="_blank">
         來源
        </a>
       </div>
@@ -331,16 +342,16 @@
      </div>
     </div>
     <div class="more-grid">
-     <article class="home-card more-card" data-intel-id="ue58-layered-control-rig-animation" data-intel-role="card">
+     <article class="home-card more-card" data-intel-id="ue58-animation-mode-pose-tool" data-intel-role="card">
       <h4>
-       UE5.8 Layered Control Rig：在 Sequencer 疊加 Pose 修正，不必先把 Animation Sequence 全部 Bake 掉
+       UE5.8 Animation Editor Mode：Pose Tool、Tween、Snapper 與 Motion Trails 讓 Key Pose 調整更靠近引擎內完成
       </h4>
       <p class="summary">
-       Epic 文件說明 Layered Control Rig 可把多個 Control Rig 疊在既有 Animation Sequence 上，並以 order 與 weight 控制局部修正。
+       Epic 的 5.8 文件整理 Animation Mode 工具，其中 Control Rig Pose Tool 可保存、鏡像、混合 pose 並在套用時直接建立 keyframe，適合建立 keypose library。
       </p>
-      <figure class="case-preview" data-intel-id="ue58-layered-control-rig-animation" data-intel-role="visual" data-visual-id="ue58-layered-control-rig-animation">
-       <a href="https://dev.epicgames.com/documentation/unreal-engine/animating-with-control-rig-in-unreal-engine" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
-        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-09-10/ue58-layered-control-rig-animation.jpg"/>
+      <figure class="case-preview" data-intel-id="ue58-animation-mode-pose-tool" data-intel-role="visual" data-visual-id="ue58-animation-mode-pose-tool">
+       <a href="https://dev.epicgames.com/documentation/unreal-engine/animation-editor-mode-in-unreal-engine" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-09-11/ue58-animation-mode-pose-tool.jpg"/>
        </a>
        <figcaption>
         <span>
@@ -361,36 +372,36 @@
          動作製作流程
         </h4>
         <p>
-         Layered Control Rig 允許 Animation Sequence 先作為底層，再疊加一個或多個 Control Rig track，並透過 Backwards Solve 把結果帶入控制器。每層都有 order 與 weight，因此可以把手部、視線或接觸修正拆成非破壞的局部層。
+         UE5.8 Animation Mode 把 Pose、Tween、Snapper、Motion Trails 與 temporary Pivot 集中到同一套工具；Pose Tool 可以儲存 Control Rig controls、選取對應 controls、鏡像或混合 pose，並在套用時直接產生 keyframe。這讓建立與重用 key pose 不必每次從 DCC 重做或 bake 整段動畫。
         </p>
         <h4>
          Rig 與輸出
         </h4>
         <p>
-         這對遊戲 cinematic、動捕 cleanup 與現場改 pose 特別有用，因為不必為每個小修正都回 DCC 重 bake 整段動畫。它也讓 animator 可以保留原始 clip，同時在引擎內做 shot-specific correction，縮短 DCC 到 engine 往返。
+         對 gameplay animation，Pose Asset library 可成為 idle、attack anticipation、hit reaction 等姿勢基準，並與 Control Rig 的 engine-side edit 結合。它不會取代 Maya/Blender 的完整 animation workflow，但能把 retarget 後的小修、左右姿勢變體與 staging 調整留在 Unreal，縮短 round-trip。
         </p>
         <h4>
          導入測試
         </h4>
         <p>
-         選一段現有 locomotion 或 mocap，分別疊加腳底 contact、手持道具與頭部 look-at 三個 layer，測試 track order、weight 與 key reduction；同時檢查大量 Control Rig layer 對 Sequencer 可讀性與效能的影響。
+         先建立 10 個常用 combat key poses，驗證左右鏡像、blend pose、keyframe 寫入與不同骨架比例下的可重用程度，再把同一 animation sequence 分別用 DCC 回修與 Unreal Pose Tool 修正，記錄往返時間與失真。需要特別檢查 Control Rig 命名一致性與 pose 套用後的肩髖 deformation。
         </p>
        </div>
       </details>
-      <a class="source" href="https://dev.epicgames.com/documentation/unreal-engine/animating-with-control-rig-in-unreal-engine" rel="noopener noreferrer" target="_blank">
+      <a class="source" href="https://dev.epicgames.com/documentation/unreal-engine/animation-editor-mode-in-unreal-engine" rel="noopener noreferrer" target="_blank">
        來源
       </a>
      </article>
-     <article class="home-card more-card" data-intel-id="siggraph26-gaussian-point-splatting" data-intel-role="card">
+     <article class="home-card more-card" data-intel-id="unity64-render-graph-migration-webinar" data-intel-role="card">
       <h4>
-       SIGGRAPH 2026 Gaussian Point Splatting：數億 Gaussian 的即時渲染改用隨機點取樣與 GPU atomics
+       Unity 6.4 Render Graph：Compatibility Mode 退出後，自訂 Render Feature／Post Process 必須正式遷移
       </h4>
       <p class="summary">
-       研究提出 Gaussian point splatting，以像素大小的不透明點、64-bit atomics 與階層式 frustum／occlusion culling 渲染大量 Gaussian，展示數億 splats 的即時能力。
+       Unity Japan 的技術講座說明 Unity 6.3/6.4 的 Render Graph 演進，並指出 6.4 後相容模式移除，提供自訂後處理遷移思路。
       </p>
-      <figure class="case-preview" data-intel-id="siggraph26-gaussian-point-splatting" data-intel-role="visual" data-visual-id="siggraph26-gaussian-point-splatting">
-       <a href="https://momentsingraphics.de/Siggraph2026.html" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
-        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-09-10/siggraph26-gaussian-point-splatting.jpg"/>
+      <figure class="case-preview" data-intel-id="unity64-render-graph-migration-webinar" data-intel-role="visual" data-visual-id="unity64-render-graph-migration-webinar">
+       <a href="https://create.unity.com/unity-gaming-webinar-jp-20260129" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-09-11/unity64-render-graph-migration-webinar.jpg"/>
        </a>
        <figcaption>
         <span>
@@ -400,7 +411,46 @@
        </figcaption>
       </figure>
       <div class="quick-impact">
-       <span><b class="quick-impact-label">研究</b> ★★★★☆</span>
+       <span><b class="quick-impact-label">Unity</b> ★★★★★</span>
+      </div>
+      <details class="home-full-analysis">
+       <summary>
+        完整分析
+       </summary>
+       <div class="detail-body home-analysis-body">
+        <h4>
+         引擎工作流
+        </h4>
+        <p>
+         講座把 Unity 6 世代 Render Graph 的目的、API 使用與 custom post-processing migration 放在一起，並明確提醒 6.3 以前仍可依賴的 compatibility mode 在 6.4 之後不再是長期方案。對有自製 Renderer Feature、NPR pass、outline 或特殊後處理的專案，這是架構層而非單一 shader 的升版工作。
+        </p>
+        <h4>
+         製作影響
+        </h4>
+        <p>
+         Render Graph 會改變 render pass 對資源生命週期、讀寫依賴與暫存 texture 的管理方式。對技術美術而言，最大的風險不是畫面立刻壞掉，而是既有 custom pass 在升版時編譯或執行順序出問題；如果團隊有大量 URP 擴充，應把 migration 當成版本計畫的一部分。
+        </p>
+        <h4>
+         平台實測
+        </h4>
+        <p>
+         先列出專案所有 Renderer Features、custom post effects、camera stack 與 temporary RT 使用點，在 6.3 建 baseline，再於 6.4 branch 逐項改為 Render Graph 實作。比較 Frame Debugger、GPU capture、記憶體與畫面 parity；NPR 專案尤其要檢查 depth/normal texture availability、透明排序與多 camera 行為。
+        </p>
+       </div>
+      </details>
+      <a class="source" href="https://create.unity.com/unity-gaming-webinar-jp-20260129" rel="noopener noreferrer" target="_blank">
+       來源
+      </a>
+     </article>
+     <article class="home-card more-card" data-intel-id="gaussian-point-splatting-siggraph26" data-intel-role="card">
+      <h4>
+       SIGGRAPH 2026 Gaussian Point Splatting：以像素級 stochastic points 把數億 Gaussians 推向即時渲染
+      </h4>
+      <p class="summary">
+       ACM TOG/SIGGRAPH 2026 的 Gaussian Point Splatting 使用 64-bit atomics、平行 point splatting 與階層式 frustum/occlusion culling，展示數億 Gaussian 的 real-time rendering。
+      </p>
+      <div class="quick-impact">
+       <span><b class="quick-impact-label">研究</b> ★★★★★</span>
       </div>
       <details class="home-full-analysis">
        <summary>
@@ -411,36 +461,125 @@
          技術方向
         </h4>
         <p>
-         傳統 Gaussian splatting 需要處理大量半透明 splat 的排序與混合；這項方法改成從每個 Gaussian 隨機取樣像素大小的不透明點，以 64-bit atomics 寫入 framebuffer，再用數學方式校正每個 Gaussian 的取樣量與 opacity。
+         方法把 Gaussian 的 rasterization 轉成採樣像素大小的不透明 points，再以 64-bit atomics 平行寫入 framebuffer，並處理同一 pixel 多點命中時的 opacity 分布；再搭配 hierarchical frustum 與 occlusion culling。核心方向是把大量 Gaussians 的工作切成高度平行的小單位。
         </p>
         <h4>
          製作潛力
         </h4>
         <p>
-         若能把數億 Gaussian 保持在即時範圍，對大型掃描場景、數位孿生或 neural capture 的可視化很有吸引力；階層式 frustum 與 occlusion culling 也更接近實際引擎需要的規模化策略，而不是只展示小型 benchmark。
+         若這類 renderer 能在實務 GPU 與工具鏈中成熟，超大型 scan/world capture、數位場景與混合傳統 mesh 的 viewport 可能獲得更高可視規模。對遊戲美術的價值不只是 FPS，而是能否讓 splat asset 進入可編輯、可 LOD、可遮擋與可 streaming 的 production 管線。
         </p>
         <h4>
          成熟度判斷
         </h4>
         <p>
-         目前仍是研究型渲染方法，輸出與傳統 splatting 之間會有輕微 noise 與 aliasing 差異。導入前應用動態鏡頭、薄幾何、透明邊緣與 VR 解析度測 temporal stability，再評估是否適合 production，而非只看靜態 FPS。
+         建議先在 R&amp;D branch 用同一大型 3DGS scene 比較既有 renderer 與 point splatting 的 FPS、VRAM、aliasing、noise、camera motion 穩定性與不同 opacity 分布；論文指出輸出仍有輕微 noise/aliasing 差異，因此目前更適合作為 rendering research benchmark，而非直接替代 mesh pipeline。
         </p>
        </div>
       </details>
-      <a class="source" href="https://momentsingraphics.de/Siggraph2026.html" rel="noopener noreferrer" target="_blank">
+      <a class="source" href="https://doi.org/10.1145/3811272" rel="noopener noreferrer" target="_blank">
        來源
       </a>
      </article>
-     <article class="home-card more-card" data-intel-id="houdini21-procedural-cities-games" data-intel-role="card">
+     <article class="home-card more-card" data-intel-id="gnomon-complex-fight-body-mechanics" data-intel-role="card">
       <h4>
-       Houdini 21 Procedural Cities for Games：把城市資產組裝變成可重複的世界建構工具
+       Gnomon 複雜打鬥動畫：Planning、Spline-Blocking、多角色接觸與 Moving Camera 的高階 Body Mechanics
       </h4>
       <p class="summary">
-       SideFX 的進階遊戲課程聚焦 procedural cities，展示以 Houdini 21 建立可重用城市生成工作流，而非逐棟手工擺放。
+       Peter Dang 的 Maya workshop 從 reference planning 到 spline-blocking、straight-ahead、多角色互動、移動鏡頭與 polish，聚焦高強度動作的物理感。
       </p>
-      <figure class="case-preview" data-intel-id="houdini21-procedural-cities-games" data-intel-role="visual" data-visual-id="houdini21-procedural-cities-games">
-       <a href="https://www.sidefx.com/tutorials/build-procedural-cities-for-games/" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
-        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-09-10/houdini21-procedural-cities-games.jpg"/>
+      <div class="quick-impact">
+       <span><b class="quick-impact-label">動畫</b> ★★★★☆</span>
+      </div>
+      <details class="home-full-analysis">
+       <summary>
+        完整分析
+       </summary>
+       <div class="detail-body home-analysis-body">
+        <h4>
+         動作製作流程
+        </h4>
+        <p>
+         課程把複雜 fight shot 拆成 planning/reference、spline-blocking、straight-ahead 段落、多角色 physical interaction 與 moving camera，而不是只靠 pose-to-pose。這對高動態鏡頭很重要，因為角色接觸、相對速度與鏡頭運動會互相影響，單獨把每個角色做完再合併通常會增加返工。
+        </p>
+        <h4>
+         製作價值
+        </h4>
+        <p>
+         對 boss attack、摔技、雙人處決或 cinematic combat，最大的 production 風險是接觸點漂移與鏡頭切換後 silhouette 失效。先把整個 shot 當成關係系統規劃，可讓 primary action、secondary reaction 與 camera rhythm 同時被 review，減少最後 polish 才發現 staging 不成立。
+        </p>
+        <h4>
+         導入測試
+        </h4>
+        <p>
+         可用兩角色 3–5 秒 grapple/throw 測試：先鎖 camera 與 contact beats，再分層完成 blocking、interaction constraint 與 polish，記錄每次 review 的返工來源。若是 gameplay animation，還要拆出可重用 clip、root motion、hit frame 與 gameplay event，避免 cinematic 方法直接套用後失去可控性。
+        </p>
+       </div>
+      </details>
+      <a class="source" href="https://www.thegnomonworkshop.com/workshops/animating-a-complex-fight-action-sequence-in-maya" rel="noopener noreferrer" target="_blank">
+       來源
+      </a>
+     </article>
+     <article class="home-card more-card" data-intel-id="meshy-all-in-one-animation-workflow" data-intel-role="card">
+      <h4>
+       Meshy 一站式 3D→Rig→Animation 流程：生成角色後直接接 Remesh、AI Texturing 與動作預設
+      </h4>
+      <p class="summary">
+       Meshy 的官方教學示範 text/image-to-3D、Remesh、AI Texturing、Rig 與 Animation 串成單一流程，適合評估從概念到可動角色的快速原型效率。
+      </p>
+      <figure class="case-preview" data-intel-id="meshy-all-in-one-animation-workflow" data-intel-role="visual" data-visual-id="meshy-all-in-one-animation-workflow">
+       <a href="https://www.meshy.ai/tutorials/meshy-all-in-one-ai-workflow-text-image-3d-animation-video" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-09-11/meshy-all-in-one-animation-workflow.jpg"/>
+       </a>
+       <figcaption>
+        <span>
+         SOURCE PREVIEW
+        </span>
+        · Local visual evidence · 點圖開啟原始來源
+       </figcaption>
+      </figure>
+      <div class="quick-impact">
+       <span><b class="quick-impact-label">AI 3D</b> ★★★★☆</span>
+      </div>
+      <details class="home-full-analysis">
+       <summary>
+        完整分析
+       </summary>
+       <div class="detail-body home-analysis-body">
+        <h4>
+         生成流程
+        </h4>
+        <p>
+         官方教學把 text-to-3D、image-to-3D、Remesh、AI Texturing、Rig 與動畫預設放進連續操作，降低資產在不同服務間來回轉檔的摩擦。這類 all-in-one 流程最適合快速判斷角色比例、服裝量體與動作方向，但每個階段仍可能累積誤差。
+        </p>
+        <h4>
+         製作價值
+        </h4>
+        <p>
+         對 pre-production 或大量 NPC prototype，單一平台能快速產生可旋轉、可上材質、可動的版本，讓企劃與美術更早做選擇。不過真正 game-ready 仍取決於網格 edge flow、skin weight、動畫接觸、骨架命名與引擎材質，因此它比較像縮短前期探索，而不是替代最終角色製作。
+        </p>
+        <h4>
+         導入測試
+        </h4>
+        <p>
+         用同一張 A-pose 角色 reference，完整跑 Meshy 流程後進 Unity/Unreal，檢查 Remesh 輪廓損失、UV seam、normal、肩髖 skin、foot contact 與 root motion。再與手工低模＋既有 rig 比較從 input 到可在遊戲中播放 idle/run/attack 的總工時，避免只比較生成秒數。
+        </p>
+       </div>
+      </details>
+      <a class="source" href="https://www.meshy.ai/tutorials/meshy-all-in-one-ai-workflow-text-image-3d-animation-video" rel="noopener noreferrer" target="_blank">
+       來源
+      </a>
+     </article>
+     <article class="home-card more-card" data-intel-id="sidefx-rock-generator-production" data-intel-role="card">
+      <h4>
+       Houdini 21 Rock Generator：把天然岩石從單件雕刻轉成可重用、可控的程序化資產工具
+      </h4>
+      <p class="summary">
+       SideFX 的 Rock Generator 教學從簡單幾何建立 fracture、reshape 與 variation，重點是把自然物製作轉成可重用 Digital Asset，而非只生成單顆岩石。
+      </p>
+      <figure class="case-preview" data-intel-id="sidefx-rock-generator-production" data-intel-role="visual" data-visual-id="sidefx-rock-generator-production">
+       <a href="https://www.sidefx.com/tutorials/rock-generator/" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-09-11/sidefx-rock-generator-production.jpg"/>
        </a>
        <figcaption>
         <span>
@@ -461,133 +600,44 @@
          場景製作流程
         </h4>
         <p>
-         課程將城市建構視為規則、模組與程序化組裝問題，而不是單純模型堆疊。對遊戲場景而言，這種方式可把道路、街廓、建築模組與變體規則包成工具，讓 layout 與資產規則在同一流程中反覆調整。
-        </p>
-        <h4>
-         流程價值
-        </h4>
-        <p>
-         程序化城市最適合需要大量重複但又不能完全一致的中大型場景，可把環境美術工時從逐物件擺放轉移到規則設計與例外修整。真正效益取決於模組規格是否一致，以及工具是否能讓非 TD 美術也安全使用。
-        </p>
-        <h4>
-         實測
-        </h4>
-        <p>
-         先用一個小街區做基準，固定 10 至 20 個模組與道路規則，比較人工 layout 與程序化輸出的速度、重複感、碰撞、LOD/HLOD 與 Unreal 導入成本；若例外修整過多，就要回頭降低規則複雜度。
-        </p>
-       </div>
-      </details>
-      <a class="source" href="https://www.sidefx.com/tutorials/build-procedural-cities-for-games/" rel="noopener noreferrer" target="_blank">
-       來源
-      </a>
-     </article>
-     <article class="home-card more-card" data-intel-id="ue58-create-control-rig-fk-hierarchy" data-intel-role="card">
-      <h4>
-       UE5.8 Control Rig 基礎：從 Skeleton 建 FK Control，並把控制層級與骨架層級分離
-      </h4>
-      <p class="summary">
-       Epic 的 Control Rig 教學示範從骨架建立 FK control，並建議把控制器從 skeleton hierarchy 解耦，建立獨立可維護的 control hierarchy。
-      </p>
-      <figure class="case-preview" data-intel-id="ue58-create-control-rig-fk-hierarchy" data-intel-role="visual" data-visual-id="ue58-create-control-rig-fk-hierarchy">
-       <a href="https://dev.epicgames.com/documentation/unreal-engine/how-to-create-control-rigs-in-unreal-engine" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
-        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-09-10/ue58-create-control-rig-fk-hierarchy.jpg"/>
-       </a>
-       <figcaption>
-        <span>
-         SOURCE PREVIEW
-        </span>
-        · Local visual evidence · 點圖開啟原始來源
-       </figcaption>
-      </figure>
-      <div class="quick-impact">
-       <span><b class="quick-impact-label">綁定</b> ★★★★☆</span>
-      </div>
-      <details class="home-full-analysis">
-       <summary>
-        完整分析
-       </summary>
-       <div class="detail-body home-analysis-body">
-        <h4>
-         動作製作流程
-        </h4>
-        <p>
-         Epic 的基礎流程先在 Rig Hierarchy 找到骨頭並建立同位置、同方向的 control，再建議將 control 從 skeleton hierarchy unparent，改成獨立的控制層級。這把 deformation skeleton 與 animator-facing controls 分開，是可維護 rig 的核心概念。
-        </p>
-        <h4>
-         Rig 與輸出
-        </h4>
-        <p>
-         對從 Maya 或 Blender 轉到引擎端綁定的人，最值得學的是骨架不是控制器。控制層獨立後才能安全加入 offset、space switch、procedural logic，而不直接污染輸出骨架，也更容易與 Sequencer、Animation Blueprint 串接。
-        </p>
-        <h4>
-         導入測試
-        </h4>
-        <p>
-         先用手臂做最小 rig：建立 FK controls、獨立 hierarchy、測試旋轉軸與父子關係，再擴到 IK。最後與 DCC 匯入動畫混合測試，確認 control rig 的修改不會破壞原始 skeleton、root motion 與 retarget chain。
-        </p>
-       </div>
-      </details>
-      <a class="source" href="https://dev.epicgames.com/documentation/unreal-engine/how-to-create-control-rigs-in-unreal-engine" rel="noopener noreferrer" target="_blank">
-       來源
-      </a>
-     </article>
-     <article class="home-card more-card" data-intel-id="ue58-lumen-surface-cache-cards" data-intel-role="card">
-      <h4>
-       Lumen Surface Cache：複雜 Mesh 的 Cards 覆蓋與材質邏輯會直接影響 GI／Reflection 正確性
-      </h4>
-      <p class="summary">
-       Epic Lumen 技術文件說明 Surface Cache 以多角度 Cards 快取材質；複雜室內、view-dependent material 與未被 Cards 覆蓋區域可能造成黑反射或間接光缺失。
-      </p>
-      <figure class="case-preview" data-intel-id="ue58-lumen-surface-cache-cards" data-intel-role="visual" data-visual-id="ue58-lumen-surface-cache-cards">
-       <a href="https://dev.epicgames.com/documentation/unreal-engine/lumen-technical-details-in-unreal-engine" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
-        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-09-10/ue58-lumen-surface-cache-cards.jpg"/>
-       </a>
-       <figcaption>
-        <span>
-         SOURCE PREVIEW
-        </span>
-        · Local visual evidence · 點圖開啟原始來源
-       </figcaption>
-      </figure>
-      <div class="quick-impact">
-       <span><b class="quick-impact-label">渲染</b> ★★★★☆</span>
-      </div>
-      <details class="home-full-analysis">
-       <summary>
-        完整分析
-       </summary>
-       <div class="detail-body home-analysis-body">
-        <h4>
-         引擎工作流
-        </h4>
-        <p>
-         Lumen 會為附近表面建立 Surface Cache，離線從多個角度捕捉材質；預設每個 mesh 只放 12 張 Cards。未覆蓋區域在 debug view 會顯示粉紅，並可能缺少 bounce light 或在 reflection 中變黑，複雜 mesh 可提高 Max Lumen Mesh Cards。
+         課程從乾淨基礎幾何開始，透過 fracture、reshape 與 variation 組成可重複使用的 rock generator，並把 artist control 保留在程序參數中。這種做法和手工雕一顆岩石的最大差異，是輸出可以依尺寸、形狀與場景需求持續衍生，而不必複製後逐件修改。
         </p>
         <h4>
          製作價值
         </h4>
         <p>
-         這直接影響場景模型拆分規範：整間房連家具合成一個複雜 mesh 並不是 Lumen 預期用法，牆、地板、天花板分開通常更穩定。View-dependent material 邏輯也可能在 Surface Cache 捕捉時得到錯誤結果。
+         對大量自然場景與關卡 dressing，程序化岩石最適合解決一致性與變體量：同一規則可產出家族化造型，又能避免完全隨機造成美術失控。前期建立 HDA 的成本較高，但只要資產使用量足夠，就能把後續 blockout、更換比例與 LOD 前處理變成批次工作。
         </p>
         <h4>
-         平台實測
+         導入測試
         </h4>
         <p>
-         建立 Lumen debug checklist，檢查 Card Placement 與 Surface Cache 覆蓋；對大型建築比較拆分前後的 GI、reflection 與更新成本。含 Camera Vector、Pixel Depth 等材質則測 Ray Tracing Quality Switch，避免只在主視角看起來正常。
+         建立 20 個尺寸與 silhouette 不同的岩石變體，檢查 topology、UV/bake、碰撞、LOD 與 Unreal/Unity instancing 成本，再與手工複製修改比較總工時。測試重點不是 generator 能不能出圖，而是參數是否能讓美術快速得到需要的那顆且不引入難以維護的例外。
         </p>
        </div>
       </details>
-      <a class="source" href="https://dev.epicgames.com/documentation/unreal-engine/lumen-technical-details-in-unreal-engine" rel="noopener noreferrer" target="_blank">
+      <a class="source" href="https://www.sidefx.com/tutorials/rock-generator/" rel="noopener noreferrer" target="_blank">
        來源
       </a>
      </article>
-     <article class="home-card more-card" data-intel-id="substance-painter-character-texturing-course" data-intel-role="card">
+     <article class="home-card more-card" data-intel-id="zbrushlive-shane-olson-stylized-2026" data-intel-role="card">
       <h4>
-       Substance 3D Painter 角色貼圖流程：從皮膚細節到 Roughness／SSS 的完整官方教學
+       ZBrush 2026 風格化角色直播：從 Blockout 到 Polish 的造型判斷仍是高價值角色製作基礎
       </h4>
       <p class="summary">
-       Adobe 官方角色貼圖課程由角色美術示範從皮膚細節、base color、layer refinement 到 roughness 與 subsurface scattering 的完整流程。
+       Shane Olson 的 ZBrushLIVE 於 9 月 10 日示範 stylized character 從 blockout 到 polish，內容面向 collectibles 與 games，適合作為角色量體、輪廓與細節層級參考。
       </p>
+      <figure class="case-preview" data-intel-id="zbrushlive-shane-olson-stylized-2026" data-intel-role="visual" data-visual-id="zbrushlive-shane-olson-stylized-2026">
+       <a href="https://pixologic.com/zbrushlive/events/shane-olson-and-zbrushlive-74/" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-09-11/zbrushlive-shane-olson-stylized-2026.jpg"/>
+       </a>
+       <figcaption>
+        <span>
+         SOURCE PREVIEW
+        </span>
+        · Local visual evidence · 點圖開啟原始來源
+       </figcaption>
+      </figure>
       <div class="quick-impact">
        <span><b class="quick-impact-label">角色製作</b> ★★★★☆</span>
       </div>
@@ -600,86 +650,36 @@
          角色製作流程
         </h4>
         <p>
-         這套教學不是只講單一 smart material，而是從場景設定、皮膚細節、base color 分層一路到 roughness 與 SSS，強調不同材質訊號要分開控制。對角色來說，這能避免只靠 base color 畫明暗、造成引擎換光後質感崩壞。
-        </p>
-        <h4>
-         流程價值
-        </h4>
-        <p>
-         角色皮膚最容易在 roughness、微細節與次表面之間失衡，官方完整流程適合作為外包檢收或內部新人 training 的共同基準。即使專案最後採 NPR，也可借用分層思路，把色彩、材質反應與細節遮罩拆開管理。
-        </p>
-        <h4>
-         實測
-        </h4>
-        <p>
-         挑一顆現有頭模重做一版，固定同一 HDRI 與引擎燈光，比較舊貼圖與分層流程在正面、側光、暗部的 roughness 與 SSS 穩定性；同時記錄 layer 數量與修改成本，避免流程變得過度複雜。
-        </p>
-       </div>
-      </details>
-      <a class="source" href="https://www.adobe.com/learn/substance-3d-painter/web/texturing-characters-in-substance-3d-painter" rel="noopener noreferrer" target="_blank">
-       來源
-      </a>
-     </article>
-     <article class="home-card more-card" data-intel-id="qwen-edit-multiview-character-reference" data-intel-role="card">
-      <h4>
-       Qwen Edit 多角度角色 LoRA：把單張角色轉成多視角參考的 ComfyUI 實務路線
-      </h4>
-      <p class="summary">
-       Stable Diffusion Art 整理的 Qwen Image Edit 多角度工作流，透過 LoRA 與 ComfyUI 將角色轉成不同相機角度，可用於 3D 生成前的輔助視圖準備。
-      </p>
-      <figure class="case-preview" data-intel-id="qwen-edit-multiview-character-reference" data-intel-role="visual" data-visual-id="qwen-edit-multiview-character-reference">
-       <a href="https://stable-diffusion-art.com/qwen-image-edit-multiple-angle-lora/" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
-        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-09-10/qwen-edit-multiview-character-reference.jpg"/>
-       </a>
-       <figcaption>
-        <span>
-         SOURCE PREVIEW
-        </span>
-        · Local visual evidence · 點圖開啟原始來源
-       </figcaption>
-      </figure>
-      <div class="quick-impact">
-       <span><b class="quick-impact-label">AI 2D</b> ★★★★☆</span>
-      </div>
-      <details class="home-full-analysis">
-       <summary>
-        完整分析
-       </summary>
-       <div class="detail-body home-analysis-body">
-        <h4>
-         生成流程
-        </h4>
-        <p>
-         這套做法不是直接生成 3D，而是先把單一角色圖透過 Qwen Edit LoRA 轉成多個指定角度，再把結果作為後續 image-to-3D 或人工建模的視覺約束。工作流可在 ComfyUI 中固定節點、模型與相機方向，具備可重現性。
+         這場 ZBrush 2026 直播從 blockout 走到 polish，核心不是新工具清單，而是風格化角色如何先用大形、比例與 silhouette 建立辨識，再逐步增加次級與表面細節。對角色美術而言，這種順序能避免早期就陷入局部雕刻，尤其適合要維持卡通化或遊戲視距可讀性的角色。
         </p>
         <h4>
          製作價值
         </h4>
         <p>
-         對缺少正式 turnaround 的角色概念，補左、右、後視圖能降低 3D 模型在背面與側面完全猜測的比例，也能讓多視圖生成獲得更多約束。不過生成出的輔助視圖本身不是設計真值，仍可能把錯誤一致地傳入 3D。
+         AI 生成與自動細化越快，手工 blockout 的判斷反而更適合作為品質 gate：頭身比例、手腳誇張、面部節奏與裝備量體如果沒有先成立，後續高頻細節只會放大錯誤。這類專業直播可用來校準團隊對 stylized sculpt 的共同語言與 review 節點。
         </p>
         <h4>
          導入測試
         </h4>
         <p>
-         挑選有真實四視圖答案的角色，先只給正面生成其餘角度，再比較輪廓、配件位置、臉部比例與服裝接縫誤差。若多視圖彼此衝突，應在送入 3D 前人工修正，而不是把一致性問題留給幾何生成器。
+         可把團隊現有角色 review 拆成 blockout、secondary form、polish 三關，每關只允許對應層級資訊，並用同一角色比較先細節與先 silhouette 的返工次數。直播屬教學與示範，具體 brush 或操作技巧應以實際影片驗證，不能從活動頁面延伸未顯示的功能細節。
         </p>
        </div>
       </details>
-      <a class="source" href="https://stable-diffusion-art.com/qwen-image-edit-multiple-angle-lora/" rel="noopener noreferrer" target="_blank">
+      <a class="source" href="https://pixologic.com/zbrushlive/events/shane-olson-and-zbrushlive-74/" rel="noopener noreferrer" target="_blank">
        來源
       </a>
      </article>
-     <article class="home-card more-card" data-intel-id="maya2027-automatic-retopology" data-intel-role="card">
+     <article class="home-card more-card" data-intel-id="redshift-2026-9-live-anisotropy" data-intel-role="card">
       <h4>
-       Maya 2027 自動 Retopologize：Remesh→Retopo→Transfer Attributes 的可控重拓樸流程
+       Redshift 2026.9：Live Renderer 補上 Anisotropy／HDR Compression，Maya USD/Alembic Instancing 也擴充
       </h4>
       <p class="summary">
-       Autodesk 文件說明以 Remesh 與 Retopologize 修復密集或不均勻網格，並提供 Preserve Hard Edges、Topology Regularity、Anisotropy 與 UV transfer 等控制。
+       Redshift 2026.9 更新 Live real-time renderer 的 anisotropy 與 HDR compression，支援 OCIO 2.5，並擴充 Maya 的 USD/Alembic proxy instancing。
       </p>
-      <figure class="case-preview" data-intel-id="maya2027-automatic-retopology" data-intel-role="visual" data-visual-id="maya2027-automatic-retopology">
-       <a href="https://help.autodesk.com/cloudhelp/2027/ENU/Maya-Modeling/files/GUID-083D2387-5553-4C03-BCB1-9231293626AD.htm" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
-        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-09-10/maya2027-automatic-retopology.jpg"/>
+      <figure class="case-preview" data-intel-id="redshift-2026-9-live-anisotropy" data-intel-role="visual" data-visual-id="redshift-2026-9-live-anisotropy">
+       <a href="https://www.cgchannel.com/2026/09/maxon-releases-redshift-2026-9/" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-09-11/redshift-2026-9-live-anisotropy.jpg"/>
        </a>
        <figcaption>
         <span>
@@ -689,7 +689,7 @@
        </figcaption>
       </figure>
       <div class="quick-impact">
-       <span><b class="quick-impact-label">製作流程</b> ★★★★☆</span>
+       <span><b class="quick-impact-label">其他 DCC</b> ★★★★☆</span>
       </div>
       <details class="home-full-analysis">
        <summary>
@@ -697,88 +697,38 @@
        </summary>
        <div class="detail-body home-analysis-body">
         <h4>
-         製作流程
+         DCC 工作流
         </h4>
         <p>
-         Maya 的建議流程是先 Remesh 再 Retopologize，密集網格可先 preprocess，硬表面則提高 topology regularity 與 face uniformity、降低 anisotropy，並可保留 hard edges。完成後還能用 Transfer Attributes 把原始 UV 轉到新網格。
-        </p>
-        <h4>
-         流程價值
-        </h4>
-        <p>
-         這條流程適合掃描、雕刻或 AI 生成後需要快速得到較規整 quad 網格的資產，尤其在進 Painter、烘焙或做中距離 prop 前可先降低人工整理量。不過它仍是幾何重建，不保證角色關節所需的動畫 edge flow。
-        </p>
-        <h4>
-         實測
-        </h4>
-        <p>
-         用有機角色、硬表面與高密度掃描各一組，固定目標面數比較輪廓、硬邊、UV transfer、normal bake 與處理時間；角色樣本再加肩、肘、膝 deformation test，確認自動 quad 是否真的能進 rig，而不只是視覺乾淨。
-        </p>
-       </div>
-      </details>
-      <a class="source" href="https://help.autodesk.com/cloudhelp/2027/ENU/Maya-Modeling/files/GUID-083D2387-5553-4C03-BCB1-9231293626AD.htm" rel="noopener noreferrer" target="_blank">
-       來源
-      </a>
-     </article>
-     <article class="home-card more-card" data-intel-id="ue58-nanite-aggregate-geometry" data-intel-role="card">
-      <h4>
-       Nanite Aggregate Geometry：草、葉、毛髮類大量薄片會破壞像素尺度化假設，需用 Overdraw 實測
-      </h4>
-      <p class="summary">
-       Epic 的 Nanite 使用指南指出 foliage、hair、grass 等大量斷開薄片會降低 LOD 簡化與 occlusion culling 效率，可能造成高 overdraw。
-      </p>
-      <figure class="case-preview" data-intel-id="ue58-nanite-aggregate-geometry" data-intel-role="visual" data-visual-id="ue58-nanite-aggregate-geometry">
-       <a href="https://dev.epicgames.com/documentation/unreal-engine/working-with-naniteenabled-content" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
-        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-09-10/ue58-nanite-aggregate-geometry.jpg"/>
-       </a>
-       <figcaption>
-        <span>
-         SOURCE PREVIEW
-        </span>
-        · Local visual evidence · 點圖開啟原始來源
-       </figcaption>
-      </figure>
-      <div class="quick-impact">
-       <span><b class="quick-impact-label">效能優化</b> ★★★★☆</span>
-      </div>
-      <details class="home-full-analysis">
-       <summary>
-        完整分析
-       </summary>
-       <div class="detail-body home-analysis-body">
-        <h4>
-         引擎工作流
-        </h4>
-        <p>
-         Nanite 對連續表面能依螢幕像素縮減幾何，但 foliage、hair、grass 這類 aggregate geometry 由大量斷開小片組成，遠處仍像半透明雲團，既難合併成更粗 cluster，也需要更多深度層才能完成 occlusion。
+         Redshift 2026.9 讓 Redshift Live 支援 anisotropy 與 HDR compression，使 brushed metal 等方向性高光材質能在即時 preview 中更接近最終效果；核心 renderer 同時升到 OCIO 2.5。Maya 端增加 USD/Alembic proxy instance 與 nParticles 中 USD proxy 的支援，改善大量重複資產工作流。
         </p>
         <h4>
          製作價值
         </h4>
         <p>
-         因此所有高模都開 Nanite 不能取代內容型態判斷。樹葉卡片、密集草與多層毛片可能在同樣像素覆蓋下畫更多 triangles 並產生 overdraw，場景美術需要把材質遮罩、幾何密度與距離策略一起評估。
+         對 lookdev 團隊，Live preview 能正確看到 anisotropic response 會減少材質在互動預覽與 final render 間的落差；OCIO 2.5 則有利於與現行 VFX color pipeline 對齊。USD/Alembic instancing 對大場景的價值在於更有效地重用 cache/proxy，而不是複製完整幾何。
         </p>
         <h4>
-         平台實測
+         升版 / 導入測試
         </h4>
         <p>
-         用同一片植被建立傳統 LOD 與 Nanite 版本，在近中遠距離記錄 triangles、overdraw、GPU time 與記憶體；再改葉片大小與層數找甜蜜點。決策應由 profiler 驗證，不以單張 editor screenshot 判斷。
+         挑一組髮絲或拉絲金屬、HDR highlight 與大量 USD proxy 場景，對照前版與 2026.9 的 viewport/final parity、顯存、instance 數與 color transform；並確認現有 DCC plugin、OCIO config、render farm 與 Houdini/Maya 版本相容。屬點版更新，應先在副本專案回歸再升 production baseline。
         </p>
        </div>
       </details>
-      <a class="source" href="https://dev.epicgames.com/documentation/unreal-engine/working-with-naniteenabled-content" rel="noopener noreferrer" target="_blank">
+      <a class="source" href="https://www.cgchannel.com/2026/09/maxon-releases-redshift-2026-9/" rel="noopener noreferrer" target="_blank">
        來源
       </a>
      </article>
-     <article class="home-card more-card" data-intel-id="houdini-project-grot-procedural-ruins" data-intel-role="card">
+     <article class="home-card more-card" data-intel-id="gs2m-material-aware-mesh-reconstruction" data-intel-role="card">
       <h4>
-       Project GROT：從粗 Blockout 生成高模廢墟的 Houdini→Unreal 程序化場景範例
+       GS-2M：Material-aware Gaussian Splatting 把高反射物的 Mesh Reconstruction 與材質分解一起處理
       </h4>
       <p class="summary">
-       SideFX Project GROT 教學將粗略 blockout 轉成高模程序化廢墟，並延伸到橋樑、熔岩地形、煙霧 VDB 等 Unreal 場景工具。
+       Computer Graphics Forum 2026 的 GS-2M 以 material-aware optimization 從 multi-view images 重建高品質 mesh，特別處理高反射表面在 geometry／reflectance／lighting 分解上的困難。
       </p>
       <div class="quick-impact">
-       <span><b class="quick-impact-label">場景製作</b> ★★★★☆</span>
+       <span><b class="quick-impact-label">研究</b> ★★★★☆</span>
       </div>
       <details class="home-full-analysis">
        <summary>
@@ -786,26 +736,26 @@
        </summary>
        <div class="detail-body home-analysis-body">
         <h4>
-         場景製作流程
+         技術方向
         </h4>
         <p>
-         Project GROT 的重點是讓粗 blockout 成為程序化工具的輸入，再由 Houdini 產生可用於 Unreal 的細節高模；同一系列也用曲線驅動橋樑、solver 生成熔岩地形，並把 loopable smoke 以 VDB 帶入引擎。
+         GS-2M 的重點是把 3D Gaussian Splatting 與 material-aware optimization 結合，針對 multi-view image 中高反射表面容易讓幾何與光照互相污染的問題，同時考慮 mesh reconstruction 與材質或光照分解。這比單純把 splat 轉 mesh 更接近可再打光的資產需求。
         </p>
         <h4>
-         流程價值
+         製作潛力
         </h4>
         <p>
-         這種做法把環境美術的反覆修改從重做資產變成調整輸入與規則，對關卡尺寸與構圖尚未鎖定的階段很有價值。尤其適合岩壁、廢墟、肉質結構等可程序化變形的自然或有機場景。
+         對掃描道具、汽車、金屬設備或商品資產，反射往往是 photogrammetry/reconstruction 的難點；如果能更可靠分離幾何、反射與 illumination，輸出就比較有機會進入 PBR lookdev，而不是只能保留拍攝光照的 baked appearance。這對遊戲與虛擬製作的可重用性很關鍵。
         </p>
         <h4>
-         實測
+         成熟度判斷
         </h4>
         <p>
-         先只重做一段牆或橋樑工具，要求能在三種長度與轉角下保持 UV、碰撞、Nanite 與材質一致；記錄每次關卡改尺寸後的修正分鐘數。若工具維護時間高於重做成本，就不應過早擴成完整系統。
+         R&amp;D 測試應選 matte、brushed metal、glossy plastic 三組物件，對照 photogrammetry 與 GS-2M 類方法的 geometry error、normal、roughness/reflectance 可編輯性與重新打光一致性。研究論文證明方法方向，但工具可用性、最佳化時間與商用 pipeline 整合仍需另外驗證。
         </p>
        </div>
       </details>
-      <a class="source" href="https://www.sidefx.com/learn/collections/project-grot/" rel="noopener noreferrer" target="_blank">
+      <a class="source" href="https://onlinelibrary.wiley.com/doi/10.1111/cgf.70347" rel="noopener noreferrer" target="_blank">
        來源
       </a>
      </article>
@@ -818,7 +768,7 @@
      </h2>
     </div>
     <div class="category-nav-grid">
-     <a class="category-nav-card" href="2026-09-10/ai-generation/">
+     <a class="category-nav-card" href="2026-09-11/ai-generation/">
       <strong>
        AI 生成
       </strong>
@@ -826,7 +776,7 @@
        AI 3D 生成 / AI 2D 生成 / AI 動作生成
       </span>
      </a>
-     <a class="category-nav-card" href="2026-09-10/3d-production/">
+     <a class="category-nav-card" href="2026-09-11/3d-production/">
       <strong>
        3D 製作
       </strong>
@@ -834,7 +784,7 @@
        3D 角色製作 / 3D 物件製作 / 3D 場景製作 / 製作流程
       </span>
      </a>
-     <a class="category-nav-card" href="2026-09-10/3d-animation/">
+     <a class="category-nav-card" href="2026-09-11/3d-animation/">
       <strong>
        3D 動作
       </strong>
@@ -842,7 +792,7 @@
        3D 動作 / 3D 動作製作流程
       </span>
      </a>
-     <a class="category-nav-card" href="2026-09-10/engine-art/">
+     <a class="category-nav-card" href="2026-09-11/engine-art/">
       <strong>
        遊戲引擎
       </strong>
@@ -850,7 +800,7 @@
        遊戲引擎 / 引擎端美術內容
       </span>
      </a>
-     <a class="category-nav-card" href="2026-09-10/emerging-case/">
+     <a class="category-nav-card" href="2026-09-11/emerging-case/">
       <strong>
        新技術 / Case
       </strong>
@@ -858,7 +808,7 @@
        新技術 / Production Case
       </span>
      </a>
-     <a class="category-nav-card" href="2026-09-10/blender-dcc/">
+     <a class="category-nav-card" href="2026-09-11/blender-dcc/">
       <strong>
        Blender / DCC
       </strong>
@@ -868,8 +818,8 @@
      </a>
     </div>
    </section>
-   <div class="current-report-entry" data-current-report-date="2026-09-10">
-    <a aria-label="查看 2026-09-10 今日完整日報" class="category-nav-card current-report-link" href="2026-09-10/">
+   <div class="current-report-entry" data-current-report-date="2026-09-11">
+    <a aria-label="查看 2026-09-11 今日完整日報" class="category-nav-card current-report-link" href="2026-09-11/">
      <div class="current-report-copy">
       <span class="current-report-eyebrow">
        TODAY
@@ -879,7 +829,7 @@
       </strong>
      </div>
      <span class="current-report-date">
-      2026-09-10
+      2026-09-11
      </span>
     </a>
    </div>
@@ -942,6 +892,14 @@
          9 月
         </summary>
         <div class="archive-entries">
+         <a class="history-entry" data-history-categories="3d-animation 3d-production ai-generation blender-dcc emerging-case engine-art" data-history-date="2026-09-10" data-history-search="2026-09-10 歷史日報 chatgpt images 2.5：參考圖保真、局部編輯與多輪一致性直接對準美術迭代 openai 於 9 月 8 日發布 chatgpt images 2.5，強化參考圖主體保留、局部精準編輯、多輪修改一致性與透明背景，並宣稱相較 images 2.0 最多降低 50% 生成延遲。 ★★★★★ tripo p2.0 預覽：原生四邊面拓樸把 ai 3d 從外觀生成推向可編輯網格 tripo 在 9 月初隨融資消息公開 p2.0 預覽，主打端到端生成原生 quad topology，並把引擎可用、可綁定與可編輯作為工業化目標。 ★★★★★ houdini 21 procedural character：rig-first 把建模、服裝、blend shape、groom 與綁定串成可回溯系統 sidefx 的 procedural character 課程展示 rig-first 角色流程，從造型到 skinning、rigging、groom 與 lookdev 都保留程序化連動。 ★★★★★ autodesk realtime creature rigging：從骨架、skin weight、ik/fk 到遊戲引擎輸出的完整綁定基礎 autodesk 的 18 單元 realtime rigging 課程從 joint skeleton、skin binding、weight painting 到 ik/fk、space switching、twist／roll 與引擎輸出。 ★★★★★ maya 2027 skin tools：分層 weight painting 讓變形修正更接近可回溯的非破壞流程 maya 2027 skin tools quickstart 說明初始化 skin layers、分層 painting、mirroring 與 refinement，為複雜權重提供比單層直接塗改更可管理的方式。 ★★★★★ ue5.8 layered control rig：在 sequencer 疊加 pose 修正，不必先把 animation sequence 全部 bake 掉 epic 文件說明 layered control rig 可把多個 control rig 疊在既有 animation sequence 上，並以 order 與 weight 控制局部修正。 ★★★★★ siggraph 2026 gaussian point splatting：數億 gaussian 的即時渲染改用隨機點取樣與 gpu atomics 研究提出 gaussian point splatting，以像素大小的不透明點、64-bit atomics 與階層式 frustum／occlusion culling 渲染大量 gaussian，展示數億 splats 的即時能力。 ★★★★☆ houdini 21 procedural cities for games：把城市資產組裝變成可重複的世界建構工具 sidefx 的進階遊戲課程聚焦 procedural cities，展示以 houdini 21 建立可重用城市生成工作流，而非逐棟手工擺放。 ★★★★☆ ue5.8 control rig 基礎：從 skeleton 建 fk control，並把控制層級與骨架層級分離 epic 的 control rig 教學示範從骨架建立 fk control，並建議把控制器從 skeleton hierarchy 解耦，建立獨立可維護的 control hierarchy。 ★★★★☆ lumen surface cache：複雜 mesh 的 cards 覆蓋與材質邏輯會直接影響 gi／reflection 正確性 epic lumen 技術文件說明 surface cache 以多角度 cards 快取材質；複雜室內、view-dependent material 與未被 cards 覆蓋區域可能造成黑反射或間接光缺失。 ★★★★☆ substance 3d painter 角色貼圖流程：從皮膚細節到 roughness／sss 的完整官方教學 adobe 官方角色貼圖課程由角色美術示範從皮膚細節、base color、layer refinement 到 roughness 與 subsurface scattering 的完整流程。 ★★★★☆ qwen edit 多角度角色 lora：把單張角色轉成多視角參考的 comfyui 實務路線 stable diffusion art 整理的 qwen image edit 多角度工作流，透過 lora 與 comfyui 將角色轉成不同相機角度，可用於 3d 生成前的輔助視圖準備。 ★★★★☆ maya 2027 自動 retopologize：remesh→retopo→transfer attributes 的可控重拓樸流程 autodesk 文件說明以 remesh 與 retopologize 修復密集或不均勻網格，並提供 preserve hard edges、topology regularity、anisotropy 與 uv transfer 等控制。 ★★★★☆ nanite aggregate geometry：草、葉、毛髮類大量薄片會破壞像素尺度化假設，需用 overdraw 實測 epic 的 nanite 使用指南指出 foliage、hair、grass 等大量斷開薄片會降低 lod 簡化與 occlusion culling 效率，可能造成高 overdraw。 ★★★★☆ project grot：從粗 blockout 生成高模廢墟的 houdini→unreal 程序化場景範例 sidefx project grot 教學將粗略 blockout 轉成高模程序化廢墟，並延伸到橋樑、熔岩地形、煙霧 vdb 等 unreal 場景工具。 ★★★★☆ ue5.8 shading models：default lit、unlit、hair、cloth 等材質模型應視為 production 規格而非外觀開關 epic 的 shading models 文件整理不同光照模型的適用表面；選錯模型會改變材質輸入的解讀與最終光照反應。 ★★★☆☆ blender animation &amp; rigging 9/8 模組會議：追蹤綁定與動畫核心功能的近期開發方向 blender animation &amp; rigging 模組在 9 月 8 日召開公開會議，持續追蹤該模組的 issues、pull requests 與長期開發焦點。 ★★★☆☆ ctrl-g：遊戲生成式圖形的下一個門檻從能生成轉向即時可控制與可接管線 nvidia、epic 與學界在 siggraph frontiers 的 ctrl-g 聚焦 controllable generative graphics，討論生成系統如何回應玩家意圖並整合到現代遊戲引擎。 ★★★★☆ molecular nodes 520：blender geometry nodes 的科學資料匯入與動畫工具持續擴充 molecular nodes 在 9 月 5 日更新至 520.0.0，持續提供分子、軌跡與 cryo-em 等資料匯入，以及 geometry nodes 內的選取、造型與動畫節點。 ★★★☆☆" href="2026-09-10/">
+          <strong>
+           2026-09-10
+          </strong>
+          <span>
+           歷史日報
+          </span>
+         </a>
          <a class="history-entry" data-history-categories="3d-production ai-generation blender-dcc emerging-case engine-art" data-history-date="2026-09-09" data-history-search="2026-09-09 歷史日報 tripo smart mesh p1.0：2 秒生成乾淨 low-poly 拓樸，直接瞄準即時資產 tripo 將 smart mesh p1.0 定位成 h3.1 高模生成的即時資產搭檔，主打約 2 秒輸出結構化 low-poly topology，降低 ai 網格進入遊戲管線前的重拓樸成本。 ★★★★★ meshy multi-view texture：四視圖同時約束幾何與 2k–8k base color meshy 的 multi-view 升級讓 geometry 與 texture 都可讀取主視圖加左／後／右輔助視圖，並輸出原生 2k、4k 或 8k base color，強化角色與圖案一致性。 ★★★★★ meshy 7 幾何對齊：開始用比例、空間分布與表面細節量化 image-to-3d meshy 7 將 image-to-3d 重點放在 geometry alignment，並公開以比例、空間分布與表面細節比較輸入圖與參考模型的 benchmark，同時承認規則重複結構仍會漂移。 ★★★★★ tripo 官方 comfyui nodes：生成、分件、拓樸、rig、retarget 串成可自動化 3d 流程 tripo 的官方 comfyui extension 已把文字／單圖／多視圖生成、模型匯入、分件、低模、retopology、rigging、animation retarget 與格式轉換放進同一節點流程。 ★★★★★ hunyuan3d-buffalo 1.0：把 3d 理解、生成、指令編輯與零件生成統一 騰訊 hunyuan3d-buffalo 1.0 以同一多模態框架處理 3d understanding、text-to-3d、instruction-guided editing 與 part-level generation，研究重點從一次生成推向可理解、可編輯資產。 ★★★★☆ hunyuan3d worldclaw：agentic 粗到細流程生成可編輯 3d open world worldclaw 以規劃 agent 把文字需求拆成區域、地形、資產、材質與空間關係，再透過 blender 與多個生成／分割模組建立可編輯場景，代表 world generation 往 production orchestration 前進。 ★★★★☆ r-dmesh：以參考影片驅動靜態 mesh，直接輸出時間一致的 4d 動態網格 siggraph 2026 的 r-dmesh 可把靜態 mesh 對齊參考影片起始姿勢並生成時間一致的動態 mesh，同時支援 pose／motion retarget，程式與 checkpoint 已公開。 ★★★★☆ detram：單一 transformer 同時做人形 mesh 重建、多人追蹤與 prompt 指定人物 nvidia 研究 detram 以持續跨幀的 query 同時完成多人偵測、human mesh recovery 與 tracking，並可用 prompt 指定人物，在 posetrack21、3dpw 等資料集展示競爭力。 ★★★☆☆ blender cycles 開始整合 gaussian splat：多種 compute backend 已通過初步測試 blender 9 月 render &amp; cycles meeting 顯示 gsplat 初始 cycles rendering support 正在開發，cpu、cuda、optix、oneapi、hip、metal 與硬體 rt 已完成初步手動測試。 ★★★★☆ 印度 bioscope 道具：用「實際接觸區」而非隨機 grunge 決定磨損 pixeldhara 的 bioscope breakdown 從歷史研究、3ds max high/low poly、painter baking/texturing 到 ue5 mrq，核心是依觸摸、保護區與積塵位置設計可信磨損。 ★★★★★ wayfinder 風格鐮刀：zremesher 分層雕刻＋高對比 base color 驅動 roughness／metallic artem romanov 的 stylized scythe 流程用 blender blockout、zbrush zremesher/divide、uvpackmaster、marmoset baking，再以 painter 高對比 base color、anchor points 與 hand-painting 建立 stylized pbr。 ★★★★★ blender 5.2 remote asset libraries：資產可從伺服器按需下載並本地快取 blender 5.2 支援以 url 註冊 remote asset library，asset browser 可按需下載並快取；自架 library 需生成 json listing 與 preview，外部依賴則必須打包進獨立 .blend。 ★★★★★ blender 5.2 cycles texture cache：只載入需要的 tile／mip，壓低大量貼圖場景記憶體 cycles 5.2 的 texture cache 會自動產生 .tx，只載入 render 當下需要的 tile 與解析度，並配合 tiled rendering 淘汰未使用貼圖，針對大量 4k–16k texture 場景降低記憶體。 ★★★★★ maya 2027 usd component creator／variant manager：直接在 maya 建 production-ready usd asset maya 2027 的 usd workflow 新增 component creator 與 variant manager，可把 scene objects 一鍵組成自包含 usd stage，並用 template 控制 prim hierarchy 與集中管理 variants。 ★★★★★ arnold for 3ds max 5.9.3：原生 3dgs、shader to rgba 與 tone zones 強化 npr／混合場景 3ds max 2027.2 內的 arnold 5.9.3 可直接 render 3d gaussian splatting，並新增 shader to rgba、tone zones、較快 gpu scene update 與改善 noice denoiser。 ★★★★★ unity material generator：editor 內從文字／參考圖產生可直接受光的 tileable pbr placeholder unity ai material generator 可在 unity editor 內用 prompt 與 optional reference image 建立 tileable pbr material，官方明確把它定位在 prototype／placeholder，而不是直接取代 final art。 ★★★★☆ unity 3d object generator：直接在 editor 以文字／參考圖生成靜態 3d prefab 做灰盒替身 unity ai 的 3d object generator 可在 editor 內從文字或 reference image 生成 static 3d mesh prefab，官方建議用於單一部件 prop、環境細節與 prototype placeholder。 ★★★★☆ unity dynamic wireframe shader：不預處理 mesh，直接用真實 topology 畫即時線框 dynamic wireframe shader 以 shader graph/gpu 直接渲染 mesh 真實 topology，不需 duplicate mesh 或離線 preprocessing，支援 birp、urp、hdrp，但要求 tessellation-capable gpu。 ★★★☆☆" href="2026-09-09/">
           <strong>
            2026-09-09
@@ -1111,7 +1069,7 @@
     </div>
    </section>
   </main>
-  <script src="home.js?v=20260910-r1-workspace-v6">
+  <script src="home.js?v=20260911-r1-workspace-v6">
   </script>
  </body>
 </html>

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   遊戲引擎｜2026-09-11｜AI 3D Daily
+  </title>
+  <link href="../../styles.css?v=20260911-r1-workspace-v6" rel="stylesheet"/>
+  <link href="../../shared-components.css?v=20260911-r1-workspace-v6" rel="stylesheet"/>
+  <link href="../../category.css?v=20260911-r1-workspace-v6" rel="stylesheet"/>
+ </head>
+ <body class="category-page" data-category="engine-art" data-report-date="2026-09-11">
+  <nav aria-label="Production Intelligence 分類" class="global-category-nav">
+   <div class="page global-category-nav-inner">
+    <div class="archive-nav-controls">
+     <a class="archive-nav-home" href="../../">
+      ← 首頁
+     </a>
+     <div class="archive-nav-date">
+      <a aria-label="前一日日報" class="archive-nav-arrow" href="../../2026-09-10/engine-art/">
+       ←
+      </a>
+      <span>
+       2026-09-11
+      </span>
+     </div>
+    </div>
+    <span aria-hidden="true" class="archive-nav-divider">
+    </span>
+    <a class="global-category-link" href="../#top">
+     TOP5
+    </a>
+    <a class="global-category-link" data-category="ai-generation" href="../ai-generation/">
+     AI 生成
+    </a>
+    <a class="global-category-link" data-category="3d-production" href="../3d-production/">
+     3D 製作
+    </a>
+    <a class="global-category-link" data-category="3d-animation" href="../3d-animation/">
+     3D 動作
+    </a>
+    <a class="global-category-link is-active" data-category="engine-art" href="../engine-art/">
+     遊戲引擎
+    </a>
+    <a class="global-category-link" data-category="emerging-case" href="../emerging-case/">
+     新技術 / Case
+    </a>
+    <a class="global-category-link" data-category="blender-dcc" href="../blender-dcc/">
+     Blender / DCC
+    </a>
+   </div>
+  </nav>
+  <main class="page category-main">
+   <article class="category-card" data-intel-id="qualcomm-adreno-neural-fusion" data-intel-role="card">
+    <div class="category-meta">
+     #01 · rendering
+    </div>
+    <h2>
+     Qualcomm Adreno Neural Fusion：AI Super Resolution＋Frame Generation 直接進 Unity／Unreal 行動渲染路徑
+    </h2>
+    <p class="summary">
+     Qualcomm 公開 Adreno Neural Fusion，透過 GPU 內 Matrix Cores、18MB HPM、AI super resolution 與 frame generation，並宣稱支援 Unity/Unreal 整合。
+    </p>
+    <figure class="case-preview" data-intel-id="qualcomm-adreno-neural-fusion" data-intel-role="visual" data-visual-id="qualcomm-adreno-neural-fusion">
+     <a href="https://www.qualcomm.com/news/onq/2026/09/adreno-neural-fusion-ai-rendering" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-11/qualcomm-adreno-neural-fusion.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">渲染</b> ★★★★★</span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       引擎工作流
+      </h4>
+      <p>
+       Adreno Neural Fusion 把 neural processing、AI super resolution 與 frame generation 合到 GPU graphics pipeline，並以每個 GPU slice 內的 Matrix Cores 與 18MB High Performance Memory 讓 AI workload 更靠近圖形資料。對 Unity/Unreal 團隊而言，重點是供應商宣稱已有引擎整合，而非要求每個遊戲自行搭一套 NPU pipeline。
+      </p>
+      <h4>
+       製作價值
+      </h4>
+      <p>
+       若實際裝置能用較低 internal resolution 維持可接受畫質，再以 AI upscale/frame generation 補輸出，行動專案就可能把 GPU 預算讓給更複雜材質、陰影或角色數量。這會直接影響 art budget 設計，但生成幀造成的 latency、UI/alpha artifact 與特定內容 ghosting 仍可能限制使用場景。
+      </p>
+      <h4>
+       平台實測
+      </h4>
+      <p>
+       應在支援晶片的實機建立固定 benchmark scene，比較原生解析度、只 upscale、upscale＋frame generation 的 GPU time、功耗、熱降頻、input latency 與 artifact；特別測細線 toon outline、粒子、透明髮絲、快速鏡頭與 UI。官方宣稱不能替代實機 capture，必須把 QA 納入不同畫質檔。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://www.qualcomm.com/news/onq/2026/09/adreno-neural-fusion-ai-rendering" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="unity64-render-graph-migration-webinar" data-intel-role="card">
+    <div class="category-meta">
+     #07 · unity
+    </div>
+    <h2>
+     Unity 6.4 Render Graph：Compatibility Mode 退出後，自訂 Render Feature／Post Process 必須正式遷移
+    </h2>
+    <p class="summary">
+     Unity Japan 的技術講座說明 Unity 6.3/6.4 的 Render Graph 演進，並指出 6.4 後相容模式移除，提供自訂後處理遷移思路。
+    </p>
+    <figure class="case-preview" data-intel-id="unity64-render-graph-migration-webinar" data-intel-role="visual" data-visual-id="unity64-render-graph-migration-webinar">
+     <a href="https://create.unity.com/unity-gaming-webinar-jp-20260129" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-11/unity64-render-graph-migration-webinar.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">Unity</b> ★★★★★</span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       引擎工作流
+      </h4>
+      <p>
+       講座把 Unity 6 世代 Render Graph 的目的、API 使用與 custom post-processing migration 放在一起，並明確提醒 6.3 以前仍可依賴的 compatibility mode 在 6.4 之後不再是長期方案。對有自製 Renderer Feature、NPR pass、outline 或特殊後處理的專案，這是架構層而非單一 shader 的升版工作。
+      </p>
+      <h4>
+       製作影響
+      </h4>
+      <p>
+       Render Graph 會改變 render pass 對資源生命週期、讀寫依賴與暫存 texture 的管理方式。對技術美術而言，最大的風險不是畫面立刻壞掉，而是既有 custom pass 在升版時編譯或執行順序出問題；如果團隊有大量 URP 擴充，應把 migration 當成版本計畫的一部分。
+      </p>
+      <h4>
+       平台實測
+      </h4>
+      <p>
+       先列出專案所有 Renderer Features、custom post effects、camera stack 與 temporary RT 使用點，在 6.3 建 baseline，再於 6.4 branch 逐項改為 Render Graph 實作。比較 Frame Debugger、GPU capture、記憶體與畫面 parity；NPR 專案尤其要檢查 depth/normal texture availability、透明排序與多 camera 行為。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://create.unity.com/unity-gaming-webinar-jp-20260129" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <nav aria-label="相鄰分類" class="category-bottom-nav">
+    <a href="../3d-animation/">
+     ← 3D 動作
+    </a>
+    <a href="../#top">
+     TOP5
+    </a>
+    <a href="../emerging-case/">
+     新技術 / Case →
+    </a>
+   </nav>
+  </main>
+  <script defer="" src="../../archive-nav-state.js?v=20260911-r1-workspace-v6">
+  </script>
+ </body>
+</html>

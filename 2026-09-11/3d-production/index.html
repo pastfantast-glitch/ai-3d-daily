@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   3D 製作｜2026-09-11｜AI 3D Daily
+  </title>
+  <link href="../../styles.css?v=20260911-r1-workspace-v6" rel="stylesheet"/>
+  <link href="../../shared-components.css?v=20260911-r1-workspace-v6" rel="stylesheet"/>
+  <link href="../../category.css?v=20260911-r1-workspace-v6" rel="stylesheet"/>
+ </head>
+ <body class="category-page" data-category="3d-production" data-report-date="2026-09-11">
+  <nav aria-label="Production Intelligence 分類" class="global-category-nav">
+   <div class="page global-category-nav-inner">
+    <div class="archive-nav-controls">
+     <a class="archive-nav-home" href="../../">
+      ← 首頁
+     </a>
+     <div class="archive-nav-date">
+      <a aria-label="前一日日報" class="archive-nav-arrow" href="../../2026-09-10/3d-production/">
+       ←
+      </a>
+      <span>
+       2026-09-11
+      </span>
+     </div>
+    </div>
+    <span aria-hidden="true" class="archive-nav-divider">
+    </span>
+    <a class="global-category-link" href="../#top">
+     TOP5
+    </a>
+    <a class="global-category-link" data-category="ai-generation" href="../ai-generation/">
+     AI 生成
+    </a>
+    <a class="global-category-link is-active" data-category="3d-production" href="../3d-production/">
+     3D 製作
+    </a>
+    <a class="global-category-link" data-category="3d-animation" href="../3d-animation/">
+     3D 動作
+    </a>
+    <a class="global-category-link" data-category="engine-art" href="../engine-art/">
+     遊戲引擎
+    </a>
+    <a class="global-category-link" data-category="emerging-case" href="../emerging-case/">
+     新技術 / Case
+    </a>
+    <a class="global-category-link" data-category="blender-dcc" href="../blender-dcc/">
+     Blender / DCC
+    </a>
+   </div>
+  </nav>
+  <main class="page category-main">
+   <article class="category-card" data-intel-id="ubisoft-stylized-handpaint-breakdown" data-intel-role="card">
+    <div class="category-meta">
+     #05 · production-workflow
+    </div>
+    <h2>
+     Ubisoft 風格化 Handpaint 全流程：Blender、ZBrush、Substance 串成可擴展的遊戲資產製作模板
+    </h2>
+    <p class="summary">
+     Ubisoft Paris 美術分享從 blockout、sculpt、optimization、Substance setup 到 handpaint texturing，並說明流程可擴展到 props、weapons 與 outfits。
+    </p>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">製作流程</b> ★★★★★</span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       製作流程
+      </h4>
+      <p>
+       這份 breakdown 把 stylized handpaint 拆成 Blockout、Sculpting、Optimization、Substance Setup、Material Setup 與 Texturing，而不是只展示最終貼圖。Blender、ZBrush、Substance 的角色被清楚分工：形體、細化、低模與材質流程彼此接續，能直接轉成團隊 SOP。
+      </p>
+      <h4>
+       流程價值
+      </h4>
+      <p>
+       作者明確以 game-ready 與 real-time constraints 為前提，並指出同一流程能套到 prop、weapon、outfit，這比只針對單一作品的技巧更有 production 價值。對 NPR／Toon 專案尤其值得關注，因為 handpaint 的視覺控制可以和較低材質複雜度結合，保持清楚的形體層級。
+      </p>
+      <h4>
+       導入測試
+      </h4>
+      <p>
+       選一件武器與一件服裝照此 pipeline 重做，記錄 sculpt 到 lowpoly 的輪廓保留、bake artifact、Substance layer 數、手繪時間與引擎中的光照依賴。若要轉成外包規範，需再把貼圖尺寸、texel density、材質通道與可接受的 AO/lighting 烘焙程度量化。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://brianvalentin.artstation.com/projects/GvD5EQ" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="sidefx-rock-generator-production" data-intel-role="card">
+    <div class="category-meta">
+     #11 · environment-production
+    </div>
+    <h2>
+     Houdini 21 Rock Generator：把天然岩石從單件雕刻轉成可重用、可控的程序化資產工具
+    </h2>
+    <p class="summary">
+     SideFX 的 Rock Generator 教學從簡單幾何建立 fracture、reshape 與 variation，重點是把自然物製作轉成可重用 Digital Asset，而非只生成單顆岩石。
+    </p>
+    <figure class="case-preview" data-intel-id="sidefx-rock-generator-production" data-intel-role="visual" data-visual-id="sidefx-rock-generator-production">
+     <a href="https://www.sidefx.com/tutorials/rock-generator/" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-11/sidefx-rock-generator-production.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">場景製作</b> ★★★★☆</span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       場景製作流程
+      </h4>
+      <p>
+       課程從乾淨基礎幾何開始，透過 fracture、reshape 與 variation 組成可重複使用的 rock generator，並把 artist control 保留在程序參數中。這種做法和手工雕一顆岩石的最大差異，是輸出可以依尺寸、形狀與場景需求持續衍生，而不必複製後逐件修改。
+      </p>
+      <h4>
+       製作價值
+      </h4>
+      <p>
+       對大量自然場景與關卡 dressing，程序化岩石最適合解決一致性與變體量：同一規則可產出家族化造型，又能避免完全隨機造成美術失控。前期建立 HDA 的成本較高，但只要資產使用量足夠，就能把後續 blockout、更換比例與 LOD 前處理變成批次工作。
+      </p>
+      <h4>
+       導入測試
+      </h4>
+      <p>
+       建立 20 個尺寸與 silhouette 不同的岩石變體，檢查 topology、UV/bake、碰撞、LOD 與 Unreal/Unity instancing 成本，再與手工複製修改比較總工時。測試重點不是 generator 能不能出圖，而是參數是否能讓美術快速得到需要的那顆且不引入難以維護的例外。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://www.sidefx.com/tutorials/rock-generator/" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="zbrushlive-shane-olson-stylized-2026" data-intel-role="card">
+    <div class="category-meta">
+     #12 · character-production
+    </div>
+    <h2>
+     ZBrush 2026 風格化角色直播：從 Blockout 到 Polish 的造型判斷仍是高價值角色製作基礎
+    </h2>
+    <p class="summary">
+     Shane Olson 的 ZBrushLIVE 於 9 月 10 日示範 stylized character 從 blockout 到 polish，內容面向 collectibles 與 games，適合作為角色量體、輪廓與細節層級參考。
+    </p>
+    <figure class="case-preview" data-intel-id="zbrushlive-shane-olson-stylized-2026" data-intel-role="visual" data-visual-id="zbrushlive-shane-olson-stylized-2026">
+     <a href="https://pixologic.com/zbrushlive/events/shane-olson-and-zbrushlive-74/" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-11/zbrushlive-shane-olson-stylized-2026.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">角色製作</b> ★★★★☆</span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       角色製作流程
+      </h4>
+      <p>
+       這場 ZBrush 2026 直播從 blockout 走到 polish，核心不是新工具清單，而是風格化角色如何先用大形、比例與 silhouette 建立辨識，再逐步增加次級與表面細節。對角色美術而言，這種順序能避免早期就陷入局部雕刻，尤其適合要維持卡通化或遊戲視距可讀性的角色。
+      </p>
+      <h4>
+       製作價值
+      </h4>
+      <p>
+       AI 生成與自動細化越快，手工 blockout 的判斷反而更適合作為品質 gate：頭身比例、手腳誇張、面部節奏與裝備量體如果沒有先成立，後續高頻細節只會放大錯誤。這類專業直播可用來校準團隊對 stylized sculpt 的共同語言與 review 節點。
+      </p>
+      <h4>
+       導入測試
+      </h4>
+      <p>
+       可把團隊現有角色 review 拆成 blockout、secondary form、polish 三關，每關只允許對應層級資訊，並用同一角色比較先細節與先 silhouette 的返工次數。直播屬教學與示範，具體 brush 或操作技巧應以實際影片驗證，不能從活動頁面延伸未顯示的功能細節。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://pixologic.com/zbrushlive/events/shane-olson-and-zbrushlive-74/" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <nav aria-label="相鄰分類" class="category-bottom-nav">
+    <a href="../ai-generation/">
+     ← AI 生成
+    </a>
+    <a href="../#top">
+     TOP5
+    </a>
+    <a href="../3d-animation/">
+     3D 動作 →
+    </a>
+   </nav>
+  </main>
+  <script defer="" src="../../archive-nav-state.js?v=20260911-r1-workspace-v6">
+  </script>
+ </body>
+</html>
