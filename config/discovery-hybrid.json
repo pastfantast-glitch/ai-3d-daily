@@ -1,5 +1,5 @@
 {
-  "version": 2,
+  "version": 3,
   "effective_date": "2026-09-09",
   "coverage_audit": {
     "required_windows": ["24h", "7d", "30d", "6m", "evergreen"],
@@ -16,6 +16,8 @@
     "require_targeted_refill": true,
     "require_backlog_check": true,
     "require_quality_first_confirmation": true,
+    "require_priority_source_checks": true,
+    "priority_source_coverage_effective_date": "2026-09-12",
     "exhaustion_status": "exhausted"
   },
   "rolling_backlog": {
@@ -26,6 +28,75 @@
     "refresh_before_use": true,
     "remove_when_published_or_invalid": true
   },
+  "preference_learning": {
+    "effective_date": "2026-09-12",
+    "purpose": "Use explicit user-selected articles as positive examples for discovery-query expansion and user-interest ranking without turning any source or topic into a quota.",
+    "use_for": [
+      "discovery-query-expansion",
+      "targeted-refill-query-expansion",
+      "user-interest-fit-ranking"
+    ],
+    "ranking_policy": "Similarity to positive samples may increase user_interest_fit, but must never bypass source verification, Published Intelligence Registry canonical URL dedupe, substantive-delta checks, classification, Quality Gate, Full Analysis depth, release gates or category diversity.",
+    "derived_content_signals": [
+      "end-to-end character production breakdown from concept to final asset",
+      "practical reproducible material or shader tutorial",
+      "production-useful DCC tool or add-on solving a concrete workflow problem",
+      "high-value hand-keyed or stylized animation reference",
+      "stylized character presentation with strong animation or visual-development reference",
+      "artist-authored workflow breakdown with concrete modeling, texturing, rigging, animation or rendering decisions"
+    ],
+    "positive_samples": [
+      {
+        "id": "80lv-fantasy-character-2d-to-3d",
+        "url": "https://80.lv/articles/breakdown-modeling-a-3d-fantasy-character-based-on-a-2d-concept",
+        "affinity": ["3d-production", "character-production", "production-breakdown", "concept-to-3d", "modeling", "texturing"]
+      },
+      {
+        "id": "80lv-procedural-ice-material-blender",
+        "url": "https://80.lv/articles/tutorial-realistic-procedural-ice-cube-material-in-blender-with-easy-customization",
+        "affinity": ["blender-dcc", "3d-production", "practical-tutorial", "procedural-material", "shader", "Blender"]
+      },
+      {
+        "id": "80lv-venom-hand-keyed-animation",
+        "url": "https://80.lv/articles/spider-verse-animator-makes-marvel-s-venom-look-absolutely-insane",
+        "affinity": ["3d-animation", "animation", "hand-keyed", "stylized-animation", "high-value-reference", "body-mechanics"]
+      },
+      {
+        "id": "80lv-alice-raid-character-fanart",
+        "url": "https://80.lv/articles/modeling-and-texturing-a-fan-art-of-alice-from-raid-shadow-legends",
+        "affinity": ["3d-production", "character-production", "production-breakdown", "modeling", "texturing", "character-art"]
+      },
+      {
+        "id": "80lv-free-cad-retopology-blender",
+        "url": "https://80.lv/articles/try-this-free-cad-data-retopology-tool-for-blender",
+        "affinity": ["blender-dcc", "3d-production", "addon", "retopology", "CAD-to-game-ready", "workflow-tool"]
+      },
+      {
+        "id": "80lv-stylized-vampire-animation",
+        "url": "https://80.lv/articles/this-3d-animation-of-a-stylized-vampire-was-inspired-by-marvel-rivals-arcane",
+        "affinity": ["3d-animation", "3d-production", "stylized-animation", "character-art", "high-value-reference", "visual-development"]
+      }
+    ]
+  },
+  "priority_sources": [
+    {
+      "id": "80-level",
+      "domain": "80.lv",
+      "mode": "high-recall",
+      "required_check": true,
+      "positive_sample_affinity": true,
+      "content_types": [
+        "production breakdown",
+        "character and environment workflow",
+        "practical tutorial",
+        "DCC tool or add-on",
+        "rigging and animation workflow",
+        "high-value stylized animation or visual reference"
+      ],
+      "scan_policy": "Actively inspect new and relevant 80 Level articles during normal discovery and targeted refill instead of relying on broad search to surface them incidentally.",
+      "admission": "Priority-source status affects recall only. Every candidate still requires normal source verification, Registry dedupe, substantive delta, classification, Quality Gate, ranking and Full Analysis evidence."
+    }
+  ],
   "category_discovery_profiles": {
     "3d-animation": {
       "always_discover": true,
@@ -77,7 +148,9 @@
     "trigger_category_count_lte": 1,
     "prioritize_zero_categories": true,
     "rerun_registry_after_refill": true,
-    "use_category_discovery_profiles": true
+    "use_category_discovery_profiles": true,
+    "use_preference_learning": true,
+    "use_priority_sources": true
   },
   "low_volume_release": {
     "enabled": true,
