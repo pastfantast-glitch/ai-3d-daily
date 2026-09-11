@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   AI／3D／遊戲美術 Production Intelligence — 2026-09-12
+  </title>
+  <link href="../styles.css?v=20260912-r1-workspace-v6" rel="stylesheet"/>
+  <link href="../shared-components.css?v=20260912-r1-workspace-v6" rel="stylesheet"/>
+  <link href="../daily.css?v=20260912-r1-workspace-v6" rel="stylesheet"/>
+  <link href="../shared-components.css?v=20260912-r1-workspace-v6" rel="stylesheet"/>
+ </head>
+ <body class="archive-page" data-next="" data-previous="2026-09-11" data-report-date="2026-09-12">
+  <nav aria-label="Production Intelligence 分類" class="global-category-nav">
+   <div class="page global-category-nav-inner">
+    <div class="archive-nav-controls">
+     <a class="archive-nav-home" href="../">
+      ← 首頁
+     </a>
+     <div class="archive-nav-date">
+      <a aria-label="前一日日報" class="archive-nav-arrow" href="../2026-09-11/">
+       ←
+      </a>
+      <span>
+       2026-09-12
+      </span>
+     </div>
+    </div>
+    <span aria-hidden="true" class="archive-nav-divider">
+    </span>
+    <a class="global-category-link is-active" href="#top">
+     TOP5
+    </a>
+    <a class="global-category-link" data-category="ai-generation" href="ai-generation/">
+     AI 生成
+    </a>
+    <a class="global-category-link" data-category="3d-production" href="3d-production/">
+     3D 製作
+    </a>
+    <a class="global-category-link" data-category="3d-animation" href="3d-animation/">
+     3D 動作
+    </a>
+    <a class="global-category-link" data-category="engine-art" href="engine-art/">
+     遊戲引擎
+    </a>
+    <a class="global-category-link" data-category="emerging-case" href="emerging-case/">
+     新技術 / Case
+    </a>
+    <a class="global-category-link" data-category="blender-dcc" href="blender-dcc/">
+     Blender / DCC
+    </a>
+   </div>
+  </nav>
+  <main class="page daily-main">
+   <section class="block" id="top">
+    <div class="block-head">
+     <div>
+      <span>
+       2026-09-12
+      </span>
+      <h2>
+       TOP5
+      </h2>
+     </div>
+    </div>
+    <article class="news daily-card daily-card-top" data-intel-id="80lv-dr-doom-metahuman-character-workflow" data-intel-role="card">
+     <div class="news-rank">
+      01
+     </div>
+     <div class="news-main">
+      <div class="meta">
+       <span class="pill">
+        character-production
+       </span>
+      </div>
+      <h3>
+       Dr. Doom 角色流程：MetaHuman、ZBrush、Marvelous 與 UE5 即時呈現串成完整角色管線
+      </h3>
+      <p class="summary">
+       Rocksteady 角色美術 Patrick van Rooijen 分享 Dr. Doom 製作：MetaHuman 頭部回寫 ZBrush、Marvelous 分層服裝、Maya/TopoGun 重拓樸、Substance 貼圖，最後在 UE5 以 Lumen、markerless mocap 與 Chaos Cloth 完成即時展示。
+      </p>
+      <figure class="case-preview daily-visual" data-intel-id="80lv-dr-doom-metahuman-character-workflow" data-intel-role="visual" data-visual-id="80lv-dr-doom-metahuman-character-workflow">
+       <a href="https://80.lv/articles/making-a-recreation-of-dr-doom-using-unreal-engine-and-zbrush" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-09-12/80lv-dr-doom-metahuman-character-workflow.jpg"/>
+       </a>
+       <figcaption>
+        <span>
+         SOURCE PREVIEW
+        </span>
+        · Local visual evidence · 點圖開啟原始來源
+       </figcaption>
+      </figure>
+      <div class="quick-impact daily-impact">
+       <span><b class="quick-impact-label">角色製作</b> ★★★★★</span>
+      </div>
+      <details class="daily-full-analysis">
+       <summary>
+        完整分析
+       </summary>
+       <div class="detail-body daily-analysis-body">
+        <h4>
+         角色製作流程
+        </h4>
+        <p>
+         這篇把角色資產從頭部、服裝到即時展示串成一條可追蹤流程：先把掃描轉成 MetaHuman mesh，再進 ZBrush 做造型與傷疤調整；服裝先在 ZBrush blockout 驗證分層，再用 Marvelous Designer 重建，最後以 Maya／TopoGun 清理拓樸、RizomUV 與 UVPackmaster 整理 UV、Substance Painter 完成材質。
+        </p>
+        <h4>
+         製作價值
+        </h4>
+        <p>
+         值得借鏡的是作者把時間花在會影響最終畫面的地方，例如保留可用的 MetaHuman 眼睛與細毛、在服裝層級用明度分離深度、磨損依實際接觸位置配置。這種資產優先級思維能降低英雄角色在無效細節上的工時，並讓 DCC 與 Unreal 的迭代更集中。
+        </p>
+        <h4>
+         導入測試
+        </h4>
+        <p>
+         可用現有角色做一次 MetaHuman→ZBrush→UE 回寫與 Marvelous 分層服裝測試，記錄頭部形變、UV／材質重用、Chaos Cloth 自穿插與 markerless mocap 抖動的修正成本。作者也提到披風因原始網格而需要提高剛性、mocap 仍有 jitter，因此這套流程成熟但不是零清理。
+        </p>
+       </div>
+      </details>
+      <a class="source daily-source" href="https://80.lv/articles/making-a-recreation-of-dr-doom-using-unreal-engine-and-zbrush" rel="noopener noreferrer" target="_blank">
+       來源
+      </a>
+     </div>
+    </article>
+    <article class="news daily-card daily-card-top" data-intel-id="80lv-antique-prop-control-rig-substrate" data-intel-role="card">
+     <div class="news-rank">
+      02
+     </div>
+     <div class="news-main">
+      <div class="meta">
+       <span class="pill">
+        prop-production
+       </span>
+      </div>
+      <h3>
+       古董機械 Prop：低面數建模、UE Control Rig 齒輪邏輯與 Substrate 材質一次整合
+      </h3>
+      <p class="summary">
+       Kyle Michel 以 15K triangles 內完成古董電擊機，從 Blender mid-poly／bake、單張 2K UV，到 Unreal Control Rig 依齒輪比驅動動畫，並以 Substrate Fuzz、Glint、Anisotropy 做絨面材質。
+      </p>
+      <figure class="case-preview daily-visual" data-intel-id="80lv-antique-prop-control-rig-substrate" data-intel-role="visual" data-visual-id="80lv-antique-prop-control-rig-substrate">
+       <a href="https://80.lv/articles/recreating-a-19th-century-magneto-electric-shock-machine-for-a-prop-challenge" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-09-12/80lv-antique-prop-control-rig-substrate.jpg"/>
+       </a>
+       <figcaption>
+        <span>
+         SOURCE PREVIEW
+        </span>
+        · Local visual evidence · 點圖開啟原始來源
+       </figcaption>
+      </figure>
+      <div class="quick-impact daily-impact">
+       <span><b class="quick-impact-label">物件製作</b> ★★★★★</span>
+      </div>
+      <details class="daily-full-analysis">
+       <summary>
+        完整分析
+       </summary>
+       <div class="detail-body daily-analysis-body">
+        <h4>
+         道具製作流程
+        </h4>
+        <p>
+         作者用 Blender mid-poly 加 weighted bevel 作為低高模共同起點，把大量螺栓、齒輪與凹槽烘焙到貼圖以控制面數，最終整個資產低於 15K triangles；UV 在單一 2K 限制下透過縮小不可見區、堆疊重複零件與 UVPackmaster 提高有效 texel density。
+        </p>
+        <h4>
+         Rig 與引擎價值
+        </h4>
+        <p>
+         動畫不是只手轉幾個骨頭，而是先研究齒輪 tooth count、轉速與皮帶速度，再把關係寫進 Unreal Control Rig 的 Transform 與公開參數。這種機械關係先數學化、再引擎化的做法很適合互動道具，可讓 crank、gear、spinner 共用一致控制而不是多條手調動畫。
+        </p>
+        <h4>
+         導入測試
+        </h4>
+        <p>
+         建議挑一個有齒輪或連桿的遊戲 Prop，限制 20K tris／單 2K texture，建立 Blender 骨架後在 UE Control Rig 驅動機構，再測 Substrate 的 Fuzz／Glint／Anisotropy 在目標平台的 shader cost。文章展示的是作品級成功案例，效能與跨平台成本仍需自行 profiling。
+        </p>
+       </div>
+      </details>
+      <a class="source daily-source" href="https://80.lv/articles/recreating-a-19th-century-magneto-electric-shock-machine-for-a-prop-challenge" rel="noopener noreferrer" target="_blank">
+       來源
+      </a>
+     </div>
+    </article>
+    <article class="news daily-card daily-card-top" data-intel-id="80lv-widow-feathers-concept-to-3d" data-intel-role="card">
+     <div class="news-rank">
+      03
+     </div>
+     <div class="news-main">
+      <div class="meta">
+       <span class="pill">
+        character-production
+       </span>
+      </div>
+      <h3>
+       2D Concept 到 3D Fantasy Character：先抓 Silhouette，再處理分層服裝、縫線與羽毛細節
+      </h3>
+      <p class="summary">
+       Artem Bieliakov 的 The Widow of Feathers breakdown 聚焦從 2D concept 轉為遊戲角色，重點包含角色 silhouette、層疊服裝、折痕與縫線、裝飾結構，以及鳥與羽毛的製作。
+      </p>
+      <figure class="case-preview daily-visual" data-intel-id="80lv-widow-feathers-concept-to-3d" data-intel-role="visual" data-visual-id="80lv-widow-feathers-concept-to-3d">
+       <a href="https://80.lv/articles/breakdown-modeling-a-3d-fantasy-character-based-on-a-2d-concept" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-09-12/80lv-widow-feathers-concept-to-3d.jpg"/>
+       </a>
+       <figcaption>
+        <span>
+         SOURCE PREVIEW
+        </span>
+        · Local visual evidence · 點圖開啟原始來源
+       </figcaption>
+      </figure>
+      <div class="quick-impact daily-impact">
+       <span><b class="quick-impact-label">角色製作</b> ★★★★★</span>
+      </div>
+      <details class="daily-full-analysis">
+       <summary>
+        完整分析
+       </summary>
+       <div class="detail-body daily-analysis-body">
+        <h4>
+         角色工作流
+        </h4>
+        <p>
+         這篇最有價值的是把 2D concept 轉 3D 的決策順序拉回大形：先讓 silhouette、比例與服裝層級成立，再逐步細化 folds、seams、ornaments 與羽毛，而不是一開始就追局部材質。工具鏈橫跨 ZBrush、Marvelous Designer、Maya、Substance Painter、RizomUV、Marmoset 與 Unreal。
+        </p>
+        <h4>
+         製作價值
+        </h4>
+        <p>
+         對角色外包或內部 review，這類流程很適合拆成階段驗收：第一關只看 silhouette 與層次，第二關看服裝結構與褶皺受力，之後才驗 ornament、羽毛、UV 與材質。這能避免 concept 還原度不足時，團隊已經把大量工時投入微細節。
+        </p>
+        <h4>
+         導入測試
+        </h4>
+        <p>
+         可拿一張現有 2D 設定，要求美術先提交無材質灰模與服裝 layer breakdown，再逐層增加 seam／ornament／secondary asset，比較與一次做到細節版的返工率。這篇是單一角色 case，適合當流程範例，不應直接把所有造型技巧視為通用規範。
+        </p>
+       </div>
+      </details>
+      <a class="source daily-source" href="https://80.lv/articles/breakdown-modeling-a-3d-fantasy-character-based-on-a-2d-concept" rel="noopener noreferrer" target="_blank">
+       來源
+      </a>
+     </div>
+    </article>
+    <article class="news daily-card daily-card-top" data-intel-id="80lv-yeyo-rpg-rig-animation-system" data-intel-role="card">
+     <div class="news-rank">
+      04
+     </div>
+     <div class="news-main">
+      <div class="meta">
+       <span class="pill">
+        animation
+       </span>
+      </div>
+      <h3>
+       Orc、Dragon 到 Boss：把 Rig、Skin、Locomotion 與 Combat Animation 做成可重用遊戲系統
+      </h3>
+      <p class="summary">
+       Yeyo Studio 分享動作外包實務：跨人類、orc、ogre、skeleton、necromancer 與 15 種 creature，每角色約 42 個 locomotion/combat state，並在 engine 中持續驗證 rig、skin 與動畫集合。
+      </p>
+      <figure class="case-preview daily-visual" data-intel-id="80lv-yeyo-rpg-rig-animation-system" data-intel-role="visual" data-visual-id="80lv-yeyo-rpg-rig-animation-system">
+       <a href="https://80.lv/articles/behind-the-rigging-animation-of-fantasy-action-rpg-characters-like-orcs-and-dragons" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-09-12/80lv-yeyo-rpg-rig-animation-system.jpg"/>
+       </a>
+       <figcaption>
+        <span>
+         SOURCE PREVIEW
+        </span>
+        · Local visual evidence · 點圖開啟原始來源
+       </figcaption>
+      </figure>
+      <div class="quick-impact daily-impact">
+       <span><b class="quick-impact-label">動畫</b> ★★★★★</span>
+      </div>
+      <details class="daily-full-analysis">
+       <summary>
+        完整分析
+       </summary>
+       <div class="detail-body daily-analysis-body">
+        <h4>
+         動畫系統流程
+        </h4>
+        <p>
+         案例的難點不是單一漂亮 shot，而是讓 locomotion、attack、reaction、jump、roll、stun、death 等約 42 個 state 在大量不同 anatomy／裝備角色上形成一致系統。Yeyo 同時處理 rigging、skinning、creature motion 與 engine testing，顯示動畫資產從一開始就以 gameplay set 而非單 clip 管理。
+        </p>
+        <h4>
+         製作價值
+        </h4>
+        <p>
+         對遊戲團隊最可轉移的是可重用動畫集合＋角色差異層思維：先定義共通狀態與命名，再針對比例、武器、體型與 boss 特性做變體。這能讓 outsourcing 驗收從主觀動作好不好看，升級成 state completeness、contact、root、retarget 與 engine behavior 的系統化檢查。
+        </p>
+        <h4>
+         導入測試
+        </h4>
+        <p>
+         可以挑人類、重型獸人與四足 creature 各一隻，先定 10 個核心 state 做 mini set，測重定向可重用率、需要專屬重做的比例、foot slide、weapon contact 與 blend transition。若共用骨架／命名無法降低總工時，就表示抽象層設計太弱或角色差異已超出適用範圍。
+        </p>
+       </div>
+      </details>
+      <a class="source daily-source" href="https://80.lv/articles/behind-the-rigging-animation-of-fantasy-action-rpg-characters-like-orcs-and-dragons" rel="noopener noreferrer" target="_blank">
+       來源
+      </a>
+     </div>
+    </article>
+    <article class="news daily-card daily-card-top" data-intel-id="ragdoll-physics-assisted-posing" data-intel-role="card">
+     <div class="news-rank">
+      05
+     </div>
+     <div class="news-main">
+      <div class="meta">
+       <span class="pill">
+        animation
+       </span>
+      </div>
+      <h3>
+       Ragdoll Physics Posing：把重心、接觸與限制直接帶進 Maya／Blender Pose Blocking
+      </h3>
+      <p class="summary">
+       Ragdoll Dynamics 提供 browser、Maya 與 Blender 的 physics-assisted posing，可直接拖動肢體、使用 contact/limits 保持姿勢，並顯示 center of mass；同一 pose 可回到 DCC 繼續 keyframe 動畫。
+      </p>
+      <div class="quick-impact daily-impact">
+       <span><b class="quick-impact-label">動畫</b> ★★★★★</span>
+      </div>
+      <details class="daily-full-analysis">
+       <summary>
+        完整分析
+       </summary>
+       <div class="detail-body daily-analysis-body">
+        <h4>
+         Key Pose 工作流
+        </h4>
+        <p>
+         Ragdoll 把 pose blocking 變成近似 action figure 的互動：先拖動局部身體，讓物理、接觸與關節限制協助角色 settle，再把結果帶入 Maya／Blender 繼續動畫。它還能顯示 center of mass、contact 與 ballistic trajectory，對 weight、balance 和 body mechanics 的判斷比只看控制器更直觀。
+        </p>
+        <h4>
+         製作價值
+        </h4>
+        <p>
+         這類工具最適合用在第一輪 key pose／reference exploration，而不是取代 animator 的 timing 與 acting。它能減少姿勢穿插、重心懸空與 counter-animation，尤其對推拉、跌倒、落地、重型角色或 creature pose 有價值，也符合新增的 keypose／blocking 收集方向。
+        </p>
+        <h4>
+         導入測試
+        </h4>
+        <p>
+         用相同角色做五個極端 pose，一組傳統 FK/IK blocking，一組用 Ragdoll 輔助，記錄完成時間、重心修正次數與穿插量，再交由 animator 不看工具來源評比 silhouette／weight。若物理結果讓 pose 變得平均或失去誇張設計，就應只把它當 constraint/reference layer。
+        </p>
+       </div>
+      </details>
+      <a class="source daily-source" href="https://learn.ragdolldynamics.com/" rel="noopener noreferrer" target="_blank">
+       來源
+      </a>
+     </div>
+    </article>
+   </section>
+   <section class="block daily-more" id="more">
+    <div class="block-head">
+     <div>
+      <span>
+       2026-09-12
+      </span>
+      <h2>
+       當日其他資訊
+      </h2>
+     </div>
+    </div>
+    <article class="daily-card daily-card-more category-news" data-intel-id="80lv-raid-alice-character-material-study" data-intel-role="card">
+     <div class="meta">
+      <span class="pill">
+       character-production
+      </span>
+     </div>
+     <h3>
+      RAID Alice Fan Art：保留原作辨識度，同時把皮革、毛皮與寫實材質推到角色製作層
+     </h3>
+     <p class="summary">
+      Dahye Han 分享 Alice fan art 的 modeling/texturing 流程，核心是在維持遊戲原角色特徵的同時加入更寫實的材質與渲染，並特別處理皮革與兔毛。
+     </p>
+     <figure class="case-preview daily-visual" data-intel-id="80lv-raid-alice-character-material-study" data-intel-role="visual" data-visual-id="80lv-raid-alice-character-material-study">
+      <a href="https://80.lv/articles/modeling-and-texturing-a-fan-art-of-alice-from-raid-shadow-legends" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+       <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-09-12/80lv-raid-alice-character-material-study.jpg"/>
+      </a>
+      <figcaption>
+       <span>
+        SOURCE PREVIEW
+       </span>
+       · Local visual evidence · 點圖開啟原始來源
+      </figcaption>
+     </figure>
+     <div class="quick-impact daily-impact">
+      <span><b class="quick-impact-label">角色製作</b> ★★★★☆</span>
+     </div>
+     <details class="daily-full-analysis">
+      <summary>
+       完整分析
+      </summary>
+      <div class="detail-body daily-analysis-body">
+       <h4>
+        角色設計轉譯
+       </h4>
+       <p>
+        作者不是重新設計 Alice，而是把原作熟悉度當成硬限制，再用更寫實的皮膚、皮革與毛皮補充材質層次。這種 fan-art 流程其實很接近既有 IP 角色升級：需要在 silhouette、臉部特徵與 costume language 不漂移的前提下提高 surface fidelity。
+       </p>
+       <h4>
+        製作價值
+       </h4>
+       <p>
+        對需要把既有 2D／舊世代角色升到較高品質的團隊，重點是建立哪些元素不可改、哪些元素可加 realism 的清單。文章中的皮革與兔毛案例可作為材質分層參考，避免提高寫實度最後變成風格與角色辨識度一起被洗掉。
+       </p>
+       <h4>
+        導入測試
+       </h4>
+       <p>
+        可用現有角色做一版 fidelity upgrade：保留比例、主要色塊與服裝輪廓，只調整皮革 roughness、纖維／毛皮與皮膚 micro detail，再讓原畫或角色 lead 做盲評。若辨識度下降，即表示材質寫實化超過 IP 可接受範圍，需要回退。
+       </p>
+      </div>
+     </details>
+     <a class="source daily-source" href="https://80.lv/articles/modeling-and-texturing-a-fan-art-of-alice-from-raid-shadow-legends" rel="noopener noreferrer" target="_blank">
+      來源
+     </a>
+    </article>
+    <article class="daily-card daily-card-more category-news" data-intel-id="80lv-medieval-dwarf-aged-skin" data-intel-role="card">
+     <div class="meta">
+      <span class="pill">
+       character-production
+      </span>
+     </div>
+     <h3>
+      老年矮人角色：皺紋皮膚、毛髮與 Paragon 材質的可拆解角色 Lookdev 案例
+     </h3>
+     <p class="summary">
+      Nikita Popp 的 Dwarf breakdown 聚焦 aged skin texturing，並展示 3ds Max、Blender、ZBrush、Substance Painter 與 Unreal 的角色流程，以及用 Paragon material 處理 hair/feathers。
+     </p>
+     <figure class="case-preview daily-visual" data-intel-id="80lv-medieval-dwarf-aged-skin" data-intel-role="visual" data-visual-id="80lv-medieval-dwarf-aged-skin">
+      <a href="https://80.lv/articles/mastering-wrinkly-skin-texture-by-making-an-old-medieval-dwarf-in-3d" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+       <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-09-12/80lv-medieval-dwarf-aged-skin.jpg"/>
+      </a>
+      <figcaption>
+       <span>
+        SOURCE PREVIEW
+       </span>
+       · Local visual evidence · 點圖開啟原始來源
+      </figcaption>
+     </figure>
+     <div class="quick-impact daily-impact">
+      <span><b class="quick-impact-label">角色製作</b> ★★★★☆</span>
+     </div>
+     <details class="daily-full-analysis">
+      <summary>
+       完整分析
+      </summary>
+      <div class="detail-body daily-analysis-body">
+       <h4>
+        角色材質重點
+       </h4>
+       <p>
+        這篇把高齡角色最容易失真的區域放在核心：皺紋不是單純疊 noise，而要和大形、年齡、皮膚材質反應一起成立；同時角色還包含 hair／feather 等不同表面，需要在 Unreal 中維持各自的 shading 特性。工具鏈包含 ZBrush、Substance、Blender／3ds Max 與 Unreal。
+       </p>
+       <h4>
+        製作價值
+       </h4>
+       <p>
+        對寫實或半寫實角色，aged skin 是很適合拿來建立材質 QA 的題目，因為它同時暴露 sculpt frequency、normal／roughness、色素變化與燈光下 readability 的問題。文章也提供 Paragon material 的實際使用方向，可拿來比較自製 hair shader 與成熟範例的成本差。
+       </p>
+       <h4>
+        導入測試
+       </h4>
+       <p>
+        建議用同一頭部做三種距離測試：近景 portrait、中距遊戲鏡頭、實際角色光照，檢查皺紋是否在遠處變成髒 noise，並比較 Paragon hair／feather 材質與現有 shader 的 GPU 成本與視覺收益。單一作品的 lookdev 不能直接當統一材質標準，仍需依專案風格縮放細節。
+       </p>
+      </div>
+     </details>
+     <a class="source daily-source" href="https://80.lv/articles/mastering-wrinkly-skin-texture-by-making-an-old-medieval-dwarf-in-3d" rel="noopener noreferrer" target="_blank">
+      來源
+     </a>
+    </article>
+    <article class="daily-card daily-card-more category-news" data-intel-id="hipr-progressive-path-tracing" data-intel-role="card">
+     <div class="meta">
+      <span class="pill">
+       research
+      </span>
+     </div>
+     <h3>
+      HiPR：依場景變動與光傳輸影響排序 Path Tracing 更新，先把有感像素算完
+     </h3>
+     <p class="summary">
+      University of Utah 的 Hierarchical Progressive Rendering 追蹤編輯對直接可見區、反射、陰影與間接光的影響，優先更新重要區域，最後仍收斂到相同 unbiased path-traced 結果。
+     </p>
+     <figure class="case-preview daily-visual" data-intel-id="hipr-progressive-path-tracing" data-intel-role="visual" data-visual-id="hipr-progressive-path-tracing">
+      <a href="https://80.lv/articles/how-hipr-makes-path-tracing-feel-more-responsive-by-rendering-what-matters-first" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+       <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-09-12/hipr-progressive-path-tracing.jpg"/>
+      </a>
+      <figcaption>
+       <span>
+        SOURCE PREVIEW
+       </span>
+       · Local visual evidence · 點圖開啟原始來源
+      </figcaption>
+     </figure>
+     <div class="quick-impact daily-impact">
+      <span><b class="quick-impact-label">研究</b> ★★★★☆</span>
+     </div>
+     <details class="daily-full-analysis">
+      <summary>
+       完整分析
+      </summary>
+      <div class="detail-body daily-analysis-body">
+       <h4>
+        渲染技術
+       </h4>
+       <p>
+        HiPR 不是降低最終 path tracing 品質，而是改變更新順序：當物件、材質或燈光被編輯時，先找出直接可見的變動，再沿 reflection、shadow、indirect illumination 等 light-transport 路徑估算受影響區域，優先重算最重要的像素，其餘區域再逐步追上。
+       </p>
+       <h4>
+        製作影響
+       </h4>
+       <p>
+        若這類 scheduling 進入 DCC、lookdev 或 path-traced editor，最大的收益是互動感而不是最終 render time；藝術家能更快看到我剛改的東西造成的結果，對燈光、材質與 level design 的迭代節奏特別有意義，也可能影響即時 path tracing 的 budget 分配。
+       </p>
+       <h4>
+        成熟度驗證
+       </h4>
+       <p>
+        目前屬研究階段，應用前要測快速連續 edit、大片間接光、鏡面反射鏈與透明材質下的 outdated pixel 是否造成誤導。真正可用的判斷標準不是 demo 看起來快，而是相同 noise budget 下，藝術家能否更早得到足以做決策的畫面且最終仍無偏差收斂。
+       </p>
+      </div>
+     </details>
+     <a class="source daily-source" href="https://80.lv/articles/how-hipr-makes-path-tracing-feel-more-responsive-by-rendering-what-matters-first" rel="noopener noreferrer" target="_blank">
+      來源
+     </a>
+    </article>
+    <article class="daily-card daily-card-more category-news" data-intel-id="wot-heat-art-engine-pipeline" data-intel-role="card">
+     <div class="meta">
+      <span class="pill">
+       case-study
+      </span>
+     </div>
+     <h3>
+      World of Tanks: HEAT：70/30 車輛設計、跨 DCC Art Pipeline 與跨平台優化如何一起運作
+     </h3>
+     <p class="summary">
+      Wargaming 說明 HEAT 的 70/30 vehicle design philosophy、Agents/vehicles 的 silhouette與材質辨識，以及 Maya、Blender、3ds Max、Houdini 等跨 DCC 配合自研引擎與跨平台 optimization 的流程。
+     </p>
+     <figure class="case-preview daily-visual" data-intel-id="wot-heat-art-engine-pipeline" data-intel-role="visual" data-visual-id="wot-heat-art-engine-pipeline">
+      <a href="https://80.lv/articles/inside-world-of-tanks-heat-s-art-engine-vehicle-design-pipeline" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+       <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-09-12/wot-heat-art-engine-pipeline.jpg"/>
+      </a>
+      <figcaption>
+       <span>
+        SOURCE PREVIEW
+       </span>
+       · Local visual evidence · 點圖開啟原始來源
+      </figcaption>
+     </figure>
+     <div class="quick-impact daily-impact">
+      <span><b class="quick-impact-label">製作案例</b> ★★★★☆</span>
+     </div>
+     <details class="daily-full-analysis">
+      <summary>
+       完整分析
+      </summary>
+      <div class="detail-body daily-analysis-body">
+       <h4>
+        製作案例
+       </h4>
+       <p>
+        HEAT 的 70/30 設計規則把約 70% 車輛／技術建立在真實工程邏輯上，再保留約 30% 給替代歷史與玩法誇張；同時用 silhouette、color、material 與 Agent identity 讓玩家快速讀懂角色／載具功能。這是把 art direction 和 gameplay readability 放在同一套規則內。
+       </p>
+       <h4>
+        流程價值
+       </h4>
+       <p>
+        團隊使用 Maya、Blender、3ds Max、Houdini、Photoshop、Illustrator、Figma，再進 Wargaming 自研引擎，代表大型 production 並不依賴單一 DCC，而是依賴清楚的交換格式、資產規範與引擎端驗收。對跨平台專案，這種工具多樣性更需要自動化 validation。
+       </p>
+       <h4>
+        導入測試
+       </h4>
+       <p>
+        可把 70/30 概念改成自己的 art rule：先定義真實基礎、允許誇張範圍、silhouette readability 與材質層級，再挑一個載具／機械 prop 做 DCC 交換測試。需要注意這篇是高層 pipeline case，沒有提供完整效能數值，因此優化策略仍須用專案 profiling 具體化。
+       </p>
+      </div>
+     </details>
+     <a class="source daily-source" href="https://80.lv/articles/inside-world-of-tanks-heat-s-art-engine-vehicle-design-pipeline" rel="noopener noreferrer" target="_blank">
+      來源
+     </a>
+    </article>
+    <article class="daily-card daily-card-more category-news" data-intel-id="80lv-blender-procedural-ice-material" data-intel-role="card">
+     <div class="meta">
+      <span class="pill">
+       blender-tip
+      </span>
+     </div>
+     <h3>
+      Blender Procedural Ice：Volume、Voronoi、Color Ramp 與 Displacement 封裝成可重用 Node Group
+     </h3>
+     <p class="summary">
+      Ryan King 用 Volume 建立冰塊霧化核心，Voronoi 做不均表面，再以 Color Ramp、透明/反射與 Displacement 控制冰感，最後封裝 Node Group 讓 color、roughness、displacement 可快速調參。
+     </p>
+     <figure class="case-preview daily-visual" data-intel-id="80lv-blender-procedural-ice-material" data-intel-role="visual" data-visual-id="80lv-blender-procedural-ice-material">
+      <a href="https://80.lv/articles/tutorial-realistic-procedural-ice-cube-material-in-blender-with-easy-customization" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+       <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-09-12/80lv-blender-procedural-ice-material.jpg"/>
+      </a>
+      <figcaption>
+       <span>
+        SOURCE PREVIEW
+       </span>
+       · Local visual evidence · 點圖開啟原始來源
+      </figcaption>
+     </figure>
+     <div class="quick-impact daily-impact">
+      <span><b class="quick-impact-label">Blender 技巧</b> ★★★★☆</span>
+     </div>
+     <details class="daily-full-analysis">
+      <summary>
+       完整分析
+      </summary>
+      <div class="detail-body daily-analysis-body">
+       <h4>
+        Shader 工作流
+       </h4>
+       <p>
+        教學從幾何 bevel、燈光與背景開始，再以 Volume 製造冰塊中心的霧感、Voronoi 製造不規則表面，透過 Color Ramp 控制透光與玻璃感，最後用 Displacement 決定外形的 chunky 程度。重點是把常用控制收進 custom node group，而不是留下難維護的散亂節點。
+       </p>
+       <h4>
+        製作價值
+       </h4>
+       <p>
+        對遊戲美術來說，最可轉移的是可參數化材質模組思路：將色彩、roughness、displacement 等暴露成少量 art-friendly controls，能快速做冰塊變體，也能延伸到玻璃、晶體或半透明 stylized props，降低每個資產重新接 shader 的成本。
+       </p>
+       <h4>
+        導入測試
+       </h4>
+       <p>
+        在 Blender 先做三種冰材質 preset，再移植邏輯到 Unity／Unreal 測真正 runtime 成本，特別比較 volume、transmission 與 displacement 是否需要改成 cheaper approximation。教學目標偏離線外觀，不能直接假設節點結構可原封不動進即時引擎。
+       </p>
+      </div>
+     </details>
+     <a class="source daily-source" href="https://80.lv/articles/tutorial-realistic-procedural-ice-cube-material-in-blender-with-easy-customization" rel="noopener noreferrer" target="_blank">
+      來源
+     </a>
+    </article>
+    <article class="daily-card daily-card-more category-news" data-intel-id="hardcraft-cad-retopology-blender-alpha" data-intel-role="card">
+     <div class="meta">
+      <span class="pill">
+       addon
+      </span>
+     </div>
+     <h3>
+      Hardcraft Alpha：利用 CAD Patch 結構導引 Blender Retopology，而不是盲目全自動 Remesh
+     </h3>
+     <p class="summary">
+      Hardcraft 讀取 STEP／Plasticity bridge 等 CAD export 殘留結構，把 surface 拆成 patch/curve，讓使用者調整 patch boundary、edge flow 與 density，再 commit 成 quad+triangle 的 game-ready mesh。
+     </p>
+     <figure class="case-preview daily-visual" data-intel-id="hardcraft-cad-retopology-blender-alpha" data-intel-role="visual" data-visual-id="hardcraft-cad-retopology-blender-alpha">
+      <a href="https://80.lv/articles/try-this-free-cad-data-retopology-tool-for-blender" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+       <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-09-12/hardcraft-cad-retopology-blender-alpha.jpg"/>
+      </a>
+      <figcaption>
+       <span>
+        SOURCE PREVIEW
+       </span>
+       · Local visual evidence · 點圖開啟原始來源
+      </figcaption>
+     </figure>
+     <div class="quick-impact daily-impact">
+      <span><b class="quick-impact-label">外掛</b> ★★★★★</span>
+     </div>
+     <details class="daily-full-analysis">
+      <summary>
+       完整分析
+      </summary>
+      <div class="detail-body daily-analysis-body">
+       <h4>
+        拓樸工具流程
+       </h4>
+       <p>
+        Hardcraft 的差異是它不把輸入視為一般 polygon soup，而是利用 CAD 匯出仍保留的 surface structure，把模型拆成 patch 與 curve。藝術家先建立 retopo target，再偵測 surface、生成 patch，手動調整 boundary、edge flow 與 vertex density，最後才 commit 網格。
+       </p>
+       <h4>
+        製作價值
+       </h4>
+       <p>
+        這種半自動方式比 generic remesher 更符合硬表面資產需求，因為 artist 仍能控制重要轉折、密度與 quad/triangle 分配，同時省掉從零描拓樸的工作。對 Plasticity／STEP 到遊戲資產的 pipeline 特別值得測，也符合解決明確 production 問題的工具型情報。
+       </p>
+       <h4>
+        成熟度測試
+       </h4>
+       <p>
+        目前仍是 alpha，應以機械零件、圓角密集外殼、薄片與開孔模型做 stress test，記錄成功 patch 比例、手動修補時間、normal bake 品質與引擎 LOD 表現；再和傳統手工 retopo、decimate／remesh 比較。不能因為能生成 quad 就直接判定可動畫或可烘焙。
+       </p>
+      </div>
+     </details>
+     <a class="source daily-source" href="https://80.lv/articles/try-this-free-cad-data-retopology-tool-for-blender" rel="noopener noreferrer" target="_blank">
+      來源
+     </a>
+    </article>
+    <article class="daily-card daily-card-more category-news" data-intel-id="pro-particles-53-blender-multiphysics" data-intel-role="card">
+     <div class="meta">
+      <span class="pill">
+       addon
+      </span>
+     </div>
+     <h3>
+      Pro Particles 5.3：GPU FLIP／SPH／MPM、Cache 與 Alembic 把 Blender 多物理 FX 串成單一工具鏈
+     </h3>
+     <p class="summary">
+      Pro Particles 5.3 新增 FLIP/APIC liquids、SPH、multi-material MPM、constraints、flow fields 等，重做 Post/Output，加入 persistent caches 與 Alembic export，並可在 GPU preview 與 Blender geometry 間切換。
+     </p>
+     <figure class="case-preview daily-visual" data-intel-id="pro-particles-53-blender-multiphysics" data-intel-role="visual" data-visual-id="pro-particles-53-blender-multiphysics">
+      <a href="https://80.lv/articles/advanced-gpu-powered-multi-physics-toolkit-for-blender-artists" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+       <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-09-12/pro-particles-53-blender-multiphysics.jpg"/>
+      </a>
+      <figcaption>
+       <span>
+        SOURCE PREVIEW
+       </span>
+       · Local visual evidence · 點圖開啟原始來源
+      </figcaption>
+     </figure>
+     <div class="quick-impact daily-impact">
+      <span><b class="quick-impact-label">外掛</b> ★★★★☆</span>
+     </div>
+     <details class="daily-full-analysis">
+      <summary>
+       完整分析
+      </summary>
+      <div class="detail-body daily-analysis-body">
+       <h4>
+        模擬工具流程
+       </h4>
+       <p>
+        5.3 把 FLIP/APIC liquid、SPH fluid、multi-material MPM、particle constraints、self-gravity、flow field 與 dendrite growth 放進同一套 add-on，並增加 multi-source emitter、particle groups、hierarchical logic、reusable mask。Post／Output 也重做成 persistent cache 與 Alembic export。
+       </p>
+       <h4>
+        製作價值
+       </h4>
+       <p>
+        對需要液體、顆粒、Pyro 或破碎感 FX 的小團隊，統一的 GPU preview 與 cache/export 可以減少跨工具來回，尤其 Alembic 能把模擬結果交給後續 DCC／engine。它也允許 Point Cloud、Trail、Instance、Mesher 等在 GPU preview 與 Blender geometry 間切換，方便在速度與可編輯性間取捨。
+       </p>
+       <h4>
+        導入測試
+       </h4>
+       <p>
+        先用免費 demo 跑固定粒子、液體與 MPM 三個 scene，量 VRAM、sim time、cache size、Alembic 匯出時間與 Unreal／Unity ingest，再比較原生 Blender 或 Houdini 對照。市場頁展示的是功能集合，production stability、crash recovery 與版本升級相容性仍需要長時間測試。
+       </p>
+      </div>
+     </details>
+     <a class="source daily-source" href="https://80.lv/articles/advanced-gpu-powered-multi-physics-toolkit-for-blender-artists" rel="noopener noreferrer" target="_blank">
+      來源
+     </a>
+    </article>
+    <article class="daily-card daily-card-more category-news" data-intel-id="shellfit-blender-clothing-penetration" data-intel-role="card">
+     <div class="meta">
+      <span class="pill">
+       addon
+      </span>
+     </div>
+     <h3>
+      ShellFit：即時修正 Body／Clothing 穿插，結果可 Bake 到 Shape Key 或 Mesh
+     </h3>
+     <p class="summary">
+      ShellFit 以 Shell、Solid、Auto 三種 fitting mode 處理服裝與身體 overlap/gap，可選擇移動 body 或 clothing，Quick Shell Fit 可針對局部接觸區，並支援 copy weights 與結果烘焙。
+     </p>
+     <figure class="case-preview daily-visual" data-intel-id="shellfit-blender-clothing-penetration" data-intel-role="visual" data-visual-id="shellfit-blender-clothing-penetration">
+      <a href="https://80.lv/articles/fix-body-clothing-clipping-in-blender-with-this-tool" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+       <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-09-12/shellfit-blender-clothing-penetration.jpg"/>
+      </a>
+      <figcaption>
+       <span>
+        SOURCE PREVIEW
+       </span>
+       · Local visual evidence · 點圖開啟原始來源
+      </figcaption>
+     </figure>
+     <div class="quick-impact daily-impact">
+      <span><b class="quick-impact-label">外掛</b> ★★★★☆</span>
+     </div>
+     <details class="daily-full-analysis">
+      <summary>
+       完整分析
+      </summary>
+      <div class="detail-body daily-analysis-body">
+       <h4>
+        服裝修正流程
+       </h4>
+       <p>
+        ShellFit 專門處理 body／clothing overlap 與 gap，允許決定移動身體或服裝，Shell mode 適合薄布、Solid 適合 belt／ring 等厚物件，Auto 則自動判斷；Quick Shell Fit 還能只對選定 garment detail 與 target surface／edge／vertex 做局部貼合。
+       </p>
+       <h4>
+        製作價值
+       </h4>
+       <p>
+        它的價值在於把角色服裝常見的微調頂點、重做 shape key、再檢查權重縮成可即時預覽的修正，且結果能 bake 到 Shape Key 或 mesh、也可 copy weights。對換裝角色、avatar 或大量 outfit variant，這種工具有機會明顯減少 cleanup。
+       </p>
+       <h4>
+        導入測試
+       </h4>
+       <p>
+        用同一角色測 T-pose、蹲姿、抬腿與肩膀大角度四種 deformation，分別比較 ShellFit 前後穿插量、shape key 數、權重破壞與修正時間。它解決的是幾何接觸，不代表能取代 cloth simulation 或 corrective rig，因此動態極端姿勢仍要進動畫測試。
+       </p>
+      </div>
+     </details>
+     <a class="source daily-source" href="https://80.lv/articles/fix-body-clothing-clipping-in-blender-with-this-tool" rel="noopener noreferrer" target="_blank">
+      來源
+     </a>
+    </article>
+    <article class="daily-card daily-card-more category-news" data-intel-id="bwrap-guided-topology-transfer" data-intel-role="card">
+     <div class="meta">
+      <span class="pill">
+       addon
+      </span>
+     </div>
+     <h3>
+      BWrap：把已驗證角色 Topology 當 Template，直接 Wrap 到新 Sculpt／Scan
+     </h3>
+     <p class="summary">
+      BWrap 是 Blender 新增的 guided topology wrapping add-on，可用既有乾淨角色 mesh 作 template，將 edge flow 與 deformation loops 轉移到新 character、sculpt 或 scan，目標是減少重複手工 retopo。
+     </p>
+     <figure class="case-preview daily-visual" data-intel-id="bwrap-guided-topology-transfer" data-intel-role="visual" data-visual-id="bwrap-guided-topology-transfer">
+      <a href="https://blenderartists.org/t/bwrap-guided-topology-wrapping-for-blender/1652420" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+       <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-09-12/bwrap-guided-topology-transfer.jpg"/>
+      </a>
+      <figcaption>
+       <span>
+        SOURCE PREVIEW
+       </span>
+       · Local visual evidence · 點圖開啟原始來源
+      </figcaption>
+     </figure>
+     <div class="quick-impact daily-impact">
+      <span><b class="quick-impact-label">外掛</b> ★★★★☆</span>
+     </div>
+     <details class="daily-full-analysis">
+      <summary>
+       完整分析
+      </summary>
+      <div class="detail-body daily-analysis-body">
+       <h4>
+        Retopo 工作流
+       </h4>
+       <p>
+        BWrap 的核心不是自動產生一套新拓樸，而是重用團隊已經驗證過的 template mesh：選定 Template 與 Target，將既有 edge flow、facial loops 與 deformation topology 導引到新的 sculpt／scan。這種策略對同一角色族群或相近人體比例比從零 remesh 更有 production 意義。
+       </p>
+       <h4>
+        製作價值
+       </h4>
+       <p>
+        若團隊已有成熟 base body／face topology，wrap-based retopo 可以把大量時間從重新畫 loops 轉到 fit、landmark 與局部修正，並讓後續 UV、skin、blendshape 更容易沿用。對多角色量產、掃描資料與角色生成後清理尤其值得評估。
+       </p>
+       <h4>
+        成熟度測試
+       </h4>
+       <p>
+        應拿三種體型差、五官差與服裝／裸身 target 測 template transfer，統計 landmark 對齊、穿插、極點分布、UV 可重用率與 skin deformation；再和 ZWrap／手工 retopo 比較。這是新發布工具，需特別觀察 Blender 版本相容、崩潰與大形差異時的失敗模式。
+       </p>
+      </div>
+     </details>
+     <a class="source daily-source" href="https://blenderartists.org/t/bwrap-guided-topology-wrapping-for-blender/1652420" rel="noopener noreferrer" target="_blank">
+      來源
+     </a>
+    </article>
+   </section>
+  </main>
+  <script src="../daily.js?v=20260912-r1-workspace-v6">
+  </script>
+  <script defer="" src="../archive-nav-state.js?v=20260912-r1-workspace-v6">
+  </script>
+ </body>
+</html>

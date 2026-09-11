@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   3D 動作｜2026-09-12｜AI 3D Daily
+  </title>
+  <link href="../../styles.css?v=20260912-r1-workspace-v6" rel="stylesheet"/>
+  <link href="../../shared-components.css?v=20260912-r1-workspace-v6" rel="stylesheet"/>
+  <link href="../../category.css?v=20260912-r1-workspace-v6" rel="stylesheet"/>
+ </head>
+ <body class="category-page" data-category="3d-animation" data-report-date="2026-09-12">
+  <nav aria-label="Production Intelligence 分類" class="global-category-nav">
+   <div class="page global-category-nav-inner">
+    <div class="archive-nav-controls">
+     <a class="archive-nav-home" href="../../">
+      ← 首頁
+     </a>
+     <div class="archive-nav-date">
+      <a aria-label="前一日日報" class="archive-nav-arrow" href="../../2026-09-11/3d-animation/">
+       ←
+      </a>
+      <span>
+       2026-09-12
+      </span>
+     </div>
+    </div>
+    <span aria-hidden="true" class="archive-nav-divider">
+    </span>
+    <a class="global-category-link" href="../#top">
+     TOP5
+    </a>
+    <a class="global-category-link" data-category="ai-generation" href="../ai-generation/">
+     AI 生成
+    </a>
+    <a class="global-category-link" data-category="3d-production" href="../3d-production/">
+     3D 製作
+    </a>
+    <a class="global-category-link is-active" data-category="3d-animation" href="../3d-animation/">
+     3D 動作
+    </a>
+    <a class="global-category-link" data-category="engine-art" href="../engine-art/">
+     遊戲引擎
+    </a>
+    <a class="global-category-link" data-category="emerging-case" href="../emerging-case/">
+     新技術 / Case
+    </a>
+    <a class="global-category-link" data-category="blender-dcc" href="../blender-dcc/">
+     Blender / DCC
+    </a>
+   </div>
+  </nav>
+  <main class="page category-main">
+   <article class="category-card" data-intel-id="80lv-yeyo-rpg-rig-animation-system" data-intel-role="card">
+    <div class="category-meta">
+     #04 · animation
+    </div>
+    <h2>
+     Orc、Dragon 到 Boss：把 Rig、Skin、Locomotion 與 Combat Animation 做成可重用遊戲系統
+    </h2>
+    <p class="summary">
+     Yeyo Studio 分享動作外包實務：跨人類、orc、ogre、skeleton、necromancer 與 15 種 creature，每角色約 42 個 locomotion/combat state，並在 engine 中持續驗證 rig、skin 與動畫集合。
+    </p>
+    <figure class="case-preview" data-intel-id="80lv-yeyo-rpg-rig-animation-system" data-intel-role="visual" data-visual-id="80lv-yeyo-rpg-rig-animation-system">
+     <a href="https://80.lv/articles/behind-the-rigging-animation-of-fantasy-action-rpg-characters-like-orcs-and-dragons" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-12/80lv-yeyo-rpg-rig-animation-system.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">動畫</b> ★★★★★</span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       動畫系統流程
+      </h4>
+      <p>
+       案例的難點不是單一漂亮 shot，而是讓 locomotion、attack、reaction、jump、roll、stun、death 等約 42 個 state 在大量不同 anatomy／裝備角色上形成一致系統。Yeyo 同時處理 rigging、skinning、creature motion 與 engine testing，顯示動畫資產從一開始就以 gameplay set 而非單 clip 管理。
+      </p>
+      <h4>
+       製作價值
+      </h4>
+      <p>
+       對遊戲團隊最可轉移的是可重用動畫集合＋角色差異層思維：先定義共通狀態與命名，再針對比例、武器、體型與 boss 特性做變體。這能讓 outsourcing 驗收從主觀動作好不好看，升級成 state completeness、contact、root、retarget 與 engine behavior 的系統化檢查。
+      </p>
+      <h4>
+       導入測試
+      </h4>
+      <p>
+       可以挑人類、重型獸人與四足 creature 各一隻，先定 10 個核心 state 做 mini set，測重定向可重用率、需要專屬重做的比例、foot slide、weapon contact 與 blend transition。若共用骨架／命名無法降低總工時，就表示抽象層設計太弱或角色差異已超出適用範圍。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://80.lv/articles/behind-the-rigging-animation-of-fantasy-action-rpg-characters-like-orcs-and-dragons" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="ragdoll-physics-assisted-posing" data-intel-role="card">
+    <div class="category-meta">
+     #05 · animation
+    </div>
+    <h2>
+     Ragdoll Physics Posing：把重心、接觸與限制直接帶進 Maya／Blender Pose Blocking
+    </h2>
+    <p class="summary">
+     Ragdoll Dynamics 提供 browser、Maya 與 Blender 的 physics-assisted posing，可直接拖動肢體、使用 contact/limits 保持姿勢，並顯示 center of mass；同一 pose 可回到 DCC 繼續 keyframe 動畫。
+    </p>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">動畫</b> ★★★★★</span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       Key Pose 工作流
+      </h4>
+      <p>
+       Ragdoll 把 pose blocking 變成近似 action figure 的互動：先拖動局部身體，讓物理、接觸與關節限制協助角色 settle，再把結果帶入 Maya／Blender 繼續動畫。它還能顯示 center of mass、contact 與 ballistic trajectory，對 weight、balance 和 body mechanics 的判斷比只看控制器更直觀。
+      </p>
+      <h4>
+       製作價值
+      </h4>
+      <p>
+       這類工具最適合用在第一輪 key pose／reference exploration，而不是取代 animator 的 timing 與 acting。它能減少姿勢穿插、重心懸空與 counter-animation，尤其對推拉、跌倒、落地、重型角色或 creature pose 有價值，也符合新增的 keypose／blocking 收集方向。
+      </p>
+      <h4>
+       導入測試
+      </h4>
+      <p>
+       用相同角色做五個極端 pose，一組傳統 FK/IK blocking，一組用 Ragdoll 輔助，記錄完成時間、重心修正次數與穿插量，再交由 animator 不看工具來源評比 silhouette／weight。若物理結果讓 pose 變得平均或失去誇張設計，就應只把它當 constraint/reference layer。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://learn.ragdolldynamics.com/" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <nav aria-label="相鄰分類" class="category-bottom-nav">
+    <a href="../3d-production/">
+     ← 3D 製作
+    </a>
+    <a href="../#top">
+     TOP5
+    </a>
+    <a href="../engine-art/">
+     遊戲引擎 →
+    </a>
+   </nav>
+  </main>
+  <script defer="" src="../../archive-nav-state.js?v=20260912-r1-workspace-v6">
+  </script>
+ </body>
+</html>

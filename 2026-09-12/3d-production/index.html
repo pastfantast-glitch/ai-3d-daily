@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   3D 製作｜2026-09-12｜AI 3D Daily
+  </title>
+  <link href="../../styles.css?v=20260912-r1-workspace-v6" rel="stylesheet"/>
+  <link href="../../shared-components.css?v=20260912-r1-workspace-v6" rel="stylesheet"/>
+  <link href="../../category.css?v=20260912-r1-workspace-v6" rel="stylesheet"/>
+ </head>
+ <body class="category-page" data-category="3d-production" data-report-date="2026-09-12">
+  <nav aria-label="Production Intelligence 分類" class="global-category-nav">
+   <div class="page global-category-nav-inner">
+    <div class="archive-nav-controls">
+     <a class="archive-nav-home" href="../../">
+      ← 首頁
+     </a>
+     <div class="archive-nav-date">
+      <a aria-label="前一日日報" class="archive-nav-arrow" href="../../2026-09-11/3d-production/">
+       ←
+      </a>
+      <span>
+       2026-09-12
+      </span>
+     </div>
+    </div>
+    <span aria-hidden="true" class="archive-nav-divider">
+    </span>
+    <a class="global-category-link" href="../#top">
+     TOP5
+    </a>
+    <a class="global-category-link" data-category="ai-generation" href="../ai-generation/">
+     AI 生成
+    </a>
+    <a class="global-category-link is-active" data-category="3d-production" href="../3d-production/">
+     3D 製作
+    </a>
+    <a class="global-category-link" data-category="3d-animation" href="../3d-animation/">
+     3D 動作
+    </a>
+    <a class="global-category-link" data-category="engine-art" href="../engine-art/">
+     遊戲引擎
+    </a>
+    <a class="global-category-link" data-category="emerging-case" href="../emerging-case/">
+     新技術 / Case
+    </a>
+    <a class="global-category-link" data-category="blender-dcc" href="../blender-dcc/">
+     Blender / DCC
+    </a>
+   </div>
+  </nav>
+  <main class="page category-main">
+   <article class="category-card" data-intel-id="80lv-dr-doom-metahuman-character-workflow" data-intel-role="card">
+    <div class="category-meta">
+     #01 · character-production
+    </div>
+    <h2>
+     Dr. Doom 角色流程：MetaHuman、ZBrush、Marvelous 與 UE5 即時呈現串成完整角色管線
+    </h2>
+    <p class="summary">
+     Rocksteady 角色美術 Patrick van Rooijen 分享 Dr. Doom 製作：MetaHuman 頭部回寫 ZBrush、Marvelous 分層服裝、Maya/TopoGun 重拓樸、Substance 貼圖，最後在 UE5 以 Lumen、markerless mocap 與 Chaos Cloth 完成即時展示。
+    </p>
+    <figure class="case-preview" data-intel-id="80lv-dr-doom-metahuman-character-workflow" data-intel-role="visual" data-visual-id="80lv-dr-doom-metahuman-character-workflow">
+     <a href="https://80.lv/articles/making-a-recreation-of-dr-doom-using-unreal-engine-and-zbrush" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-12/80lv-dr-doom-metahuman-character-workflow.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">角色製作</b> ★★★★★</span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       角色製作流程
+      </h4>
+      <p>
+       這篇把角色資產從頭部、服裝到即時展示串成一條可追蹤流程：先把掃描轉成 MetaHuman mesh，再進 ZBrush 做造型與傷疤調整；服裝先在 ZBrush blockout 驗證分層，再用 Marvelous Designer 重建，最後以 Maya／TopoGun 清理拓樸、RizomUV 與 UVPackmaster 整理 UV、Substance Painter 完成材質。
+      </p>
+      <h4>
+       製作價值
+      </h4>
+      <p>
+       值得借鏡的是作者把時間花在會影響最終畫面的地方，例如保留可用的 MetaHuman 眼睛與細毛、在服裝層級用明度分離深度、磨損依實際接觸位置配置。這種資產優先級思維能降低英雄角色在無效細節上的工時，並讓 DCC 與 Unreal 的迭代更集中。
+      </p>
+      <h4>
+       導入測試
+      </h4>
+      <p>
+       可用現有角色做一次 MetaHuman→ZBrush→UE 回寫與 Marvelous 分層服裝測試，記錄頭部形變、UV／材質重用、Chaos Cloth 自穿插與 markerless mocap 抖動的修正成本。作者也提到披風因原始網格而需要提高剛性、mocap 仍有 jitter，因此這套流程成熟但不是零清理。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://80.lv/articles/making-a-recreation-of-dr-doom-using-unreal-engine-and-zbrush" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="80lv-antique-prop-control-rig-substrate" data-intel-role="card">
+    <div class="category-meta">
+     #02 · prop-production
+    </div>
+    <h2>
+     古董機械 Prop：低面數建模、UE Control Rig 齒輪邏輯與 Substrate 材質一次整合
+    </h2>
+    <p class="summary">
+     Kyle Michel 以 15K triangles 內完成古董電擊機，從 Blender mid-poly／bake、單張 2K UV，到 Unreal Control Rig 依齒輪比驅動動畫，並以 Substrate Fuzz、Glint、Anisotropy 做絨面材質。
+    </p>
+    <figure class="case-preview" data-intel-id="80lv-antique-prop-control-rig-substrate" data-intel-role="visual" data-visual-id="80lv-antique-prop-control-rig-substrate">
+     <a href="https://80.lv/articles/recreating-a-19th-century-magneto-electric-shock-machine-for-a-prop-challenge" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-12/80lv-antique-prop-control-rig-substrate.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">物件製作</b> ★★★★★</span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       道具製作流程
+      </h4>
+      <p>
+       作者用 Blender mid-poly 加 weighted bevel 作為低高模共同起點，把大量螺栓、齒輪與凹槽烘焙到貼圖以控制面數，最終整個資產低於 15K triangles；UV 在單一 2K 限制下透過縮小不可見區、堆疊重複零件與 UVPackmaster 提高有效 texel density。
+      </p>
+      <h4>
+       Rig 與引擎價值
+      </h4>
+      <p>
+       動畫不是只手轉幾個骨頭，而是先研究齒輪 tooth count、轉速與皮帶速度，再把關係寫進 Unreal Control Rig 的 Transform 與公開參數。這種機械關係先數學化、再引擎化的做法很適合互動道具，可讓 crank、gear、spinner 共用一致控制而不是多條手調動畫。
+      </p>
+      <h4>
+       導入測試
+      </h4>
+      <p>
+       建議挑一個有齒輪或連桿的遊戲 Prop，限制 20K tris／單 2K texture，建立 Blender 骨架後在 UE Control Rig 驅動機構，再測 Substrate 的 Fuzz／Glint／Anisotropy 在目標平台的 shader cost。文章展示的是作品級成功案例，效能與跨平台成本仍需自行 profiling。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://80.lv/articles/recreating-a-19th-century-magneto-electric-shock-machine-for-a-prop-challenge" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="80lv-widow-feathers-concept-to-3d" data-intel-role="card">
+    <div class="category-meta">
+     #03 · character-production
+    </div>
+    <h2>
+     2D Concept 到 3D Fantasy Character：先抓 Silhouette，再處理分層服裝、縫線與羽毛細節
+    </h2>
+    <p class="summary">
+     Artem Bieliakov 的 The Widow of Feathers breakdown 聚焦從 2D concept 轉為遊戲角色，重點包含角色 silhouette、層疊服裝、折痕與縫線、裝飾結構，以及鳥與羽毛的製作。
+    </p>
+    <figure class="case-preview" data-intel-id="80lv-widow-feathers-concept-to-3d" data-intel-role="visual" data-visual-id="80lv-widow-feathers-concept-to-3d">
+     <a href="https://80.lv/articles/breakdown-modeling-a-3d-fantasy-character-based-on-a-2d-concept" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-12/80lv-widow-feathers-concept-to-3d.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">角色製作</b> ★★★★★</span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       角色工作流
+      </h4>
+      <p>
+       這篇最有價值的是把 2D concept 轉 3D 的決策順序拉回大形：先讓 silhouette、比例與服裝層級成立，再逐步細化 folds、seams、ornaments 與羽毛，而不是一開始就追局部材質。工具鏈橫跨 ZBrush、Marvelous Designer、Maya、Substance Painter、RizomUV、Marmoset 與 Unreal。
+      </p>
+      <h4>
+       製作價值
+      </h4>
+      <p>
+       對角色外包或內部 review，這類流程很適合拆成階段驗收：第一關只看 silhouette 與層次，第二關看服裝結構與褶皺受力，之後才驗 ornament、羽毛、UV 與材質。這能避免 concept 還原度不足時，團隊已經把大量工時投入微細節。
+      </p>
+      <h4>
+       導入測試
+      </h4>
+      <p>
+       可拿一張現有 2D 設定，要求美術先提交無材質灰模與服裝 layer breakdown，再逐層增加 seam／ornament／secondary asset，比較與一次做到細節版的返工率。這篇是單一角色 case，適合當流程範例，不應直接把所有造型技巧視為通用規範。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://80.lv/articles/breakdown-modeling-a-3d-fantasy-character-based-on-a-2d-concept" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="80lv-raid-alice-character-material-study" data-intel-role="card">
+    <div class="category-meta">
+     #06 · character-production
+    </div>
+    <h2>
+     RAID Alice Fan Art：保留原作辨識度，同時把皮革、毛皮與寫實材質推到角色製作層
+    </h2>
+    <p class="summary">
+     Dahye Han 分享 Alice fan art 的 modeling/texturing 流程，核心是在維持遊戲原角色特徵的同時加入更寫實的材質與渲染，並特別處理皮革與兔毛。
+    </p>
+    <figure class="case-preview" data-intel-id="80lv-raid-alice-character-material-study" data-intel-role="visual" data-visual-id="80lv-raid-alice-character-material-study">
+     <a href="https://80.lv/articles/modeling-and-texturing-a-fan-art-of-alice-from-raid-shadow-legends" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-12/80lv-raid-alice-character-material-study.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">角色製作</b> ★★★★☆</span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       角色設計轉譯
+      </h4>
+      <p>
+       作者不是重新設計 Alice，而是把原作熟悉度當成硬限制，再用更寫實的皮膚、皮革與毛皮補充材質層次。這種 fan-art 流程其實很接近既有 IP 角色升級：需要在 silhouette、臉部特徵與 costume language 不漂移的前提下提高 surface fidelity。
+      </p>
+      <h4>
+       製作價值
+      </h4>
+      <p>
+       對需要把既有 2D／舊世代角色升到較高品質的團隊，重點是建立哪些元素不可改、哪些元素可加 realism 的清單。文章中的皮革與兔毛案例可作為材質分層參考，避免提高寫實度最後變成風格與角色辨識度一起被洗掉。
+      </p>
+      <h4>
+       導入測試
+      </h4>
+      <p>
+       可用現有角色做一版 fidelity upgrade：保留比例、主要色塊與服裝輪廓，只調整皮革 roughness、纖維／毛皮與皮膚 micro detail，再讓原畫或角色 lead 做盲評。若辨識度下降，即表示材質寫實化超過 IP 可接受範圍，需要回退。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://80.lv/articles/modeling-and-texturing-a-fan-art-of-alice-from-raid-shadow-legends" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="80lv-medieval-dwarf-aged-skin" data-intel-role="card">
+    <div class="category-meta">
+     #07 · character-production
+    </div>
+    <h2>
+     老年矮人角色：皺紋皮膚、毛髮與 Paragon 材質的可拆解角色 Lookdev 案例
+    </h2>
+    <p class="summary">
+     Nikita Popp 的 Dwarf breakdown 聚焦 aged skin texturing，並展示 3ds Max、Blender、ZBrush、Substance Painter 與 Unreal 的角色流程，以及用 Paragon material 處理 hair/feathers。
+    </p>
+    <figure class="case-preview" data-intel-id="80lv-medieval-dwarf-aged-skin" data-intel-role="visual" data-visual-id="80lv-medieval-dwarf-aged-skin">
+     <a href="https://80.lv/articles/mastering-wrinkly-skin-texture-by-making-an-old-medieval-dwarf-in-3d" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-12/80lv-medieval-dwarf-aged-skin.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">角色製作</b> ★★★★☆</span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       角色材質重點
+      </h4>
+      <p>
+       這篇把高齡角色最容易失真的區域放在核心：皺紋不是單純疊 noise，而要和大形、年齡、皮膚材質反應一起成立；同時角色還包含 hair／feather 等不同表面，需要在 Unreal 中維持各自的 shading 特性。工具鏈包含 ZBrush、Substance、Blender／3ds Max 與 Unreal。
+      </p>
+      <h4>
+       製作價值
+      </h4>
+      <p>
+       對寫實或半寫實角色，aged skin 是很適合拿來建立材質 QA 的題目，因為它同時暴露 sculpt frequency、normal／roughness、色素變化與燈光下 readability 的問題。文章也提供 Paragon material 的實際使用方向，可拿來比較自製 hair shader 與成熟範例的成本差。
+      </p>
+      <h4>
+       導入測試
+      </h4>
+      <p>
+       建議用同一頭部做三種距離測試：近景 portrait、中距遊戲鏡頭、實際角色光照，檢查皺紋是否在遠處變成髒 noise，並比較 Paragon hair／feather 材質與現有 shader 的 GPU 成本與視覺收益。單一作品的 lookdev 不能直接當統一材質標準，仍需依專案風格縮放細節。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://80.lv/articles/mastering-wrinkly-skin-texture-by-making-an-old-medieval-dwarf-in-3d" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <nav aria-label="相鄰分類" class="category-bottom-nav">
+    <a href="../ai-generation/">
+     ← AI 生成
+    </a>
+    <a href="../#top">
+     TOP5
+    </a>
+    <a href="../3d-animation/">
+     3D 動作 →
+    </a>
+   </nav>
+  </main>
+  <script defer="" src="../../archive-nav-state.js?v=20260912-r1-workspace-v6">
+  </script>
+ </body>
+</html>

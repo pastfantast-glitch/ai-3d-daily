@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   Blender / DCC｜2026-09-12｜AI 3D Daily
+  </title>
+  <link href="../../styles.css?v=20260912-r1-workspace-v6" rel="stylesheet"/>
+  <link href="../../shared-components.css?v=20260912-r1-workspace-v6" rel="stylesheet"/>
+  <link href="../../category.css?v=20260912-r1-workspace-v6" rel="stylesheet"/>
+ </head>
+ <body class="category-page" data-category="blender-dcc" data-report-date="2026-09-12">
+  <nav aria-label="Production Intelligence 分類" class="global-category-nav">
+   <div class="page global-category-nav-inner">
+    <div class="archive-nav-controls">
+     <a class="archive-nav-home" href="../../">
+      ← 首頁
+     </a>
+     <div class="archive-nav-date">
+      <a aria-label="前一日日報" class="archive-nav-arrow" href="../../2026-09-11/blender-dcc/">
+       ←
+      </a>
+      <span>
+       2026-09-12
+      </span>
+     </div>
+    </div>
+    <span aria-hidden="true" class="archive-nav-divider">
+    </span>
+    <a class="global-category-link" href="../#top">
+     TOP5
+    </a>
+    <a class="global-category-link" data-category="ai-generation" href="../ai-generation/">
+     AI 生成
+    </a>
+    <a class="global-category-link" data-category="3d-production" href="../3d-production/">
+     3D 製作
+    </a>
+    <a class="global-category-link" data-category="3d-animation" href="../3d-animation/">
+     3D 動作
+    </a>
+    <a class="global-category-link" data-category="engine-art" href="../engine-art/">
+     遊戲引擎
+    </a>
+    <a class="global-category-link" data-category="emerging-case" href="../emerging-case/">
+     新技術 / Case
+    </a>
+    <a class="global-category-link is-active" data-category="blender-dcc" href="../blender-dcc/">
+     Blender / DCC
+    </a>
+   </div>
+  </nav>
+  <main class="page category-main">
+   <article class="category-card" data-intel-id="80lv-blender-procedural-ice-material" data-intel-role="card">
+    <div class="category-meta">
+     #10 · blender-tip
+    </div>
+    <h2>
+     Blender Procedural Ice：Volume、Voronoi、Color Ramp 與 Displacement 封裝成可重用 Node Group
+    </h2>
+    <p class="summary">
+     Ryan King 用 Volume 建立冰塊霧化核心，Voronoi 做不均表面，再以 Color Ramp、透明/反射與 Displacement 控制冰感，最後封裝 Node Group 讓 color、roughness、displacement 可快速調參。
+    </p>
+    <figure class="case-preview" data-intel-id="80lv-blender-procedural-ice-material" data-intel-role="visual" data-visual-id="80lv-blender-procedural-ice-material">
+     <a href="https://80.lv/articles/tutorial-realistic-procedural-ice-cube-material-in-blender-with-easy-customization" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-12/80lv-blender-procedural-ice-material.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">Blender 技巧</b> ★★★★☆</span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       Shader 工作流
+      </h4>
+      <p>
+       教學從幾何 bevel、燈光與背景開始，再以 Volume 製造冰塊中心的霧感、Voronoi 製造不規則表面，透過 Color Ramp 控制透光與玻璃感，最後用 Displacement 決定外形的 chunky 程度。重點是把常用控制收進 custom node group，而不是留下難維護的散亂節點。
+      </p>
+      <h4>
+       製作價值
+      </h4>
+      <p>
+       對遊戲美術來說，最可轉移的是可參數化材質模組思路：將色彩、roughness、displacement 等暴露成少量 art-friendly controls，能快速做冰塊變體，也能延伸到玻璃、晶體或半透明 stylized props，降低每個資產重新接 shader 的成本。
+      </p>
+      <h4>
+       導入測試
+      </h4>
+      <p>
+       在 Blender 先做三種冰材質 preset，再移植邏輯到 Unity／Unreal 測真正 runtime 成本，特別比較 volume、transmission 與 displacement 是否需要改成 cheaper approximation。教學目標偏離線外觀，不能直接假設節點結構可原封不動進即時引擎。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://80.lv/articles/tutorial-realistic-procedural-ice-cube-material-in-blender-with-easy-customization" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="hardcraft-cad-retopology-blender-alpha" data-intel-role="card">
+    <div class="category-meta">
+     #11 · addon
+    </div>
+    <h2>
+     Hardcraft Alpha：利用 CAD Patch 結構導引 Blender Retopology，而不是盲目全自動 Remesh
+    </h2>
+    <p class="summary">
+     Hardcraft 讀取 STEP／Plasticity bridge 等 CAD export 殘留結構，把 surface 拆成 patch/curve，讓使用者調整 patch boundary、edge flow 與 density，再 commit 成 quad+triangle 的 game-ready mesh。
+    </p>
+    <figure class="case-preview" data-intel-id="hardcraft-cad-retopology-blender-alpha" data-intel-role="visual" data-visual-id="hardcraft-cad-retopology-blender-alpha">
+     <a href="https://80.lv/articles/try-this-free-cad-data-retopology-tool-for-blender" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-12/hardcraft-cad-retopology-blender-alpha.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">外掛</b> ★★★★★</span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       拓樸工具流程
+      </h4>
+      <p>
+       Hardcraft 的差異是它不把輸入視為一般 polygon soup，而是利用 CAD 匯出仍保留的 surface structure，把模型拆成 patch 與 curve。藝術家先建立 retopo target，再偵測 surface、生成 patch，手動調整 boundary、edge flow 與 vertex density，最後才 commit 網格。
+      </p>
+      <h4>
+       製作價值
+      </h4>
+      <p>
+       這種半自動方式比 generic remesher 更符合硬表面資產需求，因為 artist 仍能控制重要轉折、密度與 quad/triangle 分配，同時省掉從零描拓樸的工作。對 Plasticity／STEP 到遊戲資產的 pipeline 特別值得測，也符合解決明確 production 問題的工具型情報。
+      </p>
+      <h4>
+       成熟度測試
+      </h4>
+      <p>
+       目前仍是 alpha，應以機械零件、圓角密集外殼、薄片與開孔模型做 stress test，記錄成功 patch 比例、手動修補時間、normal bake 品質與引擎 LOD 表現；再和傳統手工 retopo、decimate／remesh 比較。不能因為能生成 quad 就直接判定可動畫或可烘焙。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://80.lv/articles/try-this-free-cad-data-retopology-tool-for-blender" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="pro-particles-53-blender-multiphysics" data-intel-role="card">
+    <div class="category-meta">
+     #12 · addon
+    </div>
+    <h2>
+     Pro Particles 5.3：GPU FLIP／SPH／MPM、Cache 與 Alembic 把 Blender 多物理 FX 串成單一工具鏈
+    </h2>
+    <p class="summary">
+     Pro Particles 5.3 新增 FLIP/APIC liquids、SPH、multi-material MPM、constraints、flow fields 等，重做 Post/Output，加入 persistent caches 與 Alembic export，並可在 GPU preview 與 Blender geometry 間切換。
+    </p>
+    <figure class="case-preview" data-intel-id="pro-particles-53-blender-multiphysics" data-intel-role="visual" data-visual-id="pro-particles-53-blender-multiphysics">
+     <a href="https://80.lv/articles/advanced-gpu-powered-multi-physics-toolkit-for-blender-artists" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-12/pro-particles-53-blender-multiphysics.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">外掛</b> ★★★★☆</span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       模擬工具流程
+      </h4>
+      <p>
+       5.3 把 FLIP/APIC liquid、SPH fluid、multi-material MPM、particle constraints、self-gravity、flow field 與 dendrite growth 放進同一套 add-on，並增加 multi-source emitter、particle groups、hierarchical logic、reusable mask。Post／Output 也重做成 persistent cache 與 Alembic export。
+      </p>
+      <h4>
+       製作價值
+      </h4>
+      <p>
+       對需要液體、顆粒、Pyro 或破碎感 FX 的小團隊，統一的 GPU preview 與 cache/export 可以減少跨工具來回，尤其 Alembic 能把模擬結果交給後續 DCC／engine。它也允許 Point Cloud、Trail、Instance、Mesher 等在 GPU preview 與 Blender geometry 間切換，方便在速度與可編輯性間取捨。
+      </p>
+      <h4>
+       導入測試
+      </h4>
+      <p>
+       先用免費 demo 跑固定粒子、液體與 MPM 三個 scene，量 VRAM、sim time、cache size、Alembic 匯出時間與 Unreal／Unity ingest，再比較原生 Blender 或 Houdini 對照。市場頁展示的是功能集合，production stability、crash recovery 與版本升級相容性仍需要長時間測試。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://80.lv/articles/advanced-gpu-powered-multi-physics-toolkit-for-blender-artists" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="shellfit-blender-clothing-penetration" data-intel-role="card">
+    <div class="category-meta">
+     #13 · addon
+    </div>
+    <h2>
+     ShellFit：即時修正 Body／Clothing 穿插，結果可 Bake 到 Shape Key 或 Mesh
+    </h2>
+    <p class="summary">
+     ShellFit 以 Shell、Solid、Auto 三種 fitting mode 處理服裝與身體 overlap/gap，可選擇移動 body 或 clothing，Quick Shell Fit 可針對局部接觸區，並支援 copy weights 與結果烘焙。
+    </p>
+    <figure class="case-preview" data-intel-id="shellfit-blender-clothing-penetration" data-intel-role="visual" data-visual-id="shellfit-blender-clothing-penetration">
+     <a href="https://80.lv/articles/fix-body-clothing-clipping-in-blender-with-this-tool" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-12/shellfit-blender-clothing-penetration.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">外掛</b> ★★★★☆</span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       服裝修正流程
+      </h4>
+      <p>
+       ShellFit 專門處理 body／clothing overlap 與 gap，允許決定移動身體或服裝，Shell mode 適合薄布、Solid 適合 belt／ring 等厚物件，Auto 則自動判斷；Quick Shell Fit 還能只對選定 garment detail 與 target surface／edge／vertex 做局部貼合。
+      </p>
+      <h4>
+       製作價值
+      </h4>
+      <p>
+       它的價值在於把角色服裝常見的微調頂點、重做 shape key、再檢查權重縮成可即時預覽的修正，且結果能 bake 到 Shape Key 或 mesh、也可 copy weights。對換裝角色、avatar 或大量 outfit variant，這種工具有機會明顯減少 cleanup。
+      </p>
+      <h4>
+       導入測試
+      </h4>
+      <p>
+       用同一角色測 T-pose、蹲姿、抬腿與肩膀大角度四種 deformation，分別比較 ShellFit 前後穿插量、shape key 數、權重破壞與修正時間。它解決的是幾何接觸，不代表能取代 cloth simulation 或 corrective rig，因此動態極端姿勢仍要進動畫測試。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://80.lv/articles/fix-body-clothing-clipping-in-blender-with-this-tool" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="bwrap-guided-topology-transfer" data-intel-role="card">
+    <div class="category-meta">
+     #14 · addon
+    </div>
+    <h2>
+     BWrap：把已驗證角色 Topology 當 Template，直接 Wrap 到新 Sculpt／Scan
+    </h2>
+    <p class="summary">
+     BWrap 是 Blender 新增的 guided topology wrapping add-on，可用既有乾淨角色 mesh 作 template，將 edge flow 與 deformation loops 轉移到新 character、sculpt 或 scan，目標是減少重複手工 retopo。
+    </p>
+    <figure class="case-preview" data-intel-id="bwrap-guided-topology-transfer" data-intel-role="visual" data-visual-id="bwrap-guided-topology-transfer">
+     <a href="https://blenderartists.org/t/bwrap-guided-topology-wrapping-for-blender/1652420" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-12/bwrap-guided-topology-transfer.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">外掛</b> ★★★★☆</span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       Retopo 工作流
+      </h4>
+      <p>
+       BWrap 的核心不是自動產生一套新拓樸，而是重用團隊已經驗證過的 template mesh：選定 Template 與 Target，將既有 edge flow、facial loops 與 deformation topology 導引到新的 sculpt／scan。這種策略對同一角色族群或相近人體比例比從零 remesh 更有 production 意義。
+      </p>
+      <h4>
+       製作價值
+      </h4>
+      <p>
+       若團隊已有成熟 base body／face topology，wrap-based retopo 可以把大量時間從重新畫 loops 轉到 fit、landmark 與局部修正，並讓後續 UV、skin、blendshape 更容易沿用。對多角色量產、掃描資料與角色生成後清理尤其值得評估。
+      </p>
+      <h4>
+       成熟度測試
+      </h4>
+      <p>
+       應拿三種體型差、五官差與服裝／裸身 target 測 template transfer，統計 landmark 對齊、穿插、極點分布、UV 可重用率與 skin deformation；再和 ZWrap／手工 retopo 比較。這是新發布工具，需特別觀察 Blender 版本相容、崩潰與大形差異時的失敗模式。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://blenderartists.org/t/bwrap-guided-topology-wrapping-for-blender/1652420" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <nav aria-label="相鄰分類" class="category-bottom-nav">
+    <a href="../emerging-case/">
+     ← 新技術 / Case
+    </a>
+    <a href="../#top">
+     TOP5
+    </a>
+    <a href="../ai-generation/">
+     AI 生成 →
+    </a>
+   </nav>
+  </main>
+  <script defer="" src="../../archive-nav-state.js?v=20260912-r1-workspace-v6">
+  </script>
+ </body>
+</html>

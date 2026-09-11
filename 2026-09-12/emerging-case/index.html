@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   新技術 / Case｜2026-09-12｜AI 3D Daily
+  </title>
+  <link href="../../styles.css?v=20260912-r1-workspace-v6" rel="stylesheet"/>
+  <link href="../../shared-components.css?v=20260912-r1-workspace-v6" rel="stylesheet"/>
+  <link href="../../category.css?v=20260912-r1-workspace-v6" rel="stylesheet"/>
+ </head>
+ <body class="category-page" data-category="emerging-case" data-report-date="2026-09-12">
+  <nav aria-label="Production Intelligence 分類" class="global-category-nav">
+   <div class="page global-category-nav-inner">
+    <div class="archive-nav-controls">
+     <a class="archive-nav-home" href="../../">
+      ← 首頁
+     </a>
+     <div class="archive-nav-date">
+      <a aria-label="前一日日報" class="archive-nav-arrow" href="../../2026-09-11/emerging-case/">
+       ←
+      </a>
+      <span>
+       2026-09-12
+      </span>
+     </div>
+    </div>
+    <span aria-hidden="true" class="archive-nav-divider">
+    </span>
+    <a class="global-category-link" href="../#top">
+     TOP5
+    </a>
+    <a class="global-category-link" data-category="ai-generation" href="../ai-generation/">
+     AI 生成
+    </a>
+    <a class="global-category-link" data-category="3d-production" href="../3d-production/">
+     3D 製作
+    </a>
+    <a class="global-category-link" data-category="3d-animation" href="../3d-animation/">
+     3D 動作
+    </a>
+    <a class="global-category-link" data-category="engine-art" href="../engine-art/">
+     遊戲引擎
+    </a>
+    <a class="global-category-link is-active" data-category="emerging-case" href="../emerging-case/">
+     新技術 / Case
+    </a>
+    <a class="global-category-link" data-category="blender-dcc" href="../blender-dcc/">
+     Blender / DCC
+    </a>
+   </div>
+  </nav>
+  <main class="page category-main">
+   <article class="category-card" data-intel-id="hipr-progressive-path-tracing" data-intel-role="card">
+    <div class="category-meta">
+     #08 · research
+    </div>
+    <h2>
+     HiPR：依場景變動與光傳輸影響排序 Path Tracing 更新，先把有感像素算完
+    </h2>
+    <p class="summary">
+     University of Utah 的 Hierarchical Progressive Rendering 追蹤編輯對直接可見區、反射、陰影與間接光的影響，優先更新重要區域，最後仍收斂到相同 unbiased path-traced 結果。
+    </p>
+    <figure class="case-preview" data-intel-id="hipr-progressive-path-tracing" data-intel-role="visual" data-visual-id="hipr-progressive-path-tracing">
+     <a href="https://80.lv/articles/how-hipr-makes-path-tracing-feel-more-responsive-by-rendering-what-matters-first" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-12/hipr-progressive-path-tracing.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">研究</b> ★★★★☆</span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       渲染技術
+      </h4>
+      <p>
+       HiPR 不是降低最終 path tracing 品質，而是改變更新順序：當物件、材質或燈光被編輯時，先找出直接可見的變動，再沿 reflection、shadow、indirect illumination 等 light-transport 路徑估算受影響區域，優先重算最重要的像素，其餘區域再逐步追上。
+      </p>
+      <h4>
+       製作影響
+      </h4>
+      <p>
+       若這類 scheduling 進入 DCC、lookdev 或 path-traced editor，最大的收益是互動感而不是最終 render time；藝術家能更快看到我剛改的東西造成的結果，對燈光、材質與 level design 的迭代節奏特別有意義，也可能影響即時 path tracing 的 budget 分配。
+      </p>
+      <h4>
+       成熟度驗證
+      </h4>
+      <p>
+       目前屬研究階段，應用前要測快速連續 edit、大片間接光、鏡面反射鏈與透明材質下的 outdated pixel 是否造成誤導。真正可用的判斷標準不是 demo 看起來快，而是相同 noise budget 下，藝術家能否更早得到足以做決策的畫面且最終仍無偏差收斂。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://80.lv/articles/how-hipr-makes-path-tracing-feel-more-responsive-by-rendering-what-matters-first" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="wot-heat-art-engine-pipeline" data-intel-role="card">
+    <div class="category-meta">
+     #09 · case-study
+    </div>
+    <h2>
+     World of Tanks: HEAT：70/30 車輛設計、跨 DCC Art Pipeline 與跨平台優化如何一起運作
+    </h2>
+    <p class="summary">
+     Wargaming 說明 HEAT 的 70/30 vehicle design philosophy、Agents/vehicles 的 silhouette與材質辨識，以及 Maya、Blender、3ds Max、Houdini 等跨 DCC 配合自研引擎與跨平台 optimization 的流程。
+    </p>
+    <figure class="case-preview" data-intel-id="wot-heat-art-engine-pipeline" data-intel-role="visual" data-visual-id="wot-heat-art-engine-pipeline">
+     <a href="https://80.lv/articles/inside-world-of-tanks-heat-s-art-engine-vehicle-design-pipeline" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-12/wot-heat-art-engine-pipeline.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">製作案例</b> ★★★★☆</span>
+    </div>
+    <details>
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       製作案例
+      </h4>
+      <p>
+       HEAT 的 70/30 設計規則把約 70% 車輛／技術建立在真實工程邏輯上，再保留約 30% 給替代歷史與玩法誇張；同時用 silhouette、color、material 與 Agent identity 讓玩家快速讀懂角色／載具功能。這是把 art direction 和 gameplay readability 放在同一套規則內。
+      </p>
+      <h4>
+       流程價值
+      </h4>
+      <p>
+       團隊使用 Maya、Blender、3ds Max、Houdini、Photoshop、Illustrator、Figma，再進 Wargaming 自研引擎，代表大型 production 並不依賴單一 DCC，而是依賴清楚的交換格式、資產規範與引擎端驗收。對跨平台專案，這種工具多樣性更需要自動化 validation。
+      </p>
+      <h4>
+       導入測試
+      </h4>
+      <p>
+       可把 70/30 概念改成自己的 art rule：先定義真實基礎、允許誇張範圍、silhouette readability 與材質層級，再挑一個載具／機械 prop 做 DCC 交換測試。需要注意這篇是高層 pipeline case，沒有提供完整效能數值，因此優化策略仍須用專案 profiling 具體化。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://80.lv/articles/inside-world-of-tanks-heat-s-art-engine-vehicle-design-pipeline" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <nav aria-label="相鄰分類" class="category-bottom-nav">
+    <a href="../engine-art/">
+     ← 遊戲引擎
+    </a>
+    <a href="../#top">
+     TOP5
+    </a>
+    <a href="../blender-dcc/">
+     Blender / DCC →
+    </a>
+   </nav>
+  </main>
+  <script defer="" src="../../archive-nav-state.js?v=20260912-r1-workspace-v6">
+  </script>
+ </body>
+</html>
