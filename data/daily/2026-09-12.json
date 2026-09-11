@@ -6,7 +6,13 @@
     "collection_mode": "production-intelligence-preference-v1-hybrid",
     "collection_contract_effective_date": "2026-09-04",
     "preference_contract_effective_date": "2026-09-06",
-    "discovery_windows": ["24h", "7d", "30d", "6m", "evergreen"],
+    "discovery_windows": [
+      "24h",
+      "7d",
+      "30d",
+      "6m",
+      "evergreen"
+    ],
     "discovery_coverage": {
       "fill_ladder_exhausted": true,
       "backlog_checked": true,
@@ -14,28 +20,88 @@
       "targeted_refill_performed": true,
       "quality_first_confirmed": true,
       "windows": {
-        "24h": {"status": "exhausted", "candidates_found": 10},
-        "7d": {"status": "exhausted", "candidates_found": 26},
-        "30d": {"status": "exhausted", "candidates_found": 31},
-        "6m": {"status": "exhausted", "candidates_found": 41},
-        "evergreen": {"status": "exhausted", "candidates_found": 17}
+        "24h": {
+          "status": "exhausted",
+          "candidates_found": 10
+        },
+        "7d": {
+          "status": "exhausted",
+          "candidates_found": 26
+        },
+        "30d": {
+          "status": "exhausted",
+          "candidates_found": 31
+        },
+        "6m": {
+          "status": "exhausted",
+          "candidates_found": 41
+        },
+        "evergreen": {
+          "status": "exhausted",
+          "candidates_found": 17
+        }
       },
       "category_candidates": {
-        "ai-generation": {"candidates_considered": 14},
-        "3d-production": {"candidates_considered": 30},
-        "3d-animation": {"candidates_considered": 21},
-        "engine-art": {"candidates_considered": 18},
-        "emerging-case": {"candidates_considered": 16},
-        "blender-dcc": {"candidates_considered": 27}
+        "ai-generation": {
+          "candidates_considered": 14
+        },
+        "3d-production": {
+          "candidates_considered": 30
+        },
+        "3d-animation": {
+          "candidates_considered": 21
+        },
+        "engine-art": {
+          "candidates_considered": 18
+        },
+        "emerging-case": {
+          "candidates_considered": 16
+        },
+        "blender-dcc": {
+          "candidates_considered": 27
+        }
       },
       "priority_sources": {
-        "80-level": {"status": "checked", "candidates_found": 18}
+        "80-level": {
+          "status": "checked",
+          "candidates_found": 18
+        }
       },
       "notes": "Completed the full configured fill ladder with candidate-pool discovery, source verification, Published Intelligence Registry canonical-source screening, substantive-delta checks, classification, Quality Gate and ranking. Rolling backlog was refreshed first and was empty. Targeted refill was performed for low-volume categories, including AI 3D and the always-discover 3D-animation keypose/blocking/body-mechanics/rigging profile. 80 Level was actively scanned as the required high-recall priority source and the configured positive samples were used for query expansion and user-interest fit. Fresh AI 3D results were largely redundant with already-published Meshy/Tripo pipeline intelligence or lacked a sufficiently new source-supported substantive delta, so they were not used as filler. Unselected shallow showcases, marketing-only tools and sources unable to support the Full Analysis depth contract were rejected. No verified unpublished quality-pass backlog candidate remained eligible after selection."
     },
     "full_analysis_depth_contract": "v4-source-supported-production-depth",
     "full_analysis_style_reference": "2026-09-01",
-    "full_analysis_heading_language": "zh-Hant"
+    "full_analysis_heading_language": "zh-Hant",
+    "registry_identity_normalization": {
+      "dropped_count": 0,
+      "rewritten_count": 0,
+      "policy": "verified-DONE-published-canonical-source-without-substantive-delta-skip",
+      "source_identity_precedence": "published-daily-html-card-then-canonical-json",
+      "url_identity": "scripts/url_identity.py",
+      "stage": "collection-before-ready",
+      "refill_required": false,
+      "category_deficits": {},
+      "daily_release_gate": {
+        "have": 14,
+        "min": 12,
+        "target": 30,
+        "max": 30,
+        "missing_to_min": 6,
+        "missing_to_target": 16,
+        "release_ready": true,
+        "category_counts": {
+          "ai-generation": 0,
+          "3d-production": 5,
+          "3d-animation": 2,
+          "engine-art": 0,
+          "emerging-case": 2,
+          "blender-dcc": 5
+        },
+        "normal_min": 20,
+        "release_mode": "LOW_VOLUME_COMPLETE",
+        "low_volume_authorized": true
+      }
+    }
   },
   "items": [
     {
@@ -48,9 +114,18 @@
       "subcategory": "character-production",
       "ranking_score": 100,
       "full_analysis": [
-        {"label": "角色製作流程", "text": "這篇把角色資產從頭部、服裝到即時展示串成一條可追蹤流程：先把掃描轉成 MetaHuman mesh，再進 ZBrush 做造型與傷疤調整；服裝先在 ZBrush blockout 驗證分層，再用 Marvelous Designer 重建，最後以 Maya／TopoGun 清理拓樸、RizomUV 與 UVPackmaster 整理 UV、Substance Painter 完成材質。"},
-        {"label": "製作價值", "text": "值得借鏡的是作者把時間花在會影響最終畫面的地方，例如保留可用的 MetaHuman 眼睛與細毛、在服裝層級用明度分離深度、磨損依實際接觸位置配置。這種資產優先級思維能降低英雄角色在無效細節上的工時，並讓 DCC 與 Unreal 的迭代更集中。"},
-        {"label": "導入測試", "text": "可用現有角色做一次 MetaHuman→ZBrush→UE 回寫與 Marvelous 分層服裝測試，記錄頭部形變、UV／材質重用、Chaos Cloth 自穿插與 markerless mocap 抖動的修正成本。作者也提到披風因原始網格而需要提高剛性、mocap 仍有 jitter，因此這套流程成熟但不是零清理。"}
+        {
+          "label": "角色製作流程",
+          "text": "這篇把角色資產從頭部、服裝到即時展示串成一條可追蹤流程：先把掃描轉成 MetaHuman mesh，再進 ZBrush 做造型與傷疤調整；服裝先在 ZBrush blockout 驗證分層，再用 Marvelous Designer 重建，最後以 Maya／TopoGun 清理拓樸、RizomUV 與 UVPackmaster 整理 UV、Substance Painter 完成材質。"
+        },
+        {
+          "label": "製作價值",
+          "text": "值得借鏡的是作者把時間花在會影響最終畫面的地方，例如保留可用的 MetaHuman 眼睛與細毛、在服裝層級用明度分離深度、磨損依實際接觸位置配置。這種資產優先級思維能降低英雄角色在無效細節上的工時，並讓 DCC 與 Unreal 的迭代更集中。"
+        },
+        {
+          "label": "導入測試",
+          "text": "可用現有角色做一次 MetaHuman→ZBrush→UE 回寫與 Marvelous 分層服裝測試，記錄頭部形變、UV／材質重用、Chaos Cloth 自穿插與 markerless mocap 抖動的修正成本。作者也提到披風因原始網格而需要提高剛性、mocap 仍有 jitter，因此這套流程成熟但不是零清理。"
+        }
       ],
       "rank_global": 1,
       "homepage_tier": "top5"
@@ -65,9 +140,18 @@
       "subcategory": "prop-production",
       "ranking_score": 99,
       "full_analysis": [
-        {"label": "道具製作流程", "text": "作者用 Blender mid-poly 加 weighted bevel 作為低高模共同起點，把大量螺栓、齒輪與凹槽烘焙到貼圖以控制面數，最終整個資產低於 15K triangles；UV 在單一 2K 限制下透過縮小不可見區、堆疊重複零件與 UVPackmaster 提高有效 texel density。"},
-        {"label": "Rig 與引擎價值", "text": "動畫不是只手轉幾個骨頭，而是先研究齒輪 tooth count、轉速與皮帶速度，再把關係寫進 Unreal Control Rig 的 Transform 與公開參數。這種機械關係先數學化、再引擎化的做法很適合互動道具，可讓 crank、gear、spinner 共用一致控制而不是多條手調動畫。"},
-        {"label": "導入測試", "text": "建議挑一個有齒輪或連桿的遊戲 Prop，限制 20K tris／單 2K texture，建立 Blender 骨架後在 UE Control Rig 驅動機構，再測 Substrate 的 Fuzz／Glint／Anisotropy 在目標平台的 shader cost。文章展示的是作品級成功案例，效能與跨平台成本仍需自行 profiling。"}
+        {
+          "label": "道具製作流程",
+          "text": "作者用 Blender mid-poly 加 weighted bevel 作為低高模共同起點，把大量螺栓、齒輪與凹槽烘焙到貼圖以控制面數，最終整個資產低於 15K triangles；UV 在單一 2K 限制下透過縮小不可見區、堆疊重複零件與 UVPackmaster 提高有效 texel density。"
+        },
+        {
+          "label": "Rig 與引擎價值",
+          "text": "動畫不是只手轉幾個骨頭，而是先研究齒輪 tooth count、轉速與皮帶速度，再把關係寫進 Unreal Control Rig 的 Transform 與公開參數。這種機械關係先數學化、再引擎化的做法很適合互動道具，可讓 crank、gear、spinner 共用一致控制而不是多條手調動畫。"
+        },
+        {
+          "label": "導入測試",
+          "text": "建議挑一個有齒輪或連桿的遊戲 Prop，限制 20K tris／單 2K texture，建立 Blender 骨架後在 UE Control Rig 驅動機構，再測 Substrate 的 Fuzz／Glint／Anisotropy 在目標平台的 shader cost。文章展示的是作品級成功案例，效能與跨平台成本仍需自行 profiling。"
+        }
       ],
       "rank_global": 2,
       "homepage_tier": "top5"
@@ -82,9 +166,18 @@
       "subcategory": "character-production",
       "ranking_score": 98,
       "full_analysis": [
-        {"label": "角色工作流", "text": "這篇最有價值的是把 2D concept 轉 3D 的決策順序拉回大形：先讓 silhouette、比例與服裝層級成立，再逐步細化 folds、seams、ornaments 與羽毛，而不是一開始就追局部材質。工具鏈橫跨 ZBrush、Marvelous Designer、Maya、Substance Painter、RizomUV、Marmoset 與 Unreal。"},
-        {"label": "製作價值", "text": "對角色外包或內部 review，這類流程很適合拆成階段驗收：第一關只看 silhouette 與層次，第二關看服裝結構與褶皺受力，之後才驗 ornament、羽毛、UV 與材質。這能避免 concept 還原度不足時，團隊已經把大量工時投入微細節。"},
-        {"label": "導入測試", "text": "可拿一張現有 2D 設定，要求美術先提交無材質灰模與服裝 layer breakdown，再逐層增加 seam／ornament／secondary asset，比較與一次做到細節版的返工率。這篇是單一角色 case，適合當流程範例，不應直接把所有造型技巧視為通用規範。"}
+        {
+          "label": "角色工作流",
+          "text": "這篇最有價值的是把 2D concept 轉 3D 的決策順序拉回大形：先讓 silhouette、比例與服裝層級成立，再逐步細化 folds、seams、ornaments 與羽毛，而不是一開始就追局部材質。工具鏈橫跨 ZBrush、Marvelous Designer、Maya、Substance Painter、RizomUV、Marmoset 與 Unreal。"
+        },
+        {
+          "label": "製作價值",
+          "text": "對角色外包或內部 review，這類流程很適合拆成階段驗收：第一關只看 silhouette 與層次，第二關看服裝結構與褶皺受力，之後才驗 ornament、羽毛、UV 與材質。這能避免 concept 還原度不足時，團隊已經把大量工時投入微細節。"
+        },
+        {
+          "label": "導入測試",
+          "text": "可拿一張現有 2D 設定，要求美術先提交無材質灰模與服裝 layer breakdown，再逐層增加 seam／ornament／secondary asset，比較與一次做到細節版的返工率。這篇是單一角色 case，適合當流程範例，不應直接把所有造型技巧視為通用規範。"
+        }
       ],
       "rank_global": 3,
       "homepage_tier": "top5"
@@ -99,9 +192,18 @@
       "subcategory": "animation",
       "ranking_score": 97,
       "full_analysis": [
-        {"label": "動畫系統流程", "text": "案例的難點不是單一漂亮 shot，而是讓 locomotion、attack、reaction、jump、roll、stun、death 等約 42 個 state 在大量不同 anatomy／裝備角色上形成一致系統。Yeyo 同時處理 rigging、skinning、creature motion 與 engine testing，顯示動畫資產從一開始就以 gameplay set 而非單 clip 管理。"},
-        {"label": "製作價值", "text": "對遊戲團隊最可轉移的是可重用動畫集合＋角色差異層思維：先定義共通狀態與命名，再針對比例、武器、體型與 boss 特性做變體。這能讓 outsourcing 驗收從主觀動作好不好看，升級成 state completeness、contact、root、retarget 與 engine behavior 的系統化檢查。"},
-        {"label": "導入測試", "text": "可以挑人類、重型獸人與四足 creature 各一隻，先定 10 個核心 state 做 mini set，測重定向可重用率、需要專屬重做的比例、foot slide、weapon contact 與 blend transition。若共用骨架／命名無法降低總工時，就表示抽象層設計太弱或角色差異已超出適用範圍。"}
+        {
+          "label": "動畫系統流程",
+          "text": "案例的難點不是單一漂亮 shot，而是讓 locomotion、attack、reaction、jump、roll、stun、death 等約 42 個 state 在大量不同 anatomy／裝備角色上形成一致系統。Yeyo 同時處理 rigging、skinning、creature motion 與 engine testing，顯示動畫資產從一開始就以 gameplay set 而非單 clip 管理。"
+        },
+        {
+          "label": "製作價值",
+          "text": "對遊戲團隊最可轉移的是可重用動畫集合＋角色差異層思維：先定義共通狀態與命名，再針對比例、武器、體型與 boss 特性做變體。這能讓 outsourcing 驗收從主觀動作好不好看，升級成 state completeness、contact、root、retarget 與 engine behavior 的系統化檢查。"
+        },
+        {
+          "label": "導入測試",
+          "text": "可以挑人類、重型獸人與四足 creature 各一隻，先定 10 個核心 state 做 mini set，測重定向可重用率、需要專屬重做的比例、foot slide、weapon contact 與 blend transition。若共用骨架／命名無法降低總工時，就表示抽象層設計太弱或角色差異已超出適用範圍。"
+        }
       ],
       "rank_global": 4,
       "homepage_tier": "top5"
@@ -116,9 +218,18 @@
       "subcategory": "animation",
       "ranking_score": 96,
       "full_analysis": [
-        {"label": "Key Pose 工作流", "text": "Ragdoll 把 pose blocking 變成近似 action figure 的互動：先拖動局部身體，讓物理、接觸與關節限制協助角色 settle，再把結果帶入 Maya／Blender 繼續動畫。它還能顯示 center of mass、contact 與 ballistic trajectory，對 weight、balance 和 body mechanics 的判斷比只看控制器更直觀。"},
-        {"label": "製作價值", "text": "這類工具最適合用在第一輪 key pose／reference exploration，而不是取代 animator 的 timing 與 acting。它能減少姿勢穿插、重心懸空與 counter-animation，尤其對推拉、跌倒、落地、重型角色或 creature pose 有價值，也符合新增的 keypose／blocking 收集方向。"},
-        {"label": "導入測試", "text": "用相同角色做五個極端 pose，一組傳統 FK/IK blocking，一組用 Ragdoll 輔助，記錄完成時間、重心修正次數與穿插量，再交由 animator 不看工具來源評比 silhouette／weight。若物理結果讓 pose 變得平均或失去誇張設計，就應只把它當 constraint/reference layer。"}
+        {
+          "label": "Key Pose 工作流",
+          "text": "Ragdoll 把 pose blocking 變成近似 action figure 的互動：先拖動局部身體，讓物理、接觸與關節限制協助角色 settle，再把結果帶入 Maya／Blender 繼續動畫。它還能顯示 center of mass、contact 與 ballistic trajectory，對 weight、balance 和 body mechanics 的判斷比只看控制器更直觀。"
+        },
+        {
+          "label": "製作價值",
+          "text": "這類工具最適合用在第一輪 key pose／reference exploration，而不是取代 animator 的 timing 與 acting。它能減少姿勢穿插、重心懸空與 counter-animation，尤其對推拉、跌倒、落地、重型角色或 creature pose 有價值，也符合新增的 keypose／blocking 收集方向。"
+        },
+        {
+          "label": "導入測試",
+          "text": "用相同角色做五個極端 pose，一組傳統 FK/IK blocking，一組用 Ragdoll 輔助，記錄完成時間、重心修正次數與穿插量，再交由 animator 不看工具來源評比 silhouette／weight。若物理結果讓 pose 變得平均或失去誇張設計，就應只把它當 constraint/reference layer。"
+        }
       ],
       "rank_global": 5,
       "homepage_tier": "top5"
@@ -133,9 +244,18 @@
       "subcategory": "character-production",
       "ranking_score": 94,
       "full_analysis": [
-        {"label": "角色設計轉譯", "text": "作者不是重新設計 Alice，而是把原作熟悉度當成硬限制，再用更寫實的皮膚、皮革與毛皮補充材質層次。這種 fan-art 流程其實很接近既有 IP 角色升級：需要在 silhouette、臉部特徵與 costume language 不漂移的前提下提高 surface fidelity。"},
-        {"label": "製作價值", "text": "對需要把既有 2D／舊世代角色升到較高品質的團隊，重點是建立哪些元素不可改、哪些元素可加 realism 的清單。文章中的皮革與兔毛案例可作為材質分層參考，避免提高寫實度最後變成風格與角色辨識度一起被洗掉。"},
-        {"label": "導入測試", "text": "可用現有角色做一版 fidelity upgrade：保留比例、主要色塊與服裝輪廓，只調整皮革 roughness、纖維／毛皮與皮膚 micro detail，再讓原畫或角色 lead 做盲評。若辨識度下降，即表示材質寫實化超過 IP 可接受範圍，需要回退。"}
+        {
+          "label": "角色設計轉譯",
+          "text": "作者不是重新設計 Alice，而是把原作熟悉度當成硬限制，再用更寫實的皮膚、皮革與毛皮補充材質層次。這種 fan-art 流程其實很接近既有 IP 角色升級：需要在 silhouette、臉部特徵與 costume language 不漂移的前提下提高 surface fidelity。"
+        },
+        {
+          "label": "製作價值",
+          "text": "對需要把既有 2D／舊世代角色升到較高品質的團隊，重點是建立哪些元素不可改、哪些元素可加 realism 的清單。文章中的皮革與兔毛案例可作為材質分層參考，避免提高寫實度最後變成風格與角色辨識度一起被洗掉。"
+        },
+        {
+          "label": "導入測試",
+          "text": "可用現有角色做一版 fidelity upgrade：保留比例、主要色塊與服裝輪廓，只調整皮革 roughness、纖維／毛皮與皮膚 micro detail，再讓原畫或角色 lead 做盲評。若辨識度下降，即表示材質寫實化超過 IP 可接受範圍，需要回退。"
+        }
       ],
       "rank_global": 6,
       "homepage_tier": "next10"
@@ -150,9 +270,18 @@
       "subcategory": "character-production",
       "ranking_score": 92,
       "full_analysis": [
-        {"label": "角色材質重點", "text": "這篇把高齡角色最容易失真的區域放在核心：皺紋不是單純疊 noise，而要和大形、年齡、皮膚材質反應一起成立；同時角色還包含 hair／feather 等不同表面，需要在 Unreal 中維持各自的 shading 特性。工具鏈包含 ZBrush、Substance、Blender／3ds Max 與 Unreal。"},
-        {"label": "製作價值", "text": "對寫實或半寫實角色，aged skin 是很適合拿來建立材質 QA 的題目，因為它同時暴露 sculpt frequency、normal／roughness、色素變化與燈光下 readability 的問題。文章也提供 Paragon material 的實際使用方向，可拿來比較自製 hair shader 與成熟範例的成本差。"},
-        {"label": "導入測試", "text": "建議用同一頭部做三種距離測試：近景 portrait、中距遊戲鏡頭、實際角色光照，檢查皺紋是否在遠處變成髒 noise，並比較 Paragon hair／feather 材質與現有 shader 的 GPU 成本與視覺收益。單一作品的 lookdev 不能直接當統一材質標準，仍需依專案風格縮放細節。"}
+        {
+          "label": "角色材質重點",
+          "text": "這篇把高齡角色最容易失真的區域放在核心：皺紋不是單純疊 noise，而要和大形、年齡、皮膚材質反應一起成立；同時角色還包含 hair／feather 等不同表面，需要在 Unreal 中維持各自的 shading 特性。工具鏈包含 ZBrush、Substance、Blender／3ds Max 與 Unreal。"
+        },
+        {
+          "label": "製作價值",
+          "text": "對寫實或半寫實角色，aged skin 是很適合拿來建立材質 QA 的題目，因為它同時暴露 sculpt frequency、normal／roughness、色素變化與燈光下 readability 的問題。文章也提供 Paragon material 的實際使用方向，可拿來比較自製 hair shader 與成熟範例的成本差。"
+        },
+        {
+          "label": "導入測試",
+          "text": "建議用同一頭部做三種距離測試：近景 portrait、中距遊戲鏡頭、實際角色光照，檢查皺紋是否在遠處變成髒 noise，並比較 Paragon hair／feather 材質與現有 shader 的 GPU 成本與視覺收益。單一作品的 lookdev 不能直接當統一材質標準，仍需依專案風格縮放細節。"
+        }
       ],
       "rank_global": 7,
       "homepage_tier": "next10"
@@ -167,9 +296,18 @@
       "subcategory": "research",
       "ranking_score": 90,
       "full_analysis": [
-        {"label": "渲染技術", "text": "HiPR 不是降低最終 path tracing 品質，而是改變更新順序：當物件、材質或燈光被編輯時，先找出直接可見的變動，再沿 reflection、shadow、indirect illumination 等 light-transport 路徑估算受影響區域，優先重算最重要的像素，其餘區域再逐步追上。"},
-        {"label": "製作影響", "text": "若這類 scheduling 進入 DCC、lookdev 或 path-traced editor，最大的收益是互動感而不是最終 render time；藝術家能更快看到我剛改的東西造成的結果，對燈光、材質與 level design 的迭代節奏特別有意義，也可能影響即時 path tracing 的 budget 分配。"},
-        {"label": "成熟度驗證", "text": "目前屬研究階段，應用前要測快速連續 edit、大片間接光、鏡面反射鏈與透明材質下的 outdated pixel 是否造成誤導。真正可用的判斷標準不是 demo 看起來快，而是相同 noise budget 下，藝術家能否更早得到足以做決策的畫面且最終仍無偏差收斂。"}
+        {
+          "label": "渲染技術",
+          "text": "HiPR 不是降低最終 path tracing 品質，而是改變更新順序：當物件、材質或燈光被編輯時，先找出直接可見的變動，再沿 reflection、shadow、indirect illumination 等 light-transport 路徑估算受影響區域，優先重算最重要的像素，其餘區域再逐步追上。"
+        },
+        {
+          "label": "製作影響",
+          "text": "若這類 scheduling 進入 DCC、lookdev 或 path-traced editor，最大的收益是互動感而不是最終 render time；藝術家能更快看到我剛改的東西造成的結果，對燈光、材質與 level design 的迭代節奏特別有意義，也可能影響即時 path tracing 的 budget 分配。"
+        },
+        {
+          "label": "成熟度驗證",
+          "text": "目前屬研究階段，應用前要測快速連續 edit、大片間接光、鏡面反射鏈與透明材質下的 outdated pixel 是否造成誤導。真正可用的判斷標準不是 demo 看起來快，而是相同 noise budget 下，藝術家能否更早得到足以做決策的畫面且最終仍無偏差收斂。"
+        }
       ],
       "rank_global": 8,
       "homepage_tier": "next10"
@@ -184,9 +322,18 @@
       "subcategory": "case-study",
       "ranking_score": 88,
       "full_analysis": [
-        {"label": "製作案例", "text": "HEAT 的 70/30 設計規則把約 70% 車輛／技術建立在真實工程邏輯上，再保留約 30% 給替代歷史與玩法誇張；同時用 silhouette、color、material 與 Agent identity 讓玩家快速讀懂角色／載具功能。這是把 art direction 和 gameplay readability 放在同一套規則內。"},
-        {"label": "流程價值", "text": "團隊使用 Maya、Blender、3ds Max、Houdini、Photoshop、Illustrator、Figma，再進 Wargaming 自研引擎，代表大型 production 並不依賴單一 DCC，而是依賴清楚的交換格式、資產規範與引擎端驗收。對跨平台專案，這種工具多樣性更需要自動化 validation。"},
-        {"label": "導入測試", "text": "可把 70/30 概念改成自己的 art rule：先定義真實基礎、允許誇張範圍、silhouette readability 與材質層級，再挑一個載具／機械 prop 做 DCC 交換測試。需要注意這篇是高層 pipeline case，沒有提供完整效能數值，因此優化策略仍須用專案 profiling 具體化。"}
+        {
+          "label": "製作案例",
+          "text": "HEAT 的 70/30 設計規則把約 70% 車輛／技術建立在真實工程邏輯上，再保留約 30% 給替代歷史與玩法誇張；同時用 silhouette、color、material 與 Agent identity 讓玩家快速讀懂角色／載具功能。這是把 art direction 和 gameplay readability 放在同一套規則內。"
+        },
+        {
+          "label": "流程價值",
+          "text": "團隊使用 Maya、Blender、3ds Max、Houdini、Photoshop、Illustrator、Figma，再進 Wargaming 自研引擎，代表大型 production 並不依賴單一 DCC，而是依賴清楚的交換格式、資產規範與引擎端驗收。對跨平台專案，這種工具多樣性更需要自動化 validation。"
+        },
+        {
+          "label": "導入測試",
+          "text": "可把 70/30 概念改成自己的 art rule：先定義真實基礎、允許誇張範圍、silhouette readability 與材質層級，再挑一個載具／機械 prop 做 DCC 交換測試。需要注意這篇是高層 pipeline case，沒有提供完整效能數值，因此優化策略仍須用專案 profiling 具體化。"
+        }
       ],
       "rank_global": 9,
       "homepage_tier": "next10"
@@ -201,9 +348,18 @@
       "subcategory": "blender-tip",
       "ranking_score": 87,
       "full_analysis": [
-        {"label": "Shader 工作流", "text": "教學從幾何 bevel、燈光與背景開始，再以 Volume 製造冰塊中心的霧感、Voronoi 製造不規則表面，透過 Color Ramp 控制透光與玻璃感，最後用 Displacement 決定外形的 chunky 程度。重點是把常用控制收進 custom node group，而不是留下難維護的散亂節點。"},
-        {"label": "製作價值", "text": "對遊戲美術來說，最可轉移的是可參數化材質模組思路：將色彩、roughness、displacement 等暴露成少量 art-friendly controls，能快速做冰塊變體，也能延伸到玻璃、晶體或半透明 stylized props，降低每個資產重新接 shader 的成本。"},
-        {"label": "導入測試", "text": "在 Blender 先做三種冰材質 preset，再移植邏輯到 Unity／Unreal 測真正 runtime 成本，特別比較 volume、transmission 與 displacement 是否需要改成 cheaper approximation。教學目標偏離線外觀，不能直接假設節點結構可原封不動進即時引擎。"}
+        {
+          "label": "Shader 工作流",
+          "text": "教學從幾何 bevel、燈光與背景開始，再以 Volume 製造冰塊中心的霧感、Voronoi 製造不規則表面，透過 Color Ramp 控制透光與玻璃感，最後用 Displacement 決定外形的 chunky 程度。重點是把常用控制收進 custom node group，而不是留下難維護的散亂節點。"
+        },
+        {
+          "label": "製作價值",
+          "text": "對遊戲美術來說，最可轉移的是可參數化材質模組思路：將色彩、roughness、displacement 等暴露成少量 art-friendly controls，能快速做冰塊變體，也能延伸到玻璃、晶體或半透明 stylized props，降低每個資產重新接 shader 的成本。"
+        },
+        {
+          "label": "導入測試",
+          "text": "在 Blender 先做三種冰材質 preset，再移植邏輯到 Unity／Unreal 測真正 runtime 成本，特別比較 volume、transmission 與 displacement 是否需要改成 cheaper approximation。教學目標偏離線外觀，不能直接假設節點結構可原封不動進即時引擎。"
+        }
       ],
       "rank_global": 10,
       "homepage_tier": "next10"
@@ -218,9 +374,18 @@
       "subcategory": "addon",
       "ranking_score": 86,
       "full_analysis": [
-        {"label": "拓樸工具流程", "text": "Hardcraft 的差異是它不把輸入視為一般 polygon soup，而是利用 CAD 匯出仍保留的 surface structure，把模型拆成 patch 與 curve。藝術家先建立 retopo target，再偵測 surface、生成 patch，手動調整 boundary、edge flow 與 vertex density，最後才 commit 網格。"},
-        {"label": "製作價值", "text": "這種半自動方式比 generic remesher 更符合硬表面資產需求，因為 artist 仍能控制重要轉折、密度與 quad/triangle 分配，同時省掉從零描拓樸的工作。對 Plasticity／STEP 到遊戲資產的 pipeline 特別值得測，也符合解決明確 production 問題的工具型情報。"},
-        {"label": "成熟度測試", "text": "目前仍是 alpha，應以機械零件、圓角密集外殼、薄片與開孔模型做 stress test，記錄成功 patch 比例、手動修補時間、normal bake 品質與引擎 LOD 表現；再和傳統手工 retopo、decimate／remesh 比較。不能因為能生成 quad 就直接判定可動畫或可烘焙。"}
+        {
+          "label": "拓樸工具流程",
+          "text": "Hardcraft 的差異是它不把輸入視為一般 polygon soup，而是利用 CAD 匯出仍保留的 surface structure，把模型拆成 patch 與 curve。藝術家先建立 retopo target，再偵測 surface、生成 patch，手動調整 boundary、edge flow 與 vertex density，最後才 commit 網格。"
+        },
+        {
+          "label": "製作價值",
+          "text": "這種半自動方式比 generic remesher 更符合硬表面資產需求，因為 artist 仍能控制重要轉折、密度與 quad/triangle 分配，同時省掉從零描拓樸的工作。對 Plasticity／STEP 到遊戲資產的 pipeline 特別值得測，也符合解決明確 production 問題的工具型情報。"
+        },
+        {
+          "label": "成熟度測試",
+          "text": "目前仍是 alpha，應以機械零件、圓角密集外殼、薄片與開孔模型做 stress test，記錄成功 patch 比例、手動修補時間、normal bake 品質與引擎 LOD 表現；再和傳統手工 retopo、decimate／remesh 比較。不能因為能生成 quad 就直接判定可動畫或可烘焙。"
+        }
       ],
       "rank_global": 11,
       "homepage_tier": "next10"
@@ -235,9 +400,18 @@
       "subcategory": "addon",
       "ranking_score": 84,
       "full_analysis": [
-        {"label": "模擬工具流程", "text": "5.3 把 FLIP/APIC liquid、SPH fluid、multi-material MPM、particle constraints、self-gravity、flow field 與 dendrite growth 放進同一套 add-on，並增加 multi-source emitter、particle groups、hierarchical logic、reusable mask。Post／Output 也重做成 persistent cache 與 Alembic export。"},
-        {"label": "製作價值", "text": "對需要液體、顆粒、Pyro 或破碎感 FX 的小團隊，統一的 GPU preview 與 cache/export 可以減少跨工具來回，尤其 Alembic 能把模擬結果交給後續 DCC／engine。它也允許 Point Cloud、Trail、Instance、Mesher 等在 GPU preview 與 Blender geometry 間切換，方便在速度與可編輯性間取捨。"},
-        {"label": "導入測試", "text": "先用免費 demo 跑固定粒子、液體與 MPM 三個 scene，量 VRAM、sim time、cache size、Alembic 匯出時間與 Unreal／Unity ingest，再比較原生 Blender 或 Houdini 對照。市場頁展示的是功能集合，production stability、crash recovery 與版本升級相容性仍需要長時間測試。"}
+        {
+          "label": "模擬工具流程",
+          "text": "5.3 把 FLIP/APIC liquid、SPH fluid、multi-material MPM、particle constraints、self-gravity、flow field 與 dendrite growth 放進同一套 add-on，並增加 multi-source emitter、particle groups、hierarchical logic、reusable mask。Post／Output 也重做成 persistent cache 與 Alembic export。"
+        },
+        {
+          "label": "製作價值",
+          "text": "對需要液體、顆粒、Pyro 或破碎感 FX 的小團隊，統一的 GPU preview 與 cache/export 可以減少跨工具來回，尤其 Alembic 能把模擬結果交給後續 DCC／engine。它也允許 Point Cloud、Trail、Instance、Mesher 等在 GPU preview 與 Blender geometry 間切換，方便在速度與可編輯性間取捨。"
+        },
+        {
+          "label": "導入測試",
+          "text": "先用免費 demo 跑固定粒子、液體與 MPM 三個 scene，量 VRAM、sim time、cache size、Alembic 匯出時間與 Unreal／Unity ingest，再比較原生 Blender 或 Houdini 對照。市場頁展示的是功能集合，production stability、crash recovery 與版本升級相容性仍需要長時間測試。"
+        }
       ],
       "rank_global": 12,
       "homepage_tier": "next10"
@@ -252,9 +426,18 @@
       "subcategory": "addon",
       "ranking_score": 82,
       "full_analysis": [
-        {"label": "服裝修正流程", "text": "ShellFit 專門處理 body／clothing overlap 與 gap，允許決定移動身體或服裝，Shell mode 適合薄布、Solid 適合 belt／ring 等厚物件，Auto 則自動判斷；Quick Shell Fit 還能只對選定 garment detail 與 target surface／edge／vertex 做局部貼合。"},
-        {"label": "製作價值", "text": "它的價值在於把角色服裝常見的微調頂點、重做 shape key、再檢查權重縮成可即時預覽的修正，且結果能 bake 到 Shape Key 或 mesh、也可 copy weights。對換裝角色、avatar 或大量 outfit variant，這種工具有機會明顯減少 cleanup。"},
-        {"label": "導入測試", "text": "用同一角色測 T-pose、蹲姿、抬腿與肩膀大角度四種 deformation，分別比較 ShellFit 前後穿插量、shape key 數、權重破壞與修正時間。它解決的是幾何接觸，不代表能取代 cloth simulation 或 corrective rig，因此動態極端姿勢仍要進動畫測試。"}
+        {
+          "label": "服裝修正流程",
+          "text": "ShellFit 專門處理 body／clothing overlap 與 gap，允許決定移動身體或服裝，Shell mode 適合薄布、Solid 適合 belt／ring 等厚物件，Auto 則自動判斷；Quick Shell Fit 還能只對選定 garment detail 與 target surface／edge／vertex 做局部貼合。"
+        },
+        {
+          "label": "製作價值",
+          "text": "它的價值在於把角色服裝常見的微調頂點、重做 shape key、再檢查權重縮成可即時預覽的修正，且結果能 bake 到 Shape Key 或 mesh、也可 copy weights。對換裝角色、avatar 或大量 outfit variant，這種工具有機會明顯減少 cleanup。"
+        },
+        {
+          "label": "導入測試",
+          "text": "用同一角色測 T-pose、蹲姿、抬腿與肩膀大角度四種 deformation，分別比較 ShellFit 前後穿插量、shape key 數、權重破壞與修正時間。它解決的是幾何接觸，不代表能取代 cloth simulation 或 corrective rig，因此動態極端姿勢仍要進動畫測試。"
+        }
       ],
       "rank_global": 13,
       "homepage_tier": "next10"
@@ -269,12 +452,22 @@
       "subcategory": "addon",
       "ranking_score": 80,
       "full_analysis": [
-        {"label": "Retopo 工作流", "text": "BWrap 的核心不是自動產生一套新拓樸，而是重用團隊已經驗證過的 template mesh：選定 Template 與 Target，將既有 edge flow、facial loops 與 deformation topology 導引到新的 sculpt／scan。這種策略對同一角色族群或相近人體比例比從零 remesh 更有 production 意義。"},
-        {"label": "製作價值", "text": "若團隊已有成熟 base body／face topology，wrap-based retopo 可以把大量時間從重新畫 loops 轉到 fit、landmark 與局部修正，並讓後續 UV、skin、blendshape 更容易沿用。對多角色量產、掃描資料與角色生成後清理尤其值得評估。"},
-        {"label": "成熟度測試", "text": "應拿三種體型差、五官差與服裝／裸身 target 測 template transfer，統計 landmark 對齊、穿插、極點分布、UV 可重用率與 skin deformation；再和 ZWrap／手工 retopo 比較。這是新發布工具，需特別觀察 Blender 版本相容、崩潰與大形差異時的失敗模式。"}
+        {
+          "label": "Retopo 工作流",
+          "text": "BWrap 的核心不是自動產生一套新拓樸，而是重用團隊已經驗證過的 template mesh：選定 Template 與 Target，將既有 edge flow、facial loops 與 deformation topology 導引到新的 sculpt／scan。這種策略對同一角色族群或相近人體比例比從零 remesh 更有 production 意義。"
+        },
+        {
+          "label": "製作價值",
+          "text": "若團隊已有成熟 base body／face topology，wrap-based retopo 可以把大量時間從重新畫 loops 轉到 fit、landmark 與局部修正，並讓後續 UV、skin、blendshape 更容易沿用。對多角色量產、掃描資料與角色生成後清理尤其值得評估。"
+        },
+        {
+          "label": "成熟度測試",
+          "text": "應拿三種體型差、五官差與服裝／裸身 target 測 template transfer，統計 landmark 對齊、穿插、極點分布、UV 可重用率與 skin deformation；再和 ZWrap／手工 retopo 比較。這是新發布工具，需特別觀察 Blender 版本相容、崩潰與大形差異時的失敗模式。"
+        }
       ],
       "rank_global": 14,
       "homepage_tier": "next10"
     }
-  ]
+  ],
+  "visual_evidence": {}
 }
