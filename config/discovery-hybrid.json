@@ -1,5 +1,5 @@
 {
-  "version": 4,
+  "version": 5,
   "effective_date": "2026-09-09",
   "coverage_audit": {
     "required_windows": ["24h", "7d", "30d", "6m", "evergreen"],
@@ -87,6 +87,30 @@
     "discovery_policy": "Expand queries from topics, tools, techniques, workflow stages and production problems represented by preference samples. Search across heterogeneous verifiable sources; never constrain or bias discovery toward the domains that hosted the samples.",
     "ranking_policy": "Rank source reliability on evidence quality and verifiability. Publisher/domain identity may affect reliability assessment when independently justified, but must not receive preference affinity merely because that domain hosted a user-selected sample."
   },
+  "discovery_source_pool": {
+    "policy": "Explicitly registered websites are discovery channels only. Registration allows active candidate discovery from the site but gives zero preference/ranking bonus, creates no quota, and does not bypass verification, dedupe, substantive-delta, Quality Gate, FULL/BRIEF/REJECT classification or source-diversity rules.",
+    "sources": [
+      {
+        "id": "80-level",
+        "name": "80 Level",
+        "domain": "80.lv",
+        "base_url": "https://80.lv/",
+        "enabled": true,
+        "discovery_mode": "active-candidate-source",
+        "ranking_bonus": 0,
+        "required_daily_check": false,
+        "categories": [
+          "ai-generation",
+          "3d-production",
+          "3d-animation",
+          "engine-art",
+          "emerging-case",
+          "blender-dcc"
+        ],
+        "notes": "Use 80 Level as one heterogeneous discovery channel for production breakdowns, tools, tutorials, animation, engine art and emerging 3D/AI work. Do not treat it as a preferred publisher and do not require a daily hit."
+      }
+    ]
+  },
   "category_discovery_profiles": {
     "3d-animation": {
       "always_discover": true,
@@ -141,6 +165,7 @@
     "use_category_discovery_profiles": true,
     "use_preference_learning": true,
     "use_source_neutrality": true,
+    "use_discovery_source_pool": true,
     "use_priority_sources": false
   },
   "low_volume_release": {
