@@ -1,10 +1,9 @@
 #!/usr/bin/env python3
-"""Validate/repair schema-v3 Full Analysis, heading language and canonical taxonomy.
+"""Validate schema-v3 analysis depth using FULL / BRIEF / REJECT tiers.
 
-For releases on/after config/full-analysis-depth.json effective_date this stage is
-fail-closed: structurally valid but shallow three-bullet recaps are rejected rather
-than silently accepted or padded. Older history keeps the legacy structural repair
-behavior so historical regression remains stable.
+FULL keeps the original 3-5 block production-depth contract. BRIEF allows verified,
+high-value intelligence with limited source depth to publish in category/daily pages
+without fabricating analysis. REJECT items are never allowed in canonical publish.
 """
 from pathlib import Path
 import json, re, sys
@@ -22,129 +21,12 @@ CATEGORY_HEADINGS = {
     'blender-dcc': ('DCC 工作流', '製作價值', '升版 / 導入測試'),
 }
 
-EXACT_HEADING_TRANSLATIONS = {
-    'Topology / Mesh Quality': '拓樸與網格品質',
-    'Game Asset Pipeline': '遊戲資產製作流程',
-    'Lighting Pipeline': '光照製作流程',
-    'Production Value': '製作價值',
-    'Dynamic Reconstruction': '動態重建',
-    'Production Potential': '製作潛力',
-    'Animation Workflow': '動作製作流程',
-    'Root Motion / Cleanup': 'Root Motion 與動作清理',
-    'UV Workflow': 'UV 製作流程',
-    'Lighting / Rendering': '光照與渲染',
-    'Performance Budget': '效能預算',
-    'Texture / Concept Workflow': '貼圖與概念製作流程',
-    'Modeling / Skinning': '建模與蒙皮',
-    'Character Pipeline': '角色製作流程',
-    'Generation Workflow': '生成流程',
-    'Production Workflow': '製作流程',
-    'Pipeline Value': '流程價值',
-    'Rig / Output': 'Rig 與輸出',
-    'Engine Workflow': '引擎工作流',
-    'Technical Direction': '技術方向',
-    'DCC Workflow': 'DCC 工作流',
-    'Asset Pipeline': '資產製作流程',
-    'Asset Workflow': '資產製作流程',
-    'Character Workflow': '角色製作流程',
-    'Environment Workflow': '場景製作流程',
-    'Material Workflow': '材質製作流程',
-    'Texture Workflow': '貼圖製作流程',
-    'Modeling Workflow': '建模流程',
-    'Rigging Workflow': 'Rig 製作流程',
-    'Retarget Workflow': 'Retarget 流程',
-    'Rendering Workflow': '渲染流程',
-    'Scene Workflow': '場景製作流程',
-    'Tool Workflow': '工具工作流',
-    'Pipeline Impact': '流程影響',
-    'Production Impact': '製作影響',
-    'Mesh Quality': '網格品質',
-    'Output Quality': '輸出品質',
-    'Technical Quality': '技術品質',
-    'Performance': '效能',
-    'Limitations': '限制',
-    'Adoption Test': '導入測試',
-    'Production Test': '製作實測',
-    'Platform Test': '平台實測',
-    'Maturity': '成熟度判斷',
-}
-
-PHRASE_REPLACEMENTS = (
-    ('Production Workflow', '製作流程'),
-    ('Production Pipeline', '製作流程'),
-    ('Production Value', '製作價值'),
-    ('Production Potential', '製作潛力'),
-    ('Production Impact', '製作影響'),
-    ('Game Pipeline', '遊戲製作流程'),
-    ('Asset Pipeline', '資產製作流程'),
-    ('Asset Workflow', '資產製作流程'),
-    ('Character Pipeline', '角色製作流程'),
-    ('Character Workflow', '角色製作流程'),
-    ('Environment Pipeline', '場景製作流程'),
-    ('Environment Workflow', '場景製作流程'),
-    ('Animation Pipeline', '動作製作流程'),
-    ('Animation Workflow', '動作製作流程'),
-    ('Lighting Pipeline', '光照製作流程'),
-    ('Lighting Workflow', '光照製作流程'),
-    ('Rendering Pipeline', '渲染流程'),
-    ('Rendering Workflow', '渲染流程'),
-    ('Texture Workflow', '貼圖製作流程'),
-    ('Material Workflow', '材質製作流程'),
-    ('Modeling Workflow', '建模流程'),
-    ('Rigging Workflow', 'Rig 製作流程'),
-    ('Retarget Workflow', 'Retarget 流程'),
-    ('Technical Direction', '技術方向'),
-    ('Pipeline Value', '流程價值'),
-    ('Pipeline Impact', '流程影響'),
-    ('Performance Budget', '效能預算'),
-    ('Mesh Quality', '網格品質'),
-    ('Output Quality', '輸出品質'),
-    ('Technical Quality', '技術品質'),
-    ('Workflow', '工作流'),
-    ('Pipeline', '流程'),
-    ('Rendering', '渲染'),
-    ('Lighting', '光照'),
-    ('Animation', '動作'),
-    ('Modeling', '建模'),
-    ('Skinning', '蒙皮'),
-    ('Texture', '貼圖'),
-    ('Material', '材質'),
-    ('Quality', '品質'),
-    ('Performance', '效能'),
-    ('Potential', '潛力'),
-    ('Impact', '影響'),
-    ('Value', '價值'),
-    ('Limitations', '限制'),
-    ('Testing', '測試'),
-    ('Test', '測試'),
-)
-
-CATEGORY_TEST = {
-    'ai-generation': '以代表性 input 驗證輸出一致性、可編輯性、格式、人工 cleanup、授權與 DCC/engine 接續成本，再決定是否納入 production。',
-    '3d-production': '用同一代表性資產比較操作步驟、返工時間、拓樸/UV/bake/材質一致性與 engine 交付結果，避免只看單次成功案例。',
-    '3d-animation': '用既有 skeleton/Control Rig 驗 body、root motion、foot contact、retarget、曲線可編輯性與 cleanup 時間，最終仍由 animator 驗收。',
-    'engine-art': '在代表性場景與目標平台比較畫質、CPU/GPU、記憶體、scalability 與 regression，並保留可回退方案。',
-    'emerging-case': '先以隔離 R&D prototype 驗證輸入需求、輸出表示、時間一致性、可控性與能否轉成 production 可消費資料，不把論文展示直接視為量產能力。',
-    'blender-dcc': '在實際專案副本測 import/export、版本相容、plugin/API、材質、rig/animation 與批次處理，再決定是否更新團隊工具基線。',
-}
-
 CURRENT_3D_PRODUCTION = {
     'character-production', 'prop-production', 'environment-production', 'production-workflow',
 }
-CHARACTER_SIGNALS = (
-    'character', 'fighter', 'face', 'facial', 'hair', 'cloth', 'skin', 'anatomy',
-    'human', 'creature', 'almalexia', 'torso', 'finger', 'fingers', 'arm', 'arms',
-    'leg', 'legs', 'neck', 'body', 'portrait',
-)
-ENVIRONMENT_SIGNALS = (
-    'environment', 'scene', 'building', 'architecture', 'foliage', 'terrain',
-    'landscape', 'vegetation', 'modular', 'ruin', 'village', 'forest', 'courtyard',
-    'world building', 'world-building',
-)
-PROP_SIGNALS = (
-    'prop', 'weapon', 'guitar', 'hard-surface', 'hard surface', 'decal', 'bevel',
-    'trim', 'asset', 'object', 'product', 'furniture', 'vehicle',
-)
+CHARACTER_SIGNALS = ('character', 'face', 'facial', 'hair', 'cloth', 'skin', 'anatomy', 'human', 'creature', 'body', 'portrait')
+ENVIRONMENT_SIGNALS = ('environment', 'scene', 'building', 'architecture', 'foliage', 'terrain', 'landscape', 'modular', 'ruin', 'forest')
+PROP_SIGNALS = ('prop', 'weapon', 'hard-surface', 'hard surface', 'decal', 'bevel', 'trim', 'vehicle', 'furniture')
 
 
 def clean(text):
@@ -159,37 +41,6 @@ def has_han(text):
     return bool(re.search(r'[\u3400-\u4dbf\u4e00-\u9fff]', clean(text)))
 
 
-def translate_heading(label, category):
-    label = clean(label)
-    if not label or has_han(label):
-        return label
-    if label in EXACT_HEADING_TRANSLATIONS:
-        return EXACT_HEADING_TRANSLATIONS[label]
-    translated = label
-    for src, dst in PHRASE_REPLACEMENTS:
-        translated = re.sub(re.escape(src), dst, translated, flags=re.I)
-    translated = clean(translated.replace(' & ', ' 與 '))
-    if has_han(translated):
-        return translated
-    return CATEGORY_HEADINGS.get(category, CATEGORY_HEADINGS['3d-production'])[0]
-
-
-def normalize_heading_language(data, rule):
-    if rule.get('heading_language') != 'zh-Hant':
-        return 0
-    changed = 0
-    for item in data.get('items', []):
-        for block in item.get('full_analysis') or []:
-            if not isinstance(block, dict):
-                continue
-            old = clean(block.get('label'))
-            new = translate_heading(old, item.get('category'))
-            if new and new != old:
-                block['label'] = new
-                changed += 1
-    return changed
-
-
 def item_text(item):
     parts = [item.get('id'), item.get('title'), item.get('summary'), item.get('quick_impact')]
     for block in item.get('full_analysis') or []:
@@ -198,20 +49,16 @@ def item_text(item):
     return ' '.join(clean(x) for x in parts if x).casefold()
 
 
-def has_signal(text, signals):
-    return any(signal in text for signal in signals)
-
-
 def classify_3d_production(item):
     current = clean(item.get('subcategory'))
     if current in CURRENT_3D_PRODUCTION:
         return current
     text = item_text(item)
-    if has_signal(text, ENVIRONMENT_SIGNALS):
+    if any(x in text for x in ENVIRONMENT_SIGNALS):
         return 'environment-production'
-    if has_signal(text, CHARACTER_SIGNALS):
+    if any(x in text for x in CHARACTER_SIGNALS):
         return 'character-production'
-    if has_signal(text, PROP_SIGNALS):
+    if any(x in text for x in PROP_SIGNALS):
         return 'prop-production'
     return 'production-workflow'
 
@@ -226,20 +73,24 @@ def normalize_3d_production_taxonomy(data):
             item['subcategory'] = target
             changed += 1
     if changed:
-        metadata = data.setdefault('metadata', {})
-        metadata['3d_production_taxonomy'] = 'asset-oriented-v1'
-        metadata['3d_production_taxonomy_rule'] = 'character|prop|environment first; cross-asset technique => production-workflow'
+        meta = data.setdefault('metadata', {})
+        meta['3d_production_taxonomy'] = 'asset-oriented-v1'
+        meta['3d_production_taxonomy_rule'] = 'character|prop|environment first; cross-asset technique => production-workflow'
     return changed
 
 
-def structure_issues(item, rule):
+def normalized_level(item, tiered):
+    if not tiered:
+        return 'FULL'
+    level = clean(item.get('analysis_level') or 'FULL').upper()
+    return level if level in {'FULL', 'BRIEF', 'REJECT'} else 'INVALID'
+
+
+def common_structure_issues(item, min_blocks, max_blocks, heading_language='zh-Hant'):
     issues = []
     blocks = item.get('full_analysis') or []
-    min_blocks = int(rule.get('min_blocks', 3))
-    max_blocks = int(rule.get('max_blocks', 5))
     if not (min_blocks <= len(blocks) <= max_blocks):
-        issues.append(f'block-count={len(blocks)} expected={min_blocks}-{max_blocks}')
-        return issues
+        return [f'block-count={len(blocks)} expected={min_blocks}-{max_blocks}']
     labels, texts = [], []
     for i, block in enumerate(blocks, 1):
         if not isinstance(block, dict):
@@ -249,60 +100,79 @@ def structure_issues(item, rule):
         text = clean(block.get('text'))
         if not label or not text:
             issues.append(f'block-{i}-empty')
-        if rule.get('heading_language') == 'zh-Hant' and label and not has_han(label):
+        if heading_language == 'zh-Hant' and label and not has_han(label):
             issues.append(f'block-{i}-heading-not-zh-Hant')
         labels.append(label.casefold())
         texts.append(text.casefold())
-    if len(set(labels)) != len(labels):
+    if len(labels) != len(set(labels)):
         issues.append('duplicate-headings')
-    if len(set(texts)) != len(texts):
+    if len(texts) != len(set(texts)):
         issues.append('duplicate-text')
     summary = clean(item.get('summary')).casefold()
-    impact = clean(item.get('quick_impact')).casefold()
     for i, text in enumerate(texts, 1):
-        if text and (text == summary or text == impact):
-            issues.append(f'block-{i}-repeats-summary-or-impact')
+        if text and text == summary:
+            issues.append(f'block-{i}-repeats-summary')
     return issues
 
 
-def depth_issues(item, depth_rule):
+def text_depth_issues(item, min_block_chars, min_total_chars):
     issues = []
-    blocks = item.get('full_analysis') or []
-    min_block_chars = int(depth_rule.get('min_block_chars', 0))
-    min_total_chars = int(depth_rule.get('min_total_text_chars', 0))
     total = 0
-    labels = []
-    for i, block in enumerate(blocks, 1):
-        text = clean(block.get('text'))
-        label = clean(block.get('label'))
-        n = char_count(text)
+    for i, block in enumerate(item.get('full_analysis') or [], 1):
+        if not isinstance(block, dict):
+            continue
+        n = char_count(block.get('text'))
         total += n
-        labels.append(label)
-        if min_block_chars and n < min_block_chars:
+        if n < min_block_chars:
             issues.append(f'block-{i}-too-shallow={n}<{min_block_chars}')
-    if min_total_chars and total < min_total_chars:
+    if total < min_total_chars:
         issues.append(f'total-depth={total}<{min_total_chars}')
+    return issues
 
-    joined_labels = ' '.join(labels)
-    for group, keywords in (depth_rule.get('required_semantic_groups') or {}).items():
-        if not any(str(keyword) in joined_labels for keyword in keywords):
+
+def full_issues(item, cfg):
+    issues = common_structure_issues(
+        item, int(cfg.get('min_blocks', 3)), int(cfg.get('max_blocks', 5))
+    )
+    issues += text_depth_issues(
+        item, int(cfg.get('min_block_chars', 48)), int(cfg.get('min_total_text_chars', 180))
+    )
+    labels = ' '.join(clean(b.get('label')) for b in item.get('full_analysis') or [] if isinstance(b, dict))
+    semantic = DEPTH.get('required_semantic_groups') or {}
+    for group in cfg.get('required_semantic_groups') or []:
+        keywords = semantic.get(group) or []
+        if not any(str(k) in labels for k in keywords):
             issues.append(f'missing-semantic={group}')
+    return issues
+
+
+def brief_issues(item, cfg):
+    issues = common_structure_issues(
+        item, int(cfg.get('min_blocks', 1)), int(cfg.get('max_blocks', 2))
+    )
+    issues += text_depth_issues(
+        item, int(cfg.get('min_block_chars', 36)), int(cfg.get('min_total_text_chars', 60))
+    )
+    reason = clean(item.get('brief_reason'))
+    allowed = set(cfg.get('allowed_reasons') or [])
+    if not reason:
+        issues.append('brief_reason-missing')
+    elif allowed and reason not in allowed:
+        issues.append(f'brief_reason-not-allowed={reason}')
+    if clean(item.get('homepage_tier')).lower() == 'top5' and not DEPTH.get('top5_policy', {}).get('allow_brief', False):
+        issues.append('BRIEF-cannot-be-top5')
     return issues
 
 
 def legacy_repair(item):
     blocks = [b for b in (item.get('full_analysis') or []) if isinstance(b, dict)]
-    existing = [clean(b.get('text')) for b in blocks if clean(b.get('text'))]
+    texts = [clean(b.get('text')) for b in blocks if clean(b.get('text'))]
+    headings = CATEGORY_HEADINGS.get(item.get('category'), CATEGORY_HEADINGS['3d-production'])
     summary = clean(item.get('summary'))
-    category = item.get('category')
-    headings = CATEGORY_HEADINGS.get(category, CATEGORY_HEADINGS['3d-production'])
-    first = existing[0] if existing else summary
-    second = existing[1] if len(existing) > 1 else '這項內容的 production 價值應以是否減少實際製作、返工或跨工具摩擦來判斷，而不是只看展示結果。'
-    third = existing[2] if len(existing) > 2 else CATEGORY_TEST.get(category, CATEGORY_TEST['3d-production'])
     return [
-        {'label': headings[0], 'text': first},
-        {'label': headings[1], 'text': second},
-        {'label': headings[2], 'text': third},
+        {'label': headings[0], 'text': texts[0] if texts else summary},
+        {'label': headings[1], 'text': texts[1] if len(texts) > 1 else '此項目的製作價值需以實際流程、返工成本與可重現性驗證。'},
+        {'label': headings[2], 'text': texts[2] if len(texts) > 2 else '建議以小型 production test 驗證品質、相容性、限制與導入成本。'},
     ]
 
 
@@ -310,57 +180,78 @@ def main():
     date = sys.argv[1] if len(sys.argv) > 1 else max(p.stem for p in (ROOT / 'data' / 'daily').glob('20??-??-??.json'))
     path = ROOT / 'data' / 'daily' / f'{date}.json'
     data = json.loads(path.read_text('utf-8'))
-    cfg = json.loads(CFG_PATH.read_text('utf-8'))
-    depth = json.loads(DEPTH_PATH.read_text('utf-8'))
     if int(data.get('schema_version', 0)) != 3:
-        print(f'FULL ANALYSIS ENRICHMENT: legacy schema for {date}; no changes')
+        print(f'ANALYSIS DEPTH: legacy schema for {date}; no changes')
         return
 
-    rule = cfg.get('full_analysis', {})
-    strict = date >= str(depth.get('effective_date', '9999-12-31'))
+    tiered = date >= str(DEPTH.get('tiered_effective_date', '9999-12-31'))
+    old_strict = date >= str(DEPTH.get('effective_date', '9999-12-31'))
     taxonomy_changed = normalize_3d_production_taxonomy(data)
-    headings_changed = normalize_heading_language(data, rule)
-    analysis_changed = 0
     failures = []
+    counts = {'FULL': 0, 'BRIEF': 0, 'REJECT': 0}
+    repaired = 0
 
     for item in data.get('items', []):
         rid = str(item.get('id') or '<missing-id>')
-        structural = structure_issues(item, rule)
-        if structural:
-            if strict:
-                failures.append(f'{rid}: ' + ', '.join(structural))
-                continue
-            item['full_analysis'] = legacy_repair(item)
-            analysis_changed += 1
-        if strict:
-            shallow = depth_issues(item, depth)
-            if shallow:
-                failures.append(f'{rid}: ' + ', '.join(shallow))
+        level = normalized_level(item, tiered)
+        if level == 'INVALID':
+            failures.append(f'{rid}: invalid analysis_level')
+            continue
+        if level == 'REJECT':
+            counts['REJECT'] += 1
+            failures.append(f'{rid}: REJECT items cannot appear in canonical publish')
+            continue
+
+        if tiered:
+            item['analysis_level'] = level
+            if level == 'FULL':
+                counts['FULL'] += 1
+                issues = full_issues(item, DEPTH.get('full') or {})
+            else:
+                counts['BRIEF'] += 1
+                issues = brief_issues(item, DEPTH.get('brief') or {})
+        elif old_strict:
+            counts['FULL'] += 1
+            issues = full_issues(item, {
+                'min_blocks': 3, 'max_blocks': 5, 'min_block_chars': 48,
+                'min_total_text_chars': 180,
+                'required_semantic_groups': ['workflow_or_technical_change', 'production_impact', 'test_risk_or_limit'],
+            })
+        else:
+            issues = common_structure_issues(item, 3, 5)
+            if issues:
+                item['full_analysis'] = legacy_repair(item)
+                repaired += 1
+                issues = []
+
+        if issues:
+            failures.append(f'{rid} [{level}]: ' + ', '.join(issues))
 
     if failures:
-        print('FULL ANALYSIS DEPTH FAILED')
+        print('ANALYSIS DEPTH FAILED')
         for failure in failures:
             print('- ' + failure)
-        print('Collector must rewrite these analyses from verified source evidence; automatic padding is forbidden.')
+        print('Do not pad or fabricate evidence. Downgrade eligible limited-evidence items to BRIEF; otherwise reject them from publish.')
         sys.exit(1)
 
-    if strict:
-        metadata = data.setdefault('metadata', {})
-        metadata['full_analysis_depth_contract'] = 'v4-source-supported-production-depth'
-        metadata['full_analysis_style_reference'] = depth.get('style_reference', rule.get('style_reference', '2026-09-01'))
-        metadata['full_analysis_heading_language'] = 'zh-Hant'
-    elif headings_changed or analysis_changed:
-        metadata = data.setdefault('metadata', {})
-        metadata['full_analysis_depth_contract'] = 'v3-adaptive-3to5-production-depth'
-        metadata['full_analysis_style_reference'] = rule.get('style_reference', '2026-09-01')
-        metadata['full_analysis_heading_language'] = 'zh-Hant'
+    meta = data.setdefault('metadata', {})
+    if tiered:
+        meta['full_analysis_depth_contract'] = 'v5-tiered-full-brief-reject'
+        meta['analysis_level_counts'] = counts
+        meta['analysis_level_policy'] = 'quality-gate-first-then-evidence-depth; FULL=3-5 blocks, BRIEF=1-2 blocks, REJECT=not-publishable'
+    elif old_strict:
+        meta['full_analysis_depth_contract'] = 'v4-source-supported-production-depth'
+    meta['full_analysis_style_reference'] = DEPTH.get('style_reference', '2026-09-01')
+    meta['full_analysis_heading_language'] = 'zh-Hant'
 
-    if taxonomy_changed or headings_changed or analysis_changed or strict:
+    if taxonomy_changed or repaired or old_strict or tiered:
         path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + '\n', 'utf-8')
 
-    mode = 'strict-v4' if strict else 'legacy-v3'
-    print(f'CANONICAL ENRICHMENT: {date} / mode={mode}; taxonomy migrated {taxonomy_changed}; translated {headings_changed} Full Analysis headings; repaired {analysis_changed} analyses')
+    mode = 'tiered-v5' if tiered else ('strict-v4' if old_strict else 'legacy-v3')
+    print(f'CANONICAL ENRICHMENT: {date} / mode={mode}; FULL={counts["FULL"]} BRIEF={counts["BRIEF"]} REJECT={counts["REJECT"]}; taxonomy={taxonomy_changed}; repaired={repaired}')
 
+
+DEPTH = json.loads(DEPTH_PATH.read_text('utf-8'))
 
 if __name__ == '__main__':
     main()
