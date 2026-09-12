@@ -60,9 +60,8 @@ def load_hybrid_config():
     neutrality = cfg.get('source_neutrality') or {}
     if neutrality.get('enabled') is not True:
         raise ValueError('hybrid source_neutrality.enabled must be true')
-    for key in ('positive_sample_domains_are_provenance_only',):
-        if neutrality.get(key) is not True:
-            raise ValueError(f'hybrid source_neutrality.{key} must be true')
+    if neutrality.get('positive_sample_domains_are_provenance_only') is not True:
+        raise ValueError('hybrid source_neutrality.positive_sample_domains_are_provenance_only must be true')
     for key in (
         'domain_weight_from_positive_samples',
         'required_site_checks_from_positive_samples',
@@ -73,6 +72,37 @@ def load_hybrid_config():
             raise ValueError(f'hybrid source_neutrality.{key} must be false')
     if not str(neutrality.get('discovery_policy', '')).strip() or not str(neutrality.get('ranking_policy', '')).strip():
         raise ValueError('hybrid source_neutrality requires discovery_policy and ranking_policy')
+
+    source_pool = cfg.get('discovery_source_pool') or {}
+    if source_pool:
+        if not str(source_pool.get('policy', '')).strip():
+            raise ValueError('hybrid discovery_source_pool.policy is required')
+        source_items = source_pool.get('sources') or []
+        if not isinstance(source_items, list):
+            raise ValueError('hybrid discovery_source_pool.sources must be a list')
+        seen_source_ids, seen_domains = set(), set()
+        for source in source_items:
+            if not isinstance(source, dict):
+                raise ValueError('hybrid discovery source entries must be objects')
+            sid = str(source.get('id', '')).strip()
+            domain = str(source.get('domain', '')).strip().lower()
+            base_url = str(source.get('base_url', '')).strip()
+            if not sid or sid in seen_source_ids:
+                raise ValueError('hybrid discovery source ids must be unique and non-empty')
+            if not domain or domain in seen_domains:
+                raise ValueError('hybrid discovery source domains must be unique and non-empty')
+            if not base_url.startswith('https://'):
+                raise ValueError(f'hybrid discovery source {sid} requires https base_url')
+            if source.get('enabled') is not True:
+                raise ValueError(f'hybrid discovery source {sid} must set enabled=true')
+            if str(source.get('discovery_mode', '')).strip() != 'active-candidate-source':
+                raise ValueError(f'hybrid discovery source {sid} must use discovery_mode=active-candidate-source')
+            if float(source.get('ranking_bonus', 0) or 0) != 0:
+                raise ValueError(f'hybrid discovery source {sid} must keep ranking_bonus=0')
+            if source.get('required_daily_check') is not False:
+                raise ValueError(f'hybrid discovery source {sid} must keep required_daily_check=false')
+            seen_source_ids.add(sid)
+            seen_domains.add(domain)
 
     sources = cfg.get('priority_sources') or []
     if sources:
@@ -87,6 +117,8 @@ def load_hybrid_config():
         raise ValueError('hybrid targeted_refill.use_priority_sources must be false')
     if refill.get('use_source_neutrality') is not True:
         raise ValueError('hybrid targeted_refill.use_source_neutrality must be true')
+    if source_pool and refill.get('use_discovery_source_pool') is not True:
+        raise ValueError('hybrid targeted_refill.use_discovery_source_pool must be true when discovery sources are configured')
 
     return cfg
 
@@ -112,6 +144,11 @@ def priority_source_coverage_applies(data_or_date, cfg=None):
 def positive_samples(cfg=None):
     cfg = cfg or load_hybrid_config()
     return list((cfg.get('preference_learning') or {}).get('positive_samples') or [])
+
+
+def discovery_sources(cfg=None):
+    cfg = cfg or load_hybrid_config()
+    return [x for x in ((cfg.get('discovery_source_pool') or {}).get('sources') or []) if x.get('enabled') is True]
 
 
 def priority_sources(cfg=None):
