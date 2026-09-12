@@ -1,16 +1,9 @@
 {
-  "version": 6,
+  "version": 7,
   "effective_date": "2026-09-09",
   "coverage_audit": {
     "required_windows": ["24h", "7d", "30d", "6m", "evergreen"],
-    "required_categories": [
-      "ai-generation",
-      "3d-production",
-      "3d-animation",
-      "engine-art",
-      "emerging-case",
-      "blender-dcc"
-    ],
+    "required_categories": ["ai-generation", "3d-production", "3d-animation", "engine-art", "emerging-case", "blender-dcc"],
     "require_window_counts": true,
     "require_category_counts": true,
     "require_targeted_refill": true,
@@ -29,11 +22,7 @@
   "preference_learning": {
     "effective_date": "2026-09-12",
     "purpose": "Use explicit user-selected articles only as positive examples of desired content themes, workflow depth, tools and production value. The source website or domain of a sample is provenance only and must not become a preferred source.",
-    "use_for": [
-      "discovery-query-expansion",
-      "targeted-refill-query-expansion",
-      "user-interest-fit-ranking"
-    ],
+    "use_for": ["discovery-query-expansion", "targeted-refill-query-expansion", "user-interest-fit-ranking"],
     "ranking_policy": "Similarity to the content semantics of positive samples may increase user_interest_fit, but source-domain similarity must contribute zero preference weight. Positive samples must never bypass source verification, Published Intelligence Registry canonical URL dedupe, substantive-delta checks, classification, Quality Gate, Full Analysis depth, release gates or category diversity.",
     "sample_source_policy": "Positive-sample URLs exist only to identify the examples and preserve provenance. Do not convert their hostnames, publishers or domains into source boosts, required checks, site-specific quotas or targeted site scans.",
     "derived_content_signals": [
@@ -45,36 +34,12 @@
       "artist-authored workflow breakdown with concrete modeling, texturing, rigging, animation or rendering decisions"
     ],
     "positive_samples": [
-      {
-        "id": "80lv-fantasy-character-2d-to-3d",
-        "url": "https://80.lv/articles/breakdown-modeling-a-3d-fantasy-character-based-on-a-2d-concept",
-        "affinity": ["3d-production", "character-production", "production-breakdown", "concept-to-3d", "modeling", "texturing"]
-      },
-      {
-        "id": "80lv-procedural-ice-material-blender",
-        "url": "https://80.lv/articles/tutorial-realistic-procedural-ice-cube-material-in-blender-with-easy-customization",
-        "affinity": ["blender-dcc", "3d-production", "practical-tutorial", "procedural-material", "shader", "Blender"]
-      },
-      {
-        "id": "80lv-venom-hand-keyed-animation",
-        "url": "https://80.lv/articles/spider-verse-animator-makes-marvel-s-venom-look-absolutely-insane",
-        "affinity": ["3d-animation", "animation", "hand-keyed", "stylized-animation", "high-value-reference", "body-mechanics"]
-      },
-      {
-        "id": "80lv-alice-raid-character-fanart",
-        "url": "https://80.lv/articles/modeling-and-texturing-a-fan-art-of-alice-from-raid-shadow-legends",
-        "affinity": ["3d-production", "character-production", "production-breakdown", "modeling", "texturing", "character-art"]
-      },
-      {
-        "id": "80lv-free-cad-retopology-blender",
-        "url": "https://80.lv/articles/try-this-free-cad-data-retopology-tool-for-blender",
-        "affinity": ["blender-dcc", "3d-production", "addon", "retopology", "CAD-to-game-ready", "workflow-tool"]
-      },
-      {
-        "id": "80lv-stylized-vampire-animation",
-        "url": "https://80.lv/articles/this-3d-animation-of-a-stylized-vampire-was-inspired-by-marvel-rivals-arcane",
-        "affinity": ["3d-animation", "3d-production", "stylized-animation", "character-art", "high-value-reference", "visual-development"]
-      }
+      {"id":"80lv-fantasy-character-2d-to-3d","url":"https://80.lv/articles/breakdown-modeling-a-3d-fantasy-character-based-on-a-2d-concept","affinity":["3d-production","character-production","production-breakdown","concept-to-3d","modeling","texturing"]},
+      {"id":"80lv-procedural-ice-material-blender","url":"https://80.lv/articles/tutorial-realistic-procedural-ice-cube-material-in-blender-with-easy-customization","affinity":["blender-dcc","3d-production","practical-tutorial","procedural-material","shader","Blender"]},
+      {"id":"80lv-venom-hand-keyed-animation","url":"https://80.lv/articles/spider-verse-animator-makes-marvel-s-venom-look-absolutely-insane","affinity":["3d-animation","animation","hand-keyed","stylized-animation","high-value-reference","body-mechanics"]},
+      {"id":"80lv-alice-raid-character-fanart","url":"https://80.lv/articles/modeling-and-texturing-a-fan-art-of-alice-from-raid-shadow-legends","affinity":["3d-production","character-production","production-breakdown","modeling","texturing","character-art"]},
+      {"id":"80lv-free-cad-retopology-blender","url":"https://80.lv/articles/try-this-free-cad-data-retopology-tool-for-blender","affinity":["blender-dcc","3d-production","addon","retopology","CAD-to-game-ready","workflow-tool"]},
+      {"id":"80lv-stylized-vampire-animation","url":"https://80.lv/articles/this-3d-animation-of-a-stylized-vampire-was-inspired-by-marvel-rivals-arcane","affinity":["3d-animation","3d-production","stylized-animation","character-art","high-value-reference","visual-development"]}
     ]
   },
   "source_neutrality": {
@@ -90,109 +55,22 @@
   "discovery_source_pool": {
     "policy": "Explicitly registered websites are discovery channels only. Registration allows active candidate discovery from the site but gives zero preference/ranking bonus, creates no quota, and does not bypass verification, dedupe, substantive-delta, Quality Gate, FULL/BRIEF/REJECT classification or source-diversity rules.",
     "sources": [
-      {
-        "id": "80-level",
-        "name": "80 Level",
-        "domain": "80.lv",
-        "base_url": "https://80.lv/",
-        "enabled": true,
-        "discovery_mode": "active-candidate-source",
-        "ranking_bonus": 0,
-        "required_daily_check": false,
-        "categories": ["ai-generation", "3d-production", "3d-animation", "engine-art", "emerging-case", "blender-dcc"],
-        "notes": "Use 80 Level as one heterogeneous discovery channel for production breakdowns, tools, tutorials, animation, engine art and emerging 3D/AI work. Do not treat it as a preferred publisher and do not require a daily hit."
-      },
-      {
-        "id": "3dnchu",
-        "name": "3D人 / 3DNchu",
-        "domain": "3dnchu.com",
-        "base_url": "https://3dnchu.com/",
-        "enabled": true,
-        "discovery_mode": "active-candidate-source",
-        "ranking_bonus": 0,
-        "required_daily_check": false,
-        "categories": ["ai-generation", "3d-production", "3d-animation", "engine-art", "emerging-case", "blender-dcc"],
-        "notes": "Japanese CG discovery source with frequent coverage of 3D/2D/VR/game/AI tools, Blender add-ons, engine projects and technical releases. Treat linked primary sources as preferred verification evidence when available."
-      },
-      {
-        "id": "cgworld-jp",
-        "name": "CGWORLD.jp",
-        "domain": "cgworld.jp",
-        "base_url": "https://cgworld.jp/",
-        "enabled": true,
-        "discovery_mode": "active-candidate-source",
-        "ranking_bonus": 0,
-        "required_daily_check": false,
-        "categories": ["ai-generation", "3d-production", "3d-animation", "engine-art", "emerging-case", "blender-dcc"],
-        "notes": "Japanese professional CG and VFX publication. Use for studio production breakdowns, character/environment/animation workflows, engine and DCC techniques, interviews and technical case studies."
-      },
-      {
-        "id": "bilibili-mobile",
-        "name": "Bilibili",
-        "domain": "m.bilibili.com",
-        "base_url": "https://m.bilibili.com/",
-        "enabled": true,
-        "discovery_mode": "active-candidate-source",
-        "ranking_bonus": 0,
-        "required_daily_check": false,
-        "categories": ["ai-generation", "3d-production", "3d-animation", "engine-art", "emerging-case", "blender-dcc"],
-        "notes": "Video discovery source for reproducible tutorials, demonstrations, rigging/animation education, engine art, DCC workflows and AI 3D tests. Creator claims require corroboration when production-impact claims extend beyond the demonstrated evidence."
-      },
-      {
-        "id": "artstation",
-        "name": "ArtStation",
-        "domain": "artstation.com",
-        "base_url": "https://www.artstation.com/",
-        "enabled": true,
-        "discovery_mode": "active-candidate-source",
-        "ranking_bonus": 0,
-        "required_daily_check": false,
-        "categories": ["ai-generation", "3d-production", "3d-animation", "engine-art", "emerging-case", "blender-dcc"],
-        "notes": "Artist and studio portfolio discovery source. Prioritize posts containing concrete breakdowns, WIP, modeling/texturing/material/lighting/animation decisions or technical workflow evidence; pure portfolio images without useful production detail may be reference-only or rejected."
-      }
+      {"id":"80-level","name":"80 Level","domain":"80.lv","base_url":"https://80.lv/","enabled":true,"discovery_mode":"active-candidate-source","ranking_bonus":0,"required_daily_check":false,"categories":["ai-generation","3d-production","3d-animation","engine-art","emerging-case","blender-dcc"],"notes":"Use 80 Level as one heterogeneous discovery channel for production breakdowns, tools, tutorials, animation, engine art and emerging 3D/AI work. Do not treat it as a preferred publisher and do not require a daily hit."},
+      {"id":"3dnchu","name":"3D人 / 3DNchu","domain":"3dnchu.com","base_url":"https://3dnchu.com/","enabled":true,"discovery_mode":"active-candidate-source","ranking_bonus":0,"required_daily_check":false,"categories":["ai-generation","3d-production","3d-animation","engine-art","emerging-case","blender-dcc"],"notes":"Japanese CG discovery source with frequent coverage of 3D/2D/VR/game/AI tools, Blender add-ons, engine projects and technical releases. Treat linked primary sources as preferred verification evidence when available."},
+      {"id":"cgworld-jp","name":"CGWORLD.jp","domain":"cgworld.jp","base_url":"https://cgworld.jp/","enabled":true,"discovery_mode":"active-candidate-source","ranking_bonus":0,"required_daily_check":false,"categories":["ai-generation","3d-production","3d-animation","engine-art","emerging-case","blender-dcc"],"notes":"Japanese professional CG and VFX publication. Use for studio production breakdowns, character/environment/animation workflows, engine and DCC techniques, interviews and technical case studies."},
+      {"id":"bilibili-mobile","name":"Bilibili","domain":"m.bilibili.com","base_url":"https://m.bilibili.com/","enabled":true,"discovery_mode":"active-candidate-source","ranking_bonus":0,"required_daily_check":false,"categories":["ai-generation","3d-production","3d-animation","engine-art","emerging-case","blender-dcc"],"notes":"Video discovery source for reproducible tutorials, demonstrations, rigging/animation education, engine art, DCC workflows and AI 3D tests. Creator claims require corroboration when production-impact claims extend beyond the demonstrated evidence."},
+      {"id":"artstation","name":"ArtStation","domain":"artstation.com","base_url":"https://www.artstation.com/","enabled":true,"discovery_mode":"active-candidate-source","ranking_bonus":0,"required_daily_check":false,"categories":["ai-generation","3d-production","3d-animation","engine-art","emerging-case","blender-dcc"],"notes":"Artist and studio portfolio discovery source. Prioritize posts containing concrete breakdowns, WIP, modeling/texturing/material/lighting/animation decisions or technical workflow evidence; pure portfolio images without useful production detail may be reference-only or rejected."},
+      {"id":"gumroad-discover","name":"Gumroad Discover","domain":"gumroad.com","base_url":"https://gumroad.com/discover","enabled":true,"discovery_mode":"active-candidate-source","ranking_bonus":0,"required_daily_check":false,"categories":["ai-generation","3d-production","3d-animation","engine-art","emerging-case","blender-dcc"],"notes":"Marketplace discovery source for DCC add-ons, scripts, materials, rigs, brushes, production tools and educational resources. Marketplace copy is candidate evidence only; prefer author documentation, demos, changelogs, GitHub or other primary technical evidence when validating concrete capabilities and production impact."}
     ]
   },
   "category_discovery_profiles": {
     "3d-animation": {
       "always_discover": true,
       "purpose": "Broaden animation intelligence beyond AI motion and tool news to include durable fundamentals and production-ready rigging education.",
-      "content_mix": [
-        "animation tools and production workflows",
-        "foundational animation and keypose tutorials",
-        "character rigging and deformation tutorials",
-        "mocap, cleanup, retarget and facial animation"
-      ],
-      "fundamental_animation_topics": [
-        "key pose and keypose planning",
-        "blocking and stepped-key workflow",
-        "timing and spacing",
-        "weight, balance and center of gravity",
-        "arcs and clean motion paths",
-        "anticipation",
-        "follow-through and overlap",
-        "body mechanics",
-        "walk, run, idle, attack and locomotion cycles",
-        "pose readability, silhouette and line of action"
-      ],
-      "rigging_topics": [
-        "skeleton hierarchy and joint placement",
-        "FK and IK fundamentals",
-        "constraints and controller design",
-        "skin weighting and deformation",
-        "twist joints and corrective deformation",
-        "facial rig fundamentals",
-        "game-ready character rigs",
-        "Maya rigging",
-        "Blender rigging",
-        "Unreal Control Rig",
-        "rig export and engine compatibility"
-      ],
-      "source_preferences": [
-        "official DCC or engine documentation and training",
-        "experienced animator or rigging educator tutorials",
-        "studio or professional production breakdowns",
-        "GDC, SIGGRAPH or reputable training material"
-      ],
+      "content_mix": ["animation tools and production workflows", "foundational animation and keypose tutorials", "character rigging and deformation tutorials", "mocap, cleanup, retarget and facial animation"],
+      "fundamental_animation_topics": ["key pose and keypose planning", "blocking and stepped-key workflow", "timing and spacing", "weight, balance and center of gravity", "arcs and clean motion paths", "anticipation", "follow-through and overlap", "body mechanics", "walk, run, idle, attack and locomotion cycles", "pose readability, silhouette and line of action"],
+      "rigging_topics": ["skeleton hierarchy and joint placement", "FK and IK fundamentals", "constraints and controller design", "skin weighting and deformation", "twist joints and corrective deformation", "facial rig fundamentals", "game-ready character rigs", "Maya rigging", "Blender rigging", "Unreal Control Rig", "rig export and engine compatibility"],
+      "source_preferences": ["official DCC or engine documentation and training", "experienced animator or rigging educator tutorials", "studio or professional production breakdowns", "GDC, SIGGRAPH or reputable training material"],
       "tutorial_policy": "High-quality foundational tutorials are valid production intelligence even when evergreen or beginner-accessible. Favor reproducible teaching, strong visual explanation and direct production transfer; do not require a new product announcement.",
       "freshness_policy": "Fresh material wins when quality is comparable, but strong 1-6 month and evergreen keypose, body-mechanics and rigging tutorials remain eligible.",
       "diversity_guard": "Tutorials enrich discovery and ranking but never create a per-topic quota. Avoid allowing one DCC, one educator, one publisher or one tutorial theme to dominate the category."
