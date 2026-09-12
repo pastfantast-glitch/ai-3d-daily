@@ -2,12 +2,7 @@
 from pathlib import Path
 import json
 
-from discovery_hybrid import (
-    coverage_audit_errors,
-    load_hybrid_config,
-    positive_samples,
-    priority_sources,
-)
+from discovery_hybrid import coverage_audit_errors, load_hybrid_config, positive_samples
 from intelligence_v2 import load_config
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -48,12 +43,10 @@ def main():
 
     fundamental = [str(x).lower() for x in animation.get('fundamental_animation_topics') or []]
     rigging = [str(x).lower() for x in animation.get('rigging_topics') or []]
-    required_fundamental = ('key pose', 'blocking', 'timing and spacing', 'body mechanics')
-    required_rigging = ('skeleton hierarchy', 'fk and ik', 'skin weighting', 'game-ready character rigs')
-    for token in required_fundamental:
+    for token in ('key pose', 'blocking', 'timing and spacing', 'body mechanics'):
         if not any(token in item for item in fundamental):
             raise SystemExit(f'HYBRID CONTRACT FAILED: 3d-animation fundamental tutorial topic missing: {token}')
-    for token in required_rigging:
+    for token in ('skeleton hierarchy', 'fk and ik', 'skin weighting', 'game-ready character rigs'):
         if not any(token in item for item in rigging):
             raise SystemExit(f'HYBRID CONTRACT FAILED: 3d-animation rigging tutorial topic missing: {token}')
 
@@ -65,7 +58,7 @@ def main():
     if len(samples) < 6:
         raise SystemExit('HYBRID CONTRACT FAILED: positive-sample registry must contain at least six user-selected examples')
     sample_urls = {str(x.get('url', '')).strip() for x in samples}
-    required_80lv_slugs = (
+    required_slugs = (
         'breakdown-modeling-a-3d-fantasy-character-based-on-a-2d-concept',
         'tutorial-realistic-procedural-ice-cube-material-in-blender-with-easy-customization',
         'spider-verse-animator-makes-marvel-s-venom-look-absolutely-insane',
@@ -73,8 +66,8 @@ def main():
         'try-this-free-cad-data-retopology-tool-for-blender',
         'this-3d-animation-of-a-stylized-vampire-was-inspired-by-marvel-rivals-arcane',
     )
-    for slug in required_80lv_slugs:
-        if not any('80.lv/articles/' + slug in url for url in sample_urls):
+    for slug in required_slugs:
+        if not any(slug in url for url in sample_urls):
             raise SystemExit(f'HYBRID CONTRACT FAILED: required user positive sample missing: {slug}')
 
     learning = hybrid.get('preference_learning') or {}
@@ -85,26 +78,41 @@ def main():
     for token in ('registry', 'quality gate', 'full analysis'):
         if token not in policy:
             raise SystemExit(f'HYBRID CONTRACT FAILED: positive-sample ranking guard missing {token}')
+    if 'source-domain similarity must contribute zero preference weight' not in policy:
+        raise SystemExit('HYBRID CONTRACT FAILED: preference ranking must explicitly assign zero weight to sample-domain similarity')
 
-    sources = priority_sources(hybrid)
-    eighty = next((x for x in sources if x.get('id') == '80-level'), None)
-    if not eighty or str(eighty.get('domain', '')).lower() != '80.lv':
-        raise SystemExit('HYBRID CONTRACT FAILED: 80 Level priority source missing')
-    if eighty.get('required_check') is not True or str(eighty.get('mode', '')).lower() != 'high-recall':
-        raise SystemExit('HYBRID CONTRACT FAILED: 80 Level must be a required high-recall source')
-    if 'quality' not in str(eighty.get('admission', '')).lower():
-        raise SystemExit('HYBRID CONTRACT FAILED: priority source must still pass normal quality admission')
+    source_policy = str(learning.get('sample_source_policy', '')).lower()
+    for token in ('provenance', 'hostnames', 'source boosts', 'site-specific'):
+        if token not in source_policy:
+            raise SystemExit(f'HYBRID CONTRACT FAILED: sample source-neutrality policy missing {token}')
 
-    if coverage.get('require_priority_source_checks') is not True:
-        raise SystemExit('HYBRID CONTRACT FAILED: Coverage Audit must require priority-source checks')
+    neutrality = hybrid.get('source_neutrality') or {}
+    if neutrality.get('enabled') is not True:
+        raise SystemExit('HYBRID CONTRACT FAILED: source neutrality must be enabled')
+    if neutrality.get('positive_sample_domains_are_provenance_only') is not True:
+        raise SystemExit('HYBRID CONTRACT FAILED: positive sample domains must be provenance only')
+    for key in (
+        'domain_weight_from_positive_samples',
+        'required_site_checks_from_positive_samples',
+        'site_specific_refill_from_positive_samples',
+        'source_domain_may_increase_user_interest_fit',
+    ):
+        if neutrality.get(key) is not False:
+            raise SystemExit(f'HYBRID CONTRACT FAILED: source-neutral guard must keep {key}=false')
+
+    if hybrid.get('priority_sources'):
+        raise SystemExit('HYBRID CONTRACT FAILED: preference-derived priority_sources must be empty/absent')
+    if coverage.get('require_priority_source_checks') is True:
+        raise SystemExit('HYBRID CONTRACT FAILED: Coverage Audit must not require preference-derived source checks')
 
     refill = hybrid.get('targeted_refill') or {}
     if refill.get('use_category_discovery_profiles') is not True:
         raise SystemExit('HYBRID CONTRACT FAILED: targeted refill must consume category discovery profiles')
-    if refill.get('use_preference_learning') is not True or refill.get('use_priority_sources') is not True:
-        raise SystemExit('HYBRID CONTRACT FAILED: targeted refill must consume positive samples and priority sources')
+    if refill.get('use_preference_learning') is not True:
+        raise SystemExit('HYBRID CONTRACT FAILED: targeted refill must consume content preference learning')
+    if refill.get('use_source_neutrality') is not True or refill.get('use_priority_sources') is not False:
+        raise SystemExit('HYBRID CONTRACT FAILED: targeted refill must be source-neutral and must not consume priority sources')
 
-    source_effective = str(coverage.get('priority_source_coverage_effective_date', ''))
     audit = {
         'fill_ladder_exhausted': True,
         'backlog_checked': True,
@@ -113,23 +121,18 @@ def main():
         'backlog_remaining_eligible': 0,
         'windows': {w: {'status': coverage.get('exhaustion_status', 'exhausted'), 'candidates_found': 0} for w in expected_windows},
         'category_candidates': {cid: {'candidates_considered': 0} for cid in expected_categories},
-        'priority_sources': {'80-level': {'status': 'checked', 'candidates_found': 0}},
     }
-    fixture = {'date': source_effective, 'metadata': {'discovery_coverage': audit}, 'items': []}
+    fixture = {'date': str(hybrid.get('effective_date')), 'metadata': {'discovery_coverage': audit}, 'items': []}
     errors = coverage_audit_errors(fixture, expected_categories, hybrid)
     if errors:
-        raise SystemExit(f'HYBRID CONTRACT FAILED: priority source Coverage Audit fixture should pass: {errors}')
-    del audit['priority_sources']
-    errors = coverage_audit_errors(fixture, expected_categories, hybrid)
-    if not any('missing priority source check 80-level' in x for x in errors):
-        raise SystemExit('HYBRID CONTRACT FAILED: missing 80 Level source audit must fail closed')
+        raise SystemExit(f'HYBRID CONTRACT FAILED: source-neutral Coverage Audit fixture should pass: {errors}')
 
     print(
         'HYBRID DISCOVERY CONTRACT PASS: '
         f"normal_floor={low['normal_floor']} fallback_floor={low['fallback_floor']} "
         f"target={col['daily_target_items']} maximum={low['maximum']} / "
         f"windows={expected_windows} / backlog={backlog['path']} / "
-        '3d-animation keypose+rigging tutorials + 80 Level high-recall positive samples locked'
+        'content-preference learning is source-neutral; no sample-domain priority source is allowed'
     )
 
 

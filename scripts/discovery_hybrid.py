@@ -54,30 +54,39 @@ def load_hybrid_config():
             raise ValueError('hybrid preference_learning.use_for must include discovery-query-expansion and user-interest-fit-ranking')
         if not str(learning.get('ranking_policy', '')).strip():
             raise ValueError('hybrid preference_learning.ranking_policy is required')
+        if not str(learning.get('sample_source_policy', '')).strip():
+            raise ValueError('hybrid preference_learning.sample_source_policy is required')
+
+    neutrality = cfg.get('source_neutrality') or {}
+    if neutrality.get('enabled') is not True:
+        raise ValueError('hybrid source_neutrality.enabled must be true')
+    for key in ('positive_sample_domains_are_provenance_only',):
+        if neutrality.get(key) is not True:
+            raise ValueError(f'hybrid source_neutrality.{key} must be true')
+    for key in (
+        'domain_weight_from_positive_samples',
+        'required_site_checks_from_positive_samples',
+        'site_specific_refill_from_positive_samples',
+        'source_domain_may_increase_user_interest_fit',
+    ):
+        if neutrality.get(key) is not False:
+            raise ValueError(f'hybrid source_neutrality.{key} must be false')
+    if not str(neutrality.get('discovery_policy', '')).strip() or not str(neutrality.get('ranking_policy', '')).strip():
+        raise ValueError('hybrid source_neutrality requires discovery_policy and ranking_policy')
 
     sources = cfg.get('priority_sources') or []
-    seen_source_ids = set()
-    for source in sources:
-        if not isinstance(source, dict):
-            raise ValueError('hybrid priority_sources entries must be objects')
-        sid = str(source.get('id', '')).strip()
-        domain = str(source.get('domain', '')).strip().lower()
-        if not sid or sid in seen_source_ids:
-            raise ValueError('hybrid priority source ids must be unique and non-empty')
-        if not domain or '.' not in domain:
-            raise ValueError(f'hybrid priority source {sid} requires a domain')
-        if source.get('required_check') not in (True, False):
-            raise ValueError(f'hybrid priority source {sid}.required_check must be boolean')
-        if not str(source.get('mode', '')).strip() or not str(source.get('admission', '')).strip():
-            raise ValueError(f'hybrid priority source {sid} requires mode and admission')
-        seen_source_ids.add(sid)
+    if sources:
+        raise ValueError('hybrid preference-derived priority_sources are forbidden; preference examples must remain source-neutral')
 
     coverage = cfg.get('coverage_audit') or {}
     if coverage.get('require_priority_source_checks') is True:
-        if not sources:
-            raise ValueError('hybrid priority-source coverage requires priority_sources[]')
-        if not _valid_date(coverage.get('priority_source_coverage_effective_date')):
-            raise ValueError('hybrid priority_source_coverage_effective_date must be YYYY-MM-DD')
+        raise ValueError('hybrid Coverage Audit must not require preference-derived priority source checks')
+
+    refill = cfg.get('targeted_refill') or {}
+    if refill.get('use_priority_sources') is not False:
+        raise ValueError('hybrid targeted_refill.use_priority_sources must be false')
+    if refill.get('use_source_neutrality') is not True:
+        raise ValueError('hybrid targeted_refill.use_source_neutrality must be true')
 
     return cfg
 
@@ -97,16 +106,7 @@ def preference_learning_applies(data_or_date, cfg=None):
 
 
 def priority_source_coverage_applies(data_or_date, cfg=None):
-    cfg = cfg or load_hybrid_config()
-    coverage = cfg.get('coverage_audit') or {}
-    effective = str(coverage.get('priority_source_coverage_effective_date', '')).strip()
-    value = str(data_or_date.get('date', '') if isinstance(data_or_date, dict) else data_or_date or '').strip()
-    return bool(
-        coverage.get('require_priority_source_checks') is True
-        and _valid_date(value)
-        and _valid_date(effective)
-        and value >= effective
-    )
+    return False
 
 
 def positive_samples(cfg=None):
@@ -115,8 +115,7 @@ def positive_samples(cfg=None):
 
 
 def priority_sources(cfg=None):
-    cfg = cfg or load_hybrid_config()
-    return list(cfg.get('priority_sources') or [])
+    return []
 
 
 def _category_count(value):
@@ -176,22 +175,6 @@ def coverage_audit_errors(data, category_ids, cfg=None):
     unknown = set(categories) - set(required_categories)
     if unknown:
         errors.append(f'discovery coverage: unknown category keys {sorted(unknown)}')
-
-    if priority_source_coverage_applies(data, cfg):
-        source_audit = audit.get('priority_sources') or {}
-        for source in priority_sources(cfg):
-            if source.get('required_check') is not True:
-                continue
-            sid = str(source.get('id', '')).strip()
-            rec = source_audit.get(sid)
-            if not isinstance(rec, dict):
-                errors.append(f'discovery coverage: missing priority source check {sid}')
-                continue
-            if str(rec.get('status', '')).strip() != 'checked':
-                errors.append(f'discovery coverage: priority source {sid} must have status=checked')
-            found = rec.get('candidates_found')
-            if isinstance(found, bool) or not isinstance(found, int) or found < 0:
-                errors.append(f'discovery coverage: priority source {sid} candidates_found must be integer >=0')
 
     return errors
 
