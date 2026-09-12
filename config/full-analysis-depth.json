@@ -1,55 +1,55 @@
 {
-  "version": 1,
+  "version": 2,
   "effective_date": "2026-09-08",
+  "tiered_effective_date": "2026-09-12",
   "style_reference": "2026-09-01",
-  "mode": "source-supported-production-depth",
-  "min_blocks": 3,
-  "max_blocks": 5,
-  "min_block_chars": 48,
-  "min_total_text_chars": 180,
-  "heading_language": "zh-Hant",
-  "required_semantic_groups": {
-    "workflow_or_technical_change": [
-      "流程",
-      "工作流",
-      "技術",
-      "重點",
-      "能力",
-      "設計",
-      "工具",
-      "生成",
-      "渲染",
-      "輸入輸出",
-      "API",
-      "DCC",
-      "Rig",
-      "角色",
-      "道具",
-      "貼圖",
-      "概念",
-      "場景"
+  "mode": "tiered-source-supported-production-depth",
+  "analysis_levels": ["FULL", "BRIEF", "REJECT"],
+  "default_analysis_level": "FULL",
+  "full": {
+    "min_blocks": 3,
+    "max_blocks": 5,
+    "min_block_chars": 48,
+    "min_total_text_chars": 180,
+    "required_semantic_groups": ["workflow_or_technical_change", "production_impact", "test_risk_or_limit"],
+    "quality_rule": "FULL keeps the existing high bar: explain a concrete technical/workflow change, production or pipeline consequence, and an actionable adoption test, risk, limitation, or maturity judgment."
+  },
+  "brief": {
+    "min_blocks": 1,
+    "max_blocks": 2,
+    "min_block_chars": 36,
+    "min_total_text_chars": 60,
+    "required_fields": ["brief_reason"],
+    "allowed_reasons": [
+      "early-release-limited-evidence",
+      "short-official-announcement",
+      "high-value-showcase-reference",
+      "useful-tool-or-addon-limited-depth",
+      "emerging-research-limited-production-evidence"
     ],
-    "production_impact": [
-      "價值",
-      "影響",
-      "潛力",
-      "相容",
-      "控制",
-      "輸出",
-      "成本",
-      "效能"
-    ],
-    "test_risk_or_limit": [
-      "測試",
-      "驗證",
-      "實測",
-      "限制",
-      "成熟度",
-      "判斷",
-      "導入"
+    "quality_rule": "BRIEF is allowed only when the intelligence is verified, unpublished, relevant and concretely useful, but available source evidence cannot honestly support FULL depth. State the known fact/value and explicitly mark what remains unverified or immature. BRIEF must never be used to admit marketing-only, unverifiable, duplicate or negligible-value content."
+  },
+  "reject": {
+    "publish_allowed": false,
+    "reasons": [
+      "unverifiable",
+      "marketing-only-no-concrete-capability",
+      "duplicate-without-substantive-delta",
+      "negligible-production-value",
+      "insufficient-evidence-even-for-brief"
     ]
   },
-  "quality_rule": "Full Analysis is not a three-bullet recap. Each item must explain a concrete technical/workflow change, the production or pipeline consequence, and an actionable adoption test, risk, limitation, or maturity judgment. Claims must stay source-supported; do not invent details just to satisfy length.",
+  "top5_policy": {
+    "allow_brief": false,
+    "rule": "Homepage TOP5 requires FULL analysis. BRIEF may appear in category/daily intelligence but cannot displace a FULL item in TOP5."
+  },
+  "required_semantic_groups": {
+    "workflow_or_technical_change": ["流程", "工作流", "技術", "重點", "能力", "設計", "工具", "生成", "渲染", "輸入輸出", "API", "DCC", "Rig", "角色", "道具", "貼圖", "概念", "場景"],
+    "production_impact": ["價值", "影響", "潛力", "相容", "控制", "輸出", "成本", "效能"],
+    "test_risk_or_limit": ["測試", "驗證", "實測", "限制", "成熟度", "判斷", "導入", "待驗證", "尚未"]
+  },
+  "heading_language": "zh-Hant",
+  "quality_rule": "Quality Gate and analysis-depth classification are separate. First decide whether an item is verified, unpublished and worth knowing; then classify it FULL or BRIEF based on source evidence depth. Never fabricate or pad evidence to upgrade BRIEF to FULL.",
   "fail_closed": true,
-  "legacy_policy": "Dates before effective_date keep legacy structural repair behavior and are not retroactively rejected by the new depth minimum."
+  "legacy_policy": "Dates before tiered_effective_date keep the prior FULL-only depth behavior and are not retroactively reclassified."
 }
