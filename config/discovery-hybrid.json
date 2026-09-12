@@ -1,5 +1,5 @@
 {
-  "version": 3,
+  "version": 4,
   "effective_date": "2026-09-09",
   "coverage_audit": {
     "required_windows": ["24h", "7d", "30d", "6m", "evergreen"],
@@ -16,8 +16,6 @@
     "require_targeted_refill": true,
     "require_backlog_check": true,
     "require_quality_first_confirmation": true,
-    "require_priority_source_checks": true,
-    "priority_source_coverage_effective_date": "2026-09-12",
     "exhaustion_status": "exhausted"
   },
   "rolling_backlog": {
@@ -30,13 +28,14 @@
   },
   "preference_learning": {
     "effective_date": "2026-09-12",
-    "purpose": "Use explicit user-selected articles as positive examples for discovery-query expansion and user-interest ranking without turning any source or topic into a quota.",
+    "purpose": "Use explicit user-selected articles only as positive examples of desired content themes, workflow depth, tools and production value. The source website or domain of a sample is provenance only and must not become a preferred source.",
     "use_for": [
       "discovery-query-expansion",
       "targeted-refill-query-expansion",
       "user-interest-fit-ranking"
     ],
-    "ranking_policy": "Similarity to positive samples may increase user_interest_fit, but must never bypass source verification, Published Intelligence Registry canonical URL dedupe, substantive-delta checks, classification, Quality Gate, Full Analysis depth, release gates or category diversity.",
+    "ranking_policy": "Similarity to the content semantics of positive samples may increase user_interest_fit, but source-domain similarity must contribute zero preference weight. Positive samples must never bypass source verification, Published Intelligence Registry canonical URL dedupe, substantive-delta checks, classification, Quality Gate, Full Analysis depth, release gates or category diversity.",
+    "sample_source_policy": "Positive-sample URLs exist only to identify the examples and preserve provenance. Do not convert their hostnames, publishers or domains into source boosts, required checks, site-specific quotas or targeted site scans.",
     "derived_content_signals": [
       "end-to-end character production breakdown from concept to final asset",
       "practical reproducible material or shader tutorial",
@@ -78,25 +77,16 @@
       }
     ]
   },
-  "priority_sources": [
-    {
-      "id": "80-level",
-      "domain": "80.lv",
-      "mode": "high-recall",
-      "required_check": true,
-      "positive_sample_affinity": true,
-      "content_types": [
-        "production breakdown",
-        "character and environment workflow",
-        "practical tutorial",
-        "DCC tool or add-on",
-        "rigging and animation workflow",
-        "high-value stylized animation or visual reference"
-      ],
-      "scan_policy": "Actively inspect new and relevant 80 Level articles during normal discovery and targeted refill instead of relying on broad search to surface them incidentally.",
-      "admission": "Priority-source status affects recall only. Every candidate still requires normal source verification, Registry dedupe, substantive delta, classification, Quality Gate, ranking and Full Analysis evidence."
-    }
-  ],
+  "source_neutrality": {
+    "enabled": true,
+    "positive_sample_domains_are_provenance_only": true,
+    "domain_weight_from_positive_samples": false,
+    "required_site_checks_from_positive_samples": false,
+    "site_specific_refill_from_positive_samples": false,
+    "source_domain_may_increase_user_interest_fit": false,
+    "discovery_policy": "Expand queries from topics, tools, techniques, workflow stages and production problems represented by preference samples. Search across heterogeneous verifiable sources; never constrain or bias discovery toward the domains that hosted the samples.",
+    "ranking_policy": "Rank source reliability on evidence quality and verifiability. Publisher/domain identity may affect reliability assessment when independently justified, but must not receive preference affinity merely because that domain hosted a user-selected sample."
+  },
   "category_discovery_profiles": {
     "3d-animation": {
       "always_discover": true,
@@ -140,7 +130,7 @@
       ],
       "tutorial_policy": "High-quality foundational tutorials are valid production intelligence even when evergreen or beginner-accessible. Favor reproducible teaching, strong visual explanation and direct production transfer; do not require a new product announcement.",
       "freshness_policy": "Fresh material wins when quality is comparable, but strong 1-6 month and evergreen keypose, body-mechanics and rigging tutorials remain eligible.",
-      "diversity_guard": "Tutorials enrich discovery and ranking but never create a per-topic quota. Avoid allowing one DCC, one educator or one tutorial theme to dominate the category."
+      "diversity_guard": "Tutorials enrich discovery and ranking but never create a per-topic quota. Avoid allowing one DCC, one educator, one publisher or one tutorial theme to dominate the category."
     }
   },
   "targeted_refill": {
@@ -150,7 +140,8 @@
     "rerun_registry_after_refill": true,
     "use_category_discovery_profiles": true,
     "use_preference_learning": true,
-    "use_priority_sources": true
+    "use_source_neutrality": true,
+    "use_priority_sources": false
   },
   "low_volume_release": {
     "enabled": true,
