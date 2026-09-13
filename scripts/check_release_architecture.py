@@ -50,16 +50,61 @@ if depth_path.exists():
         depth = json.loads(depth_path.read_text('utf-8'))
         if not depth.get('effective_date'):
             fail('full-analysis-depth effective_date missing')
-        if int(depth.get('min_blocks', 0)) < 3:
-            fail('full-analysis-depth min_blocks must be >= 3')
-        if int(depth.get('max_blocks', 0)) < int(depth.get('min_blocks', 0)):
-            fail('full-analysis-depth max_blocks must be >= min_blocks')
-        if int(depth.get('min_block_chars', 0)) <= 0 or int(depth.get('min_total_text_chars', 0)) <= 0:
-            fail('full-analysis-depth substantive text thresholds must be positive')
+
+        tiered = bool(depth.get('tiered_effective_date') or depth.get('analysis_levels'))
+        if tiered:
+            if not depth.get('tiered_effective_date'):
+                fail('full-analysis-depth tiered_effective_date missing')
+            levels = depth.get('analysis_levels') or []
+            if levels != ['FULL', 'BRIEF', 'REJECT']:
+                fail('full-analysis-depth analysis_levels must be FULL/BRIEF/REJECT')
+            if str(depth.get('default_analysis_level', '')).upper() != 'FULL':
+                fail('full-analysis-depth default_analysis_level must be FULL')
+
+            full = depth.get('full') or {}
+            if int(full.get('min_blocks', 0)) < 3:
+                fail('full-analysis-depth FULL min_blocks must be >= 3')
+            if int(full.get('max_blocks', 0)) < int(full.get('min_blocks', 0)):
+                fail('full-analysis-depth FULL max_blocks must be >= min_blocks')
+            if int(full.get('min_block_chars', 0)) <= 0 or int(full.get('min_total_text_chars', 0)) <= 0:
+                fail('full-analysis-depth FULL substantive text thresholds must be positive')
+            full_groups = set(full.get('required_semantic_groups') or [])
+            for key in ('workflow_or_technical_change', 'production_impact', 'test_risk_or_limit'):
+                if key not in full_groups:
+                    fail(f'full-analysis-depth FULL semantic group missing: {key}')
+
+            brief = depth.get('brief') or {}
+            if int(brief.get('min_blocks', 0)) < 1:
+                fail('full-analysis-depth BRIEF min_blocks must be >= 1')
+            if int(brief.get('max_blocks', 0)) < int(brief.get('min_blocks', 0)):
+                fail('full-analysis-depth BRIEF max_blocks must be >= min_blocks')
+            if int(brief.get('min_block_chars', 0)) <= 0 or int(brief.get('min_total_text_chars', 0)) <= 0:
+                fail('full-analysis-depth BRIEF substantive text thresholds must be positive')
+            if 'brief_reason' not in (brief.get('required_fields') or []):
+                fail('full-analysis-depth BRIEF must require brief_reason')
+            if not brief.get('allowed_reasons'):
+                fail('full-analysis-depth BRIEF allowed_reasons must be non-empty')
+
+            reject = depth.get('reject') or {}
+            if reject.get('publish_allowed') is not False:
+                fail('full-analysis-depth REJECT publish_allowed must be false')
+
+            top5 = depth.get('top5_policy') or {}
+            if top5.get('allow_brief') is not False:
+                fail('full-analysis-depth top5_policy must keep allow_brief=false')
+        else:
+            # Legacy FULL-only contract support for older branches/configs.
+            if int(depth.get('min_blocks', 0)) < 3:
+                fail('full-analysis-depth min_blocks must be >= 3')
+            if int(depth.get('max_blocks', 0)) < int(depth.get('min_blocks', 0)):
+                fail('full-analysis-depth max_blocks must be >= min_blocks')
+            if int(depth.get('min_block_chars', 0)) <= 0 or int(depth.get('min_total_text_chars', 0)) <= 0:
+                fail('full-analysis-depth substantive text thresholds must be positive')
+
         groups = depth.get('required_semantic_groups') or {}
         for key in ('workflow_or_technical_change', 'production_impact', 'test_risk_or_limit'):
             if not groups.get(key):
-                fail(f'full-analysis-depth semantic group missing: {key}')
+                fail(f'full-analysis-depth semantic group vocabulary missing: {key}')
         if depth.get('fail_closed') is not True:
             fail('full-analysis-depth must remain fail_closed=true')
     except Exception as exc:
@@ -168,4 +213,4 @@ if errors:
     print('RELEASE ARCHITECTURE CONTRACT FAILED')
     print('\n'.join('- ' + e for e in errors))
     sys.exit(1)
-print('RELEASE ARCHITECTURE CONTRACT PASS: hybrid discovery + Full Analysis depth + strict pre-ready/public boundary + single-writer handoff + ordered QA/atomic/Pages/DONE + daily source-QA coverage')
+print('RELEASE ARCHITECTURE CONTRACT PASS: hybrid discovery + tiered Full/Brief/Reject depth + strict pre-ready/public boundary + single-writer handoff + ordered QA/atomic/Pages/DONE + daily source-QA coverage')
