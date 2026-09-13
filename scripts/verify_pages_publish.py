@@ -78,7 +78,15 @@ def analysis_policy(date: str, item: dict, depth: dict, legacy_min_blocks: int):
     return level, minimum, maximum, None
 
 
-def analysis_errors(card, rid: str, *, expected_level: str, min_blocks: int, max_blocks: int | None) -> list[str]:
+def analysis_errors(
+    card,
+    rid: str,
+    *,
+    expected_level: str,
+    min_blocks: int,
+    max_blocks: int | None,
+    require_level_attr: bool,
+) -> list[str]:
     errors: list[str] = []
     details = card.find("details")
     body_el = details.find("div", class_="detail-body") if details else None
@@ -86,11 +94,10 @@ def analysis_errors(card, rid: str, *, expected_level: str, min_blocks: int, max
         return [f"{rid}: missing analysis details/detail-body"]
 
     rendered_level = str(details.get('data-analysis-level') or '').upper()
-    if expected_level in ('FULL', 'BRIEF'):
-        if not rendered_level:
-            errors.append(f"{rid}: rendered analysis level missing; expected {expected_level}")
-        elif rendered_level != expected_level:
-            errors.append(f"{rid}: rendered analysis level={rendered_level}, expected {expected_level}")
+    if require_level_attr and expected_level in ('FULL', 'BRIEF') and not rendered_level:
+        errors.append(f"{rid}: rendered analysis level missing; expected {expected_level}")
+    elif rendered_level and expected_level in ('FULL', 'BRIEF') and rendered_level != expected_level:
+        errors.append(f"{rid}: rendered analysis level={rendered_level}, expected {expected_level}")
 
     headings = body_el.find_all("h4", recursive=False)
     paragraphs = body_el.find_all("p", recursive=False)
@@ -140,6 +147,7 @@ def structural_errors(
         errors.append(f"stable ID order mismatch: got={ids} expected={expected_ids}")
 
     item_by_id = {str(item.get('id') or ''): item for item in expected_items}
+    require_level_attr = tiered_for_date(date, depth)
     for card in cards:
         rid = str(card.get('data-intel-id') or '?')
         item = item_by_id.get(rid)
@@ -156,6 +164,7 @@ def structural_errors(
             expected_level=level,
             min_blocks=minimum,
             max_blocks=maximum,
+            require_level_attr=require_level_attr,
         ))
     return errors
 
@@ -168,7 +177,7 @@ def visual_errors(base_url: str, date: str, timeout: int) -> list[str]:
         return [f"visual manifest unavailable: {exc}"]
     errors: list[str] = []
     if manifest.get("date") != date:
-        errors.append(f"visual manifest date={manifest.get('date')} expected {date}")
+        errors.append(f"visual manifest date={manifest.get('date')} expected={date}")
     entries = manifest.get("entries") or []
     if not entries:
         errors.append("visual manifest has no entries")
