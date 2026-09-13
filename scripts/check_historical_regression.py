@@ -21,6 +21,15 @@ def is_done(date):
     try: return str(json.loads(path.read_text('utf-8')).get('state','')).upper()=='DONE'
     except Exception: return False
 
+def expected_top_count(date):
+    """Use canonical tier assignment for schema-v3 reports; retain legacy 5-card snapshots otherwise."""
+    canonical=ROOT/'data'/'daily'/f'{date}.json'
+    if not canonical.exists(): return 5
+    try: data=json.loads(canonical.read_text('utf-8'))
+    except Exception: return 5
+    if int(data.get('schema_version',0))<3: return 5
+    return sum(1 for item in data.get('items',[]) if item.get('homepage_tier')=='top5')
+
 def validate_archive_snapshot(d,all_dirs,staging=''):
     date=d.name; text=(d/'index.html').read_text('utf-8'); soup=BeautifulSoup(text,'html.parser'); body=soup.body
     if body is None: fail(date,'missing body'); rows.append((date,'snapshot','FAIL')); return
@@ -31,7 +40,8 @@ def validate_archive_snapshot(d,all_dirs,staging=''):
     if not soup.find('link',href=re.compile(r'\.\./daily\.css\?v=')): fail(date,'missing cache-busted daily.css')
     if not soup.find('script',src=re.compile(r'\.\./daily\.js\?v=')): fail(date,'missing cache-busted daily.js')
     if soup.find('script',src=re.compile(r'accordion\.js')): fail(date,'legacy accordion.js referenced')
-    if len(soup.select('#top .news'))!=5: fail(date,f'TOP card count must be 5, got {len(soup.select("#top .news"))}')
+    actual_top=len(soup.select('#top .news')); expected_top=expected_top_count(date)
+    if actual_top!=expected_top: fail(date,f'TOP card count must match canonical tier assignment: expected {expected_top}, got {actual_top}')
     if not soup.find('details'): fail(date,'no expandable Full Analysis/details content')
     for a in soup.find_all('a',target='_blank'):
         if not {'noopener','noreferrer'}<=set(a.get('rel',[])): fail(date,'unsafe target=_blank link'); break
@@ -84,9 +94,6 @@ def run(work,*cmd):
     if proc.returncode: raise RuntimeError(f"command failed ({proc.returncode}): {' '.join(cmd)}")
 
 def run_registry_normalization(work,date):
-    # Rebuild simulation must use the same Hybrid-aware Registry gate as prepare.
-    # Otherwise a verified LOW_VOLUME_COMPLETE DONE day is incorrectly rejected by
-    # the normal 20-item floor during historical regression.
     cmd=(sys.executable,'scripts/normalize_registry_identity_hybrid.py',date)
     proc=subprocess.run(cmd,cwd=work,text=True,stdout=subprocess.PIPE,stderr=subprocess.STDOUT)
     print(f"$ {' '.join(cmd)}"); print(proc.stdout,end='' if proc.stdout.endswith('\n') else '\n')
@@ -96,10 +103,8 @@ def canonical_rebuild_simulation(date,parity=True):
     cds=canonical_dates()
     if date not in cds: rows.append((date,'canonical-rebuild','SKIP (legacy snapshot: no canonical JSON)')); return
     if date!=cds[-1]:
-        if parity:
-            validate_canonical_archive_parity(date)
-        else:
-            rows.append((date,'canonical-parity','SKIP (sentinel snapshot_only)'))
+        if parity: validate_canonical_archive_parity(date)
+        else: rows.append((date,'canonical-parity','SKIP (sentinel snapshot_only)'))
         rows.append((date,'canonical-rebuild','SKIP (older canonical date; archive parity/snapshot used)')); return
     staging=not is_done(date)
     with tempfile.TemporaryDirectory(prefix=f'ai3d-regression-{date}-') as td:
@@ -108,10 +113,8 @@ def canonical_rebuild_simulation(date,parity=True):
             if date=='2026-08-23': run(work,sys.executable,'scripts/bootstrap_intelligence_ids.py')
             registry_rc=run_registry_normalization(work,date)
             if registry_rc==2 and staging:
-                rows.append((date,'canonical-rebuild','NEEDS-REFILL (staging; not release-ready)'))
-                return
-            if registry_rc:
-                raise RuntimeError(f'registry normalization failed ({registry_rc})')
+                rows.append((date,'canonical-rebuild','NEEDS-REFILL (staging; not release-ready)')); return
+            if registry_rc: raise RuntimeError(f'registry normalization failed ({registry_rc})')
             run(work,sys.executable,'scripts/apply_analysis_overrides.py',date)
             run(work,sys.executable,'scripts/enrich_full_analysis_v3.py',date)
             run(work,sys.executable,'scripts/normalize_release_seed.py',date)
@@ -120,17 +123,14 @@ def canonical_rebuild_simulation(date,parity=True):
             run(work,sys.executable,'scripts/render_information_architecture.py',date)
             run(work,sys.executable,'scripts/build_intelligence.py',date)
             run(work,sys.executable,'scripts/check_release_input.py',date)
-            if not staging:
-                run(work,sys.executable,'scripts/inject_visual_previews.py',date)
+            if not staging: run(work,sys.executable,'scripts/inject_visual_previews.py',date)
             run(work,sys.executable,'scripts/apply_cache_bust.py',date)
             run(work,sys.executable,'scripts/check_intelligence_contract.py')
-            if not staging:
-                run(work,sys.executable,'scripts/check_visual_contract.py',date)
+            if not staging: run(work,sys.executable,'scripts/check_visual_contract.py',date)
             run(work,sys.executable,'scripts/check_home_contract.py')
             run(work,sys.executable,'scripts/check_daily_contract.py')
             run(work,sys.executable,'scripts/check_information_architecture.py',date)
-            before=len(errors)
-            validate_home_archive_links(archive_dirs(work),root=work)
+            before=len(errors); validate_home_archive_links(archive_dirs(work),root=work)
             if len(errors)!=before: raise RuntimeError('rebuilt homepage archive contract failed')
         except Exception as exc:
             fail(date,f'canonical rebuild simulation failed: {exc}'); rows.append((date,'canonical-rebuild','FAIL'))
@@ -146,20 +146,16 @@ def main():
     configured_modes=sentinel_modes()
     for sentinel in sentinel_dates():
         match=next((d for d in stable_dirs if d.name==sentinel),None)
-        if match is None:
-            fail(sentinel,'configured sentinel archive missing')
-        else:
-            chosen[match.name]=match
-    selected=sorted(chosen.values(),key=lambda d:d.name)
-    modes=list(selected)
+        if match is None: fail(sentinel,'configured sentinel archive missing')
+        else: chosen[match.name]=match
+    selected=sorted(chosen.values(),key=lambda d:d.name); modes=list(selected)
     if staging and any(d.name==staging for d in all_dirs): modes.append(next(d for d in all_dirs if d.name==staging))
     print('Historical regression archives:',', '.join(d.name for d in modes))
     print('Configured sentinel dates:',', '.join(f'{d}({configured_modes.get(d,"canonical_parity")})' for d in sentinel_dates()))
     snapshot_universe=stable_dirs if staging else all_dirs
     for d in selected: validate_archive_snapshot(d,snapshot_universe,staging=staging)
     for d in modes:
-        parity=configured_modes.get(d.name,'canonical_parity')!='snapshot_only'
-        canonical_rebuild_simulation(d.name,parity=parity)
+        parity=configured_modes.get(d.name,'canonical_parity')!='snapshot_only'; canonical_rebuild_simulation(d.name,parity=parity)
     print('\nHISTORICAL REGRESSION MATRIX')
     for date,mode,status in rows: print(f'- {date:<10} | {mode:<17} | {status}')
     if errors:
