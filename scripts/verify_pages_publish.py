@@ -100,7 +100,12 @@ def analysis_errors(
         errors.append(f"{rid}: rendered analysis level={rendered_level}, expected {expected_level}")
 
     headings = body_el.find_all("h4", recursive=False)
-    paragraphs = body_el.find_all("p", recursive=False)
+    # BRIEF surfaces include a presentation-only evidence note before the real
+    # analysis blocks. It is intentionally not a canonical analysis paragraph.
+    paragraphs = [
+        p for p in body_el.find_all("p", recursive=False)
+        if "analysis-level-note" not in (p.get("class") or [])
+    ]
     if len(headings) < min_blocks:
         errors.append(f"{rid}: {expected_level} expected >={min_blocks} analysis headings, got {len(headings)}")
     if len(paragraphs) < min_blocks:
@@ -249,8 +254,6 @@ def main() -> int:
     minimum_attempts = int(page_policy.get('minimum_attempts', 8))
     minimum_delay = int(page_policy.get('minimum_delay_seconds', 15))
     configured_timeout = int(page_policy.get('timeout_seconds', 20))
-    # Workflow CLI values may request more resilience, but never less than the
-    # repository stability contract. This keeps the source of truth in repo config.
     args.attempts = max(args.attempts, minimum_attempts)
     args.delay = max(args.delay, minimum_delay)
     args.timeout = max(args.timeout, configured_timeout)
