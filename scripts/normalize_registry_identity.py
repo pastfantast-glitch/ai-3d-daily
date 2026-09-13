@@ -15,6 +15,9 @@ Rules:
 - Same canonical source URL with status=UPDATE + non-empty delta => preserve the
   historical stable ID, never mint a new one.
 - Re-rank surviving canonical items.
+- Homepage TOP5 is selected only from FULL-analysis survivors. BRIEF survivors may
+  appear in next10/category views but can never be promoted into TOP5 by registry
+  dedupe/reranking.
 - After normalization, apply the current repo daily release gate. A deficit means
   discovery is NOT complete: collection must continue through the configured fill
   ladder before .ready may be created.
@@ -49,12 +52,49 @@ def load_config():
     return json.loads((ROOT / 'config' / 'intelligence-v2.json').read_text('utf-8'))
 
 
-def selected_tier(rank, total, top5, next10):
-    if rank <= min(top5, total):
-        return 'top5'
-    if rank <= min(top5 + next10, total):
-        return 'next10'
-    return 'category_only'
+def assign_homepage_tiers(items, top5, next10):
+    """Assign homepage tiers without ever promoting BRIEF into TOP5.
+
+    Registry normalization can remove previously-ranked FULL items. Re-computing
+    tiers purely by compressed rank would otherwise promote BRIEF survivors into
+    TOP5 and violate config/full-analysis-depth.json. Select the highest-ranked
+    FULL survivors for TOP5, then fill next10 from all remaining survivors in rank
+    order. If fewer than `top5` FULL items survive, TOP5 is intentionally smaller;
+    evidence-depth policy takes precedence over presentation quota.
+    """
+    full_top5_ids = {
+        str(item.get('id', '')).strip()
+        for item in items
+        if str(item.get('analysis_level', 'FULL')).strip().upper() == 'FULL'
+    }
+    ordered_full_ids = [
+        str(item.get('id', '')).strip()
+        for item in items
+        if str(item.get('id', '')).strip() in full_top5_ids
+    ][:top5]
+    top_ids = set(ordered_full_ids)
+
+    non_top = [item for item in items if str(item.get('id', '')).strip() not in top_ids]
+    next_ids = {
+        str(item.get('id', '')).strip()
+        for item in non_top[:next10]
+    }
+
+    for item in items:
+        rid = str(item.get('id', '')).strip()
+        if rid in top_ids:
+            item['homepage_tier'] = 'top5'
+        elif rid in next_ids:
+            item['homepage_tier'] = 'next10'
+        else:
+            item['homepage_tier'] = 'category_only'
+
+    return {
+        'requested_top5': top5,
+        'actual_top5': len(top_ids),
+        'top5_full_only': True,
+        'next10': min(next10, len(non_top)),
+    }
 
 
 def is_verified_published(date):
@@ -187,11 +227,12 @@ def main():
     next10 = int(homepage.get('next10', 10))
     for rank, item in enumerate(kept, 1):
         item['rank_global'] = rank
-        item['homepage_tier'] = selected_tier(rank, len(kept), top5, next10)
+    tier_summary = assign_homepage_tiers(kept, top5, next10)
 
     data['items'] = kept
     meta = data.setdefault('metadata', {})
     meta['total_items'] = len(kept)
+    meta['homepage_tier_normalization'] = tier_summary
     collection = cfg.get('collection') or {}
     if collection.get('discovery_windows'):
         meta['discovery_windows'] = collection['discovery_windows']
@@ -224,6 +265,11 @@ def main():
         print(f"SKIP {rec['id']} -> historical {rec['historical_id']} source={rec['source_url']}")
     for old, new in rewrites.items():
         print(f'REWRITE {old} -> {new}')
+    print(
+        'HOMEPAGE TIER NORMALIZED: '
+        f"top5_full_only={tier_summary['top5_full_only']} "
+        f"actual_top5={tier_summary['actual_top5']} requested_top5={tier_summary['requested_top5']}"
+    )
 
     if gate['have'] > gate['max']:
         print(f"REGISTRY RELEASE BLOCKED: have={gate['have']} exceeds daily maximum={gate['max']}")
