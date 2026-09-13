@@ -1,1 +1,582 @@
-PLACEHOLDER
+{
+  "date": "2026-09-14",
+  "schema_version": 3,
+  "metadata": {
+    "total_items": 30,
+    "collection_mode": "production-intelligence-preference-v1-hybrid",
+    "collection_contract_effective_date": "2026-09-04",
+    "preference_contract_effective_date": "2026-09-06",
+    "discovery_windows": [
+      "24h",
+      "7d",
+      "30d",
+      "6m",
+      "evergreen"
+    ],
+    "discovery_coverage": {
+      "fill_ladder_exhausted": true,
+      "backlog_checked": true,
+      "backlog_remaining_eligible": 0,
+      "targeted_refill_performed": true,
+      "quality_first_confirmed": true,
+      "windows": {
+        "24h": {"status": "exhausted", "candidates_found": 0},
+        "7d": {"status": "exhausted", "candidates_found": 24},
+        "30d": {"status": "exhausted", "candidates_found": 19},
+        "6m": {"status": "exhausted", "candidates_found": 12},
+        "evergreen": {"status": "exhausted", "candidates_found": 8}
+      },
+      "category_candidates": {
+        "ai-generation": {"candidates_considered": 8},
+        "3d-production": {"candidates_considered": 16},
+        "3d-animation": {"candidates_considered": 14},
+        "engine-art": {"candidates_considered": 12},
+        "emerging-case": {"candidates_considered": 9},
+        "blender-dcc": {"candidates_considered": 17}
+      },
+      "notes": "依 current main 契約完成 24h→7d→30d→6m→evergreen discovery。24h 搜尋未發現可通過 Quality Gate 的新 production intelligence；7d/30d 以可重現 breakdown、工具與技術案例為主，6m/evergreen 只補仍具操作價值的官方版本、研究與工作流。Rolling Backlog 2026-09-13 為空，已刷新並檢查。針對 AI Generation、Engine Art、3D Animation/AI motion 與 Emerging Case 執行 targeted refill；來源池僅作 discovery channel，未施加 domain bonus、quota 或必查權重。候選經來源可驗證性、既有已發布主題/URL人工初篩、substantive-delta、Classification、Quality Gate 與 Ranking 後保留 30 項；疑似重複、純展示低 production value、行銷或缺乏證據項目未作 filler。Registry identity 仍由 repo pre-ready gate 做 deterministic 最終正規化。"
+    }
+  },
+  "items": [
+    {
+      "id": "large-scale-environment-tools-blender-ue5",
+      "title": "大型遊戲場景工具鏈：Blender Geometry Nodes 破壞、UE5 Array／Fracture／PCG 串成可控環境製作流程",
+      "summary": "Jolan Huijskes 公開大型可玩場景的工具設計方法，把 Blender 非破壞破碎與 Unreal Engine Array、Fracture、PCG 散佈串在一起，核心原則是降低等待、保留美術控制並讓工具可除錯。",
+      "quick_impact": "★★★★★",
+      "source_url": "https://80.lv/articles/developing-tools-for-large-scale-3d-game-environments",
+      "category": "3d-production",
+      "subcategory": "environment-production",
+      "ranking_score": 100,
+      "analysis_level": "FULL",
+      "full_analysis": [
+        {"label": "製作流程與技術變化", "text": "這套流程不是單點展示，而是把 Blender Geometry Nodes 的模組化破碎、Sockets 資料傳遞、Unreal Construction Script 與 PCG 散佈拆成多個可重用工具。作者特別避開每次修改都回 Houdini 重算的摩擦，讓破壞件先在 DCC 預處理，再於 UE5 內以可即時回饋的方式組裝與刪除。"},
+        {"label": "Production 影響", "text": "對大型環境與外包資產流程，價值在於把『程序化』從黑盒生成改成 Level Artist 可控制的工具。工具可以保留模組化接縫、以 socket 保存 fracture offset，並透過 Actor Data、Tag 與 picker 讓 PCG 接受人工構圖約束，能降低返工與工具被美術棄用的風險。"},
+        {"label": "導入測試與限制", "text": "建議先用一組可重複牆柱模組做 POC，量測破碎前處理時間、UE 編輯回饋、150 個以上 fracture sphere 的效能，以及 PCG 與 World Partition 下的 instance batching。作者也明確指出 Array 與 Fracture 尚未整合、過多 fracture sphere 會有性能問題，因此適合當工具設計參考而非直接照搬。"}
+      ],
+      "rank_global": 1,
+      "homepage_tier": "top5"
+    },
+    {
+      "id": "dr-doom-metahuman-zbrush-character",
+      "title": "Dr. Doom 角色製作拆解：MetaHuman 頭部、ZBrush／Marvelous 服裝與 UE5 最終呈現",
+      "summary": "Rocksteady 資深角色美術 Patrick van Rooijen 分享 Dr. Doom 角色流程，涵蓋 MetaHuman 頭臉基底、ZBrush 與 Marvelous Designer 服裝、材質磨損與 Unreal Engine 最終呈現。",
+      "quick_impact": "★★★★★",
+      "source_url": "https://80.lv/articles/making-a-recreation-of-dr-doom-using-unreal-engine-and-zbrush",
+      "category": "3d-production",
+      "subcategory": "character-production",
+      "ranking_score": 98,
+      "analysis_level": "FULL",
+      "full_analysis": [
+        {"label": "角色製作流程", "text": "流程以 MetaHuman 作為頭部與臉部基礎，再用 ZBrush 深化角色造型，服裝部分結合 Marvelous Designer 與雕刻整理，最後把角色帶到 Unreal Engine 檢視材質與整體讀形。這種做法把標準化的人體／臉部起點與手工造型結合，能縮短從零建立基礎頭部的時間。"},
+        {"label": "Production 影響", "text": "對遊戲角色團隊最值得參考的是『可重用基底＋高辨識度英雄角色』的分工：MetaHuman 負責成熟的人體與臉部框架，真正的角色差異則集中在輪廓、服裝、材質老化與英雄細節。若團隊已有 UE 角色管線，這種方式也便於早期就用引擎光照檢查皮膚、布料與金屬讀值。"},
+        {"label": "導入測試與限制", "text": "實際導入時應以既有角色規格驗證 MetaHuman topology／骨架是否符合 morph、LOD、髮片與動畫需求，並記錄從 MetaHuman 到最終自訂頭部的修改量。高品質個人作品不等於可直接套用到量產角色，服裝模擬、材質 set 數量與英雄級細節也必須再對效能預算做裁切。"}
+      ],
+      "rank_global": 2,
+      "homepage_tier": "top5"
+    },
+    {
+      "id": "magneto-electric-prop-controlrig-substrate",
+      "title": "低模道具到 UE5 Control Rig／Substrate：19 世紀電擊機道具挑戰完整拆解",
+      "summary": "Kyle Michel 分享歷史機械道具的低模控制、材質與 Unreal Engine 呈現，並延伸到 Control Rig 的數學設定與 Substrate 材質實務。",
+      "quick_impact": "★★★★★",
+      "source_url": "https://80.lv/articles/recreating-a-19th-century-magneto-electric-shock-machine-for-a-prop-challenge",
+      "category": "3d-production",
+      "subcategory": "prop-production",
+      "ranking_score": 96,
+      "analysis_level": "FULL",
+      "full_analysis": [
+        {"label": "製作流程與技術", "text": "案例從 Blender 的低模控制出發，以保留輪廓與關鍵機械結構為優先，再把高頻表面資訊交給烘焙與 Substance Painter；進到 Unreal Engine 後又加入 Control Rig 與 Substrate，讓原本只是靜態道具的製作延伸到可動結構與最終材質驗證。"},
+        {"label": "Production 影響", "text": "這種跨 DCC／引擎的道具流程適合用來建立『幾何預算—烘焙細節—材質—可動結構』的驗收模板。尤其對機械物件，不需要所有可動件都使用角色骨架；Control Rig 可以在引擎內快速驗證轉軸、連桿與展示動畫，減少返回 DCC 的往返。"},
+        {"label": "導入測試與限制", "text": "建議挑一個現有機械道具，分別測 Static Mesh＋材質動畫與 Control Rig 兩條路徑，記錄 Blueprint／Rig 複雜度、CPU/GPU 成本與外包交付難度。Substrate 的材質彈性高，但材質層級與 shader 成本仍要在目標平台實測，不能只依桌機 hero render 判斷。"}
+      ],
+      "rank_global": 3,
+      "homepage_tier": "top5"
+    },
+    {
+      "id": "fantasy-character-2d-to-3d-layered-costume",
+      "title": "2D 設定到完整遊戲角色：Marvelous 分層服裝、ZBrush、羽毛卡與 UE 呈現",
+      "summary": "Artem Bieliakov 詳細拆解 The Widow of Feathers，從 2D 概念的服裝輪廓、Marvelous Designer 模擬、ZBrush 細化、羽毛卡、RizomUV、Substance 到 UE 最終呈現。",
+      "quick_impact": "★★★★★",
+      "source_url": "https://80.lv/articles/breakdown-modeling-a-3d-fantasy-character-based-on-a-2d-concept",
+      "category": "3d-production",
+      "subcategory": "character-production",
+      "ranking_score": 95,
+      "analysis_level": "FULL",
+      "full_analysis": [
+        {"label": "角色製作流程", "text": "案例先以 Marvelous Designer 依 2D 概念建立大輪廓與分層服裝，再降 Particle Distance 補小褶皺，帶入 ZBrush 增厚、修形與製作裝飾；鳥羽則以 XGen 建立 flow、轉 curve 後用 GS CurveTools 佈置羽毛片，最後用 Maya retopo、RizomUV、Marmoset baking 與 Substance Painter 完成。"},
+        {"label": "Production 影響", "text": "對角色外包與內製檢收，這篇最大的價值是每一階段都有清楚的『輪廓優先』決策：先解大形與布層，再進細節，而羽毛這類複雜附屬物也被拆成高模、貼圖與 card placement 三個可驗證步驟。這能直接轉成角色 milestone 與 review checklist。"},
+        {"label": "導入測試與限制", "text": "可用一套現有複雜服裝角色測試 MD→ZBrush→低模的返工量，並比較羽毛片在 UE 的 overdraw、排序與 LOD。案例使用六組 texture set 與英雄級細節，若面向即時遊戲或手機平台，必須再驗證材質合併、貼圖解析度、hair/feather card 數量與 draw call。"}
+      ],
+      "rank_global": 4,
+      "homepage_tier": "top5"
+    },
+    {
+      "id": "bioscope-prop-aging-workflow",
+      "title": "歷史道具 Bioscope：以真實使用痕跡驅動低模、UV、烘焙與材質老化",
+      "summary": "PixelDhara 以印度傳統 Bioscope 為題，完整說明參考蒐集、3ds Max 高模、Maya 低模與 UV、Substance baking/texturing，以及 UE5 燈光與 Sequencer 呈現。",
+      "quick_impact": "★★★★★",
+      "source_url": "https://80.lv/articles/bringing-a-piece-of-indian-cultural-history-to-life-in-3d",
+      "category": "3d-production",
+      "subcategory": "prop-production",
+      "ranking_score": 93,
+      "analysis_level": "FULL",
+      "full_analysis": [
+        {"label": "道具製作流程", "text": "流程先研究物件結構與實際接觸區，再於 3ds Max 建高模與 Path Deform 細節，轉 Maya 做低模與 UV，最後在 Substance Painter 烘焙與材質。老化不是平均灑 dirt，而是依手部接觸、遮蔽區、接縫與積塵位置分配磨損，讓材質資訊與物件使用邏輯一致。"},
+        {"label": "Production 影響", "text": "這種『先定義物件歷史，再做 wear map』的方法非常適合道具外包規範。它能避免常見的 procedural grunge 過度均勻，並讓 lead 在 review 時有可追溯的判斷依據：哪些邊應磨、哪些區域應乾淨、哪些接縫應積塵，而不是只用主觀的『再髒一點』。"},
+        {"label": "導入測試與限制", "text": "可把現有一件硬表面道具用同樣方法重做材質 pass，分別比較純 generator 與 usage-driven wear 的閱讀性與工時。案例用了四張 UV sheet 並以 UE5 做高品質呈現，因此正式遊戲資產仍需再做 texel density、貼圖合併、LOD 與燈光條件下的一致性驗證。"}
+      ],
+      "rank_global": 5,
+      "homepage_tier": "top5"
+    },
+    {
+      "id": "orthodox-church-swamp-environment",
+      "title": "沼澤廢棄教堂場景拆解：雕刻到材質、植被分層與 Unreal 場景整合",
+      "summary": "Nicolas Pablos 分享廢棄東正教堂場景，涵蓋 ZBrush／Substance 的 sculpt-to-texture、SpeedTree 與自製植被分層，以及 Blender、Maya、Unreal Engine 的環境整合。",
+      "quick_impact": "★★★★★",
+      "source_url": "https://80.lv/articles/breakdown-creating-a-3d-scene-of-a-decaying-orthodox-church-in-a-swamp",
+      "category": "3d-production",
+      "subcategory": "environment-production",
+      "ranking_score": 92,
+      "analysis_level": "FULL",
+      "full_analysis": [
+        {"label": "場景製作流程", "text": "案例把主建築的 sculpt-to-texture 與沼澤植被分開處理：高頻結構與材質由 ZBrush、Substance Designer/Painter 建立，植被則依高度、密度與視覺層級組合，再進 Unreal Engine 做最終場景。這種拆法讓硬表面建築與自然資產各自使用最適合的工具鏈。"},
+        {"label": "Production 影響", "text": "對大型場景團隊，重點不是單一漂亮資產，而是如何用 layered vegetation 與材質變化打破重複，同時讓建築的破損、濕度與沼澤環境在同一敘事下成立。這類案例很適合反推環境 kit、材質 instance 與 vegetation library 的拆分方式。"},
+        {"label": "導入測試與限制", "text": "導入時應以固定鏡頭和 gameplay 鏡頭分別檢查材質細節、植被密度與 silhouette，並用引擎 profiler 量測 overdraw、shadow、材質複雜度及 LOD/HLOD。作品偏 portfolio hero scene，若套到大範圍遊戲場景，資產密度與燈光成本仍需重新配額。"}
+      ],
+      "rank_global": 6,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "human-tree-character-zbrush-maya",
+      "title": "人樹角色雕刻：以輪廓、材質觸感與敘事形體把文字角色轉成 3D",
+      "summary": "Andrea Buitrago 說明如何從小說角色轉譯成 3D 雕塑，重點包括輪廓、脆弱感、樹木與石材觸感，以及 ZBrush、Maya、Substance、Arnold 的呈現。",
+      "quick_impact": "★★★★★",
+      "source_url": "https://80.lv/articles/book-character-to-a-3d-piece-sculpting-human-tree-character-in-zbrush-and-maya",
+      "category": "3d-production",
+      "subcategory": "character-production",
+      "ranking_score": 90,
+      "analysis_level": "FULL",
+      "full_analysis": [
+        {"label": "角色設計與流程", "text": "這個案例不是直接照著正面設定建模，而是先把文字敘事拆成可見的形體語言：脆弱、樹木生長與石雕感，再用 ZBrush 控制大形與表面節奏，配合 Maya、Substance 及 Arnold 完成材質與呈現。它示範了沒有完整 orthographic concept 時如何建立可執行的造型方向。"},
+        {"label": "Production 影響", "text": "對角色 concept-to-3D 階段，這類方法可以補足只照 2D 線稿複製的缺點。先定義 silhouette、材質故事與視覺重心，再決定哪些細節做成幾何、哪些交給材質，可讓角色在視角改變後仍保有設計意圖，特別適合奇幻生物或非標準人體角色。"},
+        {"label": "導入測試與限制", "text": "建議將此方法用在一個只有單張概念或文字設定的 NPC，要求美術在高模前先提交 silhouette turntable 與材質語意板，觀察是否能降低後期比例返工。案例偏雕塑展示，真正 game-ready 流程仍需補 retopo、UV、rig deformation 與引擎材質成本驗證。"}
+      ],
+      "rank_global": 7,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "animo-v10-maya-500-tools",
+      "title": "Animo v10.0：Maya 動畫工具整合超過 500 項，新增參考素材與動畫 sliders",
+      "summary": "Animo v10.0 把大量 Maya 動畫小工具集中到 Tools Editor，並加入影像／影片參考、六個 animation sliders、hotkey 與 shelf 整合，適合評估動畫師日常重複操作的工具化。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://80.lv/articles/over-500-free-maya-animation-tools-are-now-available-in-one-place",
+      "category": "3d-animation",
+      "subcategory": "animation",
+      "ranking_score": 88,
+      "analysis_level": "BRIEF",
+      "brief_reason": "useful-tool-or-addon-limited-depth",
+      "full_analysis": [
+        {"label": "情報重點", "text": "Animo v10.0 把超過 500 個 Maya 動畫工具集中管理，可直接加入影片、GIF、圖片參考，並提供新的 animation sliders、hotkey 與 shelf 快捷整合；對動畫 blocking、pose 修整與重複操作自動化具有直接價值。"},
+        {"label": "導入判斷", "text": "建議先讓一名 Maya animator 用現有角色做一週 A/B 測試，記錄常用工具命中率、hotkey 衝突與 scene 穩定性。文章能確認功能方向，但缺少大型 production 的效能與維護證據，因此列 BRIEF。"}
+      ],
+      "rank_global": 8,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "ue5-shape-cage-runtime-deformation",
+      "title": "UE5 Shape Cage：以 WPO 做 27 點 GPU 籠狀變形，避開 CPU soft-body 模擬",
+      "summary": "Shape Cage 用 World Position Offset 在 vertex shader 執行網格變形，依碰撞位置、力道與方向推導 dent，並以約 12 bytes/凹痕的資訊做網路同步。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://80.lv/articles/this-ue5-tool-can-deform-any-static-mesh-at-runtime",
+      "category": "engine-art",
+      "subcategory": "tools",
+      "ranking_score": 87,
+      "analysis_level": "BRIEF",
+      "brief_reason": "useful-tool-or-addon-limited-depth",
+      "full_analysis": [
+        {"label": "情報重點", "text": "Shape Cage 以 27 點 cage 與 World Position Offset 做 GPU 變形，不修改 CPU mesh，也不依賴 skeletal mesh 或 soft-body solver；碰撞只提供位置、力道與方向，皺褶則以 normal map 補足小尺度細節。"},
+        {"label": "導入判斷", "text": "對可破壞／可擠壓道具可先測 Nanite 與非 Nanite、多人同步及高頂點數情境。功能來自 marketplace tool 的展示與作者說明，尚缺獨立 benchmark，因此列 BRIEF。"}
+      ],
+      "rank_global": 9,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "ue5-fpom-displacement-alternative",
+      "title": "UE5 FPOM：方向感知 POM 支援 Landscape／Mesh Terrain／Decal，主打低於 Nanite displacement 成本",
+      "summary": "FPOM 延伸傳統 Parallax Occlusion Mapping，能跟隨 UV 旋轉／縮放與地形坡度，並支援 Landscape、Mesh Terrain、mesh 與 decals。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://80.lv/articles/pom-shader-that-achieves-nanite-like-displacement-at-lower-cost",
+      "category": "engine-art",
+      "subcategory": "shader",
+      "ranking_score": 86,
+      "analysis_level": "BRIEF",
+      "brief_reason": "useful-tool-or-addon-limited-depth",
+      "full_analysis": [
+        {"label": "情報重點", "text": "FPOM 針對傳統 POM 的方向與坡度問題做改良，可配合 tri-planar 與 UV variation，作者聲稱 basepass 測試約為 Nanite displacement 成本的 0.2 倍，定位在平面材質與真正幾何位移之間。"},
+        {"label": "導入判斷", "text": "最適合用同一塊地面材質比較 Nanite displacement、一般 POM 與 FPOM 的 grazing angle、shadow、silhouette 與 GPU cost。現有數據主要由開發者提供，必須在專案平台自行驗證。"}
+      ],
+      "rank_global": 10,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "blender53-reactive-cel-lighting",
+      "title": "Blender 5.3 NPR 原型：可自訂逐燈光照行為，Cel Shader 能回應 light color 與 cast shadow",
+      "summary": "Blender 5.3 開發中的自訂材質 lighting nodes 讓 NPR 使用者能逐燈計算自己的 shading behavior，並把結果送入正確 render passes。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://80.lv/articles/fully-customizable-reactive-cel-shading-in-blender",
+      "category": "blender-dcc",
+      "subcategory": "blender",
+      "ranking_score": 85,
+      "analysis_level": "BRIEF",
+      "brief_reason": "early-release-limited-evidence",
+      "full_analysis": [
+        {"label": "情報重點", "text": "Krysidian 與 Goo Studios 的 NPR 原型顯示 Blender 5.3 正朝可自訂 material lighting 前進，重點是 shader 能逐燈反應 light color、cast shadow，並把自訂結果接到 render pass，而不是只靠 emission 或後處理假出 toon 明暗。"},
+        {"label": "導入判斷", "text": "這對 Toon/NPR 研究很值得持續追，但目前仍屬開發中功能；建議用既有 Ramp、臉部 SDF 與 hair highlight 測試材質節點是否能取代部分 workaround。尚未正式穩定，列 BRIEF。"}
+      ],
+      "rank_global": 11,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "pro-particles-53-blender-multiphysics",
+      "title": "Pro Particles 5.3：Blender GPU 多物理工具加入 FLIP/APIC、SPH、MPM 與 Alembic cache",
+      "summary": "Pro Particles 5.3 擴充液體、MPM、粒子 constraint、flow field 與 dendrite，並重做 Post/Output、persistent cache 與 Alembic 輸出。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://80.lv/articles/advanced-gpu-powered-multi-physics-toolkit-for-blender-artists",
+      "category": "blender-dcc",
+      "subcategory": "addon",
+      "ranking_score": 84,
+      "analysis_level": "BRIEF",
+      "brief_reason": "useful-tool-or-addon-limited-depth",
+      "full_analysis": [
+        {"label": "情報重點", "text": "Pro Particles 5.3 把 FLIP/APIC、SPH、multi-material MPM、constraints、self-gravity 與 Pyro 串進 Blender 的 GPU workflow，並加入 persistent cache、Alembic export、multi-source emitter 與 reusable masks。"},
+        {"label": "導入判斷", "text": "可用一個液體＋粒子＋Pyro 混合 shot 測預覽速度、cache 穩定度與 Alembic 回 UE/Unity 的一致性。現階段屬第三方付費工具，production 穩定性仍需自行壓測，因此列 BRIEF。"}
+      ],
+      "rank_global": 12,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "vizibeat-ue5-audio-procedural-animation",
+      "title": "Vizibeat：UE5 以音訊節拍驅動燈光、材質、粒子與攝影機，減少手動 keyframe",
+      "summary": "Vizibeat 用 node graph 將音訊振幅與 bars/beats 映射到 UE 場景參數，可自動產生 initial pass，也能用 MIDI 或手動編輯。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://80.lv/articles/create-procedural-ue5-animations-based-on-music-with-this-tool",
+      "category": "3d-animation",
+      "subcategory": "animation",
+      "ranking_score": 83,
+      "analysis_level": "BRIEF",
+      "brief_reason": "useful-tool-or-addon-limited-depth",
+      "full_analysis": [
+        {"label": "情報重點", "text": "Vizibeat 把動畫時間基準從 frame 擴展到 bars/beats，讓燈光、材質、粒子、camera 各自綁定音樂特徵；開發者案例指出原本需要數天手動對拍的工作可降到數小時。"},
+        {"label": "導入判斷", "text": "適合音樂遊戲、演唱會視覺與節奏型 UI/VFX 的 previs。現有案例偏現場視覺製作，對 gameplay deterministic、版本管理與大量 actor 的成本資料有限，因此列 BRIEF。"}
+      ],
+      "rank_global": 13,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "focalrig-gasp-first-person",
+      "title": "FocalRig × UE5.8 GASP：保留 Motion Matching／Foot Placement 的 true first-person 程序化瞄準方案",
+      "summary": "FocalRig 的 Control Rig 節點可在 Unreal Game Animation Sample 上快速加 true first-person，同時保留 motion matching、foot placement、vaulting 與 attack 同步。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://80.lv/articles/true-first-person-mode-in-unreal-engine-s-game-animation-sample-project",
+      "category": "3d-animation",
+      "subcategory": "rigging",
+      "ranking_score": 82,
+      "analysis_level": "BRIEF",
+      "brief_reason": "early-release-limited-evidence",
+      "full_analysis": [
+        {"label": "情報重點", "text": "FocalRig 示範以少量 self-configuring Control Rig nodes 在 GASP 上加入第一人稱視角，並保留 motion matching、foot placement、vaulting、sliding 與同步攻擊，顯示程序化 look/aim 可少改原動畫資料。"},
+        {"label": "導入判斷", "text": "值得用 UE5.8 sample 驗證鏡頭、上半身 aim、武器 socket 與 motion matching 的相容性。完整 tutorial 與檔案仍在後續釋出階段，因此目前只能列 BRIEF。"}
+      ],
+      "rank_global": 14,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "rokoko-vision-30-create",
+      "title": "Rokoko Vision 3.0：單目 AI Mocap solver 重寫並併入 Create，強調更乾淨動作與快速迭代",
+      "summary": "Rokoko 在 2026-07-16 推出 Vision 3.0，重寫 monocular solver，將 Video-to-Motion 與 Text-to-Motion 收進 Rokoko Create，並可回 Studio 編輯與輸出。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://www.rokoko.com/insights/introducing-rokoko-vision-3-0",
+      "category": "ai-generation",
+      "subcategory": "ai-motion",
+      "ranking_score": 81,
+      "analysis_level": "BRIEF",
+      "brief_reason": "short-official-announcement",
+      "full_analysis": [
+        {"label": "情報重點", "text": "Vision 3.0 是 Rokoko 單目 AI mocap pipeline 的重寫版本，主打更乾淨的 motion、更快 processing，並把 video-to-motion 直接併入 Create，後續可在 Rokoko Studio 編輯與匯出到主流 DCC／引擎。"},
+        {"label": "導入判斷", "text": "可用相同手機影片與現有 mocap 方案比較 foot sliding、手腳遮擋、root motion、retarget 後 cleanup 工時。官方有清楚功能說明，但缺少獨立品質 benchmark，列 BRIEF。"}
+      ],
+      "rank_global": 15,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "mecha-centaur-lance-animation-reference",
+      "title": "Mecha Centaur 長槍攻擊：多角度展示高速戰鬥動畫的重量、弧線與節奏",
+      "summary": "Martin Chang 的 Rosetta 長槍動畫以多角度展示高速連擊，適合作為 stylized gameplay attack 的 pose readability、arcs 與 timing 參考。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://80.lv/articles/this-mecha-centaur-s-lance-attack-is-pure-animation-eye-candy",
+      "category": "3d-animation",
+      "subcategory": "animation",
+      "ranking_score": 80,
+      "analysis_level": "BRIEF",
+      "brief_reason": "high-value-showcase-reference",
+      "full_analysis": [
+        {"label": "動畫參考價值", "text": "這組 Maya 動畫雖沒有完整技術拆解，但多角度展示長槍連擊、四足／半人馬重心轉移與高速 recovery，對 combat animation 的 silhouette、arc、anticipation 與 impact timing 有很高參考價值。"},
+        {"label": "限制", "text": "來源屬高品質 showcase，沒有 rig、curve、frame breakdown 或 production integration 細節，因此不應升級成完整工作流分析，依契約列 BRIEF。"}
+      ],
+      "rank_global": 16,
+      "homepage_tier": "category_only"
+    },
+    {
+      "id": "fairytale-pond-ucupaint-blender",
+      "title": "Blender 童話池塘製作：Ucupaint layer workflow 搭配 Eevee 的場景貼圖管理",
+      "summary": "Ramy 展示從 default cube 到完整池塘的製作過程，並使用 Ucupaint 管理 Eevee／Cycles 的 texture layers、masks、decals 與 displacement。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://80.lv/articles/watch-how-this-fairytale-pond-with-water-lilies-was-made-in-blender",
+      "category": "blender-dcc",
+      "subcategory": "blender",
+      "ranking_score": 79,
+      "analysis_level": "BRIEF",
+      "brief_reason": "high-value-showcase-reference",
+      "full_analysis": [
+        {"label": "情報重點", "text": "案例展示 Ucupaint 在 Blender 內把 image、vertex attribute、generated texture 與 mask 疊在單一 node group 管理，並支援 decal、AO bake、real-time/vector displacement；對希望把 Painter 式 layer 思維留在 Blender 的流程有參考價值。"},
+        {"label": "導入判斷", "text": "可用一個 stylized environment asset 測 Ucupaint layer 數、shader compile、Eevee 預覽與匯出到遊戲引擎的落差。來源以 time-lapse 為主，production 深度有限，列 BRIEF。"}
+      ],
+      "rank_global": 17,
+      "homepage_tier": "category_only"
+    },
+    {
+      "id": "studiojoin-free-maya-rig",
+      "title": "STUDIOJOIN 免費 Maya Rig：IK/FK、Soft IK、World/Local 與臉部控制可用於 rigging 練習",
+      "summary": "STUDIOJOIN 提供 Maya 2023+ 免費非商用角色 rig，包含全局縮放、IK/FK、World/Local、Soft IK 與臉部 controller，可做 rig 結構與 animator usability 參考。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://80.lv/articles/get-this-free-maya-rig-with-advanced-controls",
+      "category": "3d-animation",
+      "subcategory": "rigging",
+      "ranking_score": 78,
+      "analysis_level": "BRIEF",
+      "brief_reason": "useful-tool-or-addon-limited-depth",
+      "full_analysis": [
+        {"label": "情報重點", "text": "這個免費 rig 同時提供 IK/FK、Soft IK、World/Local space、全局縮放與臉部 controller，對建立角色 rig checklist、測 animator-facing controls 與新人訓練很實用。"},
+        {"label": "限制", "text": "授權僅非商用，且文章沒有 deformation benchmark、export-to-engine 或複雜 production scene 的驗證，因此定位為學習／參考資產，列 BRIEF。"}
+      ],
+      "rank_global": 18,
+      "homepage_tier": "category_only"
+    },
+    {
+      "id": "folding-chair-blender-rigging",
+      "title": "Blender 機械綁定：用 bone chain 與 IK 建立折疊椅連桿並處理比例誤差",
+      "summary": "DemNikoArt 以 Blender 5.2 LTS 拆解折疊椅機構，從運動分析、bone chain、IK 到比例不完全吻合時的修正，並提供 rigged/unrigged 檔案。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://80.lv/articles/tutorial-rigging-folding-chair-in-blender",
+      "category": "3d-animation",
+      "subcategory": "rigging",
+      "ranking_score": 77,
+      "analysis_level": "BRIEF",
+      "brief_reason": "useful-tool-or-addon-limited-depth",
+      "full_analysis": [
+        {"label": "情報重點", "text": "教程把機械物件綁定拆成運動分析、bone chain、IK 自動化與錯誤修正，特別適合非角色的門、機構、武器與展開式道具，能補足只會 humanoid rig 的知識缺口。"},
+        {"label": "導入判斷", "text": "建議用一個現有多連桿道具重做，檢查 constraint 穩定性、export 到引擎後的 transform 與 animator 操作成本。屬單一教學案例，列 BRIEF。"}
+      ],
+      "rank_global": 19,
+      "homepage_tier": "category_only"
+    },
+    {
+      "id": "maya-bifrost-detached-facial-features",
+      "title": "Maya Bifrost Detached Facial Features：把嘴部脫離頭部 topology，擴大 stylized 表情範圍",
+      "summary": "Farid M. Panah 示範用 Maya Bifrost 建立 DFF facial rig，概念來自 Pixar《Win or Lose》：嘴部與頭 topology 分離，讓動畫師能做更誇張形變。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://80.lv/articles/pixar-style-detached-facial-features-rig-with-bifrost",
+      "category": "3d-animation",
+      "subcategory": "facial",
+      "ranking_score": 76,
+      "analysis_level": "BRIEF",
+      "brief_reason": "early-release-limited-evidence",
+      "full_analysis": [
+        {"label": "情報重點", "text": "DFF 的核心是讓嘴部特徵不受固定頭部拓樸約束，透過 Bifrost 建立可獨立移動與重塑的 facial feature，對卡通角色的極端 mouth shape、smear 與表情設計特別有價值。"},
+        {"label": "限制", "text": "作者尚未公開完整 breakdown，現階段主要是技術展示；需要後續驗證 deformation、skin/texture 接縫、LOD 與引擎輸出，因此列 BRIEF。"}
+      ],
+      "rank_global": 20,
+      "homepage_tier": "category_only"
+    },
+    {
+      "id": "free-fitness-mocap-pack",
+      "title": "免費 Fitness Mocap Pack：15 分鐘訓練／伸展／健身動作，可作 gameplay 與資料庫補充",
+      "summary": "Anderson Rohr 發布新的免費 mocap 動作包，含 functional training、stretching、strength 與 gym movements，定位於遊戲、動畫與 cinematic 使用。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://80.lv/articles/get-these-free-mocap-fitness-workout-animations",
+      "category": "3d-animation",
+      "subcategory": "mocap",
+      "ranking_score": 75,
+      "analysis_level": "BRIEF",
+      "brief_reason": "useful-tool-or-addon-limited-depth",
+      "full_analysis": [
+        {"label": "情報重點", "text": "這批免費 mocap 約 15 分鐘，動作類型涵蓋訓練、伸展與力量運動，適合補充 NPC、健身、日常 locomotion 之外的動作資料庫，也可用來測 retarget／cleanup pipeline。"},
+        {"label": "限制", "text": "文章未提供逐 clip 的骨架品質、foot contact 或授權細節分析；導入前應先抽樣檢查 root、手腳穿插與目標骨架 retarget，列 BRIEF。"}
+      ],
+      "rank_global": 21,
+      "homepage_tier": "category_only"
+    },
+    {
+      "id": "houdini-hda-procedural-passage-ue5",
+      "title": "Houdini HDA × UE5 程序化石道：曲線驅動 rock 生成、散佈與引擎內 smart material",
+      "summary": "Ahmed Damarany 以自訂 Houdini HDA 沿曲線生成石道，控制尺寸、數量、破損與 polygon count，並在 UE5 以程序材質與植被散佈完成場景。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://80.lv/articles/procedural-stone-passage-built-with-a-custom-houdini-hda-in-unreal-engine-5",
+      "category": "3d-production",
+      "subcategory": "environment-production",
+      "ranking_score": 74,
+      "analysis_level": "BRIEF",
+      "brief_reason": "high-value-showcase-reference",
+      "full_analysis": [
+        {"label": "情報重點", "text": "HDA 以 curve 為輸入控制 rock generation，並暴露尺寸、數量、damage 與 polycount；植被散佈同樣參數化，Substance Designer base maps 則被重建成 UE5 內可即時調整的 smart material。"},
+        {"label": "導入判斷", "text": "這是很清楚的 Houdini→UE 技術美術範例，但來源是作品展示摘要而非完整 node graph；可用來設計 HDA parameter contract，仍需自己驗證 cook time、LOD 與多人協作。"}
+      ],
+      "rank_global": 22,
+      "homepage_tier": "category_only"
+    },
+    {
+      "id": "unity-ori-style-2d-water",
+      "title": "Unity 2D Renderer 程序化水面：解析 ripple＋假透視 surface，偏美術可控而非物理解算",
+      "summary": "BxYass 的 Ori-inspired 水系統以 analytical ripples、shader 與 rendering 技巧製作 2.5D 水面，支援 currents、debris、浮台、light rays、wakes、API 與 custom inspectors。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://80.lv/articles/creating-ori-style-2d-water-system-in-unity",
+      "category": "engine-art",
+      "subcategory": "unity",
+      "ranking_score": 73,
+      "analysis_level": "BRIEF",
+      "brief_reason": "early-release-limited-evidence",
+      "full_analysis": [
+        {"label": "情報重點", "text": "系統不用流體模擬，而以 frequency、impact strength、damping 等解析參數生成 ripple，並用 foam/pattern 位移做 fake surface perspective；同時加入 exclusion zone、current、wake、light ray 與 code sampling API。"},
+        {"label": "導入判斷", "text": "對 URP/2D stylized 專案非常適合做低成本水體 POC，應實測多個互動源、camera angle、mobile fill-rate 與 batching。工具仍在發布前後期，完整效能資料有限，列 BRIEF。"}
+      ],
+      "rank_global": 23,
+      "homepage_tier": "category_only"
+    },
+    {
+      "id": "abcd-constant-vram-gaussian-splats",
+      "title": "ABCD：大型 Gaussian Splat 場景以 block coordinate descent 達到近似固定 VRAM 訓練",
+      "summary": "ABCD 將 radiance field 分區，只讓一個 block 參與更新，其餘區域預渲染成前景／背景 RGBA，使 peak VRAM 對整體場景尺度趨近 O(1)。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://arxiv.org/abs/2608.27735",
+      "category": "emerging-case",
+      "subcategory": "research",
+      "ranking_score": 72,
+      "analysis_level": "BRIEF",
+      "brief_reason": "emerging-research-limited-production-evidence",
+      "full_analysis": [
+        {"label": "研究重點", "text": "ABCD 利用 alpha compositing 的結合性，把非活動空間區塊預先 collapse 成前景／背景 RGBA，只更新單一 partition；在固定 partition 與解析度下，VRAM 不再隨整個場景範圍線性增長。"},
+        {"label": "成熟度判斷", "text": "論文回報重建品質相對 3DGS 的 PSNR 降幅低於 5%，且有公開程式碼，對大場景掃描很有潛力；但它仍是研究型訓練框架，與遊戲即時 runtime、編輯工具鏈的整合尚需額外驗證。"}
+      ],
+      "rank_global": 24,
+      "homepage_tier": "category_only"
+    },
+    {
+      "id": "worldclaw-agentic-open-world-3d",
+      "title": "WorldClaw：Agent 規劃大型 3D 開放世界，輸出可編輯 terrain 與 instance-level textured meshes",
+      "summary": "Tencent Hunyuan 的 WorldClaw 以 coarse-to-fine agent framework 把文字提示轉成區域、地形、資產、材質與空間關係，再逐區細化成可編輯 3D 場景。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://arxiv.org/abs/2608.05248",
+      "category": "emerging-case",
+      "subcategory": "world-model",
+      "ranking_score": 71,
+      "analysis_level": "BRIEF",
+      "brief_reason": "emerging-research-limited-production-evidence",
+      "full_analysis": [
+        {"label": "研究重點", "text": "WorldClaw 先由 planning agents 建立 region、terrain、asset、material 與 spatial relation 規格，再用 semantic layout、height field、可重用資產與 render-based agents 細化；目標不是只產影片，而是保留 global terrain 與可獨立編輯的 textured meshes。"},
+        {"label": "成熟度判斷", "text": "它對 AI world-building 很重要，因為開始處理場景全局一致性與 instance-level 可編輯性；但目前是研究成果，距離遊戲 navigation、physics、LOD、streaming、授權與穩定 production tool 還有明顯距離，因此列 BRIEF。"}
+      ],
+      "rank_global": 25,
+      "homepage_tier": "category_only"
+    },
+    {
+      "id": "blender-52-node-physics-lts",
+      "title": "Blender 5.2 LTS：Geometry Nodes 導入 XPBD node-based physics、Sound socket 與遠端 Asset Library",
+      "summary": "Blender 5.2 LTS 把 cloth/hair physics 帶進 Geometry Nodes，以 XPBD Solver 與 effectors 建立可程序化模擬，並加入 Sound socket、remote asset libraries 等流程能力。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://www.blender.org/download/releases/5-2/",
+      "category": "blender-dcc",
+      "subcategory": "blender",
+      "ranking_score": 70,
+      "analysis_level": "BRIEF",
+      "brief_reason": "short-official-announcement",
+      "full_analysis": [
+        {"label": "情報重點", "text": "Blender 5.2 LTS 的核心變化之一是 Geometry Nodes 內建 XPBD Solver、Collider／Force／custom effector，使 hair 與 cloth 模擬可與程序建模、tag/filter 及 node asset 共用同一套資料流；另有 Sound socket 與 remote asset library。"},
+        {"label": "導入判斷", "text": "對技術美術應先驗證 hair/cloth node physics 的 cache、character animation coupling 與版本穩定度。這是官方 LTS 能力，但範圍很大，本項只做功能地圖，列 BRIEF。"}
+      ],
+      "rank_global": 26,
+      "homepage_tier": "category_only"
+    },
+    {
+      "id": "substance-painter-121-baking-openpbr",
+      "title": "Substance 3D Painter 12.1：Skew Painting、Auto Rebake、Hard-Surface Auto UV 與 OpenPBR",
+      "summary": "Painter 12.1 重做 baking workflow，加入 skew correction painting、edge protection、per-map auto rebake、hard-surface Auto UV 與 OpenPBR 支援。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://experienceleague.adobe.com/en/docs/substance-3d-painter/using/release-notes/version-12-1",
+      "category": "blender-dcc",
+      "subcategory": "substance",
+      "ranking_score": 69,
+      "analysis_level": "BRIEF",
+      "brief_reason": "short-official-announcement",
+      "full_analysis": [
+        {"label": "情報重點", "text": "12.1 把烘焙迭代集中到 per-map auto rebake 與直接在 low-poly 上繪製 skew correction，並提供 Edge Protection、重新設計的 mesh map UI、hard-surface Auto UV 與 OpenPBR material definition。"},
+        {"label": "導入判斷", "text": "最值得用現有硬表面資產測 skew 修正是否能減少 cage／vertex normal 的返工，以及 Auto UV 對 texel density 與 seam quality 的可接受度。官方證據明確，但屬已發布一段時間的版本能力，列 BRIEF。"}
+      ],
+      "rank_global": 27,
+      "homepage_tier": "category_only"
+    },
+    {
+      "id": "blender-boiling-water-gn-vs-sim",
+      "title": "Blender 沸水教程：傳統 simulation 對比 Geometry Nodes 假解法，展示速度與真實度取捨",
+      "summary": "CGMatter 比較真正 simulation 與 Geometry Nodes 程序假沸水：前者較真實但 bake 慢，後者能快速迭代並可透過 remote asset library 重用 nodes。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://80.lv/articles/blender-tutorial-creating-boiling-water",
+      "category": "blender-dcc",
+      "subcategory": "blender-tip",
+      "ranking_score": 68,
+      "analysis_level": "BRIEF",
+      "brief_reason": "useful-tool-or-addon-limited-depth",
+      "full_analysis": [
+        {"label": "情報重點", "text": "教程把同一視覺需求拆成兩條 production path：物理解算取得較真實結果，或以 Geometry Nodes 做可快速控制的假效果；這種比較對遊戲 VFX／場景美術特別實用，因為不一定需要完整 fluid sim。"},
+        {"label": "限制", "text": "目前主要是單一教學與視覺比較，缺少引擎輸出與性能 benchmark；可當『先用程序假效果、必要時再升級 simulation』的決策案例，列 BRIEF。"}
+      ],
+      "rank_global": 28,
+      "homepage_tier": "category_only"
+    },
+    {
+      "id": "threejs-sdf-alien-raymarching",
+      "title": "無 Mesh 的 SDF 角色：Three.js 單一 fullscreen quad 以 raymarching 在 fragment shader 生成 3D 外觀",
+      "summary": "Drin 的實驗完全不使用 mesh／texture／vertex，所有形體由 fragment shader 的 SDF raymarching 算出，展示 geometry-free stylized visual 的可能性。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://80.lv/articles/this-alien-has-no-mesh-is-built-in-three-js-with-shader-math",
+      "category": "emerging-case",
+      "subcategory": "procedural",
+      "ranking_score": 67,
+      "analysis_level": "BRIEF",
+      "brief_reason": "high-value-showcase-reference",
+      "full_analysis": [
+        {"label": "技術方向", "text": "案例以單一 fullscreen quad 讓每個 pixel 執行 SDF raymarching，深度、形體與光照都由 shader math 產生；對 stylized logo、UI 生物、特效與小型程序物件提供完全不依賴傳統 mesh 的思路。"},
+        {"label": "成熟度判斷", "text": "方法在特定鏡頭與簡化形體很靈活，但 shader iteration、碰撞、陰影、可編輯性與跨平台成本會限制一般遊戲角色用途。來源是技術展示，列 BRIEF。"}
+      ],
+      "rank_global": 29,
+      "homepage_tier": "category_only"
+    },
+    {
+      "id": "triposplat-modly-mesh-extension",
+      "title": "TripoSplat → Modly：把單圖 Gaussian Splat 重建成 watertight vertex-colored GLB 的開源整合",
+      "summary": "Modly 的 TripoSplat extension 以單次 feed-forward 生成 Gaussian Splats，再用 density grid、Surface Nets 與 color volume 重建 watertight GLB，讓 splat 模型進入 mesh-centric pipeline。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://modly3d.app/extensions/triposplat",
+      "category": "ai-generation",
+      "subcategory": "ai-3d",
+      "ranking_score": 66,
+      "analysis_level": "BRIEF",
+      "brief_reason": "useful-tool-or-addon-limited-depth",
+      "full_analysis": [
+        {"label": "情報重點", "text": "這個開源 extension 將 TripoSplat 的 Gaussian 表現轉入 mesh-centric 工具：依每個 Gaussian 的 covariance disk rasterize density grid，以 Otsu level＋Surface Nets 抽取表面，再把 color volume 採樣成 vertex color GLB。"},
+        {"label": "導入判斷", "text": "它提供一條『快速 splat → 可匯入 DCC 的 mesh』實驗路徑，但 mesh 是有損近似，作者也明確提醒 fidelity 會低於 native splat render；適合 POC，不適合直接假設 game-ready。"}
+      ],
+      "rank_global": 30,
+      "homepage_tier": "category_only"
+    }
+  ]
+}
