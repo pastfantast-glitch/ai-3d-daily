@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   遊戲引擎｜2026-09-13｜AI 3D Daily
+  </title>
+  <link href="../../styles.css?v=20260913-r1-workspace-v6" rel="stylesheet"/>
+  <link href="../../shared-components.css?v=20260913-r1-workspace-v6" rel="stylesheet"/>
+  <link href="../../category.css?v=20260913-r1-workspace-v6" rel="stylesheet"/>
+ </head>
+ <body class="category-page" data-category="engine-art" data-report-date="2026-09-13">
+  <nav aria-label="Production Intelligence 分類" class="global-category-nav">
+   <div class="page global-category-nav-inner">
+    <div class="archive-nav-controls">
+     <a class="archive-nav-home" href="../../">
+      ← 首頁
+     </a>
+     <div class="archive-nav-date">
+      <a aria-label="前一日日報" class="archive-nav-arrow" href="../../2026-09-12/engine-art/">
+       ←
+      </a>
+      <span>
+       2026-09-13
+      </span>
+     </div>
+    </div>
+    <span aria-hidden="true" class="archive-nav-divider">
+    </span>
+    <a class="global-category-link" href="../#top">
+     TOP5
+    </a>
+    <a class="global-category-link" data-category="ai-generation" href="../ai-generation/">
+     AI 生成
+    </a>
+    <a class="global-category-link" data-category="3d-production" href="../3d-production/">
+     3D 製作
+    </a>
+    <a class="global-category-link" data-category="3d-animation" href="../3d-animation/">
+     3D 動作
+    </a>
+    <a class="global-category-link is-active" data-category="engine-art" href="../engine-art/">
+     遊戲引擎
+    </a>
+    <a class="global-category-link" data-category="emerging-case" href="../emerging-case/">
+     新技術 / Case
+    </a>
+    <a class="global-category-link" data-category="blender-dcc" href="../blender-dcc/">
+     Blender / DCC
+    </a>
+   </div>
+  </nav>
+  <main class="page category-main">
+   <article class="category-card" data-intel-id="unity7-unite-rendering-roadmap" data-intel-role="card">
+    <div class="category-meta">
+     #17 · unity
+    </div>
+    <h2>
+     Unity 7 Unite 重點：Surface Cache GI、SSR／GTAO 與 Neural Resource Compression 指向新一輪 Rendering 更新
+    </h2>
+    <p class="summary">
+     Unity 7 近期展示 Surface Cache GI、SSR、GTAO 與 neural resource compression 等方向，Surface Cache GI 主打不需預烘焙即可處理動態幾何／日夜變化，且以 URP 為重要落點。
+    </p>
+    <figure class="case-preview" data-intel-id="unity7-unite-rendering-roadmap" data-intel-role="visual" data-visual-id="unity7-unite-rendering-roadmap">
+     <a href="https://cgworld.jp/flashnews/01-202609-Unity7-Unite.html" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-13/unity7-unite-rendering-roadmap.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">Unity</b> ★★★★☆</span>
+    </div>
+    <details data-analysis-level="BRIEF">
+     <summary>
+      情報簡析
+     </summary>
+     <div class="detail-body brief-analysis-body">
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證，但目前證據深度不足以支持完整 Production Analysis。
+      </p>
+      <h4>
+       情報重點
+      </h4>
+      <p>
+       Unity 7 的 rendering 路線把 Surface Cache GI、SSR、GTAO 與資源壓縮放在同一波更新中，其中 Surface Cache GI 的吸引力是減少傳統 lightmap bake 依賴，讓動態幾何與時間變化更容易保持間接光一致；URP 也持續是核心目標。
+      </p>
+      <h4>
+       導入判斷
+      </h4>
+      <p>
+       對 Unity stylized 專案應先測 Surface Cache GI 是否會破壞 Toon ramp、臉部 SDF 與手工補光，再比較 APV／Lightmap 的記憶體與更新成本。展示中提到跨 PC ray tracing 到 mobile 60fps 的擴張方向，但實際平台能力與正式版成熟度仍需等可測版本確認。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://cgworld.jp/flashnews/01-202609-Unity7-Unite.html" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="openpbr-cross-renderer-materialx" data-intel-role="card">
+    <div class="category-meta">
+     #21 · shader
+    </div>
+    <h2>
+     OpenPBR 跨 Renderer 對照：Arnold／Karma／Unreal 的 MaterialX 外觀一致性成為新驗收題目
+    </h2>
+    <p class="summary">
+     CGWORLD 測試 MaterialX／OpenPBR 在 Arnold、Karma 與 Unreal 等 renderer 的表現，凸顯同一材質標準在不同實作仍需要外觀 parity 驗證。
+    </p>
+    <figure class="case-preview" data-intel-id="openpbr-cross-renderer-materialx" data-intel-role="visual" data-visual-id="openpbr-cross-renderer-materialx">
+     <a href="https://cgworld.jp/flashnews/01-202607-DF-OpenPBR.html" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-13/openpbr-cross-renderer-materialx.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">Shader</b> ★★★★☆</span>
+    </div>
+    <details data-analysis-level="BRIEF">
+     <summary>
+      情報簡析
+     </summary>
+     <div class="detail-body brief-analysis-body">
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證，但目前證據深度不足以支持完整 Production Analysis。
+      </p>
+      <h4>
+       情報重點
+      </h4>
+      <p>
+       OpenPBR／MaterialX 的價值在於用標準化參數描述材質，但跨 Arnold、Karma、Unreal 時仍會受到 shading implementation、色彩管理與 unsupported lobes 影響。這類對照能幫團隊把『標準格式可交換』與『最終畫面完全一致』分開看。
+      </p>
+      <h4>
+       導入判斷
+      </h4>
+      <p>
+       若要建立 DCC→Engine 材質橋接，可選金屬、皮革、布料與透明材質各一，鎖定貼圖與燈光後比較像素／直方圖與主觀差異，列出哪些 lobe 需要降級或自訂 shader。文章屬 cross-renderer case，仍需用自家材質庫驗證。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://cgworld.jp/flashnews/01-202607-DF-OpenPBR.html" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <nav aria-label="相鄰分類" class="category-bottom-nav">
+    <a href="../3d-animation/">
+     ← 3D 動作
+    </a>
+    <a href="../#top">
+     TOP5
+    </a>
+    <a href="../emerging-case/">
+     新技術 / Case →
+    </a>
+   </nav>
+  </main>
+  <script defer="" src="../../archive-nav-state.js?v=20260913-r1-workspace-v6">
+  </script>
+ </body>
+</html>

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   AI 生成｜2026-09-13｜AI 3D Daily
+  </title>
+  <link href="../../styles.css?v=20260913-r1-workspace-v6" rel="stylesheet"/>
+  <link href="../../shared-components.css?v=20260913-r1-workspace-v6" rel="stylesheet"/>
+  <link href="../../category.css?v=20260913-r1-workspace-v6" rel="stylesheet"/>
+ </head>
+ <body class="category-page" data-category="ai-generation" data-report-date="2026-09-13">
+  <nav aria-label="Production Intelligence 分類" class="global-category-nav">
+   <div class="page global-category-nav-inner">
+    <div class="archive-nav-controls">
+     <a class="archive-nav-home" href="../../">
+      ← 首頁
+     </a>
+     <div class="archive-nav-date">
+      <a aria-label="前一日日報" class="archive-nav-arrow" href="../../2026-09-12/ai-generation/">
+       ←
+      </a>
+      <span>
+       2026-09-13
+      </span>
+     </div>
+    </div>
+    <span aria-hidden="true" class="archive-nav-divider">
+    </span>
+    <a class="global-category-link" href="../#top">
+     TOP5
+    </a>
+    <a class="global-category-link is-active" data-category="ai-generation" href="../ai-generation/">
+     AI 生成
+    </a>
+    <a class="global-category-link" data-category="3d-production" href="../3d-production/">
+     3D 製作
+    </a>
+    <a class="global-category-link" data-category="3d-animation" href="../3d-animation/">
+     3D 動作
+    </a>
+    <a class="global-category-link" data-category="engine-art" href="../engine-art/">
+     遊戲引擎
+    </a>
+    <a class="global-category-link" data-category="emerging-case" href="../emerging-case/">
+     新技術 / Case
+    </a>
+    <a class="global-category-link" data-category="blender-dcc" href="../blender-dcc/">
+     Blender / DCC
+    </a>
+   </div>
+  </nav>
+  <main class="page category-main">
+   <article class="category-card" data-intel-id="pixal3d-multiview-open-source" data-intel-role="card">
+    <div class="category-meta">
+     #01 · ai-3d
+    </div>
+    <h2>
+     Pixal3D 開源多視圖 3D 生成：以 TRELLIS.2 為底，補上 Multi-view 推論與低 VRAM 路徑
+    </h2>
+    <p class="summary">
+     騰訊 ARC 公開 Pixal3D 多視圖推論程式碼，可從單張或多視圖影像生成 3D，輸出 GLB，並提供較低顯存設定。這正面對應角色／道具多視圖一致性與可落地匯入 DCC 的需求。
+    </p>
+    <figure class="case-preview" data-intel-id="pixal3d-multiview-open-source" data-intel-role="visual" data-visual-id="pixal3d-multiview-open-source">
+     <a href="https://github.com/TencentARC/Pixal3D" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-13/pixal3d-multiview-open-source.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">AI 3D</b> ★★★★★</span>
+    </div>
+    <details data-analysis-level="FULL">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       技術／工作流變化
+      </h4>
+      <p>
+       Pixal3D 把單圖與多視圖 3D 生成放在同一套開源推論流程，專案以 TRELLIS.2 為基礎並提供 Multi-view inference、GLB 輸出與低 VRAM 選項。對既有 image-to-3D 測試而言，最大的變化不是只追單張外觀，而是可以把正側背等多視圖一起餵入，直接測跨視角幾何一致性。
+      </p>
+      <h4>
+       Production 影響
+      </h4>
+      <p>
+       對角色與道具製作，多視圖能減少單張生成常見的背面亂猜、左右結構漂移與局部厚度錯誤，特別適合目前 Meshy／Tripo 類工具的橫向測試。GLB 輸出也讓候選結果可以直接進 Blender、Max 或引擎檢查拓樸、UV、分件與材質，而不只停留在展示圖。
+      </p>
+      <h4>
+       導入測試與限制
+      </h4>
+      <p>
+       建議用同一組四視圖角色與硬表面道具建立 A/B 測試，記錄正背輪廓誤差、對稱性、細節保留、生成時間、VRAM 與後續 retopo 工時。它仍是研究型開源方案，低 VRAM 模式可能交換速度或品質，且 game-ready topology、UV 與可編輯分件仍必須另外驗證。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://github.com/TencentARC/Pixal3D" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="anigen-animatable-3d-generation" data-intel-role="card">
+    <div class="category-meta">
+     #06 · ai-3d
+    </div>
+    <h2>
+     AniGen：從生成 3D 直接走向 Animatable Asset，嘗試把外觀、幾何與可動畫欄位一起建模
+    </h2>
+    <p class="summary">
+     AniGen（SIGGRAPH 2026）提出可動畫 3D asset generation，目標不是只產生靜態 mesh，而是將支援動畫的結構／欄位一起納入生成，程式已開源。
+    </p>
+    <figure class="case-preview" data-intel-id="anigen-animatable-3d-generation" data-intel-role="visual" data-visual-id="anigen-animatable-3d-generation">
+     <a href="https://github.com/VAST-AI-Research/AniGen" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-13/anigen-animatable-3d-generation.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">AI 3D</b> ★★★★☆</span>
+    </div>
+    <details data-analysis-level="BRIEF">
+     <summary>
+      情報簡析
+     </summary>
+     <div class="detail-body brief-analysis-body">
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證，但目前證據深度不足以支持完整 Production Analysis。
+      </p>
+      <h4>
+       情報重點
+      </h4>
+      <p>
+       AniGen 把生成目標從『看起來像 3D』推向『之後能動的 3D asset』，研究將外觀、幾何與動畫相關欄位放在統一框架處理。這個方向直接切中 AI 3D 現況的痛點：生成後還要重新 rig、skin、修 topology 才能進 production。
+      </p>
+      <h4>
+       導入判斷
+      </h4>
+      <p>
+       可先檢查輸出是否能穩定轉到常見 skeleton／DCC，並測不同體型、服裝與配件下的 deformation 品質。專案含第三方 NVIDIA 元件的非商用授權限制，且研究 benchmark 不等於 game-ready production，因此先列 BRIEF。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://github.com/VAST-AI-Research/AniGen" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <nav aria-label="相鄰分類" class="category-bottom-nav">
+    <a href="../blender-dcc/">
+     ← Blender / DCC
+    </a>
+    <a href="../#top">
+     TOP5
+    </a>
+    <a href="../3d-production/">
+     3D 製作 →
+    </a>
+   </nav>
+  </main>
+  <script defer="" src="../../archive-nav-state.js?v=20260913-r1-workspace-v6">
+  </script>
+ </body>
+</html>

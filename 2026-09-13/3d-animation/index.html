@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   3D 動作｜2026-09-13｜AI 3D Daily
+  </title>
+  <link href="../../styles.css?v=20260913-r1-workspace-v6" rel="stylesheet"/>
+  <link href="../../shared-components.css?v=20260913-r1-workspace-v6" rel="stylesheet"/>
+  <link href="../../category.css?v=20260913-r1-workspace-v6" rel="stylesheet"/>
+ </head>
+ <body class="category-page" data-category="3d-animation" data-report-date="2026-09-13">
+  <nav aria-label="Production Intelligence 分類" class="global-category-nav">
+   <div class="page global-category-nav-inner">
+    <div class="archive-nav-controls">
+     <a class="archive-nav-home" href="../../">
+      ← 首頁
+     </a>
+     <div class="archive-nav-date">
+      <a aria-label="前一日日報" class="archive-nav-arrow" href="../../2026-09-12/3d-animation/">
+       ←
+      </a>
+      <span>
+       2026-09-13
+      </span>
+     </div>
+    </div>
+    <span aria-hidden="true" class="archive-nav-divider">
+    </span>
+    <a class="global-category-link" href="../#top">
+     TOP5
+    </a>
+    <a class="global-category-link" data-category="ai-generation" href="../ai-generation/">
+     AI 生成
+    </a>
+    <a class="global-category-link" data-category="3d-production" href="../3d-production/">
+     3D 製作
+    </a>
+    <a class="global-category-link is-active" data-category="3d-animation" href="../3d-animation/">
+     3D 動作
+    </a>
+    <a class="global-category-link" data-category="engine-art" href="../engine-art/">
+     遊戲引擎
+    </a>
+    <a class="global-category-link" data-category="emerging-case" href="../emerging-case/">
+     新技術 / Case
+    </a>
+    <a class="global-category-link" data-category="blender-dcc" href="../blender-dcc/">
+     Blender / DCC
+    </a>
+   </div>
+  </nav>
+  <main class="page category-main">
+   <article class="category-card" data-intel-id="sony-mocopi-3dsmax-receiver" data-intel-role="card">
+    <div class="category-meta">
+     #02 · mocap
+    </div>
+    <h2>
+     Sony mocopi 正式進 3ds Max：即時 UDP 驅動 Biped，BVH／FBX 可直接轉 BIP
+    </h2>
+    <p class="summary">
+     Sony 發布 mocopi Receiver Plugin for 3ds Max，可接收 mocopi 即時動作資料驅動 Biped，並把 BVH／FBX motion 轉成 BIP，且插件採開源方式提供。
+    </p>
+    <figure class="case-preview" data-intel-id="sony-mocopi-3dsmax-receiver" data-intel-role="visual" data-visual-id="sony-mocopi-3dsmax-receiver">
+     <a href="https://xyn.sony.net/en/news/motion-32d82ba1" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-13/sony-mocopi-3dsmax-receiver.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">動作捕捉</b> ★★★★★</span>
+    </div>
+    <details data-analysis-level="FULL">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       技術／工作流變化
+      </h4>
+      <p>
+       這次不是單純新增匯出格式，而是把 mocopi 的即時 UDP motion stream 直接接進 3ds Max Biped。Sony 也提供 BVH／FBX 到 BIP 的轉換路徑，因此現場 capture、離線檔案與既有 Biped 動畫可以在同一 DCC 內整理，減少先經 MotionBuilder 或其他轉檔工具的中介步驟。
+      </p>
+      <h4>
+       Production 影響
+      </h4>
+      <p>
+       對仍以 3ds Max 為主的角色團隊，這能把低成本 mocap 更直接納入 blocking、動作預覽與外包驗收。BIP 仍是很多 Max 舊專案常見資產格式，能直接落到 Biped 對維護既有角色庫特別實用，也可降低 AI／mocap 動作進既有 pipeline 前的格式摩擦。
+      </p>
+      <h4>
+       導入測試與限制
+      </h4>
+      <p>
+       建議用一支現有 Biped 角色測即時走跑攻擊，再把相同 BVH／FBX 轉 BIP，比較 root、foot contact、手部、骨盆高度與旋轉誤差。mocopi 本身的捕捉精度與遮擋問題不會因插件消失，因此要把『傳輸／轉檔問題』與『原始 motion 品質』分開評估。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://xyn.sony.net/en/news/motion-32d82ba1" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="blaze-autopose-1" data-intel-role="card">
+    <div class="category-meta">
+     #13 · animation
+    </div>
+    <h2>
+     Blaze AutoPose 1.0：Blender 以 Position／Orientation／Look-at Constraints 加速角色 Pose
+    </h2>
+    <p class="summary">
+     Blaze AutoPose 對 Rigify、Auto-Rig Pro、CloudRig、Mixamo 與一般 FK rig 提供 constraint-based posing，作者主打以位置、朝向、Look-at 目標快速建立姿勢。
+    </p>
+    <figure class="case-preview" data-intel-id="blaze-autopose-1" data-intel-role="visual" data-visual-id="blaze-autopose-1">
+     <a href="https://blazeanimation.com/blaze-autopose" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-13/blaze-autopose-1.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">動畫</b> ★★★★☆</span>
+    </div>
+    <details data-analysis-level="BRIEF">
+     <summary>
+      情報簡析
+     </summary>
+     <div class="detail-body brief-analysis-body">
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證，但目前證據深度不足以支持完整 Production Analysis。
+      </p>
+      <h4>
+       情報重點
+      </h4>
+      <p>
+       AutoPose 的方向是把常見 posing 操作包成位置、方向與 look-at constraints，減少逐骨旋轉，並宣稱可支援多種 Blender 常見 rig。這對 blocking 階段尤其有價值，因為 animator 可以先鎖手腳／視線與大方向，再回頭細修弧線。
+      </p>
+      <h4>
+       導入判斷
+      </h4>
+      <p>
+       可用同一個攻擊 pose 與雙手持物 pose，比較傳統 FK/IK 與 AutoPose 的 setup 時間、pole vector 問題與後續 keyframe 清理量。現有資料主要來自作者展示，4x 效率宣稱缺獨立驗證，因此維持 BRIEF。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://blazeanimation.com/blaze-autopose" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="world-is-dancing-mocap-guide" data-intel-role="card">
+    <div class="category-meta">
+     #15 · mocap
+    </div>
+    <h2>
+     《World is Dancing》舞蹈動畫：3DCG＋Mocap 先建立動作 Guide，再回到手繪作畫
+    </h2>
+    <p class="summary">
+     CGWORLD 介紹舞蹈場景以 3DCG production 與 motion capture 建立動作／鏡頭 guide，之後由動畫師回到手繪表現，形成 mocap 不直接等於 final 的混合流程。
+    </p>
+    <figure class="case-preview" data-intel-id="world-is-dancing-mocap-guide" data-intel-role="visual" data-visual-id="world-is-dancing-mocap-guide">
+     <a href="https://cgworld.jp/article/cgw337-worldisdan01.html" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-13/world-is-dancing-mocap-guide.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">動作捕捉</b> ★★★★☆</span>
+    </div>
+    <details data-analysis-level="BRIEF">
+     <summary>
+      情報簡析
+     </summary>
+     <div class="detail-body brief-analysis-body">
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證，但目前證據深度不足以支持完整 Production Analysis。
+      </p>
+      <h4>
+       情報重點
+      </h4>
+      <p>
+       這類流程把 mocap 定位成 timing、重心、空間與鏡頭的基準，而不是直接把 capture 當 final animation。先用 3DCG／mocap 建立完整舞蹈 guide，再由手繪動畫師重新取捨 pose、節奏與 exaggeration，可兼顧複雜舞步的一致性與最終風格。
+      </p>
+      <h4>
+       導入判斷
+      </h4>
+      <p>
+       對遊戲 stylized animation 也可套用同樣概念：mocap 先解決腳步與全身協調，再手工重做 silhouette、anticipation 與 hit pose。建議記錄 mocap cleanup 與 hand-key exaggeration 各自花費，避免 capture 越精細反而增加不必要的修飾成本。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://cgworld.jp/article/cgw337-worldisdan01.html" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <nav aria-label="相鄰分類" class="category-bottom-nav">
+    <a href="../3d-production/">
+     ← 3D 製作
+    </a>
+    <a href="../#top">
+     TOP5
+    </a>
+    <a href="../engine-art/">
+     遊戲引擎 →
+    </a>
+   </nav>
+  </main>
+  <script defer="" src="../../archive-nav-state.js?v=20260913-r1-workspace-v6">
+  </script>
+ </body>
+</html>

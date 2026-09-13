@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   新技術 / Case｜2026-09-13｜AI 3D Daily
+  </title>
+  <link href="../../styles.css?v=20260913-r1-workspace-v6" rel="stylesheet"/>
+  <link href="../../shared-components.css?v=20260913-r1-workspace-v6" rel="stylesheet"/>
+  <link href="../../category.css?v=20260913-r1-workspace-v6" rel="stylesheet"/>
+ </head>
+ <body class="category-page" data-category="emerging-case" data-report-date="2026-09-13">
+  <nav aria-label="Production Intelligence 分類" class="global-category-nav">
+   <div class="page global-category-nav-inner">
+    <div class="archive-nav-controls">
+     <a class="archive-nav-home" href="../../">
+      ← 首頁
+     </a>
+     <div class="archive-nav-date">
+      <a aria-label="前一日日報" class="archive-nav-arrow" href="../../2026-09-12/emerging-case/">
+       ←
+      </a>
+      <span>
+       2026-09-13
+      </span>
+     </div>
+    </div>
+    <span aria-hidden="true" class="archive-nav-divider">
+    </span>
+    <a class="global-category-link" href="../#top">
+     TOP5
+    </a>
+    <a class="global-category-link" data-category="ai-generation" href="../ai-generation/">
+     AI 生成
+    </a>
+    <a class="global-category-link" data-category="3d-production" href="../3d-production/">
+     3D 製作
+    </a>
+    <a class="global-category-link" data-category="3d-animation" href="../3d-animation/">
+     3D 動作
+    </a>
+    <a class="global-category-link" data-category="engine-art" href="../engine-art/">
+     遊戲引擎
+    </a>
+    <a class="global-category-link is-active" data-category="emerging-case" href="../emerging-case/">
+     新技術 / Case
+    </a>
+    <a class="global-category-link" data-category="blender-dcc" href="../blender-dcc/">
+     Blender / DCC
+    </a>
+   </div>
+  </nav>
+  <main class="page category-main">
+   <article class="category-card" data-intel-id="siggraph2026-ai-3d-roundup" data-intel-role="card">
+    <div class="category-meta">
+     #04 · research
+    </div>
+    <h2>
+     SIGGRAPH 2026 AI／3D 研究整理：Canvas-to-Image、4D 與可控 3D Hair 等方向開始逼近製作工具
+    </h2>
+    <p class="summary">
+     CGWORLD 整理 SIGGRAPH 2026 多項 AI／CG 研究，涵蓋 Canvas-to-Image、複雜 4D 表現與文字控制 3D Hair 等十篇論文，適合追蹤下一波內容生產與編輯能力。
+    </p>
+    <figure class="case-preview" data-intel-id="siggraph2026-ai-3d-roundup" data-intel-role="visual" data-visual-id="siggraph2026-ai-3d-roundup">
+     <a href="https://cgworld.jp/article/202609-sig-ai.html" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-13/siggraph2026-ai-3d-roundup.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">研究</b> ★★★★★</span>
+    </div>
+    <details data-analysis-level="BRIEF">
+     <summary>
+      情報簡析
+     </summary>
+     <div class="detail-body brief-analysis-body">
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證，但目前證據深度不足以支持完整 Production Analysis。
+      </p>
+      <h4>
+       情報重點
+      </h4>
+      <p>
+       這份 SIGGRAPH 整理的價值在於同時看到多條研究線：2D 引導生成、可控 3D hair、複雜 4D 表現等都開始從『生成一個結果』轉向可編輯、可條件控制與時序一致，與遊戲美術真正需要的 production controllability 更接近。
+      </p>
+      <h4>
+       導入判斷
+      </h4>
+      <p>
+       建議先把其中有公開 code／project page 的題目列成研究 watchlist，只對能輸出可編輯幾何、材質、motion 或可重現控制的方案做 POC。論文展示距離商用 DCC 整合、授權、速度與穩定度仍有落差，因此以 BRIEF 收錄，不把研究 demo 當成熟工具。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://cgworld.jp/article/202609-sig-ai.html" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="4danyone-monocular-human-4d" data-intel-role="card">
+    <div class="category-meta">
+     #05 · 4d
+    </div>
+    <h2>
+     4DAnyone：單目影片重建動態人物 4D 表現，公開 3DGS／4DGS 路線
+    </h2>
+    <p class="summary">
+     4DAnyone（SIGGRAPH Asia 2026）以一般單目影片為輸入，目標重建動態人物的時序 3D／4D 表現；專案公開程式與 3DGS／4DGS 相關 roadmap。
+    </p>
+    <figure class="case-preview" data-intel-id="4danyone-monocular-human-4d" data-intel-role="visual" data-visual-id="4danyone-monocular-human-4d">
+     <a href="https://github.com/ant-research/4DAnyone" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-13/4danyone-monocular-human-4d.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">4D</b> ★★★★★</span>
+    </div>
+    <details data-analysis-level="BRIEF">
+     <summary>
+      情報簡析
+     </summary>
+     <div class="detail-body brief-analysis-body">
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證，但目前證據深度不足以支持完整 Production Analysis。
+      </p>
+      <h4>
+       情報重點
+      </h4>
+      <p>
+       4DAnyone 把 casual monocular video 轉成動態人物 4D 表現，研究重點不是單幀 avatar，而是跨時間保持人物幾何與外觀一致。專案已公開程式並持續補 3DGS／4DGS 路徑，對影片轉可觀看動態資產具有研究價值。
+      </p>
+      <h4>
+       導入判斷
+      </h4>
+      <p>
+       可用一段固定鏡頭、再一段有自遮擋的角色影片測重建穩定度，重點看手腳拓撲漂移、衣物細節、視角外補全與播放成本。輸出是否能直接轉成骨架動畫／遊戲 mesh 仍不是它的主要目標，因此目前較適合 previs、數位人研究或 4D reference。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://github.com/ant-research/4DAnyone" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="moge4d-single-image-4d" data-intel-role="card">
+    <div class="category-meta">
+     #07 · 4d
+    </div>
+    <h2>
+     MoGe4D：單張影像推 4D Trajectory／Scene，建立 TrajScene-60K 資料集
+    </h2>
+    <p class="summary">
+     MoGe4D（ECCV 2026）嘗試從單張影像預測 4D 場景與 dense trajectory，並公開 TrajScene-60K 相關資源，代表單圖理解開始加入時間與運動維度。
+    </p>
+    <figure class="case-preview" data-intel-id="moge4d-single-image-4d" data-intel-role="visual" data-visual-id="moge4d-single-image-4d">
+     <a href="https://github.com/Zhangyr2022/MoGe4D" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-13/moge4d-single-image-4d.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">4D</b> ★★★★☆</span>
+    </div>
+    <details data-analysis-level="BRIEF">
+     <summary>
+      情報簡析
+     </summary>
+     <div class="detail-body brief-analysis-body">
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證，但目前證據深度不足以支持完整 Production Analysis。
+      </p>
+      <h4>
+       情報重點
+      </h4>
+      <p>
+       MoGe4D 的差異在於不只做單張 depth／3D，而是預測物體與場景在時間維度上的 dense trajectory，讓單張影像可以提供動態結構先驗。TrajScene-60K 也顯示研究正在建立可訓練的大型 4D trajectory 資料。
+      </p>
+      <h4>
+       導入判斷
+      </h4>
+      <p>
+       對遊戲美術較可能的近期用途是 motion prior、previs 或輔助生成，而不是直接輸出可用角色動畫。可以用人物、車輛與布料場景測 trajectory 是否符合基本運動邏輯；目前仍需把研究結果轉成 skeleton、keyframe 或 simulation constraint 才能進 DCC。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://github.com/Zhangyr2022/MoGe4D" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="houdini-4dgs-pdg-unreal" data-intel-role="card">
+    <div class="category-meta">
+     #18 · 4d
+    </div>
+    <h2>
+     Houdini 4DGS Workflow：PDG 自動化 Gaussian Splatting 處理，串 LichtFeld／GSOPs 到 Unreal
+    </h2>
+    <p class="summary">
+     CGWORLD 介紹以 Houdini PDG 管理 4D Gaussian Splatting 的自動化流程，結合 LichtFeld Studio／GSOPs，並延伸到 Unreal 的場景與播放 pipeline。
+    </p>
+    <figure class="case-preview" data-intel-id="houdini-4dgs-pdg-unreal" data-intel-role="visual" data-visual-id="houdini-4dgs-pdg-unreal">
+     <a href="https://cgworld.jp/flashnews/01-202609-Houdini-4DGS.html" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-13/houdini-4dgs-pdg-unreal.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">4D</b> ★★★★☆</span>
+    </div>
+    <details data-analysis-level="BRIEF">
+     <summary>
+      情報簡析
+     </summary>
+     <div class="detail-body brief-analysis-body">
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證，但目前證據深度不足以支持完整 Production Analysis。
+      </p>
+      <h4>
+       情報重點
+      </h4>
+      <p>
+       這個流程把 4DGS 從單次研究 demo 往 pipeline 化推進：以 Houdini PDG 負責批次處理與依賴管理，再用 GS 相關工具整理資料，最後輸送到 Unreal 顯示。重點是『大量 capture／重建資料如何自動化』而非單一 splat viewer。
+      </p>
+      <h4>
+       導入判斷
+      </h4>
+      <p>
+       可先用一段短人物或動態物件 capture 建 4DGS，記錄 PDG 節點數、cache 體積、處理時間與 UE 播放 GPU／記憶體成本。4DGS 的碰撞、LOD、編輯與跨平台部署仍不如傳統 mesh 成熟，因此較適合展示、數位人與特定視覺案例。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://cgworld.jp/flashnews/01-202609-Houdini-4DGS.html" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <nav aria-label="相鄰分類" class="category-bottom-nav">
+    <a href="../engine-art/">
+     ← 遊戲引擎
+    </a>
+    <a href="../#top">
+     TOP5
+    </a>
+    <a href="../blender-dcc/">
+     Blender / DCC →
+    </a>
+   </nav>
+  </main>
+  <script defer="" src="../../archive-nav-state.js?v=20260913-r1-workspace-v6">
+  </script>
+ </body>
+</html>
