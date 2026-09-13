@@ -2,8 +2,8 @@
 """Fail-closed architecture guard for the canonical intelligence release pipeline.
 
 This guard validates cross-file wiring that is easy to regress when individual
-contracts evolve: hybrid discovery, Full Analysis depth, single-writer handoff,
-atomic publication, Pages verification, and source-QA coverage.
+contracts evolve: hybrid discovery, tiered analysis depth, single-writer handoff,
+pre-atomic surface QA, atomic publication, Pages verification, and source-QA coverage.
 """
 from pathlib import Path
 import json
@@ -34,6 +34,9 @@ required_files = [
     'scripts/check_release_input.py',
     'scripts/enrich_full_analysis_v3.py',
     'scripts/check_intelligence_contract.py',
+    'scripts/check_preference_contract.py',
+    'scripts/check_pages_tier_contract.py',
+    'scripts/verify_pages_publish.py',
     'scripts/prepare_release_candidate.py',
     'scripts/check_ready_contract.py',
     '.github/workflows/intelligence-build.yml',
@@ -93,7 +96,6 @@ if depth_path.exists():
             if top5.get('allow_brief') is not False:
                 fail('full-analysis-depth top5_policy must keep allow_brief=false')
         else:
-            # Legacy FULL-only contract support for older branches/configs.
             if int(depth.get('min_blocks', 0)) < 3:
                 fail('full-analysis-depth min_blocks must be >= 3')
             if int(depth.get('max_blocks', 0)) < int(depth.get('min_blocks', 0)):
@@ -124,6 +126,22 @@ if release_input.exists():
         if token not in text:
             fail(f'check_release_input.py missing hybrid-aware release token: {token}')
 
+pages_verify = ROOT / 'scripts' / 'verify_pages_publish.py'
+if pages_verify.exists():
+    text = pages_verify.read_text('utf-8')
+    for token in ('full-analysis-depth.json', 'analysis_level', "('FULL', 'BRIEF')", 'REJECT item reached public Pages surface'):
+        if token not in text:
+            fail(f'verify_pages_publish.py missing tier-aware Pages token: {token}')
+    if 'get("full_analysis", {}).get("min_blocks", 3)' in text and 'analysis_policy(' not in text:
+        fail('Pages verifier regressed to one global Full Analysis minimum')
+
+preference_check = ROOT / 'scripts' / 'check_preference_contract.py'
+if preference_check.exists():
+    text = preference_check.read_text('utf-8')
+    for token in ('latest_surface_date', 'newest_canonical', "ROOT / newest_canonical / 'index.html'"):
+        if token not in text:
+            fail(f'check_preference_contract.py missing pre-ready rendered-surface fallback token: {token}')
+
 if MAIN.exists():
     main = MAIN.read_text('utf-8')
     for token in (
@@ -136,6 +154,8 @@ if MAIN.exists():
         'enrich_full_analysis_v3.py',
         'check_release_input.py',
         'check_intelligence_contract.py',
+        'check_preference_contract.py',
+        'check_pages_tier_contract.py',
         'python scripts/check_release_architecture.py',
         'Atomic publish canonical data, derived assets and views',
         'Verify public GitHub Pages release',
@@ -144,7 +164,6 @@ if MAIN.exists():
         if token not in main:
             fail(f'intelligence-build.yml missing architecture token: {token}')
 
-    # Enforce critical publication ordering, not just token presence.
     order = [
         'Validate pre-ready canonical identity and hash',
         'Enrich canonical V3 Full Analysis depth',
@@ -167,9 +186,6 @@ if MAIN.exists():
     prepare_section = main.split('\n  prepare:', 1)[1].split('\n  publish:', 1)[0] if '\n  prepare:' in main and '\n  publish:' in main else ''
     publish_section = main.split('\n  publish:', 1)[1].split('\n  recovery:', 1)[0] if '\n  publish:' in main else ''
 
-    # Prepare may persist canonical JSON + repo-generated .ready only. Public
-    # HTML/assets belong exclusively to Atomic Publish. This prevents a future
-    # restore/preflight regression from leaking half-built Pages content.
     prepare_git_add_lines = [line.strip() for line in prepare_section.splitlines() if line.strip().startswith('git add ')]
     for line in prepare_git_add_lines:
         if 'index.html' in line or 'assets/visual' in line or '$DATE/' in line:
@@ -181,10 +197,13 @@ if MAIN.exists():
         fail('Registry normalization must remain pre-ready, not inside publish')
     if 'python scripts/check_release_architecture.py' not in publish_section:
         fail('publish must re-run release architecture guard, including direct .ready/workflow_dispatch paths')
+    if main.find('python scripts/check_pages_tier_contract.py') > main.find('Atomic publish canonical data, derived assets and views'):
+        fail('tier-aware public-surface contract must run before Atomic Publish')
+    if main.find('python scripts/check_preference_contract.py') > main.find('Atomic publish canonical data, derived assets and views'):
+        fail('preference surface contract must run before Atomic Publish')
     if 'write_publish_receipt.py' in main and main.find('write_publish_receipt.py') < main.find('verify_pages_publish.py'):
         fail('DONE receipt wiring must occur after Pages verification')
 
-# Daily source QA must actually watch every contract that controls tomorrow's run.
 if DAILY_QA.exists():
     qa = DAILY_QA.read_text('utf-8')
     watched = [
@@ -199,13 +218,21 @@ if DAILY_QA.exists():
         "'scripts/enrich_full_analysis_v3.py'",
         "'scripts/check_release_input.py'",
         "'scripts/check_intelligence_contract.py'",
+        "'scripts/check_preference_contract.py'",
+        "'scripts/check_pages_tier_contract.py'",
+        "'scripts/verify_pages_publish.py'",
         "'scripts/check_release_architecture.py'",
         "'.github/workflows/intelligence-build.yml'",
     ]
     for token in watched:
         if token not in qa:
             fail(f'daily-contract.yml does not watch critical release source: {token}')
-    for command in ('python scripts/check_release_architecture.py', 'python scripts/check_discovery_hybrid_contract.py'):
+    for command in (
+        'python scripts/check_release_architecture.py',
+        'python scripts/check_discovery_hybrid_contract.py',
+        'python scripts/check_preference_contract.py',
+        'python scripts/check_pages_tier_contract.py',
+    ):
         if command not in qa:
             fail(f'daily-contract.yml missing architecture validation command: {command}')
 
@@ -213,4 +240,4 @@ if errors:
     print('RELEASE ARCHITECTURE CONTRACT FAILED')
     print('\n'.join('- ' + e for e in errors))
     sys.exit(1)
-print('RELEASE ARCHITECTURE CONTRACT PASS: hybrid discovery + tiered Full/Brief/Reject depth + strict pre-ready/public boundary + single-writer handoff + ordered QA/atomic/Pages/DONE + daily source-QA coverage')
+print('RELEASE ARCHITECTURE CONTRACT PASS: hybrid discovery + tiered Full/Brief/Reject depth + strict pre-ready/public boundary + pre-atomic tiered surface QA + single-writer handoff + ordered QA/atomic/Pages/DONE + daily source-QA coverage')
