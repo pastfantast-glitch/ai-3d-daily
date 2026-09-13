@@ -4,6 +4,11 @@
 This validates wiring only. Browser votes remain client-local until a cloud-backed
 preference source is introduced; build-time ranking must not pretend otherwise.
 Empty categories are valid under the quality-first, non-quota collection contract.
+
+The contract deliberately validates the newest *rendered* report, not merely the
+newest canonical JSON. A .request/.ready push may legitimately contain tomorrow's
+canonical data before any public category pages exist; those derived surfaces are
+validated later in the canonical publish worktree before Atomic Publish.
 """
 from pathlib import Path
 from bs4 import BeautifulSoup
@@ -16,11 +21,25 @@ def require(condition, message, errors):
         errors.append(message)
 
 
-def latest_daily_date():
-    dates = sorted(p.stem for p in (ROOT / 'data' / 'daily').glob('20??-??-??.json'))
-    if not dates:
+def latest_surface_date():
+    canonical_dates = sorted(p.stem for p in (ROOT / 'data' / 'daily').glob('20??-??-??.json'))
+    if not canonical_dates:
         raise SystemExit('PREFERENCE CONTRACT FAIL: no canonical daily data')
-    return dates[-1]
+
+    newest_canonical = canonical_dates[-1]
+    # Once the newest daily surface exists, it must be complete and is the one
+    # we validate. Before Atomic Publish, fall back to the latest existing public
+    # archive so pre-ready/request commits do not fail on intentionally absent HTML.
+    if (ROOT / newest_canonical / 'index.html').exists():
+        return newest_canonical
+
+    rendered = sorted(
+        path.name for path in ROOT.glob('20??-??-??')
+        if path.is_dir() and (path / 'index.html').exists()
+    )
+    if not rendered:
+        raise SystemExit('PREFERENCE CONTRACT FAIL: no rendered daily surface')
+    return rendered[-1]
 
 
 def stable_cards_only(soup, surface, errors):
@@ -58,7 +77,7 @@ def main():
     require("preference.js" in archive,
             'archive-nav-state.js does not bootstrap shared preference.js', errors)
 
-    date = latest_daily_date()
+    date = latest_surface_date()
     cfg_path = ROOT / 'config' / 'intelligence-v2.json'
     import json
     cfg = json.loads(cfg_path.read_text('utf-8'))
@@ -68,6 +87,9 @@ def main():
     home_soup = BeautifulSoup((ROOT / 'index.html').read_text('utf-8'), 'html.parser')
     home_cards = stable_cards_only(home_soup, 'homepage', errors)
     require(bool(home_cards), 'homepage has no intelligence cards', errors)
+
+    daily_path = ROOT / date / 'index.html'
+    require(daily_path.exists(), f'{date}: daily archive missing', errors)
 
     for category in categories:
         path = ROOT / date / category / 'index.html'
@@ -80,7 +102,6 @@ def main():
         script = soup.find('script', src=lambda value: value and 'archive-nav-state.js' in value)
         require(script is not None, f'{date}/{category}: shared workspace bootstrap missing', errors)
 
-    daily_path = ROOT / date / 'index.html'
     if daily_path.exists():
         daily_soup = BeautifulSoup(daily_path.read_text('utf-8'), 'html.parser')
         daily_cards = stable_cards_only(daily_soup, date, errors)
@@ -90,7 +111,7 @@ def main():
 
     if errors:
         raise SystemExit('PREFERENCE CONTRACT FAIL:\n- ' + '\n- '.join(errors))
-    print(f'PREFERENCE CONTRACT PASS: shared v2 feedback + stable-ID sync wiring / {date} / {len(categories)} categories / empty categories allowed')
+    print(f'PREFERENCE CONTRACT PASS: shared v2 feedback + stable-ID sync wiring / rendered={date} / {len(categories)} categories / empty categories allowed')
 
 
 if __name__ == '__main__':
