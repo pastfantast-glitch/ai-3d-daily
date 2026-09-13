@@ -204,6 +204,8 @@ jobs:
           python scripts/check_home_contract.py
           python scripts/check_daily_contract.py
           python scripts/check_information_architecture.py "${{ steps.date.outputs.value }}"
+          python scripts/check_preference_contract.py
+          python scripts/check_pages_tier_contract.py
           python scripts/check_historical_regression.py --days 4
       - name: Print visual coverage summary
         if: always()
