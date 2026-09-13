@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   AI 生成｜2026-09-14｜AI 3D Daily
+  </title>
+  <link href="../../styles.css?v=20260914-r1-workspace-v6" rel="stylesheet"/>
+  <link href="../../shared-components.css?v=20260914-r1-workspace-v6" rel="stylesheet"/>
+  <link href="../../category.css?v=20260914-r1-workspace-v6" rel="stylesheet"/>
+ </head>
+ <body class="category-page" data-category="ai-generation" data-report-date="2026-09-14">
+  <nav aria-label="Production Intelligence 分類" class="global-category-nav">
+   <div class="page global-category-nav-inner">
+    <div class="archive-nav-controls">
+     <a class="archive-nav-home" href="../../">
+      ← 首頁
+     </a>
+     <div class="archive-nav-date">
+      <a aria-label="前一日日報" class="archive-nav-arrow" href="../../2026-09-13/ai-generation/">
+       ←
+      </a>
+      <span>
+       2026-09-14
+      </span>
+     </div>
+    </div>
+    <span aria-hidden="true" class="archive-nav-divider">
+    </span>
+    <a class="global-category-link" href="../#top">
+     TOP5
+    </a>
+    <a class="global-category-link is-active" data-category="ai-generation" href="../ai-generation/">
+     AI 生成
+    </a>
+    <a class="global-category-link" data-category="3d-production" href="../3d-production/">
+     3D 製作
+    </a>
+    <a class="global-category-link" data-category="3d-animation" href="../3d-animation/">
+     3D 動作
+    </a>
+    <a class="global-category-link" data-category="engine-art" href="../engine-art/">
+     遊戲引擎
+    </a>
+    <a class="global-category-link" data-category="emerging-case" href="../emerging-case/">
+     新技術 / Case
+    </a>
+    <a class="global-category-link" data-category="blender-dcc" href="../blender-dcc/">
+     Blender / DCC
+    </a>
+   </div>
+  </nav>
+  <main class="page category-main">
+   <article class="category-card" data-intel-id="rokoko-vision-30-create" data-intel-role="card">
+    <div class="category-meta">
+     #03 · ai-motion
+    </div>
+    <h2>
+     Rokoko Vision 3.0：單目 AI Mocap solver 重寫並併入 Create，強調更乾淨動作與快速迭代
+    </h2>
+    <p class="summary">
+     Rokoko 在 2026-07-16 推出 Vision 3.0，重寫 monocular solver，將 Video-to-Motion 與 Text-to-Motion 收進 Rokoko Create，並可回 Studio 編輯與輸出。
+    </p>
+    <figure class="case-preview" data-intel-id="rokoko-vision-30-create" data-intel-role="visual" data-visual-id="rokoko-vision-30-create">
+     <a href="https://www.rokoko.com/insights/introducing-rokoko-vision-3-0" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-14/rokoko-vision-30-create.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">AI 動作</b> ★★★★☆</span>
+    </div>
+    <details data-analysis-level="BRIEF">
+     <summary>
+      情報簡析
+     </summary>
+     <div class="detail-body brief-analysis-body">
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證，但目前證據深度不足以支持完整 Production Analysis。
+      </p>
+      <h4>
+       情報重點
+      </h4>
+      <p>
+       Vision 3.0 是 Rokoko 單目 AI mocap pipeline 的重寫版本，主打更乾淨的 motion、更快 processing，並把 video-to-motion 直接併入 Create，後續可在 Rokoko Studio 編輯與匯出到主流 DCC／引擎。
+      </p>
+      <h4>
+       導入判斷
+      </h4>
+      <p>
+       可用相同手機影片與現有 mocap 方案比較 foot sliding、手腳遮擋、root motion、retarget 後 cleanup 工時。官方有清楚功能說明，但缺少獨立品質 benchmark，列 BRIEF。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://www.rokoko.com/insights/introducing-rokoko-vision-3-0" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="triposplat-modly-mesh-extension" data-intel-role="card">
+    <div class="category-meta">
+     #13 · ai-3d
+    </div>
+    <h2>
+     TripoSplat → Modly：把單圖 Gaussian Splat 重建成 watertight vertex-colored GLB 的開源整合
+    </h2>
+    <p class="summary">
+     Modly 的 TripoSplat extension 以單次 feed-forward 生成 Gaussian Splats，再用 density grid、Surface Nets 與 color volume 重建 watertight GLB，讓 splat 模型進入 mesh-centric pipeline。
+    </p>
+    <figure class="case-preview" data-intel-id="triposplat-modly-mesh-extension" data-intel-role="visual" data-visual-id="triposplat-modly-mesh-extension">
+     <a href="https://modly3d.app/extensions/triposplat" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-14/triposplat-modly-mesh-extension.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">AI 3D</b> ★★★★☆</span>
+    </div>
+    <details data-analysis-level="BRIEF">
+     <summary>
+      情報簡析
+     </summary>
+     <div class="detail-body brief-analysis-body">
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證，但目前證據深度不足以支持完整 Production Analysis。
+      </p>
+      <h4>
+       情報重點
+      </h4>
+      <p>
+       這個開源 extension 將 TripoSplat 的 Gaussian 表現轉入 mesh-centric 工具：依每個 Gaussian 的 covariance disk rasterize density grid，以 Otsu level＋Surface Nets 抽取表面，再把 color volume 採樣成 vertex color GLB。
+      </p>
+      <h4>
+       導入判斷
+      </h4>
+      <p>
+       它提供一條『快速 splat → 可匯入 DCC 的 mesh』實驗路徑，但 mesh 是有損近似，作者也明確提醒 fidelity 會低於 native splat render；適合 POC，不適合直接假設 game-ready。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://modly3d.app/extensions/triposplat" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <nav aria-label="相鄰分類" class="category-bottom-nav">
+    <a href="../blender-dcc/">
+     ← Blender / DCC
+    </a>
+    <a href="../#top">
+     TOP5
+    </a>
+    <a href="../3d-production/">
+     3D 製作 →
+    </a>
+   </nav>
+  </main>
+  <script defer="" src="../../archive-nav-state.js?v=20260914-r1-workspace-v6">
+  </script>
+ </body>
+</html>

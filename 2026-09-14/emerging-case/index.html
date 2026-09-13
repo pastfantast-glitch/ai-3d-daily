@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   新技術 / Case｜2026-09-14｜AI 3D Daily
+  </title>
+  <link href="../../styles.css?v=20260914-r1-workspace-v6" rel="stylesheet"/>
+  <link href="../../shared-components.css?v=20260914-r1-workspace-v6" rel="stylesheet"/>
+  <link href="../../category.css?v=20260914-r1-workspace-v6" rel="stylesheet"/>
+ </head>
+ <body class="category-page" data-category="emerging-case" data-report-date="2026-09-14">
+  <nav aria-label="Production Intelligence 分類" class="global-category-nav">
+   <div class="page global-category-nav-inner">
+    <div class="archive-nav-controls">
+     <a class="archive-nav-home" href="../../">
+      ← 首頁
+     </a>
+     <div class="archive-nav-date">
+      <a aria-label="前一日日報" class="archive-nav-arrow" href="../../2026-09-13/emerging-case/">
+       ←
+      </a>
+      <span>
+       2026-09-14
+      </span>
+     </div>
+    </div>
+    <span aria-hidden="true" class="archive-nav-divider">
+    </span>
+    <a class="global-category-link" href="../#top">
+     TOP5
+    </a>
+    <a class="global-category-link" data-category="ai-generation" href="../ai-generation/">
+     AI 生成
+    </a>
+    <a class="global-category-link" data-category="3d-production" href="../3d-production/">
+     3D 製作
+    </a>
+    <a class="global-category-link" data-category="3d-animation" href="../3d-animation/">
+     3D 動作
+    </a>
+    <a class="global-category-link" data-category="engine-art" href="../engine-art/">
+     遊戲引擎
+    </a>
+    <a class="global-category-link is-active" data-category="emerging-case" href="../emerging-case/">
+     新技術 / Case
+    </a>
+    <a class="global-category-link" data-category="blender-dcc" href="../blender-dcc/">
+     Blender / DCC
+    </a>
+   </div>
+  </nav>
+  <main class="page category-main">
+   <article class="category-card" data-intel-id="abcd-constant-vram-gaussian-splats" data-intel-role="card">
+    <div class="category-meta">
+     #10 · research
+    </div>
+    <h2>
+     ABCD：大型 Gaussian Splat 場景以 block coordinate descent 達到近似固定 VRAM 訓練
+    </h2>
+    <p class="summary">
+     ABCD 將 radiance field 分區，只讓一個 block 參與更新，其餘區域預渲染成前景／背景 RGBA，使 peak VRAM 對整體場景尺度趨近 O(1)。
+    </p>
+    <figure class="case-preview" data-intel-id="abcd-constant-vram-gaussian-splats" data-intel-role="visual" data-visual-id="abcd-constant-vram-gaussian-splats">
+     <a href="https://arxiv.org/abs/2608.27735" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-14/abcd-constant-vram-gaussian-splats.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">研究</b> ★★★★☆</span>
+    </div>
+    <details data-analysis-level="BRIEF">
+     <summary>
+      情報簡析
+     </summary>
+     <div class="detail-body brief-analysis-body">
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證，但目前證據深度不足以支持完整 Production Analysis。
+      </p>
+      <h4>
+       研究重點
+      </h4>
+      <p>
+       ABCD 利用 alpha compositing 的結合性，把非活動空間區塊預先 collapse 成前景／背景 RGBA，只更新單一 partition；在固定 partition 與解析度下，VRAM 不再隨整個場景範圍線性增長。
+      </p>
+      <h4>
+       成熟度判斷
+      </h4>
+      <p>
+       論文回報重建品質相對 3DGS 的 PSNR 降幅低於 5%，且有公開程式碼，對大場景掃描很有潛力；但它仍是研究型訓練框架，與遊戲即時 runtime、編輯工具鏈的整合尚需額外驗證。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://arxiv.org/abs/2608.27735" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="worldclaw-agentic-open-world-3d" data-intel-role="card">
+    <div class="category-meta">
+     #11 · world-model
+    </div>
+    <h2>
+     WorldClaw：Agent 規劃大型 3D 開放世界，輸出可編輯 terrain 與 instance-level textured meshes
+    </h2>
+    <p class="summary">
+     Tencent Hunyuan 的 WorldClaw 以 coarse-to-fine agent framework 把文字提示轉成區域、地形、資產、材質與空間關係，再逐區細化成可編輯 3D 場景。
+    </p>
+    <figure class="case-preview" data-intel-id="worldclaw-agentic-open-world-3d" data-intel-role="visual" data-visual-id="worldclaw-agentic-open-world-3d">
+     <a href="https://arxiv.org/abs/2608.05248" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-14/worldclaw-agentic-open-world-3d.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">世界模型</b> ★★★★☆</span>
+    </div>
+    <details data-analysis-level="BRIEF">
+     <summary>
+      情報簡析
+     </summary>
+     <div class="detail-body brief-analysis-body">
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證，但目前證據深度不足以支持完整 Production Analysis。
+      </p>
+      <h4>
+       研究重點
+      </h4>
+      <p>
+       WorldClaw 先由 planning agents 建立 region、terrain、asset、material 與 spatial relation 規格，再用 semantic layout、height field、可重用資產與 render-based agents 細化；目標不是只產影片，而是保留 global terrain 與可獨立編輯的 textured meshes。
+      </p>
+      <h4>
+       成熟度判斷
+      </h4>
+      <p>
+       它對 AI world-building 很重要，因為開始處理場景全局一致性與 instance-level 可編輯性；但目前是研究成果，距離遊戲 navigation、physics、LOD、streaming、授權與穩定 production tool 還有明顯距離，因此列 BRIEF。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://arxiv.org/abs/2608.05248" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="threejs-sdf-alien-raymarching" data-intel-role="card">
+    <div class="category-meta">
+     #12 · procedural
+    </div>
+    <h2>
+     無 Mesh 的 SDF 角色：Three.js 單一 fullscreen quad 以 raymarching 在 fragment shader 生成 3D 外觀
+    </h2>
+    <p class="summary">
+     Drin 的實驗完全不使用 mesh／texture／vertex，所有形體由 fragment shader 的 SDF raymarching 算出，展示 geometry-free stylized visual 的可能性。
+    </p>
+    <figure class="case-preview" data-intel-id="threejs-sdf-alien-raymarching" data-intel-role="visual" data-visual-id="threejs-sdf-alien-raymarching">
+     <a href="https://80.lv/articles/this-alien-has-no-mesh-is-built-in-three-js-with-shader-math" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-14/threejs-sdf-alien-raymarching.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">程序化</b> ★★★★☆</span>
+    </div>
+    <details data-analysis-level="BRIEF">
+     <summary>
+      情報簡析
+     </summary>
+     <div class="detail-body brief-analysis-body">
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證，但目前證據深度不足以支持完整 Production Analysis。
+      </p>
+      <h4>
+       技術方向
+      </h4>
+      <p>
+       案例以單一 fullscreen quad 讓每個 pixel 執行 SDF raymarching，深度、形體與光照都由 shader math 產生；對 stylized logo、UI 生物、特效與小型程序物件提供完全不依賴傳統 mesh 的思路。
+      </p>
+      <h4>
+       成熟度判斷
+      </h4>
+      <p>
+       方法在特定鏡頭與簡化形體很靈活，但 shader iteration、碰撞、陰影、可編輯性與跨平台成本會限制一般遊戲角色用途。來源是技術展示，列 BRIEF。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://80.lv/articles/this-alien-has-no-mesh-is-built-in-three-js-with-shader-math" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <nav aria-label="相鄰分類" class="category-bottom-nav">
+    <a href="../engine-art/">
+     ← 遊戲引擎
+    </a>
+    <a href="../#top">
+     TOP5
+    </a>
+    <a href="../blender-dcc/">
+     Blender / DCC →
+    </a>
+   </nav>
+  </main>
+  <script defer="" src="../../archive-nav-state.js?v=20260914-r1-workspace-v6">
+  </script>
+ </body>
+</html>

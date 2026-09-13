@@ -7,10 +7,10 @@
    AI / 3D Production Intelligence
   </title>
   <link href="styles.css?v=20260903-r2" rel="stylesheet"/>
-  <link href="shared-components.css?v=20260913-r1-workspace-v6" rel="stylesheet"/>
-  <link href="home.css?v=20260913-r1-workspace-v6" rel="stylesheet"/>
-  <link href="home-content.css?v=20260913-r1-workspace-v6" rel="stylesheet"/>
-  <link href="home-components.css?v=20260913-r1-workspace-v6" rel="stylesheet"/>
+  <link href="shared-components.css?v=20260914-r1-workspace-v6" rel="stylesheet"/>
+  <link href="home.css?v=20260914-r1-workspace-v6" rel="stylesheet"/>
+  <link href="home-content.css?v=20260914-r1-workspace-v6" rel="stylesheet"/>
+  <link href="home-components.css?v=20260914-r1-workspace-v6" rel="stylesheet"/>
  </head>
  <body class="home-page">
   <header class="home-hero">
@@ -22,7 +22,7 @@
      Production Intelligence
     </h1>
     <p class="week-asof">
-     2026-09-13
+     2026-09-14
     </p>
    </div>
   </header>
@@ -31,22 +31,22 @@
     <a class="global-category-link is-active" href="#today">
      TOP5
     </a>
-    <a class="global-category-link" data-category="ai-generation" href="2026-09-13/ai-generation/">
+    <a class="global-category-link" data-category="ai-generation" href="2026-09-14/ai-generation/">
      AI 生成
     </a>
-    <a class="global-category-link" data-category="3d-production" href="2026-09-13/3d-production/">
+    <a class="global-category-link" data-category="3d-production" href="2026-09-14/3d-production/">
      3D 製作
     </a>
-    <a class="global-category-link" data-category="3d-animation" href="2026-09-13/3d-animation/">
+    <a class="global-category-link" data-category="3d-animation" href="2026-09-14/3d-animation/">
      3D 動作
     </a>
-    <a class="global-category-link" data-category="engine-art" href="2026-09-13/engine-art/">
+    <a class="global-category-link" data-category="engine-art" href="2026-09-14/engine-art/">
      遊戲引擎
     </a>
-    <a class="global-category-link" data-category="emerging-case" href="2026-09-13/emerging-case/">
+    <a class="global-category-link" data-category="emerging-case" href="2026-09-14/emerging-case/">
      新技術 / Case
     </a>
-    <a class="global-category-link" data-category="blender-dcc" href="2026-09-13/blender-dcc/">
+    <a class="global-category-link" data-category="blender-dcc" href="2026-09-14/blender-dcc/">
      Blender / DCC
     </a>
    </div>
@@ -64,116 +64,6 @@
      </div>
     </div>
     <div class="top-list">
-     <article class="home-card top-item" data-intel-id="pixal3d-multiview-open-source" data-intel-role="card">
-      <div class="top-no">
-       01
-      </div>
-      <div class="top-main">
-       <h2>
-        Pixal3D 開源多視圖 3D 生成：以 TRELLIS.2 為底，補上 Multi-view 推論與低 VRAM 路徑
-       </h2>
-       <p class="summary">
-        騰訊 ARC 公開 Pixal3D 多視圖推論程式碼，可從單張或多視圖影像生成 3D，輸出 GLB，並提供較低顯存設定。這正面對應角色／道具多視圖一致性與可落地匯入 DCC 的需求。
-       </p>
-       <figure class="case-preview" data-intel-id="pixal3d-multiview-open-source" data-intel-role="visual" data-visual-id="pixal3d-multiview-open-source">
-        <a href="https://github.com/TencentARC/Pixal3D" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
-         <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-09-13/pixal3d-multiview-open-source.jpg"/>
-        </a>
-        <figcaption>
-         <span>
-          SOURCE PREVIEW
-         </span>
-         · Local visual evidence · 點圖開啟原始來源
-        </figcaption>
-       </figure>
-       <div class="quick-impact">
-        <span><b class="quick-impact-label">AI 3D</b> ★★★★★</span>
-       </div>
-       <details class="home-full-analysis" data-analysis-level="FULL">
-        <summary>
-         完整分析
-        </summary>
-        <div class="detail-body home-analysis-body">
-         <h4>
-          技術／工作流變化
-         </h4>
-         <p>
-          Pixal3D 把單圖與多視圖 3D 生成放在同一套開源推論流程，專案以 TRELLIS.2 為基礎並提供 Multi-view inference、GLB 輸出與低 VRAM 選項。對既有 image-to-3D 測試而言，最大的變化不是只追單張外觀，而是可以把正側背等多視圖一起餵入，直接測跨視角幾何一致性。
-         </p>
-         <h4>
-          Production 影響
-         </h4>
-         <p>
-          對角色與道具製作，多視圖能減少單張生成常見的背面亂猜、左右結構漂移與局部厚度錯誤，特別適合目前 Meshy／Tripo 類工具的橫向測試。GLB 輸出也讓候選結果可以直接進 Blender、Max 或引擎檢查拓樸、UV、分件與材質，而不只停留在展示圖。
-         </p>
-         <h4>
-          導入測試與限制
-         </h4>
-         <p>
-          建議用同一組四視圖角色與硬表面道具建立 A/B 測試，記錄正背輪廓誤差、對稱性、細節保留、生成時間、VRAM 與後續 retopo 工時。它仍是研究型開源方案，低 VRAM 模式可能交換速度或品質，且 game-ready topology、UV 與可編輯分件仍必須另外驗證。
-         </p>
-        </div>
-       </details>
-       <a class="source" href="https://github.com/TencentARC/Pixal3D" rel="noopener noreferrer" target="_blank">
-        來源
-       </a>
-      </div>
-     </article>
-     <article class="home-card top-item" data-intel-id="sony-mocopi-3dsmax-receiver" data-intel-role="card">
-      <div class="top-no">
-       02
-      </div>
-      <div class="top-main">
-       <h2>
-        Sony mocopi 正式進 3ds Max：即時 UDP 驅動 Biped，BVH／FBX 可直接轉 BIP
-       </h2>
-       <p class="summary">
-        Sony 發布 mocopi Receiver Plugin for 3ds Max，可接收 mocopi 即時動作資料驅動 Biped，並把 BVH／FBX motion 轉成 BIP，且插件採開源方式提供。
-       </p>
-       <figure class="case-preview" data-intel-id="sony-mocopi-3dsmax-receiver" data-intel-role="visual" data-visual-id="sony-mocopi-3dsmax-receiver">
-        <a href="https://xyn.sony.net/en/news/motion-32d82ba1" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
-         <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-09-13/sony-mocopi-3dsmax-receiver.jpg"/>
-        </a>
-        <figcaption>
-         <span>
-          SOURCE PREVIEW
-         </span>
-         · Local visual evidence · 點圖開啟原始來源
-        </figcaption>
-       </figure>
-       <div class="quick-impact">
-        <span><b class="quick-impact-label">動作捕捉</b> ★★★★★</span>
-       </div>
-       <details class="home-full-analysis" data-analysis-level="FULL">
-        <summary>
-         完整分析
-        </summary>
-        <div class="detail-body home-analysis-body">
-         <h4>
-          技術／工作流變化
-         </h4>
-         <p>
-          這次不是單純新增匯出格式，而是把 mocopi 的即時 UDP motion stream 直接接進 3ds Max Biped。Sony 也提供 BVH／FBX 到 BIP 的轉換路徑，因此現場 capture、離線檔案與既有 Biped 動畫可以在同一 DCC 內整理，減少先經 MotionBuilder 或其他轉檔工具的中介步驟。
-         </p>
-         <h4>
-          Production 影響
-         </h4>
-         <p>
-          對仍以 3ds Max 為主的角色團隊，這能把低成本 mocap 更直接納入 blocking、動作預覽與外包驗收。BIP 仍是很多 Max 舊專案常見資產格式，能直接落到 Biped 對維護既有角色庫特別實用，也可降低 AI／mocap 動作進既有 pipeline 前的格式摩擦。
-         </p>
-         <h4>
-          導入測試與限制
-         </h4>
-         <p>
-          建議用一支現有 Biped 角色測即時走跑攻擊，再把相同 BVH／FBX 轉 BIP，比較 root、foot contact、手部、骨盆高度與旋轉誤差。mocopi 本身的捕捉精度與遮擋問題不會因插件消失，因此要把『傳輸／轉檔問題』與『原始 motion 品質』分開評估。
-         </p>
-        </div>
-       </details>
-       <a class="source" href="https://xyn.sony.net/en/news/motion-32d82ba1" rel="noopener noreferrer" target="_blank">
-        來源
-       </a>
-      </div>
-     </article>
     </div>
    </section>
    <section class="home-section more-section" id="more">
@@ -188,16 +78,16 @@
      </div>
     </div>
     <div class="more-grid">
-     <article class="home-card more-card" data-intel-id="sidefx-hug-houdini22-september" data-intel-role="card">
+     <article class="home-card more-card" data-intel-id="ue5-shape-cage-runtime-deformation" data-intel-role="card">
       <h4>
-       Houdini 22 HUG 更新：SideFX Labs、SDF Modeling、Crowds、Copernicus 與 ML Workflow 集中曝光
+       UE5 Shape Cage：以 WPO 做 27 點 GPU 籠狀變形，避開 CPU soft-body 模擬
       </h4>
       <p class="summary">
-       SideFX HUG 近期內容集中展示 Houdini 22 的 SideFX Labs、SDF 建模／Crowd、Copernicus procedural pattern 與 ML／live relighting 等 production 方向。
+       Shape Cage 用 World Position Offset 在 vertex shader 執行網格變形，依碰撞位置、力道與方向推導 dent，並以約 12 bytes/凹痕的資訊做網路同步。
       </p>
-      <figure class="case-preview" data-intel-id="sidefx-hug-houdini22-september" data-intel-role="visual" data-visual-id="sidefx-hug-houdini22-september">
-       <a href="https://cgworld.jp/flashnews/01-202609-Houdini-HUG.html" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
-        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-09-13/sidefx-hug-houdini22-september.jpg"/>
+      <figure class="case-preview" data-intel-id="ue5-shape-cage-runtime-deformation" data-intel-role="visual" data-visual-id="ue5-shape-cage-runtime-deformation">
+       <a href="https://80.lv/articles/this-ue5-tool-can-deform-any-static-mesh-at-runtime" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-09-14/ue5-shape-cage-runtime-deformation.jpg"/>
        </a>
        <figcaption>
         <span>
@@ -207,7 +97,7 @@
        </figcaption>
       </figure>
       <div class="quick-impact">
-       <span><b class="quick-impact-label">Houdini</b> ★★★★★</span>
+       <span><b class="quick-impact-label">引擎工具</b> ★★★★☆</span>
       </div>
       <details class="home-full-analysis" data-analysis-level="BRIEF">
        <summary>
@@ -221,218 +111,30 @@
          情報重點
         </h4>
         <p>
-         Houdini 22 HUG 內容顯示 SideFX 目前把重點放在 Labs 工具更新、SDF modeling、crowd workflow、Copernicus 2D/procedural pattern，以及機器學習與 live relighting 等跨領域工具，適合當新版本導入前的功能地圖。
+         Shape Cage 以 27 點 cage 與 World Position Offset 做 GPU 變形，不修改 CPU mesh，也不依賴 skeletal mesh 或 soft-body solver；碰撞只提供位置、力道與方向，皺褶則以 normal map 補足小尺度細節。
         </p>
         <h4>
          導入判斷
         </h4>
         <p>
-         對技術美術可先把題目拆成幾個小 POC：SDF 建模是否能取代部分 Boolean／Voxel cleanup、Copernicus 是否適合材質圖批次、ML 節點是否能在本機 pipeline 重現。現階段文章是活動資訊摘要，細節深度不足以支持完整導入結論，因此列 BRIEF。
+         對可破壞／可擠壓道具可先測 Nanite 與非 Nanite、多人同步及高頂點數情境。功能來自 marketplace tool 的展示與作者說明，尚缺獨立 benchmark，因此列 BRIEF。
         </p>
        </div>
       </details>
-      <a class="source" href="https://cgworld.jp/flashnews/01-202609-Houdini-HUG.html" rel="noopener noreferrer" target="_blank">
+      <a class="source" href="https://80.lv/articles/this-ue5-tool-can-deform-any-static-mesh-at-runtime" rel="noopener noreferrer" target="_blank">
        來源
       </a>
      </article>
-     <article class="home-card more-card" data-intel-id="siggraph2026-ai-3d-roundup" data-intel-role="card">
+     <article class="home-card more-card" data-intel-id="blender53-reactive-cel-lighting" data-intel-role="card">
       <h4>
-       SIGGRAPH 2026 AI／3D 研究整理：Canvas-to-Image、4D 與可控 3D Hair 等方向開始逼近製作工具
+       Blender 5.3 NPR 原型：可自訂逐燈光照行為，Cel Shader 能回應 light color 與 cast shadow
       </h4>
       <p class="summary">
-       CGWORLD 整理 SIGGRAPH 2026 多項 AI／CG 研究，涵蓋 Canvas-to-Image、複雜 4D 表現與文字控制 3D Hair 等十篇論文，適合追蹤下一波內容生產與編輯能力。
+       Blender 5.3 開發中的自訂材質 lighting nodes 讓 NPR 使用者能逐燈計算自己的 shading behavior，並把結果送入正確 render passes。
       </p>
-      <figure class="case-preview" data-intel-id="siggraph2026-ai-3d-roundup" data-intel-role="visual" data-visual-id="siggraph2026-ai-3d-roundup">
-       <a href="https://cgworld.jp/article/202609-sig-ai.html" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
-        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-09-13/siggraph2026-ai-3d-roundup.jpg"/>
-       </a>
-       <figcaption>
-        <span>
-         SOURCE PREVIEW
-        </span>
-        · Local visual evidence · 點圖開啟原始來源
-       </figcaption>
-      </figure>
-      <div class="quick-impact">
-       <span><b class="quick-impact-label">研究</b> ★★★★★</span>
-      </div>
-      <details class="home-full-analysis" data-analysis-level="BRIEF">
-       <summary>
-        情報簡析
-       </summary>
-       <div class="detail-body brief-analysis-body home-analysis-body">
-        <p class="analysis-level-note">
-         BRIEF｜來源已驗證，但目前證據深度不足以支持完整 Production Analysis。
-        </p>
-        <h4>
-         情報重點
-        </h4>
-        <p>
-         這份 SIGGRAPH 整理的價值在於同時看到多條研究線：2D 引導生成、可控 3D hair、複雜 4D 表現等都開始從『生成一個結果』轉向可編輯、可條件控制與時序一致，與遊戲美術真正需要的 production controllability 更接近。
-        </p>
-        <h4>
-         導入判斷
-        </h4>
-        <p>
-         建議先把其中有公開 code／project page 的題目列成研究 watchlist，只對能輸出可編輯幾何、材質、motion 或可重現控制的方案做 POC。論文展示距離商用 DCC 整合、授權、速度與穩定度仍有落差，因此以 BRIEF 收錄，不把研究 demo 當成熟工具。
-        </p>
-       </div>
-      </details>
-      <a class="source" href="https://cgworld.jp/article/202609-sig-ai.html" rel="noopener noreferrer" target="_blank">
-       來源
-      </a>
-     </article>
-     <article class="home-card more-card" data-intel-id="4danyone-monocular-human-4d" data-intel-role="card">
-      <h4>
-       4DAnyone：單目影片重建動態人物 4D 表現，公開 3DGS／4DGS 路線
-      </h4>
-      <p class="summary">
-       4DAnyone（SIGGRAPH Asia 2026）以一般單目影片為輸入，目標重建動態人物的時序 3D／4D 表現；專案公開程式與 3DGS／4DGS 相關 roadmap。
-      </p>
-      <figure class="case-preview" data-intel-id="4danyone-monocular-human-4d" data-intel-role="visual" data-visual-id="4danyone-monocular-human-4d">
-       <a href="https://github.com/ant-research/4DAnyone" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
-        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-09-13/4danyone-monocular-human-4d.jpg"/>
-       </a>
-       <figcaption>
-        <span>
-         SOURCE PREVIEW
-        </span>
-        · Local visual evidence · 點圖開啟原始來源
-       </figcaption>
-      </figure>
-      <div class="quick-impact">
-       <span><b class="quick-impact-label">4D</b> ★★★★★</span>
-      </div>
-      <details class="home-full-analysis" data-analysis-level="BRIEF">
-       <summary>
-        情報簡析
-       </summary>
-       <div class="detail-body brief-analysis-body home-analysis-body">
-        <p class="analysis-level-note">
-         BRIEF｜來源已驗證，但目前證據深度不足以支持完整 Production Analysis。
-        </p>
-        <h4>
-         情報重點
-        </h4>
-        <p>
-         4DAnyone 把 casual monocular video 轉成動態人物 4D 表現，研究重點不是單幀 avatar，而是跨時間保持人物幾何與外觀一致。專案已公開程式並持續補 3DGS／4DGS 路徑，對影片轉可觀看動態資產具有研究價值。
-        </p>
-        <h4>
-         導入判斷
-        </h4>
-        <p>
-         可用一段固定鏡頭、再一段有自遮擋的角色影片測重建穩定度，重點看手腳拓撲漂移、衣物細節、視角外補全與播放成本。輸出是否能直接轉成骨架動畫／遊戲 mesh 仍不是它的主要目標，因此目前較適合 previs、數位人研究或 4D reference。
-        </p>
-       </div>
-      </details>
-      <a class="source" href="https://github.com/ant-research/4DAnyone" rel="noopener noreferrer" target="_blank">
-       來源
-      </a>
-     </article>
-     <article class="home-card more-card" data-intel-id="anigen-animatable-3d-generation" data-intel-role="card">
-      <h4>
-       AniGen：從生成 3D 直接走向 Animatable Asset，嘗試把外觀、幾何與可動畫欄位一起建模
-      </h4>
-      <p class="summary">
-       AniGen（SIGGRAPH 2026）提出可動畫 3D asset generation，目標不是只產生靜態 mesh，而是將支援動畫的結構／欄位一起納入生成，程式已開源。
-      </p>
-      <figure class="case-preview" data-intel-id="anigen-animatable-3d-generation" data-intel-role="visual" data-visual-id="anigen-animatable-3d-generation">
-       <a href="https://github.com/VAST-AI-Research/AniGen" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
-        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-09-13/anigen-animatable-3d-generation.jpg"/>
-       </a>
-       <figcaption>
-        <span>
-         SOURCE PREVIEW
-        </span>
-        · Local visual evidence · 點圖開啟原始來源
-       </figcaption>
-      </figure>
-      <div class="quick-impact">
-       <span><b class="quick-impact-label">AI 3D</b> ★★★★☆</span>
-      </div>
-      <details class="home-full-analysis" data-analysis-level="BRIEF">
-       <summary>
-        情報簡析
-       </summary>
-       <div class="detail-body brief-analysis-body home-analysis-body">
-        <p class="analysis-level-note">
-         BRIEF｜來源已驗證，但目前證據深度不足以支持完整 Production Analysis。
-        </p>
-        <h4>
-         情報重點
-        </h4>
-        <p>
-         AniGen 把生成目標從『看起來像 3D』推向『之後能動的 3D asset』，研究將外觀、幾何與動畫相關欄位放在統一框架處理。這個方向直接切中 AI 3D 現況的痛點：生成後還要重新 rig、skin、修 topology 才能進 production。
-        </p>
-        <h4>
-         導入判斷
-        </h4>
-        <p>
-         可先檢查輸出是否能穩定轉到常見 skeleton／DCC，並測不同體型、服裝與配件下的 deformation 品質。專案含第三方 NVIDIA 元件的非商用授權限制，且研究 benchmark 不等於 game-ready production，因此先列 BRIEF。
-        </p>
-       </div>
-      </details>
-      <a class="source" href="https://github.com/VAST-AI-Research/AniGen" rel="noopener noreferrer" target="_blank">
-       來源
-      </a>
-     </article>
-     <article class="home-card more-card" data-intel-id="moge4d-single-image-4d" data-intel-role="card">
-      <h4>
-       MoGe4D：單張影像推 4D Trajectory／Scene，建立 TrajScene-60K 資料集
-      </h4>
-      <p class="summary">
-       MoGe4D（ECCV 2026）嘗試從單張影像預測 4D 場景與 dense trajectory，並公開 TrajScene-60K 相關資源，代表單圖理解開始加入時間與運動維度。
-      </p>
-      <figure class="case-preview" data-intel-id="moge4d-single-image-4d" data-intel-role="visual" data-visual-id="moge4d-single-image-4d">
-       <a href="https://github.com/Zhangyr2022/MoGe4D" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
-        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-09-13/moge4d-single-image-4d.jpg"/>
-       </a>
-       <figcaption>
-        <span>
-         SOURCE PREVIEW
-        </span>
-        · Local visual evidence · 點圖開啟原始來源
-       </figcaption>
-      </figure>
-      <div class="quick-impact">
-       <span><b class="quick-impact-label">4D</b> ★★★★☆</span>
-      </div>
-      <details class="home-full-analysis" data-analysis-level="BRIEF">
-       <summary>
-        情報簡析
-       </summary>
-       <div class="detail-body brief-analysis-body home-analysis-body">
-        <p class="analysis-level-note">
-         BRIEF｜來源已驗證，但目前證據深度不足以支持完整 Production Analysis。
-        </p>
-        <h4>
-         情報重點
-        </h4>
-        <p>
-         MoGe4D 的差異在於不只做單張 depth／3D，而是預測物體與場景在時間維度上的 dense trajectory，讓單張影像可以提供動態結構先驗。TrajScene-60K 也顯示研究正在建立可訓練的大型 4D trajectory 資料。
-        </p>
-        <h4>
-         導入判斷
-        </h4>
-        <p>
-         對遊戲美術較可能的近期用途是 motion prior、previs 或輔助生成，而不是直接輸出可用角色動畫。可以用人物、車輛與布料場景測 trajectory 是否符合基本運動邏輯；目前仍需把研究結果轉成 skeleton、keyframe 或 simulation constraint 才能進 DCC。
-        </p>
-       </div>
-      </details>
-      <a class="source" href="https://github.com/Zhangyr2022/MoGe4D" rel="noopener noreferrer" target="_blank">
-       來源
-      </a>
-     </article>
-     <article class="home-card more-card" data-intel-id="blender53-native-dispersion" data-intel-role="card">
-      <h4>
-       Blender 5.3 Cycles 原生 Dispersion：Principled BSDF 以 Abbe Number 控制色散
-      </h4>
-      <p class="summary">
-       Blender 5.3 的 Principled BSDF／Cycles 加入原生 dispersion，採 Abbe number 控制折射色散，讓玻璃、寶石等材質不再完全依賴複雜節點 hack。
-      </p>
-      <figure class="case-preview" data-intel-id="blender53-native-dispersion" data-intel-role="visual" data-visual-id="blender53-native-dispersion">
-       <a href="https://80.lv/articles/understanding-native-dispersion-in-blender-5-3" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
-        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-09-13/blender53-native-dispersion.jpg"/>
+      <figure class="case-preview" data-intel-id="blender53-reactive-cel-lighting" data-intel-role="visual" data-visual-id="blender53-reactive-cel-lighting">
+       <a href="https://80.lv/articles/fully-customizable-reactive-cel-shading-in-blender" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-09-14/blender53-reactive-cel-lighting.jpg"/>
        </a>
        <figcaption>
         <span>
@@ -456,30 +158,30 @@
          情報重點
         </h4>
         <p>
-         新版 Cycles 將 dispersion 納入 Principled BSDF，透過 Abbe number 控制不同波長折射差異，做玻璃、水晶、稜鏡與寶石材質時可少掉手工拆 RGB／多層 refraction 的節點 workaround，並與 OpenPBR 方向更一致。
+         Krysidian 與 Goo Studios 的 NPR 原型顯示 Blender 5.3 正朝可自訂 material lighting 前進，重點是 shader 能逐燈反應 light color、cast shadow，並把自訂結果接到 render pass，而不是只靠 emission 或後處理假出 toon 明暗。
         </p>
         <h4>
          導入判斷
         </h4>
         <p>
-         建議把現有水晶／玻璃 shader 做新舊對照，檢查 render time、firefly、噪點與不同 IOR 的可控性。這是 Blender 5.3 開發期功能，正式版前 API／參數仍可能調整；遊戲即時材質也不能直接等同 Cycles 物理色散。
+         這對 Toon/NPR 研究很值得持續追，但目前仍屬開發中功能；建議用既有 Ramp、臉部 SDF 與 hair highlight 測試材質節點是否能取代部分 workaround。尚未正式穩定，列 BRIEF。
         </p>
        </div>
       </details>
-      <a class="source" href="https://80.lv/articles/understanding-native-dispersion-in-blender-5-3" rel="noopener noreferrer" target="_blank">
+      <a class="source" href="https://80.lv/articles/fully-customizable-reactive-cel-shading-in-blender" rel="noopener noreferrer" target="_blank">
        來源
       </a>
      </article>
-     <article class="home-card more-card" data-intel-id="caustica-photon-caustics-cycles" data-intel-role="card">
+     <article class="home-card more-card" data-intel-id="rokoko-vision-30-create" data-intel-role="card">
       <h4>
-       Caustica：把 Progressive Photon Mapping 帶進 Blender Cycles，專攻真正的 Photon Caustics
+       Rokoko Vision 3.0：單目 AI Mocap solver 重寫並併入 Create，強調更乾淨動作與快速迭代
       </h4>
       <p class="summary">
-       Caustica 提供 Blender 5.2 LTS 自訂 build，以 GPU Progressive Photon Mapping 補足 Cycles 的 caustics，面向玻璃、水晶、珠寶與光學效果。
+       Rokoko 在 2026-07-16 推出 Vision 3.0，重寫 monocular solver，將 Video-to-Motion 與 Text-to-Motion 收進 Rokoko Create，並可回 Studio 編輯與輸出。
       </p>
-      <figure class="case-preview" data-intel-id="caustica-photon-caustics-cycles" data-intel-role="visual" data-visual-id="caustica-photon-caustics-cycles">
-       <a href="https://80.lv/articles/true-photon-traced-caustics-for-blender-s-cycles" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
-        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-09-13/caustica-photon-caustics-cycles.jpg"/>
+      <figure class="case-preview" data-intel-id="rokoko-vision-30-create" data-intel-role="visual" data-visual-id="rokoko-vision-30-create">
+       <a href="https://www.rokoko.com/insights/introducing-rokoko-vision-3-0" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-09-14/rokoko-vision-30-create.jpg"/>
        </a>
        <figcaption>
         <span>
@@ -489,7 +191,7 @@
        </figcaption>
       </figure>
       <div class="quick-impact">
-       <span><b class="quick-impact-label">外掛</b> ★★★★☆</span>
+       <span><b class="quick-impact-label">AI 動作</b> ★★★★☆</span>
       </div>
       <details class="home-full-analysis" data-analysis-level="BRIEF">
        <summary>
@@ -503,30 +205,30 @@
          情報重點
         </h4>
         <p>
-         Caustica 不是材質節點假 caustic，而是在 Cycles 自訂 build 中加入 progressive photon mapping，讓光經折射／反射集中形成真正的 caustics。對產品視覺、珠寶、玻璃與材質測試，比手工貼圖或光斑投影更接近物理結果。
+         Vision 3.0 是 Rokoko 單目 AI mocap pipeline 的重寫版本，主打更乾淨的 motion、更快 processing，並把 video-to-motion 直接併入 Create，後續可在 Rokoko Studio 編輯與匯出到主流 DCC／引擎。
         </p>
         <h4>
          導入判斷
         </h4>
         <p>
-         若團隊有水晶／玻璃宣傳圖，可用同一場景比較標準 Cycles 與 Caustica 的收斂時間、GPU VRAM、噪點與 art-directability。它目前要求特定 Blender build、RTX 2000+ 且屬單 GPU 路徑，pipeline 維護成本比一般 addon 高，因此列 BRIEF。
+         可用相同手機影片與現有 mocap 方案比較 foot sliding、手腳遮擋、root motion、retarget 後 cleanup 工時。官方有清楚功能說明，但缺少獨立品質 benchmark，列 BRIEF。
         </p>
        </div>
       </details>
-      <a class="source" href="https://80.lv/articles/true-photon-traced-caustics-for-blender-s-cycles" rel="noopener noreferrer" target="_blank">
+      <a class="source" href="https://www.rokoko.com/insights/introducing-rokoko-vision-3-0" rel="noopener noreferrer" target="_blank">
        來源
       </a>
      </article>
-     <article class="home-card more-card" data-intel-id="jigglegen2-blender-jiggle" data-intel-role="card">
+     <article class="home-card more-card" data-intel-id="mecha-centaur-lance-animation-reference" data-intel-role="card">
       <h4>
-       JiggleGen 2.0：Blender 身體、衣物與頭髮 Secondary Motion 自動化，加入獨立模擬 Mesh
+       Mecha Centaur 長槍攻擊：多角度展示高速戰鬥動畫的重量、弧線與節奏
       </h4>
       <p class="summary">
-       JiggleGen 2.0 重寫 secondary motion 工作流，可用 vertex group 控制身體、衣物與頭髮的 jiggle，並替衣物建立獨立 simulation mesh，降低直接在高模上算 cloth 的負擔。
+       Martin Chang 的 Rosetta 長槍動畫以多角度展示高速連擊，適合作為 stylized gameplay attack 的 pose readability、arcs 與 timing 參考。
       </p>
-      <figure class="case-preview" data-intel-id="jigglegen2-blender-jiggle" data-intel-role="visual" data-visual-id="jigglegen2-blender-jiggle">
-       <a href="https://80.lv/articles/this-blender-add-on-lets-you-add-jiggle-physics-to-bodies-clothes-and-hair" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
-        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-09-13/jigglegen2-blender-jiggle.jpg"/>
+      <figure class="case-preview" data-intel-id="mecha-centaur-lance-animation-reference" data-intel-role="visual" data-visual-id="mecha-centaur-lance-animation-reference">
+       <a href="https://80.lv/articles/this-mecha-centaur-s-lance-attack-is-pure-animation-eye-candy" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-09-14/mecha-centaur-lance-animation-reference.jpg"/>
        </a>
        <figcaption>
         <span>
@@ -536,7 +238,54 @@
        </figcaption>
       </figure>
       <div class="quick-impact">
-       <span><b class="quick-impact-label">外掛</b> ★★★★☆</span>
+       <span><b class="quick-impact-label">動畫</b> ★★★★☆</span>
+      </div>
+      <details class="home-full-analysis" data-analysis-level="BRIEF">
+       <summary>
+        情報簡析
+       </summary>
+       <div class="detail-body brief-analysis-body home-analysis-body">
+        <p class="analysis-level-note">
+         BRIEF｜來源已驗證，但目前證據深度不足以支持完整 Production Analysis。
+        </p>
+        <h4>
+         動畫參考價值
+        </h4>
+        <p>
+         這組 Maya 動畫雖沒有完整技術拆解，但多角度展示長槍連擊、四足／半人馬重心轉移與高速 recovery，對 combat animation 的 silhouette、arc、anticipation 與 impact timing 有很高參考價值。
+        </p>
+        <h4>
+         限制
+        </h4>
+        <p>
+         來源屬高品質 showcase，沒有 rig、curve、frame breakdown 或 production integration 細節，因此不應升級成完整工作流分析，依契約列 BRIEF。
+        </p>
+       </div>
+      </details>
+      <a class="source" href="https://80.lv/articles/this-mecha-centaur-s-lance-attack-is-pure-animation-eye-candy" rel="noopener noreferrer" target="_blank">
+       來源
+      </a>
+     </article>
+     <article class="home-card more-card" data-intel-id="fairytale-pond-ucupaint-blender" data-intel-role="card">
+      <h4>
+       Blender 童話池塘製作：Ucupaint layer workflow 搭配 Eevee 的場景貼圖管理
+      </h4>
+      <p class="summary">
+       Ramy 展示從 default cube 到完整池塘的製作過程，並使用 Ucupaint 管理 Eevee／Cycles 的 texture layers、masks、decals 與 displacement。
+      </p>
+      <figure class="case-preview" data-intel-id="fairytale-pond-ucupaint-blender" data-intel-role="visual" data-visual-id="fairytale-pond-ucupaint-blender">
+       <a href="https://80.lv/articles/watch-how-this-fairytale-pond-with-water-lilies-was-made-in-blender" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-09-14/fairytale-pond-ucupaint-blender.jpg"/>
+       </a>
+       <figcaption>
+        <span>
+         SOURCE PREVIEW
+        </span>
+        · Local visual evidence · 點圖開啟原始來源
+       </figcaption>
+      </figure>
+      <div class="quick-impact">
+       <span><b class="quick-impact-label">Blender</b> ★★★★☆</span>
       </div>
       <details class="home-full-analysis" data-analysis-level="BRIEF">
        <summary>
@@ -550,30 +299,30 @@
          情報重點
         </h4>
         <p>
-         2.0 版把 secondary motion 從簡單骨骼抖動往可控 simulation workflow 推進：用 vertex group 指定作用區域，衣物可建立獨立 simulation mesh，再把結果回傳到原資產；同時作者也在試驗 Geometry Nodes Cloth 路徑。
+         案例展示 Ucupaint 在 Blender 內把 image、vertex attribute、generated texture 與 mask 疊在單一 node group 管理，並支援 decal、AO bake、real-time/vector displacement；對希望把 Painter 式 layer 思維留在 Blender 的流程有參考價值。
         </p>
         <h4>
          導入判斷
         </h4>
         <p>
-         適合拿角色胸腹軟組織、裙擺與長髮做三種測試，記錄 setup 時間、collision 穩定度、cache 與 bake 後可編輯性。這是第三方 addon，尚需確認高密度角色、角色縮放與輸出到 UE/Unity 時是否保持一致。
+         可用一個 stylized environment asset 測 Ucupaint layer 數、shader compile、Eevee 預覽與匯出到遊戲引擎的落差。來源以 time-lapse 為主，production 深度有限，列 BRIEF。
         </p>
        </div>
       </details>
-      <a class="source" href="https://80.lv/articles/this-blender-add-on-lets-you-add-jiggle-physics-to-bodies-clothes-and-hair" rel="noopener noreferrer" target="_blank">
+      <a class="source" href="https://80.lv/articles/watch-how-this-fairytale-pond-with-water-lilies-was-made-in-blender" rel="noopener noreferrer" target="_blank">
        來源
       </a>
      </article>
-     <article class="home-card more-card" data-intel-id="blender-painterly-texture-kuwahara" data-intel-role="card">
+     <article class="home-card more-card" data-intel-id="studiojoin-free-maya-rig" data-intel-role="card">
       <h4>
-       Blender Painterly Texture：用類 Kuwahara 鄰域取樣把任意貼圖轉成較大筆觸色塊
+       STUDIOJOIN 免費 Maya Rig：IK/FK、Soft IK、World/Local 與臉部控制可用於 rigging 練習
       </h4>
       <p class="summary">
-       一套 Blender Shader Editor 做法以鄰域取樣與類 Kuwahara 思路，把原貼圖整理成 painterly 色塊，並可封裝成重用 Node Group。
+       STUDIOJOIN 提供 Maya 2023+ 免費非商用角色 rig，包含全局縮放、IK/FK、World/Local、Soft IK 與臉部 controller，可做 rig 結構與 animator usability 參考。
       </p>
-      <figure class="case-preview" data-intel-id="blender-painterly-texture-kuwahara" data-intel-role="visual" data-visual-id="blender-painterly-texture-kuwahara">
-       <a href="https://80.lv/articles/tutorial-how-to-make-any-texture-look-painterly-in-blender" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
-        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-09-13/blender-painterly-texture-kuwahara.jpg"/>
+      <figure class="case-preview" data-intel-id="studiojoin-free-maya-rig" data-intel-role="visual" data-visual-id="studiojoin-free-maya-rig">
+       <a href="https://80.lv/articles/get-this-free-maya-rig-with-advanced-controls" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-09-14/studiojoin-free-maya-rig.jpg"/>
        </a>
        <figcaption>
         <span>
@@ -583,7 +332,7 @@
        </figcaption>
       </figure>
       <div class="quick-impact">
-       <span><b class="quick-impact-label">Blender 技巧</b> ★★★★☆</span>
+       <span><b class="quick-impact-label">綁定</b> ★★★★☆</span>
       </div>
       <details class="home-full-analysis" data-analysis-level="BRIEF">
        <summary>
@@ -597,30 +346,30 @@
          情報重點
         </h4>
         <p>
-         這個做法在 shader 端對鄰近 texel 做區域統計／取樣，把高頻細節重新組成較大片的色塊與筆觸感，概念接近 Kuwahara filter。重點是可做成 reusable node group，直接套在既有貼圖上調整 painterly 程度。
+         這個免費 rig 同時提供 IK/FK、Soft IK、World/Local space、全局縮放與臉部 controller，對建立角色 rig checklist、測 animator-facing controls 與新人訓練很實用。
         </p>
         <h4>
-         導入判斷
+         限制
         </h4>
         <p>
-         對 Stylized／NPR 專案可用同一張 BaseColor 比較離線 Photoshop 處理與 shader 即時處理，觀察 UV seam、遠距 mip、動畫中的 shimmer 與成本。若要進遊戲引擎，最好把效果烘焙或改寫成較低取樣版本，避免高次數 texture sample。
+         授權僅非商用，且文章沒有 deformation benchmark、export-to-engine 或複雜 production scene 的驗證，因此定位為學習／參考資產，列 BRIEF。
         </p>
        </div>
       </details>
-      <a class="source" href="https://80.lv/articles/tutorial-how-to-make-any-texture-look-painterly-in-blender" rel="noopener noreferrer" target="_blank">
+      <a class="source" href="https://80.lv/articles/get-this-free-maya-rig-with-advanced-controls" rel="noopener noreferrer" target="_blank">
        來源
       </a>
      </article>
-     <article class="home-card more-card" data-intel-id="blender-procedural-stylized-sky" data-intel-role="card">
+     <article class="home-card more-card" data-intel-id="folding-chair-blender-rigging" data-intel-role="card">
       <h4>
-       Blender Procedural Stylized Sky：多層雲速率、12 組預設與可動畫參數做成一套天空生成器
+       Blender 機械綁定：用 bone chain 與 IK 建立折疊椅連桿並處理比例誤差
       </h4>
       <p class="summary">
-       新 stylized sky generator 以程序化方式產生多層雲與天空，可控制不同 layer 速度、密度與造型，提供 12 組 preset，支援 Eevee／Cycles。
+       DemNikoArt 以 Blender 5.2 LTS 拆解折疊椅機構，從運動分析、bone chain、IK 到比例不完全吻合時的修正，並提供 rigged/unrigged 檔案。
       </p>
-      <figure class="case-preview" data-intel-id="blender-procedural-stylized-sky" data-intel-role="visual" data-visual-id="blender-procedural-stylized-sky">
-       <a href="https://80.lv/articles/fully-procedural-stylized-sky-generator-for-blender-released" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
-        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-09-13/blender-procedural-stylized-sky.jpg"/>
+      <figure class="case-preview" data-intel-id="folding-chair-blender-rigging" data-intel-role="visual" data-visual-id="folding-chair-blender-rigging">
+       <a href="https://80.lv/articles/tutorial-rigging-folding-chair-in-blender" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-09-14/folding-chair-blender-rigging.jpg"/>
        </a>
        <figcaption>
         <span>
@@ -630,7 +379,7 @@
        </figcaption>
       </figure>
       <div class="quick-impact">
-       <span><b class="quick-impact-label">外掛</b> ★★★★☆</span>
+       <span><b class="quick-impact-label">綁定</b> ★★★★☆</span>
       </div>
       <details class="home-full-analysis" data-analysis-level="BRIEF">
        <summary>
@@ -644,17 +393,158 @@
          情報重點
         </h4>
         <p>
-         這套工具把 stylized sky 的雲層、色彩、速度與動畫參數集中成可重用 generator，而不是每個 shot 重新手搭 volume／mesh cloud。不同 layer 可用不同移動速度，有利做出 parallax 與遠近層次。
+         教程把機械物件綁定拆成運動分析、bone chain、IK 自動化與錯誤修正，特別適合非角色的門、機構、武器與展開式道具，能補足只會 humanoid rig 的知識缺口。
         </p>
         <h4>
          導入判斷
         </h4>
         <p>
-         可用一個固定鏡頭測日夜色彩、風吹速度與 30 秒循環是否無縫，再檢查 Eevee／Cycles 的相貌差異。若最終場景在 Unity／Unreal，這項情報比較適合做視覺設計與烘焙參考，不能直接假設節點可原樣移植。
+         建議用一個現有多連桿道具重做，檢查 constraint 穩定性、export 到引擎後的 transform 與 animator 操作成本。屬單一教學案例，列 BRIEF。
         </p>
        </div>
       </details>
-      <a class="source" href="https://80.lv/articles/fully-procedural-stylized-sky-generator-for-blender-released" rel="noopener noreferrer" target="_blank">
+      <a class="source" href="https://80.lv/articles/tutorial-rigging-folding-chair-in-blender" rel="noopener noreferrer" target="_blank">
+       來源
+      </a>
+     </article>
+     <article class="home-card more-card" data-intel-id="free-fitness-mocap-pack" data-intel-role="card">
+      <h4>
+       免費 Fitness Mocap Pack：15 分鐘訓練／伸展／健身動作，可作 gameplay 與資料庫補充
+      </h4>
+      <p class="summary">
+       Anderson Rohr 發布新的免費 mocap 動作包，含 functional training、stretching、strength 與 gym movements，定位於遊戲、動畫與 cinematic 使用。
+      </p>
+      <figure class="case-preview" data-intel-id="free-fitness-mocap-pack" data-intel-role="visual" data-visual-id="free-fitness-mocap-pack">
+       <a href="https://80.lv/articles/get-these-free-mocap-fitness-workout-animations" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-09-14/free-fitness-mocap-pack.jpg"/>
+       </a>
+       <figcaption>
+        <span>
+         SOURCE PREVIEW
+        </span>
+        · Local visual evidence · 點圖開啟原始來源
+       </figcaption>
+      </figure>
+      <div class="quick-impact">
+       <span><b class="quick-impact-label">動作捕捉</b> ★★★★☆</span>
+      </div>
+      <details class="home-full-analysis" data-analysis-level="BRIEF">
+       <summary>
+        情報簡析
+       </summary>
+       <div class="detail-body brief-analysis-body home-analysis-body">
+        <p class="analysis-level-note">
+         BRIEF｜來源已驗證，但目前證據深度不足以支持完整 Production Analysis。
+        </p>
+        <h4>
+         情報重點
+        </h4>
+        <p>
+         這批免費 mocap 約 15 分鐘，動作類型涵蓋訓練、伸展與力量運動，適合補充 NPC、健身、日常 locomotion 之外的動作資料庫，也可用來測 retarget／cleanup pipeline。
+        </p>
+        <h4>
+         限制
+        </h4>
+        <p>
+         文章未提供逐 clip 的骨架品質、foot contact 或授權細節分析；導入前應先抽樣檢查 root、手腳穿插與目標骨架 retarget，列 BRIEF。
+        </p>
+       </div>
+      </details>
+      <a class="source" href="https://80.lv/articles/get-these-free-mocap-fitness-workout-animations" rel="noopener noreferrer" target="_blank">
+       來源
+      </a>
+     </article>
+     <article class="home-card more-card" data-intel-id="unity-ori-style-2d-water" data-intel-role="card">
+      <h4>
+       Unity 2D Renderer 程序化水面：解析 ripple＋假透視 surface，偏美術可控而非物理解算
+      </h4>
+      <p class="summary">
+       BxYass 的 Ori-inspired 水系統以 analytical ripples、shader 與 rendering 技巧製作 2.5D 水面，支援 currents、debris、浮台、light rays、wakes、API 與 custom inspectors。
+      </p>
+      <figure class="case-preview" data-intel-id="unity-ori-style-2d-water" data-intel-role="visual" data-visual-id="unity-ori-style-2d-water">
+       <a href="https://80.lv/articles/creating-ori-style-2d-water-system-in-unity" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-09-14/unity-ori-style-2d-water.jpg"/>
+       </a>
+       <figcaption>
+        <span>
+         SOURCE PREVIEW
+        </span>
+        · Local visual evidence · 點圖開啟原始來源
+       </figcaption>
+      </figure>
+      <div class="quick-impact">
+       <span><b class="quick-impact-label">Unity</b> ★★★★☆</span>
+      </div>
+      <details class="home-full-analysis" data-analysis-level="BRIEF">
+       <summary>
+        情報簡析
+       </summary>
+       <div class="detail-body brief-analysis-body home-analysis-body">
+        <p class="analysis-level-note">
+         BRIEF｜來源已驗證，但目前證據深度不足以支持完整 Production Analysis。
+        </p>
+        <h4>
+         情報重點
+        </h4>
+        <p>
+         系統不用流體模擬，而以 frequency、impact strength、damping 等解析參數生成 ripple，並用 foam/pattern 位移做 fake surface perspective；同時加入 exclusion zone、current、wake、light ray 與 code sampling API。
+        </p>
+        <h4>
+         導入判斷
+        </h4>
+        <p>
+         對 URP/2D stylized 專案非常適合做低成本水體 POC，應實測多個互動源、camera angle、mobile fill-rate 與 batching。工具仍在發布前後期，完整效能資料有限，列 BRIEF。
+        </p>
+       </div>
+      </details>
+      <a class="source" href="https://80.lv/articles/creating-ori-style-2d-water-system-in-unity" rel="noopener noreferrer" target="_blank">
+       來源
+      </a>
+     </article>
+     <article class="home-card more-card" data-intel-id="abcd-constant-vram-gaussian-splats" data-intel-role="card">
+      <h4>
+       ABCD：大型 Gaussian Splat 場景以 block coordinate descent 達到近似固定 VRAM 訓練
+      </h4>
+      <p class="summary">
+       ABCD 將 radiance field 分區，只讓一個 block 參與更新，其餘區域預渲染成前景／背景 RGBA，使 peak VRAM 對整體場景尺度趨近 O(1)。
+      </p>
+      <figure class="case-preview" data-intel-id="abcd-constant-vram-gaussian-splats" data-intel-role="visual" data-visual-id="abcd-constant-vram-gaussian-splats">
+       <a href="https://arxiv.org/abs/2608.27735" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-09-14/abcd-constant-vram-gaussian-splats.jpg"/>
+       </a>
+       <figcaption>
+        <span>
+         SOURCE PREVIEW
+        </span>
+        · Local visual evidence · 點圖開啟原始來源
+       </figcaption>
+      </figure>
+      <div class="quick-impact">
+       <span><b class="quick-impact-label">研究</b> ★★★★☆</span>
+      </div>
+      <details class="home-full-analysis" data-analysis-level="BRIEF">
+       <summary>
+        情報簡析
+       </summary>
+       <div class="detail-body brief-analysis-body home-analysis-body">
+        <p class="analysis-level-note">
+         BRIEF｜來源已驗證，但目前證據深度不足以支持完整 Production Analysis。
+        </p>
+        <h4>
+         研究重點
+        </h4>
+        <p>
+         ABCD 利用 alpha compositing 的結合性，把非活動空間區塊預先 collapse 成前景／背景 RGBA，只更新單一 partition；在固定 partition 與解析度下，VRAM 不再隨整個場景範圍線性增長。
+        </p>
+        <h4>
+         成熟度判斷
+        </h4>
+        <p>
+         論文回報重建品質相對 3DGS 的 PSNR 降幅低於 5%，且有公開程式碼，對大場景掃描很有潛力；但它仍是研究型訓練框架，與遊戲即時 runtime、編輯工具鏈的整合尚需額外驗證。
+        </p>
+       </div>
+      </details>
+      <a class="source" href="https://arxiv.org/abs/2608.27735" rel="noopener noreferrer" target="_blank">
        來源
       </a>
      </article>
@@ -667,7 +557,7 @@
      </h2>
     </div>
     <div class="category-nav-grid">
-     <a class="category-nav-card" href="2026-09-13/ai-generation/">
+     <a class="category-nav-card" href="2026-09-14/ai-generation/">
       <strong>
        AI 生成
       </strong>
@@ -675,7 +565,7 @@
        AI 3D 生成 / AI 2D 生成 / AI 動作生成
       </span>
      </a>
-     <a class="category-nav-card" href="2026-09-13/3d-production/">
+     <a class="category-nav-card" href="2026-09-14/3d-production/">
       <strong>
        3D 製作
       </strong>
@@ -683,7 +573,7 @@
        3D 角色製作 / 3D 物件製作 / 3D 場景製作 / 製作流程
       </span>
      </a>
-     <a class="category-nav-card" href="2026-09-13/3d-animation/">
+     <a class="category-nav-card" href="2026-09-14/3d-animation/">
       <strong>
        3D 動作
       </strong>
@@ -691,7 +581,7 @@
        3D 動作 / 3D 動作製作流程
       </span>
      </a>
-     <a class="category-nav-card" href="2026-09-13/engine-art/">
+     <a class="category-nav-card" href="2026-09-14/engine-art/">
       <strong>
        遊戲引擎
       </strong>
@@ -699,7 +589,7 @@
        遊戲引擎 / 引擎端美術內容
       </span>
      </a>
-     <a class="category-nav-card" href="2026-09-13/emerging-case/">
+     <a class="category-nav-card" href="2026-09-14/emerging-case/">
       <strong>
        新技術 / Case
       </strong>
@@ -707,7 +597,7 @@
        新技術 / Production Case
       </span>
      </a>
-     <a class="category-nav-card" href="2026-09-13/blender-dcc/">
+     <a class="category-nav-card" href="2026-09-14/blender-dcc/">
       <strong>
        Blender / DCC
       </strong>
@@ -717,8 +607,8 @@
      </a>
     </div>
    </section>
-   <div class="current-report-entry" data-current-report-date="2026-09-13">
-    <a aria-label="查看 2026-09-13 今日完整日報" class="category-nav-card current-report-link" href="2026-09-13/">
+   <div class="current-report-entry" data-current-report-date="2026-09-14">
+    <a aria-label="查看 2026-09-14 今日完整日報" class="category-nav-card current-report-link" href="2026-09-14/">
      <div class="current-report-copy">
       <span class="current-report-eyebrow">
        TODAY
@@ -728,7 +618,7 @@
       </strong>
      </div>
      <span class="current-report-date">
-      2026-09-13
+      2026-09-14
      </span>
     </a>
    </div>
@@ -791,6 +681,14 @@
          9 月
         </summary>
         <div class="archive-entries">
+         <a class="history-entry" data-history-categories="3d-animation 3d-production ai-generation blender-dcc emerging-case engine-art" data-history-date="2026-09-13" data-history-search="2026-09-13 歷史日報 pixal3d 開源多視圖 3d 生成：以 trellis.2 為底，補上 multi-view 推論與低 vram 路徑 騰訊 arc 公開 pixal3d 多視圖推論程式碼，可從單張或多視圖影像生成 3d，輸出 glb，並提供較低顯存設定。這正面對應角色／道具多視圖一致性與可落地匯入 dcc 的需求。 ★★★★★ sony mocopi 正式進 3ds max：即時 udp 驅動 biped，bvh／fbx 可直接轉 bip sony 發布 mocopi receiver plugin for 3ds max，可接收 mocopi 即時動作資料驅動 biped，並把 bvh／fbx motion 轉成 bip，且插件採開源方式提供。 ★★★★★ houdini 22 hug 更新：sidefx labs、sdf modeling、crowds、copernicus 與 ml workflow 集中曝光 sidefx hug 近期內容集中展示 houdini 22 的 sidefx labs、sdf 建模／crowd、copernicus procedural pattern 與 ml／live relighting 等 production 方向。 ★★★★★ siggraph 2026 ai／3d 研究整理：canvas-to-image、4d 與可控 3d hair 等方向開始逼近製作工具 cgworld 整理 siggraph 2026 多項 ai／cg 研究，涵蓋 canvas-to-image、複雜 4d 表現與文字控制 3d hair 等十篇論文，適合追蹤下一波內容生產與編輯能力。 ★★★★★ 4danyone：單目影片重建動態人物 4d 表現，公開 3dgs／4dgs 路線 4danyone（siggraph asia 2026）以一般單目影片為輸入，目標重建動態人物的時序 3d／4d 表現；專案公開程式與 3dgs／4dgs 相關 roadmap。 ★★★★★ anigen：從生成 3d 直接走向 animatable asset，嘗試把外觀、幾何與可動畫欄位一起建模 anigen（siggraph 2026）提出可動畫 3d asset generation，目標不是只產生靜態 mesh，而是將支援動畫的結構／欄位一起納入生成，程式已開源。 ★★★★☆ moge4d：單張影像推 4d trajectory／scene，建立 trajscene-60k 資料集 moge4d（eccv 2026）嘗試從單張影像預測 4d 場景與 dense trajectory，並公開 trajscene-60k 相關資源，代表單圖理解開始加入時間與運動維度。 ★★★★☆ blender 5.3 cycles 原生 dispersion：principled bsdf 以 abbe number 控制色散 blender 5.3 的 principled bsdf／cycles 加入原生 dispersion，採 abbe number 控制折射色散，讓玻璃、寶石等材質不再完全依賴複雜節點 hack。 ★★★★☆ caustica：把 progressive photon mapping 帶進 blender cycles，專攻真正的 photon caustics caustica 提供 blender 5.2 lts 自訂 build，以 gpu progressive photon mapping 補足 cycles 的 caustics，面向玻璃、水晶、珠寶與光學效果。 ★★★★☆ jigglegen 2.0：blender 身體、衣物與頭髮 secondary motion 自動化，加入獨立模擬 mesh jigglegen 2.0 重寫 secondary motion 工作流，可用 vertex group 控制身體、衣物與頭髮的 jiggle，並替衣物建立獨立 simulation mesh，降低直接在高模上算 cloth 的負擔。 ★★★★☆ blender painterly texture：用類 kuwahara 鄰域取樣把任意貼圖轉成較大筆觸色塊 一套 blender shader editor 做法以鄰域取樣與類 kuwahara 思路，把原貼圖整理成 painterly 色塊，並可封裝成重用 node group。 ★★★★☆ blender procedural stylized sky：多層雲速率、12 組預設與可動畫參數做成一套天空生成器 新 stylized sky generator 以程序化方式產生多層雲與天空，可控制不同 layer 速度、密度與造型，提供 12 組 preset，支援 eevee／cycles。 ★★★★☆ blaze autopose 1.0：blender 以 position／orientation／look-at constraints 加速角色 pose blaze autopose 對 rigify、auto-rig pro、cloudrig、mixamo 與一般 fk rig 提供 constraint-based posing，作者主打以位置、朝向、look-at 目標快速建立姿勢。 ★★★★☆ 京都動畫《二十世紀電氣目録》：blender／houdini 3dcg 背景追求『動畫手繪印象』而非寫實 cgworld 拆解京都動畫新作背景／ed 的 3dcg 與攝影方法，展示 blender、houdini 等工具如何服務手繪動畫質感，而不是單純提高 pbr 寫實度。 ★★★★☆ 《world is dancing》舞蹈動畫：3dcg＋mocap 先建立動作 guide，再回到手繪作畫 cgworld 介紹舞蹈場景以 3dcg production 與 motion capture 建立動作／鏡頭 guide，之後由動畫師回到手繪表現，形成 mocap 不直接等於 final 的混合流程。 ★★★★☆ 《world is dancing》背景製作：3d／美術背景協作維持舞蹈鏡頭的一致空間 cgworld 後續篇聚焦背景與場景協作，展示在大量舞蹈鏡頭下如何利用 3d 空間基準與美術處理維持場景連續性與畫面風格。 ★★★★☆ unity 7 unite 重點：surface cache gi、ssr／gtao 與 neural resource compression 指向新一輪 rendering 更新 unity 7 近期展示 surface cache gi、ssr、gtao 與 neural resource compression 等方向，surface cache gi 主打不需預烘焙即可處理動態幾何／日夜變化，且以 urp 為重要落點。 ★★★★☆ houdini 4dgs workflow：pdg 自動化 gaussian splatting 處理，串 lichtfeld／gsops 到 unreal cgworld 介紹以 houdini pdg 管理 4d gaussian splatting 的自動化流程，結合 lichtfeld studio／gsops，並延伸到 unreal 的場景與播放 pipeline。 ★★★★☆ openusd typhoon：以 hdembree 打造 reference renderer，補強跨 dcc／renderer 一致性檢查 新 openusd reference renderer typhoon 以 hdembree 為核心，提供 linux／macos／windows 支援，目標是讓 usd shading、lighting 與 interoperability 有較一致的基準。 ★★★★☆ cad／高模 polygon reduction 實測：unity att、zbrush、blender、instalod 放在同一 production 題目比較 cgworld 專題把 unity asset transformer toolkit、zbrush、blender 與 instalod 用在 cad／高模 reduction，比較減面後外觀與後續 realtime／lod 工作流。 ★★★★☆ openpbr 跨 renderer 對照：arnold／karma／unreal 的 materialx 外觀一致性成為新驗收題目 cgworld 測試 materialx／openpbr 在 arnold、karma 與 unreal 等 renderer 的表現，凸顯同一材質標準在不同實作仍需要外觀 parity 驗證。 ★★★★☆" href="2026-09-13/">
+          <strong>
+           2026-09-13
+          </strong>
+          <span>
+           歷史日報
+          </span>
+         </a>
          <a class="history-entry" data-history-categories="3d-animation 3d-production blender-dcc emerging-case" data-history-date="2026-09-12" data-history-search="2026-09-12 歷史日報 dr. doom 角色流程：metahuman、zbrush、marvelous 與 ue5 即時呈現串成完整角色管線 rocksteady 角色美術 patrick van rooijen 分享 dr. doom 製作：metahuman 頭部回寫 zbrush、marvelous 分層服裝、maya/topogun 重拓樸、substance 貼圖，最後在 ue5 以 lumen、markerless mocap 與 chaos cloth 完成即時展示。 ★★★★★ 古董機械 prop：低面數建模、ue control rig 齒輪邏輯與 substrate 材質一次整合 kyle michel 以 15k triangles 內完成古董電擊機，從 blender mid-poly／bake、單張 2k uv，到 unreal control rig 依齒輪比驅動動畫，並以 substrate fuzz、glint、anisotropy 做絨面材質。 ★★★★★ 2d concept 到 3d fantasy character：先抓 silhouette，再處理分層服裝、縫線與羽毛細節 artem bieliakov 的 the widow of feathers breakdown 聚焦從 2d concept 轉為遊戲角色，重點包含角色 silhouette、層疊服裝、折痕與縫線、裝飾結構，以及鳥與羽毛的製作。 ★★★★★ orc、dragon 到 boss：把 rig、skin、locomotion 與 combat animation 做成可重用遊戲系統 yeyo studio 分享動作外包實務：跨人類、orc、ogre、skeleton、necromancer 與 15 種 creature，每角色約 42 個 locomotion/combat state，並在 engine 中持續驗證 rig、skin 與動畫集合。 ★★★★★ ragdoll physics posing：把重心、接觸與限制直接帶進 maya／blender pose blocking ragdoll dynamics 提供 browser、maya 與 blender 的 physics-assisted posing，可直接拖動肢體、使用 contact/limits 保持姿勢，並顯示 center of mass；同一 pose 可回到 dcc 繼續 keyframe 動畫。 ★★★★★ raid alice fan art：保留原作辨識度，同時把皮革、毛皮與寫實材質推到角色製作層 dahye han 分享 alice fan art 的 modeling/texturing 流程，核心是在維持遊戲原角色特徵的同時加入更寫實的材質與渲染，並特別處理皮革與兔毛。 ★★★★☆ 老年矮人角色：皺紋皮膚、毛髮與 paragon 材質的可拆解角色 lookdev 案例 nikita popp 的 dwarf breakdown 聚焦 aged skin texturing，並展示 3ds max、blender、zbrush、substance painter 與 unreal 的角色流程，以及用 paragon material 處理 hair/feathers。 ★★★★☆ hipr：依場景變動與光傳輸影響排序 path tracing 更新，先把有感像素算完 university of utah 的 hierarchical progressive rendering 追蹤編輯對直接可見區、反射、陰影與間接光的影響，優先更新重要區域，最後仍收斂到相同 unbiased path-traced 結果。 ★★★★☆ world of tanks: heat：70/30 車輛設計、跨 dcc art pipeline 與跨平台優化如何一起運作 wargaming 說明 heat 的 70/30 vehicle design philosophy、agents/vehicles 的 silhouette與材質辨識，以及 maya、blender、3ds max、houdini 等跨 dcc 配合自研引擎與跨平台 optimization 的流程。 ★★★★☆ blender procedural ice：volume、voronoi、color ramp 與 displacement 封裝成可重用 node group ryan king 用 volume 建立冰塊霧化核心，voronoi 做不均表面，再以 color ramp、透明/反射與 displacement 控制冰感，最後封裝 node group 讓 color、roughness、displacement 可快速調參。 ★★★★☆ hardcraft alpha：利用 cad patch 結構導引 blender retopology，而不是盲目全自動 remesh hardcraft 讀取 step／plasticity bridge 等 cad export 殘留結構，把 surface 拆成 patch/curve，讓使用者調整 patch boundary、edge flow 與 density，再 commit 成 quad+triangle 的 game-ready mesh。 ★★★★★ pro particles 5.3：gpu flip／sph／mpm、cache 與 alembic 把 blender 多物理 fx 串成單一工具鏈 pro particles 5.3 新增 flip/apic liquids、sph、multi-material mpm、constraints、flow fields 等，重做 post/output，加入 persistent caches 與 alembic export，並可在 gpu preview 與 blender geometry 間切換。 ★★★★☆ shellfit：即時修正 body／clothing 穿插，結果可 bake 到 shape key 或 mesh shellfit 以 shell、solid、auto 三種 fitting mode 處理服裝與身體 overlap/gap，可選擇移動 body 或 clothing，quick shell fit 可針對局部接觸區，並支援 copy weights 與結果烘焙。 ★★★★☆ bwrap：把已驗證角色 topology 當 template，直接 wrap 到新 sculpt／scan bwrap 是 blender 新增的 guided topology wrapping add-on，可用既有乾淨角色 mesh 作 template，將 edge flow 與 deformation loops 轉移到新 character、sculpt 或 scan，目標是減少重複手工 retopo。 ★★★★☆" href="2026-09-12/">
           <strong>
            2026-09-12
@@ -984,7 +882,7 @@
     </div>
    </section>
   </main>
-  <script src="home.js?v=20260913-r1-workspace-v6">
+  <script src="home.js?v=20260914-r1-workspace-v6">
   </script>
  </body>
 </html>

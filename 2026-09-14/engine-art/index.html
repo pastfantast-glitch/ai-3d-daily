@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   遊戲引擎｜2026-09-14｜AI 3D Daily
+  </title>
+  <link href="../../styles.css?v=20260914-r1-workspace-v6" rel="stylesheet"/>
+  <link href="../../shared-components.css?v=20260914-r1-workspace-v6" rel="stylesheet"/>
+  <link href="../../category.css?v=20260914-r1-workspace-v6" rel="stylesheet"/>
+ </head>
+ <body class="category-page" data-category="engine-art" data-report-date="2026-09-14">
+  <nav aria-label="Production Intelligence 分類" class="global-category-nav">
+   <div class="page global-category-nav-inner">
+    <div class="archive-nav-controls">
+     <a class="archive-nav-home" href="../../">
+      ← 首頁
+     </a>
+     <div class="archive-nav-date">
+      <a aria-label="前一日日報" class="archive-nav-arrow" href="../../2026-09-13/engine-art/">
+       ←
+      </a>
+      <span>
+       2026-09-14
+      </span>
+     </div>
+    </div>
+    <span aria-hidden="true" class="archive-nav-divider">
+    </span>
+    <a class="global-category-link" href="../#top">
+     TOP5
+    </a>
+    <a class="global-category-link" data-category="ai-generation" href="../ai-generation/">
+     AI 生成
+    </a>
+    <a class="global-category-link" data-category="3d-production" href="../3d-production/">
+     3D 製作
+    </a>
+    <a class="global-category-link" data-category="3d-animation" href="../3d-animation/">
+     3D 動作
+    </a>
+    <a class="global-category-link is-active" data-category="engine-art" href="../engine-art/">
+     遊戲引擎
+    </a>
+    <a class="global-category-link" data-category="emerging-case" href="../emerging-case/">
+     新技術 / Case
+    </a>
+    <a class="global-category-link" data-category="blender-dcc" href="../blender-dcc/">
+     Blender / DCC
+    </a>
+   </div>
+  </nav>
+  <main class="page category-main">
+   <article class="category-card" data-intel-id="ue5-shape-cage-runtime-deformation" data-intel-role="card">
+    <div class="category-meta">
+     #01 · tools
+    </div>
+    <h2>
+     UE5 Shape Cage：以 WPO 做 27 點 GPU 籠狀變形，避開 CPU soft-body 模擬
+    </h2>
+    <p class="summary">
+     Shape Cage 用 World Position Offset 在 vertex shader 執行網格變形，依碰撞位置、力道與方向推導 dent，並以約 12 bytes/凹痕的資訊做網路同步。
+    </p>
+    <figure class="case-preview" data-intel-id="ue5-shape-cage-runtime-deformation" data-intel-role="visual" data-visual-id="ue5-shape-cage-runtime-deformation">
+     <a href="https://80.lv/articles/this-ue5-tool-can-deform-any-static-mesh-at-runtime" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-14/ue5-shape-cage-runtime-deformation.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">引擎工具</b> ★★★★☆</span>
+    </div>
+    <details data-analysis-level="BRIEF">
+     <summary>
+      情報簡析
+     </summary>
+     <div class="detail-body brief-analysis-body">
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證，但目前證據深度不足以支持完整 Production Analysis。
+      </p>
+      <h4>
+       情報重點
+      </h4>
+      <p>
+       Shape Cage 以 27 點 cage 與 World Position Offset 做 GPU 變形，不修改 CPU mesh，也不依賴 skeletal mesh 或 soft-body solver；碰撞只提供位置、力道與方向，皺褶則以 normal map 補足小尺度細節。
+      </p>
+      <h4>
+       導入判斷
+      </h4>
+      <p>
+       對可破壞／可擠壓道具可先測 Nanite 與非 Nanite、多人同步及高頂點數情境。功能來自 marketplace tool 的展示與作者說明，尚缺獨立 benchmark，因此列 BRIEF。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://80.lv/articles/this-ue5-tool-can-deform-any-static-mesh-at-runtime" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="unity-ori-style-2d-water" data-intel-role="card">
+    <div class="category-meta">
+     #09 · unity
+    </div>
+    <h2>
+     Unity 2D Renderer 程序化水面：解析 ripple＋假透視 surface，偏美術可控而非物理解算
+    </h2>
+    <p class="summary">
+     BxYass 的 Ori-inspired 水系統以 analytical ripples、shader 與 rendering 技巧製作 2.5D 水面，支援 currents、debris、浮台、light rays、wakes、API 與 custom inspectors。
+    </p>
+    <figure class="case-preview" data-intel-id="unity-ori-style-2d-water" data-intel-role="visual" data-visual-id="unity-ori-style-2d-water">
+     <a href="https://80.lv/articles/creating-ori-style-2d-water-system-in-unity" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-14/unity-ori-style-2d-water.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">Unity</b> ★★★★☆</span>
+    </div>
+    <details data-analysis-level="BRIEF">
+     <summary>
+      情報簡析
+     </summary>
+     <div class="detail-body brief-analysis-body">
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證，但目前證據深度不足以支持完整 Production Analysis。
+      </p>
+      <h4>
+       情報重點
+      </h4>
+      <p>
+       系統不用流體模擬，而以 frequency、impact strength、damping 等解析參數生成 ripple，並用 foam/pattern 位移做 fake surface perspective；同時加入 exclusion zone、current、wake、light ray 與 code sampling API。
+      </p>
+      <h4>
+       導入判斷
+      </h4>
+      <p>
+       對 URP/2D stylized 專案非常適合做低成本水體 POC，應實測多個互動源、camera angle、mobile fill-rate 與 batching。工具仍在發布前後期，完整效能資料有限，列 BRIEF。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://80.lv/articles/creating-ori-style-2d-water-system-in-unity" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <nav aria-label="相鄰分類" class="category-bottom-nav">
+    <a href="../3d-animation/">
+     ← 3D 動作
+    </a>
+    <a href="../#top">
+     TOP5
+    </a>
+    <a href="../emerging-case/">
+     新技術 / Case →
+    </a>
+   </nav>
+  </main>
+  <script defer="" src="../../archive-nav-state.js?v=20260914-r1-workspace-v6">
+  </script>
+ </body>
+</html>
