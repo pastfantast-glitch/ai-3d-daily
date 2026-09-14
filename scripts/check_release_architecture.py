@@ -93,8 +93,21 @@ if depth_path.exists():
                 fail('full-analysis-depth REJECT publish_allowed must be false')
 
             top5 = depth.get('top5_policy') or {}
-            if top5.get('allow_brief') is not False:
-                fail('full-analysis-depth top5_policy must keep allow_brief=false')
+            selection_mode = str(top5.get('selection_mode') or 'full-only').strip()
+            allow_brief = top5.get('allow_brief')
+            fallback_only = top5.get('brief_fallback_only', True)
+            if selection_mode not in ('full-only', 'full-first-brief-fallback'):
+                fail(f'full-analysis-depth unknown top5_policy selection_mode: {selection_mode}')
+            elif selection_mode == 'full-only':
+                if allow_brief is not False:
+                    fail('full-analysis-depth full-only TOP5 mode requires allow_brief=false')
+            else:
+                if allow_brief is not True:
+                    fail('full-analysis-depth full-first-brief-fallback mode requires allow_brief=true')
+                if fallback_only is not True:
+                    fail('full-analysis-depth BRIEF TOP5 admission must remain fallback-only')
+                if top5.get('require_visible_brief_label') is not True:
+                    fail('full-analysis-depth BRIEF TOP5 fallback must require visible BRIEF identification')
         else:
             if int(depth.get('min_blocks', 0)) < 3:
                 fail('full-analysis-depth min_blocks must be >= 3')
@@ -240,4 +253,4 @@ if errors:
     print('RELEASE ARCHITECTURE CONTRACT FAILED')
     print('\n'.join('- ' + e for e in errors))
     sys.exit(1)
-print('RELEASE ARCHITECTURE CONTRACT PASS: hybrid discovery + tiered Full/Brief/Reject depth + strict pre-ready/public boundary + pre-atomic tiered surface QA + single-writer handoff + ordered QA/atomic/Pages/DONE + daily source-QA coverage')
+print('RELEASE ARCHITECTURE CONTRACT PASS: hybrid discovery + tiered Full/Brief/Reject depth + config-driven TOP5 fallback + strict pre-ready/public boundary + pre-atomic tiered surface QA + single-writer handoff + ordered QA/atomic/Pages/DONE + daily source-QA coverage')
