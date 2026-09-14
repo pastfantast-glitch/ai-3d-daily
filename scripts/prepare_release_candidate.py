@@ -5,6 +5,12 @@ Hybrid discovery extends the canonical prepare sequence without publishing deriv
 homepage/daily surfaces. Public presentation files are generated temporarily for
 preflight, then restored before the prepare commit so a failed publish can never
 leak a half-prepared homepage to GitHub Pages.
+
+Normal collection remains idempotent: a date with state=DONE is refused. The sole
+exception is an explicit repository request whose JSON intent is `policy-republish`
+and whose date matches the target. That path exists for deterministic contract or
+presentation-policy migrations of an already-verified canonical release; it still
+runs the complete prepare gate and generates `.ready` here rather than by hand.
 """
 from pathlib import Path
 import hashlib
@@ -49,6 +55,21 @@ def restore(path: Path, state) -> None:
         path.unlink(missing_ok=True)
 
 
+def explicit_policy_republish_requested(date: str) -> bool:
+    request_path = ROOT / 'data' / 'publish' / f'{date}.request'
+    if not request_path.exists():
+        return False
+    try:
+        request = json.loads(request_path.read_text('utf-8'))
+    except Exception:
+        return False
+    return (
+        str(request.get('intent', '')).strip() == 'policy-republish'
+        and str(request.get('date', '')).strip() == date
+        and request.get('allow_done_republish') is True
+    )
+
+
 def main() -> None:
     date = sys.argv[1] if len(sys.argv) > 1 else ''
     if not DATE_RE.fullmatch(date):
@@ -60,13 +81,20 @@ def main() -> None:
     if not data_path.exists():
         raise SystemExit(f'Missing canonical dataset: {data_path}')
 
+    controlled_republish = False
     if done_path.exists():
         try:
             receipt = json.loads(done_path.read_text('utf-8'))
         except Exception as exc:
             raise SystemExit(f'Invalid DONE receipt: {done_path}: {exc}')
         if str(receipt.get('state', '')).strip().upper() == 'DONE':
-            raise SystemExit(f'{date} already has state=DONE; refusing to prepare/re-run')
+            controlled_republish = explicit_policy_republish_requested(date)
+            if not controlled_republish:
+                raise SystemExit(f'{date} already has state=DONE; refusing to prepare/re-run')
+            print(
+                f'CONTROLLED POLICY REPUBLISH: {date} has state=DONE but an explicit '
+                'repo request authorizes full pre-ready revalidation.'
+            )
 
     ready_path.unlink(missing_ok=True)
 
@@ -117,12 +145,13 @@ def main() -> None:
         'registry_normalized_before_ready': True,
         'preflight_passed_before_ready': True,
         'public_surfaces_committed_before_publish': False,
+        'controlled_policy_republish': controlled_republish,
     }
     ready_path.parent.mkdir(parents=True, exist_ok=True)
     ready_path.write_text(json.dumps(marker, ensure_ascii=False, indent=2) + '\n', 'utf-8')
     print(
         f"PRE-READY PASS: {date} items={len(items)} sha256={marker['canonical_sha256']} "
-        f"ready={ready_path.relative_to(ROOT)}"
+        f"ready={ready_path.relative_to(ROOT)} controlled_republish={controlled_republish}"
     )
 
 
