@@ -23,6 +23,7 @@ on:
       - 'scripts/url_identity.py'
       - 'scripts/discovery_hybrid.py'
       - 'scripts/check_discovery_hybrid_contract.py'
+      - 'scripts/check_tier_assignment_contract.py'
       - 'scripts/check_collection_contract.py'
       - 'scripts/check_stability_contract.py'
       - 'scripts/check_quick_impact_contract.py'
@@ -76,6 +77,7 @@ jobs:
       - name: Validate release architecture, source topology, hybrid discovery and stability contracts
         run: |
           python scripts/check_release_architecture.py
+          python scripts/check_tier_assignment_contract.py
           python scripts/check_pipeline_contract.py
           python scripts/check_collection_contract.py
           python scripts/check_discovery_hybrid_contract.py
