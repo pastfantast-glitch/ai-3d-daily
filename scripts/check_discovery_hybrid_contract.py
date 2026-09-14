@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 from pathlib import Path
 import json
+import re
 
 from discovery_hybrid import coverage_audit_errors, load_hybrid_config, positive_samples
 from intelligence_v2 import load_config
@@ -28,6 +29,31 @@ def main():
         raise SystemExit('HYBRID CONTRACT FAILED: normal_floor must equal intelligence-v2 daily_min_items')
     if int(low.get('maximum', 0)) != int(col.get('daily_max_items', 0)):
         raise SystemExit('HYBRID CONTRACT FAILED: low-volume maximum must equal intelligence-v2 daily_max_items')
+
+    admission = col.get('admission_policy') or {}
+    admission_effective = str(admission.get('effective_date', '')).strip()
+    if not str(admission.get('mode', '')).strip():
+        raise SystemExit('HYBRID CONTRACT FAILED: collection.admission_policy.mode is required')
+    if not re.fullmatch(r'20\d{2}-\d{2}-\d{2}', admission_effective):
+        raise SystemExit('HYBRID CONTRACT FAILED: collection.admission_policy.effective_date must be YYYY-MM-DD')
+    if str(intel.get('admission_policy_effective_date', '')).strip() != admission_effective:
+        raise SystemExit('HYBRID CONTRACT FAILED: admission policy effective date drift')
+    if admission.get('evidence_depth_is_admission_gate') is not False:
+        raise SystemExit('HYBRID CONTRACT FAILED: evidence depth must not be an admission gate')
+    if admission.get('limited_evidence_routes_to_brief') is not True:
+        raise SystemExit('HYBRID CONTRACT FAILED: limited-evidence admission-pass items must route to BRIEF')
+    if admission.get('single_source_can_publish_as_brief_when_verified') is not True:
+        raise SystemExit('HYBRID CONTRACT FAILED: verified single-source limited-depth items must be eligible for BRIEF')
+    if admission.get('topic_repeat_is_duplicate') is not False:
+        raise SystemExit('HYBRID CONTRACT FAILED: topic repetition alone must not equal duplicate identity')
+    if admission.get('ranking_handles_narrow_impact') is not True:
+        raise SystemExit('HYBRID CONTRACT FAILED: narrow impact must be handled by ranking instead of automatic rejection')
+    if len(admission.get('minimum_requirements') or []) < 3:
+        raise SystemExit('HYBRID CONTRACT FAILED: admission policy needs explicit minimum requirements')
+    if len(admission.get('substantive_delta_examples') or []) < 5:
+        raise SystemExit('HYBRID CONTRACT FAILED: admission policy needs substantive-delta examples')
+    if len(admission.get('hard_exclude_only') or []) < 4:
+        raise SystemExit('HYBRID CONTRACT FAILED: admission policy hard-exclude set is incomplete')
 
     backlog_path = ROOT / str(backlog.get('path', ''))
     if not backlog_path.exists():
@@ -132,7 +158,8 @@ def main():
         f"normal_floor={low['normal_floor']} fallback_floor={low['fallback_floor']} "
         f"target={col['daily_target_items']} maximum={low['maximum']} / "
         f"windows={expected_windows} / backlog={backlog['path']} / "
-        'content-preference learning is source-neutral; no sample-domain priority source is allowed'
+        f"admission={admission.get('mode')} / "
+        'broad admission + strict ranking + FULL-depth separation + source-neutral preference learning'
     )
 
 
