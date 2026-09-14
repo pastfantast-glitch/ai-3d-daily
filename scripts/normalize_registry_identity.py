@@ -15,9 +15,9 @@ Rules:
 - Same canonical source URL with status=UPDATE + non-empty delta => preserve the
   historical stable ID, never mint a new one.
 - Re-rank surviving canonical items.
-- Homepage TOP5 is selected only from FULL-analysis survivors. BRIEF survivors may
-  appear in next10/category views but can never be promoted into TOP5 by registry
-  dedupe/reranking.
+- Homepage TOP5 selection is driven by config/full-analysis-depth.json. FULL items
+  always have priority; when policy allows, BRIEF may fill only unfilled TOP5 slots
+  and remains BRIEF rather than being promoted to FULL.
 - After normalization, apply the current repo daily release gate. A deficit means
   discovery is NOT complete: collection must continue through the configured fill
   ladder before .ready may be created.
@@ -52,28 +52,50 @@ def load_config():
     return json.loads((ROOT / 'config' / 'intelligence-v2.json').read_text('utf-8'))
 
 
-def assign_homepage_tiers(items, top5, next10):
-    """Assign homepage tiers without ever promoting BRIEF into TOP5.
+def load_depth_config():
+    return json.loads((ROOT / 'config' / 'full-analysis-depth.json').read_text('utf-8'))
 
-    Registry normalization can remove previously-ranked FULL items. Re-computing
-    tiers purely by compressed rank would otherwise promote BRIEF survivors into
-    TOP5 and violate config/full-analysis-depth.json. Select the highest-ranked
-    FULL survivors for TOP5, then fill next10 from all remaining survivors in rank
-    order. If fewer than `top5` FULL items survive, TOP5 is intentionally smaller;
-    evidence-depth policy takes precedence over presentation quota.
+
+def analysis_level(item):
+    return str(item.get('analysis_level', 'FULL')).strip().upper()
+
+
+def assign_homepage_tiers(items, top5, next10, policy):
+    """Assign homepage tiers using the repo-owned FULL-first fallback policy.
+
+    FULL candidates always get first claim on TOP5 slots. If the configured policy
+    allows BRIEF fallback and fewer than `top5` FULL items survive, only the empty
+    slots are filled with the highest-ranked BRIEF survivors. BRIEF remains BRIEF;
+    this function changes presentation tier only, never evidence-depth class.
     """
-    full_top5_ids = {
-        str(item.get('id', '')).strip()
-        for item in items
-        if str(item.get('analysis_level', 'FULL')).strip().upper() == 'FULL'
-    }
-    ordered_full_ids = [
-        str(item.get('id', '')).strip()
-        for item in items
-        if str(item.get('id', '')).strip() in full_top5_ids
-    ][:top5]
-    top_ids = set(ordered_full_ids)
+    mode = str(policy.get('selection_mode') or 'full-only').strip()
+    allow_brief = bool(policy.get('allow_brief', False))
+    fallback_only = bool(policy.get('brief_fallback_only', True))
 
+    if mode not in ('full-only', 'full-first-brief-fallback'):
+        raise ValueError(f'Unknown TOP5 selection mode: {mode}')
+    if mode == 'full-first-brief-fallback' and not allow_brief:
+        raise ValueError('TOP5 selection_mode allows BRIEF fallback but allow_brief=false')
+
+    full_candidates = [item for item in items if analysis_level(item) == 'FULL']
+    selected = list(full_candidates[:top5])
+
+    if mode == 'full-first-brief-fallback' and allow_brief and len(selected) < top5:
+        selected_ids = {str(item.get('id', '')).strip() for item in selected}
+        brief_candidates = [
+            item for item in items
+            if analysis_level(item) == 'BRIEF'
+            and str(item.get('id', '')).strip() not in selected_ids
+        ]
+        selected.extend(brief_candidates[:top5 - len(selected)])
+    elif allow_brief and not fallback_only:
+        # Kept for explicit future policy modes; current contract uses fallback-only.
+        selected = list(items[:top5])
+
+    top_ids = {str(item.get('id', '')).strip() for item in selected}
+    # Presentation order remains canonical global rank order even though FULL gets
+    # admission priority over BRIEF for the limited TOP5 slots.
+    top_items = [item for item in items if str(item.get('id', '')).strip() in top_ids]
     non_top = [item for item in items if str(item.get('id', '')).strip() not in top_ids]
     next_ids = {
         str(item.get('id', '')).strip()
@@ -89,10 +111,16 @@ def assign_homepage_tiers(items, top5, next10):
         else:
             item['homepage_tier'] = 'category_only'
 
+    top_full_count = sum(1 for item in top_items if analysis_level(item) == 'FULL')
+    top_brief_count = sum(1 for item in top_items if analysis_level(item) == 'BRIEF')
     return {
+        'selection_mode': mode,
         'requested_top5': top5,
-        'actual_top5': len(top_ids),
-        'top5_full_only': True,
+        'actual_top5': len(top_items),
+        'top5_full_count': top_full_count,
+        'top5_brief_fallback_count': top_brief_count,
+        'top5_full_only': top_brief_count == 0,
+        'brief_fallback_allowed': allow_brief,
         'next10': min(next10, len(non_top)),
     }
 
@@ -180,6 +208,7 @@ def main():
         raise SystemExit(f'Missing canonical dataset: {data_path}')
 
     cfg = load_config()
+    depth = load_depth_config()
     data = json.loads(data_path.read_text('utf-8'))
     owners, prior_ids = prior_registry(target)
     kept = []
@@ -227,7 +256,12 @@ def main():
     next10 = int(homepage.get('next10', 10))
     for rank, item in enumerate(kept, 1):
         item['rank_global'] = rank
-    tier_summary = assign_homepage_tiers(kept, top5, next10)
+    tier_summary = assign_homepage_tiers(
+        kept,
+        top5,
+        next10,
+        depth.get('top5_policy') or {},
+    )
 
     data['items'] = kept
     meta = data.setdefault('metadata', {})
@@ -267,7 +301,9 @@ def main():
         print(f'REWRITE {old} -> {new}')
     print(
         'HOMEPAGE TIER NORMALIZED: '
-        f"top5_full_only={tier_summary['top5_full_only']} "
+        f"mode={tier_summary['selection_mode']} "
+        f"FULL={tier_summary['top5_full_count']} "
+        f"BRIEF_FALLBACK={tier_summary['top5_brief_fallback_count']} "
         f"actual_top5={tier_summary['actual_top5']} requested_top5={tier_summary['requested_top5']}"
     )
 
