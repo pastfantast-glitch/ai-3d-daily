@@ -4,13 +4,53 @@
   "start_date": "2026-09-02",
   "collection_contract_effective_date": "2026-09-04",
   "preference_contract_effective_date": "2026-09-06",
+  "admission_policy_effective_date": "2026-09-15",
   "category_pool_target_items": 5,
   "category_pool_max_items": 30,
   "category_pool_min_items": 0,
-  "category_fill_policy": "daily_total_20_30_quality_first",
+  "category_fill_policy": "daily_total_20_30_broad_admission_strict_ranking",
   "collection": {
-    "selection_principle": "production_value_first",
+    "selection_principle": "broad_admission_strict_ranking_full_strict",
     "major_news_is_ranking_signal_not_admission_gate": true,
+    "admission_policy": {
+      "mode": "broad-admission-strict-ranking-v1",
+      "effective_date": "2026-09-15",
+      "minimum_requirements": [
+        "source or demonstrated evidence is verifiable enough to state the claim honestly",
+        "meaningfully relevant or transferable to 3D/game-art production, animation, technical art, DCC/engine workflows, AI production, or visual-development reference",
+        "contains at least one concrete production, technical, workflow, testing, animation-reference or visual-development takeaway"
+      ],
+      "evidence_depth_is_admission_gate": false,
+      "limited_evidence_routes_to_brief": true,
+      "single_source_can_publish_as_brief_when_verified": true,
+      "topic_repeat_is_duplicate": false,
+      "ranking_handles_narrow_impact": true,
+      "admit_as_brief_examples": [
+        "useful tutorial with one transferable technique",
+        "verified DCC add-on or small workflow tool with a concrete use case",
+        "shader or technical-art demonstration with a reproducible idea",
+        "animation showcase with strong pose, timing, arc, weight or visual-reference value",
+        "character or environment visual-development reference with a concrete production takeaway",
+        "credible community or Reddit experience when claims are scoped to what the source actually demonstrates",
+        "single-source official or creator-authored announcement with a concrete capability but limited independent evidence"
+      ],
+      "substantive_delta_examples": [
+        "new version or feature",
+        "new quality result or production test",
+        "new workflow or integration",
+        "new benchmark or measurable performance result",
+        "new limitation, failure mode or compatibility finding",
+        "new API, export, licensing, pricing or availability change with production consequence",
+        "new use case that materially changes how the known tool can be applied"
+      ],
+      "hard_exclude_only": [
+        "unverifiable or content-farm claim",
+        "marketing or generic hype with no concrete demonstrated capability or takeaway",
+        "unrelated to game art and not meaningfully transferable",
+        "previously published canonical identity without any substantive delta",
+        "no identifiable production, technical, workflow, testing, animation-reference or visual-development takeaway"
+      ]
+    },
     "candidate_pool_target_per_category": 20,
     "candidate_pool_stretch_per_category": 40,
     "discovery_windows": [
@@ -34,7 +74,7 @@
       "6m:research-reference-missed-high-value",
       "evergreen:official-production-reference"
     ],
-    "fill_target_policy": "Continue discovery through the configured fill ladder aiming for 30 total valid unpublished items after Published Intelligence Registry dedupe and Quality Gate. Twenty items is the release floor, not a discovery stop signal. Category counts are diversity diagnostics, not release quotas. After reasonable exhaustion of all configured tiers, 20-29 valid items may publish; never pad with duplicates, unverifiable claims or low-production-value filler.",
+    "fill_target_policy": "Continue discovery through the configured fill ladder aiming for 30 total valid unpublished items after Published Intelligence Registry dedupe and the admission gate. Twenty items is the normal release floor, not a discovery stop signal. After admission passes, limited evidence depth must route to BRIEF rather than rejection. Narrower-impact items may be downranked instead of discarded. Category counts are diversity diagnostics, not release quotas. Never pad with duplicates, unverifiable claims or items with no concrete production/reference takeaway.",
     "inclusion_tiers": {
       "A": {
         "label": "major-intelligence",
@@ -46,20 +86,19 @@
       },
       "C": {
         "label": "case-tip-community",
-        "guidance": "Credible case studies, production breakdowns, useful Blender/DCC add-ons, GitHub tools, technical demonstrations, research prototypes and community workflows are admissible when the source is verifiable and there is a concrete production takeaway. Rank below stronger A/B items when impact is narrower."
+        "guidance": "Credible cases, tutorials, tips, Blender/DCC add-ons, GitHub tools, shader/technical demonstrations, research prototypes, community experiences, animation references and visual-development showcases are admissible when the source is verifiable and at least one concrete production or reference takeaway can be stated. Limited depth should normally become BRIEF; narrower impact lowers ranking rather than causing rejection."
       }
     },
     "exclude": [
-      "pure portfolio/showcase with no reproducible workflow or production insight",
-      "marketing-only content with no concrete capability or workflow detail",
-      "content-farm or unverifiable claims",
-      "items with negligible relevance to 3D/game-art production",
-      "previously published items without a substantive delta",
-      "low-production-value old content used only to pad quantity"
+      "unverifiable or content-farm claims",
+      "marketing or generic hype with no concrete demonstrated capability or takeaway",
+      "items unrelated to 3D/game-art production and not meaningfully transferable",
+      "previously published canonical identity without a substantive delta",
+      "content with no identifiable production, technical, workflow, testing, animation-reference or visual-development takeaway"
     ],
     "completeness_trigger_total_items": 30,
-    "completeness_trigger_policy": "Release-ready when 20-30 valid unpublished items survive Published Intelligence Registry dedupe and Quality Gate after the configured discovery ladder has been reasonably exhausted. Target and maximum are 30. Category shortages do not block release and must never be padded.",
-    "ranking_guidance": "Production value, practical applicability, source verifiability and freshness drive ranking. Aim for broad six-category coverage without enforcing equal quotas. Continue discovery toward 30 even after reaching the 20-item release floor.",
+    "completeness_trigger_policy": "Release-ready when 20-30 valid unpublished items survive Published Intelligence Registry dedupe and the admission gate after the configured discovery ladder has been reasonably exhausted. Target and maximum are 30. Limited evidence depth is handled by BRIEF classification rather than admission rejection. Category shortages do not block release and must never be padded.",
+    "ranking_guidance": "Admission is intentionally broader than ranking. Production value, practical applicability, source verifiability, user-interest fit and freshness drive rank after admission. Narrow impact, older age or limited evidence may lower rank but should not by themselves reject a verified item with one concrete production/reference takeaway. Aim for broad six-category coverage without enforcing equal quotas and continue discovery toward 30 even after reaching the 20-item release floor.",
     "daily_min_items": 20,
     "daily_target_items": 30,
     "daily_max_items": 30
@@ -78,7 +117,7 @@
       ],
       "freshness_rule": "Prefer newer when production value is comparable; allow 1-6 month or evergreen material to outrank fresh low-value news.",
       "source_rule": "Official, community, video, case, GitHub and research sources are all admissible when verifiable; source type alone does not determine rank.",
-      "selection_rule": "Use a mixed slate: consequential updates first, then the strongest tests, workflows, breakdowns, tools and cases. Category and tool preferences are ranking/discovery signals, not quotas."
+      "selection_rule": "Use a mixed slate: consequential updates first, then the strongest tests, workflows, breakdowns, tools, references and cases. After the broad admission gate, lower production impact or limited evidence depth lowers ranking or routes to BRIEF instead of causing automatic rejection. Category and tool preferences are ranking/discovery signals, not quotas."
     },
     "global_positive_signals": [
       "measurable quality or efficiency gain",
@@ -100,7 +139,8 @@
       "unverifiable or content-farm material",
       "published identity or normalized source without substantive delta",
       "unrelated to game art and not meaningfully transferable",
-      "generic hype or prediction without evidence"
+      "generic hype or marketing with no concrete demonstrated capability or takeaway",
+      "no identifiable production, technical, workflow, testing, animation-reference or visual-development takeaway"
     ],
     "category_preferences": {
       "ai-generation": {
@@ -238,12 +278,12 @@
           "outsourcing and asset validation"
         ],
         "style_policy": "Stylized, NPR, semi-realistic and realistic or AAA all score 5; style is not an admission gate.",
-        "tutorial_policy": "Useful tutorials may qualify; boost tutorials that introduce a newer method or clearly improve production quality or efficiency.",
+        "tutorial_policy": "Useful tutorials qualify when they provide at least one concrete transferable production technique; novelty, major-news status or FULL-level evidence depth may improve ranking but are not admission requirements.",
         "breakdown_policy": "Industry production breakdowns are high priority.",
         "hard_exclude": [
-          "pure portfolio or ArtStation showcase without production information",
-          "beginner content with little transferable production value",
-          "breakdown that does not explain an actual production method"
+          "pure portfolio or showcase with no identifiable production method, technical takeaway or usable visual-development/reference value",
+          "beginner content with no transferable production takeaway",
+          "breakdown that provides neither an actual method nor a concrete production/reference takeaway"
         ],
         "backfill": "Older strong production cases qualify but rank below equally valuable recent material."
       },
@@ -405,8 +445,8 @@
           "shader and rendering",
           "AI adoption in production"
         ],
-        "research_policy": "Novel research may enter discovery, but selection should favor credible production potential and near-usability.",
-        "open_source_policy": "Research code or GitHub projects qualify only when they show clear production potential.",
+        "research_policy": "Novel research may enter when it is verifiable and exposes at least one concrete production-relevant capability, limitation or transferable idea; near-usability increases ranking but is not an admission gate.",
+        "open_source_policy": "Research code or GitHub projects qualify when they provide a concrete demonstrated capability or production-relevant takeaway, even if maturity is limited; immaturity should route to BRIEF and lower ranking.",
         "gaussian_nerf": "Normal priority; boost when Gaussian Splatting, NeRF or novel-view work becomes materially productionized.",
         "world_model": "Include when there is credible game or 3D-production potential.",
         "4d": "Include dynamic 3D or 4D research when it has credible production potential.",
@@ -487,7 +527,7 @@
           "plugin and macro",
           "new version features"
         ],
-        "new_tool_policy": "Include niche or new DCC tools only when they have clear production value.",
+        "new_tool_policy": "Include niche or new DCC tools when they provide a concrete production workflow, time-saving use case or transferable technique; narrow impact lowers ranking instead of blocking admission.",
         "hard_exclude": [
           "DCC use unrelated to game art and not meaningfully transferable"
         ]
