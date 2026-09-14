@@ -1,5 +1,5 @@
 {
-  "version": 2,
+  "version": 3,
   "effective_date": "2026-09-08",
   "tiered_effective_date": "2026-09-12",
   "style_reference": "2026-09-01",
@@ -40,8 +40,11 @@
     ]
   },
   "top5_policy": {
-    "allow_brief": false,
-    "rule": "Homepage TOP5 requires FULL analysis. BRIEF may appear in category/daily intelligence but cannot displace a FULL item in TOP5."
+    "selection_mode": "full-first-brief-fallback",
+    "allow_brief": true,
+    "brief_fallback_only": true,
+    "require_visible_brief_label": true,
+    "rule": "Homepage TOP5 selects the highest-ranked FULL items first. If fewer than the configured TOP5 count are available, fill only the remaining slots with the highest-ranked BRIEF survivors. BRIEF remains BRIEF, must stay visibly identified as limited-depth analysis, and must never be upgraded, padded, or used to displace an available FULL item."
   },
   "required_semantic_groups": {
     "workflow_or_technical_change": ["流程", "工作流", "技術", "重點", "能力", "設計", "工具", "生成", "渲染", "輸入輸出", "API", "DCC", "Rig", "角色", "道具", "貼圖", "概念", "場景"],
