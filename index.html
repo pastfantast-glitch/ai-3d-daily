@@ -64,6 +64,266 @@
      </div>
     </div>
     <div class="top-list">
+     <article class="home-card top-item" data-intel-id="ue5-shape-cage-runtime-deformation" data-intel-role="card">
+      <div class="top-no">
+       01
+      </div>
+      <div class="top-main">
+       <h2>
+        UE5 Shape Cage：以 WPO 做 27 點 GPU 籠狀變形，避開 CPU soft-body 模擬
+       </h2>
+       <p class="summary">
+        Shape Cage 用 World Position Offset 在 vertex shader 執行網格變形，依碰撞位置、力道與方向推導 dent，並以約 12 bytes/凹痕的資訊做網路同步。
+       </p>
+       <figure class="case-preview" data-intel-id="ue5-shape-cage-runtime-deformation" data-intel-role="visual" data-visual-id="ue5-shape-cage-runtime-deformation">
+        <a href="https://80.lv/articles/this-ue5-tool-can-deform-any-static-mesh-at-runtime" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+         <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-09-14/ue5-shape-cage-runtime-deformation.jpg"/>
+        </a>
+        <figcaption>
+         <span>
+          SOURCE PREVIEW
+         </span>
+         · Local visual evidence · 點圖開啟原始來源
+        </figcaption>
+       </figure>
+       <div class="quick-impact">
+        <span><b class="quick-impact-label">引擎工具</b> ★★★★☆</span>
+       </div>
+       <details class="home-full-analysis" data-analysis-level="BRIEF">
+        <summary>
+         情報簡析
+        </summary>
+        <div class="detail-body brief-analysis-body home-analysis-body">
+         <p class="analysis-level-note">
+          BRIEF｜來源已驗證，但目前證據深度不足以支持完整 Production Analysis。
+         </p>
+         <h4>
+          情報重點
+         </h4>
+         <p>
+          Shape Cage 以 27 點 cage 與 World Position Offset 做 GPU 變形，不修改 CPU mesh，也不依賴 skeletal mesh 或 soft-body solver；碰撞只提供位置、力道與方向，皺褶則以 normal map 補足小尺度細節。
+         </p>
+         <h4>
+          導入判斷
+         </h4>
+         <p>
+          對可破壞／可擠壓道具可先測 Nanite 與非 Nanite、多人同步及高頂點數情境。功能來自 marketplace tool 的展示與作者說明，尚缺獨立 benchmark，因此列 BRIEF。
+         </p>
+        </div>
+       </details>
+       <a class="source" href="https://80.lv/articles/this-ue5-tool-can-deform-any-static-mesh-at-runtime" rel="noopener noreferrer" target="_blank">
+        來源
+       </a>
+      </div>
+     </article>
+     <article class="home-card top-item" data-intel-id="blender53-reactive-cel-lighting" data-intel-role="card">
+      <div class="top-no">
+       02
+      </div>
+      <div class="top-main">
+       <h2>
+        Blender 5.3 NPR 原型：可自訂逐燈光照行為，Cel Shader 能回應 light color 與 cast shadow
+       </h2>
+       <p class="summary">
+        Blender 5.3 開發中的自訂材質 lighting nodes 讓 NPR 使用者能逐燈計算自己的 shading behavior，並把結果送入正確 render passes。
+       </p>
+       <figure class="case-preview" data-intel-id="blender53-reactive-cel-lighting" data-intel-role="visual" data-visual-id="blender53-reactive-cel-lighting">
+        <a href="https://80.lv/articles/fully-customizable-reactive-cel-shading-in-blender" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+         <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-09-14/blender53-reactive-cel-lighting.jpg"/>
+        </a>
+        <figcaption>
+         <span>
+          SOURCE PREVIEW
+         </span>
+         · Local visual evidence · 點圖開啟原始來源
+        </figcaption>
+       </figure>
+       <div class="quick-impact">
+        <span><b class="quick-impact-label">Blender</b> ★★★★☆</span>
+       </div>
+       <details class="home-full-analysis" data-analysis-level="BRIEF">
+        <summary>
+         情報簡析
+        </summary>
+        <div class="detail-body brief-analysis-body home-analysis-body">
+         <p class="analysis-level-note">
+          BRIEF｜來源已驗證，但目前證據深度不足以支持完整 Production Analysis。
+         </p>
+         <h4>
+          情報重點
+         </h4>
+         <p>
+          Krysidian 與 Goo Studios 的 NPR 原型顯示 Blender 5.3 正朝可自訂 material lighting 前進，重點是 shader 能逐燈反應 light color、cast shadow，並把自訂結果接到 render pass，而不是只靠 emission 或後處理假出 toon 明暗。
+         </p>
+         <h4>
+          導入判斷
+         </h4>
+         <p>
+          這對 Toon/NPR 研究很值得持續追，但目前仍屬開發中功能；建議用既有 Ramp、臉部 SDF 與 hair highlight 測試材質節點是否能取代部分 workaround。尚未正式穩定，列 BRIEF。
+         </p>
+        </div>
+       </details>
+       <a class="source" href="https://80.lv/articles/fully-customizable-reactive-cel-shading-in-blender" rel="noopener noreferrer" target="_blank">
+        來源
+       </a>
+      </div>
+     </article>
+     <article class="home-card top-item" data-intel-id="rokoko-vision-30-create" data-intel-role="card">
+      <div class="top-no">
+       03
+      </div>
+      <div class="top-main">
+       <h2>
+        Rokoko Vision 3.0：單目 AI Mocap solver 重寫並併入 Create，強調更乾淨動作與快速迭代
+       </h2>
+       <p class="summary">
+        Rokoko 在 2026-07-16 推出 Vision 3.0，重寫 monocular solver，將 Video-to-Motion 與 Text-to-Motion 收進 Rokoko Create，並可回 Studio 編輯與輸出。
+       </p>
+       <figure class="case-preview" data-intel-id="rokoko-vision-30-create" data-intel-role="visual" data-visual-id="rokoko-vision-30-create">
+        <a href="https://www.rokoko.com/insights/introducing-rokoko-vision-3-0" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+         <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-09-14/rokoko-vision-30-create.jpg"/>
+        </a>
+        <figcaption>
+         <span>
+          SOURCE PREVIEW
+         </span>
+         · Local visual evidence · 點圖開啟原始來源
+        </figcaption>
+       </figure>
+       <div class="quick-impact">
+        <span><b class="quick-impact-label">AI 動作</b> ★★★★☆</span>
+       </div>
+       <details class="home-full-analysis" data-analysis-level="BRIEF">
+        <summary>
+         情報簡析
+        </summary>
+        <div class="detail-body brief-analysis-body home-analysis-body">
+         <p class="analysis-level-note">
+          BRIEF｜來源已驗證，但目前證據深度不足以支持完整 Production Analysis。
+         </p>
+         <h4>
+          情報重點
+         </h4>
+         <p>
+          Vision 3.0 是 Rokoko 單目 AI mocap pipeline 的重寫版本，主打更乾淨的 motion、更快 processing，並把 video-to-motion 直接併入 Create，後續可在 Rokoko Studio 編輯與匯出到主流 DCC／引擎。
+         </p>
+         <h4>
+          導入判斷
+         </h4>
+         <p>
+          可用相同手機影片與現有 mocap 方案比較 foot sliding、手腳遮擋、root motion、retarget 後 cleanup 工時。官方有清楚功能說明，但缺少獨立品質 benchmark，列 BRIEF。
+         </p>
+        </div>
+       </details>
+       <a class="source" href="https://www.rokoko.com/insights/introducing-rokoko-vision-3-0" rel="noopener noreferrer" target="_blank">
+        來源
+       </a>
+      </div>
+     </article>
+     <article class="home-card top-item" data-intel-id="mecha-centaur-lance-animation-reference" data-intel-role="card">
+      <div class="top-no">
+       04
+      </div>
+      <div class="top-main">
+       <h2>
+        Mecha Centaur 長槍攻擊：多角度展示高速戰鬥動畫的重量、弧線與節奏
+       </h2>
+       <p class="summary">
+        Martin Chang 的 Rosetta 長槍動畫以多角度展示高速連擊，適合作為 stylized gameplay attack 的 pose readability、arcs 與 timing 參考。
+       </p>
+       <figure class="case-preview" data-intel-id="mecha-centaur-lance-animation-reference" data-intel-role="visual" data-visual-id="mecha-centaur-lance-animation-reference">
+        <a href="https://80.lv/articles/this-mecha-centaur-s-lance-attack-is-pure-animation-eye-candy" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+         <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-09-14/mecha-centaur-lance-animation-reference.jpg"/>
+        </a>
+        <figcaption>
+         <span>
+          SOURCE PREVIEW
+         </span>
+         · Local visual evidence · 點圖開啟原始來源
+        </figcaption>
+       </figure>
+       <div class="quick-impact">
+        <span><b class="quick-impact-label">動畫</b> ★★★★☆</span>
+       </div>
+       <details class="home-full-analysis" data-analysis-level="BRIEF">
+        <summary>
+         情報簡析
+        </summary>
+        <div class="detail-body brief-analysis-body home-analysis-body">
+         <p class="analysis-level-note">
+          BRIEF｜來源已驗證，但目前證據深度不足以支持完整 Production Analysis。
+         </p>
+         <h4>
+          動畫參考價值
+         </h4>
+         <p>
+          這組 Maya 動畫雖沒有完整技術拆解，但多角度展示長槍連擊、四足／半人馬重心轉移與高速 recovery，對 combat animation 的 silhouette、arc、anticipation 與 impact timing 有很高參考價值。
+         </p>
+         <h4>
+          限制
+         </h4>
+         <p>
+          來源屬高品質 showcase，沒有 rig、curve、frame breakdown 或 production integration 細節，因此不應升級成完整工作流分析，依契約列 BRIEF。
+         </p>
+        </div>
+       </details>
+       <a class="source" href="https://80.lv/articles/this-mecha-centaur-s-lance-attack-is-pure-animation-eye-candy" rel="noopener noreferrer" target="_blank">
+        來源
+       </a>
+      </div>
+     </article>
+     <article class="home-card top-item" data-intel-id="fairytale-pond-ucupaint-blender" data-intel-role="card">
+      <div class="top-no">
+       05
+      </div>
+      <div class="top-main">
+       <h2>
+        Blender 童話池塘製作：Ucupaint layer workflow 搭配 Eevee 的場景貼圖管理
+       </h2>
+       <p class="summary">
+        Ramy 展示從 default cube 到完整池塘的製作過程，並使用 Ucupaint 管理 Eevee／Cycles 的 texture layers、masks、decals 與 displacement。
+       </p>
+       <figure class="case-preview" data-intel-id="fairytale-pond-ucupaint-blender" data-intel-role="visual" data-visual-id="fairytale-pond-ucupaint-blender">
+        <a href="https://80.lv/articles/watch-how-this-fairytale-pond-with-water-lilies-was-made-in-blender" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+         <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-09-14/fairytale-pond-ucupaint-blender.jpg"/>
+        </a>
+        <figcaption>
+         <span>
+          SOURCE PREVIEW
+         </span>
+         · Local visual evidence · 點圖開啟原始來源
+        </figcaption>
+       </figure>
+       <div class="quick-impact">
+        <span><b class="quick-impact-label">Blender</b> ★★★★☆</span>
+       </div>
+       <details class="home-full-analysis" data-analysis-level="BRIEF">
+        <summary>
+         情報簡析
+        </summary>
+        <div class="detail-body brief-analysis-body home-analysis-body">
+         <p class="analysis-level-note">
+          BRIEF｜來源已驗證，但目前證據深度不足以支持完整 Production Analysis。
+         </p>
+         <h4>
+          情報重點
+         </h4>
+         <p>
+          案例展示 Ucupaint 在 Blender 內把 image、vertex attribute、generated texture 與 mask 疊在單一 node group 管理，並支援 decal、AO bake、real-time/vector displacement；對希望把 Painter 式 layer 思維留在 Blender 的流程有參考價值。
+         </p>
+         <h4>
+          導入判斷
+         </h4>
+         <p>
+          可用一個 stylized environment asset 測 Ucupaint layer 數、shader compile、Eevee 預覽與匯出到遊戲引擎的落差。來源以 time-lapse 為主，production 深度有限，列 BRIEF。
+         </p>
+        </div>
+       </details>
+       <a class="source" href="https://80.lv/articles/watch-how-this-fairytale-pond-with-water-lilies-was-made-in-blender" rel="noopener noreferrer" target="_blank">
+        來源
+       </a>
+      </div>
+     </article>
     </div>
    </section>
    <section class="home-section more-section" id="more">
@@ -78,241 +338,6 @@
      </div>
     </div>
     <div class="more-grid">
-     <article class="home-card more-card" data-intel-id="ue5-shape-cage-runtime-deformation" data-intel-role="card">
-      <h4>
-       UE5 Shape Cage：以 WPO 做 27 點 GPU 籠狀變形，避開 CPU soft-body 模擬
-      </h4>
-      <p class="summary">
-       Shape Cage 用 World Position Offset 在 vertex shader 執行網格變形，依碰撞位置、力道與方向推導 dent，並以約 12 bytes/凹痕的資訊做網路同步。
-      </p>
-      <figure class="case-preview" data-intel-id="ue5-shape-cage-runtime-deformation" data-intel-role="visual" data-visual-id="ue5-shape-cage-runtime-deformation">
-       <a href="https://80.lv/articles/this-ue5-tool-can-deform-any-static-mesh-at-runtime" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
-        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-09-14/ue5-shape-cage-runtime-deformation.jpg"/>
-       </a>
-       <figcaption>
-        <span>
-         SOURCE PREVIEW
-        </span>
-        · Local visual evidence · 點圖開啟原始來源
-       </figcaption>
-      </figure>
-      <div class="quick-impact">
-       <span><b class="quick-impact-label">引擎工具</b> ★★★★☆</span>
-      </div>
-      <details class="home-full-analysis" data-analysis-level="BRIEF">
-       <summary>
-        情報簡析
-       </summary>
-       <div class="detail-body brief-analysis-body home-analysis-body">
-        <p class="analysis-level-note">
-         BRIEF｜來源已驗證，但目前證據深度不足以支持完整 Production Analysis。
-        </p>
-        <h4>
-         情報重點
-        </h4>
-        <p>
-         Shape Cage 以 27 點 cage 與 World Position Offset 做 GPU 變形，不修改 CPU mesh，也不依賴 skeletal mesh 或 soft-body solver；碰撞只提供位置、力道與方向，皺褶則以 normal map 補足小尺度細節。
-        </p>
-        <h4>
-         導入判斷
-        </h4>
-        <p>
-         對可破壞／可擠壓道具可先測 Nanite 與非 Nanite、多人同步及高頂點數情境。功能來自 marketplace tool 的展示與作者說明，尚缺獨立 benchmark，因此列 BRIEF。
-        </p>
-       </div>
-      </details>
-      <a class="source" href="https://80.lv/articles/this-ue5-tool-can-deform-any-static-mesh-at-runtime" rel="noopener noreferrer" target="_blank">
-       來源
-      </a>
-     </article>
-     <article class="home-card more-card" data-intel-id="blender53-reactive-cel-lighting" data-intel-role="card">
-      <h4>
-       Blender 5.3 NPR 原型：可自訂逐燈光照行為，Cel Shader 能回應 light color 與 cast shadow
-      </h4>
-      <p class="summary">
-       Blender 5.3 開發中的自訂材質 lighting nodes 讓 NPR 使用者能逐燈計算自己的 shading behavior，並把結果送入正確 render passes。
-      </p>
-      <figure class="case-preview" data-intel-id="blender53-reactive-cel-lighting" data-intel-role="visual" data-visual-id="blender53-reactive-cel-lighting">
-       <a href="https://80.lv/articles/fully-customizable-reactive-cel-shading-in-blender" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
-        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-09-14/blender53-reactive-cel-lighting.jpg"/>
-       </a>
-       <figcaption>
-        <span>
-         SOURCE PREVIEW
-        </span>
-        · Local visual evidence · 點圖開啟原始來源
-       </figcaption>
-      </figure>
-      <div class="quick-impact">
-       <span><b class="quick-impact-label">Blender</b> ★★★★☆</span>
-      </div>
-      <details class="home-full-analysis" data-analysis-level="BRIEF">
-       <summary>
-        情報簡析
-       </summary>
-       <div class="detail-body brief-analysis-body home-analysis-body">
-        <p class="analysis-level-note">
-         BRIEF｜來源已驗證，但目前證據深度不足以支持完整 Production Analysis。
-        </p>
-        <h4>
-         情報重點
-        </h4>
-        <p>
-         Krysidian 與 Goo Studios 的 NPR 原型顯示 Blender 5.3 正朝可自訂 material lighting 前進，重點是 shader 能逐燈反應 light color、cast shadow，並把自訂結果接到 render pass，而不是只靠 emission 或後處理假出 toon 明暗。
-        </p>
-        <h4>
-         導入判斷
-        </h4>
-        <p>
-         這對 Toon/NPR 研究很值得持續追，但目前仍屬開發中功能；建議用既有 Ramp、臉部 SDF 與 hair highlight 測試材質節點是否能取代部分 workaround。尚未正式穩定，列 BRIEF。
-        </p>
-       </div>
-      </details>
-      <a class="source" href="https://80.lv/articles/fully-customizable-reactive-cel-shading-in-blender" rel="noopener noreferrer" target="_blank">
-       來源
-      </a>
-     </article>
-     <article class="home-card more-card" data-intel-id="rokoko-vision-30-create" data-intel-role="card">
-      <h4>
-       Rokoko Vision 3.0：單目 AI Mocap solver 重寫並併入 Create，強調更乾淨動作與快速迭代
-      </h4>
-      <p class="summary">
-       Rokoko 在 2026-07-16 推出 Vision 3.0，重寫 monocular solver，將 Video-to-Motion 與 Text-to-Motion 收進 Rokoko Create，並可回 Studio 編輯與輸出。
-      </p>
-      <figure class="case-preview" data-intel-id="rokoko-vision-30-create" data-intel-role="visual" data-visual-id="rokoko-vision-30-create">
-       <a href="https://www.rokoko.com/insights/introducing-rokoko-vision-3-0" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
-        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-09-14/rokoko-vision-30-create.jpg"/>
-       </a>
-       <figcaption>
-        <span>
-         SOURCE PREVIEW
-        </span>
-        · Local visual evidence · 點圖開啟原始來源
-       </figcaption>
-      </figure>
-      <div class="quick-impact">
-       <span><b class="quick-impact-label">AI 動作</b> ★★★★☆</span>
-      </div>
-      <details class="home-full-analysis" data-analysis-level="BRIEF">
-       <summary>
-        情報簡析
-       </summary>
-       <div class="detail-body brief-analysis-body home-analysis-body">
-        <p class="analysis-level-note">
-         BRIEF｜來源已驗證，但目前證據深度不足以支持完整 Production Analysis。
-        </p>
-        <h4>
-         情報重點
-        </h4>
-        <p>
-         Vision 3.0 是 Rokoko 單目 AI mocap pipeline 的重寫版本，主打更乾淨的 motion、更快 processing，並把 video-to-motion 直接併入 Create，後續可在 Rokoko Studio 編輯與匯出到主流 DCC／引擎。
-        </p>
-        <h4>
-         導入判斷
-        </h4>
-        <p>
-         可用相同手機影片與現有 mocap 方案比較 foot sliding、手腳遮擋、root motion、retarget 後 cleanup 工時。官方有清楚功能說明，但缺少獨立品質 benchmark，列 BRIEF。
-        </p>
-       </div>
-      </details>
-      <a class="source" href="https://www.rokoko.com/insights/introducing-rokoko-vision-3-0" rel="noopener noreferrer" target="_blank">
-       來源
-      </a>
-     </article>
-     <article class="home-card more-card" data-intel-id="mecha-centaur-lance-animation-reference" data-intel-role="card">
-      <h4>
-       Mecha Centaur 長槍攻擊：多角度展示高速戰鬥動畫的重量、弧線與節奏
-      </h4>
-      <p class="summary">
-       Martin Chang 的 Rosetta 長槍動畫以多角度展示高速連擊，適合作為 stylized gameplay attack 的 pose readability、arcs 與 timing 參考。
-      </p>
-      <figure class="case-preview" data-intel-id="mecha-centaur-lance-animation-reference" data-intel-role="visual" data-visual-id="mecha-centaur-lance-animation-reference">
-       <a href="https://80.lv/articles/this-mecha-centaur-s-lance-attack-is-pure-animation-eye-candy" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
-        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-09-14/mecha-centaur-lance-animation-reference.jpg"/>
-       </a>
-       <figcaption>
-        <span>
-         SOURCE PREVIEW
-        </span>
-        · Local visual evidence · 點圖開啟原始來源
-       </figcaption>
-      </figure>
-      <div class="quick-impact">
-       <span><b class="quick-impact-label">動畫</b> ★★★★☆</span>
-      </div>
-      <details class="home-full-analysis" data-analysis-level="BRIEF">
-       <summary>
-        情報簡析
-       </summary>
-       <div class="detail-body brief-analysis-body home-analysis-body">
-        <p class="analysis-level-note">
-         BRIEF｜來源已驗證，但目前證據深度不足以支持完整 Production Analysis。
-        </p>
-        <h4>
-         動畫參考價值
-        </h4>
-        <p>
-         這組 Maya 動畫雖沒有完整技術拆解，但多角度展示長槍連擊、四足／半人馬重心轉移與高速 recovery，對 combat animation 的 silhouette、arc、anticipation 與 impact timing 有很高參考價值。
-        </p>
-        <h4>
-         限制
-        </h4>
-        <p>
-         來源屬高品質 showcase，沒有 rig、curve、frame breakdown 或 production integration 細節，因此不應升級成完整工作流分析，依契約列 BRIEF。
-        </p>
-       </div>
-      </details>
-      <a class="source" href="https://80.lv/articles/this-mecha-centaur-s-lance-attack-is-pure-animation-eye-candy" rel="noopener noreferrer" target="_blank">
-       來源
-      </a>
-     </article>
-     <article class="home-card more-card" data-intel-id="fairytale-pond-ucupaint-blender" data-intel-role="card">
-      <h4>
-       Blender 童話池塘製作：Ucupaint layer workflow 搭配 Eevee 的場景貼圖管理
-      </h4>
-      <p class="summary">
-       Ramy 展示從 default cube 到完整池塘的製作過程，並使用 Ucupaint 管理 Eevee／Cycles 的 texture layers、masks、decals 與 displacement。
-      </p>
-      <figure class="case-preview" data-intel-id="fairytale-pond-ucupaint-blender" data-intel-role="visual" data-visual-id="fairytale-pond-ucupaint-blender">
-       <a href="https://80.lv/articles/watch-how-this-fairytale-pond-with-water-lilies-was-made-in-blender" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
-        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-09-14/fairytale-pond-ucupaint-blender.jpg"/>
-       </a>
-       <figcaption>
-        <span>
-         SOURCE PREVIEW
-        </span>
-        · Local visual evidence · 點圖開啟原始來源
-       </figcaption>
-      </figure>
-      <div class="quick-impact">
-       <span><b class="quick-impact-label">Blender</b> ★★★★☆</span>
-      </div>
-      <details class="home-full-analysis" data-analysis-level="BRIEF">
-       <summary>
-        情報簡析
-       </summary>
-       <div class="detail-body brief-analysis-body home-analysis-body">
-        <p class="analysis-level-note">
-         BRIEF｜來源已驗證，但目前證據深度不足以支持完整 Production Analysis。
-        </p>
-        <h4>
-         情報重點
-        </h4>
-        <p>
-         案例展示 Ucupaint 在 Blender 內把 image、vertex attribute、generated texture 與 mask 疊在單一 node group 管理，並支援 decal、AO bake、real-time/vector displacement；對希望把 Painter 式 layer 思維留在 Blender 的流程有參考價值。
-        </p>
-        <h4>
-         導入判斷
-        </h4>
-        <p>
-         可用一個 stylized environment asset 測 Ucupaint layer 數、shader compile、Eevee 預覽與匯出到遊戲引擎的落差。來源以 time-lapse 為主，production 深度有限，列 BRIEF。
-        </p>
-       </div>
-      </details>
-      <a class="source" href="https://80.lv/articles/watch-how-this-fairytale-pond-with-water-lilies-was-made-in-blender" rel="noopener noreferrer" target="_blank">
-       來源
-      </a>
-     </article>
      <article class="home-card more-card" data-intel-id="studiojoin-free-maya-rig" data-intel-role="card">
       <h4>
        STUDIOJOIN 免費 Maya Rig：IK/FK、Soft IK、World/Local 與臉部控制可用於 rigging 練習
@@ -545,6 +570,147 @@
        </div>
       </details>
       <a class="source" href="https://arxiv.org/abs/2608.27735" rel="noopener noreferrer" target="_blank">
+       來源
+      </a>
+     </article>
+     <article class="home-card more-card" data-intel-id="worldclaw-agentic-open-world-3d" data-intel-role="card">
+      <h4>
+       WorldClaw：Agent 規劃大型 3D 開放世界，輸出可編輯 terrain 與 instance-level textured meshes
+      </h4>
+      <p class="summary">
+       Tencent Hunyuan 的 WorldClaw 以 coarse-to-fine agent framework 把文字提示轉成區域、地形、資產、材質與空間關係，再逐區細化成可編輯 3D 場景。
+      </p>
+      <figure class="case-preview" data-intel-id="worldclaw-agentic-open-world-3d" data-intel-role="visual" data-visual-id="worldclaw-agentic-open-world-3d">
+       <a href="https://arxiv.org/abs/2608.05248" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-09-14/worldclaw-agentic-open-world-3d.jpg"/>
+       </a>
+       <figcaption>
+        <span>
+         SOURCE PREVIEW
+        </span>
+        · Local visual evidence · 點圖開啟原始來源
+       </figcaption>
+      </figure>
+      <div class="quick-impact">
+       <span><b class="quick-impact-label">世界模型</b> ★★★★☆</span>
+      </div>
+      <details class="home-full-analysis" data-analysis-level="BRIEF">
+       <summary>
+        情報簡析
+       </summary>
+       <div class="detail-body brief-analysis-body home-analysis-body">
+        <p class="analysis-level-note">
+         BRIEF｜來源已驗證，但目前證據深度不足以支持完整 Production Analysis。
+        </p>
+        <h4>
+         研究重點
+        </h4>
+        <p>
+         WorldClaw 先由 planning agents 建立 region、terrain、asset、material 與 spatial relation 規格，再用 semantic layout、height field、可重用資產與 render-based agents 細化；目標不是只產影片，而是保留 global terrain 與可獨立編輯的 textured meshes。
+        </p>
+        <h4>
+         成熟度判斷
+        </h4>
+        <p>
+         它對 AI world-building 很重要，因為開始處理場景全局一致性與 instance-level 可編輯性；但目前是研究成果，距離遊戲 navigation、physics、LOD、streaming、授權與穩定 production tool 還有明顯距離，因此列 BRIEF。
+        </p>
+       </div>
+      </details>
+      <a class="source" href="https://arxiv.org/abs/2608.05248" rel="noopener noreferrer" target="_blank">
+       來源
+      </a>
+     </article>
+     <article class="home-card more-card" data-intel-id="threejs-sdf-alien-raymarching" data-intel-role="card">
+      <h4>
+       無 Mesh 的 SDF 角色：Three.js 單一 fullscreen quad 以 raymarching 在 fragment shader 生成 3D 外觀
+      </h4>
+      <p class="summary">
+       Drin 的實驗完全不使用 mesh／texture／vertex，所有形體由 fragment shader 的 SDF raymarching 算出，展示 geometry-free stylized visual 的可能性。
+      </p>
+      <figure class="case-preview" data-intel-id="threejs-sdf-alien-raymarching" data-intel-role="visual" data-visual-id="threejs-sdf-alien-raymarching">
+       <a href="https://80.lv/articles/this-alien-has-no-mesh-is-built-in-three-js-with-shader-math" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-09-14/threejs-sdf-alien-raymarching.jpg"/>
+       </a>
+       <figcaption>
+        <span>
+         SOURCE PREVIEW
+        </span>
+        · Local visual evidence · 點圖開啟原始來源
+       </figcaption>
+      </figure>
+      <div class="quick-impact">
+       <span><b class="quick-impact-label">程序化</b> ★★★★☆</span>
+      </div>
+      <details class="home-full-analysis" data-analysis-level="BRIEF">
+       <summary>
+        情報簡析
+       </summary>
+       <div class="detail-body brief-analysis-body home-analysis-body">
+        <p class="analysis-level-note">
+         BRIEF｜來源已驗證，但目前證據深度不足以支持完整 Production Analysis。
+        </p>
+        <h4>
+         技術方向
+        </h4>
+        <p>
+         案例以單一 fullscreen quad 讓每個 pixel 執行 SDF raymarching，深度、形體與光照都由 shader math 產生；對 stylized logo、UI 生物、特效與小型程序物件提供完全不依賴傳統 mesh 的思路。
+        </p>
+        <h4>
+         成熟度判斷
+        </h4>
+        <p>
+         方法在特定鏡頭與簡化形體很靈活，但 shader iteration、碰撞、陰影、可編輯性與跨平台成本會限制一般遊戲角色用途。來源是技術展示，列 BRIEF。
+        </p>
+       </div>
+      </details>
+      <a class="source" href="https://80.lv/articles/this-alien-has-no-mesh-is-built-in-three-js-with-shader-math" rel="noopener noreferrer" target="_blank">
+       來源
+      </a>
+     </article>
+     <article class="home-card more-card" data-intel-id="triposplat-modly-mesh-extension" data-intel-role="card">
+      <h4>
+       TripoSplat → Modly：把單圖 Gaussian Splat 重建成 watertight vertex-colored GLB 的開源整合
+      </h4>
+      <p class="summary">
+       Modly 的 TripoSplat extension 以單次 feed-forward 生成 Gaussian Splats，再用 density grid、Surface Nets 與 color volume 重建 watertight GLB，讓 splat 模型進入 mesh-centric pipeline。
+      </p>
+      <figure class="case-preview" data-intel-id="triposplat-modly-mesh-extension" data-intel-role="visual" data-visual-id="triposplat-modly-mesh-extension">
+       <a href="https://modly3d.app/extensions/triposplat" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-09-14/triposplat-modly-mesh-extension.jpg"/>
+       </a>
+       <figcaption>
+        <span>
+         SOURCE PREVIEW
+        </span>
+        · Local visual evidence · 點圖開啟原始來源
+       </figcaption>
+      </figure>
+      <div class="quick-impact">
+       <span><b class="quick-impact-label">AI 3D</b> ★★★★☆</span>
+      </div>
+      <details class="home-full-analysis" data-analysis-level="BRIEF">
+       <summary>
+        情報簡析
+       </summary>
+       <div class="detail-body brief-analysis-body home-analysis-body">
+        <p class="analysis-level-note">
+         BRIEF｜來源已驗證，但目前證據深度不足以支持完整 Production Analysis。
+        </p>
+        <h4>
+         情報重點
+        </h4>
+        <p>
+         這個開源 extension 將 TripoSplat 的 Gaussian 表現轉入 mesh-centric 工具：依每個 Gaussian 的 covariance disk rasterize density grid，以 Otsu level＋Surface Nets 抽取表面，再把 color volume 採樣成 vertex color GLB。
+        </p>
+        <h4>
+         導入判斷
+        </h4>
+        <p>
+         它提供一條『快速 splat → 可匯入 DCC 的 mesh』實驗路徑，但 mesh 是有損近似，作者也明確提醒 fidelity 會低於 native splat render；適合 POC，不適合直接假設 game-ready。
+        </p>
+       </div>
+      </details>
+      <a class="source" href="https://modly3d.app/extensions/triposplat" rel="noopener noreferrer" target="_blank">
        來源
       </a>
      </article>
