@@ -2,11 +2,12 @@
 """Hybrid-aware release input gate with FULL / BRIEF analysis tiers.
 
 The legacy V2 validator assumes TOP5 is always global ranks 1-5. From the tiered
-Full Analysis contract onward that is no longer true: TOP5 is selected from the
-highest-ranked FULL survivors, while BRIEF may only enter next10/category views.
-This wrapper keeps the shared legacy validator for all other invariants, replaces
-only those obsolete homepage-tier errors for tiered dates, and validates the
-repo-owned depth policy fail-closed.
+Full Analysis contract onward TOP5 follows config/full-analysis-depth.json: FULL
+items get first claim on TOP5 slots, and BRIEF may fill only remaining slots when
+the repo-owned policy explicitly allows it. BRIEF stays BRIEF and is never promoted
+for presentation. This wrapper keeps the shared legacy validator for all other
+invariants, replaces only obsolete homepage-tier errors for tiered dates, and
+validates the repo-owned depth policy fail-closed.
 """
 from pathlib import Path
 import json
@@ -58,18 +59,44 @@ def _is_legacy_tier_error(error):
     )
 
 
+def _expected_top(items, top_limit, policy):
+    mode = str(policy.get('selection_mode') or 'full-only').strip()
+    allow_brief = bool(policy.get('allow_brief', False))
+    fallback_only = bool(policy.get('brief_fallback_only', True))
+
+    if mode not in ('full-only', 'full-first-brief-fallback'):
+        return [], f'unknown top5_policy.selection_mode={mode!r}'
+    if mode == 'full-first-brief-fallback' and not allow_brief:
+        return [], 'top5_policy selection_mode allows BRIEF fallback but allow_brief=false'
+
+    full = [x for x in items if _level(x) == 'FULL'][:top_limit]
+    expected = list(full)
+    if mode == 'full-first-brief-fallback' and allow_brief and len(expected) < top_limit:
+        selected_ids = {str(x.get('id') or '') for x in expected}
+        brief = [
+            x for x in items
+            if _level(x) == 'BRIEF' and str(x.get('id') or '') not in selected_ids
+        ]
+        expected.extend(brief[:top_limit - len(expected)])
+    elif allow_brief and not fallback_only:
+        expected = list(items[:top_limit])
+
+    selected_ids = {str(x.get('id') or '') for x in expected}
+    # Normalizer writes selected cards in canonical global-rank order.
+    return [x for x in items if str(x.get('id') or '') in selected_ids], None
+
+
 def _tier_aware_errors(data, depth):
     """Validate homepage tiers exactly as the tier-aware Registry normalizer does."""
     items = sorted(data.get('items') or [], key=lambda x: int(x.get('rank_global', 10**9)))
     cfg = core.load_config()
     top_limit = int((cfg.get('homepage') or {}).get('top5', 5))
     next_limit = int((cfg.get('homepage') or {}).get('next10', 10))
-    allow_brief = bool((depth.get('top5_policy') or {}).get('allow_brief', False))
+    policy = depth.get('top5_policy') or {}
 
-    if allow_brief:
-        expected_top = items[:top_limit]
-    else:
-        expected_top = [x for x in items if _level(x) == 'FULL'][:top_limit]
+    expected_top, policy_error = _expected_top(items, top_limit, policy)
+    if policy_error:
+        return [policy_error]
     top_ids = {str(x.get('id') or '') for x in expected_top}
     remaining = [x for x in items if str(x.get('id') or '') not in top_ids]
     expected_next = remaining[:next_limit]
@@ -82,13 +109,17 @@ def _tier_aware_errors(data, depth):
 
     errors = []
     if [x.get('id') for x in actual_top] != [x.get('id') for x in expected_top]:
-        errors.append('tier-aware top5 must equal highest-ranked FULL items allowed by Full Analysis contract')
+        errors.append('tier-aware top5 must follow FULL-first BRIEF-fallback selection from config/full-analysis-depth.json')
     if [x.get('id') for x in actual_next] != [x.get('id') for x in expected_next]:
-        errors.append('tier-aware next10 must equal highest-ranked remaining items after FULL-only TOP5 selection')
+        errors.append('tier-aware next10 must equal highest-ranked remaining items after configured TOP5 selection')
     if [x.get('id') for x in actual_category] != [x.get('id') for x in expected_category]:
         errors.append('tier-aware category_only must contain all remaining canonical items after TOP5+next10')
+
+    allow_brief = bool(policy.get('allow_brief', False))
     if not allow_brief and any(_level(x) != 'FULL' for x in actual_top):
         errors.append('tier-aware TOP5 contains BRIEF item while config/full-analysis-depth.json forbids it')
+    if any(_level(x) == 'REJECT' for x in actual_top):
+        errors.append('tier-aware TOP5 contains REJECT item')
     return errors
 
 
