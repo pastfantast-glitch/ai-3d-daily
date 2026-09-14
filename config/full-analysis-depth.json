@@ -1,7 +1,9 @@
 {
-  "version": 3,
+  "version": 4,
   "effective_date": "2026-09-08",
   "tiered_effective_date": "2026-09-12",
+  "admission_policy_effective_date": "2026-09-15",
+  "admission_policy_source": "config/intelligence-v2.json#collection.admission_policy",
   "style_reference": "2026-09-01",
   "mode": "tiered-source-supported-production-depth",
   "analysis_levels": ["FULL", "BRIEF", "REJECT"],
@@ -12,22 +14,28 @@
     "min_block_chars": 48,
     "min_total_text_chars": 180,
     "required_semantic_groups": ["workflow_or_technical_change", "production_impact", "test_risk_or_limit"],
-    "quality_rule": "FULL keeps the existing high bar: explain a concrete technical/workflow change, production or pipeline consequence, and an actionable adoption test, risk, limitation, or maturity judgment."
+    "quality_rule": "FULL keeps the existing high bar: explain a concrete technical/workflow change, production or pipeline consequence, and an actionable adoption test, risk, limitation, or maturity judgment. Broad admission does not lower the FULL evidence bar."
   },
   "brief": {
     "min_blocks": 1,
     "max_blocks": 2,
-    "min_block_chars": 36,
-    "min_total_text_chars": 60,
+    "min_block_chars": 24,
+    "min_total_text_chars": 40,
     "required_fields": ["brief_reason"],
     "allowed_reasons": [
       "early-release-limited-evidence",
       "short-official-announcement",
       "high-value-showcase-reference",
       "useful-tool-or-addon-limited-depth",
-      "emerging-research-limited-production-evidence"
+      "emerging-research-limited-production-evidence",
+      "practical-tutorial-limited-depth",
+      "community-experience-limited-depth",
+      "technical-demo-limited-depth",
+      "production-reference-limited-depth",
+      "visual-development-reference-limited-depth",
+      "single-source-verified-production-tip"
     ],
-    "quality_rule": "BRIEF is allowed only when the intelligence is verified, unpublished, relevant and concretely useful, but available source evidence cannot honestly support FULL depth. State the known fact/value and explicitly mark what remains unverified or immature. BRIEF must never be used to admit marketing-only, unverifiable, duplicate or negligible-value content."
+    "quality_rule": "BRIEF is the normal destination for an admission-pass item whose evidence cannot honestly support FULL depth. A verified single-source item may publish as BRIEF when claims are scoped to what the source actually demonstrates. Tutorials, tips, small tools, shader demos, community experiences, animation references and visual-development showcases do not need FULL-level evidence to be admitted when they provide at least one concrete production/reference takeaway. State the known fact/value and explicitly mark uncertainty or maturity limits."
   },
   "reject": {
     "publish_allowed": false,
@@ -35,8 +43,8 @@
       "unverifiable",
       "marketing-only-no-concrete-capability",
       "duplicate-without-substantive-delta",
-      "negligible-production-value",
-      "insufficient-evidence-even-for-brief"
+      "irrelevant-or-nontransferable",
+      "no-concrete-production-or-reference-takeaway"
     ]
   },
   "top5_policy": {
@@ -52,7 +60,7 @@
     "test_risk_or_limit": ["測試", "驗證", "實測", "限制", "成熟度", "判斷", "導入", "待驗證", "尚未"]
   },
   "heading_language": "zh-Hant",
-  "quality_rule": "Quality Gate and analysis-depth classification are separate. First decide whether an item is verified, unpublished and worth knowing; then classify it FULL or BRIEF based on source evidence depth. Never fabricate or pad evidence to upgrade BRIEF to FULL.",
+  "quality_rule": "Admission and evidence-depth classification are separate. First apply config/intelligence-v2.json#collection.admission_policy: if the item is verifiable, relevant or transferable, unpublished or substantively changed, and has at least one concrete production/technical/workflow/testing/animation-reference/visual-development takeaway, it is worth inclusion. Then classify by evidence depth: FULL for 3-5 source-supported substantive blocks; otherwise BRIEF for 1-2 honest limited-depth blocks. Limited evidence depth alone must not cause REJECT. Ranking handles narrower impact. REJECT is reserved for hard admission failures only. Never fabricate or pad evidence to upgrade BRIEF to FULL.",
   "fail_closed": true,
   "legacy_policy": "Dates before tiered_effective_date keep the prior FULL-only depth behavior and are not retroactively reclassified."
 }
