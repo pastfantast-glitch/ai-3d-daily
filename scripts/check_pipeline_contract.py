@@ -27,7 +27,8 @@ else:
     for token in required:
         if token not in main: fail(f'intelligence-build missing required stage/token: {token}')
     publish_section=main.split('\n  publish:',1)[1].split('\n  recovery:',1)[0] if '\n  publish:' in main else ''
-    if 'normalize_registry_identity.py' in publish_section: fail('registry normalization must happen before .ready, never inside canonical publish job')
+    if 'normalize_registry_identity.py' in publish_section or 'normalize_registry_identity_hybrid.py' in publish_section:
+        fail('registry normalization must happen before .ready, never inside canonical publish job')
     if "needs.route.outputs.mode == 'request'" not in main: fail('same canonical workflow must route .request to pre-ready preparation')
     if "needs.route.outputs.mode == 'ready'" not in main: fail('same canonical workflow must route generated .ready to publish')
     if "needs: [route, prepare]" not in main or "needs.prepare.result == 'success'" not in main:
@@ -45,15 +46,26 @@ else:
 # pre-ready operation; the publisher only verifies the resulting canonical hash.
 for path in (
     ROOT/'scripts'/'prepare_release_candidate.py', ROOT/'scripts'/'check_ready_contract.py',
-    ROOT/'scripts'/'normalize_registry_identity.py', ROOT/'scripts'/'check_quick_impact_contract.py',
-    ROOT/'config'/'quick-impact-contract.json'
+    ROOT/'scripts'/'normalize_registry_identity.py', ROOT/'scripts'/'normalize_registry_identity_hybrid.py',
+    ROOT/'scripts'/'check_quick_impact_contract.py', ROOT/'config'/'quick-impact-contract.json'
 ):
     if not path.exists(): fail(f'pre-ready pipeline module missing: {path.relative_to(ROOT)}')
 if (ROOT/'scripts'/'prepare_release_candidate.py').exists():
     prep=(ROOT/'scripts'/'prepare_release_candidate.py').read_text('utf-8')
-    for token in ('check_pipeline_contract.py','check_collection_contract.py','check_quick_impact_contract.py','normalize_registry_identity.py','enrich_full_analysis_v3.py','normalize_release_seed.py','check_release_input.py','check_registry_contract.py','canonical_sha256','registry_normalized_before_ready','preflight_passed_before_ready'):
+    for token in ('check_pipeline_contract.py','check_collection_contract.py','check_quick_impact_contract.py','normalize_registry_identity_hybrid.py','enrich_full_analysis_v3.py','normalize_release_seed.py','check_release_input.py','check_registry_contract.py','canonical_sha256','registry_normalized_before_ready','preflight_passed_before_ready'):
         if token not in prep: fail(f'pre-ready preparation missing required stage/token: {token}')
+    if "run('normalize_registry_identity.py'" in prep:
+        fail('prepare must use the hybrid registry wrapper so LOW_VOLUME_COMPLETE remains contract-driven')
     if "ready_path.write_text" not in prep: fail('pre-ready preparation must be the code path that writes .ready')
+registry_hybrid=ROOT/'scripts'/'normalize_registry_identity_hybrid.py'
+if registry_hybrid.exists():
+    registry_wrapper=registry_hybrid.read_text('utf-8')
+    if 'import normalize_registry_identity as core' not in registry_wrapper:
+        fail('registry hybrid wrapper must delegate canonical identity/tier logic to normalize_registry_identity.py')
+    if 'core.main()' not in registry_wrapper:
+        fail('registry hybrid wrapper must execute canonical normalizer main()')
+    if 'assign_homepage_tiers' in registry_wrapper:
+        fail('registry hybrid wrapper must not duplicate homepage tier assignment')
 if (ROOT/'scripts'/'check_ready_contract.py').exists():
     ready_check=(ROOT/'scripts'/'check_ready_contract.py').read_text('utf-8')
     for token in ('canonical_sha256','prepared_by','registry_normalized_before_ready','preflight_passed_before_ready','sha256_file'):
@@ -177,4 +189,4 @@ else:
     if "if(!id&&date==='2026-08-23')" not in text or 'LEGACY_20260823_RULES' not in text: fail('legacy identity fallback scope changed')
 if errors:
     print('PIPELINE CONTRACT FAILED'); print('\n'.join('- '+e for e in errors)); sys.exit(1)
-print('PIPELINE CONTRACT PASS: one canonical writer workflow + same-run request-to-ready-to-publish handoff + registry normalization/hash attestation before publish + config-driven daily release gate IA + quick-impact label contract + latest-main checkout + semantic visual compatibility + cache/category coverage + fail-closed QA')
+print('PIPELINE CONTRACT PASS: one canonical writer workflow + same-run request-to-ready-to-publish handoff + registry hybrid wrapper delegates canonical identity/tier logic + registry normalization/hash attestation before publish + config-driven daily release gate IA + quick-impact label contract + latest-main checkout + semantic visual compatibility + cache/category coverage + fail-closed QA')
