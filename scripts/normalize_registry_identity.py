@@ -18,6 +18,9 @@ Rules:
 - Homepage TOP5 selection is driven by config/full-analysis-depth.json. FULL items
   always have priority; when policy allows, BRIEF may fill only unfilled TOP5 slots
   and remains BRIEF rather than being promoted to FULL.
+- A controlled republish of an already-DONE date revalidates Registry identity but
+  preserves the original Registry normalization audit counts instead of pretending
+  the earlier dedupe never happened.
 - After normalization, apply the current repo daily release gate. A deficit means
   discovery is NOT complete: collection must continue through the configured fill
   ladder before .ready may be created.
@@ -210,6 +213,10 @@ def main():
     cfg = load_config()
     depth = load_depth_config()
     data = json.loads(data_path.read_text('utf-8'))
+    was_verified_done = is_verified_published(target)
+    previous_registry_meta = dict(
+        ((data.get('metadata') or {}).get('registry_identity_normalization') or {})
+    )
     owners, prior_ids = prior_registry(target)
     kept = []
     dropped = []
@@ -272,7 +279,7 @@ def main():
         meta['discovery_windows'] = collection['discovery_windows']
 
     gate = daily_gate(cfg, kept)
-    meta['registry_identity_normalization'] = {
+    registry_meta = {
         'dropped_count': len(dropped),
         'rewritten_count': len(rewrites),
         'policy': 'verified-DONE-published-canonical-source-without-substantive-delta-skip',
@@ -283,6 +290,23 @@ def main():
         'category_deficits': {},
         'daily_release_gate': gate,
     }
+    if was_verified_done and previous_registry_meta:
+        # The already-published release has a truthful record of how many candidates
+        # the original Registry pass dropped/rewrote. A policy-only republication
+        # must not erase those historical audit facts merely because the clean
+        # survivor set is being revalidated.
+        for key in (
+            'dropped_count',
+            'rewritten_count',
+            'policy',
+            'source_identity_precedence',
+            'url_identity',
+            'stage',
+        ):
+            if key in previous_registry_meta:
+                registry_meta[key] = previous_registry_meta[key]
+        registry_meta['republication_revalidated'] = True
+    meta['registry_identity_normalization'] = registry_meta
 
     visual = data.get('visual_evidence') or {}
     for old, new in rewrites.items():
@@ -295,6 +319,8 @@ def main():
     data_path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + '\n', 'utf-8')
 
     print(f'REGISTRY IDENTITY NORMALIZED: kept={len(kept)} dropped={len(dropped)} rewritten={len(rewrites)}')
+    if was_verified_done:
+        print('REGISTRY AUDIT PRESERVED: controlled republish revalidated the clean survivor set without resetting original dedupe counts')
     for rec in dropped:
         print(f"SKIP {rec['id']} -> historical {rec['historical_id']} source={rec['source_url']}")
     for old, new in rewrites.items():
