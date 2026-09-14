@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   遊戲引擎｜2026-09-15｜AI 3D Daily
+  </title>
+  <link href="../../styles.css?v=20260915-r1-workspace-v6" rel="stylesheet"/>
+  <link href="../../shared-components.css?v=20260915-r1-workspace-v6" rel="stylesheet"/>
+  <link href="../../category.css?v=20260915-r1-workspace-v6" rel="stylesheet"/>
+ </head>
+ <body class="category-page" data-category="engine-art" data-report-date="2026-09-15">
+  <nav aria-label="Production Intelligence 分類" class="global-category-nav">
+   <div class="page global-category-nav-inner">
+    <div class="archive-nav-controls">
+     <a class="archive-nav-home" href="../../">
+      ← 首頁
+     </a>
+     <div class="archive-nav-date">
+      <a aria-label="前一日日報" class="archive-nav-arrow" href="../../2026-09-14/engine-art/">
+       ←
+      </a>
+      <span>
+       2026-09-15
+      </span>
+     </div>
+    </div>
+    <span aria-hidden="true" class="archive-nav-divider">
+    </span>
+    <a class="global-category-link" href="../#top">
+     TOP5
+    </a>
+    <a class="global-category-link" data-category="ai-generation" href="../ai-generation/">
+     AI 生成
+    </a>
+    <a class="global-category-link" data-category="3d-production" href="../3d-production/">
+     3D 製作
+    </a>
+    <a class="global-category-link" data-category="3d-animation" href="../3d-animation/">
+     3D 動作
+    </a>
+    <a class="global-category-link is-active" data-category="engine-art" href="../engine-art/">
+     遊戲引擎
+    </a>
+    <a class="global-category-link" data-category="emerging-case" href="../emerging-case/">
+     新技術 / Case
+    </a>
+    <a class="global-category-link" data-category="blender-dcc" href="../blender-dcc/">
+     Blender / DCC
+    </a>
+   </div>
+  </nav>
+  <main class="page category-main">
+   <article class="category-card" data-intel-id="aorin-vrchat-liquid-hair-shader" data-intel-role="card">
+    <div class="category-meta">
+     #07 · shader
+    </div>
+    <h2>
+     VRChat Liquid Hair Shader：用水平液面與動畫擾動把髮型轉成流體視覺，適合研究 stylized shader 語言
+    </h2>
+    <p class="summary">
+     AoRin Liquid Shader 讓髮型呈現水平液面與緩慢波動，搭配 matcap 建立反射感，是小型但可轉移的 NPR／特效材質參考。
+    </p>
+    <figure class="case-preview" data-intel-id="aorin-vrchat-liquid-hair-shader" data-intel-role="visual" data-visual-id="aorin-vrchat-liquid-hair-shader">
+     <a href="https://80.lv/articles/this-free-vrchat-shader-turns-hair-into-beautiful-animated-liquid" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-15/aorin-vrchat-liquid-hair-shader.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">Shader</b> ★★★☆☆</span>
+    </div>
+    <details data-analysis-level="BRIEF">
+     <summary>
+      情報簡析
+     </summary>
+     <div class="detail-body brief-analysis-body">
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證，但目前證據深度不足以支持完整 Production Analysis。
+      </p>
+      <h4>
+       Shader 參考
+      </h4>
+      <p>
+       雖然目標平台是 VRChat，核心視覺概念可轉移到 Unity／UE：以世界或物件高度建立液面 mask，再疊加流動 normal／matcap，做髮絲、瓶體或魔法材質。
+      </p>
+      <h4>
+       限制
+      </h4>
+      <p>
+       文章沒有完整 shader graph、效能與透明排序資訊，因此較適合當效果拆解題目，而不是直接導入現有角色材質。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://80.lv/articles/this-free-vrchat-shader-turns-hair-into-beautiful-animated-liquid" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="usoftsubdiv-unreal-gpu-subdivision" data-intel-role="card">
+    <div class="category-meta">
+     #10 · tools
+    </div>
+    <h2>
+     USoftSubdiv：UE 5.7/5.8 在 GPU 由低密度 Skeletal Cage 重建 Catmull-Clark 平滑表面
+    </h2>
+    <p class="summary">
+     插件把 subdivision data 預烘焙，runtime 以動畫後的 Skeletal Mesh cage 驅動 GPU smooth surface，讓動畫控制網格與最終顯示密度分離。
+    </p>
+    <figure class="case-preview" data-intel-id="usoftsubdiv-unreal-gpu-subdivision" data-intel-role="visual" data-visual-id="usoftsubdiv-unreal-gpu-subdivision">
+     <a href="https://www.usoftsubdiv.com/" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-15/usoftsubdiv-unreal-gpu-subdivision.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">引擎工具</b> ★★★★☆</span>
+    </div>
+    <details data-analysis-level="BRIEF">
+     <summary>
+      情報簡析
+     </summary>
+     <div class="detail-body brief-analysis-body">
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證，但目前證據深度不足以支持完整 Production Analysis。
+      </p>
+      <h4>
+       技術價值
+      </h4>
+      <p>
+       若角色或變形物能用低密度 cage 做 skin/animation，再由 GPU 重建平滑表面，可能降低 rig 操作與原始 mesh 複雜度，同時保留高品質輪廓。
+      </p>
+      <h4>
+       限制
+      </h4>
+      <p>
+       目前是 Early Access 且限 UE 5.7/5.8、Win64；需 profiling vertex cost、morph/cloth/Nanite 相容性與 LOD 方案，不能只看展示畫面。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://www.usoftsubdiv.com/" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <nav aria-label="相鄰分類" class="category-bottom-nav">
+    <a href="../3d-animation/">
+     ← 3D 動作
+    </a>
+    <a href="../#top">
+     TOP5
+    </a>
+    <a href="../emerging-case/">
+     新技術 / Case →
+    </a>
+   </nav>
+  </main>
+  <script defer="" src="../../archive-nav-state.js?v=20260915-r1-workspace-v6">
+  </script>
+ </body>
+</html>

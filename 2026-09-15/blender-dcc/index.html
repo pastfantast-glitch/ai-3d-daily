@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   Blender / DCC｜2026-09-15｜AI 3D Daily
+  </title>
+  <link href="../../styles.css?v=20260915-r1-workspace-v6" rel="stylesheet"/>
+  <link href="../../shared-components.css?v=20260915-r1-workspace-v6" rel="stylesheet"/>
+  <link href="../../category.css?v=20260915-r1-workspace-v6" rel="stylesheet"/>
+ </head>
+ <body class="category-page" data-category="blender-dcc" data-report-date="2026-09-15">
+  <nav aria-label="Production Intelligence 分類" class="global-category-nav">
+   <div class="page global-category-nav-inner">
+    <div class="archive-nav-controls">
+     <a class="archive-nav-home" href="../../">
+      ← 首頁
+     </a>
+     <div class="archive-nav-date">
+      <a aria-label="前一日日報" class="archive-nav-arrow" href="../../2026-09-14/blender-dcc/">
+       ←
+      </a>
+      <span>
+       2026-09-15
+      </span>
+     </div>
+    </div>
+    <span aria-hidden="true" class="archive-nav-divider">
+    </span>
+    <a class="global-category-link" href="../#top">
+     TOP5
+    </a>
+    <a class="global-category-link" data-category="ai-generation" href="../ai-generation/">
+     AI 生成
+    </a>
+    <a class="global-category-link" data-category="3d-production" href="../3d-production/">
+     3D 製作
+    </a>
+    <a class="global-category-link" data-category="3d-animation" href="../3d-animation/">
+     3D 動作
+    </a>
+    <a class="global-category-link" data-category="engine-art" href="../engine-art/">
+     遊戲引擎
+    </a>
+    <a class="global-category-link" data-category="emerging-case" href="../emerging-case/">
+     新技術 / Case
+    </a>
+    <a class="global-category-link is-active" data-category="blender-dcc" href="../blender-dcc/">
+     Blender / DCC
+    </a>
+   </div>
+  </nav>
+  <main class="page category-main">
+   <article class="category-card" data-intel-id="proximity-snap-blender-retopo" data-intel-role="card">
+    <div class="category-meta">
+     #06 · addon
+    </div>
+    <h2>
+     Proximity Snap：Blender 一鍵把頂點吸附最近 Surface／Edge／Vertex，補足 retopo 與場景接縫清理
+    </h2>
+    <p class="summary">
+     免費工具提供距離、方向、平滑與 projection 控制，適合 retopo、道路貼地、衣物或車體表面貼合等重複操作。
+    </p>
+    <figure class="case-preview" data-intel-id="proximity-snap-blender-retopo" data-intel-role="visual" data-visual-id="proximity-snap-blender-retopo">
+     <a href="https://80.lv/articles/free-one-click-blender-tool-to-snap-vertices-to-nearest-surface" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-15/proximity-snap-blender-retopo.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">外掛</b> ★★★☆☆</span>
+    </div>
+    <details data-analysis-level="BRIEF">
+     <summary>
+      情報簡析
+     </summary>
+     <div class="detail-body brief-analysis-body">
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證，但目前證據深度不足以支持完整 Production Analysis。
+      </p>
+      <h4>
+       製作價值
+      </h4>
+      <p>
+       這類小工具的價值在於把大量『逐點貼近表面』的低價值操作批次化，對 retopo、terrain-road gap 與衣物貼合都能直接省時間。
+      </p>
+      <h4>
+       限制
+      </h4>
+      <p>
+       自動最近點在薄殼、重疊表面或凹陷區域可能吸到錯層；使用前應保留方向／距離約束，並在高曲率區人工檢查。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://80.lv/articles/free-one-click-blender-tool-to-snap-vertices-to-nearest-surface" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="substance-designer-sendto-interoperability" data-intel-role="card">
+    <div class="category-meta">
+     #11 · substance
+    </div>
+    <h2>
+     Substance Designer Send To：Designer→Painter／Sampler／Stager 可 resend 更新既有資產，縮短材質迭代
+    </h2>
+    <p class="summary">
+     Adobe 文件更新 Designer 的 Send To interoperability，可先設定 graph type，再把 package 送往其他 Substance 3D App，修改後 resend 更新。
+    </p>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">Substance</b> ★★★☆☆</span>
+    </div>
+    <details data-analysis-level="BRIEF">
+     <summary>
+      情報簡析
+     </summary>
+     <div class="detail-body brief-analysis-body">
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證，但目前證據深度不足以支持完整 Production Analysis。
+      </p>
+      <h4>
+       流程價值
+      </h4>
+      <p>
+       材質圖在 Designer 修改後可直接 resend 到 Painter／Sampler／Stager，對需要反覆調整 generator、filter 或 base material 的團隊能減少手動 publish／import 步驟。
+      </p>
+      <h4>
+       限制
+      </h4>
+      <p>
+       文件特別指出 Steam 版不支援這項 interoperability；正式導入前要確認授權版本、package type 與團隊素材路徑是否一致。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://experienceleague.adobe.com/en/docs/substance-3d-designer/using/workspace/explorer/send-to-interoperability" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <nav aria-label="相鄰分類" class="category-bottom-nav">
+    <a href="../emerging-case/">
+     ← 新技術 / Case
+    </a>
+    <a href="../#top">
+     TOP5
+    </a>
+    <a href="../ai-generation/">
+     AI 生成 →
+    </a>
+   </nav>
+  </main>
+  <script defer="" src="../../archive-nav-state.js?v=20260915-r1-workspace-v6">
+  </script>
+ </body>
+</html>

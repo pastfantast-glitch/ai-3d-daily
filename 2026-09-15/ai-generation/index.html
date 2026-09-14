@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   AI 生成｜2026-09-15｜AI 3D Daily
+  </title>
+  <link href="../../styles.css?v=20260915-r1-workspace-v6" rel="stylesheet"/>
+  <link href="../../shared-components.css?v=20260915-r1-workspace-v6" rel="stylesheet"/>
+  <link href="../../category.css?v=20260915-r1-workspace-v6" rel="stylesheet"/>
+ </head>
+ <body class="category-page" data-category="ai-generation" data-report-date="2026-09-15">
+  <nav aria-label="Production Intelligence 分類" class="global-category-nav">
+   <div class="page global-category-nav-inner">
+    <div class="archive-nav-controls">
+     <a class="archive-nav-home" href="../../">
+      ← 首頁
+     </a>
+     <div class="archive-nav-date">
+      <a aria-label="前一日日報" class="archive-nav-arrow" href="../../2026-09-14/ai-generation/">
+       ←
+      </a>
+      <span>
+       2026-09-15
+      </span>
+     </div>
+    </div>
+    <span aria-hidden="true" class="archive-nav-divider">
+    </span>
+    <a class="global-category-link" href="../#top">
+     TOP5
+    </a>
+    <a class="global-category-link is-active" data-category="ai-generation" href="../ai-generation/">
+     AI 生成
+    </a>
+    <a class="global-category-link" data-category="3d-production" href="../3d-production/">
+     3D 製作
+    </a>
+    <a class="global-category-link" data-category="3d-animation" href="../3d-animation/">
+     3D 動作
+    </a>
+    <a class="global-category-link" data-category="engine-art" href="../engine-art/">
+     遊戲引擎
+    </a>
+    <a class="global-category-link" data-category="emerging-case" href="../emerging-case/">
+     新技術 / Case
+    </a>
+    <a class="global-category-link" data-category="blender-dcc" href="../blender-dcc/">
+     Blender / DCC
+    </a>
+   </div>
+  </nav>
+  <main class="page category-main">
+   <article class="category-card" data-intel-id="tripo-knight-concept-to-unreal-case" data-intel-role="card">
+    <div class="category-meta">
+     #01 · ai-3d
+    </div>
+    <h2>
+     Tripo 角色到 Unreal 實例：AI 生成分件、Quad Mesh，再由人工完成 UV／貼圖／組裝與引擎收尾
+    </h2>
+    <p class="summary">
+     Tripo 的 stylized knight 案例把 AI 生成放在角色 production 前段，最終仍透過人工組裝、UV、材質與 Unreal 匯入完成可控資產。
+    </p>
+    <figure class="case-preview" data-intel-id="tripo-knight-concept-to-unreal-case" data-intel-role="visual" data-visual-id="tripo-knight-concept-to-unreal-case">
+     <a href="https://makegamewithai.com/news/tripo-character-to-unreal-workflow" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-15/tripo-knight-concept-to-unreal-case.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">AI 3D</b> ★★★★★</span>
+    </div>
+    <details data-analysis-level="FULL">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       AI 角色流程
+      </h4>
+      <p>
+       案例先把角色拆成盔甲、武器與身體等模組，再使用 Tripo 生成與 quad mesh 路徑，最後回到 DCC 做組裝、UV、貼圖與引擎匯入。這比把單次 image-to-3D 當成完成品，更接近團隊真正能管理的模組化資產流程。
+      </p>
+      <h4>
+       Production 影響
+      </h4>
+      <p>
+       案例回報單一 stylized knight 在一天內完成且控制在約 30K triangles，但這是特定作者與題目的結果，不應直接當平均 benchmark。可取的是工作分配：AI 負責初始幾何與變體，人工負責拓樸判斷、材質一致性與引擎驗收。
+      </p>
+      <h4>
+       導入測試
+      </h4>
+      <p>
+       建議用相同角色設定分別跑單體生成與模組分件生成，比較接縫、比例一致性、quad topology、UV 重做率、材質統一與 UE 匯入時間。來源屬供應商案例的二次整理，因此效率與 credit 消耗應以團隊實測重新驗證。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://makegamewithai.com/news/tripo-character-to-unreal-workflow" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="meshy71-ultra4k-detail" data-intel-role="card">
+    <div class="category-meta">
+     #02 · ai-3d
+    </div>
+    <h2>
+     Meshy 7.1：Ultra 4K 幾何提高到 4096³，主打更高表面細節與最高 8,000 萬三角形 raw mesh
+    </h2>
+    <p class="summary">
+     Meshy 7.1 將 Ultra 模式從 2048³ 提升到 4096³，官方以 Detail Richness benchmark 比較多個 image-to-3D 模型，焦點從輪廓一致性轉向幾何微細節。
+    </p>
+    <figure class="case-preview" data-intel-id="meshy71-ultra4k-detail" data-intel-role="visual" data-visual-id="meshy71-ultra4k-detail">
+     <a href="https://www.meshy.ai/blog/meshy-7-1-launch" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-15/meshy71-ultra4k-detail.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">AI 3D</b> ★★★★★</span>
+    </div>
+    <details data-analysis-level="FULL">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body">
+      <h4>
+       模型能力變化
+      </h4>
+      <p>
+       Meshy 7.1 的主要變更是把 Ultra 幾何生成尺度提升到 4096³，官方表示 raw mesh 在簡化前可達約 8,000 萬 triangles。這代表 image-to-3D 的競爭開始從大形對齊延伸到雕紋、鱗片、裝甲刻紋等高頻幾何。
+      </p>
+      <h4>
+       製作價值
+      </h4>
+      <p>
+       對高模起稿、雕刻參考與烘焙來源，較高幾何密度可能減少二次補雕；但遊戲 production 的瓶頸會轉到 decimation、retopo、UV 與法線烘焙。官方 benchmark 顯示 Detail Richness 提升，但它測的是幾何細節，不等同於 game-ready topology。
+      </p>
+      <h4>
+       導入測試
+      </h4>
+      <p>
+       建議直接用既有四視圖角色、硬表面與布料三組題材，比較 Meshy 7、7.1 Ultra 4K 與 Tripo/Hunyuan 的輪廓誤差、細節噪聲、raw poly、簡化後法線品質與 retopo 工時。官方自有 benchmark 需視為供應商數據，應以同題材 A/B 驗證。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://www.meshy.ai/blog/meshy-7-1-launch" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="meshy-api-sep14-chain-task" data-intel-role="card">
+    <div class="category-meta">
+     #03 · ai-3d
+    </div>
+    <h2>
+     Meshy API 9/14 更新：Image-to-Image 可直接接前一個 task_id，減少圖像鏈式流程的 URL 搬運
+    </h2>
+    <p class="summary">
+     Meshy API changelog 新增 input_task_id，讓完成的 Text-to-Image 或 Image-to-Image 任務可直接成為下一步輸入，適合批次概念→多視圖→3D 管線。
+    </p>
+    <figure class="case-preview" data-intel-id="meshy-api-sep14-chain-task" data-intel-role="visual" data-visual-id="meshy-api-sep14-chain-task">
+     <a href="https://docs.meshy.ai/api/changelog" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-15/meshy-api-sep14-chain-task.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">AI 3D</b> ★★★★☆</span>
+    </div>
+    <details data-analysis-level="BRIEF">
+     <summary>
+      情報簡析
+     </summary>
+     <div class="detail-body brief-analysis-body">
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證，但目前證據深度不足以支持完整 Production Analysis。
+      </p>
+      <h4>
+       流程變化
+      </h4>
+      <p>
+       9 月 14 日的 API changelog 新增 input_task_id，可直接串接已完成的圖像任務，不必先把輸出 URL 搬到 reference_image_urls；對自動化 pipeline 來說能少一層資產轉接與錯誤點。
+      </p>
+      <h4>
+       導入判斷
+      </h4>
+      <p>
+       可先測 prompt→image edit→multi-view／3D 的 job chain，確認 task 失敗、權限、重跑與版本追蹤行為。這是短版官方更新，沒有品質 benchmark，因此列 BRIEF。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://docs.meshy.ai/api/changelog" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="pinoc-ai-rig-retarget" data-intel-role="card">
+    <div class="category-meta">
+     #09 · ai-motion
+    </div>
+    <h2>
+     PINOC：AI Auto-Rig 加 Retarget，支援手指 mapping、A/T Pose 校正與 FBX/GLB／Motion 單獨輸出
+    </h2>
+    <p class="summary">
+     PINOC 的 rigging workflow 支援 humanoid、creature 與 stylized proportion，亦能辨識既有 rig、映射手指並把 motion retarget 到原角色。
+    </p>
+    <figure class="case-preview" data-intel-id="pinoc-ai-rig-retarget" data-intel-role="visual" data-visual-id="pinoc-ai-rig-retarget">
+     <a href="https://viggle.ai/pinoc/ai-auto-rigging" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-15/pinoc-ai-rig-retarget.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">AI 動作</b> ★★★★☆</span>
+    </div>
+    <details data-analysis-level="BRIEF">
+     <summary>
+      情報簡析
+     </summary>
+     <div class="detail-body brief-analysis-body">
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證，但目前證據深度不足以支持完整 Production Analysis。
+      </p>
+      <h4>
+       工作流
+      </h4>
+      <p>
+       對 AI 生成角色而言，Auto-Rig 後直接 retarget 到既有 motion，並能匯出 rigged FBX/GLB 或單獨 motion，可縮短從 mesh 到可動預覽的前置時間。
+      </p>
+      <h4>
+       限制
+      </h4>
+      <p>
+       供應商頁面描述了功能但沒有 deformation benchmark；應用不同手指數、獸人比例、厚重裝甲與 creature 測 skin weight、joint placement 與 engine humanoid mapping。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://viggle.ai/pinoc/ai-auto-rigging" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="meshy-comfyui-partner-node" data-intel-role="card">
+    <div class="category-meta">
+     #12 · ai-3d
+    </div>
+    <h2>
+     Meshy 官方 ComfyUI Partner Node：把 Text/Image/Multi-view→3D、Refine、PBR、Rig、Animation 串成節點流程
+    </h2>
+    <p class="summary">
+     官方 Partner Node 直接進 ComfyUI Templates，可跑 text/image/multi-view-to-3D，並延伸到 refine、PBR texturing、auto-rig、animation 與 GLB/FBX。
+    </p>
+    <figure class="case-preview" data-intel-id="meshy-comfyui-partner-node" data-intel-role="visual" data-visual-id="meshy-comfyui-partner-node">
+     <a href="https://www.meshy.ai/blog/meshy-comfyui" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-15/meshy-comfyui-partner-node.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">AI 3D</b> ★★★★☆</span>
+    </div>
+    <details data-analysis-level="BRIEF">
+     <summary>
+      情報簡析
+     </summary>
+     <div class="detail-body brief-analysis-body">
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證，但目前證據深度不足以支持完整 Production Analysis。
+      </p>
+      <h4>
+       自動化價值
+      </h4>
+      <p>
+       對已用 ComfyUI 做 2D concept／多視圖的人，3D 生成可以接在同一 graph，減少下載、重新上傳與手動串工具的摩擦，也更容易做 batch 與版本化實驗。
+      </p>
+      <h4>
+       限制
+      </h4>
+      <p>
+       節點仍呼叫雲端服務，成本、任務失敗、API 版本與輸出品質要另外控管；是否比 Web UI 更有效率取決於團隊是否真的有節點化 pipeline。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://www.meshy.ai/blog/meshy-comfyui" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <nav aria-label="相鄰分類" class="category-bottom-nav">
+    <a href="../blender-dcc/">
+     ← Blender / DCC
+    </a>
+    <a href="../#top">
+     TOP5
+    </a>
+    <a href="../3d-production/">
+     3D 製作 →
+    </a>
+   </nav>
+  </main>
+  <script defer="" src="../../archive-nav-state.js?v=20260915-r1-workspace-v6">
+  </script>
+ </body>
+</html>
