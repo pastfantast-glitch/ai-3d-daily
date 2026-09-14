@@ -64,10 +64,14 @@
       "notes": "依 current main 契約完成 24h→7d→30d→6m→evergreen discovery。24h 搜尋未發現可通過 Quality Gate 的新 production intelligence；7d/30d 以可重現 breakdown、工具與技術案例為主，6m/evergreen 只補仍具操作價值的官方版本、研究與工作流。Rolling Backlog 2026-09-13 為空，已刷新並檢查。針對 AI Generation、Engine Art、3D Animation/AI motion 與 Emerging Case 執行 targeted refill；來源池僅作 discovery channel，未施加 domain bonus、quota 或必查權重。候選經來源可驗證性、既有已發布主題/URL人工初篩、substantive-delta、Classification、Quality Gate 與 Ranking 後保留 30 項；疑似重複、純展示低 production value、行銷或缺乏證據項目未作 filler。Registry identity 仍由 repo pre-ready gate 做 deterministic 最終正規化。"
     },
     "homepage_tier_normalization": {
+      "selection_mode": "full-first-brief-fallback",
       "requested_top5": 5,
-      "actual_top5": 0,
-      "top5_full_only": true,
-      "next10": 10
+      "actual_top5": 5,
+      "top5_full_count": 0,
+      "top5_brief_fallback_count": 5,
+      "top5_full_only": false,
+      "brief_fallback_allowed": true,
+      "next10": 8
     },
     "registry_identity_normalization": {
       "dropped_count": 17,
@@ -97,7 +101,8 @@
         "normal_min": 20,
         "release_mode": "LOW_VOLUME_COMPLETE",
         "low_volume_authorized": true
-      }
+      },
+      "republication_revalidated": true
     },
     "full_analysis_depth_contract": "v5-tiered-full-brief-reject",
     "analysis_level_counts": {
@@ -132,7 +137,7 @@
         }
       ],
       "rank_global": 1,
-      "homepage_tier": "next10"
+      "homepage_tier": "top5"
     },
     {
       "id": "blender53-reactive-cel-lighting",
@@ -156,7 +161,7 @@
         }
       ],
       "rank_global": 2,
-      "homepage_tier": "next10"
+      "homepage_tier": "top5"
     },
     {
       "id": "rokoko-vision-30-create",
@@ -180,7 +185,7 @@
         }
       ],
       "rank_global": 3,
-      "homepage_tier": "next10"
+      "homepage_tier": "top5"
     },
     {
       "id": "mecha-centaur-lance-animation-reference",
@@ -204,7 +209,7 @@
         }
       ],
       "rank_global": 4,
-      "homepage_tier": "next10"
+      "homepage_tier": "top5"
     },
     {
       "id": "fairytale-pond-ucupaint-blender",
@@ -228,7 +233,7 @@
         }
       ],
       "rank_global": 5,
-      "homepage_tier": "next10"
+      "homepage_tier": "top5"
     },
     {
       "id": "studiojoin-free-maya-rig",
@@ -372,7 +377,7 @@
         }
       ],
       "rank_global": 11,
-      "homepage_tier": "category_only"
+      "homepage_tier": "next10"
     },
     {
       "id": "threejs-sdf-alien-raymarching",
@@ -396,7 +401,7 @@
         }
       ],
       "rank_global": 12,
-      "homepage_tier": "category_only"
+      "homepage_tier": "next10"
     },
     {
       "id": "triposplat-modly-mesh-extension",
@@ -420,7 +425,7 @@
         }
       ],
       "rank_global": 13,
-      "homepage_tier": "category_only"
+      "homepage_tier": "next10"
     }
   ],
   "visual_evidence": {}
