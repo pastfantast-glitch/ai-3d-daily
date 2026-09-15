@@ -31,14 +31,16 @@ def analysis_html(soup, record, home=False, daily=False):
     elif daily:
         body_classes.append('daily-analysis-body')
     body = soup.new_tag('div'); body['class'] = body_classes
-    if level == 'BRIEF':
-        badge = soup.new_tag('p'); badge['class'] = ['analysis-level-note']
-        badge.string = 'BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。'
-        body.append(badge)
     for block in blocks:
         heading = soup.new_tag('h4'); heading.string = block['label']
         paragraph = soup.new_tag('p'); paragraph.string = block['text']
         body.append(heading); body.append(paragraph)
+    # Evidence-depth metadata is supplemental and must not replace/displace
+    # the first analysis heading on BRIEF cards.
+    if level == 'BRIEF':
+        badge = soup.new_tag('p'); badge['class'] = ['analysis-level-note']
+        badge.string = 'BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。'
+        body.append(badge)
     details.append(body)
     return details
 
