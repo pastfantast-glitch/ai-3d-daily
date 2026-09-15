@@ -1,4 +1,4 @@
-import(new URL('./preference.js?v=20260915-cloudsync-r4',import.meta.url).href).catch(err=>console.warn('Preference feedback unavailable',err));
+import(new URL('./preference.js?v=20260915-cloudsync-r6',import.meta.url).href).catch(err=>console.warn('Preference feedback unavailable',err));
 
 const LEGACY_20260823_RULES=[
 ['blender-52-geometry-nodes-physics',['geometry-nodes-physics'],['Geometry Nodes Physics']],
