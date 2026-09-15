@@ -43,12 +43,6 @@ function renderAnalysis(card,record){
   if(summary)summary.textContent='完整分析';
   body.replaceChildren();
   body.classList.toggle('brief-analysis-body',level==='BRIEF');
-  if(level==='BRIEF'){
-    const note=document.createElement('p');
-    note.className='analysis-level-note';
-    note.textContent='BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。';
-    body.append(note);
-  }
   (record.full_analysis||[]).forEach(block=>{
     const h=document.createElement('h4');
     h.textContent=block.label;
@@ -56,6 +50,13 @@ function renderAnalysis(card,record){
     p.textContent=block.text;
     body.append(h,p);
   });
+  // Evidence-depth metadata must never displace the first analysis heading.
+  if(level==='BRIEF'){
+    const note=document.createElement('p');
+    note.className='analysis-level-note';
+    note.textContent='BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。';
+    body.append(note);
+  }
   card.dataset.canonicalRendered='1';
 }
 
