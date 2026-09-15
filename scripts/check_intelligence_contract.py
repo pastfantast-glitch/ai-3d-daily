@@ -51,7 +51,7 @@ def inspect_cards(date,name,path,selector,recs,expected_ids):
     if extra: errors.append(f'{date} {name}: unexpected IDs: {sorted(extra)}')
     return seen
 
-def validate_blocks(date,rid,record,min_blocks,max_blocks,min_block_chars,min_total_chars,require_semantics,depth_cfg):
+def validate_blocks(date,rid,record,min_blocks,max_blocks,min_block_chars,min_total_chars,require_semantics,depth_cfg,level_name='analysis'):
     blocks=record.get('full_analysis',[])
     if len(blocks)<min_blocks: errors.append(f'{date}: {rid} analysis must have >={min_blocks} structured blocks')
     if max_blocks and len(blocks)>max_blocks: errors.append(f'{date}: {rid} analysis must have <={max_blocks} structured blocks')
@@ -72,7 +72,13 @@ def validate_blocks(date,rid,record,min_blocks,max_blocks,min_block_chars,min_to
     semantic=depth_cfg.get('required_semantic_groups') or {}
     for group in require_semantics:
         if not any(str(k) in joined for k in semantic.get(group,[])):
-            errors.append(f'{date}: {rid} FULL analysis missing semantic angle: {group}')
+            errors.append(f'{date}: {rid} {level_name} analysis missing semantic angle: {group}')
+
+def brief_policy_for_date(date,depth_cfg):
+    effective=str(depth_cfg.get('brief_reading_contract_effective_date','9999-12-31'))
+    if date>=effective:
+        return depth_cfg.get('brief_reading') or depth_cfg.get('brief') or {}
+    return depth_cfg.get('brief') or {}
 
 def validate_depth(date,rid,record,cfg,depth_cfg):
     if date < str(depth_cfg.get('effective_date','9999-12-31')):
@@ -84,19 +90,28 @@ def validate_depth(date,rid,record,cfg,depth_cfg):
     if lv not in {'FULL','BRIEF'}:
         errors.append(f'{date}: {rid} invalid analysis_level={lv}'); return
     if lv=='BRIEF':
-        brief=depth_cfg.get('brief') or {}
+        brief=brief_policy_for_date(date,depth_cfg)
+        base_brief=depth_cfg.get('brief') or {}
         reason=norm(record.get('brief_reason'))
-        allowed=set(brief.get('allowed_reasons') or [])
+        allowed=set(base_brief.get('allowed_reasons') or [])
         if not reason: errors.append(f'{date}: {rid} BRIEF requires brief_reason')
         elif allowed and reason not in allowed: errors.append(f'{date}: {rid} invalid brief_reason={reason}')
         if norm(record.get('homepage_tier')).lower()=='top5' and not (depth_cfg.get('top5_policy') or {}).get('allow_brief',False):
             errors.append(f'{date}: {rid} BRIEF cannot be homepage TOP5')
-        validate_blocks(date,rid,record,int(brief.get('min_blocks',1)),int(brief.get('max_blocks',2)),int(brief.get('min_block_chars',36)),int(brief.get('min_total_text_chars',60)),[],depth_cfg)
+        reading_effective=date>=str(depth_cfg.get('brief_reading_contract_effective_date','9999-12-31'))
+        validate_blocks(
+            date,rid,record,
+            int(brief.get('min_blocks',3 if reading_effective else 1)),
+            int(brief.get('max_blocks',3 if reading_effective else 2)),
+            int(brief.get('min_block_chars',36 if reading_effective else 24)),
+            int(brief.get('min_total_text_chars',120 if reading_effective else 40)),
+            brief.get('required_semantic_groups') or [],depth_cfg,'BRIEF'
+        )
     else:
         full=depth_cfg.get('full') or {}
         if not full:
             full={'min_blocks':3,'max_blocks':5,'min_block_chars':48,'min_total_text_chars':180,'required_semantic_groups':['workflow_or_technical_change','production_impact','test_risk_or_limit']}
-        validate_blocks(date,rid,record,int(full.get('min_blocks',3)),int(full.get('max_blocks',5)),int(full.get('min_block_chars',48)),int(full.get('min_total_text_chars',180)),full.get('required_semantic_groups') or [],depth_cfg)
+        validate_blocks(date,rid,record,int(full.get('min_blocks',3)),int(full.get('max_blocks',5)),int(full.get('min_block_chars',48)),int(full.get('min_total_text_chars',180)),full.get('required_semantic_groups') or [],depth_cfg,'FULL')
 
 def default_candidate():
     dates=sorted(p.stem for p in (ROOT/'data'/'daily').glob('20??-??-??.json'))
