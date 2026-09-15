@@ -1,5 +1,5 @@
 {
-  "version": 9,
+  "version": 10,
   "effective_date": "2026-09-09",
   "coverage_audit": {
     "required_windows": ["24h", "7d", "30d", "6m", "evergreen"],
@@ -9,6 +9,8 @@
     "require_targeted_refill": true,
     "require_backlog_check": true,
     "require_quality_first_confirmation": true,
+    "require_registered_source_probe_when_effective": true,
+    "require_candidate_decision_ledger_when_effective": true,
     "exhaustion_status": "exhausted"
   },
   "rolling_backlog": {
@@ -18,6 +20,18 @@
     "admission": "verified-unpublished-quality-pass-only",
     "refresh_before_use": true,
     "remove_when_published_or_invalid": true
+  },
+  "candidate_decision_ledger": {
+    "effective_date": "2026-09-16",
+    "required": true,
+    "schema_version": 1,
+    "path_template": "data/candidates/decision-ledger/{date}.json",
+    "purpose": "Preserve candidate-level traceability from discovery through publication without changing ranking or source preference.",
+    "terminal_decisions": ["published", "duplicate", "rejected", "ranked-out", "backlog"],
+    "require_reason_for_non_published": true,
+    "require_published_canonical_coverage": true,
+    "require_registered_probe_candidate_coverage": true,
+    "public_surface": false
   },
   "preference_learning": {
     "effective_date": "2026-09-12",
@@ -72,6 +86,21 @@
       {"id":"game-developer","name":"Game Developer","domain":"gamedeveloper.com","base_url":"https://www.gamedeveloper.com/","enabled":true,"discovery_mode":"active-candidate-source","ranking_bonus":0,"required_daily_check":false,"categories":["3d-production","3d-animation","engine-art","emerging-case"],"notes":"Professional game-development publication for postmortems, engine/rendering techniques, art pipelines, production workflows and studio case studies. Treat interviews and secondary reporting as discovery evidence and corroborate strong technical claims with primary sources when possible."}
     ]
   },
+  "registered_source_coverage_probe": {
+    "effective_date": "2026-09-16",
+    "enabled": true,
+    "scope": "all-enabled-discovery-source-pool",
+    "purpose": "Recall safety net: inspect each registered source's newest index/feed/category/search surface so fresh production-relevant candidates are not dependent on generic web-search indexing.",
+    "allowed_methods": ["rss-or-feed", "latest-index", "category-index", "site-search", "web-site-query"],
+    "allowed_statuses": ["checked", "unavailable", "blocked", "unsupported"],
+    "require_attempt_record_for_every_enabled_source": true,
+    "require_candidate_ids_when_found": true,
+    "candidate_only": true,
+    "ranking_bonus": 0,
+    "quota": false,
+    "admission_bypass": false,
+    "notes": "This probe is registry-driven, not preference-derived. It adds recall only. A source may yield zero publishable candidates; no source is guaranteed inclusion and no domain receives ranking preference."
+  },
   "category_discovery_profiles": {
     "3d-animation": {
       "always_discover": true,
@@ -94,6 +123,7 @@
     "use_preference_learning": true,
     "use_source_neutrality": true,
     "use_discovery_source_pool": true,
+    "use_registered_source_coverage_probe": true,
     "use_priority_sources": false
   },
   "low_volume_release": {
