@@ -1,14 +1,10 @@
 #!/usr/bin/env python3
-"""Fail-closed contract for shared preference feedback surfaces.
+"""Fail-closed contract for shared preference feedback and bookmark surfaces.
 
-This validates wiring only. Browser votes remain client-local until a cloud-backed
-preference source is introduced; build-time ranking must not pretend otherwise.
-Empty categories are valid under the quality-first, non-quota collection contract.
-
-The contract deliberately validates the newest *rendered* report, not merely the
-newest canonical JSON. A .request/.ready push may legitimately contain tomorrow's
-canonical data before any public category pages exist; those derived surfaces are
-validated later in the canonical publish worktree before Atomic Publish.
+Feedback (like/dislike) may contribute to the client-local preference profile.
+Bookmarks are a separate knowledge-management store and MUST contribute zero
+ranking/discovery weight. Browser state remains client-local until a cloud-backed
+source is introduced; build-time ranking must not pretend otherwise.
 """
 from pathlib import Path
 from bs4 import BeautifulSoup
@@ -25,14 +21,9 @@ def latest_surface_date():
     canonical_dates = sorted(p.stem for p in (ROOT / 'data' / 'daily').glob('20??-??-??.json'))
     if not canonical_dates:
         raise SystemExit('PREFERENCE CONTRACT FAIL: no canonical daily data')
-
     newest_canonical = canonical_dates[-1]
-    # Once the newest daily surface exists, it must be complete and is the one
-    # we validate. Before Atomic Publish, fall back to the latest existing public
-    # archive so pre-ready/request commits do not fail on intentionally absent HTML.
     if (ROOT / newest_canonical / 'index.html').exists():
         return newest_canonical
-
     rendered = sorted(
         path.name for path in ROOT.glob('20??-??-??')
         if path.is_dir() and (path / 'index.html').exists()
@@ -51,7 +42,11 @@ def stable_cards_only(soup, surface, errors):
 
 def main():
     errors = []
-    preference = (ROOT / 'preference.js').read_text('utf-8')
+    preference_path = ROOT / 'preference.js'
+    saved_html_path = ROOT / 'saved' / 'index.html'
+    saved_js_path = ROOT / 'saved.js'
+    saved_css_path = ROOT / 'saved.css'
+    preference = preference_path.read_text('utf-8')
     home = (ROOT / 'home.js').read_text('utf-8')
     canonical = (ROOT / 'canonical-client.js').read_text('utf-8')
     archive = (ROOT / 'archive-nav-state.js').read_text('utf-8')
@@ -59,16 +54,33 @@ def main():
     for marker in (
         "ai3d-preferences-v2",
         "ai3d-preferences-v1",
+        "ai3d-bookmarks-v1",
         "[data-intel-role=\"card\"][data-intel-id]",
         "category:{},tool:{},topic:{},tag:{}",
         "function ageFactor",
+        "function recomputeWeights",
+        "data-bookmark",
+        "preference-bookmark-link",
         "MutationObserver",
         "window.ai3dPreferenceProfile",
         "window.ai3dPreferenceScore",
         "window.ai3dPreferenceExport",
+        "window.ai3dBookmarkList",
+        "window.ai3dBookmarkRemove",
+        "window.ai3dBookmarkExport",
         "ai3d-preference-ranking-signal",
     ):
         require(marker in preference, f'preference.js missing contract marker: {marker}', errors)
+
+    # Bookmark state must never participate in preference weight computation.
+    start = preference.find('function recomputeWeights')
+    end = preference.find('function save(){', start)
+    recompute = preference[start:end] if start >= 0 and end > start else ''
+    require(bool(recompute), 'preference.js recomputeWeights block not found', errors)
+    require('bookmark' not in recompute.lower(),
+            'bookmark state leaked into recomputeWeights; bookmarks must remain zero-weight', errors)
+    require("const BOOKMARK_STORE='ai3d-bookmarks-v1'" in preference,
+            'bookmark storage must remain physically separate from preference storage', errors)
 
     require("const STORE='ai3d-preferences-v1'" not in home,
             'home.js still owns legacy v1 preference implementation', errors)
@@ -76,6 +88,21 @@ def main():
             'canonical-client.js does not bootstrap shared preference.js', errors)
     require("preference.js" in archive,
             'archive-nav-state.js does not bootstrap shared preference.js', errors)
+
+    for path, label in ((saved_html_path, 'saved/index.html'), (saved_js_path, 'saved.js'), (saved_css_path, 'saved.css')):
+        require(path.exists(), f'{label} missing', errors)
+    if saved_html_path.exists():
+        saved_soup = BeautifulSoup(saved_html_path.read_text('utf-8'), 'html.parser')
+        require(saved_soup.select_one('#saved-list') is not None, 'saved page missing #saved-list', errors)
+        require(saved_soup.select_one('#saved-search') is not None, 'saved page missing search control', errors)
+        require(saved_soup.find('script', src=lambda value: value and 'saved.js' in value) is not None,
+                'saved page missing saved.js module', errors)
+        body_text = saved_soup.get_text(' ', strip=True)
+        require('不影響偏好權重' in body_text, 'saved page must disclose zero-weight bookmark behavior', errors)
+    if saved_js_path.exists():
+        saved_js = saved_js_path.read_text('utf-8')
+        for marker in ('ai3dBookmarkList', 'ai3dBookmarkRemove', 'ai3d:bookmark-change'):
+            require(marker in saved_js, f'saved.js missing bookmark API marker: {marker}', errors)
 
     date = latest_surface_date()
     cfg_path = ROOT / 'config' / 'intelligence-v2.json'
@@ -97,7 +124,6 @@ def main():
         if not path.exists():
             continue
         soup = BeautifulSoup(path.read_text('utf-8'), 'html.parser')
-        # Zero cards is valid: category counts are diagnostics, not quotas.
         stable_cards_only(soup, f'{date}/{category}', errors)
         script = soup.find('script', src=lambda value: value and 'archive-nav-state.js' in value)
         require(script is not None, f'{date}/{category}: shared workspace bootstrap missing', errors)
@@ -111,7 +137,7 @@ def main():
 
     if errors:
         raise SystemExit('PREFERENCE CONTRACT FAIL:\n- ' + '\n- '.join(errors))
-    print(f'PREFERENCE CONTRACT PASS: shared v2 feedback + stable-ID sync wiring / rendered={date} / {len(categories)} categories / empty categories allowed')
+    print(f'PREFERENCE CONTRACT PASS: like/dislike learning + zero-weight star bookmarks + stable-ID sync / rendered={date} / {len(categories)} categories')
 
 
 if __name__ == '__main__':
