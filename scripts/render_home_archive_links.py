@@ -116,6 +116,23 @@ def append_history_list(soup, section, current, dates):
     return history_dates
 
 
+def history_global_nav(soup,current,cfg):
+    """History portal uses current-day workspace tabs, not dated archive tabs.
+
+    The portal itself is only a knowledge/archive entry point. Historical mode begins
+    only after a user explicitly selects a dated report from the archive list.
+    """
+    nav=global_nav(soup,current,cfg,active='history',context='history')
+    for link in nav.select('a.global-category-link[data-category]'):
+        category=str(link.get('data-category') or '').strip()
+        if category:
+            link['href']=f'../?view={category}'
+    top=nav.select_one('a.global-category-link:not([data-category]):not(.global-history-link)')
+    if top:
+        top['href']='../#today'
+    return nav
+
+
 def render_history_page(current, dates, cfg):
     soup=BeautifulSoup('<!doctype html><html lang="zh-Hant"><head></head><body></body></html>','html.parser')
     head=soup.head
@@ -126,7 +143,7 @@ def render_history_page(current, dates, cfg):
         head.append(tag(soup,'link',attrs={'rel':'stylesheet','href':href}))
 
     body=soup.body; body['class']=['home-page','history-page']; body['data-report-date']=current
-    body.append(global_nav(soup,current,cfg,active='history',context='history'))
+    body.append(history_global_nav(soup,current,cfg))
     main=tag(soup,'main',attrs={'class':'page home-main history-main'})
     append_current_report(soup,main,current)
 
