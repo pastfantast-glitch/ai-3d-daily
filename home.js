@@ -90,7 +90,8 @@ document.addEventListener('DOMContentLoaded',()=>{
       window.scrollTo({top:0,behavior:'auto'});
     }catch(error){
       if(error?.name==='AbortError')return;
-      location.assign(sourceUrl.href);
+      const fallback=new URL(rootUrl.href);fallback.searchParams.set('view',category);
+      location.assign(fallback.href);
     }finally{nav.removeAttribute('aria-busy');}
   }
 
@@ -106,9 +107,29 @@ document.addEventListener('DOMContentLoaded',()=>{
 
   function categoryFromLink(link){
     if(link.dataset.category)return link.dataset.category;
-    const match=link.getAttribute('href')?.match(/20\d{2}-\d{2}-\d{2}\/([^/]+)\/?/);
+    const raw=link.getAttribute('href')||'';
+    try{
+      const view=new URL(raw,rootUrl.href).searchParams.get('view');
+      if(view)return view;
+    }catch(_){}
+    const match=raw.match(/20\d{2}-\d{2}-\d{2}\/([^/]+)\/?/);
     return match?.[1]||'';
   }
+
+  function normalizeCurrentWorkspaceLinks(){
+    nav.querySelectorAll('a.global-category-link[data-category]').forEach(link=>{
+      const category=link.dataset.category||'';
+      if(category)link.setAttribute('href',`?view=${encodeURIComponent(category)}`);
+    });
+    document.querySelectorAll('a.category-nav-card[href]').forEach(link=>{
+      const category=categoryFromLink(link);
+      if(!category)return;
+      link.dataset.category=category;
+      link.setAttribute('href',`?view=${encodeURIComponent(category)}`);
+    });
+  }
+
+  normalizeCurrentWorkspaceLinks();
 
   document.addEventListener('click',event=>{
     if(event.defaultPrevented||event.button!==0||event.metaKey||event.ctrlKey||event.shiftKey||event.altKey)return;
