@@ -8,7 +8,7 @@ import sys
 
 ROOT=Path(__file__).resolve().parents[1]
 QUICK_IMPACT_CONFIG=ROOT/'config'/'quick-impact-contract.json'
-WORKSPACE_REV='workspace-v7-analysis'
+WORKSPACE_REV='workspace-v8-history'
 STAR_RE=re.compile(r'[★☆]{1,5}')
 QUICK_IMPACT_SPAN_RE=re.compile(
     r'<div\b[^>]*class="[^"]*\bquick-impact\b[^"]*"[^>]*>\s*<span\b[^>]*>(.*?)</span>',
@@ -100,6 +100,7 @@ def main():
     labels=quick_impact_labels(data)
     rev=int(data.get('render_revision',1)); token=f"{date.replace('-','')}-r{rev}-{WORKSPACE_REV}"
     apply(ROOT/'index.html',['shared-components.css','home.css','home-content.css','home-components.css','home.js'],token,labels)
+    apply(ROOT/'history'/'index.html',['../styles.css','../shared-components.css','../home.css','../home-content.css','../home-components.css','../history.js','../preference.js'],token,labels)
     apply(ROOT/date/'index.html',['../styles.css','../shared-components.css','../daily.css','../daily.js','../archive-nav-state.js'],token,labels)
     if int(data.get('schema_version',0))>=3:
         for path in sorted((ROOT/date).glob('*/index.html')):
