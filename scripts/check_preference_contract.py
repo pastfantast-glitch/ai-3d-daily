@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """Fail-closed contract for shared preference feedback and bookmark surfaces.
 
-Feedback (like/dislike) may contribute to the client-local preference profile.
-Bookmarks are a separate knowledge-management store and MUST contribute zero
-ranking/discovery weight. Browser state remains client-local until a cloud-backed
-source is introduced; build-time ranking must not pretend otherwise.
+Feedback (like/dislike) contributes to the preference profile and may be synced by
+the owner-cloud runtime. Bookmarks are a separate knowledge-management store and
+MUST contribute zero ranking/discovery weight. Navigation-only destinations such
+as 收藏 and 歷史日報 must never be intercepted as current-day category tabs.
 """
 from pathlib import Path
 from bs4 import BeautifulSoup
@@ -46,6 +46,8 @@ def main():
     saved_html_path = ROOT / 'saved' / 'index.html'
     saved_js_path = ROOT / 'saved.js'
     saved_css_path = ROOT / 'saved.css'
+    history_html_path = ROOT / 'history' / 'index.html'
+    history_js_path = ROOT / 'history.js'
     preference = preference_path.read_text('utf-8')
     home = (ROOT / 'home.js').read_text('utf-8')
     canonical = (ROOT / 'canonical-client.js').read_text('utf-8')
@@ -84,16 +86,16 @@ def main():
 
     require("const STORE='ai3d-preferences-v1'" not in home,
             'home.js still owns legacy v1 preference implementation', errors)
-    require("a.global-category-link[href]:not(.preference-bookmark-link)" in home,
-            'homepage workspace router must exclude bookmark navigation from TOP5/category interception', errors)
-    require("a.global-category-link:not(.preference-bookmark-link)" in home,
-            'homepage active-tab painter must exclude bookmark navigation', errors)
+    require("a.global-category-link[href]:not(.preference-bookmark-link):not(.global-history-link)" in home,
+            'homepage workspace router must exclude bookmark + History navigation from TOP5/category interception', errors)
+    require("a.global-category-link:not(.preference-bookmark-link):not(.global-history-link)" in home,
+            'homepage active-tab painter must exclude bookmark + History navigation', errors)
     require("preference.js" in canonical,
             'canonical-client.js does not bootstrap shared preference.js', errors)
     require("preference.js" in archive,
             'archive-nav-state.js does not bootstrap shared preference.js', errors)
 
-    for path, label in ((saved_html_path, 'saved/index.html'), (saved_js_path, 'saved.js'), (saved_css_path, 'saved.css')):
+    for path, label in ((saved_html_path, 'saved/index.html'), (saved_js_path, 'saved.js'), (saved_css_path, 'saved.css'), (history_html_path, 'history/index.html'), (history_js_path, 'history.js')):
         require(path.exists(), f'{label} missing', errors)
     if saved_html_path.exists():
         saved_soup = BeautifulSoup(saved_html_path.read_text('utf-8'), 'html.parser')
@@ -117,6 +119,16 @@ def main():
         saved_css = saved_css_path.read_text('utf-8')
         for marker in ('.saved-card-media', '.saved-card.has-image', 'object-fit:cover'):
             require(marker in saved_css, f'saved.css missing article-visual marker: {marker}', errors)
+    if history_html_path.exists():
+        history_soup = BeautifulSoup(history_html_path.read_text('utf-8'), 'html.parser')
+        require(history_soup.select_one('a.global-history-link[data-global-view="history"]') is not None,
+                'History portal missing standalone navigation identity', errors)
+        require(history_soup.find('script', src=lambda value: value and 'preference.js' in value) is not None,
+                'History portal must bootstrap shared preference/cloud runtime', errors)
+    if history_js_path.exists():
+        history_js = history_js_path.read_text('utf-8')
+        for marker in ('history-search','data-history-category','data-history-range'):
+            require(marker in history_js, f'history.js missing archive interaction marker: {marker}', errors)
 
     date = latest_surface_date()
     cfg_path = ROOT / 'config' / 'intelligence-v2.json'
@@ -151,7 +163,7 @@ def main():
 
     if errors:
         raise SystemExit('PREFERENCE CONTRACT FAIL:\n- ' + '\n- '.join(errors))
-    print(f'PREFERENCE CONTRACT PASS: like/dislike learning + zero-weight star bookmarks + saved article visuals + stable-ID sync / rendered={date} / {len(categories)} categories')
+    print(f'PREFERENCE CONTRACT PASS: like/dislike learning + zero-weight star bookmarks + standalone History navigation + saved visuals + stable-ID sync / rendered={date} / {len(categories)} categories')
 
 
 if __name__ == '__main__':
