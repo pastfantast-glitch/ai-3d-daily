@@ -1,21 +1,21 @@
 #!/usr/bin/env python3
-"""Fail-closed contract for the passive cloud-sync runtime.
+"""Fail-closed contract for paired cross-device cloud sync.
 
-Cloud sync must be cache-isolated and must not do automatic DOM observation,
-automatic registration, automatic pull, or automatic reload on page load. Local
-preference/bookmark behavior must remain usable even when Supabase is unavailable.
+Cloud sync must never auto-register a device and must never reload the page to
+apply remote data. Once two devices explicitly share one sync code, the runtime
+may safely pull on load/visibility/online and poll at a bounded interval.
 """
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-SYNC = ROOT / 'cloud-sync-v2.js'
+SYNC = ROOT / 'cloud-sync-v3.js'
 PREFERENCE = ROOT / 'preference.js'
 
 
 def main():
     errors = []
     if not SYNC.exists():
-        raise SystemExit('CLOUD SYNC CONTRACT FAIL: cloud-sync-v2.js missing')
+        raise SystemExit('CLOUD SYNC CONTRACT FAIL: cloud-sync-v3.js missing')
     if not PREFERENCE.exists():
         raise SystemExit('CLOUD SYNC CONTRACT FAIL: preference.js missing')
 
@@ -25,32 +25,39 @@ def main():
     required = (
         "const ENDPOINT='https://epumcdxfkcujulqrcjrw.supabase.co/functions/v1/ai3d-sync'",
         "const CRED_STORE='ai3d-cloud-sync-v1'",
-        'function injectNav()',
-        'function queuePush()',
+        'const POLL_MS=60000',
+        'function mergeForLink(local,remote)',
+        'function applyRemote(remote',
+        'function queuePush(event)',
+        "if(event?.detail?.remote)return",
+        'function schedulePolling()',
+        "document.addEventListener('visibilitychange'",
+        "window.addEventListener('online'",
         'window.ai3dCloudSyncCode',
+        'window.ai3dCloudSyncStatus',
         'window.ai3dCloudSyncNow',
         'window.ai3dCloudSyncImport',
         'setTimeout(()=>controller.abort(),8000)',
+        'window.ai3dPreferenceReloadFromStorage',
     )
     for marker in required:
         if marker not in text:
             errors.append(f'missing marker: {marker}')
 
-    if "cloud-sync-v2.js?v=20260915-r4" not in preference:
-        errors.append('preference.js must load cache-isolated cloud-sync-v2.js with explicit version token')
-    if "./cloud-sync.js'" in preference or 'cloud-sync.js",' in preference:
-        errors.append('preference.js still references legacy cloud-sync.js')
+    if "cloud-sync-v3.js?v=20260915-r6" not in preference:
+        errors.append('preference.js must load cache-isolated cloud-sync-v3.js with explicit version token')
+    if 'window.ai3dPreferenceReloadFromStorage' not in preference:
+        errors.append('preference.js must expose same-tab storage reload hook for remote sync')
 
     forbidden = (
         'MutationObserver',
         'observer.observe(',
         'else register();',
-        'if(credentials())pull();',
-        'window.addEventListener(\'online\'',
+        'location.reload()',
     )
     for marker in forbidden:
         if marker in text:
-            errors.append(f'passive runtime contains forbidden automatic behavior: {marker}')
+            errors.append(f'cloud runtime contains forbidden behavior: {marker}')
 
     init_start = text.find('function init(){')
     init_end = text.find('window.ai3dCloudSyncCode', init_start)
@@ -58,13 +65,22 @@ def main():
     if not init_block:
         errors.append('init block not found')
     else:
-        for marker in ('register()', 'pull()', 'location.reload()', 'fetch('):
-            if marker in init_block:
-                errors.append(f'init must not execute automatic cloud/network/reload action: {marker}')
+        if 'register()' in init_block:
+            errors.append('init must never auto-register a new sync account')
+        if 'location.reload()' in init_block:
+            errors.append('init must not reload the page')
+        if 'if(credentials())setTimeout(()=>pull({silent:true}),400)' not in init_block:
+            errors.append('linked devices must perform a bounded silent initial pull')
+
+    menu_start = text.find('async function menu(){')
+    menu_end = text.find('function injectStyle()', menu_start)
+    menu_block = text[menu_start:menu_end] if menu_start >= 0 and menu_end > menu_start else ''
+    if '連結另一台裝置' not in text or '共同代號' not in text:
+        errors.append('pairing UX must make shared-account linking explicit')
 
     if errors:
         raise SystemExit('CLOUD SYNC CONTRACT FAIL:\n- ' + '\n- '.join(errors))
-    print('CLOUD SYNC CONTRACT PASS: passive manual sync + cache-isolated v2 runtime')
+    print('CLOUD SYNC CONTRACT PASS: explicit pairing + automatic pull/push + no reload/auto-register')
 
 
 if __name__ == '__main__':
