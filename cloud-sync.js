@@ -99,23 +99,36 @@
     if(document.getElementById(STYLE_ID))return;
     const s=document.createElement('style');s.id=STYLE_ID;s.textContent=`.cloud-sync-control{display:inline-flex;align-items:center;gap:6px;padding:8px 11px;border:1px solid #2c3a50;border-radius:999px;background:#111a29;color:#9eabcb;cursor:pointer;font:inherit;font-size:.72rem;font-weight:760}.cloud-sync-control:hover{border-color:#5f58a8;color:#e5e9f2}.cloud-sync-control.is-on{color:#80e0b2;border-color:#2d6a4d}.cloud-sync-control.is-warn{color:#ffd866;border-color:#7f6b2d}@media(max-width:760px){.cloud-sync-control .cloud-sync-text{display:none}}`;document.head.append(s);
   }
-  function injectNav(){
-    document.querySelectorAll('.global-category-nav-inner').forEach(inner=>{
+  function injectNav(root=document){
+    let inserted=false;
+    const targets=[];
+    if(root?.matches?.('.global-category-nav-inner'))targets.push(root);
+    root?.querySelectorAll?.('.global-category-nav-inner').forEach(inner=>targets.push(inner));
+    targets.forEach(inner=>{
       if(inner.querySelector('.cloud-sync-control'))return;
-      const b=document.createElement('button');b.type='button';b.className='cloud-sync-control';b.dataset.cloudSync='1';b.innerHTML='<span aria-hidden="true">☁</span><span class="cloud-sync-text">本機</span>';b.addEventListener('click',menu);inner.append(b);
-    });paint();
+      const b=document.createElement('button');b.type='button';b.className='cloud-sync-control';b.dataset.cloudSync='1';b.innerHTML='<span aria-hidden="true">☁</span><span class="cloud-sync-text">本機</span>';b.addEventListener('click',menu);inner.append(b);inserted=true;
+    });
+    if(inserted)paint();
+    return inserted;
   }
   function paint(temp=''){
     const c=credentials();const dirty=localStorage.getItem(DIRTY_STORE)==='1';
     document.querySelectorAll('.cloud-sync-control').forEach(b=>{
       b.classList.toggle('is-on',!!c&&!dirty);b.classList.toggle('is-warn',!!c&&dirty);
-      const text=b.querySelector('.cloud-sync-text');if(text)text.textContent=temp||(c?(dirty?'待同步':'已同步'):'本機');
+      const text=b.querySelector('.cloud-sync-text');const next=temp||(c?(dirty?'待同步':'已同步'):'本機');if(text&&text.textContent!==next)text.textContent=next;
       b.title=c?'雲端同步設定':'啟用雲端同步';
     });
   }
   function init(){
-    injectStyle();injectNav();
-    new MutationObserver(injectNav).observe(document.body,{childList:true,subtree:true});
+    injectStyle();injectNav(document);
+    const observer=new MutationObserver(records=>{
+      for(const record of records){
+        for(const node of record.addedNodes){
+          if(node.nodeType===1)injectNav(node);
+        }
+      }
+    });
+    observer.observe(document.body,{childList:true,subtree:true});
     window.addEventListener('ai3d:preference-change',queuePush);
     window.addEventListener('ai3d:bookmark-change',queuePush);
     window.addEventListener('online',()=>{if(credentials())pull();});
