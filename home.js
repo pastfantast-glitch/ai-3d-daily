@@ -16,35 +16,9 @@ document.addEventListener('DOMContentLoaded',async()=>{
   cards.forEach(card=>{const all=[...card.querySelectorAll('details')];all.slice(1).forEach(d=>d.remove());});
   const analyses=[...document.querySelectorAll('.home-full-analysis')];
   analyses.forEach(d=>d.addEventListener('toggle',()=>{if(d.open)analyses.forEach(other=>{if(other!==d)other.open=false;});}));
-
-  // Historical Intelligence Library: text search + V2 category + date window.
-  const archive=document.querySelector('.history-list');
-  const historySearch=document.querySelector('.history-search');
-  if(archive&&historySearch){
-    let category='all',range='all';
-    const entries=[...archive.querySelectorAll('.history-entry')];
-    const daysBetween=(newest,date)=>Math.floor((new Date(newest+'T00:00:00')-new Date(date+'T00:00:00'))/86400000);
-    const newest=entries.map(x=>x.dataset.historyDate).sort().at(-1)||'';
-    const applyHistory=()=>{
-      const query=historySearch.value.trim().toLowerCase();let visible=0;
-      entries.forEach(a=>{
-        const cats=(a.dataset.historyCategories||'').split(/\s+/).filter(Boolean);
-        const inCategory=category==='all'||cats.includes(category);
-        const inRange=range==='all'||daysBetween(newest,a.dataset.historyDate)<Number(range);
-        const inSearch=!query||(a.dataset.historySearch||a.textContent.toLowerCase()).includes(query);
-        a.hidden=!(inCategory&&inRange&&inSearch);if(!a.hidden)visible++;
-      });
-      archive.querySelectorAll('.archive-month').forEach(m=>{const any=[...m.querySelectorAll('.history-entry')].some(a=>!a.hidden);m.hidden=!any;if(any&&(query||category!=='all'||range!=='all'))m.open=true;});
-      archive.querySelectorAll('.archive-year').forEach(y=>{const any=[...y.querySelectorAll('.archive-month')].some(m=>!m.hidden);y.hidden=!any;if(any&&(query||category!=='all'||range!=='all'))y.open=true;});
-      const empty=archive.querySelector('.history-empty');if(empty)empty.hidden=visible!==0;
-    };
-    historySearch.addEventListener('input',applyHistory);
-    document.querySelectorAll('[data-history-category]').forEach(btn=>btn.addEventListener('click',()=>{category=btn.dataset.historyCategory;document.querySelectorAll('[data-history-category]').forEach(x=>x.classList.toggle('is-active',x===btn));applyHistory();}));
-    document.querySelectorAll('[data-history-range]').forEach(btn=>btn.addEventListener('click',()=>{range=btn.dataset.historyRange;document.querySelectorAll('[data-history-range]').forEach(x=>x.classList.toggle('is-active',x===btn));applyHistory();}));
-  }
 });
 
-// Current-day workspace: category tabs never switch into the historical archive shell.
+// Current-day workspace: category tabs never switch into the History portal.
 document.addEventListener('DOMContentLoaded',()=>{
   const NAV_SELECTOR='nav.global-category-nav';
   const nav=document.querySelector(NAV_SELECTOR);
@@ -59,7 +33,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   let categoryMain=null;
 
   function setActive(category){
-    nav.querySelectorAll('a.global-category-link:not(.preference-bookmark-link)').forEach(link=>{
+    nav.querySelectorAll('a.global-category-link:not(.preference-bookmark-link):not(.global-history-link)').forEach(link=>{
       const key=link.dataset.category||'top5';
       link.classList.toggle('is-active',key===(category||'top5'));
     });
@@ -138,7 +112,7 @@ document.addEventListener('DOMContentLoaded',()=>{
 
   document.addEventListener('click',event=>{
     if(event.defaultPrevented||event.button!==0||event.metaKey||event.ctrlKey||event.shiftKey||event.altKey)return;
-    const tab=event.target.closest(`${NAV_SELECTOR} a.global-category-link[href]:not(.preference-bookmark-link)`);
+    const tab=event.target.closest(`${NAV_SELECTOR} a.global-category-link[href]:not(.preference-bookmark-link):not(.global-history-link)`);
     if(tab){
       event.preventDefault();
       const category=tab.dataset.category||'';
