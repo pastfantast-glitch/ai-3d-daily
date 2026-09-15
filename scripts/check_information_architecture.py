@@ -50,7 +50,7 @@ def nav_contract(soup, date, cfg, active, context='home'):
     if context == 'category':
         expected_hrefs = ['../#top'] + [f'../{c["id"]}/' for c in cfg['categories']] + ['../../history/']
     elif context == 'history':
-        expected_hrefs = ['../#today'] + [f'../{date}/{c["id"]}/' for c in cfg['categories']] + ['./']
+        expected_hrefs = ['../#today'] + [f'../?view={c["id"]}' for c in cfg['categories']] + ['./']
     elif context == 'home':
         expected_hrefs = ['#today'] + [f'?view={c["id"]}' for c in cfg['categories']] + ['history/']
     else:
@@ -63,10 +63,10 @@ def nav_contract(soup, date, cfg, active, context='home'):
     if not history or history.get_text(' ',strip=True) != '歷史日報':
         fail(f'{active}: standalone History navigation identity missing')
 
-    if context == 'home':
+    if context in ('home','history'):
         dated = [x.get('href','') for x in nav.select('a.global-category-link[data-category][href]') if date in x.get('href','')]
         if dated:
-            fail(f'homepage current-day category tabs must not expose dated archive URLs: {dated[0]}')
+            fail(f'{context}: current-day category tabs must not expose dated archive URLs: {dated[0]}')
 
     if context == 'category':
         controls = nav.select_one('.archive-nav-controls')
@@ -183,6 +183,6 @@ def main():
         sys.exit(1)
     counts = ', '.join(f'{c["id"]}={len(category_items(data, c["id"]))}' for c in cfg['categories'])
     col=cfg.get('collection') or {}; mode = f'daily {col.get("daily_min_items")}-{col.get("daily_max_items")} target {col.get("daily_target_items")}' if target_mode else 'legacy variable-pool compatibility'
-    print(f'V2 INFORMATION ARCHITECTURE PASS: {mode} + Today-first homepage current-workspace tabs + standalone History portal + shared nav + available TOP5/next10 + no-hero category pages / {counts}')
+    print(f'V2 INFORMATION ARCHITECTURE PASS: {mode} + Today-first homepage/History current-workspace tabs + dated archive tabs only after explicit date selection + shared nav + available TOP5/next10 + no-hero category pages / {counts}')
 
 if __name__ == '__main__': main()
