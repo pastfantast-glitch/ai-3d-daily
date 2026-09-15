@@ -68,7 +68,7 @@ def impact_node(soup, text, daily=False):
 
 
 def global_nav(soup, date, cfg, active='top5', context='home'):
-    """One shared nav component for homepage, archive TOP5 and date-scoped category pages."""
+    """One shared nav component for homepage, archive, category and History portal."""
     nav = soup.new_tag('nav', attrs={'class': 'global-category-nav', 'aria-label': 'Production Intelligence 分類'})
     inner = soup.new_tag('div', attrs={'class': 'page global-category-nav-inner'})
 
@@ -92,20 +92,31 @@ def global_nav(soup, date, cfg, active='top5', context='home'):
         top_href = '#today'
     elif context == 'archive':
         top_href = '#top'
+    elif context == 'history':
+        top_href = '../#today'
     else:
         top_href = '../#top'
     top = soup.new_tag('a', attrs={'href': top_href, 'class': 'global-category-link' + (' is-active' if active == 'top5' else '')})
     top.string = 'TOP5'; inner.append(top)
+
     for cat in cfg['categories']:
         if context == 'home':
             href = f'{date}/{cat["id"]}/'
         elif context == 'archive':
             href = f'{cat["id"]}/'
+        elif context == 'history':
+            href = f'../{date}/{cat["id"]}/'
         else:
             href = f'../{cat["id"]}/'
         classes = 'global-category-link' + (' is-active' if active == cat['id'] else '')
         a = soup.new_tag('a', attrs={'href': href, 'class': classes, 'data-category': cat['id']})
         a.string = cat['label']; inner.append(a)
+
+    history_href = {'home':'history/', 'archive':'../history/', 'category':'../../history/', 'history':'./'}[context]
+    history_classes = 'global-category-link global-history-link' + (' is-active' if active == 'history' else '')
+    history = soup.new_tag('a', attrs={'href': history_href, 'class': history_classes, 'data-global-view': 'history'})
+    history.string = '歷史日報'; inner.append(history)
+
     nav.append(inner)
     return nav
 
