@@ -21,7 +21,7 @@ def analysis_html(soup, record, home=False, daily=False):
         details['class'] = ['daily-full-analysis']
     details['data-analysis-level'] = level
     summary = soup.new_tag('summary')
-    summary.string = '情報簡析' if level == 'BRIEF' else '完整分析'
+    summary.string = '完整分析'
     details.append(summary)
     body_classes = ['detail-body']
     if level == 'BRIEF':
@@ -33,7 +33,7 @@ def analysis_html(soup, record, home=False, daily=False):
     body = soup.new_tag('div'); body['class'] = body_classes
     if level == 'BRIEF':
         badge = soup.new_tag('p'); badge['class'] = ['analysis-level-note']
-        badge.string = 'BRIEF｜來源已驗證，但目前證據深度不足以支持完整 Production Analysis。'
+        badge.string = 'BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。'
         body.append(badge)
     for block in blocks:
         heading = soup.new_tag('h4'); heading.string = block['label']
