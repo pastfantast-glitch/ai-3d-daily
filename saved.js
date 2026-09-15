@@ -1,5 +1,5 @@
 const preferenceUrl=new URL('./preference.js',import.meta.url);
-preferenceUrl.searchParams.set('v','feedback-v1');
+preferenceUrl.searchParams.set('v','20260915-cloudsync-r6');
 await import(preferenceUrl.href);
 
 const list=document.querySelector('#saved-list');
