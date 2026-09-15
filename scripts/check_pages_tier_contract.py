@@ -4,6 +4,8 @@
 Runs the same structural analysis checks used by verify_pages_publish.py against
 the newest rendered canonical report without making network requests. This catches
 FULL/BRIEF/REJECT verifier drift before the final GitHub Pages verification stage.
+It also fail-closes the runtime path that keeps TOP5 and category analyses on the
+same canonical full_analysis renderer.
 """
 from pathlib import Path
 import json
@@ -41,6 +43,34 @@ def check_surface(path: Path, date: str, items: list[dict], surface: str, depth:
     )
 
 
+def runtime_surface_errors():
+    errors = []
+    canonical = (ROOT / 'canonical-client.js').read_text('utf-8')
+    archive = (ROOT / 'archive-nav-state.js').read_text('utf-8')
+    builder = (ROOT / 'scripts' / 'build_intelligence.py').read_text('utf-8')
+
+    if '.category-card' not in canonical:
+        errors.append('canonical-client.js must hydrate category-card surfaces')
+    if "summary.textContent='完整分析'" not in canonical:
+        errors.append('runtime canonical renderer must expose one 完整分析 entry for every published tier')
+    if 'analysis-level-note' not in canonical or '證據深度較有限' not in canonical:
+        errors.append('BRIEF must remain visible as evidence depth inside the full-analysis UI')
+    if 'async function hydrateCanonical()' not in archive:
+        errors.append('archive workspace must expose a canonical hydration helper')
+    if 'await hydrateCanonical();' not in archive:
+        errors.append('archive tab swaps must hydrate the newly imported main surface')
+    init_start = archive.find('function init(){')
+    init_end = archive.find("if(document.readyState==='loading')", init_start)
+    init_block = archive[init_start:init_end] if init_start >= 0 and init_end > init_start else ''
+    if 'hydrateCanonical();' not in init_block:
+        errors.append('direct category/archive loads must hydrate canonical full_analysis')
+    if "summary.string = '完整分析'" not in builder:
+        errors.append('static builder must render BRIEF/FULL under the same 完整分析 entry')
+    if "'情報簡析' if level == 'BRIEF'" in builder:
+        errors.append('static builder must not fork BRIEF into a separate 情報簡析 UI')
+    return errors
+
+
 def main():
     date, data = newest_rendered_canonical()
     if not is_v2_dataset(data):
@@ -64,6 +94,8 @@ def main():
             f'category:{cid}: {e}'
             for e in check_surface(ROOT / date / cid / 'index.html', date, items, 'category', depth, legacy_min)
         ]
+
+    errors += [f'runtime: {e}' for e in runtime_surface_errors()]
 
     if errors:
         print('PAGES TIER CONTRACT FAIL')
