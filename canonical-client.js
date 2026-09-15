@@ -39,10 +39,15 @@ function renderAnalysis(card,record){
   if(!record||!details||!body)return;
   const level=String(record.analysis_level||'FULL').toUpperCase();
   details.dataset.analysisLevel=level;
+  details.classList.add('canonical-analysis');
+  details.classList.toggle('canonical-analysis-full',level==='FULL');
+  details.classList.toggle('canonical-analysis-brief',level==='BRIEF');
   const summary=details.querySelector('summary');
   if(summary)summary.textContent='完整分析';
   body.replaceChildren();
+  body.classList.add('canonical-analysis-body');
   body.classList.toggle('brief-analysis-body',level==='BRIEF');
+
   (record.full_analysis||[]).forEach(block=>{
     const h=document.createElement('h4');
     h.textContent=block.label;
@@ -50,7 +55,7 @@ function renderAnalysis(card,record){
     p.textContent=block.text;
     body.append(h,p);
   });
-  // Evidence-depth metadata must never displace the first analysis heading.
+
   if(level==='BRIEF'){
     const note=document.createElement('p');
     note.className='analysis-level-note';
@@ -92,7 +97,7 @@ function makeVisual(entry){
 
 function renderVisual(card,entry){
   const existing=card.querySelector('figure.case-preview');
-  if(!entry)return; // Historical static preview must never be removed by a newer manifest.
+  if(!entry)return;
 
   const expected=new URL(entry.asset_path,import.meta.url).href;
   if(existing){
@@ -125,8 +130,6 @@ async function loadVisualManifest(date){
     }
   }catch(_){}
 
-  // Transitional fallback for a release that has not yet been migrated to a
-  // date-scoped manifest. It is accepted only when the root manifest date matches.
   try{
     const rootUrl=new URL('./assets/visual/manifest.json',import.meta.url);
     const r=await fetch(rootUrl,{cache:'no-store'});
@@ -153,8 +156,6 @@ export async function hydrateCanonicalAnalysis(){
 
     canonicalCards().forEach(card=>{
       let id=card.dataset.intelId||'';
-      // Compatibility only for the pre-stable-ID 2026-08-23 snapshot. New dates
-      // must ship data-intel-id in source markup and pass release preflight.
       if(!id&&date==='2026-08-23')id=legacyIdentify20260823(card)||'';
       if(!id)return;
       card.dataset.intelId=id;
