@@ -2,11 +2,16 @@ const preferenceUrl=new URL('./preference.js',import.meta.url);
 preferenceUrl.searchParams.set('v','20260915-cloudsync-r6');
 await import(preferenceUrl.href);
 
+const canonicalClientUrl=new URL('./canonical-client.js',import.meta.url);
+canonicalClientUrl.searchParams.set('v','20260915-saved-analysis-v1');
+const {renderCanonicalAnalysis}=await import(canonicalClientUrl.href);
+
 const list=document.querySelector('#saved-list');
 const empty=document.querySelector('#saved-empty');
 const count=document.querySelector('#saved-count');
 const search=document.querySelector('#saved-search');
 const pageCache=new Map();
+const canonicalCache=new Map();
 let renderGeneration=0;
 
 function clean(value){return String(value||'').replace(/\s+/g,' ').trim();}
@@ -65,6 +70,65 @@ function hydrateBookmarkImage(article,item,generation){
   });
 }
 
+function reportDateFor(item){
+  const direct=clean(item.reportDate);
+  if(/^20\d{2}-\d{2}-\d{2}$/.test(direct))return direct;
+  const match=clean(item.reportUrl).match(/20\d{2}-\d{2}-\d{2}/);
+  return match?.[0]||'';
+}
+
+function loadCanonicalDate(date){
+  if(!date)return Promise.resolve(null);
+  if(canonicalCache.has(date))return canonicalCache.get(date);
+  const url=new URL(`./data/daily/${date}.json`,import.meta.url);
+  const request=fetch(url,{credentials:'same-origin',cache:'no-store'})
+    .then(async response=>{
+      if(!response.ok)return null;
+      const data=await response.json();
+      if(clean(data?.date)!==date||!Array.isArray(data?.items))return null;
+      return new Map(data.items.map(record=>[clean(record.id),record]));
+    })
+    .catch(()=>null);
+  canonicalCache.set(date,request);
+  return request;
+}
+
+async function resolveCanonicalRecord(item){
+  const date=reportDateFor(item);if(!date)return null;
+  const records=await loadCanonicalDate(date);
+  return records?.get(clean(item.id))||null;
+}
+
+function bindAnalysisAccordion(details){
+  if(!details||details.dataset.savedAccordion==='1')return;
+  details.dataset.savedAccordion='1';
+  details.addEventListener('toggle',()=>{
+    if(!details.open||!list)return;
+    list.querySelectorAll('details.saved-full-analysis[open]').forEach(other=>{if(other!==details)other.open=false;});
+  });
+}
+
+function hydrateBookmarkCanonical(article,item,generation){
+  resolveCanonicalRecord(item).then(record=>{
+    if(generation!==renderGeneration||!article.isConnected||!record)return;
+    const details=article.querySelector('details.saved-full-analysis');
+    const impact=article.querySelector('.saved-impact');
+    const stars=clean(record.quick_impact);
+    if(impact&&stars){
+      const span=impact.querySelector('span');
+      if(span)span.textContent=stars;
+      impact.hidden=false;
+    }
+    if(details&&Array.isArray(record.full_analysis)&&record.full_analysis.length){
+      details.hidden=false;
+      renderCanonicalAnalysis(article,record);
+      bindAnalysisAccordion(details);
+    }
+    const source=article.querySelector('[data-saved-source]');
+    if(source&&clean(record.source_url))source.href=clean(record.source_url);
+  });
+}
+
 function render(){
   const generation=++renderGeneration;
   const query=clean(search?.value).toLowerCase();
@@ -95,11 +159,18 @@ function render(){
           <div class="saved-card-meta">${meta||'已收藏情報'}</div>
           <h2>${escapeHtml(item.title||item.id)}</h2>
           ${item.summary?`<p class="saved-card-summary">${escapeHtml(item.summary)}</p>`:''}
+          <div class="saved-analysis-shell">
+            <div class="quick-impact saved-impact" hidden><span></span></div>
+            <details class="saved-full-analysis" hidden>
+              <summary>完整分析</summary>
+              <div class="detail-body saved-analysis-body"></div>
+            </details>
+          </div>
           <div class="saved-card-footer">
             <span class="saved-at">收藏於 ${escapeHtml(formatDate(item.savedAt))}</span>
             <div class="saved-card-actions">
               ${item.reportUrl?`<a href="${escapeHtml(item.reportUrl)}">查看日報</a>`:''}
-              ${item.source?`<a href="${escapeHtml(item.source)}" target="_blank" rel="noopener noreferrer">開啟來源</a>`:''}
+              ${item.source?`<a data-saved-source href="${escapeHtml(item.source)}" target="_blank" rel="noopener noreferrer">開啟來源</a>`:''}
               <button type="button" class="saved-remove" aria-label="取消收藏 ${escapeHtml(item.title||item.id)}" title="取消收藏">★ 已收藏</button>
             </div>
           </div>
@@ -111,6 +182,7 @@ function render(){
     });
     list.append(article);
     hydrateBookmarkImage(article,item,generation);
+    hydrateBookmarkCanonical(article,item,generation);
   });
 }
 
