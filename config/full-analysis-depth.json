@@ -1,10 +1,12 @@
 {
-  "version": 4,
+  "version": 5,
   "effective_date": "2026-09-08",
   "tiered_effective_date": "2026-09-12",
+  "brief_reading_contract_effective_date": "2026-09-16",
   "admission_policy_effective_date": "2026-09-15",
   "admission_policy_source": "config/intelligence-v2.json#collection.admission_policy",
   "style_reference": "2026-09-01",
+  "brief_reading_style_reference": "2026-09-12",
   "mode": "tiered-source-supported-production-depth",
   "analysis_levels": ["FULL", "BRIEF", "REJECT"],
   "default_analysis_level": "FULL",
@@ -35,7 +37,16 @@
       "visual-development-reference-limited-depth",
       "single-source-verified-production-tip"
     ],
-    "quality_rule": "BRIEF is the normal destination for an admission-pass item whose evidence cannot honestly support FULL depth. A verified single-source item may publish as BRIEF when claims are scoped to what the source actually demonstrates. Tutorials, tips, small tools, shader demos, community experiences, animation references and visual-development showcases do not need FULL-level evidence to be admitted when they provide at least one concrete production/reference takeaway. State the known fact/value and explicitly mark uncertainty or maturity limits."
+    "quality_rule": "Legacy BRIEF presentation for 2026-09-12 through 2026-09-15. BRIEF is the normal destination for an admission-pass item whose evidence cannot honestly support FULL depth. A verified single-source item may publish as BRIEF when claims are scoped to what the source actually demonstrates."
+  },
+  "brief_reading": {
+    "min_blocks": 3,
+    "max_blocks": 3,
+    "min_block_chars": 36,
+    "min_total_text_chars": 120,
+    "required_fields": ["brief_reason"],
+    "required_semantic_groups": ["workflow_or_technical_change", "production_impact", "test_risk_or_limit"],
+    "quality_rule": "From 2026-09-16 onward, BRIEF remains an evidence-depth label, not a short-reading label. The visible Full Analysis must use three distinct source-grounded angles modeled on the 2026-09-12 reading style: (1) workflow or technical change, (2) production value or consequence, and (3) adoption test, limitation, maturity, or what still requires verification. The third block may explicitly state missing benchmark, release maturity, compatibility uncertainty, or a proposed validation test. Never invent facts, benchmark results, implementation details, or evidence merely to fill the third block."
   },
   "reject": {
     "publish_allowed": false,
@@ -52,15 +63,15 @@
     "allow_brief": true,
     "brief_fallback_only": true,
     "require_visible_brief_label": true,
-    "rule": "Homepage TOP5 selects the highest-ranked FULL items first. If fewer than the configured TOP5 count are available, fill only the remaining slots with the highest-ranked BRIEF survivors. BRIEF remains BRIEF, must stay visibly identified as limited-depth analysis, and must never be upgraded, padded, or used to displace an available FULL item."
+    "rule": "Homepage TOP5 selects the highest-ranked FULL items first. If fewer than the configured TOP5 count are available, fill only the remaining slots with the highest-ranked BRIEF survivors. BRIEF remains BRIEF, must stay visibly identified as limited-evidence analysis, and must never be upgraded, padded, or used to displace an available FULL item."
   },
   "required_semantic_groups": {
     "workflow_or_technical_change": ["流程", "工作流", "技術", "重點", "能力", "設計", "工具", "生成", "渲染", "輸入輸出", "API", "DCC", "Rig", "角色", "道具", "貼圖", "概念", "場景"],
-    "production_impact": ["價值", "影響", "潛力", "相容", "控制", "輸出", "成本", "效能"],
-    "test_risk_or_limit": ["測試", "驗證", "實測", "限制", "成熟度", "判斷", "導入", "待驗證", "尚未"]
+    "production_impact": ["價值", "影響", "潛力", "相容", "控制", "輸出", "成本", "效能", "製作", "Production"],
+    "test_risk_or_limit": ["測試", "驗證", "實測", "限制", "成熟度", "判斷", "導入", "待驗證", "尚未", "風險", "benchmark", "相容性"]
   },
   "heading_language": "zh-Hant",
-  "quality_rule": "Admission and evidence-depth classification are separate. First apply config/intelligence-v2.json#collection.admission_policy: if the item is verifiable, relevant or transferable, unpublished or substantively changed, and has at least one concrete production/technical/workflow/testing/animation-reference/visual-development takeaway, it is worth inclusion. Then classify by evidence depth: FULL for 3-5 source-supported substantive blocks; otherwise BRIEF for 1-2 honest limited-depth blocks. Limited evidence depth alone must not cause REJECT. Ranking handles narrower impact. REJECT is reserved for hard admission failures only. Never fabricate or pad evidence to upgrade BRIEF to FULL.",
+  "quality_rule": "Admission and evidence-depth classification are separate. First apply config/intelligence-v2.json#collection.admission_policy. Then classify evidence depth as FULL or BRIEF. From brief_reading_contract_effective_date onward, both FULL and BRIEF must provide a useful three-angle reading experience, while BRIEF must stay explicit about limited evidence and uncertainty. Never fabricate or pad evidence to upgrade BRIEF to FULL. REJECT is reserved for hard admission failures only.",
   "fail_closed": true,
-  "legacy_policy": "Dates before tiered_effective_date keep the prior FULL-only depth behavior and are not retroactively reclassified."
+  "legacy_policy": "Dates before tiered_effective_date keep the prior FULL-only depth behavior. Dates from tiered_effective_date through the day before brief_reading_contract_effective_date retain the legacy 1-2 block BRIEF presentation and are not retroactively rewritten."
 }
