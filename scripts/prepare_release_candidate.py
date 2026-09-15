@@ -106,6 +106,7 @@ def main() -> None:
     try:
         run('check_release_architecture.py')
         run('check_tier_assignment_contract.py')
+        run('check_analysis_reading_contract.py')
         run('check_pipeline_contract.py')
         run('check_collection_contract.py')
         run('check_discovery_hybrid_contract.py')
