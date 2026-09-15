@@ -1,7 +1,7 @@
 (()=>{
   if(window.__ai3dPreferenceV2)return;
   window.__ai3dPreferenceV2=true;
-  import(new URL('./cloud-sync-v2.js?v=20260915-r4',import.meta.url).href).catch(err=>console.warn('Cloud sync unavailable',err));
+  import(new URL('./cloud-sync-v3.js?v=20260915-r6',import.meta.url).href).catch(err=>console.warn('Cloud sync unavailable',err));
 
   const STORE='ai3d-preferences-v2';
   const LEGACY_STORE='ai3d-preferences-v1';
@@ -191,12 +191,19 @@
     unique(f.tags||[]).forEach(x=>score+=(profile.weights.tag[x]||0)*.5);
     return Number(clamp(score,-8,8).toFixed(2));
   }
+  function reloadFromStorage(meta={}){
+    profile=loadProfile();bookmarks=loadBookmarks();
+    document.querySelectorAll(CARD_SELECTOR).forEach(paintCard);updateBookmarkNav();
+    const remote=!!meta.remote,source=meta.source||'storage';
+    window.dispatchEvent(new CustomEvent('ai3d:preference-change',{detail:{profile:clone(profile),remote,source}}));
+    window.dispatchEvent(new CustomEvent('ai3d:bookmark-change',{detail:{bookmarks:bookmarkList(),remote,source}}));
+    return{bookmarkCount:bookmarkList().length,voteCount:Object.keys(profile.votes||{}).length};
+  }
   function init(){
     injectStyle();enhance(document);
     const observer=new MutationObserver(records=>records.forEach(record=>record.addedNodes.forEach(node=>{if(node.nodeType===1)enhance(node);})));observer.observe(document.body,{childList:true,subtree:true});
     window.addEventListener('storage',event=>{
-      if(event.key===STORE){profile=loadProfile();document.querySelectorAll(CARD_SELECTOR).forEach(paintCard);}
-      if(event.key===BOOKMARK_STORE){bookmarks=loadBookmarks();document.querySelectorAll(CARD_SELECTOR).forEach(paintCard);updateBookmarkNav();window.dispatchEvent(new CustomEvent('ai3d:bookmark-change',{detail:{bookmarks:bookmarkList()}}));}
+      if(event.key===STORE||event.key===BOOKMARK_STORE)reloadFromStorage({remote:true,source:'storage'});
     });
   }
 
@@ -204,6 +211,7 @@
   window.ai3dPreferenceScore=features=>scoreFor(features);
   window.ai3dPreferenceExport=()=>({schemaVersion:2,kind:'ai3d-preference-ranking-signal',profile:clone(recomputeWeights(profile))});
   window.ai3dPreferenceEnhance=root=>enhance(root||document);
+  window.ai3dPreferenceReloadFromStorage=meta=>reloadFromStorage(meta||{});
   window.ai3dBookmarkList=()=>clone(bookmarkList());
   window.ai3dBookmarkRemove=id=>removeBookmark(id);
   window.ai3dBookmarkExport=()=>({schemaVersion:1,kind:'ai3d-bookmarks',items:clone(bookmarkList())});
