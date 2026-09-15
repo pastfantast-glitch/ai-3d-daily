@@ -46,6 +46,18 @@
     return doc.body?.dataset.reportDate||'';
   }
 
+  async function hydrateCanonical(){
+    try{
+      const self=[...document.scripts].find(script=>script.src.includes('/archive-nav-state.js'))?.src||location.href;
+      const shellUrl=new URL(self,location.href);
+      const token=shellUrl.searchParams.get('v')||workspaceDate().replaceAll('-','')||'current';
+      const moduleUrl=new URL('canonical-client.js',self);
+      moduleUrl.searchParams.set('v',token);
+      const mod=await import(moduleUrl.href);
+      await mod.hydrateCanonicalAnalysis();
+    }catch(err){console.warn('Canonical intelligence renderer unavailable',err);}
+  }
+
   function isWorkspaceTab(url){
     const date=workspaceDate();
     if(!date||url.origin!==location.origin)return false;
@@ -188,6 +200,7 @@
       const imported=document.importNode(nextMain,true);
       currentMain.replaceWith(imported);
       if(nextDoc.title)document.title=nextDoc.title;
+      await hydrateCanonical();
       prepareDetails(imported);
       window.scrollTo({top:0,behavior:'auto'});
     }catch(error){
@@ -214,6 +227,7 @@
     absolutizeNav();
     syncControlContext();
     prepareDetails();
+    hydrateCanonical();
     history.scrollRestoration='manual';
     document.addEventListener('click',onClick);
     window.addEventListener('popstate',()=>loadWorkspace(new URL(location.href),{push:false}));
