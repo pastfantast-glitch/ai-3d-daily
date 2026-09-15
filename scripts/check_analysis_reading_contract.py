@@ -1,10 +1,46 @@
 #!/usr/bin/env python3
-"""Regression guard for the 2026-09-16 BRIEF three-angle reading contract."""
+"""Regression guard for BRIEF reading depth and first-heading presentation."""
+from pathlib import Path
+from bs4 import BeautifulSoup
+
 from enrich_full_analysis_v3 import DEPTH, brief_issues, brief_policy_for_date
+from build_intelligence import analysis_html
+
+ROOT = Path(__file__).resolve().parents[1]
 
 
 def block(label, text):
     return {'label': label, 'text': text}
+
+
+def assert_heading_first(record):
+    soup = BeautifulSoup('<html><body></body></html>', 'html.parser')
+    details = analysis_html(soup, record)
+    body = details.select_one('.detail-body')
+    first = next((node for node in body.children if getattr(node, 'name', None)), None)
+    if not first or first.name != 'h4':
+        raise SystemExit(
+            f'ANALYSIS READING CONTRACT FAIL: {record["analysis_level"]} first analysis element must be h4, got {getattr(first, "name", None)!r}'
+        )
+    expected = record['full_analysis'][0]['label']
+    if first.get_text(strip=True) != expected:
+        raise SystemExit(
+            f'ANALYSIS READING CONTRACT FAIL: first heading {first.get_text(strip=True)!r} != canonical label {expected!r}'
+        )
+    note = body.select_one('.analysis-level-note')
+    if record['analysis_level'] == 'BRIEF':
+        if note is None:
+            raise SystemExit('ANALYSIS READING CONTRACT FAIL: BRIEF evidence note missing')
+        if body.find_all(recursive=False)[-1] is not note:
+            raise SystemExit('ANALYSIS READING CONTRACT FAIL: BRIEF evidence note must follow analysis blocks, not precede the first heading')
+
+
+def assert_runtime_heading_first():
+    source = (ROOT / 'canonical-client.js').read_text('utf-8')
+    loop = source.find('(record.full_analysis||[]).forEach')
+    note = source.find("if(level==='BRIEF')", loop)
+    if loop < 0 or note < 0 or note < loop:
+        raise SystemExit('ANALYSIS READING CONTRACT FAIL: browser renderer must append canonical analysis blocks before BRIEF metadata')
 
 
 def main():
@@ -49,7 +85,17 @@ def main():
     if three_issues:
         raise SystemExit('ANALYSIS READING CONTRACT FAIL: valid three-angle BRIEF rejected: ' + ', '.join(three_issues))
 
-    print('ANALYSIS READING CONTRACT PASS: historical 1-2 block BRIEF preserved; 2026-09-16+ requires three source-grounded reading angles')
+    full_fixture = {
+        'id': 'fixture-full',
+        'analysis_level': 'FULL',
+        'full_analysis': three_block['full_analysis'],
+    }
+    assert_heading_first(two_block)
+    assert_heading_first(three_block)
+    assert_heading_first(full_fixture)
+    assert_runtime_heading_first()
+
+    print('ANALYSIS READING CONTRACT PASS: historical depth preserved; FULL/BRIEF both open with canonical h4 heading; BRIEF metadata follows analysis blocks')
 
 
 if __name__ == '__main__':
