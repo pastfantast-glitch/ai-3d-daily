@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 """Validate schema-v3 analysis depth using FULL / BRIEF / REJECT tiers.
 
-FULL keeps the original 3-5 block production-depth contract. BRIEF allows verified,
-high-value intelligence with limited source depth to publish in category/daily pages
-without fabricating analysis. REJECT items are never allowed in canonical publish.
+FULL keeps the original 3-5 block production-depth contract. BRIEF remains an
+evidence-depth label. From the configured BRIEF reading effective date onward,
+BRIEF also uses a three-angle reading structure modeled on 2026-09-12 without
+fabricating evidence. REJECT items are never allowed in canonical publish.
 """
 from pathlib import Path
 import json, re, sys
@@ -130,6 +131,17 @@ def text_depth_issues(item, min_block_chars, min_total_chars):
     return issues
 
 
+def semantic_issues(item, required_groups):
+    issues = []
+    labels = ' '.join(clean(b.get('label')) for b in item.get('full_analysis') or [] if isinstance(b, dict))
+    semantic = DEPTH.get('required_semantic_groups') or {}
+    for group in required_groups or []:
+        keywords = semantic.get(group) or []
+        if not any(str(k) in labels for k in keywords):
+            issues.append(f'missing-semantic={group}')
+    return issues
+
+
 def full_issues(item, cfg):
     issues = common_structure_issues(
         item, int(cfg.get('min_blocks', 3)), int(cfg.get('max_blocks', 5))
@@ -137,24 +149,30 @@ def full_issues(item, cfg):
     issues += text_depth_issues(
         item, int(cfg.get('min_block_chars', 48)), int(cfg.get('min_total_text_chars', 180))
     )
-    labels = ' '.join(clean(b.get('label')) for b in item.get('full_analysis') or [] if isinstance(b, dict))
-    semantic = DEPTH.get('required_semantic_groups') or {}
-    for group in cfg.get('required_semantic_groups') or []:
-        keywords = semantic.get(group) or []
-        if not any(str(k) in labels for k in keywords):
-            issues.append(f'missing-semantic={group}')
+    issues += semantic_issues(item, cfg.get('required_semantic_groups') or [])
     return issues
 
 
-def brief_issues(item, cfg):
+def brief_policy_for_date(date):
+    effective = str(DEPTH.get('brief_reading_contract_effective_date', '9999-12-31'))
+    if date >= effective:
+        return DEPTH.get('brief_reading') or DEPTH.get('brief') or {}
+    return DEPTH.get('brief') or {}
+
+
+def brief_issues(item, cfg, require_three_angles=False):
     issues = common_structure_issues(
-        item, int(cfg.get('min_blocks', 1)), int(cfg.get('max_blocks', 2))
+        item, int(cfg.get('min_blocks', 3 if require_three_angles else 1)),
+        int(cfg.get('max_blocks', 3 if require_three_angles else 2))
     )
     issues += text_depth_issues(
-        item, int(cfg.get('min_block_chars', 36)), int(cfg.get('min_total_text_chars', 60))
+        item, int(cfg.get('min_block_chars', 36 if require_three_angles else 24)),
+        int(cfg.get('min_total_text_chars', 120 if require_three_angles else 40))
     )
+    if require_three_angles:
+        issues += semantic_issues(item, cfg.get('required_semantic_groups') or [])
     reason = clean(item.get('brief_reason'))
-    allowed = set(cfg.get('allowed_reasons') or [])
+    allowed = set((DEPTH.get('brief') or {}).get('allowed_reasons') or [])
     if not reason:
         issues.append('brief_reason-missing')
     elif allowed and reason not in allowed:
@@ -186,6 +204,7 @@ def main():
 
     tiered = date >= str(DEPTH.get('tiered_effective_date', '9999-12-31'))
     old_strict = date >= str(DEPTH.get('effective_date', '9999-12-31'))
+    brief_reading = date >= str(DEPTH.get('brief_reading_contract_effective_date', '9999-12-31'))
     taxonomy_changed = normalize_3d_production_taxonomy(data)
     failures = []
     counts = {'FULL': 0, 'BRIEF': 0, 'REJECT': 0}
@@ -209,7 +228,7 @@ def main():
                 issues = full_issues(item, DEPTH.get('full') or {})
             else:
                 counts['BRIEF'] += 1
-                issues = brief_issues(item, DEPTH.get('brief') or {})
+                issues = brief_issues(item, brief_policy_for_date(date), brief_reading)
         elif old_strict:
             counts['FULL'] += 1
             issues = full_issues(item, {
@@ -231,23 +250,31 @@ def main():
         print('ANALYSIS DEPTH FAILED')
         for failure in failures:
             print('- ' + failure)
-        print('Do not pad or fabricate evidence. Downgrade eligible limited-evidence items to BRIEF; otherwise reject them from publish.')
+        print('Do not pad or fabricate evidence. Keep eligible limited-evidence items as BRIEF, but from the BRIEF reading effective date provide three source-grounded reading angles and make uncertainty explicit.')
         sys.exit(1)
 
     meta = data.setdefault('metadata', {})
     if tiered:
-        meta['full_analysis_depth_contract'] = 'v5-tiered-full-brief-reject'
+        if brief_reading:
+            meta['full_analysis_depth_contract'] = 'v6-tiered-evidence-three-angle-reading'
+            meta['analysis_level_policy'] = 'evidence-depth-tiered; FULL=3-5 source-supported blocks; BRIEF=3 readable source-grounded angles with explicit limits; REJECT=not-publishable'
+            meta['full_analysis_style_reference'] = DEPTH.get('brief_reading_style_reference', '2026-09-12')
+        else:
+            meta['full_analysis_depth_contract'] = 'v5-tiered-full-brief-reject'
+            meta['analysis_level_policy'] = 'quality-gate-first-then-evidence-depth; FULL=3-5 blocks, BRIEF=1-2 blocks, REJECT=not-publishable'
+            meta['full_analysis_style_reference'] = DEPTH.get('style_reference', '2026-09-01')
         meta['analysis_level_counts'] = counts
-        meta['analysis_level_policy'] = 'quality-gate-first-then-evidence-depth; FULL=3-5 blocks, BRIEF=1-2 blocks, REJECT=not-publishable'
     elif old_strict:
         meta['full_analysis_depth_contract'] = 'v4-source-supported-production-depth'
-    meta['full_analysis_style_reference'] = DEPTH.get('style_reference', '2026-09-01')
+        meta['full_analysis_style_reference'] = DEPTH.get('style_reference', '2026-09-01')
+    else:
+        meta['full_analysis_style_reference'] = DEPTH.get('style_reference', '2026-09-01')
     meta['full_analysis_heading_language'] = 'zh-Hant'
 
     if taxonomy_changed or repaired or old_strict or tiered:
         path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + '\n', 'utf-8')
 
-    mode = 'tiered-v5' if tiered else ('strict-v4' if old_strict else 'legacy-v3')
+    mode = 'tiered-v6-reading' if brief_reading else ('tiered-v5' if tiered else ('strict-v4' if old_strict else 'legacy-v3'))
     print(f'CANONICAL ENRICHMENT: {date} / mode={mode}; FULL={counts["FULL"]} BRIEF={counts["BRIEF"]} REJECT={counts["REJECT"]}; taxonomy={taxonomy_changed}; repaired={repaired}')
 
 
