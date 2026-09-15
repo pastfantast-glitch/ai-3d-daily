@@ -9,6 +9,8 @@ the canonical dataset against the expected tiers.
 """
 from pathlib import Path
 import json
+import re
+import sys
 
 import check_release_input_core as core
 from discovery_hybrid import coverage_audit_errors, low_volume_release_allowed
@@ -32,11 +34,26 @@ def _tiered_applies(data, depth):
     return bool(date and date >= str(depth.get('tiered_effective_date', '9999-12-31')))
 
 
+def _validation_date():
+    if len(sys.argv) > 1 and re.fullmatch(r'20\d{2}-\d{2}-\d{2}', str(sys.argv[1])):
+        return str(sys.argv[1])
+    return core.latest_date()
+
+
+def _brief_policy_for_date(date, depth):
+    effective = str(depth.get('brief_reading_contract_effective_date', '9999-12-31'))
+    if date >= effective:
+        return depth.get('brief_reading') or depth.get('brief') or {}
+    return depth.get('brief') or {}
+
+
 def validate_analysis_tiered(items):
     depth = _depth_config()
+    date = _validation_date()
     full_cfg = depth.get('full') or {}
-    brief_cfg = depth.get('brief') or {}
-    allowed_brief_reasons = set(brief_cfg.get('allowed_reasons') or [])
+    brief_cfg = _brief_policy_for_date(date, depth)
+    base_brief_cfg = depth.get('brief') or {}
+    allowed_brief_reasons = set(base_brief_cfg.get('allowed_reasons') or [])
 
     for item in items:
         rid = item.get('id')
@@ -50,8 +67,10 @@ def validate_analysis_tiered(items):
             continue
 
         policy = brief_cfg if level == 'BRIEF' else full_cfg
-        minimum = int(policy.get('min_blocks', 1 if level == 'BRIEF' else 3))
-        maximum = int(policy.get('max_blocks', 2 if level == 'BRIEF' else 5))
+        default_min = 3 if level == 'FULL' or date >= str(depth.get('brief_reading_contract_effective_date', '9999-12-31')) else 1
+        default_max = 5 if level == 'FULL' else (3 if default_min == 3 else 2)
+        minimum = int(policy.get('min_blocks', default_min))
+        maximum = int(policy.get('max_blocks', default_max))
         if len(blocks) < minimum or len(blocks) > maximum:
             core.fail(f'{rid}: {level} analysis requires {minimum}-{maximum} blocks')
 
