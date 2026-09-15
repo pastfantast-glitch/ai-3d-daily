@@ -89,6 +89,8 @@ jobs:
         run: pip install -r requirements-pipeline.txt
       - name: Validate release architecture, source topology, hybrid discovery and stability contracts
         run: |
+          node --check preference.js
+          node --check cloud-sync-owner.js
           python scripts/check_release_architecture.py
           python scripts/check_tier_assignment_contract.py
           python scripts/check_analysis_reading_contract.py
