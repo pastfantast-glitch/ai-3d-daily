@@ -1,62 +1,70 @@
 #!/usr/bin/env python3
-"""Fail-closed contract for the lightweight cloud-sync runtime.
+"""Fail-closed contract for the passive cloud-sync runtime.
 
-The cloud-sync nav control must not repaint on every DOM mutation. Repainting
-text from a childList MutationObserver can self-trigger forever and freeze the
-static GitHub Pages UI.
+Cloud sync must be cache-isolated and must not do automatic DOM observation,
+automatic registration, automatic pull, or automatic reload on page load. Local
+preference/bookmark behavior must remain usable even when Supabase is unavailable.
 """
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-SYNC = ROOT / 'cloud-sync.js'
+SYNC = ROOT / 'cloud-sync-v2.js'
+PREFERENCE = ROOT / 'preference.js'
 
 
 def main():
     errors = []
     if not SYNC.exists():
-        raise SystemExit('CLOUD SYNC CONTRACT FAIL: cloud-sync.js missing')
+        raise SystemExit('CLOUD SYNC CONTRACT FAIL: cloud-sync-v2.js missing')
+    if not PREFERENCE.exists():
+        raise SystemExit('CLOUD SYNC CONTRACT FAIL: preference.js missing')
+
     text = SYNC.read_text('utf-8')
+    preference = PREFERENCE.read_text('utf-8')
 
     required = (
         "const ENDPOINT='https://epumcdxfkcujulqrcjrw.supabase.co/functions/v1/ai3d-sync'",
         "const CRED_STORE='ai3d-cloud-sync-v1'",
-        'function injectNav(root=document)',
-        'if(inserted)paint()',
-        'for(const node of record.addedNodes)',
-        'if(node.nodeType===1)injectNav(node)',
-        "if(text&&text.textContent!==next)text.textContent=next",
+        'function injectNav()',
+        'function queuePush()',
         'window.ai3dCloudSyncCode',
         'window.ai3dCloudSyncNow',
         'window.ai3dCloudSyncImport',
+        'setTimeout(()=>controller.abort(),8000)',
     )
     for marker in required:
         if marker not in text:
             errors.append(f'missing marker: {marker}')
 
+    if "cloud-sync-v2.js?v=20260915-r4" not in preference:
+        errors.append('preference.js must load cache-isolated cloud-sync-v2.js with explicit version token')
+    if "./cloud-sync.js'" in preference or 'cloud-sync.js",' in preference:
+        errors.append('preference.js still references legacy cloud-sync.js')
+
     forbidden = (
-        'new MutationObserver(injectNav)',
-        'new MutationObserver(()=>injectNav())',
-        'new MutationObserver(() => injectNav())',
+        'MutationObserver',
+        'observer.observe(',
+        'else register();',
+        'if(credentials())pull();',
+        'window.addEventListener(\'online\'',
     )
     for marker in forbidden:
         if marker in text:
-            errors.append(f'unsafe self-repainting MutationObserver detected: {marker}')
+            errors.append(f'passive runtime contains forbidden automatic behavior: {marker}')
 
-    # injectNav must not unconditionally repaint after scanning existing navs.
-    start = text.find('function injectNav(root=document)')
-    end = text.find('function paint(', start)
-    block = text[start:end] if start >= 0 and end > start else ''
-    if not block:
-        errors.append('injectNav block not found')
+    init_start = text.find('function init(){')
+    init_end = text.find('window.ai3dCloudSyncCode', init_start)
+    init_block = text[init_start:init_end] if init_start >= 0 and init_end > init_start else ''
+    if not init_block:
+        errors.append('init block not found')
     else:
-        if 'if(inserted)paint()' not in block:
-            errors.append('injectNav must repaint only when a control was inserted')
-        if block.count('paint()') > 1:
-            errors.append('injectNav contains unexpected extra repaint calls')
+        for marker in ('register()', 'pull()', 'location.reload()', 'fetch('):
+            if marker in init_block:
+                errors.append(f'init must not execute automatic cloud/network/reload action: {marker}')
 
     if errors:
         raise SystemExit('CLOUD SYNC CONTRACT FAIL:\n- ' + '\n- '.join(errors))
-    print('CLOUD SYNC CONTRACT PASS: no self-triggering nav repaint loop')
+    print('CLOUD SYNC CONTRACT PASS: passive manual sync + cache-isolated v2 runtime')
 
 
 if __name__ == '__main__':
