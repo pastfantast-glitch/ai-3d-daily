@@ -51,8 +51,10 @@ def nav_contract(soup, date, cfg, active, context='home'):
         expected_hrefs = ['../#top'] + [f'../{c["id"]}/' for c in cfg['categories']] + ['../../history/']
     elif context == 'history':
         expected_hrefs = ['../#today'] + [f'../{date}/{c["id"]}/' for c in cfg['categories']] + ['./']
+    elif context == 'home':
+        expected_hrefs = ['#today'] + [f'?view={c["id"]}' for c in cfg['categories']] + ['history/']
     else:
-        expected_hrefs = ['#today'] + [f'{date}/{c["id"]}/' for c in cfg['categories']] + ['history/']
+        expected_hrefs = ['#top'] + [f'{c["id"]}/' for c in cfg['categories']] + ['../history/']
     actual_hrefs = [x.get('href') for x in links]
     if actual_hrefs != expected_hrefs:
         fail(f'{active}: global nav href/order drift: {actual_hrefs}')
@@ -60,6 +62,11 @@ def nav_contract(soup, date, cfg, active, context='home'):
     history = nav.select_one('a.global-history-link[data-global-view="history"]')
     if not history or history.get_text(' ',strip=True) != '歷史日報':
         fail(f'{active}: standalone History navigation identity missing')
+
+    if context == 'home':
+        dated = [x.get('href','') for x in nav.select('a.global-category-link[data-category][href]') if date in x.get('href','')]
+        if dated:
+            fail(f'homepage current-day category tabs must not expose dated archive URLs: {dated[0]}')
 
     if context == 'category':
         controls = nav.select_one('.archive-nav-controls')
@@ -114,9 +121,13 @@ def main():
     home_next = [x.get('data-intel-id') for x in home.select('#more .more-card[data-intel-role="card"]')]
     if home_top != [x['id'] for x in top]: fail('homepage TOP IDs/order differ from canonical available ranks 1-5')
     if home_next != [x['id'] for x in next10]: fail('homepage next10 IDs/order differ from canonical available ranks 6-15')
-    links = {a.get('href') for a in home.select('.category-nav-grid .category-nav-card[href]')}
-    expected_links = {f'{date}/{c["id"]}/' for c in cfg['categories']}
+    grid_links = home.select('.category-nav-grid .category-nav-card[href]')
+    links = {a.get('href') for a in grid_links}
+    expected_links = {f'?view={c["id"]}' for c in cfg['categories']}
     if links != expected_links: fail(f'category navigation mismatch: {links} != {expected_links}')
+    grid_map = {a.get('data-category'): a.get('href') for a in grid_links}
+    expected_grid_map = {c['id']: f'?view={c["id"]}' for c in cfg['categories']}
+    if grid_map != expected_grid_map: fail(f'category navigation identity mismatch: {grid_map} != {expected_grid_map}')
     nav_contract(home, date, cfg, 'top5', context='home')
 
     history_path = ROOT / 'history' / 'index.html'
@@ -172,6 +183,6 @@ def main():
         sys.exit(1)
     counts = ', '.join(f'{c["id"]}={len(category_items(data, c["id"]))}' for c in cfg['categories'])
     col=cfg.get('collection') or {}; mode = f'daily {col.get("daily_min_items")}-{col.get("daily_max_items")} target {col.get("daily_target_items")}' if target_mode else 'legacy variable-pool compatibility'
-    print(f'V2 INFORMATION ARCHITECTURE PASS: {mode} + Today-first homepage + standalone History portal + shared nav + available TOP5/next10 + no-hero category pages / {counts}')
+    print(f'V2 INFORMATION ARCHITECTURE PASS: {mode} + Today-first homepage current-workspace tabs + standalone History portal + shared nav + available TOP5/next10 + no-hero category pages / {counts}')
 
 if __name__ == '__main__': main()
