@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   let categoryMain=null;
 
   function setActive(category){
-    nav.querySelectorAll('a.global-category-link').forEach(link=>{
+    nav.querySelectorAll('a.global-category-link:not(.preference-bookmark-link)').forEach(link=>{
       const key=link.dataset.category||'top5';
       link.classList.toggle('is-active',key===(category||'top5'));
     });
@@ -138,7 +138,7 @@ document.addEventListener('DOMContentLoaded',()=>{
 
   document.addEventListener('click',event=>{
     if(event.defaultPrevented||event.button!==0||event.metaKey||event.ctrlKey||event.shiftKey||event.altKey)return;
-    const tab=event.target.closest(`${NAV_SELECTOR} a.global-category-link[href]`);
+    const tab=event.target.closest(`${NAV_SELECTOR} a.global-category-link[href]:not(.preference-bookmark-link)`);
     if(tab){
       event.preventDefault();
       const category=tab.dataset.category||'';
