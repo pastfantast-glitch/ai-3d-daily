@@ -3,7 +3,14 @@ from pathlib import Path
 import json
 import re
 
-from discovery_hybrid import coverage_audit_errors, load_hybrid_config, positive_samples
+from discovery_hybrid import (
+    candidate_decision_ledger_errors,
+    coverage_audit_errors,
+    discovery_sources,
+    load_hybrid_config,
+    positive_samples,
+    registered_source_probe_errors,
+)
 from intelligence_v2 import load_config
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -139,6 +146,24 @@ def main():
     if refill.get('use_source_neutrality') is not True or refill.get('use_priority_sources') is not False:
         raise SystemExit('HYBRID CONTRACT FAILED: targeted refill must be source-neutral and must not consume priority sources')
 
+    probe_cfg = hybrid.get('registered_source_coverage_probe') or {}
+    if probe_cfg.get('enabled') is not True:
+        raise SystemExit('HYBRID CONTRACT FAILED: registered source coverage probe must be enabled')
+    if probe_cfg.get('scope') != 'all-enabled-discovery-source-pool':
+        raise SystemExit('HYBRID CONTRACT FAILED: registered source coverage probe must cover all enabled registered sources')
+    if float(probe_cfg.get('ranking_bonus', 0) or 0) != 0 or probe_cfg.get('quota') is not False or probe_cfg.get('admission_bypass') is not False:
+        raise SystemExit('HYBRID CONTRACT FAILED: registered source coverage probe must be recall-only with zero ranking bonus/quota/bypass')
+    if refill.get('use_registered_source_coverage_probe') is not True:
+        raise SystemExit('HYBRID CONTRACT FAILED: targeted refill must consume registered source coverage probe results')
+
+    ledger_cfg = hybrid.get('candidate_decision_ledger') or {}
+    if ledger_cfg.get('required') is not True or ledger_cfg.get('public_surface') is not False:
+        raise SystemExit('HYBRID CONTRACT FAILED: candidate decision ledger must be required and private')
+    if '{date}' not in str(ledger_cfg.get('path_template', '')):
+        raise SystemExit('HYBRID CONTRACT FAILED: candidate decision ledger path must be date-scoped')
+    if not {'published', 'duplicate', 'rejected', 'ranked-out', 'backlog'} <= set(ledger_cfg.get('terminal_decisions') or []):
+        raise SystemExit('HYBRID CONTRACT FAILED: candidate decision ledger terminal decisions are incomplete')
+
     audit = {
         'fill_ladder_exhausted': True,
         'backlog_checked': True,
@@ -153,13 +178,71 @@ def main():
     if errors:
         raise SystemExit(f'HYBRID CONTRACT FAILED: source-neutral Coverage Audit fixture should pass: {errors}')
 
+    feature_date = max(str(probe_cfg.get('effective_date')), str(ledger_cfg.get('effective_date')))
+    source_records = {
+        str(source['id']): {
+            'status': 'checked',
+            'method': 'latest-index',
+            'candidates_found': 0,
+            'candidate_ids': [],
+        }
+        for source in discovery_sources(hybrid)
+    }
+    future_audit = dict(audit)
+    future_audit['registered_source_probe'] = {'performed': True, 'sources': source_records}
+    future_fixture = {
+        'date': feature_date,
+        'metadata': {'discovery_coverage': future_audit},
+        'items': [
+            {
+                'id': 'fixture-published',
+                'source_url': 'https://example.com/published',
+            }
+        ],
+    }
+    probe_errors = registered_source_probe_errors(future_fixture, hybrid)
+    if probe_errors:
+        raise SystemExit(f'HYBRID CONTRACT FAILED: registered source probe positive fixture should pass: {probe_errors}')
+    ledger_fixture = {
+        'schema_version': int(ledger_cfg.get('schema_version', 1)),
+        'date': feature_date,
+        'items': [
+            {
+                'candidate_id': 'fixture-published-candidate',
+                'source_url': 'https://example.com/published',
+                'discovery_channels': ['web-search'],
+                'decision': 'published',
+                'canonical_id': 'fixture-published',
+            }
+        ],
+    }
+    ledger_errors = candidate_decision_ledger_errors(future_fixture, hybrid, ledger_data=ledger_fixture)
+    if ledger_errors:
+        raise SystemExit(f'HYBRID CONTRACT FAILED: candidate decision ledger positive fixture should pass: {ledger_errors}')
+
+    missing_source_fixture = json.loads(json.dumps(future_fixture))
+    first_source = str(discovery_sources(hybrid)[0]['id'])
+    del missing_source_fixture['metadata']['discovery_coverage']['registered_source_probe']['sources'][first_source]
+    if not registered_source_probe_errors(missing_source_fixture, hybrid):
+        raise SystemExit('HYBRID CONTRACT FAILED: registered source probe must fail when an enabled source has no attempt record')
+
+    probe_candidate_fixture = json.loads(json.dumps(future_fixture))
+    probe_candidate_fixture['metadata']['discovery_coverage']['registered_source_probe']['sources'][first_source].update({
+        'candidates_found': 1,
+        'candidate_ids': ['probe-candidate-1'],
+    })
+    if not candidate_decision_ledger_errors(probe_candidate_fixture, hybrid, ledger_data=ledger_fixture):
+        raise SystemExit('HYBRID CONTRACT FAILED: decision ledger must fail when a registered-source probe candidate is unaccounted for')
+
     print(
         'HYBRID DISCOVERY CONTRACT PASS: '
         f"normal_floor={low['normal_floor']} fallback_floor={low['fallback_floor']} "
         f"target={col['daily_target_items']} maximum={low['maximum']} / "
         f"windows={expected_windows} / backlog={backlog['path']} / "
         f"admission={admission.get('mode')} / "
-        'broad admission + strict ranking + FULL-depth separation + source-neutral preference learning'
+        f"registered_sources={len(discovery_sources(hybrid))} / "
+        f"probe_effective={probe_cfg.get('effective_date')} / ledger_effective={ledger_cfg.get('effective_date')} / "
+        'broad admission + strict ranking + FULL-depth separation + source-neutral preference learning + recall audit trail'
     )
 
 
