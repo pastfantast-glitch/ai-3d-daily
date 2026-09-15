@@ -29,10 +29,13 @@ on:
       - 'config/full-analysis-depth.json'
       - 'config/quick-impact-contract.json'
       - 'config/stability-contract.json'
+      - 'config/personalization-feedback.json'
       - 'data/candidates/rolling-backlog.json'
       - 'scripts/intelligence_v2.py'
       - 'scripts/url_identity.py'
       - 'scripts/discovery_hybrid.py'
+      - 'scripts/personalization_feedback.py'
+      - 'scripts/check_personalization_feedback_contract.py'
       - 'scripts/check_discovery_hybrid_contract.py'
       - 'scripts/check_tier_assignment_contract.py'
       - 'scripts/check_analysis_reading_contract.py'
@@ -87,7 +90,7 @@ jobs:
           python-version: '3.12'
       - name: Install locked pipeline dependencies
         run: pip install -r requirements-pipeline.txt
-      - name: Validate release architecture, source topology, hybrid discovery and stability contracts
+      - name: Validate release architecture, source topology, hybrid discovery, personalization and stability contracts
         run: |
           node --check preference.js
           node --check cloud-sync-owner.js
@@ -97,6 +100,7 @@ jobs:
           python scripts/check_pipeline_contract.py
           python scripts/check_collection_contract.py
           python scripts/check_discovery_hybrid_contract.py
+          python scripts/check_personalization_feedback_contract.py
           python scripts/check_stability_contract.py
           python scripts/check_preference_contract.py
           python scripts/check_cloud_sync_contract.py
