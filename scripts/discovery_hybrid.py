@@ -12,6 +12,19 @@ def _valid_date(value):
     return bool(DATE_RE.fullmatch(str(value or '').strip()))
 
 
+def _date_value(data_or_date):
+    if isinstance(data_or_date, dict):
+        return str(data_or_date.get('date', '')).strip()
+    return str(data_or_date or '').strip()
+
+
+def _effective_feature_applies(data_or_date, feature, enabled_key='enabled'):
+    value = _date_value(data_or_date)
+    effective = str((feature or {}).get('effective_date', '')).strip()
+    enabled = (feature or {}).get(enabled_key) is True
+    return bool(enabled and _valid_date(value) and _valid_date(effective) and value >= effective)
+
+
 def load_hybrid_config():
     cfg = json.loads(CONFIG.read_text('utf-8'))
     if int(cfg.get('version', 0)) < 1:
@@ -104,6 +117,54 @@ def load_hybrid_config():
             seen_source_ids.add(sid)
             seen_domains.add(domain)
 
+    probe = cfg.get('registered_source_coverage_probe') or {}
+    if probe:
+        if not _valid_date(probe.get('effective_date')):
+            raise ValueError('hybrid registered_source_coverage_probe.effective_date must be YYYY-MM-DD')
+        if probe.get('enabled') is not True:
+            raise ValueError('hybrid registered_source_coverage_probe.enabled must be true')
+        if str(probe.get('scope', '')).strip() != 'all-enabled-discovery-source-pool':
+            raise ValueError('hybrid registered source probe scope must be all-enabled-discovery-source-pool')
+        if probe.get('require_attempt_record_for_every_enabled_source') is not True:
+            raise ValueError('hybrid registered source probe must require an attempt record for every enabled source')
+        if probe.get('require_candidate_ids_when_found') is not True:
+            raise ValueError('hybrid registered source probe must require candidate ids when candidates are found')
+        if probe.get('candidate_only') is not True:
+            raise ValueError('hybrid registered source probe must remain candidate-only')
+        if float(probe.get('ranking_bonus', 0) or 0) != 0:
+            raise ValueError('hybrid registered source probe must keep ranking_bonus=0')
+        if probe.get('quota') is not False or probe.get('admission_bypass') is not False:
+            raise ValueError('hybrid registered source probe must not create quota or admission bypass')
+        methods = probe.get('allowed_methods') or []
+        statuses = probe.get('allowed_statuses') or []
+        if not isinstance(methods, list) or not methods or not all(str(x).strip() for x in methods):
+            raise ValueError('hybrid registered source probe requires allowed_methods[]')
+        if not isinstance(statuses, list) or not statuses or not all(str(x).strip() for x in statuses):
+            raise ValueError('hybrid registered source probe requires allowed_statuses[]')
+
+    ledger = cfg.get('candidate_decision_ledger') or {}
+    if ledger:
+        if not _valid_date(ledger.get('effective_date')):
+            raise ValueError('hybrid candidate_decision_ledger.effective_date must be YYYY-MM-DD')
+        if ledger.get('required') is not True:
+            raise ValueError('hybrid candidate_decision_ledger.required must be true')
+        if int(ledger.get('schema_version', 0) or 0) < 1:
+            raise ValueError('hybrid candidate_decision_ledger.schema_version must be >=1')
+        template = str(ledger.get('path_template', '')).strip()
+        if '{date}' not in template or not template.startswith('data/candidates/'):
+            raise ValueError('hybrid candidate decision ledger path_template must live under data/candidates and contain {date}')
+        decisions = ledger.get('terminal_decisions') or []
+        if not isinstance(decisions, list) or not decisions or len(decisions) != len(set(decisions)):
+            raise ValueError('hybrid candidate decision ledger terminal_decisions must be a non-empty unique list')
+        if 'published' not in decisions:
+            raise ValueError('hybrid candidate decision ledger terminal_decisions must include published')
+        if ledger.get('require_published_canonical_coverage') is not True:
+            raise ValueError('hybrid candidate decision ledger must cover all published canonical items')
+        if ledger.get('require_registered_probe_candidate_coverage') is not True:
+            raise ValueError('hybrid candidate decision ledger must cover registered-source probe candidates')
+        if ledger.get('public_surface') is not False:
+            raise ValueError('hybrid candidate decision ledger must remain private/non-public')
+
     sources = cfg.get('priority_sources') or []
     if sources:
         raise ValueError('hybrid preference-derived priority_sources are forbidden; preference examples must remain source-neutral')
@@ -111,6 +172,10 @@ def load_hybrid_config():
     coverage = cfg.get('coverage_audit') or {}
     if coverage.get('require_priority_source_checks') is True:
         raise ValueError('hybrid Coverage Audit must not require preference-derived priority source checks')
+    if probe and coverage.get('require_registered_source_probe_when_effective') is not True:
+        raise ValueError('hybrid Coverage Audit must require registered source probe when effective')
+    if ledger and coverage.get('require_candidate_decision_ledger_when_effective') is not True:
+        raise ValueError('hybrid Coverage Audit must require candidate decision ledger when effective')
 
     refill = cfg.get('targeted_refill') or {}
     if refill.get('use_priority_sources') is not False:
@@ -119,13 +184,15 @@ def load_hybrid_config():
         raise ValueError('hybrid targeted_refill.use_source_neutrality must be true')
     if source_pool and refill.get('use_discovery_source_pool') is not True:
         raise ValueError('hybrid targeted_refill.use_discovery_source_pool must be true when discovery sources are configured')
+    if probe and refill.get('use_registered_source_coverage_probe') is not True:
+        raise ValueError('hybrid targeted_refill must consume registered source coverage probe results')
 
     return cfg
 
 
 def hybrid_applies(data_or_date, cfg=None):
     cfg = cfg or load_hybrid_config()
-    value = str(data_or_date.get('date', '') if isinstance(data_or_date, dict) else data_or_date or '').strip()
+    value = _date_value(data_or_date)
     return bool(_valid_date(value) and value >= str(cfg['effective_date']))
 
 
@@ -133,8 +200,21 @@ def preference_learning_applies(data_or_date, cfg=None):
     cfg = cfg or load_hybrid_config()
     learning = cfg.get('preference_learning') or {}
     effective = str(learning.get('effective_date', '')).strip()
-    value = str(data_or_date.get('date', '') if isinstance(data_or_date, dict) else data_or_date or '').strip()
+    value = _date_value(data_or_date)
     return bool(_valid_date(value) and _valid_date(effective) and value >= effective)
+
+
+def registered_source_probe_applies(data_or_date, cfg=None):
+    cfg = cfg or load_hybrid_config()
+    return _effective_feature_applies(data_or_date, cfg.get('registered_source_coverage_probe') or {})
+
+
+def candidate_decision_ledger_applies(data_or_date, cfg=None):
+    cfg = cfg or load_hybrid_config()
+    ledger = cfg.get('candidate_decision_ledger') or {}
+    value = _date_value(data_or_date)
+    effective = str(ledger.get('effective_date', '')).strip()
+    return bool(ledger.get('required') is True and _valid_date(value) and _valid_date(effective) and value >= effective)
 
 
 def priority_source_coverage_applies(data_or_date, cfg=None):
@@ -155,6 +235,12 @@ def priority_sources(cfg=None):
     return []
 
 
+def candidate_decision_ledger_path(date, cfg=None):
+    cfg = cfg or load_hybrid_config()
+    template = str((cfg.get('candidate_decision_ledger') or {}).get('path_template', '')).strip()
+    return ROOT / template.format(date=str(date))
+
+
 def _category_count(value):
     if isinstance(value, bool):
         return None
@@ -166,6 +252,136 @@ def _category_count(value):
             return None
         return raw
     return None
+
+
+def registered_source_probe_errors(data, cfg=None):
+    cfg = cfg or load_hybrid_config()
+    if not registered_source_probe_applies(data, cfg):
+        return []
+    probe_cfg = cfg.get('registered_source_coverage_probe') or {}
+    audit = (data.get('metadata') or {}).get('discovery_coverage') or {}
+    probe = audit.get('registered_source_probe') or {}
+    errors = []
+    if probe.get('performed') is not True:
+        errors.append('discovery coverage: registered_source_probe.performed must be true')
+    records = probe.get('sources') or {}
+    if not isinstance(records, dict):
+        return errors + ['discovery coverage: registered_source_probe.sources must be an object']
+
+    expected = {str(x.get('id')) for x in discovery_sources(cfg)}
+    unknown = set(records) - expected
+    if unknown:
+        errors.append(f'discovery coverage: registered_source_probe has unknown sources {sorted(unknown)}')
+    allowed_statuses = set(probe_cfg.get('allowed_statuses') or [])
+    allowed_methods = set(probe_cfg.get('allowed_methods') or [])
+    for sid in sorted(expected):
+        rec = records.get(sid)
+        if not isinstance(rec, dict):
+            errors.append(f'discovery coverage: registered source {sid} requires a probe attempt record')
+            continue
+        status = str(rec.get('status', '')).strip()
+        method = str(rec.get('method', '')).strip()
+        if status not in allowed_statuses:
+            errors.append(f'discovery coverage: registered source {sid} has invalid status={status!r}')
+        if method not in allowed_methods:
+            errors.append(f'discovery coverage: registered source {sid} has invalid method={method!r}')
+        found = rec.get('candidates_found')
+        if isinstance(found, bool) or not isinstance(found, int) or found < 0:
+            errors.append(f'discovery coverage: registered source {sid} candidates_found must be integer >=0')
+            found = 0
+        candidate_ids = rec.get('candidate_ids') or []
+        if not isinstance(candidate_ids, list) or not all(str(x).strip() for x in candidate_ids):
+            errors.append(f'discovery coverage: registered source {sid} candidate_ids must be a string list')
+            candidate_ids = []
+        if len(candidate_ids) != len(set(candidate_ids)):
+            errors.append(f'discovery coverage: registered source {sid} candidate_ids must be unique')
+        if probe_cfg.get('require_candidate_ids_when_found') is True and isinstance(found, int) and found != len(candidate_ids):
+            errors.append(f'discovery coverage: registered source {sid} candidates_found must equal candidate_ids count')
+        if status != 'checked' and candidate_ids:
+            errors.append(f'discovery coverage: registered source {sid} non-checked status cannot report candidates')
+        if status in {'unavailable', 'blocked', 'unsupported'} and not str(rec.get('reason', '')).strip():
+            errors.append(f'discovery coverage: registered source {sid} status={status} requires reason')
+    return errors
+
+
+def candidate_decision_ledger_errors(data, cfg=None, ledger_data=None):
+    cfg = cfg or load_hybrid_config()
+    if not candidate_decision_ledger_applies(data, cfg):
+        return []
+    ledger_cfg = cfg.get('candidate_decision_ledger') or {}
+    date = _date_value(data)
+    errors = []
+    if ledger_data is None:
+        path = candidate_decision_ledger_path(date, cfg)
+        if not path.exists():
+            return [f'candidate decision ledger missing: {path.relative_to(ROOT)}']
+        try:
+            ledger_data = json.loads(path.read_text('utf-8'))
+        except (OSError, json.JSONDecodeError) as exc:
+            return [f'candidate decision ledger unreadable: {exc}']
+    if not isinstance(ledger_data, dict):
+        return ['candidate decision ledger must be a JSON object']
+    if int(ledger_data.get('schema_version', 0) or 0) != int(ledger_cfg.get('schema_version', 1)):
+        errors.append('candidate decision ledger schema_version mismatch')
+    if str(ledger_data.get('date', '')).strip() != date:
+        errors.append(f'candidate decision ledger date mismatch: {ledger_data.get("date")} != {date}')
+    items = ledger_data.get('items') or []
+    if not isinstance(items, list):
+        return errors + ['candidate decision ledger items must be a list']
+
+    terminal = set(ledger_cfg.get('terminal_decisions') or [])
+    seen = set()
+    by_id = {}
+    canonical_ids = {str(x.get('id', '')).strip() for x in data.get('items') or [] if str(x.get('id', '')).strip()}
+    published_canonical = set()
+    for index, item in enumerate(items, 1):
+        if not isinstance(item, dict):
+            errors.append(f'candidate decision ledger item {index} must be an object')
+            continue
+        cid = str(item.get('candidate_id', '')).strip()
+        source_url = str(item.get('source_url', '')).strip()
+        decision = str(item.get('decision', '')).strip()
+        channels = item.get('discovery_channels') or []
+        if not cid:
+            errors.append(f'candidate decision ledger item {index} requires candidate_id')
+            continue
+        if cid in seen:
+            errors.append(f'candidate decision ledger duplicate candidate_id: {cid}')
+        seen.add(cid)
+        by_id[cid] = item
+        if not source_url.startswith('https://'):
+            errors.append(f'candidate decision ledger {cid} requires https source_url')
+        if decision not in terminal:
+            errors.append(f'candidate decision ledger {cid} has invalid decision={decision!r}')
+        if not isinstance(channels, list) or not channels or not all(str(x).strip() for x in channels):
+            errors.append(f'candidate decision ledger {cid} requires discovery_channels[]')
+        if decision != 'published' and ledger_cfg.get('require_reason_for_non_published') is True and not str(item.get('reason_code', '')).strip():
+            errors.append(f'candidate decision ledger {cid} decision={decision} requires reason_code')
+        if decision == 'published':
+            canonical_id = str(item.get('canonical_id', '')).strip()
+            if not canonical_id:
+                errors.append(f'candidate decision ledger {cid} published decision requires canonical_id')
+            elif canonical_id not in canonical_ids:
+                errors.append(f'candidate decision ledger {cid} references unknown canonical_id={canonical_id}')
+            else:
+                published_canonical.add(canonical_id)
+
+    if ledger_cfg.get('require_published_canonical_coverage') is True:
+        missing = canonical_ids - published_canonical
+        if missing:
+            errors.append(f'candidate decision ledger missing published canonical ids: {sorted(missing)}')
+
+    if ledger_cfg.get('require_registered_probe_candidate_coverage') is True:
+        audit = (data.get('metadata') or {}).get('discovery_coverage') or {}
+        probe = audit.get('registered_source_probe') or {}
+        probe_ids = set()
+        for rec in (probe.get('sources') or {}).values():
+            if isinstance(rec, dict):
+                probe_ids.update(str(x).strip() for x in (rec.get('candidate_ids') or []) if str(x).strip())
+        missing_probe = probe_ids - set(by_id)
+        if missing_probe:
+            errors.append(f'candidate decision ledger missing registered-source probe candidate ids: {sorted(missing_probe)}')
+    return errors
 
 
 def coverage_audit_errors(data, category_ids, cfg=None):
@@ -213,6 +429,10 @@ def coverage_audit_errors(data, category_ids, cfg=None):
     if unknown:
         errors.append(f'discovery coverage: unknown category keys {sorted(unknown)}')
 
+    if coverage_cfg.get('require_registered_source_probe_when_effective') is True:
+        errors.extend(registered_source_probe_errors(data, cfg))
+    if coverage_cfg.get('require_candidate_decision_ledger_when_effective') is True:
+        errors.extend(candidate_decision_ledger_errors(data, cfg))
     return errors
 
 
