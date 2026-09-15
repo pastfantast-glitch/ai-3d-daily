@@ -3,7 +3,9 @@
 
 The canonical publisher calls this before any canonical mutation. This prevents a
 hand-written/stale .ready marker from entering the writer and guarantees Registry
-normalization happened before publication was triggered.
+normalization happened before publication was triggered. Effective personalization
+audit metadata is also revalidated here so manual publish paths cannot bypass the
+pre-ready feedback contract.
 """
 from pathlib import Path
 import hashlib
@@ -12,6 +14,12 @@ import re
 import sys
 
 ROOT = Path(__file__).resolve().parents[1]
+SCRIPTS = ROOT / 'scripts'
+if str(SCRIPTS) not in sys.path:
+    sys.path.insert(0, str(SCRIPTS))
+
+from personalization_feedback import audit_errors as personalization_audit_errors  # noqa: E402
+
 DATE_RE = re.compile(r'^20\d{2}-\d{2}-\d{2}$')
 
 
@@ -71,7 +79,11 @@ def main() -> None:
     if marker.get('item_count') != item_count:
         fail(f"item_count drift: ready={marker.get('item_count')} current={item_count}")
 
-    print(f'READY CONTRACT PASS: {date} items={item_count} sha256={actual_sha}')
+    personalization_errors = personalization_audit_errors(data)
+    if personalization_errors:
+        fail('personalization audit invalid at publish boundary: ' + '; '.join(personalization_errors))
+
+    print(f'READY CONTRACT PASS: {date} items={item_count} sha256={actual_sha} personalization=validated')
 
 
 if __name__ == '__main__':
