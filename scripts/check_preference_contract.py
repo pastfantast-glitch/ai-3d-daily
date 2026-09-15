@@ -84,6 +84,10 @@ def main():
 
     require("const STORE='ai3d-preferences-v1'" not in home,
             'home.js still owns legacy v1 preference implementation', errors)
+    require("a.global-category-link[href]:not(.preference-bookmark-link)" in home,
+            'homepage workspace router must exclude bookmark navigation from TOP5/category interception', errors)
+    require("a.global-category-link:not(.preference-bookmark-link)" in home,
+            'homepage active-tab painter must exclude bookmark navigation', errors)
     require("preference.js" in canonical,
             'canonical-client.js does not bootstrap shared preference.js', errors)
     require("preference.js" in archive,
