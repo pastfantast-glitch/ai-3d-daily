@@ -1,14 +1,21 @@
 #!/usr/bin/env python3
-"""Fail-closed contract for shared preference feedback and bookmark surfaces.
+"""Fail-closed contract for preference, personalization and bookmark surfaces.
 
 Feedback (like/dislike) contributes to the preference profile and may be synced by
 the owner-cloud runtime. Bookmarks are a separate knowledge-management store and
 MUST contribute zero ranking/discovery weight. Saved Full Analysis is hydrated
 from canonical daily data by stable intelligence ID + report date; analysis text
 must never be duplicated into bookmark/localStorage/Supabase snapshots.
+
+This checker is part of Full publish QA, so effective-date canonical personalization
+audit metadata is revalidated at the publish boundary after pre-ready validation.
 """
 from pathlib import Path
+import json
 from bs4 import BeautifulSoup
+
+from personalization_feedback import audit_errors as personalization_audit_errors
+from personalization_feedback import load_config as load_personalization_config
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -49,6 +56,8 @@ def main():
     saved_css_path = ROOT / 'saved.css'
     history_html_path = ROOT / 'history' / 'index.html'
     history_js_path = ROOT / 'history.js'
+    workflow_path = ROOT / '.github' / 'workflows' / 'intelligence-build.yml'
+    prepare_path = ROOT / 'scripts' / 'prepare_release_candidate.py'
     preference = preference_path.read_text('utf-8')
     home = (ROOT / 'home.js').read_text('utf-8')
     canonical = (ROOT / 'canonical-client.js').read_text('utf-8')
@@ -111,6 +120,18 @@ def main():
     require("preference.js" in archive,
             'archive-nav-state.js does not bootstrap shared preference.js', errors)
 
+    # Personalization must be checked both before READY and again inside Full publish QA.
+    require(workflow_path.exists(), 'canonical publish workflow missing', errors)
+    if workflow_path.exists():
+        workflow = workflow_path.read_text('utf-8')
+        require('python scripts/check_preference_contract.py' in workflow,
+                'publish Full QA must execute check_preference_contract.py', errors)
+    require(prepare_path.exists(), 'pre-ready preparation script missing', errors)
+    if prepare_path.exists():
+        prepare = prepare_path.read_text('utf-8')
+        require("run('check_personalization_feedback_contract.py', date)" in prepare,
+                'pre-ready gate must execute date-aware personalization contract', errors)
+
     for path, label in ((saved_html_path, 'saved/index.html'), (saved_js_path, 'saved.js'), (saved_css_path, 'saved.css'), (history_html_path, 'history/index.html'), (history_js_path, 'history.js')):
         require(path.exists(), f'{label} missing', errors)
     if saved_html_path.exists():
@@ -156,10 +177,21 @@ def main():
 
     date = latest_surface_date()
     cfg_path = ROOT / 'config' / 'intelligence-v2.json'
-    import json
     cfg = json.loads(cfg_path.read_text('utf-8'))
     categories = [c['id'] for c in cfg.get('categories', [])]
     require(len(categories) == 6, 'expected exactly six category surfaces', errors)
+
+    # Revalidate canonical personalization metadata at the publish-boundary checker.
+    canonical_path = ROOT / 'data' / 'daily' / f'{date}.json'
+    require(canonical_path.exists(), f'{date}: canonical daily data missing', errors)
+    if canonical_path.exists():
+        try:
+            canonical_data = json.loads(canonical_path.read_text('utf-8'))
+            personalization_cfg = load_personalization_config()
+            for err in personalization_audit_errors(canonical_data, personalization_cfg):
+                errors.append(f'{date}: personalization publish-boundary audit: {err}')
+        except Exception as exc:
+            errors.append(f'{date}: personalization publish-boundary audit crashed: {type(exc).__name__}: {exc}')
 
     home_soup = BeautifulSoup((ROOT / 'index.html').read_text('utf-8'), 'html.parser')
     home_cards = stable_cards_only(home_soup, 'homepage', errors)
@@ -187,7 +219,11 @@ def main():
 
     if errors:
         raise SystemExit('PREFERENCE CONTRACT FAIL:\n- ' + '\n- '.join(errors))
-    print(f'PREFERENCE CONTRACT PASS: like/dislike learning + zero-weight star bookmarks + canonical-by-reference saved Full Analysis + standalone History navigation + stable-ID sync / rendered={date} / {len(categories)} categories')
+    print(
+        'PREFERENCE CONTRACT PASS: like/dislike learning + zero-weight star bookmarks + '
+        'canonical-by-reference saved Full Analysis + standalone History navigation + '
+        f'pre-ready/publish-boundary personalization audit + stable-ID sync / rendered={date} / {len(categories)} categories'
+    )
 
 
 if __name__ == '__main__':
