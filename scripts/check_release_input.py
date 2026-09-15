@@ -11,7 +11,7 @@ from pathlib import Path
 import json
 
 import check_release_input_core as core
-from discovery_hybrid import low_volume_release_allowed
+from discovery_hybrid import coverage_audit_errors, low_volume_release_allowed
 from normalize_registry_identity import assign_homepage_tiers
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -130,7 +130,12 @@ def validate_with_hybrid(data, strict_pool=True):
 
     if not strict_pool:
         return errors
+
     category_ids = [c['id'] for c in core.load_config().get('categories') or []]
+    # Coverage Audit is a release invariant for every current daily release, not
+    # only for low-volume fallback. This is where source-probe/decision-ledger
+    # requirements become deterministic pre-ready gates when their effective dates apply.
+    errors.extend(coverage_audit_errors(data, category_ids))
     if low_volume_release_allowed(data, category_ids):
         errors = [e for e in errors if not e.startswith('V2 daily release minimum is ')]
     return errors
