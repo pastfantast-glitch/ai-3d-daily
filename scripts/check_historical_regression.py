@@ -60,19 +60,34 @@ def validate_archive_snapshot(d,all_dirs,staging=''):
                 if not asset or not (ROOT/asset.lstrip('/')).exists(): fail(date,f'visual asset missing: {asset}')
     rows.append((date,'snapshot','PASS' if not any(e.startswith(date+':') for e in errors) else 'FAIL'))
 
-def validate_home_archive_links(all_dirs,root=ROOT):
-    soup=BeautifulSoup((root/'index.html').read_text('utf-8'),'html.parser')
-    marker=soup.select_one('.week-asof'); current=marker.get_text(' ',strip=True) if marker else ''
+def validate_history_portal(all_dirs,root=ROOT):
+    home=BeautifulSoup((root/'index.html').read_text('utf-8'),'html.parser')
+    marker=home.select_one('.week-asof'); current=marker.get_text(' ',strip=True) if marker else ''
     known={d.name for d in all_dirs}
     if current not in known: current=all_dirs[-1].name if all_dirs else ''
+    if home.select('.history-list,.history-section,.history-controls,.current-report-entry'):
+        fail('home','homepage must not embed History/archive UI')
+    link=home.select_one('a.global-history-link[data-global-view="history"][href="history/"]')
+    if not link: fail('home','standalone History navigation missing')
+
+    path=root/'history'/'index.html'
+    if not path.exists():
+        fail('history','standalone History portal missing')
+        return
+    soup=BeautifulSoup(path.read_text('utf-8'),'html.parser')
+    if not soup.body or 'history-page' not in (soup.body.get('class') or []): fail('history','History portal body identity missing')
+    active=soup.select('a.global-history-link.is-active[data-global-view="history"]')
+    if len(active)!=1: fail('history',f'History portal active nav count must be 1, got {len(active)}')
+    if len(soup.select('.history-controls'))!=1 or len(soup.select('.history-search[type="search"]'))!=1:
+        fail('history','History portal search/filter controls missing')
     expected=[d.name for d in reversed(all_dirs) if d.name!=current]; actual=[]
-    for a in soup.select('.history-list a[href]'):
-        m=re.fullmatch(r'(20\d{2}-\d{2}-\d{2})/?',a.get('href',''))
+    for a in soup.select('.history-list a.history-entry[href]'):
+        m=re.fullmatch(r'\.\./(20\d{2}-\d{2}-\d{2})/?',a.get('href',''))
         if m: actual.append(m.group(1))
-    if actual!=expected: fail('home',f'history archive list mismatch: expected prior archives {expected}, got {actual}')
+    if actual!=expected: fail('history',f'archive list mismatch: expected prior archives {expected}, got {actual}')
     entry=soup.select_one('.current-report-entry')
-    if current and (not entry or entry.get('data-current-report-date')!=current or not entry.select_one(f'a.current-report-link[href="{current}/"]')):
-        fail('home',f'current report entry missing or mismatched for {current}')
+    if current and (not entry or entry.get('data-current-report-date')!=current or not entry.select_one(f'a.current-report-link[href="../{current}/"]')):
+        fail('history',f'current report entry missing or mismatched for {current}')
 
 def selected_ids(data):
     if int(data.get('schema_version',0))>=3:
@@ -130,8 +145,8 @@ def canonical_rebuild_simulation(date,parity=True):
             run(work,sys.executable,'scripts/check_home_contract.py')
             run(work,sys.executable,'scripts/check_daily_contract.py')
             run(work,sys.executable,'scripts/check_information_architecture.py',date)
-            before=len(errors); validate_home_archive_links(archive_dirs(work),root=work)
-            if len(errors)!=before: raise RuntimeError('rebuilt homepage archive contract failed')
+            before=len(errors); validate_history_portal(archive_dirs(work),root=work)
+            if len(errors)!=before: raise RuntimeError('rebuilt History portal contract failed')
         except Exception as exc:
             fail(date,f'canonical rebuild simulation failed: {exc}'); rows.append((date,'canonical-rebuild','FAIL'))
         else: rows.append((date,'canonical-rebuild','PASS'))
