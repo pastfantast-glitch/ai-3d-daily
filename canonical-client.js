@@ -33,10 +33,10 @@ function canonicalCards(){
   return [...document.querySelectorAll('.top-item,.more-card,#top .news,.category-news,.category-card')];
 }
 
-function renderAnalysis(card,record){
+export function renderCanonicalAnalysis(card,record){
   const details=card.querySelector('details');
   const body=details?.querySelector('.detail-body');
-  if(!record||!details||!body)return;
+  if(!record||!details||!body)return false;
   const level=String(record.analysis_level||'FULL').toUpperCase();
   details.dataset.analysisLevel=level;
   details.classList.add('canonical-analysis');
@@ -63,6 +63,7 @@ function renderAnalysis(card,record){
     body.append(note);
   }
   card.dataset.canonicalRendered='1';
+  return true;
 }
 
 function makeVisual(entry){
@@ -160,7 +161,7 @@ export async function hydrateCanonicalAnalysis(){
       if(!id)return;
       card.dataset.intelId=id;
       card.dataset.intelRole='card';
-      renderAnalysis(card,records.get(id));
+      renderCanonicalAnalysis(card,records.get(id));
       renderVisual(card,visuals.get(id));
     });
   }catch(err){
