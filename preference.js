@@ -1,7 +1,7 @@
 (()=>{
   if(window.__ai3dPreferenceV2)return;
   window.__ai3dPreferenceV2=true;
-  import(new URL('./cloud-sync-v3.js?v=20260915-r6',import.meta.url).href).catch(err=>console.warn('Cloud sync unavailable',err));
+  import(new URL('./cloud-sync-owner.js?v=20260915-owner-v1',import.meta.url).href).catch(err=>console.warn('Cloud sync unavailable',err));
 
   const STORE='ai3d-preferences-v2';
   const LEGACY_STORE='ai3d-preferences-v1';
