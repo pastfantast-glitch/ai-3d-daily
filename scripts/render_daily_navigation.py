@@ -29,6 +29,43 @@ def ensure_shared_stylesheet(soup):
         soup.head.append(link)
 
 
+def ensure_history_nav(soup, href):
+    """Keep History as one global content destination on every archive shell."""
+    inner=soup.select_one('nav.global-category-nav .global-category-nav-inner')
+    if not inner:
+        return False
+    links=inner.select('a.global-history-link[data-global-view="history"]')
+    if links:
+        primary=links[0]; primary['href']=href; primary.string='歷史日報'
+        for duplicate in links[1:]: duplicate.decompose()
+        return False
+    link=soup.new_tag('a',href=href,attrs={
+        'class':'global-category-link global-history-link',
+        'data-global-view':'history',
+    })
+    link.string='歷史日報'; inner.append(link)
+    return True
+
+
+def normalize_category_history_nav(date_dir):
+    changed=[]
+    for path in sorted(date_dir.glob('*/index.html')):
+        text=path.read_text('utf-8'); soup=BeautifulSoup(text,'html.parser')
+        if ensure_history_nav(soup,'../../history/'):
+            out=soup.prettify()
+            if not out.endswith('\n'): out+='\n'
+            path.write_text(out,'utf-8'); changed.append(str(path.relative_to(ROOT)))
+        else:
+            # Existing link may need its href normalized after a legacy render.
+            link=soup.select_one('a.global-history-link[data-global-view="history"]')
+            if link and link.get('href')!='../../history/':
+                link['href']='../../history/'
+                out=soup.prettify()
+                if not out.endswith('\n'): out+='\n'
+                path.write_text(out,'utf-8'); changed.append(str(path.relative_to(ROOT)))
+    return changed
+
+
 def main():
     dirs=sorted(p for p in ROOT.iterdir() if p.is_dir() and DATE_RE.fullmatch(p.name) and (p/'index.html').exists())
     changed=[]
@@ -41,6 +78,7 @@ def main():
         soup.body['data-report-date']=d.name
         soup.body['data-previous']=prev
         soup.body['data-next']=nxt
+        ensure_history_nav(soup,'../history/')
 
         # Normalize any legacy static day-nav when present. daily.js builds the
         # modern bar from body data attributes, so this is compatibility only.
@@ -60,6 +98,7 @@ def main():
         if not out.endswith('\n'): out+='\n'
         if out!=text:
             path.write_text(out,'utf-8'); changed.append(str(path.relative_to(ROOT)))
+        changed.extend(normalize_category_history_nav(d))
     print('DAILY NAVIGATION RENDER:', ', '.join(changed) if changed else 'already current')
 
     # Presentation normalization is structural derived data too. Keeping it in the
