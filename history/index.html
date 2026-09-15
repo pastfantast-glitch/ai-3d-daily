@@ -1,30 +1,337 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="zh-Hant">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>歷史日報｜AI 3D Production Intelligence</title>
-  <link rel="stylesheet" href="../styles.css">
-  <link rel="stylesheet" href="../shared-components.css">
-  <link rel="stylesheet" href="../home.css">
-  <link rel="stylesheet" href="../home-content.css">
-  <link rel="stylesheet" href="../home-components.css">
-</head>
-<body class="home-page history-page">
-  <nav class="global-category-nav" aria-label="Production Intelligence 分類">
-    <div class="page global-category-nav-inner">
-      <a class="archive-nav-home" href="../">← 首頁</a>
-      <a class="global-category-link global-history-link is-active" data-global-view="history" href="./">歷史日報</a>
-    </div>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   歷史日報｜AI 3D Production Intelligence
+  </title>
+  <link href="../styles.css?v=20260915-r1-workspace-v8-history" rel="stylesheet"/>
+  <link href="../shared-components.css?v=20260915-r1-workspace-v8-history" rel="stylesheet"/>
+  <link href="../home.css?v=20260915-r1-workspace-v8-history" rel="stylesheet"/>
+  <link href="../home-content.css?v=20260915-r1-workspace-v8-history" rel="stylesheet"/>
+  <link href="../home-components.css?v=20260915-r1-workspace-v8-history" rel="stylesheet"/>
+ </head>
+ <body class="home-page history-page" data-report-date="2026-09-15">
+  <nav aria-label="Production Intelligence 分類" class="global-category-nav">
+   <div class="page global-category-nav-inner">
+    <a class="global-category-link" href="../#today">
+     TOP5
+    </a>
+    <a class="global-category-link" data-category="ai-generation" href="../2026-09-15/ai-generation/">
+     AI 生成
+    </a>
+    <a class="global-category-link" data-category="3d-production" href="../2026-09-15/3d-production/">
+     3D 製作
+    </a>
+    <a class="global-category-link" data-category="3d-animation" href="../2026-09-15/3d-animation/">
+     3D 動作
+    </a>
+    <a class="global-category-link" data-category="engine-art" href="../2026-09-15/engine-art/">
+     遊戲引擎
+    </a>
+    <a class="global-category-link" data-category="emerging-case" href="../2026-09-15/emerging-case/">
+     新技術 / Case
+    </a>
+    <a class="global-category-link" data-category="blender-dcc" href="../2026-09-15/blender-dcc/">
+     Blender / DCC
+    </a>
+    <a class="global-category-link global-history-link is-active" data-global-view="history" href="./">
+     歷史日報
+    </a>
+   </div>
   </nav>
   <main class="page home-main history-main">
-    <section class="home-section history-section" id="history">
-      <div class="block-head"><div><span>ARCHIVE</span><h1>歷史日報</h1></div></div>
-      <p class="history-note">歷史資料會由 canonical publish renderer 依目前實際日報自動建立。</p>
-      <div class="history-list"><p class="history-empty">尚未產生歷史索引。</p></div>
-    </section>
+   <div class="current-report-entry" data-current-report-date="2026-09-15">
+    <a aria-label="查看 2026-09-15 今日完整日報" class="category-nav-card current-report-link" href="../2026-09-15/">
+     <div class="current-report-copy">
+      <span class="current-report-eyebrow">
+       TODAY
+      </span>
+      <strong>
+       查看今日完整日報
+      </strong>
+     </div>
+     <span class="current-report-date">
+      2026-09-15
+     </span>
+    </a>
+   </div>
+   <section class="home-section history-section" id="history">
+    <div class="block-head">
+     <div>
+      <span>
+       ARCHIVE
+      </span>
+      <h1>
+       歷史日報
+      </h1>
+     </div>
+    </div>
+    <p class="history-note">
+     搜尋與回顧往期 Production Intelligence；首頁只保留今天的重要情報。
+    </p>
+    <div class="history-controls" data-history-controls="">
+     <input aria-label="搜尋歷史情報" class="history-search" placeholder="搜尋 Meshy / Blender / Retarget / UE5…" type="search"/>
+     <div aria-label="歷史分類篩選" class="history-filter-row">
+      <button class="history-filter is-active" data-history-category="all" type="button">
+       全部
+      </button>
+      <button class="history-filter" data-history-category="ai-generation" type="button">
+       AI 生成
+      </button>
+      <button class="history-filter" data-history-category="3d-production" type="button">
+       3D 製作
+      </button>
+      <button class="history-filter" data-history-category="3d-animation" type="button">
+       3D 動作
+      </button>
+      <button class="history-filter" data-history-category="engine-art" type="button">
+       遊戲引擎
+      </button>
+      <button class="history-filter" data-history-category="emerging-case" type="button">
+       新技術 / Case
+      </button>
+      <button class="history-filter" data-history-category="blender-dcc" type="button">
+       Blender / DCC
+      </button>
+     </div>
+     <div aria-label="歷史日期範圍" class="history-filter-row history-range-row">
+      <button class="history-filter" data-history-range="7" type="button">
+       最近 7 天
+      </button>
+      <button class="history-filter" data-history-range="30" type="button">
+       30 天
+      </button>
+      <button class="history-filter is-active" data-history-range="all" type="button">
+       全部日期
+      </button>
+     </div>
+    </div>
+    <div class="history-list">
+     <details class="archive-year" data-archive-year="2026" open="">
+      <summary>
+       2026
+      </summary>
+      <div class="archive-months">
+       <details class="archive-month" data-archive-month="2026-09" open="">
+        <summary>
+         9 月
+        </summary>
+        <div class="archive-entries">
+         <a class="history-entry" data-history-categories="3d-animation ai-generation blender-dcc emerging-case engine-art" data-history-date="2026-09-14" data-history-search="2026-09-14 歷史日報 ue5 shape cage：以 wpo 做 27 點 gpu 籠狀變形，避開 cpu soft-body 模擬 shape cage 用 world position offset 在 vertex shader 執行網格變形，依碰撞位置、力道與方向推導 dent，並以約 12 bytes/凹痕的資訊做網路同步。 ★★★★☆ blender 5.3 npr 原型：可自訂逐燈光照行為，cel shader 能回應 light color 與 cast shadow blender 5.3 開發中的自訂材質 lighting nodes 讓 npr 使用者能逐燈計算自己的 shading behavior，並把結果送入正確 render passes。 ★★★★☆ rokoko vision 3.0：單目 ai mocap solver 重寫並併入 create，強調更乾淨動作與快速迭代 rokoko 在 2026-07-16 推出 vision 3.0，重寫 monocular solver，將 video-to-motion 與 text-to-motion 收進 rokoko create，並可回 studio 編輯與輸出。 ★★★★☆ mecha centaur 長槍攻擊：多角度展示高速戰鬥動畫的重量、弧線與節奏 martin chang 的 rosetta 長槍動畫以多角度展示高速連擊，適合作為 stylized gameplay attack 的 pose readability、arcs 與 timing 參考。 ★★★★☆ blender 童話池塘製作：ucupaint layer workflow 搭配 eevee 的場景貼圖管理 ramy 展示從 default cube 到完整池塘的製作過程，並使用 ucupaint 管理 eevee／cycles 的 texture layers、masks、decals 與 displacement。 ★★★★☆ studiojoin 免費 maya rig：ik/fk、soft ik、world/local 與臉部控制可用於 rigging 練習 studiojoin 提供 maya 2023+ 免費非商用角色 rig，包含全局縮放、ik/fk、world/local、soft ik 與臉部 controller，可做 rig 結構與 animator usability 參考。 ★★★★☆ blender 機械綁定：用 bone chain 與 ik 建立折疊椅連桿並處理比例誤差 demnikoart 以 blender 5.2 lts 拆解折疊椅機構，從運動分析、bone chain、ik 到比例不完全吻合時的修正，並提供 rigged/unrigged 檔案。 ★★★★☆ 免費 fitness mocap pack：15 分鐘訓練／伸展／健身動作，可作 gameplay 與資料庫補充 anderson rohr 發布新的免費 mocap 動作包，含 functional training、stretching、strength 與 gym movements，定位於遊戲、動畫與 cinematic 使用。 ★★★★☆ unity 2d renderer 程序化水面：解析 ripple＋假透視 surface，偏美術可控而非物理解算 bxyass 的 ori-inspired 水系統以 analytical ripples、shader 與 rendering 技巧製作 2.5d 水面，支援 currents、debris、浮台、light rays、wakes、api 與 custom inspectors。 ★★★★☆ abcd：大型 gaussian splat 場景以 block coordinate descent 達到近似固定 vram 訓練 abcd 將 radiance field 分區，只讓一個 block 參與更新，其餘區域預渲染成前景／背景 rgba，使 peak vram 對整體場景尺度趨近 o(1)。 ★★★★☆ worldclaw：agent 規劃大型 3d 開放世界，輸出可編輯 terrain 與 instance-level textured meshes tencent hunyuan 的 worldclaw 以 coarse-to-fine agent framework 把文字提示轉成區域、地形、資產、材質與空間關係，再逐區細化成可編輯 3d 場景。 ★★★★☆ 無 mesh 的 sdf 角色：three.js 單一 fullscreen quad 以 raymarching 在 fragment shader 生成 3d 外觀 drin 的實驗完全不使用 mesh／texture／vertex，所有形體由 fragment shader 的 sdf raymarching 算出，展示 geometry-free stylized visual 的可能性。 ★★★★☆ triposplat → modly：把單圖 gaussian splat 重建成 watertight vertex-colored glb 的開源整合 modly 的 triposplat extension 以單次 feed-forward 生成 gaussian splats，再用 density grid、surface nets 與 color volume 重建 watertight glb，讓 splat 模型進入 mesh-centric pipeline。 ★★★★☆" href="../2026-09-14/">
+          <strong>
+           2026-09-14
+          </strong>
+          <span>
+           歷史日報
+          </span>
+         </a>
+         <a class="history-entry" data-history-categories="3d-animation 3d-production ai-generation blender-dcc emerging-case engine-art" data-history-date="2026-09-13" data-history-search="2026-09-13 歷史日報 pixal3d 開源多視圖 3d 生成：以 trellis.2 為底，補上 multi-view 推論與低 vram 路徑 騰訊 arc 公開 pixal3d 多視圖推論程式碼，可從單張或多視圖影像生成 3d，輸出 glb，並提供較低顯存設定。這正面對應角色／道具多視圖一致性與可落地匯入 dcc 的需求。 ★★★★★ sony mocopi 正式進 3ds max：即時 udp 驅動 biped，bvh／fbx 可直接轉 bip sony 發布 mocopi receiver plugin for 3ds max，可接收 mocopi 即時動作資料驅動 biped，並把 bvh／fbx motion 轉成 bip，且插件採開源方式提供。 ★★★★★ houdini 22 hug 更新：sidefx labs、sdf modeling、crowds、copernicus 與 ml workflow 集中曝光 sidefx hug 近期內容集中展示 houdini 22 的 sidefx labs、sdf 建模／crowd、copernicus procedural pattern 與 ml／live relighting 等 production 方向。 ★★★★★ siggraph 2026 ai／3d 研究整理：canvas-to-image、4d 與可控 3d hair 等方向開始逼近製作工具 cgworld 整理 siggraph 2026 多項 ai／cg 研究，涵蓋 canvas-to-image、複雜 4d 表現與文字控制 3d hair 等十篇論文，適合追蹤下一波內容生產與編輯能力。 ★★★★★ 4danyone：單目影片重建動態人物 4d 表現，公開 3dgs／4dgs 路線 4danyone（siggraph asia 2026）以一般單目影片為輸入，目標重建動態人物的時序 3d／4d 表現；專案公開程式與 3dgs／4dgs 相關 roadmap。 ★★★★★ anigen：從生成 3d 直接走向 animatable asset，嘗試把外觀、幾何與可動畫欄位一起建模 anigen（siggraph 2026）提出可動畫 3d asset generation，目標不是只產生靜態 mesh，而是將支援動畫的結構／欄位一起納入生成，程式已開源。 ★★★★☆ moge4d：單張影像推 4d trajectory／scene，建立 trajscene-60k 資料集 moge4d（eccv 2026）嘗試從單張影像預測 4d 場景與 dense trajectory，並公開 trajscene-60k 相關資源，代表單圖理解開始加入時間與運動維度。 ★★★★☆ blender 5.3 cycles 原生 dispersion：principled bsdf 以 abbe number 控制色散 blender 5.3 的 principled bsdf／cycles 加入原生 dispersion，採 abbe number 控制折射色散，讓玻璃、寶石等材質不再完全依賴複雜節點 hack。 ★★★★☆ caustica：把 progressive photon mapping 帶進 blender cycles，專攻真正的 photon caustics caustica 提供 blender 5.2 lts 自訂 build，以 gpu progressive photon mapping 補足 cycles 的 caustics，面向玻璃、水晶、珠寶與光學效果。 ★★★★☆ jigglegen 2.0：blender 身體、衣物與頭髮 secondary motion 自動化，加入獨立模擬 mesh jigglegen 2.0 重寫 secondary motion 工作流，可用 vertex group 控制身體、衣物與頭髮的 jiggle，並替衣物建立獨立 simulation mesh，降低直接在高模上算 cloth 的負擔。 ★★★★☆ blender painterly texture：用類 kuwahara 鄰域取樣把任意貼圖轉成較大筆觸色塊 一套 blender shader editor 做法以鄰域取樣與類 kuwahara 思路，把原貼圖整理成 painterly 色塊，並可封裝成重用 node group。 ★★★★☆ blender procedural stylized sky：多層雲速率、12 組預設與可動畫參數做成一套天空生成器 新 stylized sky generator 以程序化方式產生多層雲與天空，可控制不同 layer 速度、密度與造型，提供 12 組 preset，支援 eevee／cycles。 ★★★★☆ blaze autopose 1.0：blender 以 position／orientation／look-at constraints 加速角色 pose blaze autopose 對 rigify、auto-rig pro、cloudrig、mixamo 與一般 fk rig 提供 constraint-based posing，作者主打以位置、朝向、look-at 目標快速建立姿勢。 ★★★★☆ 京都動畫《二十世紀電氣目録》：blender／houdini 3dcg 背景追求『動畫手繪印象』而非寫實 cgworld 拆解京都動畫新作背景／ed 的 3dcg 與攝影方法，展示 blender、houdini 等工具如何服務手繪動畫質感，而不是單純提高 pbr 寫實度。 ★★★★☆ 《world is dancing》舞蹈動畫：3dcg＋mocap 先建立動作 guide，再回到手繪作畫 cgworld 介紹舞蹈場景以 3dcg production 與 motion capture 建立動作／鏡頭 guide，之後由動畫師回到手繪表現，形成 mocap 不直接等於 final 的混合流程。 ★★★★☆ 《world is dancing》背景製作：3d／美術背景協作維持舞蹈鏡頭的一致空間 cgworld 後續篇聚焦背景與場景協作，展示在大量舞蹈鏡頭下如何利用 3d 空間基準與美術處理維持場景連續性與畫面風格。 ★★★★☆ unity 7 unite 重點：surface cache gi、ssr／gtao 與 neural resource compression 指向新一輪 rendering 更新 unity 7 近期展示 surface cache gi、ssr、gtao 與 neural resource compression 等方向，surface cache gi 主打不需預烘焙即可處理動態幾何／日夜變化，且以 urp 為重要落點。 ★★★★☆ houdini 4dgs workflow：pdg 自動化 gaussian splatting 處理，串 lichtfeld／gsops 到 unreal cgworld 介紹以 houdini pdg 管理 4d gaussian splatting 的自動化流程，結合 lichtfeld studio／gsops，並延伸到 unreal 的場景與播放 pipeline。 ★★★★☆ openusd typhoon：以 hdembree 打造 reference renderer，補強跨 dcc／renderer 一致性檢查 新 openusd reference renderer typhoon 以 hdembree 為核心，提供 linux／macos／windows 支援，目標是讓 usd shading、lighting 與 interoperability 有較一致的基準。 ★★★★☆ cad／高模 polygon reduction 實測：unity att、zbrush、blender、instalod 放在同一 production 題目比較 cgworld 專題把 unity asset transformer toolkit、zbrush、blender 與 instalod 用在 cad／高模 reduction，比較減面後外觀與後續 realtime／lod 工作流。 ★★★★☆ openpbr 跨 renderer 對照：arnold／karma／unreal 的 materialx 外觀一致性成為新驗收題目 cgworld 測試 materialx／openpbr 在 arnold、karma 與 unreal 等 renderer 的表現，凸顯同一材質標準在不同實作仍需要外觀 parity 驗證。 ★★★★☆" href="../2026-09-13/">
+          <strong>
+           2026-09-13
+          </strong>
+          <span>
+           歷史日報
+          </span>
+         </a>
+         <a class="history-entry" data-history-categories="3d-animation 3d-production blender-dcc emerging-case" data-history-date="2026-09-12" data-history-search="2026-09-12 歷史日報 dr. doom 角色流程：metahuman、zbrush、marvelous 與 ue5 即時呈現串成完整角色管線 rocksteady 角色美術 patrick van rooijen 分享 dr. doom 製作：metahuman 頭部回寫 zbrush、marvelous 分層服裝、maya/topogun 重拓樸、substance 貼圖，最後在 ue5 以 lumen、markerless mocap 與 chaos cloth 完成即時展示。 ★★★★★ 古董機械 prop：低面數建模、ue control rig 齒輪邏輯與 substrate 材質一次整合 kyle michel 以 15k triangles 內完成古董電擊機，從 blender mid-poly／bake、單張 2k uv，到 unreal control rig 依齒輪比驅動動畫，並以 substrate fuzz、glint、anisotropy 做絨面材質。 ★★★★★ 2d concept 到 3d fantasy character：先抓 silhouette，再處理分層服裝、縫線與羽毛細節 artem bieliakov 的 the widow of feathers breakdown 聚焦從 2d concept 轉為遊戲角色，重點包含角色 silhouette、層疊服裝、折痕與縫線、裝飾結構，以及鳥與羽毛的製作。 ★★★★★ orc、dragon 到 boss：把 rig、skin、locomotion 與 combat animation 做成可重用遊戲系統 yeyo studio 分享動作外包實務：跨人類、orc、ogre、skeleton、necromancer 與 15 種 creature，每角色約 42 個 locomotion/combat state，並在 engine 中持續驗證 rig、skin 與動畫集合。 ★★★★★ ragdoll physics posing：把重心、接觸與限制直接帶進 maya／blender pose blocking ragdoll dynamics 提供 browser、maya 與 blender 的 physics-assisted posing，可直接拖動肢體、使用 contact/limits 保持姿勢，並顯示 center of mass；同一 pose 可回到 dcc 繼續 keyframe 動畫。 ★★★★★ raid alice fan art：保留原作辨識度，同時把皮革、毛皮與寫實材質推到角色製作層 dahye han 分享 alice fan art 的 modeling/texturing 流程，核心是在維持遊戲原角色特徵的同時加入更寫實的材質與渲染，並特別處理皮革與兔毛。 ★★★★☆ 老年矮人角色：皺紋皮膚、毛髮與 paragon 材質的可拆解角色 lookdev 案例 nikita popp 的 dwarf breakdown 聚焦 aged skin texturing，並展示 3ds max、blender、zbrush、substance painter 與 unreal 的角色流程，以及用 paragon material 處理 hair/feathers。 ★★★★☆ hipr：依場景變動與光傳輸影響排序 path tracing 更新，先把有感像素算完 university of utah 的 hierarchical progressive rendering 追蹤編輯對直接可見區、反射、陰影與間接光的影響，優先更新重要區域，最後仍收斂到相同 unbiased path-traced 結果。 ★★★★☆ world of tanks: heat：70/30 車輛設計、跨 dcc art pipeline 與跨平台優化如何一起運作 wargaming 說明 heat 的 70/30 vehicle design philosophy、agents/vehicles 的 silhouette與材質辨識，以及 maya、blender、3ds max、houdini 等跨 dcc 配合自研引擎與跨平台 optimization 的流程。 ★★★★☆ blender procedural ice：volume、voronoi、color ramp 與 displacement 封裝成可重用 node group ryan king 用 volume 建立冰塊霧化核心，voronoi 做不均表面，再以 color ramp、透明/反射與 displacement 控制冰感，最後封裝 node group 讓 color、roughness、displacement 可快速調參。 ★★★★☆ hardcraft alpha：利用 cad patch 結構導引 blender retopology，而不是盲目全自動 remesh hardcraft 讀取 step／plasticity bridge 等 cad export 殘留結構，把 surface 拆成 patch/curve，讓使用者調整 patch boundary、edge flow 與 density，再 commit 成 quad+triangle 的 game-ready mesh。 ★★★★★ pro particles 5.3：gpu flip／sph／mpm、cache 與 alembic 把 blender 多物理 fx 串成單一工具鏈 pro particles 5.3 新增 flip/apic liquids、sph、multi-material mpm、constraints、flow fields 等，重做 post/output，加入 persistent caches 與 alembic export，並可在 gpu preview 與 blender geometry 間切換。 ★★★★☆ shellfit：即時修正 body／clothing 穿插，結果可 bake 到 shape key 或 mesh shellfit 以 shell、solid、auto 三種 fitting mode 處理服裝與身體 overlap/gap，可選擇移動 body 或 clothing，quick shell fit 可針對局部接觸區，並支援 copy weights 與結果烘焙。 ★★★★☆ bwrap：把已驗證角色 topology 當 template，直接 wrap 到新 sculpt／scan bwrap 是 blender 新增的 guided topology wrapping add-on，可用既有乾淨角色 mesh 作 template，將 edge flow 與 deformation loops 轉移到新 character、sculpt 或 scan，目標是減少重複手工 retopo。 ★★★★☆" href="../2026-09-12/">
+          <strong>
+           2026-09-12
+          </strong>
+          <span>
+           歷史日報
+          </span>
+         </a>
+         <a class="history-entry" data-history-categories="3d-animation 3d-production ai-generation blender-dcc emerging-case engine-art" data-history-date="2026-09-11" data-history-search="2026-09-11 歷史日報 qualcomm adreno neural fusion：ai super resolution＋frame generation 直接進 unity／unreal 行動渲染路徑 qualcomm 公開 adreno neural fusion，透過 gpu 內 matrix cores、18mb hpm、ai super resolution 與 frame generation，並宣稱支援 unity/unreal 整合。 ★★★★★ animation mentor push/pull：從 reference、stepped blocking 到 ik contact 的 body mechanics 實戰 joseph white 以 maya 示範推拉重物，從拍攝 reference、blocking、fk/ik 切換、重心與接觸 pose 到 breakdown，再進 spline/polish。 ★★★★★ tripo 完整 ai 3d 遊戲資產流程：把生成視為起點，補上拓樸、rig、qa 與引擎驗收 tripo 的遊戲工作流指南把 ai 3d 放進完整資產生命週期：概念、生成、拓樸整理、uv/pbr、rig、qa、引擎匯出與製作紀錄，重點不是生成即完成。 ★★★★★ tripo api 串起生成、smart mesh、分件、貼圖與 rig：ai 3d 開始具備可批次化 production surface tripo 的遊戲管線 api 指南列出 generation、smart mesh、segmentation、texture、rigging 與 fbx/glb export，顯示 ai 3d 可從單次網頁操作轉向可重複自動化。 ★★★★★ ubisoft 風格化 handpaint 全流程：blender、zbrush、substance 串成可擴展的遊戲資產製作模板 ubisoft paris 美術分享從 blockout、sculpt、optimization、substance setup 到 handpaint texturing，並說明流程可擴展到 props、weapons 與 outfits。 ★★★★★ ue5.8 animation editor mode：pose tool、tween、snapper 與 motion trails 讓 key pose 調整更靠近引擎內完成 epic 的 5.8 文件整理 animation mode 工具，其中 control rig pose tool 可保存、鏡像、混合 pose 並在套用時直接建立 keyframe，適合建立 keypose library。 ★★★★★ unity 6.4 render graph：compatibility mode 退出後，自訂 render feature／post process 必須正式遷移 unity japan 的技術講座說明 unity 6.3/6.4 的 render graph 演進，並指出 6.4 後相容模式移除，提供自訂後處理遷移思路。 ★★★★★ siggraph 2026 gaussian point splatting：以像素級 stochastic points 把數億 gaussians 推向即時渲染 acm tog/siggraph 2026 的 gaussian point splatting 使用 64-bit atomics、平行 point splatting 與階層式 frustum/occlusion culling，展示數億 gaussian 的 real-time rendering。 ★★★★★ gnomon 複雜打鬥動畫：planning、spline-blocking、多角色接觸與 moving camera 的高階 body mechanics peter dang 的 maya workshop 從 reference planning 到 spline-blocking、straight-ahead、多角色互動、移動鏡頭與 polish，聚焦高強度動作的物理感。 ★★★★☆ meshy 一站式 3d→rig→animation 流程：生成角色後直接接 remesh、ai texturing 與動作預設 meshy 的官方教學示範 text/image-to-3d、remesh、ai texturing、rig 與 animation 串成單一流程，適合評估從概念到可動角色的快速原型效率。 ★★★★☆ houdini 21 rock generator：把天然岩石從單件雕刻轉成可重用、可控的程序化資產工具 sidefx 的 rock generator 教學從簡單幾何建立 fracture、reshape 與 variation，重點是把自然物製作轉成可重用 digital asset，而非只生成單顆岩石。 ★★★★☆ zbrush 2026 風格化角色直播：從 blockout 到 polish 的造型判斷仍是高價值角色製作基礎 shane olson 的 zbrushlive 於 9 月 10 日示範 stylized character 從 blockout 到 polish，內容面向 collectibles 與 games，適合作為角色量體、輪廓與細節層級參考。 ★★★★☆ redshift 2026.9：live renderer 補上 anisotropy／hdr compression，maya usd/alembic instancing 也擴充 redshift 2026.9 更新 live real-time renderer 的 anisotropy 與 hdr compression，支援 ocio 2.5，並擴充 maya 的 usd/alembic proxy instancing。 ★★★★☆ gs-2m：material-aware gaussian splatting 把高反射物的 mesh reconstruction 與材質分解一起處理 computer graphics forum 2026 的 gs-2m 以 material-aware optimization 從 multi-view images 重建高品質 mesh，特別處理高反射表面在 geometry／reflectance／lighting 分解上的困難。 ★★★★☆" href="../2026-09-11/">
+          <strong>
+           2026-09-11
+          </strong>
+          <span>
+           歷史日報
+          </span>
+         </a>
+         <a class="history-entry" data-history-categories="3d-animation 3d-production ai-generation blender-dcc emerging-case engine-art" data-history-date="2026-09-10" data-history-search="2026-09-10 歷史日報 chatgpt images 2.5：參考圖保真、局部編輯與多輪一致性直接對準美術迭代 openai 於 9 月 8 日發布 chatgpt images 2.5，強化參考圖主體保留、局部精準編輯、多輪修改一致性與透明背景，並宣稱相較 images 2.0 最多降低 50% 生成延遲。 ★★★★★ tripo p2.0 預覽：原生四邊面拓樸把 ai 3d 從外觀生成推向可編輯網格 tripo 在 9 月初隨融資消息公開 p2.0 預覽，主打端到端生成原生 quad topology，並把引擎可用、可綁定與可編輯作為工業化目標。 ★★★★★ houdini 21 procedural character：rig-first 把建模、服裝、blend shape、groom 與綁定串成可回溯系統 sidefx 的 procedural character 課程展示 rig-first 角色流程，從造型到 skinning、rigging、groom 與 lookdev 都保留程序化連動。 ★★★★★ autodesk realtime creature rigging：從骨架、skin weight、ik/fk 到遊戲引擎輸出的完整綁定基礎 autodesk 的 18 單元 realtime rigging 課程從 joint skeleton、skin binding、weight painting 到 ik/fk、space switching、twist／roll 與引擎輸出。 ★★★★★ maya 2027 skin tools：分層 weight painting 讓變形修正更接近可回溯的非破壞流程 maya 2027 skin tools quickstart 說明初始化 skin layers、分層 painting、mirroring 與 refinement，為複雜權重提供比單層直接塗改更可管理的方式。 ★★★★★ ue5.8 layered control rig：在 sequencer 疊加 pose 修正，不必先把 animation sequence 全部 bake 掉 epic 文件說明 layered control rig 可把多個 control rig 疊在既有 animation sequence 上，並以 order 與 weight 控制局部修正。 ★★★★★ siggraph 2026 gaussian point splatting：數億 gaussian 的即時渲染改用隨機點取樣與 gpu atomics 研究提出 gaussian point splatting，以像素大小的不透明點、64-bit atomics 與階層式 frustum／occlusion culling 渲染大量 gaussian，展示數億 splats 的即時能力。 ★★★★☆ houdini 21 procedural cities for games：把城市資產組裝變成可重複的世界建構工具 sidefx 的進階遊戲課程聚焦 procedural cities，展示以 houdini 21 建立可重用城市生成工作流，而非逐棟手工擺放。 ★★★★☆ ue5.8 control rig 基礎：從 skeleton 建 fk control，並把控制層級與骨架層級分離 epic 的 control rig 教學示範從骨架建立 fk control，並建議把控制器從 skeleton hierarchy 解耦，建立獨立可維護的 control hierarchy。 ★★★★☆ lumen surface cache：複雜 mesh 的 cards 覆蓋與材質邏輯會直接影響 gi／reflection 正確性 epic lumen 技術文件說明 surface cache 以多角度 cards 快取材質；複雜室內、view-dependent material 與未被 cards 覆蓋區域可能造成黑反射或間接光缺失。 ★★★★☆ substance 3d painter 角色貼圖流程：從皮膚細節到 roughness／sss 的完整官方教學 adobe 官方角色貼圖課程由角色美術示範從皮膚細節、base color、layer refinement 到 roughness 與 subsurface scattering 的完整流程。 ★★★★☆ qwen edit 多角度角色 lora：把單張角色轉成多視角參考的 comfyui 實務路線 stable diffusion art 整理的 qwen image edit 多角度工作流，透過 lora 與 comfyui 將角色轉成不同相機角度，可用於 3d 生成前的輔助視圖準備。 ★★★★☆ maya 2027 自動 retopologize：remesh→retopo→transfer attributes 的可控重拓樸流程 autodesk 文件說明以 remesh 與 retopologize 修復密集或不均勻網格，並提供 preserve hard edges、topology regularity、anisotropy 與 uv transfer 等控制。 ★★★★☆ nanite aggregate geometry：草、葉、毛髮類大量薄片會破壞像素尺度化假設，需用 overdraw 實測 epic 的 nanite 使用指南指出 foliage、hair、grass 等大量斷開薄片會降低 lod 簡化與 occlusion culling 效率，可能造成高 overdraw。 ★★★★☆ project grot：從粗 blockout 生成高模廢墟的 houdini→unreal 程序化場景範例 sidefx project grot 教學將粗略 blockout 轉成高模程序化廢墟，並延伸到橋樑、熔岩地形、煙霧 vdb 等 unreal 場景工具。 ★★★★☆ ue5.8 shading models：default lit、unlit、hair、cloth 等材質模型應視為 production 規格而非外觀開關 epic 的 shading models 文件整理不同光照模型的適用表面；選錯模型會改變材質輸入的解讀與最終光照反應。 ★★★☆☆ blender animation &amp; rigging 9/8 模組會議：追蹤綁定與動畫核心功能的近期開發方向 blender animation &amp; rigging 模組在 9 月 8 日召開公開會議，持續追蹤該模組的 issues、pull requests 與長期開發焦點。 ★★★☆☆ ctrl-g：遊戲生成式圖形的下一個門檻從能生成轉向即時可控制與可接管線 nvidia、epic 與學界在 siggraph frontiers 的 ctrl-g 聚焦 controllable generative graphics，討論生成系統如何回應玩家意圖並整合到現代遊戲引擎。 ★★★★☆ molecular nodes 520：blender geometry nodes 的科學資料匯入與動畫工具持續擴充 molecular nodes 在 9 月 5 日更新至 520.0.0，持續提供分子、軌跡與 cryo-em 等資料匯入，以及 geometry nodes 內的選取、造型與動畫節點。 ★★★☆☆" href="../2026-09-10/">
+          <strong>
+           2026-09-10
+          </strong>
+          <span>
+           歷史日報
+          </span>
+         </a>
+         <a class="history-entry" data-history-categories="3d-production ai-generation blender-dcc emerging-case engine-art" data-history-date="2026-09-09" data-history-search="2026-09-09 歷史日報 tripo smart mesh p1.0：2 秒生成乾淨 low-poly 拓樸，直接瞄準即時資產 tripo 將 smart mesh p1.0 定位成 h3.1 高模生成的即時資產搭檔，主打約 2 秒輸出結構化 low-poly topology，降低 ai 網格進入遊戲管線前的重拓樸成本。 ★★★★★ meshy multi-view texture：四視圖同時約束幾何與 2k–8k base color meshy 的 multi-view 升級讓 geometry 與 texture 都可讀取主視圖加左／後／右輔助視圖，並輸出原生 2k、4k 或 8k base color，強化角色與圖案一致性。 ★★★★★ meshy 7 幾何對齊：開始用比例、空間分布與表面細節量化 image-to-3d meshy 7 將 image-to-3d 重點放在 geometry alignment，並公開以比例、空間分布與表面細節比較輸入圖與參考模型的 benchmark，同時承認規則重複結構仍會漂移。 ★★★★★ tripo 官方 comfyui nodes：生成、分件、拓樸、rig、retarget 串成可自動化 3d 流程 tripo 的官方 comfyui extension 已把文字／單圖／多視圖生成、模型匯入、分件、低模、retopology、rigging、animation retarget 與格式轉換放進同一節點流程。 ★★★★★ hunyuan3d-buffalo 1.0：把 3d 理解、生成、指令編輯與零件生成統一 騰訊 hunyuan3d-buffalo 1.0 以同一多模態框架處理 3d understanding、text-to-3d、instruction-guided editing 與 part-level generation，研究重點從一次生成推向可理解、可編輯資產。 ★★★★☆ hunyuan3d worldclaw：agentic 粗到細流程生成可編輯 3d open world worldclaw 以規劃 agent 把文字需求拆成區域、地形、資產、材質與空間關係，再透過 blender 與多個生成／分割模組建立可編輯場景，代表 world generation 往 production orchestration 前進。 ★★★★☆ r-dmesh：以參考影片驅動靜態 mesh，直接輸出時間一致的 4d 動態網格 siggraph 2026 的 r-dmesh 可把靜態 mesh 對齊參考影片起始姿勢並生成時間一致的動態 mesh，同時支援 pose／motion retarget，程式與 checkpoint 已公開。 ★★★★☆ detram：單一 transformer 同時做人形 mesh 重建、多人追蹤與 prompt 指定人物 nvidia 研究 detram 以持續跨幀的 query 同時完成多人偵測、human mesh recovery 與 tracking，並可用 prompt 指定人物，在 posetrack21、3dpw 等資料集展示競爭力。 ★★★☆☆ blender cycles 開始整合 gaussian splat：多種 compute backend 已通過初步測試 blender 9 月 render &amp; cycles meeting 顯示 gsplat 初始 cycles rendering support 正在開發，cpu、cuda、optix、oneapi、hip、metal 與硬體 rt 已完成初步手動測試。 ★★★★☆ 印度 bioscope 道具：用「實際接觸區」而非隨機 grunge 決定磨損 pixeldhara 的 bioscope breakdown 從歷史研究、3ds max high/low poly、painter baking/texturing 到 ue5 mrq，核心是依觸摸、保護區與積塵位置設計可信磨損。 ★★★★★ wayfinder 風格鐮刀：zremesher 分層雕刻＋高對比 base color 驅動 roughness／metallic artem romanov 的 stylized scythe 流程用 blender blockout、zbrush zremesher/divide、uvpackmaster、marmoset baking，再以 painter 高對比 base color、anchor points 與 hand-painting 建立 stylized pbr。 ★★★★★ blender 5.2 remote asset libraries：資產可從伺服器按需下載並本地快取 blender 5.2 支援以 url 註冊 remote asset library，asset browser 可按需下載並快取；自架 library 需生成 json listing 與 preview，外部依賴則必須打包進獨立 .blend。 ★★★★★ blender 5.2 cycles texture cache：只載入需要的 tile／mip，壓低大量貼圖場景記憶體 cycles 5.2 的 texture cache 會自動產生 .tx，只載入 render 當下需要的 tile 與解析度，並配合 tiled rendering 淘汰未使用貼圖，針對大量 4k–16k texture 場景降低記憶體。 ★★★★★ maya 2027 usd component creator／variant manager：直接在 maya 建 production-ready usd asset maya 2027 的 usd workflow 新增 component creator 與 variant manager，可把 scene objects 一鍵組成自包含 usd stage，並用 template 控制 prim hierarchy 與集中管理 variants。 ★★★★★ arnold for 3ds max 5.9.3：原生 3dgs、shader to rgba 與 tone zones 強化 npr／混合場景 3ds max 2027.2 內的 arnold 5.9.3 可直接 render 3d gaussian splatting，並新增 shader to rgba、tone zones、較快 gpu scene update 與改善 noice denoiser。 ★★★★★ unity material generator：editor 內從文字／參考圖產生可直接受光的 tileable pbr placeholder unity ai material generator 可在 unity editor 內用 prompt 與 optional reference image 建立 tileable pbr material，官方明確把它定位在 prototype／placeholder，而不是直接取代 final art。 ★★★★☆ unity 3d object generator：直接在 editor 以文字／參考圖生成靜態 3d prefab 做灰盒替身 unity ai 的 3d object generator 可在 editor 內從文字或 reference image 生成 static 3d mesh prefab，官方建議用於單一部件 prop、環境細節與 prototype placeholder。 ★★★★☆ unity dynamic wireframe shader：不預處理 mesh，直接用真實 topology 畫即時線框 dynamic wireframe shader 以 shader graph/gpu 直接渲染 mesh 真實 topology，不需 duplicate mesh 或離線 preprocessing，支援 birp、urp、hdrp，但要求 tessellation-capable gpu。 ★★★☆☆" href="../2026-09-09/">
+          <strong>
+           2026-09-09
+          </strong>
+          <span>
+           歷史日報
+          </span>
+         </a>
+         <a class="history-entry" data-history-categories="3d-animation 3d-production ai-generation blender-dcc emerging-case engine-art" data-history-date="2026-09-08" data-history-search="2026-09-08 歷史日報 substance 3d painter 12.1.4 修正非 ascii 檔名匯入／匯出崩潰 adobe 於 9 月 4 日釋出 painter 12.1.4，修正含非 ascii 字元檔名在匯入或匯出時造成的崩潰，對中文／日文命名資產管線是直接的穩定性修正。 ★★★★★ substance 3d designer 16.0.6 強化穩定性與 tga／tiff 安全修正 designer 16.0.6 修正 shader 編譯關閉時與非 ascii 路徑輸出的崩潰，同時處理 tga/tiff 解析安全問題，適合工作室升版前納入驗證。 ★★★★★ punk knight：把 2d 概念直接投射到 zbrush 雕刻以鎖定造型與配色 david papunashvili 分享 stylized character 流程，直接把 2d concept 投射到 sculpt 作比例與色彩比對，並以 polypaint 建立插畫式 3d 外觀。 ★★★★☆ 科幻道具磨損製作：以四組 texture set 管理金屬、玻璃與塑膠 dragoslav vugdelija 拆解科幻 prop 的表面損傷與材質規劃，將資產拆成四組 texture sets，適合對照高品質道具的 texel／材質責任分配。 ★★★★☆ blender seamless painter：內建 texture paint 的無縫貼圖與自動化 canvas omar faruq tawsif 示範以 blender texture paint 建立 seamless texture，搭配免費自動化 add-on 快速建立畫布；工具已測試 blender 3.6–5.2。 ★★★★☆ 64×64 sprite 轉 3d：以 pose 建模與 stylized pbr 保留像素角色辨識度 paul thureau 從 pokémon 64×64 sprite 建立 stylized 3d 角色，採直接 pose 建模並針對眼睛與服裝設計貼圖，適合作為低資訊概念轉 3d 的案例。 ★★★★☆ painter 12.0：layer flatten、warp to geometry 與批次輸出改善貼圖迭代 painter 12.0 可在 layer stack 直接 flatten 群組、批次輸出 layer/mask，並以 warp to geometry 改善 decal 貼合複雜曲面，降低跨軟體迭代成本。 ★★★★☆ tripo openapi 多視圖工作流：單圖生成／獨立編輯 views 再直接串 model generation tripo api 1.9.6 加入 generate_multiview_image、edit_multiview_image，並允許 multiview_to_model 直接接 original_task_id，減少重傳與人工預處理。 ★★★★☆ tripo h3.1：200 萬面、pbr、quad fbx 與 smart low-poly 的生成選項 tripo h3.1 官方模型頁列出最高 200 萬面、text/image/multiview、pbr、quad mesh fbx、smart low-poly 與 generate in parts，可直接用於生成品質與拓樸測試。 ★★★★☆ unity stylized water 3 river modeler 重製：spline 河流、burst／jobs 與自動 vfx/sfx river modeler 正重建為 stylized water 3 extension，採 spline 河流建模、segmented output、burst/job system，並整合 vfx/sfx，適合 stylized environment workflow。 ★★★★☆ blender＋photoshop 2d/3d 概念流程：從 reference、blockout 到 final paintover eugenia chernova 展示環境概念如何先在 blender 建立 3d scene，再進 photoshop paintover，適合快速控制透視、構圖與場景層次的 concept workflow。 ★★★★☆ blaze autopose：在既有 blender rig 上用位置／旋轉約束快速完成姿勢 blaze autopose 把 cascadeur 類型的 auto-posing 工作流帶進 blender，可在 viewport 放置 position、rotation、look-at constraints，再直接把結果套到既有 fk controllers；支援 rigify、auto-rig pro、mixamo 等常見 rig。 ★★★★☆ mocapanything v2：單目影片直接輸出任意 skeleton 的 bvh-ready rotations mocapanything v2 從 monocular video 直接預測 3d pose 與 animation-ready joint rotations，支援人、動物、物件與自訂 skeleton，並可帶入自己的 rigged fbx 做骨架拓樸與 reference pose 前處理。 ★★★★★ retopoly：3ds max 原生 modifier stack 內直接做 manual retopology retopoly 是新的 3ds max native modifier，可直接在 high-res mesh 上繪製與編輯 topology，提供 contour、bridge、patch、guide、brush、mask 與 live conform，保留 max modifier-stack 工作流。 ★★★★☆ raga：3dgs avatar／scene interaction 的 real-time gaussian ray-traced shadows raga 直接在 gaussian space 進行 ray-traced shadow casting，不依賴 mesh reconstruction，並以 avatar proxy 穩定服裝變形時的陰影；論文報告約 50 fps。 ★★★★☆ fastgha：few-shot images 直接生成可 real-time animation 的 3d gaussian head avatar disney research 等提出 fastgha，以少量影像 feed-forward 生成高品質 gaussian head avatar，並以輕量 mlp 根據 expression codes 預測 gaussian deformation，支援 real-time animation。 ★★★★☆" href="../2026-09-08/">
+          <strong>
+           2026-09-08
+          </strong>
+          <span>
+           歷史日報
+          </span>
+         </a>
+         <a class="history-entry" data-history-categories="3d-animation 3d-production ai-generation blender-dcc emerging-case engine-art" data-history-date="2026-09-07" data-history-search="2026-09-07 歷史日報 《orbitals》拆解 ue5 復古動畫渲染：cel／背景分離、bloom mask 與底片後製 shapefarm 公開如何在 ue5 內改造預設渲染管線，將 cel character、painted environment 與 film effects 分層處理，並透過 material editor 維持美術可迭代性。 ★★★★★ ue 5.8 city sample 重建：pcg＋unreal mcp 把大型城市程序化留在引擎內 新版 city sample 以 ue5.8 pcg、world partition、nanite foliage、megaplants 與 unreal mcp 重建兩個新城市關卡，示範大型世界在引擎內維持可編輯程序化流程。 ★★★★★ game animation sample 升級 ue5.8：physics control、motion matching、chooser 與 smart objects epic 更新 game animation sample，加入 physics control component/asset、chooser 內多 pose search db、blend spaces 與 smart object 互動範例，適合直接做 gameplay animation baseline。 ★★★★★ rokoko vision 3.0 重建單鏡頭 ai mocap solver，整合 video/text-to-motion 與 studio 清理 vision 3.0 改用重建 solver，主打更乾淨動作、更快處理，並把 video-to-motion、text-to-motion、studio 編輯、retarget 與 fbx/bvh export 串成同一套流程。 ★★★★★ frame by plane 7.2：blender 5.2 的 2.5d／cutout／multiplane production 工具大更新 frame by plane 7.2 強化 grease pencil 雙色、相機格式、timeline、effects 與 safer import/render，並支援 layered image、cutout、parallax 與 2.5d 場景管理。 ★★★★★ epic 8 月 ue5.8 教學包：mesh terrain、networked physics、material 與優化工作流 epic 集中發布 ue5.8 的 mesh terrain、networked physics、accumulation dof、material 與 project optimization 教學，適合建立引擎美術新功能的測試清單。 ★★★★☆ 《star wars zero company》ue5 製作訪談：策略遊戲如何選擇引擎與組織大型內容 bit reactor 說明團隊以 ue5 製作戰術 rpg 的技術與內容選擇，提供世界、角色與迭代流程的 production case，可作為中大型專案引擎決策參考。 ★★★★☆ aimocap：單影片同時抓 body＋finger，支援自訂角色、mixamo／cc／roblox 與 120fps aimocap 提供瀏覽器 video mocap，強調 body/finger 同步、減少 foot sliding、自訂 humanoid 綁定與多種角色／機器人輸出目標，可作為 ai mocap 新候選工具。 ★★★★☆ quickmagic：單影片 body／hand／face ai mocap，輸出 ue／unity／maya／3ds max 管線 quickmagic 將一般影片轉成可編輯 3d motion，支援 body、hand、face 與多種 fbx/bvh/ue preset，並明確展示 cascadeur cleanup、ue retarget 等 production workflow。 ★★★★☆ exea jiggle 1.1：blender 骨架次級動態加入 jiggle layers 與可 bake keyframes 流程 exea jiggle 1.1 新增 jiggle layers、bone grouping、mute 與 blender 5.x 相容性，可用於髮尾、衣服、尾巴等骨架次級動態並烘焙成 keyframes。 ★★★★☆ vrm add-on 4.7：t-pose 套用與匯入循環節點修正，強化 avatar 交換流程 vrm add-on 4.7 新增 selected vrm t-pose 套用按鈕並修正 cyclic node recursion；對 blender↔vrm humanoid、mtoon 與 avatar export 有直接維護價值。 ★★★★☆ polyquilt 1.46.8 修正 blender 5.2 retopo 相容性與 merge-on-move polyquilt 的 1.46.8 更新修正 move merge 問題並針對 blender 5.1/5.2 維護相容性，適合作為免費手動 retopology 工具的近期測試點。 ★★★★☆ cloudrig 2.2.28 新增 simple spine：blender studio rig generation 持續模組化 blender studio 的 cloudrig 新增 experimental simple spine component；cloudrig 以 metarig 產生 helper bones、constraints、drivers，適合研究可維護 rig component 架構。 ★★★★☆ hair bone generator 1.1：曲線髮束快速產生骨鏈，支援端點控制與重建 hair bone generator 1.1 強化 hair root/tip 控制、同範圍重新生成修正與 blender 5.2.1 測試，可縮短角色髮絲 secondary rig 的重複工作。 ★★★★☆ edit poly modifier 1.0.2：把局部 mesh edit 放進 blender 非破壞 modifier stack edit poly modifier 讓人工頂點編輯可存在 bevel 與 subdivision 中間並即時同步 upstream 變化，對 hard-surface 與迭代型 modeling workflow 很接近 3ds max edit poly 思路。 ★★★★☆ node orthogonalizer 2.1.2：shader／geometry nodes 自動 90° 路由與大型 node graph 整理 node orthogonalizer 可自動把 shader、compositor、geometry nodes 連線整理成 90° 路由，支援 nested groups、frames 與 debounced processing，降低複雜材質／gn 圖的維護成本。 ★★★★☆ gamiflow 1.10：blender 遊戲資產 uv／bake／export pipeline 增加 gn set 與 bone parenting gamiflow 針對 game asset workflow 提供 unwrap、udim、bake cage、set generation、export anchor；1.10 加入 gn set inputs、bone parenting 與 blender 5.2 修正。 ★★★★☆ remi：blender 內整合 mesh repair、simplify、instant meshes retopo 與 rebake remi 將破面修補、voxel/volume rebuild、decimation、native instant meshes guided quad retopo 與 bake 串在 blender 內，特別適合 ai/scanned dense mesh cleanup。 ★★★★☆ terracotta：在 blender 用 node graph 串 tripo、gemini、retopo、segmentation、rig 與 export terracotta 把 ai 3d asset generation 做成 blender node graph，可串概念圖、tripo mesh、retopo、texture、segment、rig、animation 與 export，適合測試批次 ai asset pipeline。 ★★★★☆ alpha3d blender plugin：text/image-to-3d 後直接 retopo、segment、auto-rig alpha3d plugin 把 cloud generation、retopology、segmentation 與 auto-rig 放進 blender sidebar，重點在生成後處理是否能減少往返 web app 的 pipeline friction。 ★★★★☆ pivot tools 1.49.1：blender pivot workflow 擴充 curve 與混合選取 pivot tools 讓 artist 可快速 pick、儲存與批次套用 pivot，1.49.1 加入 curve 與 mixed mesh/curve 支援，對 modular asset、weapon/prop 對位與 export anchor 有實際效率收益。 ★★★☆☆ booltron 3.3.4 補 blender 5.2 相容性：boolean stack 與 bake modifier workflow booltron 為 blender boolean 工作流提供工具與 modifier bake，3.3.4 修正 5.2 的 randomize location 問題；對 hard-surface 高頻 boolean 生產有維護價值。 ★★★☆☆ sculpt stroke replay 0.2：multires sculpt stroke 重播與正負 strength preview 0.2 新增 multires 支援、不同 viewport/sculpt subdivision level 與 live strength preview，可把重複 sculpt stroke 變成可調操作，適合高模局部修形。 ★★★☆☆ easeit 2.0.3：dope sheet／graph editor 一鍵套用 easing preset easeit 提供常用 easing presets，直接對選取 keyframes 套用，可減少 graph editor 的重複 curve shaping，適合快速 gameplay/ui/prop animation polish。 ★★★☆☆ relief rebake 1.0：把高密度 relief 轉成 height-field quad mesh 的 blender 工具 relief rebake 將浮雕表面重建為規則 height-field mesh 並估算 quad count；對浮雕、徽章、機台裝飾等高密度掃描/雕刻資產的簡化有特定價值。 ★★★☆☆ inu tools 2.3.2：blender 原生 gta sa 全資產 pipeline 新增 time cycle 與 auto collision inu tools 從 dff/col/txd/ide/ipl/img 到動畫、lighting、materials 都在 blender 內 round-trip；2.3.2 新增 timecyc lighting 預覽與 auto-col，提供完整 game-mod asset pipeline case。 ★★★☆☆ substance 3d painter 12.1.2 舊版有重大安全修補需求：production workstation 應升級 adobe 8 月 25 日安全公告指出 painter 12.1.2 及更早版本有 critical/important vulnerabilities，可能造成任意程式碼執行；這屬於內容工具鏈的 production maintenance 風險。 ★★★☆☆" href="../2026-09-07/">
+          <strong>
+           2026-09-07
+          </strong>
+          <span>
+           歷史日報
+          </span>
+         </a>
+         <a class="history-entry" data-history-categories="3d-animation 3d-production ai-generation blender-dcc emerging-case engine-art" data-history-date="2026-09-06" data-history-search="2026-09-06 歷史日報 tripo 展示一日完成遊戲角色：ai 3d 從拆件、quad 到 ue 的完整 pipeline tripo 公開一套從概念圖、部件拆分、p2.0 quad 網格、8k 來源貼圖、dcc bridge，到 maya/marmoset/substance/unreal 的完整角色製作案例，總面數控制在 30k triangles 以下。 ★★★★★｜非常接近可直接拿來做 ai 3d 角色 production test 的基準流程。 meshy 6 ultra 擴大到 4 張輸入圖：多視圖結構忠實度與幾何清理再提升 meshy 9 月 changelog 顯示 meshy 6 ultra 支援最多四張參考圖，並強化結構忠實度、geometry clean-up 與生成速度，直接對應多視圖角色與遊戲資產生成。 ★★★★★｜多視圖與 clean geometry 都是目前 ai 3d 最值得實測的核心能力。 armorpaint 1.0 正式脫離 early access：c 重寫、uv/雕刻、動畫預覽與本地 neural nodes armorpaint 1.0 以 c 重寫核心，提升大資產與高解析圖層互動效能，並加入基礎雕刻、uv 編輯、skinned mesh timeline、ai upscale 與 photo-to-material 等功能。 ★★★★★｜有機會成為低成本遊戲貼圖工具鏈的實際替代方案。 《鬼武者 way of the sword》公開 re engine 美術 pipeline：模組場景、角色、光照到資料管理 capcom 詳細拆解從歷史研究、whitebox/greybox、模組資產、角色 sculpt/texturing，到 re engine 內 layout、vfx、lighting 與 collision 的完整流程，maya 作為最終 dcc 輸出中心。 ★★★★★｜完整度很高的 aaa 遊戲 production case，可直接對照團隊資產與引擎責任切分。 jolan huijskes 用 blender＋ue5 工具化大型場景：把 level artist 控制權留在引擎 environment artist jolan huijskes 公開一套為大型可玩場景打造的 blender/unreal 工具，重點不是單一漂亮場景，而是用技術工具支援大尺度環境快速迭代。 ★★★★★｜高度符合場景 production tool／流程自動化需求。 tripo p2.0 preview：單圖／多視圖直接生成原生 quad，最高 25k quad tripo p2.0 preview 將 smart mesh 推向原生四邊面拓樸，可從單圖或四視圖生成，quad 上限 25k，並主打可編輯、可 rig、可進遊戲 production 的 edge flow。 ★★★★★｜目前 ai 3d 的關鍵不是更密，而是生成後能不能真的編輯與 rig。 maya 2027 把 motionmaker、ngskintools 式 skin tools、smart bevel 與 usd asset build 推進主流程 maya 2027 聚焦 ai motionmaker、整合式 layer-based skinning、smart bevel、usd component/variant workflows、flow studio 連接與 arnold/bifrost 更新。 ★★★★★｜rig/animation、skinning 與 usd 資產流程都有直接 production 影響。 unreal engine 5.8：mesh terrain、pcg、llm mcp 與更成熟的角色／世界製作 ue 5.8 強化 worldbuilding、terrain、vegetation、character/animation 與 iteration，並加入 experimental mcp plugin、sandboxes；epic 同時提醒 beta/experimental 功能不可直接視為 production-ready。 ★★★★★｜對場景、ta 與美術工具鏈都有高密度改動。 houdini 22 正式進入 production：quad remesh、copernicus、gaussian splats 與世界製作一起升級 houdini 22 把 quad remesh、production-ready gaussian splats、copernicus baking/texturing、character tools、gpu pyro、terrain/ocean 等多個流程推進 production。 ★★★★★｜procedural 是本類最高偏好，h22 幾乎橫跨建模、角色、材質、vfx 與場景。 milk vfx 用 unreal 從 previs 一路做到 finishing：100+ 環境與大量生物的跨部門 pipeline 《surviving earth》案例顯示 milk vfx 在 1,000+ shots、73 種 hero creature、100+ environments 規模下，使用 unreal 做 previs、virtual art department、real-time environment 甚至 finishing。 ★★★★☆｜雖偏 vfx，但 unreal 作為跨階段 production hub 的做法非常可借鑑。 animo v10 把 500+ maya animation tools 收進同一套工具箱 animo v10 新增直接在 maya 內加入影片/gif/圖片 reference、六個 animation sliders 與 tools editor，可集中存取超過 500 個動畫工具並綁 hotkey/shelf。 ★★★★☆｜不是大模型新聞，但很可能直接節省 animator 日常操作時間。 uri 人樹角色 breakdown：zbrush＋maya＋substance 的輪廓、拓樸與材質取捨 character artist andrea buitrago 詳解把小說中的人樹角色轉成可讀性強的 3d 雕塑，從 silhouette、形體、材質到 maya/zbrush/substance 的完整角色製作。 ★★★★☆｜高品質角色 breakdown，重點是設計翻譯與可讀性，而不是純作品展示。 fluidninja live-2 重構 ue vfx：cpu blueprint 邏輯大幅移向 gpu／niagara simulation stages fluidninja live 2 重新設計底層，把更多 blueprint function 搬到 gpu，fluid simulation 改用 niagara simulation stages，並新增 surface alignment、preset 與更多輸入來源。 ★★★★☆｜對 ue 大型即時 vfx 的效能與工具化很有 production value。 shape cage 用 wpo 做 ue5 runtime mesh deformation：軟體感變形但不跑真正 soft body shape cage 以 material world position offset 在 gpu 端對 static mesh 做壓、彎、凹與 curtain 類變形，支援碰撞驅動、狀態同步與 nanite。 ★★★★☆｜適合需要低成本局部變形、又不想導入 skeletal/soft body 的遊戲表現。 tyflow 2.1：physx 車輛 rig/simulation＋gaussian splat 工作流進入 3ds max tyflow 2.1 新增 physx vehicle operators/helpers/presets，可做 cars、trucks、tanks 等物理動畫，並接上 3ds max 2027.2 gaussian splat 能力。 ★★★★☆｜對 3ds max 動畫/vfx 與新型 3d 表示都有明確工具價值。 retopoly：3ds max 內直接在高模表面建立可非破壞編輯的 retopo modifier retopoly 提供 3ds max 原生 modifier 式 retopology，可直接貼著高解析 surface 建新 topology，並保留 modifier stack 的非破壞調整方式。 ★★★★☆｜對仍以 3ds max 為主的角色／道具流程，是很值得測的局部效率工具。 blender studio 開放 overgrown 製作日誌：rig、毛髮、shader、場景、lighting、水與 compositing 全流程 overgrown 的多份 production logs 涵蓋 animation、rigging、fur、shading、set construction、lighting、water effects 與 final compositing，還包含 painterly shadows 教學。 ★★★★☆｜不是單一 tip，而是一套可回溯的 blender production case 資料庫。 tripo image gen 更新：角色／場景拆件、4k、cutout 與 batch-to-3d 串成資產量產前段 tripo 把 character extraction、asset extraction、variants、4k enhancement、cutout 與最多 30 張 batch to 3d 串成 2d→3d 的前處理流程。 ★★★★☆｜ai 2d 不只出圖，而是直接服務後續 3d 資產拆件與批量轉換。 substance 3d painter 12：warp to geometry 讓 decal／trim 能貼著複雜曲面即時包覆 painter 12 的 warp to geometry 以可編輯 projection grid 貼合 mesh curvature，可在孔洞、不平表面與複雜曲面上降低 decal 投射拉伸，並搭配 layer-stack flatten 等改進。 ★★★★☆｜屬於很具體、能直接省貼圖返工時間的功能。 metahuman 5.7 body conforming：fbx round-trip、任意 pose 與極端比例 joint fitting 大幅放寬 metahuman 5.7 以 uv-space vertex correspondence 解決外部 dcc fbx round-trip，並放寬 a/t pose、高度限制，新增 volumetric joint fitting 與 mesh/joint import。 ★★★★☆｜對自製角色接 metahuman rig 的實際障礙有直接改善。 unity 官方示範用 preset 自動化 texture／model import：把資產規範前移到 import gate unity 技術文章說明用 preset manager 統一 texture、video、3d model 等 import 設定，特別強調 mipmap、max size 與團隊共享 preset，避免錯誤資產設定進 build。 ★★★★☆｜非常接近可直接落地的美術 asset validation／import sop。 blender 5.2 lts：兩年支援，geometry nodes physics、remote asset libraries 與 render/automation 持續成熟 blender 5.2 lts 提供至 2028 的長期維護，包含 geometry nodes 音訊/物理、online asset libraries、cycles texture cache、thin wall，以及 5.2.1 的多項穩定修正。 ★★★★☆｜對要把 blender 納入正式 pipeline 的團隊，lts 比單純追最新版更值得關注。 houdini 22 character：apex/kinefx 加強 rig template、retarget、motion mixer 與 full body ik h22 的角色系統加入 reusable rig templates、enhanced retargeting、rig inversion、nested clips、full body ik、ragdoll 與 facial rig 改進。 ★★★★☆｜對 rigging 5/5、animation 5/5 的偏好非常對題。 houdini 22 copernicus lookdev：baking、procedural texture 與 unreal session sync 更接近即時材質 pipeline h22 lookdev 讓 copernicus 提供 production baking、grunge/fabric/bark procedural maps、2d/3d paint，並以 session sync 和 unreal 維持 procedural texture 互動同步。 ★★★★☆｜ai/procedural 之外，這是很實際的 dcc→engine material workflow。 arcane vi 角色 breakdown：把 lighting、sss 與 stylized normal 部分畫進貼圖 alexandre mougenot 拆解從 production-ready face basemesh、quaddraw、uv，到 substance 手繪光影、stylized normals 與 marmoset realtime presentation 的角色流程。 ★★★★☆｜npr/toon、角色貼圖與可重用 basemesh 三個方向都高度相關。 lyoba real-time character：metahuman wrap、xgen afro groom 與 ue5 micro-wetness 的角色實戰 lena holmfridardottir 展示 zbrush→metahuman wrap→marvelous→maya retopo/xgen→substance→ue5.6 的高品質 realtime character pipeline，並用 inverted curvature 驅動皮膚微濕感。 ★★★★☆｜完整角色＋hair＋shader＋engine 整合，production 可操作資訊很密。 unity render graph viewer：用 pass／resource 關係直接檢查 urp 自訂 renderer feature 的成本 unity 官方教學示範 render graph viewer 如何查看 urp pass、texture/resource read-write 關係，協助找 redundant buffers、pass fragmentation 與 custom renderer feature 的效能影響。 ★★★★☆｜shader/rendering 與美術效能之間的可視化橋樑。" href="../2026-09-06/">
+          <strong>
+           2026-09-06
+          </strong>
+          <span>
+           歷史日報
+          </span>
+         </a>
+         <a class="history-entry" data-history-categories="3d-animation 3d-production ai-generation blender-dcc emerging-case engine-art" data-history-date="2026-09-04" data-history-search="2026-09-04 歷史日報 dlss 5：3d-guided neural rendering 將材質與光照納入可控神經渲染 nvidia 公布 dlss 5 的 3d-guided neural rendering，讓開發者以場景幾何與引擎資料引導神經渲染，並提供藝術控制項調整材質、光照與最終視覺。 engine ai ★★★★★ videomatgen：由幾何 + 文字聯合生成 base color／roughness／metallic／height nvidia 研究提出以影片擴散架構對幾何條件與文字描述進行 pbr 材質聯合生成，一次預測多個常用材質通道。 ai material ★★★★★ motionstruct4d：從 video-to-4d 中分離可重用的運動結構 motionstruct4d 針對 gaussian splatting 的動態重建，把影片中的運動結構顯式建模，目標是提升 4d 場景的可解釋性與可控性。 4d research ★★★★★ 腐朽沼澤教堂：zbrush→designer/painter→speedtree→ue 的分層環境製作 nicolas pablos 拆解 cult of the tsar fish 場景，從雕刻、材質到分層沼澤植被與 unreal 組裝，提供完整環境 production case。 environment ★★★★★ avatar sdk move：文字直接生成可匯出 fbx／glb 的角色動作 avatar sdk move 開放 beta，可由自然語言生成走路、跑步、手勢與舞蹈等角色動畫，並直接套用至 metaperson 後輸出標準 3d 格式。 ai motion ★★★★★ dlss 4.5 ray reconstruction：第二代 transformer 強化時序穩定並開放更細 temporal control nvidia gamescom 2026 更新 ray reconstruction，新模型增加計算與參數量、擴大資料集，並提供開發者更細的 temporal accumulation… rendering ★★★★★ adobe firefly production：節點式生成工作流可批次串接輸入、生成、編輯與輸出 firefly 的 production workflow builder 以節點連接文字、影像、影片、生成與轉換步驟，目標是把重複生成任務做成可重用批次流程。 ai workflow ★★★★★ clock saint：以四區塊雕刻與 roughness 階層管理複雜暗黑角色 kang jeong 將角色分為上身、下身、頭與手臂四大區塊，在 zbrush 完成主要設計，再以金、石、青銅與黑鐵建立材質階層。 character ★★★★☆ nymera：為 rig 提前規劃 retopo，並以程序 mari 材質支撐多人並行修改 ronja stucken 的 alien shaman 專案在 zbrush 建模後，以 rigging 為前提於 maya 重拓樸，服裝利用 marvelous 2d patter… character pipeline ★★★★★ ue5.8 mesh terrain：真 3d 地形 + non-destructive modifiers + world partition mesh terrain 以 3d mesh 取代傳統純 heightfield 限制，可建立懸崖、洞穴與 overhang，並以 modifiers、weight channels … ue5 worldbuilding ★★★★★ firefly scene to image：用簡單 3d 場景鎖定構圖、鏡頭與深度再生成影像 adobe firefly 可用 project neo 形狀建立 3d 場景，將相機角度、構圖與深度作為生成影像的結構參考。 concept control ★★★★☆ 4dgs-wam：以 4d gaussian splatting 建立 object-centric world action model 4dgs-wam 將動態 gaussian 表示與 action-conditioned world model 結合，探索可被行為驅動、以物件為中心的 4d 場景預測。 world model ★★★★★ nvidia gtc 案例：生成式 3d 從外觀走向關節、分件與物理屬性 nvidia gtc 2026 技術場次展示將影像或文字轉成具語意關節、part-aware mesh 與物理屬性的可驅動 3d 資產方法。 ai 3d research ★★★★☆ mllmsplat：讓 2d mllm 同時理解、生成與編輯 3d gaussian 場景 cvpr 2026 的 mllmsplat 透過 3dgs tokenizer/de-tokenizer 把 gaussian representation 接入既有 2d multi… 3d ai research ★★★★☆ blender→ue5：用 vertex animation texture 傳遞非骨架動畫 一套 blender 到 unreal 的 vat workflow 將任意頂點動畫烘焙到 texture，再在 ue5 重建，適合模組變形或不適合 skeletal rig 的效果。 animation pipeline ★★★★☆ gaussianfluent：gaussian 場景加入 mixed-material 與 brittle fracture 模擬 cvpr 2026 的 gaussianfluent 生成物體內部 gaussians，並結合 damage-aware mpm，讓 gaussian representation 可… simulation research ★★★★☆ houdini kinefx：mocap retarget、motion editing 與 combo 拆段後再送 ue5 實務案例把 capture take 送入 houdini kinefx 完成 retarget、速度調整、combo 分段與技術邏輯，再輸出 unreal，臉部 capture 則分… combat animation ★★★★☆ 肩披服裝 rig：以精細 weight paint 解決跨肩褶邊與配件自然變形 aldothevamp 展示 vrchat 角色肩部褶邊與服裝的權重配置，提供可直接觀察的 deformation/weight paint 參考。 rigging ★★★★☆ nvidia streamline：以單一 plugin framework 統一接入多種 upscaling／graphics effects streamline 讓引擎一次標記 motion vectors、depth 等資源，再由 plugin 接入不同超解析與圖形技術，降低每套 sdk 各自維護的整合成本。 engine integration ★★★★☆ avatarpointillist：單張 portrait 生成可動畫的 4d gaussian avatar cvpr 2026 的 avatarpointillist 以 autoregressive point generation 建立 3d gaussians，同時預測 binding… avatar research ★★★★☆ edgy：blender／cinema 4d 以 non-destructive mesh damage 直接改變輪廓 edgy 會在封閉 mesh 的邊緣與表面切出實際破損，原始物件保留不變，破損在任何鏡頭距離與 renderer 都能影響 silhouette。 modeling tool ★★★★☆ maya 2027.1：smart bevel 強化、lookdevx texture projection 與 usd variant edit maya 2027.1 更新 smart bevel、sequencer、motionmaker，lookdevx 2.1 增加免 uv texture projection，usd … maya pipeline ★★★★☆" href="../2026-09-04/">
+          <strong>
+           2026-09-04
+          </strong>
+          <span>
+           歷史日報
+          </span>
+         </a>
+         <a class="history-entry" data-history-categories="3d-animation 3d-production ai-generation blender-dcc emerging-case engine-art" data-history-date="2026-09-03" data-history-search="2026-09-03 歷史日報 meshy 7：multi-image to 3d api 新增 ultra mode meshy 將 ultra 高細節幾何生成擴展到多視圖輸入，api 可直接以 1–4 張參考圖生成更高保真模型。 ai 3d ★★★★★ reallusion ai studio 1.1：獨立 app + 3d guided ai workflow ai studio 從 iclone／character creator 內嵌工具拆成獨立應用，並加入 seedance 2.5、4k 輸出與升級 ai actor creator。 ai workflow ★★★★★ iclone 8.75：ai studio 改為獨立執行並保留直接送出流程 iclone 8.75 把 ai studio 從內嵌程序移出，降低主程式負載，同時保留 render 選單直接擷取影像／影片送入 ai studio。 animation ★★★★☆ onimusha：四名演員協作完成多臂怪物 motion capture capcom 為多對手臂的怪物同時拍攝四名演員，將真人動作拆成多組肢體來源，再組合成非人型角色動畫。 mocap ★★★★★ vizibeat：ue5 以音樂節拍程序化驅動 camera／light／material／particle vizibeat 將音訊節拍映射到 ue5 場景參數，讓鏡頭、燈光、材質與粒子可依不同節奏程序化動畫，減少逐拍 keyframe。 ue5 tools ★★★★☆ blighted harbour：blender→zbrush→substance→ue 的環境製作 case helena hansen 分享以 blender、zbrush、substance、speedtree、houdini 與 unreal engine 完成幻想港口場景的資產與組裝流程。 environment ★★★★☆ unity urp：screen space reflections 預覽進入 6.7 alpha unity 正在 urp 導入 screen space reflections，以螢幕空間 ray marching 取樣 camera color/depth，並在資訊不足時回退 reflection probe 或 skybox。 unity rendering ★★★★☆ 3dgs：弱紋理／高反光物體的高保真重建實驗 scientific reports 9 月 2 日研究以改良影像配準加 3d gaussian splatting，改善弱紋理、高反光柳橙表面的重建與 novel-view 品質。 3dgs ★★★★☆ character creator 5.13：ai studio 解耦與角色工作流修正 cc 5.13 將 ai studio 改為獨立應用並保留 render 入口，同時修正 hide mesh、zbrush face tools jaw deformation 等角色製作問題。 character dcc ★★★★☆ blender gsoc：materialx 原生 shader authoring 與 cycles osl 執行 blender 的 gsoc materialx 專案正在把 materialx nodedef 做成原生 shadernodematerialx，支援圖形 authoring、import/export 與 cycles osl 執行原型。 blender shader ★★★★☆ silo 2026.2：fbx／usd／glb 匯入匯出與數值欄位工作流升級 silo 2026.2 加入數值欄位數學運算，並改善 fbx pbr 材質、usd smoothing groups 與 glb embedded textures 的 i/o。 dcc workflow ★★★★☆ freepencil2：blender 一鍵把 3d 模型轉成可調整 line art freepencil2 以自動 vertex-color 分區加 compositor edge detection 產生線稿，並自動處理分割角度、鄰接區域著色、微小區域合併與 rig 分區。 blender npr ★★★★☆ woodland pizzeria：把 2d 手繪感轉成 unreal 3d 環境 shuming zhang 從 2d illustration 出發，使用 maya、zbrush、speedtree、substance 與 unreal，並以季節、時間與程序化流程測試手繪視覺的一致性。 stylized environment ★★★★☆" href="../2026-09-03/">
+          <strong>
+           2026-09-03
+          </strong>
+          <span>
+           歷史日報
+          </span>
+         </a>
+         <a class="history-entry" data-history-categories="3d-animation 3d-production ai-generation blender-dcc emerging-case engine-art" data-history-date="2026-09-02" data-history-search="2026-09-02 歷史日報 tripo p2.0：原生 quad topology 生成 p2.0 把 ai 3d 的重點從「看起來像」推向可編輯拓樸，直接瞄準 production asset cleanup。 ai 3d ★★★★★ unity 6.6 compute light baker 新 light baker 以 compute shader + unified ray tracing 產生 lightmap、probe 與 apv 資料。 unity ★★★★★ world from motion：單目影片生成可自由視角 dynamic 3dgs nvidia/stanford 等研究用 video prior 修正 monocular reconstruction，再蒸餾回一致 dynamic gaussian scene。 4d ★★★★★ cascadeur 2026.1：ue livelink + ai root motion ai-assisted keyframe 工具加入 ue livelink、root motion style transfer 與 collision cleanup。 animation ★★★★★ uv flex：互動式 uv island split / merge / reshape 把 uv island 的拆分、合併、變形與 spline 操作做成 viewport-driven 工具。 uv ★★★★☆ ue5.8 megalights：production ready megalights 在 5.8 進入 production-ready，加入 translucency、volumetric、debug views 與 60fps 導向優化。 rendering ★★★★★ photoshop：firefly image 5 + ai assisted editor adobe 把自然語言編修、遮罩指令與新生成模型直接放進日常 texture/concept 編修環境。 ai 2d ★★★★☆ maya 2027：smart bevel、ngskintools、motionmaker maya 2027 同時更新 modeling、skinning、bifrost 與 ai animation，對角色 pipeline 影響廣。 maya ★★★★★ blender 5.2 remote asset libraries blender 資產庫開始支援 remote hosting，讓團隊 asset distribution 從共享磁碟走向可控遠端來源。 blender ★★★★★ procedural stone passage：houdini hda × ue5 即時材質 以自訂 hda 驅動石材生成、損壞、polycount 與散佈，再把 designer maps 重建成 ue5 procedural smart material。 procedural ★★★★☆ hyper3d worldgen：單張場景圖拆成獨立 3d 資產 worldgen 從單一物件生成走向整個場景的物件分解、3d 化與空間關係重建。 ai 3d ★★★★★ zen bbq 2.0：程序 bevel 直接烘焙 production maps 新的 map baking 可把 procedural bevel 轉成 normal/ao/curvature/id 等貼圖。 bake ★★★★☆ iron mitchell：格鬥角色 sculpt / texture / ue pipeline 以 mike tyson 等真實參考塑造 fighter anatomy，再將 zbrush、maya、painter、marmoset 與 unreal 串成角色製作流程。 character ★★★★☆ gaussiandwm++：language-grounded 3d gaussian world model 把語言理解、3d gaussian semantic field、場景編輯與 4d generation 統一到 driving world model。 world model ★★★★☆ houdini 22：3dgs、copernicus、kinefx 與 usd 新方向 sneak peek 顯示 native gaussian、retopo、terrain、kinefx、crowd 與 sop-based usd authoring 同步擴張。 houdini ★★★★☆ meshy 3d agent：多步驟對話式 3d 製作 把 brainstorm、reference 累積、系列資產與最終 3d 生成放在同一個有上下文的 agent workflow。 ai 3d ★★★★☆ autodesk flow studio：ai rigging + neural layer ai rigging、neural layer 與生成式 3d 能力開始被放進 autodesk 的 vfx/animation pipeline。 ai motion ★★★★☆ livingworld：單張圖生成可擴張動態 4d 世界 用全域 motion field 維持雲、水、煙等環境動態，在場景擴張時保持方向與尺度一致。 world model ★★★★★ metahuman：單鏡頭 markerless performance capture ue5.8 的 mono video capture 把普通影片直接導入 metahuman animation solve。 mocap ★★★★☆ seed3d 2.0：pbr、部件分解與可動結構生成 研究把單張圖生成從靜態外觀推向 pbr、part decomposition 與 articulation。 ai 3d ★★★★☆ ue5 substrate crystal：多層可參數化寶石材質 以 substrate、pom/bump offset、internal glow 與 iridescence 建立單一 master material，生成多種晶體外觀。 shader ★★★★☆ rbf muscle rig：全骨骼肌肉變形 約每側 15 bones 配合 rbf 做 torso/arm muscle deformation，不依賴 blendshape。 rigging ★★★★☆ hyper3d rodin gen-2.5：高面數 image-to-3d rodin 強化高面數、lod 與多格式輸出，定位更接近可作為 high-poly 起點的生成器。 ai 3d ★★★★☆ ue5.8 lumen lite / medium quality 5.8 新增約 2× 較快的 lumen medium-quality 路徑，目標低階 pc/handheld 與 60fps art direction。 optimization ★★★★☆ cyanpuppets：影片/相機到全身動作資料 以 camera 或 video 做 markerless mocap，宣稱涵蓋 body、face、finger 並接 blender/unreal。 mocap ★★★★☆ edge decal generator 1.2：非破壞式邊緣細節 用沿邊 decal 取代部分高模雕刻，並可一鍵輸出到 unreal 或合併 fbx。 modeling ★★★★☆ blender 5.2 geometry nodes：bundles、lists、sound geometry nodes 的資料結構與跨物件傳遞能力擴張，讓大型 procedural system 更容易模組化。 blender ★★★★☆ interpblendshape：高階 maya facial deformer 支援 surface uv interpolation、in-between、bezier blending 與 gpu 加速，針對 facial rig / graphic deformation。 facial ★★★★☆ meshy workspace 3.0：任務導向生成工作區 image、3d model、3d printing、animate 等任務被整合到同一資產工作區。 ai 3d ★★★★☆ quad maker：place ring 管狀 retopology 以少量 path 點建立可調整 quad sleeve，針對手臂、腿、手指、頸部等 tubular forms。 retopo ★★★★☆ 4c4d：四台相機完成 4d gaussian splatting 把過去數十到上百相機的 4d capture 需求壓到四台 portable cameras。 4d capture ★★★★☆ almalexia cinematic character：udim、micropoly 與 arnold lookdev 從 blender 轉 maya/xgen/arnold 的角色案例，展示 cinematic asset 對 topology、udim 與 layered materials 的取捨。 character ★★★★☆ kawaii physics 1.21：ue5.8、fixed substepping、shared collision ue secondary-motion plugin 更新 5.8 相容性、裙擺/腳穿透改善、低 fps 穩定性與 collision data 共用。 tools ★★★★☆ reallusion ai studio：3d guided ai 工作流 以 3d 角色、鏡頭與 previz 作為 ai 影片/角色生成的控制層，強調可導向而非純 prompt。 ai 2d ★★★★☆ shapes + weight driver：可預測的 shape-shifting rig 以 bone orientation 驅動 blendshape，透過 smooth interpolation 取代大量手工 corrective key。 facial ★★★★☆ st-gen4d：把時空認知嵌入 4d world model 以 global appearance graph + local dynamic graph 建立 4d cognition，再引導 gaussian generation。 research ★★★★☆ comfyui × kling 3.0 motion control 參考角色圖綁定動作影片，讓 motion transfer 進入可節點化、自動化的 comfyui workflow。 ai motion ★★★★☆ mablelink：maya 場景一鍵同步 blender / unreal 保留 rig、animation、blendshape、camera、light、hierarchy 與 pbr materials，並支援 live re-sync 與可攜 .mable package。 maya ★★★★☆ ue5 substrate 生物材質：headcrab 62 頁案例 以完整角色/生物 case study 驗證 substrate 在皮膚、濕潤與多層材質上的 lookdev 方法。 material ★★★★☆ dark fantasy real-time character：高低模到 ue 的完整管線 案例把 zbrush/maya、metahuman topology、marmoset bake 與 painter pbr 串成可驗證的 game-character workflow。 character ★★★★☆ face anything：任意序列的 4d face reconstruction 以 canonical facial coordinates + depth 做 temporally stable face geometry 與 dense tracking。 4d face ★★★★☆ focalrig × gasp：procedural true first person 用自配置 control rig nodes 保留 motion matching、foot placement、vaulting 等同時加入第一人稱視角。 animation ★★★★☆ gradient texturing：低記憶體 stylized 材質標準化 以小型 gradient palette 取代大量 unique 高解析貼圖，將 stylized shading 資訊編碼進 uv。 texture ★★★★☆ motionscale：可擴展長序列 4d gaussian reconstruction 以 cluster-centric motion basis 與 progressive propagation 處理大場景、長序列與 transient shadow。 4d ★★★★☆ matcha for maya：camera match + projection painting 把 reference camera 管理、投影貼圖、layer 與 psd 匯出整合成 maya 內的 photo-based workflow。 texture ★★★★☆ maya ragdoll layer：肌肉與脂肪 jiggle 用分組 controller、stiffness、frequency/amplitude 與 record to layer 疊加 secondary motion。 cleanup ★★★★☆ gracia：4dgs 像影片一樣瀏覽器串流 4d gaussian performance capture 可在 browser/headset/phone 串流，直接碰到 bandwidth 與 delivery 問題。 4d streaming ★★★★☆ ue5 foliage tools：互動式植被模擬 beta 更新強化 gamethread、physics、packed level actor 與 niagara interaction，瞄準高密度植被。 optimization ★★★★☆ weight paint box：多物件 weight painting 與 rigify 改善 以 deformation box 取代傳統 brush 的部分權重工作，更新支援多物件、overlay 與更一致的 box 行為。 addon ★★★★☆ stylized electric guitar：blender prop 全流程 以卡通吉他為例，把 modeling、texturing、outline 與特殊材質整合成 stylized prop pipeline。 prop ★★★★☆ arnold 7.5.1：更新 dcc integrations 與 cloud rendering arnold 7.5.1 同步更新 maya/max/houdini/c4d/katana integrations，影響 studio render farm 與 dcc version matrix。 render ★★★★☆ godot 4.7.2：穩定版維護更新 4.7 第二個 maintenance release，適合已在 4.7 production 的專案評估安全升級。 godot ★★★☆☆ leon's modeling toolkit：max/maya/hammer 操作習慣進 blender 集合 world-aligned texturing、clip、mirror、maya-style merge、cable 等模型師高頻工具。 blender ★★★★☆ apple sharp × particle generator：單圖轉 metric 3dgs 把單張影像回歸成 metric gaussian representation，再用粒子方式 art-direct 其視覺。 3dgs ★★★☆☆ blender 5.3：principled bsdf dispersion cycles principled bsdf 加入 dispersion，玻璃、寶石與高色散材質可用更標準化方式製作。 blender ★★★☆☆ ue5.7 pixelated water：baked-light stylized shader 以少量 scrolling textures、refraction、absorption 與 caustics 做 retro water，而非高成本物理模擬。 shader ★★★☆☆ stylized facial rig transfer：基底 shape/skin 再角色化 學生短片案例將一套 facial blendshape/skinning 轉移到另一角色，再針對五官比例重修。 facial ★★★☆☆ inversphere：把 360° 3dgs 世界折進球體 以空間 warping 呈現完整 3d gaussian environment，探索 splat content 的新展示與導航方式。 3dgs ★★★☆☆ riverskin：maya scaled-armor aerial animation 完整 maya modeling/rigging/animation 的角色短片案例，展示複雜服裝與優雅 body motion 的協同。 animation ★★★☆☆ flame 2027.1：isolate、glsl pixel expression、prores raw ml-assisted matte、直接 glsl pixel node 與 prores raw import 強化 finishing pipeline。 dcc ★★★☆☆" href="../2026-09-02/">
+          <strong>
+           2026-09-02
+          </strong>
+          <span>
+           歷史日報
+          </span>
+         </a>
+         <a class="history-entry" data-history-categories="" data-history-date="2026-09-01" data-history-search="2026-09-01 歷史日報                                 " href="../2026-09-01/">
+          <strong>
+           2026-09-01
+          </strong>
+          <span>
+           歷史日報
+          </span>
+         </a>
+        </div>
+       </details>
+       <details class="archive-month" data-archive-month="2026-08">
+        <summary>
+         8 月
+        </summary>
+        <div class="archive-entries">
+         <a class="history-entry" data-history-categories="" data-history-date="2026-08-31" data-history-search="2026-08-31 歷史日報                                 " href="../2026-08-31/">
+          <strong>
+           2026-08-31
+          </strong>
+          <span>
+           歷史日報
+          </span>
+         </a>
+         <a class="history-entry" data-history-categories="" data-history-date="2026-08-30" data-history-search="2026-08-30 歷史日報                                 " href="../2026-08-30/">
+          <strong>
+           2026-08-30
+          </strong>
+          <span>
+           歷史日報
+          </span>
+         </a>
+         <a class="history-entry" data-history-categories="" data-history-date="2026-08-29" data-history-search="2026-08-29 歷史日報                                    " href="../2026-08-29/">
+          <strong>
+           2026-08-29
+          </strong>
+          <span>
+           歷史日報
+          </span>
+         </a>
+         <a class="history-entry" data-history-categories="" data-history-date="2026-08-28" data-history-search="2026-08-28 歷史日報                                 " href="../2026-08-28/">
+          <strong>
+           2026-08-28
+          </strong>
+          <span>
+           歷史日報
+          </span>
+         </a>
+         <a class="history-entry" data-history-categories="" data-history-date="2026-08-27" data-history-search="2026-08-27 歷史日報                                 " href="../2026-08-27/">
+          <strong>
+           2026-08-27
+          </strong>
+          <span>
+           歷史日報
+          </span>
+         </a>
+         <a class="history-entry" data-history-categories="" data-history-date="2026-08-26" data-history-search="2026-08-26 歷史日報                                 " href="../2026-08-26/">
+          <strong>
+           2026-08-26
+          </strong>
+          <span>
+           歷史日報
+          </span>
+         </a>
+         <a class="history-entry" data-history-categories="" data-history-date="2026-08-25" data-history-search="2026-08-25 歷史日報                                 " href="../2026-08-25/">
+          <strong>
+           2026-08-25
+          </strong>
+          <span>
+           歷史日報
+          </span>
+         </a>
+         <a class="history-entry" data-history-categories="" data-history-date="2026-08-24" data-history-search="2026-08-24 歷史日報                                 " href="../2026-08-24/">
+          <strong>
+           2026-08-24
+          </strong>
+          <span>
+           歷史日報
+          </span>
+         </a>
+         <a class="history-entry" data-history-categories="" data-history-date="2026-08-23" data-history-search="2026-08-23 歷史日報                                 " href="../2026-08-23/">
+          <strong>
+           2026-08-23
+          </strong>
+          <span>
+           歷史日報
+          </span>
+         </a>
+         <a class="history-entry" data-history-categories="" data-history-date="2026-08-22" data-history-search="2026-08-22 歷史日報               " href="../2026-08-22/">
+          <strong>
+           2026-08-22
+          </strong>
+          <span>
+           歷史日報
+          </span>
+         </a>
+         <a class="history-entry" data-history-categories="" data-history-date="2026-08-21" data-history-search="2026-08-21 歷史日報               " href="../2026-08-21/">
+          <strong>
+           2026-08-21
+          </strong>
+          <span>
+           歷史日報
+          </span>
+         </a>
+        </div>
+       </details>
+      </div>
+     </details>
+     <p class="history-empty" hidden="">
+      找不到符合條件的歷史情報。
+     </p>
+    </div>
+   </section>
   </main>
-  <script src="../history.js"></script>
-  <script type="module" src="../preference.js"></script>
-</body>
+  <script src="../history.js?v=20260915-r1-workspace-v8-history">
+  </script>
+  <script src="../preference.js?v=20260915-r1-workspace-v8-history" type="module">
+  </script>
+ </body>
 </html>
+
