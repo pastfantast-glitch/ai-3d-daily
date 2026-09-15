@@ -103,10 +103,20 @@ def main():
                 'saved page missing saved.js module', errors)
         body_text = saved_soup.get_text(' ', strip=True)
         require('不影響偏好權重' in body_text, 'saved page must disclose zero-weight bookmark behavior', errors)
+        require('feedback-v2' in saved_html_path.read_text('utf-8'),
+                'saved page must cache-bust the article-visual bookmark runtime', errors)
     if saved_js_path.exists():
         saved_js = saved_js_path.read_text('utf-8')
-        for marker in ('ai3dBookmarkList', 'ai3dBookmarkRemove', 'ai3d:bookmark-change'):
-            require(marker in saved_js, f'saved.js missing bookmark API marker: {marker}', errors)
+        for marker in (
+            'ai3dBookmarkList', 'ai3dBookmarkRemove', 'ai3d:bookmark-change',
+            'resolveBookmarkImage', 'imageFromReportPage', 'figure.case-preview img[src]',
+            'saved-card-media', 'candidateReportPages'
+        ):
+            require(marker in saved_js, f'saved.js missing bookmark API/visual marker: {marker}', errors)
+    if saved_css_path.exists():
+        saved_css = saved_css_path.read_text('utf-8')
+        for marker in ('.saved-card-media', '.saved-card.has-image', 'object-fit:cover'):
+            require(marker in saved_css, f'saved.css missing article-visual marker: {marker}', errors)
 
     date = latest_surface_date()
     cfg_path = ROOT / 'config' / 'intelligence-v2.json'
@@ -141,7 +151,7 @@ def main():
 
     if errors:
         raise SystemExit('PREFERENCE CONTRACT FAIL:\n- ' + '\n- '.join(errors))
-    print(f'PREFERENCE CONTRACT PASS: like/dislike learning + zero-weight star bookmarks + stable-ID sync / rendered={date} / {len(categories)} categories')
+    print(f'PREFERENCE CONTRACT PASS: like/dislike learning + zero-weight star bookmarks + saved article visuals + stable-ID sync / rendered={date} / {len(categories)} categories')
 
 
 if __name__ == '__main__':
