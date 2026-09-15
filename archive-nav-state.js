@@ -52,7 +52,7 @@
       const shellUrl=new URL(self,location.href);
       const token=shellUrl.searchParams.get('v')||workspaceDate().replaceAll('-','')||'current';
       const moduleUrl=new URL('canonical-client.js',self);
-      moduleUrl.searchParams.set('v',token);
+      moduleUrl.searchParams.set('v',`${token}-analysis-heading-v2`);
       const mod=await import(moduleUrl.href);
       await mod.hydrateCanonicalAnalysis();
     }catch(err){console.warn('Canonical intelligence renderer unavailable',err);}
@@ -73,9 +73,6 @@
       if(value===undefined)delete document.body.dataset[key];
       else document.body.dataset[key]=value;
     });
-    // Historical category pages from earlier releases may not carry neighbor
-    // metadata. Preserve the shell's known date neighbors instead of dropping
-    // the controls when only the content view changes.
     ['previous','next'].forEach(key=>{
       const value=nextBody.dataset[key];
       if(value!==undefined)document.body.dataset[key]=value;
@@ -127,9 +124,6 @@
       if(next.hasAttribute('href'))tab.setAttribute('href',next.getAttribute('href'));
     });
 
-    // The archive shell owns its home/date controls. Content pages may be from
-    // older releases that lack those nodes, so never derive shell existence
-    // from the fetched page.
     syncControlContext();
 
     const inner=nav.querySelector('.global-category-nav-inner');
