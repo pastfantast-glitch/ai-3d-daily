@@ -1,4 +1,17 @@
 document.addEventListener('DOMContentLoaded',()=>{
+  // History is a portal, not a dated archive workspace. Its global TOP5/category
+  // tabs always return to today's current workspace. A dated archive mode starts
+  // only after the user explicitly selects a date from the History list.
+  const nav=document.querySelector('nav.global-category-nav');
+  if(nav){
+    nav.querySelectorAll('a.global-category-link[data-category]').forEach(link=>{
+      const category=link.dataset.category||'';
+      if(category)link.setAttribute('href',`../?view=${encodeURIComponent(category)}`);
+    });
+    const top=nav.querySelector('a.global-category-link:not([data-category]):not(.global-history-link)');
+    if(top)top.setAttribute('href','../#today');
+  }
+
   const archive=document.querySelector('.history-list');
   const historySearch=document.querySelector('.history-search');
   if(!archive||!historySearch)return;
