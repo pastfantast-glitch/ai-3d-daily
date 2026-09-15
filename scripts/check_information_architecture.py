@@ -34,29 +34,34 @@ def source_css_contract():
             if token in page_css:
                 fail(f'{filename}: shared component selector must not be duplicated locally: {token}')
 
-def nav_contract(soup, date, cfg, active, category_page=False):
+def nav_contract(soup, date, cfg, active, context='home'):
     navs = soup.select('nav.global-category-nav')
     if len(navs) != 1:
         fail(f'{active}: expected exactly one global category nav, got {len(navs)}'); return
     nav = navs[0]
     links = nav.select('a.global-category-link[href]')
-    if len(links) != len(cfg['categories']) + 1:
-        fail(f'{active}: global nav must contain TOP5 + {len(cfg["categories"])} categories')
+    if len(links) != len(cfg['categories']) + 2:
+        fail(f'{active}: global nav must contain TOP5 + {len(cfg["categories"])} categories + History')
         return
-    expected_labels = ['TOP5'] + [c['label'] for c in cfg['categories']]
+    expected_labels = ['TOP5'] + [c['label'] for c in cfg['categories']] + ['歷史日報']
     if [x.get_text(' ', strip=True) for x in links] != expected_labels:
         fail(f'{active}: global nav labels/order drift')
 
-    expected_hrefs = (
-        ['../#top'] + [f'../{c["id"]}/' for c in cfg['categories']]
-        if category_page
-        else ['#today'] + [f'{date}/{c["id"]}/' for c in cfg['categories']]
-    )
+    if context == 'category':
+        expected_hrefs = ['../#top'] + [f'../{c["id"]}/' for c in cfg['categories']] + ['../../history/']
+    elif context == 'history':
+        expected_hrefs = ['../#today'] + [f'../{date}/{c["id"]}/' for c in cfg['categories']] + ['./']
+    else:
+        expected_hrefs = ['#today'] + [f'{date}/{c["id"]}/' for c in cfg['categories']] + ['history/']
     actual_hrefs = [x.get('href') for x in links]
     if actual_hrefs != expected_hrefs:
         fail(f'{active}: global nav href/order drift: {actual_hrefs}')
 
-    if category_page:
+    history = nav.select_one('a.global-history-link[data-global-view="history"]')
+    if not history or history.get_text(' ',strip=True) != '歷史日報':
+        fail(f'{active}: standalone History navigation identity missing')
+
+    if context == 'category':
         controls = nav.select_one('.archive-nav-controls')
         divider = nav.select_one('.archive-nav-divider')
         if not controls or not divider:
@@ -76,7 +81,9 @@ def nav_contract(soup, date, cfg, active, category_page=False):
     if len(active_links) != 1:
         fail(f'{active}: global nav must have exactly one active link')
     else:
-        expected_active = 'TOP5' if active == 'top5' else next(c['label'] for c in cfg['categories'] if c['id'] == active)
+        if active == 'top5': expected_active = 'TOP5'
+        elif active == 'history': expected_active = '歷史日報'
+        else: expected_active = next(c['label'] for c in cfg['categories'] if c['id'] == active)
         if active_links[0].get_text(' ', strip=True) != expected_active:
             fail(f'{active}: wrong active global nav item')
 
@@ -94,12 +101,14 @@ def main():
     shared_component_contract(home, 'homepage')
     if home.select('.week-counts, .week-summary, .week-topic'):
         fail('homepage V2 must not contain weekly overview UI')
+    if home.select('.history-section,.history-list,.history-controls,.current-report-entry'):
+        fail('homepage must not embed History/archive UI')
     sections = home.select('main.home-main > section.home-section')
     roles = []
     for section in sections:
         classes = set(section.get('class') or [])
-        roles.append(next((x for x in ('today-section','more-section','category-section','history-section') if x in classes), '?'))
-    if roles != ['today-section','more-section','category-section','history-section']:
+        roles.append(next((x for x in ('today-section','more-section','category-section') if x in classes), '?'))
+    if roles != ['today-section','more-section','category-section']:
         fail(f'V2 homepage section order drift: {roles}')
     home_top = [x.get('data-intel-id') for x in home.select('#today .top-item[data-intel-role="card"]')]
     home_next = [x.get('data-intel-id') for x in home.select('#more .more-card[data-intel-role="card"]')]
@@ -108,7 +117,18 @@ def main():
     links = {a.get('href') for a in home.select('.category-nav-grid .category-nav-card[href]')}
     expected_links = {f'{date}/{c["id"]}/' for c in cfg['categories']}
     if links != expected_links: fail(f'category navigation mismatch: {links} != {expected_links}')
-    nav_contract(home, date, cfg, 'top5', category_page=False)
+    nav_contract(home, date, cfg, 'top5', context='home')
+
+    history_path = ROOT / 'history' / 'index.html'
+    if not history_path.exists():
+        fail('standalone History portal missing: history/index.html')
+    else:
+        history = BeautifulSoup(history_path.read_text('utf-8'),'html.parser')
+        shared_component_contract(history,'history')
+        if not history.body or 'history-page' not in (history.body.get('class') or []): fail('History portal body identity mismatch')
+        if len(history.select('section.history-section#history')) != 1: fail('History portal must contain exactly one history section')
+        nav_contract(history,date,cfg,'history',context='history')
+
     pool_max = int(cfg['category_pool_max_items'])
     target_mode = target_fill_applies(data, cfg)
     for category in cfg['categories']:
@@ -121,7 +141,7 @@ def main():
             fail(f'{category["id"]}: body category identity mismatch')
         if soup.select_one('header.category-hero'):
             fail(f'{category["id"]}: category hero/title must not render above historical tabs')
-        nav_contract(soup, date, cfg, category['id'], category_page=True)
+        nav_contract(soup, date, cfg, category['id'], context='category')
         cards = soup.select('.category-card[data-intel-role="card"][data-intel-id]')
         expected = [x['id'] for x in category_items(data, category['id'])]
         actual = [x.get('data-intel-id') for x in cards]
@@ -152,6 +172,6 @@ def main():
         sys.exit(1)
     counts = ', '.join(f'{c["id"]}={len(category_items(data, c["id"]))}' for c in cfg['categories'])
     col=cfg.get('collection') or {}; mode = f'daily {col.get("daily_min_items")}-{col.get("daily_max_items")} target {col.get("daily_target_items")}' if target_mode else 'legacy variable-pool compatibility'
-    print(f'V2 INFORMATION ARCHITECTURE PASS: {mode} + available TOP5/next10 + shared components + no-hero historical category pages + direct-link-safe navigation / {counts}')
+    print(f'V2 INFORMATION ARCHITECTURE PASS: {mode} + Today-first homepage + standalone History portal + shared nav + available TOP5/next10 + no-hero category pages / {counts}')
 
 if __name__ == '__main__': main()
