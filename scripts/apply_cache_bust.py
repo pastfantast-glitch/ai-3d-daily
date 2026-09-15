@@ -8,7 +8,7 @@ import sys
 
 ROOT=Path(__file__).resolve().parents[1]
 QUICK_IMPACT_CONFIG=ROOT/'config'/'quick-impact-contract.json'
-WORKSPACE_REV='workspace-v9-current-workspace'
+WORKSPACE_REV='workspace-v10-history-current-workspace'
 STAR_RE=re.compile(r'[★☆]{1,5}')
 QUICK_IMPACT_SPAN_RE=re.compile(
     r'<div\b[^>]*class="[^"]*\bquick-impact\b[^"]*"[^>]*>\s*<span\b[^>]*>(.*?)</span>',
