@@ -30,14 +30,26 @@ function reportDate(){
 }
 
 function canonicalCards(){
-  return [...document.querySelectorAll('.top-item,.more-card,#top .news,.category-news')];
+  return [...document.querySelectorAll('.top-item,.more-card,#top .news,.category-news,.category-card')];
 }
 
 function renderAnalysis(card,record){
-  const body=card.querySelector('details .detail-body');
-  if(!record||!body)return;
+  const details=card.querySelector('details');
+  const body=details?.querySelector('.detail-body');
+  if(!record||!details||!body)return;
+  const level=String(record.analysis_level||'FULL').toUpperCase();
+  details.dataset.analysisLevel=level;
+  const summary=details.querySelector('summary');
+  if(summary)summary.textContent='完整分析';
   body.replaceChildren();
-  record.full_analysis.forEach(block=>{
+  body.classList.toggle('brief-analysis-body',level==='BRIEF');
+  if(level==='BRIEF'){
+    const note=document.createElement('p');
+    note.className='analysis-level-note';
+    note.textContent='BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。';
+    body.append(note);
+  }
+  (record.full_analysis||[]).forEach(block=>{
     const h=document.createElement('h4');
     h.textContent=block.label;
     const p=document.createElement('p');
