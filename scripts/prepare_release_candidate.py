@@ -110,6 +110,7 @@ def main() -> None:
         run('check_pipeline_contract.py')
         run('check_collection_contract.py')
         run('check_discovery_hybrid_contract.py')
+        run('check_personalization_feedback_contract.py', date)
         run('check_stability_contract.py')
         run('check_quick_impact_contract.py', date)
 

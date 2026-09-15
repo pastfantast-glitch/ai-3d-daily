@@ -1,0 +1,80 @@
+{
+  "version": 1,
+  "effective_date": "2026-09-16",
+  "mode": "supabase-semantic-feedback-v1",
+  "purpose": "Use explicit thumbs-up/down feedback as a bounded semantic discovery and ranking signal without weakening admission, evidence, registry, diversity or source-neutrality rules.",
+  "source": {
+    "provider": "supabase",
+    "project_ref": "epumcdxfkcujulqrcjrw",
+    "table": "user_sync_state",
+    "state_path": "profile.votes",
+    "owner_resolution": "active app owner account",
+    "raw_profile_must_not_be_committed": true,
+    "browser_publishable_key_only": true,
+    "server_secret_in_repository": false
+  },
+  "signals": {
+    "like": 1.0,
+    "dislike": -1.5,
+    "bookmark": 0.0,
+    "bookmark_affects_preference": false
+  },
+  "decay": {
+    "days_0_7": 1.0,
+    "days_8_30": 0.7,
+    "days_31_90": 0.4,
+    "days_91_plus": 0.2
+  },
+  "caps": {
+    "category": 3.0,
+    "tool": 5.0,
+    "topic": 5.0,
+    "tag": 5.0
+  },
+  "semantic_dimensions": {
+    "allowed": ["category", "tool", "topic", "tag"],
+    "forbidden": ["domain", "source", "site", "publisher"],
+    "fit_weights": {
+      "category": 0.25,
+      "tool": 0.30,
+      "topic": 0.30,
+      "tag": 0.15
+    }
+  },
+  "ranking": {
+    "formula": "personalized_score = clamp(base_score * (1 + max_rank_multiplier * semantic_fit), 0, 100)",
+    "semantic_fit_range": [-1.0, 1.0],
+    "max_rank_multiplier": 0.20,
+    "baseline_quality_remains_primary": true,
+    "admission_bypass": false,
+    "evidence_depth_bypass": false,
+    "registry_bypass": false,
+    "quality_gate_bypass": false,
+    "source_bonus": false,
+    "source_quota": false
+  },
+  "discovery": {
+    "semantic_query_expansion": true,
+    "max_query_expansion_fraction": 0.20,
+    "max_positive_expansion_terms": 6,
+    "negative_feedback_may_downrank": true,
+    "negative_feedback_may_hard_exclude": false,
+    "base_discovery_must_always_run": true,
+    "site_specific_expansion": false
+  },
+  "availability": {
+    "empty_profile_behavior": "neutral",
+    "supabase_unavailable_behavior": "neutral-and-continue",
+    "supabase_unavailable_requires_reason": true,
+    "publication_must_not_fail_only_because_personalization_is_unavailable": true
+  },
+  "audit_metadata": {
+    "field": "personalization",
+    "allowed_statuses": ["applied", "empty", "unavailable"],
+    "require_vote_count": true,
+    "require_profile_fingerprint_when_available": true,
+    "require_raw_profile_committed_false": true,
+    "require_bookmarks_used_false": true,
+    "require_domain_weights_used_false": true
+  }
+}
