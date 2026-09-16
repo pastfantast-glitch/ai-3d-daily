@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   AI 生成｜2026-09-16｜AI 3D Daily
+  </title>
+  <link href="../../styles.css?v=20260916-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../../shared-components.css?v=20260916-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../../category.css?v=20260916-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+ </head>
+ <body class="category-page" data-category="ai-generation" data-report-date="2026-09-16">
+  <nav aria-label="Production Intelligence 分類" class="global-category-nav">
+   <div class="page global-category-nav-inner">
+    <div class="archive-nav-controls">
+     <a class="archive-nav-home" href="../../">
+      ← 首頁
+     </a>
+     <div class="archive-nav-date">
+      <a aria-label="前一日日報" class="archive-nav-arrow" href="../../2026-09-15/ai-generation/">
+       ←
+      </a>
+      <span>
+       2026-09-16
+      </span>
+     </div>
+    </div>
+    <span aria-hidden="true" class="archive-nav-divider">
+    </span>
+    <a class="global-category-link" href="../#top">
+     TOP5
+    </a>
+    <a class="global-category-link is-active" data-category="ai-generation" href="../ai-generation/">
+     AI 生成
+    </a>
+    <a class="global-category-link" data-category="3d-production" href="../3d-production/">
+     3D 製作
+    </a>
+    <a class="global-category-link" data-category="3d-animation" href="../3d-animation/">
+     3D 動作
+    </a>
+    <a class="global-category-link" data-category="engine-art" href="../engine-art/">
+     遊戲引擎
+    </a>
+    <a class="global-category-link" data-category="emerging-case" href="../emerging-case/">
+     新技術 / Case
+    </a>
+    <a class="global-category-link" data-category="blender-dcc" href="../blender-dcc/">
+     Blender / DCC
+    </a>
+    <a class="global-category-link global-history-link" data-global-view="history" href="../../history/">
+     歷史日報
+    </a>
+   </div>
+  </nav>
+  <main class="page category-main">
+   <article class="category-card" data-intel-id="meshy-3agamefactory-agent-pipeline" data-intel-role="card">
+    <div class="category-meta">
+     #02 · ai-3d
+    </div>
+    <h2>
+     3AGameFactory × Meshy：AI Agent 把 Image-to-3D／Text-to-3D 接進 Unity、UE5、Blender 與 three.js
+    </h2>
+    <p class="summary">
+     北京大學 OpenDCAI 的 3AGameFactory 以 AI coding agent 串接 Meshy 生成角色與道具 GLB，再送進多種引擎與 DCC；重點是可檢查、可重現的資產介面，而非單次生成展示。
+    </p>
+    <figure class="case-preview" data-intel-id="meshy-3agamefactory-agent-pipeline" data-intel-role="visual" data-visual-id="meshy-3agamefactory-agent-pipeline">
+     <a href="https://www.meshy.ai/blog/ai-agent-game-asset-pipeline" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-16/meshy-3agamefactory-agent-pipeline.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">AI 3D</b> ★★★★★</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-full" data-analysis-level="FULL">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body">
+      <h4>
+       生成流程
+      </h4>
+      <p>
+       3AGameFactory 把遊戲需求拆成影像、3D、動作、音訊與程式工作，再由 agent 呼叫對應能力；Meshy 在其中負責 image-to-3D / text-to-3D 的角色與關鍵道具，輸出 GLB 後進入 Unity、UE5、Blender 或 three.js 的後續處理與驗證。
+      </p>
+      <h4>
+       製作價值
+      </h4>
+      <p>
+       這個案例把 AI 3D 的評估焦點從『單一模型好不好看』移到座標、尺度、材質、檔案格式與引擎 QA 是否可攜。對自動化遊戲原型尤其有價值，因為生成失敗與資產修復必須變成可追蹤的 pipeline 狀態，而不是人工臨時補救。
+      </p>
+      <h4>
+       導入測試
+      </h4>
+      <p>
+       來源是 Meshy 的供應商案例，不能把『engine-ready』直接視為商用品質保證；團隊應用同一組角色／道具測試 GLB 分件、骨架需求、UV、材質一致性、碰撞與引擎匯入失敗率，並記錄人工修復時間，再判斷 agent pipeline 的真實節省幅度。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://www.meshy.ai/blog/ai-agent-game-asset-pipeline" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="photo-to-3d-portrait-comparison" data-intel-role="card">
+    <div class="category-meta">
+     #05 · ai-3d
+    </div>
+    <h2>
+     單張人像 Photo-to-3D 實測：Tripo、Meshy、Hunyuan3D 仍難直接保住可用的人臉 likeness
+    </h2>
+    <p class="summary">
+     Layer Journey 以同一張人像測試多個 image-to-3D 工具，結果顯示單張照片可快速建立體量，但臉部 likeness 與 production-ready 細節仍需要人工修正。
+    </p>
+    <figure class="case-preview" data-intel-id="photo-to-3d-portrait-comparison" data-intel-role="visual" data-visual-id="photo-to-3d-portrait-comparison">
+     <a href="https://layerjourney.com/articles/photo-to-3d-portrait-test" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-16/photo-to-3d-portrait-comparison.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">AI 3D</b> ★★★★☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       生成流程
+      </h4>
+      <p>
+       測試用同一張人像照片分別跑 Tripo、Meshy 與 Hunyuan3D，觀察單張 image-to-3D 在頭部比例、五官與整體體量上的結果；這類輸入缺少側面與後腦資訊，因此模型必須自行補全不可見區域。
+      </p>
+      <h4>
+       製作價值
+      </h4>
+      <p>
+       對角色前期 blocking 或快速建立可旋轉參考仍有價值，但若目標是辨識特定人物，單張輸入的 likeness 風險明顯高於一般道具生成。這使多視圖、臉部重建或後續雕刻仍是較可靠的角色 production 路徑。
+      </p>
+      <h4>
+       導入測試
+      </h4>
+      <p>
+       這是單一測試案例而非完整 benchmark，模型版本與設定也會快速改變。建議用正面單圖、正側雙視圖與四視圖三種條件重跑，量測五官偏差、耳朵／後腦補全、拓樸與貼圖返工量，再決定哪一段適合交給 AI。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://layerjourney.com/articles/photo-to-3d-portrait-test" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="meshy-api-sep14-chain-task" data-intel-role="card">
+    <div class="category-meta">
+     #07 · ai-2d
+    </div>
+    <h2>
+     Meshy API 9/15 更新：新增 GPT Image 2.5 兩個 tier，並補上 4:3／3:4 圖像比例
+    </h2>
+    <p class="summary">
+     Meshy API changelog 在 9/15 新增 gpt-image-2-5-flare / sunburst，Text-to-Image 與 Image-to-Image 同時支援 4:3、3:4；這是 9/14 input_task_id 後的新增 substantive delta。
+    </p>
+    <figure class="case-preview" data-intel-id="meshy-api-sep14-chain-task" data-intel-role="visual" data-visual-id="meshy-api-sep14-chain-task">
+     <a href="https://docs.meshy.ai/api/changelog" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-16/meshy-api-sep14-chain-task.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">AI 2D</b> ★★★★☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       生成流程
+      </h4>
+      <p>
+       9 月 15 日 changelog 新增 gpt-image-2-5-flare 與 gpt-image-2-5-sunburst 兩個 ai_model 值，並讓 GPT Image 系列在 Text-to-Image / Image-to-Image API 額外接受 4:3 與 3:4，能直接覆蓋更多角色設定稿與直式／橫式概念圖比例。
+      </p>
+      <h4>
+       製作價值
+      </h4>
+      <p>
+       對已用 Meshy API 串概念圖→多視圖→3D 的自動化流程，這次變更主要增加模型選擇與輸出構圖彈性；與 9/14 的 input_task_id 合併使用時，可以降低人工裁切與中間圖片轉接的需求。
+      </p>
+      <h4>
+       導入測試
+      </h4>
+      <p>
+       官方 changelog 沒有提供 GPT Image 2.5 兩個 tier 的品質差異 benchmark；雖列出與 gpt-image-2 相同的 API credit 定價，仍應以同 prompt 測角色一致性、文字遵循、4:3/3:4 構圖與後續 3D 成功率，再決定預設模型。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://docs.meshy.ai/api/changelog" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="kaininja-part-level-3d-generation" data-intel-role="card">
+    <div class="category-meta">
+     #12 · ai-3d
+    </div>
+    <h2>
+     KaiNinja：把 TRELLIS.2 類 Native 3D Generator 擴成 Part-Level 輸出，避免先融合再分割
+    </h2>
+    <p class="summary">
+     KaiNinja 以 dual-volume representation 解決接觸零件界面無法在單一 O-Voxel 表達的問題，目標是直接生成可分件資產，而非事後 segmentation。
+    </p>
+    <figure class="case-preview" data-intel-id="kaininja-part-level-3d-generation" data-intel-role="visual" data-visual-id="kaininja-part-level-3d-generation">
+     <a href="https://huggingface.co/papers/2609.15659" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-16/kaininja-part-level-3d-generation.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">AI 3D</b> ★★★★☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       生成流程
+      </h4>
+      <p>
+       研究指出 TRELLIS.2 類 native 3D generator 通常輸出單一融合物件，但編輯、rigging 與 simulation 需要 part-level 資產；KaiNinja 用 dual-volume 表示接觸界面，讓模型在生成階段就能輸出分件，而不依賴後處理 segmentation。
+      </p>
+      <h4>
+       製作價值
+      </h4>
+      <p>
+       如果分件品質能穩定，AI 3D 對遊戲角色與機械道具的價值會從『有一個 mesh』提升到『可個別編輯、材質、骨架與替換的組件』，直接對應目前 image-to-3D 最常見的 production 痛點之一。
+      </p>
+      <h4>
+       導入測試
+      </h4>
+      <p>
+       目前仍是研究成果，不等同於可部署的商用工具；論文摘要與研究頁雖報告 part／whole-object fidelity 改善，仍需檢查程式碼、推理成本、材質邊界與複雜接觸區。建議先以裝甲角色、鞋服與硬表面組件做 part interface 測試。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://huggingface.co/papers/2609.15659" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <nav aria-label="相鄰分類" class="category-bottom-nav">
+    <a href="../blender-dcc/">
+     ← Blender / DCC
+    </a>
+    <a href="../#top">
+     TOP5
+    </a>
+    <a href="../3d-production/">
+     3D 製作 →
+    </a>
+   </nav>
+  </main>
+  <script defer="" src="../../archive-nav-state.js?v=20260916-r1-workspace-v10-history-current-workspace">
+  </script>
+ </body>
+</html>

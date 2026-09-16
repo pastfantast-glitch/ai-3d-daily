@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   3D 動作｜2026-09-16｜AI 3D Daily
+  </title>
+  <link href="../../styles.css?v=20260916-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../../shared-components.css?v=20260916-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../../category.css?v=20260916-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+ </head>
+ <body class="category-page" data-category="3d-animation" data-report-date="2026-09-16">
+  <nav aria-label="Production Intelligence 分類" class="global-category-nav">
+   <div class="page global-category-nav-inner">
+    <div class="archive-nav-controls">
+     <a class="archive-nav-home" href="../../">
+      ← 首頁
+     </a>
+     <div class="archive-nav-date">
+      <a aria-label="前一日日報" class="archive-nav-arrow" href="../../2026-09-15/3d-animation/">
+       ←
+      </a>
+      <span>
+       2026-09-16
+      </span>
+     </div>
+    </div>
+    <span aria-hidden="true" class="archive-nav-divider">
+    </span>
+    <a class="global-category-link" href="../#top">
+     TOP5
+    </a>
+    <a class="global-category-link" data-category="ai-generation" href="../ai-generation/">
+     AI 生成
+    </a>
+    <a class="global-category-link" data-category="3d-production" href="../3d-production/">
+     3D 製作
+    </a>
+    <a class="global-category-link is-active" data-category="3d-animation" href="../3d-animation/">
+     3D 動作
+    </a>
+    <a class="global-category-link" data-category="engine-art" href="../engine-art/">
+     遊戲引擎
+    </a>
+    <a class="global-category-link" data-category="emerging-case" href="../emerging-case/">
+     新技術 / Case
+    </a>
+    <a class="global-category-link" data-category="blender-dcc" href="../blender-dcc/">
+     Blender / DCC
+    </a>
+    <a class="global-category-link global-history-link" data-global-view="history" href="../../history/">
+     歷史日報
+    </a>
+   </div>
+  </nav>
+  <main class="page category-main">
+   <article class="category-card" data-intel-id="deadlock-mina-blender-facial-rig" data-intel-role="card">
+    <div class="category-meta">
+     #10 · rigging
+    </div>
+    <h2>
+     Deadlock Mina Blender Facial Rig：Project Storm 架構延伸到手 Key 表情與髮絲次級動態
+    </h2>
+    <p class="summary">
+     動畫師 zombielord999 以 Blender 製作 Mina Ha 的 facial rig 與手 Key 角色表演，rig 基於 Blender Studio 的 Project Storm。
+    </p>
+    <figure class="case-preview" data-intel-id="deadlock-mina-blender-facial-rig" data-intel-role="visual" data-visual-id="deadlock-mina-blender-facial-rig">
+     <a href="https://80.lv/articles/see-how-expressive-deadlock-s-mina-s-face-can-be-with-this-blender-rig" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-16/deadlock-mina-blender-facial-rig.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">綁定</b> ★★★★☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       動作製作流程
+      </h4>
+      <p>
+       作品以 Open3DLab 角色模型為基礎，rig 參考 Blender Studio Project Storm，再由作者完整 hand-keyed 表演；重點不是自動表情生成，而是利用可動畫化臉部控制器做細緻 character acting 與髮絲動態展示。
+      </p>
+      <h4>
+       Rig / 輸出
+      </h4>
+      <p>
+       對角色動畫參考價值在於表情控制範圍與姿態節奏，而非單一 pose。Project Storm 類型的 stylized rig 可作為臉部控制器分區、可讀性與 animator 操作密度的參考，特別適合非寫實角色。
+      </p>
+      <h4>
+       導入測試
+      </h4>
+      <p>
+       目前來源主要是成品動畫與作者說明，未公開完整 rig 結構、deformer 成本或 game-engine export。若拿來做 production 參考，應另外驗證骨骼／shape-key 數量、臉部 corrective、LOD 與匯出到 UE／Unity 後的控制保留方式。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://80.lv/articles/see-how-expressive-deadlock-s-mina-s-face-can-be-with-this-blender-rig" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="houdini21-kinefx-animation-tools" data-intel-role="card">
+    <div class="category-meta">
+     #15 · animation
+    </div>
+    <h2>
+     Houdini 21 KineFX：Motion Mixer、Animation Catalog、Autorig Builder 與全身 IK 強化程序化角色動畫
+    </h2>
+    <p class="summary">
+     Houdini 21 將 KineFX 動畫工作流擴充到 clip 混合、pose／animation catalog、retarget 與新的 rigging／IK 工具。
+    </p>
+    <figure class="case-preview" data-intel-id="houdini21-kinefx-animation-tools" data-intel-role="visual" data-visual-id="houdini21-kinefx-animation-tools">
+     <a href="https://www.sidefx.com/products/whats-new-in-h21/" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-16/houdini21-kinefx-animation-tools.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">動畫</b> ★★★★☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       動作製作流程
+      </h4>
+      <p>
+       Houdini 21 的 KineFX 新增 Motion Mixer，可在 timeline 混合多角色 animation clips；Animation Catalog 可儲存與重用 animation／單幀 pose，並加入 retarget、full body IK 與 Autorig Builder 等工具。
+      </p>
+      <h4>
+       Rig / 輸出
+      </h4>
+      <p>
+       對程序化動畫 pipeline 的價值在於把 pose library、clip 組合、retarget 與 rig 建立留在可節點化／可批次處理的環境；這比只把 Houdini 當離線 VFX 工具更接近 gameplay animation 或大量角色處理。
+      </p>
+      <h4>
+       導入測試
+      </h4>
+      <p>
+       官方頁列出能力但不代表能直接取代 Maya／MotionBuilder／UE Control Rig。應用一組現有 skeleton 測 retarget、root motion、constraint、動畫層與 FBX／USD 輸出，特別確認 animator 互動速度與最終引擎資料是否能保持一致。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://www.sidefx.com/products/whats-new-in-h21/" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="hellsing-pwnisher-blender-animation" data-intel-role="card">
+    <div class="category-meta">
+     #16 · animation
+    </div>
+    <h2>
+     Pwnisher 挑戰角色動畫：Blender 製作 Hellsing 風格怪物獵人，重點在強姿勢與武器 Silhouette
+    </h2>
+    <p class="summary">
+     Trần Quốc Khánh 以 Blender 製作 Gauntlet of Gods 挑戰作品，角色以雙刺刀、交叉姿勢與強烈動作設計形成清楚 silhouette。
+    </p>
+    <figure class="case-preview" data-intel-id="hellsing-pwnisher-blender-animation" data-intel-role="visual" data-visual-id="hellsing-pwnisher-blender-animation">
+     <a href="https://80.lv/articles/hellsing-ultimate-inspired-character-animation-for-pwnisher-s-community-challenge" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-16/hellsing-pwnisher-blender-animation.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">動畫</b> ★★★☆☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       動作製作流程
+      </h4>
+      <p>
+       作品以 Blender 完成角色與動畫，設計明顯借鑑 Hellsing 的 Alexander Anderson：雙手持刺刀、交叉 weapon pose 與誇張戰鬥姿勢是主要視覺語言，適合作為 stylized combat animation 的 pose reference。
+      </p>
+      <h4>
+       Rig / 輸出
+      </h4>
+      <p>
+       這類 challenge 作品對 production 的價值主要是動作讀性與 silhouette，而不是 rig 技術拆解；雙武器角色能觀察手臂交叉、胸腔方向、武器線條與角色重心如何共同維持畫面清楚。
+      </p>
+      <h4>
+       導入測試
+      </h4>
+      <p>
+       來源未提供完整 timing curve、rig setup 或 gameplay constraints，因此只能列為高價值 animation reference。若用於遊戲招式設計，應把關鍵 pose 轉成自家骨架測 camera angle、武器碰撞、root motion 與 30/60 fps 下的讀性。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://80.lv/articles/hellsing-ultimate-inspired-character-animation-for-pwnisher-s-community-challenge" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="sony-mocopi-3dsmax-biped" data-intel-role="card">
+    <div class="category-meta">
+     #17 · mocap
+    </div>
+    <h2>
+     Sony mocopi Receiver for 3ds Max：UDP 即時送入 Biped，也能直接把 BVH／FBX 轉 BIP
+    </h2>
+    <p class="summary">
+     Sony 9/10 公開 3ds Max mocopi Receiver Plugin，支援 Max 2023–2027，能從 mocopi app 即時接收動作並套到 Biped。
+    </p>
+    <figure class="case-preview" data-intel-id="sony-mocopi-3dsmax-biped" data-intel-role="visual" data-visual-id="sony-mocopi-3dsmax-biped">
+     <a href="https://xyn.sony.net/en/developer/setup/mocopi/3dsmax/aboutplugin" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-16/sony-mocopi-3dsmax-biped.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">動作捕捉</b> ★★★★☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       動作製作流程
+      </h4>
+      <p>
+       外掛透過同一區網 UDP 接收 mocopi app 的 motion data，直接套用到 3ds Max Biped；除了即時串流，也能將 BVH／FBX 轉成 BIP，讓 mocap 資料更直接進入仍以 Biped 為核心的 Max 動畫流程。
+      </p>
+      <h4>
+       Rig / 輸出
+      </h4>
+      <p>
+       對既有 3ds Max 團隊的價值是少一層中介 DCC／轉檔工具，特別適合快速 blocking、動作預覽與 Biped 資產庫整理。官方列出支援 Max 2023–2027，可降低版本不明造成的部署風險。
+      </p>
+      <h4>
+       導入測試
+      </h4>
+      <p>
+       官方說明主要涵蓋接收與安裝，沒有提供 foot lock、手指、root drift 或 retarget 品質 benchmark。應實測即時延遲、長時間 UDP 穩定性、不同身高比例 Biped、BVH/FBX→BIP 曲線精度與後續 cleanup 工時。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://xyn.sony.net/en/developer/setup/mocopi/3dsmax/aboutplugin" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <nav aria-label="相鄰分類" class="category-bottom-nav">
+    <a href="../3d-production/">
+     ← 3D 製作
+    </a>
+    <a href="../#top">
+     TOP5
+    </a>
+    <a href="../engine-art/">
+     遊戲引擎 →
+    </a>
+   </nav>
+  </main>
+  <script defer="" src="../../archive-nav-state.js?v=20260916-r1-workspace-v10-history-current-workspace">
+  </script>
+ </body>
+</html>

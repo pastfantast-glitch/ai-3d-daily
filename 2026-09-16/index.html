@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   AI／3D／遊戲美術 Production Intelligence — 2026-09-16
+  </title>
+  <link href="../styles.css?v=20260916-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../shared-components.css?v=20260916-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../daily.css?v=20260916-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../shared-components.css?v=20260916-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+ </head>
+ <body class="archive-page" data-next="" data-previous="2026-09-15" data-report-date="2026-09-16">
+  <nav aria-label="Production Intelligence 分類" class="global-category-nav">
+   <div class="page global-category-nav-inner">
+    <div class="archive-nav-controls">
+     <a class="archive-nav-home" href="../">
+      ← 首頁
+     </a>
+     <div class="archive-nav-date">
+      <a aria-label="前一日日報" class="archive-nav-arrow" href="../2026-09-15/">
+       ←
+      </a>
+      <span>
+       2026-09-16
+      </span>
+     </div>
+    </div>
+    <span aria-hidden="true" class="archive-nav-divider">
+    </span>
+    <a class="global-category-link is-active" href="#top">
+     TOP5
+    </a>
+    <a class="global-category-link" data-category="ai-generation" href="ai-generation/">
+     AI 生成
+    </a>
+    <a class="global-category-link" data-category="3d-production" href="3d-production/">
+     3D 製作
+    </a>
+    <a class="global-category-link" data-category="3d-animation" href="3d-animation/">
+     3D 動作
+    </a>
+    <a class="global-category-link" data-category="engine-art" href="engine-art/">
+     遊戲引擎
+    </a>
+    <a class="global-category-link" data-category="emerging-case" href="emerging-case/">
+     新技術 / Case
+    </a>
+    <a class="global-category-link" data-category="blender-dcc" href="blender-dcc/">
+     Blender / DCC
+    </a>
+    <a class="global-category-link global-history-link" data-global-view="history" href="../history/">
+     歷史日報
+    </a>
+   </div>
+  </nav>
+  <main class="page daily-main">
+   <section class="block" id="top">
+    <div class="block-head">
+     <div>
+      <span>
+       2026-09-16
+      </span>
+      <h2>
+       TOP5
+      </h2>
+     </div>
+    </div>
+    <article class="news daily-card daily-card-top" data-intel-id="no-mercy-two-character-production" data-intel-role="card">
+     <div class="news-rank">
+      01
+     </div>
+     <div class="news-main">
+      <div class="meta">
+       <span class="pill">
+        character-production
+       </span>
+      </div>
+      <h3>
+       《No Mercy》雙角色製作拆解：先鎖定輪廓與低模規劃，再把皮膚、服裝與金屬細節集中到貼圖
+      </h3>
+      <p class="summary">
+       Anna Smirnova 的角色案例把高複雜度非對稱設計拆成可迭代流程：早期維持可用的低模基底，材質細節主要透過 ZBrush 烘焙與 Substance 3D Painter 貼圖控制，最後在 Unreal 反覆檢查。
+      </p>
+      <figure class="case-preview daily-visual" data-intel-id="no-mercy-two-character-production" data-intel-role="visual" data-visual-id="no-mercy-two-character-production">
+       <a href="https://80.lv/articles/turning-a-2d-illustration-into-a-realistic-two-character-3d-piece" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-09-16/no-mercy-two-character-production.jpg"/>
+       </a>
+       <figcaption>
+        <span>
+         SOURCE PREVIEW
+        </span>
+        · Local visual evidence · 點圖開啟原始來源
+       </figcaption>
+      </figure>
+      <div class="quick-impact daily-impact">
+       <span><b class="quick-impact-label">角色製作</b> ★★★★★</span>
+      </div>
+      <details class="canonical-analysis canonical-analysis-full daily-full-analysis" data-analysis-level="FULL">
+       <summary>
+        完整分析
+       </summary>
+       <div class="detail-body canonical-analysis-body daily-analysis-body">
+        <h4>
+         製作流程
+        </h4>
+        <p>
+         案例先把比例、silhouette 與主要設計決策鎖在 blockout，再逐步打破對稱；部分零件從一開始就以可作低模的拓樸規劃，之後才進入 ZBrush、Maya 與貼圖細化，能降低後段重新拓樸與比例返工的風險。
+        </p>
+        <h4>
+         流程價值
+        </h4>
+        <p>
+         皮膚、服裝與金屬的大量細節直接做進貼圖與 Normal，而不是把所有表面變化都留給程序材質；第二角色也刻意降低細節密度。這種依畫面焦點分配製作成本的做法，對遊戲角色與宣傳級角色資產都具可轉移性。
+        </p>
+        <h4>
+         實測限制
+        </h4>
+        <p>
+         作者以 Path Tracing 做最終呈現，且案例屬個人作品，不代表即時遊戲材質與效能條件。導入時應另測即時光照下的 AO、Normal、皮膚與毛髮表現，並比較『高模先做滿』與『低模基底先成立』兩種流程的實際返工時間。
+        </p>
+       </div>
+      </details>
+      <a class="source daily-source" href="https://80.lv/articles/turning-a-2d-illustration-into-a-realistic-two-character-3d-piece" rel="noopener noreferrer" target="_blank">
+       來源
+      </a>
+     </div>
+    </article>
+    <article class="news daily-card daily-card-top" data-intel-id="meshy-3agamefactory-agent-pipeline" data-intel-role="card">
+     <div class="news-rank">
+      02
+     </div>
+     <div class="news-main">
+      <div class="meta">
+       <span class="pill">
+        ai-3d
+       </span>
+      </div>
+      <h3>
+       3AGameFactory × Meshy：AI Agent 把 Image-to-3D／Text-to-3D 接進 Unity、UE5、Blender 與 three.js
+      </h3>
+      <p class="summary">
+       北京大學 OpenDCAI 的 3AGameFactory 以 AI coding agent 串接 Meshy 生成角色與道具 GLB，再送進多種引擎與 DCC；重點是可檢查、可重現的資產介面，而非單次生成展示。
+      </p>
+      <figure class="case-preview daily-visual" data-intel-id="meshy-3agamefactory-agent-pipeline" data-intel-role="visual" data-visual-id="meshy-3agamefactory-agent-pipeline">
+       <a href="https://www.meshy.ai/blog/ai-agent-game-asset-pipeline" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-09-16/meshy-3agamefactory-agent-pipeline.jpg"/>
+       </a>
+       <figcaption>
+        <span>
+         SOURCE PREVIEW
+        </span>
+        · Local visual evidence · 點圖開啟原始來源
+       </figcaption>
+      </figure>
+      <div class="quick-impact daily-impact">
+       <span><b class="quick-impact-label">AI 3D</b> ★★★★★</span>
+      </div>
+      <details class="canonical-analysis canonical-analysis-full daily-full-analysis" data-analysis-level="FULL">
+       <summary>
+        完整分析
+       </summary>
+       <div class="detail-body canonical-analysis-body daily-analysis-body">
+        <h4>
+         生成流程
+        </h4>
+        <p>
+         3AGameFactory 把遊戲需求拆成影像、3D、動作、音訊與程式工作，再由 agent 呼叫對應能力；Meshy 在其中負責 image-to-3D / text-to-3D 的角色與關鍵道具，輸出 GLB 後進入 Unity、UE5、Blender 或 three.js 的後續處理與驗證。
+        </p>
+        <h4>
+         製作價值
+        </h4>
+        <p>
+         這個案例把 AI 3D 的評估焦點從『單一模型好不好看』移到座標、尺度、材質、檔案格式與引擎 QA 是否可攜。對自動化遊戲原型尤其有價值，因為生成失敗與資產修復必須變成可追蹤的 pipeline 狀態，而不是人工臨時補救。
+        </p>
+        <h4>
+         導入測試
+        </h4>
+        <p>
+         來源是 Meshy 的供應商案例，不能把『engine-ready』直接視為商用品質保證；團隊應用同一組角色／道具測試 GLB 分件、骨架需求、UV、材質一致性、碰撞與引擎匯入失敗率，並記錄人工修復時間，再判斷 agent pipeline 的真實節省幅度。
+        </p>
+       </div>
+      </details>
+      <a class="source daily-source" href="https://www.meshy.ai/blog/ai-agent-game-asset-pipeline" rel="noopener noreferrer" target="_blank">
+       來源
+      </a>
+     </div>
+    </article>
+    <article class="news daily-card daily-card-top" data-intel-id="unity-massive-object-rendering" data-intel-role="card">
+     <div class="news-rank">
+      03
+     </div>
+     <div class="news-main">
+      <div class="meta">
+       <span class="pill">
+        unity
+       </span>
+      </div>
+      <h3>
+       Unity 大量物件渲染實務：Static Batching、VAT 與自訂 Batch Renderer Group 的取捨
+      </h3>
+      <p class="summary">
+       Unity 與 Mega Cat Studios 分享 URP/HDRP 大量物件的效能策略，包含靜態批次、Vertex Animation Texture 與為草地建立自訂 Batch Renderer Group。
+      </p>
+      <figure class="case-preview daily-visual" data-intel-id="unity-massive-object-rendering" data-intel-role="visual" data-visual-id="unity-massive-object-rendering">
+       <a href="https://unity.com/blog/rendering-at-scale-efficient-strategies-for-massive-object-counts" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-09-16/unity-massive-object-rendering.jpg"/>
+       </a>
+       <figcaption>
+        <span>
+         SOURCE PREVIEW
+        </span>
+        · Local visual evidence · 點圖開啟原始來源
+       </figcaption>
+      </figure>
+      <div class="quick-impact daily-impact">
+       <span><b class="quick-impact-label">Unity</b> ★★★★★</span>
+      </div>
+      <details class="canonical-analysis canonical-analysis-full daily-full-analysis" data-analysis-level="FULL">
+       <summary>
+        完整分析
+       </summary>
+       <div class="detail-body canonical-analysis-body daily-analysis-body">
+        <h4>
+         引擎工作流
+        </h4>
+        <p>
+         案例從 PC／主機與較弱平台的大量物件瓶頸出發，分別討論 static batching、Vertex Animation Texture 與 Batch Renderer Group；其中草地等高數量重複物件可用自訂 BRG 降低 CPU submission 與 draw 管理成本。
+        </p>
+        <h4>
+         製作價值
+        </h4>
+        <p>
+         這類方法不是單純『少 Draw Call』，而是依物件是否靜態、是否需要變形、數量與可見性決定資料如何送進 GPU。對大量植被、群集道具與城市場景，美術資產規格可以因此更早和 renderer 策略綁定，而不是場景完成後才做效能救火。
+        </p>
+        <h4>
+         平台實測
+        </h4>
+        <p>
+         文章是特定專案經驗，URP/HDRP、目標硬體與內容密度都會改變最佳解。導入前應建立相同場景的 Static Batching、GPU Instancing、BRG、VAT A/B 場景，量 CPU Render Thread、GPU、記憶體與剔除成本，並確認 Shader Graph／自訂 Shader 是否維持相同視覺。
+        </p>
+       </div>
+      </details>
+      <a class="source daily-source" href="https://unity.com/blog/rendering-at-scale-efficient-strategies-for-massive-object-counts" rel="noopener noreferrer" target="_blank">
+       來源
+      </a>
+     </div>
+    </article>
+    <article class="news daily-card daily-card-top" data-intel-id="reface-205-hard-surface-retopo" data-intel-role="card">
+     <div class="news-rank">
+      04
+     </div>
+     <div class="news-main">
+      <div class="meta">
+       <span class="pill">
+        addon
+       </span>
+      </div>
+      <h3>
+       ReFace 2.0.5：Blender 硬表面 Retopo 擴充到掃描、AI 生成與雕刻後的髒網格
+      </h3>
+      <p class="summary">
+       ReFace 新版加入 Drawn Patch Mode、patch 延伸、sector decomposition 與更彈性的 Knife Tool，明確鎖定沒有乾淨 edge flow 的掃描與 AI 3D 網格。
+      </p>
+      <figure class="case-preview daily-visual" data-intel-id="reface-205-hard-surface-retopo" data-intel-role="visual" data-visual-id="reface-205-hard-surface-retopo">
+       <a href="https://80.lv/articles/hard-surface-retopology-just-got-easier-in-blender" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-09-16/reface-205-hard-surface-retopo.jpg"/>
+       </a>
+       <figcaption>
+        <span>
+         SOURCE PREVIEW
+        </span>
+        · Local visual evidence · 點圖開啟原始來源
+       </figcaption>
+      </figure>
+      <div class="quick-impact daily-impact">
+       <span><b class="quick-impact-label">外掛</b> ★★★★☆</span>
+      </div>
+      <details class="canonical-analysis canonical-analysis-brief daily-full-analysis" data-analysis-level="BRIEF">
+       <summary>
+        完整分析
+       </summary>
+       <div class="detail-body canonical-analysis-body brief-analysis-body daily-analysis-body">
+        <h4>
+         DCC 工作流
+        </h4>
+        <p>
+         ReFace 2.0.5 把 Corner Guided Grid Refill 擴充成可手繪 patch 的流程，並加入 patch 延伸、sector decomposition、顯示模式與 Knife Tool 改良，目標是直接處理掃描、AI 生成或雕刻後缺乏乾淨 edge flow 的硬表面網格。
+        </p>
+        <h4>
+         製作價值
+        </h4>
+        <p>
+         對 AI 3D 或高模轉遊戲資產而言，價值在於把『重新畫拓樸區塊』變成可局部引導的工具流程，而不是只依賴全自動 remesh；若能穩定保留邊界與曲率，可能降低硬表面人工重建的重複操作。
+        </p>
+        <h4>
+         升版 / 導入測試
+        </h4>
+        <p>
+         目前證據主要來自作者示範與 80 Level 報導，尚缺不同拓樸難度的量化 benchmark。建議用 AI 角色裝甲、掃描道具與 ZBrush 高模三組測試，比較 patch 成功率、UV 前清理時間、法線烘焙品質與需要手修的比例。
+        </p>
+        <p class="analysis-level-note">
+         BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+        </p>
+       </div>
+      </details>
+      <a class="source daily-source" href="https://80.lv/articles/hard-surface-retopology-just-got-easier-in-blender" rel="noopener noreferrer" target="_blank">
+       來源
+      </a>
+     </div>
+    </article>
+    <article class="news daily-card daily-card-top" data-intel-id="photo-to-3d-portrait-comparison" data-intel-role="card">
+     <div class="news-rank">
+      05
+     </div>
+     <div class="news-main">
+      <div class="meta">
+       <span class="pill">
+        ai-3d
+       </span>
+      </div>
+      <h3>
+       單張人像 Photo-to-3D 實測：Tripo、Meshy、Hunyuan3D 仍難直接保住可用的人臉 likeness
+      </h3>
+      <p class="summary">
+       Layer Journey 以同一張人像測試多個 image-to-3D 工具，結果顯示單張照片可快速建立體量，但臉部 likeness 與 production-ready 細節仍需要人工修正。
+      </p>
+      <figure class="case-preview daily-visual" data-intel-id="photo-to-3d-portrait-comparison" data-intel-role="visual" data-visual-id="photo-to-3d-portrait-comparison">
+       <a href="https://layerjourney.com/articles/photo-to-3d-portrait-test" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-09-16/photo-to-3d-portrait-comparison.jpg"/>
+       </a>
+       <figcaption>
+        <span>
+         SOURCE PREVIEW
+        </span>
+        · Local visual evidence · 點圖開啟原始來源
+       </figcaption>
+      </figure>
+      <div class="quick-impact daily-impact">
+       <span><b class="quick-impact-label">AI 3D</b> ★★★★☆</span>
+      </div>
+      <details class="canonical-analysis canonical-analysis-brief daily-full-analysis" data-analysis-level="BRIEF">
+       <summary>
+        完整分析
+       </summary>
+       <div class="detail-body canonical-analysis-body brief-analysis-body daily-analysis-body">
+        <h4>
+         生成流程
+        </h4>
+        <p>
+         測試用同一張人像照片分別跑 Tripo、Meshy 與 Hunyuan3D，觀察單張 image-to-3D 在頭部比例、五官與整體體量上的結果；這類輸入缺少側面與後腦資訊，因此模型必須自行補全不可見區域。
+        </p>
+        <h4>
+         製作價值
+        </h4>
+        <p>
+         對角色前期 blocking 或快速建立可旋轉參考仍有價值，但若目標是辨識特定人物，單張輸入的 likeness 風險明顯高於一般道具生成。這使多視圖、臉部重建或後續雕刻仍是較可靠的角色 production 路徑。
+        </p>
+        <h4>
+         導入測試
+        </h4>
+        <p>
+         這是單一測試案例而非完整 benchmark，模型版本與設定也會快速改變。建議用正面單圖、正側雙視圖與四視圖三種條件重跑，量測五官偏差、耳朵／後腦補全、拓樸與貼圖返工量，再決定哪一段適合交給 AI。
+        </p>
+        <p class="analysis-level-note">
+         BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+        </p>
+       </div>
+      </details>
+      <a class="source daily-source" href="https://layerjourney.com/articles/photo-to-3d-portrait-test" rel="noopener noreferrer" target="_blank">
+       來源
+      </a>
+     </div>
+    </article>
+   </section>
+   <section class="block daily-more" id="more">
+    <div class="block-head">
+     <div>
+      <span>
+       2026-09-16
+      </span>
+      <h2>
+       當日其他資訊
+      </h2>
+     </div>
+    </div>
+    <article class="daily-card daily-card-more category-news" data-intel-id="marvelous-designer-2026-1-tear-pinch" data-intel-role="card">
+     <div class="meta">
+      <span class="pill">
+       character-production
+      </span>
+     </div>
+     <h3>
+      Marvelous Designer 2026.1：布料撕裂 Beta、Brush Pinching 與 Blend Shape 動畫進入衣裝流程
+     </h3>
+     <p class="summary">
+      2026.1 新增 Seamline Rip／布破裂、Pinching Simulation Override、Brush Pinching 與 Blend Shape Animation；其中 fray 目前有輸出限制。
+     </p>
+     <figure class="case-preview daily-visual" data-intel-id="marvelous-designer-2026-1-tear-pinch" data-intel-role="visual" data-visual-id="marvelous-designer-2026-1-tear-pinch">
+      <a href="https://cgworld.jp/flashnews/03-2609-MD20261.html" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+       <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-09-16/marvelous-designer-2026-1-tear-pinch.jpg"/>
+      </a>
+      <figcaption>
+       <span>
+        SOURCE PREVIEW
+       </span>
+       · Local visual evidence · 點圖開啟原始來源
+      </figcaption>
+     </figure>
+     <div class="quick-impact daily-impact">
+      <span><b class="quick-impact-label">角色製作</b> ★★★★☆</span>
+     </div>
+     <details class="canonical-analysis canonical-analysis-brief daily-full-analysis" data-analysis-level="BRIEF">
+      <summary>
+       完整分析
+      </summary>
+      <div class="detail-body canonical-analysis-body brief-analysis-body daily-analysis-body">
+       <h4>
+        製作流程
+       </h4>
+       <p>
+        2026.1 把衣裝破損與細部塑形更直接地放進 Marvelous Designer：Seamline Rip 可讓縫線在模擬中撕裂，Brush Pinching 沿筆刷路徑做皺褶，Pinching Override 可在操作期間暫時覆寫布料／模擬參數。
+       </p>
+       <h4>
+        流程價值
+       </h4>
+       <p>
+        角色衣裝過去常要在 Marvelous 完成大形後回 ZBrush 或其他 DCC 補破損與局部皺褶；新版讓部分細節與動畫 timing 可留在服裝模擬環境內，對戰損服裝、變身或需要多版衣裝狀態的角色更實用。
+       </p>
+       <h4>
+        實測限制
+       </h4>
+       <p>
+        撕裂工具仍是 Beta，CGWORLD 指出 fray 表現目前是 viewport 專用、不能直接以幾何輸出。導入時應確認破裂後拓樸、UV、cache／blendshape 匯出與 Unreal／Unity cloth pipeline 的相容性，不要把預覽效果當成可直接交付資產。
+       </p>
+       <p class="analysis-level-note">
+        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+       </p>
+      </div>
+     </details>
+     <a class="source daily-source" href="https://cgworld.jp/flashnews/03-2609-MD20261.html" rel="noopener noreferrer" target="_blank">
+      來源
+     </a>
+    </article>
+    <article class="daily-card daily-card-more category-news" data-intel-id="meshy-api-sep14-chain-task" data-intel-role="card">
+     <div class="meta">
+      <span class="pill">
+       ai-2d
+      </span>
+      <span class="news-status status-update">
+       UPDATE
+      </span>
+     </div>
+     <h3>
+      Meshy API 9/15 更新：新增 GPT Image 2.5 兩個 tier，並補上 4:3／3:4 圖像比例
+     </h3>
+     <p class="summary">
+      Meshy API changelog 在 9/15 新增 gpt-image-2-5-flare / sunburst，Text-to-Image 與 Image-to-Image 同時支援 4:3、3:4；這是 9/14 input_task_id 後的新增 substantive delta。
+     </p>
+     <figure class="case-preview daily-visual" data-intel-id="meshy-api-sep14-chain-task" data-intel-role="visual" data-visual-id="meshy-api-sep14-chain-task">
+      <a href="https://docs.meshy.ai/api/changelog" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+       <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-09-16/meshy-api-sep14-chain-task.jpg"/>
+      </a>
+      <figcaption>
+       <span>
+        SOURCE PREVIEW
+       </span>
+       · Local visual evidence · 點圖開啟原始來源
+      </figcaption>
+     </figure>
+     <div class="quick-impact daily-impact">
+      <span><b class="quick-impact-label">AI 2D</b> ★★★★☆</span>
+     </div>
+     <details class="canonical-analysis canonical-analysis-brief daily-full-analysis" data-analysis-level="BRIEF">
+      <summary>
+       完整分析
+      </summary>
+      <div class="detail-body canonical-analysis-body brief-analysis-body daily-analysis-body">
+       <h4>
+        生成流程
+       </h4>
+       <p>
+        9 月 15 日 changelog 新增 gpt-image-2-5-flare 與 gpt-image-2-5-sunburst 兩個 ai_model 值，並讓 GPT Image 系列在 Text-to-Image / Image-to-Image API 額外接受 4:3 與 3:4，能直接覆蓋更多角色設定稿與直式／橫式概念圖比例。
+       </p>
+       <h4>
+        製作價值
+       </h4>
+       <p>
+        對已用 Meshy API 串概念圖→多視圖→3D 的自動化流程，這次變更主要增加模型選擇與輸出構圖彈性；與 9/14 的 input_task_id 合併使用時，可以降低人工裁切與中間圖片轉接的需求。
+       </p>
+       <h4>
+        導入測試
+       </h4>
+       <p>
+        官方 changelog 沒有提供 GPT Image 2.5 兩個 tier 的品質差異 benchmark；雖列出與 gpt-image-2 相同的 API credit 定價，仍應以同 prompt 測角色一致性、文字遵循、4:3/3:4 構圖與後續 3D 成功率，再決定預設模型。
+       </p>
+       <p class="analysis-level-note">
+        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+       </p>
+      </div>
+     </details>
+     <a class="source daily-source" href="https://docs.meshy.ai/api/changelog" rel="noopener noreferrer" target="_blank">
+      來源
+     </a>
+    </article>
+    <article class="daily-card daily-card-more category-news" data-intel-id="maya-to-blender-rest-pose-skinning" data-intel-role="card">
+     <div class="meta">
+      <span class="pill">
+       blender
+      </span>
+     </div>
+     <h3>
+      Maya → Blender 角色移植：從 Skinning 內部結構解決 FBX 匯入後 Rest Pose 漂移
+     </h3>
+     <p class="summary">
+      COYOTE 3DCG STUDIO 解析 Maya 角色透過 FBX 匯入 Blender 後，清除骨骼 Transform 時姿勢與原始檔不一致的原因與處理方式。
+     </p>
+     <figure class="case-preview daily-visual" data-intel-id="maya-to-blender-rest-pose-skinning" data-intel-role="visual" data-visual-id="maya-to-blender-rest-pose-skinning">
+      <a href="https://cgworld.jp/flashnews/01-202609-Coyote-MayaBlender.html" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+       <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-09-16/maya-to-blender-rest-pose-skinning.jpg"/>
+      </a>
+      <figcaption>
+       <span>
+        SOURCE PREVIEW
+       </span>
+       · Local visual evidence · 點圖開啟原始來源
+      </figcaption>
+     </figure>
+     <div class="quick-impact daily-impact">
+      <span><b class="quick-impact-label">Blender</b> ★★★★☆</span>
+     </div>
+     <details class="canonical-analysis canonical-analysis-brief daily-full-analysis" data-analysis-level="BRIEF">
+      <summary>
+       完整分析
+      </summary>
+      <div class="detail-body canonical-analysis-body brief-analysis-body daily-analysis-body">
+       <h4>
+        DCC 工作流
+       </h4>
+       <p>
+        案例不是只調 FBX 軸向，而是從 Maya skinning 與 bind 狀態解釋為何角色匯入 Blender 後，執行 Clear Transform 會回到與輸出時不同的 rest pose；這種差異會直接影響後續 rig、動畫與 corrective shape。
+       </p>
+       <h4>
+        製作價值
+       </h4>
+       <p>
+        跨 Maya／Blender 的角色 pipeline 若只看畫面匯入是否正常，很容易到 retarget、重綁或 pose library 才發現基準姿勢不一致。把 rest pose 驗證列入交接檢查，可減少後段因骨架基準不同造成的動畫與權重返工。
+       </p>
+       <h4>
+        升版 / 導入測試
+       </h4>
+       <p>
+        這篇是特定 Maya→FBX→Blender 路徑的技術 Tips，仍需對自家 skeleton、非均勻 scale、joint orient 與 corrective blendshape 測試。建議建立 T/A Pose、極端關節與 bind matrix 比對，並把匯入後 rest pose hash／截圖加入自動驗收。
+       </p>
+       <p class="analysis-level-note">
+        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+       </p>
+      </div>
+     </details>
+     <a class="source daily-source" href="https://cgworld.jp/flashnews/01-202609-Coyote-MayaBlender.html" rel="noopener noreferrer" target="_blank">
+      來源
+     </a>
+    </article>
+    <article class="daily-card daily-card-more category-news" data-intel-id="autodesk-production-loop-ai-2026" data-intel-role="card">
+     <div class="meta">
+      <span class="pill">
+       case-study
+      </span>
+     </div>
+     <h3>
+      Autodesk 談 M&amp;E AI Production：速度之外，重點轉向跨鏡頭、團隊、版本與 pipeline 的一致性
+     </h3>
+     <p class="summary">
+      Autodesk 9/15 的 M&amp;E 文章把生成式 AI 放回專業製作鏈，強調快速生成只是前段，真正 production 問題是 revision、handoff、資料與 artist control。
+     </p>
+     <figure class="case-preview daily-visual" data-intel-id="autodesk-production-loop-ai-2026" data-intel-role="visual" data-visual-id="autodesk-production-loop-ai-2026">
+      <a href="https://adsknews.autodesk.com/en/news/autodesk-flow-production-workflow-acceleration-2026/" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+       <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-09-16/autodesk-production-loop-ai-2026.jpg"/>
+      </a>
+      <figcaption>
+       <span>
+        SOURCE PREVIEW
+       </span>
+       · Local visual evidence · 點圖開啟原始來源
+      </figcaption>
+     </figure>
+     <div class="quick-impact daily-impact">
+      <span><b class="quick-impact-label">製作案例</b> ★★★★☆</span>
+     </div>
+     <details class="canonical-analysis canonical-analysis-brief daily-full-analysis" data-analysis-level="BRIEF">
+      <summary>
+       完整分析
+      </summary>
+      <div class="detail-body canonical-analysis-body brief-analysis-body daily-analysis-body">
+       <h4>
+        技術方向
+       </h4>
+       <p>
+        文章把 AI 能力放在從 idea 到 final frame 的整體 production loop 中評估，而不是只比較單張圖或單段影片生成速度；核心問題是輸出能否跨 shots、teams、revisions 與既有工具鏈保持可控制與可追蹤。
+       </p>
+       <h4>
+        製作潛力
+       </h4>
+       <p>
+        對遊戲與動畫團隊的直接啟示是，AI 導入 KPI 應從『生成一次要幾秒』改成『版本能否續接、修改能否保留、handoff 是否減少、人工控制是否還在』，這比單一模型品質更接近實際產能。
+       </p>
+       <h4>
+        成熟度判斷
+       </h4>
+       <p>
+        來源是 Autodesk 自家觀點與產品脈絡，沒有提供統一 benchmark，因此不能直接推導節省工時比例。團隊可把 revision 次數、重新生成率、跨 DCC 轉接、人工修補與審核時間列為 PoC 指標，驗證 AI 是否真的縮短完整 loop。
+       </p>
+       <p class="analysis-level-note">
+        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+       </p>
+      </div>
+     </details>
+     <a class="source daily-source" href="https://adsknews.autodesk.com/en/news/autodesk-flow-production-workflow-acceleration-2026/" rel="noopener noreferrer" target="_blank">
+      來源
+     </a>
+    </article>
+    <article class="daily-card daily-card-more category-news" data-intel-id="deadlock-mina-blender-facial-rig" data-intel-role="card">
+     <div class="meta">
+      <span class="pill">
+       rigging
+      </span>
+     </div>
+     <h3>
+      Deadlock Mina Blender Facial Rig：Project Storm 架構延伸到手 Key 表情與髮絲次級動態
+     </h3>
+     <p class="summary">
+      動畫師 zombielord999 以 Blender 製作 Mina Ha 的 facial rig 與手 Key 角色表演，rig 基於 Blender Studio 的 Project Storm。
+     </p>
+     <figure class="case-preview daily-visual" data-intel-id="deadlock-mina-blender-facial-rig" data-intel-role="visual" data-visual-id="deadlock-mina-blender-facial-rig">
+      <a href="https://80.lv/articles/see-how-expressive-deadlock-s-mina-s-face-can-be-with-this-blender-rig" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+       <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-09-16/deadlock-mina-blender-facial-rig.jpg"/>
+      </a>
+      <figcaption>
+       <span>
+        SOURCE PREVIEW
+       </span>
+       · Local visual evidence · 點圖開啟原始來源
+      </figcaption>
+     </figure>
+     <div class="quick-impact daily-impact">
+      <span><b class="quick-impact-label">綁定</b> ★★★★☆</span>
+     </div>
+     <details class="canonical-analysis canonical-analysis-brief daily-full-analysis" data-analysis-level="BRIEF">
+      <summary>
+       完整分析
+      </summary>
+      <div class="detail-body canonical-analysis-body brief-analysis-body daily-analysis-body">
+       <h4>
+        動作製作流程
+       </h4>
+       <p>
+        作品以 Open3DLab 角色模型為基礎，rig 參考 Blender Studio Project Storm，再由作者完整 hand-keyed 表演；重點不是自動表情生成，而是利用可動畫化臉部控制器做細緻 character acting 與髮絲動態展示。
+       </p>
+       <h4>
+        Rig / 輸出
+       </h4>
+       <p>
+        對角色動畫參考價值在於表情控制範圍與姿態節奏，而非單一 pose。Project Storm 類型的 stylized rig 可作為臉部控制器分區、可讀性與 animator 操作密度的參考，特別適合非寫實角色。
+       </p>
+       <h4>
+        導入測試
+       </h4>
+       <p>
+        目前來源主要是成品動畫與作者說明，未公開完整 rig 結構、deformer 成本或 game-engine export。若拿來做 production 參考，應另外驗證骨骼／shape-key 數量、臉部 corrective、LOD 與匯出到 UE／Unity 後的控制保留方式。
+       </p>
+       <p class="analysis-level-note">
+        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+       </p>
+      </div>
+     </details>
+     <a class="source daily-source" href="https://80.lv/articles/see-how-expressive-deadlock-s-mina-s-face-can-be-with-this-blender-rig" rel="noopener noreferrer" target="_blank">
+      來源
+     </a>
+    </article>
+    <article class="daily-card daily-card-more category-news" data-intel-id="c4d-meshy-liquid-cinematic-workflow" data-intel-role="card">
+     <div class="meta">
+      <span class="pill">
+       production-workflow
+      </span>
+     </div>
+     <h3>
+      Meshy 7 × Cinema 4D：AI Base Mesh 接 Vertex Map、Displacement、Ripple 與 Lighting 做液體出場動畫
+     </h3>
+     <p class="summary">
+      Motion And Design 的教學把 Meshy 生成幾何當成起點，再用 Cinema 4D 的 vertex map、變位與燈光完成 cinematic 3D animation。
+     </p>
+     <figure class="case-preview daily-visual" data-intel-id="c4d-meshy-liquid-cinematic-workflow" data-intel-role="visual" data-visual-id="c4d-meshy-liquid-cinematic-workflow">
+      <a href="https://cgworld.jp/flashnews/01-202609-C4D-Liquid.html" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+       <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-09-16/c4d-meshy-liquid-cinematic-workflow.jpg"/>
+      </a>
+      <figcaption>
+       <span>
+        SOURCE PREVIEW
+       </span>
+       · Local visual evidence · 點圖開啟原始來源
+      </figcaption>
+     </figure>
+     <div class="quick-impact daily-impact">
+      <span><b class="quick-impact-label">製作流程</b> ★★★★☆</span>
+     </div>
+     <details class="canonical-analysis canonical-analysis-brief daily-full-analysis" data-analysis-level="BRIEF">
+      <summary>
+       完整分析
+      </summary>
+      <div class="detail-body canonical-analysis-body brief-analysis-body daily-analysis-body">
+       <h4>
+        製作流程
+       </h4>
+       <p>
+        教學先用 Meshy 準備基礎 3D geometry，再進 Cinema 4D 透過 rig／vertex map、displacement deformer 與 ripple 表現物件從液體中浮出的變形，最後以 lighting 完成 lookdev；AI 只負責可用的起始幾何。
+       </p>
+       <h4>
+        流程價值
+       </h4>
+       <p>
+        這種做法比要求 AI 直接生成『最終動畫』更容易被既有 DCC production 接住：生成資產只要輪廓與材質基礎可用，動畫節奏、變形與鏡頭品質仍由傳統工具控制，因此可保留可修改性。
+       </p>
+       <h4>
+        實測限制
+       </h4>
+       <p>
+        來源是單一教學案例，沒有比較不同 Meshy 拓樸對 displacement／vertex map 的穩定性。導入時應檢查生成網格密度、法線、UV 與變形後破面，並測試先 remesh／retopo 再做效果是否比直接使用 AI mesh 更可靠。
+       </p>
+       <p class="analysis-level-note">
+        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+       </p>
+      </div>
+     </details>
+     <a class="source daily-source" href="https://cgworld.jp/flashnews/01-202609-C4D-Liquid.html" rel="noopener noreferrer" target="_blank">
+      來源
+     </a>
+    </article>
+    <article class="daily-card daily-card-more category-news" data-intel-id="kaininja-part-level-3d-generation" data-intel-role="card">
+     <div class="meta">
+      <span class="pill">
+       ai-3d
+      </span>
+     </div>
+     <h3>
+      KaiNinja：把 TRELLIS.2 類 Native 3D Generator 擴成 Part-Level 輸出，避免先融合再分割
+     </h3>
+     <p class="summary">
+      KaiNinja 以 dual-volume representation 解決接觸零件界面無法在單一 O-Voxel 表達的問題，目標是直接生成可分件資產，而非事後 segmentation。
+     </p>
+     <figure class="case-preview daily-visual" data-intel-id="kaininja-part-level-3d-generation" data-intel-role="visual" data-visual-id="kaininja-part-level-3d-generation">
+      <a href="https://huggingface.co/papers/2609.15659" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+       <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-09-16/kaininja-part-level-3d-generation.jpg"/>
+      </a>
+      <figcaption>
+       <span>
+        SOURCE PREVIEW
+       </span>
+       · Local visual evidence · 點圖開啟原始來源
+      </figcaption>
+     </figure>
+     <div class="quick-impact daily-impact">
+      <span><b class="quick-impact-label">AI 3D</b> ★★★★☆</span>
+     </div>
+     <details class="canonical-analysis canonical-analysis-brief daily-full-analysis" data-analysis-level="BRIEF">
+      <summary>
+       完整分析
+      </summary>
+      <div class="detail-body canonical-analysis-body brief-analysis-body daily-analysis-body">
+       <h4>
+        生成流程
+       </h4>
+       <p>
+        研究指出 TRELLIS.2 類 native 3D generator 通常輸出單一融合物件，但編輯、rigging 與 simulation 需要 part-level 資產；KaiNinja 用 dual-volume 表示接觸界面，讓模型在生成階段就能輸出分件，而不依賴後處理 segmentation。
+       </p>
+       <h4>
+        製作價值
+       </h4>
+       <p>
+        如果分件品質能穩定，AI 3D 對遊戲角色與機械道具的價值會從『有一個 mesh』提升到『可個別編輯、材質、骨架與替換的組件』，直接對應目前 image-to-3D 最常見的 production 痛點之一。
+       </p>
+       <h4>
+        導入測試
+       </h4>
+       <p>
+        目前仍是研究成果，不等同於可部署的商用工具；論文摘要與研究頁雖報告 part／whole-object fidelity 改善，仍需檢查程式碼、推理成本、材質邊界與複雜接觸區。建議先以裝甲角色、鞋服與硬表面組件做 part interface 測試。
+       </p>
+       <p class="analysis-level-note">
+        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+       </p>
+      </div>
+     </details>
+     <a class="source daily-source" href="https://huggingface.co/papers/2609.15659" rel="noopener noreferrer" target="_blank">
+      來源
+     </a>
+    </article>
+    <article class="daily-card daily-card-more category-news" data-intel-id="haele-portrait-studio-pro" data-intel-role="card">
+     <div class="meta">
+      <span class="pill">
+       character-production
+      </span>
+     </div>
+     <h3>
+      Portrait Studio Pro：MetaHuman-based 臉部解剖參考工具，提供肌肉、頭骨、Face Plane 與 90+ 表情
+     </h3>
+     <p class="summary">
+      HAELE 3D 宣布 Portrait Studio Pro，讓角色美術以可調角色、解剖層、燈光與表情研究頭臉；預計 9/23 上線。
+     </p>
+     <figure class="case-preview daily-visual" data-intel-id="haele-portrait-studio-pro" data-intel-role="visual" data-visual-id="haele-portrait-studio-pro">
+      <a href="https://80.lv/articles/flexible-new-3d-facial-anatomy-tool-for-character-artists-coming-soon" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+       <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-09-16/haele-portrait-studio-pro.jpg"/>
+      </a>
+      <figcaption>
+       <span>
+        SOURCE PREVIEW
+       </span>
+       · Local visual evidence · 點圖開啟原始來源
+      </figcaption>
+     </figure>
+     <div class="quick-impact daily-impact">
+      <span><b class="quick-impact-label">角色製作</b> ★★★★☆</span>
+     </div>
+     <details class="canonical-analysis canonical-analysis-brief daily-full-analysis" data-analysis-level="BRIEF">
+      <summary>
+       完整分析
+      </summary>
+      <div class="detail-body canonical-analysis-body brief-analysis-body daily-analysis-body">
+       <h4>
+        製作流程
+       </h4>
+       <p>
+        工具以 MetaHuman-based 可調人物作為臉部參考，能切換 simplified、realistic、anatomical 模式，查看 skull、facial muscles、face planes 與個別五官；同時提供 30 個角色、90+ 表情、眼神、頭頸姿勢與可調燈光。
+       </p>
+       <h4>
+        流程價值
+       </h4>
+       <p>
+        對角色雕刻與臉部 lookdev，最大的價值不是自動生成人臉，而是把解剖、表情、視角與光線放在同一可旋轉參考環境，能降低在多個 2D reference 間來回比對的摩擦，特別適合表情與 plane change 研究。
+       </p>
+       <h4>
+        實測限制
+       </h4>
+       <p>
+        目前是 9/23 上線前的功能公告，尚未有長期使用、效能或版本相容性資料。正式導入前應確認自訂角色範圍、MetaHuman 資產授權與 export 能力，並比較它與 PureRef＋掃描頭模／既有解剖工具的實際查找效率。
+       </p>
+       <p class="analysis-level-note">
+        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+       </p>
+      </div>
+     </details>
+     <a class="source daily-source" href="https://80.lv/articles/flexible-new-3d-facial-anatomy-tool-for-character-artists-coming-soon" rel="noopener noreferrer" target="_blank">
+      來源
+     </a>
+    </article>
+    <article class="daily-card daily-card-more category-news" data-intel-id="supersplat-3-webgpu-editor" data-intel-role="card">
+     <div class="meta">
+      <span class="pill">
+       case-study
+      </span>
+     </div>
+     <h3>
+      SuperSplat Editor 3.0：整個編輯器改寫為 WebGPU，GPU 做投影、剔除、排序與間接繪製
+     </h3>
+     <p class="summary">
+      PlayCanvas 將 SuperSplat 3.0 renderer 與 data model 重寫到 WebGPU，主打更大 Gaussian Splat 場景、較低記憶體與新的選取／調色流程。
+     </p>
+     <figure class="case-preview daily-visual" data-intel-id="supersplat-3-webgpu-editor" data-intel-role="visual" data-visual-id="supersplat-3-webgpu-editor">
+      <a href="https://blog.playcanvas.com/new-in-supersplat-editor-3-0-rebuilt-on-webgpu/" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+       <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-09-16/supersplat-3-webgpu-editor.jpg"/>
+      </a>
+      <figcaption>
+       <span>
+        SOURCE PREVIEW
+       </span>
+       · Local visual evidence · 點圖開啟原始來源
+      </figcaption>
+     </figure>
+     <div class="quick-impact daily-impact">
+      <span><b class="quick-impact-label">製作案例</b> ★★★★☆</span>
+     </div>
+     <details class="canonical-analysis canonical-analysis-brief daily-full-analysis" data-analysis-level="BRIEF">
+      <summary>
+       完整分析
+      </summary>
+      <div class="detail-body canonical-analysis-body brief-analysis-body daily-analysis-body">
+       <h4>
+        技術方向
+       </h4>
+       <p>
+        SuperSplat 3.0 將 editor 與 renderer 以 WebGPU 重寫，projection、frustum culling、compaction、depth sorting 與 draw submission 都在 GPU 每幀處理，並採 compute projector、GPU radix sort 與 indirect drawing。
+       </p>
+       <h4>
+        製作潛力
+       </h4>
+       <p>
+        這代表 Gaussian Splat 編輯工具開始把瓶頸從瀏覽器 JavaScript／CPU 管理搬到 GPU，對大型實景掃描、空間 capture 與 3DGS 關卡原型更實用；新增 selection、color grading 與 Appearance 也讓內容編修更接近 DCC。
+       </p>
+       <h4>
+        成熟度判斷
+       </h4>
+       <p>
+        3.0 編輯器改成 WebGPU only，瀏覽器與顯卡支援會成為新的相容性門檻。導入前應用自家 splat 場景測載入時間、VRAM、排序效能、編輯後輸出格式，以及目標部署瀏覽器是否能穩定使用 WebGPU。
+       </p>
+       <p class="analysis-level-note">
+        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+       </p>
+      </div>
+     </details>
+     <a class="source daily-source" href="https://blog.playcanvas.com/new-in-supersplat-editor-3-0-rebuilt-on-webgpu/" rel="noopener noreferrer" target="_blank">
+      來源
+     </a>
+    </article>
+    <article class="daily-card daily-card-more category-news" data-intel-id="houdini21-kinefx-animation-tools" data-intel-role="card">
+     <div class="meta">
+      <span class="pill">
+       animation
+      </span>
+     </div>
+     <h3>
+      Houdini 21 KineFX：Motion Mixer、Animation Catalog、Autorig Builder 與全身 IK 強化程序化角色動畫
+     </h3>
+     <p class="summary">
+      Houdini 21 將 KineFX 動畫工作流擴充到 clip 混合、pose／animation catalog、retarget 與新的 rigging／IK 工具。
+     </p>
+     <figure class="case-preview daily-visual" data-intel-id="houdini21-kinefx-animation-tools" data-intel-role="visual" data-visual-id="houdini21-kinefx-animation-tools">
+      <a href="https://www.sidefx.com/products/whats-new-in-h21/" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+       <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-09-16/houdini21-kinefx-animation-tools.jpg"/>
+      </a>
+      <figcaption>
+       <span>
+        SOURCE PREVIEW
+       </span>
+       · Local visual evidence · 點圖開啟原始來源
+      </figcaption>
+     </figure>
+     <div class="quick-impact daily-impact">
+      <span><b class="quick-impact-label">動畫</b> ★★★★☆</span>
+     </div>
+     <details class="canonical-analysis canonical-analysis-brief daily-full-analysis" data-analysis-level="BRIEF">
+      <summary>
+       完整分析
+      </summary>
+      <div class="detail-body canonical-analysis-body brief-analysis-body daily-analysis-body">
+       <h4>
+        動作製作流程
+       </h4>
+       <p>
+        Houdini 21 的 KineFX 新增 Motion Mixer，可在 timeline 混合多角色 animation clips；Animation Catalog 可儲存與重用 animation／單幀 pose，並加入 retarget、full body IK 與 Autorig Builder 等工具。
+       </p>
+       <h4>
+        Rig / 輸出
+       </h4>
+       <p>
+        對程序化動畫 pipeline 的價值在於把 pose library、clip 組合、retarget 與 rig 建立留在可節點化／可批次處理的環境；這比只把 Houdini 當離線 VFX 工具更接近 gameplay animation 或大量角色處理。
+       </p>
+       <h4>
+        導入測試
+       </h4>
+       <p>
+        官方頁列出能力但不代表能直接取代 Maya／MotionBuilder／UE Control Rig。應用一組現有 skeleton 測 retarget、root motion、constraint、動畫層與 FBX／USD 輸出，特別確認 animator 互動速度與最終引擎資料是否能保持一致。
+       </p>
+       <p class="analysis-level-note">
+        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+       </p>
+      </div>
+     </details>
+     <a class="source daily-source" href="https://www.sidefx.com/products/whats-new-in-h21/" rel="noopener noreferrer" target="_blank">
+      來源
+     </a>
+    </article>
+   </section>
+  </main>
+  <script src="../daily.js?v=20260916-r1-workspace-v10-history-current-workspace">
+  </script>
+  <script defer="" src="../archive-nav-state.js?v=20260916-r1-workspace-v10-history-current-workspace">
+  </script>
+ </body>
+</html>

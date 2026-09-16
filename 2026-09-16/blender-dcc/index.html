@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   Blender / DCC｜2026-09-16｜AI 3D Daily
+  </title>
+  <link href="../../styles.css?v=20260916-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../../shared-components.css?v=20260916-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../../category.css?v=20260916-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+ </head>
+ <body class="category-page" data-category="blender-dcc" data-report-date="2026-09-16">
+  <nav aria-label="Production Intelligence 分類" class="global-category-nav">
+   <div class="page global-category-nav-inner">
+    <div class="archive-nav-controls">
+     <a class="archive-nav-home" href="../../">
+      ← 首頁
+     </a>
+     <div class="archive-nav-date">
+      <a aria-label="前一日日報" class="archive-nav-arrow" href="../../2026-09-15/blender-dcc/">
+       ←
+      </a>
+      <span>
+       2026-09-16
+      </span>
+     </div>
+    </div>
+    <span aria-hidden="true" class="archive-nav-divider">
+    </span>
+    <a class="global-category-link" href="../#top">
+     TOP5
+    </a>
+    <a class="global-category-link" data-category="ai-generation" href="../ai-generation/">
+     AI 生成
+    </a>
+    <a class="global-category-link" data-category="3d-production" href="../3d-production/">
+     3D 製作
+    </a>
+    <a class="global-category-link" data-category="3d-animation" href="../3d-animation/">
+     3D 動作
+    </a>
+    <a class="global-category-link" data-category="engine-art" href="../engine-art/">
+     遊戲引擎
+    </a>
+    <a class="global-category-link" data-category="emerging-case" href="../emerging-case/">
+     新技術 / Case
+    </a>
+    <a class="global-category-link is-active" data-category="blender-dcc" href="../blender-dcc/">
+     Blender / DCC
+    </a>
+    <a class="global-category-link global-history-link" data-global-view="history" href="../../history/">
+     歷史日報
+    </a>
+   </div>
+  </nav>
+  <main class="page category-main">
+   <article class="category-card" data-intel-id="reface-205-hard-surface-retopo" data-intel-role="card">
+    <div class="category-meta">
+     #04 · addon
+    </div>
+    <h2>
+     ReFace 2.0.5：Blender 硬表面 Retopo 擴充到掃描、AI 生成與雕刻後的髒網格
+    </h2>
+    <p class="summary">
+     ReFace 新版加入 Drawn Patch Mode、patch 延伸、sector decomposition 與更彈性的 Knife Tool，明確鎖定沒有乾淨 edge flow 的掃描與 AI 3D 網格。
+    </p>
+    <figure class="case-preview" data-intel-id="reface-205-hard-surface-retopo" data-intel-role="visual" data-visual-id="reface-205-hard-surface-retopo">
+     <a href="https://80.lv/articles/hard-surface-retopology-just-got-easier-in-blender" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-16/reface-205-hard-surface-retopo.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">外掛</b> ★★★★☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       DCC 工作流
+      </h4>
+      <p>
+       ReFace 2.0.5 把 Corner Guided Grid Refill 擴充成可手繪 patch 的流程，並加入 patch 延伸、sector decomposition、顯示模式與 Knife Tool 改良，目標是直接處理掃描、AI 生成或雕刻後缺乏乾淨 edge flow 的硬表面網格。
+      </p>
+      <h4>
+       製作價值
+      </h4>
+      <p>
+       對 AI 3D 或高模轉遊戲資產而言，價值在於把『重新畫拓樸區塊』變成可局部引導的工具流程，而不是只依賴全自動 remesh；若能穩定保留邊界與曲率，可能降低硬表面人工重建的重複操作。
+      </p>
+      <h4>
+       升版 / 導入測試
+      </h4>
+      <p>
+       目前證據主要來自作者示範與 80 Level 報導，尚缺不同拓樸難度的量化 benchmark。建議用 AI 角色裝甲、掃描道具與 ZBrush 高模三組測試，比較 patch 成功率、UV 前清理時間、法線烘焙品質與需要手修的比例。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://80.lv/articles/hard-surface-retopology-just-got-easier-in-blender" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="maya-to-blender-rest-pose-skinning" data-intel-role="card">
+    <div class="category-meta">
+     #08 · blender
+    </div>
+    <h2>
+     Maya → Blender 角色移植：從 Skinning 內部結構解決 FBX 匯入後 Rest Pose 漂移
+    </h2>
+    <p class="summary">
+     COYOTE 3DCG STUDIO 解析 Maya 角色透過 FBX 匯入 Blender 後，清除骨骼 Transform 時姿勢與原始檔不一致的原因與處理方式。
+    </p>
+    <figure class="case-preview" data-intel-id="maya-to-blender-rest-pose-skinning" data-intel-role="visual" data-visual-id="maya-to-blender-rest-pose-skinning">
+     <a href="https://cgworld.jp/flashnews/01-202609-Coyote-MayaBlender.html" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-16/maya-to-blender-rest-pose-skinning.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">Blender</b> ★★★★☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       DCC 工作流
+      </h4>
+      <p>
+       案例不是只調 FBX 軸向，而是從 Maya skinning 與 bind 狀態解釋為何角色匯入 Blender 後，執行 Clear Transform 會回到與輸出時不同的 rest pose；這種差異會直接影響後續 rig、動畫與 corrective shape。
+      </p>
+      <h4>
+       製作價值
+      </h4>
+      <p>
+       跨 Maya／Blender 的角色 pipeline 若只看畫面匯入是否正常，很容易到 retarget、重綁或 pose library 才發現基準姿勢不一致。把 rest pose 驗證列入交接檢查，可減少後段因骨架基準不同造成的動畫與權重返工。
+      </p>
+      <h4>
+       升版 / 導入測試
+      </h4>
+      <p>
+       這篇是特定 Maya→FBX→Blender 路徑的技術 Tips，仍需對自家 skeleton、非均勻 scale、joint orient 與 corrective blendshape 測試。建議建立 T/A Pose、極端關節與 bind matrix 比對，並把匯入後 rest pose hash／截圖加入自動驗收。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://cgworld.jp/flashnews/01-202609-Coyote-MayaBlender.html" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="amaterasu-maya-parallax-cube" data-intel-role="card">
+    <div class="category-meta">
+     #19 · maya
+    </div>
+    <h2>
+     Amaterasu Maya 工具集更新：Parallax Cube Mapping 在單一 Plane 偽裝房間深度，Viewport 與 Arnold 對齊
+    </h2>
+    <p class="summary">
+     免費 Maya 工具集新增 Parallax Cube Mapping，提供 GLSL/HLSL viewport shader 與 Arnold OSL shader；另改善 Mirror、Flatten、Edge 判斷等建模工具。
+    </p>
+    <figure class="case-preview" data-intel-id="amaterasu-maya-parallax-cube" data-intel-role="visual" data-visual-id="amaterasu-maya-parallax-cube">
+     <a href="https://cgworld.jp/flashnews/01-202609-Amaterasu.html" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-16/amaterasu-maya-parallax-cube.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">Maya</b> ★★★☆☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       DCC 工作流
+      </h4>
+      <p>
+       新版 Amaterasu 在單一 plane 上用 Parallax Cube Mapping 偽裝有深度的室內空間，並同時提供 Maya viewport 的 GLSL/HLSL 與 Arnold OSL 實作；文章指出即使其他 Maya 環境沒裝整套工具，也可重現 shader。
+      </p>
+      <h4>
+       製作價值
+      </h4>
+      <p>
+       對窗景、遠景房間與大量建築 façade，這類假室內能用低幾何成本增加視差感；viewport 與 Arnold 結果一致也有利於 lookdev／final render 共用設定。更新同時整理 Mirror、Flatten、edge type 等建模工具，可作為小型 Maya production toolkit。
+      </p>
+      <h4>
+       升版 / 導入測試
+      </h4>
+      <p>
+       Parallax 效果對觀看角度、窗框遮擋與近距離鏡頭有天然限制，且遊戲引擎要另做對應 shader。導入時應測極端視角、深度尺度、貼圖 atlas、LOD 與 UE／Unity 實作成本，避免把 Arnold 可重現性誤認為引擎可直接移植。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://cgworld.jp/flashnews/01-202609-Amaterasu.html" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <nav aria-label="相鄰分類" class="category-bottom-nav">
+    <a href="../emerging-case/">
+     ← 新技術 / Case
+    </a>
+    <a href="../#top">
+     TOP5
+    </a>
+    <a href="../ai-generation/">
+     AI 生成 →
+    </a>
+   </nav>
+  </main>
+  <script defer="" src="../../archive-nav-state.js?v=20260916-r1-workspace-v10-history-current-workspace">
+  </script>
+ </body>
+</html>

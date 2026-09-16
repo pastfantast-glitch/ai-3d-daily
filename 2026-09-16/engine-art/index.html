@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   遊戲引擎｜2026-09-16｜AI 3D Daily
+  </title>
+  <link href="../../styles.css?v=20260916-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../../shared-components.css?v=20260916-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../../category.css?v=20260916-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+ </head>
+ <body class="category-page" data-category="engine-art" data-report-date="2026-09-16">
+  <nav aria-label="Production Intelligence 分類" class="global-category-nav">
+   <div class="page global-category-nav-inner">
+    <div class="archive-nav-controls">
+     <a class="archive-nav-home" href="../../">
+      ← 首頁
+     </a>
+     <div class="archive-nav-date">
+      <a aria-label="前一日日報" class="archive-nav-arrow" href="../../2026-09-15/engine-art/">
+       ←
+      </a>
+      <span>
+       2026-09-16
+      </span>
+     </div>
+    </div>
+    <span aria-hidden="true" class="archive-nav-divider">
+    </span>
+    <a class="global-category-link" href="../#top">
+     TOP5
+    </a>
+    <a class="global-category-link" data-category="ai-generation" href="../ai-generation/">
+     AI 生成
+    </a>
+    <a class="global-category-link" data-category="3d-production" href="../3d-production/">
+     3D 製作
+    </a>
+    <a class="global-category-link" data-category="3d-animation" href="../3d-animation/">
+     3D 動作
+    </a>
+    <a class="global-category-link is-active" data-category="engine-art" href="../engine-art/">
+     遊戲引擎
+    </a>
+    <a class="global-category-link" data-category="emerging-case" href="../emerging-case/">
+     新技術 / Case
+    </a>
+    <a class="global-category-link" data-category="blender-dcc" href="../blender-dcc/">
+     Blender / DCC
+    </a>
+    <a class="global-category-link global-history-link" data-global-view="history" href="../../history/">
+     歷史日報
+    </a>
+   </div>
+  </nav>
+  <main class="page category-main">
+   <article class="category-card" data-intel-id="unity-massive-object-rendering" data-intel-role="card">
+    <div class="category-meta">
+     #03 · unity
+    </div>
+    <h2>
+     Unity 大量物件渲染實務：Static Batching、VAT 與自訂 Batch Renderer Group 的取捨
+    </h2>
+    <p class="summary">
+     Unity 與 Mega Cat Studios 分享 URP/HDRP 大量物件的效能策略，包含靜態批次、Vertex Animation Texture 與為草地建立自訂 Batch Renderer Group。
+    </p>
+    <figure class="case-preview" data-intel-id="unity-massive-object-rendering" data-intel-role="visual" data-visual-id="unity-massive-object-rendering">
+     <a href="https://unity.com/blog/rendering-at-scale-efficient-strategies-for-massive-object-counts" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-16/unity-massive-object-rendering.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">Unity</b> ★★★★★</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-full" data-analysis-level="FULL">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body">
+      <h4>
+       引擎工作流
+      </h4>
+      <p>
+       案例從 PC／主機與較弱平台的大量物件瓶頸出發，分別討論 static batching、Vertex Animation Texture 與 Batch Renderer Group；其中草地等高數量重複物件可用自訂 BRG 降低 CPU submission 與 draw 管理成本。
+      </p>
+      <h4>
+       製作價值
+      </h4>
+      <p>
+       這類方法不是單純『少 Draw Call』，而是依物件是否靜態、是否需要變形、數量與可見性決定資料如何送進 GPU。對大量植被、群集道具與城市場景，美術資產規格可以因此更早和 renderer 策略綁定，而不是場景完成後才做效能救火。
+      </p>
+      <h4>
+       平台實測
+      </h4>
+      <p>
+       文章是特定專案經驗，URP/HDRP、目標硬體與內容密度都會改變最佳解。導入前應建立相同場景的 Static Batching、GPU Instancing、BRG、VAT A/B 場景，量 CPU Render Thread、GPU、記憶體與剔除成本，並確認 Shader Graph／自訂 Shader 是否維持相同視覺。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://unity.com/blog/rendering-at-scale-efficient-strategies-for-massive-object-counts" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <nav aria-label="相鄰分類" class="category-bottom-nav">
+    <a href="../3d-animation/">
+     ← 3D 動作
+    </a>
+    <a href="../#top">
+     TOP5
+    </a>
+    <a href="../emerging-case/">
+     新技術 / Case →
+    </a>
+   </nav>
+  </main>
+  <script defer="" src="../../archive-nav-state.js?v=20260916-r1-workspace-v10-history-current-workspace">
+  </script>
+ </body>
+</html>

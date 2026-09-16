@@ -6,13 +6,13 @@
   <title>
    歷史日報｜AI 3D Production Intelligence
   </title>
-  <link href="../styles.css?v=20260915-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
-  <link href="../shared-components.css?v=20260915-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
-  <link href="../home.css?v=20260915-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
-  <link href="../home-content.css?v=20260915-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
-  <link href="../home-components.css?v=20260915-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../styles.css?v=20260916-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../shared-components.css?v=20260916-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../home.css?v=20260916-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../home-content.css?v=20260916-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../home-components.css?v=20260916-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
  </head>
- <body class="home-page history-page" data-report-date="2026-09-15">
+ <body class="home-page history-page" data-report-date="2026-09-16">
   <nav aria-label="Production Intelligence 分類" class="global-category-nav">
    <div class="page global-category-nav-inner">
     <a class="global-category-link" href="../#today">
@@ -42,8 +42,8 @@
    </div>
   </nav>
   <main class="page home-main history-main">
-   <div class="current-report-entry" data-current-report-date="2026-09-15">
-    <a aria-label="查看 2026-09-15 今日完整日報" class="category-nav-card current-report-link" href="../2026-09-15/">
+   <div class="current-report-entry" data-current-report-date="2026-09-16">
+    <a aria-label="查看 2026-09-16 今日完整日報" class="category-nav-card current-report-link" href="../2026-09-16/">
      <div class="current-report-copy">
       <span class="current-report-eyebrow">
        TODAY
@@ -53,7 +53,7 @@
       </strong>
      </div>
      <span class="current-report-date">
-      2026-09-15
+      2026-09-16
      </span>
     </a>
    </div>
@@ -119,6 +119,14 @@
          9 月
         </summary>
         <div class="archive-entries">
+         <a class="history-entry" data-history-categories="3d-animation 3d-production ai-generation blender-dcc emerging-case engine-art" data-history-date="2026-09-15" data-history-search="2026-09-15 歷史日報 tripo 角色到 unreal 實例：ai 生成分件、quad mesh，再由人工完成 uv／貼圖／組裝與引擎收尾 tripo 的 stylized knight 案例把 ai 生成放在角色 production 前段，最終仍透過人工組裝、uv、材質與 unreal 匯入完成可控資產。 ★★★★★ meshy 7.1：ultra 4k 幾何提高到 4096³，主打更高表面細節與最高 8,000 萬三角形 raw mesh meshy 7.1 將 ultra 模式從 2048³ 提升到 4096³，官方以 detail richness benchmark 比較多個 image-to-3d 模型，焦點從輪廓一致性轉向幾何微細節。 ★★★★★ meshy api 9/14 更新：image-to-image 可直接接前一個 task_id，減少圖像鏈式流程的 url 搬運 meshy api changelog 新增 input_task_id，讓完成的 text-to-image 或 image-to-image 任務可直接成為下一步輸入，適合批次概念→多視圖→3d 管線。 ★★★★☆ blender 免費 hair rig 工具：沿髮束自動建立 deform bone chain，降低 stylized hair 手動骨架工時 工具可沿開放 hair card／tube／多股髮束建立可調 bone chain，控制骨數、覆蓋範圍、root 深度與方向，面向 stylized hair secondary motion。 ★★★★☆ simple hair：以四面體幾何做低成本 houdini hair deformation，鎖定遊戲與次要角色 simple hair 展示用 tetrahedral geometry 驅動 groom deformation 的方向，目標是降低碰撞設定與模擬時間，同時保留髮型。 ★★★★☆ proximity snap：blender 一鍵把頂點吸附最近 surface／edge／vertex，補足 retopo 與場景接縫清理 免費工具提供距離、方向、平滑與 projection 控制，適合 retopo、道路貼地、衣物或車體表面貼合等重複操作。 ★★★☆☆ vrchat liquid hair shader：用水平液面與動畫擾動把髮型轉成流體視覺，適合研究 stylized shader 語言 aorin liquid shader 讓髮型呈現水平液面與緩慢波動，搭配 matcap 建立反射感，是小型但可轉移的 npr／特效材質參考。 ★★★☆☆ kinetiq：瀏覽器整合 auto-rig、retarget、video mocap 與 keyframe polish，強調 ai 後仍能人工修動作 kinetiq engine 把自動綁定、動作重定向、影片 mocap、逐 keyframe 編輯與 ue5/unity 等匯出放在同一瀏覽器工作區。 ★★★★☆ pinoc：ai auto-rig 加 retarget，支援手指 mapping、a/t pose 校正與 fbx/glb／motion 單獨輸出 pinoc 的 rigging workflow 支援 humanoid、creature 與 stylized proportion，亦能辨識既有 rig、映射手指並把 motion retarget 到原角色。 ★★★★☆ usoftsubdiv：ue 5.7/5.8 在 gpu 由低密度 skeletal cage 重建 catmull-clark 平滑表面 插件把 subdivision data 預烘焙，runtime 以動畫後的 skeletal mesh cage 驅動 gpu smooth surface，讓動畫控制網格與最終顯示密度分離。 ★★★★☆ substance designer send to：designer→painter／sampler／stager 可 resend 更新既有資產，縮短材質迭代 adobe 文件更新 designer 的 send to interoperability，可先設定 graph type，再把 package 送往其他 substance 3d app，修改後 resend 更新。 ★★★☆☆ meshy 官方 comfyui partner node：把 text/image/multi-view→3d、refine、pbr、rig、animation 串成節點流程 官方 partner node 直接進 comfyui templates，可跑 text/image/multi-view-to-3d，並延伸到 refine、pbr texturing、auto-rig、animation 與 glb/fbx。 ★★★★☆ venom 手 key 戰鬥動畫：高速重量轉移、撞擊與摔角節奏的 stylized combat reference spider-verse 動畫師 david han 的 maya 練習以手 key 呈現高能量 venom 戰鬥／摔角動作，適合觀察 anticipation、impact、body mechanics 與誇張 timing。 ★★★★☆ stylized vampire 動畫：marvel rivals／arcane 取向的角色動作、渲染與 2d vfx 混合參考 角色短動畫結合 maya 動畫、3d 角色資產與 2d vfx，提供 stylized combat/presentation 的 pose、silhouette、色彩與效果整合參考。 ★★★★☆ spider-man hybrid lookdev：寫實材質與 2d comic outline 並置，探索 stylized-realism 的角色呈現 實驗作品用 zbrush、substance、marmoset 結合 comic 2d element、cel-shaded render 與受環境影響的 outline 色彩，提供半寫實 npr 角色參考。 ★★★★☆ fags：頻率感知 dynamic gaussian splatting，分離高頻邊界與運動以降低 4d 重建 motion blur fags 使用 frequency-differentiated gaussian kernel、fourier deformation 與 gating，針對動態 gaussian 的模糊與結構細節保留。 ★★★★☆" href="../2026-09-15/">
+          <strong>
+           2026-09-15
+          </strong>
+          <span>
+           歷史日報
+          </span>
+         </a>
          <a class="history-entry" data-history-categories="3d-animation ai-generation blender-dcc emerging-case engine-art" data-history-date="2026-09-14" data-history-search="2026-09-14 歷史日報 ue5 shape cage：以 wpo 做 27 點 gpu 籠狀變形，避開 cpu soft-body 模擬 shape cage 用 world position offset 在 vertex shader 執行網格變形，依碰撞位置、力道與方向推導 dent，並以約 12 bytes/凹痕的資訊做網路同步。 ★★★★☆ blender 5.3 npr 原型：可自訂逐燈光照行為，cel shader 能回應 light color 與 cast shadow blender 5.3 開發中的自訂材質 lighting nodes 讓 npr 使用者能逐燈計算自己的 shading behavior，並把結果送入正確 render passes。 ★★★★☆ rokoko vision 3.0：單目 ai mocap solver 重寫並併入 create，強調更乾淨動作與快速迭代 rokoko 在 2026-07-16 推出 vision 3.0，重寫 monocular solver，將 video-to-motion 與 text-to-motion 收進 rokoko create，並可回 studio 編輯與輸出。 ★★★★☆ mecha centaur 長槍攻擊：多角度展示高速戰鬥動畫的重量、弧線與節奏 martin chang 的 rosetta 長槍動畫以多角度展示高速連擊，適合作為 stylized gameplay attack 的 pose readability、arcs 與 timing 參考。 ★★★★☆ blender 童話池塘製作：ucupaint layer workflow 搭配 eevee 的場景貼圖管理 ramy 展示從 default cube 到完整池塘的製作過程，並使用 ucupaint 管理 eevee／cycles 的 texture layers、masks、decals 與 displacement。 ★★★★☆ studiojoin 免費 maya rig：ik/fk、soft ik、world/local 與臉部控制可用於 rigging 練習 studiojoin 提供 maya 2023+ 免費非商用角色 rig，包含全局縮放、ik/fk、world/local、soft ik 與臉部 controller，可做 rig 結構與 animator usability 參考。 ★★★★☆ blender 機械綁定：用 bone chain 與 ik 建立折疊椅連桿並處理比例誤差 demnikoart 以 blender 5.2 lts 拆解折疊椅機構，從運動分析、bone chain、ik 到比例不完全吻合時的修正，並提供 rigged/unrigged 檔案。 ★★★★☆ 免費 fitness mocap pack：15 分鐘訓練／伸展／健身動作，可作 gameplay 與資料庫補充 anderson rohr 發布新的免費 mocap 動作包，含 functional training、stretching、strength 與 gym movements，定位於遊戲、動畫與 cinematic 使用。 ★★★★☆ unity 2d renderer 程序化水面：解析 ripple＋假透視 surface，偏美術可控而非物理解算 bxyass 的 ori-inspired 水系統以 analytical ripples、shader 與 rendering 技巧製作 2.5d 水面，支援 currents、debris、浮台、light rays、wakes、api 與 custom inspectors。 ★★★★☆ abcd：大型 gaussian splat 場景以 block coordinate descent 達到近似固定 vram 訓練 abcd 將 radiance field 分區，只讓一個 block 參與更新，其餘區域預渲染成前景／背景 rgba，使 peak vram 對整體場景尺度趨近 o(1)。 ★★★★☆ worldclaw：agent 規劃大型 3d 開放世界，輸出可編輯 terrain 與 instance-level textured meshes tencent hunyuan 的 worldclaw 以 coarse-to-fine agent framework 把文字提示轉成區域、地形、資產、材質與空間關係，再逐區細化成可編輯 3d 場景。 ★★★★☆ 無 mesh 的 sdf 角色：three.js 單一 fullscreen quad 以 raymarching 在 fragment shader 生成 3d 外觀 drin 的實驗完全不使用 mesh／texture／vertex，所有形體由 fragment shader 的 sdf raymarching 算出，展示 geometry-free stylized visual 的可能性。 ★★★★☆ triposplat → modly：把單圖 gaussian splat 重建成 watertight vertex-colored glb 的開源整合 modly 的 triposplat extension 以單次 feed-forward 生成 gaussian splats，再用 density grid、surface nets 與 color volume 重建 watertight glb，讓 splat 模型進入 mesh-centric pipeline。 ★★★★☆" href="../2026-09-14/">
           <strong>
            2026-09-14
@@ -328,9 +336,9 @@
     </div>
    </section>
   </main>
-  <script src="../history.js?v=20260915-r1-workspace-v10-history-current-workspace">
+  <script src="../history.js?v=20260916-r1-workspace-v10-history-current-workspace">
   </script>
-  <script src="../preference.js?v=20260915-r1-workspace-v10-history-current-workspace" type="module">
+  <script src="../preference.js?v=20260916-r1-workspace-v10-history-current-workspace" type="module">
   </script>
  </body>
 </html>

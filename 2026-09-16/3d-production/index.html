@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   3D 製作｜2026-09-16｜AI 3D Daily
+  </title>
+  <link href="../../styles.css?v=20260916-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../../shared-components.css?v=20260916-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../../category.css?v=20260916-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+ </head>
+ <body class="category-page" data-category="3d-production" data-report-date="2026-09-16">
+  <nav aria-label="Production Intelligence 分類" class="global-category-nav">
+   <div class="page global-category-nav-inner">
+    <div class="archive-nav-controls">
+     <a class="archive-nav-home" href="../../">
+      ← 首頁
+     </a>
+     <div class="archive-nav-date">
+      <a aria-label="前一日日報" class="archive-nav-arrow" href="../../2026-09-15/3d-production/">
+       ←
+      </a>
+      <span>
+       2026-09-16
+      </span>
+     </div>
+    </div>
+    <span aria-hidden="true" class="archive-nav-divider">
+    </span>
+    <a class="global-category-link" href="../#top">
+     TOP5
+    </a>
+    <a class="global-category-link" data-category="ai-generation" href="../ai-generation/">
+     AI 生成
+    </a>
+    <a class="global-category-link is-active" data-category="3d-production" href="../3d-production/">
+     3D 製作
+    </a>
+    <a class="global-category-link" data-category="3d-animation" href="../3d-animation/">
+     3D 動作
+    </a>
+    <a class="global-category-link" data-category="engine-art" href="../engine-art/">
+     遊戲引擎
+    </a>
+    <a class="global-category-link" data-category="emerging-case" href="../emerging-case/">
+     新技術 / Case
+    </a>
+    <a class="global-category-link" data-category="blender-dcc" href="../blender-dcc/">
+     Blender / DCC
+    </a>
+    <a class="global-category-link global-history-link" data-global-view="history" href="../../history/">
+     歷史日報
+    </a>
+   </div>
+  </nav>
+  <main class="page category-main">
+   <article class="category-card" data-intel-id="no-mercy-two-character-production" data-intel-role="card">
+    <div class="category-meta">
+     #01 · character-production
+    </div>
+    <h2>
+     《No Mercy》雙角色製作拆解：先鎖定輪廓與低模規劃，再把皮膚、服裝與金屬細節集中到貼圖
+    </h2>
+    <p class="summary">
+     Anna Smirnova 的角色案例把高複雜度非對稱設計拆成可迭代流程：早期維持可用的低模基底，材質細節主要透過 ZBrush 烘焙與 Substance 3D Painter 貼圖控制，最後在 Unreal 反覆檢查。
+    </p>
+    <figure class="case-preview" data-intel-id="no-mercy-two-character-production" data-intel-role="visual" data-visual-id="no-mercy-two-character-production">
+     <a href="https://80.lv/articles/turning-a-2d-illustration-into-a-realistic-two-character-3d-piece" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-16/no-mercy-two-character-production.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">角色製作</b> ★★★★★</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-full" data-analysis-level="FULL">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body">
+      <h4>
+       製作流程
+      </h4>
+      <p>
+       案例先把比例、silhouette 與主要設計決策鎖在 blockout，再逐步打破對稱；部分零件從一開始就以可作低模的拓樸規劃，之後才進入 ZBrush、Maya 與貼圖細化，能降低後段重新拓樸與比例返工的風險。
+      </p>
+      <h4>
+       流程價值
+      </h4>
+      <p>
+       皮膚、服裝與金屬的大量細節直接做進貼圖與 Normal，而不是把所有表面變化都留給程序材質；第二角色也刻意降低細節密度。這種依畫面焦點分配製作成本的做法，對遊戲角色與宣傳級角色資產都具可轉移性。
+      </p>
+      <h4>
+       實測限制
+      </h4>
+      <p>
+       作者以 Path Tracing 做最終呈現，且案例屬個人作品，不代表即時遊戲材質與效能條件。導入時應另測即時光照下的 AO、Normal、皮膚與毛髮表現，並比較『高模先做滿』與『低模基底先成立』兩種流程的實際返工時間。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://80.lv/articles/turning-a-2d-illustration-into-a-realistic-two-character-3d-piece" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="marvelous-designer-2026-1-tear-pinch" data-intel-role="card">
+    <div class="category-meta">
+     #06 · character-production
+    </div>
+    <h2>
+     Marvelous Designer 2026.1：布料撕裂 Beta、Brush Pinching 與 Blend Shape 動畫進入衣裝流程
+    </h2>
+    <p class="summary">
+     2026.1 新增 Seamline Rip／布破裂、Pinching Simulation Override、Brush Pinching 與 Blend Shape Animation；其中 fray 目前有輸出限制。
+    </p>
+    <figure class="case-preview" data-intel-id="marvelous-designer-2026-1-tear-pinch" data-intel-role="visual" data-visual-id="marvelous-designer-2026-1-tear-pinch">
+     <a href="https://cgworld.jp/flashnews/03-2609-MD20261.html" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-16/marvelous-designer-2026-1-tear-pinch.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">角色製作</b> ★★★★☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       製作流程
+      </h4>
+      <p>
+       2026.1 把衣裝破損與細部塑形更直接地放進 Marvelous Designer：Seamline Rip 可讓縫線在模擬中撕裂，Brush Pinching 沿筆刷路徑做皺褶，Pinching Override 可在操作期間暫時覆寫布料／模擬參數。
+      </p>
+      <h4>
+       流程價值
+      </h4>
+      <p>
+       角色衣裝過去常要在 Marvelous 完成大形後回 ZBrush 或其他 DCC 補破損與局部皺褶；新版讓部分細節與動畫 timing 可留在服裝模擬環境內，對戰損服裝、變身或需要多版衣裝狀態的角色更實用。
+      </p>
+      <h4>
+       實測限制
+      </h4>
+      <p>
+       撕裂工具仍是 Beta，CGWORLD 指出 fray 表現目前是 viewport 專用、不能直接以幾何輸出。導入時應確認破裂後拓樸、UV、cache／blendshape 匯出與 Unreal／Unity cloth pipeline 的相容性，不要把預覽效果當成可直接交付資產。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://cgworld.jp/flashnews/03-2609-MD20261.html" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="c4d-meshy-liquid-cinematic-workflow" data-intel-role="card">
+    <div class="category-meta">
+     #11 · production-workflow
+    </div>
+    <h2>
+     Meshy 7 × Cinema 4D：AI Base Mesh 接 Vertex Map、Displacement、Ripple 與 Lighting 做液體出場動畫
+    </h2>
+    <p class="summary">
+     Motion And Design 的教學把 Meshy 生成幾何當成起點，再用 Cinema 4D 的 vertex map、變位與燈光完成 cinematic 3D animation。
+    </p>
+    <figure class="case-preview" data-intel-id="c4d-meshy-liquid-cinematic-workflow" data-intel-role="visual" data-visual-id="c4d-meshy-liquid-cinematic-workflow">
+     <a href="https://cgworld.jp/flashnews/01-202609-C4D-Liquid.html" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-16/c4d-meshy-liquid-cinematic-workflow.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">製作流程</b> ★★★★☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       製作流程
+      </h4>
+      <p>
+       教學先用 Meshy 準備基礎 3D geometry，再進 Cinema 4D 透過 rig／vertex map、displacement deformer 與 ripple 表現物件從液體中浮出的變形，最後以 lighting 完成 lookdev；AI 只負責可用的起始幾何。
+      </p>
+      <h4>
+       流程價值
+      </h4>
+      <p>
+       這種做法比要求 AI 直接生成『最終動畫』更容易被既有 DCC production 接住：生成資產只要輪廓與材質基礎可用，動畫節奏、變形與鏡頭品質仍由傳統工具控制，因此可保留可修改性。
+      </p>
+      <h4>
+       實測限制
+      </h4>
+      <p>
+       來源是單一教學案例，沒有比較不同 Meshy 拓樸對 displacement／vertex map 的穩定性。導入時應檢查生成網格密度、法線、UV 與變形後破面，並測試先 remesh／retopo 再做效果是否比直接使用 AI mesh 更可靠。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://cgworld.jp/flashnews/01-202609-C4D-Liquid.html" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="haele-portrait-studio-pro" data-intel-role="card">
+    <div class="category-meta">
+     #13 · character-production
+    </div>
+    <h2>
+     Portrait Studio Pro：MetaHuman-based 臉部解剖參考工具，提供肌肉、頭骨、Face Plane 與 90+ 表情
+    </h2>
+    <p class="summary">
+     HAELE 3D 宣布 Portrait Studio Pro，讓角色美術以可調角色、解剖層、燈光與表情研究頭臉；預計 9/23 上線。
+    </p>
+    <figure class="case-preview" data-intel-id="haele-portrait-studio-pro" data-intel-role="visual" data-visual-id="haele-portrait-studio-pro">
+     <a href="https://80.lv/articles/flexible-new-3d-facial-anatomy-tool-for-character-artists-coming-soon" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-16/haele-portrait-studio-pro.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">角色製作</b> ★★★★☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       製作流程
+      </h4>
+      <p>
+       工具以 MetaHuman-based 可調人物作為臉部參考，能切換 simplified、realistic、anatomical 模式，查看 skull、facial muscles、face planes 與個別五官；同時提供 30 個角色、90+ 表情、眼神、頭頸姿勢與可調燈光。
+      </p>
+      <h4>
+       流程價值
+      </h4>
+      <p>
+       對角色雕刻與臉部 lookdev，最大的價值不是自動生成人臉，而是把解剖、表情、視角與光線放在同一可旋轉參考環境，能降低在多個 2D reference 間來回比對的摩擦，特別適合表情與 plane change 研究。
+      </p>
+      <h4>
+       實測限制
+      </h4>
+      <p>
+       目前是 9/23 上線前的功能公告，尚未有長期使用、效能或版本相容性資料。正式導入前應確認自訂角色範圍、MetaHuman 資產授權與 export 能力，並比較它與 PureRef＋掃描頭模／既有解剖工具的實際查找效率。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://80.lv/articles/flexible-new-3d-facial-anatomy-tool-for-character-artists-coming-soon" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <nav aria-label="相鄰分類" class="category-bottom-nav">
+    <a href="../ai-generation/">
+     ← AI 生成
+    </a>
+    <a href="../#top">
+     TOP5
+    </a>
+    <a href="../3d-animation/">
+     3D 動作 →
+    </a>
+   </nav>
+  </main>
+  <script defer="" src="../../archive-nav-state.js?v=20260916-r1-workspace-v10-history-current-workspace">
+  </script>
+ </body>
+</html>
