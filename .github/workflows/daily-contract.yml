@@ -31,7 +31,10 @@ on:
       - 'config/quick-impact-contract.json'
       - 'config/stability-contract.json'
       - 'config/personalization-feedback.json'
+      - 'config/collection-session.schema.json'
+      - 'config/pipeline-health.json'
       - 'data/candidates/rolling-backlog.json'
+      - 'scripts/policy_resolver.py'
       - 'scripts/intelligence_v2.py'
       - 'scripts/url_identity.py'
       - 'scripts/discovery_hybrid.py'
@@ -40,7 +43,11 @@ on:
       - 'scripts/check_discovery_hybrid_contract.py'
       - 'scripts/check_tier_assignment_contract.py'
       - 'scripts/check_analysis_reading_contract.py'
+      - 'scripts/check_policy_resolver_contract.py'
       - 'scripts/check_source_qa_coverage.py'
+      - 'scripts/check_collection_session_contract.py'
+      - 'scripts/finalize_collection_handoff.py'
+      - 'scripts/check_pipeline_health_contract.py'
       - 'scripts/check_collection_contract.py'
       - 'scripts/check_stability_contract.py'
       - 'scripts/check_quick_impact_contract.py'
@@ -81,6 +88,9 @@ on:
       - '.github/workflows/intelligence-build.yml'
       - '.github/workflows/daily-contract.yml'
       - '.github/workflows/historical-regression.yml'
+  pull_request:
+    branches:
+      - main
   workflow_dispatch: {}
 
 permissions:
@@ -103,13 +113,16 @@ jobs:
           node --check cloud-sync-owner.js
           python scripts/check_release_architecture.py
           python scripts/check_source_qa_coverage.py
+          python scripts/check_policy_resolver_contract.py
           python scripts/check_tier_assignment_contract.py
           python scripts/check_analysis_reading_contract.py
           python scripts/check_pipeline_contract.py
           python scripts/check_collection_contract.py
+          python scripts/check_collection_session_contract.py
           python scripts/check_discovery_hybrid_contract.py
           python scripts/check_personalization_feedback_contract.py
           python scripts/check_stability_contract.py
+          python scripts/check_pipeline_health_contract.py
           python scripts/check_preference_contract.py
           python scripts/check_cloud_sync_contract.py
           python scripts/check_pages_tier_contract.py
