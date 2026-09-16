@@ -1,16 +1,38 @@
 #!/usr/bin/env python3
-"""Regression guard for BRIEF reading depth and first-heading presentation."""
+"""Regression guard for BRIEF reading depth and first-heading presentation.
+
+This guard also verifies policy parity across the configured BRIEF reading date
+boundary so canonical enrichment and the public Pages verifier cannot drift apart.
+"""
+from datetime import date as date_value, timedelta
 from pathlib import Path
 from bs4 import BeautifulSoup
 
 from enrich_full_analysis_v3 import DEPTH, brief_issues, brief_policy_for_date
 from build_intelligence import analysis_html
+from verify_pages_publish import analysis_policy
 
 ROOT = Path(__file__).resolve().parents[1]
 
 
 def block(label, text):
     return {'label': label, 'text': text}
+
+
+def configured_boundary_dates():
+    effective_text = str(DEPTH.get('brief_reading_contract_effective_date', '')).strip()
+    tiered_text = str(DEPTH.get('tiered_effective_date', '')).strip()
+    try:
+        effective = date_value.fromisoformat(effective_text)
+        tiered = date_value.fromisoformat(tiered_text)
+    except ValueError as exc:
+        raise SystemExit(f'ANALYSIS READING CONTRACT FAIL: invalid configured effective date: {exc}')
+    legacy = effective - timedelta(days=1)
+    if legacy < tiered:
+        raise SystemExit(
+            'ANALYSIS READING CONTRACT FAIL: brief_reading_contract_effective_date must leave at least one tiered legacy-BRIEF day'
+        )
+    return legacy.isoformat(), effective.isoformat()
 
 
 def assert_heading_first(record):
@@ -43,11 +65,23 @@ def assert_runtime_heading_first():
         raise SystemExit('ANALYSIS READING CONTRACT FAIL: browser renderer must append canonical analysis blocks before BRIEF metadata')
 
 
+def assert_pages_policy(date, record, expected_rule):
+    level, minimum, maximum, policy_error = analysis_policy(date, record, DEPTH, 3)
+    if policy_error:
+        raise SystemExit(f'ANALYSIS READING CONTRACT FAIL: Pages verifier policy error for {date}: {policy_error}')
+    if level != 'BRIEF':
+        raise SystemExit(f'ANALYSIS READING CONTRACT FAIL: Pages verifier level for {date} is {level}, expected BRIEF')
+    expected_min = int(expected_rule.get('min_blocks', 0) or 0)
+    expected_max = int(expected_rule.get('max_blocks', 0) or 0)
+    if (minimum, maximum) != (expected_min, expected_max):
+        raise SystemExit(
+            'ANALYSIS READING CONTRACT FAIL: Pages verifier drift at '
+            f'{date}: got BRIEF blocks={minimum}-{maximum}, expected={expected_min}-{expected_max}'
+        )
+
+
 def main():
-    legacy_date = '2026-09-15'
-    effective_date = str(DEPTH.get('brief_reading_contract_effective_date', ''))
-    if effective_date != '2026-09-16':
-        raise SystemExit(f'ANALYSIS READING CONTRACT FAIL: unexpected effective date {effective_date!r}')
+    legacy_date, effective_date = configured_boundary_dates()
 
     two_block = {
         'id': 'fixture-brief-two-block',
@@ -63,11 +97,20 @@ def main():
 
     legacy_issues = brief_issues(two_block, brief_policy_for_date(legacy_date), False)
     if legacy_issues:
-        raise SystemExit('ANALYSIS READING CONTRACT FAIL: 2026-09-15 historical two-block BRIEF must remain valid: ' + ', '.join(legacy_issues))
+        raise SystemExit(
+            f'ANALYSIS READING CONTRACT FAIL: {legacy_date} historical two-block BRIEF must remain valid: '
+            + ', '.join(legacy_issues)
+        )
 
     current_issues = brief_issues(two_block, brief_policy_for_date(effective_date), True)
-    if not any(issue.startswith('block-count=2 expected=3-3') for issue in current_issues):
-        raise SystemExit('ANALYSIS READING CONTRACT FAIL: two-block BRIEF did not fail after 2026-09-16')
+    current_rule = DEPTH.get('brief_reading') or DEPTH.get('brief') or {}
+    current_min = int(current_rule.get('min_blocks', 0) or 0)
+    current_max = int(current_rule.get('max_blocks', 0) or 0)
+    expected_count_error = f'block-count=2 expected={current_min}-{current_max}'
+    if not any(issue == expected_count_error for issue in current_issues):
+        raise SystemExit(
+            f'ANALYSIS READING CONTRACT FAIL: two-block BRIEF did not fail at configured boundary {effective_date}'
+        )
 
     three_block = {
         'id': 'fixture-brief-three-angle',
@@ -83,7 +126,15 @@ def main():
     }
     three_issues = brief_issues(three_block, brief_policy_for_date(effective_date), True)
     if three_issues:
-        raise SystemExit('ANALYSIS READING CONTRACT FAIL: valid three-angle BRIEF rejected: ' + ', '.join(three_issues))
+        raise SystemExit('ANALYSIS READING CONTRACT FAIL: valid configured-boundary BRIEF rejected: ' + ', '.join(three_issues))
+
+    # Cross-check the public verifier against the same config on both sides of the
+    # effective-date boundary. This is the guard that prevents a future contract
+    # change from passing canonical QA but failing only after Atomic Publish.
+    assert_pages_policy(legacy_date, two_block, DEPTH.get('brief') or {})
+    assert_pages_policy(effective_date, three_block, current_rule)
+    post_effective = (date_value.fromisoformat(effective_date) + timedelta(days=1)).isoformat()
+    assert_pages_policy(post_effective, three_block, current_rule)
 
     full_fixture = {
         'id': 'fixture-full',
@@ -95,7 +146,11 @@ def main():
     assert_heading_first(full_fixture)
     assert_runtime_heading_first()
 
-    print('ANALYSIS READING CONTRACT PASS: historical depth preserved; FULL/BRIEF both open with canonical h4 heading; BRIEF metadata follows analysis blocks')
+    print(
+        'ANALYSIS READING CONTRACT PASS: configured BRIEF boundary '
+        f'{legacy_date}->{effective_date} is consistent across canonical enrichment + Pages verifier; '
+        'FULL/BRIEF both open with canonical h4 heading; BRIEF metadata follows analysis blocks'
+    )
 
 
 if __name__ == '__main__':
