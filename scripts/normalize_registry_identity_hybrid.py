@@ -23,6 +23,15 @@ def hybrid_gate(cfg, items):
         return gate
     data = json.loads(data_path.read_text('utf-8'))
     data['items'] = list(items)
+
+    # Registry normalization can deterministically remove historical duplicates or
+    # rewrite a surviving item to its historical stable id. The low-volume gate
+    # validates the candidate decision ledger, so synchronize that private ledger
+    # against the normalized survivor set before evaluating LOW_VOLUME_COMPLETE.
+    # This prevents a stale pre-normalization ledger from forcing an unnecessary
+    # refill-only pass.
+    sync_candidate_decision_ledger(target, data['items'])
+
     category_ids = [c['id'] for c in cfg.get('categories') or []]
     if gate['have'] < gate['min'] and low_volume_release_allowed(data, category_ids):
         hybrid = load_hybrid_config()
@@ -39,7 +48,7 @@ def hybrid_gate(cfg, items):
     return gate
 
 
-def sync_candidate_decision_ledger(target):
+def sync_candidate_decision_ledger(target, canonical_items=None):
     """Keep the private candidate ledger aligned with Registry normalization.
 
     The Collector records its terminal decision before the deterministic Published
@@ -58,15 +67,20 @@ def sync_candidate_decision_ledger(target):
 
     data_path = ROOT / 'data' / 'daily' / f'{target}.json'
     ledger_path = candidate_decision_ledger_path(target)
-    if not data_path.exists() or not ledger_path.exists():
+    if not ledger_path.exists():
         return
 
-    data = json.loads(data_path.read_text('utf-8'))
+    if canonical_items is None:
+        if not data_path.exists():
+            return
+        data = json.loads(data_path.read_text('utf-8'))
+        canonical_items = data.get('items') or []
+
     ledger = json.loads(ledger_path.read_text('utf-8'))
     if not isinstance(ledger, dict) or not isinstance(ledger.get('items'), list):
         return
 
-    canonical_items = [x for x in (data.get('items') or []) if isinstance(x, dict)]
+    canonical_items = [x for x in canonical_items if isinstance(x, dict)]
     canonical_ids = {
         str(x.get('id', '')).strip()
         for x in canonical_items
@@ -116,9 +130,8 @@ def main():
     except SystemExit as exc:
         exit_code = int(exc.code) if isinstance(exc.code, int) else 1
 
-    # core.main writes the normalized canonical dataset before returning 0 or
-    # exiting 2 for refill. Synchronize the private ledger in both cases so the
-    # next pre-ready attempt does not fail on stale pre-normalization decisions.
+    # Synchronize once more against the final canonical file in case Registry also
+    # performed a stable-id rewrite while writing the normalized dataset.
     if exit_code in (0, 2):
         sync_candidate_decision_ledger(target)
 
