@@ -51,7 +51,10 @@ jobs:
           if [ "${EVENT_NAME:-}" = "push" ]; then
             files=""
             if [ -n "${BEFORE_SHA:-}" ] && git cat-file -e "$BEFORE_SHA^{commit}" 2>/dev/null; then
-              files="$(git diff --name-only "$BEFORE_SHA" "$AFTER_SHA")"
+              # Only route request/ready files that were added or modified. Deleting
+              # a consumed .request is writer bookkeeping and must not create a
+              # second synthetic request run.
+              files="$(git diff --name-only --diff-filter=AM "$BEFORE_SHA" "$AFTER_SHA")"
             fi
             ready="$(printf '%s\n' "$files" | grep -E '^data/publish/20[0-9]{2}-[0-9]{2}-[0-9]{2}\.ready$' | sort | tail -1 || true)"
             request="$(printf '%s\n' "$files" | grep -E '^data/publish/20[0-9]{2}-[0-9]{2}-[0-9]{2}\.request$' | sort | tail -1 || true)"
@@ -99,11 +102,15 @@ jobs:
 
           git config user.name github-actions[bot]
           git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          ledger="data/candidates/decision-ledger/$DATE.json"
 
           if [ "$rc" -eq 2 ]; then
             # Registry normalization is intentionally preserved so collection can
-            # refill the clean survivor set. No .ready exists on this path.
+            # refill the clean survivor set. Persist the synchronized private ledger
+            # too; otherwise the next pre-ready pass sees stale pre-normalization
+            # decisions and can never authorize LOW_VOLUME_COMPLETE.
             git add "data/daily/$DATE.json"
+            if [ -f "$ledger" ]; then git add "$ledger"; fi
             git rm -f "$request"
             if ! git diff --cached --quiet; then
               git commit -m "Normalize intelligence candidate $DATE; refill required"
@@ -111,7 +118,7 @@ jobs:
               # Push directly; a non-fast-forward external change fails closed.
               git push origin HEAD:main
             fi
-            echo "PRE-READY REFILL REQUIRED for $DATE; normalized canonical persisted; no .ready created."
+            echo "PRE-READY REFILL REQUIRED for $DATE; normalized canonical and ledger persisted; no .ready created."
             exit 2
           fi
           if [ "$rc" -ne 0 ]; then
@@ -120,9 +127,11 @@ jobs:
           fi
 
           test -f "data/publish/$DATE.ready" || { echo 'prepare_release_candidate.py returned success without .ready'; exit 1; }
-          # Pre-ready may persist canonical mutations and the generated marker only.
-          # Public HTML/assets are exclusively committed by Atomic Publish.
+          # Pre-ready may persist canonical mutations, Registry-synchronized private
+          # ledger state, and the generated marker only. Public HTML/assets are
+          # exclusively committed by Atomic Publish.
           git add "data/daily/$DATE.json" "data/publish/$DATE.ready"
+          if [ -f "$ledger" ]; then git add "$ledger"; fi
           git rm -f "$request"
           git commit -m "Prepare canonical intelligence $DATE"
           # Do not rebase a runner worktree after pre-ready normalization. The global
