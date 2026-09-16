@@ -4,7 +4,12 @@ import json
 import sys
 
 import normalize_registry_identity as core
-from discovery_hybrid import load_hybrid_config, low_volume_release_allowed
+from discovery_hybrid import (
+    candidate_decision_ledger_applies,
+    candidate_decision_ledger_path,
+    load_hybrid_config,
+    low_volume_release_allowed,
+)
 
 ROOT = Path(__file__).resolve().parents[1]
 ORIGINAL_GATE = core.daily_gate
@@ -34,5 +39,92 @@ def hybrid_gate(cfg, items):
     return gate
 
 
+def sync_candidate_decision_ledger(target):
+    """Keep the private candidate ledger aligned with Registry normalization.
+
+    The Collector records its terminal decision before the deterministic Published
+    Intelligence Registry pass. The Registry is allowed to drop an item as a
+    historical duplicate or rewrite an UPDATE to the historical stable id. From
+    2026-09-16 onward the ledger is a release invariant, so those deterministic
+    Registry outcomes must be reflected in the ledger before check_release_input.
+
+    This function never creates missing ledger rows and never invents discovery
+    evidence. It only converts an already-published Collector row to `duplicate`
+    when Registry removed it, or rewrites its canonical_id when the surviving item
+    with the same canonical source received a historical stable id.
+    """
+    if not candidate_decision_ledger_applies(target):
+        return
+
+    data_path = ROOT / 'data' / 'daily' / f'{target}.json'
+    ledger_path = candidate_decision_ledger_path(target)
+    if not data_path.exists() or not ledger_path.exists():
+        return
+
+    data = json.loads(data_path.read_text('utf-8'))
+    ledger = json.loads(ledger_path.read_text('utf-8'))
+    if not isinstance(ledger, dict) or not isinstance(ledger.get('items'), list):
+        return
+
+    canonical_items = [x for x in (data.get('items') or []) if isinstance(x, dict)]
+    canonical_ids = {
+        str(x.get('id', '')).strip()
+        for x in canonical_items
+        if str(x.get('id', '')).strip()
+    }
+    source_to_ids = {}
+    for item in canonical_items:
+        rid = str(item.get('id', '')).strip()
+        src = core.norm_url(item.get('source_url'))
+        if rid and src:
+            source_to_ids.setdefault(src, []).append(rid)
+
+    duplicate_count = 0
+    rewrite_count = 0
+    for row in ledger['items']:
+        if not isinstance(row, dict) or str(row.get('decision', '')).strip() != 'published':
+            continue
+        canonical_id = str(row.get('canonical_id', '')).strip()
+        if canonical_id in canonical_ids:
+            continue
+
+        src = core.norm_url(row.get('source_url'))
+        matches = source_to_ids.get(src, []) if src else []
+        if len(matches) == 1:
+            row['canonical_id'] = matches[0]
+            rewrite_count += 1
+            continue
+
+        row['decision'] = 'duplicate'
+        row.pop('canonical_id', None)
+        row['reason_code'] = 'registry-normalized-duplicate'
+        duplicate_count += 1
+
+    ledger_path.write_text(json.dumps(ledger, ensure_ascii=False, indent=2) + '\n', 'utf-8')
+    print(
+        'CANDIDATE LEDGER REGISTRY SYNC: '
+        f'duplicate={duplicate_count} stable_id_rewrite={rewrite_count} '
+        f'path={ledger_path.relative_to(ROOT)}'
+    )
+
+
+def main():
+    target = sys.argv[1] if len(sys.argv) > 1 else ''
+    exit_code = 0
+    try:
+        core.main()
+    except SystemExit as exc:
+        exit_code = int(exc.code) if isinstance(exc.code, int) else 1
+
+    # core.main writes the normalized canonical dataset before returning 0 or
+    # exiting 2 for refill. Synchronize the private ledger in both cases so the
+    # next pre-ready attempt does not fail on stale pre-normalization decisions.
+    if exit_code in (0, 2):
+        sync_candidate_decision_ledger(target)
+
+    if exit_code:
+        raise SystemExit(exit_code)
+
+
 core.daily_gate = hybrid_gate
-core.main()
+main()
