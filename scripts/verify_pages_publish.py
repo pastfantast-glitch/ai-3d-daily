@@ -68,7 +68,15 @@ def analysis_policy(date: str, item: dict, depth: dict, legacy_min_blocks: int):
     if level not in ('FULL', 'BRIEF'):
         return level, 0, 0, f'unknown analysis_level={level}'
 
-    rule = depth.get(level.lower()) or {}
+    if level == 'BRIEF':
+        brief_reading_effective = str(depth.get('brief_reading_contract_effective_date') or '').strip()
+        if brief_reading_effective and date >= brief_reading_effective:
+            rule = depth.get('brief_reading') or {}
+        else:
+            rule = depth.get('brief') or {}
+    else:
+        rule = depth.get(level.lower()) or {}
+
     minimum = int(rule.get('min_blocks', 0) or 0)
     maximum = int(rule.get('max_blocks', 0) or 0)
     if minimum <= 0 or maximum < minimum:
