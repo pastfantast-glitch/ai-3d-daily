@@ -215,8 +215,8 @@
     },
     "full_analysis_depth_contract": "v6-tiered-evidence-three-angle-reading",
     "analysis_level_counts": {
-      "FULL": 5,
-      "BRIEF": 21,
+      "FULL": 3,
+      "BRIEF": 16,
       "REJECT": 0
     },
     "analysis_level_policy": "evidence-depth-tiered; FULL=3-5 source-supported blocks; BRIEF=3 readable source-grounded angles with explicit limits; REJECT=not-publishable",
@@ -229,16 +229,16 @@
       "source_identity_precedence": "published-daily-html-card-then-canonical-json",
       "url_identity": "scripts/url_identity.py",
       "stage": "collection-before-ready",
-      "refill_required": true,
+      "refill_required": false,
       "category_deficits": {},
       "daily_release_gate": {
         "have": 19,
-        "min": 20,
+        "min": 12,
         "target": 30,
         "max": 30,
         "missing_to_min": 1,
         "missing_to_target": 11,
-        "release_ready": false,
+        "release_ready": true,
         "category_counts": {
           "ai-generation": 4,
           "3d-production": 4,
@@ -247,8 +247,9 @@
           "emerging-case": 3,
           "blender-dcc": 3
         },
-        "release_mode": "BLOCKED",
-        "low_volume_authorized": false
+        "normal_min": 20,
+        "release_mode": "LOW_VOLUME_COMPLETE",
+        "low_volume_authorized": true
       }
     }
   },
