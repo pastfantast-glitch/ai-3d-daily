@@ -5,6 +5,7 @@ on:
     branches:
       - main
     paths:
+      - 'requirements-pipeline.txt'
       - 'styles.css'
       - 'daily.css'
       - 'daily.js'
@@ -49,6 +50,7 @@ on:
       - 'scripts/check_ready_contract.py'
       - 'scripts/normalize_registry_identity.py'
       - 'scripts/normalize_registry_identity_hybrid.py'
+      - 'scripts/apply_analysis_overrides.py'
       - 'scripts/enrich_full_analysis_v3.py'
       - 'scripts/normalize_release_seed.py'
       - 'scripts/check_release_input.py'
@@ -58,6 +60,7 @@ on:
       - 'scripts/check_pipeline_contract.py'
       - 'scripts/check_release_architecture.py'
       - 'scripts/check_intelligence_contract.py'
+      - 'scripts/check_visual_contract.py'
       - 'scripts/check_daily_contract.py'
       - 'scripts/check_home_contract.py'
       - 'scripts/render_daily_navigation.py'
@@ -71,6 +74,9 @@ on:
       - 'scripts/apply_cache_bust.py'
       - 'scripts/check_historical_regression.py'
       - 'scripts/verify_pages_publish.py'
+      - 'scripts/write_publish_receipt.py'
+      - 'scripts/restore_publish_snapshot.py'
+      - 'scripts/bootstrap_intelligence_ids.py'
       - '.github/workflows/intelligence-build.yml'
       - '.github/workflows/daily-contract.yml'
       - '.github/workflows/historical-regression.yml'
