@@ -40,6 +40,7 @@ on:
       - 'scripts/check_discovery_hybrid_contract.py'
       - 'scripts/check_tier_assignment_contract.py'
       - 'scripts/check_analysis_reading_contract.py'
+      - 'scripts/check_source_qa_coverage.py'
       - 'scripts/check_collection_contract.py'
       - 'scripts/check_stability_contract.py'
       - 'scripts/check_quick_impact_contract.py'
@@ -101,6 +102,7 @@ jobs:
           node --check preference.js
           node --check cloud-sync-owner.js
           python scripts/check_release_architecture.py
+          python scripts/check_source_qa_coverage.py
           python scripts/check_tier_assignment_contract.py
           python scripts/check_analysis_reading_contract.py
           python scripts/check_pipeline_contract.py
