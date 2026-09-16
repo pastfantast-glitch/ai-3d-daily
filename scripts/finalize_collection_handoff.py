@@ -5,7 +5,7 @@ The Collector owns discovery evidence. This helper never fabricates source probe
 coverage counts, exhaustion, candidate decisions, personalization, or public
 surfaces. It consumes one explicit private collection-session JSON, copies only the
 contracted audit fields into the canonical dataset, writes the private decision
-ledger, validates the current repository contracts, and optionally creates the
+ledger, validates collector-side current-main contracts, and optionally creates the
 `.request` marker after the caller explicitly confirms that the canonical writer is
 idle.
 
@@ -34,6 +34,12 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 SCRIPTS = ROOT / "scripts"
+if str(SCRIPTS) not in sys.path:
+    sys.path.insert(0, str(SCRIPTS))
+
+from discovery_hybrid import coverage_audit_errors  # noqa: E402
+from intelligence_v2 import load_config as load_intelligence_config, validate_v2_dataset  # noqa: E402
+
 DATE_RE = re.compile(r"^20\d{2}-\d{2}-\d{2}$")
 FORBIDDEN_SESSION_KEYS = {
     "votes",
@@ -109,6 +115,17 @@ def parse_args(argv):
     return date, flags
 
 
+def collector_data_errors(data):
+    """Validate only collector-owned invariants; never require rendered public HTML."""
+    errors = list(validate_v2_dataset(data, strict_pool=True))
+    cfg = load_intelligence_config()
+    category_ids = [str(x.get("id", "")).strip() for x in (cfg.get("categories") or [])]
+    for error in coverage_audit_errors(data, category_ids):
+        if error not in errors:
+            errors.append(error)
+    return errors
+
+
 def main() -> None:
     date, flags = parse_args(sys.argv)
     data_path = ROOT / "data" / "daily" / f"{date}.json"
@@ -159,13 +176,16 @@ def main() -> None:
     write_json(data_path, data)
     write_json(ledger_path, ledger)
 
-    # Fail closed against current-main contracts. These checks do not render or
-    # publish public surfaces and do not create .ready.
+    # Fail closed against current-main Collector contracts without generating or
+    # requiring public homepage/daily surfaces. Public-surface parity remains a
+    # prepare/publish responsibility of the single canonical writer.
     run("check_collection_contract.py")
     run("check_discovery_hybrid_contract.py")
     run("check_personalization_feedback_contract.py", date)
     run("check_quick_impact_contract.py", date)
-    run("check_release_input.py", date)
+    errors = collector_data_errors(data)
+    if errors:
+        fail("collector canonical validation failed: " + "; ".join(errors))
 
     if "--write-request" not in flags:
         print(
