@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "effective_date": "2026-09-17",
+  "storage": "data/publish/latest-success.json#health",
+  "purpose": "Expose the last fully verified canonical publish health snapshot without creating a second mutable writer-owned state file.",
+  "required_state": "HEALTHY",
+  "required_checks": [
+    "policy_contracts",
+    "historical_regression",
+    "pages",
+    "canonical_publish"
+  ],
+  "staleness_rule": "This is a last-verified-release snapshot, not proof that later policy commits passed CI. Pre-handoff current-main CI remains a separate required gate.",
+  "writer": "scripts/write_publish_receipt.py",
+  "fail_closed": true
+}

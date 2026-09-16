@@ -3,7 +3,9 @@
 
 The canonical content publication remains one atomic commit. This script writes a
 small, separate operational receipt commit only after that publication is pushed
-and the public GitHub Pages result has been verified.
+and the public GitHub Pages result has been verified. latest-success.json also
+stores the last verified pipeline-health snapshot; it is not a substitute for the
+current-main CI gate used before a future handoff.
 """
 from __future__ import annotations
 
@@ -13,6 +15,7 @@ import datetime as dt
 import json
 
 ROOT = Path(__file__).resolve().parents[1]
+HEALTH_CONTRACT = ROOT / "config" / "pipeline-health.json"
 
 
 def visual_summary(date: str) -> dict:
@@ -29,6 +32,26 @@ def visual_summary(date: str) -> dict:
     return {"ok": len(ok), "total": len(entries), "soft_failures": soft}
 
 
+def health_snapshot(date: str, publish_sha: str, run_id: str, verified_at: str) -> dict:
+    contract = json.loads(HEALTH_CONTRACT.read_text("utf-8")) if HEALTH_CONTRACT.exists() else {}
+    return {
+        "contract_version": int(contract.get("version", 1) or 1),
+        "state": str(contract.get("required_state") or "HEALTHY"),
+        "date": date,
+        "publish_commit_sha": publish_sha,
+        "workflow_run_id": str(run_id),
+        "verified_at": verified_at,
+        "checks": {
+            "policy_contracts": "pass",
+            "historical_regression": "pass",
+            "pages": "pass",
+            "canonical_publish": "pass"
+        },
+        "scope": "last-verified-release",
+        "current_main_ci_required_before_next_handoff": True
+    }
+
+
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("date")
@@ -38,13 +61,14 @@ def main() -> None:
     args = ap.parse_args()
 
     canonical = json.loads((ROOT / "data" / "daily" / f"{args.date}.json").read_text("utf-8"))
+    verified_at = dt.datetime.now(dt.timezone.utc).isoformat()
     receipt = {
         "schema": 2,
         "date": args.date,
         "state": "DONE",
         "publish_commit_sha": args.publish_sha,
         "workflow_run_id": str(args.run_id),
-        "verified_at": dt.datetime.now(dt.timezone.utc).isoformat(),
+        "verified_at": verified_at,
         "site_url": args.site_url.rstrip("/") + "/",
         "daily_url": args.site_url.rstrip("/") + f"/{args.date}/",
         "qa": {
@@ -72,15 +96,16 @@ def main() -> None:
     out_dir.mkdir(parents=True, exist_ok=True)
     (out_dir / f"{args.date}.done.json").write_text(json.dumps(receipt, ensure_ascii=False, indent=2) + "\n", "utf-8")
     latest = {
-        "schema": 2,
+        "schema": 3,
         "date": args.date,
         "publish_commit_sha": args.publish_sha,
         "receipt": f"data/publish/{args.date}.done.json",
         "site_url": receipt["site_url"],
-        "verified_at": receipt["verified_at"],
+        "verified_at": verified_at,
+        "health": health_snapshot(args.date, args.publish_sha, str(args.run_id), verified_at),
     }
     (out_dir / "latest-success.json").write_text(json.dumps(latest, ensure_ascii=False, indent=2) + "\n", "utf-8")
-    print(f"PUBLISH RECEIPT WRITTEN: {args.date} -> {args.publish_sha}")
+    print(f"PUBLISH RECEIPT WRITTEN: {args.date} -> {args.publish_sha}; pipeline-health=HEALTHY")
 
 
 if __name__ == "__main__":

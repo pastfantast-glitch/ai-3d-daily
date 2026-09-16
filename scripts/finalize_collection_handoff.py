@@ -12,17 +12,9 @@ idle.
 Expected private session path:
   data/candidates/collection-session/YYYY-MM-DD.json
 
-Session schema (values must come from the real Collector run):
-{
-  "schema_version": 1,
-  "date": "YYYY-MM-DD",
-  "discovery_coverage": { ... current discovery-hybrid audit ... },
-  "candidate_decisions": [ ... current candidate ledger items ... ],
-  "personalization": { ... current non-sensitive audit metadata ... }
-}
-
-Raw votes, full profiles, e-mail addresses, user ids, source/domain preference
-weights, bookmarks, and public presentation data are rejected from this input.
+The authoritative structure is config/collection-session.schema.json. Raw votes,
+full profiles, e-mail addresses, user ids, source/domain preference weights,
+bookmarks, and public presentation data are rejected from this input.
 """
 from __future__ import annotations
 
@@ -152,6 +144,10 @@ def main() -> None:
         fail("collection session date mismatch")
 
     reject_forbidden_session_data(session)
+    # One shared session validator owns candidate traceability and schema semantics.
+    # The finalizer keeps its private-data check as a defense-in-depth boundary.
+    run("check_collection_session_contract.py", date)
+
     coverage = session.get("discovery_coverage")
     decisions = session.get("candidate_decisions")
     personalization = session.get("personalization")
