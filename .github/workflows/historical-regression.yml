@@ -3,6 +3,8 @@ name: Historical regression matrix
 on:
   push:
     branches: [main]
+  pull_request:
+    branches: [main]
   workflow_dispatch:
 
 permissions:
@@ -22,8 +24,11 @@ jobs:
       - name: Validate publishing topology, collection and stability wiring
         run: |
           python scripts/check_pipeline_contract.py
+          python scripts/check_policy_resolver_contract.py
           python scripts/check_collection_contract.py
+          python scripts/check_collection_session_contract.py
           python scripts/check_stability_contract.py
+          python scripts/check_pipeline_health_contract.py
           python scripts/check_preference_contract.py
       - name: Run historical archive regression matrix with sentinels
         run: python scripts/check_historical_regression.py --days 4
