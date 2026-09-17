@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   3D 製作｜2026-09-17｜AI 3D Daily
+  </title>
+  <link href="../../styles.css?v=20260917-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../../shared-components.css?v=20260917-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../../category.css?v=20260917-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+ </head>
+ <body class="category-page" data-category="3d-production" data-report-date="2026-09-17">
+  <nav aria-label="Production Intelligence 分類" class="global-category-nav">
+   <div class="page global-category-nav-inner">
+    <div class="archive-nav-controls">
+     <a class="archive-nav-home" href="../../">
+      ← 首頁
+     </a>
+     <div class="archive-nav-date">
+      <a aria-label="前一日日報" class="archive-nav-arrow" href="../../2026-09-16/3d-production/">
+       ←
+      </a>
+      <span>
+       2026-09-17
+      </span>
+     </div>
+    </div>
+    <span aria-hidden="true" class="archive-nav-divider">
+    </span>
+    <a class="global-category-link" href="../#top">
+     TOP5
+    </a>
+    <a class="global-category-link" data-category="ai-generation" href="../ai-generation/">
+     AI 生成
+    </a>
+    <a class="global-category-link is-active" data-category="3d-production" href="../3d-production/">
+     3D 製作
+    </a>
+    <a class="global-category-link" data-category="3d-animation" href="../3d-animation/">
+     3D 動作
+    </a>
+    <a class="global-category-link" data-category="engine-art" href="../engine-art/">
+     遊戲引擎
+    </a>
+    <a class="global-category-link" data-category="emerging-case" href="../emerging-case/">
+     新技術 / Case
+    </a>
+    <a class="global-category-link" data-category="blender-dcc" href="../blender-dcc/">
+     Blender / DCC
+    </a>
+    <a class="global-category-link global-history-link" data-global-view="history" href="../../history/">
+     歷史日報
+    </a>
+   </div>
+  </nav>
+  <main class="page category-main">
+   <article class="category-card" data-intel-id="zbrush-stylized-darkness-sculpt" data-intel-role="card">
+    <div class="category-meta">
+     #09 · character-production
+    </div>
+    <h2>
+     ZBrush 風格化角色：Sculptris Pro 探形、Keep Groups 重拓樸與 Bend Curve 控角
+    </h2>
+    <p class="summary">
+     Shane Olson 示範從動態拓樸 blockout 到 ZRemesher、custom brush 分件邊界、角的 Bend Curve 造型與換材質檢查表面噪點的完整雕刻決策。
+    </p>
+    <figure class="case-preview" data-intel-id="zbrush-stylized-darkness-sculpt" data-intel-role="visual" data-visual-id="zbrush-stylized-darkness-sculpt">
+     <a href="https://cgworld.jp/flashnews/01-202609-ZBrush-Stylized.html" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-17/zbrush-stylized-darkness-sculpt.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">角色製作</b> ★★★★☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       角色雕刻流程
+      </h4>
+      <p>
+       初期以 Sculptris Pro 不受既有拓樸限制地找大輪廓，mesh 拉伸後再 Mirror and Weld、Auto Groups，並以 ZRemesher 的 Keep Groups 與低 Smooth Groups 保住零件交界和銳利折面。
+      </p>
+      <h4>
+       造型製作價值
+      </h4>
+      <p>
+       作者先用 custom brush 在同一 mesh 上刻出清楚分件邊界，避免探索期過早增加 SubTools；大型角則先均化 topology 再用 Bend Curve 分段調方向、scale、twist，適合需要快速維持強輪廓的風格化角色。
+      </p>
+      <h4>
+       實作限制
+      </h4>
+      <p>
+       示範著重雕刻與 3D print 造型，並未涵蓋遊戲角色 retopo、UV、rig deformation。實作時應另外檢查 group 邊界的 subdivision、細節投射、列印分件公差，以及若要進即時引擎時的低模與表情變形需求。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://cgworld.jp/flashnews/01-202609-ZBrush-Stylized.html" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="houdini-hivealt-2026-procedural-production" data-intel-role="card">
+    <div class="category-meta">
+     #12 · production-workflow
+    </div>
+    <h2>
+     HIVEalt 2026：Houdini 從 F1 賽道、CAD→UE 到 AI 輔助程序工具的實務合集
+    </h2>
+    <p class="summary">
+     SideFX 集合建築、F1 數位孿生、重型 CAD 清理、Houdini MCP、增材製造與汽車氣動等流程，重點是以可重用程序系統處理頻繁設計變更。
+    </p>
+    <figure class="case-preview" data-intel-id="houdini-hivealt-2026-procedural-production" data-intel-role="visual" data-visual-id="houdini-hivealt-2026-procedural-production">
+     <a href="https://www.sidefx.com/houdini-hive/hive-alt-2026/" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-17/houdini-hivealt-2026-procedural-production.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">製作流程</b> ★★★★☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       程序技術流程
+      </h4>
+      <p>
+       Q3D 以 Houdini 將數週 F1 賽道幾何縮成數日，Ocean Infinity 則把大型 SolidWorks assembly 經程序清理後送進 Unreal simulation；共同做法是把反覆版本變更轉為非破壞處理，而非每版重新人工整理。
+      </p>
+      <h4>
+       跨領域價值
+      </h4>
+      <p>
+       議程還涵蓋建築規則、鞋類 biomimetic、增材製造 lattice、汽車氣動資料與 Houdini MCP；AI 被用來建立或調整程序 setup，而核心幾何、模擬與美術控制仍保留在 Houdini node network 中。
+      </p>
+      <h4>
+       採用判斷
+      </h4>
+      <p>
+       活動頁提供流程摘要但完整錄影尚待發布，細部效能與工具維護成本仍未驗證。團隊應挑一個高頻改版資產測輸入標準化、cook time、manual override、HDA 版本、Unreal handoff 與錯誤恢復，再評估程序化投資是否真的縮短交付。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://www.sidefx.com/houdini-hive/hive-alt-2026/" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="stylized-pirate-chest-blender-ue58" data-intel-role="card">
+    <div class="category-meta">
+     #13 · prop-production
+    </div>
+    <h2>
+     風格化海盜寶箱：Blender 5.2 到 UE5.8 的 GLB／FBX、材質與互動 Blueprint 流程
+    </h2>
+    <p class="summary">
+     3D Tudor 以 44 節課拆解 blockout、plank rhythm、modifier、UV、AO／cavity bake、引擎材質與開箱互動，強調遊戲距離下的輪廓與轉場可讀性。
+    </p>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">物件製作</b> ★★★★☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       道具製作流程
+      </h4>
+      <p>
+       案例先鎖定大比例與木板節奏，再以 Solidify、Bevel、Mirror 和刻意 edge loop 建立可讀輪廓；完成 UV 與 AO／cavity bake 後，以 GLB／FBX 送往 UE5.8，建立可重用材質與開箱 Blueprint。
+      </p>
+      <h4>
+       遊戲製作價值
+      </h4>
+      <p>
+       金屬框被當成第二層 silhouette，開合動作以清楚 before／after 狀態和越界動勢遮住 mesh 切換；這顯示互動道具不一定需要大型動畫系統，先讓造型、材質分離與焦點在遊戲距離成立更關鍵。
+      </p>
+      <h4>
+       實作限制
+      </h4>
+      <p>
+       來源同時推廣付費課程，效能數據與 Blueprint 細節有限。採用時應獨立檢查 scale、pivot、碰撞、LOD／Nanite、材質 instance、GLB 與 FBX 差異、開合狀態同步及複雜光照中 emissive 焦點是否仍清楚。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://www.artstation.com/blogs/threedtudor/44oRO/blender-to-unreal-engine-5-stylized-interactive-pirate-chest" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <nav aria-label="相鄰分類" class="category-bottom-nav">
+    <a href="../ai-generation/">
+     ← AI 生成
+    </a>
+    <a href="../#top">
+     TOP5
+    </a>
+    <a href="../3d-animation/">
+     3D 動作 →
+    </a>
+   </nav>
+  </main>
+  <script defer="" src="../../archive-nav-state.js?v=20260917-r1-workspace-v10-history-current-workspace">
+  </script>
+ </body>
+</html>

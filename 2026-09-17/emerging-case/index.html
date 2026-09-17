@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   新技術 / Case｜2026-09-17｜AI 3D Daily
+  </title>
+  <link href="../../styles.css?v=20260917-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../../shared-components.css?v=20260917-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../../category.css?v=20260917-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+ </head>
+ <body class="category-page" data-category="emerging-case" data-report-date="2026-09-17">
+  <nav aria-label="Production Intelligence 分類" class="global-category-nav">
+   <div class="page global-category-nav-inner">
+    <div class="archive-nav-controls">
+     <a class="archive-nav-home" href="../../">
+      ← 首頁
+     </a>
+     <div class="archive-nav-date">
+      <a aria-label="前一日日報" class="archive-nav-arrow" href="../../2026-09-16/emerging-case/">
+       ←
+      </a>
+      <span>
+       2026-09-17
+      </span>
+     </div>
+    </div>
+    <span aria-hidden="true" class="archive-nav-divider">
+    </span>
+    <a class="global-category-link" href="../#top">
+     TOP5
+    </a>
+    <a class="global-category-link" data-category="ai-generation" href="../ai-generation/">
+     AI 生成
+    </a>
+    <a class="global-category-link" data-category="3d-production" href="../3d-production/">
+     3D 製作
+    </a>
+    <a class="global-category-link" data-category="3d-animation" href="../3d-animation/">
+     3D 動作
+    </a>
+    <a class="global-category-link" data-category="engine-art" href="../engine-art/">
+     遊戲引擎
+    </a>
+    <a class="global-category-link is-active" data-category="emerging-case" href="../emerging-case/">
+     新技術 / Case
+    </a>
+    <a class="global-category-link" data-category="blender-dcc" href="../blender-dcc/">
+     Blender / DCC
+    </a>
+    <a class="global-category-link global-history-link" data-global-view="history" href="../../history/">
+     歷史日報
+    </a>
+   </div>
+  </nav>
+  <main class="page category-main">
+   <article class="category-card" data-intel-id="dissectible-anatomy-realtime-splats" data-intel-role="card">
+    <div class="category-meta">
+     #04 · research
+    </div>
+    <h2>
+     Dissectible Anatomy：PBD、SDF 與 Volumetric Splats 做即時切割和撕裂
+    </h2>
+    <p class="summary">
+     Purdue 團隊把 cryosection 影像轉為低解析 PBD 粒子與高解析 splat，於 compute shader 更新 SDF，使模型可即時切割、分離與變形，並避免維護網格連接關係。
+    </p>
+    <figure class="case-preview" data-intel-id="dissectible-anatomy-realtime-splats" data-intel-role="visual" data-visual-id="dissectible-anatomy-realtime-splats">
+     <a href="https://80.lv/articles/dissectible-anatomy-lets-users-cut-tear-virtual-bodies-in-real-time" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-17/dissectible-anatomy-realtime-splats.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">研究</b> ★★★★★</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-full" data-analysis-level="FULL">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body">
+      <h4>
+       即時破壞技術
+      </h4>
+      <p>
+       系統以 cryosection 決定 PBD 粒子分布，再建立四倍解析度的 splat；每個 splat 在 runtime 更新到可見表面的 signed distance，切割時以 SDF intersection／subtraction 改變區域，只渲染外殼，省去三角形或四面體被切開後的連接關係重建。
+      </p>
+      <h4>
+       製作潛力
+      </h4>
+      <p>
+       所有粒子、SDF 與 splat 都以可攜式 compute shader 運算，不依賴 CUDA 或特定引擎。除解剖教育外，作者認為中小尺度遊戲破壞、軟體撕裂、怪物肢解與 VFX previs 都有轉用空間，尤其適合視覺可信度高於工程級物理精度的情境。
+      </p>
+      <h4>
+       成熟度與驗證
+      </h4>
+      <p>
+       目前仍是技術示範，教育效果與物理準確度尚未完成實證；平行運算也需在 region、particle 間多次 dispatch 以避免讀寫衝突。導入前應量不同解析度的 VRAM、dispatch 次數、切口細節、碰撞一致性與可控的美術資料格式，再判斷能否轉成遊戲工具。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://80.lv/articles/dissectible-anatomy-lets-users-cut-tear-virtual-bodies-in-real-time" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="pixgs-pixel-space-diffusion" data-intel-role="card">
+    <div class="category-meta">
+     #15 · research
+    </div>
+    <h2>
+     PixGS：以 Pixel-Space Diffusion 單階段直接生成 3D Gaussian Splats
+    </h2>
+    <p class="summary">
+     研究避開 latent compression 與多階段 cascade，直接去噪 Gaussian attributes，並用 normal、depth 與高頻結構監督；論文宣稱單張 A100 約 1 秒推論。
+    </p>
+    <figure class="case-preview" data-intel-id="pixgs-pixel-space-diffusion" data-intel-role="visual" data-visual-id="pixgs-pixel-space-diffusion">
+     <a href="https://arxiv.org/abs/2607.01803" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-17/pixgs-pixel-space-diffusion.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">研究</b> ★★★★☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       生成技術
+      </h4>
+      <p>
+       PixGS 不先把 3D 資產壓進 latent space，也不串多個生成階段，而是在每個 diffusion timestep 直接去噪 splat attributes；normal、depth 與高頻結構監督讓外觀與幾何可在 splat 層級同時約束。
+      </p>
+      <h4>
+       製作潛力
+      </h4>
+      <p>
+       若單階段 3DGS 真能維持論文所述品質與約一秒 A100 推論，前期概念資產、novel-view 預覽與大量變體會更快，並減少 cascade 各階段錯誤累積與解碼 artifact。
+      </p>
+      <h4>
+       研究限制
+      </h4>
+      <p>
+       目前證據來自論文摘要，缺少對一般 GPU、不同類別、編輯性與 DCC／引擎輸出的 production benchmark。採用前應比較 mesh 可轉換性、尺度、視角一致、反光與薄物件、VRAM、license 及與既有 image-to-3D pipeline 的人工修復量。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://arxiv.org/abs/2607.01803" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="blender-small-teams-strategy" data-intel-role="card">
+    <div class="category-meta">
+     #17 · case-study
+    </div>
+    <h2>
+     Blender 兩年策略：小型團隊長片流程、Animation Layers、模組 Rig 與跨檔案 Overrides
+    </h2>
+    <p class="summary">
+     Blender 開發團隊把小型獨立工作室的長篇動畫列為共同目標，優先處理 dynamic overrides、動畫曲線／layer、可擴充 rig、previs 到剪輯與場景依賴可視化。
+    </p>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">製作案例</b> ★★★☆☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       開發流程方向
+      </h4>
+      <p>
+       官方將未來兩年的共同目標定在讓小型團隊完成長篇作品，列出 dynamic overrides、animation filtering／layers、key 與 curve 編輯、motion path、模組化 rig、storyboard 到 previs、render pass 與 scene dependency 檢視等方向。
+      </p>
+      <h4>
+       團隊製作影響
+      </h4>
+      <p>
+       這些項目集中處理多人製作最常見的 linked data 覆寫、角色 setup、鏡頭狀態和跨檔案協作，而非單一藝術功能；若按計畫落地，小型動畫團隊可減少自建 pipeline glue 與各專案重做 rig／版本追蹤工具。
+      </p>
+      <h4>
+       規劃限制
+      </h4>
+      <p>
+       文章是策略目標，並非所有功能都已有版本與交付日期。工作室不應直接把 roadmap 當升版承諾，可將需求拆成現況、daily build 原型與仍需內部工具三欄，並在 OVERGROWN 等實際 production 驗證出現後再調整管線投資。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://code.blender.org/2026/09/small-teams-ambitious-projects/" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <nav aria-label="相鄰分類" class="category-bottom-nav">
+    <a href="../engine-art/">
+     ← 遊戲引擎
+    </a>
+    <a href="../#top">
+     TOP5
+    </a>
+    <a href="../blender-dcc/">
+     Blender / DCC →
+    </a>
+   </nav>
+  </main>
+  <script defer="" src="../../archive-nav-state.js?v=20260917-r1-workspace-v10-history-current-workspace">
+  </script>
+ </body>
+</html>

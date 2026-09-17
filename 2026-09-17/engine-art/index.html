@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   遊戲引擎｜2026-09-17｜AI 3D Daily
+  </title>
+  <link href="../../styles.css?v=20260917-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../../shared-components.css?v=20260917-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../../category.css?v=20260917-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+ </head>
+ <body class="category-page" data-category="engine-art" data-report-date="2026-09-17">
+  <nav aria-label="Production Intelligence 分類" class="global-category-nav">
+   <div class="page global-category-nav-inner">
+    <div class="archive-nav-controls">
+     <a class="archive-nav-home" href="../../">
+      ← 首頁
+     </a>
+     <div class="archive-nav-date">
+      <a aria-label="前一日日報" class="archive-nav-arrow" href="../../2026-09-16/engine-art/">
+       ←
+      </a>
+      <span>
+       2026-09-17
+      </span>
+     </div>
+    </div>
+    <span aria-hidden="true" class="archive-nav-divider">
+    </span>
+    <a class="global-category-link" href="../#top">
+     TOP5
+    </a>
+    <a class="global-category-link" data-category="ai-generation" href="../ai-generation/">
+     AI 生成
+    </a>
+    <a class="global-category-link" data-category="3d-production" href="../3d-production/">
+     3D 製作
+    </a>
+    <a class="global-category-link" data-category="3d-animation" href="../3d-animation/">
+     3D 動作
+    </a>
+    <a class="global-category-link is-active" data-category="engine-art" href="../engine-art/">
+     遊戲引擎
+    </a>
+    <a class="global-category-link" data-category="emerging-case" href="../emerging-case/">
+     新技術 / Case
+    </a>
+    <a class="global-category-link" data-category="blender-dcc" href="../blender-dcc/">
+     Blender / DCC
+    </a>
+    <a class="global-category-link global-history-link" data-global-view="history" href="../../history/">
+     歷史日報
+    </a>
+   </div>
+  </nav>
+  <main class="page category-main">
+   <article class="category-card" data-intel-id="pokemon-za-city-rendering-pokerig" data-intel-role="card">
+    <div class="category-meta">
+     #01 · rendering
+    </div>
+    <h2>
+     《Pokémon LEGENDS Z-A》城市渲染：GPU Instance Culling、三層水面反射與統一 PokéRig
+    </h2>
+    <p class="summary">
+     Game Freak 公開密阿雷市的大量實例繪製、階層式 Z 遮蔽、分高度 SSPR、遠距烘焙陰影，以及把人物與寶可夢整合到同一模組化 Rig／Retarget 流程的做法。
+    </p>
+    <figure class="case-preview" data-intel-id="pokemon-za-city-rendering-pokerig" data-intel-role="visual" data-visual-id="pokemon-za-city-rendering-pokerig">
+     <a href="https://cgworld.jp/article/202609-cedec-pkmnza.html" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-17/pokemon-za-city-rendering-pokerig.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">渲染</b> ★★★★★</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-full" data-analysis-level="FULL">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body">
+      <h4>
+       城市渲染流程
+      </h4>
+      <p>
+       團隊把大量重複街燈、長椅與建築附件改以 Instanced Draw 管理，先在 CPU 依群組剔除，再於 GPU 處理大量 instance 並用 indirect draw 決定是否送出；遮蔽資料則以 depth prepass 建立階層式 Z，降低單一大城市中不可見物件的負擔。
+      </p>
+      <h4>
+       美術與 Rig 價值
+      </h4>
+      <p>
+       水面依三個高度群組共用 SSPR，遠距陰影以四方向烘焙到 RGBA 後隨時間混合，讓美術控制與效能預算可以並存；人物與不同骨架寶可夢也透過模組化 PokéRig、重映射與多階段 build 共用資料流，減少大量角色長期維護成本。
+      </p>
+      <h4>
+       導入測試
+      </h4>
+      <p>
+       這些策略依賴場景遮蔽、重複度與目標主機特性。採用前應以代表性城市街區量 CPU/GPU culling、instance group 粒度、深度金字塔成本、不同水位反射記憶體，以及跨二足／四足角色 retarget 後的腳底、重心與極端姿勢品質。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://cgworld.jp/article/202609-cedec-pkmnza.html" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="texlab-ue5-semantic-pbr-packing" data-intel-role="card">
+    <div class="category-meta">
+     #05 · tools
+    </div>
+    <h2>
+     texLab：UE5 內以明確語意打包 PBR 貼圖，預覽與輸出共用同一執行器
+    </h2>
+    <p class="summary">
+     texLab 不依檔名猜 ORM／RMA／ARM，而用 JSON 語意規則、dry-run、輸出 provenance 與 BC7／BC5 round-trip 預覽降低批次 channel packing 的靜默錯誤。
+    </p>
+    <figure class="case-preview" data-intel-id="texlab-ue5-semantic-pbr-packing" data-intel-role="visual" data-visual-id="texlab-ue5-semantic-pbr-packing">
+     <a href="https://80.lv/articles/texlab-packing-pbr-maps-inside-ue5-without-lying-about-the-preview" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-17/texlab-ue5-semantic-pbr-packing.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">引擎工具</b> ★★★★★</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-full" data-analysis-level="FULL">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body">
+      <h4>
+       貼圖打包流程
+      </h4>
+      <p>
+       工具以明確 semantic rule 描述來源 map 與 packed layout，避免 ORM、RMA、ARM 或 MSR 僅靠相似檔名猜測；組裝與 repack 共用一套 executor，先 Validate dry-run，再 Execute 寫檔，讓單張預覽、批次執行和最終輸出走相同邏輯。
+      </p>
+      <h4>
+       製作價值
+      </h4>
+      <p>
+       Encoded preview 會顯示 BC7／BC5 壓縮 round-trip 後的結果，輸出同時保存 provenance，因此技術美術可在 UE5 內看見真正交付狀態，而非只看未壓縮暫存影像；對大量材質轉換，這能把 channel 錯位與來源不明從後段 bug 變成前段可檢查狀態。
+      </p>
+      <h4>
+       導入測試
+      </h4>
+      <p>
+       工具目前證據主要來自作者的實際資產開發經驗。採用時應用混合命名、不同解析度、BC5 normal、sRGB／linear、缺少 channel 與網路路徑建立測試組，確認 dry-run、記憶體峰值、Editor responsiveness、覆寫策略與 provenance 在多人專案中都能維持一致。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://80.lv/articles/texlab-packing-pbr-maps-inside-ue5-without-lying-about-the-preview" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <nav aria-label="相鄰分類" class="category-bottom-nav">
+    <a href="../3d-animation/">
+     ← 3D 動作
+    </a>
+    <a href="../#top">
+     TOP5
+    </a>
+    <a href="../emerging-case/">
+     新技術 / Case →
+    </a>
+   </nav>
+  </main>
+  <script defer="" src="../../archive-nav-state.js?v=20260917-r1-workspace-v10-history-current-workspace">
+  </script>
+ </body>
+</html>

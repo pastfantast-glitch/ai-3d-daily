@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   AI／3D／遊戲美術 Production Intelligence — 2026-09-17
+  </title>
+  <link href="../styles.css?v=20260917-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../shared-components.css?v=20260917-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../daily.css?v=20260917-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../shared-components.css?v=20260917-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+ </head>
+ <body class="archive-page" data-next="" data-previous="2026-09-16" data-report-date="2026-09-17">
+  <nav aria-label="Production Intelligence 分類" class="global-category-nav">
+   <div class="page global-category-nav-inner">
+    <div class="archive-nav-controls">
+     <a class="archive-nav-home" href="../">
+      ← 首頁
+     </a>
+     <div class="archive-nav-date">
+      <a aria-label="前一日日報" class="archive-nav-arrow" href="../2026-09-16/">
+       ←
+      </a>
+      <span>
+       2026-09-17
+      </span>
+     </div>
+    </div>
+    <span aria-hidden="true" class="archive-nav-divider">
+    </span>
+    <a class="global-category-link is-active" href="#top">
+     TOP5
+    </a>
+    <a class="global-category-link" data-category="ai-generation" href="ai-generation/">
+     AI 生成
+    </a>
+    <a class="global-category-link" data-category="3d-production" href="3d-production/">
+     3D 製作
+    </a>
+    <a class="global-category-link" data-category="3d-animation" href="3d-animation/">
+     3D 動作
+    </a>
+    <a class="global-category-link" data-category="engine-art" href="engine-art/">
+     遊戲引擎
+    </a>
+    <a class="global-category-link" data-category="emerging-case" href="emerging-case/">
+     新技術 / Case
+    </a>
+    <a class="global-category-link" data-category="blender-dcc" href="blender-dcc/">
+     Blender / DCC
+    </a>
+    <a class="global-category-link global-history-link" data-global-view="history" href="../history/">
+     歷史日報
+    </a>
+   </div>
+  </nav>
+  <main class="page daily-main">
+   <section class="block" id="top">
+    <div class="block-head">
+     <div>
+      <span>
+       2026-09-17
+      </span>
+      <h2>
+       TOP5
+      </h2>
+     </div>
+    </div>
+    <article class="news daily-card daily-card-top" data-intel-id="pokemon-za-city-rendering-pokerig" data-intel-role="card">
+     <div class="news-rank">
+      01
+     </div>
+     <div class="news-main">
+      <div class="meta">
+       <span class="pill">
+        rendering
+       </span>
+      </div>
+      <h3>
+       《Pokémon LEGENDS Z-A》城市渲染：GPU Instance Culling、三層水面反射與統一 PokéRig
+      </h3>
+      <p class="summary">
+       Game Freak 公開密阿雷市的大量實例繪製、階層式 Z 遮蔽、分高度 SSPR、遠距烘焙陰影，以及把人物與寶可夢整合到同一模組化 Rig／Retarget 流程的做法。
+      </p>
+      <figure class="case-preview daily-visual" data-intel-id="pokemon-za-city-rendering-pokerig" data-intel-role="visual" data-visual-id="pokemon-za-city-rendering-pokerig">
+       <a href="https://cgworld.jp/article/202609-cedec-pkmnza.html" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-09-17/pokemon-za-city-rendering-pokerig.jpg"/>
+       </a>
+       <figcaption>
+        <span>
+         SOURCE PREVIEW
+        </span>
+        · Local visual evidence · 點圖開啟原始來源
+       </figcaption>
+      </figure>
+      <div class="quick-impact daily-impact">
+       <span><b class="quick-impact-label">渲染</b> ★★★★★</span>
+      </div>
+      <details class="canonical-analysis canonical-analysis-full daily-full-analysis" data-analysis-level="FULL">
+       <summary>
+        完整分析
+       </summary>
+       <div class="detail-body canonical-analysis-body daily-analysis-body">
+        <h4>
+         城市渲染流程
+        </h4>
+        <p>
+         團隊把大量重複街燈、長椅與建築附件改以 Instanced Draw 管理，先在 CPU 依群組剔除，再於 GPU 處理大量 instance 並用 indirect draw 決定是否送出；遮蔽資料則以 depth prepass 建立階層式 Z，降低單一大城市中不可見物件的負擔。
+        </p>
+        <h4>
+         美術與 Rig 價值
+        </h4>
+        <p>
+         水面依三個高度群組共用 SSPR，遠距陰影以四方向烘焙到 RGBA 後隨時間混合，讓美術控制與效能預算可以並存；人物與不同骨架寶可夢也透過模組化 PokéRig、重映射與多階段 build 共用資料流，減少大量角色長期維護成本。
+        </p>
+        <h4>
+         導入測試
+        </h4>
+        <p>
+         這些策略依賴場景遮蔽、重複度與目標主機特性。採用前應以代表性城市街區量 CPU/GPU culling、instance group 粒度、深度金字塔成本、不同水位反射記憶體，以及跨二足／四足角色 retarget 後的腳底、重心與極端姿勢品質。
+        </p>
+       </div>
+      </details>
+      <a class="source daily-source" href="https://cgworld.jp/article/202609-cedec-pkmnza.html" rel="noopener noreferrer" target="_blank">
+       來源
+      </a>
+     </div>
+    </article>
+    <article class="news daily-card daily-card-top" data-intel-id="agora-ue5-realtime-animation-pipeline" data-intel-role="card">
+     <div class="news-rank">
+      02
+     </div>
+     <div class="news-main">
+      <div class="meta">
+       <span class="pill">
+        animation
+       </span>
+      </div>
+      <h3>
+       Agora Studio 的 UE5 即時動畫流程：平行製作、Subsequence 隔離與 Shot Sculpt
+      </h3>
+      <p class="summary">
+       《A-COM》把預覽、動畫、燈光與剪輯集中在 UE5 Sequencer；複雜角色分到子序列後烘焙回主剪輯，並直接在引擎內做殘影與局部 Morph 修形。
+      </p>
+      <figure class="case-preview daily-visual" data-intel-id="agora-ue5-realtime-animation-pipeline" data-intel-role="visual" data-visual-id="agora-ue5-realtime-animation-pipeline">
+       <a href="https://cgworld.jp/flashnews/01-202609-UE5-RealTimeAnim.html" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-09-17/agora-ue5-realtime-animation-pipeline.jpg"/>
+       </a>
+       <figcaption>
+        <span>
+         SOURCE PREVIEW
+        </span>
+        · Local visual evidence · 點圖開啟原始來源
+       </figcaption>
+      </figure>
+      <div class="quick-impact daily-impact">
+       <span><b class="quick-impact-label">動畫</b> ★★★★★</span>
+      </div>
+      <details class="canonical-analysis canonical-analysis-full daily-full-analysis" data-analysis-level="FULL">
+       <summary>
+        完整分析
+       </summary>
+       <div class="detail-body canonical-analysis-body daily-analysis-body">
+        <h4>
+         即時動畫流程
+        </h4>
+        <p>
+         Agora Studio 移除 DCC 與引擎間反覆 FBX 轉換，把動畫、燈光與合成由接力式改成可平行調整的 Sequencer 流程；動畫師工作前先有接近最終畫面的環境與燈光，因此構圖、節奏和演出回饋能在同一上下文中完成。
+        </p>
+        <h4>
+         穩定與造型控制
+        </h4>
+        <p>
+         多人且 constraint 複雜的鏡頭被拆成獨立 Subsequence，再以烘焙 clip 進入主剪輯，換版更快並降低主序列崩潰與 motion blur ghost；快速攻擊以額外手臂 mesh 製作 smear，肩部塌陷則用 UE 內 Morph Target 配合 Control Rig curve 做逐鏡頭修形。
+        </p>
+        <h4>
+         導入測試
+        </h4>
+        <p>
+         引擎內完成不代表所有控制器都適合即時計算。團隊應用一個多角色鏡頭比較 live rig 與 baked clip 的開檔、換版、渲染和崩潰率，驗證 constraint、曲線、motion blur、Morph 版本管理及回到 DCC 的可逆性，再決定哪些階段留 live、哪些階段固定烘焙。
+        </p>
+       </div>
+      </details>
+      <a class="source daily-source" href="https://cgworld.jp/flashnews/01-202609-UE5-RealTimeAnim.html" rel="noopener noreferrer" target="_blank">
+       來源
+      </a>
+     </div>
+    </article>
+    <article class="news daily-card daily-card-top" data-intel-id="blender-53-native-gaussian-splats" data-intel-role="card">
+     <div class="news-rank">
+      03
+     </div>
+     <div class="news-main">
+      <div class="meta">
+       <span class="pill">
+        blender
+       </span>
+      </div>
+      <h3>
+       Blender 5.3 原生 Gaussian Splat：PLY／SPZ 匯入、Geometry Nodes 與三種渲染器整合
+      </h3>
+      <p class="summary">
+       Blender 5.3 Alpha 將 3DGS 存成 PointCloud 新類型，支援 PLY、SPZ v4、Workbench、EEVEE、Cycles 與程序匯入節點；目前仍無匯出且有色彩與 Transform 限制。
+      </p>
+      <figure class="case-preview daily-visual" data-intel-id="blender-53-native-gaussian-splats" data-intel-role="visual" data-visual-id="blender-53-native-gaussian-splats">
+       <a href="https://radiancefields.com/blender-5.3-will-bring-native-3d-gaussian-splat-import-and-rendering" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-09-17/blender-53-native-gaussian-splats.jpg"/>
+       </a>
+       <figcaption>
+        <span>
+         SOURCE PREVIEW
+        </span>
+        · Local visual evidence · 點圖開啟原始來源
+       </figcaption>
+      </figure>
+      <div class="quick-impact daily-impact">
+       <span><b class="quick-impact-label">Blender</b> ★★★★★</span>
+      </div>
+      <details class="canonical-analysis canonical-analysis-full daily-full-analysis" data-analysis-level="FULL">
+       <summary>
+        完整分析
+       </summary>
+       <div class="detail-body canonical-analysis-body daily-analysis-body">
+        <h4>
+         原生資料流程
+        </h4>
+        <p>
+         5.3 把 splat 以 PointCloud 的 3D Gaussian Splats 類型保存，position、scale、quaternion rotation、opacity、base radiance 與 spherical harmonics 都成為明確 attribute；PLY 可自動辨識，SPZ v4 會轉換座標，Geometry Nodes 也新增切換類型與程序匯入節點。
+        </p>
+        <h4>
+         製作價值
+        </h4>
+        <p>
+         Workbench、EEVEE 與 Cycles 共用原生資料結構，掃描或神經重建不必先依賴第三方 add-on 才能進入 Blender 場景；預設 emissive 材質可直接還原外觀，改接 Diffuse BSDF 也能做初步 relighting，讓 3DGS 更容易與傳統場景和節點流程共存。
+        </p>
+        <h4>
+         Alpha 限制與測試
+        </h4>
+        <p>
+         5.3 尚未提供 PLY／SPZ export，效能仍待改善，流程假設 sRGB，低 opacity 搭高 radiance 在 linear pipeline 可能錯誤，Apply Transform 也未正確處理 scale、rotation 與 SH。正式導入前應固定測座標、色彩、SH、變形、記憶體和往返輸出，避免把可顯示誤認為可交付。
+        </p>
+       </div>
+      </details>
+      <a class="source daily-source" href="https://radiancefields.com/blender-5.3-will-bring-native-3d-gaussian-splat-import-and-rendering" rel="noopener noreferrer" target="_blank">
+       來源
+      </a>
+     </div>
+    </article>
+    <article class="news daily-card daily-card-top" data-intel-id="dissectible-anatomy-realtime-splats" data-intel-role="card">
+     <div class="news-rank">
+      04
+     </div>
+     <div class="news-main">
+      <div class="meta">
+       <span class="pill">
+        research
+       </span>
+      </div>
+      <h3>
+       Dissectible Anatomy：PBD、SDF 與 Volumetric Splats 做即時切割和撕裂
+      </h3>
+      <p class="summary">
+       Purdue 團隊把 cryosection 影像轉為低解析 PBD 粒子與高解析 splat，於 compute shader 更新 SDF，使模型可即時切割、分離與變形，並避免維護網格連接關係。
+      </p>
+      <figure class="case-preview daily-visual" data-intel-id="dissectible-anatomy-realtime-splats" data-intel-role="visual" data-visual-id="dissectible-anatomy-realtime-splats">
+       <a href="https://80.lv/articles/dissectible-anatomy-lets-users-cut-tear-virtual-bodies-in-real-time" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-09-17/dissectible-anatomy-realtime-splats.jpg"/>
+       </a>
+       <figcaption>
+        <span>
+         SOURCE PREVIEW
+        </span>
+        · Local visual evidence · 點圖開啟原始來源
+       </figcaption>
+      </figure>
+      <div class="quick-impact daily-impact">
+       <span><b class="quick-impact-label">研究</b> ★★★★★</span>
+      </div>
+      <details class="canonical-analysis canonical-analysis-full daily-full-analysis" data-analysis-level="FULL">
+       <summary>
+        完整分析
+       </summary>
+       <div class="detail-body canonical-analysis-body daily-analysis-body">
+        <h4>
+         即時破壞技術
+        </h4>
+        <p>
+         系統以 cryosection 決定 PBD 粒子分布，再建立四倍解析度的 splat；每個 splat 在 runtime 更新到可見表面的 signed distance，切割時以 SDF intersection／subtraction 改變區域，只渲染外殼，省去三角形或四面體被切開後的連接關係重建。
+        </p>
+        <h4>
+         製作潛力
+        </h4>
+        <p>
+         所有粒子、SDF 與 splat 都以可攜式 compute shader 運算，不依賴 CUDA 或特定引擎。除解剖教育外，作者認為中小尺度遊戲破壞、軟體撕裂、怪物肢解與 VFX previs 都有轉用空間，尤其適合視覺可信度高於工程級物理精度的情境。
+        </p>
+        <h4>
+         成熟度與驗證
+        </h4>
+        <p>
+         目前仍是技術示範，教育效果與物理準確度尚未完成實證；平行運算也需在 region、particle 間多次 dispatch 以避免讀寫衝突。導入前應量不同解析度的 VRAM、dispatch 次數、切口細節、碰撞一致性與可控的美術資料格式，再判斷能否轉成遊戲工具。
+        </p>
+       </div>
+      </details>
+      <a class="source daily-source" href="https://80.lv/articles/dissectible-anatomy-lets-users-cut-tear-virtual-bodies-in-real-time" rel="noopener noreferrer" target="_blank">
+       來源
+      </a>
+     </div>
+    </article>
+    <article class="news daily-card daily-card-top" data-intel-id="texlab-ue5-semantic-pbr-packing" data-intel-role="card">
+     <div class="news-rank">
+      05
+     </div>
+     <div class="news-main">
+      <div class="meta">
+       <span class="pill">
+        tools
+       </span>
+      </div>
+      <h3>
+       texLab：UE5 內以明確語意打包 PBR 貼圖，預覽與輸出共用同一執行器
+      </h3>
+      <p class="summary">
+       texLab 不依檔名猜 ORM／RMA／ARM，而用 JSON 語意規則、dry-run、輸出 provenance 與 BC7／BC5 round-trip 預覽降低批次 channel packing 的靜默錯誤。
+      </p>
+      <figure class="case-preview daily-visual" data-intel-id="texlab-ue5-semantic-pbr-packing" data-intel-role="visual" data-visual-id="texlab-ue5-semantic-pbr-packing">
+       <a href="https://80.lv/articles/texlab-packing-pbr-maps-inside-ue5-without-lying-about-the-preview" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-09-17/texlab-ue5-semantic-pbr-packing.jpg"/>
+       </a>
+       <figcaption>
+        <span>
+         SOURCE PREVIEW
+        </span>
+        · Local visual evidence · 點圖開啟原始來源
+       </figcaption>
+      </figure>
+      <div class="quick-impact daily-impact">
+       <span><b class="quick-impact-label">引擎工具</b> ★★★★★</span>
+      </div>
+      <details class="canonical-analysis canonical-analysis-full daily-full-analysis" data-analysis-level="FULL">
+       <summary>
+        完整分析
+       </summary>
+       <div class="detail-body canonical-analysis-body daily-analysis-body">
+        <h4>
+         貼圖打包流程
+        </h4>
+        <p>
+         工具以明確 semantic rule 描述來源 map 與 packed layout，避免 ORM、RMA、ARM 或 MSR 僅靠相似檔名猜測；組裝與 repack 共用一套 executor，先 Validate dry-run，再 Execute 寫檔，讓單張預覽、批次執行和最終輸出走相同邏輯。
+        </p>
+        <h4>
+         製作價值
+        </h4>
+        <p>
+         Encoded preview 會顯示 BC7／BC5 壓縮 round-trip 後的結果，輸出同時保存 provenance，因此技術美術可在 UE5 內看見真正交付狀態，而非只看未壓縮暫存影像；對大量材質轉換，這能把 channel 錯位與來源不明從後段 bug 變成前段可檢查狀態。
+        </p>
+        <h4>
+         導入測試
+        </h4>
+        <p>
+         工具目前證據主要來自作者的實際資產開發經驗。採用時應用混合命名、不同解析度、BC5 normal、sRGB／linear、缺少 channel 與網路路徑建立測試組，確認 dry-run、記憶體峰值、Editor responsiveness、覆寫策略與 provenance 在多人專案中都能維持一致。
+        </p>
+       </div>
+      </details>
+      <a class="source daily-source" href="https://80.lv/articles/texlab-packing-pbr-maps-inside-ue5-without-lying-about-the-preview" rel="noopener noreferrer" target="_blank">
+       來源
+      </a>
+     </div>
+    </article>
+   </section>
+   <section class="block daily-more" id="more">
+    <div class="block-head">
+     <div>
+      <span>
+       2026-09-17
+      </span>
+      <h2>
+       當日其他資訊
+      </h2>
+     </div>
+    </div>
+    <article class="daily-card daily-card-more category-news" data-intel-id="switchx-20-source-locked-vfx" data-intel-role="card">
+     <div class="meta">
+      <span class="pill">
+       ai-motion
+      </span>
+     </div>
+     <h3>
+      SwitchX 2.0：Source-Locked VFX 升至 4K、10-bit、20 秒與更穩鏡頭追蹤
+     </h3>
+     <p class="summary">
+      Beeble 的 video-to-video 工作流保留 source／mask／reference 三輸入，2.0 將最長片段加倍並改善 handheld、pan、parallax、快速動作與 lip sync。
+     </p>
+     <figure class="case-preview daily-visual" data-intel-id="switchx-20-source-locked-vfx" data-intel-role="visual" data-visual-id="switchx-20-source-locked-vfx">
+      <a href="https://beeble.ai/research/switchx-2-0" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+       <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-09-17/switchx-20-source-locked-vfx.jpg"/>
+      </a>
+      <figcaption>
+       <span>
+        SOURCE PREVIEW
+       </span>
+       · Local visual evidence · 點圖開啟原始來源
+      </figcaption>
+     </figure>
+     <div class="quick-impact daily-impact">
+      <span><b class="quick-impact-label">AI 動作</b> ★★★★☆</span>
+     </div>
+     <details class="canonical-analysis canonical-analysis-brief daily-full-analysis" data-analysis-level="BRIEF">
+      <summary>
+       完整分析
+      </summary>
+      <div class="detail-body canonical-analysis-body brief-analysis-body daily-analysis-body">
+       <h4>
+        生成流程
+       </h4>
+       <p>
+        2.0 維持 source video、保留區 mask 與 reference frame 三輸入，以 Source-Locked Rendering 讓保留區與原片對齊；輸出上限由 10 秒增至 20 秒、1080p 增至原生 4K，並提供 10-bit MOV 與相容用 8-bit MP4。
+       </p>
+       <h4>
+        後期製作價值
+       </h4>
+       <p>
+        鏡頭追蹤針對 handheld、pan、dolly 與 parallax 改善，快速舞蹈、手勢與 lip sync 也主打較少漂移；可先在 720p／1080p 迭代，再回讀原始素材做 4K final，較符合 VFX 草稿到定稿的成本控制。
+       </p>
+       <h4>
+        實測限制
+       </h4>
+       <p>
+        目前品質證據以官方案例為主。正式使用前應用頭髮、半透明、遮擋、快速手部、長鏡頭與複雜 parallax 做 shot-level 測試，檢查保留區邊界、identity drift、frame consistency、10-bit 色階與合成時是否真能逐像素疊回原片。
+       </p>
+       <p class="analysis-level-note">
+        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+       </p>
+      </div>
+     </details>
+     <a class="source daily-source" href="https://beeble.ai/research/switchx-2-0" rel="noopener noreferrer" target="_blank">
+      來源
+     </a>
+    </article>
+    <article class="daily-card daily-card-more category-news" data-intel-id="chaos-cosmos-ai-3d-image-search" data-intel-role="card">
+     <div class="meta">
+      <span class="pill">
+       ai-3d
+      </span>
+     </div>
+     <h3>
+      Chaos Cosmos：單圖生成 3D 資產與以圖搜尋進入 V-Ray／Corona 工作流
+     </h3>
+     <p class="summary">
+      Cosmos Beta 可在瀏覽器中用 Tencent HY 3D 或 TRELLIS.2 從單圖生成模型，也能先以圖搜尋既有資產；輸出可直接供 V-Ray、Corona、Vantage 與 Envision 使用。
+     </p>
+     <figure class="case-preview daily-visual" data-intel-id="chaos-cosmos-ai-3d-image-search" data-intel-role="visual" data-visual-id="chaos-cosmos-ai-3d-image-search">
+      <a href="https://blog.chaos.com/cosmos-ai-3d-generation-image-search" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+       <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-09-17/chaos-cosmos-ai-3d-image-search.jpg"/>
+      </a>
+      <figcaption>
+       <span>
+        SOURCE PREVIEW
+       </span>
+       · Local visual evidence · 點圖開啟原始來源
+      </figcaption>
+     </figure>
+     <div class="quick-impact daily-impact">
+      <span><b class="quick-impact-label">AI 3D</b> ★★★★☆</span>
+     </div>
+     <details class="canonical-analysis canonical-analysis-brief daily-full-analysis" data-analysis-level="BRIEF">
+      <summary>
+       完整分析
+      </summary>
+      <div class="detail-body canonical-analysis-body brief-analysis-body daily-analysis-body">
+       <h4>
+        資產生成流程
+       </h4>
+       <p>
+        使用者可先上傳參考圖搜尋 Cosmos 內相似模型與材質，若找不到再選 HY 3D 或 TRELLIS.2 生成；解析度、polycount、texture resolution 與 shape fidelity 可調，生成資產直接出現在 Cosmos Browser。
+       </p>
+       <h4>
+        製作價值
+       </h4>
+       <p>
+        把搜尋和生成放在同一資產庫可先重用已驗證內容，再為缺口生成自訂物件；V-Ray、Corona、Vantage、Envision 可直接取用，對建築視覺化與大量 set dressing 的前期補件比獨立網站下載再轉檔更順。
+       </p>
+       <h4>
+        Beta 驗證
+       </h4>
+       <p>
+        供應商主張 scene-ready，但功能仍在 early beta。應以家具、薄片、反光物與非正視角參考圖比較兩個模型的背面補全、UV、材質、法線、尺度、polycount 實際影響與人工修復時間，並確認生成資產的授權與版本可追蹤性。
+       </p>
+       <p class="analysis-level-note">
+        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+       </p>
+      </div>
+     </details>
+     <a class="source daily-source" href="https://blog.chaos.com/cosmos-ai-3d-generation-image-search" rel="noopener noreferrer" target="_blank">
+      來源
+     </a>
+    </article>
+    <article class="daily-card daily-card-more category-news" data-intel-id="keyflow-maya-animation-review" data-intel-role="card">
+     <div class="meta">
+      <span class="pill">
+       animation
+      </span>
+     </div>
+     <h3>
+      KeyFlow：免費 Maya 動畫工具組串接 Blocking、Pose Library、Bake 與獨立 Shot Review
+     </h3>
+     <p class="summary">
+      KeyFlow 提供 25 項以上 Maya 動畫效率工具；KeyFlow Studio 則支援 A/B、逐幀標註、區網／線上 review，以及把參考影片送往 Maya 或 Blender。
+     </p>
+     <figure class="case-preview daily-visual" data-intel-id="keyflow-maya-animation-review" data-intel-role="visual" data-visual-id="keyflow-maya-animation-review">
+      <a href="https://www.cgchannel.com/2026/09/check-out-free-maya-animation-productivity-toolset-keyflow/" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+       <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-09-17/keyflow-maya-animation-review.jpg"/>
+      </a>
+      <figcaption>
+       <span>
+        SOURCE PREVIEW
+       </span>
+       · Local visual evidence · 點圖開啟原始來源
+      </figcaption>
+     </figure>
+     <div class="quick-impact daily-impact">
+      <span><b class="quick-impact-label">動畫</b> ★★★★☆</span>
+     </div>
+     <details class="canonical-analysis canonical-analysis-brief daily-full-analysis" data-analysis-level="BRIEF">
+      <summary>
+       完整分析
+      </summary>
+      <div class="detail-body canonical-analysis-body brief-analysis-body daily-analysis-body">
+       <h4>
+        動畫工作流
+       </h4>
+       <p>
+        Maya 工具涵蓋 tween、跨角色／場景複製動畫、pose library、transform 與 bake，目標是從 blocking 到 polish 的日常小操作累積節省；作者表示可搭配一般標準 Maya rig。
+       </p>
+       <h4>
+        審片製作價值
+       </h4>
+       <p>
+        獨立 Studio app 可做 A/B、文字與畫筆標註、同步 feedback session，亦能剪裁或 retime 參考影片後送到 Maya／Blender；動畫製作與審片可由同一套免費工具串接，降低小團隊導入商業 review 系統的門檻。
+       </p>
+       <h4>
+        相容性測試
+       </h4>
+       <p>
+        目前僅支援 Windows 10+，KeyFlow 需 Maya 2021+，且跨複雜自訂 rig 的證據有限。導入前應測 namespace、referenced rig、多角色 copy、undo、bake curve、色彩管理、EXR sequence、網路 review 延遲與 Blender 匯出結果。
+       </p>
+       <p class="analysis-level-note">
+        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+       </p>
+      </div>
+     </details>
+     <a class="source daily-source" href="https://www.cgchannel.com/2026/09/check-out-free-maya-animation-productivity-toolset-keyflow/" rel="noopener noreferrer" target="_blank">
+      來源
+     </a>
+    </article>
+    <article class="daily-card daily-card-more category-news" data-intel-id="zbrush-stylized-darkness-sculpt" data-intel-role="card">
+     <div class="meta">
+      <span class="pill">
+       character-production
+      </span>
+     </div>
+     <h3>
+      ZBrush 風格化角色：Sculptris Pro 探形、Keep Groups 重拓樸與 Bend Curve 控角
+     </h3>
+     <p class="summary">
+      Shane Olson 示範從動態拓樸 blockout 到 ZRemesher、custom brush 分件邊界、角的 Bend Curve 造型與換材質檢查表面噪點的完整雕刻決策。
+     </p>
+     <figure class="case-preview daily-visual" data-intel-id="zbrush-stylized-darkness-sculpt" data-intel-role="visual" data-visual-id="zbrush-stylized-darkness-sculpt">
+      <a href="https://cgworld.jp/flashnews/01-202609-ZBrush-Stylized.html" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+       <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-09-17/zbrush-stylized-darkness-sculpt.jpg"/>
+      </a>
+      <figcaption>
+       <span>
+        SOURCE PREVIEW
+       </span>
+       · Local visual evidence · 點圖開啟原始來源
+      </figcaption>
+     </figure>
+     <div class="quick-impact daily-impact">
+      <span><b class="quick-impact-label">角色製作</b> ★★★★☆</span>
+     </div>
+     <details class="canonical-analysis canonical-analysis-brief daily-full-analysis" data-analysis-level="BRIEF">
+      <summary>
+       完整分析
+      </summary>
+      <div class="detail-body canonical-analysis-body brief-analysis-body daily-analysis-body">
+       <h4>
+        角色雕刻流程
+       </h4>
+       <p>
+        初期以 Sculptris Pro 不受既有拓樸限制地找大輪廓，mesh 拉伸後再 Mirror and Weld、Auto Groups，並以 ZRemesher 的 Keep Groups 與低 Smooth Groups 保住零件交界和銳利折面。
+       </p>
+       <h4>
+        造型製作價值
+       </h4>
+       <p>
+        作者先用 custom brush 在同一 mesh 上刻出清楚分件邊界，避免探索期過早增加 SubTools；大型角則先均化 topology 再用 Bend Curve 分段調方向、scale、twist，適合需要快速維持強輪廓的風格化角色。
+       </p>
+       <h4>
+        實作限制
+       </h4>
+       <p>
+        示範著重雕刻與 3D print 造型，並未涵蓋遊戲角色 retopo、UV、rig deformation。實作時應另外檢查 group 邊界的 subdivision、細節投射、列印分件公差，以及若要進即時引擎時的低模與表情變形需求。
+       </p>
+       <p class="analysis-level-note">
+        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+       </p>
+      </div>
+     </details>
+     <a class="source daily-source" href="https://cgworld.jp/flashnews/01-202609-ZBrush-Stylized.html" rel="noopener noreferrer" target="_blank">
+      來源
+     </a>
+    </article>
+    <article class="daily-card daily-card-more category-news" data-intel-id="mgear-53-rigging-tools" data-intel-role="card">
+     <div class="meta">
+      <span class="pill">
+       rigging
+      </span>
+     </div>
+     <h3>
+      mGear 5.3：Maya 2027／Python 3.13、Blendshape Transfer 與 SDK Creator
+     </h3>
+     <p class="summary">
+      mGear 5.3 新增八項工具並更新變形工作流；Blendshape Transfer 可重建 combo network、清理 zero-delta target，SDK Creator 能從時間軸 pose 建立可鏡像的 Set Driven Key。
+     </p>
+     <figure class="case-preview daily-visual" data-intel-id="mgear-53-rigging-tools" data-intel-role="visual" data-visual-id="mgear-53-rigging-tools">
+      <a href="https://github.com/mgear-dev/mgear/releases" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+       <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-09-17/mgear-53-rigging-tools.jpg"/>
+      </a>
+      <figcaption>
+       <span>
+        SOURCE PREVIEW
+       </span>
+       · Local visual evidence · 點圖開啟原始來源
+      </figcaption>
+     </figure>
+     <div class="quick-impact daily-impact">
+      <span><b class="quick-impact-label">綁定</b> ★★★★☆</span>
+     </div>
+     <details class="canonical-analysis canonical-analysis-brief daily-full-analysis" data-analysis-level="BRIEF">
+      <summary>
+       完整分析
+      </summary>
+      <div class="detail-body canonical-analysis-body brief-analysis-body daily-analysis-body">
+       <h4>
+        Rig 工具更新
+       </h4>
+       <p>
+        5.3 將 solver 與 C++ acceleration modules 重新編譯至 Maya 2027／Python 3.13，並移除舊 Python 2／3 相容層；Blendshape Setup Transfer 可跨多來源 mesh 重建 combo network 並移除沒有變形的 target。
+       </p>
+       <h4>
+        製作價值
+       </h4>
+       <p>
+        SDK Creator 讓 rigger 在時間軸先擺 pose，再自動建立 Set Driven Key network，支援左右鏡像與 scripting API；對表情、corrective shape 與重複角色 build，可把容易遺漏的手工連線改成可重現步驟。
+       </p>
+       <h4>
+        升版測試
+       </h4>
+       <p>
+        團隊若仍在 Maya 2022–2026，需確認同一套 rig package 的版本矩陣。建議用含 combo blendshape、namespace、reference、custom solver 與 ueGear 匯出的代表角色測 rebuild、序列化、publish farm 與 Maya 2027 plugin 載入。
+       </p>
+       <p class="analysis-level-note">
+        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+       </p>
+      </div>
+     </details>
+     <a class="source daily-source" href="https://github.com/mgear-dev/mgear/releases" rel="noopener noreferrer" target="_blank">
+      來源
+     </a>
+    </article>
+    <article class="daily-card daily-card-more category-news" data-intel-id="hdr-light-studio-blender-vray" data-intel-role="card">
+     <div class="meta">
+      <span class="pill">
+       addon
+      </span>
+     </div>
+     <h3>
+      HDR Light Studio Blender Add-on 新增 V-Ray 支援與 Blender 5.2 相容
+     </h3>
+     <p class="summary">
+      Lightmap 的更新讓 Blender 內 V-Ray interactive/final render 可直接接 HDR Light Studio，並把最低版本調至 Blender 4.5.12、HDR Light Studio 9 Drop 5。
+     </p>
+     <figure class="case-preview daily-visual" data-intel-id="hdr-light-studio-blender-vray" data-intel-role="visual" data-visual-id="hdr-light-studio-blender-vray">
+      <a href="https://www.lightmap.co.uk/blog/blendervray/" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+       <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-09-17/hdr-light-studio-blender-vray.jpg"/>
+      </a>
+      <figcaption>
+       <span>
+        SOURCE PREVIEW
+       </span>
+       · Local visual evidence · 點圖開啟原始來源
+      </figcaption>
+     </figure>
+     <div class="quick-impact daily-impact">
+      <span><b class="quick-impact-label">外掛</b> ★★★★☆</span>
+     </div>
+     <details class="canonical-analysis canonical-analysis-brief daily-full-analysis" data-analysis-level="BRIEF">
+      <summary>
+       完整分析
+      </summary>
+      <div class="detail-body canonical-analysis-body brief-analysis-body daily-analysis-body">
+       <h4>
+        燈光工作流
+       </h4>
+       <p>
+        Blender add-on 現可在 V-Ray interactive 與 final render 中直接更新 HDR Light Studio 燈光，並加入 Blender 5.2 支援；既有 Maya、3ds Max、SketchUp 或 Rhino 的 V-Ray 團隊可在 Blender 保持相同 renderer 與燈光工具。
+       </p>
+       <h4>
+        管線價值
+       </h4>
+       <p>
+        跨 DCC 使用同一 V-Ray／HDR lighting 組合可減少材質、相機與燈光翻譯，對產品視覺化、動畫和外部客戶檔案往返較有價值；Chaos Cosmos 與 Cloud 等能力也能沿用既有 V-Ray 生態。
+       </p>
+       <h4>
+        版本限制
+       </h4>
+       <p>
+        最低 Blender 為 4.5.12，HDR Light Studio 需 9 Drop 5，Octane 另有指定 add-on 版本；V-Ray Community Edition 還有 2K、8-bit、無 batch／distributed render 等限制。導入前應測 IES、area light、色彩管理、動畫與 farm 輸出。
+       </p>
+       <p class="analysis-level-note">
+        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+       </p>
+      </div>
+     </details>
+     <a class="source daily-source" href="https://www.lightmap.co.uk/blog/blendervray/" rel="noopener noreferrer" target="_blank">
+      來源
+     </a>
+    </article>
+    <article class="daily-card daily-card-more category-news" data-intel-id="houdini-hivealt-2026-procedural-production" data-intel-role="card">
+     <div class="meta">
+      <span class="pill">
+       production-workflow
+      </span>
+     </div>
+     <h3>
+      HIVEalt 2026：Houdini 從 F1 賽道、CAD→UE 到 AI 輔助程序工具的實務合集
+     </h3>
+     <p class="summary">
+      SideFX 集合建築、F1 數位孿生、重型 CAD 清理、Houdini MCP、增材製造與汽車氣動等流程，重點是以可重用程序系統處理頻繁設計變更。
+     </p>
+     <figure class="case-preview daily-visual" data-intel-id="houdini-hivealt-2026-procedural-production" data-intel-role="visual" data-visual-id="houdini-hivealt-2026-procedural-production">
+      <a href="https://www.sidefx.com/houdini-hive/hive-alt-2026/" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+       <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-09-17/houdini-hivealt-2026-procedural-production.jpg"/>
+      </a>
+      <figcaption>
+       <span>
+        SOURCE PREVIEW
+       </span>
+       · Local visual evidence · 點圖開啟原始來源
+      </figcaption>
+     </figure>
+     <div class="quick-impact daily-impact">
+      <span><b class="quick-impact-label">製作流程</b> ★★★★☆</span>
+     </div>
+     <details class="canonical-analysis canonical-analysis-brief daily-full-analysis" data-analysis-level="BRIEF">
+      <summary>
+       完整分析
+      </summary>
+      <div class="detail-body canonical-analysis-body brief-analysis-body daily-analysis-body">
+       <h4>
+        程序技術流程
+       </h4>
+       <p>
+        Q3D 以 Houdini 將數週 F1 賽道幾何縮成數日，Ocean Infinity 則把大型 SolidWorks assembly 經程序清理後送進 Unreal simulation；共同做法是把反覆版本變更轉為非破壞處理，而非每版重新人工整理。
+       </p>
+       <h4>
+        跨領域價值
+       </h4>
+       <p>
+        議程還涵蓋建築規則、鞋類 biomimetic、增材製造 lattice、汽車氣動資料與 Houdini MCP；AI 被用來建立或調整程序 setup，而核心幾何、模擬與美術控制仍保留在 Houdini node network 中。
+       </p>
+       <h4>
+        採用判斷
+       </h4>
+       <p>
+        活動頁提供流程摘要但完整錄影尚待發布，細部效能與工具維護成本仍未驗證。團隊應挑一個高頻改版資產測輸入標準化、cook time、manual override、HDA 版本、Unreal handoff 與錯誤恢復，再評估程序化投資是否真的縮短交付。
+       </p>
+       <p class="analysis-level-note">
+        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+       </p>
+      </div>
+     </details>
+     <a class="source daily-source" href="https://www.sidefx.com/houdini-hive/hive-alt-2026/" rel="noopener noreferrer" target="_blank">
+      來源
+     </a>
+    </article>
+    <article class="daily-card daily-card-more category-news" data-intel-id="stylized-pirate-chest-blender-ue58" data-intel-role="card">
+     <div class="meta">
+      <span class="pill">
+       prop-production
+      </span>
+     </div>
+     <h3>
+      風格化海盜寶箱：Blender 5.2 到 UE5.8 的 GLB／FBX、材質與互動 Blueprint 流程
+     </h3>
+     <p class="summary">
+      3D Tudor 以 44 節課拆解 blockout、plank rhythm、modifier、UV、AO／cavity bake、引擎材質與開箱互動，強調遊戲距離下的輪廓與轉場可讀性。
+     </p>
+     <div class="quick-impact daily-impact">
+      <span><b class="quick-impact-label">物件製作</b> ★★★★☆</span>
+     </div>
+     <details class="canonical-analysis canonical-analysis-brief daily-full-analysis" data-analysis-level="BRIEF">
+      <summary>
+       完整分析
+      </summary>
+      <div class="detail-body canonical-analysis-body brief-analysis-body daily-analysis-body">
+       <h4>
+        道具製作流程
+       </h4>
+       <p>
+        案例先鎖定大比例與木板節奏，再以 Solidify、Bevel、Mirror 和刻意 edge loop 建立可讀輪廓；完成 UV 與 AO／cavity bake 後，以 GLB／FBX 送往 UE5.8，建立可重用材質與開箱 Blueprint。
+       </p>
+       <h4>
+        遊戲製作價值
+       </h4>
+       <p>
+        金屬框被當成第二層 silhouette，開合動作以清楚 before／after 狀態和越界動勢遮住 mesh 切換；這顯示互動道具不一定需要大型動畫系統，先讓造型、材質分離與焦點在遊戲距離成立更關鍵。
+       </p>
+       <h4>
+        實作限制
+       </h4>
+       <p>
+        來源同時推廣付費課程，效能數據與 Blueprint 細節有限。採用時應獨立檢查 scale、pivot、碰撞、LOD／Nanite、材質 instance、GLB 與 FBX 差異、開合狀態同步及複雜光照中 emissive 焦點是否仍清楚。
+       </p>
+       <p class="analysis-level-note">
+        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+       </p>
+      </div>
+     </details>
+     <a class="source daily-source" href="https://www.artstation.com/blogs/threedtudor/44oRO/blender-to-unreal-engine-5-stylized-interactive-pirate-chest" rel="noopener noreferrer" target="_blank">
+      來源
+     </a>
+    </article>
+    <article class="daily-card daily-card-more category-news" data-intel-id="3dcoat-2026-node-texturing" data-intel-role="card">
+     <div class="meta">
+      <span class="pill">
+       other-dcc
+      </span>
+     </div>
+     <h3>
+      3DCoat 2026：GPU 節點貼圖、30 個 PBR Channel 與可雕刻中預覽的材質系統
+     </h3>
+     <p class="summary">
+      3DCoat／Textura 2026 以 GPU node graph 重做 Smart Material、mask、deformer 與 volumetric texture，並加入 Splitter、資產樹與改善 GLB 輸出。
+     </p>
+     <figure class="case-preview daily-visual" data-intel-id="3dcoat-2026-node-texturing" data-intel-role="visual" data-visual-id="3dcoat-2026-node-texturing">
+      <a href="https://www.cgchannel.com/2026/07/pilgway-releases-3dcoat-2026-and-3dcoattextura-2026/" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+       <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-09-17/3dcoat-2026-node-texturing.jpg"/>
+      </a>
+      <figcaption>
+       <span>
+        SOURCE PREVIEW
+       </span>
+       · Local visual evidence · 點圖開啟原始來源
+      </figcaption>
+     </figure>
+     <div class="quick-impact daily-impact">
+      <span><b class="quick-impact-label">其他 DCC</b> ★★★★☆</span>
+     </div>
+     <details class="canonical-analysis canonical-analysis-brief daily-full-analysis" data-analysis-level="BRIEF">
+      <summary>
+       完整分析
+      </summary>
+      <div class="detail-body canonical-analysis-body brief-analysis-body daily-analysis-body">
+       <h4>
+        材質工作流
+       </h4>
+       <p>
+        新 Node System 以 GPU 編譯 shader，讓材質、mask、effect、deformer 與 volumetric texture 可非破壞組合，並能在持續雕刻時預覽；PBR 系統擴充至 30 個 channel，Textura 版也取得相同核心貼圖能力。
+       </p>
+       <h4>
+        製作價值
+       </h4>
+       <p>
+        程序材質與雕刻留在同一工具可減少 lookdev 往返；Splitter 把模型分到不同 layer，Retopo／Modeling room 可用樹狀資產管理，GLB export 改善，對同時做雕刻、retopo、texture 的個人或小組較直接。
+       </p>
+       <h4>
+        升版測試
+       </h4>
+       <p>
+        GPU node 與 legacy CPU 版本分成不同 executable，團隊需確認 graph 相容、顯卡與 driver、30 channel 的下游支援、Smart Material 遷移、GLB 材質及大型 UDIM 專案記憶體，再決定是否替換現有 Substance／Mari 流程。
+       </p>
+       <p class="analysis-level-note">
+        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+       </p>
+      </div>
+     </details>
+     <a class="source daily-source" href="https://www.cgchannel.com/2026/07/pilgway-releases-3dcoat-2026-and-3dcoattextura-2026/" rel="noopener noreferrer" target="_blank">
+      來源
+     </a>
+    </article>
+    <article class="daily-card daily-card-more category-news" data-intel-id="pixgs-pixel-space-diffusion" data-intel-role="card">
+     <div class="meta">
+      <span class="pill">
+       research
+      </span>
+     </div>
+     <h3>
+      PixGS：以 Pixel-Space Diffusion 單階段直接生成 3D Gaussian Splats
+     </h3>
+     <p class="summary">
+      研究避開 latent compression 與多階段 cascade，直接去噪 Gaussian attributes，並用 normal、depth 與高頻結構監督；論文宣稱單張 A100 約 1 秒推論。
+     </p>
+     <figure class="case-preview daily-visual" data-intel-id="pixgs-pixel-space-diffusion" data-intel-role="visual" data-visual-id="pixgs-pixel-space-diffusion">
+      <a href="https://arxiv.org/abs/2607.01803" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+       <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-09-17/pixgs-pixel-space-diffusion.jpg"/>
+      </a>
+      <figcaption>
+       <span>
+        SOURCE PREVIEW
+       </span>
+       · Local visual evidence · 點圖開啟原始來源
+      </figcaption>
+     </figure>
+     <div class="quick-impact daily-impact">
+      <span><b class="quick-impact-label">研究</b> ★★★★☆</span>
+     </div>
+     <details class="canonical-analysis canonical-analysis-brief daily-full-analysis" data-analysis-level="BRIEF">
+      <summary>
+       完整分析
+      </summary>
+      <div class="detail-body canonical-analysis-body brief-analysis-body daily-analysis-body">
+       <h4>
+        生成技術
+       </h4>
+       <p>
+        PixGS 不先把 3D 資產壓進 latent space，也不串多個生成階段，而是在每個 diffusion timestep 直接去噪 splat attributes；normal、depth 與高頻結構監督讓外觀與幾何可在 splat 層級同時約束。
+       </p>
+       <h4>
+        製作潛力
+       </h4>
+       <p>
+        若單階段 3DGS 真能維持論文所述品質與約一秒 A100 推論，前期概念資產、novel-view 預覽與大量變體會更快，並減少 cascade 各階段錯誤累積與解碼 artifact。
+       </p>
+       <h4>
+        研究限制
+       </h4>
+       <p>
+        目前證據來自論文摘要，缺少對一般 GPU、不同類別、編輯性與 DCC／引擎輸出的 production benchmark。採用前應比較 mesh 可轉換性、尺度、視角一致、反光與薄物件、VRAM、license 及與既有 image-to-3D pipeline 的人工修復量。
+       </p>
+       <p class="analysis-level-note">
+        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+       </p>
+      </div>
+     </details>
+     <a class="source daily-source" href="https://arxiv.org/abs/2607.01803" rel="noopener noreferrer" target="_blank">
+      來源
+     </a>
+    </article>
+   </section>
+  </main>
+  <script src="../daily.js?v=20260917-r1-workspace-v10-history-current-workspace">
+  </script>
+  <script defer="" src="../archive-nav-state.js?v=20260917-r1-workspace-v10-history-current-workspace">
+  </script>
+ </body>
+</html>

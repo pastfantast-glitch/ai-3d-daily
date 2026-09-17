@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   3D 動作｜2026-09-17｜AI 3D Daily
+  </title>
+  <link href="../../styles.css?v=20260917-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../../shared-components.css?v=20260917-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../../category.css?v=20260917-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+ </head>
+ <body class="category-page" data-category="3d-animation" data-report-date="2026-09-17">
+  <nav aria-label="Production Intelligence 分類" class="global-category-nav">
+   <div class="page global-category-nav-inner">
+    <div class="archive-nav-controls">
+     <a class="archive-nav-home" href="../../">
+      ← 首頁
+     </a>
+     <div class="archive-nav-date">
+      <a aria-label="前一日日報" class="archive-nav-arrow" href="../../2026-09-16/3d-animation/">
+       ←
+      </a>
+      <span>
+       2026-09-17
+      </span>
+     </div>
+    </div>
+    <span aria-hidden="true" class="archive-nav-divider">
+    </span>
+    <a class="global-category-link" href="../#top">
+     TOP5
+    </a>
+    <a class="global-category-link" data-category="ai-generation" href="../ai-generation/">
+     AI 生成
+    </a>
+    <a class="global-category-link" data-category="3d-production" href="../3d-production/">
+     3D 製作
+    </a>
+    <a class="global-category-link is-active" data-category="3d-animation" href="../3d-animation/">
+     3D 動作
+    </a>
+    <a class="global-category-link" data-category="engine-art" href="../engine-art/">
+     遊戲引擎
+    </a>
+    <a class="global-category-link" data-category="emerging-case" href="../emerging-case/">
+     新技術 / Case
+    </a>
+    <a class="global-category-link" data-category="blender-dcc" href="../blender-dcc/">
+     Blender / DCC
+    </a>
+    <a class="global-category-link global-history-link" data-global-view="history" href="../../history/">
+     歷史日報
+    </a>
+   </div>
+  </nav>
+  <main class="page category-main">
+   <article class="category-card" data-intel-id="agora-ue5-realtime-animation-pipeline" data-intel-role="card">
+    <div class="category-meta">
+     #02 · animation
+    </div>
+    <h2>
+     Agora Studio 的 UE5 即時動畫流程：平行製作、Subsequence 隔離與 Shot Sculpt
+    </h2>
+    <p class="summary">
+     《A-COM》把預覽、動畫、燈光與剪輯集中在 UE5 Sequencer；複雜角色分到子序列後烘焙回主剪輯，並直接在引擎內做殘影與局部 Morph 修形。
+    </p>
+    <figure class="case-preview" data-intel-id="agora-ue5-realtime-animation-pipeline" data-intel-role="visual" data-visual-id="agora-ue5-realtime-animation-pipeline">
+     <a href="https://cgworld.jp/flashnews/01-202609-UE5-RealTimeAnim.html" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-17/agora-ue5-realtime-animation-pipeline.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">動畫</b> ★★★★★</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-full" data-analysis-level="FULL">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body">
+      <h4>
+       即時動畫流程
+      </h4>
+      <p>
+       Agora Studio 移除 DCC 與引擎間反覆 FBX 轉換，把動畫、燈光與合成由接力式改成可平行調整的 Sequencer 流程；動畫師工作前先有接近最終畫面的環境與燈光，因此構圖、節奏和演出回饋能在同一上下文中完成。
+      </p>
+      <h4>
+       穩定與造型控制
+      </h4>
+      <p>
+       多人且 constraint 複雜的鏡頭被拆成獨立 Subsequence，再以烘焙 clip 進入主剪輯，換版更快並降低主序列崩潰與 motion blur ghost；快速攻擊以額外手臂 mesh 製作 smear，肩部塌陷則用 UE 內 Morph Target 配合 Control Rig curve 做逐鏡頭修形。
+      </p>
+      <h4>
+       導入測試
+      </h4>
+      <p>
+       引擎內完成不代表所有控制器都適合即時計算。團隊應用一個多角色鏡頭比較 live rig 與 baked clip 的開檔、換版、渲染和崩潰率，驗證 constraint、曲線、motion blur、Morph 版本管理及回到 DCC 的可逆性，再決定哪些階段留 live、哪些階段固定烘焙。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://cgworld.jp/flashnews/01-202609-UE5-RealTimeAnim.html" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="keyflow-maya-animation-review" data-intel-role="card">
+    <div class="category-meta">
+     #08 · animation
+    </div>
+    <h2>
+     KeyFlow：免費 Maya 動畫工具組串接 Blocking、Pose Library、Bake 與獨立 Shot Review
+    </h2>
+    <p class="summary">
+     KeyFlow 提供 25 項以上 Maya 動畫效率工具；KeyFlow Studio 則支援 A/B、逐幀標註、區網／線上 review，以及把參考影片送往 Maya 或 Blender。
+    </p>
+    <figure class="case-preview" data-intel-id="keyflow-maya-animation-review" data-intel-role="visual" data-visual-id="keyflow-maya-animation-review">
+     <a href="https://www.cgchannel.com/2026/09/check-out-free-maya-animation-productivity-toolset-keyflow/" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-17/keyflow-maya-animation-review.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">動畫</b> ★★★★☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       動畫工作流
+      </h4>
+      <p>
+       Maya 工具涵蓋 tween、跨角色／場景複製動畫、pose library、transform 與 bake，目標是從 blocking 到 polish 的日常小操作累積節省；作者表示可搭配一般標準 Maya rig。
+      </p>
+      <h4>
+       審片製作價值
+      </h4>
+      <p>
+       獨立 Studio app 可做 A/B、文字與畫筆標註、同步 feedback session，亦能剪裁或 retime 參考影片後送到 Maya／Blender；動畫製作與審片可由同一套免費工具串接，降低小團隊導入商業 review 系統的門檻。
+      </p>
+      <h4>
+       相容性測試
+      </h4>
+      <p>
+       目前僅支援 Windows 10+，KeyFlow 需 Maya 2021+，且跨複雜自訂 rig 的證據有限。導入前應測 namespace、referenced rig、多角色 copy、undo、bake curve、色彩管理、EXR sequence、網路 review 延遲與 Blender 匯出結果。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://www.cgchannel.com/2026/09/check-out-free-maya-animation-productivity-toolset-keyflow/" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="mgear-53-rigging-tools" data-intel-role="card">
+    <div class="category-meta">
+     #10 · rigging
+    </div>
+    <h2>
+     mGear 5.3：Maya 2027／Python 3.13、Blendshape Transfer 與 SDK Creator
+    </h2>
+    <p class="summary">
+     mGear 5.3 新增八項工具並更新變形工作流；Blendshape Transfer 可重建 combo network、清理 zero-delta target，SDK Creator 能從時間軸 pose 建立可鏡像的 Set Driven Key。
+    </p>
+    <figure class="case-preview" data-intel-id="mgear-53-rigging-tools" data-intel-role="visual" data-visual-id="mgear-53-rigging-tools">
+     <a href="https://github.com/mgear-dev/mgear/releases" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-17/mgear-53-rigging-tools.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">綁定</b> ★★★★☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       Rig 工具更新
+      </h4>
+      <p>
+       5.3 將 solver 與 C++ acceleration modules 重新編譯至 Maya 2027／Python 3.13，並移除舊 Python 2／3 相容層；Blendshape Setup Transfer 可跨多來源 mesh 重建 combo network 並移除沒有變形的 target。
+      </p>
+      <h4>
+       製作價值
+      </h4>
+      <p>
+       SDK Creator 讓 rigger 在時間軸先擺 pose，再自動建立 Set Driven Key network，支援左右鏡像與 scripting API；對表情、corrective shape 與重複角色 build，可把容易遺漏的手工連線改成可重現步驟。
+      </p>
+      <h4>
+       升版測試
+      </h4>
+      <p>
+       團隊若仍在 Maya 2022–2026，需確認同一套 rig package 的版本矩陣。建議用含 combo blendshape、namespace、reference、custom solver 與 ueGear 匯出的代表角色測 rebuild、序列化、publish farm 與 Maya 2027 plugin 載入。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://github.com/mgear-dev/mgear/releases" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <nav aria-label="相鄰分類" class="category-bottom-nav">
+    <a href="../3d-production/">
+     ← 3D 製作
+    </a>
+    <a href="../#top">
+     TOP5
+    </a>
+    <a href="../engine-art/">
+     遊戲引擎 →
+    </a>
+   </nav>
+  </main>
+  <script defer="" src="../../archive-nav-state.js?v=20260917-r1-workspace-v10-history-current-workspace">
+  </script>
+ </body>
+</html>

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   AI 生成｜2026-09-17｜AI 3D Daily
+  </title>
+  <link href="../../styles.css?v=20260917-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../../shared-components.css?v=20260917-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../../category.css?v=20260917-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+ </head>
+ <body class="category-page" data-category="ai-generation" data-report-date="2026-09-17">
+  <nav aria-label="Production Intelligence 分類" class="global-category-nav">
+   <div class="page global-category-nav-inner">
+    <div class="archive-nav-controls">
+     <a class="archive-nav-home" href="../../">
+      ← 首頁
+     </a>
+     <div class="archive-nav-date">
+      <a aria-label="前一日日報" class="archive-nav-arrow" href="../../2026-09-16/ai-generation/">
+       ←
+      </a>
+      <span>
+       2026-09-17
+      </span>
+     </div>
+    </div>
+    <span aria-hidden="true" class="archive-nav-divider">
+    </span>
+    <a class="global-category-link" href="../#top">
+     TOP5
+    </a>
+    <a class="global-category-link is-active" data-category="ai-generation" href="../ai-generation/">
+     AI 生成
+    </a>
+    <a class="global-category-link" data-category="3d-production" href="../3d-production/">
+     3D 製作
+    </a>
+    <a class="global-category-link" data-category="3d-animation" href="../3d-animation/">
+     3D 動作
+    </a>
+    <a class="global-category-link" data-category="engine-art" href="../engine-art/">
+     遊戲引擎
+    </a>
+    <a class="global-category-link" data-category="emerging-case" href="../emerging-case/">
+     新技術 / Case
+    </a>
+    <a class="global-category-link" data-category="blender-dcc" href="../blender-dcc/">
+     Blender / DCC
+    </a>
+    <a class="global-category-link global-history-link" data-global-view="history" href="../../history/">
+     歷史日報
+    </a>
+   </div>
+  </nav>
+  <main class="page category-main">
+   <article class="category-card" data-intel-id="switchx-20-source-locked-vfx" data-intel-role="card">
+    <div class="category-meta">
+     #06 · ai-motion
+    </div>
+    <h2>
+     SwitchX 2.0：Source-Locked VFX 升至 4K、10-bit、20 秒與更穩鏡頭追蹤
+    </h2>
+    <p class="summary">
+     Beeble 的 video-to-video 工作流保留 source／mask／reference 三輸入，2.0 將最長片段加倍並改善 handheld、pan、parallax、快速動作與 lip sync。
+    </p>
+    <figure class="case-preview" data-intel-id="switchx-20-source-locked-vfx" data-intel-role="visual" data-visual-id="switchx-20-source-locked-vfx">
+     <a href="https://beeble.ai/research/switchx-2-0" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-17/switchx-20-source-locked-vfx.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">AI 動作</b> ★★★★☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       生成流程
+      </h4>
+      <p>
+       2.0 維持 source video、保留區 mask 與 reference frame 三輸入，以 Source-Locked Rendering 讓保留區與原片對齊；輸出上限由 10 秒增至 20 秒、1080p 增至原生 4K，並提供 10-bit MOV 與相容用 8-bit MP4。
+      </p>
+      <h4>
+       後期製作價值
+      </h4>
+      <p>
+       鏡頭追蹤針對 handheld、pan、dolly 與 parallax 改善，快速舞蹈、手勢與 lip sync 也主打較少漂移；可先在 720p／1080p 迭代，再回讀原始素材做 4K final，較符合 VFX 草稿到定稿的成本控制。
+      </p>
+      <h4>
+       實測限制
+      </h4>
+      <p>
+       目前品質證據以官方案例為主。正式使用前應用頭髮、半透明、遮擋、快速手部、長鏡頭與複雜 parallax 做 shot-level 測試，檢查保留區邊界、identity drift、frame consistency、10-bit 色階與合成時是否真能逐像素疊回原片。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://beeble.ai/research/switchx-2-0" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="chaos-cosmos-ai-3d-image-search" data-intel-role="card">
+    <div class="category-meta">
+     #07 · ai-3d
+    </div>
+    <h2>
+     Chaos Cosmos：單圖生成 3D 資產與以圖搜尋進入 V-Ray／Corona 工作流
+    </h2>
+    <p class="summary">
+     Cosmos Beta 可在瀏覽器中用 Tencent HY 3D 或 TRELLIS.2 從單圖生成模型，也能先以圖搜尋既有資產；輸出可直接供 V-Ray、Corona、Vantage 與 Envision 使用。
+    </p>
+    <figure class="case-preview" data-intel-id="chaos-cosmos-ai-3d-image-search" data-intel-role="visual" data-visual-id="chaos-cosmos-ai-3d-image-search">
+     <a href="https://blog.chaos.com/cosmos-ai-3d-generation-image-search" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-17/chaos-cosmos-ai-3d-image-search.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">AI 3D</b> ★★★★☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       資產生成流程
+      </h4>
+      <p>
+       使用者可先上傳參考圖搜尋 Cosmos 內相似模型與材質，若找不到再選 HY 3D 或 TRELLIS.2 生成；解析度、polycount、texture resolution 與 shape fidelity 可調，生成資產直接出現在 Cosmos Browser。
+      </p>
+      <h4>
+       製作價值
+      </h4>
+      <p>
+       把搜尋和生成放在同一資產庫可先重用已驗證內容，再為缺口生成自訂物件；V-Ray、Corona、Vantage、Envision 可直接取用，對建築視覺化與大量 set dressing 的前期補件比獨立網站下載再轉檔更順。
+      </p>
+      <h4>
+       Beta 驗證
+      </h4>
+      <p>
+       供應商主張 scene-ready，但功能仍在 early beta。應以家具、薄片、反光物與非正視角參考圖比較兩個模型的背面補全、UV、材質、法線、尺度、polycount 實際影響與人工修復時間，並確認生成資產的授權與版本可追蹤性。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://blog.chaos.com/cosmos-ai-3d-generation-image-search" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <nav aria-label="相鄰分類" class="category-bottom-nav">
+    <a href="../blender-dcc/">
+     ← Blender / DCC
+    </a>
+    <a href="../#top">
+     TOP5
+    </a>
+    <a href="../3d-production/">
+     3D 製作 →
+    </a>
+   </nav>
+  </main>
+  <script defer="" src="../../archive-nav-state.js?v=20260917-r1-workspace-v10-history-current-workspace">
+  </script>
+ </body>
+</html>

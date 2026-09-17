@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   Blender / DCC｜2026-09-17｜AI 3D Daily
+  </title>
+  <link href="../../styles.css?v=20260917-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../../shared-components.css?v=20260917-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../../category.css?v=20260917-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+ </head>
+ <body class="category-page" data-category="blender-dcc" data-report-date="2026-09-17">
+  <nav aria-label="Production Intelligence 分類" class="global-category-nav">
+   <div class="page global-category-nav-inner">
+    <div class="archive-nav-controls">
+     <a class="archive-nav-home" href="../../">
+      ← 首頁
+     </a>
+     <div class="archive-nav-date">
+      <a aria-label="前一日日報" class="archive-nav-arrow" href="../../2026-09-16/blender-dcc/">
+       ←
+      </a>
+      <span>
+       2026-09-17
+      </span>
+     </div>
+    </div>
+    <span aria-hidden="true" class="archive-nav-divider">
+    </span>
+    <a class="global-category-link" href="../#top">
+     TOP5
+    </a>
+    <a class="global-category-link" data-category="ai-generation" href="../ai-generation/">
+     AI 生成
+    </a>
+    <a class="global-category-link" data-category="3d-production" href="../3d-production/">
+     3D 製作
+    </a>
+    <a class="global-category-link" data-category="3d-animation" href="../3d-animation/">
+     3D 動作
+    </a>
+    <a class="global-category-link" data-category="engine-art" href="../engine-art/">
+     遊戲引擎
+    </a>
+    <a class="global-category-link" data-category="emerging-case" href="../emerging-case/">
+     新技術 / Case
+    </a>
+    <a class="global-category-link is-active" data-category="blender-dcc" href="../blender-dcc/">
+     Blender / DCC
+    </a>
+    <a class="global-category-link global-history-link" data-global-view="history" href="../../history/">
+     歷史日報
+    </a>
+   </div>
+  </nav>
+  <main class="page category-main">
+   <article class="category-card" data-intel-id="blender-53-native-gaussian-splats" data-intel-role="card">
+    <div class="category-meta">
+     #03 · blender
+    </div>
+    <h2>
+     Blender 5.3 原生 Gaussian Splat：PLY／SPZ 匯入、Geometry Nodes 與三種渲染器整合
+    </h2>
+    <p class="summary">
+     Blender 5.3 Alpha 將 3DGS 存成 PointCloud 新類型，支援 PLY、SPZ v4、Workbench、EEVEE、Cycles 與程序匯入節點；目前仍無匯出且有色彩與 Transform 限制。
+    </p>
+    <figure class="case-preview" data-intel-id="blender-53-native-gaussian-splats" data-intel-role="visual" data-visual-id="blender-53-native-gaussian-splats">
+     <a href="https://radiancefields.com/blender-5.3-will-bring-native-3d-gaussian-splat-import-and-rendering" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-17/blender-53-native-gaussian-splats.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">Blender</b> ★★★★★</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-full" data-analysis-level="FULL">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body">
+      <h4>
+       原生資料流程
+      </h4>
+      <p>
+       5.3 把 splat 以 PointCloud 的 3D Gaussian Splats 類型保存，position、scale、quaternion rotation、opacity、base radiance 與 spherical harmonics 都成為明確 attribute；PLY 可自動辨識，SPZ v4 會轉換座標，Geometry Nodes 也新增切換類型與程序匯入節點。
+      </p>
+      <h4>
+       製作價值
+      </h4>
+      <p>
+       Workbench、EEVEE 與 Cycles 共用原生資料結構，掃描或神經重建不必先依賴第三方 add-on 才能進入 Blender 場景；預設 emissive 材質可直接還原外觀，改接 Diffuse BSDF 也能做初步 relighting，讓 3DGS 更容易與傳統場景和節點流程共存。
+      </p>
+      <h4>
+       Alpha 限制與測試
+      </h4>
+      <p>
+       5.3 尚未提供 PLY／SPZ export，效能仍待改善，流程假設 sRGB，低 opacity 搭高 radiance 在 linear pipeline 可能錯誤，Apply Transform 也未正確處理 scale、rotation 與 SH。正式導入前應固定測座標、色彩、SH、變形、記憶體和往返輸出，避免把可顯示誤認為可交付。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://radiancefields.com/blender-5.3-will-bring-native-3d-gaussian-splat-import-and-rendering" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="hdr-light-studio-blender-vray" data-intel-role="card">
+    <div class="category-meta">
+     #11 · addon
+    </div>
+    <h2>
+     HDR Light Studio Blender Add-on 新增 V-Ray 支援與 Blender 5.2 相容
+    </h2>
+    <p class="summary">
+     Lightmap 的更新讓 Blender 內 V-Ray interactive/final render 可直接接 HDR Light Studio，並把最低版本調至 Blender 4.5.12、HDR Light Studio 9 Drop 5。
+    </p>
+    <figure class="case-preview" data-intel-id="hdr-light-studio-blender-vray" data-intel-role="visual" data-visual-id="hdr-light-studio-blender-vray">
+     <a href="https://www.lightmap.co.uk/blog/blendervray/" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-17/hdr-light-studio-blender-vray.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">外掛</b> ★★★★☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       燈光工作流
+      </h4>
+      <p>
+       Blender add-on 現可在 V-Ray interactive 與 final render 中直接更新 HDR Light Studio 燈光，並加入 Blender 5.2 支援；既有 Maya、3ds Max、SketchUp 或 Rhino 的 V-Ray 團隊可在 Blender 保持相同 renderer 與燈光工具。
+      </p>
+      <h4>
+       管線價值
+      </h4>
+      <p>
+       跨 DCC 使用同一 V-Ray／HDR lighting 組合可減少材質、相機與燈光翻譯，對產品視覺化、動畫和外部客戶檔案往返較有價值；Chaos Cosmos 與 Cloud 等能力也能沿用既有 V-Ray 生態。
+      </p>
+      <h4>
+       版本限制
+      </h4>
+      <p>
+       最低 Blender 為 4.5.12，HDR Light Studio 需 9 Drop 5，Octane 另有指定 add-on 版本；V-Ray Community Edition 還有 2K、8-bit、無 batch／distributed render 等限制。導入前應測 IES、area light、色彩管理、動畫與 farm 輸出。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://www.lightmap.co.uk/blog/blendervray/" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="3dcoat-2026-node-texturing" data-intel-role="card">
+    <div class="category-meta">
+     #14 · other-dcc
+    </div>
+    <h2>
+     3DCoat 2026：GPU 節點貼圖、30 個 PBR Channel 與可雕刻中預覽的材質系統
+    </h2>
+    <p class="summary">
+     3DCoat／Textura 2026 以 GPU node graph 重做 Smart Material、mask、deformer 與 volumetric texture，並加入 Splitter、資產樹與改善 GLB 輸出。
+    </p>
+    <figure class="case-preview" data-intel-id="3dcoat-2026-node-texturing" data-intel-role="visual" data-visual-id="3dcoat-2026-node-texturing">
+     <a href="https://www.cgchannel.com/2026/07/pilgway-releases-3dcoat-2026-and-3dcoattextura-2026/" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-17/3dcoat-2026-node-texturing.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">其他 DCC</b> ★★★★☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       材質工作流
+      </h4>
+      <p>
+       新 Node System 以 GPU 編譯 shader，讓材質、mask、effect、deformer 與 volumetric texture 可非破壞組合，並能在持續雕刻時預覽；PBR 系統擴充至 30 個 channel，Textura 版也取得相同核心貼圖能力。
+      </p>
+      <h4>
+       製作價值
+      </h4>
+      <p>
+       程序材質與雕刻留在同一工具可減少 lookdev 往返；Splitter 把模型分到不同 layer，Retopo／Modeling room 可用樹狀資產管理，GLB export 改善，對同時做雕刻、retopo、texture 的個人或小組較直接。
+      </p>
+      <h4>
+       升版測試
+      </h4>
+      <p>
+       GPU node 與 legacy CPU 版本分成不同 executable，團隊需確認 graph 相容、顯卡與 driver、30 channel 的下游支援、Smart Material 遷移、GLB 材質及大型 UDIM 專案記憶體，再決定是否替換現有 Substance／Mari 流程。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://www.cgchannel.com/2026/07/pilgway-releases-3dcoat-2026-and-3dcoattextura-2026/" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="blender-pipeline-io-purposes-collision" data-intel-role="card">
+    <div class="category-meta">
+     #16 · blender
+    </div>
+    <h2>
+     Blender Pipeline／I/O 討論：USD Purpose、Collision 資產與 Houdini→Unreal 交換規則
+    </h2>
+    <p class="summary">
+     Blender 模組會議聚焦 USD guide／proxy／render purpose、碰撞資產對應，以及 Blender→Houdini→Unreal 流程中如何讓 DCC 與引擎辨識同一資產的不同用途。
+    </p>
+    <figure class="case-preview" data-intel-id="blender-pipeline-io-purposes-collision" data-intel-role="visual" data-visual-id="blender-pipeline-io-purposes-collision">
+     <a href="https://devtalk.blender.org/t/2026-09-10-pipeline-i-o-module-meeting/45797" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-17/blender-pipeline-io-purposes-collision.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">Blender</b> ★★★☆☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       交換格式流程
+      </h4>
+      <p>
+       討論將 USD purpose 用於 guide、proxy、render 等不同表示，並思考 collision mesh 如何在 Blender 資產、USD stage、Houdini 處理與 Unreal 匯入間保存用途，而非只靠臨時命名猜測。
+      </p>
+      <h4>
+       管線製作價值
+      </h4>
+      <p>
+       同一資產往往同時有高模 render、低模 proxy 與碰撞版本；若用途成為結構化 metadata，下游工具能自動選擇對應表示，減少 artist 手動隱藏、重新命名與錯匯高模碰撞的風險。
+      </p>
+      <h4>
+       成熟度判斷
+      </h4>
+      <p>
+       這是模組設計討論，尚非已交付功能。管線可先用小型 USD fixture 驗 guide／proxy／render purpose、variant、collision 命名與 Unreal importer 行為，並把缺失記錄為規格需求，避免提前依賴尚未穩定的自動 mapping。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://devtalk.blender.org/t/2026-09-10-pipeline-i-o-module-meeting/45797" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="substance-painter-1214" data-intel-role="card">
+    <div class="category-meta">
+     #18 · substance
+    </div>
+    <h2>
+     Substance 3D Painter 12.1.5：修正網路匯出、3D Projection Freeze 與材質 Layering 解析度
+    </h2>
+    <p class="summary">
+     9/15 小更新修正 shelf 圖像匯出到網路路徑失效、Generator 關閉 texture 仍讀取、編輯 3D Projection 時存檔凍結，以及 Material Layering 解析度過低。
+    </p>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">Substance</b> ★★★☆☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       貼圖流程修正
+      </h4>
+      <p>
+       12.1.5 是 12.1.4 之後的新實質更新，修正從 shelf 匯出圖像到 network path、Generator 的 use texture 開關、編輯 3D Projection 時存檔造成 viewport freeze，以及 Material Layering 解析度過低。
+      </p>
+      <h4>
+       製作影響
+      </h4>
+      <p>
+       網路路徑與存檔凍結會直接影響共享素材庫、多人專案與長時間投射貼圖；layering 解析度修正則關係到材質疊層的視覺判斷，這些穩定性問題雖小，卻適合納入工作室基準版。
+      </p>
+      <h4>
+       更新測試
+      </h4>
+      <p>
+       升版前應以 UNC／映射磁碟、非 ASCII 檔名、大型 3D Projection、Generator input toggle 與多層材質專案重跑，確認既有 plugin、export preset、automation 和 cache 行為；若 12.1.4 已穩定，可先在少量工作站驗證再全面更新。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://experienceleague.adobe.com/en/docs/substance-3d-painter/using/release-notes/all-changes" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <nav aria-label="相鄰分類" class="category-bottom-nav">
+    <a href="../emerging-case/">
+     ← 新技術 / Case
+    </a>
+    <a href="../#top">
+     TOP5
+    </a>
+    <a href="../ai-generation/">
+     AI 生成 →
+    </a>
+   </nav>
+  </main>
+  <script defer="" src="../../archive-nav-state.js?v=20260917-r1-workspace-v10-history-current-workspace">
+  </script>
+ </body>
+</html>
