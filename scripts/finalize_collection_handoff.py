@@ -132,6 +132,9 @@ def main() -> None:
     if ready_path.exists():
         fail(f"refusing Collector mutation after ready exists: {ready_path.relative_to(ROOT)}")
 
+    if "--write-request" in flags:
+        run("check_main_ci.py")
+
     data = read_json(data_path)
     session = read_json(session_path)
     if not isinstance(data, dict) or str(data.get("date", "")).strip() != date:
