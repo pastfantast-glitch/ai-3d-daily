@@ -16,6 +16,15 @@ REPOSITORY = "pastfantast-glitch/ai-3d-daily"
 API = f"https://api.github.com/repos/{REPOSITORY}"
 SOURCE_WORKFLOW = ".github/workflows/daily-contract.yml"
 HISTORY_WORKFLOW = ".github/workflows/historical-regression.yml"
+GITHUB_ACTIONS_BOT_EMAIL = "41898282+github-actions[bot]@users.noreply.github.com"
+WRITER_COMMIT_PATTERNS = tuple(re.compile(x) for x in (
+    r"^Prepare canonical intelligence 20\d{2}-\d{2}-\d{2}$",
+    r"^Normalize intelligence candidate 20\d{2}-\d{2}-\d{2}; refill required$",
+    r"^Publish canonical intelligence 20\d{2}-\d{2}-\d{2}$",
+    r"^Record verified publish 20\d{2}-\d{2}-\d{2}$",
+    r"^Recover canonical publication from [0-9a-f]{7,40}$",
+))
+MAX_WRITER_COMMITS_TO_SKIP = 12
 
 
 def git(*args):
@@ -72,6 +81,44 @@ def require_success(runs, workflow, sha):
             "url": latest.get("html_url"), "conclusion": "success"}
 
 
+def writer_generated_commit(sha):
+    """Return whether sha is a canonical-writer GITHUB_TOKEN commit and its parent.
+
+    GitHub intentionally does not emit new push workflow runs for commits pushed
+    with the repository GITHUB_TOKEN. Only the exact canonical writer bot identity
+    plus a generated commit-message contract may be skipped; every other commit
+    must have its own main/push Historical Regression evidence.
+    """
+    raw = git("show", "-s", "--format=%H%x00%P%x00%ce%x00%s", sha)
+    parts = raw.split("\x00", 3)
+    if len(parts) != 4 or parts[0] != sha:
+        raise ValueError(f"cannot inspect commit identity for historical CI: {sha}")
+    _commit, parents, committer_email, subject = parts
+    trusted = (committer_email == GITHUB_ACTIONS_BOT_EMAIL
+               and any(pattern.fullmatch(subject) for pattern in WRITER_COMMIT_PATTERNS))
+    if not trusted:
+        return False, None, subject
+    parent_list = parents.split()
+    if len(parent_list) != 1:
+        raise ValueError(f"canonical writer commit must have exactly one parent: {sha}")
+    return True, parent_list[0], subject
+
+
+def history_evidence_sha(head):
+    """Resolve the newest commit for which a main/push regression run must exist."""
+    sha = head
+    skipped = []
+    for _ in range(MAX_WRITER_COMMITS_TO_SKIP + 1):
+        trusted, parent, subject = writer_generated_commit(sha)
+        if not trusted:
+            return sha, skipped
+        skipped.append({"sha": sha, "subject": subject})
+        if len(skipped) > MAX_WRITER_COMMITS_TO_SKIP:
+            raise ValueError("too many consecutive canonical writer commits; history evidence ambiguous")
+        sha = parent
+    raise ValueError("cannot resolve historical regression evidence commit")
+
+
 def check():
     head = git("rev-parse", "HEAD")
     if get_json("/branches/main")["commit"]["sha"] != head:
@@ -85,11 +132,19 @@ def check():
     source_sha = git("log", "-1", "--format=%H", head, "--", *paths)
     if not source_sha:
         raise ValueError("cannot resolve latest source QA commit")
+
+    history_sha, skipped_writer_commits = history_evidence_sha(head)
     checks = [require_success(fetch_runs(w, sha), w, sha) for w, sha in
-              ((SOURCE_WORKFLOW, source_sha), (HISTORY_WORKFLOW, head))]
+              ((SOURCE_WORKFLOW, source_sha), (HISTORY_WORKFLOW, history_sha))]
     if get_json("/branches/main")["commit"]["sha"] != head:
         raise ValueError("main moved during CI verification; refresh and recheck")
-    return {"state": "PASS", "main_sha": head, "checks": checks}
+    return {
+        "state": "PASS",
+        "main_sha": head,
+        "history_evidence_sha": history_sha,
+        "skipped_writer_commits": skipped_writer_commits,
+        "checks": checks,
+    }
 
 
 def main():
