@@ -2,7 +2,7 @@
   "date": "2026-09-18",
   "schema_version": 3,
   "metadata": {
-    "total_items": 12,
+    "total_items": 9,
     "collection_mode": "production-intelligence-preference-v1-hybrid",
     "collection_contract_effective_date": "2026-09-04",
     "preference_contract_effective_date": "2026-09-06",
@@ -194,6 +194,45 @@
       "admission_bypass": false,
       "quality_gate_bypass": false,
       "source_quota": false
+    },
+    "homepage_tier_normalization": {
+      "selection_mode": "full-first-brief-fallback",
+      "requested_top5": 5,
+      "actual_top5": 5,
+      "top5_full_count": 0,
+      "top5_brief_fallback_count": 5,
+      "top5_full_only": false,
+      "brief_fallback_allowed": true,
+      "next10": 4
+    },
+    "registry_identity_normalization": {
+      "dropped_count": 3,
+      "rewritten_count": 0,
+      "policy": "verified-DONE-published-canonical-source-without-substantive-delta-skip",
+      "source_identity_precedence": "published-daily-html-card-then-canonical-json",
+      "url_identity": "scripts/url_identity.py",
+      "stage": "collection-before-ready",
+      "refill_required": true,
+      "category_deficits": {},
+      "daily_release_gate": {
+        "have": 9,
+        "min": 20,
+        "target": 30,
+        "max": 30,
+        "missing_to_min": 11,
+        "missing_to_target": 21,
+        "release_ready": false,
+        "category_counts": {
+          "ai-generation": 1,
+          "3d-production": 2,
+          "3d-animation": 2,
+          "engine-art": 2,
+          "emerging-case": 1,
+          "blender-dcc": 1
+        },
+        "release_mode": "BLOCKED",
+        "low_volume_authorized": false
+      }
     }
   },
   "items": [
@@ -226,34 +265,6 @@
       "homepage_tier": "top5"
     },
     {
-      "id": "unity-rendering-massive-object-counts",
-      "title": "Unity 大量物件渲染實戰：URP／HDRP 與自訂 Batch Renderer Group 的效能取捨",
-      "summary": "Mega Cat Studios 分享《Backyard Baseball 2026》在大量物件場景中的渲染策略，包含 URP／HDRP 經驗與針對草地建立自訂 Batch Renderer Group，核心是把每毫秒 GPU／CPU 成本拆開量測，而不是只靠單一 SRP 設定。",
-      "quick_impact": "★★★★★",
-      "source_url": "https://unity.com/blog/rendering-at-scale-efficient-strategies-for-massive-object-counts",
-      "category": "engine-art",
-      "subcategory": "optimization",
-      "ranking_score": 95.7,
-      "analysis_level": "BRIEF",
-      "brief_reason": "production-reference-limited-depth",
-      "full_analysis": [
-        {
-          "label": "渲染流程",
-          "text": "案例把大量物件問題拆成 SRP 選擇、可見性與批次提交成本，並在草地等高密度內容上使用自訂 Batch Renderer Group。這種做法的重點不是單純增加 draw call batching，而是把大量 instance 的資料提交與剔除行為變成可控的專用路徑。"
-        },
-        {
-          "label": "Production 價值",
-          "text": "對開放場景、球場、植被與重複裝飾物件，BRG 類方案能讓技術美術針對特定資產族群優化，而不必全面改寫 renderer；同時案例也提醒 URP 與 HDRP 沒有一個永遠較快，實際瓶頸仍取決於目標平台、材質複雜度與場景密度。"
-        },
-        {
-          "label": "導入測試",
-          "text": "實作前應建立代表性場景，分別記錄 CPU main/render thread、GPU frame time、culling、overdraw、記憶體與不同 LOD 密度；先證明內建 GPU Resident Drawer／SRP Batcher 不足，再投入自訂 BRG，避免把維護成本換成只有特定場景才出現的小幅收益。"
-        }
-      ],
-      "rank_global": 2,
-      "homepage_tier": "top5"
-    },
-    {
       "id": "unity-render-pipeline-strategy-2026",
       "title": "Unity 2026 Render Pipeline 策略：URP 持續擴張，HDRP 轉向穩定維護，Built-In 開始退場",
       "summary": "Unity 的 2026 圖形策略明確把新功能投資集中到 URP，HDRP 以穩定、回歸與關鍵功能修正為主，Built-In Render Pipeline 則自 Unity 6.5 起進入 deprecated 階段；新專案的圖形管線選擇因此更偏向 URP。",
@@ -278,7 +289,7 @@
           "text": "不要只因 roadmap 立即搬遷既有專案；應先盤點自訂 shader、後處理、HDRP 專屬功能、平台需求與第三方套件，再做代表性場景的 URP parity prototype。Built-In 專案則應先驗證轉換工具與材質差異，建立逐場景遷移與回退策略。"
         }
       ],
-      "rank_global": 3,
+      "rank_global": 2,
       "homepage_tier": "top5"
     },
     {
@@ -306,7 +317,7 @@
           "text": "實作時要特別檢查取樣座標、輸入解析度與 filtering 對邊界的影響，並用不同尺寸 mask 比較 aliasing 與效能；如果 graph 會提供給其他專案，應把採樣輸入與閾值 expose，避免把特定貼圖尺寸或硬編碼常數鎖死在 function 內。"
         }
       ],
-      "rank_global": 4,
+      "rank_global": 3,
       "homepage_tier": "top5"
     },
     {
@@ -334,64 +345,8 @@
           "text": "需要實測 global transfer 的一致性與成本，特別是骨架階層不同或 Rig 很大的角色；建議比較全骨架與限定 bones 的 CPU 時間、curve 傳遞、LOD／多人角色數，以及關閉 global transfer 後是否出現姿勢偏差，再決定 gameplay 層應保留多少 Control Rig 計算。"
         }
       ],
-      "rank_global": 5,
+      "rank_global": 4,
       "homepage_tier": "top5"
-    },
-    {
-      "id": "ue58-layered-control-rig-sequencer",
-      "title": "UE5.8 Layered Control Rig：Sequencer 內疊加修姿勢，不必先把 Animation Sequence 烘焙進 Rig",
-      "summary": "Epic 的 Control Rig 動畫流程支援 Layered Control Rig track，透過 Backwards Solve 讓既有 Animation Sequence 與 Rig 修正直接疊加；多層 track 還能獨立權重、排序與歸零，適合鏡頭級 pose polish。",
-      "quick_impact": "★★★★☆",
-      "source_url": "https://dev.epicgames.com/documentation/unreal-engine/animating-with-control-rig-in-unreal-engine",
-      "category": "3d-animation",
-      "subcategory": "animation",
-      "ranking_score": 91.8,
-      "analysis_level": "BRIEF",
-      "brief_reason": "production-reference-limited-depth",
-      "full_analysis": [
-        {
-          "label": "動畫流程",
-          "text": "Sequencer 可同時顯示多個 Control Rig，Layered Control Rig 透過 Backwards Solve 把 Animation Sequence 當底層，再把控制器修改疊在上面；因此鏡頭修姿勢時不需要先把原動畫完整 bake 成 Control Rig，再開始第二輪調整。"
-        },
-        {
-          "label": "Production 價值",
-          "text": "對 cinematic、表演修正與 shot polish，這種 layered 做法能保留原動畫資產並讓鏡頭級修正獨立管理；不同 layer 可調權重與順序，方便把手部、視線、重心或局部誇張拆成小範圍修改，降低回改原 animation clip 的連鎖成本。"
-        },
-        {
-          "label": "導入測試",
-          "text": "Backwards Solve 必須正確建立，track 順序錯誤也可能覆蓋其他 layer。團隊應用一個實際角色測 layer ordering、權重動畫、root motion、constraint、Control Rig bake／unbake 與重開 Sequencer 的一致性，並制定 shot layer 命名與鎖定規則。"
-        }
-      ],
-      "rank_global": 6,
-      "homepage_tier": "next10"
-    },
-    {
-      "id": "blender-render-gif-170",
-      "title": "Blender Render Animated GIF 1.7：直接在 Blender 內輸出 GIF，新增品質預設與播放速度控制",
-      "summary": "Blender Extensions 的 Render Animated GIF 1.7 可用自帶 imageio-ffmpeg 直接輸出 GIF，新增 Very Low～Very High 品質、解析度百分比、固定 GIF FPS 或速度百分比，以及循環次數設定，適合快速動畫審查與社群預覽。",
-      "quick_impact": "★★★☆☆",
-      "source_url": "https://extensions.blender.org/add-ons/render-gif-animation/",
-      "category": "blender-dcc",
-      "subcategory": "addon",
-      "ranking_score": 90.6,
-      "analysis_level": "BRIEF",
-      "brief_reason": "useful-tool-or-addon-limited-depth",
-      "full_analysis": [
-        {
-          "label": "工具流程",
-          "text": "1.7 版把 GIF 輸出做成 Blender 內的直接工作流，可用品質 preset、Resolution %、固定 GIF FPS 或 Speed % 控制檔案大小與播放節奏，並設定無限或指定次數循環；套件自帶 imageio-ffmpeg，不要求另外安裝外部工具。"
-        },
-        {
-          "label": "Production 價值",
-          "text": "對動畫 blocking、rig review、內部溝通或 issue tracker，直接輸出小型 GIF 可以省掉先 render image sequence 再進剪輯工具的步驟；尤其在需要快速貼到 Slack、GitHub 或看板時，低成本預覽比高品質影片更適合反覆迭代。"
-        },
-        {
-          "label": "導入測試",
-          "text": "GIF 只有有限色彩與透明度能力，不適合當最終畫質判斷。建議用含快速動作、漸層與透明背景的片段測 dithering、色帶、檔案大小與 FPS 轉換，並規定它只作 review proxy，最終動畫仍以原 render／影片輸出為準。"
-        }
-      ],
-      "rank_global": 7,
-      "homepage_tier": "next10"
     },
     {
       "id": "artstation-vfx-two-shader-tricks",
@@ -418,8 +373,8 @@
           "text": "實作時應檢查世界座標與 UV 座標的差異、tiling seam、不同 FPS 下速度一致性，以及透明／半透明材質的 overdraw 成本。若要納入遊戲專案，最好把速度、方向、distortion 強度與色階做成 material instance 參數並建立效能預設。"
         }
       ],
-      "rank_global": 8,
-      "homepage_tier": "next10"
+      "rank_global": 5,
+      "homepage_tier": "top5"
     },
     {
       "id": "blender-bone-damped-track-batch-360",
@@ -446,7 +401,7 @@
           "text": "目前下載量與實戰證據有限，應先在測試 rig 驗證 bone selection、target、axis、existing constraint、undo、鏡像命名與重複執行是否 idempotent；再確認它不會破壞既有 driver／constraint 順序，才適合放進 production 工具箱。"
         }
       ],
-      "rank_global": 9,
+      "rank_global": 6,
       "homepage_tier": "next10"
     },
     {
@@ -474,7 +429,7 @@
           "text": "團隊可選一組 8–12 個模組測完整往返，建立 scale、origin、naming、MikkTSpace、material slot、collision 與 reimport checklist；特別要確認 baked pivot 與 glTF／FBX 差異，再決定哪一種匯出路徑成為正式規範。"
         }
       ],
-      "rank_global": 10,
+      "rank_global": 7,
       "homepage_tier": "next10"
     },
     {
@@ -502,7 +457,7 @@
           "text": "來源屬付費教學且缺少公開 benchmark，因此應聚焦可觀察的流程，而不是把品質宣稱當成客觀結果。若要套用到團隊，應用自家角色規格對照 poly budget、UV／UDIM、skin shader、hair、rig、LOD 與引擎效能，找出真正可轉移的步驟。"
         }
       ],
-      "rank_global": 11,
+      "rank_global": 8,
       "homepage_tier": "next10"
     },
     {
@@ -530,7 +485,7 @@
           "text": "案例使用 Blender 3.5、UE5.2 與 Altermesh，版本已不是最新，正式採用前要驗證 Blender 5.x／UE5.8 的節點相容、資產同步、cook time、collision、LOD／Nanite、material assignment 與多人版本控制，再決定是否依賴 bridge 或改成離線 bake。"
         }
       ],
-      "rank_global": 12,
+      "rank_global": 9,
       "homepage_tier": "next10"
     }
   ],
