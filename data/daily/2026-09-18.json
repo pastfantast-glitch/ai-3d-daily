@@ -2,7 +2,7 @@
   "date": "2026-09-18",
   "schema_version": 3,
   "metadata": {
-    "total_items": 17,
+    "total_items": 15,
     "collection_mode": "production-intelligence-preference-v1-hybrid",
     "collection_contract_effective_date": "2026-09-04",
     "preference_contract_effective_date": "2026-09-06",
@@ -16,10 +16,10 @@
     ],
     "analysis_level_counts": {
       "FULL": 0,
-      "BRIEF": 17,
+      "BRIEF": 15,
       "REJECT": 0
     },
-    "analysis_level_policy": "evidence-depth-tiered; BRIEF=three source-grounded production angles with explicit limits",
+    "analysis_level_policy": "evidence-depth-tiered; FULL=3-5 source-supported blocks; BRIEF=3 readable source-grounded angles with explicit limits; REJECT=not-publishable",
     "full_analysis_heading_language": "zh-Hant",
     "discovery_coverage": {
       "fill_ladder_exhausted": true,
@@ -204,7 +204,49 @@
       "admission_bypass": false,
       "quality_gate_bypass": false,
       "source_quota": false
-    }
+    },
+    "homepage_tier_normalization": {
+      "selection_mode": "full-first-brief-fallback",
+      "requested_top5": 5,
+      "actual_top5": 5,
+      "top5_full_count": 0,
+      "top5_brief_fallback_count": 5,
+      "top5_full_only": false,
+      "brief_fallback_allowed": true,
+      "next10": 10
+    },
+    "registry_identity_normalization": {
+      "dropped_count": 2,
+      "rewritten_count": 0,
+      "policy": "verified-DONE-published-canonical-source-without-substantive-delta-skip",
+      "source_identity_precedence": "published-daily-html-card-then-canonical-json",
+      "url_identity": "scripts/url_identity.py",
+      "stage": "collection-before-ready",
+      "refill_required": false,
+      "category_deficits": {},
+      "daily_release_gate": {
+        "have": 15,
+        "min": 12,
+        "target": 30,
+        "max": 30,
+        "missing_to_min": 5,
+        "missing_to_target": 15,
+        "release_ready": true,
+        "category_counts": {
+          "ai-generation": 1,
+          "3d-production": 3,
+          "3d-animation": 2,
+          "engine-art": 2,
+          "emerging-case": 2,
+          "blender-dcc": 5
+        },
+        "normal_min": 20,
+        "release_mode": "LOW_VOLUME_COMPLETE",
+        "low_volume_authorized": true
+      }
+    },
+    "full_analysis_depth_contract": "v6-tiered-evidence-three-angle-reading",
+    "full_analysis_style_reference": "2026-09-12"
   },
   "items": [
     {
@@ -460,34 +502,6 @@
       "homepage_tier": "next10"
     },
     {
-      "id": "reface-205-hard-surface-retopo",
-      "title": "ReFace 2.0.5：Blender 對掃描／AI Mesh／雕刻高模加入 Drawn Patch Retopo",
-      "summary": "ReFace 2.0.5 擴充 Corner Guided Grid Refill，新增 Drawn Patch Mode、patch extension、sector decomposition、Display Modes 與更彈性的 Knife Tool，明確鎖定 3D scans、AI generated meshes 與雕刻網格等缺乏乾淨 edge flow 的 hard-surface retopology。",
-      "quick_impact": "★★★★☆",
-      "source_url": "https://80.lv/articles/hard-surface-retopology-just-got-easier-in-blender",
-      "category": "3d-production",
-      "subcategory": "production-workflow",
-      "ranking_score": 88.8,
-      "analysis_level": "BRIEF",
-      "brief_reason": "useful-tool-or-addon-limited-depth",
-      "full_analysis": [
-        {
-          "label": "Retopo 流程",
-          "text": "2.0.5 的重點是讓使用者在不規則高模表面上直接畫 patch，配合 Corner Guided Grid Refill、sector decomposition 與延伸 patch 建立可控制的 hard-surface topology；Knife Tool 與 display mode 也針對 retopo 編輯與檢查補強。"
-        },
-        {
-          "label": "Production 價值",
-          "text": "這對掃描、AI 生成模型與雕刻高模特別有意義，因為它們常有可用外形但拓撲無法直接進遊戲。半自動 patch 流程若能保留設計 edge，可把『整個重拓』轉成『人工指定關鍵區＋工具補網格』，更符合 hard-surface 資產整理需求。"
-        },
-        {
-          "label": "導入測試",
-          "text": "作者也展示目前限制，因此不應假設所有 mesh 都能一鍵完成。建議以孔洞、薄片、銳角、圓柱與密集 boolean 的代表模型測 patch continuity、pole 分布、shading、subdivision、UV 前整理時間，並和 Quad Remesher／手工 retopo 比較返工量。"
-        }
-      ],
-      "rank_global": 10,
-      "homepage_tier": "next10"
-    },
-    {
       "id": "blender-bone-damped-track-batch-360",
       "title": "Bone Damped Track Batch 3.6：Blender 批次建立骨骼 Damped Track 約束的輕量 Rig 外掛",
       "summary": "Blender Extensions 9/16 上架的 Bone Damped Track Batch 3.6 專注動畫綁定效率，可對多骨骼批次建立 Damped Track 類約束；它是小工具型外掛，價值在減少重複 Rig 操作而非改變整套角色架構。",
@@ -512,7 +526,7 @@
           "text": "目前下載量與實戰證據有限，應先在測試 rig 驗證 bone selection、target、axis、existing constraint、undo、鏡像命名與重複執行是否 idempotent；再確認它不會破壞既有 driver／constraint 順序，才適合放進 production 工具箱。"
         }
       ],
-      "rank_global": 11,
+      "rank_global": 10,
       "homepage_tier": "next10"
     },
     {
@@ -540,7 +554,7 @@
           "text": "幾何破損會增加面數並可能改變 UV、normal 與 bake，因此應測 low／high density mesh、non-manifold、bevel、subdivision、seed 可重現性與 export。遊戲資產還要確認破損是在 high-poly bake 階段使用，還是要保留到 runtime mesh。"
         }
       ],
-      "rank_global": 12,
+      "rank_global": 11,
       "homepage_tier": "next10"
     },
     {
@@ -568,7 +582,7 @@
           "text": "團隊可選一組 8–12 個模組測完整往返，建立 scale、origin、naming、MikkTSpace、material slot、collision 與 reimport checklist；特別要確認 baked pivot 與 glTF／FBX 差異，再決定哪一種匯出路徑成為正式規範。"
         }
       ],
-      "rank_global": 13,
+      "rank_global": 12,
       "homepage_tier": "next10"
     },
     {
@@ -596,7 +610,7 @@
           "text": "它屬 Foundations 教學，不代表大型 production 的效能與協作成熟度。若要導入，可先讓團隊重做同一小專案，再測版本管理、HDA 封裝、USD／Solaris layer、APEX rig 資料與 Karma render farm，確認哪些環節需另建 studio convention。"
         }
       ],
-      "rank_global": 14,
+      "rank_global": 13,
       "homepage_tier": "next10"
     },
     {
@@ -624,36 +638,8 @@
           "text": "來源屬付費教學且缺少公開 benchmark，因此應聚焦可觀察的流程，而不是把品質宣稱當成客觀結果。若要套用到團隊，應用自家角色規格對照 poly budget、UV／UDIM、skin shader、hair、rig、LOD 與引擎效能，找出真正可轉移的步驟。"
         }
       ],
-      "rank_global": 15,
+      "rank_global": 14,
       "homepage_tier": "next10"
-    },
-    {
-      "id": "sidefx-h21-procedural-cities-games",
-      "title": "SideFX H21 Procedural Cities for Games：把城市生成規則整理成可重用的 Gamedev Workflow",
-      "summary": "SideFX 的進階教學以 Houdini 21 建立遊戲用程序城市，定位在 Modeling、Pipeline & AI、SideFX Labs 與 World Building；對環境製作而言，價值是把道路、街區與建築配置從一次性場景改成可重算的規則系統。",
-      "quick_impact": "★★★★☆",
-      "source_url": "https://www.sidefx.com/tutorials/build-procedural-cities-for-games/",
-      "category": "3d-production",
-      "subcategory": "environment-production",
-      "ranking_score": 85.7,
-      "analysis_level": "BRIEF",
-      "brief_reason": "practical-tutorial-limited-depth",
-      "full_analysis": [
-        {
-          "label": "程序城市流程",
-          "text": "官方課程以 Houdini 21 為基礎，將遊戲城市視為可重複生成的 world-building 問題，而不是逐棟手工擺放；內容橫跨建模、Gamedev、Pipeline 與 SideFX Labs，適合用來拆解道路、區塊、建築與規則化資產如何串成一條程序流程。"
-        },
-        {
-          "label": "Production 價值",
-          "text": "城市類場景最大的成本來自大量重複資產與設計改版，程序化能把規則變更重新傳導到整個場景，讓美術把時間放在模組品質、例外處理與 art direction。對需要多張地圖或頻繁 layout 變更的專案，這比單次手工建城更具槓桿。"
-        },
-        {
-          "label": "導入測試",
-          "text": "程序城市並不等於自動完成美術品質；導入時應用一個小街區測道路交叉口、地形貼合、建築變體、collision、LOD／Nanite、材質分配與 Unreal／Unity handoff，並保留 artist override，避免規則系統壓過實際構圖需求。"
-        }
-      ],
-      "rank_global": 16,
-      "homepage_tier": "category_only"
     },
     {
       "id": "blender-geometrynodes-to-ue-art-tools",
@@ -680,8 +666,8 @@
           "text": "案例使用 Blender 3.5、UE5.2 與 Altermesh，版本已不是最新，正式採用前要驗證 Blender 5.x／UE5.8 的節點相容、資產同步、cook time、collision、LOD／Nanite、material assignment 與多人版本控制，再決定是否依賴 bridge 或改成離線 bake。"
         }
       ],
-      "rank_global": 17,
-      "homepage_tier": "category_only"
+      "rank_global": 15,
+      "homepage_tier": "next10"
     }
   ],
   "visual_evidence": {}
