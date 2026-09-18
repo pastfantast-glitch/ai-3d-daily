@@ -1,0 +1,315 @@
+{
+  "schema_version": 1,
+  "date": "2026-09-18",
+  "discovery_coverage": {
+    "fill_ladder_exhausted": true,
+    "backlog_checked": true,
+    "backlog_remaining_eligible": 0,
+    "targeted_refill_performed": true,
+    "quality_first_confirmed": true,
+    "windows": {
+      "24h": {
+        "status": "exhausted",
+        "candidates_found": 0
+      },
+      "7d": {
+        "status": "exhausted",
+        "candidates_found": 4
+      },
+      "30d": {
+        "status": "exhausted",
+        "candidates_found": 1
+      },
+      "6m": {
+        "status": "exhausted",
+        "candidates_found": 4
+      },
+      "evergreen": {
+        "status": "exhausted",
+        "candidates_found": 4
+      }
+    },
+    "category_candidates": {
+      "ai-generation": {
+        "candidates_considered": 1
+      },
+      "3d-production": {
+        "candidates_considered": 2
+      },
+      "3d-animation": {
+        "candidates_considered": 3
+      },
+      "engine-art": {
+        "candidates_considered": 3
+      },
+      "emerging-case": {
+        "candidates_considered": 1
+      },
+      "blender-dcc": {
+        "candidates_considered": 3
+      }
+    },
+    "registered_source_probe": {
+      "performed": true,
+      "sources": {
+        "80-level": {
+          "status": "checked",
+          "method": "web-site-query",
+          "candidates_found": 0,
+          "candidate_ids": []
+        },
+        "3dnchu": {
+          "status": "checked",
+          "method": "web-site-query",
+          "candidates_found": 0,
+          "candidate_ids": []
+        },
+        "cgworld-jp": {
+          "status": "checked",
+          "method": "web-site-query",
+          "candidates_found": 0,
+          "candidate_ids": []
+        },
+        "bilibili-mobile": {
+          "status": "checked",
+          "method": "web-site-query",
+          "candidates_found": 0,
+          "candidate_ids": []
+        },
+        "artstation": {
+          "status": "checked",
+          "method": "web-site-query",
+          "candidates_found": 4,
+          "candidate_ids": [
+            "artstation-vfx-two-shader-tricks",
+            "stylized-greek-island-modular-workflow",
+            "aaa-character-concept-to-ingame-workflow",
+            "blender-geometrynodes-to-ue-art-tools"
+          ]
+        },
+        "gumroad-discover": {
+          "status": "checked",
+          "method": "web-site-query",
+          "candidates_found": 0,
+          "candidate_ids": []
+        },
+        "xiaohongshu": {
+          "status": "checked",
+          "method": "web-site-query",
+          "candidates_found": 0,
+          "candidate_ids": []
+        },
+        "cg-channel": {
+          "status": "checked",
+          "method": "web-site-query",
+          "candidates_found": 0,
+          "candidate_ids": []
+        },
+        "blender-official": {
+          "status": "checked",
+          "method": "latest-index",
+          "candidates_found": 1,
+          "candidate_ids": [
+            "blender-522-lts-patch-recheck"
+          ]
+        },
+        "epic-developer-community": {
+          "status": "checked",
+          "method": "web-site-query",
+          "candidates_found": 2,
+          "candidate_ids": [
+            "ue58-control-rig-animation-blueprints",
+            "ue58-layered-control-rig-sequencer"
+          ]
+        },
+        "unity-official": {
+          "status": "checked",
+          "method": "latest-index",
+          "candidates_found": 2,
+          "candidate_ids": [
+            "unity-rendering-massive-object-counts",
+            "unity-render-pipeline-strategy-2026"
+          ]
+        },
+        "sidefx-official": {
+          "status": "checked",
+          "method": "web-site-query",
+          "candidates_found": 0,
+          "candidate_ids": []
+        },
+        "autodesk-area": {
+          "status": "checked",
+          "method": "web-site-query",
+          "candidates_found": 0,
+          "candidate_ids": []
+        },
+        "adobe-substance-3d": {
+          "status": "checked",
+          "method": "web-site-query",
+          "candidates_found": 1,
+          "candidate_ids": [
+            "substance-designer-fxmap-sampler"
+          ]
+        },
+        "game-developer": {
+          "status": "checked",
+          "method": "web-site-query",
+          "candidates_found": 0,
+          "candidate_ids": []
+        }
+      }
+    },
+    "notes": "依 current main 完成 24h→7d→30d→6m→evergreen 搜尋、空 Rolling Backlog 檢查、六分類 targeted refill 與全部 enabled registered source probe。13 個追蹤候選中 12 個發布、1 個因既有 Blender 5.2 release page 身份與本次補丁相對影響較低而 ranked-out；未使用來源 bonus、quota 或網站偏好。"
+  },
+  "candidate_decisions": [
+    {
+      "candidate_id": "meshy-autosplit-textured-input-sep16",
+      "source_url": "https://docs.meshy.ai/zh-Hant/api/changelog",
+      "discovery_channels": [
+        "7d:web-search",
+        "primary-source-verification"
+      ],
+      "decision": "published",
+      "canonical_id": "meshy-autosplit-textured-input-sep16"
+    },
+    {
+      "candidate_id": "unity-rendering-massive-object-counts",
+      "source_url": "https://unity.com/blog/rendering-at-scale-efficient-strategies-for-massive-object-counts",
+      "discovery_channels": [
+        "6m:web-search",
+        "registered-source:unity-official",
+        "primary-source-verification"
+      ],
+      "decision": "published",
+      "canonical_id": "unity-rendering-massive-object-counts"
+    },
+    {
+      "candidate_id": "unity-render-pipeline-strategy-2026",
+      "source_url": "https://unity.com/topics/render-pipelines-strategy-for-2026",
+      "discovery_channels": [
+        "6m:web-search",
+        "registered-source:unity-official",
+        "primary-source-verification"
+      ],
+      "decision": "published",
+      "canonical_id": "unity-render-pipeline-strategy-2026"
+    },
+    {
+      "candidate_id": "substance-designer-fxmap-sampler",
+      "source_url": "https://experienceleague.adobe.com/en/docs/substance-3d-designer/using/substance-function-graphs/fx-maps/using-substance-function-graphs-in-fx-maps/using-the-sampler-nodes",
+      "discovery_channels": [
+        "evergreen:web-search",
+        "registered-source:adobe-substance-3d",
+        "primary-source-verification"
+      ],
+      "decision": "published",
+      "canonical_id": "substance-designer-fxmap-sampler"
+    },
+    {
+      "candidate_id": "ue58-control-rig-animation-blueprints",
+      "source_url": "https://dev.epicgames.com/documentation/unreal-engine/control-rig-in-animation-blueprints-in-unreal-engine",
+      "discovery_channels": [
+        "evergreen:web-search",
+        "registered-source:epic-developer-community",
+        "primary-source-verification"
+      ],
+      "decision": "published",
+      "canonical_id": "ue58-control-rig-animation-blueprints"
+    },
+    {
+      "candidate_id": "ue58-layered-control-rig-sequencer",
+      "source_url": "https://dev.epicgames.com/documentation/unreal-engine/animating-with-control-rig-in-unreal-engine",
+      "discovery_channels": [
+        "evergreen:web-search",
+        "registered-source:epic-developer-community",
+        "primary-source-verification"
+      ],
+      "decision": "published",
+      "canonical_id": "ue58-layered-control-rig-sequencer"
+    },
+    {
+      "candidate_id": "blender-render-gif-170",
+      "source_url": "https://extensions.blender.org/add-ons/render-gif-animation/",
+      "discovery_channels": [
+        "30d:web-search",
+        "primary-source-verification"
+      ],
+      "decision": "published",
+      "canonical_id": "blender-render-gif-170"
+    },
+    {
+      "candidate_id": "artstation-vfx-two-shader-tricks",
+      "source_url": "https://jsabbott.artstation.com/blog/category/6",
+      "discovery_channels": [
+        "7d:web-search",
+        "registered-source:artstation"
+      ],
+      "decision": "published",
+      "canonical_id": "artstation-vfx-two-shader-tricks"
+    },
+    {
+      "candidate_id": "blender-bone-damped-track-batch-360",
+      "source_url": "https://extensions.blender.org/add-ons/bone-damped-track-batch/",
+      "discovery_channels": [
+        "7d:web-search",
+        "primary-source-verification"
+      ],
+      "decision": "published",
+      "canonical_id": "blender-bone-damped-track-batch-360"
+    },
+    {
+      "candidate_id": "stylized-greek-island-modular-workflow",
+      "source_url": "https://threedtudor.artstation.com/blog/Z4MVj/blender-to-unreal-engine-5-build-a-stylized-greek-island-environment",
+      "discovery_channels": [
+        "6m:web-search",
+        "registered-source:artstation"
+      ],
+      "decision": "published",
+      "canonical_id": "stylized-greek-island-modular-workflow"
+    },
+    {
+      "candidate_id": "aaa-character-concept-to-ingame-workflow",
+      "source_url": "https://www.artstation.com/marketplace/p/1WmJo/aaa-character-workflow-from-concept-to-in-game-real-time-process",
+      "discovery_channels": [
+        "6m:web-search",
+        "registered-source:artstation"
+      ],
+      "decision": "published",
+      "canonical_id": "aaa-character-concept-to-ingame-workflow"
+    },
+    {
+      "candidate_id": "blender-geometrynodes-to-ue-art-tools",
+      "source_url": "https://www.artstation.com/marketplace/p/l0gV8/procedural-art-tool-creation-in-blender-geometry-nodes-to-unreal-engine-workflow",
+      "discovery_channels": [
+        "evergreen:web-search",
+        "registered-source:artstation"
+      ],
+      "decision": "published",
+      "canonical_id": "blender-geometrynodes-to-ue-art-tools"
+    },
+    {
+      "candidate_id": "blender-522-lts-patch-recheck",
+      "source_url": "https://www.blender.org/releases/5-2/",
+      "discovery_channels": [
+        "7d:web-search",
+        "registered-source:blender-official"
+      ],
+      "decision": "ranked-out",
+      "reason_code": "shared-release-page-identity-and-patch-scope-lower-than-selected-unpublished-items"
+    }
+  ],
+  "personalization": {
+    "contract": "supabase-semantic-feedback-v1",
+    "status": "unavailable",
+    "vote_count": 0,
+    "reason": "active Supabase owner profile was not securely available to this repair collector run; neutral ranking applied and publication continued per current contract",
+    "max_rank_multiplier": 0.2,
+    "max_query_expansion_fraction": 0.2,
+    "raw_profile_committed": false,
+    "bookmarks_used": false,
+    "domain_weights_used": false,
+    "admission_bypass": false,
+    "quality_gate_bypass": false,
+    "source_quota": false
+  }
+}
