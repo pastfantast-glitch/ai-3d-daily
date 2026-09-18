@@ -10,11 +10,11 @@
     "windows": {
       "24h": {
         "status": "exhausted",
-        "candidates_found": 0
+        "candidates_found": 4
       },
       "7d": {
         "status": "exhausted",
-        "candidates_found": 4
+        "candidates_found": 6
       },
       "30d": {
         "status": "exhausted",
@@ -22,7 +22,7 @@
       },
       "6m": {
         "status": "exhausted",
-        "candidates_found": 4
+        "candidates_found": 6
       },
       "evergreen": {
         "status": "exhausted",
@@ -34,7 +34,7 @@
         "candidates_considered": 1
       },
       "3d-production": {
-        "candidates_considered": 2
+        "candidates_considered": 5
       },
       "3d-animation": {
         "candidates_considered": 3
@@ -43,10 +43,10 @@
         "candidates_considered": 3
       },
       "emerging-case": {
-        "candidates_considered": 1
+        "candidates_considered": 2
       },
       "blender-dcc": {
-        "candidates_considered": 3
+        "candidates_considered": 7
       }
     },
     "registered_source_probe": {
@@ -55,8 +55,15 @@
         "80-level": {
           "status": "checked",
           "method": "web-site-query",
-          "candidates_found": 0,
-          "candidate_ids": []
+          "candidates_found": 6,
+          "candidate_ids": [
+            "sigmapbr-relightable-scan-materials",
+            "static-between-stations-prerendered-backgrounds",
+            "cge-sculpting-tool-maya",
+            "blender-chain-generator-100",
+            "reface-205-hard-surface-retopo",
+            "edgy-geometry-worn-edges"
+          ]
         },
         "3dnchu": {
           "status": "checked",
@@ -134,8 +141,11 @@
         "sidefx-official": {
           "status": "checked",
           "method": "web-site-query",
-          "candidates_found": 0,
-          "candidate_ids": []
+          "candidates_found": 2,
+          "candidate_ids": [
+            "sidefx-h22-foundations-end-to-end",
+            "sidefx-h21-procedural-cities-games"
+          ]
         },
         "autodesk-area": {
           "status": "checked",
@@ -159,7 +169,7 @@
         }
       }
     },
-    "notes": "依 current main 完成 24h→7d→30d→6m→evergreen 搜尋、空 Rolling Backlog 檢查、六分類 targeted refill 與全部 enabled registered source probe。13 個追蹤候選中 12 個發布、1 個因既有 Blender 5.2 release page 身份與本次補丁相對影響較低而 ranked-out；未使用來源 bonus、quota 或網站偏好。"
+    "notes": "Registry 首輪去重後 12→9；依 current main 重新進行 targeted refill，新增 6 個 9/15–9/17 production 候選與 2 個 SideFX 官方 6m/evergreen 補漏。累計 21 個追蹤候選；Registry 已標記 3 個歷史重複，另有 1 個 ranked-out，17 個目前進入 canonical。未使用來源 bonus、quota 或網站偏好。"
   },
   "candidate_decisions": [
     {
@@ -180,8 +190,8 @@
         "registered-source:unity-official",
         "primary-source-verification"
       ],
-      "decision": "published",
-      "canonical_id": "unity-rendering-massive-object-counts"
+      "decision": "duplicate",
+      "reason_code": "registry-normalized-duplicate"
     },
     {
       "candidate_id": "unity-render-pipeline-strategy-2026",
@@ -224,8 +234,8 @@
         "registered-source:epic-developer-community",
         "primary-source-verification"
       ],
-      "decision": "published",
-      "canonical_id": "ue58-layered-control-rig-sequencer"
+      "decision": "duplicate",
+      "reason_code": "registry-normalized-duplicate"
     },
     {
       "candidate_id": "blender-render-gif-170",
@@ -234,8 +244,8 @@
         "30d:web-search",
         "primary-source-verification"
       ],
-      "decision": "published",
-      "canonical_id": "blender-render-gif-170"
+      "decision": "duplicate",
+      "reason_code": "registry-normalized-duplicate"
     },
     {
       "candidate_id": "artstation-vfx-two-shader-tricks",
@@ -296,6 +306,88 @@
       ],
       "decision": "ranked-out",
       "reason_code": "shared-release-page-identity-and-patch-scope-lower-than-selected-unpublished-items"
+    },
+    {
+      "candidate_id": "sigmapbr-relightable-scan-materials",
+      "source_url": "https://80.lv/articles/cd-projekt-red-s-technical-artist-unveils-pbr-solver-for-3d-scans",
+      "discovery_channels": [
+        "24h:web-search",
+        "registered-source:80-level"
+      ],
+      "decision": "published",
+      "canonical_id": "sigmapbr-relightable-scan-materials"
+    },
+    {
+      "candidate_id": "static-between-stations-prerendered-backgrounds",
+      "source_url": "https://80.lv/articles/see-how-this-rpg-s-ps1-style-pre-rendered-backgrounds-look-in-engine",
+      "discovery_channels": [
+        "24h:web-search",
+        "registered-source:80-level"
+      ],
+      "decision": "published",
+      "canonical_id": "static-between-stations-prerendered-backgrounds"
+    },
+    {
+      "candidate_id": "cge-sculpting-tool-maya",
+      "source_url": "https://80.lv/articles/one-time-purchase-sculpting-tool-for-maya-inspired-by-zbrush",
+      "discovery_channels": [
+        "24h:web-search",
+        "registered-source:80-level"
+      ],
+      "decision": "published",
+      "canonical_id": "cge-sculpting-tool-maya"
+    },
+    {
+      "candidate_id": "blender-chain-generator-100",
+      "source_url": "https://80.lv/articles/blender-add-on-that-generates-adjustable-chains-in-seconds",
+      "discovery_channels": [
+        "24h:web-search",
+        "registered-source:80-level"
+      ],
+      "decision": "published",
+      "canonical_id": "blender-chain-generator-100"
+    },
+    {
+      "candidate_id": "reface-205-hard-surface-retopo",
+      "source_url": "https://80.lv/articles/hard-surface-retopology-just-got-easier-in-blender",
+      "discovery_channels": [
+        "7d:web-search",
+        "registered-source:80-level"
+      ],
+      "decision": "published",
+      "canonical_id": "reface-205-hard-surface-retopo"
+    },
+    {
+      "candidate_id": "edgy-geometry-worn-edges",
+      "source_url": "https://80.lv/articles/3d-artist-on-creating-a-geometry-based-plugin-that-makes-realistic-worn-edges",
+      "discovery_channels": [
+        "7d:web-search",
+        "registered-source:80-level"
+      ],
+      "decision": "published",
+      "canonical_id": "edgy-geometry-worn-edges"
+    },
+    {
+      "candidate_id": "sidefx-h22-foundations-end-to-end",
+      "source_url": "https://www.sidefx.com/tutorials/h22-foundations-model-render-animate/",
+      "discovery_channels": [
+        "6m:web-search",
+        "registered-source:sidefx-official",
+        "primary-source-verification"
+      ],
+      "decision": "published",
+      "canonical_id": "sidefx-h22-foundations-end-to-end"
+    },
+    {
+      "candidate_id": "sidefx-h21-procedural-cities-games",
+      "source_url": "https://www.sidefx.com/tutorials/build-procedural-cities-for-games/",
+      "discovery_channels": [
+        "6m:web-search",
+        "registered-source:sidefx-official",
+        "primary-source-verification"
+      ],
+      "decision": "published",
+      "canonical_id": "sidefx-h21-procedural-cities-games"
     }
   ],
   "personalization": {
