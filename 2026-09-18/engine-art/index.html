@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   遊戲引擎｜2026-09-18｜AI 3D Daily
+  </title>
+  <link href="../../styles.css?v=20260918-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../../shared-components.css?v=20260918-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../../category.css?v=20260918-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+ </head>
+ <body class="category-page" data-category="engine-art" data-report-date="2026-09-18">
+  <nav aria-label="Production Intelligence 分類" class="global-category-nav">
+   <div class="page global-category-nav-inner">
+    <div class="archive-nav-controls">
+     <a class="archive-nav-home" href="../../">
+      ← 首頁
+     </a>
+     <div class="archive-nav-date">
+      <a aria-label="前一日日報" class="archive-nav-arrow" href="../../2026-09-17/engine-art/">
+       ←
+      </a>
+      <span>
+       2026-09-18
+      </span>
+     </div>
+    </div>
+    <span aria-hidden="true" class="archive-nav-divider">
+    </span>
+    <a class="global-category-link" href="../#top">
+     TOP5
+    </a>
+    <a class="global-category-link" data-category="ai-generation" href="../ai-generation/">
+     AI 生成
+    </a>
+    <a class="global-category-link" data-category="3d-production" href="../3d-production/">
+     3D 製作
+    </a>
+    <a class="global-category-link" data-category="3d-animation" href="../3d-animation/">
+     3D 動作
+    </a>
+    <a class="global-category-link is-active" data-category="engine-art" href="../engine-art/">
+     遊戲引擎
+    </a>
+    <a class="global-category-link" data-category="emerging-case" href="../emerging-case/">
+     新技術 / Case
+    </a>
+    <a class="global-category-link" data-category="blender-dcc" href="../blender-dcc/">
+     Blender / DCC
+    </a>
+    <a class="global-category-link global-history-link" data-global-view="history" href="../../history/">
+     歷史日報
+    </a>
+   </div>
+  </nav>
+  <main class="page category-main">
+   <article class="category-card" data-intel-id="unity-render-pipeline-strategy-2026" data-intel-role="card">
+    <div class="category-meta">
+     #02 · rendering
+    </div>
+    <h2>
+     Unity 2026 Render Pipeline 策略：URP 持續擴張，HDRP 轉向穩定維護，Built-In 開始退場
+    </h2>
+    <p class="summary">
+     Unity 的 2026 圖形策略明確把新功能投資集中到 URP，HDRP 以穩定、回歸與關鍵功能修正為主，Built-In Render Pipeline 則自 Unity 6.5 起進入 deprecated 階段；新專案的圖形管線選擇因此更偏向 URP。
+    </p>
+    <figure class="case-preview" data-intel-id="unity-render-pipeline-strategy-2026" data-intel-role="visual" data-visual-id="unity-render-pipeline-strategy-2026">
+     <a href="https://unity.com/topics/render-pipelines-strategy-for-2026" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-18/unity-render-pipeline-strategy-2026.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">渲染</b> ★★★★★</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       渲染流程與技術策略
+      </h4>
+      <p>
+       Unity 將 URP 定位為持續擴充渲染功能的主要 Scriptable Render Pipeline，HDRP 則把後續技術工作集中在穩定性、回歸與廣泛使用功能的關鍵問題；Built-In 從 Unity 6.5 起進入 deprecated 流程，官方不再建議新專案以它作為長期渲染管線。
+      </p>
+      <h4>
+       Production 影響
+      </h4>
+      <p>
+       對美術與技術美術團隊，這會影響 Shader Graph、Renderer Feature、光照、VFX 與 Asset Store 相容性的長期投資方向。既有 HDRP 專案仍可維護，但若是跨平台或中長期新案，工具與內容建置更值得先以 URP 為基準評估。
+      </p>
+      <h4>
+       導入測試
+      </h4>
+      <p>
+       不要只因 roadmap 立即搬遷既有專案；應先盤點自訂 shader、後處理、HDRP 專屬功能、平台需求與第三方套件，再做代表性場景的 URP parity prototype。Built-In 專案則應先驗證轉換工具與材質差異，建立逐場景遷移與回退策略。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://unity.com/topics/render-pipelines-strategy-for-2026" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="artstation-vfx-two-shader-tricks" data-intel-role="card">
+    <div class="category-meta">
+     #09 · shader
+    </div>
+    <h2>
+     兩個 VFX Shader 小技巧：Blender 程序水面＋UE5 Panning Texture 的可轉移做法
+    </h2>
+    <p class="summary">
+     技術 VFX 藝術家 Jen S Abbott 的 9/16 教學把兩個常用概念拆成可重現步驟：在 Blender 用程序 pattern、distortion 與色彩做 stylized water，在 UE5 以 UV 位移與 panning texture 建立動態材質。
+    </p>
+    <figure class="case-preview" data-intel-id="artstation-vfx-two-shader-tricks" data-intel-role="visual" data-visual-id="artstation-vfx-two-shader-tricks">
+     <a href="https://jsabbott.artstation.com/blog/category/6" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-18/artstation-vfx-two-shader-tricks.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">Shader</b> ★★★★☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       Shader 流程
+      </h4>
+      <p>
+       教學用兩個不同工具說明同一核心：先建立可重複的 pattern，再用 UV／座標位移、distortion、顏色與時間驅動動態。Blender 部分著重 stylized water 的程序層疊，UE5 部分則示範 panning texture 的即時材質做法。
+      </p>
+      <h4>
+       Production 價值
+      </h4>
+      <p>
+       這類技巧容易轉移到火焰、能量、雲、魔法、介面背景與環境表面，不必依賴複雜 simulation；對技術美術來說，更重要的是把『圖樣來源、變形、時間、顏色』拆成可重用參數，讓同一 shader graph 服務多種效果。
+      </p>
+      <h4>
+       導入測試
+      </h4>
+      <p>
+       實作時應檢查世界座標與 UV 座標的差異、tiling seam、不同 FPS 下速度一致性，以及透明／半透明材質的 overdraw 成本。若要納入遊戲專案，最好把速度、方向、distortion 強度與色階做成 material instance 參數並建立效能預設。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://jsabbott.artstation.com/blog/category/6" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <nav aria-label="相鄰分類" class="category-bottom-nav">
+    <a href="../3d-animation/">
+     ← 3D 動作
+    </a>
+    <a href="../#top">
+     TOP5
+    </a>
+    <a href="../emerging-case/">
+     新技術 / Case →
+    </a>
+   </nav>
+  </main>
+  <script defer="" src="../../archive-nav-state.js?v=20260918-r1-workspace-v10-history-current-workspace">
+  </script>
+ </body>
+</html>

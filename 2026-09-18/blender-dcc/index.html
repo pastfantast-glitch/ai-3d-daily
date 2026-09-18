@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   Blender / DCC｜2026-09-18｜AI 3D Daily
+  </title>
+  <link href="../../styles.css?v=20260918-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../../shared-components.css?v=20260918-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../../category.css?v=20260918-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+ </head>
+ <body class="category-page" data-category="blender-dcc" data-report-date="2026-09-18">
+  <nav aria-label="Production Intelligence 分類" class="global-category-nav">
+   <div class="page global-category-nav-inner">
+    <div class="archive-nav-controls">
+     <a class="archive-nav-home" href="../../">
+      ← 首頁
+     </a>
+     <div class="archive-nav-date">
+      <a aria-label="前一日日報" class="archive-nav-arrow" href="../../2026-09-17/blender-dcc/">
+       ←
+      </a>
+      <span>
+       2026-09-18
+      </span>
+     </div>
+    </div>
+    <span aria-hidden="true" class="archive-nav-divider">
+    </span>
+    <a class="global-category-link" href="../#top">
+     TOP5
+    </a>
+    <a class="global-category-link" data-category="ai-generation" href="../ai-generation/">
+     AI 生成
+    </a>
+    <a class="global-category-link" data-category="3d-production" href="../3d-production/">
+     3D 製作
+    </a>
+    <a class="global-category-link" data-category="3d-animation" href="../3d-animation/">
+     3D 動作
+    </a>
+    <a class="global-category-link" data-category="engine-art" href="../engine-art/">
+     遊戲引擎
+    </a>
+    <a class="global-category-link" data-category="emerging-case" href="../emerging-case/">
+     新技術 / Case
+    </a>
+    <a class="global-category-link is-active" data-category="blender-dcc" href="../blender-dcc/">
+     Blender / DCC
+    </a>
+    <a class="global-category-link global-history-link" data-global-view="history" href="../../history/">
+     歷史日報
+    </a>
+   </div>
+  </nav>
+  <main class="page category-main">
+   <article class="category-card" data-intel-id="substance-designer-fxmap-sampler" data-intel-role="card">
+    <div class="category-meta">
+     #03 · substance
+    </div>
+    <h2>
+     Substance Designer FX-Map Sampler：用影像取樣值直接驅動程序參數
+    </h2>
+    <p class="summary">
+     Designer 的 Sampler node 可在 FX-Map function 中以 float2 座標讀取輸入影像，Sample Gray 回傳單值、Sample Color 回傳 RGBA；這讓影像內容能直接成為程序圖樣的密度、透明度或條件式生成控制訊號。
+    </p>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">Substance</b> ★★★★☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       節點流程
+      </h4>
+      <p>
+       Sampler 能在 FX-Map 的 function graph 中用 float2 座標讀取接入影像，Gray 版本回傳 0–1 單值，Color 版本回傳 RGBA。取樣值可以直接餵給 opacity、luminance 或條件判斷，讓程序 pattern 依輸入圖局部變化。
+      </p>
+      <h4>
+       Production 價值
+      </h4>
+      <p>
+       這種做法適合把手繪 mask、掃描資訊或上游烘焙圖轉成程序散佈控制，而不是先轉成多組固定 bitmap。對材質作者來說，可把『輸入圖→取樣→規則』包在同一 SBS graph，減少外部腳本與重複貼圖版本。
+      </p>
+      <h4>
+       導入測試
+      </h4>
+      <p>
+       實作時要特別檢查取樣座標、輸入解析度與 filtering 對邊界的影響，並用不同尺寸 mask 比較 aliasing 與效能；如果 graph 會提供給其他專案，應把採樣輸入與閾值 expose，避免把特定貼圖尺寸或硬編碼常數鎖死在 function 內。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://experienceleague.adobe.com/en/docs/substance-3d-designer/using/substance-function-graphs/fx-maps/using-substance-function-graphs-in-fx-maps/using-the-sampler-nodes" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="cge-sculpting-tool-maya" data-intel-role="card">
+    <div class="category-meta">
+     #07 · maya
+    </div>
+    <h2>
+     CGE Sculpting Tool：在 Maya 內加入 GPU 多解析雕刻、Sculpt Layers 與 Auto LOD
+    </h2>
+    <p class="summary">
+     Morteza Ahmadi 發布 Maya 專用 CGE Sculpting Tool，主打 GPU accelerated sculpting、multi-resolution、sculpt layers、cloth／pose brushes、cut／trim、radial symmetry、auto LOD／decimation 與早期 SDF voxel sculpt，鎖定不想在 Maya／ZBrush 間反覆切換的資產流程。
+    </p>
+    <figure class="case-preview" data-intel-id="cge-sculpting-tool-maya" data-intel-role="visual" data-visual-id="cge-sculpting-tool-maya">
+     <a href="https://80.lv/articles/one-time-purchase-sculpting-tool-for-maya-inspired-by-zbrush" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-18/cge-sculpting-tool-maya.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">Maya</b> ★★★★☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       Maya 雕刻流程
+      </h4>
+      <p>
+       工具把 multi-resolution sculpt、sculpt layers、24 種雕刻 brush、cloth collision、pose brush、cut／trim、radial symmetry 與 auto LOD／decimation 放回 Maya，並加入早期 SDF voxel sculpt，目標是在同一 DCC 完成建模、雕刻、retopo、UV 與 render。
+      </p>
+      <h4>
+       Production 價值
+      </h4>
+      <p>
+       若角色或道具本來就以 Maya 為主，減少 ZBrush 往返可降低 export/import、scale、vertex order 與版本管理摩擦，特別適合中度雕刻、corrective shape 或需要頻繁回到 rig／UV 的資產。永久授權也提供了另一種工具成本模型。
+      </p>
+      <h4>
+       導入測試
+      </h4>
+      <p>
+       目前效能與大型 production 穩定性仍以作者展示為主。應用數百萬面模型測 brush latency、layer 記憶體、undo、auto LOD、UV／retopo handoff、保存／重開與 Maya 2023–2027 plugin 相容性，再決定它能替代多少現有 ZBrush 步驟。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://80.lv/articles/one-time-purchase-sculpting-tool-for-maya-inspired-by-zbrush" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="blender-chain-generator-100" data-intel-role="card">
+    <div class="category-meta">
+     #08 · addon
+    </div>
+    <h2>
+     Blender Chain Generator 1.0：253 種鏈條資產＋可編輯 Curve／Sag 的快速道具生成
+    </h2>
+    <p class="summary">
+     PeakDreams Studio 的 Chain Generator v1.0.0 讓使用者以 View Plane 或 Surface 模式直接繪製鏈條，生成後仍可編輯 curve、Offset、Scale、Tilt、Sag 與 attachment points；輸出是真實 mesh，可再 rig／animate，而非只作 viewport 效果。
+    </p>
+    <figure class="case-preview" data-intel-id="blender-chain-generator-100" data-intel-role="visual" data-visual-id="blender-chain-generator-100">
+     <a href="https://80.lv/articles/blender-add-on-that-generates-adjustable-chains-in-seconds" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-18/blender-chain-generator-100.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">外掛</b> ★★★☆☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       生成流程
+      </h4>
+      <p>
+       Chain Generator 以 253 種預製鏈條為起點，支援直接在視圖平面或指定表面上 draw curve，再用 Offset、Scale、Tilt、Sag Amount／Count 調整貼附距離、鏈節尺寸、旋轉與下垂；生成結果是真實 mesh，因此後續仍能進行 rig 與動畫。
+      </p>
+      <h4>
+       Production 價值
+      </h4>
+      <p>
+       鏈條、飾品、纜線與裝備邊飾屬於高重複但手工排布費時的資產，curve-driven 生成可讓美術先以造型與路徑迭代，再決定何時轉成最終 mesh。對角色裝備與環境道具，這類工具能把大量微調集中到少數參數。
+      </p>
+      <h4>
+       導入測試
+      </h4>
+      <p>
+       正式使用前要檢查長鏈的 polygon 數、curve 轉 mesh 後的 UV／normal、極端 Sag 的自交、貼表面時的 offset 穿插，以及 rig／physics 需要的 segment 分布；若資產要上行動平台，也應建立低模或 instance 化的替代輸出。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://80.lv/articles/blender-add-on-that-generates-adjustable-chains-in-seconds" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="edgy-geometry-worn-edges" data-intel-role="card">
+    <div class="category-meta">
+     #11 · addon
+    </div>
+    <h2>
+     Edgy：用真實幾何而非 Curvature Mask 做可見輪廓破損，Blender／C4D 共用同一核心
+    </h2>
+    <p class="summary">
+     Cornelius Dämmrich 的 Edgy 以 geometry-based edge damage 取代只在 shader 上做髒污假象，提供 6 種 damage modules；核心幾何演算法與 DCC API 分離，因此 Cinema 4D 與 Blender 前端可共用同一 compiled binary，甚至用相同 seed 驗 exact match。
+    </p>
+    <figure class="case-preview" data-intel-id="edgy-geometry-worn-edges" data-intel-role="visual" data-visual-id="edgy-geometry-worn-edges">
+     <a href="https://80.lv/articles/3d-artist-on-creating-a-geometry-based-plugin-that-makes-realistic-worn-edges" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-18/edgy-geometry-worn-edges.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">外掛</b> ★★★★☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       破損技術
+      </h4>
+      <p>
+       Edgy 不只依 pointiness、curvature、AO 或 proximity mask 在材質上偽造磨損，而是實際改變 mesh 邊緣，讓 chips、cracks 與缺口在逆光、近鏡頭與 silhouette 上都成立；它把 geometry kernel 與 DCC front end 分開，Blender／C4D 共用同一核心。
+      </p>
+      <h4>
+       Production 價值
+      </h4>
+      <p>
+       對需要 hero prop、建築破損或近距離鏡頭的資產，真正改變輪廓比單純 shader edge wear 更可靠；共用核心也示範了一種工具架構：演算法只吃 points／polygons、回傳 mesh，宿主 DCC 僅負責 UI 與資料轉換，較容易維護跨軟體一致性。
+      </p>
+      <h4>
+       導入測試
+      </h4>
+      <p>
+       幾何破損會增加面數並可能改變 UV、normal 與 bake，因此應測 low／high density mesh、non-manifold、bevel、subdivision、seed 可重現性與 export。遊戲資產還要確認破損是在 high-poly bake 階段使用，還是要保留到 runtime mesh。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://80.lv/articles/3d-artist-on-creating-a-geometry-based-plugin-that-makes-realistic-worn-edges" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="sidefx-h22-foundations-end-to-end" data-intel-role="card">
+    <div class="category-meta">
+     #13 · houdini
+    </div>
+    <h2>
+     Houdini 22 Foundations：從 Modeling、APEX Animation、Solaris Lookdev 到 Karma XPU 的完整小型專案
+    </h2>
+    <p class="summary">
+     SideFX 以 1 小時 35 分的 soccer ball 專案串起 Houdini 22 modeling、材質、燈光、APEX Scene Animate、Solaris Stage 與 Karma XPU，重點是讓初學者看見 node-based workflow 如何跨資產、動畫與 render 形成同一條可追蹤流程。
+    </p>
+    <figure class="case-preview" data-intel-id="sidefx-h22-foundations-end-to-end" data-intel-role="visual" data-visual-id="sidefx-h22-foundations-end-to-end">
+     <a href="https://www.sidefx.com/tutorials/h22-foundations-model-render-animate/" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-18/sidefx-h22-foundations-end-to-end.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">Houdini</b> ★★★☆☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       完整製作流程
+      </h4>
+      <p>
+       官方教學不是只教單一 node，而是從建模足球開始，加入材質與貼圖，再用 APEX Scene Animate 製作 squash-and-stretch 彈跳，最後進 Solaris Stage 設燈光、相機並用 Karma XPU 完成輸出，能直接觀察 Houdini 22 各上下文的銜接。
+      </p>
+      <h4>
+       Production 價值
+      </h4>
+      <p>
+       對正在評估 Houdini 是否只適合程序建模／VFX 的美術團隊，這種 end-to-end 小專案可用來建立共同操作基線，尤其能理解 APEX、Solaris 與 Karma 在同一 hip 檔中的角色，之後再延伸到正式角色、場景或 procedural asset。
+      </p>
+      <h4>
+       導入測試
+      </h4>
+      <p>
+       它屬 Foundations 教學，不代表大型 production 的效能與協作成熟度。若要導入，可先讓團隊重做同一小專案，再測版本管理、HDA 封裝、USD／Solaris layer、APEX rig 資料與 Karma render farm，確認哪些環節需另建 studio convention。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://www.sidefx.com/tutorials/h22-foundations-model-render-animate/" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <nav aria-label="相鄰分類" class="category-bottom-nav">
+    <a href="../emerging-case/">
+     ← 新技術 / Case
+    </a>
+    <a href="../#top">
+     TOP5
+    </a>
+    <a href="../ai-generation/">
+     AI 生成 →
+    </a>
+   </nav>
+  </main>
+  <script defer="" src="../../archive-nav-state.js?v=20260918-r1-workspace-v10-history-current-workspace">
+  </script>
+ </body>
+</html>

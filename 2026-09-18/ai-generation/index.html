@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   AI 生成｜2026-09-18｜AI 3D Daily
+  </title>
+  <link href="../../styles.css?v=20260918-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../../shared-components.css?v=20260918-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../../category.css?v=20260918-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+ </head>
+ <body class="category-page" data-category="ai-generation" data-report-date="2026-09-18">
+  <nav aria-label="Production Intelligence 分類" class="global-category-nav">
+   <div class="page global-category-nav-inner">
+    <div class="archive-nav-controls">
+     <a class="archive-nav-home" href="../../">
+      ← 首頁
+     </a>
+     <div class="archive-nav-date">
+      <a aria-label="前一日日報" class="archive-nav-arrow" href="../../2026-09-17/ai-generation/">
+       ←
+      </a>
+      <span>
+       2026-09-18
+      </span>
+     </div>
+    </div>
+    <span aria-hidden="true" class="archive-nav-divider">
+    </span>
+    <a class="global-category-link" href="../#top">
+     TOP5
+    </a>
+    <a class="global-category-link is-active" data-category="ai-generation" href="../ai-generation/">
+     AI 生成
+    </a>
+    <a class="global-category-link" data-category="3d-production" href="../3d-production/">
+     3D 製作
+    </a>
+    <a class="global-category-link" data-category="3d-animation" href="../3d-animation/">
+     3D 動作
+    </a>
+    <a class="global-category-link" data-category="engine-art" href="../engine-art/">
+     遊戲引擎
+    </a>
+    <a class="global-category-link" data-category="emerging-case" href="../emerging-case/">
+     新技術 / Case
+    </a>
+    <a class="global-category-link" data-category="blender-dcc" href="../blender-dcc/">
+     Blender / DCC
+    </a>
+    <a class="global-category-link global-history-link" data-global-view="history" href="../../history/">
+     歷史日報
+    </a>
+   </div>
+  </nav>
+  <main class="page category-main">
+   <article class="category-card" data-intel-id="meshy-autosplit-textured-input-sep16" data-intel-role="card">
+    <div class="category-meta">
+     #01 · ai-3d
+    </div>
+    <h2>
+     Meshy Auto Split API 現可直接接受已貼圖任務，但分件後仍不保留原貼圖
+    </h2>
+    <p class="summary">
+     Meshy 9/16 API 更新讓 Auto Split 可直接接帶貼圖的 input_task_id，不必先重生無貼圖模型；但切割會重建各部件表面，輸出仍是未貼圖、單色部件，整合流程必須把重新貼圖或材質重建列為後續步驟。
+    </p>
+    <figure class="case-preview" data-intel-id="meshy-autosplit-textured-input-sep16" data-intel-role="visual" data-visual-id="meshy-autosplit-textured-input-sep16">
+     <a href="https://docs.meshy.ai/zh-Hant/api/changelog" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-18/meshy-autosplit-textured-input-sep16.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">AI 3D</b> ★★★★★</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       API 流程變更
+      </h4>
+      <p>
+       Auto Split 現可直接引用已完成且帶貼圖的 Meshy 任務，省掉過去為了分件而再生成一次無貼圖模型的繞路；對批次資產處理與 API 串接來說，輸入步驟更短也更容易保留同一任務身份。
+      </p>
+      <h4>
+       Production 影響
+      </h4>
+      <p>
+       限制仍很明確：分件會切割幾何並重建表面，因此原始 texture 不會被保留，輸出部件只有單色。若目標是遊戲角色、裝備或道具分件，這代表分件之後仍要安排重新貼圖、材質重投射或人工 UV／材質整理。
+      </p>
+      <h4>
+       導入測試
+      </h4>
+      <p>
+       建議用角色與硬表面各一組已貼圖 GLB 測試分件，記錄 seam、部件邊界、法線、UV、材質槽與重新貼圖成本；若拆分只是列印或幾何編輯，流程收益較高，若依賴原 PBR 外觀則要先確認後處理成本是否抵消 API 簡化。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://docs.meshy.ai/zh-Hant/api/changelog" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <nav aria-label="相鄰分類" class="category-bottom-nav">
+    <a href="../blender-dcc/">
+     ← Blender / DCC
+    </a>
+    <a href="../#top">
+     TOP5
+    </a>
+    <a href="../3d-production/">
+     3D 製作 →
+    </a>
+   </nav>
+  </main>
+  <script defer="" src="../../archive-nav-state.js?v=20260918-r1-workspace-v10-history-current-workspace">
+  </script>
+ </body>
+</html>

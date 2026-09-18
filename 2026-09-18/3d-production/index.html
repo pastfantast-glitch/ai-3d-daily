@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   3D 製作｜2026-09-18｜AI 3D Daily
+  </title>
+  <link href="../../styles.css?v=20260918-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../../shared-components.css?v=20260918-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../../category.css?v=20260918-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+ </head>
+ <body class="category-page" data-category="3d-production" data-report-date="2026-09-18">
+  <nav aria-label="Production Intelligence 分類" class="global-category-nav">
+   <div class="page global-category-nav-inner">
+    <div class="archive-nav-controls">
+     <a class="archive-nav-home" href="../../">
+      ← 首頁
+     </a>
+     <div class="archive-nav-date">
+      <a aria-label="前一日日報" class="archive-nav-arrow" href="../../2026-09-17/3d-production/">
+       ←
+      </a>
+      <span>
+       2026-09-18
+      </span>
+     </div>
+    </div>
+    <span aria-hidden="true" class="archive-nav-divider">
+    </span>
+    <a class="global-category-link" href="../#top">
+     TOP5
+    </a>
+    <a class="global-category-link" data-category="ai-generation" href="../ai-generation/">
+     AI 生成
+    </a>
+    <a class="global-category-link is-active" data-category="3d-production" href="../3d-production/">
+     3D 製作
+    </a>
+    <a class="global-category-link" data-category="3d-animation" href="../3d-animation/">
+     3D 動作
+    </a>
+    <a class="global-category-link" data-category="engine-art" href="../engine-art/">
+     遊戲引擎
+    </a>
+    <a class="global-category-link" data-category="emerging-case" href="../emerging-case/">
+     新技術 / Case
+    </a>
+    <a class="global-category-link" data-category="blender-dcc" href="../blender-dcc/">
+     Blender / DCC
+    </a>
+    <a class="global-category-link global-history-link" data-global-view="history" href="../../history/">
+     歷史日報
+    </a>
+   </div>
+  </nav>
+  <main class="page category-main">
+   <article class="category-card" data-intel-id="sigmapbr-relightable-scan-materials" data-intel-role="card">
+    <div class="category-meta">
+     #05 · production-workflow
+    </div>
+    <h2>
+     sigmaPBR：把 Photogrammetry 掃描轉成可重新打光的 PBR 材質
+    </h2>
+    <p class="summary">
+     CD Projekt Red 技術美術 Piotr Bieryt 公開 sigmaPBR closed beta，從 photometric／photogrammetry capture 解算 diffuse albedo、roughness、specular F0 與 normal，並維持既有 production UV atlas，目標是降低掃描資產手工重建材質反應的成本。
+    </p>
+    <figure class="case-preview" data-intel-id="sigmapbr-relightable-scan-materials" data-intel-role="visual" data-visual-id="sigmapbr-relightable-scan-materials">
+     <a href="https://80.lv/articles/cd-projekt-red-s-technical-artist-unveils-pbr-solver-for-3d-scans" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-18/sigmapbr-relightable-scan-materials.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">製作流程</b> ★★★★★</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       掃描材質流程
+      </h4>
+      <p>
+       sigmaPBR 將 photometric 與 photogrammetry capture 合併，用現有 UV atlas 直接解算 diffuse albedo、roughness、specular F0 與 normal，並提供 world-space／tangent-space normal，重點是把只含外觀顏色的掃描轉成可在不同燈光下重用的材質資料。
+      </p>
+      <h4>
+       Production 價值
+      </h4>
+      <p>
+       對大量實物掃描、道具數位化或文化資產，最耗時的往往不是幾何，而是把受拍攝光源污染的顏色拆回可重新打光的 PBR channel。若 solver 穩定，可減少 artist 手工重畫 roughness／specular，並保留既有掃描 UV 與下游材質管線。
+      </p>
+      <h4>
+       導入測試
+      </h4>
+      <p>
+       目前仍是 closed beta，公開證據主要來自開發者與示範。正式採用前應用金屬、塑膠、皮革與高反光表面各做一組 capture，檢查跨燈光 relight、UV 對齊、normal 細節、色彩校正與人工修圖時間，再和現行掃描材質流程比較。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://80.lv/articles/cd-projekt-red-s-technical-artist-unveils-pbr-solver-for-3d-scans" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="stylized-greek-island-modular-workflow" data-intel-role="card">
+    <div class="category-meta">
+     #12 · environment-production
+    </div>
+    <h2>
+     風格化希臘島場景：把 Blender 與 UE5 當成同一條模組化環境製作迴圈
+    </h2>
+    <p class="summary">
+     3D Tudor 的案例從 reference、greybox、模組 kit、UV／normal 到 UE5 匯入反覆來回驗證；重點是不要等模型全部完成才進引擎，而是在 kit 還在發展時就用實際 lighting、pivot、命名與材質問題反推 Blender 資產修正。
+    </p>
+    <figure class="case-preview" data-intel-id="stylized-greek-island-modular-workflow" data-intel-role="visual" data-visual-id="stylized-greek-island-modular-workflow">
+     <a href="https://threedtudor.artstation.com/blog/Z4MVj/blender-to-unreal-engine-5-build-a-stylized-greek-island-environment" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-18/stylized-greek-island-modular-workflow.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">場景製作</b> ★★★★☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       場景製作流程
+      </h4>
+      <p>
+       案例先建立可重組的模組 kit，再持續把 greybox 與資產送進 Unreal 驗證 scale、lighting、UV 方向、normal／bevel、pivot 與命名。最終以 glTF／GLB 傳遞 UV、normal、tangent 與 modifier 結果，並保留 static mesh 的獨立性供場景重組。
+      </p>
+      <h4>
+       Production 價值
+      </h4>
+      <p>
+       最大價值不是某個建模技巧，而是把 Blender 與 Unreal 視為同一個回饋迴圈：引擎中發現的光照、pivot 或材質問題會回到源資產修正。這能避免『DCC 看起來完成、進引擎才大量返工』的瀑布式流程。
+      </p>
+      <h4>
+       導入測試
+      </h4>
+      <p>
+       團隊可選一組 8–12 個模組測完整往返，建立 scale、origin、naming、MikkTSpace、material slot、collision 與 reimport checklist；特別要確認 baked pivot 與 glTF／FBX 差異，再決定哪一種匯出路徑成為正式規範。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://threedtudor.artstation.com/blog/Z4MVj/blender-to-unreal-engine-5-build-a-stylized-greek-island-environment" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="aaa-character-concept-to-ingame-workflow" data-intel-role="card">
+    <div class="category-meta">
+     #14 · character-production
+    </div>
+    <h2>
+     AAA 角色從 Concept 到 In-Game：以完整實時流程檢查角色製作 handoff
+    </h2>
+    <p class="summary">
+     ArtStation 的角色課程以 15 段未剪輯流程追蹤一個角色從草圖到 Unreal Engine 5 遊戲內實作，價值在把高模、低模、UV、貼圖、材質、角色整合與最後引擎呈現放在同一條可檢查鏈上，而不是只看單一 sculpt 成果。
+    </p>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">角色製作</b> ★★★★☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       角色製作流程
+      </h4>
+      <p>
+       課程以完整 real-time process 從 concept 開始，持續走到 in-game implementation，適合觀察一個角色如何在不同階段保留設計意圖與技術限制。比起只看 final render，這類未剪輯流程更容易看到高模、低模、材質與引擎 handoff 的實際順序。
+      </p>
+      <h4>
+       Production 價值
+      </h4>
+      <p>
+       對角色團隊最有用的是把每一階段的交付條件串起來：造型決策要能落到拓撲與材質，材質又要能在 UE5 光照與角色 shader 中成立。可把內容當作建立內部 character checklist 的參考，而不是直接照抄某位藝術家的軟體步驟。
+      </p>
+      <h4>
+       導入測試
+      </h4>
+      <p>
+       來源屬付費教學且缺少公開 benchmark，因此應聚焦可觀察的流程，而不是把品質宣稱當成客觀結果。若要套用到團隊，應用自家角色規格對照 poly budget、UV／UDIM、skin shader、hair、rig、LOD 與引擎效能，找出真正可轉移的步驟。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://www.artstation.com/marketplace/p/1WmJo/aaa-character-workflow-from-concept-to-in-game-real-time-process" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <nav aria-label="相鄰分類" class="category-bottom-nav">
+    <a href="../ai-generation/">
+     ← AI 生成
+    </a>
+    <a href="../#top">
+     TOP5
+    </a>
+    <a href="../3d-animation/">
+     3D 動作 →
+    </a>
+   </nav>
+  </main>
+  <script defer="" src="../../archive-nav-state.js?v=20260918-r1-workspace-v10-history-current-workspace">
+  </script>
+ </body>
+</html>
