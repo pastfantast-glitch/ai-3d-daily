@@ -1,0 +1,538 @@
+{
+  "date": "2026-09-18",
+  "schema_version": 3,
+  "metadata": {
+    "total_items": 12,
+    "collection_mode": "production-intelligence-preference-v1-hybrid",
+    "collection_contract_effective_date": "2026-09-04",
+    "preference_contract_effective_date": "2026-09-06",
+    "admission_policy_effective_date": "2026-09-15",
+    "discovery_windows": [
+      "24h",
+      "7d",
+      "30d",
+      "6m",
+      "evergreen"
+    ],
+    "analysis_level_counts": {
+      "FULL": 0,
+      "BRIEF": 12,
+      "REJECT": 0
+    },
+    "analysis_level_policy": "evidence-depth-tiered; BRIEF=three source-grounded production angles with explicit limits",
+    "full_analysis_heading_language": "zh-Hant",
+    "discovery_coverage": {
+      "fill_ladder_exhausted": true,
+      "backlog_checked": true,
+      "backlog_remaining_eligible": 0,
+      "targeted_refill_performed": true,
+      "quality_first_confirmed": true,
+      "windows": {
+        "24h": {
+          "status": "exhausted",
+          "candidates_found": 0
+        },
+        "7d": {
+          "status": "exhausted",
+          "candidates_found": 4
+        },
+        "30d": {
+          "status": "exhausted",
+          "candidates_found": 1
+        },
+        "6m": {
+          "status": "exhausted",
+          "candidates_found": 4
+        },
+        "evergreen": {
+          "status": "exhausted",
+          "candidates_found": 4
+        }
+      },
+      "category_candidates": {
+        "ai-generation": {
+          "candidates_considered": 1
+        },
+        "3d-production": {
+          "candidates_considered": 2
+        },
+        "3d-animation": {
+          "candidates_considered": 3
+        },
+        "engine-art": {
+          "candidates_considered": 3
+        },
+        "emerging-case": {
+          "candidates_considered": 1
+        },
+        "blender-dcc": {
+          "candidates_considered": 3
+        }
+      },
+      "registered_source_probe": {
+        "performed": true,
+        "sources": {
+          "80-level": {
+            "status": "checked",
+            "method": "web-site-query",
+            "candidates_found": 0,
+            "candidate_ids": []
+          },
+          "3dnchu": {
+            "status": "checked",
+            "method": "web-site-query",
+            "candidates_found": 0,
+            "candidate_ids": []
+          },
+          "cgworld-jp": {
+            "status": "checked",
+            "method": "web-site-query",
+            "candidates_found": 0,
+            "candidate_ids": []
+          },
+          "bilibili-mobile": {
+            "status": "checked",
+            "method": "web-site-query",
+            "candidates_found": 0,
+            "candidate_ids": []
+          },
+          "artstation": {
+            "status": "checked",
+            "method": "web-site-query",
+            "candidates_found": 4,
+            "candidate_ids": [
+              "artstation-vfx-two-shader-tricks",
+              "stylized-greek-island-modular-workflow",
+              "aaa-character-concept-to-ingame-workflow",
+              "blender-geometrynodes-to-ue-art-tools"
+            ]
+          },
+          "gumroad-discover": {
+            "status": "checked",
+            "method": "web-site-query",
+            "candidates_found": 0,
+            "candidate_ids": []
+          },
+          "xiaohongshu": {
+            "status": "checked",
+            "method": "web-site-query",
+            "candidates_found": 0,
+            "candidate_ids": []
+          },
+          "cg-channel": {
+            "status": "checked",
+            "method": "web-site-query",
+            "candidates_found": 0,
+            "candidate_ids": []
+          },
+          "blender-official": {
+            "status": "checked",
+            "method": "latest-index",
+            "candidates_found": 1,
+            "candidate_ids": [
+              "blender-522-lts-patch-recheck"
+            ]
+          },
+          "epic-developer-community": {
+            "status": "checked",
+            "method": "web-site-query",
+            "candidates_found": 2,
+            "candidate_ids": [
+              "ue58-control-rig-animation-blueprints",
+              "ue58-layered-control-rig-sequencer"
+            ]
+          },
+          "unity-official": {
+            "status": "checked",
+            "method": "latest-index",
+            "candidates_found": 2,
+            "candidate_ids": [
+              "unity-rendering-massive-object-counts",
+              "unity-render-pipeline-strategy-2026"
+            ]
+          },
+          "sidefx-official": {
+            "status": "checked",
+            "method": "web-site-query",
+            "candidates_found": 0,
+            "candidate_ids": []
+          },
+          "autodesk-area": {
+            "status": "checked",
+            "method": "web-site-query",
+            "candidates_found": 0,
+            "candidate_ids": []
+          },
+          "adobe-substance-3d": {
+            "status": "checked",
+            "method": "web-site-query",
+            "candidates_found": 1,
+            "candidate_ids": [
+              "substance-designer-fxmap-sampler"
+            ]
+          },
+          "game-developer": {
+            "status": "checked",
+            "method": "web-site-query",
+            "candidates_found": 0,
+            "candidate_ids": []
+          }
+        }
+      },
+      "notes": "依 current main 完成 24h→7d→30d→6m→evergreen 搜尋、空 Rolling Backlog 檢查、六分類 targeted refill 與全部 enabled registered source probe。13 個追蹤候選中 12 個發布、1 個因既有 Blender 5.2 release page 身份與本次補丁相對影響較低而 ranked-out；未使用來源 bonus、quota 或網站偏好。"
+    },
+    "personalization": {
+      "contract": "supabase-semantic-feedback-v1",
+      "status": "unavailable",
+      "vote_count": 0,
+      "reason": "active Supabase owner profile was not securely available to this repair collector run; neutral ranking applied and publication continued per current contract",
+      "max_rank_multiplier": 0.2,
+      "max_query_expansion_fraction": 0.2,
+      "raw_profile_committed": false,
+      "bookmarks_used": false,
+      "domain_weights_used": false,
+      "admission_bypass": false,
+      "quality_gate_bypass": false,
+      "source_quota": false
+    }
+  },
+  "items": [
+    {
+      "id": "meshy-autosplit-textured-input-sep16",
+      "title": "Meshy Auto Split API 現可直接接受已貼圖任務，但分件後仍不保留原貼圖",
+      "summary": "Meshy 9/16 API 更新讓 Auto Split 可直接接帶貼圖的 input_task_id，不必先重生無貼圖模型；但切割會重建各部件表面，輸出仍是未貼圖、單色部件，整合流程必須把重新貼圖或材質重建列為後續步驟。",
+      "quick_impact": "★★★★★",
+      "source_url": "https://docs.meshy.ai/zh-Hant/api/changelog",
+      "category": "ai-generation",
+      "subcategory": "ai-3d",
+      "ranking_score": 96.8,
+      "analysis_level": "BRIEF",
+      "brief_reason": "short-official-announcement",
+      "full_analysis": [
+        {
+          "label": "API 流程變更",
+          "text": "Auto Split 現可直接引用已完成且帶貼圖的 Meshy 任務，省掉過去為了分件而再生成一次無貼圖模型的繞路；對批次資產處理與 API 串接來說，輸入步驟更短也更容易保留同一任務身份。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "限制仍很明確：分件會切割幾何並重建表面，因此原始 texture 不會被保留，輸出部件只有單色。若目標是遊戲角色、裝備或道具分件，這代表分件之後仍要安排重新貼圖、材質重投射或人工 UV／材質整理。"
+        },
+        {
+          "label": "導入測試",
+          "text": "建議用角色與硬表面各一組已貼圖 GLB 測試分件，記錄 seam、部件邊界、法線、UV、材質槽與重新貼圖成本；若拆分只是列印或幾何編輯，流程收益較高，若依賴原 PBR 外觀則要先確認後處理成本是否抵消 API 簡化。"
+        }
+      ],
+      "rank_global": 1,
+      "homepage_tier": "top5"
+    },
+    {
+      "id": "unity-rendering-massive-object-counts",
+      "title": "Unity 大量物件渲染實戰：URP／HDRP 與自訂 Batch Renderer Group 的效能取捨",
+      "summary": "Mega Cat Studios 分享《Backyard Baseball 2026》在大量物件場景中的渲染策略，包含 URP／HDRP 經驗與針對草地建立自訂 Batch Renderer Group，核心是把每毫秒 GPU／CPU 成本拆開量測，而不是只靠單一 SRP 設定。",
+      "quick_impact": "★★★★★",
+      "source_url": "https://unity.com/blog/rendering-at-scale-efficient-strategies-for-massive-object-counts",
+      "category": "engine-art",
+      "subcategory": "optimization",
+      "ranking_score": 95.7,
+      "analysis_level": "BRIEF",
+      "brief_reason": "production-reference-limited-depth",
+      "full_analysis": [
+        {
+          "label": "渲染流程",
+          "text": "案例把大量物件問題拆成 SRP 選擇、可見性與批次提交成本，並在草地等高密度內容上使用自訂 Batch Renderer Group。這種做法的重點不是單純增加 draw call batching，而是把大量 instance 的資料提交與剔除行為變成可控的專用路徑。"
+        },
+        {
+          "label": "Production 價值",
+          "text": "對開放場景、球場、植被與重複裝飾物件，BRG 類方案能讓技術美術針對特定資產族群優化，而不必全面改寫 renderer；同時案例也提醒 URP 與 HDRP 沒有一個永遠較快，實際瓶頸仍取決於目標平台、材質複雜度與場景密度。"
+        },
+        {
+          "label": "導入測試",
+          "text": "實作前應建立代表性場景，分別記錄 CPU main/render thread、GPU frame time、culling、overdraw、記憶體與不同 LOD 密度；先證明內建 GPU Resident Drawer／SRP Batcher 不足，再投入自訂 BRG，避免把維護成本換成只有特定場景才出現的小幅收益。"
+        }
+      ],
+      "rank_global": 2,
+      "homepage_tier": "top5"
+    },
+    {
+      "id": "unity-render-pipeline-strategy-2026",
+      "title": "Unity 2026 Render Pipeline 策略：URP 持續擴張，HDRP 轉向穩定維護，Built-In 開始退場",
+      "summary": "Unity 的 2026 圖形策略明確把新功能投資集中到 URP，HDRP 以穩定、回歸與關鍵功能修正為主，Built-In Render Pipeline 則自 Unity 6.5 起進入 deprecated 階段；新專案的圖形管線選擇因此更偏向 URP。",
+      "quick_impact": "★★★★★",
+      "source_url": "https://unity.com/topics/render-pipelines-strategy-for-2026",
+      "category": "engine-art",
+      "subcategory": "rendering",
+      "ranking_score": 94.9,
+      "analysis_level": "BRIEF",
+      "brief_reason": "short-official-announcement",
+      "full_analysis": [
+        {
+          "label": "管線策略",
+          "text": "Unity 將 URP 定位為持續擴充功能的主要 Scriptable Render Pipeline，而 HDRP 未來更集中在穩定性、回歸與廣泛使用功能的關鍵問題；Built-In 則從 Unity 6.5 起進入 deprecated 流程，官方不再建議新專案以它起步。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對美術與技術美術團隊，這會影響 Shader Graph、Renderer Feature、光照、VFX 與 Asset Store 相容性的長期投資方向。既有 HDRP 專案仍可維護，但若是跨平台或中長期新案，工具與內容建置更值得先以 URP 為基準評估。"
+        },
+        {
+          "label": "導入測試",
+          "text": "不要只因 roadmap 立即搬遷既有專案；應先盤點自訂 shader、後處理、HDRP 專屬功能、平台需求與第三方套件，再做代表性場景的 URP parity prototype。Built-In 專案則應先驗證轉換工具與材質差異，建立逐場景遷移與回退策略。"
+        }
+      ],
+      "rank_global": 3,
+      "homepage_tier": "top5"
+    },
+    {
+      "id": "substance-designer-fxmap-sampler",
+      "title": "Substance Designer FX-Map Sampler：用影像取樣值直接驅動程序參數",
+      "summary": "Designer 的 Sampler node 可在 FX-Map function 中以 float2 座標讀取輸入影像，Sample Gray 回傳單值、Sample Color 回傳 RGBA；這讓影像內容能直接成為程序圖樣的密度、透明度或條件式生成控制訊號。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://experienceleague.adobe.com/en/docs/substance-3d-designer/using/substance-function-graphs/fx-maps/using-substance-function-graphs-in-fx-maps/using-the-sampler-nodes",
+      "category": "blender-dcc",
+      "subcategory": "substance",
+      "ranking_score": 93.8,
+      "analysis_level": "BRIEF",
+      "brief_reason": "single-source-verified-production-tip",
+      "full_analysis": [
+        {
+          "label": "節點流程",
+          "text": "Sampler 能在 FX-Map 的 function graph 中用 float2 座標讀取接入影像，Gray 版本回傳 0–1 單值，Color 版本回傳 RGBA。取樣值可以直接餵給 opacity、luminance 或條件判斷，讓程序 pattern 依輸入圖局部變化。"
+        },
+        {
+          "label": "Production 價值",
+          "text": "這種做法適合把手繪 mask、掃描資訊或上游烘焙圖轉成程序散佈控制，而不是先轉成多組固定 bitmap。對材質作者來說，可把『輸入圖→取樣→規則』包在同一 SBS graph，減少外部腳本與重複貼圖版本。"
+        },
+        {
+          "label": "導入測試",
+          "text": "實作時要特別檢查取樣座標、輸入解析度與 filtering 對邊界的影響，並用不同尺寸 mask 比較 aliasing 與效能；如果 graph 會提供給其他專案，應把採樣輸入與閾值 expose，避免把特定貼圖尺寸或硬編碼常數鎖死在 function 內。"
+        }
+      ],
+      "rank_global": 4,
+      "homepage_tier": "top5"
+    },
+    {
+      "id": "ue58-control-rig-animation-blueprints",
+      "title": "UE5.8 Control Rig × Animation Blueprint：把 Rig 控制器帶進 gameplay 程序動畫",
+      "summary": "Epic 文件說明 Control Rig node 可直接放進 Anim Graph，並傳入 pose、curve、特定 bones、controls 與 variables；常見用途是地面對齊或接觸點等 gameplay 程序修正，同時可選 global／local pose transfer 取捨一致性與效能。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://dev.epicgames.com/documentation/unreal-engine/control-rig-in-animation-blueprints-in-unreal-engine",
+      "category": "3d-animation",
+      "subcategory": "rigging",
+      "ranking_score": 92.9,
+      "analysis_level": "BRIEF",
+      "brief_reason": "production-reference-limited-depth",
+      "full_analysis": [
+        {
+          "label": "Rig 工作流",
+          "text": "Control Rig 可作為 Animation Blueprint 的 Anim Graph node 使用，將輸入 pose、curve、指定 bones 與 exposed variables 傳進 Rig。這讓動畫師建立的控制邏輯可以直接被 gameplay 驅動，而不必把所有程序修正重新寫成另一套骨架節點。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "地面對齊、接觸點、局部 IK 或可調參數都能在既有動畫藍圖中接上 Control Rig；同時可限制只傳特定 bones，並選擇 global 或 local transfer。對角色管線而言，這提供了在美術可編輯 Rig 與 runtime 動畫系統之間較清楚的交界。"
+        },
+        {
+          "label": "導入測試",
+          "text": "需要實測 global transfer 的一致性與成本，特別是骨架階層不同或 Rig 很大的角色；建議比較全骨架與限定 bones 的 CPU 時間、curve 傳遞、LOD／多人角色數，以及關閉 global transfer 後是否出現姿勢偏差，再決定 gameplay 層應保留多少 Control Rig 計算。"
+        }
+      ],
+      "rank_global": 5,
+      "homepage_tier": "top5"
+    },
+    {
+      "id": "ue58-layered-control-rig-sequencer",
+      "title": "UE5.8 Layered Control Rig：Sequencer 內疊加修姿勢，不必先把 Animation Sequence 烘焙進 Rig",
+      "summary": "Epic 的 Control Rig 動畫流程支援 Layered Control Rig track，透過 Backwards Solve 讓既有 Animation Sequence 與 Rig 修正直接疊加；多層 track 還能獨立權重、排序與歸零，適合鏡頭級 pose polish。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://dev.epicgames.com/documentation/unreal-engine/animating-with-control-rig-in-unreal-engine",
+      "category": "3d-animation",
+      "subcategory": "animation",
+      "ranking_score": 91.8,
+      "analysis_level": "BRIEF",
+      "brief_reason": "production-reference-limited-depth",
+      "full_analysis": [
+        {
+          "label": "動畫流程",
+          "text": "Sequencer 可同時顯示多個 Control Rig，Layered Control Rig 透過 Backwards Solve 把 Animation Sequence 當底層，再把控制器修改疊在上面；因此鏡頭修姿勢時不需要先把原動畫完整 bake 成 Control Rig，再開始第二輪調整。"
+        },
+        {
+          "label": "Production 價值",
+          "text": "對 cinematic、表演修正與 shot polish，這種 layered 做法能保留原動畫資產並讓鏡頭級修正獨立管理；不同 layer 可調權重與順序，方便把手部、視線、重心或局部誇張拆成小範圍修改，降低回改原 animation clip 的連鎖成本。"
+        },
+        {
+          "label": "導入測試",
+          "text": "Backwards Solve 必須正確建立，track 順序錯誤也可能覆蓋其他 layer。團隊應用一個實際角色測 layer ordering、權重動畫、root motion、constraint、Control Rig bake／unbake 與重開 Sequencer 的一致性，並制定 shot layer 命名與鎖定規則。"
+        }
+      ],
+      "rank_global": 6,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "blender-render-gif-170",
+      "title": "Blender Render Animated GIF 1.7：直接在 Blender 內輸出 GIF，新增品質預設與播放速度控制",
+      "summary": "Blender Extensions 的 Render Animated GIF 1.7 可用自帶 imageio-ffmpeg 直接輸出 GIF，新增 Very Low～Very High 品質、解析度百分比、固定 GIF FPS 或速度百分比，以及循環次數設定，適合快速動畫審查與社群預覽。",
+      "quick_impact": "★★★☆☆",
+      "source_url": "https://extensions.blender.org/add-ons/render-gif-animation/",
+      "category": "blender-dcc",
+      "subcategory": "addon",
+      "ranking_score": 90.6,
+      "analysis_level": "BRIEF",
+      "brief_reason": "useful-tool-or-addon-limited-depth",
+      "full_analysis": [
+        {
+          "label": "工具流程",
+          "text": "1.7 版把 GIF 輸出做成 Blender 內的直接工作流，可用品質 preset、Resolution %、固定 GIF FPS 或 Speed % 控制檔案大小與播放節奏，並設定無限或指定次數循環；套件自帶 imageio-ffmpeg，不要求另外安裝外部工具。"
+        },
+        {
+          "label": "Production 價值",
+          "text": "對動畫 blocking、rig review、內部溝通或 issue tracker，直接輸出小型 GIF 可以省掉先 render image sequence 再進剪輯工具的步驟；尤其在需要快速貼到 Slack、GitHub 或看板時，低成本預覽比高品質影片更適合反覆迭代。"
+        },
+        {
+          "label": "導入測試",
+          "text": "GIF 只有有限色彩與透明度能力，不適合當最終畫質判斷。建議用含快速動作、漸層與透明背景的片段測 dithering、色帶、檔案大小與 FPS 轉換，並規定它只作 review proxy，最終動畫仍以原 render／影片輸出為準。"
+        }
+      ],
+      "rank_global": 7,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "artstation-vfx-two-shader-tricks",
+      "title": "兩個 VFX Shader 小技巧：Blender 程序水面＋UE5 Panning Texture 的可轉移做法",
+      "summary": "技術 VFX 藝術家 Jen S Abbott 的 9/16 教學把兩個常用概念拆成可重現步驟：在 Blender 用程序 pattern、distortion 與色彩做 stylized water，在 UE5 以 UV 位移與 panning texture 建立動態材質。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://jsabbott.artstation.com/blog/category/6",
+      "category": "engine-art",
+      "subcategory": "shader",
+      "ranking_score": 89.7,
+      "analysis_level": "BRIEF",
+      "brief_reason": "practical-tutorial-limited-depth",
+      "full_analysis": [
+        {
+          "label": "Shader 流程",
+          "text": "教學用兩個不同工具說明同一核心：先建立可重複的 pattern，再用 UV／座標位移、distortion、顏色與時間驅動動態。Blender 部分著重 stylized water 的程序層疊，UE5 部分則示範 panning texture 的即時材質做法。"
+        },
+        {
+          "label": "Production 價值",
+          "text": "這類技巧容易轉移到火焰、能量、雲、魔法、介面背景與環境表面，不必依賴複雜 simulation；對技術美術來說，更重要的是把『圖樣來源、變形、時間、顏色』拆成可重用參數，讓同一 shader graph 服務多種效果。"
+        },
+        {
+          "label": "導入測試",
+          "text": "實作時應檢查世界座標與 UV 座標的差異、tiling seam、不同 FPS 下速度一致性，以及透明／半透明材質的 overdraw 成本。若要納入遊戲專案，最好把速度、方向、distortion 強度與色階做成 material instance 參數並建立效能預設。"
+        }
+      ],
+      "rank_global": 8,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "blender-bone-damped-track-batch-360",
+      "title": "Bone Damped Track Batch 3.6：Blender 批次建立骨骼 Damped Track 約束的輕量 Rig 外掛",
+      "summary": "Blender Extensions 9/16 上架的 Bone Damped Track Batch 3.6 專注動畫綁定效率，可對多骨骼批次建立 Damped Track 類約束；它是小工具型外掛，價值在減少重複 Rig 操作而非改變整套角色架構。",
+      "quick_impact": "★★★☆☆",
+      "source_url": "https://extensions.blender.org/add-ons/bone-damped-track-batch/",
+      "category": "3d-animation",
+      "subcategory": "rigging",
+      "ranking_score": 88.5,
+      "analysis_level": "BRIEF",
+      "brief_reason": "useful-tool-or-addon-limited-depth",
+      "full_analysis": [
+        {
+          "label": "Rig 工具",
+          "text": "此 extension 的定位很單純：把原本要逐骨設定的 Damped Track 類操作批次化，適合需要多條骨鏈朝向同一目標、觸手／附件／機械連桿或大量輔助骨的 setup。3.6.0 是 9/16 的初次公開版本，支援 Blender 4.2 LTS 以上。"
+        },
+        {
+          "label": "Production 價值",
+          "text": "小型 rig 工具最直接的收益是降低重複點選與漏設參數，特別是同一約束規則要套到很多骨骼時。若團隊已有自製 rig script，它也可作為『哪些步驟值得批次化』的參考，而不一定需要整個納入正式 pipeline。"
+        },
+        {
+          "label": "導入測試",
+          "text": "目前下載量與實戰證據有限，應先在測試 rig 驗證 bone selection、target、axis、existing constraint、undo、鏡像命名與重複執行是否 idempotent；再確認它不會破壞既有 driver／constraint 順序，才適合放進 production 工具箱。"
+        }
+      ],
+      "rank_global": 9,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "stylized-greek-island-modular-workflow",
+      "title": "風格化希臘島場景：把 Blender 與 UE5 當成同一條模組化環境製作迴圈",
+      "summary": "3D Tudor 的案例從 reference、greybox、模組 kit、UV／normal 到 UE5 匯入反覆來回驗證；重點是不要等模型全部完成才進引擎，而是在 kit 還在發展時就用實際 lighting、pivot、命名與材質問題反推 Blender 資產修正。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://threedtudor.artstation.com/blog/Z4MVj/blender-to-unreal-engine-5-build-a-stylized-greek-island-environment",
+      "category": "3d-production",
+      "subcategory": "environment-production",
+      "ranking_score": 87.6,
+      "analysis_level": "BRIEF",
+      "brief_reason": "practical-tutorial-limited-depth",
+      "full_analysis": [
+        {
+          "label": "場景製作流程",
+          "text": "案例先建立可重組的模組 kit，再持續把 greybox 與資產送進 Unreal 驗證 scale、lighting、UV 方向、normal／bevel、pivot 與命名。最終以 glTF／GLB 傳遞 UV、normal、tangent 與 modifier 結果，並保留 static mesh 的獨立性供場景重組。"
+        },
+        {
+          "label": "Production 價值",
+          "text": "最大價值不是某個建模技巧，而是把 Blender 與 Unreal 視為同一個回饋迴圈：引擎中發現的光照、pivot 或材質問題會回到源資產修正。這能避免『DCC 看起來完成、進引擎才大量返工』的瀑布式流程。"
+        },
+        {
+          "label": "導入測試",
+          "text": "團隊可選一組 8–12 個模組測完整往返，建立 scale、origin、naming、MikkTSpace、material slot、collision 與 reimport checklist；特別要確認 baked pivot 與 glTF／FBX 差異，再決定哪一種匯出路徑成為正式規範。"
+        }
+      ],
+      "rank_global": 10,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "aaa-character-concept-to-ingame-workflow",
+      "title": "AAA 角色從 Concept 到 In-Game：以完整實時流程檢查角色製作 handoff",
+      "summary": "ArtStation 的角色課程以 15 段未剪輯流程追蹤一個角色從草圖到 Unreal Engine 5 遊戲內實作，價值在把高模、低模、UV、貼圖、材質、角色整合與最後引擎呈現放在同一條可檢查鏈上，而不是只看單一 sculpt 成果。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://www.artstation.com/marketplace/p/1WmJo/aaa-character-workflow-from-concept-to-in-game-real-time-process",
+      "category": "3d-production",
+      "subcategory": "character-production",
+      "ranking_score": 86.4,
+      "analysis_level": "BRIEF",
+      "brief_reason": "practical-tutorial-limited-depth",
+      "full_analysis": [
+        {
+          "label": "角色製作流程",
+          "text": "課程以完整 real-time process 從 concept 開始，持續走到 in-game implementation，適合觀察一個角色如何在不同階段保留設計意圖與技術限制。比起只看 final render，這類未剪輯流程更容易看到高模、低模、材質與引擎 handoff 的實際順序。"
+        },
+        {
+          "label": "Production 價值",
+          "text": "對角色團隊最有用的是把每一階段的交付條件串起來：造型決策要能落到拓撲與材質，材質又要能在 UE5 光照與角色 shader 中成立。可把內容當作建立內部 character checklist 的參考，而不是直接照抄某位藝術家的軟體步驟。"
+        },
+        {
+          "label": "導入測試",
+          "text": "來源屬付費教學且缺少公開 benchmark，因此應聚焦可觀察的流程，而不是把品質宣稱當成客觀結果。若要套用到團隊，應用自家角色規格對照 poly budget、UV／UDIM、skin shader、hair、rig、LOD 與引擎效能，找出真正可轉移的步驟。"
+        }
+      ],
+      "rank_global": 11,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "blender-geometrynodes-to-ue-art-tools",
+      "title": "Blender Geometry Nodes → UE5：把散佈、道路與建築做成可重用程序美術工具",
+      "summary": "FastTrack 的程序美術課程用 Blender Geometry Nodes 建立垃圾散佈、拖放道路與建築工具，再透過 Altermesh 把參數帶進 Unreal Engine 5；核心不是單一場景，而是把環境規則包成可快速迭代的 artist-facing tool。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://www.artstation.com/marketplace/p/l0gV8/procedural-art-tool-creation-in-blender-geometry-nodes-to-unreal-engine-workflow",
+      "category": "emerging-case",
+      "subcategory": "procedural",
+      "ranking_score": 85.3,
+      "analysis_level": "BRIEF",
+      "brief_reason": "production-reference-limited-depth",
+      "full_analysis": [
+        {
+          "label": "程序工具流程",
+          "text": "課程用 Geometry Nodes 建立 trash scatter、drag-and-drop road 與 building generator，再以 Altermesh 把 Blender 端的程序參數帶到 Unreal Engine。這把『做一個場景』轉成『做一套可重複使用的美術工具』，更接近技術美術的 production 思維。"
+        },
+        {
+          "label": "Production 價值",
+          "text": "道路、散佈與建築都屬於高重複、常改版內容，若規則能參數化，美術可直接在場景中快速換尺寸、密度或組合，而不必每次回到手工建模。對小團隊尤其適合把常見環境任務整理成少量可維護 node group。"
+        },
+        {
+          "label": "導入測試",
+          "text": "案例使用 Blender 3.5、UE5.2 與 Altermesh，版本已不是最新，正式採用前要驗證 Blender 5.x／UE5.8 的節點相容、資產同步、cook time、collision、LOD／Nanite、material assignment 與多人版本控制，再決定是否依賴 bridge 或改成離線 bake。"
+        }
+      ],
+      "rank_global": 12,
+      "homepage_tier": "next10"
+    }
+  ],
+  "visual_evidence": {}
+}
