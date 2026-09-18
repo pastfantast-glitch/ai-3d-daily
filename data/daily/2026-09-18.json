@@ -2,7 +2,7 @@
   "date": "2026-09-18",
   "schema_version": 3,
   "metadata": {
-    "total_items": 9,
+    "total_items": 17,
     "collection_mode": "production-intelligence-preference-v1-hybrid",
     "collection_contract_effective_date": "2026-09-04",
     "preference_contract_effective_date": "2026-09-06",
@@ -16,7 +16,7 @@
     ],
     "analysis_level_counts": {
       "FULL": 0,
-      "BRIEF": 12,
+      "BRIEF": 17,
       "REJECT": 0
     },
     "analysis_level_policy": "evidence-depth-tiered; BRIEF=three source-grounded production angles with explicit limits",
@@ -30,11 +30,11 @@
       "windows": {
         "24h": {
           "status": "exhausted",
-          "candidates_found": 0
+          "candidates_found": 6
         },
         "7d": {
           "status": "exhausted",
-          "candidates_found": 4
+          "candidates_found": 6
         },
         "30d": {
           "status": "exhausted",
@@ -42,11 +42,11 @@
         },
         "6m": {
           "status": "exhausted",
-          "candidates_found": 4
+          "candidates_found": 5
         },
         "evergreen": {
           "status": "exhausted",
-          "candidates_found": 4
+          "candidates_found": 3
         }
       },
       "category_candidates": {
@@ -54,7 +54,7 @@
           "candidates_considered": 1
         },
         "3d-production": {
-          "candidates_considered": 2
+          "candidates_considered": 5
         },
         "3d-animation": {
           "candidates_considered": 3
@@ -63,10 +63,10 @@
           "candidates_considered": 3
         },
         "emerging-case": {
-          "candidates_considered": 1
+          "candidates_considered": 2
         },
         "blender-dcc": {
-          "candidates_considered": 3
+          "candidates_considered": 7
         }
       },
       "registered_source_probe": {
@@ -75,8 +75,15 @@
           "80-level": {
             "status": "checked",
             "method": "web-site-query",
-            "candidates_found": 0,
-            "candidate_ids": []
+            "candidates_found": 6,
+            "candidate_ids": [
+              "sigmapbr-relightable-scan-materials",
+              "static-between-stations-prerendered-backgrounds",
+              "cge-sculpting-tool-maya",
+              "blender-chain-generator-100",
+              "reface-205-hard-surface-retopo",
+              "edgy-geometry-worn-edges"
+            ]
           },
           "3dnchu": {
             "status": "checked",
@@ -154,8 +161,11 @@
           "sidefx-official": {
             "status": "checked",
             "method": "web-site-query",
-            "candidates_found": 0,
-            "candidate_ids": []
+            "candidates_found": 2,
+            "candidate_ids": [
+              "sidefx-h22-foundations-end-to-end",
+              "sidefx-h21-procedural-cities-games"
+            ]
           },
           "autodesk-area": {
             "status": "checked",
@@ -179,7 +189,7 @@
           }
         }
       },
-      "notes": "依 current main 完成 24h→7d→30d→6m→evergreen 搜尋、空 Rolling Backlog 檢查、六分類 targeted refill 與全部 enabled registered source probe。13 個追蹤候選中 12 個發布、1 個因既有 Blender 5.2 release page 身份與本次補丁相對影響較低而 ranked-out；未使用來源 bonus、quota 或網站偏好。"
+      "notes": "Registry 首輪去重後 12→9；依 current main 重新進行 targeted refill，新增 6 個 9/15–9/17 production 候選與 2 個 SideFX 官方 6m/evergreen 補漏。累計 21 個追蹤候選；Registry 已標記 3 個歷史重複，另有 1 個 ranked-out，17 個目前進入 canonical。未使用來源 bonus、quota 或網站偏好。"
     },
     "personalization": {
       "contract": "supabase-semantic-feedback-v1",
@@ -194,45 +204,6 @@
       "admission_bypass": false,
       "quality_gate_bypass": false,
       "source_quota": false
-    },
-    "homepage_tier_normalization": {
-      "selection_mode": "full-first-brief-fallback",
-      "requested_top5": 5,
-      "actual_top5": 5,
-      "top5_full_count": 0,
-      "top5_brief_fallback_count": 5,
-      "top5_full_only": false,
-      "brief_fallback_allowed": true,
-      "next10": 4
-    },
-    "registry_identity_normalization": {
-      "dropped_count": 3,
-      "rewritten_count": 0,
-      "policy": "verified-DONE-published-canonical-source-without-substantive-delta-skip",
-      "source_identity_precedence": "published-daily-html-card-then-canonical-json",
-      "url_identity": "scripts/url_identity.py",
-      "stage": "collection-before-ready",
-      "refill_required": true,
-      "category_deficits": {},
-      "daily_release_gate": {
-        "have": 9,
-        "min": 20,
-        "target": 30,
-        "max": 30,
-        "missing_to_min": 11,
-        "missing_to_target": 21,
-        "release_ready": false,
-        "category_counts": {
-          "ai-generation": 1,
-          "3d-production": 2,
-          "3d-animation": 2,
-          "engine-art": 2,
-          "emerging-case": 1,
-          "blender-dcc": 1
-        },
-        "release_mode": "BLOCKED",
-        "low_volume_authorized": false
-      }
     }
   },
   "items": [
@@ -349,6 +320,118 @@
       "homepage_tier": "top5"
     },
     {
+      "id": "sigmapbr-relightable-scan-materials",
+      "title": "sigmaPBR：把 Photogrammetry 掃描轉成可重新打光的 PBR 材質",
+      "summary": "CD Projekt Red 技術美術 Piotr Bieryt 公開 sigmaPBR closed beta，從 photometric／photogrammetry capture 解算 diffuse albedo、roughness、specular F0 與 normal，並維持既有 production UV atlas，目標是降低掃描資產手工重建材質反應的成本。",
+      "quick_impact": "★★★★★",
+      "source_url": "https://80.lv/articles/cd-projekt-red-s-technical-artist-unveils-pbr-solver-for-3d-scans",
+      "category": "3d-production",
+      "subcategory": "production-workflow",
+      "ranking_score": 92.6,
+      "analysis_level": "BRIEF",
+      "brief_reason": "early-release-limited-evidence",
+      "full_analysis": [
+        {
+          "label": "掃描材質流程",
+          "text": "sigmaPBR 將 photometric 與 photogrammetry capture 合併，用現有 UV atlas 直接解算 diffuse albedo、roughness、specular F0 與 normal，並提供 world-space／tangent-space normal，重點是把只含外觀顏色的掃描轉成可在不同燈光下重用的材質資料。"
+        },
+        {
+          "label": "Production 價值",
+          "text": "對大量實物掃描、道具數位化或文化資產，最耗時的往往不是幾何，而是把受拍攝光源污染的顏色拆回可重新打光的 PBR channel。若 solver 穩定，可減少 artist 手工重畫 roughness／specular，並保留既有掃描 UV 與下游材質管線。"
+        },
+        {
+          "label": "導入測試",
+          "text": "目前仍是 closed beta，公開證據主要來自開發者與示範。正式採用前應用金屬、塑膠、皮革與高反光表面各做一組 capture，檢查跨燈光 relight、UV 對齊、normal 細節、色彩校正與人工修圖時間，再和現行掃描材質流程比較。"
+        }
+      ],
+      "rank_global": 5,
+      "homepage_tier": "top5"
+    },
+    {
+      "id": "static-between-stations-prerendered-backgrounds",
+      "title": "PS1 式預渲染背景回到 Unity：用 Blender 高模離線渲染換取遊戲端低成本",
+      "summary": "《Static Between Stations》把環境與 cutscene 全部在 Blender 預先渲染，再在 Unity 播放背景影片並疊少量前景互動物件；開發者因此能使用高模掃描與 path-traced lighting，而不必把完整場景幾何與貼圖帶進 runtime。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://80.lv/articles/see-how-this-rpg-s-ps1-style-pre-rendered-backgrounds-look-in-engine",
+      "category": "emerging-case",
+      "subcategory": "case-study",
+      "ranking_score": 91.7,
+      "analysis_level": "BRIEF",
+      "brief_reason": "production-reference-limited-depth",
+      "full_analysis": [
+        {
+          "label": "場景流程",
+          "text": "案例把 Blender 場景、掃描資產與 path-traced lighting 全部離線算成背景影像／影片，Unity 端只負責播放背景並放置角色與必要前景物件；相機對位與遮擋關係成為主要技術約束，而不是即時場景的 draw call、LOD 與材質成本。"
+        },
+        {
+          "label": "Production 價值",
+          "text": "這種做法特別適合固定或受控視角的敘事遊戲：美術可以使用遠超 runtime 預算的掃描、高模與離線光照，並把每個場景的效能風險壓成近似固定的影片播放成本。它也能降低環境最佳化與跨平台材質調校的工作量。"
+        },
+        {
+          "label": "導入限制",
+          "text": "代價是相機自由度、動態光照、可破壞物件與角色遮擋都受限，影片解析度與壓縮也會影響記憶體／I/O。導入前應用一個實際鏡頭測 foreground mask、角色深度、鏡頭轉場、影片解碼與不同解析度，確認這種視覺語言真的符合玩法。"
+        }
+      ],
+      "rank_global": 6,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "cge-sculpting-tool-maya",
+      "title": "CGE Sculpting Tool：在 Maya 內加入 GPU 多解析雕刻、Sculpt Layers 與 Auto LOD",
+      "summary": "Morteza Ahmadi 發布 Maya 專用 CGE Sculpting Tool，主打 GPU accelerated sculpting、multi-resolution、sculpt layers、cloth／pose brushes、cut／trim、radial symmetry、auto LOD／decimation 與早期 SDF voxel sculpt，鎖定不想在 Maya／ZBrush 間反覆切換的資產流程。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://80.lv/articles/one-time-purchase-sculpting-tool-for-maya-inspired-by-zbrush",
+      "category": "blender-dcc",
+      "subcategory": "maya",
+      "ranking_score": 90.8,
+      "analysis_level": "BRIEF",
+      "brief_reason": "useful-tool-or-addon-limited-depth",
+      "full_analysis": [
+        {
+          "label": "Maya 雕刻流程",
+          "text": "工具把 multi-resolution sculpt、sculpt layers、24 種雕刻 brush、cloth collision、pose brush、cut／trim、radial symmetry 與 auto LOD／decimation 放回 Maya，並加入早期 SDF voxel sculpt，目標是在同一 DCC 完成建模、雕刻、retopo、UV 與 render。"
+        },
+        {
+          "label": "Production 價值",
+          "text": "若角色或道具本來就以 Maya 為主，減少 ZBrush 往返可降低 export/import、scale、vertex order 與版本管理摩擦，特別適合中度雕刻、corrective shape 或需要頻繁回到 rig／UV 的資產。永久授權也提供了另一種工具成本模型。"
+        },
+        {
+          "label": "導入測試",
+          "text": "目前效能與大型 production 穩定性仍以作者展示為主。應用數百萬面模型測 brush latency、layer 記憶體、undo、auto LOD、UV／retopo handoff、保存／重開與 Maya 2023–2027 plugin 相容性，再決定它能替代多少現有 ZBrush 步驟。"
+        }
+      ],
+      "rank_global": 7,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "blender-chain-generator-100",
+      "title": "Blender Chain Generator 1.0：253 種鏈條資產＋可編輯 Curve／Sag 的快速道具生成",
+      "summary": "PeakDreams Studio 的 Chain Generator v1.0.0 讓使用者以 View Plane 或 Surface 模式直接繪製鏈條，生成後仍可編輯 curve、Offset、Scale、Tilt、Sag 與 attachment points；輸出是真實 mesh，可再 rig／animate，而非只作 viewport 效果。",
+      "quick_impact": "★★★☆☆",
+      "source_url": "https://80.lv/articles/blender-add-on-that-generates-adjustable-chains-in-seconds",
+      "category": "blender-dcc",
+      "subcategory": "addon",
+      "ranking_score": 89.9,
+      "analysis_level": "BRIEF",
+      "brief_reason": "useful-tool-or-addon-limited-depth",
+      "full_analysis": [
+        {
+          "label": "生成流程",
+          "text": "Chain Generator 以 253 種預製鏈條為起點，支援直接在視圖平面或指定表面上 draw curve，再用 Offset、Scale、Tilt、Sag Amount／Count 調整貼附距離、鏈節尺寸、旋轉與下垂；生成結果是真實 mesh，因此後續仍能進行 rig 與動畫。"
+        },
+        {
+          "label": "Production 價值",
+          "text": "鏈條、飾品、纜線與裝備邊飾屬於高重複但手工排布費時的資產，curve-driven 生成可讓美術先以造型與路徑迭代，再決定何時轉成最終 mesh。對角色裝備與環境道具，這類工具能把大量微調集中到少數參數。"
+        },
+        {
+          "label": "導入測試",
+          "text": "正式使用前要檢查長鏈的 polygon 數、curve 轉 mesh 後的 UV／normal、極端 Sag 的自交、貼表面時的 offset 穿插，以及 rig／physics 需要的 segment 分布；若資產要上行動平台，也應建立低模或 instance 化的替代輸出。"
+        }
+      ],
+      "rank_global": 8,
+      "homepage_tier": "next10"
+    },
+    {
       "id": "artstation-vfx-two-shader-tricks",
       "title": "兩個 VFX Shader 小技巧：Blender 程序水面＋UE5 Panning Texture 的可轉移做法",
       "summary": "技術 VFX 藝術家 Jen S Abbott 的 9/16 教學把兩個常用概念拆成可重現步驟：在 Blender 用程序 pattern、distortion 與色彩做 stylized water，在 UE5 以 UV 位移與 panning texture 建立動態材質。",
@@ -373,8 +456,36 @@
           "text": "實作時應檢查世界座標與 UV 座標的差異、tiling seam、不同 FPS 下速度一致性，以及透明／半透明材質的 overdraw 成本。若要納入遊戲專案，最好把速度、方向、distortion 強度與色階做成 material instance 參數並建立效能預設。"
         }
       ],
-      "rank_global": 5,
-      "homepage_tier": "top5"
+      "rank_global": 9,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "reface-205-hard-surface-retopo",
+      "title": "ReFace 2.0.5：Blender 對掃描／AI Mesh／雕刻高模加入 Drawn Patch Retopo",
+      "summary": "ReFace 2.0.5 擴充 Corner Guided Grid Refill，新增 Drawn Patch Mode、patch extension、sector decomposition、Display Modes 與更彈性的 Knife Tool，明確鎖定 3D scans、AI generated meshes 與雕刻網格等缺乏乾淨 edge flow 的 hard-surface retopology。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://80.lv/articles/hard-surface-retopology-just-got-easier-in-blender",
+      "category": "3d-production",
+      "subcategory": "production-workflow",
+      "ranking_score": 88.8,
+      "analysis_level": "BRIEF",
+      "brief_reason": "useful-tool-or-addon-limited-depth",
+      "full_analysis": [
+        {
+          "label": "Retopo 流程",
+          "text": "2.0.5 的重點是讓使用者在不規則高模表面上直接畫 patch，配合 Corner Guided Grid Refill、sector decomposition 與延伸 patch 建立可控制的 hard-surface topology；Knife Tool 與 display mode 也針對 retopo 編輯與檢查補強。"
+        },
+        {
+          "label": "Production 價值",
+          "text": "這對掃描、AI 生成模型與雕刻高模特別有意義，因為它們常有可用外形但拓撲無法直接進遊戲。半自動 patch 流程若能保留設計 edge，可把『整個重拓』轉成『人工指定關鍵區＋工具補網格』，更符合 hard-surface 資產整理需求。"
+        },
+        {
+          "label": "導入測試",
+          "text": "作者也展示目前限制，因此不應假設所有 mesh 都能一鍵完成。建議以孔洞、薄片、銳角、圓柱與密集 boolean 的代表模型測 patch continuity、pole 分布、shading、subdivision、UV 前整理時間，並和 Quad Remesher／手工 retopo 比較返工量。"
+        }
+      ],
+      "rank_global": 10,
+      "homepage_tier": "next10"
     },
     {
       "id": "blender-bone-damped-track-batch-360",
@@ -401,7 +512,35 @@
           "text": "目前下載量與實戰證據有限，應先在測試 rig 驗證 bone selection、target、axis、existing constraint、undo、鏡像命名與重複執行是否 idempotent；再確認它不會破壞既有 driver／constraint 順序，才適合放進 production 工具箱。"
         }
       ],
-      "rank_global": 6,
+      "rank_global": 11,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "edgy-geometry-worn-edges",
+      "title": "Edgy：用真實幾何而非 Curvature Mask 做可見輪廓破損，Blender／C4D 共用同一核心",
+      "summary": "Cornelius Dämmrich 的 Edgy 以 geometry-based edge damage 取代只在 shader 上做髒污假象，提供 6 種 damage modules；核心幾何演算法與 DCC API 分離，因此 Cinema 4D 與 Blender 前端可共用同一 compiled binary，甚至用相同 seed 驗 exact match。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://80.lv/articles/3d-artist-on-creating-a-geometry-based-plugin-that-makes-realistic-worn-edges",
+      "category": "blender-dcc",
+      "subcategory": "addon",
+      "ranking_score": 87.9,
+      "analysis_level": "BRIEF",
+      "brief_reason": "production-reference-limited-depth",
+      "full_analysis": [
+        {
+          "label": "破損技術",
+          "text": "Edgy 不只依 pointiness、curvature、AO 或 proximity mask 在材質上偽造磨損，而是實際改變 mesh 邊緣，讓 chips、cracks 與缺口在逆光、近鏡頭與 silhouette 上都成立；它把 geometry kernel 與 DCC front end 分開，Blender／C4D 共用同一核心。"
+        },
+        {
+          "label": "Production 價值",
+          "text": "對需要 hero prop、建築破損或近距離鏡頭的資產，真正改變輪廓比單純 shader edge wear 更可靠；共用核心也示範了一種工具架構：演算法只吃 points／polygons、回傳 mesh，宿主 DCC 僅負責 UI 與資料轉換，較容易維護跨軟體一致性。"
+        },
+        {
+          "label": "導入測試",
+          "text": "幾何破損會增加面數並可能改變 UV、normal 與 bake，因此應測 low／high density mesh、non-manifold、bevel、subdivision、seed 可重現性與 export。遊戲資產還要確認破損是在 high-poly bake 階段使用，還是要保留到 runtime mesh。"
+        }
+      ],
+      "rank_global": 12,
       "homepage_tier": "next10"
     },
     {
@@ -429,7 +568,35 @@
           "text": "團隊可選一組 8–12 個模組測完整往返，建立 scale、origin、naming、MikkTSpace、material slot、collision 與 reimport checklist；特別要確認 baked pivot 與 glTF／FBX 差異，再決定哪一種匯出路徑成為正式規範。"
         }
       ],
-      "rank_global": 7,
+      "rank_global": 13,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "sidefx-h22-foundations-end-to-end",
+      "title": "Houdini 22 Foundations：從 Modeling、APEX Animation、Solaris Lookdev 到 Karma XPU 的完整小型專案",
+      "summary": "SideFX 以 1 小時 35 分的 soccer ball 專案串起 Houdini 22 modeling、材質、燈光、APEX Scene Animate、Solaris Stage 與 Karma XPU，重點是讓初學者看見 node-based workflow 如何跨資產、動畫與 render 形成同一條可追蹤流程。",
+      "quick_impact": "★★★☆☆",
+      "source_url": "https://www.sidefx.com/tutorials/h22-foundations-model-render-animate/",
+      "category": "blender-dcc",
+      "subcategory": "houdini",
+      "ranking_score": 86.8,
+      "analysis_level": "BRIEF",
+      "brief_reason": "practical-tutorial-limited-depth",
+      "full_analysis": [
+        {
+          "label": "完整製作流程",
+          "text": "官方教學不是只教單一 node，而是從建模足球開始，加入材質與貼圖，再用 APEX Scene Animate 製作 squash-and-stretch 彈跳，最後進 Solaris Stage 設燈光、相機並用 Karma XPU 完成輸出，能直接觀察 Houdini 22 各上下文的銜接。"
+        },
+        {
+          "label": "Production 價值",
+          "text": "對正在評估 Houdini 是否只適合程序建模／VFX 的美術團隊，這種 end-to-end 小專案可用來建立共同操作基線，尤其能理解 APEX、Solaris 與 Karma 在同一 hip 檔中的角色，之後再延伸到正式角色、場景或 procedural asset。"
+        },
+        {
+          "label": "導入測試",
+          "text": "它屬 Foundations 教學，不代表大型 production 的效能與協作成熟度。若要導入，可先讓團隊重做同一小專案，再測版本管理、HDA 封裝、USD／Solaris layer、APEX rig 資料與 Karma render farm，確認哪些環節需另建 studio convention。"
+        }
+      ],
+      "rank_global": 14,
       "homepage_tier": "next10"
     },
     {
@@ -457,8 +624,36 @@
           "text": "來源屬付費教學且缺少公開 benchmark，因此應聚焦可觀察的流程，而不是把品質宣稱當成客觀結果。若要套用到團隊，應用自家角色規格對照 poly budget、UV／UDIM、skin shader、hair、rig、LOD 與引擎效能，找出真正可轉移的步驟。"
         }
       ],
-      "rank_global": 8,
+      "rank_global": 15,
       "homepage_tier": "next10"
+    },
+    {
+      "id": "sidefx-h21-procedural-cities-games",
+      "title": "SideFX H21 Procedural Cities for Games：把城市生成規則整理成可重用的 Gamedev Workflow",
+      "summary": "SideFX 的進階教學以 Houdini 21 建立遊戲用程序城市，定位在 Modeling、Pipeline & AI、SideFX Labs 與 World Building；對環境製作而言，價值是把道路、街區與建築配置從一次性場景改成可重算的規則系統。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://www.sidefx.com/tutorials/build-procedural-cities-for-games/",
+      "category": "3d-production",
+      "subcategory": "environment-production",
+      "ranking_score": 85.7,
+      "analysis_level": "BRIEF",
+      "brief_reason": "practical-tutorial-limited-depth",
+      "full_analysis": [
+        {
+          "label": "程序城市流程",
+          "text": "官方課程以 Houdini 21 為基礎，將遊戲城市視為可重複生成的 world-building 問題，而不是逐棟手工擺放；內容橫跨建模、Gamedev、Pipeline 與 SideFX Labs，適合用來拆解道路、區塊、建築與規則化資產如何串成一條程序流程。"
+        },
+        {
+          "label": "Production 價值",
+          "text": "城市類場景最大的成本來自大量重複資產與設計改版，程序化能把規則變更重新傳導到整個場景，讓美術把時間放在模組品質、例外處理與 art direction。對需要多張地圖或頻繁 layout 變更的專案，這比單次手工建城更具槓桿。"
+        },
+        {
+          "label": "導入測試",
+          "text": "程序城市並不等於自動完成美術品質；導入時應用一個小街區測道路交叉口、地形貼合、建築變體、collision、LOD／Nanite、材質分配與 Unreal／Unity handoff，並保留 artist override，避免規則系統壓過實際構圖需求。"
+        }
+      ],
+      "rank_global": 16,
+      "homepage_tier": "category_only"
     },
     {
       "id": "blender-geometrynodes-to-ue-art-tools",
@@ -485,8 +680,8 @@
           "text": "案例使用 Blender 3.5、UE5.2 與 Altermesh，版本已不是最新，正式採用前要驗證 Blender 5.x／UE5.8 的節點相容、資產同步、cook time、collision、LOD／Nanite、material assignment 與多人版本控制，再決定是否依賴 bridge 或改成離線 bake。"
         }
       ],
-      "rank_global": 9,
-      "homepage_tier": "next10"
+      "rank_global": 17,
+      "homepage_tier": "category_only"
     }
   ],
   "visual_evidence": {}
