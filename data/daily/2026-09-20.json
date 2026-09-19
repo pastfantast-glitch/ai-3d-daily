@@ -262,16 +262,16 @@
       "brief_reason": "useful-tool-or-addon-limited-depth",
       "full_analysis": [
         {
-          "label": "Retopo 工作方式",
-          "text": "這個工具不是只做均勻重網格，而是分別處理 hard-surface flat panel 與 organic surface，並提供目標 face count 控制；服裝流程還能依 UV panel 分區處理，盡量保存原本 seam 結構。"
+          "label": "Retopo 技術流程",
+          "text": "Smart Remesh 3 的技術重點不是只做均勻重網格，而是分別處理 hard-surface flat panel 與 organic surface，並提供目標 face count 控制；服裝流程還能依 UV panel 分區處理並盡量保存 seam。"
         },
         {
-          "label": "Production 影響",
-          "text": "對 AI 3D、掃描或 ZBrush 高模，真正節省時間的點在於先把髒網格轉成可繼續編輯的 quad cage，再進 UV、bake 或 rig；若平面區能減少無意義 edge loop，硬表面資產特別有價值。"
+          "label": "Production 價值",
+          "text": "對 AI 3D、掃描或 ZBrush 高模，先把髒網格轉成可繼續編輯的 quad cage，再進 UV、bake 或 Rig，可直接降低手工 retopo 成本；平面區減少無意義 edge loop 對硬表面資產尤其有價值。"
         },
         {
           "label": "導入測試",
-          "text": "不要只比較前後 polygon 數；應用角色衣服、機械零件與 AI 生成 mesh 各測一組，量測 silhouette 偏差、UV seam 保存、hard edge、bake cage、變形區 edge flow 和手工 cleanup 分鐘數，再判斷是否值得進正式流程。"
+          "text": "不要只比較 polygon 數；應以角色衣服、機械零件與 AI mesh 各測一組，驗證 silhouette、UV seam、hard edge、bake cage、變形區 edge flow 與 cleanup 分鐘數，再判斷是否適合正式流程。"
         }
       ],
       "rank_global": 2,
@@ -458,16 +458,16 @@
       "brief_reason": "useful-tool-or-addon-limited-depth",
       "full_analysis": [
         {
-          "label": "動畫操作內容",
-          "text": "這套工具把常見 pose interpolation、neighbor blend、push/pull、time offset、noise、smooth／harsh 與 simplify／bake 集中成 K 面板滑桿，讓 Blender animator 少在 Graph Editor 中反覆手動做同類曲線操作。"
+          "label": "動畫工具流程",
+          "text": "Animo Sliders 把 pose interpolation、neighbor blend、push/pull、time offset、noise、smooth／harsh 與 simplify／bake 集中成 Blender K 面板滑桿，技術上是把常見 Graph Editor 操作封裝成可重複動畫工具。"
         },
         {
           "label": "Production 價值",
-          "text": "對從 Maya 轉 Blender 或需要快速 blocking／polish 的團隊，滑桿式操作降低記憶不同 command 的成本，也讓一些原本靠 script 的微調更容易交給一般 animator；免費商用適合低成本試導入。"
+          "text": "對從 Maya 轉 Blender 或需要快速 blocking／polish 的團隊，滑桿式操作可降低命令記憶與重複曲線編修成本，也讓一般 animator 更容易使用原本依賴 script 的微調功能。"
         },
         {
           "label": "導入測試",
-          "text": "目前不是完整 Animo，而且支援範圍標示 Blender 4.0–5.2；先用 locomotion 與 attack 各一段測 Tween、Time Offset、Simplify/Bake 是否保留既有 NLA／constraint 行為，並確認 5.3 開發版相容性再升級。"
+          "text": "目前不是完整 Animo，支援範圍標示 Blender 4.0–5.2；應用 locomotion 與 attack 各一段實測 Tween、Time Offset、Simplify/Bake 是否保留 NLA／constraint 行為，並驗證 5.3 相容性。"
         }
       ],
       "rank_global": 9,
@@ -542,12 +542,16 @@
       "brief_reason": "production-reference-limited-depth",
       "full_analysis": [
         {
-          "label": "大型場景方法",
-          "text": "案例顯示 procedural tool 更適合先處理道路 spline、重複佈局與起始骨架，而最終視覺密度、敘事與區域辨識度仍靠 artist-authored placement；這對大型城市場景的工具投資方向很有參考價值。"
+          "label": "大型場景流程",
+          "text": "Night City 的製作流程顯示 procedural road spline 更適合負責起始佈局與重複結構，而建築、廣告與街道細節仍以 artist-authored placement 完成；這是一種工具輔助手工而非取代手工的場景設計。"
         },
         {
-          "label": "導入判斷",
-          "text": "若團隊正在做程序化城市，應把 KPI 從『自動生成比例』改成 artist cleanup 時間、可控性與最終品質；工具輸出若無法快速被美術覆寫，規模越大反而越容易累積修正成本。"
+          "label": "Production 影響",
+          "text": "對大型城市專案，真正的 production 價值在縮短 blockout 與重複配置時間，同時保留美術對密度、敘事與區域辨識度的控制；程序工具若可快速被人工覆寫，才會降低總製作成本。"
+        },
+        {
+          "label": "導入風險與驗證",
+          "text": "若團隊導入程序化城市，應測試 artist cleanup 時間、可覆寫性、LOD/streaming 相容與最終視覺差異；只追求自動生成比例可能把成本轉移到後段 cleanup，需用實際關卡驗證。"
         }
       ],
       "rank_global": 12,
@@ -710,12 +714,16 @@
       "brief_reason": "practical-tutorial-limited-depth",
       "full_analysis": [
         {
-          "label": "SDF 材質工作流",
-          "text": "SDF 先建立可程序控制的形狀，再交給 Shape Splatter v2 分布，適合需要大量可變形圖案的材質；形狀與材質參數分離後，同一 graph 更容易換主題。"
+          "label": "SDF 材質技術流程",
+          "text": "Designer 先用 SDF 建立可程序控制的小熊形狀，再交給 Shape Splatter v2 分布；這種技術流程把形狀生成與材質控制分離，適合大量變體與可重用 graph。"
         },
         {
-          "label": "假半透明方法",
-          "text": "平面材質無法真正表現厚度時，可用 AO、edge specular、roughness 與色彩分層做視覺近似；遊戲中仍需確認不同燈光與 mip 距離下是否維持 jelly 感。"
+          "label": "Production 價值",
+          "text": "用 AO、edge specular、roughness 與色彩分層在平面材質上近似 jelly 半透明，可避免為每個圖案建立完整幾何，對 stylized material library 與快速換色換形狀有直接製作價值。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "這種方法主要是假半透明，不等同真實體積傳輸；進遊戲前要在不同燈光、背景、mip 距離與 tone mapping 下實測，確認材質不會失去厚度感，必要時再補 shader 端近似。"
         }
       ],
       "rank_global": 19,
@@ -782,12 +790,16 @@
       "brief_reason": "early-release-limited-evidence",
       "full_analysis": [
         {
-          "label": "Compositor 方向",
-          "text": "Layered Compositing 進 main 後，Blender 5.3 的合成架構會更適合把 scene effect 與多層結果管理在同一工作流；對 NPR、後製與 shot-based pipeline 都值得提前做相容測試。"
+          "label": "Compositor 技術流程",
+          "text": "Layered Compositing 主 PR 已合併到 Blender 5.3 開發線，技術方向是把 Scene Effect 與多層合成結果更完整地留在 Compositor 工作流中，減少外部後製工具往返。"
         },
         {
-          "label": "成熟度",
-          "text": "目前仍在 5.3 開發期且 UI/命名持續調整，現階段應用測試檔驗證 node 行為與輸出一致性，不宜直接把 production template 鎖在尚未 beta 的介面。"
+          "label": "Production 影響",
+          "text": "對 NPR、動畫與 shot-based pipeline，分層合成若能直接在 Blender 內管理，可降低 EXR 中間檔、版本同步與 review 成本，並讓 lighting/compositing 調整更靠近原始 scene。"
+        },
+        {
+          "label": "成熟度與測試",
+          "text": "目前仍在 5.3 開發期，UI 與命名持續調整；導入前應用代表性 shot 驗證 node 行為、color management、render layer 輸出與 farm 相容，尚不適合鎖定正式 template。"
         }
       ],
       "rank_global": 22,
@@ -830,12 +842,16 @@
       "brief_reason": "early-release-limited-evidence",
       "full_analysis": [
         {
-          "label": "Render 工具鏈",
-          "text": "CUDA major toolchain 切換會影響 build、driver baseline 與特定 GPU/OS 組合，即使 scene feature 不變，也可能改變 farm deployment 與自建版本的驗證矩陣。"
+          "label": "Render 技術變更",
+          "text": "Cycles 團隊正規劃 CUDA 12→13 的工具鏈切換，並同步處理 Windows ARM64、Intel libraries 與 compiler/driver 問題；這屬於渲染後端與 build baseline 的技術變更。"
         },
         {
-          "label": "Production 建議",
-          "text": "在官方 build 正式切換前先不要動既有 farm；應等 daily/beta 後用代表性 Cycles 場景測 kernel compile、OptiX/CUDA fallback、driver 版本與 ARM64 節點相容性。"
+          "label": "Production 影響",
+          "text": "即使 scene 功能沒有改，CUDA major version 仍可能改變 render farm 的 driver baseline、自建 Blender 發行版與 GPU 節點維護成本；大型團隊需把工具鏈版本納入部署矩陣。"
+        },
+        {
+          "label": "導入風險與驗證",
+          "text": "正式切換前應保留既有 farm，等 daily/beta 後用代表性 Cycles 場景實測 kernel compile、OptiX/CUDA fallback、driver 相容性與 ARM64 節點；未驗證前不宜直接更新所有 render node。"
         }
       ],
       "rank_global": 24,
@@ -854,12 +870,16 @@
       "brief_reason": "short-official-announcement",
       "full_analysis": [
         {
-          "label": "Graphics API 穩定化",
-          "text": "從 experimental namespace 移到正式 Rendering namespace，代表 GraphicsStateCollection 更適合被工具鏈直接依賴；Importer 能連結既有 Shader 也減少 graphics state 與 shader asset 分離管理的摩擦。"
+          "label": "Graphics API 技術變更",
+          "text": "Unity 6000.6 將 GraphicsStateCollection 從 Experimental.Rendering 移到正式 UnityEngine.Rendering namespace，Importer 也新增連結既有 Shader 資產能力，代表 graphics state 管理 API 正式化。"
         },
         {
-          "label": "升版檢查",
-          "text": "既有工具若引用舊 namespace 需要先做 API migration；同時應重跑 shader variant collection、warmup、platform graphics validation 與 build stripping 測試，避免只改 compile error 卻漏掉 runtime 差異。"
+          "label": "Production 影響",
+          "text": "對 shader variant、warmup 與 graphics pipeline 工具，正式 namespace 可降低依賴 experimental API 的維護風險，Importer 連結 Shader 也讓 state collection 與資產管理更容易整合進 production tooling。"
+        },
+        {
+          "label": "升版測試與相容性",
+          "text": "既有工具若引用舊 namespace 必須先做 API migration，並重跑 shader variant collection、warmup、platform graphics validation、build stripping 與 runtime 相容測試，避免只修 compile error 卻漏掉行為差異。"
         }
       ],
       "rank_global": 25,
