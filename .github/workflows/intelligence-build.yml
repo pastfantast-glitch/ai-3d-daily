@@ -4,6 +4,7 @@ on:
   push:
     branches: [main]
     paths:
+      - 'data/publish/*.collector'
       - 'data/publish/*.request'
       - 'data/publish/*.ready'
   workflow_dispatch:
