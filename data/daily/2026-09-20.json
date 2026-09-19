@@ -1,0 +1,832 @@
+{
+  "date": "2026-09-20",
+  "schema_version": 3,
+  "metadata": {
+    "total_items": 22,
+    "collection_mode": "production-intelligence-preference-v1-hybrid",
+    "collection_contract_effective_date": "2026-09-04",
+    "preference_contract_effective_date": "2026-09-06",
+    "admission_policy_effective_date": "2026-09-15",
+    "discovery_windows": [
+      "24h",
+      "7d",
+      "30d",
+      "6m",
+      "evergreen"
+    ],
+    "analysis_level_counts": {
+      "FULL": 0,
+      "BRIEF": 22,
+      "REJECT": 0
+    },
+    "analysis_level_policy": "evidence-depth-tiered; BRIEF=three source-grounded production angles with explicit limits",
+    "full_analysis_heading_language": "zh-Hant",
+    "discovery_coverage": {
+      "fill_ladder_exhausted": true,
+      "backlog_checked": true,
+      "backlog_remaining_eligible": 0,
+      "targeted_refill_performed": true,
+      "quality_first_confirmed": true,
+      "windows": {
+        "24h": {
+          "status": "exhausted",
+          "candidates_found": 0
+        },
+        "7d": {
+          "status": "exhausted",
+          "candidates_found": 14
+        },
+        "30d": {
+          "status": "exhausted",
+          "candidates_found": 4
+        },
+        "6m": {
+          "status": "exhausted",
+          "candidates_found": 3
+        },
+        "evergreen": {
+          "status": "exhausted",
+          "candidates_found": 1
+        }
+      },
+      "category_candidates": {
+        "ai-generation": {
+          "candidates_considered": 1
+        },
+        "3d-production": {
+          "candidates_considered": 5
+        },
+        "3d-animation": {
+          "candidates_considered": 5
+        },
+        "engine-art": {
+          "candidates_considered": 4
+        },
+        "emerging-case": {
+          "candidates_considered": 2
+        },
+        "blender-dcc": {
+          "candidates_considered": 5
+        }
+      },
+      "registered_source_probe": {
+        "performed": true,
+        "sources": {
+          "80-level": {
+            "status": "checked",
+            "method": "web-site-query",
+            "candidates_found": 9,
+            "candidate_ids": [
+              "blender53-native-gaussian-splats",
+              "ankara-street-environment-breakdown",
+              "middle-east-courtyard-pass-workflow",
+              "smart-remesh3-blender-retopo",
+              "texlab-ue58-pbr-pack",
+              "animo-sliders-blender",
+              "blender-overgrown-open-film-pipeline",
+              "dissectible-anatomy-realtime-deformation",
+              "keyflow-maya-animation-toolset"
+            ]
+          },
+          "3dnchu": {
+            "status": "checked",
+            "method": "web-site-query",
+            "candidates_found": 0,
+            "candidate_ids": []
+          },
+          "cgworld-jp": {
+            "status": "checked",
+            "method": "web-site-query",
+            "candidates_found": 2,
+            "candidate_ids": [
+              "animo-v10-maya-toolkit",
+              "agora-ue5-realtime-animation-workflow"
+            ]
+          },
+          "bilibili-mobile": {
+            "status": "checked",
+            "method": "web-site-query",
+            "candidates_found": 0,
+            "candidate_ids": []
+          },
+          "artstation": {
+            "status": "checked",
+            "method": "web-site-query",
+            "candidates_found": 1,
+            "candidate_ids": [
+              "stylized-pirate-chest-blender-ue58"
+            ]
+          },
+          "gumroad-discover": {
+            "status": "checked",
+            "method": "web-site-query",
+            "candidates_found": 0,
+            "candidate_ids": []
+          },
+          "xiaohongshu": {
+            "status": "checked",
+            "method": "web-site-query",
+            "candidates_found": 0,
+            "candidate_ids": []
+          },
+          "cg-channel": {
+            "status": "checked",
+            "method": "web-site-query",
+            "candidates_found": 3,
+            "candidate_ids": [
+              "keyflow-maya-animation-toolset",
+              "armorpaint-10-release",
+              "silo-2026-2-io-math"
+            ]
+          },
+          "blender-official": {
+            "status": "checked",
+            "method": "latest-index",
+            "candidates_found": 1,
+            "candidate_ids": [
+              "blender-small-teams-2026-roadmap"
+            ]
+          },
+          "epic-developer-community": {
+            "status": "checked",
+            "method": "web-site-query",
+            "candidates_found": 0,
+            "candidate_ids": []
+          },
+          "unity-official": {
+            "status": "checked",
+            "method": "web-site-query",
+            "candidates_found": 3,
+            "candidate_ids": [
+              "unity67-urp-ssr-preview",
+              "unity67-surface-cache-gi-preview",
+              "unity65-shader-function-reflection"
+            ]
+          },
+          "sidefx-official": {
+            "status": "checked",
+            "method": "latest-index",
+            "candidates_found": 1,
+            "candidate_ids": [
+              "houdini22-character-rigging-apex"
+            ]
+          },
+          "autodesk-area": {
+            "status": "checked",
+            "method": "web-site-query",
+            "candidates_found": 0,
+            "candidate_ids": []
+          },
+          "adobe-substance-3d": {
+            "status": "checked",
+            "method": "latest-index",
+            "candidates_found": 1,
+            "candidate_ids": [
+              "substance-painter-1215-fixes"
+            ]
+          },
+          "game-developer": {
+            "status": "checked",
+            "method": "web-site-query",
+            "candidates_found": 0,
+            "candidate_ids": []
+          }
+        }
+      },
+      "notes": "已依 current main 完成 24h→7d→30d→6m→evergreen fill ladder、空 Rolling Backlog 檢查、六分類 targeted refill、15 個 enabled registered source probe、來源驗證與 Published Intelligence Registry 搜尋去重。22 個入選候選皆未在既有 repo canonical identity 搜尋中命中；未使用來源 bonus、quota 或網站偏好。Personalization 僅以 category/tool/topic/tag 語意訊號做 bounded ranking/discovery expansion。"
+    },
+    "personalization": {
+      "contract": "supabase-semantic-feedback-v1",
+      "status": "applied",
+      "vote_count": 10,
+      "profile_fingerprint": "30a20544543c9eac13cf99ba0cc788e87f4f28c9b7f4c834f16057ef47be6e3e",
+      "max_rank_multiplier": 0.2,
+      "max_query_expansion_fraction": 0.2,
+      "raw_profile_committed": false,
+      "bookmarks_used": false,
+      "domain_weights_used": false,
+      "admission_bypass": false,
+      "quality_gate_bypass": false,
+      "source_quota": false
+    }
+  },
+  "items": [
+    {
+      "id": "meshy71-api-4k-sep18",
+      "title": "Meshy 7.1 API 正式加入 4K 幾何解析度，latest 也切到 7.1",
+      "summary": "Meshy 9/18 API 更新把 meshy-7.1 加入 Text/Image/Multi-Image to 3D，並以 geometry_resolution 取代 ultra_mode；4K 只支援 7.1／latest，Multi-Image 暫不支援，2K 與 4K 都是額外 5 credits。",
+      "quick_impact": "★★★★★",
+      "source_url": "https://docs.meshy.ai/zh-Hant/api/changelog",
+      "category": "ai-generation",
+      "subcategory": "ai-3d",
+      "ranking_score": 98.6,
+      "analysis_level": "BRIEF",
+      "brief_reason": "short-official-announcement",
+      "full_analysis": [
+        {
+          "label": "API 與品質選項",
+          "text": "這次不是只改網頁 UI，而是 API contract 直接新增 meshy-7.1 與 standard／2k／4k 幾何解析度；latest 也會解析到 7.1，既有 meshy-7 雖仍可跑但已進入 deprecated 狀態。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對批次 Image-to-3D 或 Text-to-3D pipeline，4K 可以把更高幾何細節直接變成可控參數，而且 2K 與 4K 都只加 5 credits；但 Multi-Image 目前不能選 4K，四視圖工作流仍要另外評估。"
+        },
+        {
+          "label": "導入測試",
+          "text": "建議用同一組角色與硬表面四視圖固定 seed 比較 standard、2K、4K 的輪廓、薄片、手指、裝備縫隙與 raw triangle 數，再把 Remesh／Retopo 後的有效細節保留率一起記錄，避免只看高模視覺差異。"
+        }
+      ],
+      "rank_global": 1,
+      "homepage_tier": "top5"
+    },
+    {
+      "id": "agora-ue5-realtime-animation-workflow",
+      "title": "Agora Studio：把動畫 pipeline 搬進 UE5，減少 FBX 往返並讓部門平行作業",
+      "summary": "Unreal Fest Chicago 2026 的 Agora Studio 講演拆解《A-COM》即時動畫流程：用 Sequencer、sub-sequence 與 baked clip 管理鏡頭和版本，讓動畫、燈光與其他部門更早平行進入引擎。",
+      "quick_impact": "★★★★★",
+      "source_url": "https://cgworld.jp/flashnews/01-202609-UE5-RealTimeAnim.html",
+      "category": "3d-animation",
+      "subcategory": "animation",
+      "ranking_score": 96.8,
+      "analysis_level": "BRIEF",
+      "brief_reason": "production-reference-limited-depth",
+      "full_analysis": [
+        {
+          "label": "動畫流程重構",
+          "text": "案例核心是把『DCC 完成後再丟引擎』改成更早在 Unreal Engine 內完成鏡頭與動畫整合，以 Sequencer 和 sub-sequence 拆分工作，減少 FBX 反覆輸出造成的等待與版本落差。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對需要動畫、燈光、鏡頭、特效平行推進的團隊，這種做法能把引擎提早變成共同檢視環境；baked clip 又能在需要穩定交付時固定結果，兼顧可編輯性與版本可控性。"
+        },
+        {
+          "label": "導入測試",
+          "text": "若要套用到遊戲動畫，先用一個 20–30 秒 Sequencer 測試 Control Rig、Morph、動畫片段與 DCC 回改的責任邊界，記錄 round-trip 時間、衝突率與 bake 後可追溯性，再決定哪些資料應留在引擎端。"
+        }
+      ],
+      "rank_global": 2,
+      "homepage_tier": "top5"
+    },
+    {
+      "id": "houdini22-character-rigging-apex",
+      "title": "Houdini 22 APEX 角色流程：Rig Template、Retarget、Rig Inversion 與多角色即時評估",
+      "summary": "SideFX 的 Houdini 22 Characters 更新把 APEX／KineFX 角色流程往 production 推進，包含可重用 rig templates、Biped Retarget、Mocap Transfer、Rig Inversion、APEX Debugger、Character Picker 與多角色平行 rig evaluation。",
+      "quick_impact": "★★★★★",
+      "source_url": "https://www.sidefx.com/products/whats-new-in-h22/characters/",
+      "category": "3d-animation",
+      "subcategory": "rigging",
+      "ranking_score": 95.9,
+      "analysis_level": "BRIEF",
+      "brief_reason": "short-official-announcement",
+      "full_analysis": [
+        {
+          "label": "Rigging 能力變更",
+          "text": "Houdini 22 將重點放在可重用 rig template、Biped Retarget、Mocap Transfer、Rig Inversion 與 APEX Rig Pose／Set Driven Key，目標是把建 rig、重定向與程序化控制放進更一致的角色資料流程。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對大量角色或比例差異明顯的角色群，官方提供自動 skeleton mapping、rest pose 生成與 orientation matching，可降低每隻角色重做 retarget setup 的成本；平行 rig evaluation 也針對多角色場景互動性。"
+        },
+        {
+          "label": "導入測試",
+          "text": "先挑一組人形與一組誇張比例角色，比較 Maya／UE 現有 retarget 與 APEX 的骨架映射、足底滑動、極端姿勢 deformation、facial controls 與輸出回引擎成本；AI-assisted scripting 仍是 preview，不應當成穩定 production 依賴。"
+        }
+      ],
+      "rank_global": 3,
+      "homepage_tier": "top5"
+    },
+    {
+      "id": "texlab-ue58-pbr-pack",
+      "title": "texLab：直接在 UE5.7/5.8 內驗證與封裝 ORM/RMA，避免預覽與輸出不一致",
+      "summary": "texLab 是 Unreal Editor 原生 C++ texture-packing 工具，以 JSON semantic database 定義 AO/Roughness/Metallic 等通道語意；Preview、Batch 與實際 Execute 共用同一條 pack path，並支援 dry-run 驗證和 provenance。",
+      "quick_impact": "★★★★★",
+      "source_url": "https://80.lv/articles/texlab-packing-pbr-maps-inside-ue5-without-lying-about-the-preview",
+      "category": "engine-art",
+      "subcategory": "tools",
+      "ranking_score": 94.7,
+      "analysis_level": "BRIEF",
+      "brief_reason": "useful-tool-or-addon-limited-depth",
+      "full_analysis": [
+        {
+          "label": "材質工具設計",
+          "text": "texLab 不靠檔名猜 ORM、RMA 或 ARM，而是用可由 pipeline TD 擴充的 JSON semantic database 明確描述通道；Manual、Preview、Batch 都走同一套 pack graph，降低預覽結果與真正寫檔結果分岔。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對大量 PBR 資產，Scan→Rebuild Groups→Validate→Execute 可以先 dry-run 檢查命名、來源、組合與預估輸出，再批次建立新 texture；預設 Create New 也避免直接覆寫二進位貼圖造成不可逆風險。"
+        },
+        {
+          "label": "導入測試",
+          "text": "適合拿現有 ORM/RMA 專案做 50–100 組貼圖壓測，檢查 channel semantics、Virtual Texture threshold、batch memory、命名規則與 source provenance；尤其要驗證公司既有 Substance／外包貼圖命名是否能完整映射到 JSON 規則。"
+        }
+      ],
+      "rank_global": 4,
+      "homepage_tier": "top5"
+    },
+    {
+      "id": "blender53-native-gaussian-splats",
+      "title": "Blender 5.3 Alpha 原生支援 Gaussian Splat 匯入與渲染，但 export 與色彩仍有限制",
+      "summary": "Blender 5.3 開發版加入 PLY／SPZ Gaussian Splat 匯入與各 render engine 渲染，讓掃描／照片重建資料不必先靠第三方 add-on；目前仍沒有 splat export，且效能、線性色彩與 Apply Transform 有已知限制。",
+      "quick_impact": "★★★★★",
+      "source_url": "https://80.lv/articles/blender-5-3-is-getting-native-3d-gaussian-splat-support",
+      "category": "blender-dcc",
+      "subcategory": "blender",
+      "ranking_score": 93.8,
+      "analysis_level": "BRIEF",
+      "brief_reason": "early-release-limited-evidence",
+      "full_analysis": [
+        {
+          "label": "DCC 支援變更",
+          "text": "Gaussian Splat 開始成為 Blender 原生可匯入、可渲染的資料類型，支援 PLY 與 SPZ，並可在 Blender 各 render engine 中使用；這讓 capture／3DGS 資料能更直接進入一般 DCC 場景與鏡頭流程。"
+        },
+        {
+          "label": "Production 價值",
+          "text": "若團隊用照片或影片重建環境，原生支援可減少外掛版本綁定，並讓 mesh、camera、lighting 與 splat 同場整合；對背景、previs、場景 reference 和 hybrid rendering 都有直接工作流價值。"
+        },
+        {
+          "label": "導入限制",
+          "text": "目前仍是 5.3 Alpha，官方資訊指出 export 尚未支援，Cycles／EEVEE 線性色彩顯示也不完全正確，Apply Transform 還有 scale／rotation／spherical harmonics 問題；現階段應定位為測試而非正式資產交付。"
+        }
+      ],
+      "rank_global": 5,
+      "homepage_tier": "top5"
+    },
+    {
+      "id": "smart-remesh3-blender-retopo",
+      "title": "Smart Remesh 3：Blender 自動 Retopo 同時兼顧硬表面平面與服裝 UV seam",
+      "summary": "Smart Remesh 3 針對高面數硬表面與有機模型重建 quad topology，可控制目標 face count，平面可重建成乾淨 n-gon；服裝模式會依 UV panel 處理並保留 seam，適合掃描、雕刻與 AI 生成後清網格。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://80.lv/articles/quad-remesher-for-hard-surface-organic-blender-models",
+      "category": "3d-production",
+      "subcategory": "production-workflow",
+      "ranking_score": 92.4,
+      "analysis_level": "BRIEF",
+      "brief_reason": "useful-tool-or-addon-limited-depth",
+      "full_analysis": [
+        {
+          "label": "Retopo 工作方式",
+          "text": "這個工具不是只做均勻重網格，而是分別處理 hard-surface flat panel 與 organic surface，並提供目標 face count 控制；服裝流程還能依 UV panel 分區處理，盡量保存原本 seam 結構。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對 AI 3D、掃描或 ZBrush 高模，真正節省時間的點在於先把髒網格轉成可繼續編輯的 quad cage，再進 UV、bake 或 rig；若平面區能減少無意義 edge loop，硬表面資產特別有價值。"
+        },
+        {
+          "label": "導入測試",
+          "text": "不要只比較前後 polygon 數；應用角色衣服、機械零件與 AI 生成 mesh 各測一組，量測 silhouette 偏差、UV seam 保存、hard edge、bake cage、變形區 edge flow 和手工 cleanup 分鐘數，再判斷是否值得進正式流程。"
+        }
+      ],
+      "rank_global": 6,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "unity67-surface-cache-gi-preview",
+      "title": "Unity Surface Cache GI：URP 動態 GI 可跟著幾何與燈光改變，近期回報也暴露多燈噪點限制",
+      "summary": "Unity 正在為 6.7 LTS 推進 Surface Cache GI，目標是在不預烘焙的情況下支援動態幾何與動態燈光的間接照明；9 月討論仍指出多燈 light sampling 尚未完善，ECS 支援預計進 6000.7.0b1。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://discussions.unity.com/t/surface-cache-gi-preview/1720494",
+      "category": "engine-art",
+      "subcategory": "rendering",
+      "ranking_score": 91.8,
+      "analysis_level": "BRIEF",
+      "brief_reason": "technical-demo-limited-depth",
+      "full_analysis": [
+        {
+          "label": "GI 能力",
+          "text": "SCGI 的核心是讓 indirect diffuse 能隨場景幾何和燈光即時改變，包含程序城市、破壞物件、開關門、日夜循環等過去需要 bake 或 lighting scenario 才較容易處理的情境。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對 URP 場景，美術迭代可以先不用反覆烘焙就檢查 bounce light，特別適合動態場景與快速 lookdev；官方也明確表示最終效能若需要，仍可在 release 階段切回 baked lighting。"
+        },
+        {
+          "label": "導入限制",
+          "text": "目前仍是 preview，近期官方回覆指出 light sampling 對大量燈具仍是 work in progress，燈越多噪點可能越高；ECS 支援也還在後續 beta。導入前應用實際場景量測 VRAM、noise、動態物件與多燈穩定度。"
+        }
+      ],
+      "rank_global": 7,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "unity67-urp-ssr-preview",
+      "title": "Unity URP Screen Space Reflections 預覽：6.7 目標加入即時 glossy reflection",
+      "summary": "Unity 的 URP SSR 以 screen-space ray marching 取樣 camera color/depth，目標在 Unity 6.7 提供更低設定成本的即時 glossy reflection；畫面外資訊仍需靠 Reflection Probe 或 skybox fallback。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://discussions.unity.com/t/preview-of-screen-space-reflections-for-urp/1721494",
+      "category": "engine-art",
+      "subcategory": "rendering",
+      "ranking_score": 91.1,
+      "analysis_level": "BRIEF",
+      "brief_reason": "technical-demo-limited-depth",
+      "full_analysis": [
+        {
+          "label": "反射技術變更",
+          "text": "URP 將加入 screen-space ray marching 的 SSR，利用目前 camera 可見的 color 與 depth buffer 產生即時 glossy reflection，官方定位是提高 URP 視覺品質而不要求完整硬體 ray tracing 流程。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對水面、濕地、金屬與高光地板，SSR 能減少為每個區域額外配置 reflection probe 的工作量，並可即時反映可見物件變化；畫面外或被遮蔽物件仍必須依賴 probe／skybox fallback。"
+        },
+        {
+          "label": "導入測試",
+          "text": "現階段以 6.7 preview 看待，建議先在代表性角色場景與室內材質測 GPU cost、camera edge artifact、透明物與 MSAA 相容性，再比較 SSR＋probe 與單純 probe 的品質／成本，避免把 preview 當成確定 ship 行為。"
+        }
+      ],
+      "rank_global": 8,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "animo-v10-maya-toolkit",
+      "title": "Animo V10：Maya 免費動畫工具集擴到 500+ 功能，加入影片 Reference 與 Arc Tracker",
+      "summary": "Animo V10/V10.5.4 為 Maya 動畫師整合 500 多項工具，新增 Tools Editor、影片 reference 匯入、camera-space Arc Tracker、Mirror Pose／Animation 等，商用與非商用皆免費。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://cgworld.jp/flashnews/01-202609-Animo.html",
+      "category": "3d-animation",
+      "subcategory": "animation",
+      "ranking_score": 90.6,
+      "analysis_level": "BRIEF",
+      "brief_reason": "useful-tool-or-addon-limited-depth",
+      "full_analysis": [
+        {
+          "label": "動畫工具整合",
+          "text": "V10 把大量零散動畫操作集中到 Tools Editor，並加入影片 reference 直接使用、camera-space arc tracking、mirror pose／animation 等功能，方向不是自動生成動畫，而是降低手工 blocking、polish 的重複操作。"
+        },
+        {
+          "label": "Production 價值",
+          "text": "對 Maya 角色動畫團隊，reference、arc、mirror 與各種 timeline／curve 小工具如果能在同一套 UI 找到，能減少 script shelf 碎片化；免費商用也降低在團隊試導入時的授權門檻。"
+        },
+        {
+          "label": "導入測試",
+          "text": "先挑一個既有遊戲 attack 或 locomotion shot，比較純 Maya 與 Animo 在 pose mirror、arc 檢查、reference、curve polish 的操作時間；同時確認 Maya 版本、hotkey 衝突、scene callback 和團隊共用設定是否穩定。"
+        }
+      ],
+      "rank_global": 9,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "ankara-street-environment-breakdown",
+      "title": "Ankara Alley：從真實街景 reference 到 Designer 平鋪材質的寫實場景拆解",
+      "summary": "環境美術 Nore Pollentier 以真實 Ankara 街道為 reference，拆解 Blender／Unreal／ZBrush／Substance 的場景流程，並說明如何用 Substance Designer 建立牆面與道路 tiling material 來維持大面積一致性。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://80.lv/articles/breakdown-creating-a-realistic-3d-environment-of-an-ankara-street",
+      "category": "3d-production",
+      "subcategory": "environment-production",
+      "ranking_score": 89.8,
+      "analysis_level": "BRIEF",
+      "brief_reason": "production-reference-limited-depth",
+      "full_analysis": [
+        {
+          "label": "場景拆解方法",
+          "text": "案例先從真實街道 reference 建立比例與視覺語彙，再把牆、路面等高覆蓋率表面抽成 Substance Designer tiling material；這比每個區塊都做獨立貼圖更適合長街景的重複與變化控制。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對城市或廢墟場景，將大面積材質與獨立 props 分開管理可以降低 unique texture 成本，還能把材質 variation 留在引擎端處理；reference 導向也能避免模組化拼裝後失去地區辨識度。"
+        },
+        {
+          "label": "導入測試",
+          "text": "可把案例轉成一個 20–30 公尺街段 prototype，記錄 tiling、vertex blend／decal、trim 或 unique props 各自負責的細節層級，並檢查 texel density、重複紋理可見度與 LOD 後輪廓是否仍成立。"
+        }
+      ],
+      "rank_global": 10,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "middle-east-courtyard-pass-workflow",
+      "title": "中東廢棄庭院：改用 Pass-based 場景製作，把每輪工作集中在一種問題",
+      "summary": "3D Generalist Irmak Çavun 分享把傳統逐資產推進改成 pass-based environment workflow，以每輪集中處理構圖、結構、材質等問題節省時間，並建立能快速重用的 material system。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://80.lv/articles/assembling-abandoned-middle-eastern-courtyard-in-3d-using-pass-based-workflow",
+      "category": "3d-production",
+      "subcategory": "environment-production",
+      "ranking_score": 89.2,
+      "analysis_level": "BRIEF",
+      "brief_reason": "production-reference-limited-depth",
+      "full_analysis": [
+        {
+          "label": "流程設計",
+          "text": "案例把場景工作拆成多個 pass，而不是一個資產從 blockout 一路做到 final 才換下一個；這種做法可以在整體尺度、構圖、材質與細節層級尚未鎖死前，持續比較全場景的一致性。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對多人或容易反覆改構圖的場景，pass-based workflow 能更早暴露整體問題，避免局部資產過度完成後才發現比例或視覺焦點需要重做；快速 material system 也讓 lookdev 在整體層級更容易迭代。"
+        },
+        {
+          "label": "導入測試",
+          "text": "可以把現有場景任務拆成 Blockout、Primary Forms、Material Family、Set Dressing、Polish 五輪，記錄每輪返工與 review 時間；若外包交付也採 pass milestone，還要驗證是否能明確定義每一輪的 acceptance criteria。"
+        }
+      ],
+      "rank_global": 11,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "stylized-pirate-chest-blender-ue58",
+      "title": "風格化寶箱完整走 Blender→UE5：用兩個美術化狀態取代不必要的骨架 Rig",
+      "summary": "3D Tudor 的 hero prop workflow 從 Blender 5.2 blockout、UV、mask bake 到 UE5.8 Substrate material 與 Blueprint；為避免誇張鎖頭與皮帶在開蓋時穿插，直接製作 open/closed 兩套 mesh 並用短動畫藏切換。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://www.artstation.com/blogs/threedtudor/44oRO/blender-to-unreal-engine-5-stylized-interactive-pirate-chest",
+      "category": "3d-production",
+      "subcategory": "prop-production",
+      "ranking_score": 88.7,
+      "analysis_level": "BRIEF",
+      "brief_reason": "practical-tutorial-limited-depth",
+      "full_analysis": [
+        {
+          "label": "道具結構決策",
+          "text": "案例沒有為單純開箱建立完整 skeletal rig，而是針對 stylized silhouette 分別美術化 closed／open mesh，再用短暫 squash 與 mesh swap 隱藏狀態切換；複雜度集中在玩家真正看得到的兩個關鍵 pose。"
+        },
+        {
+          "label": "材質與引擎流程",
+          "text": "Blender 端整理 UV、AO／cavity mask 與 GLB／FBX 匯出，UE5.8 再用 reusable material instance、Substrate、noise 與 mask 控制木材、金屬、金色、老化與 moss，讓同一幾何能快速做多個表面版本。"
+        },
+        {
+          "label": "導入測試",
+          "text": "這種 two-state 技巧適合寶箱、門、機關等狀態少且強調 pose 的道具；實作時要測碰撞、互動 timing、網格 swap 的 LOD／Nanite、陰影與 replicated state，若狀態連續或需要物理互動則仍應回到 rig／animation。"
+        }
+      ],
+      "rank_global": 12,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "marvelous-2026-1-seamline-rip",
+      "title": "Marvelous Designer 2026.1 Seamline Rip：直接在縫線定義破裂與 Fray 區域",
+      "summary": "Marvelous Designer 2026.1 新增 Seamline Rip，可在既有 sewing line 的全部或局部指定 rip area，調整 Rip／Fray 屬性並模擬接縫打開、破損衣物與磨損邊緣。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://support.marvelousdesigner.com/hc/en-us/articles/59816167297433-Seamline-Rip",
+      "category": "3d-production",
+      "subcategory": "character-production",
+      "ranking_score": 88.1,
+      "analysis_level": "BRIEF",
+      "brief_reason": "single-source-verified-production-tip",
+      "full_analysis": [
+        {
+          "label": "服裝模擬能力",
+          "text": "Seamline Rip 把破裂位置直接綁在 sewing line 上，可做局部或完整裂開並調整 Rip／Fray 屬性；對 damaged clothing 來說，破損不再只能靠貼圖假出，而能先由布料結構與模擬產生形狀。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "角色高模階段若先得到可信的布料張力與裂口形狀，後續 ZBrush、retopo 與 texture 可以沿著實際 deformation 做細化，特別適合戰損服裝、殭屍、末日或需要多版本 damaged state 的角色。"
+        },
+        {
+          "label": "導入測試",
+          "text": "建議用同一件外套測正常、局部 seam rip、完全 rupture 三種狀態，觀察模擬穩定性、碎邊密度、轉成 static mesh 後拓樸與 UV 成本；若只是遠景角色，貼圖／alpha 方案可能仍比真實裂口更划算。"
+        }
+      ],
+      "rank_global": 13,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "keyflow-maya-animation-toolset",
+      "title": "KeyFlow：25+ Maya 動畫工具＋獨立 Shot Review，Reference 可直接送 Maya/Blender",
+      "summary": "Flying Wild Hog 動畫師 Sebastian Jaksan 公開 KeyFlow，包含 25+ Maya 日常動畫工具與獨立 KeyFlow Studio review app；支援 A/B、annotation、reference retime，並可把處理後 reference 送往 Maya 或 Blender。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://80.lv/articles/over-25-free-maya-animation-tools-from-game-dev-animator",
+      "category": "3d-animation",
+      "subcategory": "animation",
+      "ranking_score": 87.6,
+      "analysis_level": "BRIEF",
+      "brief_reason": "useful-tool-or-addon-limited-depth",
+      "full_analysis": [
+        {
+          "label": "動畫生產力工具",
+          "text": "KeyFlow Tools 聚焦 SelSet、Mirror、RelativeSpace、Playblast 等動畫師每天會反覆使用的操作，並提供 timeline dock、搜尋與 GIF tooltip；KeyFlow Studio 則把 reference 比較、註記與 review 從 DCC 中拆成輕量工具。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "reference trim／retime 後可直接送 Maya 或 Blender，代表 animator、lead 和 review 的資料交換可以縮短；對需要大量 shot feedback 的團隊，A/B、annotation 與 live review 比單純增加一堆 Maya script 更有流程價值。"
+        },
+        {
+          "label": "導入測試",
+          "text": "工具目前仍在積極開發，先以一個動畫小組試用 Mirror、RelativeSpace、Playblast 與 Studio review，檢查 Maya 2021–2026 相容、專案路徑、影片編碼與多人註記保存，再決定是否納入工作室標準工具包。"
+        }
+      ],
+      "rank_global": 14,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "substance-painter-1215-fixes",
+      "title": "Substance Painter 12.1.5 修正網路匯出、3D Projection 儲存凍結與 Material Layering 解析度",
+      "summary": "Adobe 9/15 發布 Painter 12.1.5 小更新，修正從 Shelf 匯出圖片到 network、Generator 的 use texture=false、編輯 3D Projection 時儲存凍結，以及 Material Layering resolution 過低等問題。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://experienceleague.adobe.com/en/docs/substance-3d-painter/using/release-notes/version-12-1",
+      "category": "blender-dcc",
+      "subcategory": "substance",
+      "ranking_score": 86.9,
+      "analysis_level": "BRIEF",
+      "brief_reason": "short-official-announcement",
+      "full_analysis": [
+        {
+          "label": "穩定性修正",
+          "text": "12.1.5 沒有新增大型功能，但修正的項目直接碰到 production：網路路徑匯出、3D Projection 儲存時 viewport freeze，以及 Material Layering resolution，這些都可能影響團隊共享與貼圖品質。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "若工作室把 Shelf／export 指到 NAS 或共用路徑，network export 修正值得優先驗證；使用 3D Projection 或 Material Layering 的角色／道具案也可降低因 freeze 或解析度異常造成的返工。"
+        },
+        {
+          "label": "導入測試",
+          "text": "升版前以現有專案複製檔測 network path、3D projection、generator texture toggle 與 material layering，同時查看官方 known issues；12.1.5 仍列有 baking、AO、UV seam 等活躍問題，因此不宜只因 patch 新就全團隊立即切版。"
+        }
+      ],
+      "rank_global": 15,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "animo-sliders-blender",
+      "title": "Animo Sliders for Blender：把 Maya Animo 的 16 個動畫滑桿移植到 Blender 4.0–5.2",
+      "summary": "免費 Animo Sliders 把 Tween、Blend to Neighbors、Push/Pull、Time Offset、Smooth/Harsh、Simplify/Bake 等 16 個常用 animation slider 帶到 Blender，商用與非商用皆可使用。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://80.lv/articles/speed-up-blender-animation-with-this-free-tool",
+      "category": "3d-animation",
+      "subcategory": "animation",
+      "ranking_score": 86.2,
+      "analysis_level": "BRIEF",
+      "brief_reason": "useful-tool-or-addon-limited-depth",
+      "full_analysis": [
+        {
+          "label": "動畫操作內容",
+          "text": "這套工具把常見 pose interpolation、neighbor blend、push/pull、time offset、noise、smooth／harsh 與 simplify／bake 集中成 K 面板滑桿，讓 Blender animator 少在 Graph Editor 中反覆手動做同類曲線操作。"
+        },
+        {
+          "label": "Production 價值",
+          "text": "對從 Maya 轉 Blender 或需要快速 blocking／polish 的團隊，滑桿式操作降低記憶不同 command 的成本，也讓一些原本靠 script 的微調更容易交給一般 animator；免費商用適合低成本試導入。"
+        },
+        {
+          "label": "導入測試",
+          "text": "目前不是完整 Animo，而且支援範圍標示 Blender 4.0–5.2；先用 locomotion 與 attack 各一段測 Tween、Time Offset、Simplify/Bake 是否保留既有 NLA／constraint 行為，並確認 5.3 開發版相容性再升級。"
+        }
+      ],
+      "rank_global": 16,
+      "homepage_tier": "category_only"
+    },
+    {
+      "id": "blender-small-teams-2026-roadmap",
+      "title": "Blender 未來兩年把小型長篇團隊列為核心目標：Dynamic Overrides、Rigging at Scale、Board-to-Previs",
+      "summary": "Blender 開發團隊提出未來兩年聚焦 small independent studios 的 long-form production，優先方向包含 Dynamic Overrides、動畫 curve/key 工具、Rigging at Scale、Story Tools board-to-previs、協作資產與 complexity management。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://code.blender.org/2026/09/small-teams-ambitious-projects/",
+      "category": "blender-dcc",
+      "subcategory": "blender",
+      "ranking_score": 85.8,
+      "analysis_level": "BRIEF",
+      "brief_reason": "early-release-limited-evidence",
+      "full_analysis": [
+        {
+          "label": "開發方向",
+          "text": "這不是單一版本功能清單，而是兩年策略：Dynamic Overrides、動畫 key／curve 與 visualization、較完整 rigging framework、Story Tools、協作資產同步、shot management 與複雜度監控都被列為重點。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對小型動畫或遊戲 cinematic 團隊，最重要的是 Blender 正面處理『多人同一角色往返 modeling／rigging／surfacing』與 shot assembly，而不只增加建模功能；長期可能降低必須自行維護 pipeline add-on 的範圍。"
+        },
+        {
+          "label": "導入判斷",
+          "text": "文章是 roadmap，不代表上述功能已可 production 使用。現階段比較適合用來調整 1–2 年工具投資：對 dynamic override、asset pipeline、story/previs 等內部工具避免過度綁死，並持續追蹤實際 landed features 再決定遷移。"
+        }
+      ],
+      "rank_global": 17,
+      "homepage_tier": "category_only"
+    },
+    {
+      "id": "dissectible-anatomy-realtime-deformation",
+      "title": "Dissectible Anatomy：PBD＋SDF＋Volumetric Splats 讓掃描人體可即時切割、撕裂與拉開",
+      "summary": "Purdue 研究將 cryosection 影像轉成可變形解剖模型，以 position-based dynamics、signed distance fields 與 volumetric splats 支援即時 cut、tear、retract，展示 volumetric data 與互動 deformation 的整合方式。",
+      "quick_impact": "★★★☆☆",
+      "source_url": "https://80.lv/articles/dissectible-anatomy-lets-users-cut-tear-virtual-bodies-in-real-time",
+      "category": "emerging-case",
+      "subcategory": "research",
+      "ranking_score": 84.9,
+      "analysis_level": "BRIEF",
+      "brief_reason": "emerging-research-limited-production-evidence",
+      "full_analysis": [
+        {
+          "label": "研究方法",
+          "text": "系統不是只把掃描資料當成靜態 volume viewer，而是把 cryosection imagery 轉成可以受 PBD 驅動、以 SDF 描述結構並用 volumetric splats 呈現的模型，因此能在互動中切割、撕裂和分離組織。"
+        },
+        {
+          "label": "可轉移價值",
+          "text": "雖然目標是醫學教育，但對遊戲與技術美術有兩個可借鏡方向：大量 volumetric appearance 如何和可變形 simulation 共存，以及破壞／切割不一定要完全依賴傳統 surface mesh topology。"
+        },
+        {
+          "label": "成熟度與測試",
+          "text": "目前是研究展示，沒有證據顯示可直接套到一般遊戲角色 pipeline。若要評估轉移性，應先看資料準備成本、GPU／CPU 預算、collision／cut 更新頻率與 export／authoring 工具，再判斷是否適合作為 destructible anatomy 或特殊 VFX 參考。"
+        }
+      ],
+      "rank_global": 18,
+      "homepage_tier": "category_only"
+    },
+    {
+      "id": "armorpaint-10-release",
+      "title": "ArmorPaint 1.0：重寫成 C、降低記憶體，加入基礎 Sculpt/UV、Skinned Timeline 與本機 AI Nodes",
+      "summary": "ArmorPaint 結束八年 early access，1.0 改用 C 重寫以改善效能與記憶體，並加入基礎 sculpt、UV editing、skinned character timeline、GLB export，以及本機 AI upscale／photo-to-material／text-to-image nodes。",
+      "quick_impact": "★★★☆☆",
+      "source_url": "https://www.cgchannel.com/2026/09/armorpaint-1-0-is-out-after-eight-years-in-early-access/",
+      "category": "blender-dcc",
+      "subcategory": "other-dcc",
+      "ranking_score": 84.3,
+      "analysis_level": "BRIEF",
+      "brief_reason": "useful-tool-or-addon-limited-depth",
+      "full_analysis": [
+        {
+          "label": "DCC 架構變更",
+          "text": "1.0 最大變化是底層從 Haxe／V8 轉成 C，並以 DX12、Vulkan、Metal、WebGPU 做 GPU path；官方／報導指出記憶體占用降低，可處理更大模型、更高解析度與更多 texture layers。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "除了 paint，新增基本 sculpt／UV、skinned mesh timeline 和 GLB export，讓 ArmorPaint 更接近輕量 all-in-one asset editor；本機 neural nodes 也避免所有 AI 素材都必須送雲端。"
+        },
+        {
+          "label": "導入測試",
+          "text": "仍應把它與 Substance Painter 以同一組 4K UDIM／多材質角色壓測，檢查 bake、layer stack、色彩管理、export preset 與 Blender/Unity/Unreal live link；1.0 剛正式發布，既有專案遷移與 plugin 相容性需要先驗證。"
+        }
+      ],
+      "rank_global": 19,
+      "homepage_tier": "category_only"
+    },
+    {
+      "id": "silo-2026-2-io-math",
+      "title": "Silo 2026.2：數值欄位可直接算式，FBX/USD/GLB 匯入匯出補強 PBR 與內嵌貼圖",
+      "summary": "Silo 2026.2 在建模操作外強化 I/O：所有 numeric field 可輸入基本數學運算，FBX PBR material、USD smoothing group 與 GLB embedded texture handling 都獲得改善。",
+      "quick_impact": "★★★☆☆",
+      "source_url": "https://www.cgchannel.com/2026/09/nevercenter-releases-silo-2026/",
+      "category": "blender-dcc",
+      "subcategory": "other-dcc",
+      "ranking_score": 83.7,
+      "analysis_level": "BRIEF",
+      "brief_reason": "short-official-announcement",
+      "full_analysis": [
+        {
+          "label": "建模與交換改進",
+          "text": "數值欄位直接支援算式對精準比例與重複建模很實用；更重要的是 2026.2 補強 FBX 的 PBR material、USD smoothing group 與 GLB embedded texture，改善不同 DCC／引擎之間的交換細節。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "Silo 本身是輕量建模器，這些更新不會改變大型 pipeline，但對只需快速 polygon modeling、cleanup 或格式中轉的工作站，I/O 穩定性比新增複雜工具更直接影響是否能被放進流程。"
+        },
+        {
+          "label": "導入測試",
+          "text": "可用同一個帶 PBR、hard edge、embedded texture 的 prop 在 Silo、Blender、Maya 間往返 FBX／USD／GLB，檢查 normal、smoothing、material slot、texture path 與 scale；若只是單機建模，則評估 2026.1 的 viewport 加速是否更有實際收益。"
+        }
+      ],
+      "rank_global": 20,
+      "homepage_tier": "category_only"
+    },
+    {
+      "id": "unity65-shader-function-reflection",
+      "title": "Unity 6.5 Shader Function Reflection：用 HLSL function 自動生成 Shader Graph Node",
+      "summary": "Unity 6.5 的 Shader Function Reflection API 讓技術美術在 HLSL function 前加 UNITY_EXPORT_REFLECTION 後，自動把 function signature 反射成 Shader Graph node，並以 XML hints 控制顯示名稱、分類與 port。",
+      "quick_impact": "★★★☆☆",
+      "source_url": "https://discussions.unity.com/t/shader-function-reflection-api/1708277",
+      "category": "engine-art",
+      "subcategory": "shader",
+      "ranking_score": 83.1,
+      "analysis_level": "BRIEF",
+      "brief_reason": "single-source-verified-production-tip",
+      "full_analysis": [
+        {
+          "label": "Shader 工具流程",
+          "text": "Reflection API 把 HLSL function 的輸入輸出直接映射成 Shader Graph node，支援 in／out／inout 與 void，並可用 hints 描述 provider key、display name、search category 與參數 UI，減少手動同步 Custom Function Node port。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對公司共用 shader library，技術美術可以維護一份 HLSL 實作，再讓 Graph 使用者以 node 方式調用，降低程式函式簽名改動後 Graph wrapper 忘記更新的風險；也比較適合 AI／LLM 先產 HLSL 再接圖形化流程。"
+        },
+        {
+          "label": "導入限制",
+          "text": "它只處理 function body 與 ports，不包含 SubShader／Pass 的 Stencil、Depth、Blend 等狀態；導入時應先挑 3–5 個公司常用 HLSL helper 測 namespace、precision、reference type 與版本控制，再決定是否取代既有 Custom Function Node。"
+        }
+      ],
+      "rank_global": 21,
+      "homepage_tier": "category_only"
+    },
+    {
+      "id": "blender-overgrown-open-film-pipeline",
+      "title": "OVERGROWN：Blender Studio 用長片 Teaser 當開放電影 pipeline 的 proof of concept",
+      "summary": "Blender Studio 的 OVERGROWN teaser 不只是作品展示，而是用實際長片目標驗證 Blender end-to-end production；若專案進一步成立，工具、workflow 與 lessons 預計整理成免費開源 feature-film playbook。",
+      "quick_impact": "★★★☆☆",
+      "source_url": "https://80.lv/articles/blender-s-overgrown-teaser-is-a-proof-of-concept-for-open-filmmaking",
+      "category": "emerging-case",
+      "subcategory": "case-study",
+      "ranking_score": 82.4,
+      "analysis_level": "BRIEF",
+      "brief_reason": "production-reference-limited-depth",
+      "full_analysis": [
+        {
+          "label": "Case 的技術意義",
+          "text": "OVERGROWN 把 Blender 自己的開發目標放進真實內容壓力測試：從故事、資產、角色動畫到 final render 都在同一生態完成，並以每日 build 讓 artist 直接驗證正在開發的工具，而不是只做 isolated demo。"
+        },
+        {
+          "label": "Production 價值",
+          "text": "若後續 playbook 落地，小型團隊可直接參考 Blender Studio 在 asset collaboration、shot management、animation 與長篇 production 上的實際做法；這比單純看 roadmap 更能暴露工具在大量鏡頭與多人協作下的缺口。"
+        },
+        {
+          "label": "成熟度與限制",
+          "text": "目前 teaser 仍是 proof of concept，專案尚未等同已完成長片 pipeline，許多工具也會隨製作持續變動。現階段適合追蹤方法與測試案例，不宜把尚未發布的 Studio 內部流程直接視為穩定標準。"
+        }
+      ],
+      "rank_global": 22,
+      "homepage_tier": "category_only"
+    }
+  ],
+  "visual_evidence": {}
+}

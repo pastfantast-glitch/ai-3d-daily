@@ -1,0 +1,422 @@
+{
+  "schema_version": 1,
+  "date": "2026-09-20",
+  "discovery_coverage": {
+    "fill_ladder_exhausted": true,
+    "backlog_checked": true,
+    "backlog_remaining_eligible": 0,
+    "targeted_refill_performed": true,
+    "quality_first_confirmed": true,
+    "windows": {
+      "24h": {
+        "status": "exhausted",
+        "candidates_found": 0
+      },
+      "7d": {
+        "status": "exhausted",
+        "candidates_found": 14
+      },
+      "30d": {
+        "status": "exhausted",
+        "candidates_found": 4
+      },
+      "6m": {
+        "status": "exhausted",
+        "candidates_found": 3
+      },
+      "evergreen": {
+        "status": "exhausted",
+        "candidates_found": 1
+      }
+    },
+    "category_candidates": {
+      "ai-generation": {
+        "candidates_considered": 1
+      },
+      "3d-production": {
+        "candidates_considered": 5
+      },
+      "3d-animation": {
+        "candidates_considered": 5
+      },
+      "engine-art": {
+        "candidates_considered": 4
+      },
+      "emerging-case": {
+        "candidates_considered": 2
+      },
+      "blender-dcc": {
+        "candidates_considered": 5
+      }
+    },
+    "registered_source_probe": {
+      "performed": true,
+      "sources": {
+        "80-level": {
+          "status": "checked",
+          "method": "web-site-query",
+          "candidates_found": 9,
+          "candidate_ids": [
+            "blender53-native-gaussian-splats",
+            "ankara-street-environment-breakdown",
+            "middle-east-courtyard-pass-workflow",
+            "smart-remesh3-blender-retopo",
+            "texlab-ue58-pbr-pack",
+            "animo-sliders-blender",
+            "blender-overgrown-open-film-pipeline",
+            "dissectible-anatomy-realtime-deformation",
+            "keyflow-maya-animation-toolset"
+          ]
+        },
+        "3dnchu": {
+          "status": "checked",
+          "method": "web-site-query",
+          "candidates_found": 0,
+          "candidate_ids": []
+        },
+        "cgworld-jp": {
+          "status": "checked",
+          "method": "web-site-query",
+          "candidates_found": 2,
+          "candidate_ids": [
+            "animo-v10-maya-toolkit",
+            "agora-ue5-realtime-animation-workflow"
+          ]
+        },
+        "bilibili-mobile": {
+          "status": "checked",
+          "method": "web-site-query",
+          "candidates_found": 0,
+          "candidate_ids": []
+        },
+        "artstation": {
+          "status": "checked",
+          "method": "web-site-query",
+          "candidates_found": 1,
+          "candidate_ids": [
+            "stylized-pirate-chest-blender-ue58"
+          ]
+        },
+        "gumroad-discover": {
+          "status": "checked",
+          "method": "web-site-query",
+          "candidates_found": 0,
+          "candidate_ids": []
+        },
+        "xiaohongshu": {
+          "status": "checked",
+          "method": "web-site-query",
+          "candidates_found": 0,
+          "candidate_ids": []
+        },
+        "cg-channel": {
+          "status": "checked",
+          "method": "web-site-query",
+          "candidates_found": 3,
+          "candidate_ids": [
+            "keyflow-maya-animation-toolset",
+            "armorpaint-10-release",
+            "silo-2026-2-io-math"
+          ]
+        },
+        "blender-official": {
+          "status": "checked",
+          "method": "latest-index",
+          "candidates_found": 1,
+          "candidate_ids": [
+            "blender-small-teams-2026-roadmap"
+          ]
+        },
+        "epic-developer-community": {
+          "status": "checked",
+          "method": "web-site-query",
+          "candidates_found": 0,
+          "candidate_ids": []
+        },
+        "unity-official": {
+          "status": "checked",
+          "method": "web-site-query",
+          "candidates_found": 3,
+          "candidate_ids": [
+            "unity67-urp-ssr-preview",
+            "unity67-surface-cache-gi-preview",
+            "unity65-shader-function-reflection"
+          ]
+        },
+        "sidefx-official": {
+          "status": "checked",
+          "method": "latest-index",
+          "candidates_found": 1,
+          "candidate_ids": [
+            "houdini22-character-rigging-apex"
+          ]
+        },
+        "autodesk-area": {
+          "status": "checked",
+          "method": "web-site-query",
+          "candidates_found": 0,
+          "candidate_ids": []
+        },
+        "adobe-substance-3d": {
+          "status": "checked",
+          "method": "latest-index",
+          "candidates_found": 1,
+          "candidate_ids": [
+            "substance-painter-1215-fixes"
+          ]
+        },
+        "game-developer": {
+          "status": "checked",
+          "method": "web-site-query",
+          "candidates_found": 0,
+          "candidate_ids": []
+        }
+      }
+    },
+    "notes": "已依 current main 完成 24h→7d→30d→6m→evergreen fill ladder、空 Rolling Backlog 檢查、六分類 targeted refill、15 個 enabled registered source probe、來源驗證與 Published Intelligence Registry 搜尋去重。22 個入選候選皆未在既有 repo canonical identity 搜尋中命中；未使用來源 bonus、quota 或網站偏好。Personalization 僅以 category/tool/topic/tag 語意訊號做 bounded ranking/discovery expansion。"
+  },
+  "candidate_decisions": [
+    {
+      "candidate_id": "meshy71-api-4k-sep18",
+      "source_url": "https://docs.meshy.ai/zh-Hant/api/changelog",
+      "discovery_channels": [
+        "7d:web-search",
+        "semantic-expansion:Meshy",
+        "primary-source-verification"
+      ],
+      "decision": "published",
+      "canonical_id": "meshy71-api-4k-sep18"
+    },
+    {
+      "candidate_id": "agora-ue5-realtime-animation-workflow",
+      "source_url": "https://cgworld.jp/flashnews/01-202609-UE5-RealTimeAnim.html",
+      "discovery_channels": [
+        "7d:web-search",
+        "registered-source:cgworld-jp"
+      ],
+      "decision": "published",
+      "canonical_id": "agora-ue5-realtime-animation-workflow"
+    },
+    {
+      "candidate_id": "houdini22-character-rigging-apex",
+      "source_url": "https://www.sidefx.com/products/whats-new-in-h22/characters/",
+      "discovery_channels": [
+        "6m:web-search",
+        "registered-source:sidefx-official",
+        "primary-source-verification"
+      ],
+      "decision": "published",
+      "canonical_id": "houdini22-character-rigging-apex"
+    },
+    {
+      "candidate_id": "texlab-ue58-pbr-pack",
+      "source_url": "https://80.lv/articles/texlab-packing-pbr-maps-inside-ue5-without-lying-about-the-preview",
+      "discovery_channels": [
+        "7d:web-search",
+        "registered-source:80-level"
+      ],
+      "decision": "published",
+      "canonical_id": "texlab-ue58-pbr-pack"
+    },
+    {
+      "candidate_id": "blender53-native-gaussian-splats",
+      "source_url": "https://80.lv/articles/blender-5-3-is-getting-native-3d-gaussian-splat-support",
+      "discovery_channels": [
+        "7d:web-search",
+        "registered-source:80-level"
+      ],
+      "decision": "published",
+      "canonical_id": "blender53-native-gaussian-splats"
+    },
+    {
+      "candidate_id": "smart-remesh3-blender-retopo",
+      "source_url": "https://80.lv/articles/quad-remesher-for-hard-surface-organic-blender-models",
+      "discovery_channels": [
+        "7d:web-search",
+        "registered-source:80-level"
+      ],
+      "decision": "published",
+      "canonical_id": "smart-remesh3-blender-retopo"
+    },
+    {
+      "candidate_id": "unity67-surface-cache-gi-preview",
+      "source_url": "https://discussions.unity.com/t/surface-cache-gi-preview/1720494",
+      "discovery_channels": [
+        "6m:web-search",
+        "registered-source:unity-official",
+        "primary-source-verification"
+      ],
+      "decision": "published",
+      "canonical_id": "unity67-surface-cache-gi-preview"
+    },
+    {
+      "candidate_id": "unity67-urp-ssr-preview",
+      "source_url": "https://discussions.unity.com/t/preview-of-screen-space-reflections-for-urp/1721494",
+      "discovery_channels": [
+        "6m:web-search",
+        "registered-source:unity-official",
+        "primary-source-verification"
+      ],
+      "decision": "published",
+      "canonical_id": "unity67-urp-ssr-preview"
+    },
+    {
+      "candidate_id": "animo-v10-maya-toolkit",
+      "source_url": "https://cgworld.jp/flashnews/01-202609-Animo.html",
+      "discovery_channels": [
+        "7d:web-search",
+        "registered-source:cgworld-jp"
+      ],
+      "decision": "published",
+      "canonical_id": "animo-v10-maya-toolkit"
+    },
+    {
+      "candidate_id": "ankara-street-environment-breakdown",
+      "source_url": "https://80.lv/articles/breakdown-creating-a-realistic-3d-environment-of-an-ankara-street",
+      "discovery_channels": [
+        "7d:web-search",
+        "registered-source:80-level"
+      ],
+      "decision": "published",
+      "canonical_id": "ankara-street-environment-breakdown"
+    },
+    {
+      "candidate_id": "middle-east-courtyard-pass-workflow",
+      "source_url": "https://80.lv/articles/assembling-abandoned-middle-eastern-courtyard-in-3d-using-pass-based-workflow",
+      "discovery_channels": [
+        "7d:web-search",
+        "registered-source:80-level"
+      ],
+      "decision": "published",
+      "canonical_id": "middle-east-courtyard-pass-workflow"
+    },
+    {
+      "candidate_id": "stylized-pirate-chest-blender-ue58",
+      "source_url": "https://www.artstation.com/blogs/threedtudor/44oRO/blender-to-unreal-engine-5-stylized-interactive-pirate-chest",
+      "discovery_channels": [
+        "7d:web-search",
+        "registered-source:artstation"
+      ],
+      "decision": "published",
+      "canonical_id": "stylized-pirate-chest-blender-ue58"
+    },
+    {
+      "candidate_id": "marvelous-2026-1-seamline-rip",
+      "source_url": "https://support.marvelousdesigner.com/hc/en-us/articles/59816167297433-Seamline-Rip",
+      "discovery_channels": [
+        "30d:web-search",
+        "primary-source-verification"
+      ],
+      "decision": "published",
+      "canonical_id": "marvelous-2026-1-seamline-rip"
+    },
+    {
+      "candidate_id": "keyflow-maya-animation-toolset",
+      "source_url": "https://80.lv/articles/over-25-free-maya-animation-tools-from-game-dev-animator",
+      "discovery_channels": [
+        "7d:web-search",
+        "registered-source:80-level",
+        "registered-source:cg-channel"
+      ],
+      "decision": "published",
+      "canonical_id": "keyflow-maya-animation-toolset"
+    },
+    {
+      "candidate_id": "substance-painter-1215-fixes",
+      "source_url": "https://experienceleague.adobe.com/en/docs/substance-3d-painter/using/release-notes/version-12-1",
+      "discovery_channels": [
+        "7d:web-search",
+        "registered-source:adobe-substance-3d",
+        "primary-source-verification"
+      ],
+      "decision": "published",
+      "canonical_id": "substance-painter-1215-fixes"
+    },
+    {
+      "candidate_id": "animo-sliders-blender",
+      "source_url": "https://80.lv/articles/speed-up-blender-animation-with-this-free-tool",
+      "discovery_channels": [
+        "7d:web-search",
+        "registered-source:80-level"
+      ],
+      "decision": "published",
+      "canonical_id": "animo-sliders-blender"
+    },
+    {
+      "candidate_id": "blender-small-teams-2026-roadmap",
+      "source_url": "https://code.blender.org/2026/09/small-teams-ambitious-projects/",
+      "discovery_channels": [
+        "30d:web-search",
+        "registered-source:blender-official",
+        "primary-source-verification"
+      ],
+      "decision": "published",
+      "canonical_id": "blender-small-teams-2026-roadmap"
+    },
+    {
+      "candidate_id": "dissectible-anatomy-realtime-deformation",
+      "source_url": "https://80.lv/articles/dissectible-anatomy-lets-users-cut-tear-virtual-bodies-in-real-time",
+      "discovery_channels": [
+        "7d:web-search",
+        "registered-source:80-level"
+      ],
+      "decision": "published",
+      "canonical_id": "dissectible-anatomy-realtime-deformation"
+    },
+    {
+      "candidate_id": "armorpaint-10-release",
+      "source_url": "https://www.cgchannel.com/2026/09/armorpaint-1-0-is-out-after-eight-years-in-early-access/",
+      "discovery_channels": [
+        "30d:web-search",
+        "registered-source:cg-channel"
+      ],
+      "decision": "published",
+      "canonical_id": "armorpaint-10-release"
+    },
+    {
+      "candidate_id": "silo-2026-2-io-math",
+      "source_url": "https://www.cgchannel.com/2026/09/nevercenter-releases-silo-2026/",
+      "discovery_channels": [
+        "30d:web-search",
+        "registered-source:cg-channel"
+      ],
+      "decision": "published",
+      "canonical_id": "silo-2026-2-io-math"
+    },
+    {
+      "candidate_id": "unity65-shader-function-reflection",
+      "source_url": "https://discussions.unity.com/t/shader-function-reflection-api/1708277",
+      "discovery_channels": [
+        "evergreen:web-search",
+        "registered-source:unity-official",
+        "primary-source-verification"
+      ],
+      "decision": "published",
+      "canonical_id": "unity65-shader-function-reflection"
+    },
+    {
+      "candidate_id": "blender-overgrown-open-film-pipeline",
+      "source_url": "https://80.lv/articles/blender-s-overgrown-teaser-is-a-proof-of-concept-for-open-filmmaking",
+      "discovery_channels": [
+        "7d:web-search",
+        "registered-source:80-level"
+      ],
+      "decision": "published",
+      "canonical_id": "blender-overgrown-open-film-pipeline"
+    }
+  ],
+  "personalization": {
+    "contract": "supabase-semantic-feedback-v1",
+    "status": "applied",
+    "vote_count": 10,
+    "profile_fingerprint": "30a20544543c9eac13cf99ba0cc788e87f4f28c9b7f4c834f16057ef47be6e3e",
+    "max_rank_multiplier": 0.2,
+    "max_query_expansion_fraction": 0.2,
+    "raw_profile_committed": false,
+    "bookmarks_used": false,
+    "domain_weights_used": false,
+    "admission_bypass": false,
+    "quality_gate_bypass": false,
+    "source_quota": false
+  }
+}
