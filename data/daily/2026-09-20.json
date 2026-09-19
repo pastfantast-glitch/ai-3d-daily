@@ -2,7 +2,7 @@
   "date": "2026-09-20",
   "schema_version": 3,
   "metadata": {
-    "total_items": 11,
+    "total_items": 26,
     "collection_mode": "production-intelligence-preference-v1-hybrid",
     "collection_contract_effective_date": "2026-09-04",
     "preference_contract_effective_date": "2026-09-06",
@@ -16,7 +16,7 @@
     ],
     "analysis_level_counts": {
       "FULL": 0,
-      "BRIEF": 22,
+      "BRIEF": 26,
       "REJECT": 0
     },
     "analysis_level_policy": "evidence-depth-tiered; BRIEF=three source-grounded production angles with explicit limits",
@@ -34,11 +34,11 @@
         },
         "7d": {
           "status": "exhausted",
-          "candidates_found": 14
+          "candidates_found": 24
         },
         "30d": {
           "status": "exhausted",
-          "candidates_found": 4
+          "candidates_found": 9
         },
         "6m": {
           "status": "exhausted",
@@ -54,19 +54,19 @@
           "candidates_considered": 1
         },
         "3d-production": {
-          "candidates_considered": 5
+          "candidates_considered": 11
         },
         "3d-animation": {
           "candidates_considered": 5
         },
         "engine-art": {
-          "candidates_considered": 4
+          "candidates_considered": 5
         },
         "emerging-case": {
-          "candidates_considered": 2
+          "candidates_considered": 4
         },
         "blender-dcc": {
-          "candidates_considered": 5
+          "candidates_considered": 11
         }
       },
       "registered_source_probe": {
@@ -193,7 +193,7 @@
           }
         }
       },
-      "notes": "已依 current main 完成 24h→7d→30d→6m→evergreen fill ladder、空 Rolling Backlog 檢查、六分類 targeted refill、15 個 enabled registered source probe、來源驗證與 Published Intelligence Registry 搜尋去重。22 個入選候選皆未在既有 repo canonical identity 搜尋中命中；未使用來源 bonus、quota 或網站偏好。Personalization 僅以 category/tool/topic/tag 語意訊號做 bounded ranking/discovery expansion。"
+      "notes": "已依 current main 完成 24h→7d→30d→6m→evergreen fill ladder、空 Rolling Backlog 檢查、六分類 targeted refill、15 個 enabled registered source probe、來源驗證與 Published Intelligence Registry 搜尋去重。22 個入選候選皆未在既有 repo canonical identity 搜尋中命中；未使用來源 bonus、quota 或網站偏好。Personalization 僅以 category/tool/topic/tag 語意訊號做 bounded ranking/discovery expansion。 Registry normalize 後剩 11 項並要求 refill；本輪新增 15 個未命中 repo identity 的可驗證候選，來源涵蓋官方 Blender/Unity/Adobe 與 production breakdown，保留上一輪 11 個 registry duplicate 為 duplicate，不重新塞回。"
     },
     "personalization": {
       "contract": "supabase-semantic-feedback-v1",
@@ -217,36 +217,7 @@
       "top5_brief_fallback_count": 5,
       "top5_full_only": false,
       "brief_fallback_allowed": true,
-      "next10": 6
-    },
-    "registry_identity_normalization": {
-      "dropped_count": 11,
-      "rewritten_count": 0,
-      "policy": "verified-DONE-published-canonical-source-without-substantive-delta-skip",
-      "source_identity_precedence": "published-daily-html-card-then-canonical-json",
-      "url_identity": "scripts/url_identity.py",
-      "stage": "collection-before-ready",
-      "refill_required": true,
-      "category_deficits": {},
-      "daily_release_gate": {
-        "have": 11,
-        "min": 20,
-        "target": 30,
-        "max": 30,
-        "missing_to_min": 9,
-        "missing_to_target": 19,
-        "release_ready": false,
-        "category_counts": {
-          "ai-generation": 0,
-          "3d-production": 4,
-          "3d-animation": 3,
-          "engine-art": 2,
-          "emerging-case": 1,
-          "blender-dcc": 1
-        },
-        "release_mode": "BLOCKED",
-        "low_volume_authorized": false
-      }
+      "next10": 10
     }
   },
   "items": [
@@ -557,6 +528,366 @@
       ],
       "rank_global": 11,
       "homepage_tier": "next10"
+    },
+    {
+      "id": "cyberpunk-night-city-handcrafted-pipeline",
+      "title": "Cyberpunk 2077 Night City：大規模城市仍以手工資產為核心，程序化只當起點",
+      "summary": "CD PROJEKT RED 美術主管說明 Night City 從建築、廣告到街道雜物大多由美術手工配置；程序化道路工具主要負責 spline 起始佈局，最終仍回到人工調整，並說明第一人稱尺度與 path tracing 對環境設計的影響。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://80.lv/articles/interview-how-cyberpunk-2077-s-night-city-was-built-almost-entirely-by-hand",
+      "category": "emerging-case",
+      "subcategory": "case-study",
+      "ranking_score": 82.1,
+      "analysis_level": "BRIEF",
+      "brief_reason": "production-reference-limited-depth",
+      "full_analysis": [
+        {
+          "label": "大型場景方法",
+          "text": "案例顯示 procedural tool 更適合先處理道路 spline、重複佈局與起始骨架，而最終視覺密度、敘事與區域辨識度仍靠 artist-authored placement；這對大型城市場景的工具投資方向很有參考價值。"
+        },
+        {
+          "label": "導入判斷",
+          "text": "若團隊正在做程序化城市，應把 KPI 從『自動生成比例』改成 artist cleanup 時間、可控性與最終品質；工具輸出若無法快速被美術覆寫，規模越大反而越容易累積修正成本。"
+        }
+      ],
+      "rank_global": 12,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "no-mercy-character-texture-detail",
+      "title": "No Mercy 雙角色製作：用 Base Mesh 加速高模，細節優先做進貼圖而非堆 procedural shader",
+      "summary": "Anna Smirnova 的雙角色作品以既有 body/head base mesh 加速造型，再把大量皮膚、服裝與表面細節直接建進 texture，而不是把效果全部依賴 procedural shader，適合作為角色資產細節分工參考。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://80.lv/articles/turning-a-2d-illustration-into-a-realistic-two-character-3d-piece",
+      "category": "3d-production",
+      "subcategory": "character-production",
+      "ranking_score": 81.7,
+      "analysis_level": "BRIEF",
+      "brief_reason": "production-reference-limited-depth",
+      "full_analysis": [
+        {
+          "label": "角色製作取捨",
+          "text": "用成熟 base mesh 承擔人體與頭部的基礎結構，可以把時間集中在 silhouette、服裝與辨識度；細節直接進 texture 也能降低 shader graph 過度複雜，讓資產在不同燈光下更可預測。"
+        },
+        {
+          "label": "測試方式",
+          "text": "可用同一角色比較『shader procedural detail』與『texture-authored detail』兩版，檢查 VRAM、shader instruction、mip 後可讀性與 lookdev 調整時間，再決定哪些細節應該留在材質、哪些應該烘進貼圖。"
+        }
+      ],
+      "rank_global": 13,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "dr-doom-metahuman-cloth-wear",
+      "title": "Dr. Doom 角色流程：MetaHuman 頭部起點＋Marvelous/ZBrush 服裝＋磨損分層",
+      "summary": "Patrick van Rooijen 以 MetaHuman 協助臉部與頭部基礎，再用 Marvelous Designer、ZBrush 與 Substance 建立服裝、盔甲與披風磨損，示範現成角色基底如何接回傳統高模與材質流程。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://80.lv/articles/making-a-recreation-of-dr-doom-using-unreal-engine-and-zbrush",
+      "category": "3d-production",
+      "subcategory": "character-production",
+      "ranking_score": 81.3,
+      "analysis_level": "BRIEF",
+      "brief_reason": "production-reference-limited-depth",
+      "full_analysis": [
+        {
+          "label": "混合角色 Pipeline",
+          "text": "MetaHuman 適合當臉部比例與拓樸的起點，但角色辨識度仍靠 ZBrush、Marvelous 與手工服裝細化完成；這種混合流程比完全自建或完全依賴角色系統更接近實際 production。"
+        },
+        {
+          "label": "材質與磨損",
+          "text": "披風與服裝 wear-and-tear 應與布料結構、折痕和接觸位置一致，而不是平均撒 grunge；對遊戲角色可把磨損分成可烘貼圖細節與近距離輪廓破損兩層，以控制成本。"
+        }
+      ],
+      "rank_global": 14,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "magneto-prop-controlrig-substrate",
+      "title": "古董電擊機道具：低面數建模、真實 Control Rig 數學與 UE5 Substrate 同案驗證",
+      "summary": "Kyle Michel 的古董機械道具把 Blender 低面數建模、單一 2K texture set、Unreal Control Rig 機構動畫與 Substrate 材質放在同一 real-time prop challenge 中，適合做跨部門道具製作基準。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://80.lv/articles/recreating-a-19th-century-magneto-electric-shock-machine-for-a-prop-challenge",
+      "category": "3d-production",
+      "subcategory": "prop-production",
+      "ranking_score": 80.9,
+      "analysis_level": "BRIEF",
+      "brief_reason": "production-reference-limited-depth",
+      "full_analysis": [
+        {
+          "label": "Prop 約束設計",
+          "text": "先鎖定單一 2K texture set 與 real-time presentation，再決定模型細節與可動畫機構，能避免高模階段無限制加細節；對機台、武器、機械道具尤其適合先用最終約束反推製作。"
+        },
+        {
+          "label": "Rig / 材質整合",
+          "text": "機構 Control Rig 與 Substrate 若在同一 prototype 驗證，可提前暴露 pivot、約束、材質層與渲染成本問題；比模型完成後才交給動畫或技術美術更能降低返工。"
+        }
+      ],
+      "rank_global": 15,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "widow-feathers-layered-costume",
+      "title": "Widow of Feathers：從 silhouette 拆解多層服裝，再處理羽毛、摺痕與飾品",
+      "summary": "Artem Bieliakov 的角色 breakdown 以 silhouette 先決定分層服裝，再逐步處理摺痕、接縫、飾品與羽毛，並串接 Marvelous Designer、ZBrush、RizomUV、Painter 與 Unreal。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://80.lv/articles/breakdown-modeling-a-3d-fantasy-character-based-on-a-2d-concept",
+      "category": "3d-production",
+      "subcategory": "character-production",
+      "ranking_score": 80.4,
+      "analysis_level": "BRIEF",
+      "brief_reason": "production-reference-limited-depth",
+      "full_analysis": [
+        {
+          "label": "服裝分層",
+          "text": "複雜角色先以大 silhouette 和服裝層級確認視覺權重，再做褶皺與裝飾，可以避免小細節過早綁死整體造型；羽毛等高重複元素也應先定義少量可重用變體。"
+        },
+        {
+          "label": "Production 檢查",
+          "text": "將 Marvelous cloth、ZBrush refinement、RizomUV 與 Painter 分開驗收，有助於外包或多人流程；每階段都應保留 silhouette、texel density 與近距離可讀性作 acceptance criteria。"
+        }
+      ],
+      "rank_global": 16,
+      "homepage_tier": "category_only"
+    },
+    {
+      "id": "decaying-church-sculpt-texture-vegetation",
+      "title": "腐朽教堂場景：ZBrush→Substance 的雕刻轉貼圖，加上分層沼澤植被",
+      "summary": "Nicolas Pablos 的教堂場景把結構雕刻、Substance 材質與多層 vegetation 組合成 Blender/Unreal 環境流程，重點是用可重複材質承擔表面細節，再以植被層建立濕地深度。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://80.lv/articles/breakdown-creating-a-3d-scene-of-a-decaying-orthodox-church-in-a-swamp",
+      "category": "3d-production",
+      "subcategory": "environment-production",
+      "ranking_score": 79.9,
+      "analysis_level": "BRIEF",
+      "brief_reason": "production-reference-limited-depth",
+      "full_analysis": [
+        {
+          "label": "雕刻轉貼圖",
+          "text": "把建築老化與表面破損從高模抽成可重複 texture/material，可降低場景 unique mesh 成本；真正需要高模幾何的部分保留在輪廓與大破損，微表面交給材質。"
+        },
+        {
+          "label": "植被層級",
+          "text": "沼澤環境不是只增加 foliage 數量，而是分水面、近水植被、地表群落與背景密度建立深度；導入時應同步檢查 overdraw、LOD 與遠距離色塊，而不是只看近景截圖。"
+        }
+      ],
+      "rank_global": 17,
+      "homepage_tier": "category_only"
+    },
+    {
+      "id": "saros-large-scale-environment-tools",
+      "title": "大型遊戲場景工具化：Blender＋UE5＋Houdini 把沙漠 biome 變成可控系統",
+      "summary": "Jolan Huijskes 以大型可遊玩環境為目標，建立 Blender/UE5/Houdini 工具組，讓 Level Artist 能以工具控制大尺度地形、資產與環境分布，而不是逐件手工擺放。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://80.lv/articles/developing-tools-for-large-scale-3d-game-environments",
+      "category": "emerging-case",
+      "subcategory": "procedural",
+      "ranking_score": 79.5,
+      "analysis_level": "BRIEF",
+      "brief_reason": "production-reference-limited-depth",
+      "full_analysis": [
+        {
+          "label": "工具化重點",
+          "text": "大型場景的 procedural value 不在完全自動，而在把可調參數、重建與 variation 暴露給 Level Artist；這能讓技術美術把重複工作系統化，同時保留美術最後決策權。"
+        },
+        {
+          "label": "導入衡量",
+          "text": "應用實際 biome 測工具前後的 set-dressing 時間、重建速度、人工修正比例與效能預算；若工具只加快初始生成但後續 cleanup 更久，就不算 production win。"
+        }
+      ],
+      "rank_global": 18,
+      "homepage_tier": "category_only"
+    },
+    {
+      "id": "haribo-sdf-substance-material",
+      "title": "Substance Designer SDF 小熊軟糖：用 Shape Splatter v2＋色彩分層假出半透明",
+      "summary": "QiYu Dai 在 Designer 以 SDF 建立小熊形狀、Shape Splatter v2 生成材料，再用 base/AO/specular 等色彩層模擬平面材質上的 jelly 半透明，示範不依賴完整幾何也能做 stylized translucent look。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://80.lv/articles/how-to-create-a-haribo-style-translucent-jelly-bear-candy-material",
+      "category": "blender-dcc",
+      "subcategory": "substance",
+      "ranking_score": 79.1,
+      "analysis_level": "BRIEF",
+      "brief_reason": "practical-tutorial-limited-depth",
+      "full_analysis": [
+        {
+          "label": "SDF 材質工作流",
+          "text": "SDF 先建立可程序控制的形狀，再交給 Shape Splatter v2 分布，適合需要大量可變形圖案的材質；形狀與材質參數分離後，同一 graph 更容易換主題。"
+        },
+        {
+          "label": "假半透明方法",
+          "text": "平面材質無法真正表現厚度時，可用 AO、edge specular、roughness 與色彩分層做視覺近似；遊戲中仍需確認不同燈光與 mip 距離下是否維持 jelly 感。"
+        }
+      ],
+      "rank_global": 19,
+      "homepage_tier": "category_only"
+    },
+    {
+      "id": "blender-ice-procedural-material",
+      "title": "Blender 程序冰塊材質：Volume＋Voronoi＋Displacement 做可快速改款的透明冰",
+      "summary": "Ryan King 的 Blender 教學用內部 Volume 製造霧白核心、Voronoi 控制不規則表面，再把透明、粗糙與 displacement 收進可重用 node group，適合作為程序材質封裝範例。",
+      "quick_impact": "★★★☆☆",
+      "source_url": "https://80.lv/articles/tutorial-realistic-procedural-ice-cube-material-in-blender-with-easy-customization",
+      "category": "blender-dcc",
+      "subcategory": "blender-tip",
+      "ranking_score": 78.4,
+      "analysis_level": "BRIEF",
+      "brief_reason": "practical-tutorial-limited-depth",
+      "full_analysis": [
+        {
+          "label": "材質封裝",
+          "text": "把 volume、roughness、displacement 與色彩集中成少數 exposed parameters，可以讓同一材質快速產生多種冰塊，而不是複製整套 node graph 後各自維護。"
+        },
+        {
+          "label": "遊戲轉換",
+          "text": "若要進 real-time engine，應測試哪些效果必須烘成 normal/roughness，哪些可由 shader 保留；Volume 與高成本 displacement 通常需要更便宜的近似方案。"
+        }
+      ],
+      "rank_global": 20,
+      "homepage_tier": "category_only"
+    },
+    {
+      "id": "blender522-lts-production-fixes",
+      "title": "Blender 5.2.2 LTS：修正 Grease Pencil 消失與 Line Art 動畫可見性等 production 問題",
+      "summary": "Blender 5.2 LTS 在 9/15 更新到 5.2.2，修正 Line Art 對 animated visibility 不重算、Grease Pencil stroke 隨機合併/消失與 VSE/Compositor 預覽等問題，屬於穩定版 production 修補。",
+      "quick_impact": "★★★☆☆",
+      "source_url": "https://www.blender.org/releases/5-2/",
+      "category": "blender-dcc",
+      "subcategory": "blender",
+      "ranking_score": 78,
+      "analysis_level": "BRIEF",
+      "brief_reason": "short-official-announcement",
+      "full_analysis": [
+        {
+          "label": "LTS 風險修補",
+          "text": "5.2.2 對 Grease Pencil、Line Art 與 VSE/Compositor 修正直接影響動畫與 NPR pipeline；若專案依賴這些功能，LTS patch 的價值通常高於追最新 alpha 功能。"
+        },
+        {
+          "label": "升版方式",
+          "text": "正式專案可先在 clone scene 測 animated visibility、GP stroke、compositor preview 與 render farm，再升整組工作站；LTS 更新仍應保留 plug-in 與 Python API smoke test。"
+        }
+      ],
+      "rank_global": 21,
+      "homepage_tier": "category_only"
+    },
+    {
+      "id": "blender53-layered-compositing",
+      "title": "Blender 5.3 Layered Compositing 主 PR 已合併，Compositor Effects 進入正式整合階段",
+      "summary": "Blender Compositor 9/10 會議紀錄指出 Layered Compositing 的主要 PR 已合併並預計進 5.3，後續仍在調整 Scene Effect/UI，代表分層合成工作流已從研究走向可測試整合。",
+      "quick_impact": "★★★☆☆",
+      "source_url": "https://devtalk.blender.org/t/2026-09-10-compositor-meeting-notes/45801",
+      "category": "blender-dcc",
+      "subcategory": "blender",
+      "ranking_score": 77.6,
+      "analysis_level": "BRIEF",
+      "brief_reason": "early-release-limited-evidence",
+      "full_analysis": [
+        {
+          "label": "Compositor 方向",
+          "text": "Layered Compositing 進 main 後，Blender 5.3 的合成架構會更適合把 scene effect 與多層結果管理在同一工作流；對 NPR、後製與 shot-based pipeline 都值得提前做相容測試。"
+        },
+        {
+          "label": "成熟度",
+          "text": "目前仍在 5.3 開發期且 UI/命名持續調整，現階段應用測試檔驗證 node 行為與輸出一致性，不宜直接把 production template 鎖在尚未 beta 的介面。"
+        }
+      ],
+      "rank_global": 22,
+      "homepage_tier": "category_only"
+    },
+    {
+      "id": "blender-usd-nondestructive-editing-direction",
+      "title": "Blender USD I/O：探索由完整匯入/重匯出轉向 non-destructive editing layer",
+      "summary": "Blender Pipeline & I/O 會議正在討論用 collection import＋dynamic override 保留 USD prim 對應，再把修改輸出成 USD editing layer，方向是減少完整 import/re-export 對大型 USD pipeline 的破壞性。",
+      "quick_impact": "★★★☆☆",
+      "source_url": "https://devtalk.blender.org/t/2026-09-10-pipeline-i-o-module-meeting/45797",
+      "category": "blender-dcc",
+      "subcategory": "blender",
+      "ranking_score": 77.1,
+      "analysis_level": "BRIEF",
+      "brief_reason": "early-release-limited-evidence",
+      "full_analysis": [
+        {
+          "label": "USD Pipeline 方向",
+          "text": "若 Blender 能把局部 override 映射回 USD edit layer，就能更接近 non-destructive USD collaboration，而不是每次把整份 stage 展平後重新輸出；對跨 DCC 大場景特別重要。"
+        },
+        {
+          "label": "導入限制",
+          "text": "目前仍是設計方向，關鍵風險在 Blender ID 與 USD prim 的穩定 mapping、layer composition 與 rename/reparent；正式導入前要等實作並用真實 shot/asset stage 驗證。"
+        }
+      ],
+      "rank_global": 23,
+      "homepage_tier": "category_only"
+    },
+    {
+      "id": "blender-cycles-cuda13-transition",
+      "title": "Blender Cycles 規劃 CUDA 12→13：Windows ARM64 與新 GPU 工具鏈進入測試",
+      "summary": "9/15 Render & Cycles 會議提到準備切換到 CUDA 13.4.x，並處理 Windows ARM64、Intel library 與 compiler/driver 相容問題；對 render farm 與自建 Blender 發行版屬於值得追蹤的工具鏈變動。",
+      "quick_impact": "★★★☆☆",
+      "source_url": "https://devtalk.blender.org/t/2026-09-15-render-cycles-meeting/45814",
+      "category": "blender-dcc",
+      "subcategory": "blender",
+      "ranking_score": 76.7,
+      "analysis_level": "BRIEF",
+      "brief_reason": "early-release-limited-evidence",
+      "full_analysis": [
+        {
+          "label": "Render 工具鏈",
+          "text": "CUDA major toolchain 切換會影響 build、driver baseline 與特定 GPU/OS 組合，即使 scene feature 不變，也可能改變 farm deployment 與自建版本的驗證矩陣。"
+        },
+        {
+          "label": "Production 建議",
+          "text": "在官方 build 正式切換前先不要動既有 farm；應等 daily/beta 後用代表性 Cycles 場景測 kernel compile、OptiX/CUDA fallback、driver 版本與 ARM64 節點相容性。"
+        }
+      ],
+      "rank_global": 24,
+      "homepage_tier": "category_only"
+    },
+    {
+      "id": "unity6000-6-graphicsstatecollection",
+      "title": "Unity 6000.6：GraphicsStateCollection API 轉正並強化 Shader 資產連結",
+      "summary": "Unity 6000.6.0f1 將 GraphicsStateCollection 從 Experimental.Rendering 移到正式 Rendering namespace，並在 importer inspector 加入現有 Shader 資產連結能力，對 shader variant / graphics state 管理更接近 production API。",
+      "quick_impact": "★★★☆☆",
+      "source_url": "https://unity.com/releases/editor/whats-new/6000.6.0f1",
+      "category": "engine-art",
+      "subcategory": "rendering",
+      "ranking_score": 76.2,
+      "analysis_level": "BRIEF",
+      "brief_reason": "short-official-announcement",
+      "full_analysis": [
+        {
+          "label": "Graphics API 穩定化",
+          "text": "從 experimental namespace 移到正式 Rendering namespace，代表 GraphicsStateCollection 更適合被工具鏈直接依賴；Importer 能連結既有 Shader 也減少 graphics state 與 shader asset 分離管理的摩擦。"
+        },
+        {
+          "label": "升版檢查",
+          "text": "既有工具若引用舊 namespace 需要先做 API migration；同時應重跑 shader variant collection、warmup、platform graphics validation 與 build stripping 測試，避免只改 compile error 卻漏掉 runtime 差異。"
+        }
+      ],
+      "rank_global": 25,
+      "homepage_tier": "category_only"
+    },
+    {
+      "id": "substance-designer-1606-stability",
+      "title": "Substance 3D Designer 16.0.6：修 shader compile 關閉崩潰與非 ASCII 路徑匯出問題",
+      "summary": "Designer 16.0.6 於 9/4 發布，修正 shader 編譯期間關閉程式的 crash、非 ASCII 路徑影像匯出 crash，並包含 TGA/TIFF parser 安全修補，對亞洲語系專案路徑與批次材質工具較實用。",
+      "quick_impact": "★★★☆☆",
+      "source_url": "https://experienceleague.adobe.com/en/docs/substance-3d-designer/using/release-notes/all-changes",
+      "category": "blender-dcc",
+      "subcategory": "substance",
+      "ranking_score": 75.8,
+      "analysis_level": "BRIEF",
+      "brief_reason": "short-official-announcement",
+      "full_analysis": [
+        {
+          "label": "穩定性修補",
+          "text": "非 ASCII path crash 對中文/日文專案資料夾特別直接，shader compile 關閉 crash 也會影響自動化與大量 graph 編輯；這類 patch 雖不新增功能，但能降低 production 阻塞。"
+        },
+        {
+          "label": "更新策略",
+          "text": "材質團隊可先用含中文路徑的 export、UDIM/baker 與 custom shader graph 做 smoke test，再升正式工作站；若有 command-line 或 automation，也要確認 parser/security 更新沒有改輸出結果。"
+        }
+      ],
+      "rank_global": 26,
+      "homepage_tier": "category_only"
     }
   ],
   "visual_evidence": {}
