@@ -17,9 +17,9 @@ if not MAIN.exists(): fail('intelligence-build.yml missing'); main=''
 else:
     main=MAIN.read_text('utf-8')
     required=[
-        "- 'data/publish/*.request'", "- 'data/publish/*.ready'",
+        "- 'data/publish/*.collector'", "- 'data/publish/*.request'", "- 'data/publish/*.ready'",
         'group: canonical-intelligence-publish','cancel-in-progress: false','pip install -r requirements-pipeline.txt',
-        'prepare_release_candidate.py','PRE-READY HANDOFF COMPLETE','check_ready_contract.py','check_release_input.py','check_registry_contract.py',
+        'finalize_collector_trigger.py','prepare_release_candidate.py','PRE-READY HANDOFF COMPLETE','check_ready_contract.py','check_release_input.py','check_registry_contract.py',
         'render_daily_navigation.py','render_home_archive_links.py','render_information_architecture.py','build_intelligence.py',
         'extract_visual_assets.py','inject_visual_previews.py','apply_cache_bust.py','check_intelligence_contract.py','check_visual_contract.py','check_home_contract.py',
         'check_daily_contract.py','check_information_architecture.py','check_historical_regression.py --days 4','verify_pages_publish.py','write_publish_receipt.py','restore_publish_snapshot.py',
@@ -31,8 +31,10 @@ else:
         fail('registry normalization must happen before .ready, never inside canonical publish job')
     if "needs.route.outputs.mode == 'request'" not in main: fail('same canonical workflow must route .request to pre-ready preparation')
     if "needs.route.outputs.mode == 'ready'" not in main: fail('same canonical workflow must route generated .ready to publish')
-    if "needs: [route, prepare]" not in main or "needs.prepare.result == 'success'" not in main:
-        fail('request-mode prepare must continue into publish in the same workflow run; do not rely on GITHUB_TOKEN push retrigger')
+    if "needs: [route, prepare, handoff]" not in main or "needs.prepare.result == 'success'" not in main:
+        fail('request/collector prepare must continue into publish in the same workflow run; do not rely on GITHUB_TOKEN push retrigger')
+    if "needs: [route, handoff]" not in main or "needs.handoff.result == 'success'" not in main:
+        fail('collector handoff must gate prepare inside the single canonical workflow')
     if 'git push origin HEAD:main' not in main: fail('canonical workflow must persist pre-ready/publish results through its sole writer path')
     if main.count('ref: main')<3: fail('route, canonical writer and recovery checkouts must refresh to latest main')
     if 'cancel-in-progress: true' in main: fail('canonical writer must never cancel an active prepare/publish')
@@ -40,7 +42,7 @@ else:
     if "- 'data/daily/**'" in main: fail('canonical workflow must not trigger on data/daily/** before request/ready')
     if 'contents: write' not in main: fail('canonical publisher requires contents: write')
     if re.search(r'^\s{2}issues:\s*$', main, re.M) or 'rerun-canonical:' in main:
-        fail('issue-based canonical publish trigger is forbidden; automated handoff must use .request/.ready only')
+        fail('issue-based canonical publish trigger is forbidden; automated handoff must use .collector/.request/.ready only')
 
 # Collection-stage identity mutation and .ready creation must be a single fail-closed
 # pre-ready operation; the publisher only verifies the resulting canonical hash.

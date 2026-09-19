@@ -4,6 +4,7 @@ on:
   push:
     branches: [main]
     paths:
+      - 'data/publish/*.collector'
       - 'data/publish/*.request'
       - 'data/publish/*.ready'
   workflow_dispatch:
@@ -70,9 +71,30 @@ jobs:
           echo "date=$date" >> "$GITHUB_OUTPUT"
           echo "Canonical route: mode=$mode date=${date:-auto}"
 
-  prepare:
+  handoff:
     needs: route
-    if: needs.route.outputs.mode == 'request'
+    if: github.event_name == 'push' && needs.route.outputs.mode == 'skip' && startsWith(github.event.head_commit.message, 'Collector handoff ')
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    outputs:
+      date: ${{ steps.bridge.outputs.date }}
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - name: Install locked pipeline dependencies
+        run: pip install -r requirements-pipeline.txt
+      - name: Finalize persisted Collector handoff
+        id: bridge
+        run: python scripts/finalize_collector_trigger.py
+
+  prepare:
+    needs: [route, handoff]
+    if: always() && (needs.route.outputs.mode == 'request' || needs.handoff.result == 'success')
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
@@ -88,7 +110,7 @@ jobs:
       - name: Run repository pre-ready gate and persist its generated marker
         shell: bash
         env:
-          DATE: ${{ needs.route.outputs.date }}
+          DATE: ${{ needs.route.outputs.date || needs.handoff.outputs.date }}
         run: |
           set -uo pipefail
           test -n "$DATE" || { echo 'Request event did not resolve a canonical date'; exit 1; }
@@ -141,8 +163,8 @@ jobs:
           echo "PRE-READY HANDOFF COMPLETE: repo script generated and pushed data/publish/$DATE.ready"
 
   publish:
-    needs: [route, prepare]
-    if: always() && (needs.route.outputs.mode == 'ready' || needs.route.outputs.mode == 'publish' || (needs.route.outputs.mode == 'request' && needs.prepare.result == 'success'))
+    needs: [route, prepare, handoff]
+    if: always() && (needs.route.outputs.mode == 'ready' || needs.route.outputs.mode == 'publish' || (needs.prepare.result == 'success' && (needs.route.outputs.mode == 'request' || needs.handoff.result == 'success')))
     runs-on: ubuntu-latest
     timeout-minutes: 45
     steps:
@@ -163,7 +185,7 @@ jobs:
         id: date
         shell: bash
         env:
-          ROUTED_DATE: ${{ needs.route.outputs.date }}
+          ROUTED_DATE: ${{ needs.route.outputs.date || needs.handoff.outputs.date }}
           REQUESTED_DATE: ${{ github.event.inputs.date }}
           EVENT_NAME: ${{ github.event_name }}
           BEFORE_SHA: ${{ github.event.before }}
