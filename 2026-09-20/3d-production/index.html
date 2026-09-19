@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   3D 製作｜2026-09-20｜AI 3D Daily
+  </title>
+  <link href="../../styles.css?v=20260920-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../../shared-components.css?v=20260920-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../../category.css?v=20260920-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+ </head>
+ <body class="category-page" data-category="3d-production" data-report-date="2026-09-20">
+  <nav aria-label="Production Intelligence 分類" class="global-category-nav">
+   <div class="page global-category-nav-inner">
+    <div class="archive-nav-controls">
+     <a class="archive-nav-home" href="../../">
+      ← 首頁
+     </a>
+     <div class="archive-nav-date">
+      <a aria-label="前一日日報" class="archive-nav-arrow" href="../../2026-09-18/3d-production/">
+       ←
+      </a>
+      <span>
+       2026-09-20
+      </span>
+     </div>
+    </div>
+    <span aria-hidden="true" class="archive-nav-divider">
+    </span>
+    <a class="global-category-link" href="../#top">
+     TOP5
+    </a>
+    <a class="global-category-link" data-category="ai-generation" href="../ai-generation/">
+     AI 生成
+    </a>
+    <a class="global-category-link is-active" data-category="3d-production" href="../3d-production/">
+     3D 製作
+    </a>
+    <a class="global-category-link" data-category="3d-animation" href="../3d-animation/">
+     3D 動作
+    </a>
+    <a class="global-category-link" data-category="engine-art" href="../engine-art/">
+     遊戲引擎
+    </a>
+    <a class="global-category-link" data-category="emerging-case" href="../emerging-case/">
+     新技術 / Case
+    </a>
+    <a class="global-category-link" data-category="blender-dcc" href="../blender-dcc/">
+     Blender / DCC
+    </a>
+    <a class="global-category-link global-history-link" data-global-view="history" href="../../history/">
+     歷史日報
+    </a>
+   </div>
+  </nav>
+  <main class="page category-main">
+   <article class="category-card" data-intel-id="smart-remesh3-blender-retopo" data-intel-role="card">
+    <div class="category-meta">
+     #02 · production-workflow
+    </div>
+    <h2>
+     Smart Remesh 3：Blender 自動 Retopo 同時兼顧硬表面平面與服裝 UV seam
+    </h2>
+    <p class="summary">
+     Smart Remesh 3 針對高面數硬表面與有機模型重建 quad topology，可控制目標 face count，平面可重建成乾淨 n-gon；服裝模式會依 UV panel 處理並保留 seam，適合掃描、雕刻與 AI 生成後清網格。
+    </p>
+    <figure class="case-preview" data-intel-id="smart-remesh3-blender-retopo" data-intel-role="visual" data-visual-id="smart-remesh3-blender-retopo">
+     <a href="https://80.lv/articles/quad-remesher-for-hard-surface-organic-blender-models" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-20/smart-remesh3-blender-retopo.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">製作流程</b> ★★★★☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       Retopo 技術流程
+      </h4>
+      <p>
+       Smart Remesh 3 的技術重點不是只做均勻重網格，而是分別處理 hard-surface flat panel 與 organic surface，並提供目標 face count 控制；服裝流程還能依 UV panel 分區處理並盡量保存 seam。
+      </p>
+      <h4>
+       Production 價值
+      </h4>
+      <p>
+       對 AI 3D、掃描或 ZBrush 高模，先把髒網格轉成可繼續編輯的 quad cage，再進 UV、bake 或 Rig，可直接降低手工 retopo 成本；平面區減少無意義 edge loop 對硬表面資產尤其有價值。
+      </p>
+      <h4>
+       導入測試
+      </h4>
+      <p>
+       不要只比較 polygon 數；應以角色衣服、機械零件與 AI mesh 各測一組，驗證 silhouette、UV seam、hard edge、bake cage、變形區 edge flow 與 cleanup 分鐘數，再判斷是否適合正式流程。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://80.lv/articles/quad-remesher-for-hard-surface-organic-blender-models" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="ankara-street-environment-breakdown" data-intel-role="card">
+    <div class="category-meta">
+     #05 · environment-production
+    </div>
+    <h2>
+     Ankara Alley：從真實街景 reference 到 Designer 平鋪材質的寫實場景拆解
+    </h2>
+    <p class="summary">
+     環境美術 Nore Pollentier 以真實 Ankara 街道為 reference，拆解 Blender／Unreal／ZBrush／Substance 的場景流程，並說明如何用 Substance Designer 建立牆面與道路 tiling material 來維持大面積一致性。
+    </p>
+    <figure class="case-preview" data-intel-id="ankara-street-environment-breakdown" data-intel-role="visual" data-visual-id="ankara-street-environment-breakdown">
+     <a href="https://80.lv/articles/breakdown-creating-a-realistic-3d-environment-of-an-ankara-street" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-20/ankara-street-environment-breakdown.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">場景製作</b> ★★★★☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       場景拆解方法
+      </h4>
+      <p>
+       案例先從真實街道 reference 建立比例與視覺語彙，再把牆、路面等高覆蓋率表面抽成 Substance Designer tiling material；這比每個區塊都做獨立貼圖更適合長街景的重複與變化控制。
+      </p>
+      <h4>
+       Production 影響
+      </h4>
+      <p>
+       對城市或廢墟場景，將大面積材質與獨立 props 分開管理可以降低 unique texture 成本，還能把材質 variation 留在引擎端處理；reference 導向也能避免模組化拼裝後失去地區辨識度。
+      </p>
+      <h4>
+       導入測試
+      </h4>
+      <p>
+       可把案例轉成一個 20–30 公尺街段 prototype，記錄 tiling、vertex blend／decal、trim 或 unique props 各自負責的細節層級，並檢查 texel density、重複紋理可見度與 LOD 後輪廓是否仍成立。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://80.lv/articles/breakdown-creating-a-realistic-3d-environment-of-an-ankara-street" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="middle-east-courtyard-pass-workflow" data-intel-role="card">
+    <div class="category-meta">
+     #06 · environment-production
+    </div>
+    <h2>
+     中東廢棄庭院：改用 Pass-based 場景製作，把每輪工作集中在一種問題
+    </h2>
+    <p class="summary">
+     3D Generalist Irmak Çavun 分享把傳統逐資產推進改成 pass-based environment workflow，以每輪集中處理構圖、結構、材質等問題節省時間，並建立能快速重用的 material system。
+    </p>
+    <figure class="case-preview" data-intel-id="middle-east-courtyard-pass-workflow" data-intel-role="visual" data-visual-id="middle-east-courtyard-pass-workflow">
+     <a href="https://80.lv/articles/assembling-abandoned-middle-eastern-courtyard-in-3d-using-pass-based-workflow" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-20/middle-east-courtyard-pass-workflow.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">場景製作</b> ★★★★☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       流程設計
+      </h4>
+      <p>
+       案例把場景工作拆成多個 pass，而不是一個資產從 blockout 一路做到 final 才換下一個；這種做法可以在整體尺度、構圖、材質與細節層級尚未鎖死前，持續比較全場景的一致性。
+      </p>
+      <h4>
+       Production 影響
+      </h4>
+      <p>
+       對多人或容易反覆改構圖的場景，pass-based workflow 能更早暴露整體問題，避免局部資產過度完成後才發現比例或視覺焦點需要重做；快速 material system 也讓 lookdev 在整體層級更容易迭代。
+      </p>
+      <h4>
+       導入測試
+      </h4>
+      <p>
+       可以把現有場景任務拆成 Blockout、Primary Forms、Material Family、Set Dressing、Polish 五輪，記錄每輪返工與 review 時間；若外包交付也採 pass milestone，還要驗證是否能明確定義每一輪的 acceptance criteria。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://80.lv/articles/assembling-abandoned-middle-eastern-courtyard-in-3d-using-pass-based-workflow" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="marvelous-2026-1-seamline-rip" data-intel-role="card">
+    <div class="category-meta">
+     #07 · character-production
+    </div>
+    <h2>
+     Marvelous Designer 2026.1 Seamline Rip：直接在縫線定義破裂與 Fray 區域
+    </h2>
+    <p class="summary">
+     Marvelous Designer 2026.1 新增 Seamline Rip，可在既有 sewing line 的全部或局部指定 rip area，調整 Rip／Fray 屬性並模擬接縫打開、破損衣物與磨損邊緣。
+    </p>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">角色製作</b> ★★★★☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       服裝模擬能力
+      </h4>
+      <p>
+       Seamline Rip 把破裂位置直接綁在 sewing line 上，可做局部或完整裂開並調整 Rip／Fray 屬性；對 damaged clothing 來說，破損不再只能靠貼圖假出，而能先由布料結構與模擬產生形狀。
+      </p>
+      <h4>
+       Production 影響
+      </h4>
+      <p>
+       角色高模階段若先得到可信的布料張力與裂口形狀，後續 ZBrush、retopo 與 texture 可以沿著實際 deformation 做細化，特別適合戰損服裝、殭屍、末日或需要多版本 damaged state 的角色。
+      </p>
+      <h4>
+       導入測試
+      </h4>
+      <p>
+       建議用同一件外套測正常、局部 seam rip、完全 rupture 三種狀態，觀察模擬穩定性、碎邊密度、轉成 static mesh 後拓樸與 UV 成本；若只是遠景角色，貼圖／alpha 方案可能仍比真實裂口更划算。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://support.marvelousdesigner.com/hc/en-us/articles/59816167297433-Seamline-Rip" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <nav aria-label="相鄰分類" class="category-bottom-nav">
+    <a href="../ai-generation/">
+     ← AI 生成
+    </a>
+    <a href="../#top">
+     TOP5
+    </a>
+    <a href="../3d-animation/">
+     3D 動作 →
+    </a>
+   </nav>
+  </main>
+  <script defer="" src="../../archive-nav-state.js?v=20260920-r1-workspace-v10-history-current-workspace">
+  </script>
+ </body>
+</html>

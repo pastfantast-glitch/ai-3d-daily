@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   遊戲引擎｜2026-09-20｜AI 3D Daily
+  </title>
+  <link href="../../styles.css?v=20260920-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../../shared-components.css?v=20260920-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../../category.css?v=20260920-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+ </head>
+ <body class="category-page" data-category="engine-art" data-report-date="2026-09-20">
+  <nav aria-label="Production Intelligence 分類" class="global-category-nav">
+   <div class="page global-category-nav-inner">
+    <div class="archive-nav-controls">
+     <a class="archive-nav-home" href="../../">
+      ← 首頁
+     </a>
+     <div class="archive-nav-date">
+      <a aria-label="前一日日報" class="archive-nav-arrow" href="../../2026-09-18/engine-art/">
+       ←
+      </a>
+      <span>
+       2026-09-20
+      </span>
+     </div>
+    </div>
+    <span aria-hidden="true" class="archive-nav-divider">
+    </span>
+    <a class="global-category-link" href="../#top">
+     TOP5
+    </a>
+    <a class="global-category-link" data-category="ai-generation" href="../ai-generation/">
+     AI 生成
+    </a>
+    <a class="global-category-link" data-category="3d-production" href="../3d-production/">
+     3D 製作
+    </a>
+    <a class="global-category-link" data-category="3d-animation" href="../3d-animation/">
+     3D 動作
+    </a>
+    <a class="global-category-link is-active" data-category="engine-art" href="../engine-art/">
+     遊戲引擎
+    </a>
+    <a class="global-category-link" data-category="emerging-case" href="../emerging-case/">
+     新技術 / Case
+    </a>
+    <a class="global-category-link" data-category="blender-dcc" href="../blender-dcc/">
+     Blender / DCC
+    </a>
+    <a class="global-category-link global-history-link" data-global-view="history" href="../../history/">
+     歷史日報
+    </a>
+   </div>
+  </nav>
+  <main class="page category-main">
+   <article class="category-card" data-intel-id="unity67-surface-cache-gi-preview" data-intel-role="card">
+    <div class="category-meta">
+     #03 · rendering
+    </div>
+    <h2>
+     Unity Surface Cache GI：URP 動態 GI 可跟著幾何與燈光改變，近期回報也暴露多燈噪點限制
+    </h2>
+    <p class="summary">
+     Unity 正在為 6.7 LTS 推進 Surface Cache GI，目標是在不預烘焙的情況下支援動態幾何與動態燈光的間接照明；9 月討論仍指出多燈 light sampling 尚未完善，ECS 支援預計進 6000.7.0b1。
+    </p>
+    <figure class="case-preview" data-intel-id="unity67-surface-cache-gi-preview" data-intel-role="visual" data-visual-id="unity67-surface-cache-gi-preview">
+     <a href="https://discussions.unity.com/t/surface-cache-gi-preview/1720494" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-20/unity67-surface-cache-gi-preview.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">渲染</b> ★★★★☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       GI 能力
+      </h4>
+      <p>
+       SCGI 的核心是讓 indirect diffuse 能隨場景幾何和燈光即時改變，包含程序城市、破壞物件、開關門、日夜循環等過去需要 bake 或 lighting scenario 才較容易處理的情境。
+      </p>
+      <h4>
+       Production 影響
+      </h4>
+      <p>
+       對 URP 場景，美術迭代可以先不用反覆烘焙就檢查 bounce light，特別適合動態場景與快速 lookdev；官方也明確表示最終效能若需要，仍可在 release 階段切回 baked lighting。
+      </p>
+      <h4>
+       導入限制
+      </h4>
+      <p>
+       目前仍是 preview，近期官方回覆指出 light sampling 對大量燈具仍是 work in progress，燈越多噪點可能越高；ECS 支援也還在後續 beta。導入前應用實際場景量測 VRAM、noise、動態物件與多燈穩定度。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://discussions.unity.com/t/surface-cache-gi-preview/1720494" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="unity65-shader-function-reflection" data-intel-role="card">
+    <div class="category-meta">
+     #10 · shader
+    </div>
+    <h2>
+     Unity 6.5 Shader Function Reflection：用 HLSL function 自動生成 Shader Graph Node
+    </h2>
+    <p class="summary">
+     Unity 6.5 的 Shader Function Reflection API 讓技術美術在 HLSL function 前加 UNITY_EXPORT_REFLECTION 後，自動把 function signature 反射成 Shader Graph node，並以 XML hints 控制顯示名稱、分類與 port。
+    </p>
+    <figure class="case-preview" data-intel-id="unity65-shader-function-reflection" data-intel-role="visual" data-visual-id="unity65-shader-function-reflection">
+     <a href="https://discussions.unity.com/t/shader-function-reflection-api/1708277" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-20/unity65-shader-function-reflection.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">Shader</b> ★★★☆☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       Shader 工具流程
+      </h4>
+      <p>
+       Reflection API 把 HLSL function 的輸入輸出直接映射成 Shader Graph node，支援 in／out／inout 與 void，並可用 hints 描述 provider key、display name、search category 與參數 UI，減少手動同步 Custom Function Node port。
+      </p>
+      <h4>
+       Production 影響
+      </h4>
+      <p>
+       對公司共用 shader library，技術美術可以維護一份 HLSL 實作，再讓 Graph 使用者以 node 方式調用，降低程式函式簽名改動後 Graph wrapper 忘記更新的風險；也比較適合 AI／LLM 先產 HLSL 再接圖形化流程。
+      </p>
+      <h4>
+       導入限制
+      </h4>
+      <p>
+       它只處理 function body 與 ports，不包含 SubShader／Pass 的 Stencil、Depth、Blend 等狀態；導入時應先挑 3–5 個公司常用 HLSL helper 測 namespace、precision、reference type 與版本控制，再決定是否取代既有 Custom Function Node。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://discussions.unity.com/t/shader-function-reflection-api/1708277" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="unity6000-6-graphicsstatecollection" data-intel-role="card">
+    <div class="category-meta">
+     #16 · rendering
+    </div>
+    <h2>
+     Unity 6000.6：GraphicsStateCollection API 轉正並強化 Shader 資產連結
+    </h2>
+    <p class="summary">
+     Unity 6000.6.0f1 將 GraphicsStateCollection 從 Experimental.Rendering 移到正式 Rendering namespace，並在 importer inspector 加入現有 Shader 資產連結能力，對 shader variant / graphics state 管理更接近 production API。
+    </p>
+    <figure class="case-preview" data-intel-id="unity6000-6-graphicsstatecollection" data-intel-role="visual" data-visual-id="unity6000-6-graphicsstatecollection">
+     <a href="https://unity.com/releases/editor/whats-new/6000.6.0f1" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-20/unity6000-6-graphicsstatecollection.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">渲染</b> ★★★☆☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       Graphics API 技術變更
+      </h4>
+      <p>
+       Unity 6000.6 將 GraphicsStateCollection 從 Experimental.Rendering 移到正式 UnityEngine.Rendering namespace，Importer 也新增連結既有 Shader 資產能力，代表 graphics state 管理 API 正式化。
+      </p>
+      <h4>
+       Production 影響
+      </h4>
+      <p>
+       對 shader variant、warmup 與 graphics pipeline 工具，正式 namespace 可降低依賴 experimental API 的維護風險，Importer 連結 Shader 也讓 state collection 與資產管理更容易整合進 production tooling。
+      </p>
+      <h4>
+       升版測試與相容性
+      </h4>
+      <p>
+       既有工具若引用舊 namespace 必須先做 API migration，並重跑 shader variant collection、warmup、platform graphics validation、build stripping 與 runtime 相容測試，避免只修 compile error 卻漏掉行為差異。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://unity.com/releases/editor/whats-new/6000.6.0f1" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <nav aria-label="相鄰分類" class="category-bottom-nav">
+    <a href="../3d-animation/">
+     ← 3D 動作
+    </a>
+    <a href="../#top">
+     TOP5
+    </a>
+    <a href="../emerging-case/">
+     新技術 / Case →
+    </a>
+   </nav>
+  </main>
+  <script defer="" src="../../archive-nav-state.js?v=20260920-r1-workspace-v10-history-current-workspace">
+  </script>
+ </body>
+</html>

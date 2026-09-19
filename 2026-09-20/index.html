@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   AI／3D／遊戲美術 Production Intelligence — 2026-09-20
+  </title>
+  <link href="../styles.css?v=20260920-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../shared-components.css?v=20260920-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../daily.css?v=20260920-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../shared-components.css?v=20260920-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+ </head>
+ <body class="archive-page" data-next="" data-previous="2026-09-18" data-report-date="2026-09-20">
+  <nav aria-label="Production Intelligence 分類" class="global-category-nav">
+   <div class="page global-category-nav-inner">
+    <div class="archive-nav-controls">
+     <a class="archive-nav-home" href="../">
+      ← 首頁
+     </a>
+     <div class="archive-nav-date">
+      <a aria-label="前一日日報" class="archive-nav-arrow" href="../2026-09-18/">
+       ←
+      </a>
+      <span>
+       2026-09-20
+      </span>
+     </div>
+    </div>
+    <span aria-hidden="true" class="archive-nav-divider">
+    </span>
+    <a class="global-category-link is-active" href="#top">
+     TOP5
+    </a>
+    <a class="global-category-link" data-category="ai-generation" href="ai-generation/">
+     AI 生成
+    </a>
+    <a class="global-category-link" data-category="3d-production" href="3d-production/">
+     3D 製作
+    </a>
+    <a class="global-category-link" data-category="3d-animation" href="3d-animation/">
+     3D 動作
+    </a>
+    <a class="global-category-link" data-category="engine-art" href="engine-art/">
+     遊戲引擎
+    </a>
+    <a class="global-category-link" data-category="emerging-case" href="emerging-case/">
+     新技術 / Case
+    </a>
+    <a class="global-category-link" data-category="blender-dcc" href="blender-dcc/">
+     Blender / DCC
+    </a>
+    <a class="global-category-link global-history-link" data-global-view="history" href="../history/">
+     歷史日報
+    </a>
+   </div>
+  </nav>
+  <main class="page daily-main">
+   <section class="block" id="top">
+    <div class="block-head">
+     <div>
+      <span>
+       2026-09-20
+      </span>
+      <h2>
+       TOP5
+      </h2>
+     </div>
+    </div>
+    <article class="news daily-card daily-card-top" data-intel-id="blender53-native-gaussian-splats" data-intel-role="card">
+     <div class="news-rank">
+      01
+     </div>
+     <div class="news-main">
+      <div class="meta">
+       <span class="pill">
+        blender
+       </span>
+      </div>
+      <h3>
+       Blender 5.3 Alpha 原生支援 Gaussian Splat 匯入與渲染，但 export 與色彩仍有限制
+      </h3>
+      <p class="summary">
+       Blender 5.3 開發版加入 PLY／SPZ Gaussian Splat 匯入與各 render engine 渲染，讓掃描／照片重建資料不必先靠第三方 add-on；目前仍沒有 splat export，且效能、線性色彩與 Apply Transform 有已知限制。
+      </p>
+      <figure class="case-preview daily-visual" data-intel-id="blender53-native-gaussian-splats" data-intel-role="visual" data-visual-id="blender53-native-gaussian-splats">
+       <a href="https://80.lv/articles/blender-5-3-is-getting-native-3d-gaussian-splat-support" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-09-20/blender53-native-gaussian-splats.jpg"/>
+       </a>
+       <figcaption>
+        <span>
+         SOURCE PREVIEW
+        </span>
+        · Local visual evidence · 點圖開啟原始來源
+       </figcaption>
+      </figure>
+      <div class="quick-impact daily-impact">
+       <span><b class="quick-impact-label">Blender</b> ★★★★★</span>
+      </div>
+      <details class="canonical-analysis canonical-analysis-brief daily-full-analysis" data-analysis-level="BRIEF">
+       <summary>
+        完整分析
+       </summary>
+       <div class="detail-body canonical-analysis-body brief-analysis-body daily-analysis-body">
+        <h4>
+         DCC 支援變更
+        </h4>
+        <p>
+         Gaussian Splat 開始成為 Blender 原生可匯入、可渲染的資料類型，支援 PLY 與 SPZ，並可在 Blender 各 render engine 中使用；這讓 capture／3DGS 資料能更直接進入一般 DCC 場景與鏡頭流程。
+        </p>
+        <h4>
+         Production 價值
+        </h4>
+        <p>
+         若團隊用照片或影片重建環境，原生支援可減少外掛版本綁定，並讓 mesh、camera、lighting 與 splat 同場整合；對背景、previs、場景 reference 和 hybrid rendering 都有直接工作流價值。
+        </p>
+        <h4>
+         導入限制
+        </h4>
+        <p>
+         目前仍是 5.3 Alpha，官方資訊指出 export 尚未支援，Cycles／EEVEE 線性色彩顯示也不完全正確，Apply Transform 還有 scale／rotation／spherical harmonics 問題；現階段應定位為測試而非正式資產交付。
+        </p>
+        <p class="analysis-level-note">
+         BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+        </p>
+       </div>
+      </details>
+      <a class="source daily-source" href="https://80.lv/articles/blender-5-3-is-getting-native-3d-gaussian-splat-support" rel="noopener noreferrer" target="_blank">
+       來源
+      </a>
+     </div>
+    </article>
+    <article class="news daily-card daily-card-top" data-intel-id="smart-remesh3-blender-retopo" data-intel-role="card">
+     <div class="news-rank">
+      02
+     </div>
+     <div class="news-main">
+      <div class="meta">
+       <span class="pill">
+        production-workflow
+       </span>
+      </div>
+      <h3>
+       Smart Remesh 3：Blender 自動 Retopo 同時兼顧硬表面平面與服裝 UV seam
+      </h3>
+      <p class="summary">
+       Smart Remesh 3 針對高面數硬表面與有機模型重建 quad topology，可控制目標 face count，平面可重建成乾淨 n-gon；服裝模式會依 UV panel 處理並保留 seam，適合掃描、雕刻與 AI 生成後清網格。
+      </p>
+      <figure class="case-preview daily-visual" data-intel-id="smart-remesh3-blender-retopo" data-intel-role="visual" data-visual-id="smart-remesh3-blender-retopo">
+       <a href="https://80.lv/articles/quad-remesher-for-hard-surface-organic-blender-models" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-09-20/smart-remesh3-blender-retopo.jpg"/>
+       </a>
+       <figcaption>
+        <span>
+         SOURCE PREVIEW
+        </span>
+        · Local visual evidence · 點圖開啟原始來源
+       </figcaption>
+      </figure>
+      <div class="quick-impact daily-impact">
+       <span><b class="quick-impact-label">製作流程</b> ★★★★☆</span>
+      </div>
+      <details class="canonical-analysis canonical-analysis-brief daily-full-analysis" data-analysis-level="BRIEF">
+       <summary>
+        完整分析
+       </summary>
+       <div class="detail-body canonical-analysis-body brief-analysis-body daily-analysis-body">
+        <h4>
+         Retopo 技術流程
+        </h4>
+        <p>
+         Smart Remesh 3 的技術重點不是只做均勻重網格，而是分別處理 hard-surface flat panel 與 organic surface，並提供目標 face count 控制；服裝流程還能依 UV panel 分區處理並盡量保存 seam。
+        </p>
+        <h4>
+         Production 價值
+        </h4>
+        <p>
+         對 AI 3D、掃描或 ZBrush 高模，先把髒網格轉成可繼續編輯的 quad cage，再進 UV、bake 或 Rig，可直接降低手工 retopo 成本；平面區減少無意義 edge loop 對硬表面資產尤其有價值。
+        </p>
+        <h4>
+         導入測試
+        </h4>
+        <p>
+         不要只比較 polygon 數；應以角色衣服、機械零件與 AI mesh 各測一組，驗證 silhouette、UV seam、hard edge、bake cage、變形區 edge flow 與 cleanup 分鐘數，再判斷是否適合正式流程。
+        </p>
+        <p class="analysis-level-note">
+         BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+        </p>
+       </div>
+      </details>
+      <a class="source daily-source" href="https://80.lv/articles/quad-remesher-for-hard-surface-organic-blender-models" rel="noopener noreferrer" target="_blank">
+       來源
+      </a>
+     </div>
+    </article>
+    <article class="news daily-card daily-card-top" data-intel-id="unity67-surface-cache-gi-preview" data-intel-role="card">
+     <div class="news-rank">
+      03
+     </div>
+     <div class="news-main">
+      <div class="meta">
+       <span class="pill">
+        rendering
+       </span>
+      </div>
+      <h3>
+       Unity Surface Cache GI：URP 動態 GI 可跟著幾何與燈光改變，近期回報也暴露多燈噪點限制
+      </h3>
+      <p class="summary">
+       Unity 正在為 6.7 LTS 推進 Surface Cache GI，目標是在不預烘焙的情況下支援動態幾何與動態燈光的間接照明；9 月討論仍指出多燈 light sampling 尚未完善，ECS 支援預計進 6000.7.0b1。
+      </p>
+      <figure class="case-preview daily-visual" data-intel-id="unity67-surface-cache-gi-preview" data-intel-role="visual" data-visual-id="unity67-surface-cache-gi-preview">
+       <a href="https://discussions.unity.com/t/surface-cache-gi-preview/1720494" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-09-20/unity67-surface-cache-gi-preview.jpg"/>
+       </a>
+       <figcaption>
+        <span>
+         SOURCE PREVIEW
+        </span>
+        · Local visual evidence · 點圖開啟原始來源
+       </figcaption>
+      </figure>
+      <div class="quick-impact daily-impact">
+       <span><b class="quick-impact-label">渲染</b> ★★★★☆</span>
+      </div>
+      <details class="canonical-analysis canonical-analysis-brief daily-full-analysis" data-analysis-level="BRIEF">
+       <summary>
+        完整分析
+       </summary>
+       <div class="detail-body canonical-analysis-body brief-analysis-body daily-analysis-body">
+        <h4>
+         GI 能力
+        </h4>
+        <p>
+         SCGI 的核心是讓 indirect diffuse 能隨場景幾何和燈光即時改變，包含程序城市、破壞物件、開關門、日夜循環等過去需要 bake 或 lighting scenario 才較容易處理的情境。
+        </p>
+        <h4>
+         Production 影響
+        </h4>
+        <p>
+         對 URP 場景，美術迭代可以先不用反覆烘焙就檢查 bounce light，特別適合動態場景與快速 lookdev；官方也明確表示最終效能若需要，仍可在 release 階段切回 baked lighting。
+        </p>
+        <h4>
+         導入限制
+        </h4>
+        <p>
+         目前仍是 preview，近期官方回覆指出 light sampling 對大量燈具仍是 work in progress，燈越多噪點可能越高；ECS 支援也還在後續 beta。導入前應用實際場景量測 VRAM、noise、動態物件與多燈穩定度。
+        </p>
+        <p class="analysis-level-note">
+         BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+        </p>
+       </div>
+      </details>
+      <a class="source daily-source" href="https://discussions.unity.com/t/surface-cache-gi-preview/1720494" rel="noopener noreferrer" target="_blank">
+       來源
+      </a>
+     </div>
+    </article>
+    <article class="news daily-card daily-card-top" data-intel-id="animo-v10-maya-toolkit" data-intel-role="card">
+     <div class="news-rank">
+      04
+     </div>
+     <div class="news-main">
+      <div class="meta">
+       <span class="pill">
+        animation
+       </span>
+      </div>
+      <h3>
+       Animo V10：Maya 免費動畫工具集擴到 500+ 功能，加入影片 Reference 與 Arc Tracker
+      </h3>
+      <p class="summary">
+       Animo V10/V10.5.4 為 Maya 動畫師整合 500 多項工具，新增 Tools Editor、影片 reference 匯入、camera-space Arc Tracker、Mirror Pose／Animation 等，商用與非商用皆免費。
+      </p>
+      <figure class="case-preview daily-visual" data-intel-id="animo-v10-maya-toolkit" data-intel-role="visual" data-visual-id="animo-v10-maya-toolkit">
+       <a href="https://cgworld.jp/flashnews/01-202609-Animo.html" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-09-20/animo-v10-maya-toolkit.jpg"/>
+       </a>
+       <figcaption>
+        <span>
+         SOURCE PREVIEW
+        </span>
+        · Local visual evidence · 點圖開啟原始來源
+       </figcaption>
+      </figure>
+      <div class="quick-impact daily-impact">
+       <span><b class="quick-impact-label">動畫</b> ★★★★☆</span>
+      </div>
+      <details class="canonical-analysis canonical-analysis-brief daily-full-analysis" data-analysis-level="BRIEF">
+       <summary>
+        完整分析
+       </summary>
+       <div class="detail-body canonical-analysis-body brief-analysis-body daily-analysis-body">
+        <h4>
+         動畫工具整合
+        </h4>
+        <p>
+         V10 把大量零散動畫操作集中到 Tools Editor，並加入影片 reference 直接使用、camera-space arc tracking、mirror pose／animation 等功能，方向不是自動生成動畫，而是降低手工 blocking、polish 的重複操作。
+        </p>
+        <h4>
+         Production 價值
+        </h4>
+        <p>
+         對 Maya 角色動畫團隊，reference、arc、mirror 與各種 timeline／curve 小工具如果能在同一套 UI 找到，能減少 script shelf 碎片化；免費商用也降低在團隊試導入時的授權門檻。
+        </p>
+        <h4>
+         導入測試
+        </h4>
+        <p>
+         先挑一個既有遊戲 attack 或 locomotion shot，比較純 Maya 與 Animo 在 pose mirror、arc 檢查、reference、curve polish 的操作時間；同時確認 Maya 版本、hotkey 衝突、scene callback 和團隊共用設定是否穩定。
+        </p>
+        <p class="analysis-level-note">
+         BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+        </p>
+       </div>
+      </details>
+      <a class="source daily-source" href="https://cgworld.jp/flashnews/01-202609-Animo.html" rel="noopener noreferrer" target="_blank">
+       來源
+      </a>
+     </div>
+    </article>
+    <article class="news daily-card daily-card-top" data-intel-id="ankara-street-environment-breakdown" data-intel-role="card">
+     <div class="news-rank">
+      05
+     </div>
+     <div class="news-main">
+      <div class="meta">
+       <span class="pill">
+        environment-production
+       </span>
+      </div>
+      <h3>
+       Ankara Alley：從真實街景 reference 到 Designer 平鋪材質的寫實場景拆解
+      </h3>
+      <p class="summary">
+       環境美術 Nore Pollentier 以真實 Ankara 街道為 reference，拆解 Blender／Unreal／ZBrush／Substance 的場景流程，並說明如何用 Substance Designer 建立牆面與道路 tiling material 來維持大面積一致性。
+      </p>
+      <figure class="case-preview daily-visual" data-intel-id="ankara-street-environment-breakdown" data-intel-role="visual" data-visual-id="ankara-street-environment-breakdown">
+       <a href="https://80.lv/articles/breakdown-creating-a-realistic-3d-environment-of-an-ankara-street" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-09-20/ankara-street-environment-breakdown.jpg"/>
+       </a>
+       <figcaption>
+        <span>
+         SOURCE PREVIEW
+        </span>
+        · Local visual evidence · 點圖開啟原始來源
+       </figcaption>
+      </figure>
+      <div class="quick-impact daily-impact">
+       <span><b class="quick-impact-label">場景製作</b> ★★★★☆</span>
+      </div>
+      <details class="canonical-analysis canonical-analysis-brief daily-full-analysis" data-analysis-level="BRIEF">
+       <summary>
+        完整分析
+       </summary>
+       <div class="detail-body canonical-analysis-body brief-analysis-body daily-analysis-body">
+        <h4>
+         場景拆解方法
+        </h4>
+        <p>
+         案例先從真實街道 reference 建立比例與視覺語彙，再把牆、路面等高覆蓋率表面抽成 Substance Designer tiling material；這比每個區塊都做獨立貼圖更適合長街景的重複與變化控制。
+        </p>
+        <h4>
+         Production 影響
+        </h4>
+        <p>
+         對城市或廢墟場景，將大面積材質與獨立 props 分開管理可以降低 unique texture 成本，還能把材質 variation 留在引擎端處理；reference 導向也能避免模組化拼裝後失去地區辨識度。
+        </p>
+        <h4>
+         導入測試
+        </h4>
+        <p>
+         可把案例轉成一個 20–30 公尺街段 prototype，記錄 tiling、vertex blend／decal、trim 或 unique props 各自負責的細節層級，並檢查 texel density、重複紋理可見度與 LOD 後輪廓是否仍成立。
+        </p>
+        <p class="analysis-level-note">
+         BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+        </p>
+       </div>
+      </details>
+      <a class="source daily-source" href="https://80.lv/articles/breakdown-creating-a-realistic-3d-environment-of-an-ankara-street" rel="noopener noreferrer" target="_blank">
+       來源
+      </a>
+     </div>
+    </article>
+   </section>
+   <section class="block daily-more" id="more">
+    <div class="block-head">
+     <div>
+      <span>
+       2026-09-20
+      </span>
+      <h2>
+       當日其他資訊
+      </h2>
+     </div>
+    </div>
+    <article class="daily-card daily-card-more category-news" data-intel-id="middle-east-courtyard-pass-workflow" data-intel-role="card">
+     <div class="meta">
+      <span class="pill">
+       environment-production
+      </span>
+     </div>
+     <h3>
+      中東廢棄庭院：改用 Pass-based 場景製作，把每輪工作集中在一種問題
+     </h3>
+     <p class="summary">
+      3D Generalist Irmak Çavun 分享把傳統逐資產推進改成 pass-based environment workflow，以每輪集中處理構圖、結構、材質等問題節省時間，並建立能快速重用的 material system。
+     </p>
+     <figure class="case-preview daily-visual" data-intel-id="middle-east-courtyard-pass-workflow" data-intel-role="visual" data-visual-id="middle-east-courtyard-pass-workflow">
+      <a href="https://80.lv/articles/assembling-abandoned-middle-eastern-courtyard-in-3d-using-pass-based-workflow" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+       <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-09-20/middle-east-courtyard-pass-workflow.jpg"/>
+      </a>
+      <figcaption>
+       <span>
+        SOURCE PREVIEW
+       </span>
+       · Local visual evidence · 點圖開啟原始來源
+      </figcaption>
+     </figure>
+     <div class="quick-impact daily-impact">
+      <span><b class="quick-impact-label">場景製作</b> ★★★★☆</span>
+     </div>
+     <details class="canonical-analysis canonical-analysis-brief daily-full-analysis" data-analysis-level="BRIEF">
+      <summary>
+       完整分析
+      </summary>
+      <div class="detail-body canonical-analysis-body brief-analysis-body daily-analysis-body">
+       <h4>
+        流程設計
+       </h4>
+       <p>
+        案例把場景工作拆成多個 pass，而不是一個資產從 blockout 一路做到 final 才換下一個；這種做法可以在整體尺度、構圖、材質與細節層級尚未鎖死前，持續比較全場景的一致性。
+       </p>
+       <h4>
+        Production 影響
+       </h4>
+       <p>
+        對多人或容易反覆改構圖的場景，pass-based workflow 能更早暴露整體問題，避免局部資產過度完成後才發現比例或視覺焦點需要重做；快速 material system 也讓 lookdev 在整體層級更容易迭代。
+       </p>
+       <h4>
+        導入測試
+       </h4>
+       <p>
+        可以把現有場景任務拆成 Blockout、Primary Forms、Material Family、Set Dressing、Polish 五輪，記錄每輪返工與 review 時間；若外包交付也採 pass milestone，還要驗證是否能明確定義每一輪的 acceptance criteria。
+       </p>
+       <p class="analysis-level-note">
+        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+       </p>
+      </div>
+     </details>
+     <a class="source daily-source" href="https://80.lv/articles/assembling-abandoned-middle-eastern-courtyard-in-3d-using-pass-based-workflow" rel="noopener noreferrer" target="_blank">
+      來源
+     </a>
+    </article>
+    <article class="daily-card daily-card-more category-news" data-intel-id="marvelous-2026-1-seamline-rip" data-intel-role="card">
+     <div class="meta">
+      <span class="pill">
+       character-production
+      </span>
+     </div>
+     <h3>
+      Marvelous Designer 2026.1 Seamline Rip：直接在縫線定義破裂與 Fray 區域
+     </h3>
+     <p class="summary">
+      Marvelous Designer 2026.1 新增 Seamline Rip，可在既有 sewing line 的全部或局部指定 rip area，調整 Rip／Fray 屬性並模擬接縫打開、破損衣物與磨損邊緣。
+     </p>
+     <div class="quick-impact daily-impact">
+      <span><b class="quick-impact-label">角色製作</b> ★★★★☆</span>
+     </div>
+     <details class="canonical-analysis canonical-analysis-brief daily-full-analysis" data-analysis-level="BRIEF">
+      <summary>
+       完整分析
+      </summary>
+      <div class="detail-body canonical-analysis-body brief-analysis-body daily-analysis-body">
+       <h4>
+        服裝模擬能力
+       </h4>
+       <p>
+        Seamline Rip 把破裂位置直接綁在 sewing line 上，可做局部或完整裂開並調整 Rip／Fray 屬性；對 damaged clothing 來說，破損不再只能靠貼圖假出，而能先由布料結構與模擬產生形狀。
+       </p>
+       <h4>
+        Production 影響
+       </h4>
+       <p>
+        角色高模階段若先得到可信的布料張力與裂口形狀，後續 ZBrush、retopo 與 texture 可以沿著實際 deformation 做細化，特別適合戰損服裝、殭屍、末日或需要多版本 damaged state 的角色。
+       </p>
+       <h4>
+        導入測試
+       </h4>
+       <p>
+        建議用同一件外套測正常、局部 seam rip、完全 rupture 三種狀態，觀察模擬穩定性、碎邊密度、轉成 static mesh 後拓樸與 UV 成本；若只是遠景角色，貼圖／alpha 方案可能仍比真實裂口更划算。
+       </p>
+       <p class="analysis-level-note">
+        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+       </p>
+      </div>
+     </details>
+     <a class="source daily-source" href="https://support.marvelousdesigner.com/hc/en-us/articles/59816167297433-Seamline-Rip" rel="noopener noreferrer" target="_blank">
+      來源
+     </a>
+    </article>
+    <article class="daily-card daily-card-more category-news" data-intel-id="keyflow-maya-animation-toolset" data-intel-role="card">
+     <div class="meta">
+      <span class="pill">
+       animation
+      </span>
+     </div>
+     <h3>
+      KeyFlow：25+ Maya 動畫工具＋獨立 Shot Review，Reference 可直接送 Maya/Blender
+     </h3>
+     <p class="summary">
+      Flying Wild Hog 動畫師 Sebastian Jaksan 公開 KeyFlow，包含 25+ Maya 日常動畫工具與獨立 KeyFlow Studio review app；支援 A/B、annotation、reference retime，並可把處理後 reference 送往 Maya 或 Blender。
+     </p>
+     <figure class="case-preview daily-visual" data-intel-id="keyflow-maya-animation-toolset" data-intel-role="visual" data-visual-id="keyflow-maya-animation-toolset">
+      <a href="https://80.lv/articles/over-25-free-maya-animation-tools-from-game-dev-animator" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+       <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-09-20/keyflow-maya-animation-toolset.jpg"/>
+      </a>
+      <figcaption>
+       <span>
+        SOURCE PREVIEW
+       </span>
+       · Local visual evidence · 點圖開啟原始來源
+      </figcaption>
+     </figure>
+     <div class="quick-impact daily-impact">
+      <span><b class="quick-impact-label">動畫</b> ★★★★☆</span>
+     </div>
+     <details class="canonical-analysis canonical-analysis-brief daily-full-analysis" data-analysis-level="BRIEF">
+      <summary>
+       完整分析
+      </summary>
+      <div class="detail-body canonical-analysis-body brief-analysis-body daily-analysis-body">
+       <h4>
+        動畫生產力工具
+       </h4>
+       <p>
+        KeyFlow Tools 聚焦 SelSet、Mirror、RelativeSpace、Playblast 等動畫師每天會反覆使用的操作，並提供 timeline dock、搜尋與 GIF tooltip；KeyFlow Studio 則把 reference 比較、註記與 review 從 DCC 中拆成輕量工具。
+       </p>
+       <h4>
+        Production 影響
+       </h4>
+       <p>
+        reference trim／retime 後可直接送 Maya 或 Blender，代表 animator、lead 和 review 的資料交換可以縮短；對需要大量 shot feedback 的團隊，A/B、annotation 與 live review 比單純增加一堆 Maya script 更有流程價值。
+       </p>
+       <h4>
+        導入測試
+       </h4>
+       <p>
+        工具目前仍在積極開發，先以一個動畫小組試用 Mirror、RelativeSpace、Playblast 與 Studio review，檢查 Maya 2021–2026 相容、專案路徑、影片編碼與多人註記保存，再決定是否納入工作室標準工具包。
+       </p>
+       <p class="analysis-level-note">
+        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+       </p>
+      </div>
+     </details>
+     <a class="source daily-source" href="https://80.lv/articles/over-25-free-maya-animation-tools-from-game-dev-animator" rel="noopener noreferrer" target="_blank">
+      來源
+     </a>
+    </article>
+    <article class="daily-card daily-card-more category-news" data-intel-id="animo-sliders-blender" data-intel-role="card">
+     <div class="meta">
+      <span class="pill">
+       animation
+      </span>
+     </div>
+     <h3>
+      Animo Sliders for Blender：把 Maya Animo 的 16 個動畫滑桿移植到 Blender 4.0–5.2
+     </h3>
+     <p class="summary">
+      免費 Animo Sliders 把 Tween、Blend to Neighbors、Push/Pull、Time Offset、Smooth/Harsh、Simplify/Bake 等 16 個常用 animation slider 帶到 Blender，商用與非商用皆可使用。
+     </p>
+     <figure class="case-preview daily-visual" data-intel-id="animo-sliders-blender" data-intel-role="visual" data-visual-id="animo-sliders-blender">
+      <a href="https://80.lv/articles/speed-up-blender-animation-with-this-free-tool" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+       <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-09-20/animo-sliders-blender.jpg"/>
+      </a>
+      <figcaption>
+       <span>
+        SOURCE PREVIEW
+       </span>
+       · Local visual evidence · 點圖開啟原始來源
+      </figcaption>
+     </figure>
+     <div class="quick-impact daily-impact">
+      <span><b class="quick-impact-label">動畫</b> ★★★★☆</span>
+     </div>
+     <details class="canonical-analysis canonical-analysis-brief daily-full-analysis" data-analysis-level="BRIEF">
+      <summary>
+       完整分析
+      </summary>
+      <div class="detail-body canonical-analysis-body brief-analysis-body daily-analysis-body">
+       <h4>
+        動畫工具流程
+       </h4>
+       <p>
+        Animo Sliders 把 pose interpolation、neighbor blend、push/pull、time offset、noise、smooth／harsh 與 simplify／bake 集中成 Blender K 面板滑桿，技術上是把常見 Graph Editor 操作封裝成可重複動畫工具。
+       </p>
+       <h4>
+        Production 價值
+       </h4>
+       <p>
+        對從 Maya 轉 Blender 或需要快速 blocking／polish 的團隊，滑桿式操作可降低命令記憶與重複曲線編修成本，也讓一般 animator 更容易使用原本依賴 script 的微調功能。
+       </p>
+       <h4>
+        導入測試
+       </h4>
+       <p>
+        目前不是完整 Animo，支援範圍標示 Blender 4.0–5.2；應用 locomotion 與 attack 各一段實測 Tween、Time Offset、Simplify/Bake 是否保留 NLA／constraint 行為，並驗證 5.3 相容性。
+       </p>
+       <p class="analysis-level-note">
+        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+       </p>
+      </div>
+     </details>
+     <a class="source daily-source" href="https://80.lv/articles/speed-up-blender-animation-with-this-free-tool" rel="noopener noreferrer" target="_blank">
+      來源
+     </a>
+    </article>
+    <article class="daily-card daily-card-more category-news" data-intel-id="unity65-shader-function-reflection" data-intel-role="card">
+     <div class="meta">
+      <span class="pill">
+       shader
+      </span>
+     </div>
+     <h3>
+      Unity 6.5 Shader Function Reflection：用 HLSL function 自動生成 Shader Graph Node
+     </h3>
+     <p class="summary">
+      Unity 6.5 的 Shader Function Reflection API 讓技術美術在 HLSL function 前加 UNITY_EXPORT_REFLECTION 後，自動把 function signature 反射成 Shader Graph node，並以 XML hints 控制顯示名稱、分類與 port。
+     </p>
+     <figure class="case-preview daily-visual" data-intel-id="unity65-shader-function-reflection" data-intel-role="visual" data-visual-id="unity65-shader-function-reflection">
+      <a href="https://discussions.unity.com/t/shader-function-reflection-api/1708277" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+       <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-09-20/unity65-shader-function-reflection.jpg"/>
+      </a>
+      <figcaption>
+       <span>
+        SOURCE PREVIEW
+       </span>
+       · Local visual evidence · 點圖開啟原始來源
+      </figcaption>
+     </figure>
+     <div class="quick-impact daily-impact">
+      <span><b class="quick-impact-label">Shader</b> ★★★☆☆</span>
+     </div>
+     <details class="canonical-analysis canonical-analysis-brief daily-full-analysis" data-analysis-level="BRIEF">
+      <summary>
+       完整分析
+      </summary>
+      <div class="detail-body canonical-analysis-body brief-analysis-body daily-analysis-body">
+       <h4>
+        Shader 工具流程
+       </h4>
+       <p>
+        Reflection API 把 HLSL function 的輸入輸出直接映射成 Shader Graph node，支援 in／out／inout 與 void，並可用 hints 描述 provider key、display name、search category 與參數 UI，減少手動同步 Custom Function Node port。
+       </p>
+       <h4>
+        Production 影響
+       </h4>
+       <p>
+        對公司共用 shader library，技術美術可以維護一份 HLSL 實作，再讓 Graph 使用者以 node 方式調用，降低程式函式簽名改動後 Graph wrapper 忘記更新的風險；也比較適合 AI／LLM 先產 HLSL 再接圖形化流程。
+       </p>
+       <h4>
+        導入限制
+       </h4>
+       <p>
+        它只處理 function body 與 ports，不包含 SubShader／Pass 的 Stencil、Depth、Blend 等狀態；導入時應先挑 3–5 個公司常用 HLSL helper 測 namespace、precision、reference type 與版本控制，再決定是否取代既有 Custom Function Node。
+       </p>
+       <p class="analysis-level-note">
+        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+       </p>
+      </div>
+     </details>
+     <a class="source daily-source" href="https://discussions.unity.com/t/shader-function-reflection-api/1708277" rel="noopener noreferrer" target="_blank">
+      來源
+     </a>
+    </article>
+    <article class="daily-card daily-card-more category-news" data-intel-id="blender-overgrown-open-film-pipeline" data-intel-role="card">
+     <div class="meta">
+      <span class="pill">
+       case-study
+      </span>
+     </div>
+     <h3>
+      OVERGROWN：Blender Studio 用長片 Teaser 當開放電影 pipeline 的 proof of concept
+     </h3>
+     <p class="summary">
+      Blender Studio 的 OVERGROWN teaser 不只是作品展示，而是用實際長片目標驗證 Blender end-to-end production；若專案進一步成立，工具、workflow 與 lessons 預計整理成免費開源 feature-film playbook。
+     </p>
+     <figure class="case-preview daily-visual" data-intel-id="blender-overgrown-open-film-pipeline" data-intel-role="visual" data-visual-id="blender-overgrown-open-film-pipeline">
+      <a href="https://80.lv/articles/blender-s-overgrown-teaser-is-a-proof-of-concept-for-open-filmmaking" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+       <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-09-20/blender-overgrown-open-film-pipeline.jpg"/>
+      </a>
+      <figcaption>
+       <span>
+        SOURCE PREVIEW
+       </span>
+       · Local visual evidence · 點圖開啟原始來源
+      </figcaption>
+     </figure>
+     <div class="quick-impact daily-impact">
+      <span><b class="quick-impact-label">製作案例</b> ★★★☆☆</span>
+     </div>
+     <details class="canonical-analysis canonical-analysis-brief daily-full-analysis" data-analysis-level="BRIEF">
+      <summary>
+       完整分析
+      </summary>
+      <div class="detail-body canonical-analysis-body brief-analysis-body daily-analysis-body">
+       <h4>
+        Case 的技術意義
+       </h4>
+       <p>
+        OVERGROWN 把 Blender 自己的開發目標放進真實內容壓力測試：從故事、資產、角色動畫到 final render 都在同一生態完成，並以每日 build 讓 artist 直接驗證正在開發的工具，而不是只做 isolated demo。
+       </p>
+       <h4>
+        Production 價值
+       </h4>
+       <p>
+        若後續 playbook 落地，小型團隊可直接參考 Blender Studio 在 asset collaboration、shot management、animation 與長篇 production 上的實際做法；這比單純看 roadmap 更能暴露工具在大量鏡頭與多人協作下的缺口。
+       </p>
+       <h4>
+        成熟度與限制
+       </h4>
+       <p>
+        目前 teaser 仍是 proof of concept，專案尚未等同已完成長片 pipeline，許多工具也會隨製作持續變動。現階段適合追蹤方法與測試案例，不宜把尚未發布的 Studio 內部流程直接視為穩定標準。
+       </p>
+       <p class="analysis-level-note">
+        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+       </p>
+      </div>
+     </details>
+     <a class="source daily-source" href="https://80.lv/articles/blender-s-overgrown-teaser-is-a-proof-of-concept-for-open-filmmaking" rel="noopener noreferrer" target="_blank">
+      來源
+     </a>
+    </article>
+    <article class="daily-card daily-card-more category-news" data-intel-id="cyberpunk-night-city-handcrafted-pipeline" data-intel-role="card">
+     <div class="meta">
+      <span class="pill">
+       case-study
+      </span>
+     </div>
+     <h3>
+      Cyberpunk 2077 Night City：大規模城市仍以手工資產為核心，程序化只當起點
+     </h3>
+     <p class="summary">
+      CD PROJEKT RED 美術主管說明 Night City 從建築、廣告到街道雜物大多由美術手工配置；程序化道路工具主要負責 spline 起始佈局，最終仍回到人工調整，並說明第一人稱尺度與 path tracing 對環境設計的影響。
+     </p>
+     <figure class="case-preview daily-visual" data-intel-id="cyberpunk-night-city-handcrafted-pipeline" data-intel-role="visual" data-visual-id="cyberpunk-night-city-handcrafted-pipeline">
+      <a href="https://80.lv/articles/interview-how-cyberpunk-2077-s-night-city-was-built-almost-entirely-by-hand" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+       <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-09-20/cyberpunk-night-city-handcrafted-pipeline.jpg"/>
+      </a>
+      <figcaption>
+       <span>
+        SOURCE PREVIEW
+       </span>
+       · Local visual evidence · 點圖開啟原始來源
+      </figcaption>
+     </figure>
+     <div class="quick-impact daily-impact">
+      <span><b class="quick-impact-label">製作案例</b> ★★★★☆</span>
+     </div>
+     <details class="canonical-analysis canonical-analysis-brief daily-full-analysis" data-analysis-level="BRIEF">
+      <summary>
+       完整分析
+      </summary>
+      <div class="detail-body canonical-analysis-body brief-analysis-body daily-analysis-body">
+       <h4>
+        大型場景流程
+       </h4>
+       <p>
+        Night City 的製作流程顯示 procedural road spline 更適合負責起始佈局與重複結構，而建築、廣告與街道細節仍以 artist-authored placement 完成；這是一種工具輔助手工而非取代手工的場景設計。
+       </p>
+       <h4>
+        Production 影響
+       </h4>
+       <p>
+        對大型城市專案，真正的 production 價值在縮短 blockout 與重複配置時間，同時保留美術對密度、敘事與區域辨識度的控制；程序工具若可快速被人工覆寫，才會降低總製作成本。
+       </p>
+       <h4>
+        導入風險與驗證
+       </h4>
+       <p>
+        若團隊導入程序化城市，應測試 artist cleanup 時間、可覆寫性、LOD/streaming 相容與最終視覺差異；只追求自動生成比例可能把成本轉移到後段 cleanup，需用實際關卡驗證。
+       </p>
+       <p class="analysis-level-note">
+        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+       </p>
+      </div>
+     </details>
+     <a class="source daily-source" href="https://80.lv/articles/interview-how-cyberpunk-2077-s-night-city-was-built-almost-entirely-by-hand" rel="noopener noreferrer" target="_blank">
+      來源
+     </a>
+    </article>
+    <article class="daily-card daily-card-more category-news" data-intel-id="haribo-sdf-substance-material" data-intel-role="card">
+     <div class="meta">
+      <span class="pill">
+       substance
+      </span>
+     </div>
+     <h3>
+      Substance Designer SDF 小熊軟糖：用 Shape Splatter v2＋色彩分層假出半透明
+     </h3>
+     <p class="summary">
+      QiYu Dai 在 Designer 以 SDF 建立小熊形狀、Shape Splatter v2 生成材料，再用 base/AO/specular 等色彩層模擬平面材質上的 jelly 半透明，示範不依賴完整幾何也能做 stylized translucent look。
+     </p>
+     <figure class="case-preview daily-visual" data-intel-id="haribo-sdf-substance-material" data-intel-role="visual" data-visual-id="haribo-sdf-substance-material">
+      <a href="https://80.lv/articles/how-to-create-a-haribo-style-translucent-jelly-bear-candy-material" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+       <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-09-20/haribo-sdf-substance-material.jpg"/>
+      </a>
+      <figcaption>
+       <span>
+        SOURCE PREVIEW
+       </span>
+       · Local visual evidence · 點圖開啟原始來源
+      </figcaption>
+     </figure>
+     <div class="quick-impact daily-impact">
+      <span><b class="quick-impact-label">Substance</b> ★★★★☆</span>
+     </div>
+     <details class="canonical-analysis canonical-analysis-brief daily-full-analysis" data-analysis-level="BRIEF">
+      <summary>
+       完整分析
+      </summary>
+      <div class="detail-body canonical-analysis-body brief-analysis-body daily-analysis-body">
+       <h4>
+        SDF 材質技術流程
+       </h4>
+       <p>
+        Designer 先用 SDF 建立可程序控制的小熊形狀，再交給 Shape Splatter v2 分布；這種技術流程把形狀生成與材質控制分離，適合大量變體與可重用 graph。
+       </p>
+       <h4>
+        Production 價值
+       </h4>
+       <p>
+        用 AO、edge specular、roughness 與色彩分層在平面材質上近似 jelly 半透明，可避免為每個圖案建立完整幾何，對 stylized material library 與快速換色換形狀有直接製作價值。
+       </p>
+       <h4>
+        導入測試與限制
+       </h4>
+       <p>
+        這種方法主要是假半透明，不等同真實體積傳輸；進遊戲前要在不同燈光、背景、mip 距離與 tone mapping 下實測，確認材質不會失去厚度感，必要時再補 shader 端近似。
+       </p>
+       <p class="analysis-level-note">
+        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+       </p>
+      </div>
+     </details>
+     <a class="source daily-source" href="https://80.lv/articles/how-to-create-a-haribo-style-translucent-jelly-bear-candy-material" rel="noopener noreferrer" target="_blank">
+      來源
+     </a>
+    </article>
+    <article class="daily-card daily-card-more category-news" data-intel-id="blender53-layered-compositing" data-intel-role="card">
+     <div class="meta">
+      <span class="pill">
+       blender
+      </span>
+     </div>
+     <h3>
+      Blender 5.3 Layered Compositing 主 PR 已合併，Compositor Effects 進入正式整合階段
+     </h3>
+     <p class="summary">
+      Blender Compositor 9/10 會議紀錄指出 Layered Compositing 的主要 PR 已合併並預計進 5.3，後續仍在調整 Scene Effect/UI，代表分層合成工作流已從研究走向可測試整合。
+     </p>
+     <figure class="case-preview daily-visual" data-intel-id="blender53-layered-compositing" data-intel-role="visual" data-visual-id="blender53-layered-compositing">
+      <a href="https://devtalk.blender.org/t/2026-09-10-compositor-meeting-notes/45801" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+       <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-09-20/blender53-layered-compositing.jpg"/>
+      </a>
+      <figcaption>
+       <span>
+        SOURCE PREVIEW
+       </span>
+       · Local visual evidence · 點圖開啟原始來源
+      </figcaption>
+     </figure>
+     <div class="quick-impact daily-impact">
+      <span><b class="quick-impact-label">Blender</b> ★★★☆☆</span>
+     </div>
+     <details class="canonical-analysis canonical-analysis-brief daily-full-analysis" data-analysis-level="BRIEF">
+      <summary>
+       完整分析
+      </summary>
+      <div class="detail-body canonical-analysis-body brief-analysis-body daily-analysis-body">
+       <h4>
+        Compositor 技術流程
+       </h4>
+       <p>
+        Layered Compositing 主 PR 已合併到 Blender 5.3 開發線，技術方向是把 Scene Effect 與多層合成結果更完整地留在 Compositor 工作流中，減少外部後製工具往返。
+       </p>
+       <h4>
+        Production 影響
+       </h4>
+       <p>
+        對 NPR、動畫與 shot-based pipeline，分層合成若能直接在 Blender 內管理，可降低 EXR 中間檔、版本同步與 review 成本，並讓 lighting/compositing 調整更靠近原始 scene。
+       </p>
+       <h4>
+        成熟度與測試
+       </h4>
+       <p>
+        目前仍在 5.3 開發期，UI 與命名持續調整；導入前應用代表性 shot 驗證 node 行為、color management、render layer 輸出與 farm 相容，尚不適合鎖定正式 template。
+       </p>
+       <p class="analysis-level-note">
+        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+       </p>
+      </div>
+     </details>
+     <a class="source daily-source" href="https://devtalk.blender.org/t/2026-09-10-compositor-meeting-notes/45801" rel="noopener noreferrer" target="_blank">
+      來源
+     </a>
+    </article>
+    <article class="daily-card daily-card-more category-news" data-intel-id="blender-cycles-cuda13-transition" data-intel-role="card">
+     <div class="meta">
+      <span class="pill">
+       blender
+      </span>
+     </div>
+     <h3>
+      Blender Cycles 規劃 CUDA 12→13：Windows ARM64 與新 GPU 工具鏈進入測試
+     </h3>
+     <p class="summary">
+      9/15 Render &amp; Cycles 會議提到準備切換到 CUDA 13.4.x，並處理 Windows ARM64、Intel library 與 compiler/driver 相容問題；對 render farm 與自建 Blender 發行版屬於值得追蹤的工具鏈變動。
+     </p>
+     <figure class="case-preview daily-visual" data-intel-id="blender-cycles-cuda13-transition" data-intel-role="visual" data-visual-id="blender-cycles-cuda13-transition">
+      <a href="https://devtalk.blender.org/t/2026-09-15-render-cycles-meeting/45814" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+       <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-09-20/blender-cycles-cuda13-transition.jpg"/>
+      </a>
+      <figcaption>
+       <span>
+        SOURCE PREVIEW
+       </span>
+       · Local visual evidence · 點圖開啟原始來源
+      </figcaption>
+     </figure>
+     <div class="quick-impact daily-impact">
+      <span><b class="quick-impact-label">Blender</b> ★★★☆☆</span>
+     </div>
+     <details class="canonical-analysis canonical-analysis-brief daily-full-analysis" data-analysis-level="BRIEF">
+      <summary>
+       完整分析
+      </summary>
+      <div class="detail-body canonical-analysis-body brief-analysis-body daily-analysis-body">
+       <h4>
+        Render 技術變更
+       </h4>
+       <p>
+        Cycles 團隊正規劃 CUDA 12→13 的工具鏈切換，並同步處理 Windows ARM64、Intel libraries 與 compiler/driver 問題；這屬於渲染後端與 build baseline 的技術變更。
+       </p>
+       <h4>
+        Production 影響
+       </h4>
+       <p>
+        即使 scene 功能沒有改，CUDA major version 仍可能改變 render farm 的 driver baseline、自建 Blender 發行版與 GPU 節點維護成本；大型團隊需把工具鏈版本納入部署矩陣。
+       </p>
+       <h4>
+        導入風險與驗證
+       </h4>
+       <p>
+        正式切換前應保留既有 farm，等 daily/beta 後用代表性 Cycles 場景實測 kernel compile、OptiX/CUDA fallback、driver 相容性與 ARM64 節點；未驗證前不宜直接更新所有 render node。
+       </p>
+       <p class="analysis-level-note">
+        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+       </p>
+      </div>
+     </details>
+     <a class="source daily-source" href="https://devtalk.blender.org/t/2026-09-15-render-cycles-meeting/45814" rel="noopener noreferrer" target="_blank">
+      來源
+     </a>
+    </article>
+   </section>
+  </main>
+  <script src="../daily.js?v=20260920-r1-workspace-v10-history-current-workspace">
+  </script>
+  <script defer="" src="../archive-nav-state.js?v=20260920-r1-workspace-v10-history-current-workspace">
+  </script>
+ </body>
+</html>
