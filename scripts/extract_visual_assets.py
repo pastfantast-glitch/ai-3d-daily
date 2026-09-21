@@ -469,6 +469,7 @@ def main():
         'date': date,
         'identity': 'data-intel-id',
         'asset_versioning': 'daily-snapshot',
+        'visual_contract_version': 2,
         'generated_by': 'scripts/extract_visual_assets.py',
         'entries': [],
     }
