@@ -72,6 +72,7 @@ on:
       - 'scripts/check_release_architecture.py'
       - 'scripts/check_intelligence_contract.py'
       - 'scripts/check_visual_contract.py'
+      - 'scripts/check_visual_extractor_contract.py'
       - 'scripts/check_daily_contract.py'
       - 'scripts/check_home_contract.py'
       - 'scripts/render_daily_navigation.py'
@@ -131,5 +132,6 @@ jobs:
           python scripts/check_preference_contract.py
           python scripts/check_cloud_sync_contract.py
           python scripts/check_pages_tier_contract.py
+          python scripts/check_visual_extractor_contract.py
       - name: Rebuild stable sentinels and latest reports in isolation
         run: python scripts/check_historical_regression.py --days 4
