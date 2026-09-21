@@ -1,0 +1,474 @@
+{
+  "schema_version": 1,
+  "date": "2026-09-21",
+  "discovery_coverage": {
+    "fill_ladder_exhausted": true,
+    "backlog_checked": true,
+    "backlog_remaining_eligible": 0,
+    "targeted_refill_performed": true,
+    "quality_first_confirmed": true,
+    "windows": {
+      "24h": {
+        "status": "exhausted",
+        "candidates_found": 3
+      },
+      "7d": {
+        "status": "exhausted",
+        "candidates_found": 28
+      },
+      "30d": {
+        "status": "exhausted",
+        "candidates_found": 9
+      },
+      "6m": {
+        "status": "exhausted",
+        "candidates_found": 5
+      },
+      "evergreen": {
+        "status": "exhausted",
+        "candidates_found": 2
+      }
+    },
+    "category_candidates": {
+      "ai-generation": {
+        "candidates_considered": 4
+      },
+      "3d-production": {
+        "candidates_considered": 7
+      },
+      "3d-animation": {
+        "candidates_considered": 5
+      },
+      "engine-art": {
+        "candidates_considered": 4
+      },
+      "emerging-case": {
+        "candidates_considered": 5
+      },
+      "blender-dcc": {
+        "candidates_considered": 18
+      }
+    },
+    "registered_source_probe": {
+      "performed": true,
+      "sources": {
+        "80-level": {
+          "status": "checked",
+          "method": "web-site-query",
+          "candidates_found": 4,
+          "candidate_ids": [
+            "princess-lost-planet-character",
+            "japan-gamedev-genai-survey",
+            "kirby-comic-style-blender",
+            "chain-generator-blender"
+          ]
+        },
+        "3dnchu": {
+          "status": "checked",
+          "method": "web-site-query",
+          "candidates_found": 10,
+          "candidate_ids": [
+            "ngone-pro2-nondestructive-hard-surface",
+            "ihp-ue58-heightfield-projection",
+            "ac9-cloth-retopo-v11",
+            "snap3d-physical-parts-assembly",
+            "hktex-uv-free-surface-textures",
+            "ragdoll-web-physics-posing",
+            "nexus-mpm-blender-c4d-preview",
+            "compositor-macos-image-editor",
+            "blender-299-ai-figure-print-tools",
+            "blender-catpin-print-splitting"
+          ]
+        },
+        "cgworld-jp": {
+          "status": "checked",
+          "method": "web-site-query",
+          "candidates_found": 0,
+          "candidate_ids": []
+        },
+        "bilibili-mobile": {
+          "status": "not-scheduled",
+          "method": "rolling-window",
+          "candidates_found": 0,
+          "candidate_ids": [],
+          "reason": "deterministic-rolling-probe-not-selected"
+        },
+        "artstation": {
+          "status": "not-scheduled",
+          "method": "rolling-window",
+          "candidates_found": 0,
+          "candidate_ids": [],
+          "reason": "deterministic-rolling-probe-not-selected"
+        },
+        "gumroad-discover": {
+          "status": "not-scheduled",
+          "method": "rolling-window",
+          "candidates_found": 0,
+          "candidate_ids": [],
+          "reason": "deterministic-rolling-probe-not-selected"
+        },
+        "xiaohongshu": {
+          "status": "not-scheduled",
+          "method": "rolling-window",
+          "candidates_found": 0,
+          "candidate_ids": [],
+          "reason": "deterministic-rolling-probe-not-selected"
+        },
+        "cg-channel": {
+          "status": "checked",
+          "method": "web-site-query",
+          "candidates_found": 0,
+          "candidate_ids": []
+        },
+        "blender-official": {
+          "status": "checked",
+          "method": "latest-index",
+          "candidates_found": 4,
+          "candidate_ids": [
+            "blender53-worldspace-animation-copy",
+            "blender53-texture-paint-parity",
+            "blender-straight-skeleton-node",
+            "blender-meshlets-pbvh-gsplat-review"
+          ]
+        },
+        "epic-developer-community": {
+          "status": "checked",
+          "method": "web-site-query",
+          "candidates_found": 1,
+          "candidate_ids": [
+            "ue58-release-notes"
+          ]
+        },
+        "unity-official": {
+          "status": "checked",
+          "method": "web-site-query",
+          "candidates_found": 2,
+          "candidate_ids": [
+            "unity-rendering-at-scale",
+            "unity-render-pipeline-strategy"
+          ]
+        },
+        "sidefx-official": {
+          "status": "checked",
+          "method": "latest-index",
+          "candidates_found": 3,
+          "candidate_ids": [
+            "houdini22-copernicus-bake-preprocess",
+            "houdini22-gsplat-relighting",
+            "houdini22-solaris-copernicus-hive"
+          ]
+        },
+        "autodesk-area": {
+          "status": "checked",
+          "method": "web-site-query",
+          "candidates_found": 1,
+          "candidate_ids": [
+            "autodesk-au2026-gsplats-motionmaker"
+          ]
+        },
+        "adobe-substance-3d": {
+          "status": "checked",
+          "method": "latest-index",
+          "candidates_found": 1,
+          "candidate_ids": [
+            "substance-painter-1215-known-issues"
+          ]
+        },
+        "game-developer": {
+          "status": "checked",
+          "method": "web-site-query",
+          "candidates_found": 0,
+          "candidate_ids": []
+        }
+      }
+    },
+    "notes": "2026-09-21 立即補跑採 current-main v11 韌性流程：先讀 published-registry-snapshot 做 normalized identity early dedupe，再執行 24h→7d→30d→6m→evergreen、空 Rolling Backlog、六分類 targeted refill 與當日 deterministic registered-source probe。已在 Ranking 前排除已發布的 Unity rendering-at-scale、Unity render-pipeline strategy、UE5.8 release notes、80 Level Chain Generator 等 exact identities；未使用來源 bonus、quota 或 Admission bypass。Core sources 與本日 selected non-core（Autodesk/Adobe/Game Developer）均實際檢查；額外檢查 3DNchu/CGWORLD 只增加 recall。"
+  },
+  "candidate_decisions": [
+    {
+      "candidate_id": "autodesk-au2026-gsplats-motionmaker",
+      "source_url": "https://blogs.autodesk.com/media-and-entertainment/2026/09/16/au-2026/",
+      "discovery_channels": [
+        "7d:registered-source-probe",
+        "published-registry-snapshot-prefilter"
+      ],
+      "decision": "published",
+      "canonical_id": "autodesk-au2026-gsplats-motionmaker"
+    },
+    {
+      "candidate_id": "ngone-pro2-nondestructive-hard-surface",
+      "source_url": "https://3dnchu.com/archives/n-gone-pro-2-0/",
+      "discovery_channels": [
+        "7d:web-search",
+        "published-registry-snapshot-prefilter"
+      ],
+      "decision": "published",
+      "canonical_id": "ngone-pro2-nondestructive-hard-surface"
+    },
+    {
+      "candidate_id": "ihp-ue58-heightfield-projection",
+      "source_url": "https://3dnchu.com/archives/implicit-heightfield-projection-ihp/",
+      "discovery_channels": [
+        "7d:web-search",
+        "published-registry-snapshot-prefilter"
+      ],
+      "decision": "published",
+      "canonical_id": "ihp-ue58-heightfield-projection"
+    },
+    {
+      "candidate_id": "hktex-uv-free-surface-textures",
+      "source_url": "https://3dnchu.com/archives/heat-kernel-textures/",
+      "discovery_channels": [
+        "7d:web-search",
+        "published-registry-snapshot-prefilter"
+      ],
+      "decision": "published",
+      "canonical_id": "hktex-uv-free-surface-textures"
+    },
+    {
+      "candidate_id": "ac9-cloth-retopo-v11",
+      "source_url": "https://3dnchu.com/archives/ac9-cloth-retopo-v1-1/",
+      "discovery_channels": [
+        "7d:web-search",
+        "published-registry-snapshot-prefilter"
+      ],
+      "decision": "published",
+      "canonical_id": "ac9-cloth-retopo-v11"
+    },
+    {
+      "candidate_id": "snap3d-physical-parts-assembly",
+      "source_url": "https://3dnchu.com/archives/snap3d/",
+      "discovery_channels": [
+        "7d:web-search",
+        "published-registry-snapshot-prefilter"
+      ],
+      "decision": "published",
+      "canonical_id": "snap3d-physical-parts-assembly"
+    },
+    {
+      "candidate_id": "ragdoll-web-physics-posing",
+      "source_url": "https://3dnchu.com/archives/ragdoll-for-web/",
+      "discovery_channels": [
+        "7d:web-search",
+        "published-registry-snapshot-prefilter"
+      ],
+      "decision": "published",
+      "canonical_id": "ragdoll-web-physics-posing"
+    },
+    {
+      "candidate_id": "nexus-mpm-blender-c4d-preview",
+      "source_url": "https://3dnchu.com/archives/nexus-mpm-tech-preview/",
+      "discovery_channels": [
+        "7d:web-search",
+        "published-registry-snapshot-prefilter"
+      ],
+      "decision": "published",
+      "canonical_id": "nexus-mpm-blender-c4d-preview"
+    },
+    {
+      "candidate_id": "blender53-worldspace-animation-copy",
+      "source_url": "https://devtalk.blender.org/t/2026-09-17-animation-rigging-module-meeting/45817",
+      "discovery_channels": [
+        "7d:registered-source-probe",
+        "published-registry-snapshot-prefilter"
+      ],
+      "decision": "published",
+      "canonical_id": "blender53-worldspace-animation-copy"
+    },
+    {
+      "candidate_id": "blender53-texture-paint-parity",
+      "source_url": "https://devtalk.blender.org/t/2026-09-15-sculpt-paint-texture-module-meeting/45816",
+      "discovery_channels": [
+        "7d:registered-source-probe",
+        "published-registry-snapshot-prefilter"
+      ],
+      "decision": "published",
+      "canonical_id": "blender53-texture-paint-parity"
+    },
+    {
+      "candidate_id": "blender-straight-skeleton-node",
+      "source_url": "https://devtalk.blender.org/t/2026-09-14-modeling-module-meeting/45813",
+      "discovery_channels": [
+        "7d:registered-source-probe",
+        "published-registry-snapshot-prefilter"
+      ],
+      "decision": "published",
+      "canonical_id": "blender-straight-skeleton-node"
+    },
+    {
+      "candidate_id": "blender-meshlets-pbvh-gsplat-review",
+      "source_url": "https://devtalk.blender.org/t/2026-09-11-project-updates-meeting/45809",
+      "discovery_channels": [
+        "7d:registered-source-probe",
+        "published-registry-snapshot-prefilter"
+      ],
+      "decision": "published",
+      "canonical_id": "blender-meshlets-pbvh-gsplat-review"
+    },
+    {
+      "candidate_id": "houdini22-copernicus-bake-preprocess",
+      "source_url": "https://www.sidefx.com/learn/talks/baking-with-copernicus/",
+      "discovery_channels": [
+        "30d:registered-source-probe",
+        "published-registry-snapshot-prefilter"
+      ],
+      "decision": "published",
+      "canonical_id": "houdini22-copernicus-bake-preprocess"
+    },
+    {
+      "candidate_id": "houdini22-gsplat-relighting",
+      "source_url": "https://www.sidefx.com/tutorials/3-new-ways-to-relight-gaussian-splats/",
+      "discovery_channels": [
+        "30d:registered-source-probe",
+        "published-registry-snapshot-prefilter"
+      ],
+      "decision": "published",
+      "canonical_id": "houdini22-gsplat-relighting"
+    },
+    {
+      "candidate_id": "houdini22-solaris-copernicus-hive",
+      "source_url": "https://www.sidefx.com/houdini-hive/h22-launch-and-hive/",
+      "discovery_channels": [
+        "30d:registered-source-probe",
+        "published-registry-snapshot-prefilter"
+      ],
+      "decision": "published",
+      "canonical_id": "houdini22-solaris-copernicus-hive"
+    },
+    {
+      "candidate_id": "substance-painter-1215-known-issues",
+      "source_url": "https://experienceleague.adobe.com/en/docs/substance-3d-painter/using/release-notes/known-issues",
+      "discovery_channels": [
+        "7d:registered-source-probe",
+        "published-registry-snapshot-prefilter"
+      ],
+      "decision": "published",
+      "canonical_id": "substance-painter-1215-known-issues"
+    },
+    {
+      "candidate_id": "blender-studio-cloudrig-rigging-guide",
+      "source_url": "https://studio.blender.org/tools/artist-guide/asset-creation/rigging",
+      "discovery_channels": [
+        "evergreen:web-search",
+        "published-registry-snapshot-prefilter"
+      ],
+      "decision": "published",
+      "canonical_id": "blender-studio-cloudrig-rigging-guide"
+    },
+    {
+      "candidate_id": "princess-lost-planet-character",
+      "source_url": "https://80.lv/articles/modeling-3d-character-with-medieval-fantasy-post-apocalyptic-elements",
+      "discovery_channels": [
+        "7d:web-search",
+        "published-registry-snapshot-prefilter"
+      ],
+      "decision": "published",
+      "canonical_id": "princess-lost-planet-character"
+    },
+    {
+      "candidate_id": "blender-299-ai-figure-print-tools",
+      "source_url": "https://3dnchu.com/archives/299-tools-for-blender/",
+      "discovery_channels": [
+        "7d:web-search",
+        "published-registry-snapshot-prefilter"
+      ],
+      "decision": "published",
+      "canonical_id": "blender-299-ai-figure-print-tools"
+    },
+    {
+      "candidate_id": "blender-catpin-print-splitting",
+      "source_url": "https://3dnchu.com/archives/catpin/",
+      "discovery_channels": [
+        "7d:web-search",
+        "published-registry-snapshot-prefilter"
+      ],
+      "decision": "published",
+      "canonical_id": "blender-catpin-print-splitting"
+    },
+    {
+      "candidate_id": "compositor-macos-image-editor",
+      "source_url": "https://3dnchu.com/archives/compositor/",
+      "discovery_channels": [
+        "24h:web-search",
+        "registered-source:3dnchu"
+      ],
+      "decision": "ranked-out",
+      "reason_code": "peripheral-2d-tool-lower-direct-production-value"
+    },
+    {
+      "candidate_id": "japan-gamedev-genai-survey",
+      "source_url": "https://80.lv/articles/over-85-of-japanese-game-developers-now-use-generative-ai-according-to-tgs-report",
+      "discovery_channels": [
+        "7d:web-search",
+        "registered-source:80-level"
+      ],
+      "decision": "ranked-out",
+      "reason_code": "industry-survey-lower-direct-production-value"
+    },
+    {
+      "candidate_id": "kirby-comic-style-blender",
+      "source_url": "https://80.lv/articles/comic-book-style-3d-kirby-fan-art-made-in-blender",
+      "discovery_channels": [
+        "24h:web-search",
+        "registered-source:80-level"
+      ],
+      "decision": "ranked-out",
+      "reason_code": "showcase-limited-production-detail"
+    },
+    {
+      "candidate_id": "chain-generator-blender",
+      "source_url": "https://80.lv/articles/blender-add-on-that-generates-adjustable-chains-in-seconds",
+      "discovery_channels": [
+        "7d:web-search",
+        "registered-source:80-level",
+        "published-registry-snapshot-prefilter"
+      ],
+      "decision": "duplicate",
+      "reason_code": "published-registry-snapshot-exact-identity"
+    },
+    {
+      "candidate_id": "ue58-release-notes",
+      "source_url": "https://dev.epicgames.com/documentation/unreal-engine/unreal-engine-5-8-release-notes",
+      "discovery_channels": [
+        "30d:registered-source-probe",
+        "published-registry-snapshot-prefilter"
+      ],
+      "decision": "duplicate",
+      "reason_code": "published-registry-snapshot-exact-identity"
+    },
+    {
+      "candidate_id": "unity-rendering-at-scale",
+      "source_url": "https://unity.com/blog/rendering-at-scale-efficient-strategies-for-massive-object-counts",
+      "discovery_channels": [
+        "30d:registered-source-probe",
+        "published-registry-snapshot-prefilter"
+      ],
+      "decision": "duplicate",
+      "reason_code": "published-registry-snapshot-exact-identity"
+    },
+    {
+      "candidate_id": "unity-render-pipeline-strategy",
+      "source_url": "https://unity.com/topics/render-pipelines-strategy-for-2026",
+      "discovery_channels": [
+        "6m:registered-source-probe",
+        "published-registry-snapshot-prefilter"
+      ],
+      "decision": "duplicate",
+      "reason_code": "published-registry-snapshot-exact-identity"
+    }
+  ],
+  "personalization": {
+    "contract": "supabase-semantic-feedback-v1",
+    "status": "applied",
+    "vote_count": 10,
+    "profile_fingerprint": "30a20544543c9eac13cf99ba0cc788e87f4f28c9b7f4c834f16057ef47be6e3e",
+    "max_rank_multiplier": 0.2,
+    "max_query_expansion_fraction": 0.2,
+    "raw_profile_committed": false,
+    "bookmarks_used": false,
+    "domain_weights_used": false,
+    "admission_bypass": false,
+    "quality_gate_bypass": false,
+    "source_quota": false
+  }
+}

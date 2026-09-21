@@ -1,0 +1,797 @@
+{
+  "date": "2026-09-21",
+  "schema_version": 3,
+  "metadata": {
+    "total_items": 20,
+    "collection_mode": "production-intelligence-preference-v1-hybrid",
+    "collection_contract_effective_date": "2026-09-04",
+    "preference_contract_effective_date": "2026-09-06",
+    "admission_policy_effective_date": "2026-09-15",
+    "discovery_windows": [
+      "24h",
+      "7d",
+      "30d",
+      "6m",
+      "evergreen"
+    ],
+    "analysis_level_counts": {
+      "FULL": 0,
+      "BRIEF": 20,
+      "REJECT": 0
+    },
+    "analysis_level_policy": "evidence-depth-tiered; FULL=3-5 source-supported blocks; BRIEF=3 readable source-grounded angles with explicit limits; REJECT=not-publishable",
+    "full_analysis_heading_language": "zh-Hant",
+    "discovery_coverage": {
+      "fill_ladder_exhausted": true,
+      "backlog_checked": true,
+      "backlog_remaining_eligible": 0,
+      "targeted_refill_performed": true,
+      "quality_first_confirmed": true,
+      "windows": {
+        "24h": {
+          "status": "exhausted",
+          "candidates_found": 3
+        },
+        "7d": {
+          "status": "exhausted",
+          "candidates_found": 28
+        },
+        "30d": {
+          "status": "exhausted",
+          "candidates_found": 9
+        },
+        "6m": {
+          "status": "exhausted",
+          "candidates_found": 5
+        },
+        "evergreen": {
+          "status": "exhausted",
+          "candidates_found": 2
+        }
+      },
+      "category_candidates": {
+        "ai-generation": {
+          "candidates_considered": 4
+        },
+        "3d-production": {
+          "candidates_considered": 7
+        },
+        "3d-animation": {
+          "candidates_considered": 5
+        },
+        "engine-art": {
+          "candidates_considered": 4
+        },
+        "emerging-case": {
+          "candidates_considered": 5
+        },
+        "blender-dcc": {
+          "candidates_considered": 18
+        }
+      },
+      "registered_source_probe": {
+        "performed": true,
+        "sources": {
+          "80-level": {
+            "status": "checked",
+            "method": "web-site-query",
+            "candidates_found": 4,
+            "candidate_ids": [
+              "princess-lost-planet-character",
+              "japan-gamedev-genai-survey",
+              "kirby-comic-style-blender",
+              "chain-generator-blender"
+            ]
+          },
+          "3dnchu": {
+            "status": "checked",
+            "method": "web-site-query",
+            "candidates_found": 10,
+            "candidate_ids": [
+              "ngone-pro2-nondestructive-hard-surface",
+              "ihp-ue58-heightfield-projection",
+              "ac9-cloth-retopo-v11",
+              "snap3d-physical-parts-assembly",
+              "hktex-uv-free-surface-textures",
+              "ragdoll-web-physics-posing",
+              "nexus-mpm-blender-c4d-preview",
+              "compositor-macos-image-editor",
+              "blender-299-ai-figure-print-tools",
+              "blender-catpin-print-splitting"
+            ]
+          },
+          "cgworld-jp": {
+            "status": "checked",
+            "method": "web-site-query",
+            "candidates_found": 0,
+            "candidate_ids": []
+          },
+          "bilibili-mobile": {
+            "status": "not-scheduled",
+            "method": "rolling-window",
+            "candidates_found": 0,
+            "candidate_ids": [],
+            "reason": "deterministic-rolling-probe-not-selected"
+          },
+          "artstation": {
+            "status": "not-scheduled",
+            "method": "rolling-window",
+            "candidates_found": 0,
+            "candidate_ids": [],
+            "reason": "deterministic-rolling-probe-not-selected"
+          },
+          "gumroad-discover": {
+            "status": "not-scheduled",
+            "method": "rolling-window",
+            "candidates_found": 0,
+            "candidate_ids": [],
+            "reason": "deterministic-rolling-probe-not-selected"
+          },
+          "xiaohongshu": {
+            "status": "not-scheduled",
+            "method": "rolling-window",
+            "candidates_found": 0,
+            "candidate_ids": [],
+            "reason": "deterministic-rolling-probe-not-selected"
+          },
+          "cg-channel": {
+            "status": "checked",
+            "method": "web-site-query",
+            "candidates_found": 0,
+            "candidate_ids": []
+          },
+          "blender-official": {
+            "status": "checked",
+            "method": "latest-index",
+            "candidates_found": 4,
+            "candidate_ids": [
+              "blender53-worldspace-animation-copy",
+              "blender53-texture-paint-parity",
+              "blender-straight-skeleton-node",
+              "blender-meshlets-pbvh-gsplat-review"
+            ]
+          },
+          "epic-developer-community": {
+            "status": "checked",
+            "method": "web-site-query",
+            "candidates_found": 1,
+            "candidate_ids": [
+              "ue58-release-notes"
+            ]
+          },
+          "unity-official": {
+            "status": "checked",
+            "method": "web-site-query",
+            "candidates_found": 2,
+            "candidate_ids": [
+              "unity-rendering-at-scale",
+              "unity-render-pipeline-strategy"
+            ]
+          },
+          "sidefx-official": {
+            "status": "checked",
+            "method": "latest-index",
+            "candidates_found": 3,
+            "candidate_ids": [
+              "houdini22-copernicus-bake-preprocess",
+              "houdini22-gsplat-relighting",
+              "houdini22-solaris-copernicus-hive"
+            ]
+          },
+          "autodesk-area": {
+            "status": "checked",
+            "method": "web-site-query",
+            "candidates_found": 1,
+            "candidate_ids": [
+              "autodesk-au2026-gsplats-motionmaker"
+            ]
+          },
+          "adobe-substance-3d": {
+            "status": "checked",
+            "method": "latest-index",
+            "candidates_found": 1,
+            "candidate_ids": [
+              "substance-painter-1215-known-issues"
+            ]
+          },
+          "game-developer": {
+            "status": "checked",
+            "method": "web-site-query",
+            "candidates_found": 0,
+            "candidate_ids": []
+          }
+        }
+      },
+      "notes": "2026-09-21 立即補跑採 current-main v11 韌性流程：先讀 published-registry-snapshot 做 normalized identity early dedupe，再執行 24h→7d→30d→6m→evergreen、空 Rolling Backlog、六分類 targeted refill 與當日 deterministic registered-source probe。已在 Ranking 前排除已發布的 Unity rendering-at-scale、Unity render-pipeline strategy、UE5.8 release notes、80 Level Chain Generator 等 exact identities；未使用來源 bonus、quota 或 Admission bypass。Core sources 與本日 selected non-core（Autodesk/Adobe/Game Developer）均實際檢查；額外檢查 3DNchu/CGWORLD 只增加 recall。"
+    },
+    "personalization": {
+      "contract": "supabase-semantic-feedback-v1",
+      "status": "applied",
+      "vote_count": 10,
+      "profile_fingerprint": "30a20544543c9eac13cf99ba0cc788e87f4f28c9b7f4c834f16057ef47be6e3e",
+      "max_rank_multiplier": 0.2,
+      "max_query_expansion_fraction": 0.2,
+      "raw_profile_committed": false,
+      "bookmarks_used": false,
+      "domain_weights_used": false,
+      "admission_bypass": false,
+      "quality_gate_bypass": false,
+      "source_quota": false
+    },
+    "homepage_tier_normalization": {
+      "selection_mode": "full-first-brief-fallback",
+      "requested_top5": 5,
+      "actual_top5": 5,
+      "top5_full_count": 0,
+      "top5_brief_fallback_count": 5,
+      "top5_full_only": false,
+      "brief_fallback_allowed": true,
+      "next10": 10
+    },
+    "full_analysis_depth_contract": "v6-tiered-evidence-three-angle-reading",
+    "full_analysis_style_reference": "2026-09-12"
+  },
+  "items": [
+    {
+      "id": "autodesk-au2026-gsplats-motionmaker",
+      "title": "Autodesk AU 2026：3ds Max／Maya 把可編輯 Gaussian Splats 與 MotionMaker AI 動作推進 DCC 正式流程",
+      "summary": "Autodesk 在 AU 2026 展示 3ds Max 可編輯 Gaussian Splats、3ds Max／Maya 的 Arnold 原生 3DGS 渲染，以及 Maya MotionMaker 對人形、犬類與馬匹的生成式動作與可編輯曲線，方向是把新型資料與 AI 輔助直接放進既有 DCC 工作流。",
+      "quick_impact": "★★★★★",
+      "source_url": "https://blogs.autodesk.com/media-and-entertainment/2026/09/16/au-2026/",
+      "category": "blender-dcc",
+      "subcategory": "maya",
+      "ranking_score": 95.4,
+      "analysis_level": "BRIEF",
+      "brief_reason": "early-release-limited-evidence",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "Autodesk 把 Gaussian Splat 從外部展示資料往 DCC 可編輯物件推進，並讓 Arnold 在 3ds Max／Maya 原生處理 3DGS；MotionMaker 也把基礎人形、犬類與馬匹動作生成後接回動畫曲線，而不是只輸出不可編輯的影片結果。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對使用 Maya／3ds Max 的遊戲與動畫團隊，掃描／3DGS reference、AI 輔助 blocking 與傳統 keyframe 可以留在同一套 scene、review 與 render pipeline；若 BYOD 模型能以自家 rig／動作庫訓練，長期價值會比單純通用生成更高。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "目前屬於 AU 公開的新能力與方向，正式版支援矩陣、MotionMaker 對非標準 skeleton 的穩定性、曲線品質、3DGS 記憶體與 Arnold render farm 成本仍要以 production scene 實測，不能直接當成已成熟的交付基線。"
+        }
+      ],
+      "rank_global": 1,
+      "homepage_tier": "top5"
+    },
+    {
+      "id": "ngone-pro2-nondestructive-hard-surface",
+      "title": "N-Gone Pro 2.0：Blender CAD／Boolean 高模整理改成非破壞 Prep→Low 流程",
+      "summary": "N-Gone Pro 2.0 針對 CAD、Boolean 與高密度硬表面模型加入更完整的非破壞整理流程，將 Prep 與 Low 分離，並整合程序 UV、命名與高低模準備，目標是縮短遊戲資產從髒高模到可烘焙低模的整理時間。",
+      "quick_impact": "★★★★★",
+      "source_url": "https://3dnchu.com/archives/n-gone-pro-2-0/",
+      "category": "blender-dcc",
+      "subcategory": "addon",
+      "ranking_score": 94.1,
+      "analysis_level": "BRIEF",
+      "brief_reason": "useful-tool-or-addon-limited-depth",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "2.0 的核心不是單一 decimate，而是把來源模型整理、Low 建立、UV 與資產資訊拆成可回頭修改的階段；對 CAD／Boolean 模型來說，先保留原始形狀再逐步產生低模，能降低修改後整套流程重做的成本。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "這類工具若能穩定處理平面、硬邊、命名與高低模配對，對武器、載具、機械件與 AI／掃描後的硬表面清理很有價值，尤其適合把大量手動 cleanup 轉成可重複 SOP。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "應以三種資產測試：密集 CAD、Boolean 槍械與有圓角的大型機械件，逐項檢查 silhouette、hard edge、UV、bake cage、法線與回修改能力；自動結果仍需防止過度簡化或拓樸不利變形。"
+        }
+      ],
+      "rank_global": 2,
+      "homepage_tier": "top5"
+    },
+    {
+      "id": "ihp-ue58-heightfield-projection",
+      "title": "IHP for UE5.8：用 Implicit Heightfield Projection 取代固定步進 POM，無額外幾何做出更深的表面起伏",
+      "summary": "IHP 已在 UE5.8 的 Fab 發布，利用 heightfield cell traversal 取得深度表面交點，主打比固定步進 Parallax Occlusion Mapping 更有效率地表現磚縫、岩面與地表深度，並提供一般材質與 RVT 版本。",
+      "quick_impact": "★★★★★",
+      "source_url": "https://3dnchu.com/archives/implicit-heightfield-projection-ihp/",
+      "category": "engine-art",
+      "subcategory": "unreal",
+      "ranking_score": 93.3,
+      "analysis_level": "BRIEF",
+      "brief_reason": "technical-demo-limited-depth",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "IHP 的差異在於不是用固定 ray-march 步數一直取樣高度，而是沿 heightfield cell 尋找交點，仍然不增加真正 mesh polygon，卻能讓視差深度比一般 offset／POM 更明顯，且已有 RVT 使用方向。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對 UE5 場景美術，牆磚、岩壁、地面裂縫與材質層次若可在不加幾何的情況下得到更穩定深度，可能降低 Nanite 幾何或 displacement 的使用量，特別適合中距離大量重複表面。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "要用相同 height map 與鏡頭角度對比 POM、Nanite/displacement 與 IHP，量測 GPU 時間、近切 grazing angle、陰影／輪廓破綻、RVT 相容性與不同平台表現；它仍不能真正改變 silhouette。"
+        }
+      ],
+      "rank_global": 3,
+      "homepage_tier": "top5"
+    },
+    {
+      "id": "hktex-uv-free-surface-textures",
+      "title": "HKTex：用 Heat Kernel 做 UV-free Surface Texture，直接處理曲面紋理連續性",
+      "summary": "HKTex 以 heat kernel 在曲面上建立紋理座標關係，目標是在不建立傳統 UV atlas 的情況下減少 seam、拉伸與 atlas 空間浪費，並支援多視角影像對表面紋理的最佳化；研究已公開程式碼。",
+      "quick_impact": "★★★★★",
+      "source_url": "https://3dnchu.com/archives/heat-kernel-textures/",
+      "category": "emerging-case",
+      "subcategory": "research",
+      "ranking_score": 92.8,
+      "analysis_level": "BRIEF",
+      "brief_reason": "emerging-research-limited-production-evidence",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "傳統 UV 將曲面切成多個 2D island 後再貼圖，天然會有 seam 與 distortion；HKTex 改以 heat kernel 描述曲面上的局部關係，讓 texture parameterization 不必先建立固定 UV atlas，研究也示範多視角 fitting。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "如果這類方法能進入 DCC／engine tooling，掃描、生成式 3D 與複雜有機資產可能少一道昂貴的 UV 整理流程；對 AI 3D 來說尤其重要，因為生成 mesh 的拓樸與 UV 往往同時不穩定。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "目前仍屬研究方法，需自行驗證 runtime sampling 成本、mipmap／anisotropic filtering、bake/export、引擎材質相容與 artist paint workflow；研究結果不能直接等同於可替代 production UV。"
+        }
+      ],
+      "rank_global": 4,
+      "homepage_tier": "top5"
+    },
+    {
+      "id": "ac9-cloth-retopo-v11",
+      "title": "AC9 Cloth Retopo 1.1：用 Marvelous／CLO 2D Pattern 反投影，重建服裝乾淨拓樸",
+      "summary": "免費 Blender add-on AC9 Cloth Retopo 以 CLO／Marvelous Designer 的 2D pattern 為基礎建立低模，再投影回高密度 3D 服裝；1.1 版改善 inset 等操作，適合把模擬布料轉成可烘焙、可綁定的遊戲網格。",
+      "quick_impact": "★★★★★",
+      "source_url": "https://3dnchu.com/archives/ac9-cloth-retopo-v1-1/",
+      "category": "3d-production",
+      "subcategory": "character-production",
+      "ranking_score": 92,
+      "analysis_level": "BRIEF",
+      "brief_reason": "useful-tool-or-addon-limited-depth",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "工具利用服裝原本的 2D pattern 作為規則拓樸來源，再把結果映射回 3D 形狀，避開直接在褶皺高模表面手工描線；這個思路特別適合 Marvelous／CLO 已有乾淨 panel 結構的衣服。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "角色服裝常同時要求 seam 對齊、UV 可控與變形區 edge flow，若 2D pattern 能直接成為 retopo 起點，就能降低外包與角色團隊大量重複工作，並讓不同服裝保持一致密度。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "測試時要挑緊身、厚外套與多層裙裝三種案例，檢查 panel seam、腋下／肩／膝變形、厚度、重疊層與 bake；自動投影不代表關節區 edge flow 一定符合 rigging 需求。"
+        }
+      ],
+      "rank_global": 5,
+      "homepage_tier": "top5"
+    },
+    {
+      "id": "snap3d-physical-parts-assembly",
+      "title": "SNAP3D：從單張圖生成可物理組裝的 3D Parts，而不是只追求外觀像",
+      "summary": "CMU 的 SNAP3D 從單張影像推導多個零件，並把幾何最佳化目標加入實際組裝關係，嘗試讓生成結果不只看起來像物件，而是能以零件形式彼此配合。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://3dnchu.com/archives/snap3d/",
+      "category": "ai-generation",
+      "subcategory": "ai-3d",
+      "ranking_score": 90.7,
+      "analysis_level": "BRIEF",
+      "brief_reason": "emerging-research-limited-production-evidence",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "研究把單張圖到 3D 的問題拆成 part generation 與 assembly constraint，不只追求整體 silhouette，而是讓零件之間有可解釋的連接與物理組裝關係，這比單一融合 mesh 更接近可編輯資產。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對道具、機械件與產品型 AI 3D，真正能分件、替換、重拓樸與重新組裝的輸出，比一塊完整高模更容易進入 DCC；如果零件語意與接合可靠，也更適合後續 rig、材質與 LOD。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "目前是研究階段，需驗證複雜遮擋、非剛體物件、零件厚度、接縫精度、拓樸與 UV；可物理組裝的研究指標也不等於直接得到遊戲 ready mesh。"
+        }
+      ],
+      "rank_global": 6,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "ragdoll-web-physics-posing",
+      "title": "Ragdoll for Web：把重力、碰撞與接觸帶進瀏覽器角色 Pose，支援 Maya／Blender .rag 資料",
+      "summary": "Ragdoll Dynamics 推出瀏覽器版 physics-based character posing，可在本機瀏覽器用重力、碰撞與接觸調整角色，並讀取 Maya／Blender 的 .rag 資料；後續 roadmap 包含 keyframe、recording 與 rigging。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://3dnchu.com/archives/ragdoll-for-web/",
+      "category": "3d-animation",
+      "subcategory": "animation",
+      "ranking_score": 89.9,
+      "analysis_level": "BRIEF",
+      "brief_reason": "useful-tool-or-addon-limited-depth",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "它把角色 posing 從純 FK／IK 拉桿加入物理條件，讓腳底接觸、重心、物件互動與多角色碰撞可以先由 solver 協助，再由動畫師決定姿勢；而且可從 Maya／Blender 的 Ragdoll 設定帶入瀏覽器。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對 blocking、姿勢探索與 review，免安裝的瀏覽器環境可降低動畫師與導演分享成本；物理輔助尤其適合重量感、跌倒、坐靠與角色接觸，不必一開始就手工修所有 contact。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "目前功能仍在擴充，應先驗證 .rag 往返、骨架比例、constraint、瀏覽器效能、輸出回 DCC 的可編輯性；物理解只適合作為起點，不能取代 pose readability 與動畫節奏判斷。"
+        }
+      ],
+      "rank_global": 7,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "nexus-mpm-blender-c4d-preview",
+      "title": "NeXus MPM Tech Preview：INSYDIUM 把 GPU Material Point Method 帶進 Blender／Cinema 4D",
+      "summary": "INSYDIUM 公開 NeXus MPM 技術預覽，展示以 GPU 執行 Material Point Method，讓不同材料在同一 solver 中互動，並規劃進入 Blender／Cinema 4D 的後續 beta。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://3dnchu.com/archives/nexus-mpm-tech-preview/",
+      "category": "emerging-case",
+      "subcategory": "research",
+      "ranking_score": 88.8,
+      "analysis_level": "BRIEF",
+      "brief_reason": "emerging-research-limited-production-evidence",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "MPM 將物質以粒子攜帶狀態、透過背景 grid 解算，適合雪、泥、沙、軟體等會大變形且彼此交互的材料；NeXus 的技術方向是用 GPU 把這套 solver 放進一般 DCC。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "如果互動材料能在同一求解器內穩定運作，特效與場景團隊可以少做多個 solver 互相轉換，對破壞、地面變形與混合材質的 previs／shot iteration 都有吸引力。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "目前僅為 tech preview，正式 Blender／C4D 支援版本、快取格式、記憶體、穩定性與大尺度 shot 效能仍未知；應等 beta 後用代表性雪／泥／剛體互動案例量測。"
+        }
+      ],
+      "rank_global": 8,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "blender53-worldspace-animation-copy",
+      "title": "Blender 5.3 Animation：World-space Copy/Paste 與 Blend Copied Pose 已落地",
+      "summary": "Blender Animation & Rigging 模組 9/17 紀錄顯示 world-space copy/paste 的 frame range 與 Blend in Copied Pose 已落地，Spline IK 也加入 forward compatibility；Layered Actions 與 animation filter replacement 持續推進。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://devtalk.blender.org/t/2026-09-17-animation-rigging-module-meeting/45817",
+      "category": "3d-animation",
+      "subcategory": "animation",
+      "ranking_score": 88.2,
+      "analysis_level": "BRIEF",
+      "brief_reason": "early-release-limited-evidence",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "World-space pose／animation copy 能跨控制器局部空間差異保留角色在世界中的運動意圖，這次還補到 frame range 與 blend copied pose，對 mirror 以外的 pose transfer 與 motion editing 更實用。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "動畫師在修 root motion、跨 rig pose reuse、接觸姿勢與片段拼接時，可以少做手動補償；若 Layered Actions 後續穩定，Blender 的非破壞動畫編輯會更接近大型 production 所需。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "這些變更仍在 5.3 開發線，需用自家控制 rig 測試 parent space、constraint、root motion、NLA／Layered Actions 與 undo；正式 beta 前不宜直接鎖定工作室版本。"
+        }
+      ],
+      "rank_global": 9,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "blender53-texture-paint-parity",
+      "title": "Blender Texture Paint：Face Selection、筆刷一致性與大場景 spacing 修正持續進 5.3",
+      "summary": "9/15 Sculpt/Paint/Texture 模組紀錄顯示 3D Texture Paint 正補上 face selection filter、scene-size spacing／tiling 修正與 Draw Brush 功能一致性，Blur／Smooth 與 automasking 也在後續工作中。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://devtalk.blender.org/t/2026-09-15-sculpt-paint-texture-module-meeting/45816",
+      "category": "blender-dcc",
+      "subcategory": "blender",
+      "ranking_score": 87.4,
+      "analysis_level": "BRIEF",
+      "brief_reason": "early-release-limited-evidence",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "Blender 正把新版 3D Texture Paint 從基本繪製補到可實際選面、在不同 scene scale 維持 spacing／tiling，並讓 Draw Brush 與其他 paint system 功能靠攏；Blur／Smooth、automasking 仍在進行。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對直接在 Blender 做 hand-painted、mask 修補或 bake 後 cleanup 的美術，face filter 與尺度一致性比單純新增筆刷更關鍵，因為它決定大型角色／場景是否能精準限制修改範圍。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "目前功能仍在開發，應用 1m／100m 不同尺度模型、UDIM／多材質、symmetry、projection seam 與筆刷 mask 做回歸測試；Blur／Smooth 與 automasking 尚未完成時不能假設已等同成熟專用貼圖工具。"
+        }
+      ],
+      "rank_global": 10,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "blender-straight-skeleton-node",
+      "title": "Blender Modeling：Straight Skeleton 原型瞄準複雜 Face Inset／屋頂式拓樸",
+      "summary": "Blender Modeling 模組 9/14 討論 Straight Skeleton 原型，重點是處理一般 inset 容易自交或重疊的複雜多邊形，並傾向做成獨立 node；同時也在整理 bevel node 的底層 helper。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://devtalk.blender.org/t/2026-09-14-modeling-module-meeting/45813",
+      "category": "blender-dcc",
+      "subcategory": "blender",
+      "ranking_score": 86.7,
+      "analysis_level": "BRIEF",
+      "brief_reason": "early-release-limited-evidence",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "Straight Skeleton 可以把 polygon 邊界向內推進並保留事件拓樸，對凹多邊形、屋頂分割與複雜 inset 比單純 offset 更可靠；Blender 團隊傾向把它拆成獨立 node，讓其他工具可重用。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "程序建築、道路、牆面 panel 與 Geometry Nodes 建模若能直接取得穩定 skeleton，可減少自交清理與自訂腳本；對大量模組化場景，比一次性手工 inset 更具 pipeline 價值。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "目前仍是 prototype／設計討論，node 介面、效能與 degeneracy 行為未定；要等實作後用凹多邊形、洞、極短邊與非平面輸入驗證，不能把會議方向當成 5.3 已交付功能。"
+        }
+      ],
+      "rank_global": 11,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "blender-meshlets-pbvh-gsplat-review",
+      "title": "Blender GPU Meshlets／PBVH 重構延後 5.4，Gaussian Splat 也同步檢查色彩標準",
+      "summary": "Blender 9/11 project update 顯示 PBVH drawing 重構延後至 5.4，未來設計會納入 meshlets 與 GPU culling；Gaussian Splat review 則持續處理色彩空間與標準問題。",
+      "quick_impact": "★★★☆☆",
+      "source_url": "https://devtalk.blender.org/t/2026-09-11-project-updates-meeting/45809",
+      "category": "blender-dcc",
+      "subcategory": "blender",
+      "ranking_score": 85.9,
+      "analysis_level": "BRIEF",
+      "brief_reason": "early-release-limited-evidence",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "PBVH 是 sculpt／大網格 viewport 的核心資料路徑，團隊把重構目標往 meshlet 與 GPU culling 靠攏，但時程延到 5.4；同時 3DGS review 不只處理匯入，也在釐清色彩資料如何符合標準。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對高模雕刻、掃描與未來 GPU-driven viewport，底層 draw path 若改善會比單一 UI 功能更影響大型資產互動；3DGS 色彩標準則直接決定跨工具 reference 是否可靠。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "兩者都屬進行中工程：PBVH 沒有 5.3 交付承諾，3DGS 也仍有 colorspace 風險；production 應維持現有基線，只在 daily build 做代表性大網格與 splat 色彩對照。"
+        }
+      ],
+      "rank_global": 12,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "houdini22-copernicus-bake-preprocess",
+      "title": "Houdini 22 Bake Pre-Process：在 viewport 直接修 UV seam、cage 與 ray offset",
+      "summary": "SideFX 的 Baking with Copernicus 示範 H22 Bake Pre-Process node，可在 viewport 互動式調整 UV seam、顯示 intersection、修 cage／ray-end offset，再把結果送到材質與引擎貼圖輸出。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://www.sidefx.com/learn/talks/baking-with-copernicus/",
+      "category": "blender-dcc",
+      "subcategory": "houdini",
+      "ranking_score": 85.1,
+      "analysis_level": "BRIEF",
+      "brief_reason": "practical-tutorial-limited-depth",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "新的 bake pre-process 把 UV seam、交疊／穿插診斷與 cage／ray offset 拉進同一個可視化節點流程，不必先在 DCC 外猜測 bake 問題再反覆輸出；Copernicus 再接後續 texture processing。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對高低模烘焙與程序資產，能把『哪裡會投射錯』提前變成 viewport 可見資料，可降低 normal／AO 爆點的人工排查；如果同一 graph 能直接輸出 engine texture maps，也更適合批次與外包驗收。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "應以硬表面、角色衣服與重疊零件各跑一組，檢查 seam、cage、自相交、tangent basis 與 Unity／Unreal 匯入一致性；教學案例並不代表所有複雜 mesh 都能自動修好。"
+        }
+      ],
+      "rank_global": 13,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "houdini22-gsplat-relighting",
+      "title": "Houdini 22：三種 Gaussian Splat Relighting 路徑，從快速近似到 Proxy＋Karma",
+      "summary": "SideFX 示範 H22 三種 3DGS 重打光方法：Labs Relight GSplats、把 splat rasterize 後再打光，以及投影到 proxy geometry 後交給 Karma；速度與原始外觀保真度各有取捨。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://www.sidefx.com/tutorials/3-new-ways-to-relight-gaussian-splats/",
+      "category": "blender-dcc",
+      "subcategory": "houdini",
+      "ranking_score": 84.4,
+      "analysis_level": "BRIEF",
+      "brief_reason": "practical-tutorial-limited-depth",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "Gaussian Splat 原本把拍攝時的光照烘在顏色裡，重新打光困難；H22 提供從直接近似 splat shading 到 rasterize／proxy geometry 的多條路徑，讓使用者依速度與品質選擇。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對掃描場景、virtual production 與環境 reference，能在 DCC 中重新配合 shot lighting，比只能當固定背景更實用；proxy＋Karma 也提供與既有 render pipeline 結合的方向。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "SideFX 明確把這些方法定位為不同程度近似，最高保真仍受原始 capture 限制；應比較原照、直接 relight、proxy render 的色偏、陰影、SH 細節與 render cost，再決定用途。"
+        }
+      ],
+      "rank_global": 14,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "houdini22-solaris-copernicus-hive",
+      "title": "Houdini 22 Hive：Solaris Instance／USD 元件與 Copernicus 123 個新 COP Node 集中推進場景流程",
+      "summary": "SideFX H22 Hive 彙整 Solaris 的 USD component、proxy、pivot、Paint/Scatter Instances、deferred evaluation，以及 Copernicus 大量新 COP node 與 live texturing，反映 H22 正把程序場景與影像／貼圖流程綁得更緊。",
+      "quick_impact": "★★★☆☆",
+      "source_url": "https://www.sidefx.com/houdini-hive/h22-launch-and-hive/",
+      "category": "blender-dcc",
+      "subcategory": "houdini",
+      "ranking_score": 83.6,
+      "analysis_level": "BRIEF",
+      "brief_reason": "short-official-announcement",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "Solaris 更新把 instance painting／scatter、USD component 與 proxy 管理往可互動場景組裝靠攏，Copernicus 同時擴充大量 2D／texture node，讓場景、材質與影像處理更能留在 Houdini graph 中。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "環境與技術美術若用 Houdini 產生大量資產，deferred instance evaluation、USD proxy 與 COP texture processing 可降低 DCC 間來回；同一程序系統管理 geometry 與 texture 也較容易版本化。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "Hive 是多場演講入口，不等於每項功能都具有相同成熟度；導入時應分別驗證 USD round-trip、instance editing、Copernicus color management、cache 與 Unreal／Unity downstream，而不是一次全面升版。"
+        }
+      ],
+      "rank_global": 15,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "substance-painter-1215-known-issues",
+      "title": "Substance 3D Painter 12.1.5 Known Issues：重匯 Mesh、UV Seam、AMD Bake 等風險仍需列入升版測試",
+      "summary": "Adobe 9/15 更新的 Painter known-issues 列出 12.1.5 仍存在的 mesh reimport UV seam、heavy high-poly 在部分 AMD 裝置 device lost、geometry mask artifact、clone normal channel 色偏等問題，可直接轉成工作室升版 QA 清單。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://experienceleague.adobe.com/en/docs/substance-3d-painter/using/release-notes/known-issues",
+      "category": "blender-dcc",
+      "subcategory": "substance",
+      "ranking_score": 82.9,
+      "analysis_level": "BRIEF",
+      "brief_reason": "short-official-announcement",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "這份官方清單的價值不是新功能，而是把特定 failure mode 明確化，包括重匯 mesh 後 UV seam、部分高模烘焙 GPU device lost、geometry mask 與 clone／normal channel 異常，能直接對應日常資產流程。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "外包與角色／場景團隊常在 Painter 升版後才碰到不可重現的小問題；把官方 known issues 轉成固定 regression scene，可以在全面部署前先判斷是否會影響 bake、reimport 與修補流程。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "Known issue 會隨 patch 改變，不能把清單永久當規格；應鎖定目前 studio 版本與 GPU，建立高模 bake、mesh reimport、UV seam、mask、clone 五類測試，修復後再移除對應 workaround。"
+        }
+      ],
+      "rank_global": 16,
+      "homepage_tier": "category_only"
+    },
+    {
+      "id": "blender-studio-cloudrig-rigging-guide",
+      "title": "Blender Studio Rigging Guide：CloudRig＋手工 Weight／Corrective Shape Key 的 production 分工",
+      "summary": "Blender Studio 的 rigging guide 說明以 CloudRig 產生控制 rig，再由 rigging artist 處理 weight paint、corrective shape keys 與角色特化控制；正式 production retopo 與 previs 自動拓樸也採不同嚴謹度。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://studio.blender.org/tools/artist-guide/asset-creation/rigging",
+      "category": "3d-animation",
+      "subcategory": "rigging",
+      "ranking_score": 82.2,
+      "analysis_level": "BRIEF",
+      "brief_reason": "practical-tutorial-limited-depth",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "Blender Studio 並未把 auto rig 當成完整答案，而是讓 CloudRig 負責可標準化的控制結構，再由人工處理 skin weighting、corrective shape key 與角色需求；previs 與 final asset 也使用不同 mesh 品質門檻。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "這種分工很適合遊戲角色 pipeline：自動化處理可重複骨架／控制器，變形品質則留給 rigging artist；把 rig 規格與 retopo 交付層級分開，也能讓 early animation 更早開始。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "導入時要用不同體型角色驗證 CloudRig template、export skeleton、twist、corrective shape、遊戲引擎 retarget 與 animator 操作；Studio 的電影流程不能原封不動等同於 Unity／Unreal runtime rig。"
+        }
+      ],
+      "rank_global": 17,
+      "homepage_tier": "category_only"
+    },
+    {
+      "id": "princess-lost-planet-character",
+      "title": "《Princess of the Lost Planet》角色拆解：AI 只做 Reference 探索，正式資產回到 ZBrush／Marvelous／TopoGun／RizomUV",
+      "summary": "Seori Nam 分享中世紀＋末日元素角色製作，AI 圖只用於早期 reference 探索；正式流程包含 ZBrush 頭身、Marvelous 服裝、TopoGun retopo、RizomUV 分組，以及 Substance／Marmoset 貼圖與展示。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://80.lv/articles/modeling-3d-character-with-medieval-fantasy-post-apocalyptic-elements",
+      "category": "3d-production",
+      "subcategory": "character-production",
+      "ranking_score": 81.5,
+      "analysis_level": "BRIEF",
+      "brief_reason": "production-reference-limited-depth",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "案例把概念探索和可交付資產明確切開：AI reference 用來找方向，角色本體仍以 base mesh／ZBrush、Marvelous、TopoGun 與 RizomUV 建立，髮型則用 3ds Max hair cards，貼圖依畫面重要度分配多組 texture set。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "這個流程對目前 AI 輔助角色製作很實用，因為它示範生成內容可以加速 visual search，但 topology、UV、材質與 hair card 仍由可控工具完成；也能避免把不可追溯的 AI mesh 直接塞進正式 pipeline。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "案例是單一作者 production breakdown，效率與品質不能直接推廣到所有角色；導入時可比較純 reference 與 AI-assisted reference 在概念時間、重做率、UV／texture budget 與最終辨識度上的實際差異。"
+        }
+      ],
+      "rank_global": 18,
+      "homepage_tier": "category_only"
+    },
+    {
+      "id": "blender-299-ai-figure-print-tools",
+      "title": "299 Tools for Blender：把 AI／Figure Mesh 的切件、補洞與可列印檢查集中成免費工具",
+      "summary": "299 Tools for Blender 針對 AI 生成或公仔類模型的 3D print 準備，提供比例調整、自動／手動切件、補洞、backface 檢查與 clearance boolean 等功能；雖以列印為主，也涵蓋髒網格修補與分件。",
+      "quick_impact": "★★★☆☆",
+      "source_url": "https://3dnchu.com/archives/299-tools-for-blender/",
+      "category": "blender-dcc",
+      "subcategory": "addon",
+      "ranking_score": 80.8,
+      "analysis_level": "BRIEF",
+      "brief_reason": "useful-tool-or-addon-limited-depth",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "工具把常見的列印前 mesh cleanup 做成一組 Blender 操作，包括切件、封口、背面檢查與接合間隙；對 AI 生成模型尤其有用，因為這類 mesh 常需要先修 non-manifold 與分件才能進下一階段。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "雖然目標是 3D print，但其中 mesh integrity、cut plane、gap fill 與 clearance 的做法可轉用到需要分件的道具／公仔資產；也適合快速檢查 AI mesh 是否存在不可見幾何問題。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "它不是遊戲 retopo 工具，不能因為可列印就視為 game-ready；應另外驗證 polycount、UV、normal、LOD、rigging 與 engine import。使用時也要避免 boolean cleanup 破壞原始輪廓。"
+        }
+      ],
+      "rank_global": 19,
+      "homepage_tier": "category_only"
+    },
+    {
+      "id": "blender-catpin-print-splitting",
+      "title": "CatPin：Blender 非破壞切件＋Pin/Socket，讓複雜道具分件與組裝間隙可重複調整",
+      "summary": "CatPin 是 Blender 的模型切分與 pin/socket 工具，可用多種 cut mode 建立連接件、設定 clearance，並以 draft 方式保留可修改性後再輸出 STL；對大型公仔／道具的分件規劃具有可轉移價值。",
+      "quick_impact": "★★★☆☆",
+      "source_url": "https://3dnchu.com/archives/catpin/",
+      "category": "3d-production",
+      "subcategory": "prop-production",
+      "ranking_score": 80.1,
+      "analysis_level": "BRIEF",
+      "brief_reason": "useful-tool-or-addon-limited-depth",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "CatPin 將 cut、pin、socket 與間隙參數化，重點是先以 draft 保持非破壞狀態，再決定最終切件；這比直接 destructive boolean 更容易在設計改動後重算接合位置。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對大型道具、機台外殼或需要拆件輸出的模型，參數化連接與 clearance 能減少手工對位；即使不做列印，『可重建的分件規則』也可作為高低模、展示模型或外包交付的輔助流程。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "工具主要面向 3D print，遊戲資產仍需另外清 topology／UV／normal；導入時要測薄壁、曲面、非流形模型與大量 pin 的 boolean 穩定性，並確認 draft 到 final 不會產生破面。"
+        }
+      ],
+      "rank_global": 20,
+      "homepage_tier": "category_only"
+    }
+  ],
+  "visual_evidence": {}
+}
