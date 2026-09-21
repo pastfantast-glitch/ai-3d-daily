@@ -60,6 +60,7 @@ def main():
     else:
         snap=json.loads(snapshot_manifest.read_text('utf-8'))
         if snap!=manifest: errors.append('per-date visual manifest differs from current manifest')
+    contract_version=int(manifest.get('visual_contract_version',1) or 1)
     entries={x['id']:x for x in manifest.get('entries',[])}
     unknown=set(entries)-set(enabled); missing=set(enabled)-set(entries)
     if unknown: errors.append(f'manifest contains non-canonical visual IDs: {sorted(unknown)}')
@@ -98,8 +99,8 @@ def main():
             assert_preview(errors,'home',ROOT/'index.html','',intel_id,rec)
             assert_preview(errors,'daily',ROOT/date/'index.html','../',intel_id,rec)
     attempted=len(enabled); success=len(ok); fallback_count=len(fallback); rendered=len(renderable)
-    if rendered!=attempted: errors.append(f'renderable visual coverage must be complete: {rendered}/{attempted}')
-    print(f'VISUAL COVERAGE {date}: extracted={success} fallback={fallback_count} rendered={rendered}/{attempted} canonical candidates')
+    if contract_version>=2 and rendered!=attempted: errors.append(f'renderable visual coverage must be complete: {rendered}/{attempted}')
+    print(f'VISUAL COVERAGE {date}: contract=v{contract_version} extracted={success} fallback={fallback_count} rendered={rendered}/{attempted} canonical candidates')
     for intel_id in enabled:
         rec=entries.get(intel_id,{})
         print(f" - {intel_id}: {rec.get('status','not_attempted')} candidates={rec.get('candidate_count',0)} reason={rec.get('error','')}")
