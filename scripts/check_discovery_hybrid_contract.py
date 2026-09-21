@@ -10,6 +10,7 @@ from discovery_hybrid import (
     load_hybrid_config,
     positive_samples,
     registered_source_probe_errors,
+    registered_source_probe_plan,
 )
 from intelligence_v2 import load_config
 
@@ -149,8 +150,14 @@ def main():
     probe_cfg = hybrid.get('registered_source_coverage_probe') or {}
     if probe_cfg.get('enabled') is not True:
         raise SystemExit('HYBRID CONTRACT FAILED: registered source coverage probe must be enabled')
-    if probe_cfg.get('scope') != 'all-enabled-discovery-source-pool':
-        raise SystemExit('HYBRID CONTRACT FAILED: registered source coverage probe must cover all enabled registered sources')
+    if probe_cfg.get('scope') != 'rotating-enabled-discovery-source-pool':
+        raise SystemExit('HYBRID CONTRACT FAILED: registered source coverage probe must use bounded rolling coverage')
+    if probe_cfg.get('require_attempt_record_for_every_enabled_source') is not False:
+        raise SystemExit('HYBRID CONTRACT FAILED: rotating coverage must not require every source to be attempted every day')
+    if probe_cfg.get('require_audit_record_for_every_enabled_source') is not True or probe_cfg.get('require_attempt_record_for_selected_sources') is not True:
+        raise SystemExit('HYBRID CONTRACT FAILED: rotating coverage requires all-source audit records and selected-source attempts')
+    if int(probe_cfg.get('rotating_sources_per_day', 0) or 0) <= 0 or int(probe_cfg.get('rolling_window_days', 0) or 0) <= 0:
+        raise SystemExit('HYBRID CONTRACT FAILED: rotating coverage requires positive daily budget/window')
     if float(probe_cfg.get('ranking_bonus', 0) or 0) != 0 or probe_cfg.get('quota') is not False or probe_cfg.get('admission_bypass') is not False:
         raise SystemExit('HYBRID CONTRACT FAILED: registered source coverage probe must be recall-only with zero ranking bonus/quota/bypass')
     if refill.get('use_registered_source_coverage_probe') is not True:
@@ -203,6 +210,31 @@ def main():
     probe_errors = registered_source_probe_errors(future_fixture, hybrid)
     if probe_errors:
         raise SystemExit(f'HYBRID CONTRACT FAILED: registered source probe positive fixture should pass: {probe_errors}')
+
+    plan = registered_source_probe_plan(feature_date, hybrid)
+    rolling_records = {}
+    for source in discovery_sources(hybrid):
+        sid = str(source['id'])
+        if sid in set(plan['selected']):
+            rolling_records[sid] = {
+                'status': 'checked',
+                'method': 'latest-index',
+                'candidates_found': 0,
+                'candidate_ids': [],
+            }
+        else:
+            rolling_records[sid] = {
+                'status': 'not-scheduled',
+                'method': 'rolling-window',
+                'candidates_found': 0,
+                'candidate_ids': [],
+                'reason': 'deterministic-rolling-probe-not-selected',
+            }
+    rolling_fixture = json.loads(json.dumps(future_fixture))
+    rolling_fixture['metadata']['discovery_coverage']['registered_source_probe']['sources'] = rolling_records
+    rolling_errors = registered_source_probe_errors(rolling_fixture, hybrid)
+    if rolling_errors:
+        raise SystemExit(f'HYBRID CONTRACT FAILED: rotating probe fixture should pass: {rolling_errors}')
     ledger_fixture = {
         'schema_version': int(ledger_cfg.get('schema_version', 1)),
         'date': feature_date,
@@ -242,7 +274,7 @@ def main():
         f"admission={admission.get('mode')} / "
         f"registered_sources={len(discovery_sources(hybrid))} / "
         f"probe_effective={probe_cfg.get('effective_date')} / ledger_effective={ledger_cfg.get('effective_date')} / "
-        'broad admission + strict ranking + FULL-depth separation + source-neutral preference learning + recall audit trail'
+        'broad admission + strict ranking + FULL-depth separation + source-neutral preference learning + bounded rolling recall audit trail'
     )
 
 
