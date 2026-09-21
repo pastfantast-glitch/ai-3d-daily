@@ -25,11 +25,23 @@ def visual_summary(date: str) -> dict:
     data = json.loads(path.read_text("utf-8"))
     entries = data.get("entries") or []
     ok = [e for e in entries if e.get("status") == "ok"]
+    fallback = [e for e in entries if e.get("status") == "fallback_card"]
     soft = [
         {"id": e.get("id"), "status": e.get("status"), "reason": e.get("error") or e.get("reason") or ""}
-        for e in entries if e.get("status") != "ok"
+        for e in entries if e.get("status") not in {"ok", "fallback_card"}
     ]
-    return {"ok": len(ok), "total": len(entries), "soft_failures": soft}
+    fallback_details = [
+        {"id": e.get("id"), "extraction_status": e.get("extraction_status"), "reason": e.get("fallback_reason") or e.get("error") or ""}
+        for e in fallback
+    ]
+    return {
+        "ok": len(ok),
+        "fallback": len(fallback),
+        "rendered": len(ok) + len(fallback),
+        "total": len(entries),
+        "fallback_details": fallback_details,
+        "soft_failures": soft,
+    }
 
 
 def health_snapshot(date: str, publish_sha: str, run_id: str, verified_at: str) -> dict:
