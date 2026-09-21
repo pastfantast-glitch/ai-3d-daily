@@ -1,5 +1,5 @@
 {
-  "version": 10,
+  "version": 11,
   "effective_date": "2026-09-09",
   "coverage_audit": {
     "required_windows": ["24h", "7d", "30d", "6m", "evergreen"],
@@ -20,6 +20,15 @@
     "admission": "verified-unpublished-quality-pass-only",
     "refresh_before_use": true,
     "remove_when_published_or_invalid": true
+  },
+  "published_registry_snapshot": {
+    "path": "data/candidates/published-registry-snapshot.json",
+    "schema_version": 1,
+    "required_before_discovery": true,
+    "builder": "scripts/build_published_registry_snapshot.py",
+    "identity_policy": "delegate-to-normalize_registry_identity",
+    "purpose": "Materialized read-only Published Intelligence Registry identity index for Collector-side early dedupe. It is derived only from state=DONE history and uses the same URL/source identity implementation as authoritative pre-ready normalization.",
+    "collector_rule": "Load before discovery and reject exact normalized published-source identities before ranking unless a candidate is explicitly treated as UPDATE with a concrete substantive delta. Prepare remains authoritative and revalidates every survivor."
   },
   "candidate_decision_ledger": {
     "effective_date": "2026-09-16",
@@ -89,17 +98,23 @@
   "registered_source_coverage_probe": {
     "effective_date": "2026-09-16",
     "enabled": true,
-    "scope": "all-enabled-discovery-source-pool",
-    "purpose": "Recall safety net: inspect each registered source's newest index/feed/category/search surface so fresh production-relevant candidates are not dependent on generic web-search indexing.",
-    "allowed_methods": ["rss-or-feed", "latest-index", "category-index", "site-search", "web-site-query"],
-    "allowed_statuses": ["checked", "unavailable", "blocked", "unsupported"],
-    "require_attempt_record_for_every_enabled_source": true,
+    "scope": "rotating-enabled-discovery-source-pool",
+    "purpose": "Recall safety net with bounded daily cost: inspect core registered sources daily and rotate the remaining enabled source pool deterministically so recall is not dependent on generic web-search indexing.",
+    "allowed_methods": ["rss-or-feed", "latest-index", "category-index", "site-search", "web-site-query", "rolling-window"],
+    "allowed_statuses": ["checked", "unavailable", "blocked", "unsupported", "not-scheduled"],
+    "require_attempt_record_for_every_enabled_source": false,
+    "require_audit_record_for_every_enabled_source": true,
+    "require_attempt_record_for_selected_sources": true,
+    "core_source_ids": ["80-level", "cg-channel", "blender-official", "epic-developer-community", "unity-official", "sidefx-official"],
+    "rotating_sources_per_day": 3,
+    "rolling_window_days": 3,
+    "selection_policy": "deterministic-date-rotation",
     "require_candidate_ids_when_found": true,
     "candidate_only": true,
     "ranking_bonus": 0,
     "quota": false,
     "admission_bypass": false,
-    "notes": "This probe is registry-driven, not preference-derived. It adds recall only. A source may yield zero publishable candidates; no source is guaranteed inclusion and no domain receives ranking preference."
+    "notes": "Core production sources are probed every day; all remaining enabled registered sources are deterministically selected within the rolling window. Every source keeps an audit record; status=not-scheduled is truthful and is not an attempted probe. Registration gives zero ranking bonus, quota or admission bypass."
   },
   "category_discovery_profiles": {
     "3d-animation": {

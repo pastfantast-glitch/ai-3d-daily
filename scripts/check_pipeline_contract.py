@@ -22,7 +22,7 @@ else:
         'finalize_collector_trigger.py','prepare_release_candidate.py','PRE-READY HANDOFF COMPLETE','check_ready_contract.py','check_release_input.py','check_registry_contract.py',
         'render_daily_navigation.py','render_home_archive_links.py','render_information_architecture.py','build_intelligence.py',
         'extract_visual_assets.py','inject_visual_previews.py','apply_cache_bust.py','check_intelligence_contract.py','check_visual_contract.py','check_home_contract.py',
-        'check_daily_contract.py','check_information_architecture.py','check_historical_regression.py --days 4','verify_pages_publish.py','write_publish_receipt.py','restore_publish_snapshot.py',
+        'check_daily_contract.py','check_information_architecture.py','check_historical_regression.py --days 4','verify_pages_publish.py','write_publish_receipt.py','build_published_registry_snapshot.py','restore_publish_snapshot.py',
         "find \"${{ steps.date.outputs.value }}\" -mindepth 2 -maxdepth 2 -name index.html",'Publish canonical intelligence','Record verified publish','recovery_sha','ref: main']
     for token in required:
         if token not in main: fail(f'intelligence-build missing required stage/token: {token}')
@@ -43,6 +43,17 @@ else:
     if 'contents: write' not in main: fail('canonical publisher requires contents: write')
     if re.search(r'^\s{2}issues:\s*$', main, re.M) or 'rerun-canonical:' in main:
         fail('issue-based canonical publish trigger is forbidden; automated handoff must use .collector/.request/.ready only')
+    if 'data/candidates/published-registry-snapshot.json' not in main:
+        fail('verified publish receipt commit must persist the derived Published Intelligence Registry snapshot')
+
+registry_snapshot_builder=ROOT/'scripts'/'build_published_registry_snapshot.py'
+if not registry_snapshot_builder.exists():
+    fail('published Registry snapshot builder missing')
+else:
+    snapshot_builder=registry_snapshot_builder.read_text('utf-8')
+    for token in ('import normalize_registry_identity as registry','registry.is_verified_published','registry.published_source_by_id','registry.norm_url'):
+        if token not in snapshot_builder:
+            fail(f'published Registry snapshot builder must delegate authoritative identity logic: {token}')
 
 # Collection-stage identity mutation and .ready creation must be a single fail-closed
 # pre-ready operation; the publisher only verifies the resulting canonical hash.
