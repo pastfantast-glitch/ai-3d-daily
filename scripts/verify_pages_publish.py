@@ -254,8 +254,11 @@ def visual_errors(base_url: str, date: str, timeout: int) -> list[str]:
     if not entries:
         errors.append('visual manifest has no entries')
     for entry in entries:
-        if entry.get('status') == 'ok' and not (entry.get('asset_path') or ''):
-            errors.append(f'{entry.get("id")}: status=ok but asset_path missing')
+        status = entry.get('status')
+        if status in {'ok', 'fallback_card'} and not (entry.get('asset_path') or ''):
+            errors.append(f'{entry.get("id")}: status={status} but asset_path missing')
+        if status == 'fallback_card' and entry.get('source_kind') != 'generated:source-card':
+            errors.append(f'{entry.get("id")}: fallback_card source_kind mismatch')
     return errors
 
 
