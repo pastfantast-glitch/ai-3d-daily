@@ -5,7 +5,8 @@ from bs4 import BeautifulSoup
 from intelligence_v2 import is_v2_dataset, homepage_groups
 
 ROOT=Path(__file__).resolve().parents[1]
-ALLOWED={'ok','blocked','no_candidate','too_small','not_image','http_error','identity_uncertain'}
+ALLOWED={'ok','fallback_card','blocked','no_candidate','too_small','not_image','http_error','identity_uncertain'}
+RENDERABLE={'ok','fallback_card'}
 def latest_date():
     dates=sorted(p.stem for p in (ROOT/'data'/'daily').glob('20??-??-??.json'))
     if not dates: raise SystemExit('No canonical daily datasets found')
@@ -69,9 +70,15 @@ def main():
         status=rec.get('status')
         if status not in ALLOWED: errors.append(f'{intel_id}: invalid/unresolved visual status {status!r}')
         if rec.get('page_url')!=enabled[intel_id].get('source_url'): errors.append(f'{intel_id}: source page drift')
-        if status!='ok' and not rec.get('error'): errors.append(f'{intel_id}: missing visual must include explicit error reason')
+        if status not in RENDERABLE and not rec.get('error'): errors.append(f'{intel_id}: missing visual must include explicit error reason')
+        if status=='fallback_card':
+            if rec.get('source_kind')!='generated:source-card': errors.append(f'{intel_id}: fallback_card source_kind must be generated:source-card')
+            if not str(rec.get('fallback_reason') or '').strip(): errors.append(f'{intel_id}: fallback_card requires fallback_reason')
+            if not str(rec.get('asset_path') or '').strip(): errors.append(f'{intel_id}: fallback_card requires asset_path')
     ok={k:v for k,v in entries.items() if v.get('status')=='ok'}
-    for intel_id,rec in ok.items():
+    fallback={k:v for k,v in entries.items() if v.get('status')=='fallback_card'}
+    renderable={**ok,**fallback}
+    for intel_id,rec in renderable.items():
         asset_path=Path(rec.get('asset_path','')); asset=ROOT/asset_path
         if not asset.exists(): errors.append(f'{intel_id}: local asset missing: {asset}')
         expected_prefix=Path('assets')/'visual'/date
@@ -79,7 +86,7 @@ def main():
         except Exception: errors.append(f'{intel_id}: asset must be date-versioned under {expected_prefix}')
     if is_v2_dataset(data):
         records={x['id']:x for x in data['items']}; top,next10=homepage_groups(data); selected={x['id'] for x in top+next10}
-        for intel_id,rec in ok.items():
+        for intel_id,rec in renderable.items():
             item=records.get(intel_id)
             if not item: continue
             assert_preview(errors,f'category:{item["category"]}',ROOT/date/item['category']/'index.html','../../',intel_id,rec)
@@ -87,11 +94,12 @@ def main():
                 assert_preview(errors,'home',ROOT/'index.html','',intel_id,rec)
                 assert_preview(errors,'daily',ROOT/date/'index.html','../',intel_id,rec)
     else:
-        for intel_id,rec in ok.items():
+        for intel_id,rec in renderable.items():
             assert_preview(errors,'home',ROOT/'index.html','',intel_id,rec)
             assert_preview(errors,'daily',ROOT/date/'index.html','../',intel_id,rec)
-    attempted=len(enabled); success=len(ok)
-    print(f'VISUAL COVERAGE {date}: {success}/{attempted} canonical candidates')
+    attempted=len(enabled); success=len(ok); fallback_count=len(fallback); rendered=len(renderable)
+    if rendered!=attempted: errors.append(f'renderable visual coverage must be complete: {rendered}/{attempted}')
+    print(f'VISUAL COVERAGE {date}: extracted={success} fallback={fallback_count} rendered={rendered}/{attempted} canonical candidates')
     for intel_id in enabled:
         rec=entries.get(intel_id,{})
         print(f" - {intel_id}: {rec.get('status','not_attempted')} candidates={rec.get('candidate_count',0)} reason={rec.get('error','')}")
