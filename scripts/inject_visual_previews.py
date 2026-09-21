@@ -6,6 +6,7 @@ from normalize_archive_presentation import main as normalize_archive_presentatio
 
 ROOT=Path(__file__).resolve().parents[1]
 MANIFEST=ROOT/'assets'/'visual'/'manifest.json'
+RENDERABLE_STATUSES={'ok','fallback_card'}
 
 
 def latest_date():
@@ -25,7 +26,12 @@ def make_preview(soup,rec,prefix,is_archive=False):
     img['onerror']="this.closest('.case-preview').style.display='none'"
     a.append(img); fig.append(a)
     cap=soup.new_tag('figcaption'); badge=soup.new_tag('span'); badge.string=rec.get('label','SOURCE PREVIEW')
-    cap.append(badge); cap.append(' · Local visual evidence · 點圖開啟原始來源'); fig.append(cap)
+    cap.append(badge)
+    if rec.get('status')=='fallback_card':
+        cap.append(' · Generated source card · 點圖開啟原始來源')
+    else:
+        cap.append(' · Local visual evidence · 點圖開啟原始來源')
+    fig.append(cap)
     return fig
 
 
@@ -56,7 +62,7 @@ def main():
     manifest=json.loads(manifest_path.read_text('utf-8'))
     if manifest.get('date')!=date: raise SystemExit(f"visual manifest date mismatch: {manifest.get('date')} != {date}")
     if manifest.get('asset_versioning')!='daily-snapshot': raise SystemExit('visual manifest must use daily-snapshot asset versioning')
-    records={x['id']:x for x in manifest.get('entries',[]) if x.get('status')=='ok'}
+    records={x['id']:x for x in manifest.get('entries',[]) if x.get('status') in RENDERABLE_STATUSES}
     changed=[]
     if inject(ROOT/'index.html','',records,is_archive=False): changed.append('index.html')
     daily=ROOT/date/'index.html'
@@ -64,6 +70,8 @@ def main():
     for path in sorted((ROOT/date).glob('*/index.html')):
         if inject(path,'../../',records,is_archive=False): changed.append(str(path.relative_to(ROOT)))
     normalize_archive_presentation()
-    print('visual preview injection:',', '.join(changed) if changed else 'no markup changes',f'({len(records)} canonical visuals)')
+    extracted=sum(1 for x in records.values() if x.get('status')=='ok')
+    fallback=sum(1 for x in records.values() if x.get('status')=='fallback_card')
+    print('visual preview injection:',', '.join(changed) if changed else 'no markup changes',f'(rendered={len(records)} extracted={extracted} fallback={fallback})')
 
 if __name__=='__main__': main()
