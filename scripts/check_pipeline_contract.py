@@ -41,7 +41,8 @@ else:
     if "- 'data/publish/**'" in main: fail('receipt metadata must not retrigger canonical workflow')
     if "- 'data/daily/**'" in main: fail('canonical workflow must not trigger on data/daily/** before request/ready')
     if 'contents: write' not in main: fail('canonical publisher requires contents: write')
-    if re.search(r'^\s{2}issues:\s*# Collection-stage identity mutation and .ready creation must be a single fail-closed
+    if re.search(r'^\s{2}issues:\s*
+# Collection-stage identity mutation and .ready creation must be a single fail-closed
 # pre-ready operation; the publisher only verifies the resulting canonical hash.
 for path in (
     ROOT/'scripts'/'prepare_release_candidate.py', ROOT/'scripts'/'check_ready_contract.py',
