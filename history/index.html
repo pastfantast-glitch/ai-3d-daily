@@ -6,13 +6,13 @@
   <title>
    歷史日報｜AI 3D Production Intelligence
   </title>
-  <link href="../styles.css?v=20260920-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
-  <link href="../shared-components.css?v=20260920-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
-  <link href="../home.css?v=20260920-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
-  <link href="../home-content.css?v=20260920-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
-  <link href="../home-components.css?v=20260920-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../styles.css?v=20260921-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../shared-components.css?v=20260921-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../home.css?v=20260921-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../home-content.css?v=20260921-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../home-components.css?v=20260921-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
  </head>
- <body class="home-page history-page" data-report-date="2026-09-20">
+ <body class="home-page history-page" data-report-date="2026-09-21">
   <nav aria-label="Production Intelligence 分類" class="global-category-nav">
    <div class="page global-category-nav-inner">
     <a class="global-category-link" href="../#today">
@@ -42,8 +42,8 @@
    </div>
   </nav>
   <main class="page home-main history-main">
-   <div class="current-report-entry" data-current-report-date="2026-09-20">
-    <a aria-label="查看 2026-09-20 今日完整日報" class="category-nav-card current-report-link" href="../2026-09-20/">
+   <div class="current-report-entry" data-current-report-date="2026-09-21">
+    <a aria-label="查看 2026-09-21 今日完整日報" class="category-nav-card current-report-link" href="../2026-09-21/">
      <div class="current-report-copy">
       <span class="current-report-eyebrow">
        TODAY
@@ -53,7 +53,7 @@
       </strong>
      </div>
      <span class="current-report-date">
-      2026-09-20
+      2026-09-21
      </span>
     </a>
    </div>
@@ -119,6 +119,14 @@
          9 月
         </summary>
         <div class="archive-entries">
+         <a class="history-entry" data-history-categories="3d-animation 3d-production blender-dcc emerging-case engine-art" data-history-date="2026-09-20" data-history-search="2026-09-20 歷史日報 blender 5.3 alpha 原生支援 gaussian splat 匯入與渲染，但 export 與色彩仍有限制 blender 5.3 開發版加入 ply／spz gaussian splat 匯入與各 render engine 渲染，讓掃描／照片重建資料不必先靠第三方 add-on；目前仍沒有 splat export，且效能、線性色彩與 apply transform 有已知限制。 ★★★★★ smart remesh 3：blender 自動 retopo 同時兼顧硬表面平面與服裝 uv seam smart remesh 3 針對高面數硬表面與有機模型重建 quad topology，可控制目標 face count，平面可重建成乾淨 n-gon；服裝模式會依 uv panel 處理並保留 seam，適合掃描、雕刻與 ai 生成後清網格。 ★★★★☆ unity surface cache gi：urp 動態 gi 可跟著幾何與燈光改變，近期回報也暴露多燈噪點限制 unity 正在為 6.7 lts 推進 surface cache gi，目標是在不預烘焙的情況下支援動態幾何與動態燈光的間接照明；9 月討論仍指出多燈 light sampling 尚未完善，ecs 支援預計進 6000.7.0b1。 ★★★★☆ animo v10：maya 免費動畫工具集擴到 500+ 功能，加入影片 reference 與 arc tracker animo v10/v10.5.4 為 maya 動畫師整合 500 多項工具，新增 tools editor、影片 reference 匯入、camera-space arc tracker、mirror pose／animation 等，商用與非商用皆免費。 ★★★★☆ ankara alley：從真實街景 reference 到 designer 平鋪材質的寫實場景拆解 環境美術 nore pollentier 以真實 ankara 街道為 reference，拆解 blender／unreal／zbrush／substance 的場景流程，並說明如何用 substance designer 建立牆面與道路 tiling material 來維持大面積一致性。 ★★★★☆ 中東廢棄庭院：改用 pass-based 場景製作，把每輪工作集中在一種問題 3d generalist irmak çavun 分享把傳統逐資產推進改成 pass-based environment workflow，以每輪集中處理構圖、結構、材質等問題節省時間，並建立能快速重用的 material system。 ★★★★☆ marvelous designer 2026.1 seamline rip：直接在縫線定義破裂與 fray 區域 marvelous designer 2026.1 新增 seamline rip，可在既有 sewing line 的全部或局部指定 rip area，調整 rip／fray 屬性並模擬接縫打開、破損衣物與磨損邊緣。 ★★★★☆ keyflow：25+ maya 動畫工具＋獨立 shot review，reference 可直接送 maya/blender flying wild hog 動畫師 sebastian jaksan 公開 keyflow，包含 25+ maya 日常動畫工具與獨立 keyflow studio review app；支援 a/b、annotation、reference retime，並可把處理後 reference 送往 maya 或 blender。 ★★★★☆ animo sliders for blender：把 maya animo 的 16 個動畫滑桿移植到 blender 4.0–5.2 免費 animo sliders 把 tween、blend to neighbors、push/pull、time offset、smooth/harsh、simplify/bake 等 16 個常用 animation slider 帶到 blender，商用與非商用皆可使用。 ★★★★☆ unity 6.5 shader function reflection：用 hlsl function 自動生成 shader graph node unity 6.5 的 shader function reflection api 讓技術美術在 hlsl function 前加 unity_export_reflection 後，自動把 function signature 反射成 shader graph node，並以 xml hints 控制顯示名稱、分類與 port。 ★★★☆☆ overgrown：blender studio 用長片 teaser 當開放電影 pipeline 的 proof of concept blender studio 的 overgrown teaser 不只是作品展示，而是用實際長片目標驗證 blender end-to-end production；若專案進一步成立，工具、workflow 與 lessons 預計整理成免費開源 feature-film playbook。 ★★★☆☆ cyberpunk 2077 night city：大規模城市仍以手工資產為核心，程序化只當起點 cd projekt red 美術主管說明 night city 從建築、廣告到街道雜物大多由美術手工配置；程序化道路工具主要負責 spline 起始佈局，最終仍回到人工調整，並說明第一人稱尺度與 path tracing 對環境設計的影響。 ★★★★☆ substance designer sdf 小熊軟糖：用 shape splatter v2＋色彩分層假出半透明 qiyu dai 在 designer 以 sdf 建立小熊形狀、shape splatter v2 生成材料，再用 base/ao/specular 等色彩層模擬平面材質上的 jelly 半透明，示範不依賴完整幾何也能做 stylized translucent look。 ★★★★☆ blender 5.3 layered compositing 主 pr 已合併，compositor effects 進入正式整合階段 blender compositor 9/10 會議紀錄指出 layered compositing 的主要 pr 已合併並預計進 5.3，後續仍在調整 scene effect/ui，代表分層合成工作流已從研究走向可測試整合。 ★★★☆☆ blender cycles 規劃 cuda 12→13：windows arm64 與新 gpu 工具鏈進入測試 9/15 render &amp; cycles 會議提到準備切換到 cuda 13.4.x，並處理 windows arm64、intel library 與 compiler/driver 相容問題；對 render farm 與自建 blender 發行版屬於值得追蹤的工具鏈變動。 ★★★☆☆ unity 6000.6：graphicsstatecollection api 轉正並強化 shader 資產連結 unity 6000.6.0f1 將 graphicsstatecollection 從 experimental.rendering 移到正式 rendering namespace，並在 importer inspector 加入現有 shader 資產連結能力，對 shader variant / graphics state 管理更接近 production api。 ★★★☆☆" href="../2026-09-20/">
+          <strong>
+           2026-09-20
+          </strong>
+          <span>
+           歷史日報
+          </span>
+         </a>
          <a class="history-entry" data-history-categories="3d-animation 3d-production ai-generation blender-dcc emerging-case engine-art" data-history-date="2026-09-18" data-history-search="2026-09-18 歷史日報 meshy auto split api 現可直接接受已貼圖任務，但分件後仍不保留原貼圖 meshy 9/16 api 更新讓 auto split 可直接接帶貼圖的 input_task_id，不必先重生無貼圖模型；但切割會重建各部件表面，輸出仍是未貼圖、單色部件，整合流程必須把重新貼圖或材質重建列為後續步驟。 ★★★★★ unity 2026 render pipeline 策略：urp 持續擴張，hdrp 轉向穩定維護，built-in 開始退場 unity 的 2026 圖形策略明確把新功能投資集中到 urp，hdrp 以穩定、回歸與關鍵功能修正為主，built-in render pipeline 則自 unity 6.5 起進入 deprecated 階段；新專案的圖形管線選擇因此更偏向 urp。 ★★★★★ substance designer fx-map sampler：用影像取樣值直接驅動程序參數 designer 的 sampler node 可在 fx-map function 中以 float2 座標讀取輸入影像，sample gray 回傳單值、sample color 回傳 rgba；這讓影像內容能直接成為程序圖樣的密度、透明度或條件式生成控制訊號。 ★★★★☆ ue5.8 control rig × animation blueprint：把 rig 控制器帶進 gameplay 程序動畫 epic 文件說明 control rig node 可直接放進 anim graph，並傳入 pose、curve、特定 bones、controls 與 variables；常見用途是地面對齊或接觸點等 gameplay 程序修正，同時可選 global／local pose transfer 取捨一致性與效能。 ★★★★☆ sigmapbr：把 photogrammetry 掃描轉成可重新打光的 pbr 材質 cd projekt red 技術美術 piotr bieryt 公開 sigmapbr closed beta，從 photometric／photogrammetry capture 解算 diffuse albedo、roughness、specular f0 與 normal，並維持既有 production uv atlas，目標是降低掃描資產手工重建材質反應的成本。 ★★★★★ ps1 式預渲染背景回到 unity：用 blender 高模離線渲染換取遊戲端低成本 《static between stations》把環境與 cutscene 全部在 blender 預先渲染，再在 unity 播放背景影片並疊少量前景互動物件；開發者因此能使用高模掃描與 path-traced lighting，而不必把完整場景幾何與貼圖帶進 runtime。 ★★★★☆ cge sculpting tool：在 maya 內加入 gpu 多解析雕刻、sculpt layers 與 auto lod morteza ahmadi 發布 maya 專用 cge sculpting tool，主打 gpu accelerated sculpting、multi-resolution、sculpt layers、cloth／pose brushes、cut／trim、radial symmetry、auto lod／decimation 與早期 sdf voxel sculpt，鎖定不想在 maya／zbrush 間反覆切換的資產流程。 ★★★★☆ blender chain generator 1.0：253 種鏈條資產＋可編輯 curve／sag 的快速道具生成 peakdreams studio 的 chain generator v1.0.0 讓使用者以 view plane 或 surface 模式直接繪製鏈條，生成後仍可編輯 curve、offset、scale、tilt、sag 與 attachment points；輸出是真實 mesh，可再 rig／animate，而非只作 viewport 效果。 ★★★☆☆ 兩個 vfx shader 小技巧：blender 程序水面＋ue5 panning texture 的可轉移做法 技術 vfx 藝術家 jen s abbott 的 9/16 教學把兩個常用概念拆成可重現步驟：在 blender 用程序 pattern、distortion 與色彩做 stylized water，在 ue5 以 uv 位移與 panning texture 建立動態材質。 ★★★★☆ bone damped track batch 3.6：blender 批次建立骨骼 damped track 約束的輕量 rig 外掛 blender extensions 9/16 上架的 bone damped track batch 3.6 專注動畫綁定效率，可對多骨骼批次建立 damped track 類約束；它是小工具型外掛，價值在減少重複 rig 操作而非改變整套角色架構。 ★★★☆☆ edgy：用真實幾何而非 curvature mask 做可見輪廓破損，blender／c4d 共用同一核心 cornelius dämmrich 的 edgy 以 geometry-based edge damage 取代只在 shader 上做髒污假象，提供 6 種 damage modules；核心幾何演算法與 dcc api 分離，因此 cinema 4d 與 blender 前端可共用同一 compiled binary，甚至用相同 seed 驗 exact match。 ★★★★☆ 風格化希臘島場景：把 blender 與 ue5 當成同一條模組化環境製作迴圈 3d tudor 的案例從 reference、greybox、模組 kit、uv／normal 到 ue5 匯入反覆來回驗證；重點是不要等模型全部完成才進引擎，而是在 kit 還在發展時就用實際 lighting、pivot、命名與材質問題反推 blender 資產修正。 ★★★★☆ houdini 22 foundations：從 modeling、apex animation、solaris lookdev 到 karma xpu 的完整小型專案 sidefx 以 1 小時 35 分的 soccer ball 專案串起 houdini 22 modeling、材質、燈光、apex scene animate、solaris stage 與 karma xpu，重點是讓初學者看見 node-based workflow 如何跨資產、動畫與 render 形成同一條可追蹤流程。 ★★★☆☆ aaa 角色從 concept 到 in-game：以完整實時流程檢查角色製作 handoff artstation 的角色課程以 15 段未剪輯流程追蹤一個角色從草圖到 unreal engine 5 遊戲內實作，價值在把高模、低模、uv、貼圖、材質、角色整合與最後引擎呈現放在同一條可檢查鏈上，而不是只看單一 sculpt 成果。 ★★★★☆ blender geometry nodes → ue5：把散佈、道路與建築做成可重用程序美術工具 fasttrack 的程序美術課程用 blender geometry nodes 建立垃圾散佈、拖放道路與建築工具，再透過 altermesh 把參數帶進 unreal engine 5；核心不是單一場景，而是把環境規則包成可快速迭代的 artist-facing tool。 ★★★★☆" href="../2026-09-18/">
           <strong>
            2026-09-18
@@ -360,9 +368,9 @@
     </div>
    </section>
   </main>
-  <script src="../history.js?v=20260920-r1-workspace-v10-history-current-workspace">
+  <script src="../history.js?v=20260921-r1-workspace-v10-history-current-workspace">
   </script>
-  <script src="../preference.js?v=20260920-r1-workspace-v10-history-current-workspace" type="module">
+  <script src="../preference.js?v=20260921-r1-workspace-v10-history-current-workspace" type="module">
   </script>
  </body>
 </html>

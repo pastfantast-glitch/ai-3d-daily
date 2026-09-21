@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   3D 動作｜2026-09-21｜AI 3D Daily
+  </title>
+  <link href="../../styles.css?v=20260921-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../../shared-components.css?v=20260921-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../../category.css?v=20260921-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+ </head>
+ <body class="category-page" data-category="3d-animation" data-report-date="2026-09-21">
+  <nav aria-label="Production Intelligence 分類" class="global-category-nav">
+   <div class="page global-category-nav-inner">
+    <div class="archive-nav-controls">
+     <a class="archive-nav-home" href="../../">
+      ← 首頁
+     </a>
+     <div class="archive-nav-date">
+      <a aria-label="前一日日報" class="archive-nav-arrow" href="../../2026-09-20/3d-animation/">
+       ←
+      </a>
+      <span>
+       2026-09-21
+      </span>
+     </div>
+    </div>
+    <span aria-hidden="true" class="archive-nav-divider">
+    </span>
+    <a class="global-category-link" href="../#top">
+     TOP5
+    </a>
+    <a class="global-category-link" data-category="ai-generation" href="../ai-generation/">
+     AI 生成
+    </a>
+    <a class="global-category-link" data-category="3d-production" href="../3d-production/">
+     3D 製作
+    </a>
+    <a class="global-category-link is-active" data-category="3d-animation" href="../3d-animation/">
+     3D 動作
+    </a>
+    <a class="global-category-link" data-category="engine-art" href="../engine-art/">
+     遊戲引擎
+    </a>
+    <a class="global-category-link" data-category="emerging-case" href="../emerging-case/">
+     新技術 / Case
+    </a>
+    <a class="global-category-link" data-category="blender-dcc" href="../blender-dcc/">
+     Blender / DCC
+    </a>
+    <a class="global-category-link global-history-link" data-global-view="history" href="../../history/">
+     歷史日報
+    </a>
+   </div>
+  </nav>
+  <main class="page category-main">
+   <article class="category-card" data-intel-id="ragdoll-web-physics-posing" data-intel-role="card">
+    <div class="category-meta">
+     #07 · animation
+    </div>
+    <h2>
+     Ragdoll for Web：把重力、碰撞與接觸帶進瀏覽器角色 Pose，支援 Maya／Blender .rag 資料
+    </h2>
+    <p class="summary">
+     Ragdoll Dynamics 推出瀏覽器版 physics-based character posing，可在本機瀏覽器用重力、碰撞與接觸調整角色，並讀取 Maya／Blender 的 .rag 資料；後續 roadmap 包含 keyframe、recording 與 rigging。
+    </p>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">動畫</b> ★★★★☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       技術／流程變更
+      </h4>
+      <p>
+       它把角色 posing 從純 FK／IK 拉桿加入物理條件，讓腳底接觸、重心、物件互動與多角色碰撞可以先由 solver 協助，再由動畫師決定姿勢；而且可從 Maya／Blender 的 Ragdoll 設定帶入瀏覽器。
+      </p>
+      <h4>
+       Production 影響
+      </h4>
+      <p>
+       對 blocking、姿勢探索與 review，免安裝的瀏覽器環境可降低動畫師與導演分享成本；物理輔助尤其適合重量感、跌倒、坐靠與角色接觸，不必一開始就手工修所有 contact。
+      </p>
+      <h4>
+       導入測試與限制
+      </h4>
+      <p>
+       目前功能仍在擴充，應先驗證 .rag 往返、骨架比例、constraint、瀏覽器效能、輸出回 DCC 的可編輯性；物理解只適合作為起點，不能取代 pose readability 與動畫節奏判斷。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://3dnchu.com/archives/ragdoll-for-web/" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="blender53-worldspace-animation-copy" data-intel-role="card">
+    <div class="category-meta">
+     #09 · animation
+    </div>
+    <h2>
+     Blender 5.3 Animation：World-space Copy/Paste 與 Blend Copied Pose 已落地
+    </h2>
+    <p class="summary">
+     Blender Animation &amp; Rigging 模組 9/17 紀錄顯示 world-space copy/paste 的 frame range 與 Blend in Copied Pose 已落地，Spline IK 也加入 forward compatibility；Layered Actions 與 animation filter replacement 持續推進。
+    </p>
+    <figure class="case-preview" data-intel-id="blender53-worldspace-animation-copy" data-intel-role="visual" data-visual-id="blender53-worldspace-animation-copy">
+     <a href="https://devtalk.blender.org/t/2026-09-17-animation-rigging-module-meeting/45817" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-21/blender53-worldspace-animation-copy.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">動畫</b> ★★★★☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       技術／流程變更
+      </h4>
+      <p>
+       World-space pose／animation copy 能跨控制器局部空間差異保留角色在世界中的運動意圖，這次還補到 frame range 與 blend copied pose，對 mirror 以外的 pose transfer 與 motion editing 更實用。
+      </p>
+      <h4>
+       Production 影響
+      </h4>
+      <p>
+       動畫師在修 root motion、跨 rig pose reuse、接觸姿勢與片段拼接時，可以少做手動補償；若 Layered Actions 後續穩定，Blender 的非破壞動畫編輯會更接近大型 production 所需。
+      </p>
+      <h4>
+       導入測試與限制
+      </h4>
+      <p>
+       這些變更仍在 5.3 開發線，需用自家控制 rig 測試 parent space、constraint、root motion、NLA／Layered Actions 與 undo；正式 beta 前不宜直接鎖定工作室版本。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://devtalk.blender.org/t/2026-09-17-animation-rigging-module-meeting/45817" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="blender-studio-cloudrig-rigging-guide" data-intel-role="card">
+    <div class="category-meta">
+     #17 · rigging
+    </div>
+    <h2>
+     Blender Studio Rigging Guide：CloudRig＋手工 Weight／Corrective Shape Key 的 production 分工
+    </h2>
+    <p class="summary">
+     Blender Studio 的 rigging guide 說明以 CloudRig 產生控制 rig，再由 rigging artist 處理 weight paint、corrective shape keys 與角色特化控制；正式 production retopo 與 previs 自動拓樸也採不同嚴謹度。
+    </p>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">綁定</b> ★★★★☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       技術／流程變更
+      </h4>
+      <p>
+       Blender Studio 並未把 auto rig 當成完整答案，而是讓 CloudRig 負責可標準化的控制結構，再由人工處理 skin weighting、corrective shape key 與角色需求；previs 與 final asset 也使用不同 mesh 品質門檻。
+      </p>
+      <h4>
+       Production 影響
+      </h4>
+      <p>
+       這種分工很適合遊戲角色 pipeline：自動化處理可重複骨架／控制器，變形品質則留給 rigging artist；把 rig 規格與 retopo 交付層級分開，也能讓 early animation 更早開始。
+      </p>
+      <h4>
+       導入測試與限制
+      </h4>
+      <p>
+       導入時要用不同體型角色驗證 CloudRig template、export skeleton、twist、corrective shape、遊戲引擎 retarget 與 animator 操作；Studio 的電影流程不能原封不動等同於 Unity／Unreal runtime rig。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://studio.blender.org/tools/artist-guide/asset-creation/rigging" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <nav aria-label="相鄰分類" class="category-bottom-nav">
+    <a href="../3d-production/">
+     ← 3D 製作
+    </a>
+    <a href="../#top">
+     TOP5
+    </a>
+    <a href="../engine-art/">
+     遊戲引擎 →
+    </a>
+   </nav>
+  </main>
+  <script defer="" src="../../archive-nav-state.js?v=20260921-r1-workspace-v10-history-current-workspace">
+  </script>
+ </body>
+</html>

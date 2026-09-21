@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   新技術 / Case｜2026-09-21｜AI 3D Daily
+  </title>
+  <link href="../../styles.css?v=20260921-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../../shared-components.css?v=20260921-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../../category.css?v=20260921-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+ </head>
+ <body class="category-page" data-category="emerging-case" data-report-date="2026-09-21">
+  <nav aria-label="Production Intelligence 分類" class="global-category-nav">
+   <div class="page global-category-nav-inner">
+    <div class="archive-nav-controls">
+     <a class="archive-nav-home" href="../../">
+      ← 首頁
+     </a>
+     <div class="archive-nav-date">
+      <a aria-label="前一日日報" class="archive-nav-arrow" href="../../2026-09-20/emerging-case/">
+       ←
+      </a>
+      <span>
+       2026-09-21
+      </span>
+     </div>
+    </div>
+    <span aria-hidden="true" class="archive-nav-divider">
+    </span>
+    <a class="global-category-link" href="../#top">
+     TOP5
+    </a>
+    <a class="global-category-link" data-category="ai-generation" href="../ai-generation/">
+     AI 生成
+    </a>
+    <a class="global-category-link" data-category="3d-production" href="../3d-production/">
+     3D 製作
+    </a>
+    <a class="global-category-link" data-category="3d-animation" href="../3d-animation/">
+     3D 動作
+    </a>
+    <a class="global-category-link" data-category="engine-art" href="../engine-art/">
+     遊戲引擎
+    </a>
+    <a class="global-category-link is-active" data-category="emerging-case" href="../emerging-case/">
+     新技術 / Case
+    </a>
+    <a class="global-category-link" data-category="blender-dcc" href="../blender-dcc/">
+     Blender / DCC
+    </a>
+    <a class="global-category-link global-history-link" data-global-view="history" href="../../history/">
+     歷史日報
+    </a>
+   </div>
+  </nav>
+  <main class="page category-main">
+   <article class="category-card" data-intel-id="hktex-uv-free-surface-textures" data-intel-role="card">
+    <div class="category-meta">
+     #04 · research
+    </div>
+    <h2>
+     HKTex：用 Heat Kernel 做 UV-free Surface Texture，直接處理曲面紋理連續性
+    </h2>
+    <p class="summary">
+     HKTex 以 heat kernel 在曲面上建立紋理座標關係，目標是在不建立傳統 UV atlas 的情況下減少 seam、拉伸與 atlas 空間浪費，並支援多視角影像對表面紋理的最佳化；研究已公開程式碼。
+    </p>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">研究</b> ★★★★★</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       技術／流程變更
+      </h4>
+      <p>
+       傳統 UV 將曲面切成多個 2D island 後再貼圖，天然會有 seam 與 distortion；HKTex 改以 heat kernel 描述曲面上的局部關係，讓 texture parameterization 不必先建立固定 UV atlas，研究也示範多視角 fitting。
+      </p>
+      <h4>
+       Production 影響
+      </h4>
+      <p>
+       如果這類方法能進入 DCC／engine tooling，掃描、生成式 3D 與複雜有機資產可能少一道昂貴的 UV 整理流程；對 AI 3D 來說尤其重要，因為生成 mesh 的拓樸與 UV 往往同時不穩定。
+      </p>
+      <h4>
+       導入測試與限制
+      </h4>
+      <p>
+       目前仍屬研究方法，需自行驗證 runtime sampling 成本、mipmap／anisotropic filtering、bake/export、引擎材質相容與 artist paint workflow；研究結果不能直接等同於可替代 production UV。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://3dnchu.com/archives/heat-kernel-textures/" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="nexus-mpm-blender-c4d-preview" data-intel-role="card">
+    <div class="category-meta">
+     #08 · research
+    </div>
+    <h2>
+     NeXus MPM Tech Preview：INSYDIUM 把 GPU Material Point Method 帶進 Blender／Cinema 4D
+    </h2>
+    <p class="summary">
+     INSYDIUM 公開 NeXus MPM 技術預覽，展示以 GPU 執行 Material Point Method，讓不同材料在同一 solver 中互動，並規劃進入 Blender／Cinema 4D 的後續 beta。
+    </p>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">研究</b> ★★★★☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       技術／流程變更
+      </h4>
+      <p>
+       MPM 將物質以粒子攜帶狀態、透過背景 grid 解算，適合雪、泥、沙、軟體等會大變形且彼此交互的材料；NeXus 的技術方向是用 GPU 把這套 solver 放進一般 DCC。
+      </p>
+      <h4>
+       Production 影響
+      </h4>
+      <p>
+       如果互動材料能在同一求解器內穩定運作，特效與場景團隊可以少做多個 solver 互相轉換，對破壞、地面變形與混合材質的 previs／shot iteration 都有吸引力。
+      </p>
+      <h4>
+       導入測試與限制
+      </h4>
+      <p>
+       目前僅為 tech preview，正式 Blender／C4D 支援版本、快取格式、記憶體、穩定性與大尺度 shot 效能仍未知；應等 beta 後用代表性雪／泥／剛體互動案例量測。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://3dnchu.com/archives/nexus-mpm-tech-preview/" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <nav aria-label="相鄰分類" class="category-bottom-nav">
+    <a href="../engine-art/">
+     ← 遊戲引擎
+    </a>
+    <a href="../#top">
+     TOP5
+    </a>
+    <a href="../blender-dcc/">
+     Blender / DCC →
+    </a>
+   </nav>
+  </main>
+  <script defer="" src="../../archive-nav-state.js?v=20260921-r1-workspace-v10-history-current-workspace">
+  </script>
+ </body>
+</html>

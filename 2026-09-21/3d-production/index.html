@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   3D 製作｜2026-09-21｜AI 3D Daily
+  </title>
+  <link href="../../styles.css?v=20260921-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../../shared-components.css?v=20260921-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../../category.css?v=20260921-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+ </head>
+ <body class="category-page" data-category="3d-production" data-report-date="2026-09-21">
+  <nav aria-label="Production Intelligence 分類" class="global-category-nav">
+   <div class="page global-category-nav-inner">
+    <div class="archive-nav-controls">
+     <a class="archive-nav-home" href="../../">
+      ← 首頁
+     </a>
+     <div class="archive-nav-date">
+      <a aria-label="前一日日報" class="archive-nav-arrow" href="../../2026-09-20/3d-production/">
+       ←
+      </a>
+      <span>
+       2026-09-21
+      </span>
+     </div>
+    </div>
+    <span aria-hidden="true" class="archive-nav-divider">
+    </span>
+    <a class="global-category-link" href="../#top">
+     TOP5
+    </a>
+    <a class="global-category-link" data-category="ai-generation" href="../ai-generation/">
+     AI 生成
+    </a>
+    <a class="global-category-link is-active" data-category="3d-production" href="../3d-production/">
+     3D 製作
+    </a>
+    <a class="global-category-link" data-category="3d-animation" href="../3d-animation/">
+     3D 動作
+    </a>
+    <a class="global-category-link" data-category="engine-art" href="../engine-art/">
+     遊戲引擎
+    </a>
+    <a class="global-category-link" data-category="emerging-case" href="../emerging-case/">
+     新技術 / Case
+    </a>
+    <a class="global-category-link" data-category="blender-dcc" href="../blender-dcc/">
+     Blender / DCC
+    </a>
+    <a class="global-category-link global-history-link" data-global-view="history" href="../../history/">
+     歷史日報
+    </a>
+   </div>
+  </nav>
+  <main class="page category-main">
+   <article class="category-card" data-intel-id="ac9-cloth-retopo-v11" data-intel-role="card">
+    <div class="category-meta">
+     #05 · character-production
+    </div>
+    <h2>
+     AC9 Cloth Retopo 1.1：用 Marvelous／CLO 2D Pattern 反投影，重建服裝乾淨拓樸
+    </h2>
+    <p class="summary">
+     免費 Blender add-on AC9 Cloth Retopo 以 CLO／Marvelous Designer 的 2D pattern 為基礎建立低模，再投影回高密度 3D 服裝；1.1 版改善 inset 等操作，適合把模擬布料轉成可烘焙、可綁定的遊戲網格。
+    </p>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">角色製作</b> ★★★★★</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       技術／流程變更
+      </h4>
+      <p>
+       工具利用服裝原本的 2D pattern 作為規則拓樸來源，再把結果映射回 3D 形狀，避開直接在褶皺高模表面手工描線；這個思路特別適合 Marvelous／CLO 已有乾淨 panel 結構的衣服。
+      </p>
+      <h4>
+       Production 影響
+      </h4>
+      <p>
+       角色服裝常同時要求 seam 對齊、UV 可控與變形區 edge flow，若 2D pattern 能直接成為 retopo 起點，就能降低外包與角色團隊大量重複工作，並讓不同服裝保持一致密度。
+      </p>
+      <h4>
+       導入測試與限制
+      </h4>
+      <p>
+       測試時要挑緊身、厚外套與多層裙裝三種案例，檢查 panel seam、腋下／肩／膝變形、厚度、重疊層與 bake；自動投影不代表關節區 edge flow 一定符合 rigging 需求。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://3dnchu.com/archives/ac9-cloth-retopo-v1-1/" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="princess-lost-planet-character" data-intel-role="card">
+    <div class="category-meta">
+     #18 · character-production
+    </div>
+    <h2>
+     《Princess of the Lost Planet》角色拆解：AI 只做 Reference 探索，正式資產回到 ZBrush／Marvelous／TopoGun／RizomUV
+    </h2>
+    <p class="summary">
+     Seori Nam 分享中世紀＋末日元素角色製作，AI 圖只用於早期 reference 探索；正式流程包含 ZBrush 頭身、Marvelous 服裝、TopoGun retopo、RizomUV 分組，以及 Substance／Marmoset 貼圖與展示。
+    </p>
+    <figure class="case-preview" data-intel-id="princess-lost-planet-character" data-intel-role="visual" data-visual-id="princess-lost-planet-character">
+     <a href="https://80.lv/articles/modeling-3d-character-with-medieval-fantasy-post-apocalyptic-elements" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-21/princess-lost-planet-character.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">角色製作</b> ★★★★☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       技術／流程變更
+      </h4>
+      <p>
+       案例把概念探索和可交付資產明確切開：AI reference 用來找方向，角色本體仍以 base mesh／ZBrush、Marvelous、TopoGun 與 RizomUV 建立，髮型則用 3ds Max hair cards，貼圖依畫面重要度分配多組 texture set。
+      </p>
+      <h4>
+       Production 影響
+      </h4>
+      <p>
+       這個流程對目前 AI 輔助角色製作很實用，因為它示範生成內容可以加速 visual search，但 topology、UV、材質與 hair card 仍由可控工具完成；也能避免把不可追溯的 AI mesh 直接塞進正式 pipeline。
+      </p>
+      <h4>
+       導入測試與限制
+      </h4>
+      <p>
+       案例是單一作者 production breakdown，效率與品質不能直接推廣到所有角色；導入時可比較純 reference 與 AI-assisted reference 在概念時間、重做率、UV／texture budget 與最終辨識度上的實際差異。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://80.lv/articles/modeling-3d-character-with-medieval-fantasy-post-apocalyptic-elements" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="blender-catpin-print-splitting" data-intel-role="card">
+    <div class="category-meta">
+     #20 · prop-production
+    </div>
+    <h2>
+     CatPin：Blender 非破壞切件＋Pin/Socket，讓複雜道具分件與組裝間隙可重複調整
+    </h2>
+    <p class="summary">
+     CatPin 是 Blender 的模型切分與 pin/socket 工具，可用多種 cut mode 建立連接件、設定 clearance，並以 draft 方式保留可修改性後再輸出 STL；對大型公仔／道具的分件規劃具有可轉移價值。
+    </p>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">物件製作</b> ★★★☆☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       技術／流程變更
+      </h4>
+      <p>
+       CatPin 將 cut、pin、socket 與間隙參數化，重點是先以 draft 保持非破壞狀態，再決定最終切件；這比直接 destructive boolean 更容易在設計改動後重算接合位置。
+      </p>
+      <h4>
+       Production 影響
+      </h4>
+      <p>
+       對大型道具、機台外殼或需要拆件輸出的模型，參數化連接與 clearance 能減少手工對位；即使不做列印，『可重建的分件規則』也可作為高低模、展示模型或外包交付的輔助流程。
+      </p>
+      <h4>
+       導入測試與限制
+      </h4>
+      <p>
+       工具主要面向 3D print，遊戲資產仍需另外清 topology／UV／normal；導入時要測薄壁、曲面、非流形模型與大量 pin 的 boolean 穩定性，並確認 draft 到 final 不會產生破面。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://3dnchu.com/archives/catpin/" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <nav aria-label="相鄰分類" class="category-bottom-nav">
+    <a href="../ai-generation/">
+     ← AI 生成
+    </a>
+    <a href="../#top">
+     TOP5
+    </a>
+    <a href="../3d-animation/">
+     3D 動作 →
+    </a>
+   </nav>
+  </main>
+  <script defer="" src="../../archive-nav-state.js?v=20260921-r1-workspace-v10-history-current-workspace">
+  </script>
+ </body>
+</html>
