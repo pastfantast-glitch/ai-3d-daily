@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 from pathlib import Path
+import datetime as dt
 import json
 import re
 
@@ -123,10 +124,27 @@ def load_hybrid_config():
             raise ValueError('hybrid registered_source_coverage_probe.effective_date must be YYYY-MM-DD')
         if probe.get('enabled') is not True:
             raise ValueError('hybrid registered_source_coverage_probe.enabled must be true')
-        if str(probe.get('scope', '')).strip() != 'all-enabled-discovery-source-pool':
-            raise ValueError('hybrid registered source probe scope must be all-enabled-discovery-source-pool')
-        if probe.get('require_attempt_record_for_every_enabled_source') is not True:
-            raise ValueError('hybrid registered source probe must require an attempt record for every enabled source')
+        if str(probe.get('scope', '')).strip() != 'rotating-enabled-discovery-source-pool':
+            raise ValueError('hybrid registered source probe scope must be rotating-enabled-discovery-source-pool')
+        if probe.get('require_attempt_record_for_every_enabled_source') is not False:
+            raise ValueError('hybrid rotating source probe must not require every source to be attempted daily')
+        if probe.get('require_audit_record_for_every_enabled_source') is not True:
+            raise ValueError('hybrid rotating source probe must keep an audit record for every enabled source')
+        if probe.get('require_attempt_record_for_selected_sources') is not True:
+            raise ValueError('hybrid rotating source probe must require attempts for the selected daily subset')
+        core = [str(x).strip() for x in (probe.get('core_source_ids') or []) if str(x).strip()]
+        source_ids = [str(x.get('id')).strip() for x in source_items]
+        if not core or len(core) != len(set(core)) or not set(core) <= set(source_ids):
+            raise ValueError('hybrid rotating source probe core_source_ids must be unique registered source ids')
+        rotating = int(probe.get('rotating_sources_per_day', 0) or 0)
+        window = int(probe.get('rolling_window_days', 0) or 0)
+        noncore = max(0, len(source_ids) - len(core))
+        if rotating <= 0 or window <= 0 or rotating * window < noncore:
+            raise ValueError('hybrid rotating source probe budget cannot cover all non-core sources inside rolling_window_days')
+        if str(probe.get('selection_policy', '')).strip() != 'deterministic-date-rotation':
+            raise ValueError('hybrid rotating source probe must use deterministic-date-rotation')
+        if 'not-scheduled' not in set(probe.get('allowed_statuses') or []) or 'rolling-window' not in set(probe.get('allowed_methods') or []):
+            raise ValueError('hybrid rotating source probe must declare truthful not-scheduled/rolling-window audit values')
         if probe.get('require_candidate_ids_when_found') is not True:
             raise ValueError('hybrid registered source probe must require candidate ids when candidates are found')
         if probe.get('candidate_only') is not True:
@@ -235,6 +253,35 @@ def priority_sources(cfg=None):
     return []
 
 
+def registered_source_probe_plan(data_or_date, cfg=None):
+    """Return the deterministic daily probe set without creating source preference.
+
+    Core sources are checked every day. Non-core registered sources rotate by date
+    in fixed-size groups. This bounds Collector work while ensuring the configured
+    rolling window covers every enabled source. Selection affects recall work only;
+    it contributes no ranking/admission weight.
+    """
+    cfg = cfg or load_hybrid_config()
+    value = _date_value(data_or_date)
+    if not _valid_date(value):
+        raise ValueError('registered source probe plan requires YYYY-MM-DD')
+    probe = cfg.get('registered_source_coverage_probe') or {}
+    sources = [str(x.get('id')).strip() for x in discovery_sources(cfg)]
+    core = [str(x).strip() for x in (probe.get('core_source_ids') or []) if str(x).strip()]
+    noncore = [sid for sid in sources if sid not in set(core)]
+    per_day = int(probe.get('rotating_sources_per_day', 0) or 0)
+    groups = max(1, (len(noncore) + per_day - 1) // per_day) if per_day else 1
+    group = dt.date.fromisoformat(value).toordinal() % groups
+    start = group * per_day
+    selected = set(core + noncore[start:start + per_day])
+    return {
+        'selected': [sid for sid in sources if sid in selected],
+        'not_scheduled': [sid for sid in sources if sid not in selected],
+        'group': group,
+        'groups': groups,
+    }
+
+
 def candidate_decision_ledger_path(date, cfg=None):
     cfg = cfg or load_hybrid_config()
     template = str((cfg.get('candidate_decision_ledger') or {}).get('path_template', '')).strip()
@@ -268,13 +315,16 @@ def registered_source_probe_errors(data, cfg=None):
     if not isinstance(records, dict):
         return errors + ['discovery coverage: registered_source_probe.sources must be an object']
 
-    expected = {str(x.get('id')) for x in discovery_sources(cfg)}
+    ordered = [str(x.get('id')) for x in discovery_sources(cfg)]
+    expected = set(ordered)
+    plan = registered_source_probe_plan(data, cfg)
+    selected = set(plan['selected'])
     unknown = set(records) - expected
     if unknown:
         errors.append(f'discovery coverage: registered_source_probe has unknown sources {sorted(unknown)}')
     allowed_statuses = set(probe_cfg.get('allowed_statuses') or [])
     allowed_methods = set(probe_cfg.get('allowed_methods') or [])
-    for sid in sorted(expected):
+    for sid in ordered:
         rec = records.get(sid)
         if not isinstance(rec, dict):
             errors.append(f'discovery coverage: registered source {sid} requires a probe attempt record')
@@ -285,6 +335,10 @@ def registered_source_probe_errors(data, cfg=None):
             errors.append(f'discovery coverage: registered source {sid} has invalid status={status!r}')
         if method not in allowed_methods:
             errors.append(f'discovery coverage: registered source {sid} has invalid method={method!r}')
+        if sid in selected and status == 'not-scheduled':
+            errors.append(f'discovery coverage: registered source {sid} is selected today and must be attempted')
+        if status == 'not-scheduled' and method != 'rolling-window':
+            errors.append(f'discovery coverage: registered source {sid} not-scheduled must use method=rolling-window')
         found = rec.get('candidates_found')
         if isinstance(found, bool) or not isinstance(found, int) or found < 0:
             errors.append(f'discovery coverage: registered source {sid} candidates_found must be integer >=0')
@@ -299,7 +353,9 @@ def registered_source_probe_errors(data, cfg=None):
             errors.append(f'discovery coverage: registered source {sid} candidates_found must equal candidate_ids count')
         if status != 'checked' and candidate_ids:
             errors.append(f'discovery coverage: registered source {sid} non-checked status cannot report candidates')
-        if status in {'unavailable', 'blocked', 'unsupported'} and not str(rec.get('reason', '')).strip():
+        if status == 'not-scheduled' and (found != 0 or candidate_ids):
+            errors.append(f'discovery coverage: registered source {sid} not-scheduled cannot report discovered candidates')
+        if status in {'unavailable', 'blocked', 'unsupported', 'not-scheduled'} and not str(rec.get('reason', '')).strip():
             errors.append(f'discovery coverage: registered source {sid} status={status} requires reason')
     return errors
 
