@@ -1,1 +1,566 @@
-{"date":"2026-09-22","schema_version":3,"metadata":{"total_items":20,"collection_mode":"production-intelligence-preference-v1-hybrid","collection_contract_effective_date":"2026-09-04","preference_contract_effective_date":"2026-09-06","admission_policy_effective_date":"2026-09-15","discovery_windows":["24h","7d","30d","6m","evergreen"],"analysis_level_counts":{"FULL":0,"BRIEF":20,"REJECT":0},"analysis_level_policy":"evidence-depth-tiered; FULL=3-5 source-supported blocks; BRIEF=3 readable source-grounded angles with explicit limits; REJECT=not-publishable","full_analysis_heading_language":"zh-Hant","discovery_coverage":{"fill_ladder_exhausted":true,"backlog_checked":true,"backlog_remaining_eligible":0,"targeted_refill_performed":true,"quality_first_confirmed":true,"windows":{"24h":{"status":"exhausted","candidates_found":6},"7d":{"status":"exhausted","candidates_found":24},"30d":{"status":"exhausted","candidates_found":14},"6m":{"status":"exhausted","candidates_found":8},"evergreen":{"status":"exhausted","candidates_found":5}},"category_candidates":{"ai-generation":{"candidates_considered":5},"3d-production":{"candidates_considered":10},"3d-animation":{"candidates_considered":9},"engine-art":{"candidates_considered":5},"emerging-case":{"candidates_considered":6},"blender-dcc":{"candidates_considered":12}},"registered_source_probe":{"performed":true,"sources":{"80-level":{"status":"checked","method":"web-site-query","candidates_found":5,"candidate_ids":["water-woman-stylized-character","glitter-tights-blender-shader","anime-clouds-geometry-shader","painterly-kuwahara-nodegroup","animo-sliders-blender"]},"3dnchu":{"status":"checked","method":"web-site-query","candidates_found":1,"candidate_ids":["ac9-cloth-retopo-v11"]},"cgworld-jp":{"status":"checked","method":"latest-index","candidates_found":8,"candidate_ids":["maya-constraint-batch-tool","animo-v10-maya","ue5-agora-realtime-animation","zbrush-stylized-print-workflow","meshy7-c4d-cinematic","starwars-gsplat-crowd-vfx","maya-blender-bindprematrix","mocopi-3dsmax-biped"]},"bilibili-mobile":{"status":"checked","method":"web-site-query","candidates_found":0,"candidate_ids":[]},"artstation":{"status":"not-scheduled","method":"rolling-window","candidates_found":0,"candidate_ids":[],"reason":"deterministic-rolling-probe-not-selected"},"gumroad-discover":{"status":"not-scheduled","method":"rolling-window","candidates_found":0,"candidate_ids":[],"reason":"deterministic-rolling-probe-not-selected"},"xiaohongshu":{"status":"not-scheduled","method":"rolling-window","candidates_found":0,"candidate_ids":[],"reason":"deterministic-rolling-probe-not-selected"},"cg-channel":{"status":"checked","method":"latest-index","candidates_found":2,"candidate_ids":["keyflow-maya-review","fusion-studio-211-deep"]},"blender-official":{"status":"checked","method":"latest-index","candidates_found":1,"candidate_ids":["blender-522-lts-maintenance"]},"epic-developer-community":{"status":"checked","method":"web-site-query","candidates_found":0,"candidate_ids":[]},"unity-official":{"status":"checked","method":"web-site-query","candidates_found":0,"candidate_ids":[]},"sidefx-official":{"status":"checked","method":"latest-index","candidates_found":1,"candidate_ids":["sidefx-equinox-2026"]},"autodesk-area":{"status":"not-scheduled","method":"rolling-window","candidates_found":0,"candidate_ids":[],"reason":"deterministic-rolling-probe-not-selected"},"adobe-substance-3d":{"status":"not-scheduled","method":"rolling-window","candidates_found":0,"candidate_ids":[],"reason":"deterministic-rolling-probe-not-selected"},"game-developer":{"status":"not-scheduled","method":"rolling-window","candidates_found":0,"candidate_ids":[],"reason":"deterministic-rolling-probe-not-selected"}}},"notes":"2026-09-22 current-main v11；snapshot through 2026-09-21，early exact identity dedupe 後完成 fill ladder 與 targeted refill。Probe plan group 0：core + 3dnchu/cgworld-jp/bilibili-mobile；其他來源 not-scheduled。"},"personalization":{"contract":"supabase-semantic-feedback-v1","status":"unavailable","vote_count":0,"reason":"Supabase reachable, but active app owner account cannot be authoritatively resolved by the automation connector; neutral fallback applied.","max_rank_multiplier":0.2,"max_query_expansion_fraction":0.2,"raw_profile_committed":false,"bookmarks_used":false,"domain_weights_used":false,"admission_bypass":false,"quality_gate_bypass":false,"source_quota":false},"homepage_tier_normalization":{"selection_mode":"full-first-brief-fallback","requested_top5":5,"actual_top5":5,"top5_full_count":0,"top5_brief_fallback_count":5,"top5_full_only":false,"brief_fallback_allowed":true,"next10":10},"full_analysis_depth_contract":"v6-tiered-evidence-three-angle-reading","full_analysis_style_reference":"2026-09-12","registry_identity_normalization":{"dropped_count":0,"rewritten_count":0,"policy":"verified-DONE-published-canonical-source-without-substantive-delta-skip","source_identity_precedence":"published-daily-html-card-then-canonical-json","url_identity":"scripts/url_identity.py","stage":"collector-early-snapshot-dedupe; prepare-authoritative","refill_required":false,"category_deficits":{},"daily_release_gate":{"have":20,"min":20,"target":30,"max":30,"missing_to_min":0,"missing_to_target":10,"release_ready":true,"category_counts":{"ai-generation":2,"3d-production":4,"3d-animation":6,"engine-art":1,"emerging-case":2,"blender-dcc":5},"release_mode":"NORMAL","low_volume_authorized":false}}},"items":[{"id":"hi3d-agent-v30","title":"Hi3D Agent：把 V3.0 AI 3D、貼圖、分件與列印串成對話式 Agent","summary":"Hi3D 將 V3.0 與 image-to-3D、AI Texturing、分件和輸出工具整合成 Agent 工作流。","quick_impact":"★★★★★","source_url":"https://finance.yahoo.com/technology/ai/articles/hi3d-launches-worlds-first-one-160300340.html","category":"ai-generation","subcategory":"ai-3d","ranking_score":95,"analysis_level":"BRIEF","brief_reason":"early-release-limited-evidence","full_analysis":[{"label":"技術／流程變更","text":"Agent 讓 LLM 規劃工具調用，再串接生成、貼圖、模型分件與多格式輸出；官方把 V3.0 描述為 2048³ voxel 級生成核心。"},{"label":"Production 影響","text":"價值不在聊天本身，而是能否把生成、修正、拆件、貼圖與輸出連成可重複流程，這比單次 prompt 更接近資產製作助理。"},{"label":"導入測試與限制","text":"目前證據以廠商發布為主，2048³、結構一致性與 production-ready texture 都需用角色、硬表面與多視圖題目獨立驗證。"}],"rank_global":1,"homepage_tier":"top5"},{"id":"water-woman-stylized-character","title":"Water Woman：Maya／Blender 造型＋黑白貼圖後再統一換色","summary":"角色案例先以黑白關係建立材質層次，再調整整體色盤，適合作為 stylized lookdev 參考。","quick_impact":"★★★★☆","source_url":"https://80.lv/articles/creating-a-stylized-3d-character-of-a-water-woman-with-blender-maya","category":"3d-production","subcategory":"character-production","ranking_score":93.8,"analysis_level":"BRIEF","brief_reason":"production-reference-limited-depth","full_analysis":[{"label":"技術／流程變更","text":"流程先建立角色形體，再以黑白貼圖鎖定材質明度與層次，最後才把 palette 推到目標色彩，減少早期被顏色干擾。"},{"label":"Production 影響","text":"對 stylized／NPR 角色，先鎖 value 再換色有利於多材質快速迭代，也能讓不同光線下的視覺階層更清楚。"},{"label":"導入測試與限制","text":"單一藝術家案例不代表免 retopo 適合所有遊戲資產；仍要檢查 deformation、UV、LOD 與引擎效能。"}],"rank_global":2,"homepage_tier":"top5"},{"id":"maya-constraint-batch-tool","title":"Create_Constraint_Tool：Maya 多物件 Constraint 改成批次管理","summary":"免費 Maya Python 工具集中管理 Point／Orient／Scale／Parent Constraint、軸向與 Maintain Offset。","quick_impact":"★★★★☆","source_url":"https://cgworld.jp/flashnews/01-202609-Maya-ConstraintTool.html","category":"3d-animation","subcategory":"rigging","ranking_score":92.9,"analysis_level":"BRIEF","brief_reason":"useful-tool-or-addon-limited-depth","full_analysis":[{"label":"技術／流程變更","text":"工具先整理多組父子物件，再統一套用四類 Constraint，並可逐軸控制與保存清單，避免逐物件重複設定。"},{"label":"Production 影響","text":"對角色綁定、道具跟隨與動畫 setup，可直接降低操作次數與漏設軸向風險，也有利於固定 rigging SOP。"},{"label":"導入測試與限制","text":"正式導入前應以 Maya 2023+ 測 namespace、reference rig、既有 constraint 與 undo 行為，再決定是否放進工具架。"}],"rank_global":3,"homepage_tier":"top5"},{"id":"snapsplit-016-print-joints","title":"SnapSplit 0.1.6：Blender 切件加入燕尾／卡扣、自訂接頭與 Live Preview","summary":"更新強化 3D 列印切件與組裝，適合大型角色、公仔或場景件的拆分。","quick_impact":"★★★★☆","source_url":"https://3druck.com/en/programs/snapsplit-0-1-6-blender-add-on-erhaelt-schwalbenschwanz-verbinder-eigene-verbindungsformen-und-live-vorschau-10163158/","category":"blender-dcc","subcategory":"addon","ranking_score":92.1,"analysis_level":"BRIEF","brief_reason":"useful-tool-or-addon-limited-depth","full_analysis":[{"label":"技術／流程變更","text":"0.1.6 從單純切件推進到可裝配：新增燕尾與卡扣 connector、自訂接頭幾何與位置，Live Preview 可即時看尺寸結果。"},{"label":"Production 影響","text":"對角色列印可減少切件後另建榫頭的手工時間，也較容易依列印方向、受力與可見面調整 connector。"},{"label":"導入測試與限制","text":"需實測壁厚、樹脂／FDM 公差、接頭方向與高曲率表面；自動切件成功不等於實體裝配可靠。"}],"rank_global":4,"homepage_tier":"top5"},{"id":"glitter-tights-blender-shader","title":"Blender Glitter Tights：用視角變化驅動布料閃點","summary":"亮片高光會隨鏡頭角度改變，適合作為角色服裝與 NPR 高光設計參考。","quick_impact":"★★★☆☆","source_url":"https://80.lv/articles/see-these-glitter-tights-sparkle-from-every-angle","category":"blender-dcc","subcategory":"blender","ranking_score":90.8,"analysis_level":"BRIEF","brief_reason":"technical-demo-limited-depth","full_analysis":[{"label":"技術／流程變更","text":"核心是把亮片視為 view-dependent response，而不是固定貼圖亮點；鏡頭移動時高亮位置改變才形成細碎閃爍。"},{"label":"Production 影響","text":"可轉譯到 Unreal／Unity 的 View Vector、Normal／Half Vector 與 noise mask，建立比 emissive 貼圖更有立體感的 sparkle。"},{"label":"導入測試與限制","text":"沒有跨引擎成本數據；導入時要測 aliasing、TAA／TSR 穩定性、遠距離閃爍與行動裝置 shader cost。"}],"rank_global":5,"homepage_tier":"top5"},{"id":"anime-clouds-geometry-shader","title":"Anime Clouds：Blender 用幾何＋Shader＋Kuwahara 做卡通雲","summary":"教學把 stylized cloud 拆成 silhouette、受光與濾鏡三層，而不是只靠材質。","quick_impact":"★★★★☆","source_url":"https://80.lv/articles/anime-style-clouds-in-blender-step-by-step-tutorial","category":"blender-dcc","subcategory":"blender","ranking_score":90.2,"analysis_level":"BRIEF","brief_reason":"practical-tutorial-limited-depth","full_analysis":[{"label":"技術／流程變更","text":"先用幾何決定雲塊大形，再用 shader 控制明暗色階，最後以 Kuwahara 整理細碎變化，因此不是單一材質節點完成。"},{"label":"Production 影響","text":"對 NPR 天空，把 silhouette、受光與後處理分層比全部塞進雲材質更容易 art direct，也更方便做 LOD。"},{"label":"導入測試與限制","text":"移植 Unity／UE 時應分別測 mesh complexity、透明排序、陰影與後處理，並確認移動時不產生 temporal shimmer。"}],"rank_global":6,"homepage_tier":"next10"},{"id":"painterly-kuwahara-nodegroup","title":"Painterly Texture：Blender Shader Editor 直接做 Kuwahara Node Group","summary":"教學在材質階段做鄰域取樣，把任意貼圖轉成較大片的筆觸色塊。","quick_impact":"★★★★☆","source_url":"https://80.lv/articles/tutorial-how-to-make-any-texture-look-painterly-in-blender","category":"blender-dcc","subcategory":"blender","ranking_score":89.7,"analysis_level":"BRIEF","brief_reason":"practical-tutorial-limited-depth","full_analysis":[{"label":"技術／流程變更","text":"材質會取樣周圍像素、尋找較平滑區域並重組顏色，再封裝成可調 intensity 的 node group，讓 painterly 處理跟材質一起調整。"},{"label":"Production 影響","text":"對 NPR 角色與場景，可先風格化貼圖再進光照，減少照片紋理過細造成的寫實感，並讓多材質共享筆觸規則。"},{"label":"導入測試與限制","text":"鄰域取樣通常較昂貴；移植即時引擎前要測 sample count、mipmap、UV seam 與鏡頭移動穩定性。"}],"rank_global":7,"homepage_tier":"next10"},{"id":"animo-sliders-blender","title":"Animo Sliders for Blender：移植 16 個動畫曲線／時間滑桿","summary":"Blender 4.0–5.2 可用 Tween、Ease、Push/Pull、Time Offset、Simplify/Bake 等常用 slider。","quick_impact":"★★★★☆","source_url":"https://80.lv/articles/speed-up-blender-animation-with-this-free-tool","category":"3d-animation","subcategory":"animation","ranking_score":89.2,"analysis_level":"BRIEF","brief_reason":"useful-tool-or-addon-limited-depth","full_analysis":[{"label":"技術／流程變更","text":"Blender 版抽出 16 個高頻操作，用 slider 直接做 tween、ease、push/pull、time offset、noise 與 simplify／bake。"},{"label":"Production 影響","text":"可減少 Graph Editor 重複點選，尤其 blocking 到 spline、節奏錯開與曲線簡化等常見工作，更容易形成一致操作方式。"},{"label":"導入測試與限制","text":"正式導入要測自訂 rig、NLA、constraint、Euler／Quaternion 與大量骨架效能，也要確認 undo 行為。"}],"rank_global":8,"homepage_tier":"next10"},{"id":"deadlock-mina-facial-rig","title":"Deadlock Mina Blender Rig：Project Storm＋手 K 展示高表情 Facial Rig","summary":"案例展示 stylized facial control、角色 acting 與髮絲動態，可作為 rig review reference。","quick_impact":"★★★☆☆","source_url":"https://80.lv/articles/see-how-expressive-deadlock-s-mina-s-face-can-be-with-this-blender-rig","category":"3d-animation","subcategory":"facial","ranking_score":88.8,"analysis_level":"BRIEF","brief_reason":"high-value-showcase-reference","full_analysis":[{"label":"技術／流程變更","text":"案例以成熟 stylized rig 為底，再由動畫師用 reference 手 K 表情與 acting，同時展示頭髮在角色動作中的跟隨感。"},{"label":"Production 影響","text":"可用來檢查 rig 是否支援大幅表情、眼口協調與 silhouette 變形，而不是只看中性臉的 blendshape 數量。"},{"label":"導入測試與限制","text":"這是作品展示而非完整 rig 文件，控制器、deformation 與效能未公開；適合當 facial range reference。"}],"rank_global":9,"homepage_tier":"next10"},{"id":"animo-v10-maya","title":"Animo V10：Maya 動畫工具整合 500+ 功能與 Ref Dropper","summary":"新增 reference video、Tools Editor、hotkey 與多種 Animation Sliders，且可商用免費使用。","quick_impact":"★★★★★","source_url":"https://cgworld.jp/flashnews/01-202609-Animo.html","category":"3d-animation","subcategory":"animation","ranking_score":88.3,"analysis_level":"BRIEF","brief_reason":"useful-tool-or-addon-limited-depth","full_analysis":[{"label":"技術／流程變更","text":"Ref Dropper 可把影片／GIF 帶進 Maya，Tools Editor 管理 500+ 功能與 hotkey，Animation Sliders 統一曲線混合與 bake。"},{"label":"Production 影響","text":"可減少 reference、curve editing、bake 與工具切換成本；團隊若原本依賴多支零散 script，可評估整合成共同工具層。"},{"label":"導入測試與限制","text":"應先用標準角色與 shot 測版本相容、熱鍵衝突、reference path、scene 污染與 bake 結果，再決定開放模組。"}],"rank_global":10,"homepage_tier":"next10"},{"id":"keyflow-maya-review","title":"KeyFlow＋KeyFlow Studio：Maya 動畫工具串接獨立 Shot Review","summary":"KeyFlow 有 25+ Maya 動畫工具，Studio 提供 A/B、畫面註記與協作 review。","quick_impact":"★★★★☆","source_url":"https://www.cgchannel.com/2026/09/check-out-free-maya-animation-productivity-toolset-keyflow/","category":"3d-animation","subcategory":"animation","ranking_score":87.9,"analysis_level":"BRIEF","brief_reason":"useful-tool-or-addon-limited-depth","full_analysis":[{"label":"技術／流程變更","text":"KeyFlow 處理 tween、pose library、transform、copy/paste 與 bake；Studio 負責 A/B、標註、同步 review 與 reference 管理。"},{"label":"Production 影響","text":"它把做動畫與看動畫／回饋放在同一免費工具鏈，對小型動畫組可降低額外 shot review 軟體門檻。"},{"label":"導入測試與限制","text":"目前以 Windows 10+、Maya 2021+ 為主；需測多人 review、版本控管、色彩管理與 reference round-trip。"}],"rank_global":11,"homepage_tier":"next10"},{"id":"ue5-agora-realtime-animation","title":"Agora Studio UE5：把動畫製作與最終畫面 Review 直接搬進引擎","summary":"Unreal Fest 案例拆解《A-COM》如何以 real-time production 重建動畫 pipeline。","quick_impact":"★★★★☆","source_url":"https://cgworld.jp/flashnews/01-202609-UE5-RealTimeAnim.html","category":"engine-art","subcategory":"unreal","ranking_score":87.5,"analysis_level":"BRIEF","brief_reason":"production-reference-limited-depth","full_analysis":[{"label":"技術／流程變更","text":"Agora 依 real-time production 重設流程，而不是只把最後 render 換成 UE5；動畫、鏡頭與畫面 review 更早在引擎發生。"},{"label":"Production 影響","text":"可縮短 DCC 動畫正確但進引擎後畫面不對的回圈，特別適合角色表演、camera、lighting 與 FX 需要一起看的 shot。"},{"label":"導入測試與限制","text":"應先挑短 shot 比較傳統 DCC review 與 engine-first review 的迭代時間與錯誤類型，再決定 pipeline 改造幅度。"}],"rank_global":12,"homepage_tier":"next10"},{"id":"zbrush-stylized-print-workflow","title":"ZBrush Stylized Sculpt：Sculptris Pro→分件→ZRemesher，同時考慮 3D 列印","summary":"Shane Olson 示範從 blockout 到分件與 mesh 整理，早期就把列印需求放進 sculpt。","quick_impact":"★★★★☆","source_url":"https://cgworld.jp/flashnews/01-202609-ZBrush-Stylized.html","category":"3d-production","subcategory":"character-production","ranking_score":87,"analysis_level":"BRIEF","brief_reason":"practical-tutorial-limited-depth","full_analysis":[{"label":"技術／流程變更","text":"以 Sculptris Pro 快速找大形，再用自訂 brush 建立可分件結構，最後 ZRemesher 整理 mesh；不是完成後才硬切。"},{"label":"Production 影響","text":"對公仔列印，能讓接縫、厚度與零件方向更早設計進 silhouette，降低最後切件破壞造型的機率。"},{"label":"導入測試與限制","text":"實際列印仍要驗證壁厚、接縫、支撐、縮放與 resin 公差；ZRemesher 也不等於遊戲用 retopo。"}],"rank_global":13,"homepage_tier":"next10"},{"id":"meshy7-c4d-cinematic","title":"Meshy 7＋Cinema 4D：AI 做 Base Geometry，後段由 C4D 完成 Cinematic","summary":"教學把 Meshy 生成模型接到 C4D 的 rig、vertex map、displacement 與 lighting。","quick_impact":"★★★★☆","source_url":"https://cgworld.jp/flashnews/01-202609-C4D-Liquid.html","category":"ai-generation","subcategory":"ai-3d","ranking_score":86.6,"analysis_level":"BRIEF","brief_reason":"practical-tutorial-limited-depth","full_analysis":[{"label":"技術／流程變更","text":"Meshy 只提供 base model，真正的動畫表現仍由 Cinema 4D 的 rig、vertex map、displacement 與 lighting 完成。"},{"label":"Production 影響","text":"它把 AI output 當可快速取得的中間素材而非 final asset，這比單純展示生成結果更接近目前 production 可用位置。"},{"label":"導入測試與限制","text":"沒有比較 AI mesh 與人工 base mesh 的拓樸、UV 或修改成本；應記錄 cleanup 時間，確認前段節省沒有被後段吃掉。"}],"rank_global":14,"homepage_tier":"next10"},{"id":"starwars-gsplat-crowd-vfx","title":"《曼達洛人與古古》VFX：3DGS 重建船艙，群眾用多視角 Sprite Cards","summary":"SIGGRAPH 案例同時使用 Gaussian Splat 與 36 組 crowd sprite，依問題選 representation。","quick_impact":"★★★★★","source_url":"https://cgworld.jp/article/202609-sig-swmg.html","category":"emerging-case","subcategory":"case-study","ranking_score":86.1,"analysis_level":"BRIEF","brief_reason":"production-reference-limited-depth","full_analysis":[{"label":"技術／流程變更","text":"需要空間重建的船艙採 Gaussian Splat；大量群眾則以 9 機位真人素材整理成 36 組 2D cards，再用 time offset 增加變化。"},{"label":"Production 影響","text":"production 不必把 3DGS 當所有問題答案；背景、掃描空間與群眾可依視差、鏡頭距離與修改需求選 splat、mesh 或 card。"},{"label":"導入測試與限制","text":"導入時應比較記憶體、視差破綻、重打光能力、鏡頭自由度與 comp 成本，確認 representation 適合目標鏡頭。"}],"rank_global":15,"homepage_tier":"next10"},{"id":"maya-blender-bindprematrix","title":"Maya→Blender Rest Pose 陷阱：根因可能是 skinCluster bindPreMatrix","summary":"COYOTE TA 團隊指出跨 DCC rest pose 偏移可能不是 Joint Orient，而是 bindPreMatrix 不一致。","quick_impact":"★★★★★","source_url":"https://cgworld.jp/flashnews/01-202609-Coyote-MayaBlender.html","category":"3d-production","subcategory":"production-workflow","ranking_score":85.7,"analysis_level":"BRIEF","brief_reason":"practical-tutorial-limited-depth","full_analysis":[{"label":"技術／流程變更","text":"Maya bind pose 只是回復姿勢標記，真正參與 skin deformation 基準的是 bindPreMatrix；重建 bind pose 不會自動同步矩陣。"},{"label":"Production 影響","text":"角色不同部件若在不同姿勢分批 bind，跨 Maya→Blender／FBX 時可能才爆出 deformation 問題，外包交換尤其要注意。"},{"label":"導入測試與限制","text":"SOP 應在 Maya 端檢查 bindPreMatrix 一致性；若在 Blender 修 rest pose，有 shape key 的 mesh 需另設安全流程。"}],"rank_global":16,"homepage_tier":"category_only"},{"id":"mocopi-3dsmax-biped","title":"mocopi for 3ds Max：即時同步後直接轉 Biped .bip","summary":"Sony 與 studio42 將行動 mocap 直接接進 3ds Max Biped 動畫流程。","quick_impact":"★★★★☆","source_url":"https://cgworld.jp/article/202609-mocopi-3dsmax.html","category":"3d-animation","subcategory":"mocap","ranking_score":85.2,"analysis_level":"BRIEF","brief_reason":"production-reference-limited-depth","full_analysis":[{"label":"技術／流程變更","text":"外掛把 mocopi 全身追蹤即時送進 3ds Max，並支援直接轉成標準 Biped .bip，減少中間格式與額外 retarget。"},{"label":"Production 影響","text":"對仍以 Biped／3ds Max 為核心的團隊，可快速做 blocking、動作參考與低成本 capture，不需整組 pipeline 換 DCC。"},{"label":"導入測試與限制","text":"需用走跑轉身、蹲起、交叉遮擋與長 shot 比較原始 capture、Biped 轉換後與人工 cleanup 時間。"}],"rank_global":17,"homepage_tier":"category_only"},{"id":"light-reference-105-presets","title":"光リファレンス：105 組光源／材質／反射／大氣預設做 Lookdev Reference","summary":"互動網站可比較 lighting/material 變因並輸出 PNG 或旋轉 GIF，適合 shader 與外包溝通。","quick_impact":"★★★★☆","source_url":"https://cgworld.jp/flashnews/01-202609-LightRef.html","category":"3d-production","subcategory":"production-workflow","ranking_score":84.7,"analysis_level":"BRIEF","brief_reason":"production-reference-limited-depth","full_analysis":[{"label":"技術／流程變更","text":"工具把光照與材質變因拆成可調參數，提供 105 preset 比較反射、粗糙度、大氣與鏡頭差異，並可輸出 PNG／GIF。"},{"label":"Production 影響","text":"對 lookdev、外包驗收與 shader 溝通，比只說『亮一點』『更霧』更可重現，可先鎖定 reference 再進引擎實作。"},{"label":"導入測試與限制","text":"它不是目標引擎的物理真值；使用時應標清曝光、tone mapping、HDR、色域與 shader 差異，避免把 reference 當數值規格。"}],"rank_global":18,"homepage_tier":"category_only"},{"id":"fusion-studio-211-deep","title":"Fusion Studio 21.1：Deep Render 加速、Lens Calibration 與外部 Camera Tracks","summary":"更新 Krokodove 3D motion graphics、deep compositing、鏡頭校正與 tracking。","quick_impact":"★★★★☆","source_url":"https://www.cgchannel.com/2026/09/blackmagic-design-releases-fusion-studio-21/","category":"emerging-case","subcategory":"case-study","ranking_score":84.2,"analysis_level":"BRIEF","brief_reason":"early-release-limited-evidence","full_analysis":[{"label":"技術／流程變更","text":"21.1 加入 Krokodove 3D form、Lens Distort 新校正、Camera Tracker 外部 tracks，以及 deep compositing 與 Renderer3D 更新。"},{"label":"Production 影響","text":"遊戲宣傳片或即時引擎輸出若需要大量 comp，外部 tracking 與更快 deep render 可減少 Fusion 與 DCC／引擎間重建。"},{"label":"導入測試與限制","text":"『最多 8×』只適用特定 deep render；應用自家 EXR／deep sample、Cryptomatte 與 camera track 做版本對照。"}],"rank_global":19,"homepage_tier":"category_only"},{"id":"armorpaint-10-release","title":"ArmorPaint 1.0：開源 3D Texture Painting 進正式版","summary":"結束長期 Early Access 後，適合重新評估作為 Substance Painter 替代工具的成熟度。","quick_impact":"★★★★☆","source_url":"https://80.lv/articles/open-source-substance-3d-painter-alternative-armorpaint-1-0-released","category":"blender-dcc","subcategory":"other-dcc","ranking_score":83.8,"analysis_level":"BRIEF","brief_reason":"early-release-limited-evidence","full_analysis":[{"label":"技術／流程變更","text":"1.0 的意義首先是 release maturity：ArmorPaint 進入正式版，核心仍是 GPU 加速 3D texture painting 與 node-based material workflow。"},{"label":"Production 影響","text":"對成本敏感、需要離線／開源 pipeline 的團隊，值得和 Painter 比較 PBR channel、layer/mask、bake、UDIM 與 export preset。"},{"label":"導入測試與限制","text":"正式版不等於功能等價；應用同一角色與硬表面資產比較 bake、4K/8K VRAM、貼圖輸出與 Unity／UE preset。"}],"rank_global":20,"homepage_tier":"category_only"}]}
+{
+  "date": "2026-09-22",
+  "schema_version": 3,
+  "metadata": {
+    "total_items": 11,
+    "collection_mode": "production-intelligence-preference-v1-hybrid",
+    "collection_contract_effective_date": "2026-09-04",
+    "preference_contract_effective_date": "2026-09-06",
+    "admission_policy_effective_date": "2026-09-15",
+    "discovery_windows": [
+      "24h",
+      "7d",
+      "30d",
+      "6m",
+      "evergreen"
+    ],
+    "analysis_level_counts": {
+      "FULL": 0,
+      "BRIEF": 20,
+      "REJECT": 0
+    },
+    "analysis_level_policy": "evidence-depth-tiered; FULL=3-5 source-supported blocks; BRIEF=3 readable source-grounded angles with explicit limits; REJECT=not-publishable",
+    "full_analysis_heading_language": "zh-Hant",
+    "discovery_coverage": {
+      "fill_ladder_exhausted": true,
+      "backlog_checked": true,
+      "backlog_remaining_eligible": 0,
+      "targeted_refill_performed": true,
+      "quality_first_confirmed": true,
+      "windows": {
+        "24h": {
+          "status": "exhausted",
+          "candidates_found": 6
+        },
+        "7d": {
+          "status": "exhausted",
+          "candidates_found": 24
+        },
+        "30d": {
+          "status": "exhausted",
+          "candidates_found": 14
+        },
+        "6m": {
+          "status": "exhausted",
+          "candidates_found": 8
+        },
+        "evergreen": {
+          "status": "exhausted",
+          "candidates_found": 5
+        }
+      },
+      "category_candidates": {
+        "ai-generation": {
+          "candidates_considered": 5
+        },
+        "3d-production": {
+          "candidates_considered": 10
+        },
+        "3d-animation": {
+          "candidates_considered": 9
+        },
+        "engine-art": {
+          "candidates_considered": 5
+        },
+        "emerging-case": {
+          "candidates_considered": 6
+        },
+        "blender-dcc": {
+          "candidates_considered": 12
+        }
+      },
+      "registered_source_probe": {
+        "performed": true,
+        "sources": {
+          "80-level": {
+            "status": "checked",
+            "method": "web-site-query",
+            "candidates_found": 5,
+            "candidate_ids": [
+              "water-woman-stylized-character",
+              "glitter-tights-blender-shader",
+              "anime-clouds-geometry-shader",
+              "painterly-kuwahara-nodegroup",
+              "animo-sliders-blender"
+            ]
+          },
+          "3dnchu": {
+            "status": "checked",
+            "method": "web-site-query",
+            "candidates_found": 1,
+            "candidate_ids": [
+              "ac9-cloth-retopo-v11"
+            ]
+          },
+          "cgworld-jp": {
+            "status": "checked",
+            "method": "latest-index",
+            "candidates_found": 8,
+            "candidate_ids": [
+              "maya-constraint-batch-tool",
+              "animo-v10-maya",
+              "ue5-agora-realtime-animation",
+              "zbrush-stylized-print-workflow",
+              "meshy7-c4d-cinematic",
+              "starwars-gsplat-crowd-vfx",
+              "maya-blender-bindprematrix",
+              "mocopi-3dsmax-biped"
+            ]
+          },
+          "bilibili-mobile": {
+            "status": "checked",
+            "method": "web-site-query",
+            "candidates_found": 0,
+            "candidate_ids": []
+          },
+          "artstation": {
+            "status": "not-scheduled",
+            "method": "rolling-window",
+            "candidates_found": 0,
+            "candidate_ids": [],
+            "reason": "deterministic-rolling-probe-not-selected"
+          },
+          "gumroad-discover": {
+            "status": "not-scheduled",
+            "method": "rolling-window",
+            "candidates_found": 0,
+            "candidate_ids": [],
+            "reason": "deterministic-rolling-probe-not-selected"
+          },
+          "xiaohongshu": {
+            "status": "not-scheduled",
+            "method": "rolling-window",
+            "candidates_found": 0,
+            "candidate_ids": [],
+            "reason": "deterministic-rolling-probe-not-selected"
+          },
+          "cg-channel": {
+            "status": "checked",
+            "method": "latest-index",
+            "candidates_found": 2,
+            "candidate_ids": [
+              "keyflow-maya-review",
+              "fusion-studio-211-deep"
+            ]
+          },
+          "blender-official": {
+            "status": "checked",
+            "method": "latest-index",
+            "candidates_found": 1,
+            "candidate_ids": [
+              "blender-522-lts-maintenance"
+            ]
+          },
+          "epic-developer-community": {
+            "status": "checked",
+            "method": "web-site-query",
+            "candidates_found": 0,
+            "candidate_ids": []
+          },
+          "unity-official": {
+            "status": "checked",
+            "method": "web-site-query",
+            "candidates_found": 0,
+            "candidate_ids": []
+          },
+          "sidefx-official": {
+            "status": "checked",
+            "method": "latest-index",
+            "candidates_found": 1,
+            "candidate_ids": [
+              "sidefx-equinox-2026"
+            ]
+          },
+          "autodesk-area": {
+            "status": "not-scheduled",
+            "method": "rolling-window",
+            "candidates_found": 0,
+            "candidate_ids": [],
+            "reason": "deterministic-rolling-probe-not-selected"
+          },
+          "adobe-substance-3d": {
+            "status": "not-scheduled",
+            "method": "rolling-window",
+            "candidates_found": 0,
+            "candidate_ids": [],
+            "reason": "deterministic-rolling-probe-not-selected"
+          },
+          "game-developer": {
+            "status": "not-scheduled",
+            "method": "rolling-window",
+            "candidates_found": 0,
+            "candidate_ids": [],
+            "reason": "deterministic-rolling-probe-not-selected"
+          }
+        }
+      },
+      "notes": "2026-09-22 current-main v11；snapshot through 2026-09-21，early exact identity dedupe 後完成 fill ladder 與 targeted refill。Probe plan group 0：core + 3dnchu/cgworld-jp/bilibili-mobile；其他來源 not-scheduled。"
+    },
+    "personalization": {
+      "contract": "supabase-semantic-feedback-v1",
+      "status": "unavailable",
+      "vote_count": 0,
+      "reason": "Supabase reachable, but active app owner account cannot be authoritatively resolved by the automation connector; neutral fallback applied.",
+      "max_rank_multiplier": 0.2,
+      "max_query_expansion_fraction": 0.2,
+      "raw_profile_committed": false,
+      "bookmarks_used": false,
+      "domain_weights_used": false,
+      "admission_bypass": false,
+      "quality_gate_bypass": false,
+      "source_quota": false
+    },
+    "homepage_tier_normalization": {
+      "selection_mode": "full-first-brief-fallback",
+      "requested_top5": 5,
+      "actual_top5": 5,
+      "top5_full_count": 0,
+      "top5_brief_fallback_count": 5,
+      "top5_full_only": false,
+      "brief_fallback_allowed": true,
+      "next10": 6
+    },
+    "full_analysis_depth_contract": "v6-tiered-evidence-three-angle-reading",
+    "full_analysis_style_reference": "2026-09-12",
+    "registry_identity_normalization": {
+      "dropped_count": 9,
+      "rewritten_count": 0,
+      "policy": "verified-DONE-published-canonical-source-without-substantive-delta-skip",
+      "source_identity_precedence": "published-daily-html-card-then-canonical-json",
+      "url_identity": "scripts/url_identity.py",
+      "stage": "collection-before-ready",
+      "refill_required": true,
+      "category_deficits": {},
+      "daily_release_gate": {
+        "have": 11,
+        "min": 20,
+        "target": 30,
+        "max": 30,
+        "missing_to_min": 9,
+        "missing_to_target": 19,
+        "release_ready": false,
+        "category_counts": {
+          "ai-generation": 1,
+          "3d-production": 2,
+          "3d-animation": 2,
+          "engine-art": 0,
+          "emerging-case": 2,
+          "blender-dcc": 4
+        },
+        "release_mode": "BLOCKED",
+        "low_volume_authorized": false
+      }
+    }
+  },
+  "items": [
+    {
+      "id": "hi3d-agent-v30",
+      "title": "Hi3D Agent：把 V3.0 AI 3D、貼圖、分件與列印串成對話式 Agent",
+      "summary": "Hi3D 將 V3.0 與 image-to-3D、AI Texturing、分件和輸出工具整合成 Agent 工作流。",
+      "quick_impact": "★★★★★",
+      "source_url": "https://finance.yahoo.com/technology/ai/articles/hi3d-launches-worlds-first-one-160300340.html",
+      "category": "ai-generation",
+      "subcategory": "ai-3d",
+      "ranking_score": 95,
+      "analysis_level": "BRIEF",
+      "brief_reason": "early-release-limited-evidence",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "Agent 讓 LLM 規劃工具調用，再串接生成、貼圖、模型分件與多格式輸出；官方把 V3.0 描述為 2048³ voxel 級生成核心。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "價值不在聊天本身，而是能否把生成、修正、拆件、貼圖與輸出連成可重複流程，這比單次 prompt 更接近資產製作助理。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "目前證據以廠商發布為主，2048³、結構一致性與 production-ready texture 都需用角色、硬表面與多視圖題目獨立驗證。"
+        }
+      ],
+      "rank_global": 1,
+      "homepage_tier": "top5"
+    },
+    {
+      "id": "water-woman-stylized-character",
+      "title": "Water Woman：Maya／Blender 造型＋黑白貼圖後再統一換色",
+      "summary": "角色案例先以黑白關係建立材質層次，再調整整體色盤，適合作為 stylized lookdev 參考。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://80.lv/articles/creating-a-stylized-3d-character-of-a-water-woman-with-blender-maya",
+      "category": "3d-production",
+      "subcategory": "character-production",
+      "ranking_score": 93.8,
+      "analysis_level": "BRIEF",
+      "brief_reason": "production-reference-limited-depth",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "流程先建立角色形體，再以黑白貼圖鎖定材質明度與層次，最後才把 palette 推到目標色彩，減少早期被顏色干擾。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對 stylized／NPR 角色，先鎖 value 再換色有利於多材質快速迭代，也能讓不同光線下的視覺階層更清楚。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "單一藝術家案例不代表免 retopo 適合所有遊戲資產；仍要檢查 deformation、UV、LOD 與引擎效能。"
+        }
+      ],
+      "rank_global": 2,
+      "homepage_tier": "top5"
+    },
+    {
+      "id": "maya-constraint-batch-tool",
+      "title": "Create_Constraint_Tool：Maya 多物件 Constraint 改成批次管理",
+      "summary": "免費 Maya Python 工具集中管理 Point／Orient／Scale／Parent Constraint、軸向與 Maintain Offset。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://cgworld.jp/flashnews/01-202609-Maya-ConstraintTool.html",
+      "category": "3d-animation",
+      "subcategory": "rigging",
+      "ranking_score": 92.9,
+      "analysis_level": "BRIEF",
+      "brief_reason": "useful-tool-or-addon-limited-depth",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "工具先整理多組父子物件，再統一套用四類 Constraint，並可逐軸控制與保存清單，避免逐物件重複設定。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對角色綁定、道具跟隨與動畫 setup，可直接降低操作次數與漏設軸向風險，也有利於固定 rigging SOP。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "正式導入前應以 Maya 2023+ 測 namespace、reference rig、既有 constraint 與 undo 行為，再決定是否放進工具架。"
+        }
+      ],
+      "rank_global": 3,
+      "homepage_tier": "top5"
+    },
+    {
+      "id": "snapsplit-016-print-joints",
+      "title": "SnapSplit 0.1.6：Blender 切件加入燕尾／卡扣、自訂接頭與 Live Preview",
+      "summary": "更新強化 3D 列印切件與組裝，適合大型角色、公仔或場景件的拆分。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://3druck.com/en/programs/snapsplit-0-1-6-blender-add-on-erhaelt-schwalbenschwanz-verbinder-eigene-verbindungsformen-und-live-vorschau-10163158/",
+      "category": "blender-dcc",
+      "subcategory": "addon",
+      "ranking_score": 92.1,
+      "analysis_level": "BRIEF",
+      "brief_reason": "useful-tool-or-addon-limited-depth",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "0.1.6 從單純切件推進到可裝配：新增燕尾與卡扣 connector、自訂接頭幾何與位置，Live Preview 可即時看尺寸結果。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對角色列印可減少切件後另建榫頭的手工時間，也較容易依列印方向、受力與可見面調整 connector。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "需實測壁厚、樹脂／FDM 公差、接頭方向與高曲率表面；自動切件成功不等於實體裝配可靠。"
+        }
+      ],
+      "rank_global": 4,
+      "homepage_tier": "top5"
+    },
+    {
+      "id": "glitter-tights-blender-shader",
+      "title": "Blender Glitter Tights：用視角變化驅動布料閃點",
+      "summary": "亮片高光會隨鏡頭角度改變，適合作為角色服裝與 NPR 高光設計參考。",
+      "quick_impact": "★★★☆☆",
+      "source_url": "https://80.lv/articles/see-these-glitter-tights-sparkle-from-every-angle",
+      "category": "blender-dcc",
+      "subcategory": "blender",
+      "ranking_score": 90.8,
+      "analysis_level": "BRIEF",
+      "brief_reason": "technical-demo-limited-depth",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "核心是把亮片視為 view-dependent response，而不是固定貼圖亮點；鏡頭移動時高亮位置改變才形成細碎閃爍。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "可轉譯到 Unreal／Unity 的 View Vector、Normal／Half Vector 與 noise mask，建立比 emissive 貼圖更有立體感的 sparkle。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "沒有跨引擎成本數據；導入時要測 aliasing、TAA／TSR 穩定性、遠距離閃爍與行動裝置 shader cost。"
+        }
+      ],
+      "rank_global": 5,
+      "homepage_tier": "top5"
+    },
+    {
+      "id": "anime-clouds-geometry-shader",
+      "title": "Anime Clouds：Blender 用幾何＋Shader＋Kuwahara 做卡通雲",
+      "summary": "教學把 stylized cloud 拆成 silhouette、受光與濾鏡三層，而不是只靠材質。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://80.lv/articles/anime-style-clouds-in-blender-step-by-step-tutorial",
+      "category": "blender-dcc",
+      "subcategory": "blender",
+      "ranking_score": 90.2,
+      "analysis_level": "BRIEF",
+      "brief_reason": "practical-tutorial-limited-depth",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "先用幾何決定雲塊大形，再用 shader 控制明暗色階，最後以 Kuwahara 整理細碎變化，因此不是單一材質節點完成。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對 NPR 天空，把 silhouette、受光與後處理分層比全部塞進雲材質更容易 art direct，也更方便做 LOD。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "移植 Unity／UE 時應分別測 mesh complexity、透明排序、陰影與後處理，並確認移動時不產生 temporal shimmer。"
+        }
+      ],
+      "rank_global": 6,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "starwars-gsplat-crowd-vfx",
+      "title": "《曼達洛人與古古》VFX：3DGS 重建船艙，群眾用多視角 Sprite Cards",
+      "summary": "SIGGRAPH 案例同時使用 Gaussian Splat 與 36 組 crowd sprite，依問題選 representation。",
+      "quick_impact": "★★★★★",
+      "source_url": "https://cgworld.jp/article/202609-sig-swmg.html",
+      "category": "emerging-case",
+      "subcategory": "case-study",
+      "ranking_score": 86.1,
+      "analysis_level": "BRIEF",
+      "brief_reason": "production-reference-limited-depth",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "需要空間重建的船艙採 Gaussian Splat；大量群眾則以 9 機位真人素材整理成 36 組 2D cards，再用 time offset 增加變化。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "production 不必把 3DGS 當所有問題答案；背景、掃描空間與群眾可依視差、鏡頭距離與修改需求選 splat、mesh 或 card。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "導入時應比較記憶體、視差破綻、重打光能力、鏡頭自由度與 comp 成本，確認 representation 適合目標鏡頭。"
+        }
+      ],
+      "rank_global": 7,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "mocopi-3dsmax-biped",
+      "title": "mocopi for 3ds Max：即時同步後直接轉 Biped .bip",
+      "summary": "Sony 與 studio42 將行動 mocap 直接接進 3ds Max Biped 動畫流程。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://cgworld.jp/article/202609-mocopi-3dsmax.html",
+      "category": "3d-animation",
+      "subcategory": "mocap",
+      "ranking_score": 85.2,
+      "analysis_level": "BRIEF",
+      "brief_reason": "production-reference-limited-depth",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "外掛把 mocopi 全身追蹤即時送進 3ds Max，並支援直接轉成標準 Biped .bip，減少中間格式與額外 retarget。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對仍以 Biped／3ds Max 為核心的團隊，可快速做 blocking、動作參考與低成本 capture，不需整組 pipeline 換 DCC。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "需用走跑轉身、蹲起、交叉遮擋與長 shot 比較原始 capture、Biped 轉換後與人工 cleanup 時間。"
+        }
+      ],
+      "rank_global": 8,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "light-reference-105-presets",
+      "title": "光リファレンス：105 組光源／材質／反射／大氣預設做 Lookdev Reference",
+      "summary": "互動網站可比較 lighting/material 變因並輸出 PNG 或旋轉 GIF，適合 shader 與外包溝通。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://cgworld.jp/flashnews/01-202609-LightRef.html",
+      "category": "3d-production",
+      "subcategory": "production-workflow",
+      "ranking_score": 84.7,
+      "analysis_level": "BRIEF",
+      "brief_reason": "production-reference-limited-depth",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "工具把光照與材質變因拆成可調參數，提供 105 preset 比較反射、粗糙度、大氣與鏡頭差異，並可輸出 PNG／GIF。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對 lookdev、外包驗收與 shader 溝通，比只說『亮一點』『更霧』更可重現，可先鎖定 reference 再進引擎實作。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "它不是目標引擎的物理真值；使用時應標清曝光、tone mapping、HDR、色域與 shader 差異，避免把 reference 當數值規格。"
+        }
+      ],
+      "rank_global": 9,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "fusion-studio-211-deep",
+      "title": "Fusion Studio 21.1：Deep Render 加速、Lens Calibration 與外部 Camera Tracks",
+      "summary": "更新 Krokodove 3D motion graphics、deep compositing、鏡頭校正與 tracking。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://www.cgchannel.com/2026/09/blackmagic-design-releases-fusion-studio-21/",
+      "category": "emerging-case",
+      "subcategory": "case-study",
+      "ranking_score": 84.2,
+      "analysis_level": "BRIEF",
+      "brief_reason": "early-release-limited-evidence",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "21.1 加入 Krokodove 3D form、Lens Distort 新校正、Camera Tracker 外部 tracks，以及 deep compositing 與 Renderer3D 更新。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "遊戲宣傳片或即時引擎輸出若需要大量 comp，外部 tracking 與更快 deep render 可減少 Fusion 與 DCC／引擎間重建。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "『最多 8×』只適用特定 deep render；應用自家 EXR／deep sample、Cryptomatte 與 camera track 做版本對照。"
+        }
+      ],
+      "rank_global": 10,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "armorpaint-10-release",
+      "title": "ArmorPaint 1.0：開源 3D Texture Painting 進正式版",
+      "summary": "結束長期 Early Access 後，適合重新評估作為 Substance Painter 替代工具的成熟度。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://80.lv/articles/open-source-substance-3d-painter-alternative-armorpaint-1-0-released",
+      "category": "blender-dcc",
+      "subcategory": "other-dcc",
+      "ranking_score": 83.8,
+      "analysis_level": "BRIEF",
+      "brief_reason": "early-release-limited-evidence",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "1.0 的意義首先是 release maturity：ArmorPaint 進入正式版，核心仍是 GPU 加速 3D texture painting 與 node-based material workflow。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對成本敏感、需要離線／開源 pipeline 的團隊，值得和 Painter 比較 PBR channel、layer/mask、bake、UDIM 與 export preset。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "正式版不等於功能等價；應用同一角色與硬表面資產比較 bake、4K/8K VRAM、貼圖輸出與 Unity／UE preset。"
+        }
+      ],
+      "rank_global": 11,
+      "homepage_tier": "next10"
+    }
+  ],
+  "visual_evidence": {}
+}
