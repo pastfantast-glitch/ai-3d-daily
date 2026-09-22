@@ -2,7 +2,7 @@
   "date": "2026-09-22",
   "schema_version": 3,
   "metadata": {
-    "total_items": 11,
+    "total_items": 25,
     "collection_mode": "production-intelligence-preference-v1-hybrid",
     "collection_contract_effective_date": "2026-09-04",
     "preference_contract_effective_date": "2026-09-06",
@@ -15,8 +15,8 @@
       "evergreen"
     ],
     "analysis_level_counts": {
-      "FULL": 0,
-      "BRIEF": 20,
+      "FULL": 2,
+      "BRIEF": 23,
       "REJECT": 0
     },
     "analysis_level_policy": "evidence-depth-tiered; FULL=3-5 source-supported blocks; BRIEF=3 readable source-grounded angles with explicit limits; REJECT=not-publishable",
@@ -75,13 +75,34 @@
           "80-level": {
             "status": "checked",
             "method": "web-site-query",
-            "candidates_found": 5,
+            "candidates_found": 26,
             "candidate_ids": [
               "water-woman-stylized-character",
               "glitter-tights-blender-shader",
               "anime-clouds-geometry-shader",
               "painterly-kuwahara-nodegroup",
-              "animo-sliders-blender"
+              "animo-sliders-blender",
+              "medieval-encaustic-tiles-sd-ue5",
+              "flesh-dynamics-unity",
+              "topopen-blender-retopo",
+              "stylized-vfx-geometry-nodes",
+              "riverfx-lagrangian-houdini",
+              "popcornfx-butterfly-ue5",
+              "plugin-hub-blender",
+              "noggi-blender-rigging-basics",
+              "painterly-fight-blender",
+              "maalat-painterly-stilllife",
+              "texlab-ue5-refill",
+              "chain-generator-refill",
+              "ps1-prerendered-refill",
+              "reface-205-refill",
+              "large-scale-env-tools-refill",
+              "caustica-refill",
+              "smart-remesh-3-refill",
+              "cge-sculpting-maya-refill",
+              "edgy-worn-edges-refill",
+              "dissectible-anatomy-refill",
+              "unity-river-modeler-refill"
             ]
           },
           "3dnchu": {
@@ -137,18 +158,20 @@
           "cg-channel": {
             "status": "checked",
             "method": "latest-index",
-            "candidates_found": 2,
+            "candidates_found": 3,
             "candidate_ids": [
               "keyflow-maya-review",
-              "fusion-studio-211-deep"
+              "fusion-studio-211-deep",
+              "animcraft-60-ai-rigging"
             ]
           },
           "blender-official": {
             "status": "checked",
             "method": "latest-index",
-            "candidates_found": 1,
+            "candidates_found": 2,
             "candidate_ids": [
-              "blender-522-lts-maintenance"
+              "blender-522-lts-maintenance",
+              "blender53-native-gaussian-official"
             ]
           },
           "epic-developer-community": {
@@ -160,8 +183,10 @@
           "unity-official": {
             "status": "checked",
             "method": "web-site-query",
-            "candidates_found": 0,
-            "candidate_ids": []
+            "candidates_found": 1,
+            "candidate_ids": [
+              "unity-66-supported-release"
+            ]
           },
           "sidefx-official": {
             "status": "checked",
@@ -194,7 +219,7 @@
           }
         }
       },
-      "notes": "2026-09-22 current-main v11；snapshot through 2026-09-21，early exact identity dedupe 後完成 fill ladder 與 targeted refill。Probe plan group 0：core + 3dnchu/cgworld-jp/bilibili-mobile；其他來源 not-scheduled。"
+      "notes": "2026-09-22 current-main v12；authoritative prepare 先剔除 9 筆 Registry duplicate（11 survivors），再依 source-neutral targeted refill 補入 14 筆經來源驗證且 snapshot exact-identity 未發布候選；Blender 5.3 Gaussian Splat 等已發布 substantive identity 未回填。24h/7d/30d refill 與 6m/evergreen tail 均已再檢查；registered probe 僅更新今日 selected/core 實際查到的來源，未排程來源維持 not-scheduled。"
     },
     "personalization": {
       "contract": "supabase-semantic-feedback-v1",
@@ -214,11 +239,11 @@
       "selection_mode": "full-first-brief-fallback",
       "requested_top5": 5,
       "actual_top5": 5,
-      "top5_full_count": 0,
-      "top5_brief_fallback_count": 5,
+      "top5_full_count": 2,
+      "top5_brief_fallback_count": 3,
       "top5_full_only": false,
       "brief_fallback_allowed": true,
-      "next10": 6
+      "next10": 10
     },
     "full_analysis_depth_contract": "v6-tiered-evidence-three-angle-reading",
     "full_analysis_style_reference": "2026-09-12",
@@ -229,25 +254,25 @@
       "source_identity_precedence": "published-daily-html-card-then-canonical-json",
       "url_identity": "scripts/url_identity.py",
       "stage": "collection-before-ready",
-      "refill_required": true,
+      "refill_required": false,
       "category_deficits": {},
       "daily_release_gate": {
-        "have": 11,
+        "have": 25,
         "min": 20,
         "target": 30,
         "max": 30,
-        "missing_to_min": 9,
-        "missing_to_target": 19,
-        "release_ready": false,
+        "missing_to_min": 0,
+        "missing_to_target": 5,
+        "release_ready": true,
         "category_counts": {
           "ai-generation": 1,
-          "3d-production": 2,
-          "3d-animation": 2,
-          "engine-art": 0,
-          "emerging-case": 2,
-          "blender-dcc": 4
+          "engine-art": 4,
+          "3d-production": 5,
+          "3d-animation": 5,
+          "blender-dcc": 8,
+          "emerging-case": 2
         },
-        "release_mode": "BLOCKED",
+        "release_mode": "NORMAL",
         "low_volume_authorized": false
       }
     }
@@ -282,6 +307,61 @@
       "homepage_tier": "top5"
     },
     {
+      "id": "unigine-sdk-222",
+      "title": "UNIGINE 2.22：新 Sequencer、動畫串流與 Animation Graph IK／Constraint",
+      "summary": "UNIGINE 2.22 把 Sequencer、非同步動畫串流、IK／Look At／Joint Constraint、Dynamic Resolution 與渲染更新一起推進，對即時 3D 與技術美術管線有直接影響。",
+      "quick_impact": "★★★★★",
+      "source_url": "https://unigine.com/news/2026/unigine-sdk-2-22-release/",
+      "category": "engine-art",
+      "subcategory": "tools",
+      "ranking_score": 94.6,
+      "analysis_level": "FULL",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "2.22 以 Sequencer 取代舊 Tracker 路線，加入 auto-key、可重用 sequence、物件綁定與 C++／C# API；Animation Graph 同時新增 IK、Look At、關節約束與程序姿態控制。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "動畫密集場景可使用非同步動畫串流，搭配新的 timeline 與 graph 能把過場、角色動作與工具自動化更集中在 Editor 內完成，減少外部工具往返。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "官方同時列出 Dynamic Resolution、陰影與效能改進，但實際收益仍需用目標角色數、骨架複雜度與平台做 benchmark；先驗證 Sequencer／Animation Graph 與既有資產相容性。"
+        }
+      ],
+      "rank_global": 2,
+      "homepage_tier": "top5"
+    },
+    {
+      "id": "unity-66-supported-release",
+      "title": "Unity 6.6 正式推出：Supported Release 銜接 6.7 LTS",
+      "summary": "Unity 6.6 已成為 Unity 6 系列最後一個 Supported Release；對正在 Unity 6 生產線上的團隊，重點是評估新功能、修正與升級風險，而不是只追版本號。",
+      "quick_impact": "★★★★★",
+      "source_url": "https://discussions.unity.com/t/unity-6-6-is-now-available/1735357",
+      "category": "engine-art",
+      "subcategory": "unity",
+      "ranking_score": 94,
+      "analysis_level": "BRIEF",
+      "brief_reason": "short-official-announcement",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "Unity 官方確認 6.6 已可用，並把它定位為 Unity 6 家族最後一個 Supported Release，維護到下一個 6.7 版本到來；團隊可從 6.6 開始逐步銜接後續 LTS。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對 URP／角色／技術美術專案，價值在於能提早取得 6.6 的新功能與修正，同時用正式 upgrade guide 規劃專案升級，而不是等到下一個 LTS 才一次承擔全部變更。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "目前此候選以官方發布貼文為主要證據，不能把所有 6.6 功能都視為已適合既有專案；應先用分支驗證 Shader、Renderer Feature、平台 build 與套件相容性再決定導入。"
+        }
+      ],
+      "rank_global": 3,
+      "homepage_tier": "top5"
+    },
+    {
       "id": "water-woman-stylized-character",
       "title": "Water Woman：Maya／Blender 造型＋黑白貼圖後再統一換色",
       "summary": "角色案例先以黑白關係建立材質層次，再調整整體色盤，適合作為 stylized lookdev 參考。",
@@ -306,7 +386,34 @@
           "text": "單一藝術家案例不代表免 retopo 適合所有遊戲資產；仍要檢查 deformation、UV、LOD 與引擎效能。"
         }
       ],
-      "rank_global": 2,
+      "rank_global": 4,
+      "homepage_tier": "top5"
+    },
+    {
+      "id": "medieval-encaustic-tiles-sd-ue5",
+      "title": "中世紀花磚材質：Substance Designer 模組化破損狀態＋UE5 落地",
+      "summary": "Alisa Prakapenka 將 clean／broken／damaged tile 拆成可重用 subgraph，從 Height、Grout、Base Color 到 Roughness 建立可控制的老化花磚材質，再放進 UE5 檢視。",
+      "quick_impact": "★★★★★",
+      "source_url": "https://80.lv/articles/building-a-medieval-encaustic-floor-tile-material-using-substance-3d-ue5",
+      "category": "3d-production",
+      "subcategory": "environment-production",
+      "ranking_score": 93.4,
+      "analysis_level": "FULL",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "流程不是只做一張乾淨 tile，而是把高度、填縫、花紋、底色與粗糙度拆成模組，再建立 clean、broken、damaged 狀態，讓缺角、磨耗與污垢能受控疊加。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "這種 subgraph 分層讓同一套材質可以快速產生年代感與變體，對模組化場景尤其有價值；美術可調破損比例而不必為每個區塊重做獨立貼圖。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "文章屬單一作品 breakdown，但技術步驟足以重現；實際導入時仍應用專案 texel density、壓縮格式與 UE5 shader 成本測試，確認細節密度不會只在近距離展示成立。"
+        }
+      ],
+      "rank_global": 5,
       "homepage_tier": "top5"
     },
     {
@@ -334,8 +441,8 @@
           "text": "正式導入前應以 Maya 2023+ 測 namespace、reference rig、既有 constraint 與 undo 行為，再決定是否放進工具架。"
         }
       ],
-      "rank_global": 3,
-      "homepage_tier": "top5"
+      "rank_global": 6,
+      "homepage_tier": "next10"
     },
     {
       "id": "snapsplit-016-print-joints",
@@ -362,8 +469,36 @@
           "text": "需實測壁厚、樹脂／FDM 公差、接頭方向與高曲率表面；自動切件成功不等於實體裝配可靠。"
         }
       ],
-      "rank_global": 4,
-      "homepage_tier": "top5"
+      "rank_global": 7,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "flesh-dynamics-unity",
+      "title": "Flesh Dynamics：Unity 角色局部軟組織變形，直接塗抹模擬區域",
+      "summary": "Flesh Dynamics 疊在既有 Rig／Animation 上，以 paint mask 指定軟組織區域，再用 GPU vertex deformation、Jobs 與 Burst 做碰撞和體積感變形。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://80.lv/articles/give-animated-characters-realistic-jiggle-motion-with-this-unity-tool",
+      "category": "engine-art",
+      "subcategory": "unity",
+      "ranking_score": 91.4,
+      "analysis_level": "BRIEF",
+      "brief_reason": "useful-tool-or-addon-limited-depth",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "工具讓美術直接在角色上塗抹需要軟組織物理的區域，未塗抹部位維持原 Rig 動畫；碰撞物可壓縮指定區域，並以 GPU vertex deformation、Jobs、Burst 執行。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "若能穩定使用，角色不必為每個胸腹、尾巴或軟組織額外建立複雜 secondary rig，就能在 Built-in、URP、HDRP 上加入局部動態反應。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "效能數字目前主要來自開發者示範，實際成本會隨網格密度、模擬面積與同屏角色數變動；導入前應用目標角色 LOD 與最差同屏數做 GPU／CPU profile。"
+        }
+      ],
+      "rank_global": 8,
+      "homepage_tier": "next10"
     },
     {
       "id": "glitter-tights-blender-shader",
@@ -390,8 +525,8 @@
           "text": "沒有跨引擎成本數據；導入時要測 aliasing、TAA／TSR 穩定性、遠距離閃爍與行動裝置 shader cost。"
         }
       ],
-      "rank_global": 5,
-      "homepage_tier": "top5"
+      "rank_global": 9,
+      "homepage_tier": "next10"
     },
     {
       "id": "anime-clouds-geometry-shader",
@@ -418,8 +553,176 @@
           "text": "移植 Unity／UE 時應分別測 mesh complexity、透明排序、陰影與後處理，並確認移動時不產生 temporal shimmer。"
         }
       ],
-      "rank_global": 6,
+      "rank_global": 10,
       "homepage_tier": "next10"
+    },
+    {
+      "id": "realityscan-mobile-19",
+      "title": "RealityScan Mobile 1.9：拍攝後可刪照片、離線補拍與 iOS 過熱警告",
+      "summary": "RealityScan Mobile 1.9 強化 capture／review／processing 的可靠性，讓行動 photogrammetry 在現場更容易清理壞照片、斷網續拍並避免裝置過熱中斷。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://www.realityscan.com/release/realityscan-mobile-19-is-now-available",
+      "category": "3d-production",
+      "subcategory": "production-workflow",
+      "ranking_score": 89.8,
+      "analysis_level": "BRIEF",
+      "brief_reason": "short-official-announcement",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "1.9 允許在 Review 階段刪除不需要或不可用照片，未處理物件即使沒有網路也可繼續補拍；iOS 另外加入過熱警告，降低突然 crash 或 throttling 的風險。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "這些不是重建演算法大改版，但直接改善外景掃描的容錯：現場可以先完成資料收集，再整理照片品質，不必因網路或裝置狀態中斷 capture session。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "若要納入遊戲資產流程，仍需驗證不同手機、光線與物件材質下的 mesh／texture 品質，以及後續 retopo、UV、LOD 的人工成本；本次更新重點是可靠性而非品質 benchmark。"
+        }
+      ],
+      "rank_global": 11,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "topopen-blender-retopo",
+      "title": "TopoPen：Blender 直接在高模表面畫 Quad Flow",
+      "summary": "TopoPen 把 Draw、Precise Draw、Boundary Fill、Edge Flow、Circle Loop、Surface Cut 等 retopo 操作放進 Blender Edit Mode，支援角色與硬表面。",
+      "quick_impact": "★★★★★",
+      "source_url": "https://80.lv/articles/draw-clean-quad-topology-directly-over-your-model-in-blender",
+      "category": "blender-dcc",
+      "subcategory": "addon",
+      "ranking_score": 89.4,
+      "analysis_level": "BRIEF",
+      "brief_reason": "useful-tool-or-addon-limited-depth",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "使用者可直接在來源模型表面畫線並自動建立 quad grid，並用 quad size 控制密度；Edge Flow、Circle Loop 與 Surface Cut 則補足眼口、管線與硬表面切線等局部拓樸需求。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "這類工具的價值是把 retopo 規劃與落點保持在同一個 Blender Edit Mode，降低反覆 shrinkwrap、手動貼面與調整 vertex spacing 的操作成本。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "目前證據主要來自產品示範；應拿角色臉、服裝摺痕、硬表面轉折三類網格測試 edge flow、密度一致性與修正時間，再和現有手工／外掛流程比較。"
+        }
+      ],
+      "rank_global": 12,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "animcraft-60-ai-rigging",
+      "title": "Animcraft 6.0：本機 AI Rig／Skinning＋Clip-based Text-to-Animation",
+      "summary": "Animcraft 6.0 新增本機 AI rigging／skinning 與 clip-based text-to-animation，並保留跨 DCC 動畫庫與 timeline 編排定位。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://www.cgchannel.com/2026/09/new-cg-software-you-may-have-missed-20-september-2026/",
+      "category": "3d-animation",
+      "subcategory": "rigging",
+      "ranking_score": 89,
+      "analysis_level": "BRIEF",
+      "brief_reason": "early-release-limited-evidence",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "6.0 新增本機推論的角色 rigging／skinning 模組，並加入基於 NVIDIA Kimodo 的 clip-based text-to-animation；動畫片段可在 timeline 拼接，並限制 ground path 與起始姿勢。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "若輸出穩定，這會把『先綁定、再找／生成動作、最後組片段』串在同一套 animation-library 流程，且可與 Maya、3ds Max 等 DCC 共同使用。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "目前資訊來自版本 round-up，缺少角色比例差、skin weight、手指／臉部與複雜骨架的獨立測試；應以現有遊戲 skeleton 做 rig quality、retarget 與 cleanup 工時比較。"
+        }
+      ],
+      "rank_global": 13,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "stylized-vfx-geometry-nodes",
+      "title": "Blender Geometry Nodes 卡通 VFX：用 Mapping 驅動 Noise／Voronoi",
+      "summary": "Good Good 以 Geometry Nodes、Noise／Voronoi 與 Mapping 做 stylized VFX，重點放在 timing、色彩與往 game engine 延伸時較乾淨的控制方式。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://80.lv/articles/artist-shows-process-of-creating-stylized-vfx-with-blender-s-geometry-nodes",
+      "category": "blender-dcc",
+      "subcategory": "blender",
+      "ranking_score": 88.6,
+      "analysis_level": "BRIEF",
+      "brief_reason": "technical-demo-limited-depth",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "示範主要以 Noise、Voronoi 與 Geometry Nodes 組出效果，並用 Mapping 節點驅動變化，而不是直接動畫 4D texture 的 W，讓空間與時間控制更容易拆開。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對 stylized VFX／NPR 前期設計，這種做法適合先在 Blender 快速調 timing、shape language 與配色，再整理成引擎端可重建的參數與貼圖邏輯。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "目前是藝術家技術示範，不代表節點可直接無損搬到 Unity／Unreal；要驗證的是哪些變化可 bake 成 flipbook／mask，哪些必須在 Shader 或 VFX 系統重做。"
+        }
+      ],
+      "rank_global": 14,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "riverfx-lagrangian-houdini",
+      "title": "RiverFX：Houdini 用 Lagrangian Wave Curves＋自訂 Velocity 場做溪流",
+      "summary": "Fred Bello 依 Wētā 的 Lagrangian wave 研究建立 Houdini 河流：岩石周圍 velocity field、wave curves、low/high mesh 與 whitewater 分層完成。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://80.lv/articles/hypnotizing-fluid-simulation-based-on-w-t-s-research-on-lagrangian-waves",
+      "category": "blender-dcc",
+      "subcategory": "houdini",
+      "ranking_score": 87.8,
+      "analysis_level": "BRIEF",
+      "brief_reason": "technical-demo-limited-depth",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "流程先在岩石周圍建立自訂 velocity field，再配置 wave curves 形成自然流向；低模建立整體流體後，再由 wave curves 製作高模細節，最後疊 whitewater 表現撞擊泡沫。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "這提供一個比單純高度場更可控的河流 VFX 參考：障礙物附近的流向、浪形與泡沫可以分層處理，適合轉譯成離線 sim、cache 或引擎用 flow／foam 資料。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "目前案例是個人作品且未提供完整效能與 cache 成本；若用於遊戲，應先確認低高模轉換、白水 bake、UV／velocity 輸出與目標引擎 runtime 表現。"
+        }
+      ],
+      "rank_global": 15,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "popcornfx-butterfly-ue5",
+      "title": "PopcornFX＋UE5：把蝴蝶法術拆成 Vortex→主蝴蝶→氣流→Explosion",
+      "summary": "Elenna Raguin 先用概念草圖把 stylized spell 分段，再以 PopcornFX Unreal plugin 組成可讀性清楚的即時蝴蝶法術。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://80.lv/articles/mesmerizing-tft-inspired-real-time-stylized-butterfly-spell-vfx",
+      "category": "engine-art",
+      "subcategory": "unreal",
+      "ranking_score": 87,
+      "analysis_level": "BRIEF",
+      "brief_reason": "visual-development-reference-limited-depth",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "效果在製作前先拆成蝴蝶 vortex、巨大主蝴蝶、氣流帶動小蝴蝶、終點爆發四段，並透過 PopcornFX 的 Unreal plugin 在 UE5 中即時組合。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "可直接借鏡的是『先拆視覺節拍再做粒子』：複雜法術不必從單一 emitter 開始，而是用主讀點、引導流與收尾爆發建立清楚 timing 與 silhouette。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "文章沒有提供粒子數、overdraw、GPU cost 或不同平台 benchmark；若用於實際戰鬥特效，仍需用目標鏡頭距離與同屏技能數測試透明排序與 fill-rate。"
+        }
+      ],
+      "rank_global": 16,
+      "homepage_tier": "category_only"
     },
     {
       "id": "starwars-gsplat-crowd-vfx",
@@ -446,8 +749,8 @@
           "text": "導入時應比較記憶體、視差破綻、重打光能力、鏡頭自由度與 comp 成本，確認 representation 適合目標鏡頭。"
         }
       ],
-      "rank_global": 7,
-      "homepage_tier": "next10"
+      "rank_global": 17,
+      "homepage_tier": "category_only"
     },
     {
       "id": "mocopi-3dsmax-biped",
@@ -474,8 +777,36 @@
           "text": "需用走跑轉身、蹲起、交叉遮擋與長 shot 比較原始 capture、Biped 轉換後與人工 cleanup 時間。"
         }
       ],
-      "rank_global": 8,
-      "homepage_tier": "next10"
+      "rank_global": 18,
+      "homepage_tier": "category_only"
+    },
+    {
+      "id": "plugin-hub-blender",
+      "title": "Plugin Hub：把 Blender 多個 Add-on Sidebar 整併成單一可還原選單",
+      "summary": "Plugin Hub 可掃描 3D Viewport Sidebar，把多個 add-on panel 合併成一個 Plugins 區域／選單／浮動視窗，並保留原 panel code 與還原機制。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://80.lv/articles/this-tool-merges-all-your-blender-add-on-panels-into-one-menu",
+      "category": "blender-dcc",
+      "subcategory": "addon",
+      "ranking_score": 84.9,
+      "analysis_level": "BRIEF",
+      "brief_reason": "useful-tool-or-addon-limited-depth",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "工具掃描 Sidebar tabs，讓使用者選擇哪些面板合併；原 add-on 還是由自己的 code 繪製，只改 tab assignment，並支援 combined tab、上方 menu 或獨立浮動視窗。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對安裝大量建模、UV、Rig、批次工具的 Blender 工作站，這類 UI 整理能降低 N-panel 切換成本，特別適合把日常工具集中在固定工作區。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "開發者已做 restore 測試，但部分 add-on 會自行重新註冊 tab，且只處理 3D Viewport Sidebar；導入前應先用團隊實際 add-on 清單驗證衝突與 workspace 保存。"
+        }
+      ],
+      "rank_global": 19,
+      "homepage_tier": "category_only"
     },
     {
       "id": "light-reference-105-presets",
@@ -502,8 +833,8 @@
           "text": "它不是目標引擎的物理真值；使用時應標清曝光、tone mapping、HDR、色域與 shader 差異，避免把 reference 當數值規格。"
         }
       ],
-      "rank_global": 9,
-      "homepage_tier": "next10"
+      "rank_global": 20,
+      "homepage_tier": "category_only"
     },
     {
       "id": "fusion-studio-211-deep",
@@ -530,8 +861,8 @@
           "text": "『最多 8×』只適用特定 deep render；應用自家 EXR／deep sample、Cryptomatte 與 camera track 做版本對照。"
         }
       ],
-      "rank_global": 10,
-      "homepage_tier": "next10"
+      "rank_global": 21,
+      "homepage_tier": "category_only"
     },
     {
       "id": "armorpaint-10-release",
@@ -558,8 +889,92 @@
           "text": "正式版不等於功能等價；應用同一角色與硬表面資產比較 bake、4K/8K VRAM、貼圖輸出與 Unity／UE preset。"
         }
       ],
-      "rank_global": 11,
-      "homepage_tier": "next10"
+      "rank_global": 22,
+      "homepage_tier": "category_only"
+    },
+    {
+      "id": "noggi-blender-rigging-basics",
+      "title": "Blender 角色 Rig 基礎：Bone Placement、Weight Paint、IK/FK 與 Rigify",
+      "summary": "Noggi 用近一小時教學把角色 rig 的常見核心步驟串起來，適合作為新手或跨職能美術建立綁定檢查表的參考。",
+      "quick_impact": "★★★☆☆",
+      "source_url": "https://80.lv/articles/watch-this-blender-tutorial-if-you-re-starting-character-rigging",
+      "category": "3d-animation",
+      "subcategory": "rigging",
+      "ranking_score": 83.5,
+      "analysis_level": "BRIEF",
+      "brief_reason": "practical-tutorial-limited-depth",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "教學涵蓋基本骨架建立與 pose、bone placement、deformation 修正、weight painting、IK 對 FK 的使用差異，以及 Rigify 的基本操作與常見技巧。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "它不是新 rig 系統，但能作為角色資產交接與自檢清單，讓建模／動畫在討論變形、控制器與權重問題時有共同基準，降低只靠口頭經驗傳遞。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "內容定位偏基礎，沒有複雜 facial、corrective deformation 或遊戲 export 深度；適合作為 onboarding 參考，不應取代專案自己的骨架規範與引擎驗證。"
+        }
+      ],
+      "rank_global": 23,
+      "homepage_tier": "category_only"
+    },
+    {
+      "id": "painterly-fight-blender",
+      "title": "Painterly Fight Animation：Blender Smear Frames 做出像在動畫上作畫的動態感",
+      "summary": "動畫師 Ave Espelita 在 Blender 戰鬥動畫中加入 smear frames，形成強烈 painterly motion language，可作為 NPR 戰鬥動作與輪廓設計參考。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://80.lv/articles/check-out-this-impressive-painterly-style-fighting-animation",
+      "category": "3d-animation",
+      "subcategory": "animation",
+      "ranking_score": 82.8,
+      "analysis_level": "BRIEF",
+      "brief_reason": "visual-development-reference-limited-depth",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "案例的核心不是新工具，而是在 Blender 動畫中主動加入 smear frames，把快速打擊的形變與筆觸感當成 motion design 的一部分，而不是只追求每格幾何正確。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對 NPR／卡通戰鬥動畫，這類參考能幫助動畫師在 pose readability、速度感與輪廓誇張之間取得一致語言，並提供『關鍵幀外再設計 smear』的可執行方向。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "目前只有作品與 WIP reference，沒有完整 rig 或 timing 數據；若要導入遊戲動作，需另測 smear frame 在不同攝影機、motion blur 與高低幀率下是否仍清楚。"
+        }
+      ],
+      "rank_global": 24,
+      "homepage_tier": "category_only"
+    },
+    {
+      "id": "maalat-painterly-stilllife",
+      "title": "MAALAT：Blender／Cycles＋實拍材質＋Photoshop 後製的 Painterly Still Life",
+      "summary": "Kem 以 Blender 建模雕刻、Cycles 渲染，自行拍攝紋理後在 Photoshop 整理，再與 node shader 混合，最後用 color grading 統一成傳統繪畫感。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://80.lv/articles/maalat-gorgeous-painterly-3d-still-life-of-filipino-salty-foods",
+      "category": "3d-production",
+      "subcategory": "production-workflow",
+      "ranking_score": 82.2,
+      "analysis_level": "BRIEF",
+      "brief_reason": "visual-development-reference-limited-depth",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "作品把 Blender 建模／雕刻與 Cycles 渲染作為 3D 基底，再使用自行拍攝的 texture，於 Photoshop 處理後混入 node shader，最後以後製 color grading 統一畫面。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對非寫實 lookdev 的啟示是材質不必全部程序生成；把真實攝影紋理當作局部色塊與筆觸來源，再透過節點與後製控制，可更快建立有手作痕跡的表面。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "這是 still-life 視覺開發案例，尚未證明可直接用於即時遊戲；若轉成 realtime，需要驗證光照變化、不同視角下的材質成立度，以及哪些 painterly 特徵要 baked 或 shader 化。"
+        }
+      ],
+      "rank_global": 25,
+      "homepage_tier": "category_only"
     }
   ],
   "visual_evidence": {}
