@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   3D 動作｜2026-09-22｜AI 3D Daily
+  </title>
+  <link href="../../styles.css?v=20260922-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../../shared-components.css?v=20260922-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../../category.css?v=20260922-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+ </head>
+ <body class="category-page" data-category="3d-animation" data-report-date="2026-09-22">
+  <nav aria-label="Production Intelligence 分類" class="global-category-nav">
+   <div class="page global-category-nav-inner">
+    <div class="archive-nav-controls">
+     <a class="archive-nav-home" href="../../">
+      ← 首頁
+     </a>
+     <div class="archive-nav-date">
+      <a aria-label="前一日日報" class="archive-nav-arrow" href="../../2026-09-21/3d-animation/">
+       ←
+      </a>
+      <span>
+       2026-09-22
+      </span>
+     </div>
+    </div>
+    <span aria-hidden="true" class="archive-nav-divider">
+    </span>
+    <a class="global-category-link" href="../#top">
+     TOP5
+    </a>
+    <a class="global-category-link" data-category="ai-generation" href="../ai-generation/">
+     AI 生成
+    </a>
+    <a class="global-category-link" data-category="3d-production" href="../3d-production/">
+     3D 製作
+    </a>
+    <a class="global-category-link is-active" data-category="3d-animation" href="../3d-animation/">
+     3D 動作
+    </a>
+    <a class="global-category-link" data-category="engine-art" href="../engine-art/">
+     遊戲引擎
+    </a>
+    <a class="global-category-link" data-category="emerging-case" href="../emerging-case/">
+     新技術 / Case
+    </a>
+    <a class="global-category-link" data-category="blender-dcc" href="../blender-dcc/">
+     Blender / DCC
+    </a>
+    <a class="global-category-link global-history-link" data-global-view="history" href="../../history/">
+     歷史日報
+    </a>
+   </div>
+  </nav>
+  <main class="page category-main">
+   <article class="category-card" data-intel-id="maya-constraint-batch-tool" data-intel-role="card">
+    <div class="category-meta">
+     #06 · rigging
+    </div>
+    <h2>
+     Create_Constraint_Tool：Maya 多物件 Constraint 改成批次管理
+    </h2>
+    <p class="summary">
+     免費 Maya Python 工具集中管理 Point／Orient／Scale／Parent Constraint、軸向與 Maintain Offset。
+    </p>
+    <figure class="case-preview" data-intel-id="maya-constraint-batch-tool" data-intel-role="visual" data-visual-id="maya-constraint-batch-tool">
+     <a href="https://cgworld.jp/flashnews/01-202609-Maya-ConstraintTool.html" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-22/maya-constraint-batch-tool.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">綁定</b> ★★★★☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       技術／流程變更
+      </h4>
+      <p>
+       工具先整理多組父子物件，再統一套用四類 Constraint，並可逐軸控制與保存清單，避免逐物件重複設定。
+      </p>
+      <h4>
+       Production 影響
+      </h4>
+      <p>
+       對角色綁定、道具跟隨與動畫 setup，可直接降低操作次數與漏設軸向風險，也有利於固定 rigging SOP。
+      </p>
+      <h4>
+       導入測試與限制
+      </h4>
+      <p>
+       正式導入前應以 Maya 2023+ 測 namespace、reference rig、既有 constraint 與 undo 行為，再決定是否放進工具架。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://cgworld.jp/flashnews/01-202609-Maya-ConstraintTool.html" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="animcraft-60-ai-rigging" data-intel-role="card">
+    <div class="category-meta">
+     #13 · rigging
+    </div>
+    <h2>
+     Animcraft 6.0：本機 AI Rig／Skinning＋Clip-based Text-to-Animation
+    </h2>
+    <p class="summary">
+     Animcraft 6.0 新增本機 AI rigging／skinning 與 clip-based text-to-animation，並保留跨 DCC 動畫庫與 timeline 編排定位。
+    </p>
+    <figure class="case-preview" data-intel-id="animcraft-60-ai-rigging" data-intel-role="visual" data-visual-id="animcraft-60-ai-rigging">
+     <a href="https://www.cgchannel.com/2026/09/new-cg-software-you-may-have-missed-20-september-2026/" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-22/animcraft-60-ai-rigging.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">綁定</b> ★★★★☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       技術／流程變更
+      </h4>
+      <p>
+       6.0 新增本機推論的角色 rigging／skinning 模組，並加入基於 NVIDIA Kimodo 的 clip-based text-to-animation；動畫片段可在 timeline 拼接，並限制 ground path 與起始姿勢。
+      </p>
+      <h4>
+       Production 影響
+      </h4>
+      <p>
+       若輸出穩定，這會把『先綁定、再找／生成動作、最後組片段』串在同一套 animation-library 流程，且可與 Maya、3ds Max 等 DCC 共同使用。
+      </p>
+      <h4>
+       導入測試與限制
+      </h4>
+      <p>
+       目前資訊來自版本 round-up，缺少角色比例差、skin weight、手指／臉部與複雜骨架的獨立測試；應以現有遊戲 skeleton 做 rig quality、retarget 與 cleanup 工時比較。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://www.cgchannel.com/2026/09/new-cg-software-you-may-have-missed-20-september-2026/" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="mocopi-3dsmax-biped" data-intel-role="card">
+    <div class="category-meta">
+     #18 · mocap
+    </div>
+    <h2>
+     mocopi for 3ds Max：即時同步後直接轉 Biped .bip
+    </h2>
+    <p class="summary">
+     Sony 與 studio42 將行動 mocap 直接接進 3ds Max Biped 動畫流程。
+    </p>
+    <figure class="case-preview" data-intel-id="mocopi-3dsmax-biped" data-intel-role="visual" data-visual-id="mocopi-3dsmax-biped">
+     <a href="https://cgworld.jp/article/202609-mocopi-3dsmax.html" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-22/mocopi-3dsmax-biped.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">動作捕捉</b> ★★★★☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       技術／流程變更
+      </h4>
+      <p>
+       外掛把 mocopi 全身追蹤即時送進 3ds Max，並支援直接轉成標準 Biped .bip，減少中間格式與額外 retarget。
+      </p>
+      <h4>
+       Production 影響
+      </h4>
+      <p>
+       對仍以 Biped／3ds Max 為核心的團隊，可快速做 blocking、動作參考與低成本 capture，不需整組 pipeline 換 DCC。
+      </p>
+      <h4>
+       導入測試與限制
+      </h4>
+      <p>
+       需用走跑轉身、蹲起、交叉遮擋與長 shot 比較原始 capture、Biped 轉換後與人工 cleanup 時間。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://cgworld.jp/article/202609-mocopi-3dsmax.html" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="noggi-blender-rigging-basics" data-intel-role="card">
+    <div class="category-meta">
+     #23 · rigging
+    </div>
+    <h2>
+     Blender 角色 Rig 基礎：Bone Placement、Weight Paint、IK/FK 與 Rigify
+    </h2>
+    <p class="summary">
+     Noggi 用近一小時教學把角色 rig 的常見核心步驟串起來，適合作為新手或跨職能美術建立綁定檢查表的參考。
+    </p>
+    <figure class="case-preview" data-intel-id="noggi-blender-rigging-basics" data-intel-role="visual" data-visual-id="noggi-blender-rigging-basics">
+     <a href="https://80.lv/articles/watch-this-blender-tutorial-if-you-re-starting-character-rigging" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-22/noggi-blender-rigging-basics.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">綁定</b> ★★★☆☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       技術／流程變更
+      </h4>
+      <p>
+       教學涵蓋基本骨架建立與 pose、bone placement、deformation 修正、weight painting、IK 對 FK 的使用差異，以及 Rigify 的基本操作與常見技巧。
+      </p>
+      <h4>
+       Production 影響
+      </h4>
+      <p>
+       它不是新 rig 系統，但能作為角色資產交接與自檢清單，讓建模／動畫在討論變形、控制器與權重問題時有共同基準，降低只靠口頭經驗傳遞。
+      </p>
+      <h4>
+       導入測試與限制
+      </h4>
+      <p>
+       內容定位偏基礎，沒有複雜 facial、corrective deformation 或遊戲 export 深度；適合作為 onboarding 參考，不應取代專案自己的骨架規範與引擎驗證。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://80.lv/articles/watch-this-blender-tutorial-if-you-re-starting-character-rigging" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="painterly-fight-blender" data-intel-role="card">
+    <div class="category-meta">
+     #24 · animation
+    </div>
+    <h2>
+     Painterly Fight Animation：Blender Smear Frames 做出像在動畫上作畫的動態感
+    </h2>
+    <p class="summary">
+     動畫師 Ave Espelita 在 Blender 戰鬥動畫中加入 smear frames，形成強烈 painterly motion language，可作為 NPR 戰鬥動作與輪廓設計參考。
+    </p>
+    <figure class="case-preview" data-intel-id="painterly-fight-blender" data-intel-role="visual" data-visual-id="painterly-fight-blender">
+     <a href="https://80.lv/articles/check-out-this-impressive-painterly-style-fighting-animation" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-22/painterly-fight-blender.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">動畫</b> ★★★★☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       技術／流程變更
+      </h4>
+      <p>
+       案例的核心不是新工具，而是在 Blender 動畫中主動加入 smear frames，把快速打擊的形變與筆觸感當成 motion design 的一部分，而不是只追求每格幾何正確。
+      </p>
+      <h4>
+       Production 影響
+      </h4>
+      <p>
+       對 NPR／卡通戰鬥動畫，這類參考能幫助動畫師在 pose readability、速度感與輪廓誇張之間取得一致語言，並提供『關鍵幀外再設計 smear』的可執行方向。
+      </p>
+      <h4>
+       導入測試與限制
+      </h4>
+      <p>
+       目前只有作品與 WIP reference，沒有完整 rig 或 timing 數據；若要導入遊戲動作，需另測 smear frame 在不同攝影機、motion blur 與高低幀率下是否仍清楚。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://80.lv/articles/check-out-this-impressive-painterly-style-fighting-animation" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <nav aria-label="相鄰分類" class="category-bottom-nav">
+    <a href="../3d-production/">
+     ← 3D 製作
+    </a>
+    <a href="../#top">
+     TOP5
+    </a>
+    <a href="../engine-art/">
+     遊戲引擎 →
+    </a>
+   </nav>
+  </main>
+  <script defer="" src="../../archive-nav-state.js?v=20260922-r1-workspace-v10-history-current-workspace">
+  </script>
+ </body>
+</html>

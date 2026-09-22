@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   遊戲引擎｜2026-09-22｜AI 3D Daily
+  </title>
+  <link href="../../styles.css?v=20260922-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../../shared-components.css?v=20260922-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../../category.css?v=20260922-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+ </head>
+ <body class="category-page" data-category="engine-art" data-report-date="2026-09-22">
+  <nav aria-label="Production Intelligence 分類" class="global-category-nav">
+   <div class="page global-category-nav-inner">
+    <div class="archive-nav-controls">
+     <a class="archive-nav-home" href="../../">
+      ← 首頁
+     </a>
+     <div class="archive-nav-date">
+      <a aria-label="前一日日報" class="archive-nav-arrow" href="../../2026-09-21/engine-art/">
+       ←
+      </a>
+      <span>
+       2026-09-22
+      </span>
+     </div>
+    </div>
+    <span aria-hidden="true" class="archive-nav-divider">
+    </span>
+    <a class="global-category-link" href="../#top">
+     TOP5
+    </a>
+    <a class="global-category-link" data-category="ai-generation" href="../ai-generation/">
+     AI 生成
+    </a>
+    <a class="global-category-link" data-category="3d-production" href="../3d-production/">
+     3D 製作
+    </a>
+    <a class="global-category-link" data-category="3d-animation" href="../3d-animation/">
+     3D 動作
+    </a>
+    <a class="global-category-link is-active" data-category="engine-art" href="../engine-art/">
+     遊戲引擎
+    </a>
+    <a class="global-category-link" data-category="emerging-case" href="../emerging-case/">
+     新技術 / Case
+    </a>
+    <a class="global-category-link" data-category="blender-dcc" href="../blender-dcc/">
+     Blender / DCC
+    </a>
+    <a class="global-category-link global-history-link" data-global-view="history" href="../../history/">
+     歷史日報
+    </a>
+   </div>
+  </nav>
+  <main class="page category-main">
+   <article class="category-card" data-intel-id="unigine-sdk-222" data-intel-role="card">
+    <div class="category-meta">
+     #02 · tools
+    </div>
+    <h2>
+     UNIGINE 2.22：新 Sequencer、動畫串流與 Animation Graph IK／Constraint
+    </h2>
+    <p class="summary">
+     UNIGINE 2.22 把 Sequencer、非同步動畫串流、IK／Look At／Joint Constraint、Dynamic Resolution 與渲染更新一起推進，對即時 3D 與技術美術管線有直接影響。
+    </p>
+    <figure class="case-preview" data-intel-id="unigine-sdk-222" data-intel-role="visual" data-visual-id="unigine-sdk-222">
+     <a href="https://unigine.com/news/2026/unigine-sdk-2-22-release/" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-22/unigine-sdk-222.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">引擎工具</b> ★★★★★</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-full" data-analysis-level="FULL">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body">
+      <h4>
+       技術／流程變更
+      </h4>
+      <p>
+       2.22 以 Sequencer 取代舊 Tracker 路線，加入 auto-key、可重用 sequence、物件綁定與 C++／C# API；Animation Graph 同時新增 IK、Look At、關節約束與程序姿態控制。
+      </p>
+      <h4>
+       Production 影響
+      </h4>
+      <p>
+       動畫密集場景可使用非同步動畫串流，搭配新的 timeline 與 graph 能把過場、角色動作與工具自動化更集中在 Editor 內完成，減少外部工具往返。
+      </p>
+      <h4>
+       導入測試與限制
+      </h4>
+      <p>
+       官方同時列出 Dynamic Resolution、陰影與效能改進，但實際收益仍需用目標角色數、骨架複雜度與平台做 benchmark；先驗證 Sequencer／Animation Graph 與既有資產相容性。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://unigine.com/news/2026/unigine-sdk-2-22-release/" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="unity-66-supported-release" data-intel-role="card">
+    <div class="category-meta">
+     #03 · unity
+    </div>
+    <h2>
+     Unity 6.6 正式推出：Supported Release 銜接 6.7 LTS
+    </h2>
+    <p class="summary">
+     Unity 6.6 已成為 Unity 6 系列最後一個 Supported Release；對正在 Unity 6 生產線上的團隊，重點是評估新功能、修正與升級風險，而不是只追版本號。
+    </p>
+    <figure class="case-preview" data-intel-id="unity-66-supported-release" data-intel-role="visual" data-visual-id="unity-66-supported-release">
+     <a href="https://discussions.unity.com/t/unity-6-6-is-now-available/1735357" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-22/unity-66-supported-release.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">Unity</b> ★★★★★</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       技術／流程變更
+      </h4>
+      <p>
+       Unity 官方確認 6.6 已可用，並把它定位為 Unity 6 家族最後一個 Supported Release，維護到下一個 6.7 版本到來；團隊可從 6.6 開始逐步銜接後續 LTS。
+      </p>
+      <h4>
+       Production 影響
+      </h4>
+      <p>
+       對 URP／角色／技術美術專案，價值在於能提早取得 6.6 的新功能與修正，同時用正式 upgrade guide 規劃專案升級，而不是等到下一個 LTS 才一次承擔全部變更。
+      </p>
+      <h4>
+       導入測試與限制
+      </h4>
+      <p>
+       目前此候選以官方發布貼文為主要證據，不能把所有 6.6 功能都視為已適合既有專案；應先用分支驗證 Shader、Renderer Feature、平台 build 與套件相容性再決定導入。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://discussions.unity.com/t/unity-6-6-is-now-available/1735357" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="flesh-dynamics-unity" data-intel-role="card">
+    <div class="category-meta">
+     #08 · unity
+    </div>
+    <h2>
+     Flesh Dynamics：Unity 角色局部軟組織變形，直接塗抹模擬區域
+    </h2>
+    <p class="summary">
+     Flesh Dynamics 疊在既有 Rig／Animation 上，以 paint mask 指定軟組織區域，再用 GPU vertex deformation、Jobs 與 Burst 做碰撞和體積感變形。
+    </p>
+    <figure class="case-preview" data-intel-id="flesh-dynamics-unity" data-intel-role="visual" data-visual-id="flesh-dynamics-unity">
+     <a href="https://80.lv/articles/give-animated-characters-realistic-jiggle-motion-with-this-unity-tool" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-22/flesh-dynamics-unity.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">Unity</b> ★★★★☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       技術／流程變更
+      </h4>
+      <p>
+       工具讓美術直接在角色上塗抹需要軟組織物理的區域，未塗抹部位維持原 Rig 動畫；碰撞物可壓縮指定區域，並以 GPU vertex deformation、Jobs、Burst 執行。
+      </p>
+      <h4>
+       Production 影響
+      </h4>
+      <p>
+       若能穩定使用，角色不必為每個胸腹、尾巴或軟組織額外建立複雜 secondary rig，就能在 Built-in、URP、HDRP 上加入局部動態反應。
+      </p>
+      <h4>
+       導入測試與限制
+      </h4>
+      <p>
+       效能數字目前主要來自開發者示範，實際成本會隨網格密度、模擬面積與同屏角色數變動；導入前應用目標角色 LOD 與最差同屏數做 GPU／CPU profile。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://80.lv/articles/give-animated-characters-realistic-jiggle-motion-with-this-unity-tool" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="popcornfx-butterfly-ue5" data-intel-role="card">
+    <div class="category-meta">
+     #16 · unreal
+    </div>
+    <h2>
+     PopcornFX＋UE5：把蝴蝶法術拆成 Vortex→主蝴蝶→氣流→Explosion
+    </h2>
+    <p class="summary">
+     Elenna Raguin 先用概念草圖把 stylized spell 分段，再以 PopcornFX Unreal plugin 組成可讀性清楚的即時蝴蝶法術。
+    </p>
+    <figure class="case-preview" data-intel-id="popcornfx-butterfly-ue5" data-intel-role="visual" data-visual-id="popcornfx-butterfly-ue5">
+     <a href="https://80.lv/articles/mesmerizing-tft-inspired-real-time-stylized-butterfly-spell-vfx" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-22/popcornfx-butterfly-ue5.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">Unreal</b> ★★★★☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       技術／流程變更
+      </h4>
+      <p>
+       效果在製作前先拆成蝴蝶 vortex、巨大主蝴蝶、氣流帶動小蝴蝶、終點爆發四段，並透過 PopcornFX 的 Unreal plugin 在 UE5 中即時組合。
+      </p>
+      <h4>
+       Production 影響
+      </h4>
+      <p>
+       可直接借鏡的是『先拆視覺節拍再做粒子』：複雜法術不必從單一 emitter 開始，而是用主讀點、引導流與收尾爆發建立清楚 timing 與 silhouette。
+      </p>
+      <h4>
+       導入測試與限制
+      </h4>
+      <p>
+       文章沒有提供粒子數、overdraw、GPU cost 或不同平台 benchmark；若用於實際戰鬥特效，仍需用目標鏡頭距離與同屏技能數測試透明排序與 fill-rate。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://80.lv/articles/mesmerizing-tft-inspired-real-time-stylized-butterfly-spell-vfx" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <nav aria-label="相鄰分類" class="category-bottom-nav">
+    <a href="../3d-animation/">
+     ← 3D 動作
+    </a>
+    <a href="../#top">
+     TOP5
+    </a>
+    <a href="../emerging-case/">
+     新技術 / Case →
+    </a>
+   </nav>
+  </main>
+  <script defer="" src="../../archive-nav-state.js?v=20260922-r1-workspace-v10-history-current-workspace">
+  </script>
+ </body>
+</html>
