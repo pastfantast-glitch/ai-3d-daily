@@ -67,6 +67,19 @@ def write_json(path: Path, payload) -> None:
     path.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", "utf-8")
 
 
+def write_json_if_changed(path: Path, payload) -> bool:
+    """Persist JSON only when its parsed value changes; preserve Collector bytes on semantic no-op."""
+    if path.exists():
+        try:
+            existing = json.loads(path.read_text("utf-8"))
+        except (OSError, json.JSONDecodeError) as exc:
+            fail(f"cannot compare existing {path.relative_to(ROOT)}: {exc}")
+        if existing == payload:
+            return False
+    write_json(path, payload)
+    return True
+
+
 def reject_forbidden_session_data(value, trail="session") -> None:
     if isinstance(value, dict):
         for key, child in value.items():
@@ -172,8 +185,8 @@ def main() -> None:
         "date": date,
         "items": decisions,
     }
-    write_json(data_path, data)
-    write_json(ledger_path, ledger)
+    write_json_if_changed(data_path, data)
+    write_json_if_changed(ledger_path, ledger)
 
     # Fail closed against current-main Collector contracts without generating or
     # requiring public homepage/daily surfaces. Public-surface parity remains a

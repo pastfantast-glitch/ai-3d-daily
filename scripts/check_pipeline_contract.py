@@ -84,6 +84,33 @@ if (ROOT/'scripts'/'check_ready_contract.py').exists():
     for token in ('canonical_sha256','prepared_by','registry_normalized_before_ready','preflight_passed_before_ready','sha256_file'):
         if token not in ready_check: fail(f'ready contract missing required attestation/token: {token}')
 
+# A semantic no-op during Collector finalization must preserve the exact JSON bytes.
+# Otherwise minified Collector artifacts become pretty-printed and the bridge
+# falsely interprets that formatting-only rewrite as unpersisted Collector state.
+finalizer_path=ROOT/'scripts'/'finalize_collection_handoff.py'
+if not finalizer_path.exists():
+    fail('collector finalizer missing')
+else:
+    finalizer_text=finalizer_path.read_text('utf-8')
+    for token in ('write_json_if_changed(data_path, data)','write_json_if_changed(ledger_path, ledger)'):
+        if token not in finalizer_text: fail(f'collector finalizer semantic no-op guard missing: {token}')
+    try:
+        scripts_dir=str(ROOT/'scripts')
+        if scripts_dir not in sys.path: sys.path.insert(0,scripts_dir)
+        from finalize_collection_handoff import write_json_if_changed
+        with tempfile.TemporaryDirectory() as td:
+            probe=Path(td)/'probe.json'
+            original='{"schema_version":1,"items":[]}\n'
+            probe.write_text(original,'utf-8')
+            if write_json_if_changed(probe, {'schema_version':1,'items':[]}):
+                fail('collector finalizer semantic no-op incorrectly reported a mutation')
+            if probe.read_text('utf-8') != original:
+                fail('collector finalizer semantic no-op rewrote JSON bytes')
+            if not write_json_if_changed(probe, {'schema_version':1,'items':[{'id':'changed'}]}):
+                fail('collector finalizer failed to persist a real semantic mutation')
+    except Exception as exc:
+        fail(f'collector finalizer semantic no-op self-test crashed: {type(exc).__name__}: {exc}')
+
 # Quick-impact canonical data is rating-only; presentation derives one compact
 # label from the canonical subtype. Every configured subtype must have a label.
 qcfg_path=ROOT/'config'/'quick-impact-contract.json'
