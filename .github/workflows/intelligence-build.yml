@@ -79,6 +79,7 @@ jobs:
     outputs:
       date: ${{ steps.bridge.outputs.date }}
       outcome: ${{ steps.bridge.outputs.outcome }}
+      reason_code: ${{ steps.bridge.outputs.reason_code }}
     steps:
       - uses: actions/checkout@v6
         with:
@@ -104,6 +105,19 @@ jobs:
           echo "- Date: ${{ needs.handoff.outputs.date }}" >> "$GITHUB_STEP_SUMMARY"
           echo "- Authoritative Registry normalization was persisted before request creation." >> "$GITHUB_STEP_SUMMARY"
           echo "- No .request/.ready was created; Collector should continue targeted refill." >> "$GITHUB_STEP_SUMMARY"
+
+  collector_fix:
+    needs: [route, handoff]
+    if: always() && needs.handoff.result == 'success' && needs.handoff.outputs.outcome == 'fix_required'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Report controlled Collector correction
+        run: |
+          echo "## Collector correction required" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Date: ${{ needs.handoff.outputs.date }}" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Reason: ${{ needs.handoff.outputs.reason_code }}" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Publication remains fail-closed; no .request/.ready was created." >> "$GITHUB_STEP_SUMMARY"
+          echo "- Correct the Collector data from source evidence, then create a new handoff." >> "$GITHUB_STEP_SUMMARY"
 
   prepare:
     needs: [route, handoff]
