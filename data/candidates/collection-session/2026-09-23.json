@@ -1,0 +1,572 @@
+{
+  "schema_version": 1,
+  "date": "2026-09-23",
+  "discovery_coverage": {
+    "fill_ladder_exhausted": true,
+    "backlog_checked": true,
+    "backlog_remaining_eligible": 0,
+    "targeted_refill_performed": true,
+    "quality_first_confirmed": true,
+    "windows": {
+      "24h": {
+        "status": "exhausted",
+        "candidates_found": 1
+      },
+      "7d": {
+        "status": "exhausted",
+        "candidates_found": 12
+      },
+      "30d": {
+        "status": "exhausted",
+        "candidates_found": 19
+      },
+      "6m": {
+        "status": "exhausted",
+        "candidates_found": 26
+      },
+      "evergreen": {
+        "status": "exhausted",
+        "candidates_found": 8
+      }
+    },
+    "category_candidates": {
+      "ai-generation": {
+        "candidates_considered": 3
+      },
+      "3d-production": {
+        "candidates_considered": 7
+      },
+      "3d-animation": {
+        "candidates_considered": 6
+      },
+      "engine-art": {
+        "candidates_considered": 6
+      },
+      "emerging-case": {
+        "candidates_considered": 4
+      },
+      "blender-dcc": {
+        "candidates_considered": 8
+      }
+    },
+    "registered_source_probe": {
+      "performed": true,
+      "sources": {
+        "80-level": {
+          "status": "checked",
+          "method": "web-site-query",
+          "candidates_found": 17,
+          "candidate_ids": [
+            "maya-motionmaker-2026-1",
+            "tetra-realtime-character",
+            "dwarf-king-character-workflow",
+            "build-a-builder-modular-character",
+            "blender-retopo-ctrl-rmb",
+            "aquaglow-vrchat-underwater-shader",
+            "bgen-picker-blender-maya",
+            "keypro-maya-timeline",
+            "maya-mutant-muscle-rig",
+            "motion-painter-blender",
+            "houdini22-native-gsplats",
+            "inertia-blender-physics",
+            "blender-procedural-clouds",
+            "blender-sponge-gn",
+            "vfx-toolkit-probe",
+            "ue58-stylized-facial-rig-probe",
+            "keyflow-maya-probe"
+          ]
+        },
+        "3dnchu": {
+          "status": "not-scheduled",
+          "method": "rolling-window",
+          "candidates_found": 0,
+          "candidate_ids": [],
+          "reason": "deterministic-rolling-probe-not-selected"
+        },
+        "cgworld-jp": {
+          "status": "not-scheduled",
+          "method": "rolling-window",
+          "candidates_found": 0,
+          "candidate_ids": [],
+          "reason": "deterministic-rolling-probe-not-selected"
+        },
+        "bilibili-mobile": {
+          "status": "not-scheduled",
+          "method": "rolling-window",
+          "candidates_found": 0,
+          "candidate_ids": [],
+          "reason": "deterministic-rolling-probe-not-selected"
+        },
+        "artstation": {
+          "status": "checked",
+          "method": "web-site-query",
+          "candidates_found": 0,
+          "candidate_ids": []
+        },
+        "gumroad-discover": {
+          "status": "checked",
+          "method": "web-site-query",
+          "candidates_found": 0,
+          "candidate_ids": []
+        },
+        "xiaohongshu": {
+          "status": "checked",
+          "method": "web-site-query",
+          "candidates_found": 0,
+          "candidate_ids": []
+        },
+        "cg-channel": {
+          "status": "checked",
+          "method": "web-site-query",
+          "candidates_found": 9,
+          "candidate_ids": [
+            "flow-studio-wonder3d",
+            "open-light-hdr-gobos",
+            "world-creator-2025-3",
+            "rtx50-cg-workstation-bench",
+            "grove23-realtime-trees",
+            "ggro-houdini-growth",
+            "natsura06-vegetation",
+            "modeler263-houdini",
+            "redshift-2026-9-probe"
+          ]
+        },
+        "blender-official": {
+          "status": "checked",
+          "method": "web-site-query",
+          "candidates_found": 1,
+          "candidate_ids": [
+            "blender52-lts-probe"
+          ]
+        },
+        "epic-developer-community": {
+          "status": "checked",
+          "method": "web-site-query",
+          "candidates_found": 2,
+          "candidate_ids": [
+            "ue58-materials-tutorials",
+            "ue58-release-notes-probe"
+          ]
+        },
+        "unity-official": {
+          "status": "checked",
+          "method": "web-site-query",
+          "candidates_found": 1,
+          "candidate_ids": [
+            "unity-render-pipeline-strategy-probe"
+          ]
+        },
+        "sidefx-official": {
+          "status": "checked",
+          "method": "web-site-query",
+          "candidates_found": 1,
+          "candidate_ids": [
+            "sidefx-gsplat-relight-probe"
+          ]
+        },
+        "autodesk-area": {
+          "status": "not-scheduled",
+          "method": "rolling-window",
+          "candidates_found": 0,
+          "candidate_ids": [],
+          "reason": "deterministic-rolling-probe-not-selected"
+        },
+        "adobe-substance-3d": {
+          "status": "not-scheduled",
+          "method": "rolling-window",
+          "candidates_found": 0,
+          "candidate_ids": [],
+          "reason": "deterministic-rolling-probe-not-selected"
+        },
+        "game-developer": {
+          "status": "not-scheduled",
+          "method": "rolling-window",
+          "candidates_found": 0,
+          "candidate_ids": [],
+          "reason": "deterministic-rolling-probe-not-selected"
+        }
+      }
+    },
+    "notes": "2026-09-23 manual catch-up on current-main after PR #66. Rolling backlog was empty. Discovery used source-neutral 24h/7d/30d/6m/evergreen queries plus only today's deterministic registered-source probe set. Exact Published Registry snapshot identity was checked before ranking; already-published sources remain duplicate decisions, not filler. ArtStation, Gumroad and Xiaohongshu were queried as selected rotating sources but produced no new verifiable high-value candidate in this pass."
+  },
+  "candidate_decisions": [
+    {
+      "candidate_id": "maya-motionmaker-2026-1",
+      "source_url": "https://80.lv/articles/maya-2026-1-released-with-ai-based-animation-tool-motionmaker",
+      "discovery_channels": [
+        "web-search",
+        "registered-source-probe:80-level",
+        "targeted-refill",
+        "published-registry-snapshot"
+      ],
+      "decision": "published",
+      "canonical_id": "maya-motionmaker-2026-1"
+    },
+    {
+      "candidate_id": "flow-studio-wonder3d",
+      "source_url": "https://www.cgchannel.com/2026/03/autodesk-adds-generative-ai-capabilities-to-flow-studio/",
+      "discovery_channels": [
+        "web-search",
+        "registered-source-probe:cg-channel",
+        "targeted-refill",
+        "published-registry-snapshot"
+      ],
+      "decision": "published",
+      "canonical_id": "flow-studio-wonder3d"
+    },
+    {
+      "candidate_id": "tetra-realtime-character",
+      "source_url": "https://80.lv/articles/take-a-look-at-this-real-time-game-character-created-using-zbrush-and-unreal-engine",
+      "discovery_channels": [
+        "web-search",
+        "registered-source-probe:80-level",
+        "targeted-refill",
+        "published-registry-snapshot"
+      ],
+      "decision": "published",
+      "canonical_id": "tetra-realtime-character"
+    },
+    {
+      "candidate_id": "dwarf-king-character-workflow",
+      "source_url": "https://80.lv/articles/breakdown-sculpting-a-dwarf-king-using-zbrush-and-substance-3d-painter",
+      "discovery_channels": [
+        "web-search",
+        "registered-source-probe:80-level",
+        "targeted-refill",
+        "published-registry-snapshot"
+      ],
+      "decision": "published",
+      "canonical_id": "dwarf-king-character-workflow"
+    },
+    {
+      "candidate_id": "build-a-builder-modular-character",
+      "source_url": "https://80.lv/articles/breakdown-how-to-sculpt-and-texture-a-character-with-customisable-features",
+      "discovery_channels": [
+        "web-search",
+        "registered-source-probe:80-level",
+        "targeted-refill",
+        "published-registry-snapshot"
+      ],
+      "decision": "published",
+      "canonical_id": "build-a-builder-modular-character"
+    },
+    {
+      "candidate_id": "blender-retopo-ctrl-rmb",
+      "source_url": "https://80.lv/articles/retopology-tutorial-how-to-place-new-geometry-in-blender-efficiently",
+      "discovery_channels": [
+        "web-search",
+        "registered-source-probe:80-level",
+        "targeted-refill",
+        "published-registry-snapshot"
+      ],
+      "decision": "published",
+      "canonical_id": "blender-retopo-ctrl-rmb"
+    },
+    {
+      "candidate_id": "aquaglow-vrchat-underwater-shader",
+      "source_url": "https://80.lv/articles/add-stylized-underwater-effects-to-your-vrchat-avatar",
+      "discovery_channels": [
+        "web-search",
+        "registered-source-probe:80-level",
+        "targeted-refill",
+        "published-registry-snapshot"
+      ],
+      "decision": "published",
+      "canonical_id": "aquaglow-vrchat-underwater-shader"
+    },
+    {
+      "candidate_id": "bgen-picker-blender-maya",
+      "source_url": "https://80.lv/articles/ultimate-animation-picker-for-blender-maya",
+      "discovery_channels": [
+        "web-search",
+        "registered-source-probe:80-level",
+        "targeted-refill",
+        "published-registry-snapshot"
+      ],
+      "decision": "published",
+      "canonical_id": "bgen-picker-blender-maya"
+    },
+    {
+      "candidate_id": "keypro-maya-timeline",
+      "source_url": "https://80.lv/articles/upgrade-maya-timeline-with-this-advanced-animation-tool",
+      "discovery_channels": [
+        "web-search",
+        "registered-source-probe:80-level",
+        "targeted-refill",
+        "published-registry-snapshot"
+      ],
+      "decision": "published",
+      "canonical_id": "keypro-maya-timeline"
+    },
+    {
+      "candidate_id": "maya-mutant-muscle-rig",
+      "source_url": "https://80.lv/articles/creating-muscle-rig-in-maya-with-custom-rigging-framework",
+      "discovery_channels": [
+        "web-search",
+        "registered-source-probe:80-level",
+        "targeted-refill",
+        "published-registry-snapshot"
+      ],
+      "decision": "published",
+      "canonical_id": "maya-mutant-muscle-rig"
+    },
+    {
+      "candidate_id": "motion-painter-blender",
+      "source_url": "https://80.lv/articles/this-blender-add-on-lets-you-draw-animation-paths-in-viewport",
+      "discovery_channels": [
+        "web-search",
+        "registered-source-probe:80-level",
+        "targeted-refill",
+        "published-registry-snapshot"
+      ],
+      "decision": "published",
+      "canonical_id": "motion-painter-blender"
+    },
+    {
+      "candidate_id": "houdini22-native-gsplats",
+      "source_url": "https://80.lv/articles/houdini-22-is-out-now-bringing-native-gaussian-splats-new-ui-and-more",
+      "discovery_channels": [
+        "web-search",
+        "registered-source-probe:80-level",
+        "targeted-refill",
+        "published-registry-snapshot"
+      ],
+      "decision": "published",
+      "canonical_id": "houdini22-native-gsplats"
+    },
+    {
+      "candidate_id": "open-light-hdr-gobos",
+      "source_url": "https://www.cgchannel.com/2026/04/free-tool-open-light-generates-procedural-hdr-light-textures/",
+      "discovery_channels": [
+        "web-search",
+        "registered-source-probe:cg-channel",
+        "targeted-refill",
+        "published-registry-snapshot"
+      ],
+      "decision": "published",
+      "canonical_id": "open-light-hdr-gobos"
+    },
+    {
+      "candidate_id": "world-creator-2025-3",
+      "source_url": "https://www.cgchannel.com/2025/11/bitethebytes-releases-world-creator-2025-3/",
+      "discovery_channels": [
+        "web-search",
+        "registered-source-probe:cg-channel",
+        "targeted-refill",
+        "published-registry-snapshot"
+      ],
+      "decision": "published",
+      "canonical_id": "world-creator-2025-3"
+    },
+    {
+      "candidate_id": "rtx50-cg-workstation-bench",
+      "source_url": "https://www.cgchannel.com/2025/12/review-are-the-geforce-rtx-5090-and-5080-worth-the-money-for-cg/",
+      "discovery_channels": [
+        "web-search",
+        "registered-source-probe:cg-channel",
+        "targeted-refill",
+        "published-registry-snapshot"
+      ],
+      "decision": "published",
+      "canonical_id": "rtx50-cg-workstation-bench"
+    },
+    {
+      "candidate_id": "ue58-materials-tutorials",
+      "source_url": "https://dev.epicgames.com/documentation/unreal-engine/unreal-engine-materials-tutorials",
+      "discovery_channels": [
+        "web-search",
+        "registered-source-probe:epic-developer-community",
+        "targeted-refill",
+        "published-registry-snapshot"
+      ],
+      "decision": "published",
+      "canonical_id": "ue58-materials-tutorials"
+    },
+    {
+      "candidate_id": "inertia-blender-physics",
+      "source_url": "https://80.lv/articles/this-blender-tool-lets-you-animate-physics-in-just-few-clicks",
+      "discovery_channels": [
+        "web-search",
+        "registered-source-probe:80-level",
+        "targeted-refill",
+        "published-registry-snapshot"
+      ],
+      "decision": "published",
+      "canonical_id": "inertia-blender-physics"
+    },
+    {
+      "candidate_id": "blender-procedural-clouds",
+      "source_url": "https://80.lv/articles/take-a-look-at-this-geometry-nodes-tool-for-creating-realistic-clouds",
+      "discovery_channels": [
+        "web-search",
+        "registered-source-probe:80-level",
+        "targeted-refill",
+        "published-registry-snapshot"
+      ],
+      "decision": "published",
+      "canonical_id": "blender-procedural-clouds"
+    },
+    {
+      "candidate_id": "blender-sponge-gn",
+      "source_url": "https://80.lv/articles/get-this-blender-geometry-nodes-tool-for-turning-meshes-into-sponges",
+      "discovery_channels": [
+        "web-search",
+        "registered-source-probe:80-level",
+        "targeted-refill",
+        "published-registry-snapshot"
+      ],
+      "decision": "published",
+      "canonical_id": "blender-sponge-gn"
+    },
+    {
+      "candidate_id": "grove23-realtime-trees",
+      "source_url": "https://www.cgchannel.com/2026/02/f12-releases-the-grove-2-3-for-blender-and-houdini/",
+      "discovery_channels": [
+        "web-search",
+        "registered-source-probe:cg-channel",
+        "targeted-refill",
+        "published-registry-snapshot"
+      ],
+      "decision": "published",
+      "canonical_id": "grove23-realtime-trees"
+    },
+    {
+      "candidate_id": "ggro-houdini-growth",
+      "source_url": "https://www.cgchannel.com/2026/01/free-houdini-add-on-ggro-creates-crazily-beautiful-organic-forms/",
+      "discovery_channels": [
+        "web-search",
+        "registered-source-probe:cg-channel",
+        "targeted-refill",
+        "published-registry-snapshot"
+      ],
+      "decision": "published",
+      "canonical_id": "ggro-houdini-growth"
+    },
+    {
+      "candidate_id": "natsura06-vegetation",
+      "source_url": "https://www.cgchannel.com/2026/04/houdini-plant-generation-toolkit-natsura-is-now-in-early-access/",
+      "discovery_channels": [
+        "web-search",
+        "registered-source-probe:cg-channel",
+        "targeted-refill",
+        "published-registry-snapshot"
+      ],
+      "decision": "published",
+      "canonical_id": "natsura06-vegetation"
+    },
+    {
+      "candidate_id": "modeler263-houdini",
+      "source_url": "https://www.cgchannel.com/2026/05/alexey-vanzhula-releases-modeler-26-for-houdini/",
+      "discovery_channels": [
+        "web-search",
+        "registered-source-probe:cg-channel",
+        "targeted-refill",
+        "published-registry-snapshot"
+      ],
+      "decision": "published",
+      "canonical_id": "modeler263-houdini"
+    },
+    {
+      "candidate_id": "vfx-toolkit-probe",
+      "source_url": "https://80.lv/articles/artist-releases-blender-add-on-with-over-100-vfx-assets-presets",
+      "discovery_channels": [
+        "web-search",
+        "registered-source-probe:80-level",
+        "published-registry-snapshot"
+      ],
+      "decision": "duplicate",
+      "reason_code": "published-source-no-substantive-delta"
+    },
+    {
+      "candidate_id": "ue58-stylized-facial-rig-probe",
+      "source_url": "https://80.lv/articles/building-stylized-facial-rigs-with-control-rig-in-unreal-engine-5-8",
+      "discovery_channels": [
+        "web-search",
+        "registered-source-probe:80-level",
+        "published-registry-snapshot"
+      ],
+      "decision": "duplicate",
+      "reason_code": "published-source-no-substantive-delta"
+    },
+    {
+      "candidate_id": "keyflow-maya-probe",
+      "source_url": "https://80.lv/articles/over-25-free-maya-animation-tools-from-game-dev-animator",
+      "discovery_channels": [
+        "web-search",
+        "registered-source-probe:80-level",
+        "published-registry-snapshot"
+      ],
+      "decision": "duplicate",
+      "reason_code": "published-source-no-substantive-delta"
+    },
+    {
+      "candidate_id": "redshift-2026-9-probe",
+      "source_url": "https://www.cgchannel.com/2026/09/maxon-releases-redshift-2026-9/",
+      "discovery_channels": [
+        "web-search",
+        "registered-source-probe:cg-channel",
+        "published-registry-snapshot"
+      ],
+      "decision": "duplicate",
+      "reason_code": "published-source-no-substantive-delta"
+    },
+    {
+      "candidate_id": "blender52-lts-probe",
+      "source_url": "https://www.blender.org/releases/5-2/",
+      "discovery_channels": [
+        "web-search",
+        "registered-source-probe:blender-official",
+        "published-registry-snapshot"
+      ],
+      "decision": "duplicate",
+      "reason_code": "published-source-no-substantive-delta"
+    },
+    {
+      "candidate_id": "ue58-release-notes-probe",
+      "source_url": "https://dev.epicgames.com/documentation/unreal-engine/unreal-engine-5-8-release-notes",
+      "discovery_channels": [
+        "web-search",
+        "registered-source-probe:epic-developer-community",
+        "published-registry-snapshot"
+      ],
+      "decision": "duplicate",
+      "reason_code": "published-source-no-substantive-delta"
+    },
+    {
+      "candidate_id": "unity-render-pipeline-strategy-probe",
+      "source_url": "https://unity.com/topics/render-pipelines-strategy-for-2026",
+      "discovery_channels": [
+        "web-search",
+        "registered-source-probe:unity-official",
+        "published-registry-snapshot"
+      ],
+      "decision": "duplicate",
+      "reason_code": "published-source-no-substantive-delta"
+    },
+    {
+      "candidate_id": "sidefx-gsplat-relight-probe",
+      "source_url": "https://www.sidefx.com/tutorials/3-new-ways-to-relight-gaussian-splats/",
+      "discovery_channels": [
+        "web-search",
+        "registered-source-probe:sidefx-official",
+        "published-registry-snapshot"
+      ],
+      "decision": "duplicate",
+      "reason_code": "published-source-no-substantive-delta"
+    }
+  ],
+  "personalization": {
+    "contract": "supabase-semantic-feedback-v1",
+    "status": "unavailable",
+    "vote_count": 0,
+    "reason": "Active app owner cannot be authoritatively resolved by the automation connector in this execution; neutral semantic fallback applied.",
+    "max_rank_multiplier": 0.2,
+    "max_query_expansion_fraction": 0.2,
+    "raw_profile_committed": false,
+    "bookmarks_used": false,
+    "domain_weights_used": false,
+    "admission_bypass": false,
+    "quality_gate_bypass": false,
+    "source_quota": false
+  }
+}

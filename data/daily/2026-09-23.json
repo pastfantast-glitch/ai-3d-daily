@@ -1,0 +1,876 @@
+{
+  "date": "2026-09-23",
+  "schema_version": 3,
+  "metadata": {
+    "total_items": 23,
+    "collection_mode": "production-intelligence-preference-v1-hybrid",
+    "collection_contract_effective_date": "2026-09-04",
+    "preference_contract_effective_date": "2026-09-06",
+    "admission_policy_effective_date": "2026-09-15",
+    "discovery_windows": [
+      "24h",
+      "7d",
+      "30d",
+      "6m",
+      "evergreen"
+    ],
+    "analysis_level_counts": {
+      "FULL": 0,
+      "BRIEF": 23,
+      "REJECT": 0
+    },
+    "analysis_level_policy": "evidence-depth-tiered; FULL=3-5 source-supported blocks; BRIEF=3 readable source-grounded angles with explicit limits; REJECT=not-publishable",
+    "full_analysis_depth_contract": "v6-tiered-evidence-three-angle-reading",
+    "full_analysis_style_reference": "2026-09-12",
+    "full_analysis_heading_language": "zh-Hant",
+    "discovery_coverage": {
+      "fill_ladder_exhausted": true,
+      "backlog_checked": true,
+      "backlog_remaining_eligible": 0,
+      "targeted_refill_performed": true,
+      "quality_first_confirmed": true,
+      "windows": {
+        "24h": {
+          "status": "exhausted",
+          "candidates_found": 1
+        },
+        "7d": {
+          "status": "exhausted",
+          "candidates_found": 12
+        },
+        "30d": {
+          "status": "exhausted",
+          "candidates_found": 19
+        },
+        "6m": {
+          "status": "exhausted",
+          "candidates_found": 26
+        },
+        "evergreen": {
+          "status": "exhausted",
+          "candidates_found": 8
+        }
+      },
+      "category_candidates": {
+        "ai-generation": {
+          "candidates_considered": 3
+        },
+        "3d-production": {
+          "candidates_considered": 7
+        },
+        "3d-animation": {
+          "candidates_considered": 6
+        },
+        "engine-art": {
+          "candidates_considered": 6
+        },
+        "emerging-case": {
+          "candidates_considered": 4
+        },
+        "blender-dcc": {
+          "candidates_considered": 8
+        }
+      },
+      "registered_source_probe": {
+        "performed": true,
+        "sources": {
+          "80-level": {
+            "status": "checked",
+            "method": "web-site-query",
+            "candidates_found": 17,
+            "candidate_ids": [
+              "maya-motionmaker-2026-1",
+              "tetra-realtime-character",
+              "dwarf-king-character-workflow",
+              "build-a-builder-modular-character",
+              "blender-retopo-ctrl-rmb",
+              "aquaglow-vrchat-underwater-shader",
+              "bgen-picker-blender-maya",
+              "keypro-maya-timeline",
+              "maya-mutant-muscle-rig",
+              "motion-painter-blender",
+              "houdini22-native-gsplats",
+              "inertia-blender-physics",
+              "blender-procedural-clouds",
+              "blender-sponge-gn",
+              "vfx-toolkit-probe",
+              "ue58-stylized-facial-rig-probe",
+              "keyflow-maya-probe"
+            ]
+          },
+          "3dnchu": {
+            "status": "not-scheduled",
+            "method": "rolling-window",
+            "candidates_found": 0,
+            "candidate_ids": [],
+            "reason": "deterministic-rolling-probe-not-selected"
+          },
+          "cgworld-jp": {
+            "status": "not-scheduled",
+            "method": "rolling-window",
+            "candidates_found": 0,
+            "candidate_ids": [],
+            "reason": "deterministic-rolling-probe-not-selected"
+          },
+          "bilibili-mobile": {
+            "status": "not-scheduled",
+            "method": "rolling-window",
+            "candidates_found": 0,
+            "candidate_ids": [],
+            "reason": "deterministic-rolling-probe-not-selected"
+          },
+          "artstation": {
+            "status": "checked",
+            "method": "web-site-query",
+            "candidates_found": 0,
+            "candidate_ids": []
+          },
+          "gumroad-discover": {
+            "status": "checked",
+            "method": "web-site-query",
+            "candidates_found": 0,
+            "candidate_ids": []
+          },
+          "xiaohongshu": {
+            "status": "checked",
+            "method": "web-site-query",
+            "candidates_found": 0,
+            "candidate_ids": []
+          },
+          "cg-channel": {
+            "status": "checked",
+            "method": "web-site-query",
+            "candidates_found": 9,
+            "candidate_ids": [
+              "flow-studio-wonder3d",
+              "open-light-hdr-gobos",
+              "world-creator-2025-3",
+              "rtx50-cg-workstation-bench",
+              "grove23-realtime-trees",
+              "ggro-houdini-growth",
+              "natsura06-vegetation",
+              "modeler263-houdini",
+              "redshift-2026-9-probe"
+            ]
+          },
+          "blender-official": {
+            "status": "checked",
+            "method": "web-site-query",
+            "candidates_found": 1,
+            "candidate_ids": [
+              "blender52-lts-probe"
+            ]
+          },
+          "epic-developer-community": {
+            "status": "checked",
+            "method": "web-site-query",
+            "candidates_found": 2,
+            "candidate_ids": [
+              "ue58-materials-tutorials",
+              "ue58-release-notes-probe"
+            ]
+          },
+          "unity-official": {
+            "status": "checked",
+            "method": "web-site-query",
+            "candidates_found": 1,
+            "candidate_ids": [
+              "unity-render-pipeline-strategy-probe"
+            ]
+          },
+          "sidefx-official": {
+            "status": "checked",
+            "method": "web-site-query",
+            "candidates_found": 1,
+            "candidate_ids": [
+              "sidefx-gsplat-relight-probe"
+            ]
+          },
+          "autodesk-area": {
+            "status": "not-scheduled",
+            "method": "rolling-window",
+            "candidates_found": 0,
+            "candidate_ids": [],
+            "reason": "deterministic-rolling-probe-not-selected"
+          },
+          "adobe-substance-3d": {
+            "status": "not-scheduled",
+            "method": "rolling-window",
+            "candidates_found": 0,
+            "candidate_ids": [],
+            "reason": "deterministic-rolling-probe-not-selected"
+          },
+          "game-developer": {
+            "status": "not-scheduled",
+            "method": "rolling-window",
+            "candidates_found": 0,
+            "candidate_ids": [],
+            "reason": "deterministic-rolling-probe-not-selected"
+          }
+        }
+      },
+      "notes": "2026-09-23 manual catch-up on current-main after PR #66. Rolling backlog was empty. Discovery used source-neutral 24h/7d/30d/6m/evergreen queries plus only today's deterministic registered-source probe set. Exact Published Registry snapshot identity was checked before ranking; already-published sources remain duplicate decisions, not filler. ArtStation, Gumroad and Xiaohongshu were queried as selected rotating sources but produced no new verifiable high-value candidate in this pass."
+    },
+    "personalization": {
+      "contract": "supabase-semantic-feedback-v1",
+      "status": "unavailable",
+      "vote_count": 0,
+      "reason": "Active app owner cannot be authoritatively resolved by the automation connector in this execution; neutral semantic fallback applied.",
+      "max_rank_multiplier": 0.2,
+      "max_query_expansion_fraction": 0.2,
+      "raw_profile_committed": false,
+      "bookmarks_used": false,
+      "domain_weights_used": false,
+      "admission_bypass": false,
+      "quality_gate_bypass": false,
+      "source_quota": false
+    }
+  },
+  "items": [
+    {
+      "id": "maya-motionmaker-2026-1",
+      "title": "Maya MotionMaker：以路徑與關鍵位置生成雙足／四足動作",
+      "summary": "Maya 2026.1 的 MotionMaker 以生成式系統補足角色中間動作，並與 Bifrost 模組化 Rigging Framework 一起強化角色製作。",
+      "quick_impact": "★★★★★",
+      "source_url": "https://80.lv/articles/maya-2026-1-released-with-ai-based-animation-tool-motionmaker",
+      "category": "ai-generation",
+      "subcategory": "ai-motion",
+      "ranking_score": 96,
+      "analysis_level": "BRIEF",
+      "brief_reason": "early-release-limited-evidence",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "MotionMaker 可用角色起終位置或視窗中的導引路徑生成雙足與四足中間動作；同版 Bifrost 也加入模組化 Rigging Framework，可轉成 Maya 原生控制器與關節。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對角色動畫前期 blocking、快速驗證 locomotion 與重複 rig 組裝都有明確價值，尤其適合先產生可編輯基底，再由動畫師進行姿勢與節奏修正。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "目前來源主要是功能介紹，生成動作品質、腳底鎖定、碰撞與風格化角色穩定度仍需用實際骨架測試；Bifrost rigging toolset 也有版本相容限制。"
+        }
+      ],
+      "rank_global": 1,
+      "homepage_tier": "top5"
+    },
+    {
+      "id": "flow-studio-wonder3d",
+      "title": "Autodesk Flow Studio 加入 Wonder 3D：VFX 平台延伸到 AI 3D",
+      "summary": "Flow Studio 將生成式 3D 能力帶入原本的線上 VFX／動捕工作流，提供文字或影像轉 3D 的新入口。",
+      "quick_impact": "★★★★★",
+      "source_url": "https://www.cgchannel.com/2026/03/autodesk-adds-generative-ai-capabilities-to-flow-studio/",
+      "category": "ai-generation",
+      "subcategory": "ai-3d",
+      "ranking_score": 94,
+      "analysis_level": "BRIEF",
+      "brief_reason": "short-official-announcement",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "Autodesk 在 Flow Studio 中加入 Wonder 3D 生成能力，讓原本偏線上 VFX、match moving 與角色處理的平台開始涵蓋 text-to-3D／image-to-3D 類資產生成。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "如果輸出能維持可用拓樸與材質，這會縮短概念資產、blocking 與背景道具的前期準備時間，也讓 AI 3D 更容易接進既有 Autodesk 製作環境。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "目前公開資訊仍偏功能與方案說明，實際網格品質、UV、PBR 貼圖、骨架與引擎可用性需獨立測試，不能直接視為 game-ready 生產輸出。"
+        }
+      ],
+      "rank_global": 2,
+      "homepage_tier": "top5"
+    },
+    {
+      "id": "tetra-realtime-character",
+      "title": "Tetra 即時角色：把 UV／貼圖效率與 MetaHuman 臉部測試放在同一條線",
+      "summary": "學生即時角色案例把 ZBrush、Substance、Maya／Max、Blender、Marvelous 與 Unreal 串成遊戲角色製作流程。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://80.lv/articles/take-a-look-at-this-real-time-game-character-created-using-zbrush-and-unreal-engine",
+      "category": "3d-production",
+      "subcategory": "character-production",
+      "ranking_score": 92,
+      "analysis_level": "BRIEF",
+      "brief_reason": "production-reference-limited-depth",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "作者以遊戲可用為目標製作 Tetra，特別強調貼圖與 UV 效率，並使用 MetaHuman 測試臉部 rig 與表演，同時串接多套 DCC 與 Unreal Engine。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "這類案例對角色外包與內製 SOP 很有參考價值：高細節不只看雕刻，還要同步驗證 UV 密度、即時材質、臉部變形與引擎中的最終表現。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "文章只公開部分流程，沒有完整 triangle budget、貼圖尺寸與效能數據；導入時應以自家角色規格重做 UV、材質與 MetaHuman 對接測試。"
+        }
+      ],
+      "rank_global": 3,
+      "homepage_tier": "top5"
+    },
+    {
+      "id": "dwarf-king-character-workflow",
+      "title": "Dwarf King：以強輪廓、年齡細節與材質敘事完成角色",
+      "summary": "角色 breakdown 從身體 blockout 到皺紋、年齡感與裝備細節，展示概念轉 3D 時如何保留方正矮人輪廓。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://80.lv/articles/breakdown-sculpting-a-dwarf-king-using-zbrush-and-substance-3d-painter",
+      "category": "3d-production",
+      "subcategory": "character-production",
+      "ranking_score": 90,
+      "analysis_level": "BRIEF",
+      "brief_reason": "practical-tutorial-limited-depth",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "流程先抓住概念中方正、厚重的矮人輪廓，再逐步加入皺紋、年齡與服裝裝備細節，最後以 Substance 3D Painter 完成材質敘事。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對角色製作最可轉移的重點是先固定 silhouette 與角色性格，再把微細節服務於年齡、磨損與故事，而不是過早堆高頻雕刻資訊。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "來源屬單一作品 breakdown，沒有可量化效能或遊戲規格；實作時仍需自行控制 SubD、烘焙、UV 與即時材質成本。"
+        }
+      ],
+      "rank_global": 4,
+      "homepage_tier": "top5"
+    },
+    {
+      "id": "build-a-builder-modular-character",
+      "title": "Build-a-Builder：用模組衣物、UV 分配與材質組合做可變角色",
+      "summary": "模組化角色案例以多套衣物與 UV／材質設計測試同一角色的可替換生產方式。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://80.lv/articles/breakdown-how-to-sculpt-and-texture-a-character-with-customisable-features",
+      "category": "3d-production",
+      "subcategory": "character-production",
+      "ranking_score": 89,
+      "analysis_level": "BRIEF",
+      "brief_reason": "production-reference-limited-depth",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "作者把建築工人角色設計成可替換衣物的模組結構，並說明人體參考、UV 區分與服裝貼圖的處理方式，重點不是只做單一最終造型。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對遊戲角色系統而言，這能直接映射到換裝、外包拆件與共用材質策略；在美術前期就規劃模組邊界可降低後續改裝與版本變體成本。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "案例沒有完整說明骨架共用、穿插處理或 draw call 成本；真正導入需要額外驗證接縫、skin weight、LOD 與材質合批。"
+        }
+      ],
+      "rank_global": 5,
+      "homepage_tier": "top5"
+    },
+    {
+      "id": "blender-retopo-ctrl-rmb",
+      "title": "Blender Retopo 小技巧：Ctrl+右鍵連續鋪點、Relax Slide 保體積",
+      "summary": "Blender Secrets 示範更快鋪設新拓樸與整理點距的手動 retopo 流程。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://80.lv/articles/retopology-tutorial-how-to-place-new-geometry-in-blender-efficiently",
+      "category": "blender-dcc",
+      "subcategory": "blender-tip",
+      "ranking_score": 88,
+      "analysis_level": "BRIEF",
+      "brief_reason": "practical-tutorial-limited-depth",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "教學示範按住 Ctrl 搭配右鍵快速沿表面鋪設新頂點與邊，再用 Relax Slide 重新分布點位，重點是整理拓樸時不要把原本體積壓扁。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "這對角色臉、布料或 AI／掃描網格的手動 cleanup 很實用，可把大量逐點操作縮成連續鋪設與局部放鬆兩個步驟。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "這是操作技巧而非自動拓樸方案，品質仍取決於 edge flow 規劃；複雜關節、臉部環線與硬表面轉折仍需人工判斷。"
+        }
+      ],
+      "rank_global": 6,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "aquaglow-vrchat-underwater-shader",
+      "title": "AquaGlow：以 lilToon 疊出可調式水下角色效果",
+      "summary": "VRChat 用的 AquaGlow shader 可套在頭髮、身體與衣物，提供顏色、波紋尺度與動畫速度控制。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://80.lv/articles/add-stylized-underwater-effects-to-your-vrchat-avatar",
+      "category": "engine-art",
+      "subcategory": "shader",
+      "ranking_score": 87,
+      "analysis_level": "BRIEF",
+      "brief_reason": "technical-demo-limited-depth",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "AquaGlow 建在 lilToon 之上，透過可調顏色、波紋尺寸與動畫速度，把水下風格效果套到角色頭髮、皮膚與服裝等多種材質區域。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對 NPR／Toon 角色的價值是把環境狀態做成材質層而非重做貼圖，適合研究水下、魔法區域或局部動態光感的角色表現。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "目前證據以 VRChat 實例為主，移植到一般 Unity URP 時需要重新確認 shader pass、透明排序、行動裝置成本與 lilToon 相依性。"
+        }
+      ],
+      "rank_global": 7,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "bgen-picker-blender-maya",
+      "title": "BGEN Picker：Blender／Maya 共用的角色控制選取介面",
+      "summary": "BGEN Picker 支援視覺控制器、滑桿、多角色 picker 與腳本按鈕，用介面降低複雜 rig 的操作成本。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://80.lv/articles/ultimate-animation-picker-for-blender-maya",
+      "category": "3d-animation",
+      "subcategory": "rigging",
+      "ranking_score": 86,
+      "analysis_level": "BRIEF",
+      "brief_reason": "useful-tool-or-addon-limited-depth",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "工具可拖放建立 picker 版面、加入自訂形狀與顏色、控制滑桿、腳本按鈕與快捷鍵，也支援多角色配置並可匯入匯出 picker。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "在角色動畫製作中，picker 能把複雜 control rig 的操作入口標準化，減少動畫師搜尋 controller 與記憶命名的時間，對外包交接也更清楚。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "效能與大型 production rig 的相容性目前主要來自產品描述；導入前應測試 namespace、reference、多人共用設定與版本管理。"
+        }
+      ],
+      "rank_global": 8,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "keypro-maya-timeline",
+      "title": "KeyPro：在 Maya Timeline 疊加音訊、Key 密度等動畫資訊",
+      "summary": "KeyPro 以多層資料顯示重做 Maya 時間軸，讓動畫師不必頻繁切面板查看關鍵幀與音訊資訊。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://80.lv/articles/upgrade-maya-timeline-with-this-advanced-animation-tool",
+      "category": "3d-animation",
+      "subcategory": "animation",
+      "ranking_score": 85,
+      "analysis_level": "BRIEF",
+      "brief_reason": "useful-tool-or-addon-limited-depth",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "KeyPro 在 Maya 原生 timeline 下方堆疊多個即時資料層，包含音訊波形與關鍵幀密度等資訊，讓動畫師在同一區域看到節奏與 key 分布。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "這類 timeline 擴充對 cutscene、lip sync 與密集 key 調整特別有價值，可減少開關 Graph Editor 或音訊工具的操作切換。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "目前功能資訊偏產品展示，尚缺大型場景與長鏡頭的效能數據；要先驗證高 key 數、reference rig 與團隊 Maya 版本相容性。"
+        }
+      ],
+      "rank_global": 9,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "maya-mutant-muscle-rig",
+      "title": "Mutant Tools 肌肉 Rig 原型：以 ribbons 與 block-based rig 組合變形",
+      "summary": "Maya 肌肉 rig WIP 使用 ribbons 與 Mutant Tools 的模組化 rigging framework 建立可重用結構。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://80.lv/articles/creating-muscle-rig-in-maya-with-custom-rigging-framework",
+      "category": "3d-animation",
+      "subcategory": "rigging",
+      "ranking_score": 84,
+      "analysis_level": "BRIEF",
+      "brief_reason": "technical-demo-limited-depth",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "示範以 ribbon 系統配合 Mutant Tools 的 block-based rigging 結構建立肌肉變形，目的在把肌肉控制拆成可重複配置的 rig 元件。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對角色 TD 來說，價值在於把局部肌肉與次級變形從一次性手工 rig 轉成模組，較容易維護、複製到不同角色並保持 animator-friendly 控制。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "目前仍是 WIP 示範，沒有完整 deformation benchmark、skin cluster 成本或遊戲引擎輸出驗證；導入前應先測試性能與 bake 流程。"
+        }
+      ],
+      "rank_global": 10,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "motion-painter-blender",
+      "title": "Motion Painter：直接在 Blender Viewport 畫路徑生成可編輯 Keyframe",
+      "summary": "Motion Painter 把手繪路徑轉成 Blender 標準 location／rotation 關鍵幀，提供 Follow、Orbit、Wave 等筆刷。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://80.lv/articles/this-blender-add-on-lets-you-draw-animation-paths-in-viewport",
+      "category": "3d-animation",
+      "subcategory": "animation",
+      "ranking_score": 83,
+      "analysis_level": "BRIEF",
+      "brief_reason": "useful-tool-or-addon-limited-depth",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "使用者在 viewport 畫出 motion path 後，工具把筆畫轉成可編輯的 Blender location／rotation keyframes，並提供直線、多段線、橡皮擦與多種運動筆刷。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對 previs、物件飛行、鏡頭 blocking 或 stylized motion 很有效，因為創作者可以先用路徑思考運動，再回到標準 keyframe 做精修。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "它不是角色 body mechanics 解算器，路徑轉 key 後仍要處理 timing、碰撞與弧線品質；複雜旋轉與角色骨架需要另外驗證。"
+        }
+      ],
+      "rank_global": 11,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "houdini22-native-gsplats",
+      "title": "Houdini 22：原生 Gaussian Splat 編輯、重打光、Rig 與動畫",
+      "summary": "Houdini 22 把 3D Gaussian Splats 納入原生程序式工具鏈，從建立到渲染都能在 Houdini 內處理。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://80.lv/articles/houdini-22-is-out-now-bringing-native-gaussian-splats-new-ui-and-more",
+      "category": "emerging-case",
+      "subcategory": "4d",
+      "ranking_score": 82,
+      "analysis_level": "BRIEF",
+      "brief_reason": "short-official-announcement",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "Houdini 22 原生支援建立、編輯、重打光、rig、動畫與渲染 Gaussian Splats，讓 3DGS 不再只是外部 viewer 或一次性掃描結果。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對場景掃描、虛擬製作與混合幾何流程而言，最大的 Production 影響是能用 Houdini 節點化處理 splat，並與既有 SOP、Karma 與程序式工具串接。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "3DGS 的碰撞、遊戲 runtime、LOD 與跨引擎交換仍不是一般 mesh 等級成熟；應先驗證輸出格式、記憶體與即時渲染成本。"
+        }
+      ],
+      "rank_global": 12,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "open-light-hdr-gobos",
+      "title": "Open Light：程序化產生 HDR 光紋與 Gobo 的免費工具",
+      "summary": "Open Light 用程序化方式建立專業 HDR light textures，服務 VFX、動態設計與虛擬製作照明。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://www.cgchannel.com/2026/04/free-tool-open-light-generates-procedural-hdr-light-textures/",
+      "category": "engine-art",
+      "subcategory": "rendering",
+      "ranking_score": 81,
+      "analysis_level": "BRIEF",
+      "brief_reason": "useful-tool-or-addon-limited-depth",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "Open Light 讓使用者程序化生成 HDR light textures／gobos，而不是反覆搜尋現成素材；工具由燈光藝術家因實際製作需求而開發。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對即時或離線場景照明，這能快速建立窗格、葉影、燈具圖樣等可重複光紋，也有利於建立團隊內可參數化的 lighting library。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "文章未提供不同 renderer 的完整相容矩陣；導入時要確認動態範圍、色彩管理、解析度與 Unreal／Unity 中投影方式。"
+        }
+      ],
+      "rank_global": 13,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "world-creator-2025-3",
+      "title": "World Creator 2025.3：強化地形輸出並加入 Godot 整合",
+      "summary": "地形生成器新增 ORBX 匯出、Godot integration plugin 與多項地形／光照工作流更新。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://www.cgchannel.com/2025/11/bitethebytes-releases-world-creator-2025-3/",
+      "category": "3d-production",
+      "subcategory": "environment-production",
+      "ranking_score": 80,
+      "analysis_level": "BRIEF",
+      "brief_reason": "production-reference-limited-depth",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "World Creator 2025.3 擴充地形輸出與整合能力，包含 ORBX 匯出到 OctaneRender、Godot plugin，以及更多地形遮罩、洞穴與環境處理選項。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "環境團隊可把程序地形當成跨 DCC／引擎的來源資料，而不是只輸出 heightmap；對大型場景原型、地貌迭代與多引擎專案更有彈性。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "此版本已不是最新主版本，採用前應先確認現行版功能與授權；Godot／Unreal／Unity 的材質、植被與座標轉換仍需專案級測試。"
+        }
+      ],
+      "rank_global": 14,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "rtx50-cg-workstation-bench",
+      "title": "RTX 5090／5080 DCC 實測：不同軟體的 Blackwell 收益差異很大",
+      "summary": "CG Channel 以多套 DCC、renderer 與即時引擎做實測，顯示新 GPU 在 Blender、Unreal、Unity 等軟體的收益並不一致。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://www.cgchannel.com/2025/12/review-are-the-geforce-rtx-5090-and-5080-worth-the-money-for-cg/",
+      "category": "engine-art",
+      "subcategory": "optimization",
+      "ranking_score": 79,
+      "analysis_level": "BRIEF",
+      "brief_reason": "production-reference-limited-depth",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "測試涵蓋 3ds Max、Maya、Blender、Substance、Unreal、Unity 與多套 renderer；RTX 5090／5080 在部分應用明顯領先，但 Maya wireframe、3ds Max 等也出現反常結果。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對美術工作站採購最重要的訊息是不能只看理論 TFLOPS；VRAM、driver、viewport API 與特定 DCC 最佳化會直接改變實際 Production 效率。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "測試平台與版本固定在文章時間點，驅動與軟體更新可能改變結果；採購前應用自家角色、場景與 renderer 做代表性 benchmark。"
+        }
+      ],
+      "rank_global": 15,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "ue58-materials-tutorials",
+      "title": "UE5.8 Materials Tutorials：把 Material Instance、Detail、Decal、Layered 工作流集中成官方路徑",
+      "summary": "Epic 官方材料教學整理從基礎到進階的 Material 建立與可重用工作流，適合當技術美術規範基準。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://dev.epicgames.com/documentation/unreal-engine/unreal-engine-materials-tutorials",
+      "category": "engine-art",
+      "subcategory": "unreal",
+      "ranking_score": 78,
+      "analysis_level": "BRIEF",
+      "brief_reason": "practical-tutorial-limited-depth",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "官方教學從 Material Editor 基礎延伸到 Material Instances、Detail Texturing、Mesh Decals 與 Layered Materials 等可重用模式，提供一致的節點與資產組織方式。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對團隊 shader 規範而言，價值不是單一效果，而是建立主材質、instance 與局部 detail 的分層思路，可降低重複 shader 與參數失控。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "這是官方教學集合而非單一效能方案；實際專案仍要依平台檢查 shader permutation、材質層數、透明與 texture fetch 成本。"
+        }
+      ],
+      "rank_global": 16,
+      "homepage_tier": "category_only"
+    },
+    {
+      "id": "inertia-blender-physics",
+      "title": "Inertia：以 Geometry Nodes 即時預測拋射、軌道與曲線運動",
+      "summary": "Blender add-on 把重力、摩擦、速度等物理運動轉成可預覽的路徑，降低手工 keyframe 計算。",
+      "quick_impact": "★★★☆☆",
+      "source_url": "https://80.lv/articles/this-blender-tool-lets-you-animate-physics-in-just-few-clicks",
+      "category": "blender-dcc",
+      "subcategory": "addon",
+      "ranking_score": 77,
+      "analysis_level": "BRIEF",
+      "brief_reason": "useful-tool-or-addon-limited-depth",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "Inertia 以 Geometry Nodes 建立 Projectile、Orbital 與 Curve 三套系統，會在 viewport 顯示即時預測軌跡，並讓使用者用 Gravity、Friction、Speed 等參數調整。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對道具飛行、載具軌跡與 motion design，可先用物理路徑快速得到可信基礎，再轉為動畫調整，省下大量手算與反覆試 key 的時間。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "工具偏物件級物理動畫，並非完整 rigid-body solver；與碰撞、角色互動或引擎最終物理的一致性仍需要另外測試。"
+        }
+      ],
+      "rank_global": 17,
+      "homepage_tier": "category_only"
+    },
+    {
+      "id": "blender-procedural-clouds",
+      "title": "Blender Geometry Nodes 程序雲：多層雲型、PBR 大氣與可動畫控制",
+      "summary": "程序雲工具提供積雲、積雨雲、卷雲等多種雲型，並以物理尺度與 shader 建立可調天空。",
+      "quick_impact": "★★★☆☆",
+      "source_url": "https://80.lv/articles/take-a-look-at-this-geometry-nodes-tool-for-creating-realistic-clouds",
+      "category": "blender-dcc",
+      "subcategory": "blender",
+      "ranking_score": 76,
+      "analysis_level": "BRIEF",
+      "brief_reason": "technical-demo-limited-depth",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "工具用 Geometry Nodes 建立多層雲系統，可控制尺寸、覆蓋與外觀，並提供多種雲型；材質以空氣與水粒子尺度為基礎，且能製作雲層動畫。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對環境 lookdev 與背景天空，程序參數比固定 HDRI 更容易做天候變體、鏡頭調整與動畫，也適合產生可再加工的天空 reference。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "展示主要基於 Cycles，轉到即時引擎時不能直接假設同等成本與視覺；需重新評估體積材質、billboard 或烘焙策略。"
+        }
+      ],
+      "rank_global": 18,
+      "homepage_tier": "category_only"
+    },
+    {
+      "id": "blender-sponge-gn",
+      "title": "Procedural Sponge Modifier：用 Geometry Nodes 把任意 Mesh 轉成海綿結構",
+      "summary": "免費節點工具可調 pore size、細節與紋理，把任何模型程序化轉成多孔海綿外觀。",
+      "quick_impact": "★★★☆☆",
+      "source_url": "https://80.lv/articles/get-this-blender-geometry-nodes-tool-for-turning-meshes-into-sponges",
+      "category": "blender-dcc",
+      "subcategory": "blender-tip",
+      "ranking_score": 75,
+      "analysis_level": "BRIEF",
+      "brief_reason": "technical-demo-limited-depth",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "Procedural Sponge Modifier 以 Geometry Nodes 將輸入 mesh 轉為多孔結構，可調孔洞尺寸、紋理與整體細節密度，並保持程序式可修改。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "雖然題材小，但對程序建模思路很有參考價值：把表面破碎、孔洞與密度變化封裝成 modifier，可延伸到岩石、腐蝕與風格化材質幾何。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "高密度幾何可能快速增加 polygon 與記憶體成本；若用於遊戲資產，應測試 bake-to-normal、LOD 或 shader 近似方案。"
+        }
+      ],
+      "rank_global": 19,
+      "homepage_tier": "category_only"
+    },
+    {
+      "id": "grove23-realtime-trees",
+      "title": "The Grove 2.3：樹木生成改進即時引擎 Mesh 結構與 Houdini Indie 支援",
+      "summary": "樹木生成器新增直接畫樹、枝條細分與更適合 real-time 的 mesh 切分結構。",
+      "quick_impact": "★★★☆☆",
+      "source_url": "https://www.cgchannel.com/2026/02/f12-releases-the-grove-2-3-for-blender-and-houdini/",
+      "category": "3d-production",
+      "subcategory": "environment-production",
+      "ranking_score": 74,
+      "analysis_level": "BRIEF",
+      "brief_reason": "useful-tool-or-addon-limited-depth",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "The Grove 2.3 可直接在場景畫出樹木，新增 branch subdivision，並能沿枝條拆分 mesh 與端蓋，使輸出更貼近 three.js、WebGL 與即時引擎需求；Houdini 版也支援 Indie。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對植被資產製作，這能把生物式生長、風動畫與 real-time mesh 結構放進同一生成流程，降低從程序樹到遊戲資產的人工整理。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "生成品質仍需搭配葉片材質、LOD、風與碰撞測試；文章提到模擬資料量降低，但不能直接等同於最終 runtime 效能提升。"
+        }
+      ],
+      "rank_global": 20,
+      "homepage_tier": "category_only"
+    },
+    {
+      "id": "ggro-houdini-growth",
+      "title": "GGro：Houdini 70+ Nodes 的有機生長與反應擴散工具集",
+      "summary": "GGro 用 1D／2D／3D growth solver、influence 與 utility nodes 生成珊瑚、菌類、神經與晶體式生長動畫。",
+      "quick_impact": "★★★☆☆",
+      "source_url": "https://www.cgchannel.com/2026/01/free-houdini-add-on-ggro-creates-crazily-beautiful-organic-forms/",
+      "category": "emerging-case",
+      "subcategory": "procedural",
+      "ranking_score": 73,
+      "analysis_level": "BRIEF",
+      "brief_reason": "emerging-research-limited-production-evidence",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "GGro 從靜態 mesh 出發，以 fuel、方向、mask 控制生長，包含 70 多個節點與空間殖民、reaction-diffusion 等 solver，可生成多種有機與晶體形態。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "它適合程序 VFX、世界生長、感染擴散與 motion graphics R&D，最大價值是把生長行為拆成可組合節點，而不是只提供單一 preset。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "目前仍是 beta，文件有限且作者也計畫繼續最佳化；大型場景的穩定性、cache、版本相容與遊戲輸出需要額外驗證。"
+        }
+      ],
+      "rank_global": 21,
+      "homepage_tier": "category_only"
+    },
+    {
+      "id": "natsura06-vegetation",
+      "title": "Natsura 0.6：掃描＋程序植被、USD Dense Canopy 與生長 Effector",
+      "summary": "Houdini 植被工具把植物學模擬、參數建模與規則控制整合，並支援掃描樹幹延伸與 USD 組裝樹冠。",
+      "quick_impact": "★★★☆☆",
+      "source_url": "https://www.cgchannel.com/2026/04/houdini-plant-generation-toolkit-natsura-is-now-in-early-access/",
+      "category": "3d-production",
+      "subcategory": "environment-production",
+      "ranking_score": 72,
+      "analysis_level": "BRIEF",
+      "brief_reason": "useful-tool-or-addon-limited-depth",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "Natsura 0.6 新增掃描與程序樹混合、多樹幹延伸、以 USD branch library 組裝高密度樹冠，以及 curve、magnet、noise 等模組化 growth effector。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對開放世界與自然場景，這類工具能把掃描真實感與規則式生成結合，並保留枝條厚度、距主幹距離與受力等資料供後續 procedural 處理。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "產品仍處 early access；導入遊戲專案前需驗證 Houdini Engine／USD 交換、SpeedTree 或引擎風系統整合，以及生成時間與 LOD 成本。"
+        }
+      ],
+      "rank_global": 22,
+      "homepage_tier": "category_only"
+    },
+    {
+      "id": "modeler263-houdini",
+      "title": "Modeler 26.3：讓 Houdini 具備更直接的 PolyPen、Draw Cards 與 Layer 工作流",
+      "summary": "Modeler 26 系列強化傳統建模操作，新增卡片／管狀幾何繪製、Bezier Deform、Layers 與工具搜尋。",
+      "quick_impact": "★★★☆☆",
+      "source_url": "https://www.cgchannel.com/2026/05/alexey-vanzhula-releases-modeler-26-for-houdini/",
+      "category": "blender-dcc",
+      "subcategory": "houdini",
+      "ranking_score": 71,
+      "analysis_level": "BRIEF",
+      "brief_reason": "useful-tool-or-addon-limited-depth",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "Modeler 26 新增 Draw Cards、Bezier Deform、Layers panel、open-curve Boolean 等功能；26.3 又加入新的工具搜尋與 PolyPen 改進，讓 Houdini 建模更接近傳統 DCC 直覺。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對習慣 3ds Max／Maya／ZBrush 的美術而言，直接 viewport 建模工具可降低進 Houdini 的門檻，也方便在程序節點與手工造型之間來回切換。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "這是第三方工具集，工作流收益取決於團隊是否真正需要在 Houdini 內做大量手工 modeling；導入前應檢查 Houdini 版本與 studio license 成本。"
+        }
+      ],
+      "rank_global": 23,
+      "homepage_tier": "category_only"
+    }
+  ],
+  "visual_evidence": {}
+}
