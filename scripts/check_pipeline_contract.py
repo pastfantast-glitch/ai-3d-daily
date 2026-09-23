@@ -19,7 +19,7 @@ else:
     required=[
         "- 'data/publish/*.collector'", "- 'data/publish/*.request'", "- 'data/publish/*.ready'",
         'group: canonical-intelligence-publish','cancel-in-progress: false','pip install -r requirements-pipeline.txt',
-        'finalize_collector_trigger.py','Collector refill required','prepare_release_candidate.py','PRE-READY HANDOFF COMPLETE','check_ready_contract.py','check_release_input.py','check_registry_contract.py',
+        'finalize_collector_trigger.py','Collector refill required','Collector correction required','prepare_release_candidate.py','PRE-READY HANDOFF COMPLETE','check_ready_contract.py','check_release_input.py','check_registry_contract.py',
         'render_daily_navigation.py','render_home_archive_links.py','render_information_architecture.py','build_intelligence.py',
         'extract_visual_assets.py','inject_visual_previews.py','apply_cache_bust.py','check_intelligence_contract.py','check_visual_contract.py','check_home_contract.py',
         'check_daily_contract.py','check_information_architecture.py','check_historical_regression.py --days 4','verify_pages_publish.py','write_publish_receipt.py','build_published_registry_snapshot.py','restore_publish_snapshot.py',
@@ -39,6 +39,8 @@ else:
         fail('collector prepare/publish must require handoff outcome=request')
     if "needs.handoff.outputs.outcome == 'refill_required'" not in main:
         fail('collector Registry refill must be represented as controlled workflow state before prepare')
+    if "needs.handoff.outputs.outcome == 'fix_required'" not in main:
+        fail('collector content correction must be represented as controlled workflow state before prepare')
     if 'git push origin HEAD:main' not in main: fail('canonical workflow must persist pre-ready/publish results through its sole writer path')
     if main.count('ref: main')<3: fail('route, canonical writer and recovery checkouts must refresh to latest main')
     if 'cancel-in-progress: true' in main: fail('canonical writer must never cancel an active prepare/publish')
@@ -101,9 +103,11 @@ else:
         'enrich_full_analysis_v3.py',
         'validation_only_finalizer(date)',
         'registry_rc == 2',
-        'persist_refill(date, trigger)',
-        'write_output(date, "refill_required")',
-        'write_output(date, "request")',
+        'persist_followup(',
+        'controlled_collector_validation_failure',
+        'write_output(date, "refill_required"',
+        'write_output(date, "fix_required"',
+        'write_output(date, "request"',
     ):
         if token not in bridge_text:
             fail(f'collector bridge pre-request preflight missing: {token}')
@@ -257,4 +261,4 @@ else:
     if "if(!id&&date==='2026-08-23')" not in text or 'LEGACY_20260823_RULES' not in text: fail('legacy identity fallback scope changed')
 if errors:
     print('PIPELINE CONTRACT FAILED'); print('\n'.join('- '+e for e in errors)); sys.exit(1)
-print('PIPELINE CONTRACT PASS: one canonical writer workflow + Collector pre-request Registry/evidence preflight + controlled refill state + same-run request-to-ready-to-publish handoff + registry hybrid wrapper delegates canonical identity/tier logic + registry normalization/hash attestation before publish + config-driven daily release gate IA + quick-impact label contract + latest-main checkout + semantic visual compatibility + cache/category coverage + fail-closed QA')
+print('PIPELINE CONTRACT PASS: one canonical writer workflow + Collector pre-request Registry/evidence validation + controlled refill/correction states + same-run request-to-ready-to-publish handoff + registry hybrid wrapper delegates canonical identity/tier logic + registry normalization/hash attestation before publish + config-driven daily release gate IA + quick-impact label contract + latest-main checkout + semantic visual compatibility + cache/category coverage + fail-closed infrastructure QA')
