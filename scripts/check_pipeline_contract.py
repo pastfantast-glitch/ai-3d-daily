@@ -102,7 +102,7 @@ else:
         'normalize_registry_identity_hybrid.py',
         'enrich_full_analysis_v3.py',
         'validation_only_finalizer(date)',
-        'registry_rc == 2',
+        'registry.returncode == 2',
         'persist_followup(',
         'controlled_collector_validation_failure',
         'write_output(date, "refill_required"',
