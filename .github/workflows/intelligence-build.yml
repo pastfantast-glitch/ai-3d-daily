@@ -78,6 +78,7 @@ jobs:
     timeout-minutes: 15
     outputs:
       date: ${{ steps.bridge.outputs.date }}
+      outcome: ${{ steps.bridge.outputs.outcome }}
     steps:
       - uses: actions/checkout@v6
         with:
@@ -92,9 +93,21 @@ jobs:
         id: bridge
         run: python scripts/finalize_collector_trigger.py
 
+  collector_refill:
+    needs: [route, handoff]
+    if: always() && needs.handoff.result == 'success' && needs.handoff.outputs.outcome == 'refill_required'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Report controlled Collector refill
+        run: |
+          echo "## Collector refill required" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Date: ${{ needs.handoff.outputs.date }}" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Authoritative Registry normalization was persisted before request creation." >> "$GITHUB_STEP_SUMMARY"
+          echo "- No .request/.ready was created; Collector should continue targeted refill." >> "$GITHUB_STEP_SUMMARY"
+
   prepare:
     needs: [route, handoff]
-    if: always() && (needs.route.outputs.mode == 'request' || needs.handoff.result == 'success')
+    if: always() && (needs.route.outputs.mode == 'request' || (needs.handoff.result == 'success' && needs.handoff.outputs.outcome == 'request'))
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
@@ -164,7 +177,7 @@ jobs:
 
   publish:
     needs: [route, prepare, handoff]
-    if: always() && (needs.route.outputs.mode == 'ready' || needs.route.outputs.mode == 'publish' || (needs.prepare.result == 'success' && (needs.route.outputs.mode == 'request' || needs.handoff.result == 'success')))
+    if: always() && (needs.route.outputs.mode == 'ready' || needs.route.outputs.mode == 'publish' || (needs.prepare.result == 'success' && (needs.route.outputs.mode == 'request' || (needs.handoff.result == 'success' && needs.handoff.outputs.outcome == 'request'))))
     runs-on: ubuntu-latest
     timeout-minutes: 45
     steps:
