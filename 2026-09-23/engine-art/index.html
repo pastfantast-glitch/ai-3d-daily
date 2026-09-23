@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   遊戲引擎｜2026-09-23｜AI 3D Daily
+  </title>
+  <link href="../../styles.css?v=20260923-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../../shared-components.css?v=20260923-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../../category.css?v=20260923-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+ </head>
+ <body class="category-page" data-category="engine-art" data-report-date="2026-09-23">
+  <nav aria-label="Production Intelligence 分類" class="global-category-nav">
+   <div class="page global-category-nav-inner">
+    <div class="archive-nav-controls">
+     <a class="archive-nav-home" href="../../">
+      ← 首頁
+     </a>
+     <div class="archive-nav-date">
+      <a aria-label="前一日日報" class="archive-nav-arrow" href="../../2026-09-22/engine-art/">
+       ←
+      </a>
+      <span>
+       2026-09-23
+      </span>
+     </div>
+    </div>
+    <span aria-hidden="true" class="archive-nav-divider">
+    </span>
+    <a class="global-category-link" href="../#top">
+     TOP5
+    </a>
+    <a class="global-category-link" data-category="ai-generation" href="../ai-generation/">
+     AI 生成
+    </a>
+    <a class="global-category-link" data-category="3d-production" href="../3d-production/">
+     3D 製作
+    </a>
+    <a class="global-category-link" data-category="3d-animation" href="../3d-animation/">
+     3D 動作
+    </a>
+    <a class="global-category-link is-active" data-category="engine-art" href="../engine-art/">
+     遊戲引擎
+    </a>
+    <a class="global-category-link" data-category="emerging-case" href="../emerging-case/">
+     新技術 / Case
+    </a>
+    <a class="global-category-link" data-category="blender-dcc" href="../blender-dcc/">
+     Blender / DCC
+    </a>
+    <a class="global-category-link global-history-link" data-global-view="history" href="../../history/">
+     歷史日報
+    </a>
+   </div>
+  </nav>
+  <main class="page category-main">
+   <article class="category-card" data-intel-id="aquaglow-vrchat-underwater-shader" data-intel-role="card">
+    <div class="category-meta">
+     #07 · shader
+    </div>
+    <h2>
+     AquaGlow：以 lilToon 疊出可調式水下角色效果
+    </h2>
+    <p class="summary">
+     VRChat 用的 AquaGlow shader 可套在頭髮、身體與衣物，提供顏色、波紋尺度與動畫速度控制。
+    </p>
+    <figure class="case-preview" data-intel-id="aquaglow-vrchat-underwater-shader" data-intel-role="visual" data-visual-id="aquaglow-vrchat-underwater-shader">
+     <a href="https://80.lv/articles/add-stylized-underwater-effects-to-your-vrchat-avatar" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-23/aquaglow-vrchat-underwater-shader.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">Shader</b> ★★★★☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       技術／流程變更
+      </h4>
+      <p>
+       AquaGlow 建在 lilToon 之上，透過可調顏色、波紋尺寸與動畫速度，把水下風格效果套到角色頭髮、皮膚與服裝等多種材質區域。
+      </p>
+      <h4>
+       Production 影響
+      </h4>
+      <p>
+       對 NPR／Toon 角色的價值是把環境狀態做成材質層而非重做貼圖，適合研究水下、魔法區域或局部動態光感的角色表現。
+      </p>
+      <h4>
+       導入測試與限制
+      </h4>
+      <p>
+       目前證據以 VRChat 實例為主，移植到一般 Unity URP 時需要重新確認 shader pass、透明排序、行動裝置成本與 lilToon 相依性。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://80.lv/articles/add-stylized-underwater-effects-to-your-vrchat-avatar" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="open-light-hdr-gobos" data-intel-role="card">
+    <div class="category-meta">
+     #13 · rendering
+    </div>
+    <h2>
+     Open Light：程序化產生 HDR 光紋與 Gobo 的免費工具
+    </h2>
+    <p class="summary">
+     Open Light 用程序化方式建立專業 HDR light textures，服務 VFX、動態設計與虛擬製作照明。
+    </p>
+    <figure class="case-preview" data-intel-id="open-light-hdr-gobos" data-intel-role="visual" data-visual-id="open-light-hdr-gobos">
+     <a href="https://www.cgchannel.com/2026/04/free-tool-open-light-generates-procedural-hdr-light-textures/" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE CARD preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-23/open-light-hdr-gobos.svg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE CARD
+      </span>
+      · Generated source card · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">渲染</b> ★★★★☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       技術／流程變更
+      </h4>
+      <p>
+       Open Light 讓使用者程序化生成 HDR light textures／gobos，而不是反覆搜尋現成素材；工具由燈光藝術家因實際製作需求而開發。
+      </p>
+      <h4>
+       Production 影響
+      </h4>
+      <p>
+       對即時或離線場景照明，這能快速建立窗格、葉影、燈具圖樣等可重複光紋，也有利於建立團隊內可參數化的 lighting library。
+      </p>
+      <h4>
+       導入測試與限制
+      </h4>
+      <p>
+       文章未提供不同 renderer 的完整相容矩陣；導入時要確認動態範圍、色彩管理、解析度與 Unreal／Unity 中投影方式。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://www.cgchannel.com/2026/04/free-tool-open-light-generates-procedural-hdr-light-textures/" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="rtx50-cg-workstation-bench" data-intel-role="card">
+    <div class="category-meta">
+     #15 · optimization
+    </div>
+    <h2>
+     RTX 5090／5080 DCC 實測：不同軟體的 Blackwell 收益差異很大
+    </h2>
+    <p class="summary">
+     CG Channel 以多套 DCC、renderer 與即時引擎做實測，顯示新 GPU 在 Blender、Unreal、Unity 等軟體的收益並不一致。
+    </p>
+    <figure class="case-preview" data-intel-id="rtx50-cg-workstation-bench" data-intel-role="visual" data-visual-id="rtx50-cg-workstation-bench">
+     <a href="https://www.cgchannel.com/2025/12/review-are-the-geforce-rtx-5090-and-5080-worth-the-money-for-cg/" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE CARD preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-23/rtx50-cg-workstation-bench.svg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE CARD
+      </span>
+      · Generated source card · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">效能優化</b> ★★★★☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       技術／流程變更
+      </h4>
+      <p>
+       測試涵蓋 3ds Max、Maya、Blender、Substance、Unreal、Unity 與多套 renderer；RTX 5090／5080 在部分應用明顯領先，但 Maya wireframe、3ds Max 等也出現反常結果。
+      </p>
+      <h4>
+       Production 影響
+      </h4>
+      <p>
+       對美術工作站採購最重要的訊息是不能只看理論 TFLOPS；VRAM、driver、viewport API 與特定 DCC 最佳化會直接改變實際 Production 效率。
+      </p>
+      <h4>
+       導入測試與限制
+      </h4>
+      <p>
+       測試平台與版本固定在文章時間點，驅動與軟體更新可能改變結果；採購前應用自家角色、場景與 renderer 做代表性 benchmark。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://www.cgchannel.com/2025/12/review-are-the-geforce-rtx-5090-and-5080-worth-the-money-for-cg/" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="ue58-materials-tutorials" data-intel-role="card">
+    <div class="category-meta">
+     #16 · unreal
+    </div>
+    <h2>
+     UE5.8 Materials Tutorials：把 Material Instance、Detail、Decal、Layered 工作流集中成官方路徑
+    </h2>
+    <p class="summary">
+     Epic 官方材料教學整理從基礎到進階的 Material 建立與可重用工作流，適合當技術美術規範基準。
+    </p>
+    <figure class="case-preview" data-intel-id="ue58-materials-tutorials" data-intel-role="visual" data-visual-id="ue58-materials-tutorials">
+     <a href="https://dev.epicgames.com/documentation/unreal-engine/unreal-engine-materials-tutorials" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-23/ue58-materials-tutorials.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">Unreal</b> ★★★★☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       技術／流程變更
+      </h4>
+      <p>
+       官方教學從 Material Editor 基礎延伸到 Material Instances、Detail Texturing、Mesh Decals 與 Layered Materials 等可重用模式，提供一致的節點與資產組織方式。
+      </p>
+      <h4>
+       Production 影響
+      </h4>
+      <p>
+       對團隊 shader 規範而言，價值不是單一效果，而是建立主材質、instance 與局部 detail 的分層思路，可降低重複 shader 與參數失控。
+      </p>
+      <h4>
+       導入測試與限制
+      </h4>
+      <p>
+       這是官方教學集合而非單一效能方案；實際專案仍要依平台檢查 shader permutation、材質層數、透明與 texture fetch 成本。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://dev.epicgames.com/documentation/unreal-engine/unreal-engine-materials-tutorials" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <nav aria-label="相鄰分類" class="category-bottom-nav">
+    <a href="../3d-animation/">
+     ← 3D 動作
+    </a>
+    <a href="../#top">
+     TOP5
+    </a>
+    <a href="../emerging-case/">
+     新技術 / Case →
+    </a>
+   </nav>
+  </main>
+  <script defer="" src="../../archive-nav-state.js?v=20260923-r1-workspace-v10-history-current-workspace">
+  </script>
+ </body>
+</html>

@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   Blender / DCC｜2026-09-23｜AI 3D Daily
+  </title>
+  <link href="../../styles.css?v=20260923-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../../shared-components.css?v=20260923-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../../category.css?v=20260923-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+ </head>
+ <body class="category-page" data-category="blender-dcc" data-report-date="2026-09-23">
+  <nav aria-label="Production Intelligence 分類" class="global-category-nav">
+   <div class="page global-category-nav-inner">
+    <div class="archive-nav-controls">
+     <a class="archive-nav-home" href="../../">
+      ← 首頁
+     </a>
+     <div class="archive-nav-date">
+      <a aria-label="前一日日報" class="archive-nav-arrow" href="../../2026-09-22/blender-dcc/">
+       ←
+      </a>
+      <span>
+       2026-09-23
+      </span>
+     </div>
+    </div>
+    <span aria-hidden="true" class="archive-nav-divider">
+    </span>
+    <a class="global-category-link" href="../#top">
+     TOP5
+    </a>
+    <a class="global-category-link" data-category="ai-generation" href="../ai-generation/">
+     AI 生成
+    </a>
+    <a class="global-category-link" data-category="3d-production" href="../3d-production/">
+     3D 製作
+    </a>
+    <a class="global-category-link" data-category="3d-animation" href="../3d-animation/">
+     3D 動作
+    </a>
+    <a class="global-category-link" data-category="engine-art" href="../engine-art/">
+     遊戲引擎
+    </a>
+    <a class="global-category-link" data-category="emerging-case" href="../emerging-case/">
+     新技術 / Case
+    </a>
+    <a class="global-category-link is-active" data-category="blender-dcc" href="../blender-dcc/">
+     Blender / DCC
+    </a>
+    <a class="global-category-link global-history-link" data-global-view="history" href="../../history/">
+     歷史日報
+    </a>
+   </div>
+  </nav>
+  <main class="page category-main">
+   <article class="category-card" data-intel-id="blender-retopo-ctrl-rmb" data-intel-role="card">
+    <div class="category-meta">
+     #06 · blender-tip
+    </div>
+    <h2>
+     Blender Retopo 小技巧：Ctrl+右鍵連續鋪點、Relax Slide 保體積
+    </h2>
+    <p class="summary">
+     Blender Secrets 示範更快鋪設新拓樸與整理點距的手動 retopo 流程。
+    </p>
+    <figure class="case-preview" data-intel-id="blender-retopo-ctrl-rmb" data-intel-role="visual" data-visual-id="blender-retopo-ctrl-rmb">
+     <a href="https://80.lv/articles/retopology-tutorial-how-to-place-new-geometry-in-blender-efficiently" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-23/blender-retopo-ctrl-rmb.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">Blender 技巧</b> ★★★★☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       技術／流程變更
+      </h4>
+      <p>
+       教學示範按住 Ctrl 搭配右鍵快速沿表面鋪設新頂點與邊，再用 Relax Slide 重新分布點位，重點是整理拓樸時不要把原本體積壓扁。
+      </p>
+      <h4>
+       Production 影響
+      </h4>
+      <p>
+       這對角色臉、布料或 AI／掃描網格的手動 cleanup 很實用，可把大量逐點操作縮成連續鋪設與局部放鬆兩個步驟。
+      </p>
+      <h4>
+       導入測試與限制
+      </h4>
+      <p>
+       這是操作技巧而非自動拓樸方案，品質仍取決於 edge flow 規劃；複雜關節、臉部環線與硬表面轉折仍需人工判斷。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://80.lv/articles/retopology-tutorial-how-to-place-new-geometry-in-blender-efficiently" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="inertia-blender-physics" data-intel-role="card">
+    <div class="category-meta">
+     #17 · addon
+    </div>
+    <h2>
+     Inertia：以 Geometry Nodes 即時預測拋射、軌道與曲線運動
+    </h2>
+    <p class="summary">
+     Blender add-on 把重力、摩擦、速度等物理運動轉成可預覽的路徑，降低手工 keyframe 計算。
+    </p>
+    <figure class="case-preview" data-intel-id="inertia-blender-physics" data-intel-role="visual" data-visual-id="inertia-blender-physics">
+     <a href="https://80.lv/articles/this-blender-tool-lets-you-animate-physics-in-just-few-clicks" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-23/inertia-blender-physics.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">外掛</b> ★★★☆☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       技術／流程變更
+      </h4>
+      <p>
+       Inertia 以 Geometry Nodes 建立 Projectile、Orbital 與 Curve 三套系統，會在 viewport 顯示即時預測軌跡，並讓使用者用 Gravity、Friction、Speed 等參數調整。
+      </p>
+      <h4>
+       Production 影響
+      </h4>
+      <p>
+       對道具飛行、載具軌跡與 motion design，可先用物理路徑快速得到可信基礎，再轉為動畫調整，省下大量手算與反覆試 key 的時間。
+      </p>
+      <h4>
+       導入測試與限制
+      </h4>
+      <p>
+       工具偏物件級物理動畫，並非完整 rigid-body solver；與碰撞、角色互動或引擎最終物理的一致性仍需要另外測試。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://80.lv/articles/this-blender-tool-lets-you-animate-physics-in-just-few-clicks" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="blender-procedural-clouds" data-intel-role="card">
+    <div class="category-meta">
+     #18 · blender
+    </div>
+    <h2>
+     Blender Geometry Nodes 程序雲：多層雲型、PBR 大氣與可動畫控制
+    </h2>
+    <p class="summary">
+     程序雲工具提供積雲、積雨雲、卷雲等多種雲型，並以物理尺度與 shader 建立可調天空。
+    </p>
+    <figure class="case-preview" data-intel-id="blender-procedural-clouds" data-intel-role="visual" data-visual-id="blender-procedural-clouds">
+     <a href="https://80.lv/articles/take-a-look-at-this-geometry-nodes-tool-for-creating-realistic-clouds" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-23/blender-procedural-clouds.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">Blender</b> ★★★☆☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       技術／流程變更
+      </h4>
+      <p>
+       工具用 Geometry Nodes 建立多層雲系統，可控制尺寸、覆蓋與外觀，並提供多種雲型；材質以空氣與水粒子尺度為基礎，且能製作雲層動畫。
+      </p>
+      <h4>
+       Production 影響
+      </h4>
+      <p>
+       對環境 lookdev 與背景天空，程序參數比固定 HDRI 更容易做天候變體、鏡頭調整與動畫，也適合產生可再加工的天空 reference。
+      </p>
+      <h4>
+       導入測試與限制
+      </h4>
+      <p>
+       展示主要基於 Cycles，轉到即時引擎時不能直接假設同等成本與視覺；需重新評估體積材質、billboard 或烘焙策略。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://80.lv/articles/take-a-look-at-this-geometry-nodes-tool-for-creating-realistic-clouds" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="blender-sponge-gn" data-intel-role="card">
+    <div class="category-meta">
+     #19 · blender-tip
+    </div>
+    <h2>
+     Procedural Sponge Modifier：用 Geometry Nodes 把任意 Mesh 轉成海綿結構
+    </h2>
+    <p class="summary">
+     免費節點工具可調 pore size、細節與紋理，把任何模型程序化轉成多孔海綿外觀。
+    </p>
+    <figure class="case-preview" data-intel-id="blender-sponge-gn" data-intel-role="visual" data-visual-id="blender-sponge-gn">
+     <a href="https://80.lv/articles/get-this-blender-geometry-nodes-tool-for-turning-meshes-into-sponges" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-23/blender-sponge-gn.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">Blender 技巧</b> ★★★☆☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       技術／流程變更
+      </h4>
+      <p>
+       Procedural Sponge Modifier 以 Geometry Nodes 將輸入 mesh 轉為多孔結構，可調孔洞尺寸、紋理與整體細節密度，並保持程序式可修改。
+      </p>
+      <h4>
+       Production 影響
+      </h4>
+      <p>
+       雖然題材小，但對程序建模思路很有參考價值：把表面破碎、孔洞與密度變化封裝成 modifier，可延伸到岩石、腐蝕與風格化材質幾何。
+      </p>
+      <h4>
+       導入測試與限制
+      </h4>
+      <p>
+       高密度幾何可能快速增加 polygon 與記憶體成本；若用於遊戲資產，應測試 bake-to-normal、LOD 或 shader 近似方案。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://80.lv/articles/get-this-blender-geometry-nodes-tool-for-turning-meshes-into-sponges" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="modeler263-houdini" data-intel-role="card">
+    <div class="category-meta">
+     #23 · houdini
+    </div>
+    <h2>
+     Modeler 26.3：讓 Houdini 具備更直接的 PolyPen、Draw Cards 與 Layer 工作流
+    </h2>
+    <p class="summary">
+     Modeler 26 系列強化傳統建模操作，新增卡片／管狀幾何繪製、Bezier Deform、Layers 與工具搜尋。
+    </p>
+    <figure class="case-preview" data-intel-id="modeler263-houdini" data-intel-role="visual" data-visual-id="modeler263-houdini">
+     <a href="https://www.cgchannel.com/2026/05/alexey-vanzhula-releases-modeler-26-for-houdini/" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-23/modeler263-houdini.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">Houdini</b> ★★★☆☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       技術／流程變更
+      </h4>
+      <p>
+       Modeler 26 新增 Draw Cards、Bezier Deform、Layers panel、open-curve Boolean 等功能；26.3 又加入新的工具搜尋與 PolyPen 改進，讓 Houdini 建模更接近傳統 DCC 直覺。
+      </p>
+      <h4>
+       Production 影響
+      </h4>
+      <p>
+       對習慣 3ds Max／Maya／ZBrush 的美術而言，直接 viewport 建模工具可降低進 Houdini 的門檻，也方便在程序節點與手工造型之間來回切換。
+      </p>
+      <h4>
+       導入測試與限制
+      </h4>
+      <p>
+       這是第三方工具集，工作流收益取決於團隊是否真正需要在 Houdini 內做大量手工 modeling；導入前應檢查 Houdini 版本與 studio license 成本。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://www.cgchannel.com/2026/05/alexey-vanzhula-releases-modeler-26-for-houdini/" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <nav aria-label="相鄰分類" class="category-bottom-nav">
+    <a href="../emerging-case/">
+     ← 新技術 / Case
+    </a>
+    <a href="../#top">
+     TOP5
+    </a>
+    <a href="../ai-generation/">
+     AI 生成 →
+    </a>
+   </nav>
+  </main>
+  <script defer="" src="../../archive-nav-state.js?v=20260923-r1-workspace-v10-history-current-workspace">
+  </script>
+ </body>
+</html>
