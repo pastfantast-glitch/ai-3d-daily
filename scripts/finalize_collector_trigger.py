@@ -3,15 +3,18 @@
 
 This script is invoked only by .github/workflows/intelligence-build.yml after a
 Collector has persisted today's canonical/private artifacts and a .collector trigger.
-It does not perform discovery or fabricate evidence. It waits for the authoritative
-current-main CI gate, validates/synchronizes Collector-owned artifacts, runs the same
-authoritative Registry normalization used by prepare, and only creates .request when
-that preflight is clean.
+It does not perform discovery or fabricate evidence. It waits for authoritative
+current-main CI, validates Collector-owned artifacts, runs the same Registry and
+analysis-depth implementations used by prepare, and only creates .request when the
+preflight is clean.
 
-Registry refill is expected control flow, not a broken publisher: normalized
-canonical/private state is persisted, the .collector trigger is consumed, and the
-bridge returns outcome=refill_required without creating .request/.ready. Deterministic
-schema/evidence/CI violations remain fail-closed errors.
+Two Collector follow-up states are controlled workflow outcomes:
+- refill_required: authoritative Registry normalization leaves too few clean items.
+- fix_required: Collector content/session/classification/evidence is invalid and must
+  be corrected from real source evidence before another handoff.
+
+Infrastructure/integrity faults (CI not green, Registry crash, unexpected public
+mutation, unsafe/private data, request persistence failure) remain hard failures.
 """
 from __future__ import annotations
 
@@ -38,11 +41,13 @@ def run(*args: str, check: bool = True, capture: bool = False):
     )
 
 
-def print_proc(proc) -> None:
+def print_proc(proc) -> str:
+    output = (proc.stdout or "") + (proc.stderr or "")
     if proc.stdout:
         print(proc.stdout, end="")
     if proc.stderr:
         print(proc.stderr, end="", file=sys.stderr)
+    return output
 
 
 def event_date() -> str:
@@ -81,8 +86,7 @@ def wait_for_main_ci() -> None:
     last = ""
     for attempt in range(1, 19):
         proc = run(sys.executable, str(script), check=False, capture=True)
-        output = (proc.stdout or "") + (proc.stderr or "")
-        print(output, end="")
+        output = print_proc(proc)
         if proc.returncode == 0:
             return
         last = output.strip()
@@ -129,17 +133,23 @@ def stage_canonical_private(date: str) -> None:
         run("git", "add", ledger.relative_to(ROOT).as_posix())
 
 
-def persist_refill(date: str, trigger: Path) -> None:
+def persist_followup(date: str, trigger: Path, *, outcome: str, message: str) -> None:
     assert_only_expected_changes(date, trigger, allow_request=False)
     configure_git()
     stage_canonical_private(date)
     run("git", "rm", "-f", trigger.relative_to(ROOT).as_posix())
-    run("git", "commit", "-m", f"Collector refill required {date}")
+    run("git", "commit", "-m", message)
     run("git", "push", "origin", "HEAD:main")
-    print(
-        f"COLLECTOR REFILL REQUIRED: {date} authoritative Registry normalization "
-        "was persisted; no .request/.ready created."
-    )
+    if outcome == "refill_required":
+        print(
+            f"COLLECTOR REFILL REQUIRED: {date} authoritative Registry normalization "
+            "was persisted; no .request/.ready created."
+        )
+    else:
+        print(
+            f"COLLECTOR FIX REQUIRED: {date} Collector content must be corrected from "
+            "source evidence; no .request/.ready created."
+        )
 
 
 def persist_request(date: str, trigger: Path) -> None:
@@ -157,39 +167,56 @@ def persist_request(date: str, trigger: Path) -> None:
     run("git", "show", f"origin/main:data/publish/{date}.request", capture=True)
 
 
-def write_output(date: str, outcome: str) -> None:
+def write_output(date: str, outcome: str, reason_code: str = "") -> None:
     output = os.environ.get("GITHUB_OUTPUT")
     if output:
         with open(output, "a", encoding="utf-8") as fh:
             fh.write(f"date={date}\n")
             fh.write(f"outcome={outcome}\n")
+            fh.write(f"reason_code={reason_code}\n")
 
 
-def validation_only_finalizer(date: str) -> None:
-    run(
+def validation_only_finalizer(date: str):
+    return run(
         sys.executable,
         str(ROOT / "scripts" / "finalize_collection_handoff.py"),
         date,
+        check=False,
+        capture=True,
     )
 
 
-def authoritative_registry_preflight(date: str) -> int:
-    proc = run(
+def controlled_collector_validation_failure(output: str) -> str | None:
+    if "COLLECTION SESSION CONTRACT FAILED" in output:
+        return "collection-session-invalid"
+    if "COLLECTOR HANDOFF FAILED: collection session schema_version" in output:
+        return "collection-session-invalid"
+    if "COLLECTOR HANDOFF FAILED: collection session date mismatch" in output:
+        return "collection-session-invalid"
+    if "COLLECTOR HANDOFF FAILED: collection session must be a JSON object" in output:
+        return "collection-session-invalid"
+    if "COLLECTOR HANDOFF FAILED: collector canonical validation failed:" in output:
+        return "canonical-content-invalid"
+    return None
+
+
+def authoritative_registry_preflight(date: str):
+    return run(
         sys.executable,
         str(ROOT / "scripts" / "normalize_registry_identity_hybrid.py"),
         date,
         check=False,
         capture=True,
     )
-    print_proc(proc)
-    return proc.returncode
 
 
-def evidence_depth_preflight(date: str) -> None:
-    run(
+def evidence_depth_preflight(date: str):
+    return run(
         sys.executable,
         str(ROOT / "scripts" / "enrich_full_analysis_v3.py"),
         date,
+        check=False,
+        capture=True,
     )
 
 
@@ -208,32 +235,67 @@ def main() -> int:
     trigger = read_trigger(date)
     wait_for_main_ci()
 
-    # First synchronize session-owned metadata/ledger and catch category/schema
-    # mistakes before Registry mutation or request creation.
-    validation_only_finalizer(date)
-
-    # Run the exact authoritative Registry/tier/release-gate implementation before
-    # .request. A deficit is controlled Collector refill, not publisher failure.
-    registry_rc = authoritative_registry_preflight(date)
-    if registry_rc == 2:
-        persist_refill(date, trigger)
-        write_output(date, "refill_required")
-        return 0
-    if registry_rc != 0:
+    # Session/schema/category/canonical defects are Collector-content problems.
+    # Preserve fail-closed publication semantics, but route them back to Collector
+    # instead of mislabeling the canonical publisher as broken.
+    validation = validation_only_finalizer(date)
+    validation_output = print_proc(validation)
+    if validation.returncode:
+        reason = controlled_collector_validation_failure(validation_output)
+        if reason:
+            persist_followup(
+                date,
+                trigger,
+                outcome="fix_required",
+                message=f"Collector correction required {date}",
+            )
+            write_output(date, "fix_required", reason)
+            return 0
         raise SystemExit(
-            f"COLLECTOR BRIDGE FAILED: authoritative Registry preflight exited {registry_rc}"
+            f"COLLECTOR BRIDGE FAILED: Collector validation exited {validation.returncode}"
         )
 
-    # Catch BRIEF/FULL semantic-depth defects while the artifact is still owned by
-    # Collector. Successful enrichment may normalize canonical metadata and is
-    # persisted with the request in the same single-writer commit.
-    evidence_depth_preflight(date)
+    # Run the exact authoritative Registry/tier/release-gate implementation before
+    # .request. A clean identity deficit is controlled refill, not publisher failure.
+    registry = authoritative_registry_preflight(date)
+    print_proc(registry)
+    if registry.returncode == 2:
+        persist_followup(
+            date,
+            trigger,
+            outcome="refill_required",
+            message=f"Collector refill required {date}",
+        )
+        write_output(date, "refill_required", "registry-refill")
+        return 0
+    if registry.returncode != 0:
+        raise SystemExit(
+            f"COLLECTOR BRIDGE FAILED: authoritative Registry preflight exited {registry.returncode}"
+        )
 
-    # Re-run the finalizer on the normalized/enriched canonical state; only this
-    # invocation is allowed to create the repo-owned request marker.
+    # Missing BRIEF/FULL semantic evidence cannot be fabricated. Route the candidate
+    # set back to Collector for source-grounded correction/refill.
+    evidence = evidence_depth_preflight(date)
+    evidence_output = print_proc(evidence)
+    if evidence.returncode:
+        if "ANALYSIS DEPTH FAILED" in evidence_output:
+            persist_followup(
+                date,
+                trigger,
+                outcome="fix_required",
+                message=f"Collector correction required {date}",
+            )
+            write_output(date, "fix_required", "analysis-depth-invalid")
+            return 0
+        raise SystemExit(
+            f"COLLECTOR BRIDGE FAILED: evidence-depth preflight exited {evidence.returncode}"
+        )
+
+    # Re-run finalizer on normalized/enriched canonical state; only this invocation
+    # may create the repo-owned request marker.
     write_request(date)
     persist_request(date, trigger)
-    write_output(date, "request")
+    write_output(date, "request", "")
     print(f"COLLECTOR BRIDGE PASS: {date} request persisted; canonical run continues")
     return 0
 
