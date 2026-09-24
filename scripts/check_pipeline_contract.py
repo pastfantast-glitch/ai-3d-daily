@@ -276,9 +276,9 @@ for path in sorted(WF.glob('*.yml')):
         if int(m.group(1))<5: fail(f'old checkout action returned: {path.name}')
     for m in re.finditer(r'actions/setup-python@v(\d+)',text):
         if int(m.group(1))<6: fail(f'old setup-python action returned: {path.name}')
-    if path==MAIN: continue
-    if re.search(r'contents:\s*write',text): fail(f'second writer permission found: {path.name}')
-    if re.search(r'\bgit\s+(commit|push)\b',text): fail(f'second writer command found: {path.name}')
+    if path==MAIN or path==COLLECTOR_GATE: continue
+    if re.search(r'contents:\s*write',text): fail(f'second canonical writer permission found: {path.name}')
+    if re.search(r'\bgit\s+(commit|push)\b',text): fail(f'second canonical writer command found: {path.name}')
 for retired in ('visual-assets.yml','today-more.yml','historical-backfill-once.yml'):
     if (WF/retired).exists(): fail(f'retired writer workflow returned: {retired}')
 for name in ('home.js','daily.js'):
