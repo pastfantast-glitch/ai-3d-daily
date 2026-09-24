@@ -13,6 +13,7 @@ import sys
 ROOT = Path(__file__).resolve().parents[1]
 WF = ROOT / '.github' / 'workflows'
 MAIN = WF / 'intelligence-build.yml'
+COLLECTOR_GATE = WF / 'collector-handoff.yml'
 DAILY_QA = WF / 'daily-contract.yml'
 errors = []
 
@@ -39,6 +40,8 @@ required_files = [
     'scripts/verify_pages_publish.py',
     'scripts/prepare_release_candidate.py',
     'scripts/check_ready_contract.py',
+    'scripts/create_collector_trigger.py',
+    '.github/workflows/collector-handoff.yml',
     '.github/workflows/intelligence-build.yml',
     '.github/workflows/daily-contract.yml',
 ]
@@ -160,8 +163,14 @@ if MAIN.exists():
     for token in (
         'group: canonical-intelligence-publish',
         'cancel-in-progress: false',
+        "- 'data/publish/*.collector'",
         "- 'data/publish/*.request'",
         "- 'data/publish/*.ready'",
+        'workflow_run:',
+        "workflows: ['Collector handoff gate']",
+        "needs.route.outputs.mode == 'collector_handoff'",
+        'COLLECTOR_HANDOFF_DATE',
+        'finalize_collector_trigger.py',
         'prepare_release_candidate.py',
         'check_ready_contract.py',
         'enrich_full_analysis_v3.py',
@@ -217,6 +226,41 @@ if MAIN.exists():
     if 'write_publish_receipt.py' in main and main.find('write_publish_receipt.py') < main.find('verify_pages_publish.py'):
         fail('DONE receipt wiring must occur after Pages verification')
 
+if COLLECTOR_GATE.exists():
+    collector = COLLECTOR_GATE.read_text('utf-8')
+    for token in (
+        'group: collector-handoff-gate',
+        'cancel-in-progress: false',
+        "'data/candidates/collection-session/*.json'",
+        'actions: read',
+        'status=queued',
+        'status=in_progress',
+        'python scripts/create_collector_trigger.py "$DATE" --writer-idle-confirmed',
+        'git commit -m "Collector handoff $DATE"',
+    ):
+        if token not in collector:
+            fail(f'collector-handoff.yml missing runner handoff token: {token}')
+    if 'finalize_collection_handoff.py' in collector:
+        fail('collector-handoff.yml must not create .request; canonical bridge owns finalizer execution')
+    if '.request' in collector or '.ready' in collector:
+        fail('collector-handoff.yml must not write request/ready markers')
+
+collector_trigger = ROOT / 'scripts' / 'create_collector_trigger.py'
+if collector_trigger.exists():
+    text = collector_trigger.read_text('utf-8')
+    for token in (
+        'COLLECTOR_PERSISTED',
+        '--writer-idle-confirmed',
+        'finalize_collection_handoff.py',
+        'working tree must be clean before persisted-artifact validation',
+        'validation-only finalizer detected unpersisted Collector mutations',
+        'public_surfaces_committed',
+    ):
+        if token not in text:
+            fail(f'create_collector_trigger.py missing fail-closed token: {token}')
+    if text.count('write_text(') != 1 or 'trigger_path.write_text(' not in text:
+        fail('create_collector_trigger.py must write only the .collector marker')
+
 if DAILY_QA.exists():
     qa = DAILY_QA.read_text('utf-8')
     watched = [
@@ -235,6 +279,8 @@ if DAILY_QA.exists():
         "'scripts/check_pages_tier_contract.py'",
         "'scripts/verify_pages_publish.py'",
         "'scripts/check_release_architecture.py'",
+        "'scripts/create_collector_trigger.py'",
+        "'.github/workflows/collector-handoff.yml'",
         "'.github/workflows/intelligence-build.yml'",
     ]
     for token in watched:
@@ -253,4 +299,4 @@ if errors:
     print('RELEASE ARCHITECTURE CONTRACT FAILED')
     print('\n'.join('- ' + e for e in errors))
     sys.exit(1)
-print('RELEASE ARCHITECTURE CONTRACT PASS: hybrid discovery + tiered Full/Brief/Reject depth + config-driven TOP5 fallback + strict pre-ready/public boundary + pre-atomic tiered surface QA + single-writer handoff + ordered QA/atomic/Pages/DONE + daily source-QA coverage')
+print('RELEASE ARCHITECTURE CONTRACT PASS: hybrid discovery + tiered Full/Brief/Reject depth + runner-owned Collector handoff gate + strict pre-ready/public boundary + single canonical writer + ordered QA/atomic/Pages/DONE + daily source-QA coverage')

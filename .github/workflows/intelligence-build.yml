@@ -7,6 +7,10 @@ on:
       - 'data/publish/*.collector'
       - 'data/publish/*.request'
       - 'data/publish/*.ready'
+  workflow_run:
+    workflows: ['Collector handoff gate']
+    types: [completed]
+    branches: [main]
   workflow_dispatch:
     inputs:
       date:
@@ -20,6 +24,7 @@ on:
 
 permissions:
   contents: write
+  actions: read
 
 concurrency:
   group: canonical-intelligence-publish
@@ -45,6 +50,7 @@ jobs:
           AFTER_SHA: ${{ github.sha }}
           REQUESTED_DATE: ${{ github.event.inputs.date }}
           RECOVERY_SHA: ${{ github.event.inputs.recovery_sha }}
+          WORKFLOW_RUN_CONCLUSION: ${{ github.event.workflow_run.conclusion }}
         run: |
           set -euo pipefail
           extract_date() { printf '%s\n' "$1" | grep -oE '20[0-9]{2}-[0-9]{2}-[0-9]{2}' | head -1 || true; }
@@ -66,6 +72,13 @@ jobs:
             if [ -n "${RECOVERY_SHA:-}" ]; then mode="recovery"
             else mode="publish"; date="$(extract_date "${REQUESTED_DATE:-}")"
             fi
+          elif [ "${EVENT_NAME:-}" = "workflow_run" ] && [ "${WORKFLOW_RUN_CONCLUSION:-}" = "success" ]; then
+            git fetch origin main
+            message="$(git log -1 --format=%s origin/main)"
+            if [[ "$message" == "Collector handoff "* ]]; then
+              mode="collector_handoff"
+              date="$(extract_date "$message")"
+            fi
           fi
           echo "mode=$mode" >> "$GITHUB_OUTPUT"
           echo "date=$date" >> "$GITHUB_OUTPUT"
@@ -73,7 +86,7 @@ jobs:
 
   handoff:
     needs: route
-    if: github.event_name == 'push' && needs.route.outputs.mode == 'skip' && startsWith(github.event.head_commit.message, 'Collector handoff ')
+    if: (github.event_name == 'push' && needs.route.outputs.mode == 'skip' && startsWith(github.event.head_commit.message, 'Collector handoff ')) || (github.event_name == 'workflow_run' && needs.route.outputs.mode == 'collector_handoff')
     runs-on: ubuntu-latest
     timeout-minutes: 15
     outputs:
@@ -92,6 +105,8 @@ jobs:
         run: pip install -r requirements-pipeline.txt
       - name: Finalize persisted Collector handoff
         id: bridge
+        env:
+          COLLECTOR_HANDOFF_DATE: ${{ needs.route.outputs.mode == 'collector_handoff' && needs.route.outputs.date || '' }}
         run: python scripts/finalize_collector_trigger.py
 
   collector_refill:

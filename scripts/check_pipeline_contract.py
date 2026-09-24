@@ -4,7 +4,7 @@ from pathlib import Path
 import json, re, sys, tempfile
 from bs4 import BeautifulSoup
 
-ROOT=Path(__file__).resolve().parents[1]; WF=ROOT/'.github'/'workflows'; MAIN=WF/'intelligence-build.yml'; LOCK=ROOT/'requirements-pipeline.txt'; errors=[]
+ROOT=Path(__file__).resolve().parents[1]; WF=ROOT/'.github'/'workflows'; MAIN=WF/'intelligence-build.yml'; COLLECTOR_GATE=WF/'collector-handoff.yml'; LOCK=ROOT/'requirements-pipeline.txt'; errors=[]
 def fail(msg): errors.append(msg)
 
 if not LOCK.exists(): fail('requirements-pipeline.txt missing')
@@ -18,6 +18,7 @@ else:
     main=MAIN.read_text('utf-8')
     required=[
         "- 'data/publish/*.collector'", "- 'data/publish/*.request'", "- 'data/publish/*.ready'",
+        'workflow_run:', "workflows: ['Collector handoff gate']", "needs.route.outputs.mode == 'collector_handoff'", 'COLLECTOR_HANDOFF_DATE',
         'group: canonical-intelligence-publish','cancel-in-progress: false','pip install -r requirements-pipeline.txt',
         'finalize_collector_trigger.py','Collector refill required','Collector correction required','prepare_release_candidate.py','PRE-READY HANDOFF COMPLETE','check_ready_contract.py','check_release_input.py','check_registry_contract.py',
         'render_daily_navigation.py','render_home_archive_links.py','render_information_architecture.py','build_intelligence.py',
@@ -51,6 +52,36 @@ else:
         fail('issue-based canonical publish trigger is forbidden; automated handoff must use .collector/.request/.ready only')
     if 'data/candidates/published-registry-snapshot.json' not in main:
         fail('verified publish receipt commit must persist the derived Published Intelligence Registry snapshot')
+
+# The Collector gate is allowed to write exactly one non-canonical marker:
+# data/publish/YYYY-MM-DD.collector. It must never mutate canonical/public data,
+# create request/ready/DONE, or perform publish work. Canonical publication remains
+# owned exclusively by intelligence-build.yml.
+if not COLLECTOR_GATE.exists():
+    fail('collector-handoff.yml missing')
+else:
+    gate=COLLECTOR_GATE.read_text('utf-8')
+    for token in (
+        'contents: write',
+        'actions: read',
+        'group: collector-handoff-gate',
+        "'data/candidates/collection-session/*.json'",
+        'python scripts/create_collector_trigger.py "$DATE" --writer-idle-confirmed',
+        'status=queued',
+        'status=in_progress',
+        'git add "$trigger"',
+        'staged="$(git diff --cached --name-only)"',
+        'test "$staged" = "$trigger"',
+        'git commit -m "Collector handoff $DATE"',
+        'git push origin HEAD:main',
+    ):
+        if token not in gate:
+            fail(f'collector handoff gate missing restricted-writer token: {token}')
+    if gate.count('git add ') != 1 or gate.count('git commit ') != 1 or gate.count('git push ') != 1:
+        fail('collector handoff gate must have exactly one add/commit/push path')
+    for forbidden in ('index.html', 'assets/visual', '.request', '.ready', '.done.json', 'write_publish_receipt.py', 'prepare_release_candidate.py'):
+        if forbidden in gate:
+            fail(f'collector handoff gate crossed canonical/public boundary: {forbidden}')
 
 registry_snapshot_builder=ROOT/'scripts'/'build_published_registry_snapshot.py'
 if not registry_snapshot_builder.exists():
@@ -108,6 +139,7 @@ else:
         'write_output(date, "refill_required"',
         'write_output(date, "fix_required"',
         'write_output(date, "request"',
+        'COLLECTOR_HANDOFF_DATE',
     ):
         if token not in bridge_text:
             fail(f'collector bridge pre-request preflight missing: {token}')
@@ -244,9 +276,9 @@ for path in sorted(WF.glob('*.yml')):
         if int(m.group(1))<5: fail(f'old checkout action returned: {path.name}')
     for m in re.finditer(r'actions/setup-python@v(\d+)',text):
         if int(m.group(1))<6: fail(f'old setup-python action returned: {path.name}')
-    if path==MAIN: continue
-    if re.search(r'contents:\s*write',text): fail(f'second writer permission found: {path.name}')
-    if re.search(r'\bgit\s+(commit|push)\b',text): fail(f'second writer command found: {path.name}')
+    if path==MAIN or path==COLLECTOR_GATE: continue
+    if re.search(r'contents:\s*write',text): fail(f'second canonical writer permission found: {path.name}')
+    if re.search(r'\bgit\s+(commit|push)\b',text): fail(f'second canonical writer command found: {path.name}')
 for retired in ('visual-assets.yml','today-more.yml','historical-backfill-once.yml'):
     if (WF/retired).exists(): fail(f'retired writer workflow returned: {retired}')
 for name in ('home.js','daily.js'):
@@ -261,4 +293,4 @@ else:
     if "if(!id&&date==='2026-08-23')" not in text or 'LEGACY_20260823_RULES' not in text: fail('legacy identity fallback scope changed')
 if errors:
     print('PIPELINE CONTRACT FAILED'); print('\n'.join('- '+e for e in errors)); sys.exit(1)
-print('PIPELINE CONTRACT PASS: one canonical writer workflow + Collector pre-request Registry/evidence validation + controlled refill/correction states + same-run request-to-ready-to-publish handoff + registry hybrid wrapper delegates canonical identity/tier logic + registry normalization/hash attestation before publish + config-driven daily release gate IA + quick-impact label contract + latest-main checkout + semantic visual compatibility + cache/category coverage + fail-closed infrastructure QA')
+print('PIPELINE CONTRACT PASS: one canonical publisher + marker-only Collector gate + workflow-run bridge + Collector pre-request Registry/evidence validation + controlled refill/correction states + same-run request-to-ready-to-publish handoff + registry hybrid wrapper delegates canonical identity/tier logic + registry normalization/hash attestation before publish + config-driven daily release gate IA + quick-impact label contract + latest-main checkout + semantic visual compatibility + cache/category coverage + fail-closed infrastructure QA')
