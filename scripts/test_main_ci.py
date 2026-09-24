@@ -79,6 +79,30 @@ class MainCITests(unittest.TestCase):
         self.assertEqual(sha, "request")
         self.assertEqual([x["sha"] for x in skipped], ["current", "publish", "prepare"])
 
+    def test_collector_handoff_bot_commit_resolves_to_parent_evidence(self):
+        chain = {
+            "current": ("parent", ci.GITHUB_ACTIONS_BOT_EMAIL, "Collector handoff 2026-09-24"),
+            "parent": ("older", "owner@example.com", "Persist Collector session 2026-09-24"),
+        }
+        def fake_git(*args):
+            sha = args[-1]
+            parent, email, subject = chain[sha]
+            return self.commit_line(sha, parent, email, subject)
+        with patch.object(ci, "git", side_effect=fake_git):
+            sha, skipped = ci.history_evidence_sha("current")
+        self.assertEqual(sha, "parent")
+        self.assertEqual([x["sha"] for x in skipped], ["current"])
+
+    def test_collector_handoff_subject_requires_actions_bot_identity(self):
+        def fake_git(*args):
+            return self.commit_line(
+                "current", "parent", "owner@example.com", "Collector handoff 2026-09-24"
+            )
+        with patch.object(ci, "git", side_effect=fake_git):
+            sha, skipped = ci.history_evidence_sha("current")
+        self.assertEqual(sha, "current")
+        self.assertEqual(skipped, [])
+
     def test_unknown_bot_or_forged_writer_subject_is_not_skipped(self):
         cases = [
             (ci.GITHUB_ACTIONS_BOT_EMAIL, "Change pipeline code"),
