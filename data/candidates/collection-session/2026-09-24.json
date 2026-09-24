@@ -1,0 +1,413 @@
+{
+  "schema_version": 1,
+  "date": "2026-09-24",
+  "discovery_coverage": {
+    "fill_ladder_exhausted": true,
+    "backlog_checked": true,
+    "backlog_remaining_eligible": 0,
+    "targeted_refill_performed": true,
+    "quality_first_confirmed": true,
+    "windows": {
+      "24h": {
+        "status": "exhausted",
+        "candidates_found": 7
+      },
+      "7d": {
+        "status": "exhausted",
+        "candidates_found": 24
+      },
+      "30d": {
+        "status": "exhausted",
+        "candidates_found": 8
+      },
+      "6m": {
+        "status": "exhausted",
+        "candidates_found": 2
+      },
+      "evergreen": {
+        "status": "exhausted",
+        "candidates_found": 4
+      }
+    },
+    "category_candidates": {
+      "ai-generation": {
+        "candidates_considered": 0
+      },
+      "3d-production": {
+        "candidates_considered": 4
+      },
+      "3d-animation": {
+        "candidates_considered": 7
+      },
+      "engine-art": {
+        "candidates_considered": 2
+      },
+      "emerging-case": {
+        "candidates_considered": 2
+      },
+      "blender-dcc": {
+        "candidates_considered": 5
+      }
+    },
+    "registered_source_probe": {
+      "performed": true,
+      "sources": {
+        "80-level": {
+          "status": "checked",
+          "method": "web-site-query",
+          "candidates_found": 9,
+          "candidate_ids": [
+            "blender-adaptive-auto-skinning",
+            "philips-radio-hard-surface",
+            "ica-camera-game-ready",
+            "bee-spy-drone-design",
+            "blender-surface-pinching-fixes",
+            "blender-hex-shield-gn",
+            "pwnisher-3dgs-production-course",
+            "sketch2pose-blender-update",
+            "julio-800-pbr-materials"
+          ]
+        },
+        "3dnchu": {
+          "status": "not-scheduled",
+          "method": "rolling-window",
+          "candidates_found": 0,
+          "candidate_ids": [],
+          "reason": "deterministic-rolling-probe-not-selected"
+        },
+        "cgworld-jp": {
+          "status": "not-scheduled",
+          "method": "rolling-window",
+          "candidates_found": 0,
+          "candidate_ids": [],
+          "reason": "deterministic-rolling-probe-not-selected"
+        },
+        "bilibili-mobile": {
+          "status": "not-scheduled",
+          "method": "rolling-window",
+          "candidates_found": 0,
+          "candidate_ids": [],
+          "reason": "deterministic-rolling-probe-not-selected"
+        },
+        "artstation": {
+          "status": "not-scheduled",
+          "method": "rolling-window",
+          "candidates_found": 0,
+          "candidate_ids": [],
+          "reason": "deterministic-rolling-probe-not-selected"
+        },
+        "gumroad-discover": {
+          "status": "not-scheduled",
+          "method": "rolling-window",
+          "candidates_found": 0,
+          "candidate_ids": [],
+          "reason": "deterministic-rolling-probe-not-selected"
+        },
+        "xiaohongshu": {
+          "status": "not-scheduled",
+          "method": "rolling-window",
+          "candidates_found": 0,
+          "candidate_ids": [],
+          "reason": "deterministic-rolling-probe-not-selected"
+        },
+        "cg-channel": {
+          "status": "checked",
+          "method": "web-site-query",
+          "candidates_found": 3,
+          "candidate_ids": [
+            "supersplat-editor-3",
+            "mediaplane2-maya-reference-editor",
+            "maya-physics-action-animation"
+          ]
+        },
+        "blender-official": {
+          "status": "checked",
+          "method": "web-site-query",
+          "candidates_found": 0,
+          "candidate_ids": []
+        },
+        "epic-developer-community": {
+          "status": "checked",
+          "method": "web-site-query",
+          "candidates_found": 1,
+          "candidate_ids": [
+            "ue58-control-rig-overview"
+          ]
+        },
+        "unity-official": {
+          "status": "checked",
+          "method": "web-site-query",
+          "candidates_found": 1,
+          "candidate_ids": [
+            "unity7-production-cli"
+          ]
+        },
+        "sidefx-official": {
+          "status": "checked",
+          "method": "web-site-query",
+          "candidates_found": 1,
+          "candidate_ids": [
+            "houdini-equinox-procedural-animation"
+          ]
+        },
+        "autodesk-area": {
+          "status": "checked",
+          "method": "web-site-query",
+          "candidates_found": 0,
+          "candidate_ids": []
+        },
+        "adobe-substance-3d": {
+          "status": "checked",
+          "method": "web-site-query",
+          "candidates_found": 3,
+          "candidate_ids": [
+            "substance-designer-3d-scenes",
+            "substance-sbsar-publishing",
+            "substance-openpbr-material-samples"
+          ]
+        },
+        "game-developer": {
+          "status": "checked",
+          "method": "web-site-query",
+          "candidates_found": 0,
+          "candidate_ids": []
+        }
+      }
+    },
+    "notes": "2026-09-24 catch-up after runner-owned Collector handoff gate landed on current main. Rolling backlog was empty. Discovery covered fresh 24h/7d sources, 30d software/tool updates, selected 6m production references, and evergreen official documentation. Published Registry snapshot generated through 2026-09-23 was checked before ranking; exact published-source identities were excluded. Only today's deterministic registered-source probe set was attempted; non-selected registered sources are truthfully marked not-scheduled."
+  },
+  "candidate_decisions": [
+    {
+      "candidate_id": "blender-adaptive-auto-skinning",
+      "source_url": "https://80.lv/articles/try-this-one-click-automatic-skinning-add-on-for-blender",
+      "discovery_channels": [
+        "web-search",
+        "registered-source-probe:80-level",
+        "published-registry-snapshot"
+      ],
+      "decision": "published",
+      "canonical_id": "blender-adaptive-auto-skinning"
+    },
+    {
+      "candidate_id": "philips-radio-hard-surface",
+      "source_url": "https://80.lv/articles/breakdown-how-to-create-a-hard-surface-philips-radio-with-zbrush-substance-3d",
+      "discovery_channels": [
+        "web-search",
+        "registered-source-probe:80-level",
+        "published-registry-snapshot"
+      ],
+      "decision": "published",
+      "canonical_id": "philips-radio-hard-surface"
+    },
+    {
+      "candidate_id": "ica-camera-game-ready",
+      "source_url": "https://80.lv/articles/breakdown-how-to-create-a-detailed-ica-dresden-folding-plate-camera",
+      "discovery_channels": [
+        "web-search",
+        "registered-source-probe:80-level",
+        "published-registry-snapshot"
+      ],
+      "decision": "published",
+      "canonical_id": "ica-camera-game-ready"
+    },
+    {
+      "candidate_id": "unity7-production-cli",
+      "source_url": "https://unity.com/blog/unite-seoul-keynote-2026-recap",
+      "discovery_channels": [
+        "web-search",
+        "registered-source-probe:unity-official",
+        "published-registry-snapshot"
+      ],
+      "decision": "published",
+      "canonical_id": "unity7-production-cli"
+    },
+    {
+      "candidate_id": "bee-spy-drone-design",
+      "source_url": "https://80.lv/articles/designing-a-functional-looking-spy-drone-with-an-insect-like-form",
+      "discovery_channels": [
+        "web-search",
+        "registered-source-probe:80-level",
+        "published-registry-snapshot"
+      ],
+      "decision": "published",
+      "canonical_id": "bee-spy-drone-design"
+    },
+    {
+      "candidate_id": "blender-surface-pinching-fixes",
+      "source_url": "https://80.lv/articles/here-s-how-you-can-resolve-surface-pinching-in-blender",
+      "discovery_channels": [
+        "web-search",
+        "registered-source-probe:80-level",
+        "published-registry-snapshot"
+      ],
+      "decision": "published",
+      "canonical_id": "blender-surface-pinching-fixes"
+    },
+    {
+      "candidate_id": "blender-hex-shield-gn",
+      "source_url": "https://80.lv/articles/how-to-make-a-glowing-hexagon-shield-animation-with-blender-s-geometry-nodes",
+      "discovery_channels": [
+        "web-search",
+        "registered-source-probe:80-level",
+        "published-registry-snapshot"
+      ],
+      "decision": "published",
+      "canonical_id": "blender-hex-shield-gn"
+    },
+    {
+      "candidate_id": "houdini-equinox-procedural-animation",
+      "source_url": "https://www.sidefx.com/houdini-hive/equinox-2026/",
+      "discovery_channels": [
+        "web-search",
+        "registered-source-probe:sidefx-official",
+        "published-registry-snapshot"
+      ],
+      "decision": "published",
+      "canonical_id": "houdini-equinox-procedural-animation"
+    },
+    {
+      "candidate_id": "ue-character-rig-pipeline-guide",
+      "source_url": "https://freneticsfx.com/insights/unreal-engine-character-rigging-pipeline.html",
+      "discovery_channels": [
+        "web-search",
+        "published-registry-snapshot"
+      ],
+      "decision": "published",
+      "canonical_id": "ue-character-rig-pipeline-guide"
+    },
+    {
+      "candidate_id": "substance-designer-3d-scenes",
+      "source_url": "https://experienceleague.adobe.com/en/docs/substance-3d-designer/using/working-with-3d-scenes/working-with-3d-scenes",
+      "discovery_channels": [
+        "web-search",
+        "registered-source-probe:adobe-substance-3d",
+        "published-registry-snapshot"
+      ],
+      "decision": "published",
+      "canonical_id": "substance-designer-3d-scenes"
+    },
+    {
+      "candidate_id": "anime-to-photoreal-head-pipeline",
+      "source_url": "https://www.therookies.co/blog/breakdowns/production-ready-character-head-pipeline-anime-to-photoreal",
+      "discovery_channels": [
+        "web-search",
+        "published-registry-snapshot"
+      ],
+      "decision": "published",
+      "canonical_id": "anime-to-photoreal-head-pipeline"
+    },
+    {
+      "candidate_id": "pwnisher-3dgs-production-course",
+      "source_url": "https://80.lv/articles/learn-3dgs-photogrammetry-with-pwnisher-s-six-hour-course",
+      "discovery_channels": [
+        "web-search",
+        "registered-source-probe:80-level",
+        "published-registry-snapshot"
+      ],
+      "decision": "published",
+      "canonical_id": "pwnisher-3dgs-production-course"
+    },
+    {
+      "candidate_id": "sketch2pose-blender-update",
+      "source_url": "https://80.lv/articles/no-genai-this-blender-add-on-turns-simple-sketches-into-3d-poses",
+      "discovery_channels": [
+        "web-search",
+        "registered-source-probe:80-level",
+        "published-registry-snapshot"
+      ],
+      "decision": "published",
+      "canonical_id": "sketch2pose-blender-update"
+    },
+    {
+      "candidate_id": "supersplat-editor-3",
+      "source_url": "https://www.cgchannel.com/2026/09/playcanvas-releases-supersplat-editor-3-0/",
+      "discovery_channels": [
+        "web-search",
+        "registered-source-probe:cg-channel",
+        "published-registry-snapshot"
+      ],
+      "decision": "published",
+      "canonical_id": "supersplat-editor-3"
+    },
+    {
+      "candidate_id": "mediaplane2-maya-reference-editor",
+      "source_url": "https://www.cgchannel.com/2026/08/mediaplane-2-0-puts-a-nonlinear-editor-inside-maya/",
+      "discovery_channels": [
+        "web-search",
+        "registered-source-probe:cg-channel",
+        "published-registry-snapshot"
+      ],
+      "decision": "published",
+      "canonical_id": "mediaplane2-maya-reference-editor"
+    },
+    {
+      "candidate_id": "julio-800-pbr-materials",
+      "source_url": "https://80.lv/articles/get-this-huge-collection-of-over-800-pbr-materials",
+      "discovery_channels": [
+        "web-search",
+        "registered-source-probe:80-level",
+        "published-registry-snapshot"
+      ],
+      "decision": "published",
+      "canonical_id": "julio-800-pbr-materials"
+    },
+    {
+      "candidate_id": "maya-physics-action-animation",
+      "source_url": "https://www.cgchannel.com/2026/08/maya-tutorial-the-principles-of-physics-in-action-scenes/",
+      "discovery_channels": [
+        "web-search",
+        "registered-source-probe:cg-channel",
+        "published-registry-snapshot"
+      ],
+      "decision": "published",
+      "canonical_id": "maya-physics-action-animation"
+    },
+    {
+      "candidate_id": "ue58-control-rig-overview",
+      "source_url": "https://dev.epicgames.com/documentation/unreal-engine/control-rig-in-unreal-engine",
+      "discovery_channels": [
+        "web-search",
+        "registered-source-probe:epic-developer-community",
+        "published-registry-snapshot"
+      ],
+      "decision": "published",
+      "canonical_id": "ue58-control-rig-overview"
+    },
+    {
+      "candidate_id": "substance-sbsar-publishing",
+      "source_url": "https://experienceleague.adobe.com/en/docs/substance-3d-designer/using/substance-graphs/publishing-substance-3d-asset-files-sbsar",
+      "discovery_channels": [
+        "web-search",
+        "registered-source-probe:adobe-substance-3d",
+        "published-registry-snapshot"
+      ],
+      "decision": "published",
+      "canonical_id": "substance-sbsar-publishing"
+    },
+    {
+      "candidate_id": "substance-openpbr-material-samples",
+      "source_url": "https://experienceleague.adobe.com/en/docs/substance-3d-designer/using/substance-graphs/creating-a-substance-graph/material-samples",
+      "discovery_channels": [
+        "web-search",
+        "registered-source-probe:adobe-substance-3d",
+        "published-registry-snapshot"
+      ],
+      "decision": "published",
+      "canonical_id": "substance-openpbr-material-samples"
+    }
+  ],
+  "personalization": {
+    "contract": "supabase-semantic-feedback-v1",
+    "status": "unavailable",
+    "vote_count": 0,
+    "reason": "Active app owner cannot be authoritatively resolved by the available connector in this execution; neutral semantic fallback applied.",
+    "max_rank_multiplier": 0.2,
+    "max_query_expansion_fraction": 0.2,
+    "raw_profile_committed": false,
+    "bookmarks_used": false,
+    "domain_weights_used": false,
+    "admission_bypass": false,
+    "quality_gate_bypass": false,
+    "source_quota": false
+  }
+}
