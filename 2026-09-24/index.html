@@ -1,0 +1,984 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   AI／3D／遊戲美術 Production Intelligence — 2026-09-24
+  </title>
+  <link href="../styles.css?v=20260924-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../shared-components.css?v=20260924-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../daily.css?v=20260924-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../shared-components.css?v=20260924-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+ </head>
+ <body class="archive-page" data-next="" data-previous="2026-09-23" data-report-date="2026-09-24">
+  <nav aria-label="Production Intelligence 分類" class="global-category-nav">
+   <div class="page global-category-nav-inner">
+    <div class="archive-nav-controls">
+     <a class="archive-nav-home" href="../">
+      ← 首頁
+     </a>
+     <div class="archive-nav-date">
+      <a aria-label="前一日日報" class="archive-nav-arrow" href="../2026-09-23/">
+       ←
+      </a>
+      <span>
+       2026-09-24
+      </span>
+     </div>
+    </div>
+    <span aria-hidden="true" class="archive-nav-divider">
+    </span>
+    <a class="global-category-link is-active" href="#top">
+     TOP5
+    </a>
+    <a class="global-category-link" data-category="ai-generation" href="ai-generation/">
+     AI 生成
+    </a>
+    <a class="global-category-link" data-category="3d-production" href="3d-production/">
+     3D 製作
+    </a>
+    <a class="global-category-link" data-category="3d-animation" href="3d-animation/">
+     3D 動作
+    </a>
+    <a class="global-category-link" data-category="engine-art" href="engine-art/">
+     遊戲引擎
+    </a>
+    <a class="global-category-link" data-category="emerging-case" href="emerging-case/">
+     新技術 / Case
+    </a>
+    <a class="global-category-link" data-category="blender-dcc" href="blender-dcc/">
+     Blender / DCC
+    </a>
+    <a class="global-category-link global-history-link" data-global-view="history" href="../history/">
+     歷史日報
+    </a>
+   </div>
+  </nav>
+  <main class="page daily-main">
+   <section class="block" id="top">
+    <div class="block-head">
+     <div>
+      <span>
+       2026-09-24
+      </span>
+      <h2>
+       TOP5
+      </h2>
+     </div>
+    </div>
+    <article class="news daily-card daily-card-top" data-intel-id="blender-adaptive-auto-skinning" data-intel-role="card">
+     <div class="news-rank">
+      01
+     </div>
+     <div class="news-main">
+      <div class="meta">
+       <span class="pill">
+        rigging
+       </span>
+      </div>
+      <h3>
+       Blender Adaptive Auto Skinning：GPU 體素權重自動綁定
+      </h3>
+      <p class="summary">
+       Adaptive Auto Skinning 以體素化方式分析骨架與網格，將身體與服裝一起自動產生 skin weights，並以 GPU 加速處理。
+      </p>
+      <figure class="case-preview daily-visual" data-intel-id="blender-adaptive-auto-skinning" data-intel-role="visual" data-visual-id="blender-adaptive-auto-skinning">
+       <a href="https://80.lv/articles/try-this-one-click-automatic-skinning-add-on-for-blender" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-09-24/blender-adaptive-auto-skinning.jpg"/>
+       </a>
+       <figcaption>
+        <span>
+         SOURCE PREVIEW
+        </span>
+        · Local visual evidence · 點圖開啟原始來源
+       </figcaption>
+      </figure>
+      <div class="quick-impact daily-impact">
+       <span><b class="quick-impact-label">綁定</b> ★★★★★</span>
+      </div>
+      <details class="canonical-analysis canonical-analysis-brief daily-full-analysis" data-analysis-level="BRIEF">
+       <summary>
+        完整分析
+       </summary>
+       <div class="detail-body canonical-analysis-body brief-analysis-body daily-analysis-body">
+        <h4>
+         技術／流程變更
+        </h4>
+        <p>
+         工具先把角色體積轉成自適應體素，再依骨架實際形狀傳播權重，不依賴 bone naming；身體、衣物與手指等靠近區域可一起處理，並以 GPU 執行求解。
+        </p>
+        <h4>
+         Production 影響
+        </h4>
+        <p>
+         對大量角色初始 skinning、外包模型回收與服裝快速換裝特別有價值，可把人工權重塗抹前的基礎作業壓縮成自動初稿，再由美術針對關節與極端姿勢修正。
+        </p>
+        <h4>
+         導入測試與限制
+        </h4>
+        <p>
+         目前證據主要來自作者展示，實際品質仍需用肩胯、手指貼近、裙甲與非人形骨架做 deformation stress test；自動權重不應直接取代最終 QA。
+        </p>
+        <p class="analysis-level-note">
+         BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+        </p>
+       </div>
+      </details>
+      <a class="source daily-source" href="https://80.lv/articles/try-this-one-click-automatic-skinning-add-on-for-blender" rel="noopener noreferrer" target="_blank">
+       來源
+      </a>
+     </div>
+    </article>
+    <article class="news daily-card daily-card-top" data-intel-id="philips-radio-hard-surface" data-intel-role="card">
+     <div class="news-rank">
+      02
+     </div>
+     <div class="news-main">
+      <div class="meta">
+       <span class="pill">
+        prop-production
+       </span>
+      </div>
+      <h3>
+       Philips Radio 道具流程：維修影片拆結構、ZBrush 細節與 UDIM 貼圖
+      </h3>
+      <p class="summary">
+       硬表面道具案例以真實維修影片理解結構與磨耗，配合 Maya、ZBrush、Substance 3D Painter 與 Unreal 完成高品質資產。
+      </p>
+      <figure class="case-preview daily-visual" data-intel-id="philips-radio-hard-surface" data-intel-role="visual" data-visual-id="philips-radio-hard-surface">
+       <a href="https://80.lv/articles/breakdown-how-to-create-a-hard-surface-philips-radio-with-zbrush-substance-3d" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-09-24/philips-radio-hard-surface.jpg"/>
+       </a>
+       <figcaption>
+        <span>
+         SOURCE PREVIEW
+        </span>
+        · Local visual evidence · 點圖開啟原始來源
+       </figcaption>
+      </figure>
+      <div class="quick-impact daily-impact">
+       <span><b class="quick-impact-label">物件製作</b> ★★★★★</span>
+      </div>
+      <details class="canonical-analysis canonical-analysis-brief daily-full-analysis" data-analysis-level="BRIEF">
+       <summary>
+        完整分析
+       </summary>
+       <div class="detail-body canonical-analysis-body brief-analysis-body daily-analysis-body">
+        <h4>
+         技術／流程變更
+        </h4>
+        <p>
+         作者不只看產品照片，而是用維修影片理解外殼、旋鈕與內部結構，再把有機磨耗與局部細節放進 ZBrush；UV 以多張 sheet／UDIM 支援高解析貼圖。
+        </p>
+        <h4>
+         Production 影響
+        </h4>
+        <p>
+         這種『先理解物件如何被使用與拆裝，再決定磨耗』的方式比隨機 grunge 更可靠，特別適合寫實道具外包規範，可直接轉成 reference、材質分區與 wear map 的驗收依據。
+        </p>
+        <h4>
+         導入測試與限制
+        </h4>
+        <p>
+         文章展示偏高品質作品流程，實際遊戲專案仍要重新限制 triangle、UDIM 數量、texel density 與 shader 成本；應以目標平台重新縮編，而不是原樣套用。
+        </p>
+        <p class="analysis-level-note">
+         BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+        </p>
+       </div>
+      </details>
+      <a class="source daily-source" href="https://80.lv/articles/breakdown-how-to-create-a-hard-surface-philips-radio-with-zbrush-substance-3d" rel="noopener noreferrer" target="_blank">
+       來源
+      </a>
+     </div>
+    </article>
+    <article class="news daily-card daily-card-top" data-intel-id="ica-camera-game-ready" data-intel-role="card">
+     <div class="news-rank">
+      03
+     </div>
+     <div class="news-main">
+      <div class="meta">
+       <span class="pill">
+        prop-production
+       </span>
+      </div>
+      <h3>
+       ICA 古董相機：25K 三角形與單一 2K 貼圖的遊戲道具拆解
+      </h3>
+      <p class="summary">
+       ICA Dresden Folding Plate Camera 以 25K triangles、單一 2K texture sheet 為限制，示範從 blockout、高低模、UV、烘焙到磨耗與敘事呈現。
+      </p>
+      <figure class="case-preview daily-visual" data-intel-id="ica-camera-game-ready" data-intel-role="visual" data-visual-id="ica-camera-game-ready">
+       <a href="https://80.lv/articles/breakdown-how-to-create-a-detailed-ica-dresden-folding-plate-camera" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-09-24/ica-camera-game-ready.jpg"/>
+       </a>
+       <figcaption>
+        <span>
+         SOURCE PREVIEW
+        </span>
+        · Local visual evidence · 點圖開啟原始來源
+       </figcaption>
+      </figure>
+      <div class="quick-impact daily-impact">
+       <span><b class="quick-impact-label">物件製作</b> ★★★★★</span>
+      </div>
+      <details class="canonical-analysis canonical-analysis-brief daily-full-analysis" data-analysis-level="BRIEF">
+       <summary>
+        完整分析
+       </summary>
+       <div class="detail-body canonical-analysis-body brief-analysis-body daily-analysis-body">
+        <h4>
+         技術／流程變更
+        </h4>
+        <p>
+         案例在明確 25K triangles 與單一 2K texture set 限制下完成高低模轉換，輪廓重要區保留幾何，其餘細節交給 bake；材質按 leather、metal、brass、glass 與 bellows 分開建立磨耗邏輯。
+        </p>
+        <h4>
+         Production 影響
+        </h4>
+        <p>
+         這是很適合外包驗收的規格型參考：先固定 budget，再用 silhouette importance 與 texel importance 分配資源，能避免『高模很漂亮但 game-ready 無法落地』的常見問題。
+        </p>
+        <h4>
+         導入測試與限制
+        </h4>
+        <p>
+         最終以 Marmoset 美術呈現為主，仍需針對實際引擎重查 normal bake、mipmap、材質 channel packing 與遠距 LOD；敘事道具的磨耗也要避免在小尺寸畫面變成雜訊。
+        </p>
+        <p class="analysis-level-note">
+         BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+        </p>
+       </div>
+      </details>
+      <a class="source daily-source" href="https://80.lv/articles/breakdown-how-to-create-a-detailed-ica-dresden-folding-plate-camera" rel="noopener noreferrer" target="_blank">
+       來源
+      </a>
+     </div>
+    </article>
+    <article class="news daily-card daily-card-top" data-intel-id="unity7-production-cli" data-intel-role="card">
+     <div class="news-rank">
+      04
+     </div>
+     <div class="news-main">
+      <div class="meta">
+       <span class="pill">
+        tools
+       </span>
+      </div>
+      <h3>
+       Unity 7 生產管線與 CLI：資產可離開 Editor 直接驗證與部署
+      </h3>
+      <p class="summary">
+       Unity 在 Unite Seoul 2026 示範 Scene Preview、web dashboard 與 Unity CLI，讓資產修正、驗證與 content bundle 部署不必每一步都回 Editor。
+      </p>
+      <figure class="case-preview daily-visual" data-intel-id="unity7-production-cli" data-intel-role="visual" data-visual-id="unity7-production-cli">
+       <a href="https://unity.com/blog/unite-seoul-keynote-2026-recap" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-09-24/unity7-production-cli.jpg"/>
+       </a>
+       <figcaption>
+        <span>
+         SOURCE PREVIEW
+        </span>
+        · Local visual evidence · 點圖開啟原始來源
+       </figcaption>
+      </figure>
+      <div class="quick-impact daily-impact">
+       <span><b class="quick-impact-label">引擎工具</b> ★★★★★</span>
+      </div>
+      <details class="canonical-analysis canonical-analysis-brief daily-full-analysis" data-analysis-level="BRIEF">
+       <summary>
+        完整分析
+       </summary>
+       <div class="detail-body canonical-analysis-body brief-analysis-body daily-analysis-body">
+        <h4>
+         技術／流程變更
+        </h4>
+        <p>
+         Unity 展示把專案能力開放給 Editor 外的工具：美術可在 web dashboard 透過 Scene Preview 看遊戲情境中的資產，修正後上傳，再用 Unity CLI 依專案標準驗證並推送 content bundle。
+        </p>
+        <h4>
+         Production 影響
+        </h4>
+        <p>
+         這直接對應大型團隊與 AI-assisted pipeline：資產檢查、修正與自動化不必全部塞進自研 Editor，能把既有 DCC、web 工具與 CI 串在 Unity 專案周邊。
+        </p>
+        <h4>
+         導入測試與限制
+        </h4>
+        <p>
+         目前屬 Unity 7 發表內容，實際 API、授權、平台支援與成熟度仍需等正式版本驗證；導入前應先挑單一 asset validation use case，測 CLI 與版本控制整合。
+        </p>
+        <p class="analysis-level-note">
+         BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+        </p>
+       </div>
+      </details>
+      <a class="source daily-source" href="https://unity.com/blog/unite-seoul-keynote-2026-recap" rel="noopener noreferrer" target="_blank">
+       來源
+      </a>
+     </div>
+    </article>
+    <article class="news daily-card daily-card-top" data-intel-id="bee-spy-drone-design" data-intel-role="card">
+     <div class="news-rank">
+      05
+     </div>
+     <div class="news-main">
+      <div class="meta">
+       <span class="pill">
+        prop-production
+       </span>
+      </div>
+      <h3>
+       B.E.E. Spy Drone：從功能需求推導硬表面輪廓與產品級呈現
+      </h3>
+      <p class="summary">
+       資深 hard-surface 美術以昆蟲造型設計無人機，先定義攝影、電池、夜視等功能，再用 Plasticity 與 Blender 完成可讀性高的產品造型。
+      </p>
+      <figure class="case-preview daily-visual" data-intel-id="bee-spy-drone-design" data-intel-role="visual" data-visual-id="bee-spy-drone-design">
+       <a href="https://80.lv/articles/designing-a-functional-looking-spy-drone-with-an-insect-like-form" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-09-24/bee-spy-drone-design.jpg"/>
+       </a>
+       <figcaption>
+        <span>
+         SOURCE PREVIEW
+        </span>
+        · Local visual evidence · 點圖開啟原始來源
+       </figcaption>
+      </figure>
+      <div class="quick-impact daily-impact">
+       <span><b class="quick-impact-label">物件製作</b> ★★★★☆</span>
+      </div>
+      <details class="canonical-analysis canonical-analysis-brief daily-full-analysis" data-analysis-level="BRIEF">
+       <summary>
+        完整分析
+       </summary>
+       <div class="detail-body canonical-analysis-body brief-analysis-body daily-analysis-body">
+        <h4>
+         技術／流程變更
+        </h4>
+        <p>
+         作者先列出鏡頭、電池、螺旋槳、LED、夜視與麥克風等功能，再把機能轉成輪廓與組件配置；Plasticity 負責 CAD 式造型，並以即時 bridge 接到 Blender 做材質與呈現。
+        </p>
+        <h4>
+         Production 影響
+        </h4>
+        <p>
+         對科幻載具與武器設計很實用：先建立功能理由再造型，能降低『只有裝飾沒有用途』的細節堆疊，同時讓外包 review 更容易以 silhouette、功能區與材質分區溝通。
+        </p>
+        <h4>
+         導入測試與限制
+        </h4>
+        <p>
+         這是個人作品流程，沒有遊戲效能與動畫機構驗證；若用於可操作載具，還需補上碰撞、旋轉件 clearance、LOD、pivot 與骨架／機構動畫測試。
+        </p>
+        <p class="analysis-level-note">
+         BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+        </p>
+       </div>
+      </details>
+      <a class="source daily-source" href="https://80.lv/articles/designing-a-functional-looking-spy-drone-with-an-insect-like-form" rel="noopener noreferrer" target="_blank">
+       來源
+      </a>
+     </div>
+    </article>
+   </section>
+   <section class="block daily-more" id="more">
+    <div class="block-head">
+     <div>
+      <span>
+       2026-09-24
+      </span>
+      <h2>
+       當日其他資訊
+      </h2>
+     </div>
+    </div>
+    <article class="daily-card daily-card-more category-news" data-intel-id="blender-surface-pinching-fixes" data-intel-role="card">
+     <div class="meta">
+      <span class="pill">
+       blender-tip
+      </span>
+     </div>
+     <h3>
+      Blender 曲面 Pinching 修正：Alt+S、LoopTools Curve 與 Grid Fill
+     </h3>
+     <p class="summary">
+      Jan van den Hemel 示範多種消除曲面凹凸與 pinching 的建模修正法，涵蓋法線方向縮放、Curve 與重建局部拓樸。
+     </p>
+     <figure class="case-preview daily-visual" data-intel-id="blender-surface-pinching-fixes" data-intel-role="visual" data-visual-id="blender-surface-pinching-fixes">
+      <a href="https://80.lv/articles/here-s-how-you-can-resolve-surface-pinching-in-blender" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+       <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-09-24/blender-surface-pinching-fixes.jpg"/>
+      </a>
+      <figcaption>
+       <span>
+        SOURCE PREVIEW
+       </span>
+       · Local visual evidence · 點圖開啟原始來源
+      </figcaption>
+     </figure>
+     <div class="quick-impact daily-impact">
+      <span><b class="quick-impact-label">Blender 技巧</b> ★★★★☆</span>
+     </div>
+     <details class="canonical-analysis canonical-analysis-brief daily-full-analysis" data-analysis-level="BRIEF">
+      <summary>
+       完整分析
+      </summary>
+      <div class="detail-body canonical-analysis-body brief-analysis-body daily-analysis-body">
+       <h4>
+        技術／流程變更
+       </h4>
+       <p>
+        小範圍凹凸可用 Alt+S 沿法線調整，或反選後以 LoopTools Curve 重整曲面；較大的問題則刪除異常區域，再利用邊界與 Grid Fill 重建局部拓樸。
+       </p>
+       <h4>
+        Production 影響
+       </h4>
+       <p>
+        這些方法適合 hard-surface SubD、布林後清面與角色局部修形，能避免只靠細分或 Smooth 掩蓋拓樸問題，讓輪廓與高光帶在最終烘焙或即時渲染中更穩定。
+       </p>
+       <h4>
+        導入測試與限制
+       </h4>
+       <p>
+        不同曲率與 edge flow 對 Grid Fill 結果差異很大；導入 SOP 時應在高光反射明顯的曲面上檢查 shading，再決定是修點、重拓樸或改變 boolean 前的基礎拓樸。
+       </p>
+       <p class="analysis-level-note">
+        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+       </p>
+      </div>
+     </details>
+     <a class="source daily-source" href="https://80.lv/articles/here-s-how-you-can-resolve-surface-pinching-in-blender" rel="noopener noreferrer" target="_blank">
+      來源
+     </a>
+    </article>
+    <article class="daily-card daily-card-more category-news" data-intel-id="blender-hex-shield-gn" data-intel-role="card">
+     <div class="meta">
+      <span class="pill">
+       shader
+      </span>
+     </div>
+     <h3>
+      Blender Geometry Nodes 六角護盾：Dual Mesh、距離場與材質動畫
+     </h3>
+     <p class="summary">
+      PIXXO 3D 用 Geometry Nodes 建立六角護盾，透過 Dual Mesh、Vector Math、Gradient、Color Ramp 與剛體組合動畫與 VFX。
+     </p>
+     <figure class="case-preview daily-visual" data-intel-id="blender-hex-shield-gn" data-intel-role="visual" data-visual-id="blender-hex-shield-gn">
+      <a href="https://80.lv/articles/how-to-make-a-glowing-hexagon-shield-animation-with-blender-s-geometry-nodes" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+       <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-09-24/blender-hex-shield-gn.jpg"/>
+      </a>
+      <figcaption>
+       <span>
+        SOURCE PREVIEW
+       </span>
+       · Local visual evidence · 點圖開啟原始來源
+      </figcaption>
+     </figure>
+     <div class="quick-impact daily-impact">
+      <span><b class="quick-impact-label">Shader</b> ★★★★☆</span>
+     </div>
+     <details class="canonical-analysis canonical-analysis-brief daily-full-analysis" data-analysis-level="BRIEF">
+      <summary>
+       完整分析
+      </summary>
+      <div class="detail-body canonical-analysis-body brief-analysis-body daily-analysis-body">
+       <h4>
+        技術／流程變更
+       </h4>
+       <p>
+        流程把 Ico Sphere 經 Dual Mesh 轉成六角面，再用移動平面與 Position 的向量差控制解體區域；Color Ramp、Emission、Fresnel 與剛體粒子補上護盾亮度與撞擊回饋。
+       </p>
+       <h4>
+        Production 影響
+       </h4>
+       <p>
+        雖然示範在 Blender，節點邏輯可轉譯成 Unity/Unreal 的距離遮罩與 dissolve shader：以局部碰撞位置驅動網格／材質反應，比單純播放固定 flipbook 更容易做互動效果。
+       </p>
+       <h4>
+        導入測試與限制
+       </h4>
+       <p>
+        Geometry Nodes 與剛體設定不能直接搬進遊戲 runtime；真正導入時要拆成可匯出的 mesh、shader mask 與事件參數，並測試透明／發光 overdraw 與多實例成本。
+       </p>
+       <p class="analysis-level-note">
+        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+       </p>
+      </div>
+     </details>
+     <a class="source daily-source" href="https://80.lv/articles/how-to-make-a-glowing-hexagon-shield-animation-with-blender-s-geometry-nodes" rel="noopener noreferrer" target="_blank">
+      來源
+     </a>
+    </article>
+    <article class="daily-card daily-card-more category-news" data-intel-id="houdini-equinox-procedural-animation" data-intel-role="card">
+     <div class="meta">
+      <span class="pill">
+       retarget
+      </span>
+     </div>
+     <h3>
+      Houdini 22 Procedural Animation：Retarget、Motion Mixer 與 Ragdoll 串成工作坊
+     </h3>
+     <p class="summary">
+      SideFX Equinox 2026 工作坊以 Houdini 22 示範 rigged character 的動捕 retarget、clip 混合、簡易 ragdoll 與程序化角色動畫。
+     </p>
+     <figure class="case-preview daily-visual" data-intel-id="houdini-equinox-procedural-animation" data-intel-role="visual" data-visual-id="houdini-equinox-procedural-animation">
+      <a href="https://www.sidefx.com/houdini-hive/equinox-2026/" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+       <img alt="SOURCE CARD preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-09-24/houdini-equinox-procedural-animation.svg"/>
+      </a>
+      <figcaption>
+       <span>
+        SOURCE CARD
+       </span>
+       · Generated source card · 點圖開啟原始來源
+      </figcaption>
+     </figure>
+     <div class="quick-impact daily-impact">
+      <span><b class="quick-impact-label">重定向</b> ★★★★☆</span>
+     </div>
+     <details class="canonical-analysis canonical-analysis-brief daily-full-analysis" data-analysis-level="BRIEF">
+      <summary>
+       完整分析
+      </summary>
+      <div class="detail-body canonical-analysis-body brief-analysis-body daily-analysis-body">
+       <h4>
+        技術／流程變更
+       </h4>
+       <p>
+        官方工作坊把 rigged character、mocap retarget、Motion Mixer clip 組合與簡易 ragdoll 串成同一流程，反映 Houdini 22 正把角色動畫與程序化系統放到更完整的製作鏈。
+       </p>
+       <h4>
+        Production 影響
+       </h4>
+       <p>
+        對大量 NPC、變體角色與程序化環境中的角色行為特別值得測試：同一 DCC 內可處理 retarget、clip 組合與物理輔助，減少外部工具往返。
+       </p>
+       <h4>
+        導入測試與限制
+       </h4>
+       <p>
+        目前來源是活動課程摘要，並非完整 benchmark；實際導入需確認骨架命名、動畫 bake、IK stretch、引擎輸出與多人協作時的 cache／版本管理成本。
+       </p>
+       <p class="analysis-level-note">
+        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+       </p>
+      </div>
+     </details>
+     <a class="source daily-source" href="https://www.sidefx.com/houdini-hive/equinox-2026/" rel="noopener noreferrer" target="_blank">
+      來源
+     </a>
+    </article>
+    <article class="daily-card daily-card-more category-news" data-intel-id="ue-character-rig-pipeline-guide" data-intel-role="card">
+     <div class="meta">
+      <span class="pill">
+       rigging
+      </span>
+     </div>
+     <h3>
+      Unreal 角色 Rig Pipeline：把 Maya Rig、Export Skeleton、Retarget 與 Runtime 當成同一系統
+     </h3>
+     <p class="summary">
+      Frenetics FX 的技術指南強調角色 rig 不能只在 Maya 看控制器，而要從 export skeleton、deformation、retarget 到 Unreal runtime 一起驗證。
+     </p>
+     <figure class="case-preview daily-visual" data-intel-id="ue-character-rig-pipeline-guide" data-intel-role="visual" data-visual-id="ue-character-rig-pipeline-guide">
+      <a href="https://freneticsfx.com/insights/unreal-engine-character-rigging-pipeline.html" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+       <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-09-24/ue-character-rig-pipeline-guide.jpg"/>
+      </a>
+      <figcaption>
+       <span>
+        SOURCE PREVIEW
+       </span>
+       · Local visual evidence · 點圖開啟原始來源
+      </figcaption>
+     </figure>
+     <div class="quick-impact daily-impact">
+      <span><b class="quick-impact-label">綁定</b> ★★★★☆</span>
+     </div>
+     <details class="canonical-analysis canonical-analysis-brief daily-full-analysis" data-analysis-level="BRIEF">
+      <summary>
+       完整分析
+      </summary>
+      <div class="detail-body canonical-analysis-body brief-analysis-body daily-analysis-body">
+       <h4>
+        技術／流程變更
+       </h4>
+       <p>
+        指南把 animator rig、export skeleton 與 Unreal character setup 視為相互依賴的系統，要求早期就檢查骨架階層、skin deformation、動畫資料、retarget 接觸與 runtime procedural 評估位置。
+       </p>
+       <h4>
+        Production 影響
+       </h4>
+       <p>
+        這種思路很適合作為角色外包與跨部門 handoff SOP：不是『Maya 裡會動就過』，而是以引擎中的最終行為作為驗收終點，可提早抓到 root、scale、twist 與 contact 問題。
+       </p>
+       <h4>
+        導入測試與限制
+       </h4>
+       <p>
+        文章屬技術指南而非特定專案 benchmark；採用時應把建議映射到自家 UE 版本、IK Retargeter、Control Rig 與動畫壓縮設定，再建立最小測試角色做端到端驗證。
+       </p>
+       <p class="analysis-level-note">
+        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+       </p>
+      </div>
+     </details>
+     <a class="source daily-source" href="https://freneticsfx.com/insights/unreal-engine-character-rigging-pipeline.html" rel="noopener noreferrer" target="_blank">
+      來源
+     </a>
+    </article>
+    <article class="daily-card daily-card-more category-news" data-intel-id="substance-designer-3d-scenes" data-intel-role="card">
+     <div class="meta">
+      <span class="pill">
+       substance
+      </span>
+     </div>
+     <h3>
+      Substance Designer 3D Scenes：在場景脈絡中編材質並保留 USD 非破壞輸出
+     </h3>
+     <p class="summary">
+      Designer 可載入 3D scene，在原場景脈絡替換材質、保留 session 狀態，並以 USD 工作流輸出只包含修改與新增內容。
+     </p>
+     <figure class="case-preview daily-visual" data-intel-id="substance-designer-3d-scenes" data-intel-role="visual" data-visual-id="substance-designer-3d-scenes">
+      <a href="https://experienceleague.adobe.com/en/docs/substance-3d-designer/using/working-with-3d-scenes/working-with-3d-scenes" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+       <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-09-24/substance-designer-3d-scenes.jpg"/>
+      </a>
+      <figcaption>
+       <span>
+        SOURCE PREVIEW
+       </span>
+       · Local visual evidence · 點圖開啟原始來源
+      </figcaption>
+     </figure>
+     <div class="quick-impact daily-impact">
+      <span><b class="quick-impact-label">Substance</b> ★★★★☆</span>
+     </div>
+     <details class="canonical-analysis canonical-analysis-brief daily-full-analysis" data-analysis-level="BRIEF">
+      <summary>
+       完整分析
+      </summary>
+      <div class="detail-body canonical-analysis-body brief-analysis-body daily-analysis-body">
+       <h4>
+        技術／流程變更
+       </h4>
+       <p>
+        Designer 的 3D Scene 工作流讓材質不再只在單一 preview mesh 上編輯，而是可載入完整場景、覆蓋指定材質並從既有材質抽取值或貼圖作為起點；USD 還能以非破壞方式輸出差異。
+       </p>
+       <h4>
+        Production 影響
+       </h4>
+       <p>
+        對環境材質與 lookdev 很實用，材質師可直接在實際比例、燈光與鄰接材質脈絡中判斷結果，減少 Designer 與 DCC／引擎之間反覆猜測。
+       </p>
+       <h4>
+        導入測試與限制
+       </h4>
+       <p>
+        需確認團隊使用的 scene format、USD variant／layer 規則與 downstream DCC 支援；如果專案不使用 USD，仍要測試 FBX/其他格式下材質覆蓋與導出是否符合現有 pipeline。
+       </p>
+       <p class="analysis-level-note">
+        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+       </p>
+      </div>
+     </details>
+     <a class="source daily-source" href="https://experienceleague.adobe.com/en/docs/substance-3d-designer/using/working-with-3d-scenes/working-with-3d-scenes" rel="noopener noreferrer" target="_blank">
+      來源
+     </a>
+    </article>
+    <article class="daily-card daily-card-more category-news" data-intel-id="anime-to-photoreal-head-pipeline" data-intel-role="card">
+     <div class="meta">
+      <span class="pill">
+       character-production
+      </span>
+     </div>
+     <h3>
+      Anime Reference 到寫實角色頭：Blender 高模、Retopo 與 Shader Node 實作
+     </h3>
+     <p class="summary">
+      The Rookies 案例以動漫角色為參考，轉成 stylized realism 頭像，涵蓋高模雕刻、retopology、貼圖與 Blender shader nodes。
+     </p>
+     <figure class="case-preview daily-visual" data-intel-id="anime-to-photoreal-head-pipeline" data-intel-role="visual" data-visual-id="anime-to-photoreal-head-pipeline">
+      <a href="https://www.therookies.co/blog/breakdowns/production-ready-character-head-pipeline-anime-to-photoreal" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+       <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-09-24/anime-to-photoreal-head-pipeline.jpg"/>
+      </a>
+      <figcaption>
+       <span>
+        SOURCE PREVIEW
+       </span>
+       · Local visual evidence · 點圖開啟原始來源
+      </figcaption>
+     </figure>
+     <div class="quick-impact daily-impact">
+      <span><b class="quick-impact-label">角色製作</b> ★★★★☆</span>
+     </div>
+     <details class="canonical-analysis canonical-analysis-brief daily-full-analysis" data-analysis-level="BRIEF">
+      <summary>
+       完整分析
+      </summary>
+      <div class="detail-body canonical-analysis-body brief-analysis-body daily-analysis-body">
+       <h4>
+        技術／流程變更
+       </h4>
+       <p>
+        作者從動漫造型抽取比例與辨識特徵，但改用偏寫實的高模、retopology 與 shader node 呈現，形成『保留角色設計語言、改變材質與結構真實度』的轉譯流程。
+       </p>
+       <h4>
+        Production 影響
+       </h4>
+       <p>
+        對角色風格轉換很有參考價值，特別是概念圖不是最終渲染規格時，可把臉部比例、主次形體與材質層分開決策，而不是單純追求照片寫實。
+       </p>
+       <h4>
+        導入測試與限制
+       </h4>
+       <p>
+        學生專案的最終規格與商業遊戲 budget 不一定一致；導入時應重新驗證臉部 topology、表情 blendshape、法線與 shader 成本，確認風格化輪廓不被寫實材質吃掉。
+       </p>
+       <p class="analysis-level-note">
+        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+       </p>
+      </div>
+     </details>
+     <a class="source daily-source" href="https://www.therookies.co/blog/breakdowns/production-ready-character-head-pipeline-anime-to-photoreal" rel="noopener noreferrer" target="_blank">
+      來源
+     </a>
+    </article>
+    <article class="daily-card daily-card-more category-news" data-intel-id="pwnisher-3dgs-production-course" data-intel-role="card">
+     <div class="meta">
+      <span class="pill">
+       case-study
+      </span>
+     </div>
+     <h3>
+      Pwnisher 3DGS／Photogrammetry：從拍攝、清理到 UE5 合成的完整流程
+     </h3>
+     <p class="summary">
+      六小時課程涵蓋物件與環境拍攝、3D Gaussian Splat 處理、清理、UE5／Nuke／After Effects 合成與掃描資產庫建立。
+     </p>
+     <figure class="case-preview daily-visual" data-intel-id="pwnisher-3dgs-production-course" data-intel-role="visual" data-visual-id="pwnisher-3dgs-production-course">
+      <a href="https://80.lv/articles/learn-3dgs-photogrammetry-with-pwnisher-s-six-hour-course" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+       <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-09-24/pwnisher-3dgs-production-course.jpg"/>
+      </a>
+      <figcaption>
+       <span>
+        SOURCE PREVIEW
+       </span>
+       · Local visual evidence · 點圖開啟原始來源
+      </figcaption>
+     </figure>
+     <div class="quick-impact daily-impact">
+      <span><b class="quick-impact-label">製作案例</b> ★★★★☆</span>
+     </div>
+     <details class="canonical-analysis canonical-analysis-brief daily-full-analysis" data-analysis-level="BRIEF">
+      <summary>
+       完整分析
+      </summary>
+      <div class="detail-body canonical-analysis-body brief-analysis-body daily-analysis-body">
+       <h4>
+        技術／流程變更
+       </h4>
+       <p>
+        課程把 3DGS 從單一 demo 拉成端到端流程：前期拍攝、資料處理、清理，再進 UE5、Nuke 與 After Effects 做鏡頭、合成與延伸，最後建立可重用 scan library。
+       </p>
+       <h4>
+        Production 影響
+       </h4>
+       <p>
+        這對場景參考、虛擬製片、2D/3D 合成與快速背景資產尤其有價值；3DGS 的 parallax 與可改鏡頭特性可補足傳統照片 plate 的限制。
+       </p>
+       <h4>
+        導入測試與限制
+       </h4>
+       <p>
+        課程尚未完整公開，且 Gaussian Splat 的 runtime、遮擋、重光照與輸出格式仍高度依賴工具鏈；導入前應先用單一小場景測試捕捉品質、清理時間與引擎效能。
+       </p>
+       <p class="analysis-level-note">
+        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+       </p>
+      </div>
+     </details>
+     <a class="source daily-source" href="https://80.lv/articles/learn-3dgs-photogrammetry-with-pwnisher-s-six-hour-course" rel="noopener noreferrer" target="_blank">
+      來源
+     </a>
+    </article>
+    <article class="daily-card daily-card-more category-news" data-intel-id="sketch2pose-blender-update" data-intel-role="card">
+     <div class="meta">
+      <span class="pill">
+       animation
+      </span>
+     </div>
+     <h3>
+      Sketch2Pose 更新：多視角草圖轉 3D Pose，支援 Rigify／Mixamo／自訂 Humanoid
+     </h3>
+     <p class="summary">
+      Sketch2Pose 透過程式與自訂 solver 把 stick figure 草圖轉成 3D pose，新版加入多 camera angle 支援，定位在 blocking 加速而非生成式 AI。
+     </p>
+     <figure class="case-preview daily-visual" data-intel-id="sketch2pose-blender-update" data-intel-role="visual" data-visual-id="sketch2pose-blender-update">
+      <a href="https://80.lv/articles/no-genai-this-blender-add-on-turns-simple-sketches-into-3d-poses" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+       <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-09-24/sketch2pose-blender-update.jpg"/>
+      </a>
+      <figcaption>
+       <span>
+        SOURCE PREVIEW
+       </span>
+       · Local visual evidence · 點圖開啟原始來源
+      </figcaption>
+     </figure>
+     <div class="quick-impact daily-impact">
+      <span><b class="quick-impact-label">動畫</b> ★★★★☆</span>
+     </div>
+     <details class="canonical-analysis canonical-analysis-brief daily-full-analysis" data-analysis-level="BRIEF">
+      <summary>
+       完整分析
+      </summary>
+      <div class="detail-body canonical-analysis-body brief-analysis-body daily-analysis-body">
+       <h4>
+        技術／流程變更
+       </h4>
+       <p>
+        新版支援多 camera angle，使用者畫出簡單 stick figure 後由數學與 custom solver 轉成 pose；已測試自訂 humanoid、Mixamo 與 Rigify，不依賴生成式 AI。
+       </p>
+       <h4>
+        Production 影響
+       </h4>
+       <p>
+        最直接的用途是 blocking 與 pose ideation：概念／分鏡人員能快速把 2D 姿勢轉成可旋轉的 3D 基底，再由動畫師修 silhouette、重心與關節細節。
+       </p>
+       <h4>
+        導入測試與限制
+       </h4>
+       <p>
+        作者明確表示仍需人工調整，且手部與表情支援仍在規劃；導入時應測試極端透視、遮擋、非標準比例與多角色 pose，避免把 solver 結果視為最終動畫。
+       </p>
+       <p class="analysis-level-note">
+        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+       </p>
+      </div>
+     </details>
+     <a class="source daily-source" href="https://80.lv/articles/no-genai-this-blender-add-on-turns-simple-sketches-into-3d-poses" rel="noopener noreferrer" target="_blank">
+      來源
+     </a>
+    </article>
+    <article class="daily-card daily-card-more category-news" data-intel-id="supersplat-editor-3" data-intel-role="card">
+     <div class="meta">
+      <span class="pill">
+       procedural
+      </span>
+     </div>
+     <h3>
+      SuperSplat Editor 3.0：WebGPU 重寫以處理更大型 Gaussian Splat 場景
+     </h3>
+     <p class="summary">
+      PlayCanvas 將 SuperSplat Editor 3.0 全面改成 WebGPU，並新增 Stochastic Alpha rendering，提升瀏覽器處理大型 3DGS 的能力。
+     </p>
+     <figure class="case-preview daily-visual" data-intel-id="supersplat-editor-3" data-intel-role="visual" data-visual-id="supersplat-editor-3">
+      <a href="https://www.cgchannel.com/2026/09/playcanvas-releases-supersplat-editor-3-0/" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+       <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-09-24/supersplat-editor-3.jpg"/>
+      </a>
+      <figcaption>
+       <span>
+        SOURCE PREVIEW
+       </span>
+       · Local visual evidence · 點圖開啟原始來源
+      </figcaption>
+     </figure>
+     <div class="quick-impact daily-impact">
+      <span><b class="quick-impact-label">程序化</b> ★★★★☆</span>
+     </div>
+     <details class="canonical-analysis canonical-analysis-brief daily-full-analysis" data-analysis-level="BRIEF">
+      <summary>
+       完整分析
+      </summary>
+      <div class="detail-body canonical-analysis-body brief-analysis-body daily-analysis-body">
+       <h4>
+        技術／流程變更
+       </h4>
+       <p>
+        3.0 版以 WebGPU 重建瀏覽器編輯器，目標是載入更大的 splat scene，並透過 Stochastic Alpha rendering 讓超重場景維持互動性；仍可做選取、刪除與方向調整。
+       </p>
+       <h4>
+        Production 影響
+       </h4>
+       <p>
+        對掃描資料 review、遠端協作與快速清理很有吸引力：不用安裝完整 DCC 就能在瀏覽器檢查 3DGS，適合作為捕捉後的第一層 triage 與客戶／團隊預覽。
+       </p>
+       <h4>
+        導入測試與限制
+       </h4>
+       <p>
+        WebGPU 對瀏覽器、GPU 與裝置支援有差異；實際使用需測試場景尺寸、顯存、載入時間與輸出格式，並確認線上工具是否符合專案資料安全與版本管理需求。
+       </p>
+       <p class="analysis-level-note">
+        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+       </p>
+      </div>
+     </details>
+     <a class="source daily-source" href="https://www.cgchannel.com/2026/09/playcanvas-releases-supersplat-editor-3-0/" rel="noopener noreferrer" target="_blank">
+      來源
+     </a>
+    </article>
+    <article class="daily-card daily-card-more category-news" data-intel-id="mediaplane2-maya-reference-editor" data-intel-role="card">
+     <div class="meta">
+      <span class="pill">
+       animation
+      </span>
+     </div>
+     <h3>
+      MediaPlane 2.0：把非線性 Reference Video 編輯直接放進 Maya
+     </h3>
+     <p class="summary">
+      MediaPlane 2.0 新增 Media Plane Editor，讓動畫師可在 Maya 內匯入、剪接、retime 完整參考影片序列，不必先輸出 image sequence。
+     </p>
+     <figure class="case-preview daily-visual" data-intel-id="mediaplane2-maya-reference-editor" data-intel-role="visual" data-visual-id="mediaplane2-maya-reference-editor">
+      <a href="https://www.cgchannel.com/2026/08/mediaplane-2-0-puts-a-nonlinear-editor-inside-maya/" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+       <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-09-24/mediaplane2-maya-reference-editor.jpg"/>
+      </a>
+      <figcaption>
+       <span>
+        SOURCE PREVIEW
+       </span>
+       · Local visual evidence · 點圖開啟原始來源
+      </figcaption>
+     </figure>
+     <div class="quick-impact daily-impact">
+      <span><b class="quick-impact-label">動畫</b> ★★★★☆</span>
+     </div>
+     <details class="canonical-analysis canonical-analysis-brief daily-full-analysis" data-analysis-level="BRIEF">
+      <summary>
+       完整分析
+      </summary>
+      <div class="detail-body canonical-analysis-body brief-analysis-body daily-analysis-body">
+       <h4>
+        技術／流程變更
+       </h4>
+       <p>
+        新版把 reference video 從單純 viewport 播放提升到非線性編輯，可直接在 Maya 組合、裁切、翻轉、retime 多段參考素材，省去先轉 image sequence 或往返外部剪輯軟體。
+       </p>
+       <h4>
+        Production 影響
+       </h4>
+       <p>
+        對角色動畫 blocking、動作對照與 shot review 很實際，尤其動畫師需要頻繁比較自拍 reference 與 Maya timing 時，可降低檔案轉換與時間軸不同步造成的摩擦。
+       </p>
+       <h4>
+        導入測試與限制
+       </h4>
+       <p>
+        需測試長影片解碼、多人共享路徑、frame rate 與 Maya cache 的穩定性；若 studio 已有 RV／SyncSketch／內部 review 工具，也要評估是否會形成重複的 reference source of truth。
+       </p>
+       <p class="analysis-level-note">
+        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+       </p>
+      </div>
+     </details>
+     <a class="source daily-source" href="https://www.cgchannel.com/2026/08/mediaplane-2-0-puts-a-nonlinear-editor-inside-maya/" rel="noopener noreferrer" target="_blank">
+      來源
+     </a>
+    </article>
+   </section>
+  </main>
+  <script src="../daily.js?v=20260924-r1-workspace-v10-history-current-workspace">
+  </script>
+  <script defer="" src="../archive-nav-state.js?v=20260924-r1-workspace-v10-history-current-workspace">
+  </script>
+ </body>
+</html>

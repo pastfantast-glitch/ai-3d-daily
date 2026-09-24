@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   新技術 / Case｜2026-09-24｜AI 3D Daily
+  </title>
+  <link href="../../styles.css?v=20260924-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../../shared-components.css?v=20260924-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../../category.css?v=20260924-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+ </head>
+ <body class="category-page" data-category="emerging-case" data-report-date="2026-09-24">
+  <nav aria-label="Production Intelligence 分類" class="global-category-nav">
+   <div class="page global-category-nav-inner">
+    <div class="archive-nav-controls">
+     <a class="archive-nav-home" href="../../">
+      ← 首頁
+     </a>
+     <div class="archive-nav-date">
+      <a aria-label="前一日日報" class="archive-nav-arrow" href="../../2026-09-23/emerging-case/">
+       ←
+      </a>
+      <span>
+       2026-09-24
+      </span>
+     </div>
+    </div>
+    <span aria-hidden="true" class="archive-nav-divider">
+    </span>
+    <a class="global-category-link" href="../#top">
+     TOP5
+    </a>
+    <a class="global-category-link" data-category="ai-generation" href="../ai-generation/">
+     AI 生成
+    </a>
+    <a class="global-category-link" data-category="3d-production" href="../3d-production/">
+     3D 製作
+    </a>
+    <a class="global-category-link" data-category="3d-animation" href="../3d-animation/">
+     3D 動作
+    </a>
+    <a class="global-category-link" data-category="engine-art" href="../engine-art/">
+     遊戲引擎
+    </a>
+    <a class="global-category-link is-active" data-category="emerging-case" href="../emerging-case/">
+     新技術 / Case
+    </a>
+    <a class="global-category-link" data-category="blender-dcc" href="../blender-dcc/">
+     Blender / DCC
+    </a>
+    <a class="global-category-link global-history-link" data-global-view="history" href="../../history/">
+     歷史日報
+    </a>
+   </div>
+  </nav>
+  <main class="page category-main">
+   <article class="category-card" data-intel-id="pwnisher-3dgs-production-course" data-intel-role="card">
+    <div class="category-meta">
+     #12 · case-study
+    </div>
+    <h2>
+     Pwnisher 3DGS／Photogrammetry：從拍攝、清理到 UE5 合成的完整流程
+    </h2>
+    <p class="summary">
+     六小時課程涵蓋物件與環境拍攝、3D Gaussian Splat 處理、清理、UE5／Nuke／After Effects 合成與掃描資產庫建立。
+    </p>
+    <figure class="case-preview" data-intel-id="pwnisher-3dgs-production-course" data-intel-role="visual" data-visual-id="pwnisher-3dgs-production-course">
+     <a href="https://80.lv/articles/learn-3dgs-photogrammetry-with-pwnisher-s-six-hour-course" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-24/pwnisher-3dgs-production-course.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">製作案例</b> ★★★★☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       技術／流程變更
+      </h4>
+      <p>
+       課程把 3DGS 從單一 demo 拉成端到端流程：前期拍攝、資料處理、清理，再進 UE5、Nuke 與 After Effects 做鏡頭、合成與延伸，最後建立可重用 scan library。
+      </p>
+      <h4>
+       Production 影響
+      </h4>
+      <p>
+       這對場景參考、虛擬製片、2D/3D 合成與快速背景資產尤其有價值；3DGS 的 parallax 與可改鏡頭特性可補足傳統照片 plate 的限制。
+      </p>
+      <h4>
+       導入測試與限制
+      </h4>
+      <p>
+       課程尚未完整公開，且 Gaussian Splat 的 runtime、遮擋、重光照與輸出格式仍高度依賴工具鏈；導入前應先用單一小場景測試捕捉品質、清理時間與引擎效能。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://80.lv/articles/learn-3dgs-photogrammetry-with-pwnisher-s-six-hour-course" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="supersplat-editor-3" data-intel-role="card">
+    <div class="category-meta">
+     #14 · procedural
+    </div>
+    <h2>
+     SuperSplat Editor 3.0：WebGPU 重寫以處理更大型 Gaussian Splat 場景
+    </h2>
+    <p class="summary">
+     PlayCanvas 將 SuperSplat Editor 3.0 全面改成 WebGPU，並新增 Stochastic Alpha rendering，提升瀏覽器處理大型 3DGS 的能力。
+    </p>
+    <figure class="case-preview" data-intel-id="supersplat-editor-3" data-intel-role="visual" data-visual-id="supersplat-editor-3">
+     <a href="https://www.cgchannel.com/2026/09/playcanvas-releases-supersplat-editor-3-0/" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-24/supersplat-editor-3.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">程序化</b> ★★★★☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       技術／流程變更
+      </h4>
+      <p>
+       3.0 版以 WebGPU 重建瀏覽器編輯器，目標是載入更大的 splat scene，並透過 Stochastic Alpha rendering 讓超重場景維持互動性；仍可做選取、刪除與方向調整。
+      </p>
+      <h4>
+       Production 影響
+      </h4>
+      <p>
+       對掃描資料 review、遠端協作與快速清理很有吸引力：不用安裝完整 DCC 就能在瀏覽器檢查 3DGS，適合作為捕捉後的第一層 triage 與客戶／團隊預覽。
+      </p>
+      <h4>
+       導入測試與限制
+      </h4>
+      <p>
+       WebGPU 對瀏覽器、GPU 與裝置支援有差異；實際使用需測試場景尺寸、顯存、載入時間與輸出格式，並確認線上工具是否符合專案資料安全與版本管理需求。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://www.cgchannel.com/2026/09/playcanvas-releases-supersplat-editor-3-0/" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <nav aria-label="相鄰分類" class="category-bottom-nav">
+    <a href="../engine-art/">
+     ← 遊戲引擎
+    </a>
+    <a href="../#top">
+     TOP5
+    </a>
+    <a href="../blender-dcc/">
+     Blender / DCC →
+    </a>
+   </nav>
+  </main>
+  <script defer="" src="../../archive-nav-state.js?v=20260924-r1-workspace-v10-history-current-workspace">
+  </script>
+ </body>
+</html>

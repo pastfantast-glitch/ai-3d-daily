@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   Blender / DCC｜2026-09-24｜AI 3D Daily
+  </title>
+  <link href="../../styles.css?v=20260924-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../../shared-components.css?v=20260924-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../../category.css?v=20260924-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+ </head>
+ <body class="category-page" data-category="blender-dcc" data-report-date="2026-09-24">
+  <nav aria-label="Production Intelligence 分類" class="global-category-nav">
+   <div class="page global-category-nav-inner">
+    <div class="archive-nav-controls">
+     <a class="archive-nav-home" href="../../">
+      ← 首頁
+     </a>
+     <div class="archive-nav-date">
+      <a aria-label="前一日日報" class="archive-nav-arrow" href="../../2026-09-23/blender-dcc/">
+       ←
+      </a>
+      <span>
+       2026-09-24
+      </span>
+     </div>
+    </div>
+    <span aria-hidden="true" class="archive-nav-divider">
+    </span>
+    <a class="global-category-link" href="../#top">
+     TOP5
+    </a>
+    <a class="global-category-link" data-category="ai-generation" href="../ai-generation/">
+     AI 生成
+    </a>
+    <a class="global-category-link" data-category="3d-production" href="../3d-production/">
+     3D 製作
+    </a>
+    <a class="global-category-link" data-category="3d-animation" href="../3d-animation/">
+     3D 動作
+    </a>
+    <a class="global-category-link" data-category="engine-art" href="../engine-art/">
+     遊戲引擎
+    </a>
+    <a class="global-category-link" data-category="emerging-case" href="../emerging-case/">
+     新技術 / Case
+    </a>
+    <a class="global-category-link is-active" data-category="blender-dcc" href="../blender-dcc/">
+     Blender / DCC
+    </a>
+    <a class="global-category-link global-history-link" data-global-view="history" href="../../history/">
+     歷史日報
+    </a>
+   </div>
+  </nav>
+  <main class="page category-main">
+   <article class="category-card" data-intel-id="blender-surface-pinching-fixes" data-intel-role="card">
+    <div class="category-meta">
+     #06 · blender-tip
+    </div>
+    <h2>
+     Blender 曲面 Pinching 修正：Alt+S、LoopTools Curve 與 Grid Fill
+    </h2>
+    <p class="summary">
+     Jan van den Hemel 示範多種消除曲面凹凸與 pinching 的建模修正法，涵蓋法線方向縮放、Curve 與重建局部拓樸。
+    </p>
+    <figure class="case-preview" data-intel-id="blender-surface-pinching-fixes" data-intel-role="visual" data-visual-id="blender-surface-pinching-fixes">
+     <a href="https://80.lv/articles/here-s-how-you-can-resolve-surface-pinching-in-blender" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-24/blender-surface-pinching-fixes.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">Blender 技巧</b> ★★★★☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       技術／流程變更
+      </h4>
+      <p>
+       小範圍凹凸可用 Alt+S 沿法線調整，或反選後以 LoopTools Curve 重整曲面；較大的問題則刪除異常區域，再利用邊界與 Grid Fill 重建局部拓樸。
+      </p>
+      <h4>
+       Production 影響
+      </h4>
+      <p>
+       這些方法適合 hard-surface SubD、布林後清面與角色局部修形，能避免只靠細分或 Smooth 掩蓋拓樸問題，讓輪廓與高光帶在最終烘焙或即時渲染中更穩定。
+      </p>
+      <h4>
+       導入測試與限制
+      </h4>
+      <p>
+       不同曲率與 edge flow 對 Grid Fill 結果差異很大；導入 SOP 時應在高光反射明顯的曲面上檢查 shading，再決定是修點、重拓樸或改變 boolean 前的基礎拓樸。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://80.lv/articles/here-s-how-you-can-resolve-surface-pinching-in-blender" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="substance-designer-3d-scenes" data-intel-role="card">
+    <div class="category-meta">
+     #10 · substance
+    </div>
+    <h2>
+     Substance Designer 3D Scenes：在場景脈絡中編材質並保留 USD 非破壞輸出
+    </h2>
+    <p class="summary">
+     Designer 可載入 3D scene，在原場景脈絡替換材質、保留 session 狀態，並以 USD 工作流輸出只包含修改與新增內容。
+    </p>
+    <figure class="case-preview" data-intel-id="substance-designer-3d-scenes" data-intel-role="visual" data-visual-id="substance-designer-3d-scenes">
+     <a href="https://experienceleague.adobe.com/en/docs/substance-3d-designer/using/working-with-3d-scenes/working-with-3d-scenes" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-24/substance-designer-3d-scenes.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">Substance</b> ★★★★☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       技術／流程變更
+      </h4>
+      <p>
+       Designer 的 3D Scene 工作流讓材質不再只在單一 preview mesh 上編輯，而是可載入完整場景、覆蓋指定材質並從既有材質抽取值或貼圖作為起點；USD 還能以非破壞方式輸出差異。
+      </p>
+      <h4>
+       Production 影響
+      </h4>
+      <p>
+       對環境材質與 lookdev 很實用，材質師可直接在實際比例、燈光與鄰接材質脈絡中判斷結果，減少 Designer 與 DCC／引擎之間反覆猜測。
+      </p>
+      <h4>
+       導入測試與限制
+      </h4>
+      <p>
+       需確認團隊使用的 scene format、USD variant／layer 規則與 downstream DCC 支援；如果專案不使用 USD，仍要測試 FBX/其他格式下材質覆蓋與導出是否符合現有 pipeline。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://experienceleague.adobe.com/en/docs/substance-3d-designer/using/working-with-3d-scenes/working-with-3d-scenes" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="julio-800-pbr-materials" data-intel-role="card">
+    <div class="category-meta">
+     #16 · substance
+    </div>
+    <h2>
+     800+ PBR 材質庫：4K 貼圖、SBS/SBSAR 與 Blender 檔案並存
+    </h2>
+    <p class="summary">
+     Julio Sillet 的材質庫已超過 800 組，提供 4K PBR maps、Blender 4.5+、SBS/SBSAR 與部分生成器，可作為材質基底與參考。
+    </p>
+    <figure class="case-preview" data-intel-id="julio-800-pbr-materials" data-intel-role="visual" data-visual-id="julio-800-pbr-materials">
+     <a href="https://80.lv/articles/get-this-huge-collection-of-over-800-pbr-materials" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-24/julio-800-pbr-materials.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">Substance</b> ★★★☆☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       技術／流程變更
+      </h4>
+      <p>
+       材質庫同時提供 base color、roughness、normal、height 等 4K maps，以及 Blender 檔與 SBS/SBSAR；部分材質保留程序化生成器，方便從貼圖使用延伸到可調參數版本。
+      </p>
+      <h4>
+       Production 影響
+      </h4>
+      <p>
+       對場景與原型製作可作為快速 base material 或 reference library，尤其當團隊需要跨 Blender/Substance 共用來源時，比只拿 JPEG/PBR 貼圖更容易保留可編輯性。
+      </p>
+      <h4>
+       導入測試與限制
+      </h4>
+      <p>
+       素材庫不等於專案標準化材質；導入前仍要檢查授權、色彩空間、貼圖通道、實際 texel density 與目標引擎壓縮格式，避免 4K 全量直接進 runtime。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://80.lv/articles/get-this-huge-collection-of-over-800-pbr-materials" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="substance-sbsar-publishing" data-intel-role="card">
+    <div class="category-meta">
+     #19 · substance
+    </div>
+    <h2>
+     Substance SBSAR 發布：把程序材質封裝成獨立、可攜且可調的資產
+    </h2>
+    <p class="summary">
+     Adobe 文件說明 Designer package 如何發布為 SBSAR，將 graph 與必要資源打包成單一可攜檔，供 Substance 生態與支援的 DCC/Engine 使用。
+    </p>
+    <figure class="case-preview" data-intel-id="substance-sbsar-publishing" data-intel-role="visual" data-visual-id="substance-sbsar-publishing">
+     <a href="https://experienceleague.adobe.com/en/docs/substance-3d-designer/using/substance-graphs/publishing-substance-3d-asset-files-sbsar" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-24/substance-sbsar-publishing.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">Substance</b> ★★★☆☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       技術／流程變更
+      </h4>
+      <p>
+       SBSAR 會發布整個 package，而不是單一 graph，並把所需資源封裝成獨立檔案；相比固定 bitmap，參數化資產可在支援環境中重新生成不同解析度與變體。
+      </p>
+      <h4>
+       Production 影響
+      </h4>
+      <p>
+       對跨專案材質庫、外包交付與可調式地表／道具材質很實用，能把『一組貼圖』升級成可維護的程序資產，也更容易建立統一參數與命名規範。
+      </p>
+      <h4>
+       導入測試與限制
+      </h4>
+      <p>
+       不是所有 runtime 都適合直接求值 SBSAR；團隊需決定是在 DCC 預烘焙、build pipeline 產圖，或引擎端支援程序材質，同時管理版本與 embedded resource 大小。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://experienceleague.adobe.com/en/docs/substance-3d-designer/using/substance-graphs/publishing-substance-3d-asset-files-sbsar" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="substance-openpbr-material-samples" data-intel-role="card">
+    <div class="category-meta">
+     #20 · substance
+    </div>
+    <h2>
+     Substance Designer OpenPBR Material Samples：以可拆解範例 Graph 建立材質模板
+    </h2>
+    <p class="summary">
+     Designer 提供一組以 OpenPBR 為基礎的 material sample graphs，可直接複製、拆解與修改，作為新材質的可編輯模板。
+    </p>
+    <figure class="case-preview" data-intel-id="substance-openpbr-material-samples" data-intel-role="visual" data-visual-id="substance-openpbr-material-samples">
+     <a href="https://experienceleague.adobe.com/en/docs/substance-3d-designer/using/substance-graphs/creating-a-substance-graph/material-samples" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-24/substance-openpbr-material-samples.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">Substance</b> ★★★☆☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       技術／流程變更
+      </h4>
+      <p>
+       Material Samples 不是只能看的 preset，而是建立新 graph 時可複製出的完整可編輯模板；目前範例以 OpenPBR material model 為基礎，方便學習節點結構與快速延伸。
+      </p>
+      <h4>
+       Production 影響
+      </h4>
+      <p>
+       對建立團隊材質 starter graph 很有價值，可以官方範例作為結構參考，再包成公司內部的命名、輸出與參數規格，降低每個人從空白 graph 開始造成的差異。
+      </p>
+      <h4>
+       導入測試與限制
+      </h4>
+      <p>
+       OpenPBR 在不同 renderer／engine 的落地仍可能有映射差異；採用前應對 base color、roughness、specular、coat 等通道做跨 DCC/引擎比對，不要假設視覺完全一致。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://experienceleague.adobe.com/en/docs/substance-3d-designer/using/substance-graphs/creating-a-substance-graph/material-samples" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <nav aria-label="相鄰分類" class="category-bottom-nav">
+    <a href="../emerging-case/">
+     ← 新技術 / Case
+    </a>
+    <a href="../#top">
+     TOP5
+    </a>
+    <a href="../ai-generation/">
+     AI 生成 →
+    </a>
+   </nav>
+  </main>
+  <script defer="" src="../../archive-nav-state.js?v=20260924-r1-workspace-v10-history-current-workspace">
+  </script>
+ </body>
+</html>

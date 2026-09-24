@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   3D 製作｜2026-09-24｜AI 3D Daily
+  </title>
+  <link href="../../styles.css?v=20260924-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../../shared-components.css?v=20260924-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../../category.css?v=20260924-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+ </head>
+ <body class="category-page" data-category="3d-production" data-report-date="2026-09-24">
+  <nav aria-label="Production Intelligence 分類" class="global-category-nav">
+   <div class="page global-category-nav-inner">
+    <div class="archive-nav-controls">
+     <a class="archive-nav-home" href="../../">
+      ← 首頁
+     </a>
+     <div class="archive-nav-date">
+      <a aria-label="前一日日報" class="archive-nav-arrow" href="../../2026-09-23/3d-production/">
+       ←
+      </a>
+      <span>
+       2026-09-24
+      </span>
+     </div>
+    </div>
+    <span aria-hidden="true" class="archive-nav-divider">
+    </span>
+    <a class="global-category-link" href="../#top">
+     TOP5
+    </a>
+    <a class="global-category-link" data-category="ai-generation" href="../ai-generation/">
+     AI 生成
+    </a>
+    <a class="global-category-link is-active" data-category="3d-production" href="../3d-production/">
+     3D 製作
+    </a>
+    <a class="global-category-link" data-category="3d-animation" href="../3d-animation/">
+     3D 動作
+    </a>
+    <a class="global-category-link" data-category="engine-art" href="../engine-art/">
+     遊戲引擎
+    </a>
+    <a class="global-category-link" data-category="emerging-case" href="../emerging-case/">
+     新技術 / Case
+    </a>
+    <a class="global-category-link" data-category="blender-dcc" href="../blender-dcc/">
+     Blender / DCC
+    </a>
+    <a class="global-category-link global-history-link" data-global-view="history" href="../../history/">
+     歷史日報
+    </a>
+   </div>
+  </nav>
+  <main class="page category-main">
+   <article class="category-card" data-intel-id="philips-radio-hard-surface" data-intel-role="card">
+    <div class="category-meta">
+     #02 · prop-production
+    </div>
+    <h2>
+     Philips Radio 道具流程：維修影片拆結構、ZBrush 細節與 UDIM 貼圖
+    </h2>
+    <p class="summary">
+     硬表面道具案例以真實維修影片理解結構與磨耗，配合 Maya、ZBrush、Substance 3D Painter 與 Unreal 完成高品質資產。
+    </p>
+    <figure class="case-preview" data-intel-id="philips-radio-hard-surface" data-intel-role="visual" data-visual-id="philips-radio-hard-surface">
+     <a href="https://80.lv/articles/breakdown-how-to-create-a-hard-surface-philips-radio-with-zbrush-substance-3d" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-24/philips-radio-hard-surface.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">物件製作</b> ★★★★★</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       技術／流程變更
+      </h4>
+      <p>
+       作者不只看產品照片，而是用維修影片理解外殼、旋鈕與內部結構，再把有機磨耗與局部細節放進 ZBrush；UV 以多張 sheet／UDIM 支援高解析貼圖。
+      </p>
+      <h4>
+       Production 影響
+      </h4>
+      <p>
+       這種『先理解物件如何被使用與拆裝，再決定磨耗』的方式比隨機 grunge 更可靠，特別適合寫實道具外包規範，可直接轉成 reference、材質分區與 wear map 的驗收依據。
+      </p>
+      <h4>
+       導入測試與限制
+      </h4>
+      <p>
+       文章展示偏高品質作品流程，實際遊戲專案仍要重新限制 triangle、UDIM 數量、texel density 與 shader 成本；應以目標平台重新縮編，而不是原樣套用。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://80.lv/articles/breakdown-how-to-create-a-hard-surface-philips-radio-with-zbrush-substance-3d" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="ica-camera-game-ready" data-intel-role="card">
+    <div class="category-meta">
+     #03 · prop-production
+    </div>
+    <h2>
+     ICA 古董相機：25K 三角形與單一 2K 貼圖的遊戲道具拆解
+    </h2>
+    <p class="summary">
+     ICA Dresden Folding Plate Camera 以 25K triangles、單一 2K texture sheet 為限制，示範從 blockout、高低模、UV、烘焙到磨耗與敘事呈現。
+    </p>
+    <figure class="case-preview" data-intel-id="ica-camera-game-ready" data-intel-role="visual" data-visual-id="ica-camera-game-ready">
+     <a href="https://80.lv/articles/breakdown-how-to-create-a-detailed-ica-dresden-folding-plate-camera" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-24/ica-camera-game-ready.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">物件製作</b> ★★★★★</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       技術／流程變更
+      </h4>
+      <p>
+       案例在明確 25K triangles 與單一 2K texture set 限制下完成高低模轉換，輪廓重要區保留幾何，其餘細節交給 bake；材質按 leather、metal、brass、glass 與 bellows 分開建立磨耗邏輯。
+      </p>
+      <h4>
+       Production 影響
+      </h4>
+      <p>
+       這是很適合外包驗收的規格型參考：先固定 budget，再用 silhouette importance 與 texel importance 分配資源，能避免『高模很漂亮但 game-ready 無法落地』的常見問題。
+      </p>
+      <h4>
+       導入測試與限制
+      </h4>
+      <p>
+       最終以 Marmoset 美術呈現為主，仍需針對實際引擎重查 normal bake、mipmap、材質 channel packing 與遠距 LOD；敘事道具的磨耗也要避免在小尺寸畫面變成雜訊。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://80.lv/articles/breakdown-how-to-create-a-detailed-ica-dresden-folding-plate-camera" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="bee-spy-drone-design" data-intel-role="card">
+    <div class="category-meta">
+     #05 · prop-production
+    </div>
+    <h2>
+     B.E.E. Spy Drone：從功能需求推導硬表面輪廓與產品級呈現
+    </h2>
+    <p class="summary">
+     資深 hard-surface 美術以昆蟲造型設計無人機，先定義攝影、電池、夜視等功能，再用 Plasticity 與 Blender 完成可讀性高的產品造型。
+    </p>
+    <figure class="case-preview" data-intel-id="bee-spy-drone-design" data-intel-role="visual" data-visual-id="bee-spy-drone-design">
+     <a href="https://80.lv/articles/designing-a-functional-looking-spy-drone-with-an-insect-like-form" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-24/bee-spy-drone-design.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">物件製作</b> ★★★★☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       技術／流程變更
+      </h4>
+      <p>
+       作者先列出鏡頭、電池、螺旋槳、LED、夜視與麥克風等功能，再把機能轉成輪廓與組件配置；Plasticity 負責 CAD 式造型，並以即時 bridge 接到 Blender 做材質與呈現。
+      </p>
+      <h4>
+       Production 影響
+      </h4>
+      <p>
+       對科幻載具與武器設計很實用：先建立功能理由再造型，能降低『只有裝飾沒有用途』的細節堆疊，同時讓外包 review 更容易以 silhouette、功能區與材質分區溝通。
+      </p>
+      <h4>
+       導入測試與限制
+      </h4>
+      <p>
+       這是個人作品流程，沒有遊戲效能與動畫機構驗證；若用於可操作載具，還需補上碰撞、旋轉件 clearance、LOD、pivot 與骨架／機構動畫測試。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://80.lv/articles/designing-a-functional-looking-spy-drone-with-an-insect-like-form" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="anime-to-photoreal-head-pipeline" data-intel-role="card">
+    <div class="category-meta">
+     #11 · character-production
+    </div>
+    <h2>
+     Anime Reference 到寫實角色頭：Blender 高模、Retopo 與 Shader Node 實作
+    </h2>
+    <p class="summary">
+     The Rookies 案例以動漫角色為參考，轉成 stylized realism 頭像，涵蓋高模雕刻、retopology、貼圖與 Blender shader nodes。
+    </p>
+    <figure class="case-preview" data-intel-id="anime-to-photoreal-head-pipeline" data-intel-role="visual" data-visual-id="anime-to-photoreal-head-pipeline">
+     <a href="https://www.therookies.co/blog/breakdowns/production-ready-character-head-pipeline-anime-to-photoreal" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-24/anime-to-photoreal-head-pipeline.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">角色製作</b> ★★★★☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       技術／流程變更
+      </h4>
+      <p>
+       作者從動漫造型抽取比例與辨識特徵，但改用偏寫實的高模、retopology 與 shader node 呈現，形成『保留角色設計語言、改變材質與結構真實度』的轉譯流程。
+      </p>
+      <h4>
+       Production 影響
+      </h4>
+      <p>
+       對角色風格轉換很有參考價值，特別是概念圖不是最終渲染規格時，可把臉部比例、主次形體與材質層分開決策，而不是單純追求照片寫實。
+      </p>
+      <h4>
+       導入測試與限制
+      </h4>
+      <p>
+       學生專案的最終規格與商業遊戲 budget 不一定一致；導入時應重新驗證臉部 topology、表情 blendshape、法線與 shader 成本，確認風格化輪廓不被寫實材質吃掉。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://www.therookies.co/blog/breakdowns/production-ready-character-head-pipeline-anime-to-photoreal" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <nav aria-label="相鄰分類" class="category-bottom-nav">
+    <a href="../ai-generation/">
+     ← AI 生成
+    </a>
+    <a href="../#top">
+     TOP5
+    </a>
+    <a href="../3d-animation/">
+     3D 動作 →
+    </a>
+   </nav>
+  </main>
+  <script defer="" src="../../archive-nav-state.js?v=20260924-r1-workspace-v10-history-current-workspace">
+  </script>
+ </body>
+</html>

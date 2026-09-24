@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   遊戲引擎｜2026-09-24｜AI 3D Daily
+  </title>
+  <link href="../../styles.css?v=20260924-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../../shared-components.css?v=20260924-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../../category.css?v=20260924-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+ </head>
+ <body class="category-page" data-category="engine-art" data-report-date="2026-09-24">
+  <nav aria-label="Production Intelligence 分類" class="global-category-nav">
+   <div class="page global-category-nav-inner">
+    <div class="archive-nav-controls">
+     <a class="archive-nav-home" href="../../">
+      ← 首頁
+     </a>
+     <div class="archive-nav-date">
+      <a aria-label="前一日日報" class="archive-nav-arrow" href="../../2026-09-23/engine-art/">
+       ←
+      </a>
+      <span>
+       2026-09-24
+      </span>
+     </div>
+    </div>
+    <span aria-hidden="true" class="archive-nav-divider">
+    </span>
+    <a class="global-category-link" href="../#top">
+     TOP5
+    </a>
+    <a class="global-category-link" data-category="ai-generation" href="../ai-generation/">
+     AI 生成
+    </a>
+    <a class="global-category-link" data-category="3d-production" href="../3d-production/">
+     3D 製作
+    </a>
+    <a class="global-category-link" data-category="3d-animation" href="../3d-animation/">
+     3D 動作
+    </a>
+    <a class="global-category-link is-active" data-category="engine-art" href="../engine-art/">
+     遊戲引擎
+    </a>
+    <a class="global-category-link" data-category="emerging-case" href="../emerging-case/">
+     新技術 / Case
+    </a>
+    <a class="global-category-link" data-category="blender-dcc" href="../blender-dcc/">
+     Blender / DCC
+    </a>
+    <a class="global-category-link global-history-link" data-global-view="history" href="../../history/">
+     歷史日報
+    </a>
+   </div>
+  </nav>
+  <main class="page category-main">
+   <article class="category-card" data-intel-id="unity7-production-cli" data-intel-role="card">
+    <div class="category-meta">
+     #04 · tools
+    </div>
+    <h2>
+     Unity 7 生產管線與 CLI：資產可離開 Editor 直接驗證與部署
+    </h2>
+    <p class="summary">
+     Unity 在 Unite Seoul 2026 示範 Scene Preview、web dashboard 與 Unity CLI，讓資產修正、驗證與 content bundle 部署不必每一步都回 Editor。
+    </p>
+    <figure class="case-preview" data-intel-id="unity7-production-cli" data-intel-role="visual" data-visual-id="unity7-production-cli">
+     <a href="https://unity.com/blog/unite-seoul-keynote-2026-recap" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-24/unity7-production-cli.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">引擎工具</b> ★★★★★</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       技術／流程變更
+      </h4>
+      <p>
+       Unity 展示把專案能力開放給 Editor 外的工具：美術可在 web dashboard 透過 Scene Preview 看遊戲情境中的資產，修正後上傳，再用 Unity CLI 依專案標準驗證並推送 content bundle。
+      </p>
+      <h4>
+       Production 影響
+      </h4>
+      <p>
+       這直接對應大型團隊與 AI-assisted pipeline：資產檢查、修正與自動化不必全部塞進自研 Editor，能把既有 DCC、web 工具與 CI 串在 Unity 專案周邊。
+      </p>
+      <h4>
+       導入測試與限制
+      </h4>
+      <p>
+       目前屬 Unity 7 發表內容，實際 API、授權、平台支援與成熟度仍需等正式版本驗證；導入前應先挑單一 asset validation use case，測 CLI 與版本控制整合。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://unity.com/blog/unite-seoul-keynote-2026-recap" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="blender-hex-shield-gn" data-intel-role="card">
+    <div class="category-meta">
+     #07 · shader
+    </div>
+    <h2>
+     Blender Geometry Nodes 六角護盾：Dual Mesh、距離場與材質動畫
+    </h2>
+    <p class="summary">
+     PIXXO 3D 用 Geometry Nodes 建立六角護盾，透過 Dual Mesh、Vector Math、Gradient、Color Ramp 與剛體組合動畫與 VFX。
+    </p>
+    <figure class="case-preview" data-intel-id="blender-hex-shield-gn" data-intel-role="visual" data-visual-id="blender-hex-shield-gn">
+     <a href="https://80.lv/articles/how-to-make-a-glowing-hexagon-shield-animation-with-blender-s-geometry-nodes" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-24/blender-hex-shield-gn.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">Shader</b> ★★★★☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       技術／流程變更
+      </h4>
+      <p>
+       流程把 Ico Sphere 經 Dual Mesh 轉成六角面，再用移動平面與 Position 的向量差控制解體區域；Color Ramp、Emission、Fresnel 與剛體粒子補上護盾亮度與撞擊回饋。
+      </p>
+      <h4>
+       Production 影響
+      </h4>
+      <p>
+       雖然示範在 Blender，節點邏輯可轉譯成 Unity/Unreal 的距離遮罩與 dissolve shader：以局部碰撞位置驅動網格／材質反應，比單純播放固定 flipbook 更容易做互動效果。
+      </p>
+      <h4>
+       導入測試與限制
+      </h4>
+      <p>
+       Geometry Nodes 與剛體設定不能直接搬進遊戲 runtime；真正導入時要拆成可匯出的 mesh、shader mask 與事件參數，並測試透明／發光 overdraw 與多實例成本。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://80.lv/articles/how-to-make-a-glowing-hexagon-shield-animation-with-blender-s-geometry-nodes" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <nav aria-label="相鄰分類" class="category-bottom-nav">
+    <a href="../3d-animation/">
+     ← 3D 動作
+    </a>
+    <a href="../#top">
+     TOP5
+    </a>
+    <a href="../emerging-case/">
+     新技術 / Case →
+    </a>
+   </nav>
+  </main>
+  <script defer="" src="../../archive-nav-state.js?v=20260924-r1-workspace-v10-history-current-workspace">
+  </script>
+ </body>
+</html>

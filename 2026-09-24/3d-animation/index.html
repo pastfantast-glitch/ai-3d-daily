@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   3D 動作｜2026-09-24｜AI 3D Daily
+  </title>
+  <link href="../../styles.css?v=20260924-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../../shared-components.css?v=20260924-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../../category.css?v=20260924-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+ </head>
+ <body class="category-page" data-category="3d-animation" data-report-date="2026-09-24">
+  <nav aria-label="Production Intelligence 分類" class="global-category-nav">
+   <div class="page global-category-nav-inner">
+    <div class="archive-nav-controls">
+     <a class="archive-nav-home" href="../../">
+      ← 首頁
+     </a>
+     <div class="archive-nav-date">
+      <a aria-label="前一日日報" class="archive-nav-arrow" href="../../2026-09-23/3d-animation/">
+       ←
+      </a>
+      <span>
+       2026-09-24
+      </span>
+     </div>
+    </div>
+    <span aria-hidden="true" class="archive-nav-divider">
+    </span>
+    <a class="global-category-link" href="../#top">
+     TOP5
+    </a>
+    <a class="global-category-link" data-category="ai-generation" href="../ai-generation/">
+     AI 生成
+    </a>
+    <a class="global-category-link" data-category="3d-production" href="../3d-production/">
+     3D 製作
+    </a>
+    <a class="global-category-link is-active" data-category="3d-animation" href="../3d-animation/">
+     3D 動作
+    </a>
+    <a class="global-category-link" data-category="engine-art" href="../engine-art/">
+     遊戲引擎
+    </a>
+    <a class="global-category-link" data-category="emerging-case" href="../emerging-case/">
+     新技術 / Case
+    </a>
+    <a class="global-category-link" data-category="blender-dcc" href="../blender-dcc/">
+     Blender / DCC
+    </a>
+    <a class="global-category-link global-history-link" data-global-view="history" href="../../history/">
+     歷史日報
+    </a>
+   </div>
+  </nav>
+  <main class="page category-main">
+   <article class="category-card" data-intel-id="blender-adaptive-auto-skinning" data-intel-role="card">
+    <div class="category-meta">
+     #01 · rigging
+    </div>
+    <h2>
+     Blender Adaptive Auto Skinning：GPU 體素權重自動綁定
+    </h2>
+    <p class="summary">
+     Adaptive Auto Skinning 以體素化方式分析骨架與網格，將身體與服裝一起自動產生 skin weights，並以 GPU 加速處理。
+    </p>
+    <figure class="case-preview" data-intel-id="blender-adaptive-auto-skinning" data-intel-role="visual" data-visual-id="blender-adaptive-auto-skinning">
+     <a href="https://80.lv/articles/try-this-one-click-automatic-skinning-add-on-for-blender" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-24/blender-adaptive-auto-skinning.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">綁定</b> ★★★★★</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       技術／流程變更
+      </h4>
+      <p>
+       工具先把角色體積轉成自適應體素，再依骨架實際形狀傳播權重，不依賴 bone naming；身體、衣物與手指等靠近區域可一起處理，並以 GPU 執行求解。
+      </p>
+      <h4>
+       Production 影響
+      </h4>
+      <p>
+       對大量角色初始 skinning、外包模型回收與服裝快速換裝特別有價值，可把人工權重塗抹前的基礎作業壓縮成自動初稿，再由美術針對關節與極端姿勢修正。
+      </p>
+      <h4>
+       導入測試與限制
+      </h4>
+      <p>
+       目前證據主要來自作者展示，實際品質仍需用肩胯、手指貼近、裙甲與非人形骨架做 deformation stress test；自動權重不應直接取代最終 QA。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://80.lv/articles/try-this-one-click-automatic-skinning-add-on-for-blender" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="houdini-equinox-procedural-animation" data-intel-role="card">
+    <div class="category-meta">
+     #08 · retarget
+    </div>
+    <h2>
+     Houdini 22 Procedural Animation：Retarget、Motion Mixer 與 Ragdoll 串成工作坊
+    </h2>
+    <p class="summary">
+     SideFX Equinox 2026 工作坊以 Houdini 22 示範 rigged character 的動捕 retarget、clip 混合、簡易 ragdoll 與程序化角色動畫。
+    </p>
+    <figure class="case-preview" data-intel-id="houdini-equinox-procedural-animation" data-intel-role="visual" data-visual-id="houdini-equinox-procedural-animation">
+     <a href="https://www.sidefx.com/houdini-hive/equinox-2026/" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE CARD preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-24/houdini-equinox-procedural-animation.svg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE CARD
+      </span>
+      · Generated source card · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">重定向</b> ★★★★☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       技術／流程變更
+      </h4>
+      <p>
+       官方工作坊把 rigged character、mocap retarget、Motion Mixer clip 組合與簡易 ragdoll 串成同一流程，反映 Houdini 22 正把角色動畫與程序化系統放到更完整的製作鏈。
+      </p>
+      <h4>
+       Production 影響
+      </h4>
+      <p>
+       對大量 NPC、變體角色與程序化環境中的角色行為特別值得測試：同一 DCC 內可處理 retarget、clip 組合與物理輔助，減少外部工具往返。
+      </p>
+      <h4>
+       導入測試與限制
+      </h4>
+      <p>
+       目前來源是活動課程摘要，並非完整 benchmark；實際導入需確認骨架命名、動畫 bake、IK stretch、引擎輸出與多人協作時的 cache／版本管理成本。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://www.sidefx.com/houdini-hive/equinox-2026/" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="ue-character-rig-pipeline-guide" data-intel-role="card">
+    <div class="category-meta">
+     #09 · rigging
+    </div>
+    <h2>
+     Unreal 角色 Rig Pipeline：把 Maya Rig、Export Skeleton、Retarget 與 Runtime 當成同一系統
+    </h2>
+    <p class="summary">
+     Frenetics FX 的技術指南強調角色 rig 不能只在 Maya 看控制器，而要從 export skeleton、deformation、retarget 到 Unreal runtime 一起驗證。
+    </p>
+    <figure class="case-preview" data-intel-id="ue-character-rig-pipeline-guide" data-intel-role="visual" data-visual-id="ue-character-rig-pipeline-guide">
+     <a href="https://freneticsfx.com/insights/unreal-engine-character-rigging-pipeline.html" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-24/ue-character-rig-pipeline-guide.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">綁定</b> ★★★★☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       技術／流程變更
+      </h4>
+      <p>
+       指南把 animator rig、export skeleton 與 Unreal character setup 視為相互依賴的系統，要求早期就檢查骨架階層、skin deformation、動畫資料、retarget 接觸與 runtime procedural 評估位置。
+      </p>
+      <h4>
+       Production 影響
+      </h4>
+      <p>
+       這種思路很適合作為角色外包與跨部門 handoff SOP：不是『Maya 裡會動就過』，而是以引擎中的最終行為作為驗收終點，可提早抓到 root、scale、twist 與 contact 問題。
+      </p>
+      <h4>
+       導入測試與限制
+      </h4>
+      <p>
+       文章屬技術指南而非特定專案 benchmark；採用時應把建議映射到自家 UE 版本、IK Retargeter、Control Rig 與動畫壓縮設定，再建立最小測試角色做端到端驗證。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://freneticsfx.com/insights/unreal-engine-character-rigging-pipeline.html" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="sketch2pose-blender-update" data-intel-role="card">
+    <div class="category-meta">
+     #13 · animation
+    </div>
+    <h2>
+     Sketch2Pose 更新：多視角草圖轉 3D Pose，支援 Rigify／Mixamo／自訂 Humanoid
+    </h2>
+    <p class="summary">
+     Sketch2Pose 透過程式與自訂 solver 把 stick figure 草圖轉成 3D pose，新版加入多 camera angle 支援，定位在 blocking 加速而非生成式 AI。
+    </p>
+    <figure class="case-preview" data-intel-id="sketch2pose-blender-update" data-intel-role="visual" data-visual-id="sketch2pose-blender-update">
+     <a href="https://80.lv/articles/no-genai-this-blender-add-on-turns-simple-sketches-into-3d-poses" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-24/sketch2pose-blender-update.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">動畫</b> ★★★★☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       技術／流程變更
+      </h4>
+      <p>
+       新版支援多 camera angle，使用者畫出簡單 stick figure 後由數學與 custom solver 轉成 pose；已測試自訂 humanoid、Mixamo 與 Rigify，不依賴生成式 AI。
+      </p>
+      <h4>
+       Production 影響
+      </h4>
+      <p>
+       最直接的用途是 blocking 與 pose ideation：概念／分鏡人員能快速把 2D 姿勢轉成可旋轉的 3D 基底，再由動畫師修 silhouette、重心與關節細節。
+      </p>
+      <h4>
+       導入測試與限制
+      </h4>
+      <p>
+       作者明確表示仍需人工調整，且手部與表情支援仍在規劃；導入時應測試極端透視、遮擋、非標準比例與多角色 pose，避免把 solver 結果視為最終動畫。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://80.lv/articles/no-genai-this-blender-add-on-turns-simple-sketches-into-3d-poses" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="mediaplane2-maya-reference-editor" data-intel-role="card">
+    <div class="category-meta">
+     #15 · animation
+    </div>
+    <h2>
+     MediaPlane 2.0：把非線性 Reference Video 編輯直接放進 Maya
+    </h2>
+    <p class="summary">
+     MediaPlane 2.0 新增 Media Plane Editor，讓動畫師可在 Maya 內匯入、剪接、retime 完整參考影片序列，不必先輸出 image sequence。
+    </p>
+    <figure class="case-preview" data-intel-id="mediaplane2-maya-reference-editor" data-intel-role="visual" data-visual-id="mediaplane2-maya-reference-editor">
+     <a href="https://www.cgchannel.com/2026/08/mediaplane-2-0-puts-a-nonlinear-editor-inside-maya/" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-24/mediaplane2-maya-reference-editor.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">動畫</b> ★★★★☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       技術／流程變更
+      </h4>
+      <p>
+       新版把 reference video 從單純 viewport 播放提升到非線性編輯，可直接在 Maya 組合、裁切、翻轉、retime 多段參考素材，省去先轉 image sequence 或往返外部剪輯軟體。
+      </p>
+      <h4>
+       Production 影響
+      </h4>
+      <p>
+       對角色動畫 blocking、動作對照與 shot review 很實際，尤其動畫師需要頻繁比較自拍 reference 與 Maya timing 時，可降低檔案轉換與時間軸不同步造成的摩擦。
+      </p>
+      <h4>
+       導入測試與限制
+      </h4>
+      <p>
+       需測試長影片解碼、多人共享路徑、frame rate 與 Maya cache 的穩定性；若 studio 已有 RV／SyncSketch／內部 review 工具，也要評估是否會形成重複的 reference source of truth。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://www.cgchannel.com/2026/08/mediaplane-2-0-puts-a-nonlinear-editor-inside-maya/" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="maya-physics-action-animation" data-intel-role="card">
+    <div class="category-meta">
+     #17 · animation
+    </div>
+    <h2>
+     Maya Action Animation：用物理原則處理重量、慣性與動作場面
+    </h2>
+    <p class="summary">
+     Gnomon Workshop 的中階教學以大型生物動作為例，說明重量、慣性、鏡頭、spline animation 與 shot finaling 的動畫判斷。
+    </p>
+    <figure class="case-preview" data-intel-id="maya-physics-action-animation" data-intel-role="visual" data-visual-id="maya-physics-action-animation">
+     <a href="https://www.cgchannel.com/2026/08/maya-tutorial-the-principles-of-physics-in-action-scenes/" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-24/maya-physics-action-animation.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">動畫</b> ★★★★☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       技術／流程變更
+      </h4>
+      <p>
+       教學不是只講按鍵，而是把真實物理概念用到 action shot：從 layout、camera animation、spline animation 到 deformation finaling，特別強調重量與慣性如何透過動作呈現。
+      </p>
+      <h4>
+       Production 影響
+      </h4>
+      <p>
+       對怪物、重型角色與戰鬥動畫的 review 很有價值，能把『看起來不夠重』轉成可討論的 timing、acceleration、arc 與 secondary motion 問題，而不是純主觀形容。
+      </p>
+      <h4>
+       導入測試與限制
+      </h4>
+      <p>
+       物理原則服務於視覺可信度，不代表所有動作都要物理正確；風格化專案仍需以 pose readability 與遊戲 responsiveness 為優先，再用物理作為修正參考。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://www.cgchannel.com/2026/08/maya-tutorial-the-principles-of-physics-in-action-scenes/" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="ue58-control-rig-overview" data-intel-role="card">
+    <div class="category-meta">
+     #18 · rigging
+    </div>
+    <h2>
+     UE5.8 Control Rig：在 Unreal 內直接 Rig、Sequencer 動畫與程序化控制
+    </h2>
+    <p class="summary">
+     Epic 的 Control Rig 文件整理 Unreal 內建角色綁定與動畫工具，可在 Editor 內建立控制器、Rig Hierarchy 並直接進 Sequencer 動畫。
+    </p>
+    <figure class="case-preview" data-intel-id="ue58-control-rig-overview" data-intel-role="visual" data-visual-id="ue58-control-rig-overview">
+     <a href="https://dev.epicgames.com/documentation/unreal-engine/control-rig-in-unreal-engine" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-24/ue58-control-rig-overview.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">綁定</b> ★★★★☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       技術／流程變更
+      </h4>
+      <p>
+       Control Rig 把 controls、bones、nulls 與 rig graph 放在 Unreal 內，角色可直接在 Editor 綁定、在 Sequencer 動畫，並延伸到程序化 rig 與 physics control，而不必所有修改都回外部 DCC。
+      </p>
+      <h4>
+       Production 影響
+      </h4>
+      <p>
+       對快速修鏡頭、gameplay pose、動畫 retarget 後修正與技術美術工具很有價值；可把部分『引擎最後一哩』修正交給 Control Rig，減少 Maya 往返與重匯出。
+      </p>
+      <h4>
+       導入測試與限制
+      </h4>
+      <p>
+       仍要明確區分 source rig 與 engine rig 的 ownership；若控制邏輯分散在 Maya 與 Unreal，容易造成版本漂移，因此需先定義哪些變形與動畫修正允許在引擎端維護。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://dev.epicgames.com/documentation/unreal-engine/control-rig-in-unreal-engine" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <nav aria-label="相鄰分類" class="category-bottom-nav">
+    <a href="../3d-production/">
+     ← 3D 製作
+    </a>
+    <a href="../#top">
+     TOP5
+    </a>
+    <a href="../engine-art/">
+     遊戲引擎 →
+    </a>
+   </nav>
+  </main>
+  <script defer="" src="../../archive-nav-state.js?v=20260924-r1-workspace-v10-history-current-workspace">
+  </script>
+ </body>
+</html>
