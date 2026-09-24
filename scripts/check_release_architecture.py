@@ -166,6 +166,10 @@ if MAIN.exists():
         "- 'data/publish/*.collector'",
         "- 'data/publish/*.request'",
         "- 'data/publish/*.ready'",
+        'workflow_run:',
+        "workflows: ['Collector handoff gate']",
+        "needs.route.outputs.mode == 'collector_handoff'",
+        'COLLECTOR_HANDOFF_DATE',
         'finalize_collector_trigger.py',
         'prepare_release_candidate.py',
         'check_ready_contract.py',
@@ -254,11 +258,6 @@ if collector_trigger.exists():
     ):
         if token not in text:
             fail(f'create_collector_trigger.py missing fail-closed token: {token}')
-    for forbidden in ('.request', '.ready', '.done.json'):
-        # References used only to block duplicate/in-flight publication are allowed;
-        # writing those markers is not. The trigger helper must have exactly one
-        # write_text target: the .collector marker.
-        pass
     if text.count('write_text(') != 1 or 'trigger_path.write_text(' not in text:
         fail('create_collector_trigger.py must write only the .collector marker')
 
