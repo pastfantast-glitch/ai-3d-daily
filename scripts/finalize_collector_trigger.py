@@ -3,6 +3,8 @@
 
 This script is invoked only by .github/workflows/intelligence-build.yml after a
 Collector has persisted today's canonical/private artifacts and a .collector trigger.
+The date may come from the original Collector-handoff push or from the guarded
+workflow_run bridge created by .github/workflows/collector-handoff.yml.
 It does not perform discovery or fabricate evidence. It waits for authoritative
 current-main CI, validates Collector-owned artifacts, runs the same Registry and
 analysis-depth implementations used by prepare, and only creates .request when the
@@ -51,6 +53,12 @@ def print_proc(proc) -> str:
 
 
 def event_date() -> str:
+    explicit = str(os.environ.get("COLLECTOR_HANDOFF_DATE", "")).strip()
+    if explicit:
+        if not DATE_RE.fullmatch(explicit):
+            raise SystemExit("COLLECTOR BRIDGE FAILED: COLLECTOR_HANDOFF_DATE must be YYYY-MM-DD")
+        return explicit
+
     event_path = Path(os.environ.get("GITHUB_EVENT_PATH", ""))
     if not event_path.is_file():
         raise SystemExit("COLLECTOR BRIDGE FAILED: GITHUB_EVENT_PATH missing")
