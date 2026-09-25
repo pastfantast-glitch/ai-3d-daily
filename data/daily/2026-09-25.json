@@ -223,6 +223,45 @@
       "admission_bypass": false,
       "quality_gate_bypass": false,
       "source_quota": false
+    },
+    "homepage_tier_normalization": {
+      "selection_mode": "full-first-brief-fallback",
+      "requested_top5": 5,
+      "actual_top5": 5,
+      "top5_full_count": 0,
+      "top5_brief_fallback_count": 5,
+      "top5_full_only": false,
+      "brief_fallback_allowed": true,
+      "next10": 10
+    },
+    "registry_identity_normalization": {
+      "dropped_count": 0,
+      "rewritten_count": 0,
+      "policy": "verified-DONE-published-canonical-source-without-substantive-delta-skip",
+      "source_identity_precedence": "published-daily-html-card-then-canonical-json",
+      "url_identity": "scripts/url_identity.py",
+      "stage": "collection-before-ready",
+      "refill_required": false,
+      "category_deficits": {},
+      "daily_release_gate": {
+        "have": 22,
+        "min": 20,
+        "target": 30,
+        "max": 30,
+        "missing_to_min": 0,
+        "missing_to_target": 8,
+        "release_ready": true,
+        "category_counts": {
+          "ai-generation": 1,
+          "3d-production": 3,
+          "3d-animation": 4,
+          "engine-art": 4,
+          "emerging-case": 4,
+          "blender-dcc": 6
+        },
+        "release_mode": "NORMAL",
+        "low_volume_authorized": false
+      }
     }
   },
   "items": [
