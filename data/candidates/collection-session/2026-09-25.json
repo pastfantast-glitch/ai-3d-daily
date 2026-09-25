@@ -1,0 +1,555 @@
+{
+  "schema_version": 1,
+  "date": "2026-09-25",
+  "discovery_coverage": {
+    "fill_ladder_exhausted": true,
+    "backlog_checked": true,
+    "backlog_remaining_eligible": 0,
+    "targeted_refill_performed": true,
+    "quality_first_confirmed": true,
+    "windows": {
+      "24h": {
+        "status": "exhausted",
+        "candidates_found": 10
+      },
+      "7d": {
+        "status": "exhausted",
+        "candidates_found": 9
+      },
+      "30d": {
+        "status": "exhausted",
+        "candidates_found": 8
+      },
+      "6m": {
+        "status": "exhausted",
+        "candidates_found": 0
+      },
+      "evergreen": {
+        "status": "exhausted",
+        "candidates_found": 3
+      }
+    },
+    "category_candidates": {
+      "ai-generation": {
+        "candidates_considered": 2
+      },
+      "3d-production": {
+        "candidates_considered": 4
+      },
+      "3d-animation": {
+        "candidates_considered": 8
+      },
+      "engine-art": {
+        "candidates_considered": 5
+      },
+      "emerging-case": {
+        "candidates_considered": 4
+      },
+      "blender-dcc": {
+        "candidates_considered": 8
+      }
+    },
+    "registered_source_probe": {
+      "performed": true,
+      "sources": {
+        "80-level": {
+          "status": "checked",
+          "method": "latest-index",
+          "candidates_found": 12,
+          "candidate_ids": [
+            "oil-painting-blender52",
+            "wuthering-hair-map",
+            "anime-bus-blender",
+            "sonic-rigs-free",
+            "blender-line-art-compositor",
+            "mold-vector-unity-godot",
+            "fight-club-cyberpunk",
+            "studio-orange-2d3d",
+            "godot-ps1-rendering",
+            "godot-cable-physics",
+            "painterly-fighting-animation",
+            "haele-portrait-studio-pro"
+          ]
+        },
+        "3dnchu": {
+          "status": "checked",
+          "method": "web-site-query",
+          "candidates_found": 0,
+          "candidate_ids": []
+        },
+        "cgworld-jp": {
+          "status": "checked",
+          "method": "latest-index",
+          "candidates_found": 8,
+          "candidate_ids": [
+            "houdini-building-reconstruction",
+            "worldlabs-atlas",
+            "substance-openpbr-video",
+            "clair-obscur-character-techart",
+            "maya-constraint-tool",
+            "animo-v10",
+            "ue5-realtime-animation-agora",
+            "pokemon-za-rendering"
+          ]
+        },
+        "bilibili-mobile": {
+          "status": "checked",
+          "method": "web-site-query",
+          "candidates_found": 0,
+          "candidate_ids": []
+        },
+        "artstation": {
+          "status": "not-scheduled",
+          "method": "rolling-window",
+          "candidates_found": 0,
+          "candidate_ids": [],
+          "reason": "deterministic-rolling-probe-not-selected"
+        },
+        "gumroad-discover": {
+          "status": "not-scheduled",
+          "method": "rolling-window",
+          "candidates_found": 0,
+          "candidate_ids": [],
+          "reason": "deterministic-rolling-probe-not-selected"
+        },
+        "xiaohongshu": {
+          "status": "not-scheduled",
+          "method": "rolling-window",
+          "candidates_found": 0,
+          "candidate_ids": [],
+          "reason": "deterministic-rolling-probe-not-selected"
+        },
+        "cg-channel": {
+          "status": "checked",
+          "method": "latest-index",
+          "candidates_found": 4,
+          "candidate_ids": [
+            "mari8-beta2",
+            "octane2027-alpha3",
+            "vinefx-alice-steve",
+            "avatar-s2-imageengine"
+          ]
+        },
+        "blender-official": {
+          "status": "checked",
+          "method": "web-site-query",
+          "candidates_found": 1,
+          "candidate_ids": [
+            "blender-small-teams"
+          ]
+        },
+        "epic-developer-community": {
+          "status": "checked",
+          "method": "web-site-query",
+          "candidates_found": 2,
+          "candidate_ids": [
+            "ue-pcg-overview",
+            "ue-controlrig-animating"
+          ]
+        },
+        "unity-official": {
+          "status": "checked",
+          "method": "latest-index",
+          "candidates_found": 1,
+          "candidate_ids": [
+            "unity6000-6-3f1"
+          ]
+        },
+        "sidefx-official": {
+          "status": "checked",
+          "method": "web-site-query",
+          "candidates_found": 1,
+          "candidate_ids": [
+            "sidefx-kinefx-overview"
+          ]
+        },
+        "autodesk-area": {
+          "status": "not-scheduled",
+          "method": "rolling-window",
+          "candidates_found": 0,
+          "candidate_ids": [],
+          "reason": "deterministic-rolling-probe-not-selected"
+        },
+        "adobe-substance-3d": {
+          "status": "not-scheduled",
+          "method": "rolling-window",
+          "candidates_found": 0,
+          "candidate_ids": [],
+          "reason": "deterministic-rolling-probe-not-selected"
+        },
+        "game-developer": {
+          "status": "not-scheduled",
+          "method": "rolling-window",
+          "candidates_found": 0,
+          "candidate_ids": [],
+          "reason": "deterministic-rolling-probe-not-selected"
+        }
+      }
+    },
+    "notes": "2026-09-25 Collector loaded the verified-DONE Registry snapshot through 2026-09-24 before discovery and applied exact normalized source-identity dedupe. Rolling backlog was empty. Discovery ran through 24h, 7d, 30d, 6m and evergreen windows plus targeted refill; 22 verified unpublished survivors remained after admission and early Registry dedupe. Today's deterministic registered-source probe set was attempted; non-selected registered sources are truthfully marked not-scheduled. No source registration or domain was used as a ranking bonus, quota or admission bypass."
+  },
+  "candidate_decisions": [
+    {
+      "candidate_id": "clair-obscur-character-techart",
+      "source_url": "https://cgworld.jp/article/202609-coe33-01.html",
+      "discovery_channels": [
+        "web-search",
+        "registered-source-probe:cgworld-jp",
+        "published-registry-snapshot"
+      ],
+      "decision": "published",
+      "canonical_id": "clair-obscur-character-techart"
+    },
+    {
+      "candidate_id": "warpact-lowpoly-ai",
+      "source_url": "https://playwarpact.com/blog/lowpoly-hybrid/",
+      "discovery_channels": [
+        "web-search",
+        "published-registry-snapshot"
+      ],
+      "decision": "published",
+      "canonical_id": "warpact-lowpoly-ai"
+    },
+    {
+      "candidate_id": "mari8-beta2",
+      "source_url": "https://www.cgchannel.com/2026/09/foundry-releases-mari-8-0-in-open-beta/",
+      "discovery_channels": [
+        "web-search",
+        "registered-source-probe:cg-channel",
+        "published-registry-snapshot"
+      ],
+      "decision": "published",
+      "canonical_id": "mari8-beta2"
+    },
+    {
+      "candidate_id": "octane2027-alpha3",
+      "source_url": "https://www.cgchannel.com/2026/09/otoy-releases-octanerender-2027-1-in-alpha/",
+      "discovery_channels": [
+        "web-search",
+        "registered-source-probe:cg-channel",
+        "published-registry-snapshot"
+      ],
+      "decision": "published",
+      "canonical_id": "octane2027-alpha3"
+    },
+    {
+      "candidate_id": "wuthering-hair-map",
+      "source_url": "https://80.lv/articles/how-to-create-dynamic-wuthering-waves-style-hair-in-blender",
+      "discovery_channels": [
+        "web-search",
+        "registered-source-probe:80-level",
+        "published-registry-snapshot"
+      ],
+      "decision": "published",
+      "canonical_id": "wuthering-hair-map"
+    },
+    {
+      "candidate_id": "blender-line-art-compositor",
+      "source_url": "https://80.lv/articles/create-line-art-from-rendered-images-in-blender-s-compositor-with-this-tool",
+      "discovery_channels": [
+        "web-search",
+        "registered-source-probe:80-level",
+        "published-registry-snapshot"
+      ],
+      "decision": "published",
+      "canonical_id": "blender-line-art-compositor"
+    },
+    {
+      "candidate_id": "houdini-building-reconstruction",
+      "source_url": "https://cgworld.jp/flashnews/01-202609-Houdini-Reconst.html",
+      "discovery_channels": [
+        "web-search",
+        "registered-source-probe:cgworld-jp",
+        "published-registry-snapshot"
+      ],
+      "decision": "published",
+      "canonical_id": "houdini-building-reconstruction"
+    },
+    {
+      "candidate_id": "worldlabs-atlas",
+      "source_url": "https://cgworld.jp/flashnews/01-202609-WorldLabs-Atlas.html",
+      "discovery_channels": [
+        "web-search",
+        "registered-source-probe:cgworld-jp",
+        "published-registry-snapshot"
+      ],
+      "decision": "published",
+      "canonical_id": "worldlabs-atlas"
+    },
+    {
+      "candidate_id": "substance-openpbr-video",
+      "source_url": "https://cgworld.jp/flashnews/01-202609-Substance-OpenPBR.html",
+      "discovery_channels": [
+        "web-search",
+        "registered-source-probe:cgworld-jp",
+        "published-registry-snapshot"
+      ],
+      "decision": "published",
+      "canonical_id": "substance-openpbr-video"
+    },
+    {
+      "candidate_id": "sonic-rigs-free",
+      "source_url": "https://80.lv/articles/tbsf-makes-all-their-sonic-the-hedgehog-blender-rigs-free-forever",
+      "discovery_channels": [
+        "web-search",
+        "registered-source-probe:80-level",
+        "published-registry-snapshot"
+      ],
+      "decision": "published",
+      "canonical_id": "sonic-rigs-free"
+    },
+    {
+      "candidate_id": "studio-orange-2d3d",
+      "source_url": "https://80.lv/articles/how-anime-studio-behind-beastars-trigun-stampede-makes-3d-animation-look-2d",
+      "discovery_channels": [
+        "web-search",
+        "registered-source-probe:80-level",
+        "published-registry-snapshot"
+      ],
+      "decision": "published",
+      "canonical_id": "studio-orange-2d3d"
+    },
+    {
+      "candidate_id": "fight-club-cyberpunk",
+      "source_url": "https://80.lv/articles/fight-club-s-final-scene-reimagined-as-a-cyberpunk-style-3d-animation",
+      "discovery_channels": [
+        "web-search",
+        "registered-source-probe:80-level",
+        "published-registry-snapshot"
+      ],
+      "decision": "published",
+      "canonical_id": "fight-club-cyberpunk"
+    },
+    {
+      "candidate_id": "anime-bus-blender",
+      "source_url": "https://80.lv/articles/watch-3d-artist-recreate-2d-anime-bus-scene-in-blender",
+      "discovery_channels": [
+        "web-search",
+        "registered-source-probe:80-level",
+        "published-registry-snapshot"
+      ],
+      "decision": "published",
+      "canonical_id": "anime-bus-blender"
+    },
+    {
+      "candidate_id": "oil-painting-blender52",
+      "source_url": "https://80.lv/articles/check-out-this-fascinating-3d-model-that-looks-like-an-oil-painting",
+      "discovery_channels": [
+        "web-search",
+        "registered-source-probe:80-level",
+        "published-registry-snapshot"
+      ],
+      "decision": "published",
+      "canonical_id": "oil-painting-blender52"
+    },
+    {
+      "candidate_id": "mold-vector-unity-godot",
+      "source_url": "https://80.lv/articles/check-out-this-free-collection-of-vector-graphics-for-godot-unity",
+      "discovery_channels": [
+        "web-search",
+        "registered-source-probe:80-level",
+        "published-registry-snapshot"
+      ],
+      "decision": "published",
+      "canonical_id": "mold-vector-unity-godot"
+    },
+    {
+      "candidate_id": "unity6000-6-3f1",
+      "source_url": "https://unity.com/releases/editor/whats-new/6000.6.3f1",
+      "discovery_channels": [
+        "web-search",
+        "registered-source-probe:unity-official",
+        "published-registry-snapshot"
+      ],
+      "decision": "published",
+      "canonical_id": "unity6000-6-3f1"
+    },
+    {
+      "candidate_id": "vinefx-alice-steve",
+      "source_url": "https://www.cgchannel.com/2026/09/check-out-vine-fxs-vfx-breakdown-for-alice-and-steve/",
+      "discovery_channels": [
+        "web-search",
+        "registered-source-probe:cg-channel",
+        "published-registry-snapshot"
+      ],
+      "decision": "published",
+      "canonical_id": "vinefx-alice-steve"
+    },
+    {
+      "candidate_id": "avatar-s2-imageengine",
+      "source_url": "https://www.cgchannel.com/2026/09/see-image-engines-vfx-breakdown-for-avatar-the-last-airbender-season-2/",
+      "discovery_channels": [
+        "web-search",
+        "registered-source-probe:cg-channel",
+        "published-registry-snapshot"
+      ],
+      "decision": "published",
+      "canonical_id": "avatar-s2-imageengine"
+    },
+    {
+      "candidate_id": "sidefx-kinefx-overview",
+      "source_url": "https://www.sidefx.com/docs/houdini/character/kinefx/overview.html",
+      "discovery_channels": [
+        "web-search",
+        "registered-source-probe:sidefx-official",
+        "published-registry-snapshot"
+      ],
+      "decision": "published",
+      "canonical_id": "sidefx-kinefx-overview"
+    },
+    {
+      "candidate_id": "ue-pcg-overview",
+      "source_url": "https://dev.epicgames.com/documentation/unreal-engine/procedural-content-generation-overview",
+      "discovery_channels": [
+        "web-search",
+        "registered-source-probe:epic-developer-community",
+        "published-registry-snapshot"
+      ],
+      "decision": "published",
+      "canonical_id": "ue-pcg-overview"
+    },
+    {
+      "candidate_id": "godot-ps1-rendering",
+      "source_url": "https://80.lv/articles/try-this-authentic-ps1-style-rendering-add-on-for-godot",
+      "discovery_channels": [
+        "web-search",
+        "registered-source-probe:80-level",
+        "published-registry-snapshot"
+      ],
+      "decision": "published",
+      "canonical_id": "godot-ps1-rendering"
+    },
+    {
+      "candidate_id": "godot-cable-physics",
+      "source_url": "https://80.lv/articles/every-cable-is-physically-simulated-in-this-cable-untangling-puzzle",
+      "discovery_channels": [
+        "web-search",
+        "registered-source-probe:80-level",
+        "published-registry-snapshot"
+      ],
+      "decision": "published",
+      "canonical_id": "godot-cable-physics"
+    },
+    {
+      "candidate_id": "painterly-fighting-animation",
+      "source_url": "https://80.lv/articles/check-out-this-impressive-painterly-style-fighting-animation",
+      "discovery_channels": [
+        "web-search",
+        "registered-source-probe:80-level",
+        "published-registry-snapshot"
+      ],
+      "decision": "duplicate",
+      "reason_code": "published-registry-exact-identity",
+      "historical_id": "painterly-fight-blender"
+    },
+    {
+      "candidate_id": "haele-portrait-studio-pro",
+      "source_url": "https://80.lv/articles/flexible-new-3d-facial-anatomy-tool-for-character-artists-coming-soon",
+      "discovery_channels": [
+        "web-search",
+        "registered-source-probe:80-level",
+        "published-registry-snapshot"
+      ],
+      "decision": "duplicate",
+      "reason_code": "published-registry-exact-identity",
+      "historical_id": "haele-portrait-studio-pro"
+    },
+    {
+      "candidate_id": "maya-constraint-tool",
+      "source_url": "https://cgworld.jp/flashnews/01-202609-Maya-ConstraintTool.html",
+      "discovery_channels": [
+        "web-search",
+        "registered-source-probe:cgworld-jp",
+        "published-registry-snapshot"
+      ],
+      "decision": "duplicate",
+      "reason_code": "published-registry-exact-identity",
+      "historical_id": "maya-constraint-batch-tool"
+    },
+    {
+      "candidate_id": "animo-v10",
+      "source_url": "https://cgworld.jp/flashnews/01-202609-Animo.html",
+      "discovery_channels": [
+        "web-search",
+        "registered-source-probe:cgworld-jp",
+        "published-registry-snapshot"
+      ],
+      "decision": "duplicate",
+      "reason_code": "published-registry-exact-identity",
+      "historical_id": "animo-v10-maya-toolkit"
+    },
+    {
+      "candidate_id": "ue5-realtime-animation-agora",
+      "source_url": "https://cgworld.jp/flashnews/01-202609-UE5-RealTimeAnim.html",
+      "discovery_channels": [
+        "web-search",
+        "registered-source-probe:cgworld-jp",
+        "published-registry-snapshot"
+      ],
+      "decision": "duplicate",
+      "reason_code": "published-registry-exact-identity",
+      "historical_id": "agora-ue5-realtime-animation-pipeline"
+    },
+    {
+      "candidate_id": "pokemon-za-rendering",
+      "source_url": "https://cgworld.jp/article/202609-cedec-pkmnza.html",
+      "discovery_channels": [
+        "web-search",
+        "registered-source-probe:cgworld-jp",
+        "published-registry-snapshot"
+      ],
+      "decision": "duplicate",
+      "reason_code": "published-registry-exact-identity",
+      "historical_id": "pokemon-za-city-rendering-pokerig"
+    },
+    {
+      "candidate_id": "blender-small-teams",
+      "source_url": "https://code.blender.org/2026/09/small-teams-ambitious-projects/",
+      "discovery_channels": [
+        "web-search",
+        "registered-source-probe:blender-official",
+        "published-registry-snapshot"
+      ],
+      "decision": "duplicate",
+      "reason_code": "published-registry-exact-identity",
+      "historical_id": "blender-small-teams-strategy"
+    },
+    {
+      "candidate_id": "meshy-3agamefactory",
+      "source_url": "https://www.meshy.ai/blog/ai-agent-game-asset-pipeline",
+      "discovery_channels": [
+        "web-search",
+        "published-registry-snapshot"
+      ],
+      "decision": "duplicate",
+      "reason_code": "published-registry-exact-identity",
+      "historical_id": "meshy-3agamefactory-agent-pipeline"
+    },
+    {
+      "candidate_id": "ue-controlrig-animating",
+      "source_url": "https://dev.epicgames.com/documentation/unreal-engine/animating-with-control-rig-in-unreal-engine",
+      "discovery_channels": [
+        "web-search",
+        "registered-source-probe:epic-developer-community",
+        "published-registry-snapshot"
+      ],
+      "decision": "duplicate",
+      "reason_code": "published-registry-exact-identity",
+      "historical_id": "ue58-layered-control-rig-animation"
+    }
+  ],
+  "personalization": {
+    "contract": "supabase-semantic-feedback-v1",
+    "status": "unavailable",
+    "vote_count": 0,
+    "reason": "The configured active app owner account cannot be authoritatively resolved to a user_sync_state row in this execution without inspecting account identifiers; current-main neutral-and-continue fallback applied.",
+    "max_rank_multiplier": 0.2,
+    "max_query_expansion_fraction": 0.2,
+    "raw_profile_committed": false,
+    "bookmarks_used": false,
+    "domain_weights_used": false,
+    "admission_bypass": false,
+    "quality_gate_bypass": false,
+    "source_quota": false
+  }
+}
