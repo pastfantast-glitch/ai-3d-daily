@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   Blender / DCC｜2026-09-25｜AI 3D Daily
+  </title>
+  <link href="../../styles.css?v=20260925-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../../shared-components.css?v=20260925-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../../category.css?v=20260925-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+ </head>
+ <body class="category-page" data-category="blender-dcc" data-report-date="2026-09-25">
+  <nav aria-label="Production Intelligence 分類" class="global-category-nav">
+   <div class="page global-category-nav-inner">
+    <div class="archive-nav-controls">
+     <a class="archive-nav-home" href="../../">
+      ← 首頁
+     </a>
+     <div class="archive-nav-date">
+      <a aria-label="前一日日報" class="archive-nav-arrow" href="../../2026-09-24/blender-dcc/">
+       ←
+      </a>
+      <span>
+       2026-09-25
+      </span>
+     </div>
+    </div>
+    <span aria-hidden="true" class="archive-nav-divider">
+    </span>
+    <a class="global-category-link" href="../#top">
+     TOP5
+    </a>
+    <a class="global-category-link" data-category="ai-generation" href="../ai-generation/">
+     AI 生成
+    </a>
+    <a class="global-category-link" data-category="3d-production" href="../3d-production/">
+     3D 製作
+    </a>
+    <a class="global-category-link" data-category="3d-animation" href="../3d-animation/">
+     3D 動作
+    </a>
+    <a class="global-category-link" data-category="engine-art" href="../engine-art/">
+     遊戲引擎
+    </a>
+    <a class="global-category-link" data-category="emerging-case" href="../emerging-case/">
+     新技術 / Case
+    </a>
+    <a class="global-category-link is-active" data-category="blender-dcc" href="../blender-dcc/">
+     Blender / DCC
+    </a>
+    <a class="global-category-link global-history-link" data-global-view="history" href="../../history/">
+     歷史日報
+    </a>
+   </div>
+  </nav>
+  <main class="page category-main">
+   <article class="category-card" data-intel-id="mari8-beta2" data-intel-role="card">
+    <div class="category-meta">
+     #03 · other-dcc
+    </div>
+    <h2>
+     Mari 8.0 Beta 2：Tri-Planar Tiled、Hex Tile 與材質 A/B 比較
+    </h2>
+    <p class="summary">
+     Mari 8.0 open beta 更新 Beta 2，加入新的節點與材質比較工具，包含處理 UV seam／distortion 的 Tri-Planar Tiled 與 Hex Tile。
+    </p>
+    <figure class="case-preview" data-intel-id="mari8-beta2" data-intel-role="visual" data-visual-id="mari8-beta2">
+     <a href="https://www.cgchannel.com/2026/09/foundry-releases-mari-8-0-in-open-beta/" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE CARD preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-25/mari8-beta2.svg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE CARD
+      </span>
+      · Generated source card · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">其他 DCC</b> ★★★★★</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       技術／流程變更
+      </h4>
+      <p>
+       Mari 8.0 的 Node Graph 擴充超過 50 個節點，Beta 2 的 Tri-Planar Tiled 可在 UV distortion、seam 明顯甚至無 UV 的情境投射一致表面細節，並加入 A/B wipe 比較。
+      </p>
+      <h4>
+       Production 影響
+      </h4>
+      <p>
+       對高解析角色與場景材質迭代，這類節點能減少為了遮 seam 重做局部投射的步驟，也讓 lookdev 變體比較更接近節點圖內即時決策。
+      </p>
+      <h4>
+       導入測試與限制
+      </h4>
+      <p>
+       目前仍是 open beta；正式導入前要測大型 UDIM 專案的穩定性、節點相容性、舊版工程往返與團隊 plug-in 依賴，不宜直接替換 production 穩定版。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://www.cgchannel.com/2026/09/foundry-releases-mari-8-0-in-open-beta/" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="octane2027-alpha3" data-intel-role="card">
+    <div class="category-meta">
+     #04 · other-dcc
+    </div>
+    <h2>
+     OctaneRender 2027.1 Alpha 3：SDF 可烘焙成 Mesh 作為模擬 Proxy
+    </h2>
+    <p class="summary">
+     OctaneRender 2027.1 Alpha 3 新增 SDF-to-mesh baking，可把 Vectron 等 SDF 轉成 polygon mesh，供 scattering 或 physics simulation 使用。
+    </p>
+    <figure class="case-preview" data-intel-id="octane2027-alpha3" data-intel-role="visual" data-visual-id="octane2027-alpha3">
+     <a href="https://www.cgchannel.com/2026/09/otoy-releases-octanerender-2027-1-in-alpha/" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-25/octane2027-alpha3.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">其他 DCC</b> ★★★★★</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       技術／流程變更
+      </h4>
+      <p>
+       Alpha 3 可把 SDF 或其中部分區域烘焙成 polygon mesh，並提供 LOD 控制在細節與處理時間間取捨；這使程序 SDF 能產生傳統模擬系統可消費的 proxy geometry。
+      </p>
+      <h4>
+       Production 影響
+      </h4>
+      <p>
+       對程序建模、散佈與物理模擬流程，這補上了『可渲染的程序表面』與『需要 polygon 的 downstream 工具』之間的交換層，特別適合複雜 Vectron 資產。
+      </p>
+      <h4>
+       導入測試與限制
+      </h4>
+      <p>
+       版本仍處 public alpha，且 SDF 烘焙的拓樸品質、動畫穩定性、記憶體與不同 LOD 的成本需自行 benchmark；不應視為已成熟的最終 production 路徑。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://www.cgchannel.com/2026/09/otoy-releases-octanerender-2027-1-in-alpha/" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="wuthering-hair-map" data-intel-role="card">
+    <div class="category-meta">
+     #05 · blender-tip
+    </div>
+    <h2>
+     Blender / Goo Engine：用 Hair Map 控制二次元髮絲陰影與 Ring Light
+    </h2>
+    <p class="summary">
+     教學以 Wuthering Waves 風格為例，用 Hair Map 控制髮絲分區的光影與高光，可在 Goo Engine 使用，也能在一般 Blender Eevee 套用較簡化版本。
+    </p>
+    <figure class="case-preview" data-intel-id="wuthering-hair-map" data-intel-role="visual" data-visual-id="wuthering-hair-map">
+     <a href="https://80.lv/articles/how-to-create-dynamic-wuthering-waves-style-hair-in-blender" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-25/wuthering-hair-map.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">Blender 技巧</b> ★★★★★</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       技術／流程變更
+      </h4>
+      <p>
+       流程把髮絲的光影分布從單純依賴幾何法線改成由 Hair Map 額外控制，讓 strand-level shadow transition 與 ring-of-light 能以更可控的方式形成二次元髮型效果。
+      </p>
+      <h4>
+       Production 影響
+      </h4>
+      <p>
+       這對 NPR 角色髮材質很直接：可把高光帶與陰影帶視為可製作的貼圖訊號，而不是完全交給物理光照，方便美術依角色設定圖維持可讀性。
+      </p>
+      <h4>
+       導入測試與限制
+      </h4>
+      <p>
+       原始效果依賴 Goo Engine shader 與 Geometry Nodes；一般 Eevee 雖可使用 Hair Map 但結果可能不同，導入前要測目前引擎 shader、髮片 UV 與不同光向下的穩定性。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://80.lv/articles/how-to-create-dynamic-wuthering-waves-style-hair-in-blender" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="blender-line-art-compositor" data-intel-role="card">
+    <div class="category-meta">
+     #06 · addon
+    </div>
+    <h2>
+     aVersion_Lines：在 Blender Compositor 以 Screen-space 產生線稿
+    </h2>
+    <p class="summary">
+     aVersion_Lines 從 rendered passes 在 Compositor 產生 line art，不依賴模型拓樸，因此可對 toon shading band、texture 與較亂的 mesh 取得線條。
+    </p>
+    <figure class="case-preview" data-intel-id="blender-line-art-compositor" data-intel-role="visual" data-visual-id="blender-line-art-compositor">
+     <a href="https://80.lv/articles/create-line-art-from-rendered-images-in-blender-s-compositor-with-this-tool" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-25/blender-line-art-compositor.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">外掛</b> ★★★★☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       技術／流程變更
+      </h4>
+      <p>
+       這個工具把線稿判定移到 screen space 與 rendered data，而非只沿幾何邊界找線，因此 toon shading band、貼圖資訊與非理想拓樸也能成為線條來源，並可控制粗細。
+      </p>
+      <h4>
+       Production 影響
+      </h4>
+      <p>
+       對 NPR 美術流程的價值是把外框、內部材質分界與 compositing 結合，可降低為了線條效果額外改 mesh 的需求，也比較適合既有資產快速試風格。
+      </p>
+      <h4>
+       導入測試與限制
+      </h4>
+      <p>
+       目前證據主要來自作者工具展示；需要用透明材質、細髮絲、遠距 LOD、動態解析度與 TAA／Compositor 設定實測抖動與線寬一致性。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://80.lv/articles/create-line-art-from-rendered-images-in-blender-s-compositor-with-this-tool" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="houdini-building-reconstruction" data-intel-role="card">
+    <div class="category-meta">
+     #07 · houdini
+    </div>
+    <h2>
+     Houdini 建築重組 FX：點雲傳播、矩陣與 Packed Primitive Transform
+    </h2>
+    <p class="summary">
+     Daniel Albarracín 公開建築重組教學，利用面積／體積分割、point cloud mask propagation、向量外積與矩陣控制破片重組動畫。
+    </p>
+    <figure class="case-preview" data-intel-id="houdini-building-reconstruction" data-intel-role="visual" data-visual-id="houdini-building-reconstruction">
+     <a href="https://cgworld.jp/flashnews/01-202609-Houdini-Reconst.html" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-25/houdini-building-reconstruction.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">Houdini</b> ★★★★☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       技術／流程變更
+      </h4>
+      <p>
+       流程先用面積與體積篩選與分割建築零件，再把建築轉為 point cloud，透過 pcopen／pcfilter 在 Solver 中傳播 mask，最後以矩陣與 packed primitive intrinsic 驅動位移、縮放與旋轉。
+      </p>
+      <h4>
+       Production 影響
+      </h4>
+      <p>
+       這種作法把大量破片的 timing 與 motion 變成 attribute-driven 系統，比逐片 keyframe 更適合建築生成、拆解、召喚與大型程序化 VFX，也容易加入 noise 做局部速度變化。
+      </p>
+      <h4>
+       導入測試與限制
+      </h4>
+      <p>
+       教學重點是 Houdini FX 原理，未提供特定遊戲 runtime 成本；若要進即時引擎需測 baked animation、Niagara／VAT／Geometry Cache 等輸出方案及記憶體與 draw-call 成本。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://cgworld.jp/flashnews/01-202609-Houdini-Reconst.html" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="substance-openpbr-video" data-intel-role="card">
+    <div class="category-meta">
+     #09 · substance
+    </div>
+    <h2>
+     Substance 3D × OpenPBR：從材質標準到 Fuzz、Transmission 的實作
+    </h2>
+    <p class="summary">
+     Adobe 教學從 OpenPBR 的跨 renderer 目標談到 Designer／Painter 實作，示範 Metalness、Roughness、Fuzz、Coat、Thin Film、Transmission、Subsurface 等層。
+    </p>
+    <figure class="case-preview" data-intel-id="substance-openpbr-video" data-intel-role="visual" data-visual-id="substance-openpbr-video">
+     <a href="https://cgworld.jp/flashnews/01-202609-Substance-OpenPBR.html" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-25/substance-openpbr-video.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">Substance</b> ★★★★☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       技術／流程變更
+      </h4>
+      <p>
+       OpenPBR 嘗試整合 Standard Surface 與 Standard Material 的概念，將材質拆成具物理意義的光學層，並示範在 Substance 3D Designer／Painter 建立 Fuzz 與 Transmission 等材質效果。
+      </p>
+      <h4>
+       Production 影響
+      </h4>
+      <p>
+       對跨 DCC 與 renderer 的材質資產管理，統一語意可減少不同工具對 specular、coat、transmission 等參數解讀不一致造成的重調，也適合建立公司材質模板。
+      </p>
+      <h4>
+       導入測試與限制
+      </h4>
+      <p>
+       標準一致不代表每個 renderer 的結果像素級一致；導入前仍應做 Arnold／V-Ray／Redshift／目標引擎間的對照球測試，確認色彩空間、法線與能量分配差異。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://cgworld.jp/flashnews/01-202609-Substance-OpenPBR.html" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <nav aria-label="相鄰分類" class="category-bottom-nav">
+    <a href="../emerging-case/">
+     ← 新技術 / Case
+    </a>
+    <a href="../#top">
+     TOP5
+    </a>
+    <a href="../ai-generation/">
+     AI 生成 →
+    </a>
+   </nav>
+  </main>
+  <script defer="" src="../../archive-nav-state.js?v=20260925-r1-workspace-v10-history-current-workspace">
+  </script>
+ </body>
+</html>

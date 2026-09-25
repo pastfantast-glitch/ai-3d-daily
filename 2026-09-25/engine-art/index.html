@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   遊戲引擎｜2026-09-25｜AI 3D Daily
+  </title>
+  <link href="../../styles.css?v=20260925-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../../shared-components.css?v=20260925-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../../category.css?v=20260925-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+ </head>
+ <body class="category-page" data-category="engine-art" data-report-date="2026-09-25">
+  <nav aria-label="Production Intelligence 分類" class="global-category-nav">
+   <div class="page global-category-nav-inner">
+    <div class="archive-nav-controls">
+     <a class="archive-nav-home" href="../../">
+      ← 首頁
+     </a>
+     <div class="archive-nav-date">
+      <a aria-label="前一日日報" class="archive-nav-arrow" href="../../2026-09-24/engine-art/">
+       ←
+      </a>
+      <span>
+       2026-09-25
+      </span>
+     </div>
+    </div>
+    <span aria-hidden="true" class="archive-nav-divider">
+    </span>
+    <a class="global-category-link" href="../#top">
+     TOP5
+    </a>
+    <a class="global-category-link" data-category="ai-generation" href="../ai-generation/">
+     AI 生成
+    </a>
+    <a class="global-category-link" data-category="3d-production" href="../3d-production/">
+     3D 製作
+    </a>
+    <a class="global-category-link" data-category="3d-animation" href="../3d-animation/">
+     3D 動作
+    </a>
+    <a class="global-category-link is-active" data-category="engine-art" href="../engine-art/">
+     遊戲引擎
+    </a>
+    <a class="global-category-link" data-category="emerging-case" href="../emerging-case/">
+     新技術 / Case
+    </a>
+    <a class="global-category-link" data-category="blender-dcc" href="../blender-dcc/">
+     Blender / DCC
+    </a>
+    <a class="global-category-link global-history-link" data-global-view="history" href="../../history/">
+     歷史日報
+    </a>
+   </div>
+  </nav>
+  <main class="page category-main">
+   <article class="category-card" data-intel-id="mold-vector-unity-godot" data-intel-role="card">
+    <div class="category-meta">
+     #15 · tools
+    </div>
+    <h2>
+     Mold：Unity / Godot 共用的即時 Vector Graphics Library
+    </h2>
+    <p class="summary">
+     Mold 提供 2D／3D 幾何 primitive 與 shader-based vector quality，目標是在 Unity、Godot 中以即時圖形而非預製圖檔建立風格化畫面。
+    </p>
+    <figure class="case-preview" data-intel-id="mold-vector-unity-godot" data-intel-role="visual" data-visual-id="mold-vector-unity-godot">
+     <a href="https://80.lv/articles/check-out-this-free-collection-of-vector-graphics-for-godot-unity" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-25/mold-vector-unity-godot.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">引擎工具</b> ★★★★☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       技術／流程變更
+      </h4>
+      <p>
+       Mold 把常用 2D／3D primitive 與向量感抗鋸齒放進 runtime library，並以 vertex shader 變形取得不同幾何，讓 Unity／Godot 可直接『畫形狀』而不是依賴大量預製 sprite 或 mesh。
+      </p>
+      <h4>
+       Production 影響
+      </h4>
+      <p>
+       對 UI、簡約風格、程序化圖形與大量 icon／primitive 的遊戲很有潛力，同一套視覺邏輯還可跨 Unity 與 Godot，降低素材重製與解析度變體管理。
+      </p>
+      <h4>
+       導入測試與限制
+      </h4>
+      <p>
+       目前仍在開發且不同引擎版本的 feature parity、batching、shader 相容性與行動裝置效能需要實測；若要 shipping 應先用代表性 UI／場景建立 profiler baseline。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://80.lv/articles/check-out-this-free-collection-of-vector-graphics-for-godot-unity" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="unity6000-6-3f1" data-intel-role="card">
+    <div class="category-meta">
+     #16 · unity
+    </div>
+    <h2>
+     Unity 6000.6.3f1：Graphics API 小改動與多項 Editor／渲染修正
+    </h2>
+    <p class="summary">
+     Unity 6000.6.3f1 於 9/24 發布，新增 Graphics.disableDepthAndStencilBuffers 查詢 API，並包含 Android、2D、資產與多項穩定性修正及已知問題。
+    </p>
+    <figure class="case-preview" data-intel-id="unity6000-6-3f1" data-intel-role="visual" data-visual-id="unity6000-6-3f1">
+     <a href="https://unity.com/releases/editor/whats-new/6000.6.3f1" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-25/unity6000-6-3f1.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">Unity</b> ★★★☆☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       技術／流程變更
+      </h4>
+      <p>
+       這是 6000.6 系列維護版，Graphics 新增可讀取 Disable Depth and Stencil Buffers 設定的 API，同時更新 Android Gradle Plugin 並修正一批 Editor、2D 與匯入相關問題。
+      </p>
+      <h4>
+       Production 影響
+      </h4>
+      <p>
+       對 production 的直接價值是版本評估：若專案依賴 6000.6，可用 release notes 對照目前 shader、Texture2DArray、Play Mode 與 Android build 問題，判斷是否值得升版。
+      </p>
+      <h4>
+       導入測試與限制
+      </h4>
+      <p>
+       官方同時列出 Vulkan crash、async shader compilation deadlock、UnloadUnusedAssets 變慢等 known issues；正式升級前必須用專案 build、Graphics Jobs 與目標裝置做回歸。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://unity.com/releases/editor/whats-new/6000.6.3f1" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="ue-pcg-overview" data-intel-role="card">
+    <div class="category-meta">
+     #20 · unreal
+    </div>
+    <h2>
+     Unreal Engine 5.8 PCG：從 Asset Utility 到 Biome / World Generation 的程序化框架
+    </h2>
+    <p class="summary">
+     Epic 官方文件定義 UE5.8 PCG Framework，可在 Editor 與 Runtime 以 procedural graph 建立建築、biome、vegetation 與世界內容。
+    </p>
+    <figure class="case-preview" data-intel-id="ue-pcg-overview" data-intel-role="visual" data-visual-id="ue-pcg-overview">
+     <a href="https://dev.epicgames.com/documentation/unreal-engine/procedural-content-generation-overview" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-25/ue-pcg-overview.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">Unreal</b> ★★★☆☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       技術／流程變更
+      </h4>
+      <p>
+       PCG Framework 以 point、density、attribute 與 graph node 組成程序內容流程，可從單一 asset utility 擴充到 building、biome 與整個 world generation，並提供 GPU processing 與 runtime generation 路徑。
+      </p>
+      <h4>
+       Production 影響
+      </h4>
+      <p>
+       對場景美術最直接的價值是把散佈、規則與變體從手工擺放轉成可重跑 graph，適合植被、模組建築與大世界；也更容易讓技術美術把規則封裝成 artist-facing 工具。
+      </p>
+      <h4>
+       導入測試與限制
+      </h4>
+      <p>
+       官方文件是能力參考，不等同任何專案都適合 Runtime PCG；需要用實際 density、World Partition、Nanite 資產量與 cook 時間測試 Editor 迭代及 runtime 成本。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://dev.epicgames.com/documentation/unreal-engine/procedural-content-generation-overview" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="godot-ps1-rendering" data-intel-role="card">
+    <div class="category-meta">
+     #21 · rendering
+    </div>
+    <h2>
+     Godot PS1-style Rendering：從原始硬體限制反推復古畫面規則
+    </h2>
+    <p class="summary">
+     Calin P 以自製 PS1 emulator 的硬體理解拆解 PS1 視覺特徵，並提供在 Godot 重建該 rendering aesthetic 的方法與 add-on。
+    </p>
+    <figure class="case-preview" data-intel-id="godot-ps1-rendering" data-intel-role="visual" data-visual-id="godot-ps1-rendering">
+     <a href="https://80.lv/articles/try-this-authentic-ps1-style-rendering-add-on-for-godot" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-09-25/godot-ps1-rendering.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">渲染</b> ★★★☆☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       技術／流程變更
+      </h4>
+      <p>
+       這個案例不是只套低解析 filter，而是從 PS1 hardware behavior 反推影像特徵，再把對應限制與 rendering 規則搬到 Godot，讓復古風格有可解釋的技術來源。
+      </p>
+      <h4>
+       Production 影響
+      </h4>
+      <p>
+       對 stylized rendering 的價值是提供一種『先理解限制、再設計 shader』的工作法，可避免只靠貼圖降解析度卻缺少 vertex／UV／sampling 等整體一致性。
+      </p>
+      <h4>
+       導入測試與限制
+      </h4>
+      <p>
+       目前來源未提供所有平台與 renderer 的完整測試矩陣；使用 add-on 前要確認 Godot 版本、Forward+/Mobile renderer、後處理順序與不同解析度下的 artifact 是否符合美術需求。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://80.lv/articles/try-this-authentic-ps1-style-rendering-add-on-for-godot" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <nav aria-label="相鄰分類" class="category-bottom-nav">
+    <a href="../3d-animation/">
+     ← 3D 動作
+    </a>
+    <a href="../#top">
+     TOP5
+    </a>
+    <a href="../emerging-case/">
+     新技術 / Case →
+    </a>
+   </nav>
+  </main>
+  <script defer="" src="../../archive-nav-state.js?v=20260925-r1-workspace-v10-history-current-workspace">
+  </script>
+ </body>
+</html>
