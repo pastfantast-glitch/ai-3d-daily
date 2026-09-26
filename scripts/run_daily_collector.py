@@ -29,7 +29,7 @@ if str(SCRIPTS) not in sys.path:
 
 from discovery_hybrid import load_hybrid_config, registered_source_probe_plan
 from url_identity import canonicalize_url
-from content_quality import admission as content_admission, classify_content, normalize_title, production_summary
+from content_quality import admission as content_admission, classify_content, normalize_title, production_summary, editorial_title, editorial_analysis
 
 INTEL_PATH = ROOT / "config" / "intelligence-v2.json"
 DEPTH_PATH = ROOT / "config" / "full-analysis-depth.json"
@@ -845,7 +845,7 @@ def main() -> int:
         meta = candidate["meta"]
         canonical_items.append({
             "id": candidate["candidate_id"],
-            "title": clean(candidate["title"], 220),
+            "title": editorial_title(meta, candidate["category"], candidate["subcategory"]),
             "summary": production_summary(meta, candidate["category"], candidate["subcategory"]),
             "quick_impact": stars(candidate["ranking_score"]),
             "source_url": candidate["source_url"],
@@ -854,7 +854,7 @@ def main() -> int:
             "ranking_score": candidate["ranking_score"],
             "analysis_level": "BRIEF",
             "brief_reason": candidate["brief_reason"],
-            "full_analysis": analysis_blocks(
+            "full_analysis": editorial_analysis(
                 meta, candidate["category"], candidate["subcategory"]
             ),
             "rank_global": rank,
