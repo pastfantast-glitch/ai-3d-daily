@@ -222,6 +222,7 @@ jobs:
       - name: Validate publishing topology
         run: |
           python scripts/check_release_architecture.py
+          python scripts/check_collector_runtime_contract.py
           python scripts/check_pipeline_contract.py
       - name: Resolve canonical date
         id: date

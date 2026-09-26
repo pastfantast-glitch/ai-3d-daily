@@ -173,4 +173,4 @@ jobs:
           echo "- Date: ${{ steps.preflight.outputs.date }}" >> "$GITHUB_STEP_SUMMARY"
           echo "- Skip: ${{ steps.preflight.outputs.skip }}" >> "$GITHUB_STEP_SUMMARY"
           echo "- Public surfaces were not committed." >> "$GITHUB_STEP_SUMMARY"
-          echo "- Collector handoff is delegated to collector-handoff.yml via workflow_run." >> "$GITHUB_STEP_SUMMARY"
+          echo "- Collector handoff is delegated to collector-handoff.yml via workflow_run; this path is exercised by collector-test commits." >> "$GITHUB_STEP_SUMMARY"

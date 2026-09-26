@@ -79,9 +79,11 @@ else:
             fail(f'collector handoff gate missing restricted-writer token: {token}')
     if gate.count('git add ') != 1 or gate.count('git commit ') != 1 or gate.count('git push ') != 1:
         fail('collector handoff gate must have exactly one add/commit/push path')
-    for forbidden in ('index.html', 'assets/visual', '.done.json', 'write_publish_receipt.py', 'prepare_release_candidate.py'):
+    for forbidden in ('index.html', 'assets/visual', 'write_publish_receipt.py', 'prepare_release_candidate.py'):
         if forbidden in gate:
             fail(f'collector handoff gate crossed canonical/public boundary: {forbidden}')
+    if re.search(r'git\\s+(?:add|rm)[^\\n]*(?:\\.done\\.json)', gate):
+        fail('collector handoff gate must not stage DONE receipts')
     if re.search(r'git\\s+(?:add|rm)[^\\n]*(?:\\.request|\\.ready)', gate):
         fail('collector handoff gate must not stage request/ready markers')
 
