@@ -184,14 +184,20 @@ def write_output(date: str, outcome: str, reason_code: str = "") -> None:
             fh.write(f"reason_code={reason_code}\n")
 
 
-def validation_only_finalizer(date: str):
-    return run(
+def trigger_policy_republish(trigger: Path) -> bool:
+    payload = json.loads(trigger.read_text("utf-8"))
+    return str(payload.get("intent", "")).strip() == "policy-republish"
+
+
+def validation_only_finalizer(date: str, policy_republish: bool = False):
+    args = [
         sys.executable,
         str(ROOT / "scripts" / "finalize_collection_handoff.py"),
         date,
-        check=False,
-        capture=True,
-    )
+    ]
+    if policy_republish:
+        args.append("--policy-republish")
+    return run(*args, check=False, capture=True)
 
 
 def controlled_collector_validation_failure(output: str) -> str | None:
@@ -228,14 +234,17 @@ def evidence_depth_preflight(date: str):
     )
 
 
-def write_request(date: str) -> None:
-    run(
+def write_request(date: str, policy_republish: bool = False) -> None:
+    args = [
         sys.executable,
         str(ROOT / "scripts" / "finalize_collection_handoff.py"),
         date,
         "--write-request",
         "--writer-idle-confirmed",
-    )
+    ]
+    if policy_republish:
+        args.append("--policy-republish")
+    run(*args)
 
 
 def main() -> int:
