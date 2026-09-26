@@ -37,7 +37,7 @@ cases = [
     ),
     (
         meta("https://80.lv/articles/animation", "Animation Tutorials and Breakdowns",
-             "Animation tutorials, breakdowns and production articles."),
+             "Animation tutorials, breakdowns and production articles.", "2026-09-26", True),
         False, "generic-navigation-or-resource-index",
     ),
     (
@@ -57,7 +57,7 @@ cases = [
     ),
     (
         meta("https://80.lv/partners", "3D software, drawing tablets, and online art schools",
-             "Partners and services for artists."),
+             "Partners and services for artists.", "2026-09-26", True),
         False, "generic-navigation-or-resource-index",
     ),
     (

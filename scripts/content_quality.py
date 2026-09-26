@@ -195,19 +195,24 @@ def landing_reason(meta: dict) -> str | None:
 
     if any(fragment in title for fragment in GENERIC_TITLE_FRAGMENTS):
         return "generic-index-title"
+
+    # Navigation/index identity is stronger evidence than unreliable Article/Published metadata.
+    # Some source sites mark category/partner/resource hubs as Article, so reject these page
+    # shapes before considering metadata.
+    if leaf in GENERIC_NAV_LEAVES and len(segments) <= 3:
+        return "generic-navigation-or-resource-index"
+    if title in GENERIC_NAV_TITLE_EXACT:
+        return "generic-navigation-or-resource-index"
+    if any(fragment in title for fragment in GENERIC_NAV_TITLE_FRAGMENTS):
+        return "generic-navigation-or-resource-index"
+    if title.endswith(" manual") and ("manual" in segments or leaf == "latest"):
+        return "documentation-root-index"
+
     if not article_type and not published:
         if any(fragment in path for fragment in LANDING_PATH_FRAGMENTS):
             return "non-article-product-or-feature-landing"
-        if leaf in GENERIC_NAV_LEAVES and len(segments) <= 3:
-            return "generic-navigation-or-resource-index"
-        if title in GENERIC_NAV_TITLE_EXACT:
-            return "generic-navigation-or-resource-index"
-        if any(fragment in title for fragment in GENERIC_NAV_TITLE_FRAGMENTS):
-            return "generic-navigation-or-resource-index"
         if path.rstrip("/").endswith("/roadmap") or title == "roadmap":
             return "roadmap-index-page"
-        if title.endswith(" manual") and ("manual" in segments or leaf == "latest"):
-            return "documentation-root-index"
     return None
 
 
