@@ -105,7 +105,9 @@ else:
         'python scripts/run_daily_collector.py "$DATE"',
         'python scripts/check_collection_session_contract.py "$DATE"',
         'python scripts/finalize_collection_handoff.py "$DATE"',
-        'git commit -m "Collect production intelligence $DATE"',
+        'commit_subject="Collect production intelligence $DATE"',
+        'commit_subject="Recollect production intelligence $DATE"',
+        'git commit -m "$commit_subject"',
         'git push origin HEAD:main',
     ):
         if token not in autonomous:
@@ -165,7 +167,7 @@ else:
     for token in (
         'normalize_registry_identity_hybrid.py',
         'enrich_full_analysis_v3.py',
-        'validation_only_finalizer(date)',
+        'validation_only_finalizer(date, policy_republish)',
         'registry.returncode == 2',
         'persist_followup(',
         'controlled_collector_validation_failure',
@@ -176,9 +178,9 @@ else:
     ):
         if token not in bridge_text:
             fail(f'collector bridge pre-request preflight missing: {token}')
-    if bridge_text.find('normalize_registry_identity_hybrid.py') > bridge_text.find('write_request(date)'):
+    if bridge_text.find('normalize_registry_identity_hybrid.py') > bridge_text.find('write_request(date, policy_republish)'):
         fail('collector Registry normalization must happen before request creation')
-    if bridge_text.find('enrich_full_analysis_v3.py') > bridge_text.find('write_request(date)'):
+    if bridge_text.find('enrich_full_analysis_v3.py') > bridge_text.find('write_request(date, policy_republish)'):
         fail('collector evidence-depth validation must happen before request creation')
 
 # A semantic no-op during Collector finalization must preserve the exact JSON bytes.
