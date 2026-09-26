@@ -35,6 +35,63 @@ cases = [
              "Learn to spot churn early and win mobile players back for good.", "2026-09-26", True),
         False, "business-or-player-growth-no-art-production-takeaway",
     ),
+    (
+        meta("https://80.lv/articles/animation", "Animation Tutorials and Breakdowns",
+             "Animation tutorials, breakdowns and production articles."),
+        False, "generic-navigation-or-resource-index",
+    ),
+    (
+        meta("https://studio.blender.org/tools", "Blender Studio",
+             "Tools and production resources."),
+        False, "generic-navigation-or-resource-index",
+    ),
+    (
+        meta("https://unity.com/games", "Game Development Software: Create 2D & 3D Games",
+             "Create games with Unity."),
+        False, "generic-navigation-or-resource-index",
+    ),
+    (
+        meta("https://unity.com/industry", "Create Real-Time 3D Experiences | Industry Solutions from Unity",
+             "Industry solutions for real-time 3D."),
+        False, "generic-navigation-or-resource-index",
+    ),
+    (
+        meta("https://80.lv/partners", "3D software, drawing tablets, and online art schools",
+             "Partners and services for artists."),
+        False, "generic-navigation-or-resource-index",
+    ),
+    (
+        meta("https://docs.blender.org/manual/en/latest", "Blender 5.2 LTS Manual",
+             "Blender manual."),
+        False, "generic-navigation-or-resource-index",
+    ),
+    (
+        meta("https://studio.blender.org/training", "Training - Blender Studio",
+             "Training resources for Blender artists."),
+        False, "generic-navigation-or-resource-index",
+    ),
+    (
+        meta("https://www.blender.org/download/demo-files", "Demo Files",
+             "Download Blender demo files."),
+        False, "generic-navigation-or-resource-index",
+    ),
+    (
+        meta("https://www.blender.org/support", "Support",
+             "Blender support resources."),
+        False, "generic-navigation-or-resource-index",
+    ),
+    (
+        meta("https://www.blender.org/news/show-your-support-for-blender-projects",
+             "Show your support for Blender projects",
+             "Support Blender projects and development.", "2026-09-20", True),
+        False, "governance-or-funding-page-no-production-method",
+    ),
+    (
+        meta("https://www.blender.org/news/upcoming-blender-development-fund-and-ai-policies",
+             "Upcoming Blender Development Fund and AI Policies",
+             "Upcoming policy changes.", "2026-09-20", True),
+        False, "governance-or-funding-page-no-production-method",
+    ),
 ]
 
 for m, expected, reason in cases:
@@ -58,6 +115,11 @@ assert classify_content(
     "Mesh Terrain, MetaHuman Crowds, rigging and animation tools",
 ) == ("engine-art", "unreal")
 
+assert classify_content(
+    "New CG software you may have missed: 13 September 2026",
+    "A roundup including animation and rigging utilities.",
+) == ("blender-dcc", "other-dcc")
+
 summary = production_summary(
     meta("https://example.com/x", "Blender 5.2 LTS Release", "Rendering advancements", "2026-09-26", True),
     "blender-dcc",
@@ -67,5 +129,6 @@ assert "來源頁面顯示" not in summary
 assert "Collector 僅依" not in summary
 assert "Blender 5.2 LTS Release" in summary
 assert any(x in summary for x in ("流程", "導入", "製作"))
+assert "Rendering" in summary
 
 print("COLLECTOR CONTENT QUALITY PASS: landing/index rejection + scope admission + title normalization + subject-first classification + zh-Hant production summary")
