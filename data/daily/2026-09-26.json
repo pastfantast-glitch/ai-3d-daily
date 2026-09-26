@@ -2,7 +2,7 @@
   "date": "2026-09-26",
   "schema_version": 3,
   "metadata": {
-    "total_items": 24,
+    "total_items": 23,
     "collection_mode": "production-intelligence-preference-v1-hybrid",
     "collection_contract_effective_date": "2026-09-04",
     "preference_contract_effective_date": "2026-09-06",
@@ -18,7 +18,7 @@
     ],
     "analysis_level_counts": {
       "FULL": 0,
-      "BRIEF": 24,
+      "BRIEF": 23,
       "REJECT": 0
     },
     "analysis_level_policy": "evidence-depth-tiered; FULL=3-5 source-supported blocks; BRIEF=3 readable source-grounded angles with explicit limits; REJECT=not-publishable",
@@ -38,7 +38,7 @@
         },
         "7d": {
           "status": "exhausted",
-          "candidates_found": 1
+          "candidates_found": 3
         },
         "30d": {
           "status": "exhausted",
@@ -46,11 +46,11 @@
         },
         "6m": {
           "status": "exhausted",
-          "candidates_found": 1
+          "candidates_found": 2
         },
         "evergreen": {
           "status": "exhausted",
-          "candidates_found": 27
+          "candidates_found": 25
         }
       },
       "category_candidates": {
@@ -58,10 +58,10 @@
           "candidates_considered": 0
         },
         "3d-production": {
-          "candidates_considered": 4
+          "candidates_considered": 3
         },
         "3d-animation": {
-          "candidates_considered": 7
+          "candidates_considered": 6
         },
         "engine-art": {
           "candidates_considered": 3
@@ -70,7 +70,7 @@
           "candidates_considered": 3
         },
         "blender-dcc": {
-          "candidates_considered": 7
+          "candidates_considered": 8
         }
       },
       "registered_source_probe": {
@@ -79,18 +79,19 @@
           "80-level": {
             "status": "checked",
             "method": "latest-index",
-            "candidates_found": 11,
+            "candidates_found": 12,
             "candidate_ids": [
               "80-level-breakdown-animating-tiny-character-with-massive-two-handed-w",
-              "80-level-how-anime-studio-behind-beastars-trigun-stampede-makes-3d-an",
               "80-level-exploring-thin-pale-slimy-skin-texture-by-recreating-the-dem",
               "80-level-fox-girl-s-powerful-giant-sword-combo-attack-animation",
-              "80-level-blender-s-overgrown-teaser-is-a-proof-of-concept-for-open-fi",
-              "80-level-animation",
+              "80-level-watch-this-blender-tutorial-if-you-re-starting-character-rig",
+              "80-level-no-genai-this-blender-add-on-turns-simple-sketches-into-3d-p",
+              "80-level-try-this-one-click-automatic-skinning-add-on-for-blender",
+              "80-level-speed-up-blender-animation-with-this-free-tool",
+              "80-level-this-hollow-knight-s-hornet-animation-belongs-in-smash-bros",
               "80-level-check-out-this-powerful-combo-attack-animation",
               "80-level-clair-obscur-expedition-33-animator-shares-curated-animation",
               "80-level-spider-man-is-killing-it-in-this-neat-fan-made-combo-animati",
-              "80-level-partners",
               "80-level-check-out-this-zenless-zone-zero-animation-made-in-blender"
             ]
           },
@@ -139,7 +140,6 @@
             "method": "latest-index",
             "candidates_found": 20,
             "candidate_ids": [
-              "cg-channel-master-cinematic-matte-painting-for-production",
               "cg-channel-check-out-vine-fxs-vfx-breakdown-for-alice-and-steve",
               "cg-channel-10-things-cg-artists-need-to-know-about-unreal-engine-6",
               "cg-channel-see-5-key-features-for-cg-artists-in-unreal-engine-5-8",
@@ -149,6 +149,7 @@
               "cg-channel-tutorial-concept-art-matte-painting-for-film",
               "cg-channel-sparseal-unveils-uniform",
               "cg-channel-keyshot-releases-keyshot-studio-2025-3",
+              "cg-channel-foundry-releases-mari-7-5",
               "cg-channel-foundry-releases-mari-8-0-in-open-beta",
               "cg-channel-maxon-releases-redshift-2026-9",
               "cg-channel-new-cg-software-you-may-have-missed-13-september-2026",
@@ -211,7 +212,7 @@
           }
         }
       },
-      "notes": "2026-09-26 autonomous GitHub Collector loaded the Published Registry snapshot before discovery, supplemented it from verified-DONE history when needed, checked rolling backlog, executed the current-main deterministic registered-source probe plan, crawled configured source indexes plus a bounded source-grounded targeted refill, and applied exact source/stable identity dedupe before ranking. Registry audit: {\"history_supplemented_items\": 0, \"latest_verified_done\": \"2026-09-25\", \"snapshot_generated_through\": \"2026-09-26\", \"snapshot_state\": \"DERIVED_FROM_VERIFIED_DONE\", \"source_identities\": 567, \"stable_ids\": 566}. Backlog entries rechecked=5. No source registration/domain supplied ranking bonus, quota or admission bypass."
+      "notes": "2026-09-26 autonomous GitHub Collector loaded the Published Registry snapshot before discovery, supplemented it from verified-DONE history when needed, checked rolling backlog, executed the current-main deterministic registered-source probe plan, crawled configured source indexes plus a bounded source-grounded targeted refill, and applied exact source/stable identity dedupe before ranking. Registry audit: {\"history_supplemented_items\": 0, \"latest_verified_done\": \"2026-09-25\", \"snapshot_generated_through\": \"2026-09-26\", \"snapshot_state\": \"DERIVED_FROM_VERIFIED_DONE\", \"source_identities\": 567, \"stable_ids\": 566}. Backlog entries rechecked=0. No source registration/domain supplied ranking bonus, quota or admission bypass."
     },
     "personalization": {
       "contract": "supabase-semantic-feedback-v1",
@@ -226,46 +227,6 @@
       "admission_bypass": false,
       "quality_gate_bypass": false,
       "source_quota": false
-    },
-    "homepage_tier_normalization": {
-      "selection_mode": "full-first-brief-fallback",
-      "requested_top5": 5,
-      "actual_top5": 5,
-      "top5_full_count": 0,
-      "top5_brief_fallback_count": 5,
-      "top5_full_only": false,
-      "brief_fallback_allowed": true,
-      "next10": 10
-    },
-    "registry_identity_normalization": {
-      "dropped_count": 0,
-      "rewritten_count": 0,
-      "policy": "verified-DONE-published-canonical-source-without-substantive-delta-skip",
-      "source_identity_precedence": "published-daily-html-card-then-canonical-json",
-      "url_identity": "scripts/url_identity.py",
-      "stage": "collection-before-ready",
-      "refill_required": false,
-      "category_deficits": {},
-      "daily_release_gate": {
-        "have": 24,
-        "min": 20,
-        "target": 30,
-        "max": 30,
-        "missing_to_min": 0,
-        "missing_to_target": 6,
-        "release_ready": true,
-        "category_counts": {
-          "ai-generation": 0,
-          "3d-production": 4,
-          "3d-animation": 7,
-          "engine-art": 3,
-          "emerging-case": 3,
-          "blender-dcc": 7
-        },
-        "release_mode": "NORMAL",
-        "low_volume_authorized": false
-      },
-      "republication_revalidated": true
     }
   },
   "items": [
@@ -410,62 +371,6 @@
       "homepage_tier": "top5"
     },
     {
-      "id": "80-level-animation",
-      "title": "Animation Tutorials and Breakdowns",
-      "summary": "「Animation Tutorials and Breakdowns」具有直接 Production 參考價值。來源可驗證的製作重點包含「動畫」。目前以來源能明確支持的方法、功能或案例為準，不延伸未公開的效能或品質結論。",
-      "quick_impact": "★★★☆☆",
-      "source_url": "https://80.lv/articles/animation",
-      "category": "3d-animation",
-      "subcategory": "animation",
-      "ranking_score": 70.0,
-      "analysis_level": "BRIEF",
-      "brief_reason": "practical-tutorial-limited-depth",
-      "full_analysis": [
-        {
-          "label": "技術／流程變更",
-          "text": "來源可驗證的重點是「Animation Tutorials and Breakdowns」；頁面內容指出：Practical animation content with tutorials and interviews that reveal workflows and techniques from real projects.。Collector 因此只把它歸入 animation 的技術／流程情報，不補寫來源沒有公開的 benchmark、內部實作或品質數字。"
-        },
-        {
-          "label": "Production 影響",
-          "text": "對 Production 的實際價值是把這項內容當成 3d-animation 的近期工具、流程或案例參考，用來決定是否值得安排小型 A/B 測試、更新團隊規範或深入閱讀原始來源；目前不把尚未由來源證實的省時比例、效能提升或品質增益當成既知結果。"
-        },
-        {
-          "label": "導入測試與限制",
-          "text": "目前證據深度以單一公開來源為主，因此維持 BRIEF。正式導入前應依團隊實際 DCC／引擎版本、資產規格、效能預算與輸出需求驗證相容性、可重現性和品質，並確認原始來源是否有後續更新、已知限制或授權條件。"
-        }
-      ],
-      "rank_global": 6,
-      "homepage_tier": "next10"
-    },
-    {
-      "id": "cg-channel-master-cinematic-matte-painting-for-production",
-      "title": "Master Cinematic Matte Painting for Production",
-      "summary": "「Master Cinematic Matte Painting for Production」是可供製作參考的拆解／教學。來源可驗證的製作重點包含「VFX、Blender」。適合把來源明確展示的方法拆成測試步驟，與團隊現行流程比較，再驗證品質、時間成本與限制。",
-      "quick_impact": "★★★☆☆",
-      "source_url": "https://www.cgchannel.com/2026/08/master-cinematic-matte-painting-for-production",
-      "category": "3d-production",
-      "subcategory": "environment-production",
-      "ranking_score": 70.0,
-      "analysis_level": "BRIEF",
-      "brief_reason": "practical-tutorial-limited-depth",
-      "full_analysis": [
-        {
-          "label": "技術／流程變更",
-          "text": "來源可驗證的重點是「Master Cinematic Matte Painting for Production」；頁面內容指出：Create environments for VFX and game cinematics using Blender, Photoshop and Nuke with The Gnomon Workshop's tutorial.。Collector 因此只把它歸入 environment-production 的技術／流程情報，不補寫來源沒有公開的 benchmark、內部實作或品質數字。"
-        },
-        {
-          "label": "Production 影響",
-          "text": "對 Production 的實際價值是把這項內容當成 3d-production 的近期工具、流程或案例參考，用來決定是否值得安排小型 A/B 測試、更新團隊規範或深入閱讀原始來源；目前不把尚未由來源證實的省時比例、效能提升或品質增益當成既知結果。"
-        },
-        {
-          "label": "導入測試與限制",
-          "text": "目前證據深度以單一公開來源為主，因此維持 BRIEF。正式導入前應依團隊實際 DCC／引擎版本、資產規格、效能預算與輸出需求驗證相容性、可重現性和品質，並確認原始來源是否有後續更新、已知限制或授權條件。"
-        }
-      ],
-      "rank_global": 7,
-      "homepage_tier": "next10"
-    },
-    {
       "id": "cg-channel-10-things-cg-artists-need-to-know-about-unreal-engine-6",
       "title": "10 things CG artists need to know about Unreal Engine 6",
       "summary": "「10 things CG artists need to know about Unreal Engine 6」是工具／工作流情報。來源可驗證的製作重點包含「VFX、Unreal Engine」。導入前應確認版本相容、輸出格式、授權與是否真的減少既有流程中的重複操作。",
@@ -490,7 +395,7 @@
           "text": "目前證據深度以單一公開來源為主，因此維持 BRIEF。正式導入前應依團隊實際 DCC／引擎版本、資產規格、效能預算與輸出需求驗證相容性、可重現性和品質，並確認原始來源是否有後續更新、已知限制或授權條件。"
         }
       ],
-      "rank_global": 8,
+      "rank_global": 6,
       "homepage_tier": "next10"
     },
     {
@@ -518,7 +423,7 @@
           "text": "目前證據深度以單一公開來源為主，因此維持 BRIEF。正式導入前應依團隊實際 DCC／引擎版本、資產規格、效能預算與輸出需求驗證相容性、可重現性和品質，並確認原始來源是否有後續更新、已知限制或授權條件。"
         }
       ],
-      "rank_global": 9,
+      "rank_global": 7,
       "homepage_tier": "next10"
     },
     {
@@ -546,7 +451,7 @@
           "text": "目前證據深度以單一公開來源為主，因此維持 BRIEF。正式導入前應依團隊實際 DCC／引擎版本、資產規格、效能預算與輸出需求驗證相容性、可重現性和品質，並確認原始來源是否有後續更新、已知限制或授權條件。"
         }
       ],
-      "rank_global": 10,
+      "rank_global": 8,
       "homepage_tier": "next10"
     },
     {
@@ -574,7 +479,7 @@
           "text": "目前證據深度以單一公開來源為主，因此維持 BRIEF。正式導入前應依團隊實際 DCC／引擎版本、資產規格、效能預算與輸出需求驗證相容性、可重現性和品質，並確認原始來源是否有後續更新、已知限制或授權條件。"
         }
       ],
-      "rank_global": 11,
+      "rank_global": 9,
       "homepage_tier": "next10"
     },
     {
@@ -602,7 +507,35 @@
           "text": "目前證據深度以單一公開來源為主，因此維持 BRIEF。正式導入前應依團隊實際 DCC／引擎版本、資產規格、效能預算與輸出需求驗證相容性、可重現性和品質，並確認原始來源是否有後續更新、已知限制或授權條件。"
         }
       ],
-      "rank_global": 12,
+      "rank_global": 10,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "80-level-this-hollow-knight-s-hornet-animation-belongs-in-smash-bros",
+      "title": "This Hollow Knight's Hornet Animation Belongs In Smash Bros.",
+      "summary": "「This Hollow Knight's Hornet Animation Belongs In Smash Bros.」具有直接 Production 參考價值。來源可驗證的製作重點包含「動畫」。目前以來源能明確支持的方法、功能或案例為準，不延伸未公開的效能或品質結論。",
+      "quick_impact": "★★★☆☆",
+      "source_url": "https://80.lv/articles/this-hollow-knight-s-hornet-animation-belongs-in-smash-bros",
+      "category": "3d-animation",
+      "subcategory": "animation",
+      "ranking_score": 66.0,
+      "analysis_level": "BRIEF",
+      "brief_reason": "single-source-verified-production-tip",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "來源可驗證的重點是「This Hollow Knight's Hornet Animation Belongs In Smash Bros.」；頁面內容指出：Brad Faucheux really nailed her moves, and the 2D effects are the cherry on top.。Collector 因此只把它歸入 animation 的技術／流程情報，不補寫來源沒有公開的 benchmark、內部實作或品質數字。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對 Production 的實際價值是把這項內容當成 3d-animation 的近期工具、流程或案例參考，用來決定是否值得安排小型 A/B 測試、更新團隊規範或深入閱讀原始來源；目前不把尚未由來源證實的省時比例、效能提升或品質增益當成既知結果。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "目前證據深度以單一公開來源為主，因此維持 BRIEF。正式導入前應依團隊實際 DCC／引擎版本、資產規格、效能預算與輸出需求驗證相容性、可重現性和品質，並確認原始來源是否有後續更新、已知限制或授權條件。"
+        }
+      ],
+      "rank_global": 11,
       "homepage_tier": "next10"
     },
     {
@@ -630,7 +563,7 @@
           "text": "目前證據深度以單一公開來源為主，因此維持 BRIEF。正式導入前應依團隊實際 DCC／引擎版本、資產規格、效能預算與輸出需求驗證相容性、可重現性和品質，並確認原始來源是否有後續更新、已知限制或授權條件。"
         }
       ],
-      "rank_global": 13,
+      "rank_global": 12,
       "homepage_tier": "next10"
     },
     {
@@ -648,6 +581,34 @@
         {
           "label": "技術／流程變更",
           "text": "來源可驗證的重點是「KeyShot releases KeyShot Studio 2025.3」；頁面內容指出：Rendering and visualization software gets support for OpenPBR and Cryptomatte and is now 'up to 50% faster' on AMD GPUs.。Collector 因此只把它歸入 other-dcc 的技術／流程情報，不補寫來源沒有公開的 benchmark、內部實作或品質數字。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對 Production 的實際價值是把這項內容當成 blender-dcc 的近期工具、流程或案例參考，用來決定是否值得安排小型 A/B 測試、更新團隊規範或深入閱讀原始來源；目前不把尚未由來源證實的省時比例、效能提升或品質增益當成既知結果。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "目前證據深度以單一公開來源為主，因此維持 BRIEF。正式導入前應依團隊實際 DCC／引擎版本、資產規格、效能預算與輸出需求驗證相容性、可重現性和品質，並確認原始來源是否有後續更新、已知限制或授權條件。"
+        }
+      ],
+      "rank_global": 13,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "cg-channel-foundry-releases-mari-7-5",
+      "title": "Foundry releases Mari 7.5",
+      "summary": "「Foundry releases Mari 7.5」是工具／工作流情報。來源可驗證的製作重點包含「貼圖／材質、Mari」。導入前應確認版本相容、輸出格式、授權與是否真的減少既有流程中的重複操作。",
+      "quick_impact": "★★★☆☆",
+      "source_url": "https://www.cgchannel.com/2025/12/foundry-releases-mari-7-5",
+      "category": "blender-dcc",
+      "subcategory": "other-dcc",
+      "ranking_score": 66.0,
+      "analysis_level": "BRIEF",
+      "brief_reason": "single-source-verified-production-tip",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "來源可驗證的重點是「Foundry releases Mari 7.5」；頁面內容指出：3D texture painting software gets long-awaited Multi-Paint system for projection-painting multiple texture maps simultaneously.。Collector 因此只把它歸入 other-dcc 的技術／流程情報，不補寫來源沒有公開的 benchmark、內部實作或品質數字。"
         },
         {
           "label": "Production 影響",
@@ -774,34 +735,6 @@
       "homepage_tier": "category_only"
     },
     {
-      "id": "80-level-partners",
-      "title": "3D software, drawing tablets, and online art schools",
-      "summary": "「3D software, drawing tablets, and online art schools」是工具／工作流情報。來源可驗證的製作重點包含「動畫」。導入前應確認版本相容、輸出格式、授權與是否真的減少既有流程中的重複操作。",
-      "quick_impact": "★★★☆☆",
-      "source_url": "https://80.lv/partners",
-      "category": "3d-animation",
-      "subcategory": "animation",
-      "ranking_score": 63.0,
-      "analysis_level": "BRIEF",
-      "brief_reason": "single-source-verified-production-tip",
-      "full_analysis": [
-        {
-          "label": "技術／流程變更",
-          "text": "來源可驗證的重點是「3D software, drawing tablets, and online art schools」；頁面內容指出：Best software for digital drawing and animation, graphic tablets, online schools for artists, and more.。Collector 因此只把它歸入 animation 的技術／流程情報，不補寫來源沒有公開的 benchmark、內部實作或品質數字。"
-        },
-        {
-          "label": "Production 影響",
-          "text": "對 Production 的實際價值是把這項內容當成 3d-animation 的近期工具、流程或案例參考，用來決定是否值得安排小型 A/B 測試、更新團隊規範或深入閱讀原始來源；目前不把尚未由來源證實的省時比例、效能提升或品質增益當成既知結果。"
-        },
-        {
-          "label": "導入測試與限制",
-          "text": "目前證據深度以單一公開來源為主，因此維持 BRIEF。正式導入前應依團隊實際 DCC／引擎版本、資產規格、效能預算與輸出需求驗證相容性、可重現性和品質，並確認原始來源是否有後續更新、已知限制或授權條件。"
-        }
-      ],
-      "rank_global": 19,
-      "homepage_tier": "category_only"
-    },
-    {
       "id": "cg-channel-get-100-free-modular-airport-assets-for-unity-and-unreal-eng",
       "title": "Get 100+ free modular airport assets for Unity and Unreal Engine",
       "summary": "「Get 100+ free modular airport assets for Unity and Unreal Engine」是工具／工作流情報。來源可驗證的製作重點包含「Unreal Engine、Unity」。導入前應確認版本相容、輸出格式、授權與是否真的減少既有流程中的重複操作。",
@@ -826,7 +759,7 @@
           "text": "目前證據深度以單一公開來源為主，因此維持 BRIEF。正式導入前應依團隊實際 DCC／引擎版本、資產規格、效能預算與輸出需求驗證相容性、可重現性和品質，並確認原始來源是否有後續更新、已知限制或授權條件。"
         }
       ],
-      "rank_global": 20,
+      "rank_global": 19,
       "homepage_tier": "category_only"
     },
     {
@@ -854,7 +787,7 @@
           "text": "目前證據深度以單一公開來源為主，因此維持 BRIEF。正式導入前應依團隊實際 DCC／引擎版本、資產規格、效能預算與輸出需求驗證相容性、可重現性和品質，並確認原始來源是否有後續更新、已知限制或授權條件。"
         }
       ],
-      "rank_global": 21,
+      "rank_global": 20,
       "homepage_tier": "category_only"
     },
     {
@@ -882,7 +815,7 @@
           "text": "目前證據深度以單一公開來源為主，因此維持 BRIEF。正式導入前應依團隊實際 DCC／引擎版本、資產規格、效能預算與輸出需求驗證相容性、可重現性和品質，並確認原始來源是否有後續更新、已知限制或授權條件。"
         }
       ],
-      "rank_global": 22,
+      "rank_global": 21,
       "homepage_tier": "category_only"
     },
     {
@@ -910,7 +843,7 @@
           "text": "目前證據深度以單一公開來源為主，因此維持 BRIEF。正式導入前應依團隊實際 DCC／引擎版本、資產規格、效能預算與輸出需求驗證相容性、可重現性和品質，並確認原始來源是否有後續更新、已知限制或授權條件。"
         }
       ],
-      "rank_global": 23,
+      "rank_global": 22,
       "homepage_tier": "category_only"
     },
     {
@@ -938,7 +871,7 @@
           "text": "目前證據深度以單一公開來源為主，因此維持 BRIEF。正式導入前應依團隊實際 DCC／引擎版本、資產規格、效能預算與輸出需求驗證相容性、可重現性和品質，並確認原始來源是否有後續更新、已知限制或授權條件。"
         }
       ],
-      "rank_global": 24,
+      "rank_global": 23,
       "homepage_tier": "category_only"
     }
   ],
