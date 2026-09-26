@@ -118,9 +118,20 @@ def main() -> None:
             fail(f"unexpected non-DONE receipt exists: {done_path.relative_to(ROOT)}")
     elif args.allow_done_policy_republish:
         fail("--allow-done-policy-republish requires an existing verified DONE receipt")
-    for path in (request_path, ready_path, trigger_path):
+    for path in (request_path, trigger_path):
         if path.exists():
             fail(f"refusing duplicate handoff while {path.relative_to(ROOT)} exists")
+    if ready_path.exists():
+        if not args.allow_done_policy_republish:
+            fail(f"refusing duplicate handoff while {ready_path.relative_to(ROOT)} exists")
+        ready = read_json(ready_path)
+        if (
+            not isinstance(ready, dict)
+            or str(ready.get("state", "")).strip().upper() != "READY"
+            or str(ready.get("date", "")).strip() != date
+            or str(ready.get("prepared_by", "")).strip() != "scripts/prepare_release_candidate.py"
+        ):
+            fail("policy-republish found an untrusted/stale READY marker")
 
     if git_status_paths():
         fail("working tree must be clean before persisted-artifact validation")

@@ -146,7 +146,16 @@ def main() -> None:
     if policy_republish and not done_is_verified(done_path):
         fail("--policy-republish requires an existing verified DONE receipt")
     if ready_path.exists():
-        fail(f"refusing Collector mutation after ready exists: {ready_path.relative_to(ROOT)}")
+        if not policy_republish:
+            fail(f"refusing Collector mutation after ready exists: {ready_path.relative_to(ROOT)}")
+        ready = read_json(ready_path)
+        if (
+            not isinstance(ready, dict)
+            or str(ready.get("state", "")).strip().upper() != "READY"
+            or str(ready.get("date", "")).strip() != date
+            or str(ready.get("prepared_by", "")).strip() != "scripts/prepare_release_candidate.py"
+        ):
+            fail("policy-republish found an untrusted/stale READY marker")
 
     if "--write-request" in flags:
         run("check_main_ci.py")
