@@ -14,6 +14,7 @@ ROOT = Path(__file__).resolve().parents[1]
 WF = ROOT / '.github' / 'workflows'
 MAIN = WF / 'intelligence-build.yml'
 COLLECTOR_GATE = WF / 'collector-handoff.yml'
+AUTONOMOUS_COLLECTOR = WF / 'daily-collector.yml'
 DAILY_QA = WF / 'daily-contract.yml'
 errors = []
 
@@ -28,6 +29,7 @@ required_files = [
     'config/full-analysis-depth.json',
     'config/quick-impact-contract.json',
     'config/stability-contract.json',
+    'config/collector-runtime.json',
     'data/candidates/rolling-backlog.json',
     'scripts/discovery_hybrid.py',
     'scripts/check_discovery_hybrid_contract.py',
@@ -41,6 +43,9 @@ required_files = [
     'scripts/prepare_release_candidate.py',
     'scripts/check_ready_contract.py',
     'scripts/create_collector_trigger.py',
+    'scripts/run_daily_collector.py',
+    'scripts/check_collector_runtime_contract.py',
+    '.github/workflows/daily-collector.yml',
     '.github/workflows/collector-handoff.yml',
     '.github/workflows/intelligence-build.yml',
     '.github/workflows/daily-contract.yml',
@@ -179,6 +184,7 @@ if MAIN.exists():
         'check_preference_contract.py',
         'check_pages_tier_contract.py',
         'python scripts/check_release_architecture.py',
+        'python scripts/check_collector_runtime_contract.py',
         'Atomic publish canonical data, derived assets and views',
         'Verify public GitHub Pages release',
         'Write verified publish receipt',
@@ -226,6 +232,26 @@ if MAIN.exists():
     if 'write_publish_receipt.py' in main and main.find('write_publish_receipt.py') < main.find('verify_pages_publish.py'):
         fail('DONE receipt wiring must occur after Pages verification')
 
+if AUTONOMOUS_COLLECTOR.exists():
+    autonomous = AUTONOMOUS_COLLECTOR.read_text('utf-8')
+    for token in (
+        'name: Autonomous daily Collector',
+        "cron: '30 23 * * *'",
+        'group: autonomous-daily-collector',
+        'cancel-in-progress: false',
+        'contents: write',
+        'actions: read',
+        'python scripts/run_daily_collector.py "$DATE"',
+        'python scripts/check_collection_session_contract.py "$DATE"',
+        'python scripts/finalize_collection_handoff.py "$DATE"',
+        'git commit -m "Collect production intelligence $DATE"',
+    ):
+        if token not in autonomous:
+            fail(f'daily-collector.yml missing autonomous Collector token: {token}')
+    for forbidden in ('index.html', 'assets/visual', '.request', '.ready'):
+        if forbidden in autonomous:
+            fail(f'daily-collector.yml crossed Collector/public boundary: {forbidden}')
+
 if COLLECTOR_GATE.exists():
     collector = COLLECTOR_GATE.read_text('utf-8')
     for token in (
@@ -242,8 +268,8 @@ if COLLECTOR_GATE.exists():
             fail(f'collector-handoff.yml missing runner handoff token: {token}')
     if 'finalize_collection_handoff.py' in collector:
         fail('collector-handoff.yml must not create .request; canonical bridge owns finalizer execution')
-    if '.request' in collector or '.ready' in collector:
-        fail('collector-handoff.yml must not write request/ready markers')
+    if re.search(r'git\\s+(?:add|rm)[^\\n]*(?:\\.request|\\.ready)', collector):
+        fail('collector-handoff.yml must not stage request/ready markers')
 
 collector_trigger = ROOT / 'scripts' / 'create_collector_trigger.py'
 if collector_trigger.exists():
@@ -280,6 +306,10 @@ if DAILY_QA.exists():
         "'scripts/verify_pages_publish.py'",
         "'scripts/check_release_architecture.py'",
         "'scripts/create_collector_trigger.py'",
+        "'scripts/run_daily_collector.py'",
+        "'scripts/check_collector_runtime_contract.py'",
+        "'config/collector-runtime.json'",
+        "'.github/workflows/daily-collector.yml'",
         "'.github/workflows/collector-handoff.yml'",
         "'.github/workflows/intelligence-build.yml'",
     ]

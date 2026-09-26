@@ -1,0 +1,46 @@
+{
+  "version": 1,
+  "effective_date": "2026-09-26",
+  "timezone": "Asia/Taipei",
+  "schedule_local": "07:30",
+  "purpose": "Run the Collector on GitHub-hosted infrastructure before the 07:45 ChatGPT monitor so publication no longer depends on chat-side repository mutation.",
+  "http": {
+    "timeout_seconds": 15,
+    "max_workers": 8,
+    "user_agent": "ai3d-daily-collector/1.0 (+https://github.com/pastfantast-glitch/ai-3d-daily)"
+  },
+  "discovery": {
+    "max_links_per_endpoint": 40,
+    "max_pages_per_source": 18,
+    "refill_pages_per_source": 12,
+    "exhaustion_semantics": "A window is exhausted when the configured selected-source index crawl, bounded article-page budget, rolling backlog check and one source-grounded targeted-refill traversal have all completed or returned an explicit unavailable/blocked outcome. This is a bounded Collector-work audit, not a claim that the entire public web was exhausted."
+  },
+  "source_endpoints": {
+    "80-level": ["https://80.lv/articles/", "https://80.lv/"],
+    "3dnchu": ["https://3dnchu.com/"],
+    "cgworld-jp": ["https://cgworld.jp/", "https://cgworld.jp/flashnews/"],
+    "bilibili-mobile": ["https://m.bilibili.com/"],
+    "artstation": ["https://www.artstation.com/"],
+    "gumroad-discover": ["https://gumroad.com/discover"],
+    "xiaohongshu": ["https://www.xiaohongshu.com/"],
+    "cg-channel": ["https://www.cgchannel.com/"],
+    "blender-official": ["https://www.blender.org/news/", "https://code.blender.org/"],
+    "epic-developer-community": ["https://dev.epicgames.com/community/"],
+    "unity-official": ["https://unity.com/blog", "https://unity.com/releases/editor/whats-new"],
+    "sidefx-official": ["https://www.sidefx.com/community/", "https://www.sidefx.com/tutorials/"],
+    "autodesk-area": ["https://area.autodesk.com/"],
+    "adobe-substance-3d": ["https://www.adobe.com/products/substance3d/discover.html", "https://blog.adobe.com/en/topics/substance-3d"],
+    "game-developer": ["https://www.gamedeveloper.com/"]
+  },
+  "security": {
+    "public_surfaces_written": false,
+    "publish_markers_written": false,
+    "raw_personalization_data_written": false,
+    "allowed_repo_mutations": [
+      "data/daily/{date}.json",
+      "data/candidates/collection-session/{date}.json",
+      "data/candidates/decision-ledger/{date}.json",
+      "data/candidates/rolling-backlog.json"
+    ]
+  }
+}

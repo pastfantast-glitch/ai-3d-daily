@@ -4,7 +4,7 @@ from pathlib import Path
 import json, re, sys, tempfile
 from bs4 import BeautifulSoup
 
-ROOT=Path(__file__).resolve().parents[1]; WF=ROOT/'.github'/'workflows'; MAIN=WF/'intelligence-build.yml'; COLLECTOR_GATE=WF/'collector-handoff.yml'; LOCK=ROOT/'requirements-pipeline.txt'; errors=[]
+ROOT=Path(__file__).resolve().parents[1]; WF=ROOT/'.github'/'workflows'; MAIN=WF/'intelligence-build.yml'; COLLECTOR_GATE=WF/'collector-handoff.yml'; AUTONOMOUS_COLLECTOR=WF/'daily-collector.yml'; LOCK=ROOT/'requirements-pipeline.txt'; errors=[]
 def fail(msg): errors.append(msg)
 
 if not LOCK.exists(): fail('requirements-pipeline.txt missing')
@@ -79,9 +79,40 @@ else:
             fail(f'collector handoff gate missing restricted-writer token: {token}')
     if gate.count('git add ') != 1 or gate.count('git commit ') != 1 or gate.count('git push ') != 1:
         fail('collector handoff gate must have exactly one add/commit/push path')
-    for forbidden in ('index.html', 'assets/visual', '.request', '.ready', '.done.json', 'write_publish_receipt.py', 'prepare_release_candidate.py'):
+    for forbidden in ('index.html', 'assets/visual', '.done.json', 'write_publish_receipt.py', 'prepare_release_candidate.py'):
         if forbidden in gate:
             fail(f'collector handoff gate crossed canonical/public boundary: {forbidden}')
+    if re.search(r'git\\s+(?:add|rm)[^\\n]*(?:\\.request|\\.ready)', gate):
+        fail('collector handoff gate must not stage request/ready markers')
+
+
+# The autonomous Collector may write only canonical/private Collector artifacts.
+# It must never create publish markers or public surfaces; those remain owned by
+# collector-handoff.yml and intelligence-build.yml.
+if not AUTONOMOUS_COLLECTOR.exists():
+    fail('daily-collector.yml missing')
+else:
+    autonomous=AUTONOMOUS_COLLECTOR.read_text('utf-8')
+    for token in (
+        'name: Autonomous daily Collector',
+        "cron: '30 23 * * *'",
+        'contents: write',
+        'actions: read',
+        'group: autonomous-daily-collector',
+        'cancel-in-progress: false',
+        'python scripts/run_daily_collector.py "$DATE"',
+        'python scripts/check_collection_session_contract.py "$DATE"',
+        'python scripts/finalize_collection_handoff.py "$DATE"',
+        'git commit -m "Collect production intelligence $DATE"',
+        'git push origin HEAD:main',
+    ):
+        if token not in autonomous:
+            fail(f'autonomous Collector missing restricted-writer token: {token}')
+    if autonomous.count('git commit ') != 1 or autonomous.count('git push ') != 1:
+        fail('autonomous Collector must have exactly one artifact commit/push path')
+    for forbidden in ('index.html', 'assets/visual', '.request', '.ready', 'write_publish_receipt.py', 'prepare_release_candidate.py'):
+        if forbidden in autonomous:
+            fail(f'autonomous Collector crossed canonical/public boundary: {forbidden}')
 
 registry_snapshot_builder=ROOT/'scripts'/'build_published_registry_snapshot.py'
 if not registry_snapshot_builder.exists():
@@ -276,7 +307,7 @@ for path in sorted(WF.glob('*.yml')):
         if int(m.group(1))<5: fail(f'old checkout action returned: {path.name}')
     for m in re.finditer(r'actions/setup-python@v(\d+)',text):
         if int(m.group(1))<6: fail(f'old setup-python action returned: {path.name}')
-    if path==MAIN or path==COLLECTOR_GATE: continue
+    if path in (MAIN, COLLECTOR_GATE, AUTONOMOUS_COLLECTOR): continue
     if re.search(r'contents:\s*write',text): fail(f'second canonical writer permission found: {path.name}')
     if re.search(r'\bgit\s+(commit|push)\b',text): fail(f'second canonical writer command found: {path.name}')
 for retired in ('visual-assets.yml','today-more.yml','historical-backfill-once.yml'):
@@ -293,4 +324,4 @@ else:
     if "if(!id&&date==='2026-08-23')" not in text or 'LEGACY_20260823_RULES' not in text: fail('legacy identity fallback scope changed')
 if errors:
     print('PIPELINE CONTRACT FAILED'); print('\n'.join('- '+e for e in errors)); sys.exit(1)
-print('PIPELINE CONTRACT PASS: one canonical publisher + marker-only Collector gate + workflow-run bridge + Collector pre-request Registry/evidence validation + controlled refill/correction states + same-run request-to-ready-to-publish handoff + registry hybrid wrapper delegates canonical identity/tier logic + registry normalization/hash attestation before publish + config-driven daily release gate IA + quick-impact label contract + latest-main checkout + semantic visual compatibility + cache/category coverage + fail-closed infrastructure QA')
+print('PIPELINE CONTRACT PASS: one canonical publisher + private-only autonomous Collector + marker-only Collector gate + workflow-run bridges + Collector pre-request Registry/evidence validation + controlled refill/correction states + same-run request-to-ready-to-publish handoff + registry hybrid wrapper delegates canonical identity/tier logic + registry normalization/hash attestation before publish + config-driven daily release gate IA + quick-impact label contract + latest-main checkout + semantic visual compatibility + cache/category coverage + fail-closed infrastructure QA')

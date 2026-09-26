@@ -93,6 +93,30 @@ class MainCITests(unittest.TestCase):
         self.assertEqual(sha, "parent")
         self.assertEqual([x["sha"] for x in skipped], ["current"])
 
+    def test_autonomous_collector_bot_commit_resolves_to_parent_evidence(self):
+        chain = {
+            "current": ("parent", ci.GITHUB_ACTIONS_BOT_EMAIL, "Collect production intelligence 2026-09-26"),
+            "parent": ("older", "owner@example.com", "Enable autonomous Collector"),
+        }
+        def fake_git(*args):
+            sha = args[-1]
+            parent, email, subject = chain[sha]
+            return self.commit_line(sha, parent, email, subject)
+        with patch.object(ci, "git", side_effect=fake_git):
+            sha, skipped = ci.history_evidence_sha("current")
+        self.assertEqual(sha, "parent")
+        self.assertEqual([x["sha"] for x in skipped], ["current"])
+
+    def test_autonomous_collector_subject_requires_actions_bot_identity(self):
+        def fake_git(*args):
+            return self.commit_line(
+                "current", "parent", "owner@example.com", "Collect production intelligence 2026-09-26"
+            )
+        with patch.object(ci, "git", side_effect=fake_git):
+            sha, skipped = ci.history_evidence_sha("current")
+        self.assertEqual(sha, "current")
+        self.assertEqual(skipped, [])
+
     def test_collector_handoff_subject_requires_actions_bot_identity(self):
         def fake_git(*args):
             return self.commit_line(

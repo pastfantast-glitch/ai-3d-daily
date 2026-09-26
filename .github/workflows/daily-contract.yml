@@ -31,6 +31,7 @@ on:
       - 'config/quick-impact-contract.json'
       - 'config/stability-contract.json'
       - 'config/personalization-feedback.json'
+      - 'config/collector-runtime.json'
       - 'config/collection-session.schema.json'
       - 'config/pipeline-health.json'
       - 'data/candidates/rolling-backlog.json'
@@ -45,6 +46,8 @@ on:
       - 'scripts/check_analysis_reading_contract.py'
       - 'scripts/check_policy_resolver_contract.py'
       - 'scripts/check_source_qa_coverage.py'
+      - 'scripts/run_daily_collector.py'
+      - 'scripts/check_collector_runtime_contract.py'
       - 'scripts/check_collection_session_contract.py'
       - 'scripts/finalize_collection_handoff.py'
       - 'scripts/finalize_collector_trigger.py'
@@ -91,6 +94,7 @@ on:
       - 'scripts/restore_publish_snapshot.py'
       - 'scripts/build_published_registry_snapshot.py'
       - 'scripts/bootstrap_intelligence_ids.py'
+      - '.github/workflows/daily-collector.yml'
       - '.github/workflows/collector-handoff.yml'
       - '.github/workflows/intelligence-build.yml'
       - '.github/workflows/daily-contract.yml'
@@ -119,6 +123,7 @@ jobs:
           node --check preference.js
           node --check cloud-sync-owner.js
           python scripts/check_release_architecture.py
+          python scripts/check_collector_runtime_contract.py
           python scripts/check_source_qa_coverage.py
           python scripts/test_main_ci.py
           python scripts/check_policy_resolver_contract.py

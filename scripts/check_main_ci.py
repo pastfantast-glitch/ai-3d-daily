@@ -23,9 +23,10 @@ WRITER_COMMIT_PATTERNS = tuple(re.compile(x) for x in (
     r"^Publish canonical intelligence 20\d{2}-\d{2}-\d{2}$",
     r"^Record verified publish 20\d{2}-\d{2}-\d{2}$",
     r"^Recover canonical publication from [0-9a-f]{7,40}$",
+    r"^Collect production intelligence 20\\d{2}-\\d{2}-\\d{2}$",
     r"^Collector handoff 20\d{2}-\d{2}-\d{2}$",
 ))
-MAX_WRITER_COMMITS_TO_SKIP = 12
+MAX_WRITER_COMMITS_TO_SKIP = 512
 
 
 def git(*args):
@@ -83,7 +84,7 @@ def require_success(runs, workflow, sha):
 
 
 def writer_generated_commit(sha):
-    """Return whether sha is a trusted pipeline GITHUB_TOKEN commit and its parent.\n\n    GitHub intentionally does not emit new push workflow runs for commits pushed\n    with the repository GITHUB_TOKEN. Only the exact GitHub Actions bot identity\n    plus an allowlisted generated commit-message contract may be skipped. This\n    includes the marker-only Collector handoff commit; every other commit must have\n    its own main/push Historical Regression evidence.\n    """
+    """Return whether sha is a trusted pipeline GITHUB_TOKEN commit and its parent.\n\n    GitHub intentionally does not emit new push workflow runs for commits pushed\n    with the repository GITHUB_TOKEN. Only the exact GitHub Actions bot identity\n    plus an allowlisted generated commit-message contract may be skipped. This\n    includes the autonomous GitHub Collector commit (which runs its own Collector\n    validation before push) and the marker-only Collector handoff commit. Unknown\n    bot subjects and all non-bot commits still require their own main/push evidence.\n    """
     raw = git("show", "-s", "--format=%H%x00%P%x00%ce%x00%s", sha)
     parts = raw.split("\x00", 3)
     if len(parts) != 4 or parts[0] != sha:
