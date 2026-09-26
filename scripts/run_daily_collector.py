@@ -29,6 +29,7 @@ if str(SCRIPTS) not in sys.path:
 
 from discovery_hybrid import load_hybrid_config, registered_source_probe_plan
 from url_identity import canonicalize_url
+from content_quality import admission as content_admission, classify_content, normalize_title, production_summary
 
 INTEL_PATH = ROOT / "config" / "intelligence-v2.json"
 DEPTH_PATH = ROOT / "config" / "full-analysis-depth.json"
@@ -206,6 +207,7 @@ def page_metadata(result: dict, fallback_title: str = "") -> dict | None:
         or clean(soup.title.get_text(" ", strip=True) if soup.title else "")
         or clean(fallback_title)
     )
+    title = normalize_title(title)
     description = meta_content(
         soup,
         ("property", "og:description"),
@@ -276,10 +278,8 @@ def extract_links(html: str, base_url: str, domain: str, limit: int) -> list[tup
 
 
 def relevant(meta: dict) -> bool:
-    text = (meta["title"] + " " + meta.get("description", "")).casefold()
-    relevance = sum(1 for term in RELEVANCE_TERMS if term in text)
-    production = sum(1 for term in PRODUCTION_TERMS if term in text)
-    return relevance >= 1 and (production >= 1 or relevance >= 2)
+    admitted, _ = content_admission(meta)
+    return admitted
 
 
 def stable_id(source_id: str, url: str, title: str, used: set[str]) -> str:
@@ -615,7 +615,7 @@ def source_probe(
     for meta in unique.values():
         cid = stable_id(source_id, meta["url"], meta["title"], used_ids)
         text = f"{meta['title']} {meta.get('description', '')}"
-        category, subcategory = classify(text)
+        category, subcategory = classify_content(meta["title"], meta.get("description", ""))
         candidates.append({
             "candidate_id": cid,
             "source_id": source_id,
@@ -714,7 +714,7 @@ def main() -> int:
         source_id = str(entry.get("source_id") or "backlog")
         cid = stable_id(source_id, meta["url"], meta["title"], used_ids)
         text = f"{meta['title']} {meta.get('description', '')}"
-        category, subcategory = classify(text)
+        category, subcategory = classify_content(meta["title"], meta.get("description", ""))
         discovered.append({
             "candidate_id": cid,
             "source_id": source_id,
@@ -825,7 +825,7 @@ def main() -> int:
         canonical_items.append({
             "id": candidate["candidate_id"],
             "title": clean(candidate["title"], 220),
-            "summary": chinese_summary(meta, candidate["category"]),
+            "summary": production_summary(meta, candidate["category"], candidate["subcategory"]),
             "quick_impact": stars(candidate["ranking_score"]),
             "source_url": candidate["source_url"],
             "category": candidate["category"],

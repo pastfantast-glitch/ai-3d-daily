@@ -87,6 +87,10 @@ if SCRIPT.exists():
     for token in (
         "registered_source_probe_plan",
         "canonicalize_url",
+        "from content_quality import",
+        "content_admission",
+        "classify_content",
+        "production_summary",
         "published-registry-snapshot.json",
         "rolling-backlog.json",
         "targeted_refill_performed",

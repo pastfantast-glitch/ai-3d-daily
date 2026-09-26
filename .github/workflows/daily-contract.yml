@@ -47,6 +47,8 @@ on:
       - 'scripts/check_policy_resolver_contract.py'
       - 'scripts/check_source_qa_coverage.py'
       - 'scripts/run_daily_collector.py'
+      - 'scripts/content_quality.py'
+      - 'scripts/test_collector_content_quality.py'
       - 'scripts/check_collector_runtime_contract.py'
       - 'scripts/check_collection_session_contract.py'
       - 'scripts/finalize_collection_handoff.py'
@@ -125,6 +127,7 @@ jobs:
           node --check cloud-sync-owner.js
           python scripts/check_release_architecture.py
           python scripts/check_collector_runtime_contract.py
+          python scripts/test_collector_content_quality.py
           python scripts/check_source_qa_coverage.py
           python scripts/test_main_ci.py
           python scripts/check_policy_resolver_contract.py

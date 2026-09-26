@@ -185,9 +185,30 @@ def ensure_category_section(soup, date, cfg):
         main.append(section)
 
 
+def ensure_page_metadata(soup, title_text, description_text):
+    if not soup.head:
+        head = soup.new_tag('head')
+        soup.html.insert(0, head)
+    title = soup.head.find('title')
+    if not title:
+        title = soup.new_tag('title')
+        soup.head.append(title)
+    title.string = title_text
+    desc = soup.head.find('meta', attrs={'name': 'description'})
+    if not desc:
+        desc = soup.new_tag('meta', attrs={'name': 'description'})
+        soup.head.append(desc)
+    desc['content'] = description_text
+
+
 def render_home(date, data, cfg):
     path = ROOT / 'index.html'
     soup = BeautifulSoup(path.read_text('utf-8'), 'html.parser')
+    ensure_page_metadata(
+        soup,
+        f'AI／3D／遊戲美術 Production Intelligence｜{date}',
+        f'{date} AI／3D／遊戲美術 Production Intelligence：精選 {len(data.get("items") or [])} 項可驗證的製作工具、流程、動畫、引擎與 DCC 情報。',
+    )
     ensure_shared_stylesheet(soup, 'shared-components.css')
     top, next10 = homepage_groups(data)
     top_box = soup.select_one('#today .top-list')
@@ -218,6 +239,11 @@ def render_daily(date, data, cfg):
     if not path.exists():
         raise SystemExit(f'daily archive missing: {path.relative_to(ROOT)}')
     soup = BeautifulSoup(path.read_text('utf-8'), 'html.parser')
+    ensure_page_metadata(
+        soup,
+        f'AI／3D／遊戲美術 Production Intelligence — {date}',
+        f'{date} Production Intelligence 日報：以可驗證來源整理 AI、3D 製作、動畫、遊戲引擎與 Blender／DCC 情報。',
+    )
     ensure_shared_stylesheet(soup, '../shared-components.css')
     if not soup.body:
         raise SystemExit(f'{date}: daily archive missing body')
@@ -262,6 +288,7 @@ def category_page(date, category, items, cfg):
     soup = BeautifulSoup('<!doctype html><html lang="zh-Hant"><head></head><body></body></html>', 'html.parser'); head = soup.head
     meta = soup.new_tag('meta', attrs={'charset': 'utf-8'}); head.append(meta); viewport = soup.new_tag('meta', attrs={'name': 'viewport', 'content': 'width=device-width,initial-scale=1'}); head.append(viewport)
     title = soup.new_tag('title'); title.string = f'{category["label"]}｜{date}｜AI 3D Daily'; head.append(title)
+    desc = soup.new_tag('meta', attrs={'name': 'description', 'content': f'{date} {category["label"]} Production Intelligence：{category["description"]}，共 {len(items)} 項可驗證情報。'}); head.append(desc)
     for href in ('../../styles.css', '../../shared-components.css', '../../category.css'): head.append(soup.new_tag('link', attrs={'rel': 'stylesheet', 'href': href}))
     body = soup.body; body['class'] = ['category-page']; body['data-report-date'] = date; body['data-category'] = category['id']
     body.append(global_nav(soup, date, cfg, active=category['id'], context='category'))
