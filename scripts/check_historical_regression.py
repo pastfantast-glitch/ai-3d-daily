@@ -21,6 +21,22 @@ def is_done(date):
     try: return str(json.loads(path.read_text('utf-8')).get('state','')).upper()=='DONE'
     except Exception: return False
 
+def policy_recollect_pending(date):
+    """True only while a controlled same-date recollect has replaced canonical data but old DONE/public surfaces remain authoritative."""
+    data_path=ROOT/'data'/'daily'/f'{date}.json'
+    done_path=ROOT/'data'/'publish'/f'{date}.done.json'
+    if not data_path.exists() or not done_path.exists(): return False
+    try:
+        data=json.loads(data_path.read_text('utf-8'))
+        receipt=json.loads(done_path.read_text('utf-8'))
+    except Exception:
+        return False
+    if str(receipt.get('state','')).upper()!='DONE': return False
+    if (data.get('metadata') or {}).get('policy_recollect') is not True: return False
+    current=[str(x.get('id','')) for x in (data.get('items') or [])]
+    published=[str(x) for x in ((receipt.get('canonical') or {}).get('ids') or [])]
+    return bool(current) and current != published
+
 def expected_top_count(date):
     """Use canonical tier assignment for schema-v3 reports; retain legacy 5-card snapshots otherwise."""
     canonical=ROOT/'data'/'daily'/f'{date}.json'
@@ -117,6 +133,10 @@ def run_registry_normalization(work,date):
 def canonical_rebuild_simulation(date,parity=True):
     cds=canonical_dates()
     if date not in cds: rows.append((date,'canonical-rebuild','SKIP (legacy snapshot: no canonical JSON)')); return
+    if policy_recollect_pending(date):
+        rows.append((date,'canonical-parity','SKIP (controlled policy recollect pending; published archive remains authoritative)'))
+        rows.append((date,'canonical-rebuild','SKIP (controlled policy recollect pending; wait for verified republish)'))
+        return
     if date!=cds[-1]:
         if parity: validate_canonical_archive_parity(date)
         else: rows.append((date,'canonical-parity','SKIP (sentinel snapshot_only)'))
