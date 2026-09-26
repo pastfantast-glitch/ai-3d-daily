@@ -32,9 +32,17 @@ def fail(errors):
     raise SystemExit(1)
 
 def main():
-    if len(sys.argv) != 2 or not DATE_RE.fullmatch(sys.argv[1]):
-        raise SystemExit("usage: check_editorial_quality.py YYYY-MM-DD")
-    date = sys.argv[1]
+    if len(sys.argv) > 2:
+        raise SystemExit("usage: check_editorial_quality.py [YYYY-MM-DD]")
+    if len(sys.argv) == 2:
+        date = sys.argv[1]
+    else:
+        dates = sorted(p.stem for p in (ROOT / "data" / "daily").glob("20??-??-??.json"))
+        if not dates:
+            raise SystemExit("EDITORIAL QUALITY FAILED: no daily datasets")
+        date = dates[-1]
+    if not DATE_RE.fullmatch(date):
+        raise SystemExit("usage: check_editorial_quality.py [YYYY-MM-DD]")
     if date < EFFECTIVE_DATE:
         print(f"EDITORIAL QUALITY SKIP: {date} before {EFFECTIVE_DATE}")
         return
