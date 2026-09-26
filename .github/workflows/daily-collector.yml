@@ -96,6 +96,45 @@ jobs:
             exit 1
           fi
 
+      - name: Validate existing DONE release on safe rerun
+        if: steps.preflight.outputs.skip == 'true'
+        shell: bash
+        env:
+          DATE: ${{ steps.preflight.outputs.date }}
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          receipt="data/publish/$DATE.done.json"
+          test -f "$receipt" || { echo "Safe rerun skip was not backed by a DONE receipt: $receipt"; exit 1; }
+          eval "$(
+            python - "$receipt" <<'PY'
+          import json, shlex, sys
+          data=json.load(open(sys.argv[1], encoding='utf-8'))
+          if str(data.get('state','')).upper() != 'DONE':
+              raise SystemExit('receipt state is not DONE')
+          if str((data.get('qa') or {}).get('pages','')).lower() != 'pass':
+              raise SystemExit('receipt Pages QA is not pass')
+          publish=str(data.get('publish_commit_sha') or '').strip()
+          site=str(data.get('site_url') or '').strip()
+          daily=str(data.get('daily_url') or '').strip()
+          if len(publish) != 40 or not site or not daily:
+              raise SystemExit('receipt missing publish SHA/site/daily URL')
+          print('PUBLISH_SHA='+shlex.quote(publish))
+          print('SITE_URL='+shlex.quote(site))
+          print('DAILY_URL='+shlex.quote(daily))
+          PY
+          )"
+          python scripts/wait_for_pages_deployment.py "$PUBLISH_SHA"
+          python scripts/verify_pages_publish.py "$DATE" --base-url "$SITE_URL" --attempts 1 --delay 5
+          python - "$DAILY_URL" <<'PY'
+          import sys, requests
+          url=sys.argv[1]
+          r=requests.get(url, headers={'User-Agent':'ai3d-safe-rerun-validator/1.0'}, timeout=20)
+          r.raise_for_status()
+          print(f'SAFE RERUN DAILY URL PASS: {url} status={r.status_code}')
+          PY
+          echo "SAFE RERUN VERIFIED: $DATE publish_sha=$PUBLISH_SHA"
+
       - name: Validate autonomous Collector source/runtime contract
         if: steps.preflight.outputs.skip != 'true'
         run: python scripts/check_collector_runtime_contract.py
