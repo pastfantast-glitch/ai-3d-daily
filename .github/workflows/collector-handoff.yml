@@ -74,7 +74,7 @@ jobs:
                     && { [ "$is_policy" = "true" ] || [ ! -f "data/publish/$candidate.done.json" ]; } \
                     && [ ! -f "data/publish/$candidate.collector" ] \
                     && [ ! -f "data/publish/$candidate.request" ] \
-                    && [ ! -f "data/publish/$candidate.ready" ]; then
+                    && { [ "$is_policy" = "true" ] || [ ! -f "data/publish/$candidate.ready" ]; }; then
                     date="$candidate"
                     policy_republish="$is_policy"
                     break
