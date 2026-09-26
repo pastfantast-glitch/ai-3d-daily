@@ -47,6 +47,10 @@ BUSINESS_NOISE = (
     "player retention", "user acquisition", "growth opportunity", "churn",
     "monetization", "marketing campaign", "revenue growth", "mobile players",
 )
+RECRUITMENT_NOISE = (
+    "recruitment site", "portfolio site", "job board", "jobs site",
+    "hiring platform", "recruitment platform",
+)
 EVENT_NOISE = (
     "film festival", "festival", "meet-up", "meetup", "conference booth",
 )
@@ -230,6 +234,8 @@ def admission(meta: dict) -> tuple[bool, str]:
 
     if has_any(title_text, GOVERNANCE_NOISE):
         return False, "governance-or-funding-page-no-production-method"
+    if has_any(title_text, RECRUITMENT_NOISE):
+        return False, "recruitment-or-portfolio-news-no-production-method"
     if has_any(text, BUSINESS_NOISE) and technical == 0:
         return False, "business-or-player-growth-no-art-production-takeaway"
     if has_any(text, EVENT_NOISE) and not has_any(text, METHOD_SIGNALS):
@@ -285,7 +291,7 @@ def classify_content(title: object, description: object = "") -> tuple[str, str]
         return "3d-animation", "facial"
     if any(k in t for k in ("rigging", " rig ", "skeleton", "skinning", "skin weight")):
         return "3d-animation", "rigging"
-    if any(k in t for k in ("animation", "animator", "keyframe", "locomotion")):
+    if any(k in t for k in ("animation", "animating", "animator", "keyframe", "locomotion")):
         return "3d-animation", "animation"
 
     if any(k in all_text for k in ("skin texture", "character", "portrait", "hair", "groom", "cloth", "anatomy", "creature")):

@@ -92,6 +92,12 @@ cases = [
              "Upcoming policy changes.", "2026-09-20", True),
         False, "governance-or-funding-page-no-production-method",
     ),
+    (
+        meta("https://www.cgchannel.com/2026/09/vfx-portfolio-and-recruitment-site-zerply-is-closing-later-this-month",
+             "VFX portfolio and recruitment site Zerply is closing later this month",
+             "A VFX portfolio and recruitment platform is shutting down.", "2026-09-26", True),
+        False, "recruitment-or-portfolio-news-no-production-method",
+    ),
 ]
 
 for m, expected, reason in cases:
@@ -119,6 +125,11 @@ assert classify_content(
     "New CG software you may have missed: 13 September 2026",
     "A roundup including animation and rigging utilities.",
 ) == ("blender-dcc", "other-dcc")
+
+assert classify_content(
+    "Breakdown: Animating Tiny Character With Massive Two-Handed Weapon",
+    "Character animation breakdown.",
+) == ("3d-animation", "animation")
 
 summary = production_summary(
     meta("https://example.com/x", "Blender 5.2 LTS Release", "Rendering advancements", "2026-09-26", True),
