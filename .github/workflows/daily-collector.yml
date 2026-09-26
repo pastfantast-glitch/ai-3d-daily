@@ -52,11 +52,19 @@ jobs:
         shell: bash
         env:
           REQUESTED_DATE: ${{ github.event.inputs.date }}
+          HEAD_MESSAGE: ${{ github.event.head_commit.message }}
           GH_TOKEN: ${{ github.token }}
           POLICY_RECOLLECT: ${{ github.event_name == 'push' && contains(github.event.head_commit.message, '[policy-recollect]') }}
         run: |
           set -euo pipefail
           date="${REQUESTED_DATE:-}"
+          if [ -z "$date" ] && [ "${POLICY_RECOLLECT:-false}" = "true" ]; then
+            date="$(printf '%s\n' "${HEAD_MESSAGE:-}" | grep -oE '20[0-9]{2}-[0-9]{2}-[0-9]{2}' | head -1 || true)"
+            [ -n "$date" ] || {
+              echo "Controlled policy recollect requires an explicit YYYY-MM-DD in the triggering commit message."
+              exit 1
+            }
+          fi
           if [ -z "$date" ]; then
             date="$(TZ=Asia/Taipei date +%F)"
           fi
