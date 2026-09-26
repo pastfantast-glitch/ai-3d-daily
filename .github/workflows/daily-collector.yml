@@ -27,7 +27,7 @@ concurrency:
 
 jobs:
   collect:
-    if: github.event_name != 'push' || contains(github.event.head_commit.message, '[collector-test]')
+    if: github.event_name != 'push' || contains(github.event.head_commit.message, '[collector-test]') || contains(github.event.head_commit.message, '[policy-recollect]')
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
