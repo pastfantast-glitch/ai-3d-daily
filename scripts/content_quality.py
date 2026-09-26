@@ -111,6 +111,18 @@ def clean(value: object, limit: int | None = None) -> str:
     return text
 
 
+def has_term(text: str, term: str) -> bool:
+    """Match standalone ASCII tokens safely; keep phrase matching for multi-word signals."""
+    term = term.casefold()
+    if re.fullmatch(r"[a-z0-9][a-z0-9.+#-]*", term):
+        return re.search(rf"(?<![a-z0-9]){re.escape(term)}(?![a-z0-9])", text) is not None
+    return term in text
+
+
+def has_any(text: str, terms) -> bool:
+    return any(has_term(text, term) for term in terms)
+
+
 def normalize_title(title: object) -> str:
     text = clean(title, 220)
     previous = None
@@ -146,14 +158,14 @@ def admission(meta: dict) -> tuple[bool, str]:
     title = normalize_title(meta.get("title"))
     desc = clean(meta.get("description"), 800)
     text = f"{title} {desc}".casefold()
-    technical = sum(1 for term in TECHNICAL_ANCHORS if term in text)
-    production = sum(1 for term in PRODUCTION_SIGNALS if term in text)
+    technical = sum(1 for term in TECHNICAL_ANCHORS if has_term(text, term))
+    production = sum(1 for term in PRODUCTION_SIGNALS if has_term(text, term))
 
-    if any(term in text for term in BUSINESS_NOISE) and technical == 0:
+    if has_any(text, BUSINESS_NOISE) and technical == 0:
         return False, "business-or-player-growth-no-art-production-takeaway"
-    if any(term in text for term in EVENT_NOISE) and not any(term in text for term in METHOD_SIGNALS):
+    if has_any(text, EVENT_NOISE) and not has_any(text, METHOD_SIGNALS):
         return False, "event-or-community-page-no-production-method"
-    if any(term in text for term in GOVERNANCE_NOISE) and not any(term in text for term in METHOD_SIGNALS):
+    if has_any(text, GOVERNANCE_NOISE) and not has_any(text, METHOD_SIGNALS):
         return False, "governance-or-funding-page-no-production-method"
     if technical == 0:
         return False, "no-3d-game-art-technical-anchor"
@@ -212,9 +224,9 @@ def classify_content(title: object, description: object = "") -> tuple[str, str]
     if any(k in all_text for k in ("environment", "terrain", "landscape", "building", "architecture", "foliage")):
         return "3d-production", "environment-production"
 
-    if "unreal" in all_text or "ue5" in all_text or "ue6" in all_text:
+    if has_any(all_text, ("unreal", "ue5", "ue6")):
         return "engine-art", "unreal"
-    if "unity" in all_text:
+    if has_term(all_text, "unity"):
         return "engine-art", "unity"
     if any(k in all_text for k in ("shader", "material graph", "toon", "npr")):
         return "engine-art", "shader"
