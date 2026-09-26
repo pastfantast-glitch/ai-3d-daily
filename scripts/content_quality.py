@@ -25,6 +25,20 @@ GENERIC_TITLE_FRAGMENTS = (
     "all tutorials",
     "news and articles",
 )
+GENERIC_NAV_TITLE_FRAGMENTS = (
+    "tutorials and breakdowns",
+    "industry solutions from",
+    "online art schools",
+)
+GENERIC_NAV_TITLE_EXACT = {
+    "blender studio",
+    "demo files",
+    "support",
+}
+GENERIC_NAV_LEAVES = {
+    "games", "industry", "partners", "latest", "training",
+    "demo-files", "support", "tools",
+}
 LANDING_PATH_FRAGMENTS = (
     "/products/", "/features/", "/pricing/", "/solutions/", "/services/",
 )
@@ -69,6 +83,42 @@ CATEGORY_LABELS = {
     "emerging-case": "新技術／Production Case",
     "blender-dcc": "Blender／DCC",
 }
+FOCUS_TERMS = (
+    ("metahuman", "MetaHuman"),
+    ("mesh terrain", "Mesh Terrain"),
+    ("control rig", "Control Rig"),
+    ("rigging", "Rigging"),
+    ("retarget", "Retarget"),
+    ("motion capture", "Mocap"),
+    ("mocap", "Mocap"),
+    ("animation", "動畫"),
+    ("skin texture", "皮膚材質"),
+    ("texture", "貼圖／材質"),
+    ("material", "材質"),
+    ("displacement", "Displacement"),
+    ("lighting", "燈光"),
+    ("shader", "Shader"),
+    ("rendering", "Rendering"),
+    ("ray tracing", "Ray Tracing"),
+    ("path tracing", "Path Tracing"),
+    ("procedural", "程序化"),
+    ("geometry nodes", "Geometry Nodes"),
+    ("modeling", "建模"),
+    ("sculpt", "雕刻"),
+    ("retopo", "拓撲"),
+    ("baking", "烘焙"),
+    ("uv", "UV"),
+    ("vfx", "VFX"),
+    ("unreal engine", "Unreal Engine"),
+    ("unity", "Unity"),
+    ("blender", "Blender"),
+    ("houdini", "Houdini"),
+    ("maya", "Maya"),
+    ("substance", "Substance"),
+    ("octane", "OctaneRender"),
+    ("mari", "Mari"),
+)
+
 SUBCATEGORY_LABELS = {
     "ai-3d": "AI 3D 生成",
     "ai-2d": "AI 2D／影像工作流",
@@ -139,14 +189,24 @@ def landing_reason(meta: dict) -> str | None:
     article_type = bool(meta.get("article_type"))
     published = bool(meta.get("published"))
 
+    segments = [segment for segment in path.split("/") if segment]
+    leaf = segments[-1] if segments else ""
+
     if any(fragment in title for fragment in GENERIC_TITLE_FRAGMENTS):
         return "generic-index-title"
-    if not article_type and not published and any(fragment in path for fragment in LANDING_PATH_FRAGMENTS):
-        return "non-article-product-or-feature-landing"
-    if not article_type and not published and (
-        path.rstrip("/").endswith("/roadmap") or title == "roadmap"
-    ):
-        return "roadmap-index-page"
+    if not article_type and not published:
+        if any(fragment in path for fragment in LANDING_PATH_FRAGMENTS):
+            return "non-article-product-or-feature-landing"
+        if leaf in GENERIC_NAV_LEAVES and len(segments) <= 3:
+            return "generic-navigation-or-resource-index"
+        if title in GENERIC_NAV_TITLE_EXACT:
+            return "generic-navigation-or-resource-index"
+        if any(fragment in title for fragment in GENERIC_NAV_TITLE_FRAGMENTS):
+            return "generic-navigation-or-resource-index"
+        if path.rstrip("/").endswith("/roadmap") or title == "roadmap":
+            return "roadmap-index-page"
+        if title.endswith(" manual") and ("manual" in segments or leaf == "latest"):
+            return "documentation-root-index"
     return None
 
 
@@ -160,7 +220,10 @@ def admission(meta: dict) -> tuple[bool, str]:
     text = f"{title} {desc}".casefold()
     technical = sum(1 for term in TECHNICAL_ANCHORS if has_term(text, term))
     production = sum(1 for term in PRODUCTION_SIGNALS if has_term(text, term))
+    title_text = title.casefold()
 
+    if has_any(title_text, GOVERNANCE_NOISE):
+        return False, "governance-or-funding-page-no-production-method"
     if has_any(text, BUSINESS_NOISE) and technical == 0:
         return False, "business-or-player-growth-no-art-production-takeaway"
     if has_any(text, EVENT_NOISE) and not has_any(text, METHOD_SIGNALS):
@@ -190,7 +253,9 @@ def classify_content(title: object, description: object = "") -> tuple[str, str]
     if any(k in all_text for k in ("concept art ai", "comfyui", "image generation", "upscal")):
         return "ai-generation", "ai-2d"
 
-    # Product/version subject in the title beats incidental feature words in the description.
+    # Product/version/roundup subject in the title beats incidental feature words in the description.
+    if "cg software" in t or "software you may have missed" in t:
+        return "blender-dcc", "other-dcc"
     if "blender" in t:
         return "blender-dcc", "blender"
     if "houdini" in t:
@@ -269,29 +334,47 @@ def classify_content(title: object, description: object = "") -> tuple[str, str]
     return "emerging-case", "case-study"
 
 
+def production_focus(meta: dict) -> list[str]:
+    text = f"{normalize_title(meta.get('title'))} {clean(meta.get('description'), 900)}".casefold()
+    out: list[str] = []
+    for needle, label in FOCUS_TERMS:
+        if has_term(text, needle) and label not in out:
+            out.append(label)
+        if len(out) >= 4:
+            break
+    return out
+
+
 def production_summary(meta: dict, category: str, subcategory: str) -> str:
     title = normalize_title(meta.get("title"))
     text = f"{title} {clean(meta.get('description'), 600)}".casefold()
     label = SUBCATEGORY_LABELS.get(subcategory) or CATEGORY_LABELS.get(category) or category
+    focus = production_focus(meta)
+    focus_clause = (
+        "來源可驗證的製作重點包含「" + "、".join(focus) + "」。"
+        if focus
+        else f"來源可驗證的主題落在「{label}」。"
+    )
 
-    if any(k in text for k in ("release", "update", "version", "beta", "alpha", "preview")):
+    if has_any(text, ("release", "update", "version", "beta", "alpha", "preview")):
         body = (
-            f"「{title}」聚焦版本或功能更新。對 {label} 流程的實際價值，是評估新功能、相容性與導入時機；"
-            "目前仍應以原始來源公開的功能範圍與限制為準，實際效能與品質需在專案條件下驗證。"
+            f"「{title}」是版本／功能更新。{focus_clause}"
+            f"對 {label} 流程可用來判斷功能差異、相容性與導入時機；"
+            "效能、品質與穩定性仍需以實際專案資產驗證。"
         )
-    elif any(k in text for k in ("breakdown", "tutorial", "how to", "guide", "case study", "behind")):
+    elif has_any(text, ("breakdown", "tutorial", "how to", "guide", "case study", "behind", "making-of")):
         body = (
-            f"「{title}」提供可供製作參考的拆解／流程內容，重點落在 {label}。"
-            "適合用來比對團隊現行做法、拆出可轉移的步驟，再以實際資產規格驗證品質、成本與限制。"
+            f"「{title}」是可供製作參考的拆解／教學。{focus_clause}"
+            "適合把來源明確展示的方法拆成測試步驟，與團隊現行流程比較，再驗證品質、時間成本與限制。"
         )
-    elif any(k in text for k in ("plugin", "addon", "add-on", "tool", "software")):
+    elif has_any(text, ("plugin", "addon", "add-on", "tool", "software")):
         body = (
-            f"「{title}」屬於 {label} 工具／工作流情報。主要價值是判斷它是否能改善既有製作步驟或降低重複操作；"
-            "正式導入前仍需確認版本相容、輸出品質、授權與團隊流程成本。"
+            f"「{title}」是工具／工作流情報。{focus_clause}"
+            "導入前應確認版本相容、輸出格式、授權與是否真的減少既有流程中的重複操作。"
         )
     else:
         body = (
-            f"「{title}」與 {label} 有直接製作關聯，可作為近期 Production 參考。"
-            "閱讀重點應放在來源能明確支持的方法、功能或案例，以及它對現有資產流程是否值得進一步測試。"
+            f"「{title}」具有直接 Production 參考價值。{focus_clause}"
+            "目前以來源能明確支持的方法、功能或案例為準，不延伸未公開的效能或品質結論。"
         )
-    return clean(body, 360)
+    return clean(body, 420)
