@@ -446,8 +446,8 @@
     },
     {
       "id": "cg-channel-basefount-releases-animcraft-5-0",
-      "title": "Basefount releases Animcraft 5.0",
-      "summary": "「Basefount releases Animcraft 5.0」是工具／工作流情報。來源可驗證的製作重點包含「動畫」。導入前應確認版本相容、輸出格式、授權與是否真的減少既有流程中的重複操作。",
+      "title": "Animcraft 5.0：跨軟體 Animation Library 加入 AI 無標記全身 Mocap",
+      "summary": "Basefount 的 Animcraft 5.0 主打 Software-agnostic Animation Library，並加入 AI-based Markerless Full-body Motion Capture 系統。",
       "quick_impact": "★★★☆☆",
       "source_url": "https://www.cgchannel.com/2024/07/basefount-releases-animcraft-5-0",
       "category": "3d-animation",
@@ -458,15 +458,15 @@
       "full_analysis": [
         {
           "label": "技術／流程變更",
-          "text": "來源可驗證的重點是「Basefount releases Animcraft 5.0」；頁面內容指出：Unusual tool for creating software-agnostic animation libraries gets new AI-based markerless full-body motion-capture system。Collector 因此只把它歸入 animation 的技術／流程情報，不補寫來源沒有公開的 benchmark、內部實作或品質數字。"
+          "text": "這次更新把動畫資料管理與 Mocap 放到同一工具鏈：一方面維持 software-agnostic 的 Animation Library，另一方面加入 AI 無標記全身動捕，降低動作來源必須綁定特定 DCC 的限制。"
         },
         {
           "label": "Production 影響",
-          "text": "對 Production 的實際價值是把這項內容當成 3d-animation 的近期工具、流程或案例參考，用來決定是否值得安排小型 A/B 測試、更新團隊規範或深入閱讀原始來源；目前不把尚未由來源證實的省時比例、效能提升或品質增益當成既知結果。"
+          "text": "對動畫 Pipeline 的潛在價值是把動作收集、Library 管理與不同軟體間的重用集中處理，特別適合需要大量角色動作版本與跨 DCC 傳遞的團隊。"
         },
         {
           "label": "導入測試與限制",
-          "text": "目前證據深度以單一公開來源為主，因此維持 BRIEF。正式導入前應依團隊實際 DCC／引擎版本、資產規格、效能預算與輸出需求驗證相容性、可重現性和品質，並確認原始來源是否有後續更新、已知限制或授權條件。"
+          "text": "來源沒有提供 Markerless Mocap 的誤差、手腳遮蔽表現與 Retarget 品質；導入時應用自己的攝影條件、骨架與快速動作做 A/B Test，再評估 Cleanup 工時是否真的下降。"
         }
       ],
       "rank_global": 7,
@@ -474,8 +474,8 @@
     },
     {
       "id": "cg-channel-unigine-2-21-is-out",
-      "title": "Unigine 2.21 is out",
-      "summary": "「Unigine 2.21 is out」具有直接 Production 參考價值。來源可驗證的製作重點包含「動畫、Rendering、VFX」。目前以來源能明確支持的方法、功能或案例為準，不延伸未公開的效能或品質結論。",
+      "title": "Unigine 2.21：動畫／渲染更新與 Indie、VFX 授權價格調整",
+      "summary": "Unigine 2.21 更新即時 3D 引擎的 Animation 與 Rendering，同時調整 Pricing；來源指出 Indie Game 與 VFX Project 仍可免費使用。",
       "quick_impact": "★★★☆☆",
       "source_url": "https://www.cgchannel.com/2026/04/unigine-2-21-is-out",
       "category": "engine-art",
@@ -486,15 +486,15 @@
       "full_analysis": [
         {
           "label": "技術／流程變更",
-          "text": "來源可驗證的重點是「Unigine 2.21 is out」；頁面內容指出：Check out the updates to animation and rendering in the real-time 3D engine. New pricing, but still free for indie games and VFX projects.。Collector 因此只把它歸入 rendering 的技術／流程情報，不補寫來源沒有公開的 benchmark、內部實作或品質數字。"
+          "text": "這次資訊同時涉及技術更新與商業條件：Animation、Rendering 有版本變更，而授權價格也重新調整，因此不能只把它當成 Renderer Feature 更新。"
         },
         {
           "label": "Production 影響",
-          "text": "對 Production 的實際價值是把這項內容當成 engine-art 的近期工具、流程或案例參考，用來決定是否值得安排小型 A/B 測試、更新團隊規範或深入閱讀原始來源；目前不把尚未由來源證實的省時比例、效能提升或品質增益當成既知結果。"
+          "text": "對即時 3D Production，版本評估除了畫面與動畫功能，也要把授權成本放進工具選型；尤其 Indie 與 VFX 的免費條件可能直接影響小型團隊導入門檻。"
         },
         {
           "label": "導入測試與限制",
-          "text": "目前證據深度以單一公開來源為主，因此維持 BRIEF。正式導入前應依團隊實際 DCC／引擎版本、資產規格、效能預算與輸出需求驗證相容性、可重現性和品質，並確認原始來源是否有後續更新、已知限制或授權條件。"
+          "text": "目前來源摘要沒有列出完整動畫／渲染差異與授權細節；正式評估需要回到 Unigine Release Notes 與 Licensing 條款，避免只依新聞摘要做採購判斷。"
         }
       ],
       "rank_global": 8,
@@ -502,8 +502,8 @@
     },
     {
       "id": "cg-channel-10-things-cg-artists-need-to-know-about-unreal-engine-6",
-      "title": "10 things CG artists need to know about Unreal Engine 6",
-      "summary": "「10 things CG artists need to know about Unreal Engine 6」是工具／工作流情報。來源可驗證的製作重點包含「VFX、Unreal Engine」。導入前應確認版本相容、輸出格式、授權與是否真的減少既有流程中的重複操作。",
+      "title": "Unreal Engine 6：CG 藝術家需要關注的 Games／VFX／Visualization 方向",
+      "summary": "CG Channel 從 CG Artist 角度整理 Unreal Engine 6 的十個關注點，範圍涵蓋 Games、VFX 與 Visualization，適合作為新世代引擎方向的快速索引。",
       "quick_impact": "★★★☆☆",
       "source_url": "https://www.cgchannel.com/2026/06/10-things-cg-artists-need-to-know-about-unreal-engine-6",
       "category": "engine-art",
@@ -514,15 +514,15 @@
       "full_analysis": [
         {
           "label": "技術／流程變更",
-          "text": "來源可驗證的重點是「10 things CG artists need to know about Unreal Engine 6」；頁面內容指出：The industry-changing real-time tool is about to enter a new era. Discover what UE6 means for games, VFX and visualization artists.。Collector 因此只把它歸入 unreal 的技術／流程情報，不補寫來源沒有公開的 benchmark、內部實作或品質數字。"
+          "text": "這篇內容的價值在於用 CG Artist 視角整理 UE6，而不是只以遊戲程式功能分類；來源明確把 Games、VFX 與 Visualization 都列為受影響的使用情境。"
         },
         {
           "label": "Production 影響",
-          "text": "對 Production 的實際價值是把這項內容當成 engine-art 的近期工具、流程或案例參考，用來決定是否值得安排小型 A/B 測試、更新團隊規範或深入閱讀原始來源；目前不把尚未由來源證實的省時比例、效能提升或品質增益當成既知結果。"
+          "text": "對美術與 Technical Art 團隊，可用這類整理先建立升級觀察清單，再把真正相關的 Rendering、資產流程、動畫或 VFX 變更分配給各職能深入驗證。"
         },
         {
           "label": "導入測試與限制",
-          "text": "目前證據深度以單一公開來源為主，因此維持 BRIEF。正式導入前應依團隊實際 DCC／引擎版本、資產規格、效能預算與輸出需求驗證相容性、可重現性和品質，並確認原始來源是否有後續更新、已知限制或授權條件。"
+          "text": "目前摘要只證明文章在討論 UE6 對不同 CG 領域的影響，沒有足夠細節支持具體效能結論；應把它視為閱讀入口，再回官方文件確認每項功能的狀態與版本。"
         }
       ],
       "rank_global": 9,
@@ -530,8 +530,8 @@
     },
     {
       "id": "cg-channel-see-5-key-features-for-cg-artists-in-unreal-engine-5-8",
-      "title": "Unreal Engine 5.8 is here: discover its 5 key features for CG artists",
-      "summary": "「Unreal Engine 5.8 is here: discover its 5 key features for CG artists」具有直接 Production 參考價值。來源可驗證的製作重點包含「MetaHuman、Mesh Terrain、Rigging、動畫」。目前以來源能明確支持的方法、功能或案例為準，不延伸未公開的效能或品質結論。",
+      "title": "Unreal Engine 5.8：Mesh Terrain、MetaHuman Crowds 與 Rigging／Animation 更新",
+      "summary": "CG Channel 整理 UE5.8 對 CG Artist 較重要的五項功能，已知重點包含 Mesh Terrain、MetaHuman Crowds，以及新的 Rigging 與 Animation 工具。",
       "quick_impact": "★★★☆☆",
       "source_url": "https://www.cgchannel.com/2026/06/see-5-key-features-for-cg-artists-in-unreal-engine-5-8",
       "category": "engine-art",
@@ -542,15 +542,15 @@
       "full_analysis": [
         {
           "label": "技術／流程變更",
-          "text": "來源可驗證的重點是「Unreal Engine 5.8 is here: discover its 5 key features for CG artists」；頁面內容指出：Read our pick of the latest features in Unreal Engine, from Mesh Terrain to MetaHuman Crowds, by way of new rigging and animation tools.。Collector 因此只把它歸入 unreal 的技術／流程情報，不補寫來源沒有公開的 benchmark、內部實作或品質數字。"
+          "text": "這篇整理把 UE5.8 的重點從單一 Rendering Feature 擴展到 Terrain、Crowd 與角色動畫工具，代表版本變更同時會碰到場景與角色 Production。"
         },
         {
           "label": "Production 影響",
-          "text": "對 Production 的實際價值是把這項內容當成 engine-art 的近期工具、流程或案例參考，用來決定是否值得安排小型 A/B 測試、更新團隊規範或深入閱讀原始來源；目前不把尚未由來源證實的省時比例、效能提升或品質增益當成既知結果。"
+          "text": "對實際團隊最值得拆開測的是 Mesh Terrain 的場景流程、MetaHuman Crowds 的大量角色使用方式，以及新的 Rigging／Animation 工具是否能減少 DCC 與引擎間往返。"
         },
         {
           "label": "導入測試與限制",
-          "text": "目前證據深度以單一公開來源為主，因此維持 BRIEF。正式導入前應依團隊實際 DCC／引擎版本、資產規格、效能預算與輸出需求驗證相容性、可重現性和品質，並確認原始來源是否有後續更新、已知限制或授權條件。"
+          "text": "來源摘要只列出功能名稱，沒有足夠 benchmark 或限制資訊；正式導入仍要回 UE5.8 官方文件與 Sample Project 驗證效能、可編輯性及舊專案升級風險。"
         }
       ],
       "rank_global": 10,
@@ -558,8 +558,8 @@
     },
     {
       "id": "cg-channel-see-alchemy-24s-vfx-breakdown-for-michael-jackson-biopic-mic",
-      "title": "See Alchemy 24’s VFX breakdown for Michael Jackson biopic Michael",
-      "summary": "「See Alchemy 24’s VFX breakdown for Michael Jackson biopic Michael」是可供製作參考的拆解／教學。來源可驗證的製作重點包含「VFX」。適合把來源明確展示的方法拆成測試步驟，與團隊現行流程比較，再驗證品質、時間成本與限制。",
+      "title": "《Michael》Invisible VFX：Alchemy 24 電影特效 Making-of",
+      "summary": "Alchemy 24 公開 Michael Jackson 傳記電影《Michael》的 Making-of，內容聚焦看不出特效痕跡的 Invisible VFX 製作。",
       "quick_impact": "★★★☆☆",
       "source_url": "https://www.cgchannel.com/2026/09/see-alchemy-24s-vfx-breakdown-for-michael-jackson-biopic-michael",
       "category": "emerging-case",
@@ -570,15 +570,15 @@
       "full_analysis": [
         {
           "label": "技術／流程變更",
-          "text": "來源可驗證的重點是「See Alchemy 24’s VFX breakdown for Michael Jackson biopic Michael」；頁面內容指出：Check out the Montréal studio's making-of for its invisible effects for Antoine Fuqua's santized, but box office record-breaking, music biopic.。Collector 因此只把它歸入 case-study 的技術／流程情報，不補寫來源沒有公開的 benchmark、內部實作或品質數字。"
+          "text": "這類 Invisible VFX 的重點不是讓效果被觀眾注意，而是讓合成、環境修整或畫面處理自然融入實拍；來源把 Making-of 明確定位在這種低存在感的視覺特效。"
         },
         {
           "label": "Production 影響",
-          "text": "對 Production 的實際價值是把這項內容當成 emerging-case 的近期工具、流程或案例參考，用來決定是否值得安排小型 A/B 測試、更新團隊規範或深入閱讀原始來源；目前不把尚未由來源證實的省時比例、效能提升或品質增益當成既知結果。"
+          "text": "對 VFX Production 的參考價值在於 Review 標準與高辨識度特效不同：成功往往是觀眾不察覺處理痕跡，因此更適合觀察 Plate、合成與最終畫面一致性。"
         },
         {
           "label": "導入測試與限制",
-          "text": "目前證據深度以單一公開來源為主，因此維持 BRIEF。正式導入前應依團隊實際 DCC／引擎版本、資產規格、效能預算與輸出需求驗證相容性、可重現性和品質，並確認原始來源是否有後續更新、已知限制或授權條件。"
+          "text": "目前公開摘要沒有逐 Shot 技術拆解；若要轉成實際流程規範，仍需要從影片本身確認 Tracking、Roto、Cleanup、CG Replacement 或 Compositing 的具體比例。"
         }
       ],
       "rank_global": 11,
@@ -586,8 +586,8 @@
     },
     {
       "id": "cg-channel-see-wwwind-studios-vfx-breakdown-for-horror-series-bloody-sm",
-      "title": "See Wwwind Studio’s making-of for horror series Bloody Smart",
-      "summary": "「See Wwwind Studio’s making-of for horror series Bloody Smart」是可供製作參考的拆解／教學。來源可驗證的製作重點包含「VFX」。適合把來源明確展示的方法拆成測試步驟，與團隊現行流程比較，再驗證品質、時間成本與限制。",
+      "title": "《Bloody Smart》VFX Breakdown：台灣 Wwwind Studio 的真人恐怖影集製作",
+      "summary": "台灣 Wwwind Studio 公開《Bloody Smart》真人恐怖影集 VFX Breakdown，展示《伊藤潤二》漫畫改編中的多樣化恐怖視覺效果。",
       "quick_impact": "★★★☆☆",
       "source_url": "https://www.cgchannel.com/2026/09/see-wwwind-studios-vfx-breakdown-for-horror-series-bloody-smart",
       "category": "emerging-case",
@@ -598,15 +598,15 @@
       "full_analysis": [
         {
           "label": "技術／流程變更",
-          "text": "來源可驗證的重點是「See Wwwind Studio’s making-of for horror series Bloody Smart」；頁面內容指出：Check out the Taiwanese studio's varied, visceral VFX breakdown for the live-action adaptation of Junji Ito's cult horror manga.。Collector 因此只把它歸入 case-study 的技術／流程情報，不補寫來源沒有公開的 benchmark、內部實作或品質數字。"
+          "text": "來源把這支 Breakdown 描述為 varied、visceral VFX，代表案例不是單一效果展示，而是同一影集中多類型視覺特效的組合，可用來觀察真人素材如何承接漫畫式恐怖表現。"
         },
         {
           "label": "Production 影響",
-          "text": "對 Production 的實際價值是把這項內容當成 emerging-case 的近期工具、流程或案例參考，用來決定是否值得安排小型 A/B 測試、更新團隊規範或深入閱讀原始來源；目前不把尚未由來源證實的省時比例、效能提升或品質增益當成既知結果。"
+          "text": "對本地 VFX 團隊的價值是可以直接參考台灣 Studio 在真人影集中的效果密度與風格轉譯，特別適合作為實拍＋CG／Compositing 的 Case Study。"
         },
         {
           "label": "導入測試與限制",
-          "text": "目前證據深度以單一公開來源為主，因此維持 BRIEF。正式導入前應依團隊實際 DCC／引擎版本、資產規格、效能預算與輸出需求驗證相容性、可重現性和品質，並確認原始來源是否有後續更新、已知限制或授權條件。"
+          "text": "公開摘要沒有提供 Shot List、軟體配置與工期，因此不能由 Breakdown 直接推導成本；若要做 Production 比較，仍需按效果類型拆分 Tracking、Simulation、CG Asset 與 Compositing 工作量。"
         }
       ],
       "rank_global": 12,
