@@ -346,6 +346,35 @@ def classify_content(title: object, description: object = "") -> tuple[str, str]
     return "emerging-case", "case-study"
 
 
+def friendly_label(category: str, subcategory: str) -> str:
+    return SUBCATEGORY_LABELS.get(subcategory) or CATEGORY_LABELS.get(category) or "Production"
+
+
+def editorial_title(meta: dict, category: str, subcategory: str) -> str:
+    raw = normalize_title(meta.get("title"))
+    if re.search(r"[\u3400-\u9fff]", raw):
+        return raw
+    label = friendly_label(category, subcategory)
+
+    patterns = (
+        (r"^Blender\s+(.+?)\s+Release$", lambda m: f"Blender {m.group(1)}：版本更新"),
+        (r"^Tutorial:\s*(.+)$", lambda m: f"{m.group(1)}：製作教學"),
+        (r"^Breakdown:\s*(.+)$", lambda m: f"{m.group(1)}：製作拆解"),
+        (r"^(.+?)\s+is out$", lambda m: f"{m.group(1)}：版本更新"),
+        (r"^(.+?)\s+releases\s+(.+)$", lambda m: f"{m.group(2)}：{m.group(1)} 發布更新"),
+        (r"^10 things CG artists need to know about\s+(.+)$", lambda m: f"{m.group(1)}：CG 藝術家需關注的 10 項重點"),
+        (r"^(.+?)\s+is here:\s*discover its\s+(\d+)\s+key features.*$", lambda m: f"{m.group(1)}：{m.group(2)} 項重點功能"),
+        (r"^New CG software you may have missed:\s*(.+)$", lambda m: f"本週 CG 工具更新：{m.group(1)}"),
+        (r"^How\s+(.+?)\s+created\s+(.+)$", lambda m: f"{m.group(2)}：{m.group(1)} 製作拆解"),
+        (r"^Get free\s+(.+)$", lambda m: f"免費工具：{m.group(1)}"),
+    )
+    for pattern, render in patterns:
+        match = re.match(pattern, raw, flags=re.I)
+        if match:
+            return clean(render(match), 180)
+    return clean(f"{label}：{raw}", 180)
+
+
 def production_focus(meta: dict) -> list[str]:
     text = f"{normalize_title(meta.get('title'))} {clean(meta.get('description'), 900)}".casefold()
     out: list[str] = []
@@ -358,35 +387,60 @@ def production_focus(meta: dict) -> list[str]:
 
 
 def production_summary(meta: dict, category: str, subcategory: str) -> str:
-    title = normalize_title(meta.get("title"))
-    text = f"{title} {clean(meta.get('description'), 600)}".casefold()
-    label = SUBCATEGORY_LABELS.get(subcategory) or CATEGORY_LABELS.get(category) or category
+    title = editorial_title(meta, category, subcategory)
+    raw = f"{normalize_title(meta.get('title'))} {clean(meta.get('description'), 600)}".casefold()
+    label = friendly_label(category, subcategory)
     focus = production_focus(meta)
-    focus_clause = (
-        "來源可驗證的製作重點包含「" + "、".join(focus) + "」。"
-        if focus
-        else f"來源可驗證的主題落在「{label}」。"
+    focus_text = "、".join(focus) if focus else label
+
+    if has_any(raw, ("release", "update", "version", "beta", "alpha", "preview")):
+        return clean(
+            f"「{title}」整理這次版本／功能變更，已知重點落在 {focus_text}。"
+            f"對 {label} 流程可先用來判斷升級與測試優先順序，再回原始來源確認版本限制與相容性。",
+            380,
+        )
+    if has_any(raw, ("breakdown", "tutorial", "how to", "guide", "case study", "behind", "making-of")):
+        return clean(
+            f"「{title}」提供可供製作參考的流程／案例，重點落在 {focus_text}。"
+            "適合先拆出來源明確展示的方法與視覺判斷，再用自己的資產規格驗證是否可轉移到 Production。",
+            380,
+        )
+    if has_any(raw, ("plugin", "addon", "add-on", "tool", "software")):
+        return clean(
+            f"「{title}」屬於工具與工作流更新，已知關聯重點為 {focus_text}。"
+            "評估時應優先確認它改善哪個既有步驟，再檢查版本相容、輸出格式、授權與實際導入成本。",
+            380,
+        )
+    return clean(
+        f"「{title}」提供 {label} 的近期製作參考，來源可確認的重點集中在 {focus_text}。"
+        "閱讀時應以公開來源能支持的方法、功能或案例為準，再決定是否值得進一步實測。",
+        380,
     )
 
-    if has_any(text, ("release", "update", "version", "beta", "alpha", "preview")):
-        body = (
-            f"「{title}」是版本／功能更新。{focus_clause}"
-            f"對 {label} 流程可用來判斷功能差異、相容性與導入時機；"
-            "效能、品質與穩定性仍需以實際專案資產驗證。"
-        )
-    elif has_any(text, ("breakdown", "tutorial", "how to", "guide", "case study", "behind", "making-of")):
-        body = (
-            f"「{title}」是可供製作參考的拆解／教學。{focus_clause}"
-            "適合把來源明確展示的方法拆成測試步驟，與團隊現行流程比較，再驗證品質、時間成本與限制。"
-        )
-    elif has_any(text, ("plugin", "addon", "add-on", "tool", "software")):
-        body = (
-            f"「{title}」是工具／工作流情報。{focus_clause}"
-            "導入前應確認版本相容、輸出格式、授權與是否真的減少既有流程中的重複操作。"
-        )
+
+def editorial_analysis(meta: dict, category: str, subcategory: str) -> list[dict]:
+    title = editorial_title(meta, category, subcategory)
+    raw = f"{normalize_title(meta.get('title'))} {clean(meta.get('description'), 600)}".casefold()
+    label = friendly_label(category, subcategory)
+    focus = production_focus(meta)
+    focus_text = "、".join(focus) if focus else label
+
+    if has_any(raw, ("release", "update", "version", "beta", "alpha", "preview")):
+        technical = f"這項情報屬於版本／功能更新；目前可確認的製作重點集中在 {focus_text}。評估時應先把新功能與現有 {label} 流程逐項對照，而不是只看版本號或功能數量。"
+        impact = f"對 Production 的價值在於建立升級優先順序：哪些 {focus_text} 變更會直接影響日常製作、資產交換或最終輸出，應先用代表性專案做回歸。"
+    elif has_any(raw, ("breakdown", "tutorial", "how to", "guide", "case study", "behind", "making-of")):
+        technical = f"這項內容屬於製作拆解／教學，核心觀察點落在 {focus_text}。可先把來源明確展示的步驟、視覺判斷與工具使用拆開，再對照自己現有流程。"
+        impact = f"對 {label} Production 的價值是提供可比較的實作案例；適合拿來做 Review Reference 或小型 A/B Test，而不是直接把單一案例視為通用標準。"
     else:
-        body = (
-            f"「{title}」具有直接 Production 參考價值。{focus_clause}"
-            "目前以來源能明確支持的方法、功能或案例為準，不延伸未公開的效能或品質結論。"
-        )
-    return clean(body, 420)
+        technical = f"這項情報目前可確認的技術／製作焦點集中在 {focus_text}。應優先理解它改變的是工具能力、製作方法還是輸出結果，再判斷與現有流程的關聯。"
+        impact = f"對 {label} 團隊而言，可把它當成近期參考項目，用來決定是否值得深入閱讀、建立測試檔或更新內部 Review Checklist。"
+
+    limit = (
+        "目前證據深度仍以公開來源為主；正式導入前應用團隊實際 DCC／引擎版本、資產規格與輸出條件驗證相容性、"
+        "可重現性與品質，且不得把來源未公開的效能、工時或品質提升當成既知結果。"
+    )
+    return [
+        {"label": "技術／流程變更", "text": clean(technical, 520)},
+        {"label": "Production 影響", "text": clean(impact, 520)},
+        {"label": "導入測試與限制", "text": clean(limit, 520)},
+    ]
