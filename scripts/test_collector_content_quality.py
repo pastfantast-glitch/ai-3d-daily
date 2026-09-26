@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 from __future__ import annotations
-from content_quality import admission, classify_content, normalize_title, production_summary
+from content_quality import admission, classify_content, normalize_title, production_summary, editorial_title, editorial_analysis
 
 
 def meta(url, title, description="", published=None, article_type=False):
@@ -131,15 +131,29 @@ assert classify_content(
     "Character animation breakdown.",
 ) == ("3d-animation", "animation")
 
-summary = production_summary(
-    meta("https://example.com/x", "Blender 5.2 LTS Release", "Rendering advancements", "2026-09-26", True),
-    "blender-dcc",
-    "blender",
+editorial_meta = meta(
+    "https://example.com/x",
+    "Blender 5.2 LTS Release",
+    "Rendering advancements",
+    "2026-09-26",
+    True,
 )
+title = editorial_title(editorial_meta, "blender-dcc", "blender")
+summary = production_summary(editorial_meta, "blender-dcc", "blender")
+analysis = editorial_analysis(editorial_meta, "blender-dcc", "blender")
+
+assert title == "Blender 5.2 LTS：版本更新"
 assert "來源頁面顯示" not in summary
 assert "Collector 僅依" not in summary
-assert "Blender 5.2 LTS Release" in summary
-assert any(x in summary for x in ("流程", "導入", "製作"))
+assert "Blender 5.2 LTS：版本更新" in summary
+assert any(x in summary for x in ("流程", "導入", "製作", "測試"))
 assert "Rendering" in summary
+assert len(analysis) == 3
+assert [x["label"] for x in analysis] == ["技術／流程變更", "Production 影響", "導入測試與限制"]
+assert all("Blender 5.2 LTS：版本更新" in x["text"] for x in analysis)
+assert len({x["text"] for x in analysis}) == 3
+for block in analysis:
+    assert "Collector" not in block["text"]
+    assert "blender-dcc" not in block["text"]
 
-print("COLLECTOR CONTENT QUALITY PASS: landing/index rejection + scope admission + title normalization + subject-first classification + zh-Hant production summary")
+print("COLLECTOR CONTENT QUALITY PASS: landing/index rejection + scope admission + title normalization + subject-first classification + 2026-09-25-style zh-Hant editorial fallback")
