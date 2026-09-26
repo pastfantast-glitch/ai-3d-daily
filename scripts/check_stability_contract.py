@@ -70,12 +70,27 @@ def main() -> int:
     attempts = pages.get('minimum_attempts')
     delay = pages.get('minimum_delay_seconds')
     timeout = pages.get('timeout_seconds')
+    deployment = pages.get('deployment_wait') or {}
+    deployment_name = deployment.get('workflow_name')
+    deployment_attempts = deployment.get('maximum_attempts')
+    deployment_delay = deployment.get('delay_seconds')
+    deployment_timeout = deployment.get('api_timeout_seconds')
     if not isinstance(attempts, int) or attempts < 8:
         fail('pages_verify.minimum_attempts must be an integer >= 8')
     if not isinstance(delay, int) or delay < 5:
         fail('pages_verify.minimum_delay_seconds must be an integer >= 5')
     if not isinstance(timeout, int) or timeout < 10:
         fail('pages_verify.timeout_seconds must be an integer >= 10')
+    if not isinstance(deployment_name, str) or not deployment_name.strip():
+        fail('pages_verify.deployment_wait.workflow_name must be non-empty')
+    if not isinstance(deployment_attempts, int) or deployment_attempts < 30:
+        fail('pages_verify.deployment_wait.maximum_attempts must be an integer >= 30')
+    if not isinstance(deployment_delay, int) or deployment_delay < 5:
+        fail('pages_verify.deployment_wait.delay_seconds must be an integer >= 5')
+    if not isinstance(deployment_timeout, int) or deployment_timeout < 10:
+        fail('pages_verify.deployment_wait.api_timeout_seconds must be an integer >= 10')
+    if isinstance(deployment_attempts, int) and isinstance(deployment_delay, int) and deployment_attempts * deployment_delay < 600:
+        fail('pages_verify.deployment_wait must provide at least 600 seconds of deployment queue budget')
 
     # Canonical URL identity must remove tracking noise but preserve real selectors.
     url_cases = {
@@ -94,6 +109,7 @@ def main() -> int:
         ROOT / 'scripts' / 'normalize_registry_identity.py': ('from url_identity import canonicalize_url',),
         ROOT / 'scripts' / 'check_registry_contract.py': ('from url_identity import canonicalize_url',),
         ROOT / 'scripts' / 'check_historical_regression.py': ('stability-contract.json', 'sentinel_dates', 'sentinel_modes'),
+        ROOT / 'scripts' / 'wait_for_pages_deployment.py': ('stability-contract.json', 'deployment_wait', 'workflow_name'),
         ROOT / 'scripts' / 'verify_pages_publish.py': ('stability-contract.json', 'minimum_attempts'),
     }
     for path, tokens in wiring.items():
@@ -119,7 +135,7 @@ def main() -> int:
 
     print(
         'STABILITY CONTRACT PASS: canonical URL identity + sentinel historical regression + '
-        f'Pages retry floor attempts={attempts} delay={delay}s timeout={timeout}s'
+        f'Pages deployment wait={deployment_attempts}x{deployment_delay}s; content retry floor attempts={attempts} delay={delay}s timeout={timeout}s'
     )
     print('SENTINEL MODES:', ', '.join(f'{date}={modes[date]}' for date in sentinels))
     print('BRANCH PROTECTION NOTICE: desired=true; enforcement requires GitHub repository administration outside repo code.')

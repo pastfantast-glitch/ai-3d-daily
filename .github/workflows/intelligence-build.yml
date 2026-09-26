@@ -317,6 +317,10 @@ jobs:
             publish_sha="$(git rev-parse HEAD)"
           fi
           echo "publish_sha=$publish_sha" >> "$GITHUB_OUTPUT"
+      - name: Wait for Pages deployment of publish commit
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python scripts/wait_for_pages_deployment.py "${{ steps.publish_commit.outputs.publish_sha }}"
       - name: Verify public GitHub Pages release
         env:
           SITE_URL: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/
