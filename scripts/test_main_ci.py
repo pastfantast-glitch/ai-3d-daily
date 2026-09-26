@@ -166,31 +166,38 @@ class MainCITests(unittest.TestCase):
             ci.source_evidence_sha("current", paths)
 
     def test_policy_recollect_subject_inherits_parent_source_qa_when_actions_bot_scoped(self):
-        original_git = ci.git
-        try:
-            mapping = {
-                ("log", "-1", "--format=%H", "current", "--", "scripts/source.py"): "current",
-                ("show", "-s", "--format=%P", "current"): "parent",
-                ("show", "-s", "--format=%ae", "current"): ci.GITHUB_ACTIONS_BOT_EMAIL,
-                ("show", "-s", "--format=%s", "current"): "Recollect production intelligence 2026-09-26",
-                ("diff-tree", "--no-commit-id", "--name-only", "-r", "current"): "\n".join([
-                    "data/daily/2026-09-26.json",
-                    "data/candidates/collection-session/2026-09-26.json",
-                    "data/candidates/decision-ledger/2026-09-26.json",
-                    "data/candidates/rolling-backlog.json",
-                ]),
-                ("log", "-1", "--format=%H", "parent", "--", "scripts/source.py"): "parent",
-                ("show", "-s", "--format=%P", "parent"): "grandparent",
-                ("show", "-s", "--format=%ae", "parent"): "owner@example.com",
-                ("show", "-s", "--format=%s", "parent"): "Harden source contract",
-            }
-            ci.git = lambda *args: mapping[tuple(args)]
-            source_sha, skipped = ci.source_evidence_sha("current", ["scripts/source.py"])
-            self.assertEqual(source_sha, "parent")
-            self.assertEqual(len(skipped), 1)
-            self.assertEqual(skipped[0]["subject"], "Recollect production intelligence 2026-09-26")
-        finally:
-            ci.git = original_git
+        paths = [SOURCE_WORKFLOW, "data/candidates/rolling-backlog.json"]
+        collector = "collector"
+        parent = "parent"
+        source = "source"
+        required = "\n".join([
+            "data/daily/2026-09-26.json",
+            "data/candidates/collection-session/2026-09-26.json",
+            "data/candidates/decision-ledger/2026-09-26.json",
+            "data/candidates/rolling-backlog.json",
+        ])
+
+        def fake_git(*args):
+            if args[0] == "log":
+                start = args[3]
+                return collector if start == "current" else source
+            if args[0] == "show" and args[1] == "-s":
+                sha = args[-1]
+                if sha == collector:
+                    return self.commit_line(
+                        collector, parent, ci.GITHUB_ACTIONS_BOT_EMAIL,
+                        "Recollect production intelligence 2026-09-26"
+                    )
+                if sha == source:
+                    return self.commit_line(source, "older", "owner@example.com", "Harden source contract")
+            if args[0] == "diff-tree" and args[-1] == collector:
+                return required
+            raise AssertionError(args)
+
+        with patch.object(ci, "git", side_effect=fake_git):
+            source_sha, skipped = ci.source_evidence_sha("current", paths)
+        self.assertEqual(source_sha, source)
+        self.assertEqual([x["sha"] for x in skipped], [collector])
 
     def test_autonomous_collector_subject_requires_actions_bot_identity(self):
         def fake_git(*args):
