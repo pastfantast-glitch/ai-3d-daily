@@ -100,6 +100,62 @@ def writer_generated_commit(sha):
     return True, parent_list[0], subject
 
 
+COLLECTOR_SUBJECT_RE = re.compile(r"^Collect production intelligence (20\\d{2}-\\d{2}-\\d{2})$")
+
+
+def changed_paths(sha):
+    raw = git("diff-tree", "--no-commit-id", "--name-only", "-r", sha)
+    return {line.strip() for line in raw.splitlines() if line.strip()}
+
+
+def source_evidence_sha(head, paths):
+    """Resolve source-QA evidence while safely skipping private-only Collector bot commits.
+
+    Autonomous Collector commits use GITHUB_TOKEN, so GitHub intentionally does not
+    emit another push-triggered source-QA run for those commits. We may skip such a
+    commit only when both identity and mutation scope are proven: exact Actions bot
+    identity + exact Collector subject + only that date's three Collector JSON files
+    and rolling backlog. Any extra path fails closed instead of inheriting parent CI.
+    """
+    start = head
+    skipped = []
+    for _ in range(MAX_WRITER_COMMITS_TO_SKIP + 1):
+        sha = git("log", "-1", "--format=%H", start, "--", *paths)
+        if not sha:
+            raise ValueError("cannot resolve latest source QA commit")
+        trusted, parent, subject = writer_generated_commit(sha)
+        match = COLLECTOR_SUBJECT_RE.fullmatch(subject or "") if trusted else None
+        if not match:
+            return sha, skipped
+
+        report_date = match.group(1)
+        required = {
+            f"data/daily/{report_date}.json",
+            f"data/candidates/collection-session/{report_date}.json",
+            f"data/candidates/decision-ledger/{report_date}.json",
+        }
+        allowed = required | {"data/candidates/rolling-backlog.json"}
+        changed = changed_paths(sha)
+        unexpected = changed - allowed
+        missing = required - changed
+        if unexpected or missing:
+            details = []
+            if unexpected:
+                details.append("unexpected=" + ",".join(sorted(unexpected)))
+            if missing:
+                details.append("missing=" + ",".join(sorted(missing)))
+            raise ValueError(
+                "autonomous Collector source-QA inheritance scope invalid at "
+                + sha + ": " + "; ".join(details)
+            )
+
+        skipped.append({"sha": sha, "subject": subject})
+        if len(skipped) > MAX_WRITER_COMMITS_TO_SKIP:
+            raise ValueError("too many consecutive Collector source commits; source QA evidence ambiguous")
+        start = parent
+    raise ValueError("cannot resolve source QA evidence commit")
+
+
 def history_evidence_sha(head):
     """Resolve the newest commit for which a main/push regression run must exist."""
     sha = head
@@ -125,9 +181,7 @@ def check():
     paths = source_paths(workflow)
     if git("status", "--porcelain", "--", *paths):
         raise ValueError("uncommitted source QA inputs; remote CI does not cover local changes")
-    source_sha = git("log", "-1", "--format=%H", head, "--", *paths)
-    if not source_sha:
-        raise ValueError("cannot resolve latest source QA commit")
+    source_sha, skipped_source_commits = source_evidence_sha(head, paths)
 
     history_sha, skipped_writer_commits = history_evidence_sha(head)
     checks = [require_success(fetch_runs(w, sha), w, sha) for w, sha in
@@ -137,6 +191,8 @@ def check():
     return {
         "state": "PASS",
         "main_sha": head,
+        "source_evidence_sha": source_sha,
+        "skipped_source_commits": skipped_source_commits,
         "history_evidence_sha": history_sha,
         "skipped_writer_commits": skipped_writer_commits,
         "checks": checks,

@@ -107,6 +107,64 @@ class MainCITests(unittest.TestCase):
         self.assertEqual(sha, "parent")
         self.assertEqual([x["sha"] for x in skipped], ["current"])
 
+    def test_source_evidence_skips_private_only_autonomous_collector_commit(self):
+        paths = [SOURCE_WORKFLOW, "data/candidates/rolling-backlog.json"]
+        collector = "collector"
+        parent = "parent"
+        source = "source"
+        required = "\n".join([
+            "data/daily/2026-09-26.json",
+            "data/candidates/collection-session/2026-09-26.json",
+            "data/candidates/decision-ledger/2026-09-26.json",
+            "data/candidates/rolling-backlog.json",
+        ])
+
+        def fake_git(*args):
+            if args[0] == "log":
+                start = args[3]
+                return collector if start == "current" else source
+            if args[0] == "show" and args[1] == "-s":
+                sha = args[-1]
+                if sha == collector:
+                    return self.commit_line(
+                        collector, parent, ci.GITHUB_ACTIONS_BOT_EMAIL,
+                        "Collect production intelligence 2026-09-26"
+                    )
+                if sha == source:
+                    return self.commit_line(source, "older", "owner@example.com", "Collector architecture source change")
+            if args[0] == "diff-tree" and args[-1] == collector:
+                return required
+            raise AssertionError(args)
+
+        with patch.object(ci, "git", side_effect=fake_git):
+            sha, skipped = ci.source_evidence_sha("current", paths)
+        self.assertEqual(sha, source)
+        self.assertEqual([x["sha"] for x in skipped], [collector])
+
+    def test_source_evidence_refuses_collector_commit_with_extra_source_path(self):
+        paths = [SOURCE_WORKFLOW, "data/candidates/rolling-backlog.json"]
+        def fake_git(*args):
+            if args[0] == "log":
+                return "collector"
+            if args[0] == "show" and args[1] == "-s":
+                return self.commit_line(
+                    "collector", "parent", ci.GITHUB_ACTIONS_BOT_EMAIL,
+                    "Collect production intelligence 2026-09-26"
+                )
+            if args[0] == "diff-tree":
+                return "\n".join([
+                    "data/daily/2026-09-26.json",
+                    "data/candidates/collection-session/2026-09-26.json",
+                    "data/candidates/decision-ledger/2026-09-26.json",
+                    "data/candidates/rolling-backlog.json",
+                    "scripts/check_main_ci.py",
+                ])
+            raise AssertionError(args)
+
+        with patch.object(ci, "git", side_effect=fake_git), \
+             self.assertRaisesRegex(ValueError, "scope invalid"):
+            ci.source_evidence_sha("current", paths)
+
     def test_autonomous_collector_subject_requires_actions_bot_identity(self):
         def fake_git(*args):
             return self.commit_line(
@@ -162,6 +220,8 @@ class MainCITests(unittest.TestCase):
             return ""
         if args[0] == "log":
             return "source"
+        if args[0] == "diff-tree":
+            return ""
         raise AssertionError(args)
 
     def test_path_filtered_source_and_history_evidence_use_separate_shas(self):
@@ -187,7 +247,10 @@ class MainCITests(unittest.TestCase):
             if args == ("rev-parse", "HEAD"): return "current"
             if args == ("rev-parse", "--is-shallow-repository"): return "false"
             if args[0] == "show" and len(args) >= 2 and args[1] == "-s":
-                sha = args[-1]; parent, email, subject = chain[sha]
+                sha = args[-1]
+                if sha == "source":
+                    return self.commit_line("source", "older", "owner@example.com", "Source QA change")
+                parent, email, subject = chain[sha]
                 return self.commit_line(sha, parent, email, subject)
             if args[0] == "show":
                 return "  push:\n    paths:\n      - '" + SOURCE_WORKFLOW + "'\n  pull_request:\n"
