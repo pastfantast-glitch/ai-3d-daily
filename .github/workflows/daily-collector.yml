@@ -168,7 +168,11 @@ jobs:
         run: |
           set -euo pipefail
           python scripts/check_collection_session_contract.py "$DATE"
-          python scripts/finalize_collection_handoff.py "$DATE"
+          if [ "${{ steps.preflight.outputs.policy_recollect }}" = "true" ]; then
+            python scripts/finalize_collection_handoff.py "$DATE" --policy-republish
+          else
+            python scripts/finalize_collection_handoff.py "$DATE"
+          fi
 
       - name: Reconfirm current main and commit only Collector artifacts
         if: steps.preflight.outputs.skip != 'true'
