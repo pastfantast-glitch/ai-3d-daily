@@ -61,10 +61,10 @@
      #04 · blender
     </div>
     <h2>
-     Blender 5.1 Release
+     Blender 5.1：以穩定性修正與 Pipeline 改善為主的版本更新
     </h2>
     <p class="summary">
-     「Blender 5.1 Release」是版本／功能更新。來源可驗證的製作重點包含「Blender」。對 Blender 流程可用來判斷功能差異、相容性與導入時機；效能、品質與穩定性仍需以實際專案資產驗證。
+     Blender 5.1 官方把重點放在 Refinement、Bug Fixes 與少數影響整體 Pipeline 的功能改善，屬於偏穩定與流程整理型的版本。
     </p>
     <figure class="case-preview" data-intel-id="blender-official-blender-5-1-release" data-intel-role="visual" data-visual-id="blender-official-blender-5-1-release">
      <a href="https://www.blender.org/press/blender-5-1-release" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
@@ -89,19 +89,19 @@
        技術／流程變更
       </h4>
       <p>
-       來源可驗證的重點是「Blender 5.1 Release」；頁面內容指出：Blender 5.1 focuses on refinement, bug fixes, and a few key features improving the entire pipeline.。Collector 因此只把它歸入 blender 的技術／流程情報，不補寫來源沒有公開的 benchmark、內部實作或品質數字。
+       官方對 5.1 的定位不是大量新增功能，而是 refinement、bug fixes 與幾項改善整體 Pipeline 的更新；因此評估重點應放在既有流程是否更穩定，而不是只看 Feature List 數量。
       </p>
       <h4>
        Production 影響
       </h4>
       <p>
-       對 Production 的實際價值是把這項內容當成 blender-dcc 的近期工具、流程或案例參考，用來決定是否值得安排小型 A/B 測試、更新團隊規範或深入閱讀原始來源；目前不把尚未由來源證實的省時比例、效能提升或品質增益當成既知結果。
+       對正式 Production，比起追新功能，這類版本更適合檢查日常建模、動畫、資產交換與自動化腳本是否能減少例外狀況，並評估是否值得從既有版本升級。
       </p>
       <h4>
        導入測試與限制
       </h4>
       <p>
-       目前證據深度以單一公開來源為主，因此維持 BRIEF。正式導入前應依團隊實際 DCC／引擎版本、資產規格、效能預算與輸出需求驗證相容性、可重現性和品質，並確認原始來源是否有後續更新、已知限制或授權條件。
+       來源摘要沒有列出所有修正細節；正式升版仍應對照官方 Release Notes，並用公司常用 Add-on、Python Script、FBX/Alembic/USD 與大型場景做相容性回歸測試。
       </p>
       <p class="analysis-level-note">
        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
@@ -117,10 +117,10 @@
      #06 · blender
     </div>
     <h2>
-     Blender 5.2 LTS Release
+     Blender 5.2 LTS：Node Physics、遠端 Asset Library 與 Rendering 更新
     </h2>
     <p class="summary">
-     「Blender 5.2 LTS Release」是版本／功能更新。來源可驗證的製作重點包含「Rendering、Blender」。對 Blender 流程可用來判斷功能差異、相容性與導入時機；效能、品質與穩定性仍需以實際專案資產驗證。
+     Blender 5.2 LTS 加入 Node-powered Physics、遠端 Asset Library 存取與多項 Rendering 改善，並提供兩年的 LTS 更新週期。
     </p>
     <figure class="case-preview" data-intel-id="blender-official-blender-5-2-lts-release" data-intel-role="visual" data-visual-id="blender-official-blender-5-2-lts-release">
      <a href="https://www.blender.org/press/blender-5-2-lts-release" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
@@ -145,19 +145,19 @@
        技術／流程變更
       </h4>
       <p>
-       來源可驗證的重點是「Blender 5.2 LTS Release」；頁面內容指出：Blender 5.2 LTS brings node-powered physics, remote access to asset libraries, major rendering advancements and more with 2 years of LTS updates.。Collector 因此只把它歸入 blender 的技術／流程情報，不補寫來源沒有公開的 benchmark、內部實作或品質數字。
+       官方列出的重點橫跨 Node-powered Physics、Remote Asset Libraries 與 Rendering，顯示 5.2 不只是單一模組更新，而是同時碰到模擬、資產管理與畫面輸出。
       </p>
       <h4>
        Production 影響
       </h4>
       <p>
-       對 Production 的實際價值是把這項內容當成 blender-dcc 的近期工具、流程或案例參考，用來決定是否值得安排小型 A/B 測試、更新團隊規範或深入閱讀原始來源；目前不把尚未由來源證實的省時比例、效能提升或品質增益當成既知結果。
+       對團隊 Pipeline 而言，LTS 的價值在於可以用較長的維護週期評估公司工具與資產流程；遠端 Asset Library 也值得用公司共用資產場景測試實際管理方式。
       </p>
       <h4>
        導入測試與限制
       </h4>
       <p>
-       目前證據深度以單一公開來源為主，因此維持 BRIEF。正式導入前應依團隊實際 DCC／引擎版本、資產規格、效能預算與輸出需求驗證相容性、可重現性和品質，並確認原始來源是否有後續更新、已知限制或授權條件。
+       雖然是 LTS，仍不代表所有 Add-on 與內部工具都立即相容；升級前應針對 Geometry Nodes、Rendering、Python API、資產庫與 Export Pipeline 做版本回歸。
       </p>
       <p class="analysis-level-note">
        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
@@ -173,10 +173,10 @@
      #13 · maya
     </div>
     <h2>
-     Tutorial: Concept Art &amp; Matte Painting for Film
+     電影 Concept Art／Matte Painting：Photoshop＋Maya 的 Gnomon Masterclass
     </h2>
     <p class="summary">
-     「Tutorial: Concept Art &amp; Matte Painting for Film」是可供製作參考的拆解／教學。來源可驗證的製作重點包含「Maya」。適合把來源明確展示的方法拆成測試步驟，與團隊現行流程比較，再驗證品質、時間成本與限制。
+     ILM Art Director Igor Staritsin 的 Gnomon Workshop 課程，以 Photoshop 與 Maya 示範電影 Concept Art 與 Matte Painting 的專業製作方法。
     </p>
     <figure class="case-preview" data-intel-id="cg-channel-tutorial-concept-art-matte-painting-for-film" data-intel-role="visual" data-visual-id="cg-channel-tutorial-concept-art-matte-painting-for-film">
      <a href="https://www.cgchannel.com/2026/09/tutorial-concept-art-matte-painting-for-film" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
@@ -201,19 +201,19 @@
        技術／流程變更
       </h4>
       <p>
-       來源可驗證的重點是「Tutorial: Concept Art &amp; Matte Painting for Film」；頁面內容指出：Master professional techniques in Photoshop and Maya with ILM Art Director Igor Staritsin's masterclass for The Gnomon Workshop.。Collector 因此只把它歸入 maya 的技術／流程情報，不補寫來源沒有公開的 benchmark、內部實作或品質數字。
+       來源明確把 Photoshop 與 Maya 放在同一套 Film Concept Art／Matte Painting 流程中，表示工作不只停在 2D 繪製，也會使用 3D 協助構圖、空間與最終畫面建立。
       </p>
       <h4>
        Production 影響
       </h4>
       <p>
-       對 Production 的實際價值是把這項內容當成 blender-dcc 的近期工具、流程或案例參考，用來決定是否值得安排小型 A/B 測試、更新團隊規範或深入閱讀原始來源；目前不把尚未由來源證實的省時比例、效能提升或品質增益當成既知結果。
+       對場景與 Visual Development 流程，這類 Hybrid 2D/3D 方法能讓 Perspective、Camera 與大形先被 3D 約束，再把繪製資源集中到真正影響畫面品質的區域。
       </p>
       <h4>
        導入測試與限制
       </h4>
       <p>
-       目前證據深度以單一公開來源為主，因此維持 BRIEF。正式導入前應依團隊實際 DCC／引擎版本、資產規格、效能預算與輸出需求驗證相容性、可重現性和品質，並確認原始來源是否有後續更新、已知限制或授權條件。
+       目前公開資訊是課程介紹，沒有完整步驟與素材規格；實際導入時應確認自己需要的是 Concept Blockout、Projection、Matte Painting 還是最終 Composite，避免把不同階段混成同一流程。
       </p>
       <p class="analysis-level-note">
        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
@@ -229,10 +229,10 @@
      #15 · blender
     </div>
     <h2>
-     AMD releases Radeon ProRender 3.6 for Blender
+     Radeon ProRender 3.6：最終渲染由 OpenCL 轉向 HIP
     </h2>
     <p class="summary">
-     「AMD releases Radeon ProRender 3.6 for Blender」具有直接 Production 參考價值。來源可驗證的製作重點包含「Blender、Houdini、Maya」。目前以來源能明確支持的方法、功能或案例為準，不延伸未公開的效能或品質結論。
+     AMD Radeon ProRender 3.6 在 Final-quality Output 上由 OpenCL 切換到 HIP；Blender 版本之外，Maya 與 Houdini Edition 也同步更新。
     </p>
     <figure class="case-preview" data-intel-id="cg-channel-amd-releases-radeon-prorender-3-6-for-blender-maya-and-houdi" data-intel-role="visual" data-visual-id="cg-channel-amd-releases-radeon-prorender-3-6-for-blender-maya-and-houdi">
      <a href="https://www.cgchannel.com/2023/06/amd-releases-radeon-prorender-3-6-for-blender-maya-and-houdini" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
@@ -257,19 +257,19 @@
        技術／流程變更
       </h4>
       <p>
-       來源可驗證的重點是「AMD releases Radeon ProRender 3.6 for Blender」；頁面內容指出：GPU renderer switches from OpenCL to HIP for final-quality output. Maya and Houdini editions also updated.。Collector 因此只把它歸入 blender 的技術／流程情報，不補寫來源沒有公開的 benchmark、內部實作或品質數字。
+       最具體的技術變更是 Final-quality Rendering Backend 從 OpenCL 轉到 HIP，這會直接影響 GPU 相容性、Driver 條件與既有 Render Farm／Workstation 的驗證方式。
       </p>
       <h4>
        Production 影響
       </h4>
       <p>
-       對 Production 的實際價值是把這項內容當成 blender-dcc 的近期工具、流程或案例參考，用來決定是否值得安排小型 A/B 測試、更新團隊規範或深入閱讀原始來源；目前不把尚未由來源證實的省時比例、效能提升或品質增益當成既知結果。
+       對使用 Blender、Maya 或 Houdini 的團隊，這類 Backend 切換不是單純 UI 更新，應優先確認相同場景在新版本的輸出一致性、速度與顯存行為。
       </p>
       <h4>
        導入測試與限制
       </h4>
       <p>
-       目前證據深度以單一公開來源為主，因此維持 BRIEF。正式導入前應依團隊實際 DCC／引擎版本、資產規格、效能預算與輸出需求驗證相容性、可重現性和品質，並確認原始來源是否有後續更新、已知限制或授權條件。
+       來源沒有提供跨 GPU 的完整 Benchmark；升級前應用公司常見材質、Volume、Hair 與大型場景做對照，並確認舊工程在 HIP 路徑下沒有畫面差異。
       </p>
       <p class="analysis-level-note">
        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
@@ -285,10 +285,10 @@
      #16 · other-dcc
     </div>
     <h2>
-     Otoy releases OctaneRender 2026.4
+     OctaneRender 2026.4：3D Gaussian Splatting 與 Neural Radiance Cache 更新
     </h2>
     <p class="summary">
-     「Otoy releases OctaneRender 2026.4」具有直接 Production 參考價值。來源可驗證的主題落在「其他 DCC」。目前以來源能明確支持的方法、功能或案例為準，不延伸未公開的效能或品質結論。
+     OctaneRender 2026.4 更新 GPU Production Renderer，已知重點包含 3D Gaussian Splatting 與 Neural Radiance Cache。
     </p>
     <figure class="case-preview" data-intel-id="cg-channel-otoy-releases-octanerender-2026-4" data-intel-role="visual" data-visual-id="cg-channel-otoy-releases-octanerender-2026-4">
      <a href="https://www.cgchannel.com/2026/07/otoy-releases-octanerender-2026-4" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
@@ -313,19 +313,19 @@
        技術／流程變更
       </h4>
       <p>
-       來源可驗證的重點是「Otoy releases OctaneRender 2026.4」；頁面內容指出：Check out the new features in the GPU production renderer, including updates to 3D Gaussian Splatting and the Neural Radiance Cache.。Collector 因此只把它歸入 other-dcc 的技術／流程情報，不補寫來源沒有公開的 benchmark、內部實作或品質數字。
+       這版把 3D Gaussian Splatting 與 Neural Radiance Cache 納入更新重點，顯示 Octane 正在把新型場景表示與神經渲染相關技術帶進既有 Production Renderer。
       </p>
       <h4>
        Production 影響
       </h4>
       <p>
-       對 Production 的實際價值是把這項內容當成 blender-dcc 的近期工具、流程或案例參考，用來決定是否值得安排小型 A/B 測試、更新團隊規範或深入閱讀原始來源；目前不把尚未由來源證實的省時比例、效能提升或品質增益當成既知結果。
+       對 Lookdev／Rendering Pipeline，真正要觀察的是這些功能能否與現有 Mesh、Material、Lighting 及輸出流程共存，而不是只看 Demo 畫面。
       </p>
       <h4>
        導入測試與限制
       </h4>
       <p>
-       目前證據深度以單一公開來源為主，因此維持 BRIEF。正式導入前應依團隊實際 DCC／引擎版本、資產規格、效能預算與輸出需求驗證相容性、可重現性和品質，並確認原始來源是否有後續更新、已知限制或授權條件。
+       來源摘要沒有公開品質與速度 Benchmark；正式使用前需要以自己的掃描／Splat 資料、場景複雜度與輸出解析度測試記憶體、穩定性與最終畫質。
       </p>
       <p class="analysis-level-note">
        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
@@ -341,10 +341,10 @@
      #17 · other-dcc
     </div>
     <h2>
-     New CG software you may have missed: 13 September 2026
+     本週 CG 工具更新：HDR Light Studio、mGear 與 SwitchX／VFX AI
     </h2>
     <p class="summary">
-     「New CG software you may have missed: 13 September 2026」是工具／工作流情報。來源可驗證的製作重點包含「Rigging、VFX、Maya」。導入前應確認版本相容、輸出格式、授權與是否真的減少既有流程中的重複操作。
+     CG Channel 的本週工具整理包含 HDR Light Studio、免費 Maya Rigging Toolset mGear，以及 Beeble 的 VFX AI Model SwitchX 等更新。
     </p>
     <figure class="case-preview" data-intel-id="cg-channel-new-cg-software-you-may-have-missed-13-september-2026" data-intel-role="visual" data-visual-id="cg-channel-new-cg-software-you-may-have-missed-13-september-2026">
      <a href="https://www.cgchannel.com/2026/09/new-cg-software-you-may-have-missed-13-september-2026" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
@@ -369,19 +369,19 @@
        技術／流程變更
       </h4>
       <p>
-       來源可驗證的重點是「New CG software you may have missed: 13 September 2026」；頁面內容指出：Check out the week's other updates to CG tools, like HDR Light Studio, free Maya rigging toolset mGear, and SwitchX, Beeble's VFX AI model.。Collector 因此只把它歸入 other-dcc 的技術／流程情報，不補寫來源沒有公開的 benchmark、內部實作或品質數字。
+       這篇不是單一軟體更新，而是快速整理同週多個 CG Tool；目前可確認的範圍包括 Lighting、Maya Rigging 與 VFX AI，適合用來補漏工具動態。
       </p>
       <h4>
        Production 影響
       </h4>
       <p>
-       對 Production 的實際價值是把這項內容當成 blender-dcc 的近期工具、流程或案例參考，用來決定是否值得安排小型 A/B 測試、更新團隊規範或深入閱讀原始來源；目前不把尚未由來源證實的省時比例、效能提升或品質增益當成既知結果。
+       對 Pipeline 管理比較實用的閱讀方式是先按職能分流：Lighting Artist 看 HDR Light Studio、Rigging 看 mGear、VFX／AI 團隊再評估 SwitchX，而不是把整篇當成同一技術趨勢。
       </p>
       <h4>
        導入測試與限制
       </h4>
       <p>
-       目前證據深度以單一公開來源為主，因此維持 BRIEF。正式導入前應依團隊實際 DCC／引擎版本、資產規格、效能預算與輸出需求驗證相容性、可重現性和品質，並確認原始來源是否有後續更新、已知限制或授權條件。
+       Roundup 本身資訊深度有限，不能取代各工具 Release Notes；只有在其中某項工具確實符合團隊需求時，才值得再進一步做版本相容、授權與實際工作流測試。
       </p>
       <p class="analysis-level-note">
        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
@@ -397,10 +397,10 @@
      #23 · blender
     </div>
     <h2>
-     Check Out This Zenless Zone Zero Animation Made in Blender
+     《絕區零》Blender Fan Animation：Retroperro 3D 動畫作品
     </h2>
     <p class="summary">
-     「Check Out This Zenless Zone Zero Animation Made in Blender」具有直接 Production 參考價值。來源可驗證的製作重點包含「動畫、Blender」。目前以來源能明確支持的方法、功能或案例為準，不延伸未公開的效能或品質結論。
+     3D Animator Retroperro 公開以 Blender 製作的《絕區零》Fan Animation，可作為 Blender 角色動畫與風格表現的視覺參考。
     </p>
     <figure class="case-preview" data-intel-id="80-level-check-out-this-zenless-zone-zero-animation-made-in-blender" data-intel-role="visual" data-visual-id="80-level-check-out-this-zenless-zone-zero-animation-made-in-blender">
      <a href="https://80.lv/articles/check-out-this-zenless-zone-zero-animation-made-in-blender" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
@@ -425,19 +425,19 @@
        技術／流程變更
       </h4>
       <p>
-       來源可驗證的重點是「Check Out This Zenless Zone Zero Animation Made in Blender」；頁面內容指出：A 3D Animator known as Retroperro shared the artwork.。Collector 因此只把它歸入 blender 的技術／流程情報，不補寫來源沒有公開的 benchmark、內部實作或品質數字。
+       來源能確認的重點是這支《絕區零》Fan Animation 由 Blender 完成，因此它可作為 Blender 在角色動畫與風格化作品上的實際展示案例。
       </p>
       <h4>
        Production 影響
       </h4>
       <p>
-       對 Production 的實際價值是把這項內容當成 blender-dcc 的近期工具、流程或案例參考，用來決定是否值得安排小型 A/B 測試、更新團隊規範或深入閱讀原始來源；目前不把尚未由來源證實的省時比例、效能提升或品質增益當成既知結果。
+       對 Blender Animation 使用者，比純功能 Demo 更有價值的是觀察完整成品如何處理角色 Pose、鏡頭與風格一致性，並拿來對照自己的動畫品質目標。
       </p>
       <h4>
        導入測試與限制
       </h4>
       <p>
-       目前證據深度以單一公開來源為主，因此維持 BRIEF。正式導入前應依團隊實際 DCC／引擎版本、資產規格、效能預算與輸出需求驗證相容性、可重現性和品質，並確認原始來源是否有後續更新、已知限制或授權條件。
+       公開頁面沒有 Rig、Shader、Render Setting 或製作 Breakdown；因此目前只適合作為作品 Reference，不能推導具體 Pipeline 效率或技術配置。
       </p>
       <p class="analysis-level-note">
        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
@@ -453,10 +453,10 @@
      #24 · blender
     </div>
     <h2>
-     Blender 5.2 LTS is here: discover its 5 key features
+     Blender 5.2 LTS 五大重點：Geometry Nodes Cloth Physics 與 Cycles 變更
     </h2>
     <p class="summary">
-     「Blender 5.2 LTS is here: discover its 5 key features」是工具／工作流情報。來源可驗證的製作重點包含「Geometry Nodes、Blender」。導入前應確認版本相容、輸出格式、授權與是否真的減少既有流程中的重複操作。
+     CG Channel 整理 Blender 5.2 LTS 五項重要更新，已知包含 Geometry Nodes Cloth Physics，以及 Cycles 的重大變更。
     </p>
     <figure class="case-preview" data-intel-id="cg-channel-blender-5-2-lts-is-here-discover-its-5-key-features" data-intel-role="visual" data-visual-id="cg-channel-blender-5-2-lts-is-here-discover-its-5-key-features">
      <a href="https://www.cgchannel.com/2026/07/blender-5-2-lts-is-here-discover-its-5-key-features" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
@@ -481,19 +481,19 @@
        技術／流程變更
       </h4>
       <p>
-       來源可驗證的重點是「Blender 5.2 LTS is here: discover its 5 key features」；頁面內容指出：Read our pick of the latest features in the open-source 3D software, from cloth physics in Geometry Nodes to a big change to Cycles.。Collector 因此只把它歸入 blender 的技術／流程情報，不補寫來源沒有公開的 benchmark、內部實作或品質數字。
+       相較官方 Release 總覽，這篇文章更像功能導讀，公開摘要已點出 Geometry Nodes Cloth Physics 與 Cycles 變更，可用來快速鎖定 5.2 最值得深入看的區域。
       </p>
       <h4>
        Production 影響
       </h4>
       <p>
-       對 Production 的實際價值是把這項內容當成 blender-dcc 的近期工具、流程或案例參考，用來決定是否值得安排小型 A/B 測試、更新團隊規範或深入閱讀原始來源；目前不把尚未由來源證實的省時比例、效能提升或品質增益當成既知結果。
+       對 Blender Production，Geometry Nodes 的 Cloth Physics 可能影響程序化模擬流程，而 Cycles 變更則直接關聯 Lookdev／Final Render；兩者應分開做專案級驗證。
       </p>
       <h4>
        導入測試與限制
       </h4>
       <p>
-       目前證據深度以單一公開來源為主，因此維持 BRIEF。正式導入前應依團隊實際 DCC／引擎版本、資產規格、效能預算與輸出需求驗證相容性、可重現性和品質，並確認原始來源是否有後續更新、已知限制或授權條件。
+       這是媒體整理而不是完整 Release Notes；正式升級仍應以 Blender 官方文件為權威，並用既有 GN Setup、材質與 Cycles 場景檢查相容性與畫面差異。
       </p>
       <p class="analysis-level-note">
        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
