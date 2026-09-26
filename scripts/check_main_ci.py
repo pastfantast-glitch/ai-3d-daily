@@ -100,7 +100,7 @@ def writer_generated_commit(sha):
     return True, parent_list[0], subject
 
 
-COLLECTOR_SUBJECT_RE = re.compile(r"^Collect production intelligence (20\\d{2}-\\d{2}-\\d{2})$")
+COLLECTOR_SUBJECT_RE = re.compile(r"^Collect production intelligence (20\d{2}-\d{2}-\d{2})$")
 
 
 def changed_paths(sha):
