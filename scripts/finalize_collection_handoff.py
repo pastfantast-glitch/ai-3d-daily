@@ -207,6 +207,7 @@ def main() -> None:
     run("check_discovery_hybrid_contract.py")
     run("check_personalization_feedback_contract.py", date)
     run("check_quick_impact_contract.py", date)
+    run("check_editorial_quality.py", date)
     errors = collector_data_errors(data)
     if errors:
         fail("collector canonical validation failed: " + "; ".join(errors))
