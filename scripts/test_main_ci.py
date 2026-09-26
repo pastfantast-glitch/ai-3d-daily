@@ -165,6 +165,33 @@ class MainCITests(unittest.TestCase):
              self.assertRaisesRegex(ValueError, "scope invalid"):
             ci.source_evidence_sha("current", paths)
 
+    def test_policy_recollect_subject_inherits_parent_source_qa_when_actions_bot_scoped(self):
+        original_git = ci.git
+        try:
+            mapping = {
+                ("log", "-1", "--format=%H", "current", "--", "scripts/source.py"): "current",
+                ("show", "-s", "--format=%P", "current"): "parent",
+                ("show", "-s", "--format=%ae", "current"): ci.GITHUB_ACTIONS_BOT_EMAIL,
+                ("show", "-s", "--format=%s", "current"): "Recollect production intelligence 2026-09-26",
+                ("diff-tree", "--no-commit-id", "--name-only", "-r", "current"): "\n".join([
+                    "data/daily/2026-09-26.json",
+                    "data/candidates/collection-session/2026-09-26.json",
+                    "data/candidates/decision-ledger/2026-09-26.json",
+                    "data/candidates/rolling-backlog.json",
+                ]),
+                ("log", "-1", "--format=%H", "parent", "--", "scripts/source.py"): "parent",
+                ("show", "-s", "--format=%P", "parent"): "grandparent",
+                ("show", "-s", "--format=%ae", "parent"): "owner@example.com",
+                ("show", "-s", "--format=%s", "parent"): "Harden source contract",
+            }
+            ci.git = lambda *args: mapping[tuple(args)]
+            source_sha, skipped = ci.source_evidence_sha("current", ["scripts/source.py"])
+            self.assertEqual(source_sha, "parent")
+            self.assertEqual(len(skipped), 1)
+            self.assertEqual(skipped[0]["subject"], "Recollect production intelligence 2026-09-26")
+        finally:
+            ci.git = original_git
+
     def test_autonomous_collector_subject_requires_actions_bot_identity(self):
         def fake_git(*args):
             return self.commit_line(

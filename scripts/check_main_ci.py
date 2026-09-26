@@ -24,6 +24,7 @@ WRITER_COMMIT_PATTERNS = tuple(re.compile(x) for x in (
     r"^Record verified publish 20\d{2}-\d{2}-\d{2}$",
     r"^Recover canonical publication from [0-9a-f]{7,40}$",
     r"^Collect production intelligence 20\d{2}-\d{2}-\d{2}$",
+    r"^Recollect production intelligence 20\d{2}-\d{2}-\d{2}$",
     r"^Collector handoff 20\d{2}-\d{2}-\d{2}$",
 ))
 MAX_WRITER_COMMITS_TO_SKIP = 512
@@ -100,7 +101,7 @@ def writer_generated_commit(sha):
     return True, parent_list[0], subject
 
 
-COLLECTOR_SUBJECT_RE = re.compile(r"^Collect production intelligence (20\d{2}-\d{2}-\d{2})$")
+COLLECTOR_SUBJECT_RE = re.compile(r"^(?:Collect|Recollect) production intelligence (20\d{2}-\d{2}-\d{2})$")
 
 
 def changed_paths(sha):
