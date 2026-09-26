@@ -471,16 +471,27 @@ def stars(score: float) -> str:
     return "★" * filled + "☆" * (5 - filled)
 
 
-def load_registry(report_date: str, snapshot: dict) -> tuple[set[str], set[str], dict]:
+def load_registry(
+    report_date: str,
+    snapshot: dict,
+    *,
+    exclude_target_date: bool = False,
+) -> tuple[set[str], set[str], dict]:
+    def eligible(entry) -> bool:
+        if not exclude_target_date or not isinstance(entry, dict):
+            return True
+        day = str(entry.get("date") or "").strip()
+        return not day or day < report_date
+
     sources = {
         canonicalize_url(str(x.get("source_url") or ""))
         for x in snapshot.get("published_sources") or []
-        if canonicalize_url(str(x.get("source_url") or ""))
+        if eligible(x) and canonicalize_url(str(x.get("source_url") or ""))
     }
     ids = {
         str(x.get("id") if isinstance(x, dict) else x).strip()
         for x in snapshot.get("published_ids") or []
-        if str(x.get("id") if isinstance(x, dict) else x).strip()
+        if eligible(x) and str(x.get("id") if isinstance(x, dict) else x).strip()
     }
     latest_done = ""
     supplemented = 0
@@ -646,14 +657,24 @@ def main() -> int:
     personal_cfg = load_json(PERSONAL_PATH)
     hybrid = load_hybrid_config()
     report_date = current_date(runtime)
+    replace_done = "--replace-done" in set(sys.argv[2:])
 
     done = ROOT / "data" / "publish" / f"{report_date}.done.json"
-    if done.exists() and str(load_json(done).get("state", "")).upper() == "DONE":
+    done_verified = done.exists() and str(load_json(done).get("state", "")).upper() == "DONE"
+    if done_verified and not replace_done:
         print(f"COLLECTOR NOOP: {report_date} already state=DONE")
         return 0
+    if replace_done and not done_verified:
+        raise SystemExit("COLLECTOR FAILED: --replace-done requires an existing verified DONE receipt")
+    if replace_done:
+        print(f"COLLECTOR POLICY RECOLLECT: replacing {report_date} canonical/private artifacts; DONE/public surfaces remain untouched until canonical republish")
 
     snapshot = load_json(SNAPSHOT_PATH)
-    published_sources, published_ids, registry_audit = load_registry(report_date, snapshot)
+    published_sources, published_ids, registry_audit = load_registry(
+        report_date,
+        snapshot,
+        exclude_target_date=replace_done,
+    )
 
     backlog = load_json(BACKLOG_PATH)
     if int(backlog.get("schema_version", 0) or 0) != 1 or not isinstance(backlog.get("items"), list):
@@ -907,6 +928,7 @@ def main() -> int:
         "preference_contract_effective_date": intel["preference_contract_effective_date"],
         "admission_policy_effective_date": intel["admission_policy_effective_date"],
         "collector_runtime": TRACKING_SOURCE,
+        "policy_recollect": replace_done,
         "discovery_windows": list(intel["collection"]["discovery_windows"]),
         "analysis_level_counts": {
             "FULL": 0,

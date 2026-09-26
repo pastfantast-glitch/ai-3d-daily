@@ -94,6 +94,7 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("date")
     parser.add_argument("--writer-idle-confirmed", action="store_true")
+    parser.add_argument("--allow-done-policy-republish", action="store_true")
     args = parser.parse_args()
 
     date = str(args.date)
@@ -111,8 +112,12 @@ def main() -> None:
     if done_path.exists():
         receipt = read_json(done_path)
         if str((receipt or {}).get("state", "")).strip().upper() == "DONE":
-            fail(f"{date} already has state=DONE")
-        fail(f"unexpected non-DONE receipt exists: {done_path.relative_to(ROOT)}")
+            if not args.allow_done_policy_republish:
+                fail(f"{date} already has state=DONE")
+        else:
+            fail(f"unexpected non-DONE receipt exists: {done_path.relative_to(ROOT)}")
+    elif args.allow_done_policy_republish:
+        fail("--allow-done-policy-republish requires an existing verified DONE receipt")
     for path in (request_path, ready_path, trigger_path):
         if path.exists():
             fail(f"refusing duplicate handoff while {path.relative_to(ROOT)} exists")
@@ -127,7 +132,10 @@ def main() -> None:
     # artifacts were already persisted and synchronized before this gate.
     run(sys.executable, "scripts/check_release_architecture.py")
     run(sys.executable, "scripts/check_collection_session_contract.py", date)
-    run(sys.executable, "scripts/finalize_collection_handoff.py", date)
+    if args.allow_done_policy_republish:
+        run(sys.executable, "scripts/finalize_collection_handoff.py", date, "--policy-republish")
+    else:
+        run(sys.executable, "scripts/finalize_collection_handoff.py", date)
 
     changed = git_status_paths()
     if changed:
@@ -142,6 +150,7 @@ def main() -> None:
         "writer_idle_confirmed_externally": True,
         "generated_by": "scripts/create_collector_trigger.py",
         "public_surfaces_committed": False,
+        "intent": "policy-republish" if args.allow_done_policy_republish else "canonical-publish",
     }
     trigger_path.write_text(
         json.dumps(trigger, ensure_ascii=False, indent=2) + "\n",

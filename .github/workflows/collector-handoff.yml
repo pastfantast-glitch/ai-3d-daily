@@ -54,6 +54,7 @@ jobs:
           set -euo pipefail
           proceed=true
           date=""
+          policy_republish=false
 
           if [ "$EVENT_NAME" = "workflow_dispatch" ]; then
             date="${REQUESTED_DATE:-}"
@@ -64,15 +65,18 @@ jobs:
             else
               git fetch origin main
               while IFS= read -r message; do
-                if [[ "$message" == "Collect production intelligence "* ]]; then
+                if [[ "$message" == "Collect production intelligence "* || "$message" == "Recollect production intelligence "* ]]; then
                   candidate="$(printf '%s\n' "$message" | grep -oE '20[0-9]{2}-[0-9]{2}-[0-9]{2}' | head -1 || true)"
+                  is_policy=false
+                  if [[ "$message" == "Recollect production intelligence "* ]]; then is_policy=true; fi
                   if [ -n "$candidate" ] \
                     && [ -f "data/candidates/collection-session/$candidate.json" ] \
-                    && [ ! -f "data/publish/$candidate.done.json" ] \
+                    && { [ "$is_policy" = "true" ] || [ ! -f "data/publish/$candidate.done.json" ]; } \
                     && [ ! -f "data/publish/$candidate.collector" ] \
                     && [ ! -f "data/publish/$candidate.request" ] \
                     && [ ! -f "data/publish/$candidate.ready" ]; then
                     date="$candidate"
+                    policy_republish="$is_policy"
                     break
                   fi
                 fi
@@ -96,6 +100,10 @@ jobs:
               exit 1
             }
             date="$dates"
+            head_message="$(git log -1 --format=%s "$AFTER_SHA")"
+            if [[ "$head_message" == "Recollect production intelligence "* ]]; then
+              policy_republish=true
+            fi
           fi
 
           if [ "$proceed" = "true" ]; then
@@ -107,6 +115,7 @@ jobs:
           fi
           echo "value=$date" >> "$GITHUB_OUTPUT"
           echo "proceed=$proceed" >> "$GITHUB_OUTPUT"
+          echo "policy_republish=$policy_republish" >> "$GITHUB_OUTPUT"
 
       - name: Confirm checkout is still current main
         if: steps.date.outputs.proceed == 'true'
@@ -148,7 +157,12 @@ jobs:
         if: steps.date.outputs.proceed == 'true'
         env:
           DATE: ${{ steps.date.outputs.value }}
-        run: python scripts/create_collector_trigger.py "$DATE" --writer-idle-confirmed
+        run: |
+          if [ "${{ steps.date.outputs.policy_republish }}" = "true" ]; then
+            python scripts/create_collector_trigger.py "$DATE" --writer-idle-confirmed --allow-done-policy-republish
+          else
+            python scripts/create_collector_trigger.py "$DATE" --writer-idle-confirmed
+          fi
 
       - name: Reconfirm main has not moved
         if: steps.date.outputs.proceed == 'true'

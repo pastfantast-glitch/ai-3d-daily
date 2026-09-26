@@ -117,6 +117,8 @@ if WORKFLOW.exists():
         "actions: read",
         "fetch-depth: 0",
         'python scripts/run_daily_collector.py "$DATE"',
+        "--replace-done",
+        "[policy-recollect]",
         'python scripts/check_collection_session_contract.py "$DATE"',
         'python scripts/finalize_collection_handoff.py "$DATE"',
         'git commit -m "Collect production intelligence $DATE"',
@@ -141,6 +143,8 @@ if HANDOFF.exists():
         "workflows: ['Autonomous daily Collector']",
         "WORKFLOW_RUN_CONCLUSION",
         "Collect production intelligence ",
+        "Recollect production intelligence ",
+        "--allow-done-policy-republish",
         "proceed=true",
     ):
         if token not in content:

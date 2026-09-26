@@ -241,12 +241,13 @@ def write_request(date: str) -> None:
 def main() -> int:
     date = event_date()
     trigger = read_trigger(date)
+    policy_republish = trigger_policy_republish(trigger)
     wait_for_main_ci()
 
     # Session/schema/category/canonical defects are Collector-content problems.
     # Preserve fail-closed publication semantics, but route them back to Collector
     # instead of mislabeling the canonical publisher as broken.
-    validation = validation_only_finalizer(date)
+    validation = validation_only_finalizer(date, policy_republish)
     validation_output = print_proc(validation)
     if validation.returncode:
         reason = controlled_collector_validation_failure(validation_output)
@@ -301,7 +302,7 @@ def main() -> int:
 
     # Re-run finalizer on normalized/enriched canonical state; only this invocation
     # may create the repo-owned request marker.
-    write_request(date)
+    write_request(date, policy_republish)
     persist_request(date, trigger)
     write_output(date, "request", "")
     print(f"COLLECTOR BRIDGE PASS: {date} request persisted; canonical run continues")

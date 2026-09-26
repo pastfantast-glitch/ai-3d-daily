@@ -49,6 +49,7 @@ jobs:
         env:
           REQUESTED_DATE: ${{ github.event.inputs.date }}
           GH_TOKEN: ${{ github.token }}
+          POLICY_RECOLLECT: ${{ github.event_name == 'push' && contains(github.event.head_commit.message, '[policy-recollect]') }}
         run: |
           set -euo pipefail
           date="${REQUESTED_DATE:-}"
@@ -64,6 +65,7 @@ jobs:
           echo "date=$date" >> "$GITHUB_OUTPUT"
           echo "base_sha=$base_sha" >> "$GITHUB_OUTPUT"
           echo "skip=false" >> "$GITHUB_OUTPUT"
+          echo "policy_recollect=${POLICY_RECOLLECT:-false}" >> "$GITHUB_OUTPUT"
 
           done="data/publish/$date.done.json"
           if [ -f "$done" ]; then
@@ -73,9 +75,13 @@ jobs:
           PY
             )"
             if [ "$state" = "DONE" ]; then
-              echo "Already DONE for $date; Collector is a no-op."
-              echo "skip=true" >> "$GITHUB_OUTPUT"
-              exit 0
+              if [ "${POLICY_RECOLLECT:-false}" = "true" ]; then
+                echo "Verified DONE for $date; explicit policy recollect authorized by current push."
+              else
+                echo "Already DONE for $date; Collector is a no-op."
+                echo "skip=true" >> "$GITHUB_OUTPUT"
+                exit 0
+              fi
             fi
             echo "Unexpected non-DONE receipt exists: $done"
             exit 1
@@ -91,7 +97,7 @@ jobs:
           fi
 
           session="data/candidates/collection-session/$date.json"
-          if [ -f "$session" ]; then
+          if [ -f "$session" ] && [ "${POLICY_RECOLLECT:-false}" != "true" ]; then
             echo "Existing Collector session without DONE requires diagnosis; refusing overwrite: $session"
             exit 1
           fi
@@ -144,7 +150,12 @@ jobs:
         shell: bash
         env:
           DATE: ${{ steps.preflight.outputs.date }}
-        run: python scripts/run_daily_collector.py "$DATE"
+        run: |
+          if [ "${{ steps.preflight.outputs.policy_recollect }}" = "true" ]; then
+            python scripts/run_daily_collector.py "$DATE" --replace-done
+          else
+            python scripts/run_daily_collector.py "$DATE"
+          fi
 
       - name: Validate Collector session and canonical/private boundary
         if: steps.preflight.outputs.skip != 'true'
@@ -202,7 +213,11 @@ jobs:
             exit 1
           }
 
-          git commit -m "Collect production intelligence $DATE"
+          if [ "${{ steps.preflight.outputs.policy_recollect }}" = "true" ]; then
+            git commit -m "Recollect production intelligence $DATE"
+          else
+            git commit -m "Collect production intelligence $DATE"
+          fi
           git push origin HEAD:main
 
       - name: Collector summary

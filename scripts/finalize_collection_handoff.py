@@ -111,7 +111,7 @@ def parse_args(argv):
         fail("usage: finalize_collection_handoff.py YYYY-MM-DD [--write-request --writer-idle-confirmed]")
     date = str(argv[1])
     flags = set(argv[2:])
-    allowed = {"--write-request", "--writer-idle-confirmed"}
+    allowed = {"--write-request", "--writer-idle-confirmed", "--policy-republish"}
     unknown = flags - allowed
     if unknown:
         fail(f"unknown flags: {sorted(unknown)}")
@@ -140,8 +140,11 @@ def main() -> None:
     ready_path = ROOT / "data" / "publish" / f"{date}.ready"
     done_path = ROOT / "data" / "publish" / f"{date}.done.json"
 
-    if done_is_verified(done_path):
+    policy_republish = "--policy-republish" in flags
+    if done_is_verified(done_path) and not policy_republish:
         fail(f"{date} already has state=DONE")
+    if policy_republish and not done_is_verified(done_path):
+        fail("--policy-republish requires an existing verified DONE receipt")
     if ready_path.exists():
         fail(f"refusing Collector mutation after ready exists: {ready_path.relative_to(ROOT)}")
 
@@ -216,11 +219,12 @@ def main() -> None:
     request = {
         "state": "REQUESTED",
         "date": date,
-        "intent": "canonical-publish",
+        "intent": "policy-republish" if policy_republish else "canonical-publish",
         "requested_by": "scripts/finalize_collection_handoff.py",
         "collector_contracts_passed": True,
         "writer_idle_confirmed_externally": True,
         "public_surfaces_committed": False,
+        "allow_done_republish": policy_republish,
     }
     write_json(request_path, request)
     print(
