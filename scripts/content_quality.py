@@ -426,17 +426,17 @@ def editorial_analysis(meta: dict, category: str, subcategory: str) -> list[dict
     focus_text = "、".join(focus) if focus else label
 
     if has_any(raw, ("release", "update", "version", "beta", "alpha", "preview")):
-        technical = f"這項情報屬於版本／功能更新；目前可確認的製作重點集中在 {focus_text}。評估時應先把新功能與現有 {label} 流程逐項對照，而不是只看版本號或功能數量。"
-        impact = f"對 Production 的價值在於建立升級優先順序：哪些 {focus_text} 變更會直接影響日常製作、資產交換或最終輸出，應先用代表性專案做回歸。"
+        technical = f"「{title}」屬於版本／功能更新；目前可確認的製作重點集中在 {focus_text}。評估時應先把新功能與現有 {label} 流程逐項對照，而不是只看版本號或功能數量。"
+        impact = f"對 Production 的價值在於用「{title}」建立升級優先順序：哪些 {focus_text} 變更會直接影響日常製作、資產交換或最終輸出，應先用代表性專案做回歸。"
     elif has_any(raw, ("breakdown", "tutorial", "how to", "guide", "case study", "behind", "making-of")):
-        technical = f"這項內容屬於製作拆解／教學，核心觀察點落在 {focus_text}。可先把來源明確展示的步驟、視覺判斷與工具使用拆開，再對照自己現有流程。"
-        impact = f"對 {label} Production 的價值是提供可比較的實作案例；適合拿來做 Review Reference 或小型 A/B Test，而不是直接把單一案例視為通用標準。"
+        technical = f"「{title}」屬於製作拆解／教學，核心觀察點落在 {focus_text}。可先把來源明確展示的步驟、視覺判斷與工具使用拆開，再對照自己現有流程。"
+        impact = f"「{title}」對 {label} Production 的價值是提供可比較的實作案例；適合拿來做 Review Reference 或小型 A/B Test，而不是直接把單一案例視為通用標準。"
     else:
-        technical = f"這項情報目前可確認的技術／製作焦點集中在 {focus_text}。應優先理解它改變的是工具能力、製作方法還是輸出結果，再判斷與現有流程的關聯。"
-        impact = f"對 {label} 團隊而言，可把它當成近期參考項目，用來決定是否值得深入閱讀、建立測試檔或更新內部 Review Checklist。"
+        technical = f"「{title}」目前可確認的技術／製作焦點集中在 {focus_text}。應優先理解它改變的是工具能力、製作方法還是輸出結果，再判斷與現有流程的關聯。"
+        impact = f"對 {label} 團隊而言，「{title}」可作為近期參考項目，用來決定是否值得深入閱讀、建立測試檔或更新內部 Review Checklist。"
 
     limit = (
-        "目前證據深度仍以公開來源為主；正式導入前應用團隊實際 DCC／引擎版本、資產規格與輸出條件驗證相容性、"
+        f"「{title}」目前的證據深度仍以公開來源為主；正式導入前應用團隊實際 DCC／引擎版本、資產規格與輸出條件驗證相容性、"
         "可重現性與品質，且不得把來源未公開的效能、工時或品質提升當成既知結果。"
     )
     return [
