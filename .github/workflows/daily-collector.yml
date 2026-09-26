@@ -195,7 +195,7 @@ jobs:
         run: |
           set -euo pipefail
 
-          expected="$(
+          allowed="$(
             printf '%s\n' \
               "data/candidates/collection-session/$DATE.json" \
               "data/candidates/decision-ledger/$DATE.json" \
@@ -203,12 +203,27 @@ jobs:
               "data/daily/$DATE.json" \
             | sort
           )"
+          required="$(
+            printf '%s\n' \
+              "data/candidates/collection-session/$DATE.json" \
+              "data/candidates/decision-ledger/$DATE.json" \
+              "data/daily/$DATE.json" \
+            | sort
+          )"
           changed="$(git status --porcelain | sed 's/^...//' | sort)"
-          test "$changed" = "$expected" || {
+          unexpected="$(comm -23 <(printf '%s\n' "$changed") <(printf '%s\n' "$allowed") || true)"
+          test -z "$unexpected" || {
             echo "Collector changed paths outside the allowed canonical/private boundary:"
-            printf '%s\n' "$changed"
+            printf '%s\n' "$unexpected"
             exit 1
           }
+          while IFS= read -r required_path; do
+            [ -z "$required_path" ] && continue
+            printf '%s\n' "$changed" | grep -Fxq "$required_path" || {
+              echo "Collector did not persist required canonical/private artifact: $required_path"
+              exit 1
+            }
+          done <<< "$required"
 
           git fetch origin main
           current_main="$(git rev-parse origin/main)"
@@ -226,7 +241,7 @@ jobs:
             "data/candidates/rolling-backlog.json"
 
           staged="$(git diff --cached --name-only | sort)"
-          test "$staged" = "$expected" || {
+          test "$staged" = "$changed" || {
             echo "Unexpected staged Collector paths:"
             printf '%s\n' "$staged"
             exit 1
