@@ -248,7 +248,9 @@ if AUTONOMOUS_COLLECTOR.exists():
         'python scripts/run_daily_collector.py "$DATE"',
         'python scripts/check_collection_session_contract.py "$DATE"',
         'python scripts/finalize_collection_handoff.py "$DATE"',
-        'git commit -m "Collect production intelligence $DATE"',
+        'commit_subject="Collect production intelligence $DATE"',
+        'commit_subject="Recollect production intelligence $DATE"',
+        'git commit -m "$commit_subject"',
     ):
         if token not in autonomous:
             fail(f'daily-collector.yml missing autonomous Collector token: {token}')
