@@ -167,16 +167,3 @@ if errors:
     raise SystemExit(1)
 
 print("AUTONOMOUS COLLECTOR CONTRACT PASS: bounded source-grounded GitHub Collector + private-only mutation + GITHUB_TOKEN workflow_run bridge + trusted bot-chain CI semantics")
- not in content:
-        fail("check_main_ci.py must allowlist only exact bot-generated Collector/recollect commit subjects")
-    match = re.search(r"MAX_WRITER_COMMITS_TO_SKIP\s*=\s*(\d+)", content)
-    if not match or int(match.group(1)) < 128:
-        fail("check_main_ci.py writer-chain bound is too short for sustained autonomous daily publishing")
-
-if errors:
-    print("AUTONOMOUS COLLECTOR CONTRACT FAILED")
-    for error in errors:
-        print("-", error)
-    raise SystemExit(1)
-
-print("AUTONOMOUS COLLECTOR CONTRACT PASS: bounded source-grounded GitHub Collector + private-only mutation + GITHUB_TOKEN workflow_run bridge + trusted bot-chain CI semantics")
