@@ -23,7 +23,7 @@ WRITER_COMMIT_PATTERNS = tuple(re.compile(x) for x in (
     r"^Publish canonical intelligence 20\d{2}-\d{2}-\d{2}$",
     r"^Record verified publish 20\d{2}-\d{2}-\d{2}$",
     r"^Recover canonical publication from [0-9a-f]{7,40}$",
-    r"^Collect production intelligence 20\\d{2}-\\d{2}-\\d{2}$",
+    r"^Collect production intelligence 20\d{2}-\d{2}-\d{2}$",
     r"^Collector handoff 20\d{2}-\d{2}-\d{2}$",
 ))
 MAX_WRITER_COMMITS_TO_SKIP = 512
