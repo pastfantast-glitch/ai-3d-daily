@@ -719,8 +719,12 @@ def run_editorial_repair(report_date: str, runtime: dict, override_path: Path) -
 
         result = fetch(source_session, source_url, timeout)
         meta = page_metadata(result, str(item.get("title") or rid))
-        if not meta or not relevant(meta):
-            raise SystemExit(f"COLLECTOR FAILED: editorial repair could not reverify source for {rid}")
+        # Editorial-only repair re-verifies availability and canonical identity.
+        # Admission already occurred when this exact item entered the verified-DONE
+        # canonical selection; re-running language-sensitive Admission here can
+        # incorrectly reject valid Japanese/other-language source pages.
+        if not meta:
+            raise SystemExit(f"COLLECTOR FAILED: editorial repair could not reverify readable source for {rid}")
         verified_url = canonicalize_url(str(meta.get("url") or ""))
         if verified_url != source_url:
             raise SystemExit(
