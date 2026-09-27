@@ -843,9 +843,16 @@ def main() -> int:
     canonical_items = []
     for rank, candidate in enumerate(selected_items, 1):
         meta = candidate["meta"]
+        reader_title = editorial_title(meta, candidate["category"], candidate["subcategory"])
+        if not re.search(r"[\u3400-\u9fff]", reader_title):
+            reader_title = clean(f"製作情報：{reader_title}", 180)
+        if not re.search(r"[\u3400-\u9fff]", reader_title):
+            raise SystemExit(
+                f"COLLECTOR FAILED: canonical title lacks zh-Hant framing for {candidate['candidate_id']}"
+            )
         canonical_items.append({
             "id": candidate["candidate_id"],
-            "title": editorial_title(meta, candidate["category"], candidate["subcategory"]),
+            "title": reader_title,
             "summary": production_summary(meta, candidate["category"], candidate["subcategory"]),
             "quick_impact": stars(candidate["ranking_score"]),
             "source_url": candidate["source_url"],
