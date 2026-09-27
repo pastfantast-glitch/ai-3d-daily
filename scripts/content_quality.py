@@ -355,6 +355,11 @@ def editorial_title(meta: dict, category: str, subcategory: str) -> str:
     if re.search(r"[\u3400-\u9fff]", raw):
         return raw
     label = friendly_label(category, subcategory)
+    # Editorial titles must always carry a Traditional-Chinese framing even when
+    # the most specific technical label is English-only (for example Blender,
+    # Substance, Unreal Engine, Rigging or Rendering).
+    if not re.search(r"[\u3400-\u9fff]", label):
+        label = CATEGORY_LABELS.get(category) or "製作情報"
 
     patterns = (
         (r"^Blender\s+(.+?)\s+Release$", lambda m: f"Blender {m.group(1)}：版本更新"),
