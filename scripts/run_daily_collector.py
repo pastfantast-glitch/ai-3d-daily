@@ -37,6 +37,8 @@ PERSONAL_PATH = ROOT / "config" / "personalization-feedback.json"
 RUNTIME_PATH = ROOT / "config" / "collector-runtime.json"
 SNAPSHOT_PATH = ROOT / "data" / "candidates" / "published-registry-snapshot.json"
 BACKLOG_PATH = ROOT / "data" / "candidates" / "rolling-backlog.json"
+EDITORIAL_CONFIG_PATH = ROOT / "config" / "editorial-quality.json"
+EDITORIAL_OVERRIDE_DIR = ROOT / "data" / "editorial-overrides"
 
 TRACKING_SOURCE = "autonomous-github-collector-v1"
 DATE_RE = re.compile(r"^20\d{2}-\d{2}-\d{2}$")
@@ -650,6 +652,160 @@ def source_probe(
     }
 
 
+
+def selection_fingerprint(items: list[dict]) -> str:
+    payload = [
+        {
+            "id": str(item.get("id") or ""),
+            "source_url": canonicalize_url(str(item.get("source_url") or "")),
+            "rank_global": int(item.get("rank_global", 0) or 0),
+            "category": str(item.get("category") or ""),
+            "subcategory": str(item.get("subcategory") or ""),
+        }
+        for item in items
+    ]
+    return hashlib.sha256(
+        json.dumps(payload, ensure_ascii=False, sort_keys=True, separators=(",", ":")).encode("utf-8")
+    ).hexdigest()
+
+
+def run_editorial_repair(report_date: str, runtime: dict, override_path: Path) -> int:
+    daily_path = ROOT / "data" / "daily" / f"{report_date}.json"
+    session_path = ROOT / "data" / "candidates" / "collection-session" / f"{report_date}.json"
+    ledger_path = ROOT / "data" / "candidates" / "decision-ledger" / f"{report_date}.json"
+    data = load_json(daily_path)
+    collection = load_json(session_path)
+    override = load_json(override_path)
+    editorial_cfg = load_json(EDITORIAL_CONFIG_PATH)
+
+    if int(override.get("schema_version", 0) or 0) != 1 or override.get("date") != report_date:
+        raise SystemExit("COLLECTOR FAILED: editorial override schema/date mismatch")
+    if override.get("preserve_selection") is not True:
+        raise SystemExit("COLLECTOR FAILED: editorial repair must explicitly preserve selection")
+
+    items = data.get("items") or []
+    patches = override.get("items") or {}
+    if not isinstance(patches, dict):
+        raise SystemExit("COLLECTOR FAILED: editorial override items must be an object")
+
+    ids = [str(item.get("id") or "") for item in items]
+    if set(ids) != set(patches) or len(ids) != len(patches):
+        missing = sorted(set(ids) - set(patches))
+        unknown = sorted(set(patches) - set(ids))
+        raise SystemExit(
+            f"COLLECTOR FAILED: editorial override must match canonical item set exactly; "
+            f"missing={missing} unknown={unknown}"
+        )
+
+    before_fingerprint = selection_fingerprint(items)
+    source_session = requests.Session()
+    source_session.headers.update({
+        "User-Agent": runtime["http"]["user_agent"],
+        "Accept": "text/html,application/xhtml+xml",
+        "Accept-Language": "en-US,en;q=0.8,zh-TW;q=0.5,ja;q=0.4",
+    })
+    timeout = int(runtime["http"]["timeout_seconds"])
+    reverified = 0
+
+    for item in items:
+        rid = str(item.get("id") or "")
+        patch = patches[rid]
+        if not isinstance(patch, dict):
+            raise SystemExit(f"COLLECTOR FAILED: editorial patch for {rid} must be an object")
+        source_url = canonicalize_url(str(item.get("source_url") or ""))
+        patch_url = canonicalize_url(str(patch.get("source_url") or source_url))
+        if not source_url or patch_url != source_url:
+            raise SystemExit(f"COLLECTOR FAILED: editorial repair source identity mismatch for {rid}")
+
+        result = fetch(source_session, source_url, timeout)
+        meta = page_metadata(result, str(item.get("title") or rid))
+        if not meta or not relevant(meta):
+            raise SystemExit(f"COLLECTOR FAILED: editorial repair could not reverify source for {rid}")
+        verified_url = canonicalize_url(str(meta.get("url") or ""))
+        if verified_url != source_url:
+            raise SystemExit(
+                f"COLLECTOR FAILED: editorial repair source redirected to different identity for {rid}: "
+                f"{source_url} -> {verified_url}"
+            )
+
+        title = clean(patch.get("title"), 180)
+        summary = clean(patch.get("summary"), 520)
+        analysis = patch.get("full_analysis")
+        if not title or not re.search(r"[\u3400-\u9fff]", title):
+            raise SystemExit(f"COLLECTOR FAILED: editorial repair title lacks zh-Hant framing for {rid}")
+        if len(summary) < 28 or not re.search(r"[\u3400-\u9fff]", summary):
+            raise SystemExit(f"COLLECTOR FAILED: editorial repair summary invalid for {rid}")
+        if not isinstance(analysis, list) or len(analysis) != 3:
+            raise SystemExit(f"COLLECTOR FAILED: editorial repair requires exactly three analysis blocks for {rid}")
+
+        item["title"] = title
+        item["summary"] = summary
+        item["full_analysis"] = analysis
+        reverified += 1
+
+    after_fingerprint = selection_fingerprint(items)
+    if before_fingerprint != after_fingerprint:
+        raise SystemExit("COLLECTOR FAILED: editorial repair changed canonical selection/order/classification")
+
+    metadata = data.setdefault("metadata", {})
+    metadata["policy_recollect"] = True
+    metadata["editorial"] = {
+        "contract": str(editorial_cfg.get("contract") or "source-grounded-editorial-v1"),
+        "style_reference": str(override.get("style_reference") or editorial_cfg.get("style_reference") or "2026-09-25"),
+        "selection_changed": False,
+        "repair_reason": clean(override.get("reason"), 220),
+        "source_reverified_count": reverified,
+        "selection_fingerprint": before_fingerprint,
+        "factual_fallback_allowed": True,
+        "repair_mode": "selection-preserving-source-reverified",
+    }
+
+    decisions = collection.get("candidate_decisions") or []
+    repaired_decisions = 0
+    canonical_ids = set(ids)
+    for decision in decisions:
+        if str(decision.get("decision") or "") != "published":
+            continue
+        canonical_id = str(decision.get("canonical_id") or "")
+        if canonical_id not in canonical_ids:
+            continue
+        channels = [str(x) for x in (decision.get("discovery_channels") or []) if str(x)]
+        marker = "editorial-repair-source-reverify"
+        if marker not in channels:
+            channels.append(marker)
+        decision["discovery_channels"] = channels
+        repaired_decisions += 1
+    if repaired_decisions != len(items):
+        raise SystemExit(
+            f"COLLECTOR FAILED: editorial repair traceability mismatch "
+            f"published_decisions={repaired_decisions} items={len(items)}"
+        )
+
+    coverage = collection.get("discovery_coverage") or {}
+    note = str(coverage.get("notes") or "").strip()
+    repair_note = (
+        f"{report_date} editorial-only policy recollect preserved all {len(items)} canonical IDs, "
+        "source URLs, ranks and classifications; every selected source was reverified before reader copy replacement."
+    )
+    coverage["notes"] = (note + " " + repair_note).strip()
+    collection["discovery_coverage"] = coverage
+
+    ledger = {
+        "schema_version": 1,
+        "date": report_date,
+        "items": decisions,
+    }
+    write_json(daily_path, data)
+    write_json(session_path, collection)
+    write_json(ledger_path, ledger)
+    print(
+        f"EDITORIAL REPAIR PERSISTENCE READY: date={report_date} items={len(items)} "
+        f"reverified={reverified} selection_changed=false "
+        f"style_reference={metadata['editorial']['style_reference']}"
+    )
+    return 0
+
+
 def main() -> int:
     runtime = load_json(RUNTIME_PATH)
     intel = load_json(INTEL_PATH)
@@ -668,6 +824,9 @@ def main() -> int:
         raise SystemExit("COLLECTOR FAILED: --replace-done requires an existing verified DONE receipt")
     if replace_done:
         print(f"COLLECTOR POLICY RECOLLECT: replacing {report_date} canonical/private artifacts; DONE/public surfaces remain untouched until canonical republish")
+        override_path = EDITORIAL_OVERRIDE_DIR / f"{report_date}.json"
+        if override_path.exists():
+            return run_editorial_repair(report_date, runtime, override_path)
 
     snapshot = load_json(SNAPSHOT_PATH)
     published_sources, published_ids, registry_audit = load_registry(
@@ -951,6 +1110,13 @@ def main() -> int:
             "brief_reading_style_reference", "2026-09-12"
         ),
         "full_analysis_heading_language": "zh-Hant",
+        "editorial": {
+            "contract": str((load_json(EDITORIAL_CONFIG_PATH) if EDITORIAL_CONFIG_PATH.exists() else {}).get("contract") or "source-grounded-editorial-v1"),
+            "style_reference": str((load_json(EDITORIAL_CONFIG_PATH) if EDITORIAL_CONFIG_PATH.exists() else {}).get("style_reference") or "2026-09-25"),
+            "selection_changed": None,
+            "factual_fallback_allowed": True,
+            "repair_mode": "automatic-source-factual-fallback",
+        },
         "discovery_coverage": coverage,
         "personalization": personal,
     }
