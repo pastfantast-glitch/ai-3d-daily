@@ -145,14 +145,15 @@ analysis = editorial_analysis(editorial_meta, "blender-dcc", "blender")
 assert title == "Blender 5.2 LTS：版本更新"
 assert "來源頁面顯示" not in summary
 assert "Collector 僅依" not in summary
-assert "Blender 5.2 LTS：版本更新" in summary
-assert any(x in summary for x in ("流程", "導入", "製作", "測試"))
 assert "Rendering advancements" in summary
+assert "Production 檢查點" in summary
 assert "近期製作參考" not in summary
 assert "值得進一步實測" not in summary
 assert len(analysis) == 3
 assert [x["label"] for x in analysis] == ["技術／流程變更", "Production 影響", "導入測試與限制"]
-assert all("Blender 5.2 LTS：版本更新" in x["text"] for x in analysis)
+assert "Rendering advancements" in analysis[0]["text"]
+assert "Blender 5.2 LTS：版本更新" in analysis[0]["text"]
+assert "Blender 5.2 LTS：版本更新" in analysis[2]["text"]
 assert len({x["text"] for x in analysis}) == 3
 for block in analysis:
     assert "Collector" not in block["text"]
