@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Shared content-quality policy for autonomous Production Intelligence collection.
-Policy revision: 2026-09-27 navigation-index rejection v2.
+Policy revision: 2026-09-27 source-grounded editorial v1.
 
 This module is deliberately deterministic and source-grounded. It rejects index,
 product/marketing landing, governance/event, and non-production pages before ranking;
