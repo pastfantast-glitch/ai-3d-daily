@@ -673,15 +673,20 @@ def run_editorial_repair(report_date: str, runtime: dict, override_path: Path) -
     daily_path = ROOT / "data" / "daily" / f"{report_date}.json"
     session_path = ROOT / "data" / "candidates" / "collection-session" / f"{report_date}.json"
     ledger_path = ROOT / "data" / "candidates" / "decision-ledger" / f"{report_date}.json"
+    done_path = ROOT / "data" / "publish" / f"{report_date}.done.json"
     data = load_json(daily_path)
     collection = load_json(session_path)
     override = load_json(override_path)
     editorial_cfg = load_json(EDITORIAL_CONFIG_PATH)
+    done = load_json(done_path)
+    snapshot = load_json(SNAPSHOT_PATH)
 
     if int(override.get("schema_version", 0) or 0) != 1 or override.get("date") != report_date:
         raise SystemExit("COLLECTOR FAILED: editorial override schema/date mismatch")
     if override.get("preserve_selection") is not True:
         raise SystemExit("COLLECTOR FAILED: editorial repair must explicitly preserve selection")
+    if str(done.get("state") or "").upper() != "DONE":
+        raise SystemExit("COLLECTOR FAILED: editorial repair requires verified DONE target")
 
     items = data.get("items") or []
     patches = override.get("items") or {}
@@ -697,6 +702,37 @@ def run_editorial_repair(report_date: str, runtime: dict, override_path: Path) -
             f"missing={missing} unknown={unknown}"
         )
 
+    done_ids = {str(x) for x in ((done.get("canonical") or {}).get("ids") or [])}
+    if set(ids) != done_ids:
+        raise SystemExit("COLLECTOR FAILED: editorial repair item set differs from verified DONE receipt")
+
+    source_review = override.get("source_review") or {}
+    review_valid = (
+        str(source_review.get("status") or "") == "verified"
+        and str(source_review.get("reviewed_on") or "") == report_date
+        and int(source_review.get("reviewed_count", 0) or 0) == len(items)
+        and str(source_review.get("method") or "") == "external-source-review-plus-verified-DONE-identity"
+    )
+
+    registry_pairs = {
+        (
+            str(entry.get("date") or ""),
+            str(entry.get("id") or ""),
+            canonicalize_url(str(entry.get("source_url") or "")),
+        )
+        for entry in (snapshot.get("published_sources") or [])
+        if isinstance(entry, dict)
+    }
+    registry_pairs.update({
+        (
+            str(entry.get("date") or ""),
+            str(entry.get("id") or ""),
+            canonicalize_url(str(entry.get("source_url") or "")),
+        )
+        for entry in (snapshot.get("published_ids") or [])
+        if isinstance(entry, dict)
+    })
+
     before_fingerprint = selection_fingerprint(items)
     source_session = requests.Session()
     source_session.headers.update({
@@ -705,7 +741,9 @@ def run_editorial_repair(report_date: str, runtime: dict, override_path: Path) -
         "Accept-Language": "en-US,en;q=0.8,zh-TW;q=0.5,ja;q=0.4",
     })
     timeout = int(runtime["http"]["timeout_seconds"])
-    reverified = 0
+    direct_reverified = 0
+    verified_done_fallback = 0
+    fallback_ids: list[str] = []
 
     for item in items:
         rid = str(item.get("id") or "")
@@ -719,18 +757,33 @@ def run_editorial_repair(report_date: str, runtime: dict, override_path: Path) -
 
         result = fetch(source_session, source_url, timeout)
         meta = page_metadata(result, str(item.get("title") or rid))
-        # Editorial-only repair re-verifies availability and canonical identity.
-        # Admission already occurred when this exact item entered the verified-DONE
-        # canonical selection; re-running language-sensitive Admission here can
-        # incorrectly reject valid Japanese/other-language source pages.
-        if not meta:
-            raise SystemExit(f"COLLECTOR FAILED: editorial repair could not reverify readable source for {rid}")
-        verified_url = canonicalize_url(str(meta.get("url") or ""))
-        if verified_url != source_url:
-            raise SystemExit(
-                f"COLLECTOR FAILED: editorial repair source redirected to different identity for {rid}: "
-                f"{source_url} -> {verified_url}"
-            )
+        if meta:
+            verified_url = canonicalize_url(str(meta.get("url") or ""))
+            if verified_url != source_url:
+                raise SystemExit(
+                    f"COLLECTOR FAILED: editorial repair source redirected to different identity for {rid}: "
+                    f"{source_url} -> {verified_url}"
+                )
+            direct_reverified += 1
+        else:
+            # Some publishers block GitHub-hosted collectors while remaining readable
+            # to normal web clients. This fallback is intentionally restricted to an
+            # editorial-only repair of an already verified-DONE selection: the exact
+            # date/id/source identity must still exist in the authoritative snapshot,
+            # and the override must carry a current external source-review audit.
+            final_url = canonicalize_url(str(result.get("final_url") or result.get("url") or ""))
+            if final_url and final_url != source_url:
+                raise SystemExit(
+                    f"COLLECTOR FAILED: editorial repair blocked source redirected to different identity for {rid}: "
+                    f"{source_url} -> {final_url}"
+                )
+            if not review_valid or (report_date, rid, source_url) not in registry_pairs:
+                raise SystemExit(
+                    f"COLLECTOR FAILED: editorial repair source unavailable in runner without "
+                    f"verified-DONE identity + external review evidence for {rid}"
+                )
+            verified_done_fallback += 1
+            fallback_ids.append(rid)
 
         title = clean(patch.get("title"), 180)
         summary = clean(patch.get("summary"), 520)
@@ -745,7 +798,6 @@ def run_editorial_repair(report_date: str, runtime: dict, override_path: Path) -
         item["title"] = title
         item["summary"] = summary
         item["full_analysis"] = analysis
-        reverified += 1
 
     after_fingerprint = selection_fingerprint(items)
     if before_fingerprint != after_fingerprint:
@@ -758,7 +810,11 @@ def run_editorial_repair(report_date: str, runtime: dict, override_path: Path) -
         "style_reference": str(override.get("style_reference") or editorial_cfg.get("style_reference") or "2026-09-25"),
         "selection_changed": False,
         "repair_reason": clean(override.get("reason"), 220),
-        "source_reverified_count": reverified,
+        "source_reverified_count": direct_reverified + verified_done_fallback,
+        "source_live_reverified_count": direct_reverified,
+        "source_verified_done_fallback_count": verified_done_fallback,
+        "source_verified_done_fallback_ids": fallback_ids,
+        "source_review_method": str(source_review.get("method") or ""),
         "selection_fingerprint": before_fingerprint,
         "factual_fallback_allowed": True,
         "repair_mode": "selection-preserving-source-reverified",
@@ -789,7 +845,8 @@ def run_editorial_repair(report_date: str, runtime: dict, override_path: Path) -
     note = str(coverage.get("notes") or "").strip()
     repair_note = (
         f"{report_date} editorial-only policy recollect preserved all {len(items)} canonical IDs, "
-        "source URLs, ranks and classifications; every selected source was reverified before reader copy replacement."
+        f"source URLs, ranks and classifications; sources reverified before copy replacement "
+        f"(live={direct_reverified}, verified-DONE+external-review fallback={verified_done_fallback})."
     )
     coverage["notes"] = (note + " " + repair_note).strip()
     collection["discovery_coverage"] = coverage
@@ -804,11 +861,11 @@ def run_editorial_repair(report_date: str, runtime: dict, override_path: Path) -
     write_json(ledger_path, ledger)
     print(
         f"EDITORIAL REPAIR PERSISTENCE READY: date={report_date} items={len(items)} "
-        f"reverified={reverified} selection_changed=false "
+        f"reverified={direct_reverified + verified_done_fallback} live={direct_reverified} "
+        f"verified_done_fallback={verified_done_fallback} selection_changed=false "
         f"style_reference={metadata['editorial']['style_reference']}"
     )
     return 0
-
 
 def main() -> int:
     runtime = load_json(RUNTIME_PATH)
