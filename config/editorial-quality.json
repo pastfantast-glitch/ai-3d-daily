@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "effective_date": "2026-09-27",
+  "contract": "source-grounded-editorial-v1",
+  "style_reference": "2026-09-25",
+  "reader_language": "zh-Hant",
+  "mode": "source-grounded-editorial-with-factual-fallback",
+  "selection_preserving_repair": {
+    "directory": "data/editorial-overrides",
+    "require_exact_item_set": true,
+    "reverify_sources": true
+  },
+  "factual_fallback": {
+    "enabled": true,
+    "max_source_description_chars": 280,
+    "allow_shorter_brief_instead_of_generic_padding": true
+  },
+  "qa": {
+    "min_summary_chars": 28,
+    "min_analysis_block_chars": 36,
+    "max_cross_item_signature_occurrences": 2,
+    "banned_phrases": [
+      "來源頁面顯示",
+      "頁面內容指出：",
+      "Collector 因此",
+      "具有直接 Production 參考價值",
+      "來源可驗證的製作重點包含",
+      "來源可驗證的主題落在",
+      "近期工具、流程或案例參考",
+      "近期製作參考",
+      "值得進一步實測",
+      "可作為近期參考項目",
+      "建立測試檔",
+      "應優先理解它改變的是",
+      "用來決定是否值得深入閱讀"
+    ],
+    "banned_title_patterns": [
+      "(?:製作情報：){2,}",
+      "(?:Blender／DCC：){2,}",
+      "^製作情報：Blender／DCC：Blender／DCC："
+    ]
+  }
+}
