@@ -1,0 +1,428 @@
+{
+  "schema_version": 1,
+  "date": "2026-09-27",
+  "contract": "source-reviewed-editorial-repair-v1",
+  "style_reference": "2026-09-25",
+  "preserve_selection": true,
+  "reason": "Replace generic deterministic copy with source-specific Production Intelligence while preserving the published selection.",
+  "items": {
+    "web-discovery-ai-game-character-workflow-tripo-blender-unity": {
+      "source_url": "https://3dskillup.art/ai-game-character-workflow-tripo-blender-unity",
+      "title": "Tripo → Blender → Unity：AI 角色從生成、拓樸清理到 Humanoid 的完整流程",
+      "summary": "案例從四視圖參考開始，用 Tripo AI 產生 high poly 與初始 low poly，再進 Blender 修拓樸、拆 UV 與轉移 Base Color，接著以 Marmoset 烘焙細節、Substance Painter 製作材質、Rigify 綁定，最後在 Unity 設定 Humanoid Avatar。",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "這條流程把 AI 3D 明確放在前段：Tripo 負責 high-poly 起稿與初始 retopology，但最終可用的 low poly 仍要在 Blender 檢查關節區拓樸、UV、cage 與 bake，再接 Painter、Rigify 和 Unity Humanoid。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對遊戲角色量產最有價值的是 handoff 很清楚：AI 輸出不是終稿，而是 high／low 兩套來源；後續人工處理集中在 silhouette、變形拓樸、UV、烘焙與 skinning，較容易把 AI 納入既有角色 SOP。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "來源只示範一名海盜角色，且自動 retopology 之後仍需要手動 cleanup。導入時應分角色、硬表面與服裝測試 Tripo 輸出的關節 edge flow、UV 可用性、烘焙錯誤與 Unity 動畫變形，不能只看正面生成品質。"
+        }
+      ]
+    },
+    "web-discovery-i-finally-learned-to-enjoy-3d-art-with-this-workflow-using-3": {
+      "source_url": "https://www.creativebloq.com/design/poster-design/i-finally-learned-to-enjoy-3d-art-with-this-workflow-using-3dcoat-quixel-mixer-blender-and-photoshop",
+      "title": "3DCoat → Quixel Mixer → Blender → Photoshop：Overgrown Robot 場景的跨 DCC 流程",
+      "summary": "Marcin Basta 先以 3DCoat 的 voxel workflow 建立機器人與岩石，完成 autopo 與 UV 後送進 Quixel Mixer 疊加鏽蝕、苔蘚材質，再到 Blender 組場景、打光與 Cycles render，最後用 Photoshop 的 mist／light pass 與 paintover 完成畫面。",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "流程把不同 DCC 的責任切得很明確：3DCoat 負責自由 sculpt 與 retopo／UV，Quixel Mixer 負責掃描材質混合，Blender 處理場景組裝、散佈、燈光與 render，Photoshop 只做最後的天空替換與局部修整。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對概念場景或 key art，這種拆法能避免所有工作都塞進單一 DCC。少量可重複岩石透過旋轉與縮放組成場景，也示範先做可覆用資產，再靠材質變體與構圖拉開差異的思路。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "這是偏離線視覺開發的流程，而且 Quixel Mixer 已停止持續更新；若要轉成遊戲場景，需要另外驗證貼圖規格、材質 channel、LOD、draw call 與引擎重建成本，不能直接把最終 render 流程當成 runtime pipeline。"
+        }
+      ]
+    },
+    "web-discovery-field-aligned-surface-filling-curve": {
+      "source_url": "https://3dnchu.com/archives/field-aligned-surface-filling-curve",
+      "title": "Field-Aligned Surface-Filling Curve：沿方向場用單一連續曲線填滿 3D 表面",
+      "summary": "Eurographics 2026 研究以 implicit stitching 直接操作 scalar field，在一般曲面上生成沿方向場排列的單一 surface-filling curve；作者報告相較既有 geometry-flow 方法速度提升超過一個數量級，並提供 Blender 4.5 整合。",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "方法不再先抽等高線再做後處理 stitching，而是在 implicit domain 內直接改 scalar field 完成接合，因此可延伸到非平面曲面；研究也以 Thingi10K 驗證穩定性，並把結果接進 Blender。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對程序化造型、繞線、編織、刻紋或沿表面方向生成圖樣，這種單一路徑比大量獨立 curve 更容易形成連續加工或動畫資料；Blender 整合也讓研究結果有機會直接進美術原型流程。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "論文展示在超過一千萬頂點的表面上可於 25 分鐘內生成曲線，但這仍是研究型工具；正式使用前要測不同拓樸、方向場品質、尖角／孔洞以及輸出 curve 的編輯成本，不能把論文效能直接套到所有資產。"
+        }
+      ]
+    },
+    "web-discovery-uvgami": {
+      "source_url": "https://3dnchu.com/archives/uvgami",
+      "title": "UVgami：Blender 整合 OptCuts、PartUV、xatlas 的自動 UV 工具",
+      "summary": "UVgami 是開源 Blender add-on，將三套 UV engine 放在同一工具中：OptCuts 偏向 seam／distortion 品質，PartUV 可用 CUDA 與 AI／geometry segmentation 依零件拆分，xatlas 則提供另一條快速展 UV 路線。",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "它不是單一 unwrap 演算法，而是讓使用者依資產選 engine。OptCuts 可同時控制 seam 長度與 distortion；PartUV 先取得有意義的部件再展 UV，高密度 mesh 在部分情況可比 OptCuts 更快。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對角色、硬表面與 AI 生成 mesh，價值在於可以用同一介面比較不同 UV 策略，而不是一鍵結果不佳就整套重做；既有 UV、sharp edge／crease 與部件 segmentation 也能成為演算法輸入。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "高品質 unwrap 與處理時間仍有取捨，PartUV 的 GPU／AI 模式也有硬體與 segmentation 依賴。建議用角色、機械與服裝各一組資產，比較 seam 可讀性、stretch、island 數、packing 與人工修正時間。"
+        }
+      ]
+    },
+    "web-discovery-codex-astra-3d-modeling-experiments": {
+      "source_url": "https://assethub.io/blog/codex-astra-3d-modeling-experiments",
+      "title": "AssetHub Ogre Workflow：Tripo P2 生成 12 個零件，再由 Codex／Astra 組裝修正",
+      "summary": "AssetHub 的示範把一張 Ogre 圖拆成 12 個可獨立檢查的 3D parts，由 Tripo P2 生成 mesh，再用實驗性的 Codex／Astra refinement 進行組裝、位置修正與多角度檢查；官方也明確指出握持與靴子貼合仍需改進。",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "這個實驗的重點不是一次生成整隻角色，而是先拆 body、head、armor、boots、axe、shield 等零件，再逐件檢視與組裝。局部失敗時可以只重做或修正單一 part，不必整個角色重生。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對複雜角色生成，part-based workflow 比單一 watertight output 更接近實際製作，因為裝備、身體與道具能獨立替換、定位和 review；也更適合後續把不同部分交給人工建模或材質流程接手。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "Codex／Astra refinement 在來源中被標示為實驗流程，且影片仍可看到 grip 與 boot fit 問題。評估時應記錄分件邊界、穿插、比例一致性、組裝後 silhouette 與重做單一零件的成本。"
+        }
+      ]
+    },
+    "web-discovery-control-rig-python": {
+      "source_url": "https://freneticsfx.com/insights/control-rig-python.html",
+      "title": "UE Control Rig + Python：用 Python 建／改 Rig，讓 RigVM 專注執行",
+      "summary": "這套做法把 Python 定位成 Control Rig 的 authoring／automation 層：可建立或載入 ControlRigBlueprint、改 hierarchy、graph nodes、metadata 與 setup；真正的 rig graph 仍由 RigVM 執行，Python Log 則可反查編輯器操作對應的指令。",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "來源把責任切成 Python authoring、RigVM execution：Python 適合批次建立 hierarchy、controls、nodes 與 metadata，不是拿來取代每幀執行的 Control Rig graph。這能避免把 editor automation 與 runtime rig logic 混在一起。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對大量角色或重複 rig setup，Python 可以把命名、骨架結構、常用 function／library 與 metadata 變成一致的建立流程；Python Log／Copy Python Script 也能把手動操作轉成可重複工具，降低每個角色重新點一次的成本。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "自動化前仍要先固定 Skeletal Mesh、hierarchy 與 engine-side rig 規格。應用同一腳本測不同角色、Control Rig 編譯、Sequencer／Animation Blueprint 與版本升級後的 API 相容性，避免工具腳本比 rig 本身更難維護。"
+        }
+      ]
+    },
+    "web-discovery-instantrdv-for-ue": {
+      "source_url": "https://3dnchu.com/archives/instantrdv-for-ue",
+      "title": "InstantRDV for UE5.8：從 DepthBuffer 即時建立 GPU Voxel Scene，不依賴 Hardware RT",
+      "summary": "InstantRDV 直接從 Main View 的 DepthBuffer 在 GPU 建立 Voxel Scene，不需要額外 Geometry Pass 或 CPU voxelization；資料以 BBV（Bitmask Brick Voxel）管理，可隨相機更新並由 Compute Shader 做 voxel ray tracing，UE5.8 範例以 MIT 授權公開。",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "它利用 rasterization 已有的深度資訊重建 voxel scene，再以 brick 單位保存 radiance；因此核心方向是重用現有畫面資料，而不是再跑一套完整幾何收集或依賴 Hardware Ray Tracing Scene。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對需要非 Lumen GI、可攜 voxel lighting 或研究自訂 GI 的 UE 專案，這是一個可直接拆 code／sample 的技術原型；特別適合評估純 GPU voxel 更新與 compute ray tracing 能否接進自家 rendering path。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "目前屬開源 demo／plugin，而不是成熟替代 Lumen 的通用方案。要實測鏡頭高速移動、薄片幾何、遮擋變化、dynamic object、不同解析度與 GPU memory／compute cost，再判斷可用場景。"
+        }
+      ]
+    },
+    "web-discovery-polypaint-vertex-normal-painter": {
+      "source_url": "https://3dnchu.com/archives/polypaint-vertex-normal-painter",
+      "title": "POLYPAINT：直接在 Unity Scene View 畫 Vertex Color 與 Vertex Normal",
+      "summary": "POLYPAINT 讓美術直接在 Unity Editor 編輯 Vertex Color 與 Vertex Normal，支援 RGBA channel、vertex／edge／face target、Marquee／Lasso mask、多 mesh 編輯、Normal Smooth／Hard，以及 reimport 後保留資料與 Snapshot 轉移。",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "原本需要回 Blender／Maya 修改的 vertex color 或 normal，可直接在 Unity Scene View 完成；工具也提供 channel 限定、selection mask、split／merge shared vertex 與 quick action，讓資料修改更接近引擎端結果。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對以 Vertex Color 做材質混合、shader mask、NPR 假光或低模風格法線控制的流程很直接：美術可在最終 shader／lighting 環境內調整，不必反覆 FBX 往返，Snapshot 也有利於版本比較與跨場景搬移。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "導入前要確認 prefab／mesh reimport、LOD、mesh compression、shared vertex split 及版本控制後資料是否穩定保存；若專案會重新產生 mesh，也要驗證 Snapshot 或 painted data 的重套流程。"
+        }
+      ]
+    },
+    "web-discovery-21-september-2026": {
+      "source_url": "https://devtalk.blender.org/t/21-september-2026/45811",
+      "title": "Blender 9/21 開發更新：GSplat 匯入／顯示、Cycles 初步渲染與 CUDA 13／DLSS",
+      "summary": "Blender 9/21 weekly update 集中了一批 Gaussian Splat 工作：EEVEE／Workbench／Overlay 顯示、PLY／SPZ import、Cycles 初步 rendering、Geometry Nodes 的 Import SPZ 與 Point Cloud type；同週 Cycles 也切到 CUDA 13 並啟用 DLSS。",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "GSplat 已從單一 importer 往 Blender data-block、viewport、Cycles、USD 與 Geometry Nodes 多層整合：PointCloud 增加 type、PLY／SPZ 可辨識 splat，USD 也開始支援 UsdVolParticleField3DGaussianSplat。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "如果團隊正在評估 3DGS 掃描、world capture 或混合 3D 資料，Blender 開始具備較完整的讀取、顯示、節點處理與 render 路徑，未來可減少為了查看 splat 資料一直切換專用 viewer 的需求。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "這是 weekly development change，不等於所有功能都已進穩定版。應以實際 nightly／release build 測 PLY、SPZ、USD round-trip、viewport 與 Cycles 一致性、檔案大小及大量 splat 的 VRAM／互動效能。"
+        }
+      ]
+    },
+    "web-discovery-meshy-tripo-to-godot-4-gltf-lod-normal-maps": {
+      "source_url": "https://www.strayspark.studio/blog/meshy-tripo-to-godot-4-gltf-lod-normal-maps",
+      "title": "Meshy／Tripo → Godot 4：LOD0 面數、Normal Y+ 與 ORM 才是匯入風險",
+      "summary": "文章指出 AI 生成模型即使能直接匯入 Godot 4.7，也可能帶著近 200 萬面的 LOD0、開放 shell 或不明 scale；Godot Auto-LOD 不會降低 LOD0。glTF／Godot normal 採 OpenGL Y+，ORM 則固定 R=AO、G=Roughness、B=Metallic。",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "Godot 的 Auto-LOD 只處理遠距離層級，近距離 LOD0 完全等於匯入 mesh；因此 AI 生成後的 decimate／retopo 必須在 Blender 或生成器端先完成。格式上 glTF 2.0 可保留 PBR、UV2 並預設支援 Auto-LOD。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "這對 AI 3D 最大提醒是『能 import』不等於『可 runtime』。把 polycount、normal convention、ORM packing、scale 與 shell 檢查放在引擎前置 QA，可避免模型到了場景後才發現近景成本與材質方向錯誤。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "文章針對 Godot 4.7；其他版本或自訂 importer 行為可能不同。應用同一個 Meshy／Tripo 資產比較 glTF、FBX、OBJ，記錄 LOD0 triangles、import time、normal 顯示、ORM channel 與自動 LOD 的實際結果。"
+        }
+      ]
+    },
+    "web-discovery-auto-unwrap-v1-0": {
+      "source_url": "https://3dnchu.com/archives/auto-unwrap-v1-0",
+      "title": "Auto Unwrap 1.0：Blender 自動 Seams、UV 與 UDIM Packing，分三種資產模式",
+      "summary": "Auto Unwrap 1.0 依模型自動找 seam、unwrap 與 pack，提供 Organic Unwrap、Smart UV、Garment Seams 三種 engine，對應角色／生物、硬表面與 CLO／Marvelous Designer 衣裝；作者表示已用 340+ 模型調整，並支援 UDIM、Symmetry 與 texel density 統一。",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "工具把 seam detection、unwrap、packing 串成一段流程，並按資產型態分 engine；還能在 Less Stretch／Balanced／Fewer Seams 間取捨、預覽 seam、局部 re-unwrap、Stack Repeats 與兩種 UDIM 排列。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對外包或大量資產前處理，真正價值不是完全免 UV，而是先把第一版 seam／island／pack 自動產出，再讓美術只修高風險區域。角色、機械與服裝拆開策略也比單一 smart unwrap 更符合量產需求。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "來源作者實測也指出並非所有模型都能完全 one-click，需要依模型狀態調設定。應固定三類測試資產，比較 stretch、seam 可見度、island 數、UDIM 分布與人工修整時間，再決定是否納入 SOP。"
+        }
+      ]
+    },
+    "web-discovery-n25d5c0483d42": {
+      "source_url": "https://note.com/su_sin8473/n/n25d5c0483d42",
+      "title": "Blender／Unity 9 月製作筆記：Rigify、Rokoko、Cascadeur 與 Unity CLI 的檢查點",
+      "summary": "這份工程筆記把角色到 Unity 的常見環節拆開：Rigify 後仍要逐關節修 weight；Rokoko Vision 3.0 用單眼影片產生 motion；Cascadeur 2026.2 增加 Animation Layers／Easing；Unity CLI 1.0.0-beta.9 則開始提供 agent skills 與依變更範圍執行測試的功能。",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "文章把自動 rig、mocap、animation layer 與 AI／CLI automation 放在同一條 production checklist：自動處理後仍要檢查肩、肘、手腕、髖、膝、接地、重心與表情，並用版本紀錄保留工具與輸入條件。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對角色團隊的價值在於把『有自動化功能』改成『有可驗證的交付步驟』。Rig、motion 或 CLI agent 都要產生可 review 的比較圖、測試結果或版本紀錄，避免工具成功執行就直接視為美術品質合格。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "內容是作者整理的 2026 年 9 月工作筆記，混合多個工具與官方資料，不是一個單一專案 benchmark。導入時應分別確認 Blender／Unity 版本、商用條件、輸出格式與 beta／alpha 狀態。"
+        }
+      ]
+    },
+    "web-discovery-version-6-0": {
+      "source_url": "https://experienceleague.adobe.com/en/docs/substance-3d-sampler/using/release-notes/version-6-0",
+      "title": "Substance 3D Sampler 6.0：OpenPBR、USD／USDZ 輸出與 8K Rendering",
+      "summary": "Sampler 6.0 把 OpenPBR 納入核心材質模型，加入 Material Presets 與重做的 Properties／Channel Settings；輸出可選 USD、USDA、USDZ 與 OpenPBR channels，Rendering 提升到 8K，Captis 也新增 4K、autofocus 與 One-Click Scan。",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "材質 authoring 可在 OpenPBR 與 ASM 間切換，預設 preset 改用 OpenPBR；同時 static filters 可升級為 dynamic 版本，Base Material、export channel 與 Python API 也開始理解 material model。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對 Substance → DCC／引擎交換，OpenPBR 與 USD 系列輸出值得優先測，因為它直接影響材質語意能否跨工具保留；8K render 與 Captis 改進則偏向掃描與 lookdev 的輸出能力。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "升版前應用現有 SBSAR／掃描資產驗證 OpenPBR／ASM 切換、USDZ embedded texture、export channel、dynamic filter 與 Python automation；尤其要確認下游工具對 OpenPBR 欄位的實際支援，不只看 Sampler 端輸出成功。"
+        }
+      ]
+    },
+    "web-discovery-2026-09-17-tut9-13-official-terrains": {
+      "source_url": "https://danielilett.com/2026-09-17-tut9-13-official-terrains",
+      "title": "Unity URP Terrain Lit Shader Graph：官方 Terrain 節點可直接讀 Layer 貼圖與 Mask",
+      "summary": "Unity 的 Terrain Lit Shader Graph 現在提供專用 Terrain nodes；其中 Terrain Texture 依 layer index 取得 Diffuse、Normal、Mask、Layer Masks 或 Holes，並輸出對應的 PBR 資訊，讓自訂 Terrain shader 不必再靠過去的繞路做法。",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "建立路徑直接出現在 Create → Shader Graph → URP → Terrain Lit Shader Graph。Terrain Texture node 以 layer index 讀 Terrain layer 資料，除了 texture 本身，也能回報該類貼圖是否存在與其他 PBR outputs。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對 stylized terrain 或需要自訂坡度、濕潤、積雪、NPR 分段的 Unity 場景，官方 Terrain Graph 讓美術可以在保留 Terrain authoring 的前提下擴充 shader，而不是改成一般 mesh 才能做自訂材質。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "教學針對目前 URP／Shader Graph 的官方支援；導入時要用實際 Terrain Layers 測四層以上混合、Normal／Mask、Holes、GPU instancing、Terrain Detail 與目標平台效能，確認自訂 graph 沒破壞原生 Terrain 行為。"
+        }
+      ]
+    },
+    "cg-channel-openusd-26-03-adds-support-for-3d-gaussian-splats": {
+      "source_url": "https://www.cgchannel.com/2026/03/openusd-26-03-adds-support-for-3d-gaussian-splats",
+      "title": "OpenUSD 26.03：3D Gaussian Splat 有正式 Prim Schema 與 Reference Renderer",
+      "summary": "OpenUSD 26.03 新增 3D Gaussian Splatting 支援，以新的 USD prim schema 表示 3DGS 資料，並提供 reference Gaussian Splat renderer；這讓 splat 資料開始能走 USD 的場景描述與交換框架，而不只依賴各工具自己的格式。",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "3DGS 被提升成可描述的 USD prim type，並有 hdParticleField reference renderer 作為實作基準。這代表 DCC、renderer 與 pipeline tool 可以針對同一 schema 交換 splat，而不必每套工具各自定義資料結構。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對 VFX、virtual production、animation 與 visualization，真正價值是 pipeline interoperability：掃描或生成的 splat 若能進 USD stage，就有機會和既有 camera、lighting、asset hierarchy 與 publishing 工具共存。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "標準有 schema 不代表所有 DCC／renderer 已完整支援。導入時要逐一驗證 import／export、attribute 保留、transform、large-scene performance 與 renderer parity，並確認目前使用的 USD 版本是否包含 26.03 定義。"
+        }
+      ]
+    },
+    "web-discovery-how-to-rig-a-character-in-blender": {
+      "source_url": "https://app.cinevva.com/guides/how-to-rig-a-character-in-blender",
+      "title": "Blender 角色 Rig 路線比較：Rigify、手動 Armature 與自動 Rig 的交付差異",
+      "summary": "Cinevva 的指南把 Rigify、手動 Armature、Auto-Rig Pro 與自動 rig service 放在同一張流程表比較，重點包含前置 mesh 準備、marker／骨架設定、skinning、export 與可交付 animation clips，而不是只比較『幾秒完成綁定』。",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "不同 rig 路線的自動化程度差很多，但共同前提仍是 mesh 乾淨、姿勢與比例合理。Rigify 偏 Blender 內建控制 rig；手動 armature 可完全自訂；商用 auto-rigger 則把標記、skin 與 engine export 打包成較短流程。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對角色量產，選 rig 工具不應只看建立速度，而要比較最後交付的是 control rig、deform skeleton、Mixamo 命名、FBX／glTF preset 還是可直接用的 clips；這些差異會決定動畫與引擎端還要補多少工作。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "來源本身也包含作者自家產品，因此工具優劣不能只依該頁結論。建議用同一角色跑 Rigify、手動與候選 auto-rigger，統一測肩髖變形、finger／face 需求、Unity／UE export 與後續修改成本。"
+        }
+      ]
+    },
+    "web-discovery-extracting-materials-values-and-textures": {
+      "source_url": "https://experienceleague.adobe.com/en/docs/substance-3d-designer/using/working-with-3d-scenes/extracting-materials-values-and-textures",
+      "title": "Substance 3D Designer：從 3D Scene 直接抽貼圖、Value 與可編輯 Graph",
+      "summary": "Designer 的 3D Scene workflow 可從材質貼圖直接建立 Substance graph；若來源使用 channel packing，系統會自動加入 Grayscale conversion node 拆出對應 channel。也能把單張 texture 抽成 Bitmap resource，或把 material property value 抽成 Value processor。",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "Create graph from texture inputs 會把材質使用的 textures 轉成已連接的 graph，並盡量維持原本外觀；Extract texture to graph 則只新增 Bitmap node，Extract value to graph 會建立對應的 Value processor。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對接手外來 USD／3D scene 或要把既有貼圖材質轉成程序化 graph 的團隊，這能少掉手動建立節點與拆 channel 的初始工；尤其對 packed ORM／mask texture，能降低接錯 channel 的機率。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "USDZ 等 embedded texture 仍需要先指定位置把貼圖抽到磁碟；導入前應測不同 material property、channel packing、同名 output、relative path 與重新連結，確認 graph 重建後外觀與來源 scene 一致。"
+        }
+      ]
+    },
+    "cg-channel-serif-is-working-on-3d-texturing-tools-in-affinity-photo": {
+      "source_url": "https://www.cgchannel.com/2020/04/serif-is-working-on-3d-texturing-tools-in-affinity-photo",
+      "title": "Affinity Photo 3D Texturing 實驗：OBJ、UV、Diffuse／Normal 即時預覽（2020 WIP）",
+      "summary": "這是一則 2020 年的開發預覽：Affinity Photo 當時展示新的 Model panel，可載入 OBJ、查看 UV，並在編輯 diffuse／normal map 時把結果即時預覽到 3D model。來源同時強調它當時仍不足以取代 Substance 類專用 texturing tool。",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "當年的概念是把 2D image editing 與 3D model preview 放在同一介面，讓 diffuse／normal 修改不用反覆切到外部 viewer。對 Photoshop 類工具而言，這是從純貼圖編輯往簡易 3D authoring 靠近的方向。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "這筆資料較適合作為歷史技術參考：它說明通用 2D editor 很早就嘗試縮短 texture edit → 3D preview 的往返，對今天評估 Photoshop／Affinity／Painter 類工具的角色分工仍有比較價值。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "來源發布於 2020 年，內容是 work-in-progress screenshot，不代表 2026 年現行 Affinity Photo 已具備或仍維持同一功能。若要採用，必須以目前正式版文件與實機功能重新確認，不能把這篇舊預覽當現況。"
+        }
+      ]
+    },
+    "cg-channel-otoy-releases-octanerender-2021-1-in-beta": {
+      "source_url": "https://www.cgchannel.com/2021/10/otoy-releases-octanerender-2021-1-in-beta",
+      "title": "OctaneRender 2021.1：Clipping Material、Mesh→SDF、GGX 更新與 USD Import",
+      "summary": "OctaneRender 2021.1 帶來 shader-based Clipping Material，可對 mesh／volume／Vectron 做即時 Boolean；Mesh Volume SDF 可把 mesh 轉成 SDF。版本也更新 energy-preserving GGX、OCIO 2、texture nodes，正式版再加入初步 USD importer。",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "Clipping Material 產生的新切面可自動沿用 parent material／texture，Mesh Volume SDF 則讓傳統 mesh 能和 Vectron procedural primitive 做 Boolean union；材質端的新版 GGX 主要處理 roughness 增加時的能量損失。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "這筆舊版資訊適合拿來理解 Octane 後續程序幾何與材質系統的演進：Boolean／SDF、color management、USD exchange 都已在 2021.1 出現，能幫助判斷舊專案升級時哪些節點或輸出行為可能改變。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "這是 2021 年版本；當時 USD importer 只支援 UsdPreviewSurface，且缺 motion blur 與完整 camera import。現在使用者應以當前 Octane 文件為準，這篇只作歷史版本相容與功能演進參考。"
+        }
+      ]
+    },
+    "cg-channel-otoy-releases-octanerender-2026-1": {
+      "source_url": "https://www.cgchannel.com/2025/12/otoy-releases-octanerender-2026-1",
+      "title": "OctaneRender 2026.1：3DGS、Meshlet Streaming、Virtual Textures、MaterialX／OpenPBR 進穩定版",
+      "summary": "OctaneRender 2026.1 穩定版加入 3D Gaussian Splats、meshlet streaming、virtual textures、MaterialX 與 OpenPBR。來源示範 meshlet 把 geometry memory 從 1.0 GB 降到 0.3 GB 以下，也展示 462k×387k 超大 texture 的 virtual streaming。",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "3DGS 可匯入 PLY／SPZ 並參與陰影、反射與折射；meshlet system 將大型 geometry 切成可 streaming 單位；virtual textures 處理超大圖像；MaterialX／OpenPBR 則補上跨 renderer 的材質交換。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對大型場景與高資料量 lookdev，這版同時處理 geometry、texture 與 material interoperability 三個瓶頸。特別是 meshlet／virtual texture 若在真實專案有效，可直接影響 VRAM budget 與超大資產的 render workflow。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "來源中的 1.0 GB→0.3 GB 與超大 texture 是示範案例，不應視為所有場景固定收益。應用自家 hero asset、3DGS、MaterialX／OpenPBR 材質測 VRAM、render time、shader parity 與 DCC plugin 相容性。"
+        }
+      ]
+    },
+    "web-discovery-generative-3d-tools-comparison-meshy-rodin-tripo-csm-2026": {
+      "source_url": "https://www.strayspark.studio/blog/generative-3d-tools-comparison-meshy-rodin-tripo-csm-2026",
+      "title": "Meshy／Rodin／Tripo／CSM：8 類遊戲資產同 Prompt 比 Topology、Texture 與 UE5.7 可用性",
+      "summary": "StraySpark 用相同 8 組 prompt 測 treasure chest、rifle、tree、watchtower、character、motorcycle、boat、crystal，評估 silhouette、geometry、topology、texture、retopo 與 UE5.7 直接使用性；作者結果中 Meshy 5 最穩定，Tripo P1 速度快且約 80% 品質，CSM Cube 2 在大型環境較吃力。",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "這個比較比單張 showcase 更接近 production test，因為同一批題材跨 hard-surface、stylized、environment、character 與 effect，並把 topology／retopo viability 和 Unreal import 一起納入，而不只比較 render 外觀。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對 AI 3D 選型，可把不同工具定位成不同階段：來源測試認為 Tripo P1 適合快速 blockout，Meshy 5 在多類資產較穩定；這種『按題材與 downstream 可用性』比較，比只選單一總冠軍更適合建立內部 SOP。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "結果來自單一作者在 2026 年 4 月、固定 8 組 prompt 與當時模型版本，工具更新後可能改變。公司內仍應用自己的角色、怪物、建築、硬表面與 Q 版題材重跑，並固定 engine import 與人工修正規格。"
+        }
+      ]
+    },
+    "web-discovery-pose-overlay": {
+      "source_url": "https://dev.talaesenlikler.com/docs/pose-overlay",
+      "title": "Pose Overlay 1.0.2 for UE5.8：可重用 Pose State、逐骨疊加、Aim Offset 與 IK Mapping",
+      "summary": "Pose Overlay 在 UE5.8 以 Control Rig-based editor 建立可重用 pose states，不需複製原 animation clip；可為 gameplay context 做局部 override，逐骨控制 Overlay Weight／Source Motion／Space Blend，並支援 Aim Offset、IK mapping 與 runtime stacking。",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "核心是把姿勢修正做成獨立、可重用的 state，再疊到來源 animation 上；每根 bone 可決定要覆蓋、跟隨原 motion 或穩定 rotation，Aim profile 與 IK target 也能放在同一套 hierarchy。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對共用 locomotion 但不同武器、體型或 gameplay context 的角色，overlay 能減少複製大量近似 animation clip。局部修正留在 state／context 層，也比較容易追蹤『基礎動畫』與『角色特例』的責任。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "1.0.2 目前標示支援 UE5.8；要測 Control Rig／Animation Blueprint 接法、兩手持武器 IK、network runtime stacking、bake 回 clip 與大量 state 的管理成本，再決定是否取代既有 additive／layered blend 流程。"
+        }
+      ]
+    }
+  }
+}
