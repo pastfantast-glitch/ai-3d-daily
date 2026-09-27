@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Shared content-quality policy for autonomous Production Intelligence collection.
-Policy revision: 2026-09-27 source-grounded editorial v1.
+Policy revision: 2026-09-27 source-grounded editorial v1.\nEditorial contract: source-grounded factual fallback; 2026-09-25 style baseline.
 
 This module is deliberately deterministic and source-grounded. It rejects index,
 product/marketing landing, governance/event, and non-production pages before ranking;
