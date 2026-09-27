@@ -352,12 +352,18 @@ def friendly_label(category: str, subcategory: str) -> str:
 
 def editorial_title(meta: dict, category: str, subcategory: str) -> str:
     raw = normalize_title(meta.get("title"))
+
+    def framed(value: str) -> str:
+        value = clean(value, 180)
+        if re.search(r"[\u3400-\u9fff]", value):
+            return value
+        category_label = CATEGORY_LABELS.get(category) or "製作情報"
+        return clean(f"{category_label}：{value}", 180)
+
     if re.search(r"[\u3400-\u9fff]", raw):
         return raw
+
     label = friendly_label(category, subcategory)
-    # Editorial titles must always carry a Traditional-Chinese framing even when
-    # the most specific technical label is English-only (for example Blender,
-    # Substance, Unreal Engine, Rigging or Rendering).
     if not re.search(r"[\u3400-\u9fff]", label):
         label = CATEGORY_LABELS.get(category) or "製作情報"
 
@@ -376,9 +382,8 @@ def editorial_title(meta: dict, category: str, subcategory: str) -> str:
     for pattern, render in patterns:
         match = re.match(pattern, raw, flags=re.I)
         if match:
-            return clean(render(match), 180)
-    return clean(f"{label}：{raw}", 180)
-
+            return framed(render(match))
+    return framed(f"{label}：{raw}")
 
 def production_focus(meta: dict) -> list[str]:
     text = f"{normalize_title(meta.get('title'))} {clean(meta.get('description'), 900)}".casefold()
