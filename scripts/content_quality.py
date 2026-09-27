@@ -11,8 +11,20 @@ inventing source claims.
 from __future__ import annotations
 
 from html import unescape
+from pathlib import Path
+import json
 from urllib.parse import urlparse
 import re
+
+EDITORIAL_CONFIG_PATH = Path(__file__).resolve().parents[1] / "config" / "editorial-quality.json"
+
+
+def editorial_policy() -> dict:
+    try:
+        return json.loads(EDITORIAL_CONFIG_PATH.read_text("utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return {}
+
 
 WS_RE = re.compile(r"\s+")
 SITE_SUFFIX_RE = re.compile(
@@ -396,35 +408,41 @@ def production_focus(meta: dict) -> list[str]:
     return out
 
 
+def source_fact(meta: dict) -> str:
+    cfg = editorial_policy()
+    fallback = cfg.get("factual_fallback") or {}
+    limit = int(fallback.get("max_source_description_chars", 280) or 280)
+    description = clean(meta.get("description"), limit)
+    return description or normalize_title(meta.get("title"))
+
+
 def production_summary(meta: dict, category: str, subcategory: str) -> str:
     title = editorial_title(meta, category, subcategory)
     raw = f"{normalize_title(meta.get('title'))} {clean(meta.get('description'), 600)}".casefold()
     label = friendly_label(category, subcategory)
     focus = production_focus(meta)
     focus_text = "、".join(focus) if focus else label
+    fact = source_fact(meta)
 
     if has_any(raw, ("release", "update", "version", "beta", "alpha", "preview")):
+        lead = "版本重點"
+    elif has_any(raw, ("breakdown", "tutorial", "how to", "guide", "case study", "behind", "making-of", "workflow")):
+        lead = "流程重點"
+    elif has_any(raw, ("plugin", "addon", "add-on", "tool", "software")):
+        lead = "工具重點"
+    else:
+        lead = "技術重點"
+
+    if clean(meta.get("description")):
         return clean(
-            f"「{title}」整理這次版本／功能變更，已知重點落在 {focus_text}。"
-            f"對 {label} 流程可先用來判斷升級與測試優先順序，再回原始來源確認版本限制與相容性。",
-            380,
-        )
-    if has_any(raw, ("breakdown", "tutorial", "how to", "guide", "case study", "behind", "making-of")):
-        return clean(
-            f"「{title}」提供可供製作參考的流程／案例，重點落在 {focus_text}。"
-            "適合先拆出來源明確展示的方法與視覺判斷，再用自己的資產規格驗證是否可轉移到 Production。",
-            380,
-        )
-    if has_any(raw, ("plugin", "addon", "add-on", "tool", "software")):
-        return clean(
-            f"「{title}」屬於工具與工作流更新，已知關聯重點為 {focus_text}。"
-            "評估時應優先確認它改善哪個既有步驟，再檢查版本相容、輸出格式、授權與實際導入成本。",
-            380,
+            f"{lead}：{fact} Production 檢查點為 {focus_text}；"
+            "先以來源已公開的功能、流程與限制為準，不補寫未公開的效能或工時數字。",
+            420,
         )
     return clean(
-        f"「{title}」提供 {label} 的近期製作參考，來源可確認的重點集中在 {focus_text}。"
-        "閱讀時應以公開來源能支持的方法、功能或案例為準，再決定是否值得進一步實測。",
-        380,
+        f"「{title}」目前公開頁面只提供標題層級資訊，可確認主題與 {focus_text} 有關。"
+        "因此以較短的 BRIEF 呈現，保留來源事實，不延伸未公開的結果。",
+        420,
     )
 
 
@@ -434,23 +452,35 @@ def editorial_analysis(meta: dict, category: str, subcategory: str) -> list[dict
     label = friendly_label(category, subcategory)
     focus = production_focus(meta)
     focus_text = "、".join(focus) if focus else label
+    fact = source_fact(meta)
 
+    technical = (
+        f"「{title}」的公開資訊明確涉及 {focus_text}。來源描述為：{fact} "
+        "技術判讀以這些已公開內容為界，不把標題之外的功能或結果自行補成既定事實。"
+    )
     if has_any(raw, ("release", "update", "version", "beta", "alpha", "preview")):
-        technical = f"「{title}」屬於版本／功能更新；目前可確認的製作重點集中在 {focus_text}。評估時應先把新功能與現有 {label} 流程逐項對照，而不是只看版本號或功能數量。"
-        impact = f"對 Production 的價值在於用「{title}」建立升級優先順序：哪些 {focus_text} 變更會直接影響日常製作、資產交換或最終輸出，應先用代表性專案做回歸。"
-    elif has_any(raw, ("breakdown", "tutorial", "how to", "guide", "case study", "behind", "making-of")):
-        technical = f"「{title}」屬於製作拆解／教學，核心觀察點落在 {focus_text}。可先把來源明確展示的步驟、視覺判斷與工具使用拆開，再對照自己現有流程。"
-        impact = f"「{title}」對 {label} Production 的價值是提供可比較的實作案例；適合拿來做 Review Reference 或小型 A/B Test，而不是直接把單一案例視為通用標準。"
+        impact = (
+            f"對 {label}，這項版本資訊可直接拿來檢查 {focus_text} 是否改變現有的資產交換、"
+            "authoring 或輸出步驟；先用代表性工程做升版回歸，再決定是否更新團隊基線。"
+        )
+    elif has_any(raw, ("breakdown", "tutorial", "how to", "guide", "case study", "behind", "making-of", "workflow")):
+        impact = (
+            f"對 {label}，可把來源展示的 {focus_text} 拆成實際步驟，與既有流程逐段比較輸入、"
+            "人工修正與最終輸出；這比只看完成圖更適合作為 Production review 依據。"
+        )
     else:
-        technical = f"「{title}」目前可確認的技術／製作焦點集中在 {focus_text}。應優先理解它改變的是工具能力、製作方法還是輸出結果，再判斷與現有流程的關聯。"
-        impact = f"對 {label} 團隊而言，「{title}」可作為近期參考項目，用來決定是否值得深入閱讀、建立測試檔或更新內部 Review Checklist。"
+        impact = (
+            f"對 {label}，可把 {focus_text} 放進目前相同製作環節做小規模對照，"
+            "確認它實際解決的是 authoring、交換、品質控制還是 runtime 問題，再決定導入範圍。"
+        )
 
     limit = (
-        f"「{title}」目前的證據深度仍以公開來源為主；正式導入前應用團隊實際 DCC／引擎版本、資產規格與輸出條件驗證相容性、"
-        "可重現性與品質，且不得把來源未公開的效能、工時或品質提升當成既知結果。"
+        f"目前證據主要來自「{title}」這個公開來源；來源沒有提供的 benchmark、工時節省或品質提升不做推定。"
+        "正式導入前仍要用目標 DCC／引擎版本、代表性資產與實際輸出格式驗證相容性與可重現性。"
     )
     return [
-        {"label": "技術／流程變更", "text": clean(technical, 520)},
-        {"label": "Production 影響", "text": clean(impact, 520)},
-        {"label": "導入測試與限制", "text": clean(limit, 520)},
+        {"label": "技術／流程變更", "text": clean(technical, 560)},
+        {"label": "Production 影響", "text": clean(impact, 560)},
+        {"label": "導入測試與限制", "text": clean(limit, 560)},
     ]
+
