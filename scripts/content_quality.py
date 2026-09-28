@@ -406,7 +406,7 @@ def editorial_title(meta: dict, category: str, subcategory: str) -> str:
             subject = "本項目"
         return clean(f"{category_label}：{subject} 的製作重點", 180)
 
-    if re.search(r"[\u3400-\u9fff]", raw):
+    if reader_language_ok(raw, 4.0):
         return raw
 
     label = friendly_label(category, subcategory)
