@@ -97,7 +97,7 @@ else:
     autonomous=AUTONOMOUS_COLLECTOR.read_text('utf-8')
     for token in (
         'name: Autonomous daily Collector',
-        "cron: '30 23 * * *'",
+        "cron: '30 21 * * *'",
         'contents: write',
         'actions: read',
         'group: autonomous-daily-collector',
