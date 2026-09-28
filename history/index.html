@@ -6,13 +6,13 @@
   <title>
    歷史日報｜AI 3D Production Intelligence
   </title>
-  <link href="../styles.css?v=20260927-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
-  <link href="../shared-components.css?v=20260927-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
-  <link href="../home.css?v=20260927-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
-  <link href="../home-content.css?v=20260927-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
-  <link href="../home-components.css?v=20260927-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../styles.css?v=20260928-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../shared-components.css?v=20260928-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../home.css?v=20260928-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../home-content.css?v=20260928-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../home-components.css?v=20260928-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
  </head>
- <body class="home-page history-page" data-report-date="2026-09-27">
+ <body class="home-page history-page" data-report-date="2026-09-28">
   <nav aria-label="Production Intelligence 分類" class="global-category-nav">
    <div class="page global-category-nav-inner">
     <a class="global-category-link" href="../#today">
@@ -42,8 +42,8 @@
    </div>
   </nav>
   <main class="page home-main history-main">
-   <div class="current-report-entry" data-current-report-date="2026-09-27">
-    <a aria-label="查看 2026-09-27 今日完整日報" class="category-nav-card current-report-link" href="../2026-09-27/">
+   <div class="current-report-entry" data-current-report-date="2026-09-28">
+    <a aria-label="查看 2026-09-28 今日完整日報" class="category-nav-card current-report-link" href="../2026-09-28/">
      <div class="current-report-copy">
       <span class="current-report-eyebrow">
        TODAY
@@ -53,7 +53,7 @@
       </strong>
      </div>
      <span class="current-report-date">
-      2026-09-27
+      2026-09-28
      </span>
     </a>
    </div>
@@ -119,6 +119,14 @@
          9 月
         </summary>
         <div class="archive-entries">
+         <a class="history-entry" data-history-categories="3d-animation 3d-production ai-generation blender-dcc emerging-case engine-art" data-history-date="2026-09-27" data-history-search="2026-09-27 歷史日報 tripo → blender → unity：ai 角色從生成、拓樸清理到 humanoid 的完整流程 案例從四視圖參考開始，用 tripo ai 產生 high poly 與初始 low poly，再進 blender 修拓樸、拆 uv 與轉移 base color，接著以 marmoset 烘焙細節、substance painter 製作材質、rigify 綁定，最後在 unity 設定 humanoid avatar。 ★★★★☆ 3dcoat → quixel mixer → blender → photoshop：overgrown robot 場景的跨 dcc 流程 marcin basta 先以 3dcoat 的 voxel workflow 建立機器人與岩石，完成 autopo 與 uv 後送進 quixel mixer 疊加鏽蝕、苔蘚材質，再到 blender 組場景、打光與 cycles render，最後用 photoshop 的 mist／light pass 與 paintover 完成畫面。 ★★★★☆ field-aligned surface-filling curve：沿方向場用單一連續曲線填滿 3d 表面 eurographics 2026 研究以 implicit stitching 直接操作 scalar field，在一般曲面上生成沿方向場排列的單一 surface-filling curve；作者報告相較既有 geometry-flow 方法速度提升超過一個數量級，並提供 blender 4.5 整合。 ★★★★☆ uvgami：blender 整合 optcuts、partuv、xatlas 的自動 uv 工具 uvgami 是開源 blender add-on，將三套 uv engine 放在同一工具中：optcuts 偏向 seam／distortion 品質，partuv 可用 cuda 與 ai／geometry segmentation 依零件拆分，xatlas 則提供另一條快速展 uv 路線。 ★★★★☆ assethub ogre workflow：tripo p2 生成 12 個零件，再由 codex／astra 組裝修正 assethub 的示範把一張 ogre 圖拆成 12 個可獨立檢查的 3d parts，由 tripo p2 生成 mesh，再用實驗性的 codex／astra refinement 進行組裝、位置修正與多角度檢查；官方也明確指出握持與靴子貼合仍需改進。 ★★★★☆ ue control rig + python：用 python 建／改 rig，讓 rigvm 專注執行 這套做法把 python 定位成 control rig 的 authoring／automation 層：可建立或載入 controlrigblueprint、改 hierarchy、graph nodes、metadata 與 setup；真正的 rig graph 仍由 rigvm 執行，python log 則可反查編輯器操作對應的指令。 ★★★★☆ instantrdv for ue5.8：從 depthbuffer 即時建立 gpu voxel scene，不依賴 hardware rt instantrdv 直接從 main view 的 depthbuffer 在 gpu 建立 voxel scene，不需要額外 geometry pass 或 cpu voxelization；資料以 bbv（bitmask brick voxel）管理，可隨相機更新並由 compute shader 做 voxel ray tracing，ue5.8 範例以 mit 授權公開。 ★★★★☆ polypaint：直接在 unity scene view 畫 vertex color 與 vertex normal polypaint 讓美術直接在 unity editor 編輯 vertex color 與 vertex normal，支援 rgba channel、vertex／edge／face target、marquee／lasso mask、多 mesh 編輯、normal smooth／hard，以及 reimport 後保留資料與 snapshot 轉移。 ★★★★☆ blender 9/21 開發更新：gsplat 匯入／顯示、cycles 初步渲染與 cuda 13／dlss blender 9/21 weekly update 集中了一批 gaussian splat 工作：eevee／workbench／overlay 顯示、ply／spz import、cycles 初步 rendering、geometry nodes 的 import spz 與 point cloud type；同週 cycles 也切到 cuda 13 並啟用 dlss。 ★★★★☆ meshy／tripo → godot 4：lod0 面數、normal y+ 與 orm 才是匯入風險 文章指出 ai 生成模型即使能直接匯入 godot 4.7，也可能帶著近 200 萬面的 lod0、開放 shell 或不明 scale；godot auto-lod 不會降低 lod0。gltf／godot normal 採 opengl y+，orm 則固定 r=ao、g=roughness、b=metallic。 ★★★★☆ auto unwrap 1.0：blender 自動 seams、uv 與 udim packing，分三種資產模式 auto unwrap 1.0 依模型自動找 seam、unwrap 與 pack，提供 organic unwrap、smart uv、garment seams 三種 engine，對應角色／生物、硬表面與 clo／marvelous designer 衣裝；作者表示已用 340+ 模型調整，並支援 udim、symmetry 與 texel density 統一。 ★★★★☆ blender／unity 9 月製作筆記：rigify、rokoko、cascadeur 與 unity cli 的檢查點 這份工程筆記把角色到 unity 的常見環節拆開：rigify 後仍要逐關節修 weight；rokoko vision 3.0 用單眼影片產生 motion；cascadeur 2026.2 增加 animation layers／easing；unity cli 1.0.0-beta.9 則開始提供 agent skills 與依變更範圍執行測試的功能。 ★★★★☆ substance 3d sampler 6.0：openpbr、usd／usdz 輸出與 8k rendering sampler 6.0 把 openpbr 納入核心材質模型，加入 material presets 與重做的 properties／channel settings；輸出可選 usd、usda、usdz 與 openpbr channels，rendering 提升到 8k，captis 也新增 4k、autofocus 與 one-click scan。 ★★★☆☆ unity urp terrain lit shader graph：官方 terrain 節點可直接讀 layer 貼圖與 mask unity 的 terrain lit shader graph 現在提供專用 terrain nodes；其中 terrain texture 依 layer index 取得 diffuse、normal、mask、layer masks 或 holes，並輸出對應的 pbr 資訊，讓自訂 terrain shader 不必再靠過去的繞路做法。 ★★★☆☆ openusd 26.03：3d gaussian splat 有正式 prim schema 與 reference renderer openusd 26.03 新增 3d gaussian splatting 支援，以新的 usd prim schema 表示 3dgs 資料，並提供 reference gaussian splat renderer；這讓 splat 資料開始能走 usd 的場景描述與交換框架，而不只依賴各工具自己的格式。 ★★★☆☆ blender 角色 rig 路線比較：rigify、手動 armature 與自動 rig 的交付差異 cinevva 的指南把 rigify、手動 armature、auto-rig pro 與自動 rig service 放在同一張流程表比較，重點包含前置 mesh 準備、marker／骨架設定、skinning、export 與可交付 animation clips，而不是只比較『幾秒完成綁定』。 ★★★☆☆ substance 3d designer：從 3d scene 直接抽貼圖、value 與可編輯 graph designer 的 3d scene workflow 可從材質貼圖直接建立 substance graph；若來源使用 channel packing，系統會自動加入 grayscale conversion node 拆出對應 channel。也能把單張 texture 抽成 bitmap resource，或把 material property value 抽成 value processor。 ★★★☆☆ affinity photo 3d texturing 實驗：obj、uv、diffuse／normal 即時預覽（2020 wip） 這是一則 2020 年的開發預覽：affinity photo 當時展示新的 model panel，可載入 obj、查看 uv，並在編輯 diffuse／normal map 時把結果即時預覽到 3d model。來源同時強調它當時仍不足以取代 substance 類專用 texturing tool。 ★★★☆☆ octanerender 2021.1：clipping material、mesh→sdf、ggx 更新與 usd import octanerender 2021.1 帶來 shader-based clipping material，可對 mesh／volume／vectron 做即時 boolean；mesh volume sdf 可把 mesh 轉成 sdf。版本也更新 energy-preserving ggx、ocio 2、texture nodes，正式版再加入初步 usd importer。 ★★★☆☆ octanerender 2026.1：3dgs、meshlet streaming、virtual textures、materialx／openpbr 進穩定版 octanerender 2026.1 穩定版加入 3d gaussian splats、meshlet streaming、virtual textures、materialx 與 openpbr。來源示範 meshlet 把 geometry memory 從 1.0 gb 降到 0.3 gb 以下，也展示 462k×387k 超大 texture 的 virtual streaming。 ★★★☆☆ meshy／rodin／tripo／csm：8 類遊戲資產同 prompt 比 topology、texture 與 ue5.7 可用性 strayspark 用相同 8 組 prompt 測 treasure chest、rifle、tree、watchtower、character、motorcycle、boat、crystal，評估 silhouette、geometry、topology、texture、retopo 與 ue5.7 直接使用性；作者結果中 meshy 5 最穩定，tripo p1 速度快且約 80% 品質，csm cube 2 在大型環境較吃力。 ★★★☆☆ pose overlay 1.0.2 for ue5.8：可重用 pose state、逐骨疊加、aim offset 與 ik mapping pose overlay 在 ue5.8 以 control rig-based editor 建立可重用 pose states，不需複製原 animation clip；可為 gameplay context 做局部 override，逐骨控制 overlay weight／source motion／space blend，並支援 aim offset、ik mapping 與 runtime stacking。 ★★★☆☆" href="../2026-09-27/">
+          <strong>
+           2026-09-27
+          </strong>
+          <span>
+           歷史日報
+          </span>
+         </a>
          <a class="history-entry" data-history-categories="3d-animation 3d-production blender-dcc emerging-case engine-art" data-history-date="2026-09-26" data-history-search="2026-09-26 歷史日報 《moss: book ii》角色動畫拆解：小體型角色揮舞巨型雙手武器的 silhouette laura lico 以《moss: book ii》的角色動畫為例，說明小體型角色操作巨型雙手武器時，如何用清楚、可讀的動作 silhouette 維持姿勢辨識。 ★★★★★ demogorgon 皮膚 lookdev：實拍紋理、displacement 與暗場燈光 nikhil k s 以 demogorgon 重製案例談皮膚 lookdev：從實拍紋理蒐集、displacement 控制，到暗場中仍讓細節可讀的燈光配置。 ★★★★☆ 巨劍 combo 動畫：用重量感與動勢支撐角色攻擊 這組 fox girl 巨劍 combo 動畫的公開展示重點在重量感與動勢，適合作為大型武器連段中攻擊節奏與動作方向的視覺參考。 ★★★★☆ blender 5.1：以穩定性修正與 pipeline 改善為主的版本更新 blender 5.1 官方把重點放在 refinement、bug fixes 與少數影響整體 pipeline 的功能改善，屬於偏穩定與流程整理型的版本。 ★★★★☆ 電影級角色資產教學：maya＋zbrush 製作 animation-ready fantasy character gnomon workshop 教學以 maya 與 zbrush 製作高細節 fantasy character，目標不是靜態展示，而是完成可進一步用於動畫的 character asset。 ★★★★☆ blender 5.2 lts：node physics、遠端 asset library 與 rendering 更新 blender 5.2 lts 加入 node-powered physics、遠端 asset library 存取與多項 rendering 改善，並提供兩年的 lts 更新週期。 ★★★☆☆ animcraft 5.0：跨軟體 animation library 加入 ai 無標記全身 mocap basefount 的 animcraft 5.0 主打 software-agnostic animation library，並加入 ai-based markerless full-body motion capture 系統。 ★★★☆☆ unigine 2.21：動畫／渲染更新與 indie、vfx 授權價格調整 unigine 2.21 更新即時 3d 引擎的 animation 與 rendering，同時調整 pricing；來源指出 indie game 與 vfx project 仍可免費使用。 ★★★☆☆ unreal engine 6：cg 藝術家需要關注的 games／vfx／visualization 方向 cg channel 從 cg artist 角度整理 unreal engine 6 的十個關注點，範圍涵蓋 games、vfx 與 visualization，適合作為新世代引擎方向的快速索引。 ★★★☆☆ unreal engine 5.8：mesh terrain、metahuman crowds 與 rigging／animation 更新 cg channel 整理 ue5.8 對 cg artist 較重要的五項功能，已知重點包含 mesh terrain、metahuman crowds，以及新的 rigging 與 animation 工具。 ★★★☆☆ 《michael》invisible vfx：alchemy 24 電影特效 making-of alchemy 24 公開 michael jackson 傳記電影《michael》的 making-of，內容聚焦看不出特效痕跡的 invisible vfx 製作。 ★★★☆☆ 《bloody smart》vfx breakdown：台灣 wwwind studio 的真人恐怖影集製作 台灣 wwwind studio 公開《bloody smart》真人恐怖影集 vfx breakdown，展示《伊藤潤二》漫畫改編中的多樣化恐怖視覺效果。 ★★★☆☆ 電影 concept art／matte painting：photoshop＋maya 的 gnomon masterclass ilm art director igor staritsin 的 gnomon workshop 課程，以 photoshop 與 maya 示範電影 concept art 與 matte painting 的專業製作方法。 ★★★☆☆ 《hollow knight》hornet fan animation：角色動作與 2d fx 結合 brad faucheux 製作 hornet fan animation，來源特別肯定角色動作表現，並指出 2d effects 讓整體攻擊畫面更完整。 ★★★☆☆ radeon prorender 3.6：最終渲染由 opencl 轉向 hip amd radeon prorender 3.6 在 final-quality output 上由 opencl 切換到 hip；blender 版本之外，maya 與 houdini edition 也同步更新。 ★★★☆☆ octanerender 2026.4：3d gaussian splatting 與 neural radiance cache 更新 octanerender 2026.4 更新 gpu production renderer，已知重點包含 3d gaussian splatting 與 neural radiance cache。 ★★★☆☆ 本週 cg 工具更新：hdr light studio、mgear 與 switchx／vfx ai cg channel 的本週工具整理包含 hdr light studio、免費 maya rigging toolset mgear，以及 beeble 的 vfx ai model switchx 等更新。 ★★★☆☆ combo attack 動畫：連續攻擊動作的銜接與節奏展示 alejandro padilla 的 combo attack animation 展示連續攻擊動作的銜接；來源特別肯定各段動作之間的連續性。 ★★★☆☆ 《clair obscur: expedition 33》動畫 reel：sylvan kim 角色動畫作品整理 《clair obscur: expedition 33》animator sylvan kim 公開 curated animation reel，可作為該專案角色動作表現的集中式視覺參考。 ★★★☆☆ spider-man fan-made combo：連段動作延伸與角色攻擊動畫 arthur munoz 的 spider-man fan-made combo animation 延伸既有角色動作，重點是連續攻擊 motion 的展示與銜接。 ★★★☆☆ cesium 免費引擎外掛：在 ue5／o3de／unity／omniverse 建立實尺度地球 cesium 提供 ue5、o3de、unity 與 omniverse 的免費 open-source geospatial plugin，可在引擎內建立 full-scale earth replicas。 ★★★☆☆ 《summer of 1985》混合 cg mermaid：practical effects＋cg 的角色製作 dupp film vfx supervisor anders nyman 分享《summer of 1985》mermaid 製作，角色由 practical effects 與 cg 混合完成。 ★★★☆☆ 《絕區零》blender fan animation：retroperro 3d 動畫作品 3d animator retroperro 公開以 blender 製作的《絕區零》fan animation，可作為 blender 角色動畫與風格表現的視覺參考。 ★★☆☆☆ blender 5.2 lts 五大重點：geometry nodes cloth physics 與 cycles 變更 cg channel 整理 blender 5.2 lts 五項重要更新，已知包含 geometry nodes cloth physics，以及 cycles 的重大變更。 ★★☆☆☆" href="../2026-09-26/">
           <strong>
            2026-09-26
@@ -416,9 +424,9 @@
     </div>
    </section>
   </main>
-  <script src="../history.js?v=20260927-r1-workspace-v10-history-current-workspace">
+  <script src="../history.js?v=20260928-r1-workspace-v10-history-current-workspace">
   </script>
-  <script src="../preference.js?v=20260927-r1-workspace-v10-history-current-workspace" type="module">
+  <script src="../preference.js?v=20260928-r1-workspace-v10-history-current-workspace" type="module">
   </script>
  </body>
 </html>
