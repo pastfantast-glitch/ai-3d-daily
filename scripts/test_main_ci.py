@@ -79,6 +79,20 @@ class MainCITests(unittest.TestCase):
         self.assertEqual(sha, "request")
         self.assertEqual([x["sha"] for x in skipped], ["current", "publish", "prepare"])
 
+    def test_repo_generated_request_commit_resolves_to_parent_evidence(self):
+        chain = {
+            "current": ("parent", ci.GITHUB_ACTIONS_BOT_EMAIL, "Request canonical intelligence publish 2026-09-28"),
+            "parent": ("older", "owner@example.com", "CI-covered source change"),
+        }
+        def fake_git(*args):
+            sha = args[-1]
+            parent, email, subject = chain[sha]
+            return self.commit_line(sha, parent, email, subject)
+        with patch.object(ci, "git", side_effect=fake_git):
+            sha, skipped = ci.history_evidence_sha("current")
+        self.assertEqual(sha, "parent")
+        self.assertEqual([x["sha"] for x in skipped], ["current"])
+
     def test_collector_handoff_bot_commit_resolves_to_parent_evidence(self):
         chain = {
             "current": ("parent", ci.GITHUB_ACTIONS_BOT_EMAIL, "Collector handoff 2026-09-24"),
