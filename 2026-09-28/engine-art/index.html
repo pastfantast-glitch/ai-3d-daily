@@ -61,10 +61,10 @@
      #01 · unreal
     </div>
     <h2>
-     Flesh Dynamics | キャラクターの肉体の揺れや衝突変形をリアルタイムに表現できるソフトボディ物理システム！Unity版が登場！Unreal Engine版も開発中！
+     Flesh Dynamics：在 Unity 角色上加入即時軟體物理與碰撞變形
     </h2>
     <p class="summary">
-     技術重點：FrostPunchGamesが、キャラクターの柔らかな肉体表現や揺れ、衝突による変形などをリアルタイムに追加できるUnity向けソフトボディ物理システム「Flesh Dynamics」をリリースしました。 Flesh Dynamics https://www.youtube.com/watch?v=ocv_oZxCL1U 「Flesh Dynamics」は、既存のSkinnedMeshRendererによるアニメーションの上から、ソフトボディによる二次的な動きや変形を追加できるUnity向けアセットです。キャラクターの身体の中から柔らかく動かしたい領域 Production 檢查點為 Unreal Engine、Unity；先以來源已公開的功能、流程與限制為準，不補寫未公開的效能或工時數字。
+     FrostPunchGames 推出的 Flesh Dynamics 可疊加在既有 SkinnedMeshRenderer 動畫之上，為指定身體區域加入柔軟組織的二次晃動與碰撞變形。Unity 版本已推出，Unreal Engine 版本仍在開發中。
     </p>
     <figure class="case-preview" data-intel-id="3dnchu-flesh-dynamics" data-intel-role="visual" data-visual-id="3dnchu-flesh-dynamics">
      <a href="https://3dnchu.com/archives/flesh-dynamics" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
@@ -89,19 +89,19 @@
        技術／流程變更
       </h4>
       <p>
-       「Flesh Dynamics | キャラクターの肉体の揺れや衝突変形をリアルタイムに表現できるソフトボディ物理システム！Unity版が登場！Unreal Engine版も開発中！」的公開資訊明確涉及 Unreal Engine、Unity。來源描述為：FrostPunchGamesが、キャラクターの柔らかな肉体表現や揺れ、衝突による変形などをリアルタイムに追加できるUnity向けソフトボディ物理システム「Flesh Dynamics」をリリースしました。 Flesh Dynamics https://www.youtube.com/watch?v=ocv_oZxCL1U 「Flesh Dynamics」は、既存のSkinnedMeshRendererによるアニメーションの上から、ソフトボディによる二次的な動きや変形を追加できるUnity向けアセットです。キャラクターの身体の中から柔らかく動かしたい領域 技術判讀以這些已公開內容為界，不把標題之外的功能或結果自行補成既定事實。
+       Flesh Dynamics 的核心不是取代骨架動畫，而是在既有角色動畫結果上再加入 soft-body 次級運動與碰撞變形，讓需要柔軟感的身體區域能以物理方式補足純 skinning 的表現。
       </p>
       <h4>
        Production 影響
       </h4>
       <p>
-       來源主題 Flesh Dynamics | キャラクターの肉体の揺れや衝突変形をリアルタイムに表現できるソフトボディ物理システム！Unity版が登場！Unreal Engine版も開発中！ 的可驗證內容提到 FrostPunchGamesが、キャラクターの柔らかな肉体表現や揺れ、衝突による変形などをリアルタイムに追加できるUnity向けソフトボディ物理システム「Flesh Dynamics」をリリースしました。 Flesh Dynamics https://www.youtube.com/watch?v=ocv_oZxCL1U 「Flesh Dynamics」は。對 Unreal Engine，可把 Unreal Engine、Unity 放進目前相同製作環節做小規模對照，確認它實際解決的是 authoring、交換、品質控制還是 runtime 問題，再決定導入範圍。
+       對角色製作流程而言，這類工具可把原本需要額外骨骼、手動畫曲線或特製 shader 的局部晃動改成物理層處理；美術與動畫仍保留原始動作，只把柔軟變形交給 runtime 系統。
       </p>
       <h4>
        導入測試與限制
       </h4>
       <p>
-       「Flesh Dynamics | キャラクターの肉体の揺れや衝突変形をリアルタイムに表現できるソフトボディ物理システム！Unity版が登場！Unreal Engine版も開発中！」目前可驗證的來源內容為 FrostPunchGamesが、キャラクターの柔らかな肉体表現や揺れ、衝突による変形などをリアルタイムに追加できるUnity向けソフトボディ物理システム「Flesh Dynamics」をリリースしました。 Flesh Dynamics https://www.youtube.com/watch?v=ocv_oZxCL1U 「Flesh Dynamics」は。來源沒有提供的 benchmark、工時節省或品質提升不做推定；正式導入前仍要用目標 DCC／引擎版本、代表性資產與實際輸出格式驗證相容性與可重現性。
+       導入時要實測不同角色比例、碰撞體、快速動作與鏡頭距離下的穩定度，也要量測 CPU／GPU 成本與行動裝置表現。Unreal Engine 版本仍在開發，不應把 Unity 端結果直接視為 UE 可用性。
       </p>
       <p class="analysis-level-note">
        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
@@ -117,10 +117,10 @@
      #07 · rendering
     </div>
     <h2>
-     遊戲引擎美術：Discover 5 (plus 5) key features for CG artists in Godot 4.6
+     Godot 4.6：Rendering、Animation、Physics 與工作流重點更新
     </h2>
     <p class="summary">
-     技術重點：Read our pick of the key changes to rendering, animation and physics in the open-source game engine - plus five neat quality-of-life updates. Production 檢查點為 動畫、Rendering；先以來源已公開的功能、流程與限制為準，不補寫未公開的效能或工時數字。
+     CG Channel 整理 Godot 4.6 對 CG 藝術家較重要的更新，重點涵蓋 rendering、animation、physics，以及多項改善日常操作效率的 quality-of-life 功能。
     </p>
     <figure class="case-preview" data-intel-id="cg-channel-discover-5-key-features-for-cg-artists-in-godot-4-6" data-intel-role="visual" data-visual-id="cg-channel-discover-5-key-features-for-cg-artists-in-godot-4-6">
      <a href="https://www.cgchannel.com/2026/01/discover-5-key-features-for-cg-artists-in-godot-4-6" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
@@ -145,19 +145,19 @@
        技術／流程變更
       </h4>
       <p>
-       「遊戲引擎美術：Discover 5 (plus 5) key features for CG artists in Godot 4.6」的公開資訊明確涉及 動畫、Rendering。來源描述為：Read our pick of the key changes to rendering, animation and physics in the open-source game engine - plus five neat quality-of-life updates. 技術判讀以這些已公開內容為界，不把標題之外的功能或結果自行補成既定事實。
+       Godot 4.6 的改動不是集中在單一模組，而是同時落在 rendering、animation、physics 與編輯器操作，代表美術端升版時需要做跨系統回歸，而不是只驗 shader。
       </p>
       <h4>
        Production 影響
       </h4>
       <p>
-       來源主題 Discover 5 (plus 5) key features for CG artists in Godot 4.6 的可驗證內容提到 Read our pick of the key changes to rendering, animation and physics in the open-source game engine - plus five neat quality-of-life updates.。對 Rendering，可把 動畫、Rendering 放進目前相同製作環節做小規模對照，確認它實際解決的是 authoring、交換、品質控制還是 runtime 問題，再決定導入範圍。
+       對使用 Godot 的 3D 團隊，可優先把版本測試拆成畫面、動畫、物理與 editor workflow 四組，快速判斷哪些更新能直接減少手工操作或改善最終呈現。
       </p>
       <h4>
        導入測試與限制
       </h4>
       <p>
-       「遊戲引擎美術：Discover 5 (plus 5) key features for CG artists in Godot 4.6」目前可驗證的來源內容為 Read our pick of the key changes to rendering, animation and physics in the open-source game engine - plus five neat quality-of-life updates.。來源沒有提供的 benchmark、工時節省或品質提升不做推定；正式導入前仍要用目標 DCC／引擎版本、代表性資產與實際輸出格式驗證相容性與可重現性。
+       這是版本功能整理，不代表每項更新都適合現有專案。升版前應用代表場景與角色測 render parity、動畫播放、physics 行為與匯入流程，再決定正式基線。
       </p>
       <p class="analysis-level-note">
        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
@@ -173,10 +173,10 @@
      #20 · unreal
     </div>
     <h2>
-     遊戲引擎美術：Get 100+ free modular airport assets for Unity and Unreal Engine
+     Military Airport：100+ 模組化機場資產，可用於 Unity／Unreal Engine
     </h2>
     <p class="summary">
-     工具重點：Freshcan 3D's Military Airport pack is a set of 3D buildings, roads and props, licensed for commercial use in any game engine or CG software. Production 檢查點為 Unreal Engine、Unity；先以來源已公開的功能、流程與限制為準，不補寫未公開的效能或工時數字。
+     Freshcan 3D 的 Military Airport 套件包含超過 100 個模組化機場資產，涵蓋建築、道路與箱子、貨櫃、管線、標誌、圍欄等 props；提供 Unity 與 Unreal Engine 套件，Fab Standard 授權允許在不同引擎與工具中商用。
     </p>
     <figure class="case-preview" data-intel-id="cg-channel-get-100-free-modular-airport-assets-for-unity-and-unreal-eng" data-intel-role="visual" data-visual-id="cg-channel-get-100-free-modular-airport-assets-for-unity-and-unreal-eng">
      <a href="https://www.cgchannel.com/2024/11/get-100-free-modular-airport-assets-for-unity-and-unreal-engine" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
@@ -201,19 +201,19 @@
        技術／流程變更
       </h4>
       <p>
-       「遊戲引擎美術：Get 100+ free modular airport assets for Unity and Unreal Engine」的公開資訊明確涉及 Unreal Engine、Unity。來源描述為：Freshcan 3D's Military Airport pack is a set of 3D buildings, roads and props, licensed for commercial use in any game engine or CG software. 技術判讀以這些已公開內容為界，不把標題之外的功能或結果自行補成既定事實。
+       資產包以 modular environment 為核心，建築搭配 tileable materials，並用道路與大量 props 組成軍用機場環境；這類結構適合觀察模組尺寸與重用方式。
       </p>
       <h4>
        Production 影響
       </h4>
       <p>
-       來源主題 Get 100+ free modular airport assets for Unity and Unreal Engine 的可驗證內容提到 Freshcan 3D's Military Airport pack is a set of 3D buildings, roads and props, licensed for commercial use in any game engine or CG software.。對 Unreal Engine，可把 Unreal Engine、Unity 放進目前相同製作環節做小規模對照，確認它實際解決的是 authoring、交換、品質控制還是 runtime 問題，再決定導入範圍。
+       對場景團隊而言，可拿來做 modular kit、材質覆用與場景組裝的 reference，也能測 Unity／UE 匯入後 prefab／material／collision 的整理成本。
       </p>
       <h4>
        導入測試與限制
       </h4>
       <p>
-       「遊戲引擎美術：Get 100+ free modular airport assets for Unity and Unreal Engine」目前可驗證的來源內容為 Freshcan 3D's Military Airport pack is a set of 3D buildings, roads and props, licensed for commercial use in any game engine or CG software.。來源沒有提供的 benchmark、工時節省或品質提升不做推定；正式導入前仍要用目標 DCC／引擎版本、代表性資產與實際輸出格式驗證相容性與可重現性。
+       來源中的限時免費日期是 2024 年資訊，現在不能再視為仍免費。實際使用前應重新確認 Fab 上架狀態、授權、引擎版本與資產技術規格。
       </p>
       <p class="analysis-level-note">
        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
