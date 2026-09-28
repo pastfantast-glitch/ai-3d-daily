@@ -370,6 +370,8 @@ def editorial_title(meta: dict, category: str, subcategory: str) -> str:
         if re.search(r"[\u3400-\u9fff]", value):
             return value
         category_label = CATEGORY_LABELS.get(category) or "製作情報"
+        if not re.search(r"[\u3400-\u9fff]", category_label):
+            category_label = "製作情報"
         return clean(f"{category_label}：{value}", 180)
 
     if re.search(r"[\u3400-\u9fff]", raw):
@@ -378,6 +380,8 @@ def editorial_title(meta: dict, category: str, subcategory: str) -> str:
     label = friendly_label(category, subcategory)
     if not re.search(r"[\u3400-\u9fff]", label):
         label = CATEGORY_LABELS.get(category) or "製作情報"
+    if not re.search(r"[\u3400-\u9fff]", label):
+        label = "製作情報"
 
     patterns = (
         (r"^Blender\s+(.+?)\s+Release$", lambda m: f"Blender {m.group(1)}：版本更新"),
@@ -453,6 +457,8 @@ def editorial_analysis(meta: dict, category: str, subcategory: str) -> list[dict
     focus = production_focus(meta)
     focus_text = "、".join(focus) if focus else label
     fact = source_fact(meta)
+    source_anchor = normalize_title(meta.get("title"))
+    evidence_anchor = clean(fact, 180)
 
     technical = (
         f"「{title}」的公開資訊明確涉及 {focus_text}。來源描述為：{fact} "
@@ -460,23 +466,27 @@ def editorial_analysis(meta: dict, category: str, subcategory: str) -> list[dict
     )
     if has_any(raw, ("release", "update", "version", "beta", "alpha", "preview")):
         impact = (
-            f"對 {label}，這項版本資訊可直接拿來檢查 {focus_text} 是否改變現有的資產交換、"
-            "authoring 或輸出步驟；先用代表性工程做升版回歸，再決定是否更新團隊基線。"
+            f"來源主題 {source_anchor} 的可驗證內容提到 {evidence_anchor}。對 {label}，"
+            f"可直接檢查 {focus_text} 是否改變現有的資產交換、authoring 或輸出步驟；"
+            "先用代表性工程做升版回歸，再決定是否更新團隊基線。"
         )
     elif has_any(raw, ("breakdown", "tutorial", "how to", "guide", "case study", "behind", "making-of", "workflow")):
         impact = (
-            f"對 {label}，可把來源展示的 {focus_text} 拆成實際步驟，與既有流程逐段比較輸入、"
-            "人工修正與最終輸出；這比只看完成圖更適合作為 Production review 依據。"
+            f"來源主題 {source_anchor} 的可驗證內容提到 {evidence_anchor}。對 {label}，"
+            f"可把來源展示的 {focus_text} 拆成實際步驟，與既有流程逐段比較輸入、人工修正與最終輸出；"
+            "這比只看完成圖更適合作為 Production review 依據。"
         )
     else:
         impact = (
-            f"對 {label}，可把 {focus_text} 放進目前相同製作環節做小規模對照，"
-            "確認它實際解決的是 authoring、交換、品質控制還是 runtime 問題，再決定導入範圍。"
+            f"來源主題 {source_anchor} 的可驗證內容提到 {evidence_anchor}。對 {label}，"
+            f"可把 {focus_text} 放進目前相同製作環節做小規模對照，確認它實際解決的是 authoring、交換、"
+            "品質控制還是 runtime 問題，再決定導入範圍。"
         )
 
     limit = (
-        f"目前證據主要來自「{title}」這個公開來源；來源沒有提供的 benchmark、工時節省或品質提升不做推定。"
-        "正式導入前仍要用目標 DCC／引擎版本、代表性資產與實際輸出格式驗證相容性與可重現性。"
+        f"來源主題 {source_anchor} 目前可驗證的內容為 {evidence_anchor}。"
+        "來源沒有提供的 benchmark、工時節省或品質提升不做推定；正式導入前仍要用目標 DCC／引擎版本、"
+        "代表性資產與實際輸出格式驗證相容性與可重現性。"
     )
     return [
         {"label": "技術／流程變更", "text": clean(technical, 560)},

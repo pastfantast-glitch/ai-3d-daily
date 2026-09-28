@@ -159,4 +159,31 @@ for block in analysis:
     assert "Collector" not in block["text"]
     assert "blender-dcc" not in block["text"]
 
+
+fallback_title = editorial_title(
+    meta(
+        "https://www.blender.org/user-stories/example",
+        "Using Blender in Game Development",
+        "A studio describes its Blender game-development workflow.",
+        "2026-09-27",
+        True,
+    ),
+    "blender-dcc",
+    "blender",
+)
+assert fallback_title.startswith("製作情報：")
+assert "Blender／DCC：Blender／DCC：" not in fallback_title
+
+analysis_a = editorial_analysis(
+    meta("https://example.com/a", "Workflow A", "Blender modeling workflow A.", "2026-09-27", True),
+    "blender-dcc",
+    "blender",
+)
+analysis_b = editorial_analysis(
+    meta("https://example.com/b", "Workflow B", "Blender modeling workflow B.", "2026-09-27", True),
+    "blender-dcc",
+    "blender",
+)
+assert not ({x["text"] for x in analysis_a} & {x["text"] for x in analysis_b})
+
 print("COLLECTOR CONTENT QUALITY PASS: landing/index rejection + scope admission + title normalization + subject-first classification + source-grounded factual editorial fallback")
