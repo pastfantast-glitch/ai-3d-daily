@@ -53,6 +53,27 @@ def language_balance_ok(text, max_latin_per_han):
     return han >= 2 and latin <= max(8, int(han * float(max_latin_per_han)))
 
 
+def pending_editorial_override(date, data):
+    done_path = ROOT / "data" / "publish" / f"{date}.done.json"
+    override_path = ROOT / "data" / "editorial-overrides" / f"{date}.json"
+    if not done_path.exists() or not override_path.exists():
+        return None
+    try:
+        done = json.loads(done_path.read_text("utf-8"))
+        override = json.loads(override_path.read_text("utf-8"))
+    except Exception:
+        return None
+    if str(done.get("state", "")).upper() != "DONE":
+        return None
+    if override.get("preserve_selection") is not True or override.get("date") != date:
+        return None
+    canonical_ids = {str(x.get("id") or "") for x in (data.get("items") or [])}
+    override_items = override.get("items") or {}
+    if set(override_items) != canonical_ids:
+        return None
+    return override_items
+
+
 def fail(errors):
     print("EDITORIAL QUALITY FAILED")
     for error in errors:
@@ -77,6 +98,7 @@ def main():
 
     data = json.loads((ROOT / "data" / "daily" / f"{date}.json").read_text("utf-8"))
     items = data.get("items") or []
+    pending_override = pending_editorial_override(date, data)
     cfg = load_editorial_config()
     qa_cfg = cfg.get("qa") or {}
     banned = tuple(qa_cfg.get("banned_phrases") or BANNED)
@@ -100,9 +122,10 @@ def main():
 
     for index, item in enumerate(items, 1):
         rid = str(item.get("id") or index)
-        title = str(item.get("title") or "").strip()
-        summary = str(item.get("summary") or "").strip()
-        analysis = item.get("full_analysis") or []
+        reader = (pending_override or {}).get(rid) or item
+        title = str(reader.get("title") or "").strip()
+        summary = str(reader.get("summary") or "").strip()
+        analysis = reader.get("full_analysis") or []
 
         if not CJK_RE.search(title):
             errors.append(f"{rid}: title must contain zh-Hant editorial framing")
@@ -173,7 +196,8 @@ def main():
 
     if errors:
         fail(errors)
-    print(f"EDITORIAL QUALITY PASS: {date} items={len(items)}")
+    pending = " pending-editorial-override" if pending_override else ""
+    print(f"EDITORIAL QUALITY PASS: {date} items={len(items)}{pending}")
 
 if __name__ == "__main__":
     main()

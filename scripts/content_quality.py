@@ -26,7 +26,10 @@ def editorial_policy() -> dict:
         return {}
 
 
-WS_RE = re.compile(r"\s+")\nKANA_RE = re.compile(r"[\u3040-\u30ff]")\nHAN_RE = re.compile(r"[\u3400-\u9fff]")\nLATIN_RE = re.compile(r"[A-Za-z]")
+WS_RE = re.compile(r"\s+")
+KANA_RE = re.compile(r"[\u3040-\u30ff]")
+HAN_RE = re.compile(r"[\u3400-\u9fff]")
+LATIN_RE = re.compile(r"[A-Za-z]")
 SITE_SUFFIX_RE = re.compile(
     r"\s*(?:\||—|–)\s*(?:CG Channel|SideFX|Unity|Blender|80 Level|80\.lv)\s*$",
     re.I,
