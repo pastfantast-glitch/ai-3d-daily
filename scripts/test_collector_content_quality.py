@@ -145,13 +145,15 @@ analysis = editorial_analysis(editorial_meta, "blender-dcc", "blender")
 assert title == "Blender 5.2 LTS：版本更新"
 assert "來源頁面顯示" not in summary
 assert "Collector 僅依" not in summary
-assert "Rendering advancements" in summary
+assert "Rendering advancements" not in summary
+assert reader_language_ok(summary, 2.5)
 assert "Production 檢查點" in summary
 assert "近期製作參考" not in summary
 assert "值得進一步實測" not in summary
 assert len(analysis) == 3
 assert [x["label"] for x in analysis] == ["技術／流程變更", "Production 影響", "導入測試與限制"]
-assert "Rendering advancements" in analysis[0]["text"]
+assert "Rendering advancements" not in analysis[0]["text"]
+assert reader_language_ok(analysis[0]["text"], 3.0)
 assert "Blender 5.2 LTS：版本更新" in analysis[0]["text"]
 assert "Blender 5.2 LTS：版本更新" in analysis[2]["text"]
 assert len({x["text"] for x in analysis}) == 3
@@ -171,7 +173,8 @@ fallback_title = editorial_title(
     "blender-dcc",
     "blender",
 )
-assert fallback_title.startswith("製作情報：")
+assert fallback_title.startswith("Blender／DCC：")
+assert reader_language_ok(fallback_title, 4.0)
 assert "Blender／DCC：Blender／DCC：" not in fallback_title
 
 analysis_a = editorial_analysis(

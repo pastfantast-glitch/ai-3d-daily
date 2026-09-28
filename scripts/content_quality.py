@@ -431,7 +431,7 @@ def editorial_title(meta: dict, category: str, subcategory: str) -> str:
         match = re.match(pattern, raw, flags=re.I)
         if match:
             return framed(render(match))
-    return framed(f"{label}：{raw}")
+    return framed(raw)
 
 def production_focus(meta: dict) -> list[str]:
     text = f"{normalize_title(meta.get('title'))} {clean(meta.get('description'), 900)}".casefold()
