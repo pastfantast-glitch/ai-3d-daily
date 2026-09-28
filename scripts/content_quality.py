@@ -484,7 +484,7 @@ def editorial_analysis(meta: dict, category: str, subcategory: str) -> list[dict
         )
 
     limit = (
-        f"來源主題 {source_anchor} 目前可驗證的內容為 {evidence_anchor}。"
+        f"「{title}」目前可驗證的來源內容為 {evidence_anchor}。"
         "來源沒有提供的 benchmark、工時節省或品質提升不做推定；正式導入前仍要用目標 DCC／引擎版本、"
         "代表性資產與實際輸出格式驗證相容性與可重現性。"
     )
