@@ -26,7 +26,7 @@ def editorial_policy() -> dict:
         return {}
 
 
-WS_RE = re.compile(r"\s+")
+WS_RE = re.compile(r"\s+")\nKANA_RE = re.compile(r"[\u3040-\u30ff]")\nHAN_RE = re.compile(r"[\u3400-\u9fff]")\nLATIN_RE = re.compile(r"[A-Za-z]")
 SITE_SUFFIX_RE = re.compile(
     r"\s*(?:\||—|–)\s*(?:CG Channel|SideFX|Unity|Blender|80 Level|80\.lv)\s*$",
     re.I,
@@ -176,6 +176,31 @@ def clean(value: object, limit: int | None = None) -> str:
     if limit and len(text) > limit:
         text = text[:limit].rstrip(" ,.;:：，。；、-—–")
     return text
+
+
+def reader_language_ok(value: object, max_latin_per_han: float = 3.0) -> bool:
+    text = clean(value)
+    if not text or KANA_RE.search(text):
+        return False
+    han = len(HAN_RE.findall(text))
+    latin = len(LATIN_RE.findall(text))
+    if han < 2:
+        return False
+    return latin <= max(8, int(han * max_latin_per_han))
+
+
+def reader_source_fact(meta: dict, title: str, focus_text: str) -> str:
+    raw = source_fact(meta)
+    if reader_language_ok(raw, 2.5):
+        return raw
+    lowered = f"{normalize_title(meta.get('title'))} {clean(meta.get('description'), 600)}".casefold()
+    if has_any(lowered, ("tutorial", "guide", "course", "training", "workflow")):
+        return f"來源介紹一套以 {focus_text} 為主的教學／製作流程，讀者標題為「{title}」"
+    if has_any(lowered, ("release", "update", "version", "beta", "alpha", "roadmap")):
+        return f"來源整理「{title}」的版本／開發更新，重點涉及 {focus_text}"
+    if has_any(lowered, ("plugin", "addon", "add-on", "tool", "software")):
+        return f"來源介紹「{title}」這項工具，公開重點涉及 {focus_text}"
+    return f"來源主題為「{title}」，目前可確認的製作面向包含 {focus_text}"
 
 
 def has_term(text: str, term: str) -> bool:
@@ -367,12 +392,16 @@ def editorial_title(meta: dict, category: str, subcategory: str) -> str:
 
     def framed(value: str) -> str:
         value = clean(value, 180)
-        if re.search(r"[\u3400-\u9fff]", value):
+        if reader_language_ok(value, 4.0):
             return value
-        category_label = CATEGORY_LABELS.get(category) or "製作情報"
-        if not re.search(r"[\u3400-\u9fff]", category_label):
-            category_label = "製作情報"
-        return clean(f"{category_label}：{value}", 180)
+        category_label = CATEGORY_LABELS.get(category) or "製作重點"
+        if not HAN_RE.search(category_label):
+            category_label = "製作重點"
+        subject = re.split(r"\s*[|｜—–-]\s*", value, maxsplit=1)[0]
+        subject = clean(subject, 32)
+        if not subject:
+            subject = "本項目"
+        return clean(f"{category_label}：{subject} 的製作重點", 180)
 
     if re.search(r"[\u3400-\u9fff]", raw):
         return raw
@@ -426,7 +455,7 @@ def production_summary(meta: dict, category: str, subcategory: str) -> str:
     label = friendly_label(category, subcategory)
     focus = production_focus(meta)
     focus_text = "、".join(focus) if focus else label
-    fact = source_fact(meta)
+    fact = reader_source_fact(meta, title, focus_text)
 
     if has_any(raw, ("release", "update", "version", "beta", "alpha", "preview")):
         lead = "版本重點"
@@ -456,8 +485,8 @@ def editorial_analysis(meta: dict, category: str, subcategory: str) -> list[dict
     label = friendly_label(category, subcategory)
     focus = production_focus(meta)
     focus_text = "、".join(focus) if focus else label
-    fact = source_fact(meta)
-    source_anchor = normalize_title(meta.get("title"))
+    fact = reader_source_fact(meta, title, focus_text)
+    source_anchor = title
     evidence_anchor = clean(fact, 180)
 
     technical = (

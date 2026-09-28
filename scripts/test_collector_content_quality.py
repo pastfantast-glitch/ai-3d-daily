@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 from __future__ import annotations
-from content_quality import admission, classify_content, normalize_title, production_summary, editorial_title, editorial_analysis
+from content_quality import admission, classify_content, normalize_title, production_summary, editorial_title, editorial_analysis, reader_language_ok
 
 
 def meta(url, title, description="", published=None, article_type=False):
@@ -185,5 +185,26 @@ analysis_b = editorial_analysis(
     "blender",
 )
 assert not ({x["text"] for x in analysis_a} & {x["text"] for x in analysis_b})
+
+
+assert reader_language_ok("Blender 5.1：5 項重點功能", 4.0)
+assert not reader_language_ok("製作情報：Advanced Facial Rigging - Blender Studio", 4.0)
+assert not reader_language_ok("Blender リギング：日本語タイトル", 4.0)
+
+foreign_meta = meta(
+    "https://example.com/foreign",
+    "Advanced Facial Rigging - Blender Studio",
+    "This course covers a flexible and expressive facial rigging workflow.",
+    "2026-09-28",
+    True,
+)
+foreign_title = editorial_title(foreign_meta, "blender-dcc", "blender")
+foreign_summary = production_summary(foreign_meta, "blender-dcc", "blender")
+foreign_analysis = editorial_analysis(foreign_meta, "blender-dcc", "blender")
+assert reader_language_ok(foreign_title, 4.0)
+assert reader_language_ok(foreign_summary, 2.5)
+assert all(reader_language_ok(x["text"], 3.0) for x in foreign_analysis)
+assert "This course covers" not in foreign_summary
+assert all("This course covers" not in x["text"] for x in foreign_analysis)
 
 print("COLLECTOR CONTENT QUALITY PASS: landing/index rejection + scope admission + title normalization + subject-first classification + source-grounded factual editorial fallback")

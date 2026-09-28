@@ -12,6 +12,8 @@ ROOT = Path(__file__).resolve().parents[1]
 EDITORIAL_CFG = ROOT / "config" / "editorial-quality.json"
 DATE_RE = re.compile(r"^20\d{2}-\d{2}-\d{2}$")
 CJK_RE = re.compile(r"[\u3400-\u9fff]")
+KANA_RE = re.compile(r"[\u3040-\u30ff]")
+LATIN_RE = re.compile(r"[A-Za-z]")
 EFFECTIVE_DATE = "2026-09-26"
 BANNED = (
     "來源頁面顯示",
@@ -40,6 +42,15 @@ def copy_signature(text):
     text = re.sub(r"\b[A-Za-z][A-Za-z0-9._+/#-]*\b", "TERM", text)
     text = re.sub(r"\d+(?:\.\d+)?", "NUM", text)
     return re.sub(r"\s+", " ", text).strip().casefold()
+
+
+def language_balance_ok(text, max_latin_per_han):
+    text = str(text or "")
+    if KANA_RE.search(text):
+        return False
+    han = len(CJK_RE.findall(text))
+    latin = len(LATIN_RE.findall(text))
+    return han >= 2 and latin <= max(8, int(han * float(max_latin_per_han)))
 
 
 def fail(errors):
@@ -73,6 +84,12 @@ def main():
     min_summary_chars = int(qa_cfg.get("min_summary_chars", 28) or 28)
     min_analysis_chars = int(qa_cfg.get("min_analysis_block_chars", 36) or 36)
     max_signature_occurrences = int(qa_cfg.get("max_cross_item_signature_occurrences", 2) or 2)
+    language_cfg = cfg.get("language_quality") or {}
+    language_effective = str(language_cfg.get("effective_date") or "9999-12-31")
+    strict_language = date >= language_effective
+    title_ratio = float(language_cfg.get("title_max_latin_letters_per_han", 4.0) or 4.0)
+    summary_ratio = float(language_cfg.get("summary_max_latin_letters_per_han", 2.5) or 2.5)
+    analysis_ratio = float(language_cfg.get("analysis_max_latin_letters_per_han", 3.0) or 3.0)
     errors = []
     seen_blocks = {}
     summary_signatures = Counter()
@@ -91,6 +108,12 @@ def main():
             errors.append(f"{rid}: title must contain zh-Hant editorial framing")
         if len(summary) < min_summary_chars or not CJK_RE.search(summary):
             errors.append(f"{rid}: summary must be a concrete zh-Hant production summary")
+
+        if strict_language:
+            if not language_balance_ok(title, title_ratio):
+                errors.append(f"{rid}: title must be predominantly zh-Hant and contain no Japanese kana")
+            if not language_balance_ok(summary, summary_ratio):
+                errors.append(f"{rid}: summary must be predominantly zh-Hant and contain no Japanese kana")
 
         visible = "\n".join([title, summary] + [str(x.get("text") or "") for x in analysis])
         for pattern in title_patterns:
@@ -115,6 +138,8 @@ def main():
             text = str(block.get("text") or "").strip()
             if len(text) < min_analysis_chars:
                 errors.append(f"{rid}: analysis block too shallow")
+            if strict_language and not language_balance_ok(text, analysis_ratio):
+                errors.append(f"{rid}: analysis block must be predominantly zh-Hant and contain no Japanese kana")
             if text:
                 if text in seen_blocks:
                     errors.append(f"{rid}: exact duplicate analysis block also used by {seen_blocks[text]}")

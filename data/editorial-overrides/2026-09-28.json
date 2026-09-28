@@ -1,0 +1,530 @@
+{
+  "schema_version": 1,
+  "date": "2026-09-28",
+  "contract": "source-reviewed-editorial-repair-v1",
+  "style_reference": "2026-09-25",
+  "preserve_selection": true,
+  "reason": "Restore the existing zh-Hant reader-copy contract: translate/rewrite non-Chinese source titles, summaries and analysis into source-grounded Traditional Chinese while preserving the verified 2026-09-28 selection.",
+  "items": {
+    "3dnchu-flesh-dynamics": {
+      "source_url": "https://3dnchu.com/archives/flesh-dynamics",
+      "title": "Flesh Dynamics：在 Unity 角色上加入即時軟體物理與碰撞變形",
+      "summary": "FrostPunchGames 推出的 Flesh Dynamics 可疊加在既有 SkinnedMeshRenderer 動畫之上，為指定身體區域加入柔軟組織的二次晃動與碰撞變形。Unity 版本已推出，Unreal Engine 版本仍在開發中。",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "Flesh Dynamics 的核心不是取代骨架動畫，而是在既有角色動畫結果上再加入 soft-body 次級運動與碰撞變形，讓需要柔軟感的身體區域能以物理方式補足純 skinning 的表現。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對角色製作流程而言，這類工具可把原本需要額外骨骼、手動畫曲線或特製 shader 的局部晃動改成物理層處理；美術與動畫仍保留原始動作，只把柔軟變形交給 runtime 系統。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "導入時要實測不同角色比例、碰撞體、快速動作與鏡頭距離下的穩定度，也要量測 CPU／GPU 成本與行動裝置表現。Unreal Engine 版本仍在開發，不應把 Unity 端結果直接視為 UE 可用性。"
+        }
+      ]
+    },
+    "3dnchu-top-100-gauntlet-of-gods": {
+      "source_url": "https://3dnchu.com/archives/top-100-gauntlet-of-gods",
+      "title": "Gauntlet of Gods：1,700 名 3D 藝術家的動畫卡牌挑戰與 Top 100",
+      "summary": "Clinton Jones（Pwnisher）公布 2026 年第二場 Gauntlet of Gods 3D Challenge 結果，包含 Top 100 動畫卡牌與全體 1,700 名參賽者的 montage。活動集結來自 101 個國家的創作者，主題要求以手工 3D 製作完成卡牌動畫。",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "這次案例的可比較價值在於同一題目下同時出現大量角色設計、構圖、動畫與 VFX 解法；Top 100 與完整 montage 可作為同題材多種視覺處理的集中參考。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對角色、動作與特效團隊而言，這類大型 challenge 很適合做 benchmark board：可快速比較 silhouette、鏡頭節奏、卡牌構圖、特效密度與完成度，而不是只看單一作者作品。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "這是競賽作品集合，不是統一規格的 production benchmark；參賽者使用工具、時間與資產條件不同。導入內部流程時應把它當視覺與解題參考，不宜直接比較工時或成本。"
+        }
+      ]
+    },
+    "blender-official-facial-rigging": {
+      "source_url": "https://studio.blender.org/training/facial-rigging",
+      "title": "Blender Studio 進階臉部 Rigging：Storm 的高表情自由度臉部系統",
+      "summary": "Blender Studio 的 Advanced Facial Rigging 課程拆解角色 Storm 的臉部綁定方法，重點是如何建立可彈性控制、能支援多種表情的 facial rig，並完整說明實際使用的方法與 workflow。",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "課程以 Blender Studio 自家角色 Storm 為案例，重點不是單一控制器技巧，而是把臉部 rig 的方法、控制結構與實際製作流程完整串起來。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對角色團隊而言，可直接拿來檢查 facial rig 的控制粒度、表情覆蓋範圍與 animator 操作方式，特別適合用來建立角色臉部 rig 的共通規格與 review checklist。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "正式套用前仍要以自家角色骨架、blend shape／corrective 需求與動畫輸出方式驗證；課程案例屬 Blender Studio 流程，不代表所有遊戲引擎或外包 rig 可直接照搬。"
+        }
+      ]
+    },
+    "blender-official-story-tools": {
+      "source_url": "https://studio.blender.org/training/story-tools",
+      "title": "Blender Story Tools：用 Grease Pencil 串接 2D／3D 分鏡與故事製作",
+      "summary": "Blender Studio 的 Story Tools 聚焦 story artist 工作流，利用 Grease Pencil 把 2D 繪製與 3D 場景放在同一環境中，讓分鏡、構圖與場景空間可以直接互相參照。",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "Story Tools 的核心是讓 2D Grease Pencil 與 3D 場景共存在 Blender 內，story artist 不必把分鏡與場景 blocking 完全拆成不同工具處理。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對 previs、分鏡與敘事美術而言，2D／3D 同場能更快確認鏡位、透視與角色走位，也能減少分鏡交給 layout 後重新解讀空間的落差。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "導入時應測團隊現有 storyboard 格式、camera／scene 命名、多人協作與版本管理；若最終仍需輸出到其他剪輯或分鏡軟體，也要確認 round-trip 成本。"
+        }
+      ]
+    },
+    "blender-official-blender-fundamentals-training-update-3d-animation": {
+      "source_url": "https://studio.blender.org/blog/blender-fundamentals-training-update-3d-animation",
+      "title": "Blender Fundamentals 更新：新增 3D 動畫基礎教學章節",
+      "summary": "Blender Studio 更新免費的 Blender Fundamentals 入門課程，新增 Animation Fundamentals 章節，讓新手可以用目前版本的 Blender 學習 3D 動畫基本觀念與操作。",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "這次更新把 3D Animation 正式補進 Blender Fundamentals，重點在於提供與目前 Blender 版本一致的動畫基礎教學，而不是沿用舊介面或舊流程。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對內部培訓與新人 onboarding，可把官方 Fundamentals 當成共同起點，再把公司自己的命名、輸出、骨架與引擎規範疊上去，減少基礎操作教材自行維護的成本。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "官方入門課程只涵蓋基礎，不等同 production animation SOP；正式訓練仍需補上 rig 規範、retarget、export、引擎驗證與專案版本限制。"
+        }
+      ]
+    },
+    "blender-official-customizing-material-assets": {
+      "source_url": "https://studio.blender.org/training/customizing-material-assets",
+      "title": "Blender 5.2 材質資產：從基礎到進階 Shader Node 自訂流程",
+      "summary": "Blender Studio 的材質資產迷你課程介紹 Blender 5.2 新的 Material Assets，並示範如何從簡單到進階地使用 Shader Nodes 修改與延伸這些材質資產。",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "這套課程把 Material Assets 與 Shader Nodes 串在一起：材質先作為可重用資產，再透過節點調整外觀與參數，讓資產庫與 shader authoring 不再是兩套分離流程。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對材質量產而言，可把常用 base material 做成共享資產，再讓美術在節點層做專案差異化；這比每個人從空白 shader 重建更容易維持命名與結構一致。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "導入時要確認 Blender 5.2 的資產庫位置、相依貼圖、版本升級與 linked／local 使用方式，也要測複雜 node group 在團隊交換時是否會產生斷鏈。"
+        }
+      ]
+    },
+    "cg-channel-discover-5-key-features-for-cg-artists-in-godot-4-6": {
+      "source_url": "https://www.cgchannel.com/2026/01/discover-5-key-features-for-cg-artists-in-godot-4-6",
+      "title": "Godot 4.6：Rendering、Animation、Physics 與工作流重點更新",
+      "summary": "CG Channel 整理 Godot 4.6 對 CG 藝術家較重要的更新，重點涵蓋 rendering、animation、physics，以及多項改善日常操作效率的 quality-of-life 功能。",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "Godot 4.6 的改動不是集中在單一模組，而是同時落在 rendering、animation、physics 與編輯器操作，代表美術端升版時需要做跨系統回歸，而不是只驗 shader。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對使用 Godot 的 3D 團隊，可優先把版本測試拆成畫面、動畫、物理與 editor workflow 四組，快速判斷哪些更新能直接減少手工操作或改善最終呈現。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "這是版本功能整理，不代表每項更新都適合現有專案。升版前應用代表場景與角色測 render parity、動畫播放、physics 行為與匯入流程，再決定正式基線。"
+        }
+      ]
+    },
+    "3dnchu-creating-high-quality-vegetation-for-games-book-jp": {
+      "source_url": "https://3dnchu.com/archives/creating-high-quality-vegetation-for-games-book-jp",
+      "title": "UE5＋Blender＋SpeedTree 植生製作：從植物觀察到遊戲資產",
+      "summary": "《Creating High-Quality Vegetation for Games》日文版介紹遊戲植生製作，內容從真實植物觀察一路延伸到 UE5、Blender 與 SpeedTree 的資產製作與呈現，適合用來建立植被製作的完整學習路線。",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "這本書把植生製作從『做一棵樹』往前拉到觀察與資料分析，再往後接 Blender／SpeedTree 資產處理與 UE5 呈現，流程範圍比單一軟體教學完整。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對場景團隊而言，可把它拆成 reference、建模、葉片／枝幹、材質、風動與引擎整合等檢查點，較適合拿來建立植生資產 SOP 或新人訓練。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "書籍內容跨多套工具，實際專案仍要依自家 UE5 版本、Nanite／foliage 策略、LOD、風動與材質預算調整，不能把教學設定直接當成效能規格。"
+        }
+      ]
+    },
+    "cgworld-jp-substance-3d-painter": {
+      "source_url": "https://cgworld.jp/substance-3d-painter",
+      "title": "CGWORLD：Substance 3D Painter 專題與製作案例索引",
+      "summary": "CGWORLD 的 Substance 3D Painter 專題頁彙整與 Painter 相關的創作者訪談、技巧與製作文章，可作為追查日文案例與實務用法的入口，而不是單一版本更新。",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "這個頁面本質上是 Substance 3D Painter 主題索引，價值在於集中多篇相關文章，而不是提供一個新的 Painter 功能或單一完整流程。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對材質團隊可把它當日文案例資料庫，依角色、場景、貼圖或 workflow 類型再篩選文章；比直接把索引頁當作一則技術新聞更適合。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "索引頁本身證據深度有限，導入判斷應回到實際文章內容與版本日期；若沒有進一步閱讀子文章，不應把它解讀成特定功能已被驗證。"
+        }
+      ]
+    },
+    "cg-channel-free-tutorial-design-mechs-in-vr-using-substance-3d-modeler": {
+      "source_url": "https://www.cgchannel.com/2026/08/free-tutorial-design-mechs-in-vr-using-substance-3d-modeler",
+      "title": "Substance 3D Modeler：用 VR 從零設計機甲，再到 KeyShot 呈現",
+      "summary": "Gnomon 的免費教學由 WB Games 概念美術 Andre-Lang Huynh 示範用 Substance 3D Modeler 在 VR 中從基礎幾何建立機甲，逐步加入結構、裝甲、顏色與表面細節，最後輸出到 KeyShot 完成材質、燈光與展示 render。",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "流程從 primitive 與 silhouette 開始，再用 sculpt、Boolean、layer、stamp、symmetry、angle snapping 與可重用 kitbash 元件增加二、三級細節，最後把完成模型交給 KeyShot 做 presentation。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對硬表面概念設計而言，VR sculpt 的價值是快速建立比例與大形，不必一開始就進入精細拓樸；KeyShot 則負責後段材質與燈光，角色分工相當清楚。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "這是概念設計／展示流程，不等於可直接進遊戲的 hard-surface asset。若要進 production，仍需補 retopo、UV、烘焙、材質規格與引擎匯入驗證。"
+        }
+      ]
+    },
+    "blender-official-animation-2025-progress-planning": {
+      "source_url": "https://code.blender.org/2024/02/animation-2025-progress-planning",
+      "title": "Blender Animation 2025：動畫與 Rigging 模組進度及後續規劃",
+      "summary": "Blender Animation & Rigging 模組整理 Animation 2025 計畫的開發進度與後續方向，適合用來追蹤 Blender 動畫系統接下來的技術重點與規劃。",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "這類開發規劃頁的重點是揭露 Animation／Rigging 模組正在推進的方向，而不是單一已完成功能；閱讀時要把『進度』與『未來規劃』分開看。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對 Blender 動畫 pipeline，可用 roadmap 提前辨識可能影響 rig、keyframe、NLA 或 animator workflow 的改動，安排測試檔與升版觀察名單。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "規劃中的項目可能延後、改版或不進正式版。實際 production 決策仍應以已發布版本與 release notes 為準，不把 roadmap 當成既定交付。"
+        }
+      ]
+    },
+    "blender-official-blender-lab-activity-report-q1-2026": {
+      "source_url": "https://www.blender.org/development/blender-lab-activity-report-q1-2026",
+      "title": "Blender Lab 2026 Q1：研究與開發專案進度整理",
+      "summary": "Blender Lab 的 2026 年第一季活動報告彙整目前研究與開發專案的進度，適合追蹤仍在實驗或探索階段、尚未完全進入正式產品線的技術方向。",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "Blender Lab 報告偏向 R&D 狀態整理，能看到研究題目與探索方向，但不應與正式版 feature list 混為一談。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對技術美術與工具團隊，這類報告適合用來提早觀察未來可能影響建模、動畫、render 或資料處理的技術，再決定是否值得做 prototype。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "研究專案可能沒有明確 release 時程，也可能改變方向。導入前必須確認功能是否已進可用 build、API 是否穩定，以及是否有正式維護承諾。"
+        }
+      ]
+    },
+    "cg-channel-keyshot-releases-keyshot-studio-2025-3": {
+      "source_url": "https://www.cgchannel.com/2025/11/keyshot-releases-keyshot-studio-2025-3",
+      "title": "KeyShot Studio 2025.3：OpenPBR、Cryptomatte 與 AMD GPU 效能更新",
+      "summary": "KeyShot Studio 2025.3 新增 OpenPBR 與 Cryptomatte，改善 Material Graph、Move Tool 與相機景深操作，並擴充 CAD metadata 支援。官方宣稱 AMD GPU rendering 在特定情況下最高可提升 50%，這項數字需以實際場景驗證。",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "OpenPBR 讓材質交換有更一致的標準基礎，Cryptomatte 則直接改善後製選取；版本同時調整 Material Graph 與 CAD metadata，對 visualization workflow 的影響比單純 renderer 速度更廣。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "如果團隊需要從 CAD／DCC 快速做產品 render，這版值得優先測材質一致性、後製 matte 與 AMD GPU 路徑；三者都可能直接減少 lookdev 或 compositing 的往返。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "『最高 50%』是來源引用的官方性能說法，不代表所有 GPU 或場景。應以自家模型、材質與輸出解析度測 render time、VRAM、OpenPBR parity 與 Cryptomatte 正確性。"
+        }
+      ]
+    },
+    "cg-channel-foundry-releases-mari-7-5": {
+      "source_url": "https://www.cgchannel.com/2025/12/foundry-releases-mari-7-5",
+      "title": "Mari 7.5：Multi-Paint 可同步投射繪製多張 Texture Map",
+      "summary": "Foundry 在 Mari 7.5 加入期待已久的 Multi-Paint 系統，讓 projection painting 可以同時作用於多張 texture map，減少同一筆刷效果需要逐張 channel 重做的操作。",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "Multi-Paint 的核心改變是把原本分開處理的多張 texture map 納入同一次 projection paint 操作，讓跨 channel 的筆刷結果更容易保持一致。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對角色與高解析材質製作，若同一細節需要同時影響 color、roughness、mask 等 map，Multi-Paint 有機會減少重複 painting 與對位誤差。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "升版前應用真實 UDIM 資產測多 channel paint、layer／mask、projection cache 與既有 Mari project 相容性；來源沒有提供固定的省時比例。"
+        }
+      ]
+    },
+    "cg-channel-see-the-2026-blender-development-roadmap": {
+      "source_url": "https://www.cgchannel.com/2026/02/see-the-2026-blender-development-roadmap",
+      "title": "Blender 2026 開發路線圖：5.1、5.2、5.3 與後續重點",
+      "summary": "CG Channel 整理 Blender 2026 年主要開發方向，涵蓋預計落在 Blender 5.1、5.2、5.3 及後續版本的功能，適合用來安排升版觀察與內部測試優先序。",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "這份 roadmap 的價值在版本節奏：可把正在開發的功能對應到 5.1、5.2、5.3 與更後面的時程，讓團隊知道哪些改動近期可測、哪些仍偏中長期。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對 Blender 為主力 DCC 的團隊，可提前建立版本驗證清單，特別是會影響資產格式、animation、nodes、render 或 add-on API 的功能，避免正式升版時才臨時處理。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "roadmap 不是 release contract，功能與時間都可能改動。正式 pipeline 仍應只以已發布版本、release notes 與實際檔案回歸測試做決策。"
+        }
+      ]
+    },
+    "80-level-ultimate-driver-management-add-on-for-blender": {
+      "source_url": "https://80.lv/articles/ultimate-driver-management-add-on-for-blender",
+      "title": "Blender Driver 管理外掛：Shape Key 自動化、Viewport 面板與 Action Constraint 集中管理",
+      "summary": "這款 Blender Driver 管理 add-on 把 bone-driven shape key 自動化、自訂 viewport 控制面板與 Action Constraint 管理整合在同一介面，目標是減少角色 rig 中分散的 driver 設定與維護操作。",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "工具把常見的 driver／shape key／constraint 管理集中到單一介面，特別適合 bone 驅動 corrective shape 或需要大量重複設定的角色 rig。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對角色 TD 與動畫團隊，集中管理可降低 driver 分散在多個面板與資料區塊造成的查找成本，也有利於把常用設定做成較一致的 rig authoring 流程。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "導入前要用大型角色 rig 測 driver 數量、shape key 更新、Action Constraint、檔案載入與 Blender 版本相容性；也要確認外掛停用後資料是否仍可正常維護。"
+        }
+      ]
+    },
+    "blender-official-3d-printing": {
+      "source_url": "https://studio.blender.org/training/3d-printing",
+      "title": "Blender 3D 列印入門：從建模到可列印物件的基礎流程",
+      "summary": "Blender Studio 的 3D Printing with Blender 課程介紹如何在 Blender 中製作適合 3D 列印的物件，定位為從建模到列印準備的入門教材。",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "這類課程與遊戲 mesh 最大差異在於輸出目標是實體列印，因此除了外形之外，還必須關注封閉體、厚度、尺度與幾何可製造性。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對需要把角色、道具或收藏品轉成實體模型的美術，可用它補足從螢幕資產到列印資產的基本觀念，避免只靠視覺上看起來正確判斷模型。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "實際列印仍取決於 FDM／樹脂設備、切片器、支撐與材料限制；導出前應用目標印表機做 manifold、尺寸、薄壁與支撐測試。"
+        }
+      ]
+    },
+    "blender-official-user-stories": {
+      "source_url": "https://www.blender.org/get-involved/user-stories",
+      "title": "Blender User Stories：從 VFX、汽車、遊戲到太空產業的實務案例",
+      "summary": "Blender 官方 User Stories 彙整不同產業的實際使用案例，範圍從 VFX、頒獎典禮、汽車設計、遊戲到太空產業，可用來了解 Blender 在不同 production context 中扮演的角色。",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "User Stories 是案例集合而不是單一 workflow，價值在於跨產業比較 Blender 被放在哪個環節：有些是主力 DCC，有些是視覺化、動畫或特定工具鏈的一部分。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對評估 Blender 導入範圍的團隊，可從相近產業案例先找出可比的資產量、協作方式與交付類型，再決定哪些案例值得深入閱讀。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "案例通常聚焦成功經驗，未必完整揭露成本、失敗與維護負擔。做工具決策時仍需回到自家 pipeline、外掛依賴與人員技能做實測。"
+        }
+      ]
+    },
+    "blender-official-cosmology-with-geometry-nodes": {
+      "source_url": "https://www.blender.org/user-stories/cosmology-with-geometry-nodes",
+      "title": "Geometry Nodes × 宇宙學：Blender 節點在科學研究中的實際應用",
+      "summary": "Blender 官方案例介紹 Geometry Nodes 在宇宙學研究中的真實科學應用，顯示 GeoNodes 不只用於美術程序化建模，也能拿來處理與視覺化研究資料。",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "這個案例把 Geometry Nodes 從資產生成延伸到科學資料處理／視覺化，代表節點系統的價值不只在造型，也在可重複的資料轉換與程序化操作。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對 technical art 而言，這類跨領域案例可作為複雜資料驅動 visualisation 的參考，尤其適合思考 attribute、field 與 procedural graph 如何承接非典型 3D 資料。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "科研案例的資料型態與精度要求和遊戲資產不同。若要借用方法，應先確認資料量、數值精度、節點效能與輸出需求，而不是直接搬用研究設定。"
+        }
+      ]
+    },
+    "cg-channel-get-100-free-modular-airport-assets-for-unity-and-unreal-eng": {
+      "source_url": "https://www.cgchannel.com/2024/11/get-100-free-modular-airport-assets-for-unity-and-unreal-engine",
+      "title": "Military Airport：100+ 模組化機場資產，可用於 Unity／Unreal Engine",
+      "summary": "Freshcan 3D 的 Military Airport 套件包含超過 100 個模組化機場資產，涵蓋建築、道路與箱子、貨櫃、管線、標誌、圍欄等 props；提供 Unity 與 Unreal Engine 套件，Fab Standard 授權允許在不同引擎與工具中商用。",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "資產包以 modular environment 為核心，建築搭配 tileable materials，並用道路與大量 props 組成軍用機場環境；這類結構適合觀察模組尺寸與重用方式。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對場景團隊而言，可拿來做 modular kit、材質覆用與場景組裝的 reference，也能測 Unity／UE 匯入後 prefab／material／collision 的整理成本。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "來源中的限時免費日期是 2024 年資訊，現在不能再視為仍免費。實際使用前應重新確認 Fab 上架狀態、授權、引擎版本與資產技術規格。"
+        }
+      ]
+    },
+    "3dnchu-blender-rigging-book": {
+      "source_url": "https://3dnchu.com/archives/blender-rigging-book",
+      "title": "Blender Rigging 專書：遊戲角色綁定完整指南推出日文版",
+      "summary": "Armin Halac 的《A Complete Guide to Character Rigging for Games Using Blender》推出日文版《Blender Rigging》，主題聚焦以 Blender 建立遊戲角色 rig 的完整流程，適合作為系統化綁定教材。",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "這本書的定位不是單一技巧，而是完整角色 rig 教材，適合依序建立骨架、控制、變形與遊戲用途的整體理解。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對角色新人培訓，可把書籍章節對照公司自己的 joint naming、deform skeleton、control rig 與 engine export 規範，形成較完整的學習路線。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "書中流程仍會受 Blender 版本與目標引擎限制。實際採用時要確認骨架結構、constraint、skin weight 與 FBX／glTF 輸出是否符合專案規格。"
+        }
+      ]
+    },
+    "3dnchu-couture-for-maya-gumroad": {
+      "source_url": "https://3dnchu.com/archives/couture-for-maya-gumroad",
+      "title": "Couture for Maya：最佳化 3D 掃描與 Marvelous Designer 服裝 Mesh",
+      "summary": "Technical Artist Florian Croquet 的 Couture for Maya 是服裝 mesh 最佳化腳本，目標是處理 3D 掃描衣物與 Marvelous Designer 產生的幾何，並已在 Gumroad 提供免費下載。",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "Couture 的應用點落在服裝模型清理與最佳化，特別針對掃描資料或 Marvelous Designer 這類容易產生高密度／不適合下游製作的 mesh。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對角色服裝 pipeline，如果腳本能把重複 cleanup、自動化整理與拓樸前處理集中處理，可減少進 Maya 後的手工修整時間，尤其適合大量服裝資產。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "來源只確認工具用途與發布資訊，沒有提供所有服裝類型的結果。導入前應用厚薄衣料、皺褶密度與多層服裝測拓樸、UV、形變與後續 rig 相容性。"
+        }
+      ]
+    },
+    "3dnchu-fluidninja-live-wip": {
+      "source_url": "https://3dnchu.com/archives/fluidninja-live-wip",
+      "title": "FluidNinja LIVE：面向 UE4／行動裝置的即時互動流體模擬",
+      "summary": "FluidNinja 作者 Andras Ketzer 正在開發 FluidNinja LIVE，目標是在 UE4 中提供即時、可互動的流體表現，並展示可在行動裝置上運行的方向；目前仍屬開發中 WIP。",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "FluidNinja LIVE 把重點放在 runtime 即時互動，而不是離線先烘好流體素材；若能在行動裝置執行，代表設計目標包含較受限硬體。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對遊戲 VFX 而言，真正價值是讓流體對角色或場景互動即時反應，適合用在需要動態水、煙霧或場景效果的玩法，而不是固定 flipbook。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "來源明確標示為 WIP，不能把展示當成正式產品效能。導入前應確認實際支援的 UE 版本、解析度、碰撞方式、平台限制與 GPU 成本。"
+        }
+      ]
+    },
+    "3dnchu-non-destructive-primitives": {
+      "source_url": "https://3dnchu.com/archives/non-destructive-primitives",
+      "title": "Non-Destructive Primitives：Geometry Nodes 非破壞 Primitive 免費外掛",
+      "summary": "Dan-Gry 發布免費 Blender add-on「Non-Destructive Primitives」，以 Geometry Nodes 為基礎加入可非破壞調整的 primitive，並已在 Blender Extensions 提供。",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "工具把 primitive 參數化放進 Geometry Nodes，讓尺寸、段數或形狀調整可以保留為程序化狀態，而不是建立後立即變成固定 mesh。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對 hard-surface blockout、程序化建模與可重用資產，非破壞 primitive 能讓早期比例修改更容易，也適合接後續 modifier／node 流程。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "導入時要測 apply／convert 後的 mesh 品質、modifier 相容、檔案交換與 Geometry Nodes 版本差異；簡單 primitive 的便利性不一定能取代複雜建模工具。"
+        }
+      ]
+    },
+    "3dnchu-usmar-uv-v0-2": {
+      "source_url": "https://3dnchu.com/archives/usmar-uv-v0-2",
+      "title": "Usmar UV v0.2：Blender UV 展開與調整輔助外掛",
+      "summary": "Igor Ivanov 推出 Blender 用 UV 輔助 add-on「Usmar UV v0.2」，定位在提供基本的 UV 展開與調整功能，讓常用 UV 操作集中在較方便的工具流程中。",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "Usmar UV v0.2 屬於 UV workflow 輔助工具，重點是把常用展開與調整操作整理成一套 add-on 流程，而不是引入新的 UV 演算法標準。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對大量資產處理，可用它評估 seam、unwrap、island 調整等重複操作是否能減少點擊次數，尤其適合與 Blender 原生 UV 工具做對照。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "目前來源資訊較淺，應以實際資產測 stretch、island 控制、快捷操作與 Blender 版本相容性；不要只因操作集中就推定最終 UV 品質一定更好。"
+        }
+      ]
+    },
+    "3dnchu-uv-packer-3-for-free": {
+      "source_url": "https://3dnchu.com/archives/uv-packer-3-for-free",
+      "title": "UV-Packer 3 免費化：3ds Max UV Packing 外掛，Blender 版開發中",
+      "summary": "3d-io 將 UV Packing 外掛 UV-Packer 3 改為免費提供；現有重點是 3ds Max 版本，而 Blender 版仍在開發中。對大量 UV island 的 packing 流程可作為另一個工具選項。",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "UV-Packer 3 的直接變化是授權轉為免費，核心用途仍是 UV island packing；來源同時提到 Blender plugin 正在開發，因此現階段兩個 DCC 的可用狀態不同。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對以 3ds Max 為主的資產團隊，可直接拿現有專案比較 packing 密度、速度與人工重排需求；Blender 團隊則應等實際版本可用後再做同規格測試。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "『Blender 版開發中』不等於已可用。導入前需確認當前下載版本、商用授權、UDIM／padding／rotation 規則與實際 DCC 版本相容性。"
+        }
+      ]
+    },
+    "cg-channel-discover-5-key-features-in-blender-5-1": {
+      "source_url": "https://www.cgchannel.com/2026/03/discover-5-key-features-in-blender-5-1",
+      "title": "Blender 5.1：Raycast Node、Rendering 與 Animation 的 5 項重點更新",
+      "summary": "CG Channel 整理 Blender 5.1 五項值得 CG 藝術家關注的功能，內容從 Raycast Node 延伸到 rendering 與 animation 改進，適合用來建立 5.1 升版時的優先測試清單。",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "這份整理把 Blender 5.1 的新功能濃縮成五個美術端重點，其中包含 Raycast Node，以及 rendering、animation 相關更新；可先從會影響既有製作步驟的項目開始測。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對 Blender production team，版本整理的價值是快速建立升版 regression list：節點、render 與動畫通常會分別影響程序化資產、最終畫面與角色製作。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "文章是重點摘要，不是完整 release notes。正式升版仍應對照 Blender 官方文件，並以代表性 scene、node graph、render 與 animation file 做回歸測試。"
+        }
+      ]
+    }
+  },
+  "source_review": {
+    "status": "verified",
+    "reviewed_on": "2026-09-28",
+    "reviewed_count": 27,
+    "method": "external-source-review-plus-verified-DONE-identity",
+    "scope": "all 2026-09-28 canonical source_url identities and source-grounded zh-Hant reader copy"
+  }
+}
