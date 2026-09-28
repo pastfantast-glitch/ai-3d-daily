@@ -81,58 +81,58 @@ jobs:
               candidate="$(extract_date "$trigger")"
               [ -n "$candidate" ] || continue
               if python - "$trigger" "$candidate" <<'PY'
-import hashlib
-import json
-from pathlib import Path
-import sys
-
-trigger = Path(sys.argv[1])
-date = sys.argv[2]
-root = Path(".")
-try:
-    marker = json.loads(trigger.read_text("utf-8"))
-except Exception:
-    raise SystemExit(1)
-if str(marker.get("state", "")).strip().upper() != "COLLECTOR_PERSISTED":
-    raise SystemExit(1)
-if str(marker.get("date", "")).strip() != date:
-    raise SystemExit(1)
-if marker.get("writer_idle_confirmed_externally") is not True:
-    raise SystemExit(1)
-
-request = root / "data" / "publish" / f"{date}.request"
-ready = root / "data" / "publish" / f"{date}.ready"
-done = root / "data" / "publish" / f"{date}.done.json"
-data_path = root / "data" / "daily" / f"{date}.json"
-if request.exists() or not data_path.exists():
-    raise SystemExit(1)
-
-intent = str(marker.get("intent", "")).strip()
-if intent == "policy-republish":
-    if not done.exists():
-        raise SystemExit(1)
-    try:
-        receipt = json.loads(done.read_text("utf-8"))
-    except Exception:
-        raise SystemExit(1)
-    if str(receipt.get("state", "")).strip().upper() != "DONE":
-        raise SystemExit(1)
-    current_hash = hashlib.sha256(data_path.read_bytes()).hexdigest()
-    if ready.exists():
-        try:
-            prepared = json.loads(ready.read_text("utf-8"))
-        except Exception:
-            prepared = {}
-        if (
-            prepared.get("controlled_policy_republish") is True
-            and str(prepared.get("canonical_sha256", "")).strip().lower() == current_hash
-        ):
-            raise SystemExit(1)
-else:
-    if done.exists() or ready.exists():
-        raise SystemExit(1)
-raise SystemExit(0)
-PY
+          import hashlib
+          import json
+          from pathlib import Path
+          import sys
+          
+          trigger = Path(sys.argv[1])
+          date = sys.argv[2]
+          root = Path(".")
+          try:
+              marker = json.loads(trigger.read_text("utf-8"))
+          except Exception:
+              raise SystemExit(1)
+          if str(marker.get("state", "")).strip().upper() != "COLLECTOR_PERSISTED":
+              raise SystemExit(1)
+          if str(marker.get("date", "")).strip() != date:
+              raise SystemExit(1)
+          if marker.get("writer_idle_confirmed_externally") is not True:
+              raise SystemExit(1)
+          
+          request = root / "data" / "publish" / f"{date}.request"
+          ready = root / "data" / "publish" / f"{date}.ready"
+          done = root / "data" / "publish" / f"{date}.done.json"
+          data_path = root / "data" / "daily" / f"{date}.json"
+          if request.exists() or not data_path.exists():
+              raise SystemExit(1)
+          
+          intent = str(marker.get("intent", "")).strip()
+          if intent == "policy-republish":
+              if not done.exists():
+                  raise SystemExit(1)
+              try:
+                  receipt = json.loads(done.read_text("utf-8"))
+              except Exception:
+                  raise SystemExit(1)
+              if str(receipt.get("state", "")).strip().upper() != "DONE":
+                  raise SystemExit(1)
+              current_hash = hashlib.sha256(data_path.read_bytes()).hexdigest()
+              if ready.exists():
+                  try:
+                      prepared = json.loads(ready.read_text("utf-8"))
+                  except Exception:
+                      prepared = {}
+                  if (
+                      prepared.get("controlled_policy_republish") is True
+                      and str(prepared.get("canonical_sha256", "")).strip().lower() == current_hash
+                  ):
+                      raise SystemExit(1)
+          else:
+              if done.exists() or ready.exists():
+                  raise SystemExit(1)
+          raise SystemExit(0)
+          PY
               then
                 mode="collector_handoff"
                 date="$candidate"
