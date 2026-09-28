@@ -61,10 +61,10 @@
      #02 · blender
     </div>
     <h2>
-     製作情報：Blender／DCC：Blender／DCC：I finally learned to enjoy 3D art with this workflow using 3DCoat, Quixel Mixer, Blender and Photoshop
+     3DCoat → Quixel Mixer → Blender → Photoshop：Overgrown Robot 場景的跨 DCC 流程
     </h2>
     <p class="summary">
-     「Blender／DCC：Blender／DCC：I finally learned to enjoy 3D art with this workflow using 3DCoat, Quixel Mixer, Blender and Photoshop」提供 Blender 的近期製作參考，來源可確認的重點集中在 Blender。閱讀時應以公開來源能支持的方法、功能或案例為準，再決定是否值得進一步實測。
+     Marcin Basta 先以 3DCoat 的 voxel workflow 建立機器人與岩石，完成 autopo 與 UV 後送進 Quixel Mixer 疊加鏽蝕、苔蘚材質，再到 Blender 組場景、打光與 Cycles render，最後用 Photoshop 的 mist／light pass 與 paintover 完成畫面。
     </p>
     <figure class="case-preview" data-intel-id="web-discovery-i-finally-learned-to-enjoy-3d-art-with-this-workflow-using-3" data-intel-role="visual" data-visual-id="web-discovery-i-finally-learned-to-enjoy-3d-art-with-this-workflow-using-3">
      <a href="https://www.creativebloq.com/design/poster-design/i-finally-learned-to-enjoy-3d-art-with-this-workflow-using-3dcoat-quixel-mixer-blender-and-photoshop" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
@@ -89,19 +89,19 @@
        技術／流程變更
       </h4>
       <p>
-       「Blender／DCC：Blender／DCC：I finally learned to enjoy 3D art with this workflow using 3DCoat, Quixel Mixer, Blender and Photoshop」目前可確認的技術／製作焦點集中在 Blender。應優先理解它改變的是工具能力、製作方法還是輸出結果，再判斷與現有流程的關聯。
+       流程把不同 DCC 的責任切得很明確：3DCoat 負責自由 sculpt 與 retopo／UV，Quixel Mixer 負責掃描材質混合，Blender 處理場景組裝、散佈、燈光與 render，Photoshop 只做最後的天空替換與局部修整。
       </p>
       <h4>
        Production 影響
       </h4>
       <p>
-       對 Blender 團隊而言，「Blender／DCC：Blender／DCC：I finally learned to enjoy 3D art with this workflow using 3DCoat, Quixel Mixer, Blender and Photoshop」可作為近期參考項目，用來決定是否值得深入閱讀、建立測試檔或更新內部 Review Checklist。
+       對概念場景或 key art，這種拆法能避免所有工作都塞進單一 DCC。少量可重複岩石透過旋轉與縮放組成場景，也示範先做可覆用資產，再靠材質變體與構圖拉開差異的思路。
       </p>
       <h4>
        導入測試與限制
       </h4>
       <p>
-       「Blender／DCC：Blender／DCC：I finally learned to enjoy 3D art with this workflow using 3DCoat, Quixel Mixer, Blender and Photoshop」目前的證據深度仍以公開來源為主；正式導入前應用團隊實際 DCC／引擎版本、資產規格與輸出條件驗證相容性、可重現性與品質，且不得把來源未公開的效能、工時或品質提升當成既知結果。
+       這是偏離線視覺開發的流程，而且 Quixel Mixer 已停止持續更新；若要轉成遊戲場景，需要另外驗證貼圖規格、材質 channel、LOD、draw call 與引擎重建成本，不能直接把最終 render 流程當成 runtime pipeline。
       </p>
       <p class="analysis-level-note">
        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
@@ -117,10 +117,10 @@
      #03 · blender
     </div>
     <h2>
-     Field-Aligned Surface-Filling Curve via Implicit Stitching | 3Dモデルの表面を方向場に沿った1本の連続カーブで埋め尽くす技術！コード＆Blender用アドオン（Win）も公開！
+     Field-Aligned Surface-Filling Curve：沿方向場用單一連續曲線填滿 3D 表面
     </h2>
     <p class="summary">
-     「Field-Aligned Surface-Filling Curve via Implicit Stitching | 3Dモデルの表面を方向場に沿った1本の連続カーブで埋め尽くす技術！コード＆Blender用アドオン（Win）も公開！」提供 Blender 的近期製作參考，來源可確認的重點集中在 Blender。閱讀時應以公開來源能支持的方法、功能或案例為準，再決定是否值得進一步實測。
+     Eurographics 2026 研究以 implicit stitching 直接操作 scalar field，在一般曲面上生成沿方向場排列的單一 surface-filling curve；作者報告相較既有 geometry-flow 方法速度提升超過一個數量級，並提供 Blender 4.5 整合。
     </p>
     <figure class="case-preview" data-intel-id="web-discovery-field-aligned-surface-filling-curve" data-intel-role="visual" data-visual-id="web-discovery-field-aligned-surface-filling-curve">
      <a href="https://3dnchu.com/archives/field-aligned-surface-filling-curve" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
@@ -145,19 +145,19 @@
        技術／流程變更
       </h4>
       <p>
-       「Field-Aligned Surface-Filling Curve via Implicit Stitching | 3Dモデルの表面を方向場に沿った1本の連続カーブで埋め尽くす技術！コード＆Blender用アドオン（Win）も公開！」目前可確認的技術／製作焦點集中在 Blender。應優先理解它改變的是工具能力、製作方法還是輸出結果，再判斷與現有流程的關聯。
+       方法不再先抽等高線再做後處理 stitching，而是在 implicit domain 內直接改 scalar field 完成接合，因此可延伸到非平面曲面；研究也以 Thingi10K 驗證穩定性，並把結果接進 Blender。
       </p>
       <h4>
        Production 影響
       </h4>
       <p>
-       對 Blender 團隊而言，「Field-Aligned Surface-Filling Curve via Implicit Stitching | 3Dモデルの表面を方向場に沿った1本の連続カーブで埋め尽くす技術！コード＆Blender用アドオン（Win）も公開！」可作為近期參考項目，用來決定是否值得深入閱讀、建立測試檔或更新內部 Review Checklist。
+       對程序化造型、繞線、編織、刻紋或沿表面方向生成圖樣，這種單一路徑比大量獨立 curve 更容易形成連續加工或動畫資料；Blender 整合也讓研究結果有機會直接進美術原型流程。
       </p>
       <h4>
        導入測試與限制
       </h4>
       <p>
-       「Field-Aligned Surface-Filling Curve via Implicit Stitching | 3Dモデルの表面を方向場に沿った1本の連続カーブで埋め尽くす技術！コード＆Blender用アドオン（Win）も公開！」目前的證據深度仍以公開來源為主；正式導入前應用團隊實際 DCC／引擎版本、資產規格與輸出條件驗證相容性、可重現性與品質，且不得把來源未公開的效能、工時或品質提升當成既知結果。
+       論文展示在超過一千萬頂點的表面上可於 25 分鐘內生成曲線，但這仍是研究型工具；正式使用前要測不同拓樸、方向場品質、尖角／孔洞以及輸出 curve 的編輯成本，不能把論文效能直接套到所有資產。
       </p>
       <p class="analysis-level-note">
        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
@@ -173,10 +173,10 @@
      #04 · blender
     </div>
     <h2>
-     UVgami | OptCutsやPartUVなど複数の技術を活用して3DモデルのUVを自動展開できる無料Blenderアドオン！
+     UVgami：Blender 整合 OptCuts、PartUV、xatlas 的自動 UV 工具
     </h2>
     <p class="summary">
-     「UVgami | OptCutsやPartUVなど複数の技術を活用して3DモデルのUVを自動展開できる無料Blenderアドオン！」提供 Blender 的近期製作參考，來源可確認的重點集中在 UV、Blender。閱讀時應以公開來源能支持的方法、功能或案例為準，再決定是否值得進一步實測。
+     UVgami 是開源 Blender add-on，將三套 UV engine 放在同一工具中：OptCuts 偏向 seam／distortion 品質，PartUV 可用 CUDA 與 AI／geometry segmentation 依零件拆分，xatlas 則提供另一條快速展 UV 路線。
     </p>
     <figure class="case-preview" data-intel-id="web-discovery-uvgami" data-intel-role="visual" data-visual-id="web-discovery-uvgami">
      <a href="https://3dnchu.com/archives/uvgami" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
@@ -201,19 +201,19 @@
        技術／流程變更
       </h4>
       <p>
-       「UVgami | OptCutsやPartUVなど複数の技術を活用して3DモデルのUVを自動展開できる無料Blenderアドオン！」目前可確認的技術／製作焦點集中在 UV、Blender。應優先理解它改變的是工具能力、製作方法還是輸出結果，再判斷與現有流程的關聯。
+       它不是單一 unwrap 演算法，而是讓使用者依資產選 engine。OptCuts 可同時控制 seam 長度與 distortion；PartUV 先取得有意義的部件再展 UV，高密度 mesh 在部分情況可比 OptCuts 更快。
       </p>
       <h4>
        Production 影響
       </h4>
       <p>
-       對 Blender 團隊而言，「UVgami | OptCutsやPartUVなど複数の技術を活用して3DモデルのUVを自動展開できる無料Blenderアドオン！」可作為近期參考項目，用來決定是否值得深入閱讀、建立測試檔或更新內部 Review Checklist。
+       對角色、硬表面與 AI 生成 mesh，價值在於可以用同一介面比較不同 UV 策略，而不是一鍵結果不佳就整套重做；既有 UV、sharp edge／crease 與部件 segmentation 也能成為演算法輸入。
       </p>
       <h4>
        導入測試與限制
       </h4>
       <p>
-       「UVgami | OptCutsやPartUVなど複数の技術を活用して3DモデルのUVを自動展開できる無料Blenderアドオン！」目前的證據深度仍以公開來源為主；正式導入前應用團隊實際 DCC／引擎版本、資產規格與輸出條件驗證相容性、可重現性與品質，且不得把來源未公開的效能、工時或品質提升當成既知結果。
+       高品質 unwrap 與處理時間仍有取捨，PartUV 的 GPU／AI 模式也有硬體與 segmentation 依賴。建議用角色、機械與服裝各一組資產，比較 seam 可讀性、stretch、island 數、packing 與人工修正時間。
       </p>
       <p class="analysis-level-note">
        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
@@ -229,10 +229,10 @@
      #11 · blender
     </div>
     <h2>
-     Auto Unwrap v1.0 | 340超のモデルで学習し精度を向上！オーガニック・ハードサーフェス・衣装に対応したUV自動展開Blenderアドオン！シーム生成からUDIMパッキングまで対応！
+     Auto Unwrap 1.0：Blender 自動 Seams、UV 與 UDIM Packing，分三種資產模式
     </h2>
     <p class="summary">
-     「Auto Unwrap v1.0 | 340超のモデルで学習し精度を向上！オーガニック・ハードサーフェス・衣装に対応したUV自動展開Blenderアドオン！シーム生成からUDIMパッキングまで対応！」提供 Blender 的近期製作參考，來源可確認的重點集中在 UV、Blender。閱讀時應以公開來源能支持的方法、功能或案例為準，再決定是否值得進一步實測。
+     Auto Unwrap 1.0 依模型自動找 seam、unwrap 與 pack，提供 Organic Unwrap、Smart UV、Garment Seams 三種 engine，對應角色／生物、硬表面與 CLO／Marvelous Designer 衣裝；作者表示已用 340+ 模型調整，並支援 UDIM、Symmetry 與 texel density 統一。
     </p>
     <figure class="case-preview" data-intel-id="web-discovery-auto-unwrap-v1-0" data-intel-role="visual" data-visual-id="web-discovery-auto-unwrap-v1-0">
      <a href="https://3dnchu.com/archives/auto-unwrap-v1-0" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
@@ -257,19 +257,19 @@
        技術／流程變更
       </h4>
       <p>
-       「Auto Unwrap v1.0 | 340超のモデルで学習し精度を向上！オーガニック・ハードサーフェス・衣装に対応したUV自動展開Blenderアドオン！シーム生成からUDIMパッキングまで対応！」目前可確認的技術／製作焦點集中在 UV、Blender。應優先理解它改變的是工具能力、製作方法還是輸出結果，再判斷與現有流程的關聯。
+       工具把 seam detection、unwrap、packing 串成一段流程，並按資產型態分 engine；還能在 Less Stretch／Balanced／Fewer Seams 間取捨、預覽 seam、局部 re-unwrap、Stack Repeats 與兩種 UDIM 排列。
       </p>
       <h4>
        Production 影響
       </h4>
       <p>
-       對 Blender 團隊而言，「Auto Unwrap v1.0 | 340超のモデルで学習し精度を向上！オーガニック・ハードサーフェス・衣装に対応したUV自動展開Blenderアドオン！シーム生成からUDIMパッキングまで対応！」可作為近期參考項目，用來決定是否值得深入閱讀、建立測試檔或更新內部 Review Checklist。
+       對外包或大量資產前處理，真正價值不是完全免 UV，而是先把第一版 seam／island／pack 自動產出，再讓美術只修高風險區域。角色、機械與服裝拆開策略也比單一 smart unwrap 更符合量產需求。
       </p>
       <h4>
        導入測試與限制
       </h4>
       <p>
-       「Auto Unwrap v1.0 | 340超のモデルで学習し精度を向上！オーガニック・ハードサーフェス・衣装に対応したUV自動展開Blenderアドオン！シーム生成からUDIMパッキングまで対応！」目前的證據深度仍以公開來源為主；正式導入前應用團隊實際 DCC／引擎版本、資產規格與輸出條件驗證相容性、可重現性與品質，且不得把來源未公開的效能、工時或品質提升當成既知結果。
+       來源作者實測也指出並非所有模型都能完全 one-click，需要依模型狀態調設定。應固定三類測試資產，比較 stretch、seam 可見度、island 數、UDIM 分布與人工修整時間，再決定是否納入 SOP。
       </p>
       <p class="analysis-level-note">
        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
@@ -285,10 +285,10 @@
      #12 · blender
     </div>
     <h2>
-     Blender・Unity制作メモ｜キャラ制作からゲーム実装までの工程別まとめ【2026年9月・初版】
+     Blender／Unity 9 月製作筆記：Rigify、Rokoko、Cascadeur 與 Unity CLI 的檢查點
     </h2>
     <p class="summary">
-     「Blender・Unity制作メモ｜キャラ制作からゲーム実装までの工程別まとめ【2026年9月・初版】」提供 Blender 的近期製作參考，來源可確認的重點集中在 Unity、Blender。閱讀時應以公開來源能支持的方法、功能或案例為準，再決定是否值得進一步實測。
+     這份工程筆記把角色到 Unity 的常見環節拆開：Rigify 後仍要逐關節修 weight；Rokoko Vision 3.0 用單眼影片產生 motion；Cascadeur 2026.2 增加 Animation Layers／Easing；Unity CLI 1.0.0-beta.9 則開始提供 agent skills 與依變更範圍執行測試的功能。
     </p>
     <figure class="case-preview" data-intel-id="web-discovery-n25d5c0483d42" data-intel-role="visual" data-visual-id="web-discovery-n25d5c0483d42">
      <a href="https://note.com/su_sin8473/n/n25d5c0483d42" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
@@ -313,19 +313,19 @@
        技術／流程變更
       </h4>
       <p>
-       「Blender・Unity制作メモ｜キャラ制作からゲーム実装までの工程別まとめ【2026年9月・初版】」目前可確認的技術／製作焦點集中在 Unity、Blender。應優先理解它改變的是工具能力、製作方法還是輸出結果，再判斷與現有流程的關聯。
+       文章把自動 rig、mocap、animation layer 與 AI／CLI automation 放在同一條 production checklist：自動處理後仍要檢查肩、肘、手腕、髖、膝、接地、重心與表情，並用版本紀錄保留工具與輸入條件。
       </p>
       <h4>
        Production 影響
       </h4>
       <p>
-       對 Blender 團隊而言，「Blender・Unity制作メモ｜キャラ制作からゲーム実装までの工程別まとめ【2026年9月・初版】」可作為近期參考項目，用來決定是否值得深入閱讀、建立測試檔或更新內部 Review Checklist。
+       對角色團隊的價值在於把『有自動化功能』改成『有可驗證的交付步驟』。Rig、motion 或 CLI agent 都要產生可 review 的比較圖、測試結果或版本紀錄，避免工具成功執行就直接視為美術品質合格。
       </p>
       <h4>
        導入測試與限制
       </h4>
       <p>
-       「Blender・Unity制作メモ｜キャラ制作からゲーム実装までの工程別まとめ【2026年9月・初版】」目前的證據深度仍以公開來源為主；正式導入前應用團隊實際 DCC／引擎版本、資產規格與輸出條件驗證相容性、可重現性與品質，且不得把來源未公開的效能、工時或品質提升當成既知結果。
+       內容是作者整理的 2026 年 9 月工作筆記，混合多個工具與官方資料，不是一個單一專案 benchmark。導入時應分別確認 Blender／Unity 版本、商用條件、輸出格式與 beta／alpha 狀態。
       </p>
       <p class="analysis-level-note">
        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
@@ -341,10 +341,10 @@
      #13 · substance
     </div>
     <h2>
-     製作情報：Blender／DCC：Blender／DCC：Version 6.0 | Adobe Substance 3D Sampler
+     Substance 3D Sampler 6.0：OpenPBR、USD／USDZ 輸出與 8K Rendering
     </h2>
     <p class="summary">
-     「Blender／DCC：Blender／DCC：Version 6.0 | Adobe Substance 3D Sampler」整理這次版本／功能變更，已知重點落在 Substance。對 Substance 流程可先用來判斷升級與測試優先順序，再回原始來源確認版本限制與相容性。
+     Sampler 6.0 把 OpenPBR 納入核心材質模型，加入 Material Presets 與重做的 Properties／Channel Settings；輸出可選 USD、USDA、USDZ 與 OpenPBR channels，Rendering 提升到 8K，Captis 也新增 4K、autofocus 與 One-Click Scan。
     </p>
     <figure class="case-preview" data-intel-id="web-discovery-version-6-0" data-intel-role="visual" data-visual-id="web-discovery-version-6-0">
      <a href="https://experienceleague.adobe.com/en/docs/substance-3d-sampler/using/release-notes/version-6-0" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
@@ -369,19 +369,19 @@
        技術／流程變更
       </h4>
       <p>
-       「Blender／DCC：Blender／DCC：Version 6.0 | Adobe Substance 3D Sampler」屬於版本／功能更新；目前可確認的製作重點集中在 Substance。評估時應先把新功能與現有 Substance 流程逐項對照，而不是只看版本號或功能數量。
+       材質 authoring 可在 OpenPBR 與 ASM 間切換，預設 preset 改用 OpenPBR；同時 static filters 可升級為 dynamic 版本，Base Material、export channel 與 Python API 也開始理解 material model。
       </p>
       <h4>
        Production 影響
       </h4>
       <p>
-       對 Production 的價值在於用「Blender／DCC：Blender／DCC：Version 6.0 | Adobe Substance 3D Sampler」建立升級優先順序：哪些 Substance 變更會直接影響日常製作、資產交換或最終輸出，應先用代表性專案做回歸。
+       對 Substance → DCC／引擎交換，OpenPBR 與 USD 系列輸出值得優先測，因為它直接影響材質語意能否跨工具保留；8K render 與 Captis 改進則偏向掃描與 lookdev 的輸出能力。
       </p>
       <h4>
        導入測試與限制
       </h4>
       <p>
-       「Blender／DCC：Blender／DCC：Version 6.0 | Adobe Substance 3D Sampler」目前的證據深度仍以公開來源為主；正式導入前應用團隊實際 DCC／引擎版本、資產規格與輸出條件驗證相容性、可重現性與品質，且不得把來源未公開的效能、工時或品質提升當成既知結果。
+       升版前應用現有 SBSAR／掃描資產驗證 OpenPBR／ASM 切換、USDZ embedded texture、export channel、dynamic filter 與 Python automation；尤其要確認下游工具對 OpenPBR 欄位的實際支援，不只看 Sampler 端輸出成功。
       </p>
       <p class="analysis-level-note">
        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
@@ -397,10 +397,10 @@
      #16 · blender
     </div>
     <h2>
-     製作情報：Blender／DCC：Blender／DCC：How to Rig a Character in Blender (2026): Rigify, Manual Armatures, and the One-Click Route
+     Blender 角色 Rig 路線比較：Rigify、手動 Armature 與自動 Rig 的交付差異
     </h2>
     <p class="summary">
-     「Blender／DCC：Blender／DCC：How to Rig a Character in Blender (2026): Rigify, Manual Armatures, and the One-Click Route」提供可供製作參考的流程／案例，重點落在 Blender。適合先拆出來源明確展示的方法與視覺判斷，再用自己的資產規格驗證是否可轉移到 Production。
+     Cinevva 的指南把 Rigify、手動 Armature、Auto-Rig Pro 與自動 rig service 放在同一張流程表比較，重點包含前置 mesh 準備、marker／骨架設定、skinning、export 與可交付 animation clips，而不是只比較『幾秒完成綁定』。
     </p>
     <figure class="case-preview" data-intel-id="web-discovery-how-to-rig-a-character-in-blender" data-intel-role="visual" data-visual-id="web-discovery-how-to-rig-a-character-in-blender">
      <a href="https://app.cinevva.com/guides/how-to-rig-a-character-in-blender" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
@@ -425,19 +425,19 @@
        技術／流程變更
       </h4>
       <p>
-       「Blender／DCC：Blender／DCC：How to Rig a Character in Blender (2026): Rigify, Manual Armatures, and the One-Click Route」屬於製作拆解／教學，核心觀察點落在 Blender。可先把來源明確展示的步驟、視覺判斷與工具使用拆開，再對照自己現有流程。
+       不同 rig 路線的自動化程度差很多，但共同前提仍是 mesh 乾淨、姿勢與比例合理。Rigify 偏 Blender 內建控制 rig；手動 armature 可完全自訂；商用 auto-rigger 則把標記、skin 與 engine export 打包成較短流程。
       </p>
       <h4>
        Production 影響
       </h4>
       <p>
-       「Blender／DCC：Blender／DCC：How to Rig a Character in Blender (2026): Rigify, Manual Armatures, and the One-Click Route」對 Blender Production 的價值是提供可比較的實作案例；適合拿來做 Review Reference 或小型 A/B Test，而不是直接把單一案例視為通用標準。
+       對角色量產，選 rig 工具不應只看建立速度，而要比較最後交付的是 control rig、deform skeleton、Mixamo 命名、FBX／glTF preset 還是可直接用的 clips；這些差異會決定動畫與引擎端還要補多少工作。
       </p>
       <h4>
        導入測試與限制
       </h4>
       <p>
-       「Blender／DCC：Blender／DCC：How to Rig a Character in Blender (2026): Rigify, Manual Armatures, and the One-Click Route」目前的證據深度仍以公開來源為主；正式導入前應用團隊實際 DCC／引擎版本、資產規格與輸出條件驗證相容性、可重現性與品質，且不得把來源未公開的效能、工時或品質提升當成既知結果。
+       來源本身也包含作者自家產品，因此工具優劣不能只依該頁結論。建議用同一角色跑 Rigify、手動與候選 auto-rigger，統一測肩髖變形、finger／face 需求、Unity／UE export 與後續修改成本。
       </p>
       <p class="analysis-level-note">
        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
@@ -453,10 +453,10 @@
      #17 · substance
     </div>
     <h2>
-     製作情報：Blender／DCC：Blender／DCC：Extracting materials values and textures | Adobe Substance 3D Designer
+     Substance 3D Designer：從 3D Scene 直接抽貼圖、Value 與可編輯 Graph
     </h2>
     <p class="summary">
-     「Blender／DCC：Blender／DCC：Extracting materials values and textures | Adobe Substance 3D Designer」提供 Substance 的近期製作參考，來源可確認的重點集中在 材質、Substance。閱讀時應以公開來源能支持的方法、功能或案例為準，再決定是否值得進一步實測。
+     Designer 的 3D Scene workflow 可從材質貼圖直接建立 Substance graph；若來源使用 channel packing，系統會自動加入 Grayscale conversion node 拆出對應 channel。也能把單張 texture 抽成 Bitmap resource，或把 material property value 抽成 Value processor。
     </p>
     <figure class="case-preview" data-intel-id="web-discovery-extracting-materials-values-and-textures" data-intel-role="visual" data-visual-id="web-discovery-extracting-materials-values-and-textures">
      <a href="https://experienceleague.adobe.com/en/docs/substance-3d-designer/using/working-with-3d-scenes/extracting-materials-values-and-textures" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
@@ -481,19 +481,19 @@
        技術／流程變更
       </h4>
       <p>
-       「Blender／DCC：Blender／DCC：Extracting materials values and textures | Adobe Substance 3D Designer」目前可確認的技術／製作焦點集中在 材質、Substance。應優先理解它改變的是工具能力、製作方法還是輸出結果，再判斷與現有流程的關聯。
+       Create graph from texture inputs 會把材質使用的 textures 轉成已連接的 graph，並盡量維持原本外觀；Extract texture to graph 則只新增 Bitmap node，Extract value to graph 會建立對應的 Value processor。
       </p>
       <h4>
        Production 影響
       </h4>
       <p>
-       對 Substance 團隊而言，「Blender／DCC：Blender／DCC：Extracting materials values and textures | Adobe Substance 3D Designer」可作為近期參考項目，用來決定是否值得深入閱讀、建立測試檔或更新內部 Review Checklist。
+       對接手外來 USD／3D scene 或要把既有貼圖材質轉成程序化 graph 的團隊，這能少掉手動建立節點與拆 channel 的初始工；尤其對 packed ORM／mask texture，能降低接錯 channel 的機率。
       </p>
       <h4>
        導入測試與限制
       </h4>
       <p>
-       「Blender／DCC：Blender／DCC：Extracting materials values and textures | Adobe Substance 3D Designer」目前的證據深度仍以公開來源為主；正式導入前應用團隊實際 DCC／引擎版本、資產規格與輸出條件驗證相容性、可重現性與品質，且不得把來源未公開的效能、工時或品質提升當成既知結果。
+       USDZ 等 embedded texture 仍需要先指定位置把貼圖抽到磁碟；導入前應測不同 material property、channel packing、同名 output、relative path 與重新連結，確認 graph 重建後外觀與來源 scene 一致。
       </p>
       <p class="analysis-level-note">
        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
@@ -509,10 +509,10 @@
      #19 · other-dcc
     </div>
     <h2>
-     OctaneRender 2021.1：Otoy 發布更新
+     OctaneRender 2021.1：Clipping Material、Mesh→SDF、GGX 更新與 USD Import
     </h2>
     <p class="summary">
-     「OctaneRender 2021.1：Otoy 發布更新」提供 其他 DCC 的近期製作參考，來源可確認的重點集中在 材質。閱讀時應以公開來源能支持的方法、功能或案例為準，再決定是否值得進一步實測。
+     OctaneRender 2021.1 帶來 shader-based Clipping Material，可對 mesh／volume／Vectron 做即時 Boolean；Mesh Volume SDF 可把 mesh 轉成 SDF。版本也更新 energy-preserving GGX、OCIO 2、texture nodes，正式版再加入初步 USD importer。
     </p>
     <figure class="case-preview" data-intel-id="cg-channel-otoy-releases-octanerender-2021-1-in-beta" data-intel-role="visual" data-visual-id="cg-channel-otoy-releases-octanerender-2021-1-in-beta">
      <a href="https://www.cgchannel.com/2021/10/otoy-releases-octanerender-2021-1-in-beta" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
@@ -537,19 +537,19 @@
        技術／流程變更
       </h4>
       <p>
-       「OctaneRender 2021.1：Otoy 發布更新」目前可確認的技術／製作焦點集中在 材質。應優先理解它改變的是工具能力、製作方法還是輸出結果，再判斷與現有流程的關聯。
+       Clipping Material 產生的新切面可自動沿用 parent material／texture，Mesh Volume SDF 則讓傳統 mesh 能和 Vectron procedural primitive 做 Boolean union；材質端的新版 GGX 主要處理 roughness 增加時的能量損失。
       </p>
       <h4>
        Production 影響
       </h4>
       <p>
-       對 其他 DCC 團隊而言，「OctaneRender 2021.1：Otoy 發布更新」可作為近期參考項目，用來決定是否值得深入閱讀、建立測試檔或更新內部 Review Checklist。
+       這筆舊版資訊適合拿來理解 Octane 後續程序幾何與材質系統的演進：Boolean／SDF、color management、USD exchange 都已在 2021.1 出現，能幫助判斷舊專案升級時哪些節點或輸出行為可能改變。
       </p>
       <h4>
        導入測試與限制
       </h4>
       <p>
-       「OctaneRender 2021.1：Otoy 發布更新」目前的證據深度仍以公開來源為主；正式導入前應用團隊實際 DCC／引擎版本、資產規格與輸出條件驗證相容性、可重現性與品質，且不得把來源未公開的效能、工時或品質提升當成既知結果。
+       這是 2021 年版本；當時 USD importer 只支援 UsdPreviewSurface，且缺 motion blur 與完整 camera import。現在使用者應以當前 Octane 文件為準，這篇只作歷史版本相容與功能演進參考。
       </p>
       <p class="analysis-level-note">
        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
@@ -565,10 +565,10 @@
      #20 · other-dcc
     </div>
     <h2>
-     OctaneRender 2026.1：Otoy 發布更新
+     OctaneRender 2026.1：3DGS、Meshlet Streaming、Virtual Textures、MaterialX／OpenPBR 進穩定版
     </h2>
     <p class="summary">
-     「OctaneRender 2026.1：Otoy 發布更新」整理這次版本／功能變更，已知重點落在 其他 DCC。對 其他 DCC 流程可先用來判斷升級與測試優先順序，再回原始來源確認版本限制與相容性。
+     OctaneRender 2026.1 穩定版加入 3D Gaussian Splats、meshlet streaming、virtual textures、MaterialX 與 OpenPBR。來源示範 meshlet 把 geometry memory 從 1.0 GB 降到 0.3 GB 以下，也展示 462k×387k 超大 texture 的 virtual streaming。
     </p>
     <figure class="case-preview" data-intel-id="cg-channel-otoy-releases-octanerender-2026-1" data-intel-role="visual" data-visual-id="cg-channel-otoy-releases-octanerender-2026-1">
      <a href="https://www.cgchannel.com/2025/12/otoy-releases-octanerender-2026-1" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
@@ -593,19 +593,19 @@
        技術／流程變更
       </h4>
       <p>
-       「OctaneRender 2026.1：Otoy 發布更新」屬於版本／功能更新；目前可確認的製作重點集中在 其他 DCC。評估時應先把新功能與現有 其他 DCC 流程逐項對照，而不是只看版本號或功能數量。
+       3DGS 可匯入 PLY／SPZ 並參與陰影、反射與折射；meshlet system 將大型 geometry 切成可 streaming 單位；virtual textures 處理超大圖像；MaterialX／OpenPBR 則補上跨 renderer 的材質交換。
       </p>
       <h4>
        Production 影響
       </h4>
       <p>
-       對 Production 的價值在於用「OctaneRender 2026.1：Otoy 發布更新」建立升級優先順序：哪些 其他 DCC 變更會直接影響日常製作、資產交換或最終輸出，應先用代表性專案做回歸。
+       對大型場景與高資料量 lookdev，這版同時處理 geometry、texture 與 material interoperability 三個瓶頸。特別是 meshlet／virtual texture 若在真實專案有效，可直接影響 VRAM budget 與超大資產的 render workflow。
       </p>
       <h4>
        導入測試與限制
       </h4>
       <p>
-       「OctaneRender 2026.1：Otoy 發布更新」目前的證據深度仍以公開來源為主；正式導入前應用團隊實際 DCC／引擎版本、資產規格與輸出條件驗證相容性、可重現性與品質，且不得把來源未公開的效能、工時或品質提升當成既知結果。
+       來源中的 1.0 GB→0.3 GB 與超大 texture 是示範案例，不應視為所有場景固定收益。應用自家 hero asset、3DGS、MaterialX／OpenPBR 材質測 VRAM、render time、shader parity 與 DCC plugin 相容性。
       </p>
       <p class="analysis-level-note">
        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。

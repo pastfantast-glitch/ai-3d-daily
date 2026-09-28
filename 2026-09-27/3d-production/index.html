@@ -61,10 +61,10 @@
      #05 · character-production
     </div>
     <h2>
-     角色製作：Image to 3D Character: Watch the Ogre Workflow
+     AssetHub Ogre Workflow：Tripo P2 生成 12 個零件，再由 Codex／Astra 組裝修正
     </h2>
     <p class="summary">
-     「角色製作：Image to 3D Character: Watch the Ogre Workflow」提供 角色製作 的近期製作參考，來源可確認的重點集中在 角色製作。閱讀時應以公開來源能支持的方法、功能或案例為準，再決定是否值得進一步實測。
+     AssetHub 的示範把一張 Ogre 圖拆成 12 個可獨立檢查的 3D parts，由 Tripo P2 生成 mesh，再用實驗性的 Codex／Astra refinement 進行組裝、位置修正與多角度檢查；官方也明確指出握持與靴子貼合仍需改進。
     </p>
     <figure class="case-preview" data-intel-id="web-discovery-codex-astra-3d-modeling-experiments" data-intel-role="visual" data-visual-id="web-discovery-codex-astra-3d-modeling-experiments">
      <a href="https://assethub.io/blog/codex-astra-3d-modeling-experiments" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
@@ -89,19 +89,19 @@
        技術／流程變更
       </h4>
       <p>
-       「角色製作：Image to 3D Character: Watch the Ogre Workflow」目前可確認的技術／製作焦點集中在 角色製作。應優先理解它改變的是工具能力、製作方法還是輸出結果，再判斷與現有流程的關聯。
+       這個實驗的重點不是一次生成整隻角色，而是先拆 body、head、armor、boots、axe、shield 等零件，再逐件檢視與組裝。局部失敗時可以只重做或修正單一 part，不必整個角色重生。
       </p>
       <h4>
        Production 影響
       </h4>
       <p>
-       對 角色製作 團隊而言，「角色製作：Image to 3D Character: Watch the Ogre Workflow」可作為近期參考項目，用來決定是否值得深入閱讀、建立測試檔或更新內部 Review Checklist。
+       對複雜角色生成，part-based workflow 比單一 watertight output 更接近實際製作，因為裝備、身體與道具能獨立替換、定位和 review；也更適合後續把不同部分交給人工建模或材質流程接手。
       </p>
       <h4>
        導入測試與限制
       </h4>
       <p>
-       「角色製作：Image to 3D Character: Watch the Ogre Workflow」目前的證據深度仍以公開來源為主；正式導入前應用團隊實際 DCC／引擎版本、資產規格與輸出條件驗證相容性、可重現性與品質，且不得把來源未公開的效能、工時或品質提升當成既知結果。
+       Codex／Astra refinement 在來源中被標示為實驗流程，且影片仍可看到 grip 與 boot fit 問題。評估時應記錄分件邊界、穿插、比例一致性、組裝後 silhouette 與重做單一零件的成本。
       </p>
       <p class="analysis-level-note">
        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。

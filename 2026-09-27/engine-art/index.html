@@ -61,10 +61,10 @@
      #06 · unreal
     </div>
     <h2>
-     遊戲引擎美術：Control Rig + Python for Unreal Engine Production
+     UE Control Rig + Python：用 Python 建／改 Rig，讓 RigVM 專注執行
     </h2>
     <p class="summary">
-     「遊戲引擎美術：Control Rig + Python for Unreal Engine Production」提供可供製作參考的流程／案例，重點落在 Control Rig、Unreal Engine。適合先拆出來源明確展示的方法與視覺判斷，再用自己的資產規格驗證是否可轉移到 Production。
+     這套做法把 Python 定位成 Control Rig 的 authoring／automation 層：可建立或載入 ControlRigBlueprint、改 hierarchy、graph nodes、metadata 與 setup；真正的 rig graph 仍由 RigVM 執行，Python Log 則可反查編輯器操作對應的指令。
     </p>
     <figure class="case-preview" data-intel-id="web-discovery-control-rig-python" data-intel-role="visual" data-visual-id="web-discovery-control-rig-python">
      <a href="https://freneticsfx.com/insights/control-rig-python.html" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
@@ -89,19 +89,19 @@
        技術／流程變更
       </h4>
       <p>
-       「遊戲引擎美術：Control Rig + Python for Unreal Engine Production」屬於製作拆解／教學，核心觀察點落在 Control Rig、Unreal Engine。可先把來源明確展示的步驟、視覺判斷與工具使用拆開，再對照自己現有流程。
+       來源把責任切成 Python authoring、RigVM execution：Python 適合批次建立 hierarchy、controls、nodes 與 metadata，不是拿來取代每幀執行的 Control Rig graph。這能避免把 editor automation 與 runtime rig logic 混在一起。
       </p>
       <h4>
        Production 影響
       </h4>
       <p>
-       「遊戲引擎美術：Control Rig + Python for Unreal Engine Production」對 Unreal Engine Production 的價值是提供可比較的實作案例；適合拿來做 Review Reference 或小型 A/B Test，而不是直接把單一案例視為通用標準。
+       對大量角色或重複 rig setup，Python 可以把命名、骨架結構、常用 function／library 與 metadata 變成一致的建立流程；Python Log／Copy Python Script 也能把手動操作轉成可重複工具，降低每個角色重新點一次的成本。
       </p>
       <h4>
        導入測試與限制
       </h4>
       <p>
-       「遊戲引擎美術：Control Rig + Python for Unreal Engine Production」目前的證據深度仍以公開來源為主；正式導入前應用團隊實際 DCC／引擎版本、資產規格與輸出條件驗證相容性、可重現性與品質，且不得把來源未公開的效能、工時或品質提升當成既知結果。
+       自動化前仍要先固定 Skeletal Mesh、hierarchy 與 engine-side rig 規格。應用同一腳本測不同角色、Control Rig 編譯、Sequencer／Animation Blueprint 與版本升級後的 API 相容性，避免工具腳本比 rig 本身更難維護。
       </p>
       <p class="analysis-level-note">
        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
@@ -117,10 +117,10 @@
      #07 · unreal
     </div>
     <h2>
-     InstantRDV for Unreal Engine | DepthBufferからリアルタイムにVoxel Sceneを構築！ハードウェアレイトレーシング不要のGIデモも収録！UE5.8向けプラグインがオープンソース公開！
+     InstantRDV for UE5.8：從 DepthBuffer 即時建立 GPU Voxel Scene，不依賴 Hardware RT
     </h2>
     <p class="summary">
-     「InstantRDV for Unreal Engine | DepthBufferからリアルタイムにVoxel Sceneを構築！ハードウェアレイトレーシング不要のGIデモも収録！UE5.8向けプラグインがオープンソース公開！」提供 Unreal Engine 的近期製作參考，來源可確認的重點集中在 Unreal Engine。閱讀時應以公開來源能支持的方法、功能或案例為準，再決定是否值得進一步實測。
+     InstantRDV 直接從 Main View 的 DepthBuffer 在 GPU 建立 Voxel Scene，不需要額外 Geometry Pass 或 CPU voxelization；資料以 BBV（Bitmask Brick Voxel）管理，可隨相機更新並由 Compute Shader 做 voxel ray tracing，UE5.8 範例以 MIT 授權公開。
     </p>
     <figure class="case-preview" data-intel-id="web-discovery-instantrdv-for-ue" data-intel-role="visual" data-visual-id="web-discovery-instantrdv-for-ue">
      <a href="https://3dnchu.com/archives/instantrdv-for-ue" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
@@ -145,19 +145,19 @@
        技術／流程變更
       </h4>
       <p>
-       「InstantRDV for Unreal Engine | DepthBufferからリアルタイムにVoxel Sceneを構築！ハードウェアレイトレーシング不要のGIデモも収録！UE5.8向けプラグインがオープンソース公開！」目前可確認的技術／製作焦點集中在 Unreal Engine。應優先理解它改變的是工具能力、製作方法還是輸出結果，再判斷與現有流程的關聯。
+       它利用 rasterization 已有的深度資訊重建 voxel scene，再以 brick 單位保存 radiance；因此核心方向是重用現有畫面資料，而不是再跑一套完整幾何收集或依賴 Hardware Ray Tracing Scene。
       </p>
       <h4>
        Production 影響
       </h4>
       <p>
-       對 Unreal Engine 團隊而言，「InstantRDV for Unreal Engine | DepthBufferからリアルタイムにVoxel Sceneを構築！ハードウェアレイトレーシング不要のGIデモも収録！UE5.8向けプラグインがオープンソース公開！」可作為近期參考項目，用來決定是否值得深入閱讀、建立測試檔或更新內部 Review Checklist。
+       對需要非 Lumen GI、可攜 voxel lighting 或研究自訂 GI 的 UE 專案，這是一個可直接拆 code／sample 的技術原型；特別適合評估純 GPU voxel 更新與 compute ray tracing 能否接進自家 rendering path。
       </p>
       <h4>
        導入測試與限制
       </h4>
       <p>
-       「InstantRDV for Unreal Engine | DepthBufferからリアルタイムにVoxel Sceneを構築！ハードウェアレイトレーシング不要のGIデモも収録！UE5.8向けプラグインがオープンソース公開！」目前的證據深度仍以公開來源為主；正式導入前應用團隊實際 DCC／引擎版本、資產規格與輸出條件驗證相容性、可重現性與品質，且不得把來源未公開的效能、工時或品質提升當成既知結果。
+       目前屬開源 demo／plugin，而不是成熟替代 Lumen 的通用方案。要實測鏡頭高速移動、薄片幾何、遮擋變化、dynamic object、不同解析度與 GPU memory／compute cost，再判斷可用場景。
       </p>
       <p class="analysis-level-note">
        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
@@ -173,10 +173,10 @@
      #08 · unity
     </div>
     <h2>
-     POLYPAINT - Vertex/Normal Painter | 頂点カラー＆頂点法線をScene View上で直接ペイント＆編集できるUnity向けツール！N64風のレトロなドキュメントデザインにも注目！
+     POLYPAINT：直接在 Unity Scene View 畫 Vertex Color 與 Vertex Normal
     </h2>
     <p class="summary">
-     「POLYPAINT - Vertex/Normal Painter | 頂点カラー＆頂点法線をScene View上で直接ペイント＆編集できるUnity向けツール！N64風のレトロなドキュメントデザインにも注目！」提供 Unity 的近期製作參考，來源可確認的重點集中在 Unity。閱讀時應以公開來源能支持的方法、功能或案例為準，再決定是否值得進一步實測。
+     POLYPAINT 讓美術直接在 Unity Editor 編輯 Vertex Color 與 Vertex Normal，支援 RGBA channel、vertex／edge／face target、Marquee／Lasso mask、多 mesh 編輯、Normal Smooth／Hard，以及 reimport 後保留資料與 Snapshot 轉移。
     </p>
     <figure class="case-preview" data-intel-id="web-discovery-polypaint-vertex-normal-painter" data-intel-role="visual" data-visual-id="web-discovery-polypaint-vertex-normal-painter">
      <a href="https://3dnchu.com/archives/polypaint-vertex-normal-painter" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
@@ -201,19 +201,19 @@
        技術／流程變更
       </h4>
       <p>
-       「POLYPAINT - Vertex/Normal Painter | 頂点カラー＆頂点法線をScene View上で直接ペイント＆編集できるUnity向けツール！N64風のレトロなドキュメントデザインにも注目！」目前可確認的技術／製作焦點集中在 Unity。應優先理解它改變的是工具能力、製作方法還是輸出結果，再判斷與現有流程的關聯。
+       原本需要回 Blender／Maya 修改的 vertex color 或 normal，可直接在 Unity Scene View 完成；工具也提供 channel 限定、selection mask、split／merge shared vertex 與 quick action，讓資料修改更接近引擎端結果。
       </p>
       <h4>
        Production 影響
       </h4>
       <p>
-       對 Unity 團隊而言，「POLYPAINT - Vertex/Normal Painter | 頂点カラー＆頂点法線をScene View上で直接ペイント＆編集できるUnity向けツール！N64風のレトロなドキュメントデザインにも注目！」可作為近期參考項目，用來決定是否值得深入閱讀、建立測試檔或更新內部 Review Checklist。
+       對以 Vertex Color 做材質混合、shader mask、NPR 假光或低模風格法線控制的流程很直接：美術可在最終 shader／lighting 環境內調整，不必反覆 FBX 往返，Snapshot 也有利於版本比較與跨場景搬移。
       </p>
       <h4>
        導入測試與限制
       </h4>
       <p>
-       「POLYPAINT - Vertex/Normal Painter | 頂点カラー＆頂点法線をScene View上で直接ペイント＆編集できるUnity向けツール！N64風のレトロなドキュメントデザインにも注目！」目前的證據深度仍以公開來源為主；正式導入前應用團隊實際 DCC／引擎版本、資產規格與輸出條件驗證相容性、可重現性與品質，且不得把來源未公開的效能、工時或品質提升當成既知結果。
+       導入前要確認 prefab／mesh reimport、LOD、mesh compression、shared vertex split 及版本控制後資料是否穩定保存；若專案會重新產生 mesh，也要驗證 Snapshot 或 painted data 的重套流程。
       </p>
       <p class="analysis-level-note">
        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
@@ -229,10 +229,10 @@
      #14 · unity
     </div>
     <h2>
-     遊戲引擎美術：Unity Shader Graph Basics (Part 13 - Terrain Lit Official Support)
+     Unity URP Terrain Lit Shader Graph：官方 Terrain 節點可直接讀 Layer 貼圖與 Mask
     </h2>
     <p class="summary">
-     「遊戲引擎美術：Unity Shader Graph Basics (Part 13 - Terrain Lit Official Support)」提供 Unity 的近期製作參考，來源可確認的重點集中在 Shader、Unity。閱讀時應以公開來源能支持的方法、功能或案例為準，再決定是否值得進一步實測。
+     Unity 的 Terrain Lit Shader Graph 現在提供專用 Terrain nodes；其中 Terrain Texture 依 layer index 取得 Diffuse、Normal、Mask、Layer Masks 或 Holes，並輸出對應的 PBR 資訊，讓自訂 Terrain shader 不必再靠過去的繞路做法。
     </p>
     <figure class="case-preview" data-intel-id="web-discovery-2026-09-17-tut9-13-official-terrains" data-intel-role="visual" data-visual-id="web-discovery-2026-09-17-tut9-13-official-terrains">
      <a href="https://danielilett.com/2026-09-17-tut9-13-official-terrains" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
@@ -257,19 +257,19 @@
        技術／流程變更
       </h4>
       <p>
-       「遊戲引擎美術：Unity Shader Graph Basics (Part 13 - Terrain Lit Official Support)」目前可確認的技術／製作焦點集中在 Shader、Unity。應優先理解它改變的是工具能力、製作方法還是輸出結果，再判斷與現有流程的關聯。
+       建立路徑直接出現在 Create → Shader Graph → URP → Terrain Lit Shader Graph。Terrain Texture node 以 layer index 讀 Terrain layer 資料，除了 texture 本身，也能回報該類貼圖是否存在與其他 PBR outputs。
       </p>
       <h4>
        Production 影響
       </h4>
       <p>
-       對 Unity 團隊而言，「遊戲引擎美術：Unity Shader Graph Basics (Part 13 - Terrain Lit Official Support)」可作為近期參考項目，用來決定是否值得深入閱讀、建立測試檔或更新內部 Review Checklist。
+       對 stylized terrain 或需要自訂坡度、濕潤、積雪、NPR 分段的 Unity 場景，官方 Terrain Graph 讓美術可以在保留 Terrain authoring 的前提下擴充 shader，而不是改成一般 mesh 才能做自訂材質。
       </p>
       <h4>
        導入測試與限制
       </h4>
       <p>
-       「遊戲引擎美術：Unity Shader Graph Basics (Part 13 - Terrain Lit Official Support)」目前的證據深度仍以公開來源為主；正式導入前應用團隊實際 DCC／引擎版本、資產規格與輸出條件驗證相容性、可重現性與品質，且不得把來源未公開的效能、工時或品質提升當成既知結果。
+       教學針對目前 URP／Shader Graph 的官方支援；導入時要用實際 Terrain Layers 測四層以上混合、Normal／Mask、Holes、GPU instancing、Terrain Detail 與目標平台效能，確認自訂 graph 沒破壞原生 Terrain 行為。
       </p>
       <p class="analysis-level-note">
        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
@@ -285,10 +285,10 @@
      #15 · rendering
     </div>
     <h2>
-     遊戲引擎美術：OpenUSD 26.03 adds support for 3D Gaussian Splats
+     OpenUSD 26.03：3D Gaussian Splat 有正式 Prim Schema 與 Reference Renderer
     </h2>
     <p class="summary">
-     「遊戲引擎美術：OpenUSD 26.03 adds support for 3D Gaussian Splats」提供 Rendering 的近期製作參考，來源可確認的重點集中在 Rendering。閱讀時應以公開來源能支持的方法、功能或案例為準，再決定是否值得進一步實測。
+     OpenUSD 26.03 新增 3D Gaussian Splatting 支援，以新的 USD prim schema 表示 3DGS 資料，並提供 reference Gaussian Splat renderer；這讓 splat 資料開始能走 USD 的場景描述與交換框架，而不只依賴各工具自己的格式。
     </p>
     <figure class="case-preview" data-intel-id="cg-channel-openusd-26-03-adds-support-for-3d-gaussian-splats" data-intel-role="visual" data-visual-id="cg-channel-openusd-26-03-adds-support-for-3d-gaussian-splats">
      <a href="https://www.cgchannel.com/2026/03/openusd-26-03-adds-support-for-3d-gaussian-splats" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
@@ -313,19 +313,19 @@
        技術／流程變更
       </h4>
       <p>
-       「遊戲引擎美術：OpenUSD 26.03 adds support for 3D Gaussian Splats」目前可確認的技術／製作焦點集中在 Rendering。應優先理解它改變的是工具能力、製作方法還是輸出結果，再判斷與現有流程的關聯。
+       3DGS 被提升成可描述的 USD prim type，並有 hdParticleField reference renderer 作為實作基準。這代表 DCC、renderer 與 pipeline tool 可以針對同一 schema 交換 splat，而不必每套工具各自定義資料結構。
       </p>
       <h4>
        Production 影響
       </h4>
       <p>
-       對 Rendering 團隊而言，「遊戲引擎美術：OpenUSD 26.03 adds support for 3D Gaussian Splats」可作為近期參考項目，用來決定是否值得深入閱讀、建立測試檔或更新內部 Review Checklist。
+       對 VFX、virtual production、animation 與 visualization，真正價值是 pipeline interoperability：掃描或生成的 splat 若能進 USD stage，就有機會和既有 camera、lighting、asset hierarchy 與 publishing 工具共存。
       </p>
       <h4>
        導入測試與限制
       </h4>
       <p>
-       「遊戲引擎美術：OpenUSD 26.03 adds support for 3D Gaussian Splats」目前的證據深度仍以公開來源為主；正式導入前應用團隊實際 DCC／引擎版本、資產規格與輸出條件驗證相容性、可重現性與品質，且不得把來源未公開的效能、工時或品質提升當成既知結果。
+       標準有 schema 不代表所有 DCC／renderer 已完整支援。導入時要逐一驗證 import／export、attribute 保留、transform、large-scene performance 與 renderer parity，並確認目前使用的 USD 版本是否包含 26.03 定義。
       </p>
       <p class="analysis-level-note">
        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
@@ -341,10 +341,10 @@
      #22 · unreal
     </div>
     <h2>
-     遊戲引擎美術：Pose Overlay – Tala Esenlikler Developer Portal
+     Pose Overlay 1.0.2 for UE5.8：可重用 Pose State、逐骨疊加、Aim Offset 與 IK Mapping
     </h2>
     <p class="summary">
-     「遊戲引擎美術：Pose Overlay – Tala Esenlikler Developer Portal」提供 Unreal Engine 的近期製作參考，來源可確認的重點集中在 動畫、Unreal Engine。閱讀時應以公開來源能支持的方法、功能或案例為準，再決定是否值得進一步實測。
+     Pose Overlay 在 UE5.8 以 Control Rig-based editor 建立可重用 pose states，不需複製原 animation clip；可為 gameplay context 做局部 override，逐骨控制 Overlay Weight／Source Motion／Space Blend，並支援 Aim Offset、IK mapping 與 runtime stacking。
     </p>
     <figure class="case-preview" data-intel-id="web-discovery-pose-overlay" data-intel-role="visual" data-visual-id="web-discovery-pose-overlay">
      <a href="https://dev.talaesenlikler.com/docs/pose-overlay" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
@@ -369,19 +369,19 @@
        技術／流程變更
       </h4>
       <p>
-       「遊戲引擎美術：Pose Overlay – Tala Esenlikler Developer Portal」目前可確認的技術／製作焦點集中在 動畫、Unreal Engine。應優先理解它改變的是工具能力、製作方法還是輸出結果，再判斷與現有流程的關聯。
+       核心是把姿勢修正做成獨立、可重用的 state，再疊到來源 animation 上；每根 bone 可決定要覆蓋、跟隨原 motion 或穩定 rotation，Aim profile 與 IK target 也能放在同一套 hierarchy。
       </p>
       <h4>
        Production 影響
       </h4>
       <p>
-       對 Unreal Engine 團隊而言，「遊戲引擎美術：Pose Overlay – Tala Esenlikler Developer Portal」可作為近期參考項目，用來決定是否值得深入閱讀、建立測試檔或更新內部 Review Checklist。
+       對共用 locomotion 但不同武器、體型或 gameplay context 的角色，overlay 能減少複製大量近似 animation clip。局部修正留在 state／context 層，也比較容易追蹤『基礎動畫』與『角色特例』的責任。
       </p>
       <h4>
        導入測試與限制
       </h4>
       <p>
-       「遊戲引擎美術：Pose Overlay – Tala Esenlikler Developer Portal」目前的證據深度仍以公開來源為主；正式導入前應用團隊實際 DCC／引擎版本、資產規格與輸出條件驗證相容性、可重現性與品質，且不得把來源未公開的效能、工時或品質提升當成既知結果。
+       1.0.2 目前標示支援 UE5.8；要測 Control Rig／Animation Blueprint 接法、兩手持武器 IK、network runtime stacking、bake 回 clip 與大量 state 的管理成本，再決定是否取代既有 additive／layered blend 流程。
       </p>
       <p class="analysis-level-note">
        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。

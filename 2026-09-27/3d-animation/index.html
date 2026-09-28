@@ -61,10 +61,10 @@
      #09 · rigging
     </div>
     <h2>
-     3D 動作／Rig：21 September 2026
+     Blender 9/21 開發更新：GSplat 匯入／顯示、Cycles 初步渲染與 CUDA 13／DLSS
     </h2>
     <p class="summary">
-     「3D 動作／Rig：21 September 2026」提供 Rigging 的近期製作參考，來源可確認的重點集中在 Rigging、動畫、貼圖／材質、建模。閱讀時應以公開來源能支持的方法、功能或案例為準，再決定是否值得進一步實測。
+     Blender 9/21 weekly update 集中了一批 Gaussian Splat 工作：EEVEE／Workbench／Overlay 顯示、PLY／SPZ import、Cycles 初步 rendering、Geometry Nodes 的 Import SPZ 與 Point Cloud type；同週 Cycles 也切到 CUDA 13 並啟用 DLSS。
     </p>
     <figure class="case-preview" data-intel-id="web-discovery-21-september-2026" data-intel-role="visual" data-visual-id="web-discovery-21-september-2026">
      <a href="https://devtalk.blender.org/t/21-september-2026/45811" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
@@ -89,19 +89,19 @@
        技術／流程變更
       </h4>
       <p>
-       「3D 動作／Rig：21 September 2026」目前可確認的技術／製作焦點集中在 Rigging、動畫、貼圖／材質、建模。應優先理解它改變的是工具能力、製作方法還是輸出結果，再判斷與現有流程的關聯。
+       GSplat 已從單一 importer 往 Blender data-block、viewport、Cycles、USD 與 Geometry Nodes 多層整合：PointCloud 增加 type、PLY／SPZ 可辨識 splat，USD 也開始支援 UsdVolParticleField3DGaussianSplat。
       </p>
       <h4>
        Production 影響
       </h4>
       <p>
-       對 Rigging 團隊而言，「3D 動作／Rig：21 September 2026」可作為近期參考項目，用來決定是否值得深入閱讀、建立測試檔或更新內部 Review Checklist。
+       如果團隊正在評估 3DGS 掃描、world capture 或混合 3D 資料，Blender 開始具備較完整的讀取、顯示、節點處理與 render 路徑，未來可減少為了查看 splat 資料一直切換專用 viewer 的需求。
       </p>
       <h4>
        導入測試與限制
       </h4>
       <p>
-       「3D 動作／Rig：21 September 2026」目前的證據深度仍以公開來源為主；正式導入前應用團隊實際 DCC／引擎版本、資產規格與輸出條件驗證相容性、可重現性與品質，且不得把來源未公開的效能、工時或品質提升當成既知結果。
+       這是 weekly development change，不等於所有功能都已進穩定版。應以實際 nightly／release build 測 PLY、SPZ、USD round-trip、viewport 與 Cycles 一致性、檔案大小及大量 splat 的 VRAM／互動效能。
       </p>
       <p class="analysis-level-note">
        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。

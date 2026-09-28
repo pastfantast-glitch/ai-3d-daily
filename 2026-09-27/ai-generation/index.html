@@ -61,10 +61,10 @@
      #01 · ai-3d
     </div>
     <h2>
-     AI 3D 生成：My AI Game Character Workflow: Tripo AI, Blender and Unity
+     Tripo → Blender → Unity：AI 角色從生成、拓樸清理到 Humanoid 的完整流程
     </h2>
     <p class="summary">
-     「AI 3D 生成：My AI Game Character Workflow: Tripo AI, Blender and Unity」提供 AI 3D 生成 的近期製作參考，來源可確認的重點集中在 烘焙、Unity、Blender、Substance。閱讀時應以公開來源能支持的方法、功能或案例為準，再決定是否值得進一步實測。
+     案例從四視圖參考開始，用 Tripo AI 產生 high poly 與初始 low poly，再進 Blender 修拓樸、拆 UV 與轉移 Base Color，接著以 Marmoset 烘焙細節、Substance Painter 製作材質、Rigify 綁定，最後在 Unity 設定 Humanoid Avatar。
     </p>
     <figure class="case-preview" data-intel-id="web-discovery-ai-game-character-workflow-tripo-blender-unity" data-intel-role="visual" data-visual-id="web-discovery-ai-game-character-workflow-tripo-blender-unity">
      <a href="https://3dskillup.art/ai-game-character-workflow-tripo-blender-unity" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
@@ -89,19 +89,19 @@
        技術／流程變更
       </h4>
       <p>
-       「AI 3D 生成：My AI Game Character Workflow: Tripo AI, Blender and Unity」目前可確認的技術／製作焦點集中在 烘焙、Unity、Blender、Substance。應優先理解它改變的是工具能力、製作方法還是輸出結果，再判斷與現有流程的關聯。
+       這條流程把 AI 3D 明確放在前段：Tripo 負責 high-poly 起稿與初始 retopology，但最終可用的 low poly 仍要在 Blender 檢查關節區拓樸、UV、cage 與 bake，再接 Painter、Rigify 和 Unity Humanoid。
       </p>
       <h4>
        Production 影響
       </h4>
       <p>
-       對 AI 3D 生成 團隊而言，「AI 3D 生成：My AI Game Character Workflow: Tripo AI, Blender and Unity」可作為近期參考項目，用來決定是否值得深入閱讀、建立測試檔或更新內部 Review Checklist。
+       對遊戲角色量產最有價值的是 handoff 很清楚：AI 輸出不是終稿，而是 high／low 兩套來源；後續人工處理集中在 silhouette、變形拓樸、UV、烘焙與 skinning，較容易把 AI 納入既有角色 SOP。
       </p>
       <h4>
        導入測試與限制
       </h4>
       <p>
-       「AI 3D 生成：My AI Game Character Workflow: Tripo AI, Blender and Unity」目前的證據深度仍以公開來源為主；正式導入前應用團隊實際 DCC／引擎版本、資產規格與輸出條件驗證相容性、可重現性與品質，且不得把來源未公開的效能、工時或品質提升當成既知結果。
+       來源只示範一名海盜角色，且自動 retopology 之後仍需要手動 cleanup。導入時應分角色、硬表面與服裝測試 Tripo 輸出的關節 edge flow、UV 可用性、烘焙錯誤與 Unity 動畫變形，不能只看正面生成品質。
       </p>
       <p class="analysis-level-note">
        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
@@ -117,10 +117,10 @@
      #10 · ai-3d
     </div>
     <h2>
-     AI 3D 生成：Meshy and Tripo Models in Godot 4: glTF vs OBJ, Auto-LOD, Normal Maps and ORM (2026)
+     Meshy／Tripo → Godot 4：LOD0 面數、Normal Y+ 與 ORM 才是匯入風險
     </h2>
     <p class="summary">
-     「AI 3D 生成：Meshy and Tripo Models in Godot 4: glTF vs OBJ, Auto-LOD, Normal Maps and ORM (2026)」提供 AI 3D 生成 的近期製作參考，來源可確認的重點集中在 Blender。閱讀時應以公開來源能支持的方法、功能或案例為準，再決定是否值得進一步實測。
+     文章指出 AI 生成模型即使能直接匯入 Godot 4.7，也可能帶著近 200 萬面的 LOD0、開放 shell 或不明 scale；Godot Auto-LOD 不會降低 LOD0。glTF／Godot normal 採 OpenGL Y+，ORM 則固定 R=AO、G=Roughness、B=Metallic。
     </p>
     <figure class="case-preview" data-intel-id="web-discovery-meshy-tripo-to-godot-4-gltf-lod-normal-maps" data-intel-role="visual" data-visual-id="web-discovery-meshy-tripo-to-godot-4-gltf-lod-normal-maps">
      <a href="https://www.strayspark.studio/blog/meshy-tripo-to-godot-4-gltf-lod-normal-maps" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
@@ -145,19 +145,19 @@
        技術／流程變更
       </h4>
       <p>
-       「AI 3D 生成：Meshy and Tripo Models in Godot 4: glTF vs OBJ, Auto-LOD, Normal Maps and ORM (2026)」目前可確認的技術／製作焦點集中在 Blender。應優先理解它改變的是工具能力、製作方法還是輸出結果，再判斷與現有流程的關聯。
+       Godot 的 Auto-LOD 只處理遠距離層級，近距離 LOD0 完全等於匯入 mesh；因此 AI 生成後的 decimate／retopo 必須在 Blender 或生成器端先完成。格式上 glTF 2.0 可保留 PBR、UV2 並預設支援 Auto-LOD。
       </p>
       <h4>
        Production 影響
       </h4>
       <p>
-       對 AI 3D 生成 團隊而言，「AI 3D 生成：Meshy and Tripo Models in Godot 4: glTF vs OBJ, Auto-LOD, Normal Maps and ORM (2026)」可作為近期參考項目，用來決定是否值得深入閱讀、建立測試檔或更新內部 Review Checklist。
+       這對 AI 3D 最大提醒是『能 import』不等於『可 runtime』。把 polycount、normal convention、ORM packing、scale 與 shell 檢查放在引擎前置 QA，可避免模型到了場景後才發現近景成本與材質方向錯誤。
       </p>
       <h4>
        導入測試與限制
       </h4>
       <p>
-       「AI 3D 生成：Meshy and Tripo Models in Godot 4: glTF vs OBJ, Auto-LOD, Normal Maps and ORM (2026)」目前的證據深度仍以公開來源為主；正式導入前應用團隊實際 DCC／引擎版本、資產規格與輸出條件驗證相容性、可重現性與品質，且不得把來源未公開的效能、工時或品質提升當成既知結果。
+       文章針對 Godot 4.7；其他版本或自訂 importer 行為可能不同。應用同一個 Meshy／Tripo 資產比較 glTF、FBX、OBJ，記錄 LOD0 triangles、import time、normal 顯示、ORM channel 與自動 LOD 的實際結果。
       </p>
       <p class="analysis-level-note">
        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
@@ -173,10 +173,10 @@
      #21 · ai-3d
     </div>
     <h2>
-     AI 3D 生成：Generative 3D Tools Compared: Meshy, Rodin, Tripo, and CSM in April 2026
+     Meshy／Rodin／Tripo／CSM：8 類遊戲資產同 Prompt 比 Topology、Texture 與 UE5.7 可用性
     </h2>
     <p class="summary">
-     「AI 3D 生成：Generative 3D Tools Compared: Meshy, Rodin, Tripo, and CSM in April 2026」屬於工具與工作流更新，已知關聯重點為 AI 3D 生成。評估時應優先確認它改善哪個既有步驟，再檢查版本相容、輸出格式、授權與實際導入成本。
+     StraySpark 用相同 8 組 prompt 測 treasure chest、rifle、tree、watchtower、character、motorcycle、boat、crystal，評估 silhouette、geometry、topology、texture、retopo 與 UE5.7 直接使用性；作者結果中 Meshy 5 最穩定，Tripo P1 速度快且約 80% 品質，CSM Cube 2 在大型環境較吃力。
     </p>
     <figure class="case-preview" data-intel-id="web-discovery-generative-3d-tools-comparison-meshy-rodin-tripo-csm-2026" data-intel-role="visual" data-visual-id="web-discovery-generative-3d-tools-comparison-meshy-rodin-tripo-csm-2026">
      <a href="https://www.strayspark.studio/blog/generative-3d-tools-comparison-meshy-rodin-tripo-csm-2026" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
@@ -201,19 +201,19 @@
        技術／流程變更
       </h4>
       <p>
-       「AI 3D 生成：Generative 3D Tools Compared: Meshy, Rodin, Tripo, and CSM in April 2026」目前可確認的技術／製作焦點集中在 AI 3D 生成。應優先理解它改變的是工具能力、製作方法還是輸出結果，再判斷與現有流程的關聯。
+       這個比較比單張 showcase 更接近 production test，因為同一批題材跨 hard-surface、stylized、environment、character 與 effect，並把 topology／retopo viability 和 Unreal import 一起納入，而不只比較 render 外觀。
       </p>
       <h4>
        Production 影響
       </h4>
       <p>
-       對 AI 3D 生成 團隊而言，「AI 3D 生成：Generative 3D Tools Compared: Meshy, Rodin, Tripo, and CSM in April 2026」可作為近期參考項目，用來決定是否值得深入閱讀、建立測試檔或更新內部 Review Checklist。
+       對 AI 3D 選型，可把不同工具定位成不同階段：來源測試認為 Tripo P1 適合快速 blockout，Meshy 5 在多類資產較穩定；這種『按題材與 downstream 可用性』比較，比只選單一總冠軍更適合建立內部 SOP。
       </p>
       <h4>
        導入測試與限制
       </h4>
       <p>
-       「AI 3D 生成：Generative 3D Tools Compared: Meshy, Rodin, Tripo, and CSM in April 2026」目前的證據深度仍以公開來源為主；正式導入前應用團隊實際 DCC／引擎版本、資產規格與輸出條件驗證相容性、可重現性與品質，且不得把來源未公開的效能、工時或品質提升當成既知結果。
+       結果來自單一作者在 2026 年 4 月、固定 8 組 prompt 與當時模型版本，工具更新後可能改變。公司內仍應用自己的角色、怪物、建築、硬表面與 Q 版題材重跑，並固定 engine import 與人工修正規格。
       </p>
       <p class="analysis-level-note">
        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
