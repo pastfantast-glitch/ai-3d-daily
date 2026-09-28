@@ -240,7 +240,7 @@ if AUTONOMOUS_COLLECTOR.exists():
     autonomous = AUTONOMOUS_COLLECTOR.read_text('utf-8')
     for token in (
         'name: Autonomous daily Collector',
-        "cron: '30 23 * * *'",
+        "cron: '30 21 * * *'",
         'group: autonomous-daily-collector',
         'cancel-in-progress: false',
         'contents: write',
