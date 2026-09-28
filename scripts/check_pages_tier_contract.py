@@ -8,6 +8,7 @@ It also fail-closes the runtime path that keeps TOP5 and category analyses on th
 same canonical full_analysis renderer.
 """
 from pathlib import Path
+import hashlib
 import json
 import sys
 
@@ -44,20 +45,40 @@ def check_surface(path: Path, date: str, items: list[dict], surface: str, depth:
 
 
 def policy_recollect_pending(date: str, data: dict) -> bool:
+    """Detect a trusted selection-preserving policy republish before public rerender."""
     receipt_path = ROOT / 'data' / 'publish' / f'{date}.done.json'
-    if not receipt_path.exists():
+    collector_path = ROOT / 'data' / 'publish' / f'{date}.collector'
+    ready_path = ROOT / 'data' / 'publish' / f'{date}.ready'
+    data_path = ROOT / 'data' / 'daily' / f'{date}.json'
+    if not receipt_path.exists() or not collector_path.exists() or not data_path.exists():
         return False
     try:
         receipt = json.loads(receipt_path.read_text('utf-8'))
+        collector = json.loads(collector_path.read_text('utf-8'))
     except Exception:
         return False
-    if str(receipt.get('state', '')).upper() != 'DONE':
+    if str(receipt.get('state', '')).strip().upper() != 'DONE':
+        return False
+    if str(collector.get('state', '')).strip().upper() != 'COLLECTOR_PERSISTED':
+        return False
+    if str(collector.get('intent', '')).strip() != 'policy-republish':
+        return False
+    if collector.get('writer_idle_confirmed_externally') is not True:
         return False
     if (data.get('metadata') or {}).get('policy_recollect') is not True:
         return False
-    current = [str(x.get('id', '')) for x in (data.get('items') or [])]
-    published = [str(x) for x in ((receipt.get('canonical') or {}).get('ids') or [])]
-    return bool(current) and current != published
+
+    current_hash = hashlib.sha256(data_path.read_bytes()).hexdigest()
+    if not ready_path.exists():
+        return True
+    try:
+        ready = json.loads(ready_path.read_text('utf-8'))
+    except Exception:
+        return True
+    return not (
+        ready.get('controlled_policy_republish') is True
+        and str(ready.get('canonical_sha256', '')).strip().lower() == current_hash
+    )
 
 
 def runtime_surface_errors():
