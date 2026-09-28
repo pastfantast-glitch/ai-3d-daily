@@ -121,18 +121,24 @@ def article_like_url(url: str) -> bool:
     return len(leaf) >= 4
 
 
-def fetch(session: requests.Session, url: str, timeout: int) -> dict:
+def fetch(session: requests.Session, url: str, timeout: int, *, allow_feed: bool = False) -> dict:
     started = time.monotonic()
     try:
         response = session.get(url, timeout=timeout, allow_redirects=True)
         status = int(response.status_code)
         content_type = response.headers.get("content-type", "")
+        sample = response.text[:500].lower()
+        is_html = "html" in content_type.lower() or "<html" in sample
+        is_feed = allow_feed and (
+            any(token in content_type.lower() for token in ("xml", "rss", "atom"))
+            or sample.lstrip().startswith(("<?xml", "<rss", "<feed"))
+        )
         if status >= 400:
             return {
                 "url": url, "final_url": response.url, "status": status, "html": "",
                 "error": f"http-{status}", "elapsed": time.monotonic() - started,
             }
-        if "html" not in content_type.lower() and "<html" not in response.text[:500].lower():
+        if not is_html and not is_feed:
             return {
                 "url": url, "final_url": response.url, "status": status, "html": "",
                 "error": "non-html", "elapsed": time.monotonic() - started,
@@ -274,6 +280,98 @@ def extract_links(html: str, base_url: str, domain: str, limit: int) -> list[tup
             continue
         seen.add(absolute)
         out.append((absolute, text))
+        if len(out) >= limit:
+            break
+    return out
+
+
+def extract_pagination_links(html: str, base_url: str, domain: str, limit: int) -> list[str]:
+    """Discover bounded same-domain index pagination without treating it as article content."""
+    if not html or limit <= 0:
+        return []
+    soup = BeautifulSoup(html, "html.parser")
+    out: list[str] = []
+    seen: set[str] = set()
+
+    def add(href: object) -> None:
+        absolute = canonicalize_url(urljoin(base_url, clean(href)))
+        if not absolute.startswith("https://") or not same_registered_domain(absolute, domain):
+            return
+        if absolute == canonicalize_url(base_url) or absolute in seen:
+            return
+        seen.add(absolute)
+        out.append(absolute)
+
+    for node in soup.find_all("link", href=True):
+        rel = {str(x).casefold() for x in (node.get("rel") or [])}
+        if "next" in rel:
+            add(node.get("href"))
+            if len(out) >= limit:
+                return out
+
+    next_labels = {"next", "next page", "older", "older posts", "more", "下一頁", "次へ", "次のページ"}
+    for anchor in soup.find_all("a", href=True):
+        href = clean(anchor.get("href"))
+        label = clean(anchor.get_text(" ", strip=True), 80).casefold()
+        absolute = canonicalize_url(urljoin(base_url, href))
+        path_query = urlparse(absolute).path.casefold() + "?" + urlparse(absolute).query.casefold()
+        looks_paged = (
+            label in next_labels
+            or re.search(r"/page/\d+(?:/|$)", path_query) is not None
+            or re.search(r"(?:^|[?&])(?:page|paged)=\d+(?:&|$)", "?" + urlparse(absolute).query.casefold()) is not None
+        )
+        if looks_paged:
+            add(href)
+            if len(out) >= limit:
+                break
+    return out
+
+
+def extract_feed_urls(html: str, base_url: str, domain: str, limit: int) -> list[str]:
+    """Use publisher-declared RSS/Atom autodiscovery only; do not guess site-specific feed URLs."""
+    if not html or limit <= 0:
+        return []
+    soup = BeautifulSoup(html, "html.parser")
+    out: list[str] = []
+    seen: set[str] = set()
+    for node in soup.find_all("link", href=True):
+        rel = {str(x).casefold() for x in (node.get("rel") or [])}
+        kind = clean(node.get("type")).casefold()
+        if "alternate" not in rel or not any(token in kind for token in ("rss", "atom", "xml")):
+            continue
+        absolute = canonicalize_url(urljoin(base_url, clean(node.get("href"))))
+        if not absolute.startswith("https://") or not same_registered_domain(absolute, domain) or absolute in seen:
+            continue
+        seen.add(absolute)
+        out.append(absolute)
+        if len(out) >= limit:
+            break
+    return out
+
+
+def extract_feed_article_links(feed_text: str, base_url: str, domain: str, limit: int) -> list[tuple[str, str]]:
+    """Extract article identities from RSS/Atom while preserving the article page as verification evidence."""
+    if not feed_text or limit <= 0:
+        return []
+    soup = BeautifulSoup(feed_text, "html.parser")
+    out: list[tuple[str, str]] = []
+    seen: set[str] = set()
+    for entry in soup.find_all(["item", "entry"]):
+        title_node = entry.find("title")
+        title = clean(title_node.get_text(" ", strip=True) if title_node else "", 220)
+        link_node = entry.find("link")
+        href = ""
+        if link_node is not None:
+            href = clean(link_node.get("href") or link_node.get_text(" ", strip=True))
+        if not href:
+            continue
+        absolute = canonicalize_url(urljoin(base_url, href))
+        if not absolute.startswith("https://") or not same_registered_domain(absolute, domain) or not article_like_url(absolute):
+            continue
+        if absolute in seen:
+            continue
+        seen.add(absolute)
+        out.append((absolute, title or absolute))
         if len(out) >= limit:
             break
     return out
@@ -558,6 +656,8 @@ def source_probe(
     max_links = int(disc_cfg["max_links_per_endpoint"])
     max_pages = int(disc_cfg["max_pages_per_source"])
     refill_pages = int(disc_cfg["refill_pages_per_source"])
+    index_pages = int(disc_cfg.get("index_pages_per_source", 0) or 0)
+    feed_urls_limit = int(disc_cfg.get("feed_urls_per_source", 0) or 0)
     source_id = source["id"]
     domain = source["domain"]
 
@@ -576,7 +676,56 @@ def source_probe(
             "candidates_found": 0,
             "candidate_ids": [],
             "reason": clean(reason, 180),
+            "index_pages_checked": 0,
+            "feed_urls_checked": 0,
+            "refill_links_checked": 0,
         }
+
+    # Bounded source-grounded fill ladder: traverse declared indexes, same-domain
+    # pagination and publisher-declared feeds. This increases recall without
+    # converting source registration into preference, quota or all-source scanning.
+    index_seen = {
+        canonicalize_url(x.get("final_url") or x.get("url") or "")
+        for x in successes
+        if canonicalize_url(x.get("final_url") or x.get("url") or "")
+    }
+    pagination_queue: list[str] = []
+    for result in list(successes):
+        pagination_queue.extend(
+            extract_pagination_links(
+                result["html"], result["final_url"], domain, max(1, index_pages * 2)
+            )
+        )
+    pagination_checked = 0
+    while pagination_queue and pagination_checked < index_pages:
+        page_url = pagination_queue.pop(0)
+        if page_url in index_seen:
+            continue
+        index_seen.add(page_url)
+        result = fetch(session, page_url, timeout)
+        pagination_checked += 1
+        if not result.get("html"):
+            continue
+        successes.append(result)
+        for candidate_page in extract_pagination_links(
+            result["html"], result["final_url"], domain, max(1, index_pages * 2)
+        ):
+            if candidate_page not in index_seen and candidate_page not in pagination_queue:
+                pagination_queue.append(candidate_page)
+
+    feed_urls: list[str] = []
+    seen_feed_urls: set[str] = set()
+    for result in successes:
+        for feed_url in extract_feed_urls(
+            result["html"], result["final_url"], domain, feed_urls_limit
+        ):
+            if feed_url not in seen_feed_urls:
+                seen_feed_urls.add(feed_url)
+                feed_urls.append(feed_url)
+            if len(feed_urls) >= feed_urls_limit:
+                break
+        if len(feed_urls) >= feed_urls_limit:
+            break
 
     links: list[tuple[str, str]] = []
     seen_links: set[str] = set()
@@ -585,6 +734,20 @@ def source_probe(
             if url not in seen_links:
                 seen_links.add(url)
                 links.append((url, title))
+
+    feeds_checked = 0
+    for feed_url in feed_urls[:feed_urls_limit]:
+        feed_result = fetch(session, feed_url, timeout, allow_feed=True)
+        feeds_checked += 1
+        if not feed_result.get("html"):
+            continue
+        for url, title in extract_feed_article_links(
+            feed_result["html"], feed_result["final_url"], domain, max_links
+        ):
+            if url not in seen_links:
+                seen_links.add(url)
+                links.append((url, title))
+
     links = links[:max_pages]
 
     def get_page(pair):
@@ -601,6 +764,9 @@ def source_probe(
             if meta and same_registered_domain(meta["url"], domain) and relevant(meta):
                 metas.append(meta)
 
+    # One bounded same-source related-page traversal is the targeted refill pass.
+    # It is performed for every selected source and remains independent of source
+    # preference or publisher weighting.
     refill_links: list[tuple[str, str]] = []
     refill_seen = set(seen_links)
     for meta in metas:
@@ -649,6 +815,9 @@ def source_probe(
         "method": "latest-index",
         "candidates_found": len(candidates),
         "candidate_ids": [x["candidate_id"] for x in candidates],
+        "index_pages_checked": len(successes),
+        "feed_urls_checked": feeds_checked,
+        "refill_links_checked": len(refill_links),
     }
 
 

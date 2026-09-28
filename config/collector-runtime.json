@@ -2,18 +2,20 @@
   "version": 1,
   "effective_date": "2026-09-26",
   "timezone": "Asia/Taipei",
-  "purpose": "Run the Collector on GitHub-hosted infrastructure before the 07:45 ChatGPT monitor so publication no longer depends on chat-side repository mutation.",
-  "schedule_local": "07:30",
+  "purpose": "Run the Collector on GitHub-hosted infrastructure with schedule-latency headroom before the 07:45 ChatGPT monitor so publication no longer depends on chat-side repository mutation.",
+  "schedule_local": "05:30",
   "http": {
     "timeout_seconds": 15,
     "max_workers": 8,
     "user_agent": "ai3d-daily-collector/1.0 (+https://github.com/pastfantast-glitch/ai-3d-daily)"
   },
   "discovery": {
-    "max_links_per_endpoint": 40,
-    "max_pages_per_source": 18,
-    "refill_pages_per_source": 12,
-    "exhaustion_semantics": "A window is exhausted when the configured selected-source index crawl, bounded article-page budget, rolling backlog check and one source-grounded targeted-refill traversal have all completed or returned an explicit unavailable/blocked outcome. This is a bounded Collector-work audit, not a claim that the entire public web was exhausted."
+    "max_links_per_endpoint": 60,
+    "max_pages_per_source": 28,
+    "refill_pages_per_source": 16,
+    "exhaustion_semantics": "A window is exhausted when the configured selected-source index crawl, bounded pagination and feed autodiscovery, bounded article-page budget, rolling backlog check and one source-grounded related-page refill traversal have all completed or returned an explicit unavailable/blocked outcome. This is a bounded Collector-work audit, not a claim that the entire public web was exhausted.",
+    "index_pages_per_source": 3,
+    "feed_urls_per_source": 2
   },
   "source_endpoints": {
     "80-level": [

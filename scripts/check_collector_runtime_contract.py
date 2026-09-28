@@ -32,15 +32,21 @@ if RUNTIME.exists() and HYBRID.exists():
         hybrid = json.loads(HYBRID.read_text("utf-8"))
         if int(runtime.get("version", 0) or 0) != 1:
             fail("collector-runtime version must be 1")
-        if runtime.get("timezone") != "Asia/Taipei" or runtime.get("schedule_local") != "07:30":
-            fail("autonomous Collector must run at 07:30 Asia/Taipei before the 07:45 monitor")
+        if runtime.get("timezone") != "Asia/Taipei" or runtime.get("schedule_local") != "05:30":
+            fail("autonomous Collector must run at 05:30 Asia/Taipei to leave GitHub schedule-latency headroom before the 07:45 monitor")
         http = runtime.get("http") or {}
         if not (5 <= int(http.get("timeout_seconds", 0) or 0) <= 30):
             fail("collector HTTP timeout must be bounded to 5..30 seconds")
         if not (1 <= int(http.get("max_workers", 0) or 0) <= 16):
             fail("collector max_workers must be bounded to 1..16")
         discovery = runtime.get("discovery") or {}
-        for key in ("max_links_per_endpoint", "max_pages_per_source", "refill_pages_per_source"):
+        for key in (
+            "max_links_per_endpoint",
+            "max_pages_per_source",
+            "refill_pages_per_source",
+            "index_pages_per_source",
+            "feed_urls_per_source",
+        ):
             if int(discovery.get(key, 0) or 0) <= 0:
                 fail(f"collector discovery.{key} must be positive")
         if "entire public web" not in str(discovery.get("exhaustion_semantics", "")):
@@ -86,6 +92,9 @@ if SCRIPT.exists():
     content = SCRIPT.read_text("utf-8")
     for token in (
         "registered_source_probe_plan",
+        "extract_pagination_links",
+        "extract_feed_urls",
+        "extract_feed_article_links",
         "canonicalize_url",
         "from content_quality import",
         "content_admission",
@@ -109,7 +118,7 @@ if WORKFLOW.exists():
     content = WORKFLOW.read_text("utf-8")
     required = (
         "name: Autonomous daily Collector",
-        "cron: '30 23 * * *'",
+        "cron: '30 21 * * *'",
         "workflow_dispatch:",
         "group: autonomous-daily-collector",
         "cancel-in-progress: false",
