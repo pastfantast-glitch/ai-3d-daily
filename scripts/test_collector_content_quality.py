@@ -173,7 +173,7 @@ fallback_title = editorial_title(
     "blender-dcc",
     "blender",
 )
-assert fallback_title.startswith("Blender／DCC：")
+assert fallback_title.startswith("Blender／DCC 製作：")
 assert reader_language_ok(fallback_title, 4.0)
 assert "Blender／DCC：Blender／DCC：" not in fallback_title
 

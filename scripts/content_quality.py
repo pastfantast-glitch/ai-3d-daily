@@ -399,7 +399,7 @@ def editorial_title(meta: dict, category: str, subcategory: str) -> str:
             return value
         category_label = CATEGORY_LABELS.get(category) or "製作重點"
         if not HAN_RE.search(category_label):
-            category_label = "製作重點"
+            category_label = clean(f"{category_label} 製作", 40)
         subject = re.split(r"\s*[|｜—–-]\s*", value, maxsplit=1)[0]
         subject = clean(subject, 32)
         if not subject:
