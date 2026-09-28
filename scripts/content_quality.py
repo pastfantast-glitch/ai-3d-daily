@@ -408,7 +408,7 @@ def editorial_title(meta: dict, category: str, subcategory: str) -> str:
                 return candidate
         focus = production_focus(meta)
         focus_text = "、".join(focus[:2]) if focus else "製作流程"
-        return clean(f"{category_label}：{focus_text} 重點", 180)
+        return clean(f"{category_label}：{focus_text} 技術與製作重點", 180)
 
     if reader_language_ok(raw, 4.0):
         return raw
