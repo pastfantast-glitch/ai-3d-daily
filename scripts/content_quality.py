@@ -69,6 +69,9 @@ RECRUITMENT_NOISE = (
 EVENT_NOISE = (
     "film festival", "festival", "meet-up", "meetup", "conference booth",
 )
+PROMOTION_NOISE = (
+    "discount", "promo code", "coupon", "exclusive offer", "limited-time offer",
+)
 GOVERNANCE_NOISE = (
     "annual report", "development fund", "support for blender projects",
     "fundraising", "governance", "policy announcement", "policies",
@@ -232,20 +235,32 @@ def source_subject_traits(meta: dict) -> list[str]:
 
 
 def reader_source_fact(meta: dict, title: str, focus_text: str) -> str:
+    """Return concise reader-facing copy; verification details stay in metadata/QA."""
     raw = source_fact(meta)
     if reader_language_ok(raw, 2.5):
         return raw
     lowered = f"{normalize_title(meta.get('title'))} {clean(meta.get('description'), 600)}".casefold()
-    cue = source_title_cue(meta)
-    cue_suffix = f"；來源題名線索「{cue}」" if cue else ""
-    if has_any(lowered, ("tutorial", "guide", "course", "training", "workflow")):
-        return f"來源介紹一套以 {focus_text} 為主的教學／製作流程，讀者標題為「{title}」{cue_suffix}"
-    if has_any(lowered, ("release", "update", "version", "beta", "alpha", "roadmap")):
-        return f"來源整理「{title}」的版本／開發更新，重點涉及 {focus_text}{cue_suffix}"
-    if has_any(lowered, ("plugin", "addon", "add-on", "tool", "software")):
-        return f"來源介紹「{title}」這項工具，公開重點涉及 {focus_text}{cue_suffix}"
-    return f"來源主題為「{title}」，目前可確認的製作面向包含 {focus_text}{cue_suffix}"
+    traits = source_subject_traits(meta)
+    trait = "、".join(traits[:2])
 
+    if has_any(lowered, ("download", "free pack", "free asset")):
+        base = f"這項內容提供與 {focus_text} 有關的可下載素材"
+    elif has_any(lowered, ("tutorial", "guide", "course", "training", "workflow")):
+        base = f"這篇內容聚焦 {focus_text} 的教學／製作流程"
+    elif has_any(lowered, ("release", "update", "version", "beta", "alpha", "preview", "roadmap")):
+        base = f"這次內容整理 {focus_text} 的版本／功能更新"
+    elif has_any(lowered, ("breakdown", "making-of", "behind the scenes", "case study")):
+        base = f"這篇案例拆解聚焦 {focus_text} 的實際製作"
+    elif has_any(lowered, ("test", "showcase", "demo")):
+        base = f"這個展示案例聚焦 {focus_text} 的實作表現"
+    elif has_any(lowered, ("plugin", "addon", "add-on", "tool", "software")):
+        base = f"這項工具聚焦 {focus_text} 的製作應用"
+    else:
+        base = f"這則內容聚焦 {focus_text} 的製作應用"
+
+    if trait:
+        return f"{base}，內容型態包含 {trait}"
+    return base
 
 def has_term(text: str, term: str) -> bool:
     """Match standalone ASCII tokens safely; keep phrase matching for multi-word signals."""
@@ -286,6 +301,8 @@ def landing_reason(meta: dict) -> str | None:
     # shapes before considering metadata.
     if leaf in GENERIC_NAV_LEAVES and len(segments) <= 3:
         return "generic-navigation-or-resource-index"
+    if leaf == "category":
+        return "generic-navigation-or-resource-index"
     if title in GENERIC_NAV_TITLE_EXACT:
         return "generic-navigation-or-resource-index"
     if any(fragment in title for fragment in GENERIC_NAV_TITLE_FRAGMENTS):
@@ -321,6 +338,8 @@ def admission(meta: dict) -> tuple[bool, str]:
         return False, "business-or-player-growth-no-art-production-takeaway"
     if has_any(text, EVENT_NOISE) and not has_any(text, METHOD_SIGNALS):
         return False, "event-or-community-page-no-production-method"
+    if has_any(title_text, PROMOTION_NOISE):
+        return False, "promotion-or-discount-no-production-method"
     if has_any(text, GOVERNANCE_NOISE) and not has_any(text, METHOD_SIGNALS):
         return False, "governance-or-funding-page-no-production-method"
     if technical == 0:
@@ -504,31 +523,16 @@ def production_summary(meta: dict, category: str, subcategory: str) -> str:
     focus = production_focus(meta)
     focus_text = "、".join(focus) if focus else label
     fact = reader_source_fact(meta, title, focus_text)
-    traits = source_subject_traits(meta)
-    trait_text = "、".join(traits)
-
-    if has_any(raw, ("release", "update", "version", "beta", "alpha", "preview")):
-        lead = "版本重點"
-    elif has_any(raw, ("breakdown", "tutorial", "how to", "guide", "case study", "behind", "making-of", "workflow")):
-        lead = "流程重點"
-    elif has_any(raw, ("plugin", "addon", "add-on", "tool", "software")):
-        lead = "工具重點"
-    else:
-        lead = "技術重點"
 
     if clean(meta.get("description")):
-        trait_clause = f" 可驗證的內容型態包含 {trait_text}；" if trait_text else ""
         return clean(
-            f"{lead}：{fact}{trait_clause} Production 檢查點為 {focus_text}；"
-            "先以來源已公開的功能、流程與限制為準，不補寫未公開的效能或工時數字。",
-            420,
+            f"{fact}。對 {label} 流程，先看它實際改變哪些操作、交換或輸出步驟，再決定是否納入現有 SOP。",
+            360,
         )
     return clean(
-        f"「{title}」目前公開頁面只提供標題層級資訊，可確認主題與 {focus_text} 有關。"
-        "因此以較短的 BRIEF 呈現，保留來源事實，不延伸未公開的結果。",
-        420,
+        f"{title} 與 {focus_text} 有關，但目前可讀資訊有限；先保留為精簡 BRIEF，不延伸未公開的技術結論。",
+        320,
     )
-
 
 def editorial_analysis(meta: dict, category: str, subcategory: str) -> list[dict]:
     title = editorial_title(meta, category, subcategory)
@@ -536,41 +540,36 @@ def editorial_analysis(meta: dict, category: str, subcategory: str) -> list[dict
     label = friendly_label(category, subcategory)
     focus = production_focus(meta)
     focus_text = "、".join(focus) if focus else label
-    fact = reader_source_fact(meta, title, focus_text)
-    source_anchor = title
-    evidence_anchor = clean(fact, 180)
+    traits = source_subject_traits(meta)
+    trait_text = "、".join(traits[:2]) if traits else "實際製作"
 
-    technical = (
-        f"「{title}」的公開資訊明確涉及 {focus_text}。來源描述為：{fact} "
-        "技術判讀以這些已公開內容為界，不把標題之外的功能或結果自行補成既定事實。"
-    )
-    if has_any(raw, ("release", "update", "version", "beta", "alpha", "preview")):
-        impact = (
-            f"來源主題 {source_anchor} 的可驗證內容提到 {evidence_anchor}。對 {label}，"
-            f"可直接檢查 {focus_text} 是否改變現有的資產交換、authoring 或輸出步驟；"
-            "先用代表性工程做升版回歸，再決定是否更新團隊基線。"
-        )
-    elif has_any(raw, ("breakdown", "tutorial", "how to", "guide", "case study", "behind", "making-of", "workflow")):
-        impact = (
-            f"來源主題 {source_anchor} 的可驗證內容提到 {evidence_anchor}。對 {label}，"
-            f"可把來源展示的 {focus_text} 拆成實際步驟，與既有流程逐段比較輸入、人工修正與最終輸出；"
-            "這比只看完成圖更適合作為 Production review 依據。"
-        )
+    if has_any(raw, ("release", "update", "version", "beta", "alpha", "preview", "roadmap")):
+        technical = f"「{title}」屬於版本／功能更新，重點落在 {focus_text}；升版時應先確認它改變的是 authoring、資產交換還是輸出行為。"
+        impact = f"對 {label} 團隊，可把 {focus_text} 放進代表性工程做前後版本比較，確認新功能是否真的減少人工步驟或改善輸出一致性。"
+    elif has_any(raw, ("tutorial", "guide", "course", "training", "workflow")):
+        technical = f"「{title}」以 {focus_text} 的教學／流程為主，可拆成輸入、操作、人工修正與輸出幾個階段來看。"
+        impact = f"對 {label} 團隊，這類內容最適合拿來補 SOP、review checklist 或新人訓練，再與現有工具流程逐步對照。"
+    elif has_any(raw, ("breakdown", "making-of", "behind the scenes", "case study")):
+        technical = f"「{title}」的價值在於把 {focus_text} 放回實際案例中觀察，能看到製作選擇如何影響最後結果。"
+        impact = f"對 {label} 團隊，可把案例拆成可複用的流程節點，判斷哪些方法適合導入、哪些只適用於原專案條件。"
+    elif has_any(raw, ("download", "free pack", "free asset")):
+        technical = f"「{title}」屬於可下載素材，重點不只在取得資產，也要看 {focus_text} 的格式、可編輯性與 downstream 相容性。"
+        impact = f"對 {label} 團隊，可直接用代表性角色或場景測匯入、重定向、編輯與輸出，判斷它是否能減少前期製作成本。"
+    elif has_any(raw, ("test", "showcase", "demo")):
+        technical = f"「{title}」主要展示 {focus_text} 的實作表現，可用來觀察控制粒度、畫面效果與可重現性。"
+        impact = f"對 {label} 團隊，適合把展示結果轉成內部 A/B test，確認相同方法在自家資產與版本上能否成立。"
     else:
-        impact = (
-            f"來源主題 {source_anchor} 的可驗證內容提到 {evidence_anchor}。對 {label}，"
-            f"可把 {focus_text} 放進目前相同製作環節做小規模對照，確認它實際解決的是 authoring、交換、"
-            "品質控制還是 runtime 問題，再決定導入範圍。"
-        )
+        technical = f"「{title}」聚焦 {focus_text}，可先從 {trait_text} 角度拆解它對現有製作流程的實際變化。"
+        impact = f"對 {label} 團隊，應先用小規模案例確認它解決的是 authoring、交換、品質控制還是 runtime 問題，再決定導入範圍。"
 
     limit = (
-        f"「{title}」目前可驗證的來源內容為 {evidence_anchor}。"
-        "來源沒有提供的 benchmark、工時節省或品質提升不做推定；正式導入前仍要用目標 DCC／引擎版本、"
-        "代表性資產與實際輸出格式驗證相容性與可重現性。"
+        f"若要把「{title}」納入 production，仍需用實際 DCC／引擎版本、代表性資產與目標輸出驗證；"
+        "單一案例、展示或宣傳頁不能直接當成固定工時、品質或效能收益。"
     )
     return [
-        {"label": "技術／流程變更", "text": clean(technical, 560)},
-        {"label": "Production 影響", "text": clean(impact, 560)},
-        {"label": "導入測試與限制", "text": clean(limit, 560)},
+        {"label": "技術／流程變更", "text": clean(technical, 520)},
+        {"label": "Production 影響", "text": clean(impact, 520)},
+        {"label": "導入測試與限制", "text": clean(limit, 520)},
     ]
+
 
