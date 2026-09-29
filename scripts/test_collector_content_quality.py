@@ -316,4 +316,4 @@ for banned_reader_phrase in (
     assert banned_reader_phrase not in reader_summary
     assert all(banned_reader_phrase not in x["text"] for x in reader_analysis)
 
-print("COLLECTOR CONTENT QUALITY PASS: landing/index rejection + scope admission + title normalization + subject-first classification + source-grounded factual editorial fallback")
+print("COLLECTOR CONTENT QUALITY PASS: landing/index rejection + promo rejection + concise source-grounded reader copy + title normalization + subject-first classification")
