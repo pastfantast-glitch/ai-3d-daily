@@ -278,4 +278,42 @@ assert len({copy_signature(x) for x in summary_variants}) == 3, (
     "source-grounded semantic traits must prevent cross-item summary boilerplate collisions"
 )
 
+
+promo_case = meta(
+    "https://80.lv/articles/level-up-this-fall-exclusive-gnomon-discount-for-the-80-level-community",
+    "Level Up This Fall: Exclusive Gnomon Discount for the 80 Level Community",
+    "Courses in visual effects, games, animation, modeling and rigging with a limited-time discount.",
+    "2026-09-28",
+    True,
+)
+assert admission(promo_case) == (False, "promotion-or-discount-no-production-method")
+
+category_case = meta(
+    "https://80.lv/articles/category?slug=animation",
+    "Animation",
+    "Animation articles.",
+    "2026-09-29",
+    True,
+)
+assert admission(category_case) == (False, "generic-navigation-or-resource-index")
+
+reader_copy_meta = meta(
+    "https://example.com/reader-copy",
+    "Download a Free Mocap Pack for Everyday Actions",
+    "Free mocap animation pack for everyday character actions.",
+    "2026-09-29",
+    True,
+)
+reader_summary = production_summary(reader_copy_meta, "3d-animation", "mocap")
+reader_analysis = editorial_analysis(reader_copy_meta, "3d-animation", "mocap")
+for banned_reader_phrase in (
+    "來源主題為",
+    "來源題名線索",
+    "目前可確認的製作面向包含",
+    "讀者標題為",
+    "Production 檢查點為",
+):
+    assert banned_reader_phrase not in reader_summary
+    assert all(banned_reader_phrase not in x["text"] for x in reader_analysis)
+
 print("COLLECTOR CONTENT QUALITY PASS: landing/index rejection + scope admission + title normalization + subject-first classification + source-grounded factual editorial fallback")
