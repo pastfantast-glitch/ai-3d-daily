@@ -241,6 +241,7 @@ if AUTONOMOUS_COLLECTOR.exists():
     for token in (
         'name: Autonomous daily Collector',
         "cron: '30 21 * * *'",
+        "cron: '30 22 * * *'",
         'group: autonomous-daily-collector',
         'cancel-in-progress: false',
         'contents: write',
@@ -251,6 +252,8 @@ if AUTONOMOUS_COLLECTOR.exists():
         'commit_subject="Collect production intelligence $DATE"',
         'commit_subject="Recollect production intelligence $DATE"',
         'git commit -m "$commit_subject"',
+        'skip_reason=persisted-session',
+        'workflow_run may recover handoff',
     ):
         if token not in autonomous:
             fail(f'daily-collector.yml missing autonomous Collector token: {token}')

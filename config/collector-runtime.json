@@ -1,9 +1,10 @@
 {
   "version": 1,
-  "effective_date": "2026-09-26",
+  "effective_date": "2026-09-30",
   "timezone": "Asia/Taipei",
-  "purpose": "Run the Collector on GitHub-hosted infrastructure with schedule-latency headroom before the 07:45 ChatGPT monitor so publication no longer depends on chat-side repository mutation.",
+  "purpose": "Run the Collector on GitHub-hosted infrastructure with schedule-latency headroom before the 07:45 ChatGPT monitor, with a delayed backup schedule that safely re-enters the same idempotent pipeline if GitHub drops the primary scheduled event.",
   "schedule_local": "05:30",
+  "fallback_schedule_local": "06:30",
   "http": {
     "timeout_seconds": 15,
     "max_workers": 8,
