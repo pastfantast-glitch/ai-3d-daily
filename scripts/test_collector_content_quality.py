@@ -210,4 +210,31 @@ assert all(reader_language_ok(x["text"], 3.0) for x in foreign_analysis)
 assert "This course covers" not in foreign_summary
 assert all("This course covers" not in x["text"] for x in foreign_analysis)
 
+
+collision_a = editorial_analysis(
+    meta(
+        "https://example.com/source-a",
+        "Exclusive Fall Community Offer for Production Artists Working With Blender Rigging",
+        "Blender rigging workflow tutorial.",
+        "2026-09-29",
+        True,
+    ),
+    "blender-dcc",
+    "blender",
+)
+collision_b = editorial_analysis(
+    meta(
+        "https://example.com/source-b",
+        "Facial Character Production Study for Artists Working With Blender Rigging",
+        "Blender rigging workflow tutorial.",
+        "2026-09-29",
+        True,
+    ),
+    "blender-dcc",
+    "blender",
+)
+assert not ({x["text"] for x in collision_a} & {x["text"] for x in collision_b}), (
+    "different source titles must not collapse to exact duplicate analysis blocks"
+)
+
 print("COLLECTOR CONTENT QUALITY PASS: landing/index rejection + scope admission + title normalization + subject-first classification + source-grounded factual editorial fallback")
