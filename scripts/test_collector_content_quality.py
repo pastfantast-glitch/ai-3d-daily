@@ -148,7 +148,7 @@ assert "來源頁面顯示" not in summary
 assert "Collector 僅依" not in summary
 assert "Rendering advancements" not in summary
 assert reader_language_ok(summary, 2.5)
-assert "Production 檢查點" in summary
+assert "Production 檢查點" not in summary
 assert "近期製作參考" not in summary
 assert "值得進一步實測" not in summary
 assert len(analysis) == 3
