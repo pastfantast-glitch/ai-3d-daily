@@ -461,7 +461,7 @@ def editorial_title(meta: dict, category: str, subcategory: str) -> str:
         if not HAN_RE.search(category_label):
             category_label = clean(f"{category_label} 製作", 40)
         subject = re.split(r"\s*[|｜—–-]\s*", value, maxsplit=1)[0]
-        subject = clean(subject, 32)
+        subject = clean(subject, 18)
         if subject:
             candidate = clean(f"{category_label}：{subject} 的製作重點", 180)
             if reader_language_ok(candidate, 4.0):
