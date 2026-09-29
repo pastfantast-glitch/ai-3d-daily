@@ -33,7 +33,9 @@ if RUNTIME.exists() and HYBRID.exists():
         if int(runtime.get("version", 0) or 0) != 1:
             fail("collector-runtime version must be 1")
         if runtime.get("timezone") != "Asia/Taipei" or runtime.get("schedule_local") != "05:30":
-            fail("autonomous Collector must run at 05:30 Asia/Taipei to leave GitHub schedule-latency headroom before the 07:45 monitor")
+            fail("autonomous Collector primary schedule must run at 05:30 Asia/Taipei to leave GitHub schedule-latency headroom before the 07:45 monitor")
+        if runtime.get("fallback_schedule_local") != "06:30":
+            fail("autonomous Collector fallback schedule must run at 06:30 Asia/Taipei and re-enter the same idempotent pipeline")
         http = runtime.get("http") or {}
         if not (5 <= int(http.get("timeout_seconds", 0) or 0) <= 30):
             fail("collector HTTP timeout must be bounded to 5..30 seconds")
@@ -119,6 +121,7 @@ if WORKFLOW.exists():
     required = (
         "name: Autonomous daily Collector",
         "cron: '30 21 * * *'",
+        "cron: '30 22 * * *'",
         "workflow_dispatch:",
         "group: autonomous-daily-collector",
         "cancel-in-progress: false",
