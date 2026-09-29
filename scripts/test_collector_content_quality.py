@@ -316,4 +316,8 @@ for banned_reader_phrase in (
     assert banned_reader_phrase not in reader_summary
     assert all(banned_reader_phrase not in x["text"] for x in reader_analysis)
 
+
+assert reader_language_ok("Unity Spline Architect：大量物件 GPU 實例化更新", 4.0)
+assert reader_language_ok("Redchillies.vfx：Netflix 影集特效製作拆解", 4.0)
+
 print("COLLECTOR CONTENT QUALITY PASS: landing/index rejection + promo rejection + concise source-grounded reader copy + title normalization + subject-first classification")
