@@ -1,0 +1,378 @@
+{
+  "schema_version": 1,
+  "date": "2026-09-29",
+  "contract": "source-reviewed-editorial-repair-v1",
+  "style_reference": "2026-09-28",
+  "preserve_selection": true,
+  "reason": "Remove internal verification boilerplate from reader-facing copy and restore the concise 2026-09-28 editorial style without changing the verified 2026-09-29 selection.",
+  "items": {
+    "80-level-advanced-ledge-detection-traversal-system-for-unity": {
+      "source_url": "https://80.lv/articles/advanced-ledge-detection-traversal-system-for-unity",
+      "title": "Unity Ledge Detection & Traversal：複雜幾何與 IK 驅動攀爬系統",
+      "summary": "這套 Unity traversal framework 可偵測內外角、斜坡與不平整表面，並計算手腳 IK target；支援 Unity 6 與 2022 LTS，重點是用較少場景設定建立可擴充的攀爬行為。",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "「Unity Ledge Detection & Traversal：複雜幾何與 IK 驅動攀爬系統」的核心在 複雜幾何偵測、手腳 IK 與模組化 traversal。可把它拆成實際操作、資料交換與輸出三個層面來檢查，而不是只看展示結果。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對角色動畫／Unity流程，可拿現有第三人稱角色直接測 ledge 偵測、轉角、斜坡與不同身形的 IK 穩定度，判斷是否能取代自製 trigger／bounding-box 流程。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "若要把「Unity Ledge Detection & Traversal：複雜幾何與 IK 驅動攀爬系統」相關做法納入 production，仍需用實際工具版本、代表性資產與目標輸出驗證；單一案例不等於固定工時、品質或效能收益。"
+        }
+      ]
+    },
+    "80-level-learn-how-to-set-up-3d-lighting-for-2d-characters-with-this": {
+      "source_url": "https://80.lv/articles/learn-how-to-set-up-3d-lighting-for-2d-characters-with-this-after-effects-tutorial",
+      "title": "After Effects：用 Normality 為 2D 角色加入 3D 打光",
+      "summary": "Swoon 示範在 After Effects 搭配免費 Normality plugin，先由 2D 圖產生 normal map，再加入 point light、rim light 與 toon shading，讓平面角色能做出可調整方向與色彩的 3D 光影效果。",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "「After Effects：用 Normality 為 2D 角色加入 3D 打光」的核心在 normal map、Normality、point light／rim light 與 toon shading。可把它拆成實際操作、資料交換與輸出三個層面來檢查，而不是只看展示結果。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對2D／VFX流程，對需要 2D 角色但又想保留可調光向的專案，可把這套方法當成不進完整 3D rig 的中間方案，特別適合做風格化光影測試。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "若要把「After Effects：用 Normality 為 2D 角色加入 3D 打光」相關做法納入 production，仍需用實際工具版本、代表性資產與目標輸出驗證；單一案例不等於固定工時、品質或效能收益。"
+        }
+      ]
+    },
+    "80-level-former-pixar-fx-artist-reveals-a-smarter-way-to-refine-destr": {
+      "source_url": "https://80.lv/articles/former-pixar-fx-artist-reveals-a-smarter-way-to-refine-destruction",
+      "title": "Houdini 破壞模擬：前 Pixar FX Artist 的 Refinement 方法",
+      "summary": "這篇內容聚焦 Houdini destruction 的後段 refinement，由前 Pixar FX Artist 分享如何更有效率地整理與精修破壞模擬結果，而不是只追求更高的模擬複雜度。",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "「Houdini 破壞模擬：前 Pixar FX Artist 的 Refinement 方法」的核心在 Houdini destruction 的精修與可控性。可把它拆成實際操作、資料交換與輸出三個層面來檢查，而不是只看展示結果。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對Houdini／VFX流程，對破壞特效流程，重點可放在模擬後的可讀性、可導演性與重算成本，避免把品質提升全部建立在增加 simulation complexity 上。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "若要把「Houdini 破壞模擬：前 Pixar FX Artist 的 Refinement 方法」相關做法納入 production，仍需用實際工具版本、代表性資產與目標輸出驗證；單一案例不等於固定工時、品質或效能收益。"
+        }
+      ]
+    },
+    "80-level-download-this-free-pack-of-mocap-animations-with-everyday-ac": {
+      "source_url": "https://80.lv/articles/download-this-free-pack-of-mocap-animations-with-everyday-actions",
+      "title": "免費 Mocap：刷牙、開車、喝咖啡等日常動作包",
+      "summary": "這組免費 Mocap 聚焦日常行為，包含摸狗、刷牙、開車與喝咖啡等一般動作，可補足標準 motion library 常缺少的生活化片段。",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "「免費 Mocap：刷牙、開車、喝咖啡等日常動作包」的核心在 日常動作 Mocap 與角色動作庫補充。可把它拆成實際操作、資料交換與輸出三個層面來檢查，而不是只看展示結果。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對角色動畫／Mocap流程，適合先測骨架對應、retarget 與腳底接地品質；若能穩定套到既有角色，可減少背景角色與生活動作從零 keyframe 的需求。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "若要把「免費 Mocap：刷牙、開車、喝咖啡等日常動作包」相關做法納入 production，仍需用實際工具版本、代表性資產與目標輸出驗證；單一案例不等於固定工時、品質或效能收益。"
+        }
+      ]
+    },
+    "80-level-facial-animation-test-with-very-emotional-old-lady": {
+      "source_url": "https://80.lv/articles/facial-animation-test-with-very-emotional-old-lady",
+      "title": "老年角色 Facial Animation：表情、軟組織與 Topology 參考",
+      "summary": "Hasene 的 facial animation 展示老年臉部在情緒表演下的自然變形，並搭配 Nur Diker Köksal 的 topology study，可同時觀察表情需求與年齡造成的軟組織特徵。",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "「老年角色 Facial Animation：表情、軟組織與 Topology 參考」的核心在 老年角色 facial topology、表情變形與 rig 表現。可把它拆成實際操作、資料交換與輸出三個層面來檢查，而不是只看展示結果。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對角色／Facial Rig流程，可拿來檢查眼口周圍 edge flow、法令紋與下垂組織在大表情下是否仍能維持形體，對臉部 topology review 很有參考價值。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "若要把「老年角色 Facial Animation：表情、軟組織與 Topology 參考」相關做法納入 production，仍需用實際工具版本、代表性資產與目標輸出驗證；單一案例不等於固定工時、品質或效能收益。"
+        }
+      ]
+    },
+    "80-level-level-up-this-fall-exclusive-gnomon-discount-for-the-80-leve": {
+      "source_url": "https://80.lv/articles/level-up-this-fall-exclusive-gnomon-discount-for-the-80-level-community",
+      "title": "Gnomon 秋季課程折扣：96 門 VFX／Game Art／Animation 課程",
+      "summary": "這則內容本質上是 Gnomon 秋季課程促銷：單門課程可用 80LV 折 10%，多門課程另有最高 30% 優惠。它不是 production 技術更新，較適合作為培訓資訊而非技術情報。",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "「Gnomon 秋季課程折扣：96 門 VFX／Game Art／Animation 課程」提供的是課程與促銷資訊，不是新的 3D／動畫 production technique。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對培訓／教育流程，若公司正規劃角色、VFX、rigging 或 lighting 培訓，可把它當課程清單來源；不應拿這則促銷內容推導任何工具或 pipeline 結論。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "這類折扣或招生頁後續應在 Admission 階段排除，避免因頁面提到 modeling、rigging、VFX 等關鍵字就被誤收為技術情報。"
+        }
+      ]
+    },
+    "80-level-storytelling-through-details-sculpting-souls-like-corvus-sol": {
+      "source_url": "https://80.lv/articles/storytelling-through-details-sculpting-souls-like-corvus-soldiers",
+      "title": "Corvus 士兵角色製作：用細節、Silhouette 與裝備系統做敘事",
+      "summary": "Quentin Riviale 拆解《Isles of Krom》Corvus 士兵製作，從 top-down 鏡頭下的 silhouette、ZBrush 雕刻，到裝備交換與動態披風相容性，強調 production context 會直接限制角色設計選擇。",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "「Corvus 士兵角色製作：用細節、Silhouette 與裝備系統做敘事」的核心在 角色 silhouette、ZBrush 雕刻、敘事細節與裝備相容性。可把它拆成實際操作、資料交換與輸出三個層面來檢查，而不是只看展示結果。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對角色製作流程，對遊戲角色流程，這篇很適合用來檢查『設定好看』與『鏡頭下可讀、能換裝、能動畫』之間的取捨，特別適合做角色設計 review。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "若要把「Corvus 士兵角色製作：用細節、Silhouette 與裝備系統做敘事」相關做法納入 production，仍需用實際工具版本、代表性資產與目標輸出驗證；單一案例不等於固定工時、品質或效能收益。"
+        }
+      ]
+    },
+    "cg-channel-allegorithmic-releases-substance-designer-4-5": {
+      "source_url": "https://www.cgchannel.com/2014/10/allegorithmic-releases-substance-designer-4-5",
+      "title": "Substance Designer 4.5：多 Mesh Baking、AO 與 Dilation 更新",
+      "summary": "Substance Designer 4.5 的重點集中在 baking：新增多 mesh 烘焙、AO from Mesh、custom tangent-space plugin 與 Dilation width，並可共享 baking 設定與 project preferences。",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "「Substance Designer 4.5：多 Mesh Baking、AO 與 Dilation 更新」的核心在 貼圖烘焙、多 Mesh baking、AO、tangent space 與 seam dilation。可把它拆成實際操作、資料交換與輸出三個層面來檢查，而不是只看展示結果。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對材質／Texture流程，對量產材質流程，最值得注意的是 baking preset 與團隊設定共享，能減少不同美術之間因 tangent、AO 或 dilation 設定不一致造成的輸出差異。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "若要把「Substance Designer 4.5：多 Mesh Baking、AO 與 Dilation 更新」相關做法納入 production，仍需用實際工具版本、代表性資產與目標輸出驗證；單一案例不等於固定工時、品質或效能收益。"
+        }
+      ]
+    },
+    "80-level-spline-architect-s-new-version-adds-gpu-instancing-for-1-000": {
+      "source_url": "https://80.lv/articles/spline-architect-s-new-version-adds-gpu-instancing-for-1-000-000-objects-along-splines",
+      "title": "Spline Architect：Unity Spline 工具加入大量物件 GPU Instancing",
+      "summary": "Spline Architect 是 Unity 的 spline authoring 工具，可做道路、軌道、管線、camera path 與角色移動；新版主打沿 spline 的大量物件 GPU instancing，並相容 Unity 2022 與 Unity 6。",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "「Spline Architect：Unity Spline 工具加入大量物件 GPU Instancing」的核心在 spline authoring、Terrain 整合與大量物件 GPU instancing。可把它拆成實際操作、資料交換與輸出三個層面來檢查，而不是只看展示結果。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對Unity 場景／Technical Art流程，對道路、欄杆、軌道或重複 props，可直接比較傳統 GameObject placement 與 instancing 路徑的 draw call、記憶體與編輯效率。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "若要把「Spline Architect：Unity Spline 工具加入大量物件 GPU Instancing」相關做法納入 production，仍需用實際工具版本、代表性資產與目標輸出驗證；單一案例不等於固定工時、品質或效能收益。"
+        }
+      ]
+    },
+    "cg-channel-master-cinematic-matte-painting-for-production": {
+      "source_url": "https://www.cgchannel.com/2026/08/master-cinematic-matte-painting-for-production",
+      "title": "Cinematic Matte Painting：Blender、Photoshop 到 Nuke 的 Production 流程",
+      "summary": "Kevin Decatoire 的 Gnomon Workshop 從 matte painting、Blender 場景一路做到 Nuke compositing；課程提供 Blender scene、PSD、Nuke script、reference 與 HDRI，可完整追一遍最終 cinematic shot 的製作鏈。",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "「Cinematic Matte Painting：Blender、Photoshop 到 Nuke 的 Production 流程」的核心在 Matte Painting、Blender 3D、Nuke compositing 與 cinematic shot 組裝。可把它拆成實際操作、資料交換與輸出三個層面來檢查，而不是只看展示結果。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對場景／Concept／Compositing流程，對場景與概念團隊，可用來拆解 2D paint、3D blockout、render pass 與 comp 的責任分工，特別適合建立 cinematic environment 的交接規格。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "若要把「Cinematic Matte Painting：Blender、Photoshop 到 Nuke 的 Production 流程」相關做法納入 production，仍需用實際工具版本、代表性資產與目標輸出驗證；單一案例不等於固定工時、品質或效能收益。"
+        }
+      ]
+    },
+    "cg-channel-get-free-vfx-image-viewer-and-video-playback-tool-djv-3-6": {
+      "source_url": "https://www.cgchannel.com/2026/09/get-free-vfx-image-viewer-and-video-playback-tool-djv-3-6",
+      "title": "DJV 3.6：免費 VFX Shot Review 加入 Annotation 工具",
+      "summary": "DJV 3.6 為免費的高位元影像序列／影片播放器加入完整 shot review 與 annotation toolset；同時支援 OpenImageIO、OpenColorIO、A/B 比較與多種 production image format。",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "「DJV 3.6：免費 VFX Shot Review 加入 Annotation 工具」的核心在 shot review、annotation、OpenColorIO 與 image-sequence playback。可把它拆成實際操作、資料交換與輸出三個層面來檢查，而不是只看展示結果。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對VFX／Animation Review流程，對需要替代 RV 或建立低成本 review station 的團隊，可直接測 EXR／DPX 播放、OCIO 色彩一致性、版本比較與註記回饋流程。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "若要把「DJV 3.6：免費 VFX Shot Review 加入 Annotation 工具」相關做法納入 production，仍需用實際工具版本、代表性資產與目標輸出驗證；單一案例不等於固定工時、品質或效能收益。"
+        }
+      ]
+    },
+    "cg-channel-check-out-redchillies-vfxs-breakdown-for-the-bads-of-bollywo": {
+      "source_url": "https://www.cgchannel.com/2026/09/check-out-redchillies-vfxs-breakdown-for-the-bads-of-bollywood",
+      "title": "Redchillies.vfx《The Ba***ds of Bollywood》VFX Breakdown",
+      "summary": "Redchillies.vfx 公開 Netflix《The Ba***ds of Bollywood》特效 making-of，包含片尾高潮 CG car chase 等鏡頭，可用來觀察電影級 VFX 的 shot breakdown 與合成結果。",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "「Redchillies.vfx《The Ba***ds of Bollywood》VFX Breakdown」的核心在 電影 VFX breakdown、CG car chase 與 shot-level 製作拆解。可把它拆成實際操作、資料交換與輸出三個層面來檢查，而不是只看展示結果。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對VFX／Compositing流程，適合作為 shot review 與 benchmark 參考，重點是比較實拍、CG、simulation 與 comp 最後如何組合，而不是只看完成鏡頭。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "若要把「Redchillies.vfx《The Ba***ds of Bollywood》VFX Breakdown」相關做法納入 production，仍需用實際工具版本、代表性資產與目標輸出驗證；單一案例不等於固定工時、品質或效能收益。"
+        }
+      ]
+    },
+    "cg-channel-sparseal-unveils-uniform": {
+      "source_url": "https://www.cgchannel.com/2023/11/sparseal-unveils-uniform",
+      "title": "Uniform：iPad 上的輕量 3D Asset 製作工具",
+      "summary": "Pablo Dobarro 與 Joan Fons 公開 Uniform，定位為可在 iPad 完成 lightweight textured 3D asset 的模組化工具，涵蓋 UV、texture painting、procedural geometry、curves、retopology、lighting 與 rendering。",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "「Uniform：iPad 上的輕量 3D Asset 製作工具」的核心在 iPad 3D asset authoring、UV／貼圖、程序幾何與 retopology。可把它拆成實際操作、資料交換與輸出三個層面來檢查，而不是只看展示結果。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對3D Asset／DCC流程，它的價值在於把多個 asset 階段壓到同一個行動裝置工具裡；導入時應優先測高模匯入、scene complexity 與輸出格式，而不是只看 viewport 操作。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "若要把「Uniform：iPad 上的輕量 3D Asset 製作工具」相關做法納入 production，仍需用實際工具版本、代表性資產與目標輸出驗證；單一案例不等於固定工時、品質或效能收益。"
+        }
+      ]
+    },
+    "cg-channel-get-free-vfx-image-viewer-and-video-playback-tool-djv-3": {
+      "source_url": "https://www.cgchannel.com/2025/07/get-free-vfx-image-viewer-and-video-playback-tool-djv-3",
+      "title": "DJV 3：免費 VFX Viewer 支援 OpenTimelineIO、A/B Compare 與 USD",
+      "summary": "DJV 3.0 是五年來的大更新，導入以 OpenTimelineIO 為核心的新架構，支援 wipe／overlay／difference A/B compare、多軌音訊，並加入實驗性的 USD preview。",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "「DJV 3：免費 VFX Viewer 支援 OpenTimelineIO、A/B Compare 與 USD」的核心在 OpenTimelineIO、shot compare、多軌音訊與 USD preview。可把它拆成實際操作、資料交換與輸出三個層面來檢查，而不是只看展示結果。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對VFX／Animation Review流程，如果團隊需要免費 shot viewer，可先測它和現有 editorial／OCIO／USD 流程能否接得上，再評估是否能部分取代商用 review 工具。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "若要把「DJV 3：免費 VFX Viewer 支援 OpenTimelineIO、A/B Compare 與 USD」相關做法納入 production，仍需用實際工具版本、代表性資產與目標輸出驗證；單一案例不等於固定工時、品質或效能收益。"
+        }
+      ]
+    },
+    "80-level-advanced-ledge-grab-system-for-unity-with-full-ik-animation": {
+      "source_url": "https://80.lv/articles/advanced-ledge-grab-system-for-unity-with-full-ik-animation-support",
+      "title": "Unity Ledge Grab：標準 Collider＋完整 IK 手部定位",
+      "summary": "Salman Hoseini 的 Unity ledge-grab prototype 以標準 collider 與 layer mask 工作，不需額外 trigger／bounding box；系統會計算手部與軀幹位置，並可接到 IK animation。",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "「Unity Ledge Grab：標準 Collider＋完整 IK 手部定位」的核心在 ledge grab 偵測、標準 collider、layer mask 與 IK 定位。可把它拆成實際操作、資料交換與輸出三個層面來檢查，而不是只看展示結果。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對Unity／角色動畫流程，對自製 traversal system，可直接比較它與傳統 trigger volume 的維護量，並測不同斜率、尖角與角色比例下的手部 target 是否穩定。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "若要把「Unity Ledge Grab：標準 Collider＋完整 IK 手部定位」相關做法納入 production，仍需用實際工具版本、代表性資產與目標輸出驗證；單一案例不等於固定工時、品質或效能收益。"
+        }
+      ]
+    },
+    "80-level-category-aac17bbd": {
+      "source_url": "https://80.lv/articles/category?slug=animation",
+      "title": "80 Level Animation 分類索引",
+      "summary": "這個網址是 80 Level 的 Animation 分類索引，不是單一技術文章。它可以作為 discovery 入口，但本身不應被當成一則可發布的 production intelligence。",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "「80 Level Animation 分類索引」本身只是分類導覽，不包含足夠的單篇技術證據，因此不應直接解讀成 production 方法或工具更新。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對Discovery流程，後續 Collector 應從索引頁抓實際文章，再對文章做 Admission、Registry 與 evidence-depth 判斷；索引頁本身應直接 REJECT。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "這類索引頁應停留在 Discovery 階段；正式日報必須回到實際文章來源，完成 Admission、去重與 evidence-depth 檢查後才能發布。"
+        }
+      ]
+    },
+    "cg-channel-download-130-free-fbx-mocap-moves-from-anderson-rohr": {
+      "source_url": "https://www.cgchannel.com/2026/09/download-130-free-fbx-mocap-moves-from-anderson-rohr",
+      "title": "免費 Mocap：Anderson Rohr 釋出 130+ 組 FBX 動作",
+      "summary": "Anderson Rohr 的免費系列目前累積 134 段 mocap，涵蓋打字、傳訊息、線上會議、刷牙、開車等活動；以 60fps FBX 提供 iClone、Unreal Manny 與 Rokoko Newton 三種常見骨架，並允許商用。",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "「免費 Mocap：Anderson Rohr 釋出 130+ 組 FBX 動作」的核心在 130+ 組免費 FBX Mocap、三種骨架與商用授權。可把它拆成實際操作、資料交換與輸出三個層面來檢查，而不是只看展示結果。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對角色動畫／Mocap流程，對遊戲角色量產，可直接用同一角色測三種 skeleton 的 retarget 成本、root motion、腳底接地與手部穿插，再決定是否納入共用 motion library。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "若要把「免費 Mocap：Anderson Rohr 釋出 130+ 組 FBX 動作」相關做法納入 production，仍需用實際工具版本、代表性資產與目標輸出驗證；單一案例不等於固定工時、品質或效能收益。"
+        }
+      ]
+    },
+    "80-level-category": {
+      "source_url": "https://80.lv/articles/category?slug=substance-painter",
+      "title": "80 Level Substance 3D Painter 分類索引",
+      "summary": "這個網址是 80 Level 的 Substance 3D Painter 分類索引，而不是一篇具體版本、技巧或案例文章；適合用來找候選，但不應直接進正式日報。",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "「80 Level Substance 3D Painter 分類索引」本身只是分類導覽，不包含足夠的單篇技術證據，因此不應直接解讀成 production 方法或工具更新。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對Discovery流程，Collector 應把分類頁視為 source index，只將其中可驗證、未重複且有具體 production takeaway 的文章送進 Ranking。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "這類索引頁應停留在 Discovery 階段；正式日報必須回到實際文章來源，完成 Admission、去重與 evidence-depth 檢查後才能發布。"
+        }
+      ]
+    },
+    "80-level-ultra-expressive-street-fighter-s-chun-li-blender-rig-showca": {
+      "source_url": "https://80.lv/articles/ultra-expressive-street-fighter-s-chun-li-blender-rig-showcase",
+      "title": "Chun-Li Blender Rig：表情、Wrinkle Map 與 Hair Simulation 展示",
+      "summary": "A$AP BERG 展示新的 Chun-Li Blender rig，已加入 actions、wrinkle maps 與 hair simulation test，並示範多組誇張表情；作者還計畫增加更多 shapekeys。",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "「Chun-Li Blender Rig：表情、Wrinkle Map 與 Hair Simulation 展示」的核心在 Blender facial rig、wrinkle map、shapekey 與 hair simulation。可把它拆成實際操作、資料交換與輸出三個層面來檢查，而不是只看展示結果。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對角色 Rig／Facial流程，對 stylized character rig，可拿來比較表情範圍、皺紋驅動與頭髮 secondary motion 的整合方式，再轉成內部 facial-rig benchmark。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "若要把「Chun-Li Blender Rig：表情、Wrinkle Map 與 Hair Simulation 展示」相關做法納入 production，仍需用實際工具版本、代表性資產與目標輸出驗證；單一案例不等於固定工時、品質或效能收益。"
+        }
+      ]
+    }
+  },
+  "source_review": {
+    "status": "verified",
+    "reviewed_on": "2026-09-29",
+    "reviewed_count": 19,
+    "method": "external-source-review-plus-verified-DONE-identity",
+    "scope": "all 2026-09-29 canonical source identities and concise reader-copy rewrite"
+  }
+}
