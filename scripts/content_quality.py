@@ -545,22 +545,22 @@ def editorial_analysis(meta: dict, category: str, subcategory: str) -> list[dict
 
     if has_any(raw, ("release", "update", "version", "beta", "alpha", "preview", "roadmap")):
         technical = f"「{title}」屬於版本／功能更新，重點落在 {focus_text}；升版時應先確認它改變的是 authoring、資產交換還是輸出行為。"
-        impact = f"對 {label} 團隊，可把 {focus_text} 放進代表性工程做前後版本比較，確認新功能是否真的減少人工步驟或改善輸出一致性。"
+        impact = f"針對「{title}」，{label} 團隊可把 {focus_text} 放進代表性工程做前後版本比較，確認新功能是否真的減少人工步驟或改善輸出一致性。"
     elif has_any(raw, ("tutorial", "guide", "course", "training", "workflow")):
         technical = f"「{title}」以 {focus_text} 的教學／流程為主，可拆成輸入、操作、人工修正與輸出幾個階段來看。"
-        impact = f"對 {label} 團隊，這類內容最適合拿來補 SOP、review checklist 或新人訓練，再與現有工具流程逐步對照。"
+        impact = f"針對「{title}」，{label} 團隊可把內容拆成 SOP、review checklist 或新人訓練素材，再與現有工具流程逐步對照。"
     elif has_any(raw, ("breakdown", "making-of", "behind the scenes", "case study")):
         technical = f"「{title}」的價值在於把 {focus_text} 放回實際案例中觀察，能看到製作選擇如何影響最後結果。"
-        impact = f"對 {label} 團隊，可把案例拆成可複用的流程節點，判斷哪些方法適合導入、哪些只適用於原專案條件。"
+        impact = f"針對「{title}」，{label} 團隊可把案例拆成可複用的流程節點，判斷哪些方法適合導入、哪些只適用於原專案條件。"
     elif has_any(raw, ("download", "free pack", "free asset")):
         technical = f"「{title}」屬於可下載素材，重點不只在取得資產，也要看 {focus_text} 的格式、可編輯性與 downstream 相容性。"
-        impact = f"對 {label} 團隊，可直接用代表性角色或場景測匯入、重定向、編輯與輸出，判斷它是否能減少前期製作成本。"
+        impact = f"針對「{title}」，{label} 團隊可直接用代表性角色或場景測匯入、重定向、編輯與輸出，判斷它是否能減少前期製作成本。"
     elif has_any(raw, ("test", "showcase", "demo")):
         technical = f"「{title}」主要展示 {focus_text} 的實作表現，可用來觀察控制粒度、畫面效果與可重現性。"
-        impact = f"對 {label} 團隊，適合把展示結果轉成內部 A/B test，確認相同方法在自家資產與版本上能否成立。"
+        impact = f"針對「{title}」，{label} 團隊可把展示結果轉成內部 A/B test，確認相同方法在自家資產與版本上能否成立。"
     else:
         technical = f"「{title}」聚焦 {focus_text}，可先從 {trait_text} 角度拆解它對現有製作流程的實際變化。"
-        impact = f"對 {label} 團隊，應先用小規模案例確認它解決的是 authoring、交換、品質控制還是 runtime 問題，再決定導入範圍。"
+        impact = f"針對「{title}」，{label} 團隊應先用小規模案例確認它解決的是 authoring、交換、品質控制還是 runtime 問題，再決定導入範圍。"
 
     limit = (
         f"若要把「{title}」納入 production，仍需用實際 DCC／引擎版本、代表性資產與目標輸出驗證；"
