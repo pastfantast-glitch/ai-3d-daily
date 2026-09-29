@@ -192,18 +192,30 @@ def reader_language_ok(value: object, max_latin_per_han: float = 3.0) -> bool:
     return latin <= max(8, int(han * max_latin_per_han))
 
 
+def source_title_cue(meta: dict) -> str:
+    """Keep a short source-grounded title cue so different sources cannot collapse to identical fallback copy."""
+    raw = clean(KANA_RE.sub("", normalize_title(meta.get("title"))))
+    if not raw:
+        return ""
+    if len(raw) <= 18:
+        return raw
+    return clean(f"{raw[:9].rstrip()}…{raw[-9:].lstrip()}", 24)
+
+
 def reader_source_fact(meta: dict, title: str, focus_text: str) -> str:
     raw = source_fact(meta)
     if reader_language_ok(raw, 2.5):
         return raw
     lowered = f"{normalize_title(meta.get('title'))} {clean(meta.get('description'), 600)}".casefold()
+    cue = source_title_cue(meta)
+    cue_suffix = f"；來源題名線索「{cue}」" if cue else ""
     if has_any(lowered, ("tutorial", "guide", "course", "training", "workflow")):
-        return f"來源介紹一套以 {focus_text} 為主的教學／製作流程，讀者標題為「{title}」"
+        return f"來源介紹一套以 {focus_text} 為主的教學／製作流程，讀者標題為「{title}」{cue_suffix}"
     if has_any(lowered, ("release", "update", "version", "beta", "alpha", "roadmap")):
-        return f"來源整理「{title}」的版本／開發更新，重點涉及 {focus_text}"
+        return f"來源整理「{title}」的版本／開發更新，重點涉及 {focus_text}{cue_suffix}"
     if has_any(lowered, ("plugin", "addon", "add-on", "tool", "software")):
-        return f"來源介紹「{title}」這項工具，公開重點涉及 {focus_text}"
-    return f"來源主題為「{title}」，目前可確認的製作面向包含 {focus_text}"
+        return f"來源介紹「{title}」這項工具，公開重點涉及 {focus_text}{cue_suffix}"
+    return f"來源主題為「{title}」，目前可確認的製作面向包含 {focus_text}{cue_suffix}"
 
 
 def has_term(text: str, term: str) -> bool:
