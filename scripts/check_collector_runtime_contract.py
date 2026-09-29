@@ -137,6 +137,8 @@ if WORKFLOW.exists():
         'commit_subject="Recollect production intelligence $DATE"',
         'git commit -m "$commit_subject"',
         "git push origin HEAD:main",
+        "skip_reason=persisted-session",
+        "workflow_run may recover handoff",
         "data/daily/$DATE.json",
         "data/candidates/collection-session/$DATE.json",
         "data/candidates/decision-ledger/$DATE.json",
@@ -178,4 +180,4 @@ if errors:
         print("-", error)
     raise SystemExit(1)
 
-print("AUTONOMOUS COLLECTOR CONTRACT PASS: bounded source-grounded GitHub Collector + private-only mutation + GITHUB_TOKEN workflow_run bridge + trusted bot-chain CI semantics")
+print("AUTONOMOUS COLLECTOR CONTRACT PASS: bounded source-grounded GitHub Collector + primary/fallback schedule resilience + idempotent persisted-session recovery + private-only mutation + GITHUB_TOKEN workflow_run bridge + trusted bot-chain CI semantics")
