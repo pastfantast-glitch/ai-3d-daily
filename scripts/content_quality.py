@@ -202,6 +202,35 @@ def source_title_cue(meta: dict) -> str:
     return clean(f"{raw[:9].rstrip()}…{raw[-9:].lstrip()}", 24)
 
 
+def source_subject_traits(meta: dict) -> list[str]:
+    """Return concise zh-Hant semantic traits grounded in the source title/description."""
+    text = f"{normalize_title(meta.get('title'))} {clean(meta.get('description'), 600)}".casefold()
+    rules = (
+        (("everyday", "daily action", "daily motion"), "日常動作"),
+        (("combat", "fight", "attack animation", "battle"), "戰鬥動作"),
+        (("walk", "run cycle", "locomotion"), "移動循環"),
+        (("facial", "lip sync", "expression"), "臉部表演"),
+        (("hand animation", "finger", "hand pose"), "手部動作"),
+        (("dance", "dancing"), "舞蹈動作"),
+        (("storyboard", "storyboarding", "pre-production"), "分鏡前期"),
+        (("stylized", "toon", "cartoon"), "風格化"),
+        (("realistic", "photoreal", "photorealistic"), "寫實"),
+        (("procedural", "geometry nodes", "pcg"), "程序化"),
+        (("free pack", "free asset", "download", "free mocap"), "可下載素材"),
+        (("test", "demo", "showcase"), "測試展示"),
+        (("tutorial", "guide", "course", "training"), "教學"),
+        (("breakdown", "behind the scenes", "making-of", "case study"), "製作拆解"),
+        (("release", "update", "version", "beta", "alpha", "preview"), "版本更新"),
+    )
+    out: list[str] = []
+    for terms, label in rules:
+        if has_any(text, terms) and label not in out:
+            out.append(label)
+        if len(out) >= 2:
+            break
+    return out
+
+
 def reader_source_fact(meta: dict, title: str, focus_text: str) -> str:
     raw = source_fact(meta)
     if reader_language_ok(raw, 2.5):
@@ -475,6 +504,8 @@ def production_summary(meta: dict, category: str, subcategory: str) -> str:
     focus = production_focus(meta)
     focus_text = "、".join(focus) if focus else label
     fact = reader_source_fact(meta, title, focus_text)
+    traits = source_subject_traits(meta)
+    trait_text = "、".join(traits)
 
     if has_any(raw, ("release", "update", "version", "beta", "alpha", "preview")):
         lead = "版本重點"
@@ -486,8 +517,9 @@ def production_summary(meta: dict, category: str, subcategory: str) -> str:
         lead = "技術重點"
 
     if clean(meta.get("description")):
+        trait_clause = f" 可驗證的內容型態包含 {trait_text}；" if trait_text else ""
         return clean(
-            f"{lead}：{fact} Production 檢查點為 {focus_text}；"
+            f"{lead}：{fact}{trait_clause} Production 檢查點為 {focus_text}；"
             "先以來源已公開的功能、流程與限制為準，不補寫未公開的效能或工時數字。",
             420,
         )
