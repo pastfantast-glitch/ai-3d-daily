@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 from __future__ import annotations
 from content_quality import admission, classify_content, normalize_title, production_summary, editorial_title, editorial_analysis, reader_language_ok
+from check_editorial_quality import copy_signature
 
 
 def meta(url, title, description="", published=None, article_type=False):
@@ -235,6 +236,46 @@ collision_b = editorial_analysis(
 )
 assert not ({x["text"] for x in collision_a} & {x["text"] for x in collision_b}), (
     "different source titles must not collapse to exact duplicate analysis blocks"
+)
+
+
+summary_variants = [
+    production_summary(
+        meta(
+            "https://example.com/mocap-everyday",
+            "Download a Free Pack of Mocap Animations for Everyday Actions",
+            "Free mocap animation pack for everyday character actions.",
+            "2026-09-29",
+            True,
+        ),
+        "3d-animation",
+        "mocap",
+    ),
+    production_summary(
+        meta(
+            "https://example.com/mocap-combat",
+            "Download a Free Mocap Pack for Combat and Attack Animations",
+            "Free mocap animation pack for combat character actions.",
+            "2026-09-29",
+            True,
+        ),
+        "3d-animation",
+        "mocap",
+    ),
+    production_summary(
+        meta(
+            "https://example.com/mocap-locomotion",
+            "Download a Free Mocap Pack for Walk Run and Locomotion Cycles",
+            "Free mocap animation pack for locomotion cycles.",
+            "2026-09-29",
+            True,
+        ),
+        "3d-animation",
+        "mocap",
+    ),
+]
+assert len({copy_signature(x) for x in summary_variants}) == 3, (
+    "source-grounded semantic traits must prevent cross-item summary boilerplate collisions"
 )
 
 print("COLLECTOR CONTENT QUALITY PASS: landing/index rejection + scope admission + title normalization + subject-first classification + source-grounded factual editorial fallback")
