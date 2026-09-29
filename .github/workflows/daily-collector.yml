@@ -2,7 +2,8 @@ name: Autonomous daily Collector
 
 on:
   schedule:
-    - cron: '30 21 * * *'
+    - cron: '30 21 * * *' # 05:30 Asia/Taipei primary
+    - cron: '30 22 * * *' # 06:30 Asia/Taipei fallback
   workflow_dispatch:
     inputs:
       date:
@@ -116,8 +117,20 @@ jobs:
 
           session="data/candidates/collection-session/$date.json"
           if [ -f "$session" ] && [ "${POLICY_RECOLLECT:-false}" != "true" ]; then
-            echo "Existing Collector session without DONE requires diagnosis; refusing overwrite: $session"
-            exit 1
+            canonical="data/daily/$date.json"
+            ledger="data/candidates/decision-ledger/$date.json"
+            test -f "$canonical" || {
+              echo "Persisted Collector session is missing canonical dataset: $canonical"
+              exit 1
+            }
+            test -f "$ledger" || {
+              echo "Persisted Collector session is missing decision ledger: $ledger"
+              exit 1
+            }
+            echo "Persisted Collector session already exists; Collector is an idempotent no-op and workflow_run may recover handoff."
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+            echo "skip_reason=persisted-session" >> "$GITHUB_OUTPUT"
+            exit 0
           fi
 
       - name: Validate existing DONE release on safe rerun
