@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Shared content-quality policy for autonomous Production Intelligence collection.
-Policy revision: 2026-09-29 concise source-grounded reader copy.\nEditorial contract: verification stays in QA/metadata; reader copy follows the 2026-09-28 concise style baseline.
+Policy revision: 2026-09-29 concise source-grounded reader copy.\nEditorial contract: verification stays in QA/metadata; reader copy follows the concise style while retaining the 2026-09-25 contract baseline.
 
 This module is deliberately deterministic and source-grounded. It rejects index,
 product/marketing landing, governance/event, and non-production pages before ranking;
