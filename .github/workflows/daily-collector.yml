@@ -79,6 +79,7 @@ jobs:
           echo "date=$date" >> "$GITHUB_OUTPUT"
           echo "base_sha=$base_sha" >> "$GITHUB_OUTPUT"
           echo "skip=false" >> "$GITHUB_OUTPUT"
+          echo "skip_reason=" >> "$GITHUB_OUTPUT"
           echo "policy_recollect=${POLICY_RECOLLECT:-false}" >> "$GITHUB_OUTPUT"
 
           done="data/publish/$date.done.json"
@@ -94,6 +95,7 @@ jobs:
               else
                 echo "Already DONE for $date; Collector is a no-op."
                 echo "skip=true" >> "$GITHUB_OUTPUT"
+                echo "skip_reason=done" >> "$GITHUB_OUTPUT"
                 exit 0
               fi
             else
@@ -108,6 +110,7 @@ jobs:
           if [ "$active" -ne 0 ]; then
             echo "Canonical writer already active ($active); Collector will not create another session."
             echo "skip=true" >> "$GITHUB_OUTPUT"
+            echo "skip_reason=active-writer" >> "$GITHUB_OUTPUT"
             exit 0
           fi
 
@@ -118,7 +121,7 @@ jobs:
           fi
 
       - name: Validate existing DONE release on safe rerun
-        if: steps.preflight.outputs.skip == 'true'
+        if: steps.preflight.outputs.skip == 'true' && steps.preflight.outputs.skip_reason == 'done'
         shell: bash
         env:
           DATE: ${{ steps.preflight.outputs.date }}
