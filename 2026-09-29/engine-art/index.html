@@ -61,10 +61,10 @@
      #01 · unity
     </div>
     <h2>
-     遊戲引擎美術：Advanced Ledge Detection &amp; Trave 的製作重點
+     Unity Ledge Detection &amp; Traversal：複雜幾何與 IK 驅動攀爬系統
     </h2>
     <p class="summary">
-     技術重點：來源主題為「遊戲引擎美術：Advanced Ledge Detection &amp; Trave 的製作重點」，目前可確認的製作面向包含 動畫、Unity；來源題名線索「Advanced…For Unity」 Production 檢查點為 動畫、Unity；先以來源已公開的功能、流程與限制為準，不補寫未公開的效能或工時數字。
+     這套 Unity traversal framework 可偵測內外角、斜坡與不平整表面，並計算手腳 IK target；支援 Unity 6 與 2022 LTS，重點是用較少場景設定建立可擴充的攀爬行為。
     </p>
     <figure class="case-preview" data-intel-id="80-level-advanced-ledge-detection-traversal-system-for-unity" data-intel-role="visual" data-visual-id="80-level-advanced-ledge-detection-traversal-system-for-unity">
      <a href="https://80.lv/articles/advanced-ledge-detection-traversal-system-for-unity" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
@@ -89,19 +89,19 @@
        技術／流程變更
       </h4>
       <p>
-       「遊戲引擎美術：Advanced Ledge Detection &amp; Trave 的製作重點」的公開資訊明確涉及 動畫、Unity。來源描述為：來源主題為「遊戲引擎美術：Advanced Ledge Detection &amp; Trave 的製作重點」，目前可確認的製作面向包含 動畫、Unity；來源題名線索「Advanced…For Unity」 技術判讀以這些已公開內容為界，不把標題之外的功能或結果自行補成既定事實。
+       「Unity Ledge Detection &amp; Traversal：複雜幾何與 IK 驅動攀爬系統」的核心在 複雜幾何偵測、手腳 IK 與模組化 traversal。可把它拆成實際操作、資料交換與輸出三個層面來檢查，而不是只看展示結果。
       </p>
       <h4>
        Production 影響
       </h4>
       <p>
-       來源主題 遊戲引擎美術：Advanced Ledge Detection &amp; Trave 的製作重點 的可驗證內容提到 來源主題為「遊戲引擎美術：Advanced Ledge Detection &amp; Trave 的製作重點」，目前可確認的製作面向包含 動畫、Unity；來源題名線索「Advanced…For Unity」。對 Unity，可把 動畫、Unity 放進目前相同製作環節做小規模對照，確認它實際解決的是 authoring、交換、品質控制還是 runtime 問題，再決定導入範圍。
+       對角色動畫／Unity流程，可拿現有第三人稱角色直接測 ledge 偵測、轉角、斜坡與不同身形的 IK 穩定度，判斷是否能取代自製 trigger／bounding-box 流程。
       </p>
       <h4>
        導入測試與限制
       </h4>
       <p>
-       「遊戲引擎美術：Advanced Ledge Detection &amp; Trave 的製作重點」目前可驗證的來源內容為 來源主題為「遊戲引擎美術：Advanced Ledge Detection &amp; Trave 的製作重點」，目前可確認的製作面向包含 動畫、Unity；來源題名線索「Advanced…For Unity」。來源沒有提供的 benchmark、工時節省或品質提升不做推定；正式導入前仍要用目標 DCC／引擎版本、代表性資產與實際輸出格式驗證相容性與可重現性。
+       若要把「Unity Ledge Detection &amp; Traversal：複雜幾何與 IK 驅動攀爬系統」相關做法納入 production，仍需用實際工具版本、代表性資產與目標輸出驗證；單一案例不等於固定工時、品質或效能收益。
       </p>
       <p class="analysis-level-note">
        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
@@ -117,10 +117,10 @@
      #15 · unity
     </div>
     <h2>
-     遊戲引擎美術：Advanced Ledge Grab System For U 的製作重點
+     Unity Ledge Grab：標準 Collider＋完整 IK 手部定位
     </h2>
     <p class="summary">
-     技術重點：來源主題為「遊戲引擎美術：Advanced Ledge Grab System For U 的製作重點」，目前可確認的製作面向包含 動畫、Unity；來源題名線索「Advanced…n Support」 Production 檢查點為 動畫、Unity；先以來源已公開的功能、流程與限制為準，不補寫未公開的效能或工時數字。
+     Salman Hoseini 的 Unity 攀爬邊緣原型使用標準碰撞體與圖層遮罩，不需額外建立觸發區；系統會計算手部與軀幹位置，可直接銜接 IK 動畫來處理角色抓邊與懸掛。
     </p>
     <figure class="case-preview" data-intel-id="80-level-advanced-ledge-grab-system-for-unity-with-full-ik-animation" data-intel-role="visual" data-visual-id="80-level-advanced-ledge-grab-system-for-unity-with-full-ik-animation">
      <a href="https://80.lv/articles/advanced-ledge-grab-system-for-unity-with-full-ik-animation-support" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
@@ -145,19 +145,19 @@
        技術／流程變更
       </h4>
       <p>
-       「遊戲引擎美術：Advanced Ledge Grab System For U 的製作重點」的公開資訊明確涉及 動畫、Unity。來源描述為：來源主題為「遊戲引擎美術：Advanced Ledge Grab System For U 的製作重點」，目前可確認的製作面向包含 動畫、Unity；來源題名線索「Advanced…n Support」 技術判讀以這些已公開內容為界，不把標題之外的功能或結果自行補成既定事實。
+       「Unity Ledge Grab：標準 Collider＋完整 IK 手部定位」的核心在 ledge grab 偵測、標準 collider、layer mask 與 IK 定位。可把它拆成實際操作、資料交換與輸出三個層面來檢查，而不是只看展示結果。
       </p>
       <h4>
        Production 影響
       </h4>
       <p>
-       來源主題 遊戲引擎美術：Advanced Ledge Grab System For U 的製作重點 的可驗證內容提到 來源主題為「遊戲引擎美術：Advanced Ledge Grab System For U 的製作重點」，目前可確認的製作面向包含 動畫、Unity；來源題名線索「Advanced…n Support」。對 Unity，可把 動畫、Unity 放進目前相同製作環節做小規模對照，確認它實際解決的是 authoring、交換、品質控制還是 runtime 問題，再決定導入範圍。
+       對Unity／角色動畫流程，對自製 traversal system，可直接比較它與傳統 trigger volume 的維護量，並測不同斜率、尖角與角色比例下的手部 target 是否穩定。
       </p>
       <h4>
        導入測試與限制
       </h4>
       <p>
-       「遊戲引擎美術：Advanced Ledge Grab System For U 的製作重點」目前可驗證的來源內容為 來源主題為「遊戲引擎美術：Advanced Ledge Grab System For U 的製作重點」，目前可確認的製作面向包含 動畫、Unity；來源題名線索「Advanced…n Support」。來源沒有提供的 benchmark、工時節省或品質提升不做推定；正式導入前仍要用目標 DCC／引擎版本、代表性資產與實際輸出格式驗證相容性與可重現性。
+       若要把「Unity Ledge Grab：標準 Collider＋完整 IK 手部定位」相關做法納入 production，仍需用實際工具版本、代表性資產與目標輸出驗證；單一案例不等於固定工時、品質或效能收益。
       </p>
       <p class="analysis-level-note">
        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
