@@ -14,6 +14,7 @@ on:
     branches: [main]
     paths:
       - 'config/collector-runtime.json'
+      - 'data/ops/collector-watchdog.json'
       - 'scripts/run_daily_collector.py'
       - 'scripts/content_quality.py'
       - 'scripts/test_collector_content_quality.py'
@@ -34,7 +35,7 @@ concurrency:
 
 jobs:
   collect:
-    if: github.event_name != 'push' || contains(github.event.head_commit.message, '[collector-test]') || contains(github.event.head_commit.message, '[policy-recollect]')
+    if: github.event_name != 'push' || contains(github.event.head_commit.message, '[collector-test]') || contains(github.event.head_commit.message, '[policy-recollect]') || contains(github.event.head_commit.message, '[collector-watchdog]')
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
@@ -58,6 +59,7 @@ jobs:
           HEAD_MESSAGE: ${{ github.event.head_commit.message }}
           GH_TOKEN: ${{ github.token }}
           POLICY_RECOLLECT: ${{ github.event_name == 'push' && contains(github.event.head_commit.message, '[policy-recollect]') }}
+          WATCHDOG_TRIGGER: ${{ github.event_name == 'push' && contains(github.event.head_commit.message, '[collector-watchdog]') }}
         run: |
           set -euo pipefail
           date="${REQUESTED_DATE:-}"
@@ -65,6 +67,13 @@ jobs:
             date="$(printf '%s\n' "${HEAD_MESSAGE:-}" | grep -oE '20[0-9]{2}-[0-9]{2}-[0-9]{2}' | head -1 || true)"
             [ -n "$date" ] || {
               echo "Controlled policy recollect requires an explicit YYYY-MM-DD in the triggering commit message."
+              exit 1
+            }
+          fi
+          if [ -z "$date" ] && [ "${WATCHDOG_TRIGGER:-false}" = "true" ]; then
+            date="$(printf '%s\n' "${HEAD_MESSAGE:-}" | grep -oE '20[0-9]{2}-[0-9]{2}-[0-9]{2}' | head -1 || true)"
+            [ -n "$date" ] || {
+              echo "Collector watchdog trigger requires an explicit YYYY-MM-DD in the triggering commit message."
               exit 1
             }
           fi

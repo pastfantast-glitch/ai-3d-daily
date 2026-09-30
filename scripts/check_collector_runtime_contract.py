@@ -36,6 +36,10 @@ if RUNTIME.exists() and HYBRID.exists():
             fail("autonomous Collector primary schedule must run at 05:30 Asia/Taipei to leave GitHub schedule-latency headroom before the 07:45 monitor")
         if runtime.get("fallback_schedule_local") != "06:30":
             fail("autonomous Collector fallback schedule must run at 06:30 Asia/Taipei and re-enter the same idempotent pipeline")
+        if runtime.get("watchdog_schedule_local") != "07:40":
+            fail("autonomous Collector watchdog must run at 07:40 Asia/Taipei after both GitHub schedules had a chance to fire")
+        if runtime.get("watchdog_trigger_path") != "data/ops/collector-watchdog.json":
+            fail("autonomous Collector watchdog trigger path must remain data/ops/collector-watchdog.json")
         http = runtime.get("http") or {}
         if not (5 <= int(http.get("timeout_seconds", 0) or 0) <= 30):
             fail("collector HTTP timeout must be bounded to 5..30 seconds")
@@ -123,6 +127,10 @@ if WORKFLOW.exists():
         "cron: '30 21 * * *'",
         "cron: '30 22 * * *'",
         "workflow_dispatch:",
+        "data/ops/collector-watchdog.json",
+        "[collector-watchdog]",
+        "WATCHDOG_TRIGGER",
+        "Collector watchdog trigger requires an explicit YYYY-MM-DD",
         "group: autonomous-daily-collector",
         "cancel-in-progress: false",
         "contents: write",
@@ -180,4 +188,4 @@ if errors:
         print("-", error)
     raise SystemExit(1)
 
-print("AUTONOMOUS COLLECTOR CONTRACT PASS: bounded source-grounded GitHub Collector + primary/fallback schedule resilience + idempotent persisted-session recovery + private-only mutation + GITHUB_TOKEN workflow_run bridge + trusted bot-chain CI semantics")
+print("AUTONOMOUS COLLECTOR CONTRACT PASS: bounded source-grounded GitHub Collector + primary/fallback schedule resilience + 07:45 watchdog re-entry + idempotent persisted-session recovery + private-only mutation + GITHUB_TOKEN workflow_run bridge + trusted bot-chain CI semantics")
