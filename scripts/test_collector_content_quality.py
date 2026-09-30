@@ -239,6 +239,30 @@ assert not ({x["text"] for x in collision_a} & {x["text"] for x in collision_b})
 )
 
 
+dishes_meta = meta(
+    "https://80.lv/articles/learn-how-to-make-delectable-stylized-3d-dishes-in-blender",
+    "Learn How to Make Delectable Stylized 3D Dishes in Blender",
+    "A Blender tutorial for creating stylized 3D dishes.",
+    "2026-09-30",
+    True,
+)
+deer_meta = meta(
+    "https://80.lv/articles/tutorial-learn-how-to-make-a-stylized-deer-in-3d-using-blender",
+    "Tutorial: Learn How to Make a Stylized Deer in 3D Using Blender",
+    "A Blender tutorial for creating a stylized deer in 3D.",
+    "2026-09-30",
+    True,
+)
+dishes_title = editorial_title(dishes_meta, "3d-production", "prop-production")
+deer_title = editorial_title(deer_meta, "3d-production", "character-production")
+assert dishes_title != deer_title, "source-specific title cues must survive zh-Hant fallback framing"
+dishes_analysis = editorial_analysis(dishes_meta, "3d-production", "prop-production")
+deer_analysis = editorial_analysis(deer_meta, "3d-production", "character-production")
+assert not ({x["text"] for x in dishes_analysis} & {x["text"] for x in deer_analysis}), (
+    "the 2026-09-30 80.lv dishes/deer sources must not collapse to duplicate analysis blocks"
+)
+
+
 summary_variants = [
     production_summary(
         meta(
