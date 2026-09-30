@@ -1,10 +1,12 @@
 {
   "version": 1,
-  "effective_date": "2026-09-30",
+  "effective_date": "2026-10-01",
   "timezone": "Asia/Taipei",
-  "purpose": "Run the Collector on GitHub-hosted infrastructure with schedule-latency headroom before the 07:45 ChatGPT monitor, with a delayed backup schedule that safely re-enters the same idempotent pipeline if GitHub drops the primary scheduled event.",
+  "purpose": "Run the Collector on GitHub-hosted infrastructure with primary/fallback cron schedules, plus a 07:45 ChatGPT watchdog push that re-enters the same idempotent pipeline only when GitHub creates no Collector run for the day.",
   "schedule_local": "05:30",
   "fallback_schedule_local": "06:30",
+  "watchdog_schedule_local": "07:45",
+  "watchdog_trigger_path": "data/ops/collector-watchdog.json",
   "http": {
     "timeout_seconds": 15,
     "max_workers": 8,
