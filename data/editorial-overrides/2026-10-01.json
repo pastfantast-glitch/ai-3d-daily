@@ -29,7 +29,7 @@
     "80-level-marmoset-toolbag-inspired-texture-baking-add-on-released-for": {
       "source_url": "https://80.lv/articles/marmoset-toolbag-inspired-texture-baking-add-on-released-for-blender",
       "title": "Fyr Baker：把 Marmoset 式貼圖烘焙流程帶進 Blender",
-      "summary": "Fyr Baker 在 Blender 內提供獨立 GPU 烘焙流程，可保存 bake setup、背景執行 high-to-low、cage、AO、curvature、ID 與材質通道烘焙，並提供 Substance Painter、Unreal、Unity 的輸出 preset 與 channel packing。",
+      "summary": "Fyr Baker 把 Marmoset Toolbag 類型的專用烘焙流程帶進 Blender：設定可保存在場景內，支援背景 GPU 烘焙、高低模投射、包覆網格、環境遮蔽、曲率與 ID 等貼圖，並可依 Substance Painter、Unreal、Unity 流程整理輸出。",
       "full_analysis": [
         {
           "label": "技術／流程變更",
@@ -67,7 +67,7 @@
     "cg-channel-ynput-launches-free-vfx-and-animation-pipeline-platform-ayon": {
       "source_url": "https://www.cgchannel.com/2023/08/ynput-launches-free-vfx-and-animation-pipeline-platform-ayon",
       "title": "AYON：整合 DCC、版本追蹤與專案管理的開源 VFX／Animation Pipeline",
-      "summary": "AYON 前身為 OpenPype，是開源 VFX／Animation pipeline 平台，可把 Blender、Maya、Houdini、Substance、Nuke 等 DCC 與版本、審核、任務及 project tracking 串在同一套系統，也支援 USD、Unreal 與 REST API 擴充。",
+      "summary": "AYON 前身為 OpenPype，是開源影視與動畫製作管理平台，可把 Blender、Maya、Houdini 等內容製作軟體，與版本追蹤、審核、任務和專案管理集中到同一套系統，也提供 USD、Unreal 與 API 擴充能力。",
       "full_analysis": [
         {
           "label": "技術／流程變更",
@@ -142,7 +142,7 @@
     },
     "cg-channel-foundry-ships-modo-14-2": {
       "source_url": "https://www.cgchannel.com/2020/11/foundry-ships-modo-14-2",
-      "title": "Modo 14.2：Rig Clay 直接操控角色、USD Export 與 Cryptomatte",
+      "title": "Modo 14.2：角色直接操控、USD 匯出與 Cryptomatte 工作流",
       "summary": "Modo 14.2 加入 Rig Clay，可直接在角色表面拖曳 Command Region 觸發 Deformer，不必一直找控制器；同版也加入 USD Export、原生 Cryptomatte、mPath 暫停續算，以及 retopo viewport 與 UV real-world scale 改善。",
       "full_analysis": [
         {
@@ -180,7 +180,7 @@
     },
     "cg-channel-ai-developer-anthropic-becomes-blenders-latest-corporate-pat": {
       "source_url": "https://www.cgchannel.com/2026/04/ai-developer-anthropic-becomes-blenders-latest-corporate-patron",
-      "title": "Anthropic × Blender：贊助、Python API 與 Claude MCP Server",
+      "title": "Blender 開發贊助：Anthropic、Python API 與 Claude MCP 連接",
       "summary": "這則資訊主要是 Blender Development Fund 的企業贊助事件，後續已由年度 Patron 改為一次性捐款；較具製作關聯的是 Blender Lab 同期建立的 MCP Server，可讓 Claude 協助 scene debugging 或批次修改物件，且資金原先特別指向 Blender core 與 Python API。",
       "full_analysis": [
         {
@@ -199,8 +199,8 @@
     },
     "cg-channel-blackmagic-design-releases-resolve-21-1": {
       "source_url": "https://www.cgchannel.com/2026/09/blackmagic-design-releases-resolve-21-1",
-      "title": "DaVinci Resolve 21.1：MCP 自動化、HDR Grade 與 Fusion Krokodove",
-      "summary": "DaVinci Resolve 21.1 帶來超過 100 項工具更新，其中 MCP Server 可讓 Claude、Codex 等外部 AI 以自然語言操作 Resolve；同時更新 HDR grading workflow，並加入 25 個 Krokodove Fusion 工具供 motion graphics 與 title 製作。",
+      "title": "Resolve 21.1：自然語言自動化、HDR 調色與 Fusion 動態圖形",
+      "summary": "DaVinci Resolve 21.1 帶來超過 100 項更新，其中 MCP Server 可讓外部 AI 以自然語言操作剪輯與專案工作；同時強化 HDR 調色流程，並加入 25 個 Krokodove 工具供 Fusion 動態圖形與標題製作。",
       "full_analysis": [
         {
           "label": "技術／流程變更",
@@ -218,7 +218,7 @@
     },
     "cg-channel-maxon-releases-cinema-4d-2026-4-with-a-new-mcp-server": {
       "source_url": "https://www.cgchannel.com/2026/09/maxon-releases-cinema-4d-2026-4-with-a-new-mcp-server",
-      "title": "Cinema 4D 2026.4：官方 MCP Server 讓 Claude／ChatGPT 操作 DCC",
+      "title": "Cinema 4D 2026.4：官方 MCP 自然語言自動化介面",
       "summary": "Cinema 4D 2026.4 新增官方 MCP Server，可把 Claude Desktop、ChatGPT Desktop 等外部 AI 接到 Cinema 4D，以自然語言執行程序化、反覆或重複任務；Server 預設關閉，可在本機運行，所有動作也會進 undo stack。",
       "full_analysis": [
         {
@@ -237,7 +237,7 @@
     },
     "blender-official-behind-the-scenes-nashville-international-airport": {
       "source_url": "https://www.blender.org/user-stories/behind-the-scenes-nashville-international-airport",
-      "title": "Nashville Airport：Geometry Nodes 串 Maya／Substance／Houdini 的大型螢幕 Pipeline",
+      "title": "Nashville 機場巨型螢幕：Blender 程序化與跨軟體製作流程",
       "summary": "Gentilhomme 為 Nashville 機場兩面最高 11200×2160 的巨型 LED 螢幕製作超過 40 分鐘內容，其中 6 段全 CGI 使用 Blender；Geometry Nodes 負責大量程序化排列，也接收 Maya／Substance 的 OBJ＋4K UDIM 與 Houdini 模擬，最後以 Cycles multipass EXR 進 After Effects。",
       "full_analysis": [
         {
@@ -257,7 +257,7 @@
     "cg-channel-autodesk-calls-for-entries-for-its-2012-animation-reel": {
       "source_url": "https://www.cgchannel.com/2012/06/autodesk-calls-for-entries-for-its-2012-animation-reel",
       "title": "Autodesk 2012 Animation Reel：舊版 DCC 生態的歷史徵件資料",
-      "summary": "這篇是 2012 年 SIGGRAPH Autodesk Animation Show Reel 徵件公告，可投稿由 3ds Max、Maya、Softimage、Mudbox、MotionBuilder、Smoke、Flame 或 Gameware 製作的作品；它沒有新的 production technique，較適合作為當時 Autodesk DCC 生態的歷史資料。",
+      "summary": "這篇是 2012 年 SIGGRAPH 的 Autodesk 動畫作品徵件公告，當時可提交由 Maya、3ds Max、Mudbox、MotionBuilder 等軟體製作的動畫、遊戲影片與影像作品；它沒有新的製作技術，較適合作為當年數位內容工具生態的歷史資料。",
       "full_analysis": [
         {
           "label": "技術／流程變更",
