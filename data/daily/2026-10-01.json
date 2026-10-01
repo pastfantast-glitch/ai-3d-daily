@@ -2,13 +2,13 @@
   "date": "2026-10-01",
   "schema_version": 3,
   "metadata": {
-    "total_items": 15,
+    "total_items": 24,
     "collection_mode": "production-intelligence-preference-v1-hybrid",
     "collection_contract_effective_date": "2026-09-04",
     "preference_contract_effective_date": "2026-09-06",
     "admission_policy_effective_date": "2026-09-15",
     "collector_runtime": "autonomous-github-collector-v1",
-    "policy_recollect": false,
+    "policy_recollect": true,
     "discovery_windows": [
       "24h",
       "7d",
@@ -18,7 +18,7 @@
     ],
     "analysis_level_counts": {
       "FULL": 0,
-      "BRIEF": 15,
+      "BRIEF": 24,
       "REJECT": 0
     },
     "analysis_level_policy": "evidence-depth-tiered; FULL=3-5 source-supported blocks; BRIEF=3 readable source-grounded angles with explicit limits; REJECT=not-publishable",
@@ -41,11 +41,11 @@
       "windows": {
         "24h": {
           "status": "exhausted",
-          "candidates_found": 2
+          "candidates_found": 3
         },
         "7d": {
           "status": "exhausted",
-          "candidates_found": 1
+          "candidates_found": 8
         },
         "30d": {
           "status": "exhausted",
@@ -57,7 +57,7 @@
         },
         "evergreen": {
           "status": "exhausted",
-          "candidates_found": 45
+          "candidates_found": 51
         }
       },
       "category_candidates": {
@@ -68,16 +68,16 @@
           "candidates_considered": 3
         },
         "3d-animation": {
-          "candidates_considered": 2
+          "candidates_considered": 3
         },
         "engine-art": {
-          "candidates_considered": 0
+          "candidates_considered": 2
         },
         "emerging-case": {
-          "candidates_considered": 1
+          "candidates_considered": 2
         },
         "blender-dcc": {
-          "candidates_considered": 8
+          "candidates_considered": 13
         }
       },
       "registered_source_probe": {
@@ -99,14 +99,29 @@
             "refill_links_checked": 12
           },
           "3dnchu": {
-            "status": "unavailable",
+            "status": "checked",
             "method": "latest-index",
-            "candidates_found": 0,
-            "candidate_ids": [],
-            "reason": "ConnectTimeout",
-            "index_pages_checked": 0,
-            "feed_urls_checked": 0,
-            "refill_links_checked": 0
+            "candidates_found": 15,
+            "candidate_ids": [
+              "3dnchu-unimate",
+              "3dnchu-flesh-dynamics",
+              "3dnchu-instantrdv-for-ue",
+              "3dnchu-auto-unwrap-v1-0",
+              "3dnchu-deeppaintclassjpn-gaku-2026-2",
+              "3dnchu-field-aligned-surface-filling-curve",
+              "3dnchu-full-control-lattice-generator-v1-0",
+              "3dnchu-uvgami",
+              "3dnchu-voxel-plugin-free",
+              "3dnchu-blockblender-2-0",
+              "3dnchu-project-titan-sidefx",
+              "3dnchu-quicksplat",
+              "3dnchu-true-terrain-5",
+              "3dnchu-univ-v1-2",
+              "3dnchu-xmd-lifetime-membership"
+            ],
+            "index_pages_checked": 4,
+            "feed_urls_checked": 2,
+            "refill_links_checked": 16
           },
           "cgworld-jp": {
             "status": "checked",
@@ -159,7 +174,6 @@
               "cg-channel-check-out-vine-fxs-vfx-breakdown-for-alice-and-steve",
               "cg-channel-see-how-framestore-created-a-cg-battlefield-for-lioness-seas",
               "cg-channel-see-monkey-rave-productions-vfx-breakdown-for-in-the-hand-of",
-              "cg-channel-new-training-dvd-photorealistic-texture-painting",
               "cg-channel-foundry-ships-modo-14-2",
               "cg-channel-discover-5-key-features-for-cg-artists-in-godot-4-6",
               "cg-channel-cinema-4d-to-get-ipad-edition-and-new-generative-ai-features",
@@ -172,6 +186,7 @@
               "cg-channel-see-image-engines-vfx-breakdown-for-avatar-the-last-airbende",
               "cg-channel-download-version-2-0-of-spin-vfxs-free-nuke-gizmos",
               "cg-channel-sparseal-unveils-uniform",
+              "cg-channel-get-free-vfx-image-viewer-and-video-playback-tool-djv-3",
               "cg-channel-see-the-2026-blender-development-roadmap",
               "cg-channel-autodesk-releases-maya-2027-and-maya-creative-2027",
               "cg-channel-ai-developer-anthropic-becomes-blenders-latest-corporate-pat",
@@ -195,7 +210,7 @@
           "blender-official": {
             "status": "checked",
             "method": "latest-index",
-            "candidates_found": 13,
+            "candidates_found": 11,
             "candidate_ids": [
               "blender-official-blender-5-1-release",
               "blender-official-blender-5-2-lts-release",
@@ -203,12 +218,10 @@
               "blender-official-story-tools",
               "blender-official-blender-fundamentals-training-update-3d-animation",
               "blender-official-customizing-material-assets",
-              "blender-official-previous-versions",
               "blender-official-animation-2025-progress-planning",
               "blender-official-blender-lab-activity-report-q1-2026",
               "blender-official-3d-printing",
               "blender-official-user-stories",
-              "blender-official-behind-the-scenes-nashville-international-airport",
               "blender-official-cosmology-with-geometry-nodes"
             ],
             "index_pages_checked": 5,
@@ -236,11 +249,13 @@
           "sidefx-official": {
             "status": "checked",
             "method": "latest-index",
-            "candidates_found": 0,
-            "candidate_ids": [],
+            "candidates_found": 1,
+            "candidate_ids": [
+              "sidefx-official-filmtv"
+            ],
             "index_pages_checked": 2,
             "feed_urls_checked": 0,
-            "refill_links_checked": 0
+            "refill_links_checked": 3
           },
           "autodesk-area": {
             "status": "not-scheduled",
@@ -265,7 +280,7 @@
           }
         }
       },
-      "notes": "2026-10-01 autonomous GitHub Collector loaded the Published Registry snapshot before discovery, supplemented it from verified-DONE history when needed, checked rolling backlog, executed the current-main deterministic registered-source probe plan, crawled configured source indexes plus a bounded source-grounded targeted refill, and applied exact source/stable identity dedupe before ranking. Registry audit: {\"history_supplemented_items\": 0, \"latest_verified_done\": \"2026-09-30\", \"snapshot_generated_through\": \"2026-09-30\", \"snapshot_state\": \"DERIVED_FROM_VERIFIED_DONE\", \"source_identities\": 671, \"stable_ids\": 670}. Backlog entries rechecked=0. No source registration/domain supplied ranking bonus, quota or admission bypass."
+      "notes": "2026-10-01 autonomous GitHub Collector loaded the Published Registry snapshot before discovery, supplemented it from verified-DONE history when needed, checked rolling backlog, executed the current-main deterministic registered-source probe plan, crawled configured source indexes plus a bounded source-grounded targeted refill, and applied exact source/stable identity dedupe before ranking. Registry audit: {\"history_supplemented_items\": 0, \"latest_verified_done\": \"2026-09-30\", \"snapshot_generated_through\": \"2026-10-01\", \"snapshot_state\": \"DERIVED_FROM_VERIFIED_DONE\", \"source_identities\": 671, \"stable_ids\": 670}. Backlog entries rechecked=0. No source registration/domain supplied ranking bonus, quota or admission bypass."
     },
     "personalization": {
       "contract": "supabase-semantic-feedback-v1",
@@ -280,53 +295,41 @@
       "admission_bypass": false,
       "quality_gate_bypass": false,
       "source_quota": false
-    },
-    "homepage_tier_normalization": {
-      "selection_mode": "full-first-brief-fallback",
-      "requested_top5": 5,
-      "actual_top5": 5,
-      "top5_full_count": 0,
-      "top5_brief_fallback_count": 5,
-      "top5_full_only": false,
-      "brief_fallback_allowed": true,
-      "next10": 10
-    },
-    "registry_identity_normalization": {
-      "dropped_count": 0,
-      "rewritten_count": 0,
-      "policy": "verified-DONE-published-canonical-source-without-substantive-delta-skip",
-      "source_identity_precedence": "published-daily-html-card-then-canonical-json",
-      "url_identity": "scripts/url_identity.py",
-      "stage": "collection-before-ready",
-      "refill_required": false,
-      "category_deficits": {},
-      "daily_release_gate": {
-        "have": 15,
-        "min": 12,
-        "target": 30,
-        "max": 30,
-        "missing_to_min": 5,
-        "missing_to_target": 15,
-        "release_ready": true,
-        "category_counts": {
-          "ai-generation": 1,
-          "3d-production": 3,
-          "3d-animation": 2,
-          "engine-art": 0,
-          "emerging-case": 1,
-          "blender-dcc": 8
-        },
-        "normal_min": 20,
-        "release_mode": "LOW_VOLUME_COMPLETE",
-        "low_volume_authorized": true
-      }
     }
   },
   "items": [
     {
+      "id": "3dnchu-unimate",
+      "title": "3D 動作／Rig：UniMate:…多様3D生成AI！ 的製作重點",
+      "summary": "這則內容主要談 Rigging（UniMate:…多様3D生成AI！），與 Rigging 的製作實作直接相關。它能提供具體方法或結果作為對照，但仍要區分哪些是可複用流程、哪些只成立於單一作品或特定專案條件。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://3dnchu.com/archives/unimate",
+      "category": "3d-animation",
+      "subcategory": "rigging",
+      "ranking_score": 83.0,
+      "analysis_level": "BRIEF",
+      "brief_reason": "single-source-verified-production-tip",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "內容重點落在 Rigging（UniMate:…多様3D生成AI！），並涉及 Rigging。先辨認文章實際展示的是方法、工具能力還是單一作品結果，才能避免把展示效果誤當成可直接複製的流程。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對 Rigging，可以把 Rigging（UniMate:…多様3D生成AI！） 的做法或結果對照目前 pipeline，找出它可能影響的操作、交接或品質檢查點；只有能對應到真實工作步驟的部分，才值得進一步投入測試。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "Rigging（UniMate:…多様3D生成AI！） 目前只有單一來源可供參考，通常不足以證明跨專案穩定性；若要正式導入，仍需補做版本、資產規模與輸出條件的驗證。"
+        }
+      ],
+      "rank_global": 1,
+      "homepage_tier": "top5"
+    },
+    {
       "id": "80-level-check-out-this-comic-book-style-game-with-only-four-colors-u",
       "title": "3D 資產製作：Check Out…lors Used 的製作重點",
-      "summary": "這則內容聚焦 角色製作 的製作應用。對 角色製作 流程，先看它實際改變哪些操作、交換或輸出步驟，再決定是否納入現有 SOP。",
+      "summary": "這則內容主要談 戰場環境、四色限制、漫畫風格，與 角色製作 的製作實作直接相關。它能提供具體方法或結果作為對照，但仍要區分哪些是可複用流程、哪些只成立於單一作品或特定專案條件。",
       "quick_impact": "★★★★☆",
       "source_url": "https://80.lv/articles/check-out-this-comic-book-style-game-with-only-four-colors-used",
       "category": "3d-production",
@@ -337,24 +340,24 @@
       "full_analysis": [
         {
           "label": "技術／流程變更",
-          "text": "「3D 資產製作：Check Out…lors Used 的製作重點」聚焦 角色製作，可先從 實際製作 角度拆解它對現有製作流程的實際變化。"
+          "text": "內容重點落在 戰場環境、四色限制、漫畫風格，並涉及 角色製作。先辨認文章實際展示的是方法、工具能力還是單一作品結果，才能避免把展示效果誤當成可直接複製的流程。"
         },
         {
           "label": "Production 影響",
-          "text": "針對「3D 資產製作：Check Out…lors Used 的製作重點」，角色製作 團隊應先用小規模案例確認它解決的是 authoring、交換、品質控制還是 runtime 問題，再決定導入範圍。"
+          "text": "對 角色製作，可以把 戰場環境、四色限制、漫畫風格 的做法或結果對照目前 pipeline，找出它可能影響的操作、交接或品質檢查點；只有能對應到真實工作步驟的部分，才值得進一步投入測試。"
         },
         {
           "label": "導入測試與限制",
-          "text": "若要把「3D 資產製作：Check Out…lors Used 的製作重點」納入 production，仍需用實際 DCC／引擎版本、代表性資產與目標輸出驗證；單一案例、展示或宣傳頁不能直接當成固定工時、品質或效能收益。"
+          "text": "戰場環境、四色限制、漫畫風格 目前只有單一來源可供參考，通常不足以證明跨專案穩定性；若要正式導入，仍需補做版本、資產規模與輸出條件的驗證。"
         }
       ],
-      "rank_global": 1,
+      "rank_global": 2,
       "homepage_tier": "top5"
     },
     {
       "id": "80-level-marmoset-toolbag-inspired-texture-baking-add-on-released-for",
       "title": "Blender／DCC 製作：Marmoset…r Blender 的製作重點",
-      "summary": "這項工具聚焦 貼圖／材質、烘焙、Blender 的製作應用。對 Blender 流程，先看它實際改變哪些操作、交換或輸出步驟，再決定是否納入現有 SOP。",
+      "summary": "這項工具的核心是 Marmoset Toolbag 式烘焙、貼圖烘焙，作用範圍落在 貼圖／材質、烘焙、Blender。對 Blender 流程，應直接看它減少哪些手動步驟、提供哪些控制，以及是否能和既有 DCC／引擎資料交換方式共存。",
       "quick_impact": "★★★★☆",
       "source_url": "https://80.lv/articles/marmoset-toolbag-inspired-texture-baking-add-on-released-for-blender",
       "category": "blender-dcc",
@@ -365,24 +368,24 @@
       "full_analysis": [
         {
           "label": "技術／流程變更",
-          "text": "「Blender／DCC 製作：Marmoset…r Blender 的製作重點」聚焦 貼圖／材質、烘焙、Blender，可先從 實際製作 角度拆解它對現有製作流程的實際變化。"
+          "text": "工具主題是 Marmoset Toolbag 式烘焙、貼圖烘焙，主要作用在 貼圖／材質、烘焙、Blender。需要看清楚它是取代既有手動步驟、補一個缺口，還是只是把原本功能換成另一個介面。"
         },
         {
           "label": "Production 影響",
-          "text": "針對「Blender／DCC 製作：Marmoset…r Blender 的製作重點」，Blender 團隊應先用小規模案例確認它解決的是 authoring、交換、品質控制還是 runtime 問題，再決定導入範圍。"
+          "text": "對 Blender，可用一個真實任務比較 Marmoset Toolbag 式烘焙、貼圖烘焙 導入前後的操作步驟、人工修正、輸出結果與交接成本；若工具能減少重複操作但增加資料轉換或版本依賴，總成本未必下降。"
         },
         {
           "label": "導入測試與限制",
-          "text": "若要把「Blender／DCC 製作：Marmoset…r Blender 的製作重點」納入 production，仍需用實際 DCC／引擎版本、代表性資產與目標輸出驗證；單一案例、展示或宣傳頁不能直接當成固定工時、品質或效能收益。"
+          "text": "Marmoset Toolbag 式烘焙、貼圖烘焙 的工具介紹通常不會涵蓋所有 production 邊界條件；部署前仍需確認版本支援、檔案相容、批次處理、例外錯誤與團隊維護責任。"
         }
       ],
-      "rank_global": 2,
+      "rank_global": 3,
       "homepage_tier": "top5"
     },
     {
       "id": "80-level-the-long-awaited-shape-keys-for-blender-s-grease-pencil-test",
       "title": "Blender／DCC 製作：The Long-…acter Rig 的製作重點",
-      "summary": "這項工具聚焦 Blender 的製作應用。對 Blender 流程，先看它實際改變哪些操作、交換或輸出步驟，再決定是否納入現有 SOP。",
+      "summary": "這項工具的核心是 Shape Keys、Grease Pencil、角色 Rig，作用範圍落在 Blender。對 Blender 流程，應直接看它減少哪些手動步驟、提供哪些控制，以及是否能和既有 DCC／引擎資料交換方式共存。",
       "quick_impact": "★★★★☆",
       "source_url": "https://80.lv/articles/the-long-awaited-shape-keys-for-blender-s-grease-pencil-tested-on-a-character-rig",
       "category": "blender-dcc",
@@ -393,24 +396,24 @@
       "full_analysis": [
         {
           "label": "技術／流程變更",
-          "text": "「Blender／DCC 製作：The Long-…acter Rig 的製作重點」聚焦 Blender，可先從 實際製作 角度拆解它對現有製作流程的實際變化。"
+          "text": "工具主題是 Shape Keys、Grease Pencil、角色 Rig，主要作用在 Blender。需要看清楚它是取代既有手動步驟、補一個缺口，還是只是把原本功能換成另一個介面。"
         },
         {
           "label": "Production 影響",
-          "text": "針對「Blender／DCC 製作：The Long-…acter Rig 的製作重點」，Blender 團隊應先用小規模案例確認它解決的是 authoring、交換、品質控制還是 runtime 問題，再決定導入範圍。"
+          "text": "對 Blender，可用一個真實任務比較 Shape Keys、Grease Pencil、角色 Rig 導入前後的操作步驟、人工修正、輸出結果與交接成本；若工具能減少重複操作但增加資料轉換或版本依賴，總成本未必下降。"
         },
         {
           "label": "導入測試與限制",
-          "text": "若要把「Blender／DCC 製作：The Long-…acter Rig 的製作重點」納入 production，仍需用實際 DCC／引擎版本、代表性資產與目標輸出驗證；單一案例、展示或宣傳頁不能直接當成固定工時、品質或效能收益。"
+          "text": "Shape Keys、Grease Pencil、角色 Rig 的工具介紹通常不會涵蓋所有 production 邊界條件；部署前仍需確認版本支援、檔案相容、批次處理、例外錯誤與團隊維護責任。"
         }
       ],
-      "rank_global": 3,
+      "rank_global": 4,
       "homepage_tier": "top5"
     },
     {
       "id": "cg-channel-ynput-launches-free-vfx-and-animation-pipeline-platform-ayon",
       "title": "3D 動作／Rig：Ynput lau…line Ayon 的製作重點",
-      "summary": "這次內容整理 動畫、VFX 的版本／功能更新，內容型態包含 版本更新。對 Animation 流程，先看它實際改變哪些操作、交換或輸出步驟，再決定是否納入現有 SOP。",
+      "summary": "這次更新聚焦 AYON（Ynput lau…line Ayon），涉及 動畫、VFX。對 Animation 而言，重點是新增能力實際介入 authoring、資產交換或輸出的哪一段，以及升版後是否會改變既有設定與相容性。",
       "quick_impact": "★★★★☆",
       "source_url": "https://www.cgchannel.com/2023/08/ynput-launches-free-vfx-and-animation-pipeline-platform-ayon",
       "category": "3d-animation",
@@ -421,24 +424,80 @@
       "full_analysis": [
         {
           "label": "技術／流程變更",
-          "text": "「3D 動作／Rig：Ynput lau…line Ayon 的製作重點」屬於版本／功能更新，重點落在 動畫、VFX；升版時應先確認它改變的是 authoring、資產交換還是輸出行為。"
+          "text": "更新內容集中在 AYON（Ynput lau…line Ayon），並牽涉 動畫、VFX。這類變更要先釐清新增能力位於 authoring、資產交換還是輸出端，因為同樣叫「新功能」，對美術工作量與既有專案的影響可能完全不同。"
         },
         {
           "label": "Production 影響",
-          "text": "針對「3D 動作／Rig：Ynput lau…line Ayon 的製作重點」，Animation 團隊可把 動畫、VFX 放進代表性工程做前後版本比較，確認新功能是否真的減少人工步驟或改善輸出一致性。"
+          "text": "在 Animation 流程裡，可用同一份代表性資產做升版前後對照：記錄操作步驟、手動修正次數、輸出一致性與相容性，確認 AYON（Ynput lau…line Ayon） 是否真的降低成本，或只是增加另一套設定。"
         },
         {
           "label": "導入測試與限制",
-          "text": "若要把「3D 動作／Rig：Ynput lau…line Ayon 的製作重點」納入 production，仍需用實際 DCC／引擎版本、代表性資產與目標輸出驗證；單一案例、展示或宣傳頁不能直接當成固定工時、品質或效能收益。"
+          "text": "目前資訊能確認 AYON（Ynput lau…line Ayon） 的功能方向，但不能直接推定大型專案的穩定性、效能或插件相容性；若會改動既有資料格式或版本依賴，導入前仍需做舊檔與回退測試。"
         }
       ],
-      "rank_global": 4,
+      "rank_global": 5,
       "homepage_tier": "top5"
+    },
+    {
+      "id": "3dnchu-deeppaintclassjpn-gaku-2026-2",
+      "title": "Blender／DCC 製作：立体絵画教室, B…催！受講生募集中！ 的製作重點",
+      "summary": "這則內容主要談 Blender（立体絵画教室, B…催！受講生募集中！），與 Blender 的製作實作直接相關。它能提供具體方法或結果作為對照，但仍要區分哪些是可複用流程、哪些只成立於單一作品或特定專案條件。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://3dnchu.com/archives/deeppaintclassjpn-gaku-2026-2",
+      "category": "blender-dcc",
+      "subcategory": "blender",
+      "ranking_score": 74.0,
+      "analysis_level": "BRIEF",
+      "brief_reason": "single-source-verified-production-tip",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "內容重點落在 Blender（立体絵画教室, B…催！受講生募集中！），並涉及 Blender。先辨認文章實際展示的是方法、工具能力還是單一作品結果，才能避免把展示效果誤當成可直接複製的流程。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對 Blender，可以把 Blender（立体絵画教室, B…催！受講生募集中！） 的做法或結果對照目前 pipeline，找出它可能影響的操作、交接或品質檢查點；只有能對應到真實工作步驟的部分，才值得進一步投入測試。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "Blender（立体絵画教室, B…催！受講生募集中！） 目前只有單一來源可供參考，通常不足以證明跨專案穩定性；若要正式導入，仍需補做版本、資產規模與輸出條件的驗證。"
+        }
+      ],
+      "rank_global": 6,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "3dnchu-full-control-lattice-generator-v1-0",
+      "title": "Blender／DCC 製作：Full Cont…BCON26紹介！ 的製作重點",
+      "summary": "這則內容主要談 程序化（Full Cont…BCON26紹介！），與 Geometry Nodes、Blender 的製作實作直接相關。它能提供具體方法或結果作為對照，但仍要區分哪些是可複用流程、哪些只成立於單一作品或特定專案條件。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://3dnchu.com/archives/full-control-lattice-generator-v1-0",
+      "category": "blender-dcc",
+      "subcategory": "blender",
+      "ranking_score": 74.0,
+      "analysis_level": "BRIEF",
+      "brief_reason": "single-source-verified-production-tip",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "內容重點落在 程序化（Full Cont…BCON26紹介！），並涉及 Geometry Nodes、Blender。先辨認文章實際展示的是方法、工具能力還是單一作品結果，才能避免把展示效果誤當成可直接複製的流程。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對 Blender，可以把 程序化（Full Cont…BCON26紹介！） 的做法或結果對照目前 pipeline，找出它可能影響的操作、交接或品質檢查點；只有能對應到真實工作步驟的部分，才值得進一步投入測試。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "程序化（Full Cont…BCON26紹介！） 目前只有單一來源可供參考，通常不足以證明跨專案穩定性；若要正式導入，仍需補做版本、資產規模與輸出條件的驗證。"
+        }
+      ],
+      "rank_global": 7,
+      "homepage_tier": "next10"
     },
     {
       "id": "cg-channel-learn-to-create-complex-patterns-in-substance-designer",
       "title": "Blender／DCC 製作：Learn to…Designer 的製作重點",
-      "summary": "這篇內容聚焦 Substance 的教學／製作流程，內容型態包含 教學。對 Substance 流程，先看它實際改變哪些操作、交換或輸出步驟，再決定是否納入現有 SOP。",
+      "summary": "這篇教學主要拆解 Substance Designer、程序化圖樣，並把 Substance 放進可跟著操作的製作流程。對 Substance 而言，比單看成果更重要的是素材前置、主要操作、人工修正與輸出如何銜接，能否轉成現有 SOP 的具體步驟。",
       "quick_impact": "★★★☆☆",
       "source_url": "https://www.cgchannel.com/2019/05/learn-to-create-complex-patterns-in-substance-designer",
       "category": "blender-dcc",
@@ -449,24 +508,52 @@
       "full_analysis": [
         {
           "label": "技術／流程變更",
-          "text": "「Blender／DCC 製作：Learn to…Designer 的製作重點」以 Substance 的教學／流程為主，可拆成輸入、操作、人工修正與輸出幾個階段來看。"
+          "text": "教學核心落在 Substance Designer、程序化圖樣，並透過 Substance 展示一條可重現的操作路徑。閱讀時應把內容拆成素材前置、主要操作、人工修正與輸出結果，才能看出真正可複用的步驟。"
         },
         {
           "label": "Production 影響",
-          "text": "針對「Blender／DCC 製作：Learn to…Designer 的製作重點」，Substance 團隊可把內容拆成 SOP、review checklist 或新人訓練素材，再與現有工具流程逐步對照。"
+          "text": "對 Substance 團隊，可先把 Substance Designer、程序化圖樣 的明確步驟轉成 checklist，再用現有資產跑一次；若能在相同品質下減少返工，或讓新人更快到達可 review 狀態，才具有流程導入價值。"
         },
         {
           "label": "導入測試與限制",
-          "text": "若要把「Blender／DCC 製作：Learn to…Designer 的製作重點」納入 production，仍需用實際 DCC／引擎版本、代表性資產與目標輸出驗證；單一案例、展示或宣傳頁不能直接當成固定工時、品質或效能收益。"
+          "text": "以 Substance Designer、程序化圖樣 為例，教學能證明方法可操作，但不代表它已覆蓋大量資產、多人協作或不同版本條件；還需要另外驗證命名、批次處理、檔案交換與例外情況。"
         }
       ],
-      "rank_global": 5,
-      "homepage_tier": "top5"
+      "rank_global": 8,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "sidefx-official-filmtv",
+      "title": "遊戲引擎美術：Film & TV 的製作重點",
+      "summary": "這篇教學主要拆解 程序化（Film & TV），並把 程序化、Houdini 放進可跟著操作的製作流程。對 Shader／材質 而言，比單看成果更重要的是素材前置、主要操作、人工修正與輸出如何銜接，能否轉成現有 SOP 的具體步驟。",
+      "quick_impact": "★★★☆☆",
+      "source_url": "https://www.sidefx.com/industries/filmtv",
+      "category": "engine-art",
+      "subcategory": "shader",
+      "ranking_score": 73.0,
+      "analysis_level": "BRIEF",
+      "brief_reason": "practical-tutorial-limited-depth",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "教學核心落在 程序化（Film & TV），並透過 程序化、Houdini 展示一條可重現的操作路徑。閱讀時應把內容拆成素材前置、主要操作、人工修正與輸出結果，才能看出真正可複用的步驟。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對 Shader／材質 團隊，可先把 程序化（Film & TV） 的明確步驟轉成 checklist，再用現有資產跑一次；若能在相同品質下減少返工，或讓新人更快到達可 review 狀態，才具有流程導入價值。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "以 程序化（Film & TV） 為例，教學能證明方法可操作，但不代表它已覆蓋大量資產、多人協作或不同版本條件；還需要另外驗證命名、批次處理、檔案交換與例外情況。"
+        }
+      ],
+      "rank_global": 9,
+      "homepage_tier": "next10"
     },
     {
       "id": "cg-channel-see-how-framestore-created-a-cg-battlefield-for-lioness-seas",
       "title": "3D 資產製作：See how F…Season 3 的製作重點",
-      "summary": "這篇案例拆解聚焦 場景製作 的實際製作，內容型態包含 製作拆解。對 場景製作 流程，先看它實際改變哪些操作、交換或輸出步驟，再決定是否納入現有 SOP。",
+      "summary": "這篇案例把 戰場環境（See how F…Season 3） 放回實際 production 中拆解，涉及 場景製作。可從中觀察素材準備、製作決策與最終畫面之間的關係，適合拿來對照團隊現有做法，而不是只看成品展示。",
       "quick_impact": "★★★☆☆",
       "source_url": "https://www.cgchannel.com/2026/09/see-how-framestore-created-a-cg-battlefield-for-lioness-season-3",
       "category": "3d-production",
@@ -477,52 +564,24 @@
       "full_analysis": [
         {
           "label": "技術／流程變更",
-          "text": "「3D 資產製作：See how F…Season 3 的製作重點」的價值在於把 場景製作 放回實際案例中觀察，能看到製作選擇如何影響最後結果。"
+          "text": "案例拆解的重點是 戰場環境（See how F…Season 3），可從 場景製作 看出製作選擇如何累積到最終畫面。比單看成品更有價值的是辨認哪些步驟依賴特定素材、工具或人工判斷。"
         },
         {
           "label": "Production 影響",
-          "text": "針對「3D 資產製作：See how F…Season 3 的製作重點」，場景製作 團隊可把案例拆成可複用的流程節點，判斷哪些方法適合導入、哪些只適用於原專案條件。"
+          "text": "對 場景製作，可把 戰場環境（See how F…Season 3） 的關鍵節點對應到自家 pipeline：哪些能直接複用、哪些需要工具化、哪些只適合 hero asset 或特定鏡頭，這比照搬整套流程更實際。"
         },
         {
           "label": "導入測試與限制",
-          "text": "若要把「3D 資產製作：See how F…Season 3 的製作重點」納入 production，仍需用實際 DCC／引擎版本、代表性資產與目標輸出驗證；單一案例、展示或宣傳頁不能直接當成固定工時、品質或效能收益。"
+          "text": "戰場環境（See how F…Season 3） 的案例文章通常缺少完整工時、版本矩陣與失敗樣本，因此適合作為方法參考，不適合直接換算成本或效能收益；仍需用相近資產規模做內部驗證。"
         }
       ],
-      "rank_global": 6,
-      "homepage_tier": "next10"
-    },
-    {
-      "id": "blender-official-previous-versions",
-      "title": "Blender／DCC 製作：Previous Versions 的製作重點",
-      "summary": "這項內容提供與 Blender 有關的可下載素材，內容型態包含 可下載素材、版本更新。對 Blender 流程，先看它實際改變哪些操作、交換或輸出步驟，再決定是否納入現有 SOP。",
-      "quick_impact": "★★★☆☆",
-      "source_url": "https://www.blender.org/download/previous-versions",
-      "category": "blender-dcc",
-      "subcategory": "blender",
-      "ranking_score": 69.0,
-      "analysis_level": "BRIEF",
-      "brief_reason": "short-official-announcement",
-      "full_analysis": [
-        {
-          "label": "技術／流程變更",
-          "text": "「Blender／DCC 製作：Previous Versions 的製作重點」屬於版本／功能更新，重點落在 Blender；升版時應先確認它改變的是 authoring、資產交換還是輸出行為。"
-        },
-        {
-          "label": "Production 影響",
-          "text": "針對「Blender／DCC 製作：Previous Versions 的製作重點」，Blender 團隊可把 Blender 放進代表性工程做前後版本比較，確認新功能是否真的減少人工步驟或改善輸出一致性。"
-        },
-        {
-          "label": "導入測試與限制",
-          "text": "若要把「Blender／DCC 製作：Previous Versions 的製作重點」納入 production，仍需用實際 DCC／引擎版本、代表性資產與目標輸出驗證；單一案例、展示或宣傳頁不能直接當成固定工時、品質或效能收益。"
-        }
-      ],
-      "rank_global": 7,
+      "rank_global": 10,
       "homepage_tier": "next10"
     },
     {
       "id": "cg-channel-foundry-ships-modo-14-2",
       "title": "3D 資產製作：Foundry s…Modo 14.2 的製作重點",
-      "summary": "這則內容聚焦 Rendering 的製作應用。對 角色製作 流程，先看它實際改變哪些操作、交換或輸出步驟，再決定是否納入現有 SOP。",
+      "summary": "這次更新聚焦 Modo 14.2（Foundry s…Modo 14.2），涉及 Rendering。對 角色製作 而言，重點是新增能力實際介入 authoring、資產交換或輸出的哪一段，以及升版後是否會改變既有設定與相容性。",
       "quick_impact": "★★★☆☆",
       "source_url": "https://www.cgchannel.com/2020/11/foundry-ships-modo-14-2",
       "category": "3d-production",
@@ -533,24 +592,24 @@
       "full_analysis": [
         {
           "label": "技術／流程變更",
-          "text": "「3D 資產製作：Foundry s…Modo 14.2 的製作重點」聚焦 Rendering，可先從 實際製作 角度拆解它對現有製作流程的實際變化。"
+          "text": "更新內容集中在 Modo 14.2（Foundry s…Modo 14.2），並牽涉 Rendering。這類變更要先釐清新增能力位於 authoring、資產交換還是輸出端，因為同樣叫「新功能」，對美術工作量與既有專案的影響可能完全不同。"
         },
         {
           "label": "Production 影響",
-          "text": "針對「3D 資產製作：Foundry s…Modo 14.2 的製作重點」，角色製作 團隊應先用小規模案例確認它解決的是 authoring、交換、品質控制還是 runtime 問題，再決定導入範圍。"
+          "text": "在 角色製作 流程裡，可用同一份代表性資產做升版前後對照：記錄操作步驟、手動修正次數、輸出一致性與相容性，確認 Modo 14.2（Foundry s…Modo 14.2） 是否真的降低成本，或只是增加另一套設定。"
         },
         {
           "label": "導入測試與限制",
-          "text": "若要把「3D 資產製作：Foundry s…Modo 14.2 的製作重點」納入 production，仍需用實際 DCC／引擎版本、代表性資產與目標輸出驗證；單一案例、展示或宣傳頁不能直接當成固定工時、品質或效能收益。"
+          "text": "目前資訊能確認 Modo 14.2（Foundry s…Modo 14.2） 的功能方向，但不能直接推定大型專案的穩定性、效能或插件相容性；若會改動既有資料格式或版本依賴，導入前仍需做舊檔與回退測試。"
         }
       ],
-      "rank_global": 8,
+      "rank_global": 11,
       "homepage_tier": "next10"
     },
     {
       "id": "cg-channel-cinema-4d-to-get-ipad-edition-and-new-generative-ai-features",
       "title": "AI 生成：Cinema 4D…features 的製作重點",
-      "summary": "這則內容聚焦 AI 3D 生成 的製作應用。對 AI 3D 生成 流程，先看它實際改變哪些操作、交換或輸出步驟，再決定是否納入現有 SOP。",
+      "summary": "這則內容主要談 iPad 工作流、生成式 AI、Cinema 4D，與 AI 3D 生成 的製作實作直接相關。它能提供具體方法或結果作為對照，但仍要區分哪些是可複用流程、哪些只成立於單一作品或特定專案條件。",
       "quick_impact": "★★★☆☆",
       "source_url": "https://www.cgchannel.com/2026/03/cinema-4d-to-get-ipad-edition-and-new-generative-ai-features",
       "category": "ai-generation",
@@ -561,24 +620,24 @@
       "full_analysis": [
         {
           "label": "技術／流程變更",
-          "text": "「AI 生成：Cinema 4D…features 的製作重點」聚焦 AI 3D 生成，可先從 實際製作 角度拆解它對現有製作流程的實際變化。"
+          "text": "內容重點落在 iPad 工作流、生成式 AI、Cinema 4D，並涉及 AI 3D 生成。先辨認文章實際展示的是方法、工具能力還是單一作品結果，才能避免把展示效果誤當成可直接複製的流程。"
         },
         {
           "label": "Production 影響",
-          "text": "針對「AI 生成：Cinema 4D…features 的製作重點」，AI 3D 生成 團隊應先用小規模案例確認它解決的是 authoring、交換、品質控制還是 runtime 問題，再決定導入範圍。"
+          "text": "對 AI 3D 生成，可以把 iPad 工作流、生成式 AI、Cinema 4D 的做法或結果對照目前 pipeline，找出它可能影響的操作、交接或品質檢查點；只有能對應到真實工作步驟的部分，才值得進一步投入測試。"
         },
         {
           "label": "導入測試與限制",
-          "text": "若要把「AI 生成：Cinema 4D…features 的製作重點」納入 production，仍需用實際 DCC／引擎版本、代表性資產與目標輸出驗證；單一案例、展示或宣傳頁不能直接當成固定工時、品質或效能收益。"
+          "text": "iPad 工作流、生成式 AI、Cinema 4D 目前只有單一來源可供參考，通常不足以證明跨專案穩定性；若要正式導入，仍需補做版本、資產規模與輸出條件的驗證。"
         }
       ],
-      "rank_global": 9,
+      "rank_global": 12,
       "homepage_tier": "next10"
     },
     {
       "id": "cg-channel-ai-developer-anthropic-becomes-blenders-latest-corporate-pat",
       "title": "Blender／DCC 製作：AI develo…te Patron 的製作重點",
-      "summary": "這項工具聚焦 Blender 的製作應用。對 Blender 流程，先看它實際改變哪些操作、交換或輸出步驟，再決定是否納入現有 SOP。",
+      "summary": "這項工具的核心是 Blender（AI develo…te Patron），作用範圍落在 Blender。對 Blender 流程，應直接看它減少哪些手動步驟、提供哪些控制，以及是否能和既有 DCC／引擎資料交換方式共存。",
       "quick_impact": "★★★☆☆",
       "source_url": "https://www.cgchannel.com/2026/04/ai-developer-anthropic-becomes-blenders-latest-corporate-patron",
       "category": "blender-dcc",
@@ -589,24 +648,24 @@
       "full_analysis": [
         {
           "label": "技術／流程變更",
-          "text": "「Blender／DCC 製作：AI develo…te Patron 的製作重點」聚焦 Blender，可先從 實際製作 角度拆解它對現有製作流程的實際變化。"
+          "text": "工具主題是 Blender（AI develo…te Patron），主要作用在 Blender。需要看清楚它是取代既有手動步驟、補一個缺口，還是只是把原本功能換成另一個介面。"
         },
         {
           "label": "Production 影響",
-          "text": "針對「Blender／DCC 製作：AI develo…te Patron 的製作重點」，Blender 團隊應先用小規模案例確認它解決的是 authoring、交換、品質控制還是 runtime 問題，再決定導入範圍。"
+          "text": "對 Blender，可用一個真實任務比較 Blender（AI develo…te Patron） 導入前後的操作步驟、人工修正、輸出結果與交接成本；若工具能減少重複操作但增加資料轉換或版本依賴，總成本未必下降。"
         },
         {
           "label": "導入測試與限制",
-          "text": "若要把「Blender／DCC 製作：AI develo…te Patron 的製作重點」納入 production，仍需用實際 DCC／引擎版本、代表性資產與目標輸出驗證；單一案例、展示或宣傳頁不能直接當成固定工時、品質或效能收益。"
+          "text": "Blender（AI develo…te Patron） 的工具介紹通常不會涵蓋所有 production 邊界條件；部署前仍需確認版本支援、檔案相容、批次處理、例外錯誤與團隊維護責任。"
         }
       ],
-      "rank_global": 10,
+      "rank_global": 13,
       "homepage_tier": "next10"
     },
     {
       "id": "cg-channel-blackmagic-design-releases-resolve-21-1",
       "title": "新技術／Production Case：Blackmagi…olve 21.1 的製作重點",
-      "summary": "這次內容整理 VFX 的版本／功能更新，內容型態包含 版本更新。對 Production Case 流程，先看它實際改變哪些操作、交換或輸出步驟，再決定是否納入現有 SOP。",
+      "summary": "這次更新聚焦 Resolve 21.1（Blackmagi…olve 21.1），涉及 VFX。對 Production Case 而言，重點是新增能力實際介入 authoring、資產交換或輸出的哪一段，以及升版後是否會改變既有設定與相容性。",
       "quick_impact": "★★★☆☆",
       "source_url": "https://www.cgchannel.com/2026/09/blackmagic-design-releases-resolve-21-1",
       "category": "emerging-case",
@@ -617,24 +676,24 @@
       "full_analysis": [
         {
           "label": "技術／流程變更",
-          "text": "「新技術／Production Case：Blackmagi…olve 21.1 的製作重點」屬於版本／功能更新，重點落在 VFX；升版時應先確認它改變的是 authoring、資產交換還是輸出行為。"
+          "text": "更新內容集中在 Resolve 21.1（Blackmagi…olve 21.1），並牽涉 VFX。這類變更要先釐清新增能力位於 authoring、資產交換還是輸出端，因為同樣叫「新功能」，對美術工作量與既有專案的影響可能完全不同。"
         },
         {
           "label": "Production 影響",
-          "text": "針對「新技術／Production Case：Blackmagi…olve 21.1 的製作重點」，Production Case 團隊可把 VFX 放進代表性工程做前後版本比較，確認新功能是否真的減少人工步驟或改善輸出一致性。"
+          "text": "在 Production Case 流程裡，可用同一份代表性資產做升版前後對照：記錄操作步驟、手動修正次數、輸出一致性與相容性，確認 Resolve 21.1（Blackmagi…olve 21.1） 是否真的降低成本，或只是增加另一套設定。"
         },
         {
           "label": "導入測試與限制",
-          "text": "若要把「新技術／Production Case：Blackmagi…olve 21.1 的製作重點」納入 production，仍需用實際 DCC／引擎版本、代表性資產與目標輸出驗證；單一案例、展示或宣傳頁不能直接當成固定工時、品質或效能收益。"
+          "text": "目前資訊能確認 Resolve 21.1（Blackmagi…olve 21.1） 的功能方向，但不能直接推定大型專案的穩定性、效能或插件相容性；若會改動既有資料格式或版本依賴，導入前仍需做舊檔與回退測試。"
         }
       ],
-      "rank_global": 11,
+      "rank_global": 14,
       "homepage_tier": "next10"
     },
     {
       "id": "cg-channel-maxon-releases-cinema-4d-2026-4-with-a-new-mcp-server",
       "title": "Blender／DCC 製作：Maxon rel…CP Server 的製作重點",
-      "summary": "這項工具聚焦 動畫 的製作應用。對 其他 DCC 流程，先看它實際改變哪些操作、交換或輸出步驟，再決定是否納入現有 SOP。",
+      "summary": "這項工具的核心是 MCP Server、Cinema 4D，作用範圍落在 動畫。對 其他 DCC 流程，應直接看它減少哪些手動步驟、提供哪些控制，以及是否能和既有 DCC／引擎資料交換方式共存。",
       "quick_impact": "★★★☆☆",
       "source_url": "https://www.cgchannel.com/2026/09/maxon-releases-cinema-4d-2026-4-with-a-new-mcp-server",
       "category": "blender-dcc",
@@ -645,52 +704,52 @@
       "full_analysis": [
         {
           "label": "技術／流程變更",
-          "text": "「Blender／DCC 製作：Maxon rel…CP Server 的製作重點」聚焦 動畫，可先從 實際製作 角度拆解它對現有製作流程的實際變化。"
+          "text": "工具主題是 MCP Server、Cinema 4D，主要作用在 動畫。需要看清楚它是取代既有手動步驟、補一個缺口，還是只是把原本功能換成另一個介面。"
         },
         {
           "label": "Production 影響",
-          "text": "針對「Blender／DCC 製作：Maxon rel…CP Server 的製作重點」，其他 DCC 團隊應先用小規模案例確認它解決的是 authoring、交換、品質控制還是 runtime 問題，再決定導入範圍。"
+          "text": "對 其他 DCC，可用一個真實任務比較 MCP Server、Cinema 4D 導入前後的操作步驟、人工修正、輸出結果與交接成本；若工具能減少重複操作但增加資料轉換或版本依賴，總成本未必下降。"
         },
         {
           "label": "導入測試與限制",
-          "text": "若要把「Blender／DCC 製作：Maxon rel…CP Server 的製作重點」納入 production，仍需用實際 DCC／引擎版本、代表性資產與目標輸出驗證；單一案例、展示或宣傳頁不能直接當成固定工時、品質或效能收益。"
+          "text": "MCP Server、Cinema 4D 的工具介紹通常不會涵蓋所有 production 邊界條件；部署前仍需確認版本支援、檔案相容、批次處理、例外錯誤與團隊維護責任。"
         }
       ],
-      "rank_global": 12,
+      "rank_global": 15,
       "homepage_tier": "next10"
     },
     {
-      "id": "blender-official-behind-the-scenes-nashville-international-airport",
-      "title": "Blender／DCC 製作：Behind th…l Airport 的製作重點",
-      "summary": "這篇案例拆解聚焦 Blender 的實際製作，內容型態包含 製作拆解。對 Blender 流程，先看它實際改變哪些操作、交換或輸出步驟，再決定是否納入現有 SOP。",
+      "id": "3dnchu-voxel-plugin-free",
+      "title": "遊戲引擎美術：Voxel Plu…4無料版販売開始！ 的製作重點",
+      "summary": "這項工具的核心是 Unreal Engine（Voxel Plu…4無料版販売開始！），作用範圍落在 Unreal Engine。對 Unreal Engine 流程，應直接看它減少哪些手動步驟、提供哪些控制，以及是否能和既有 DCC／引擎資料交換方式共存。",
       "quick_impact": "★★★☆☆",
-      "source_url": "https://www.blender.org/user-stories/behind-the-scenes-nashville-international-airport",
-      "category": "blender-dcc",
-      "subcategory": "blender",
+      "source_url": "https://3dnchu.com/archives/voxel-plugin-free",
+      "category": "engine-art",
+      "subcategory": "unreal",
       "ranking_score": 63.0,
       "analysis_level": "BRIEF",
-      "brief_reason": "production-reference-limited-depth",
+      "brief_reason": "useful-tool-or-addon-limited-depth",
       "full_analysis": [
         {
           "label": "技術／流程變更",
-          "text": "「Blender／DCC 製作：Behind th…l Airport 的製作重點」的價值在於把 Blender 放回實際案例中觀察，能看到製作選擇如何影響最後結果。"
+          "text": "工具主題是 Unreal Engine（Voxel Plu…4無料版販売開始！），主要作用在 Unreal Engine。需要看清楚它是取代既有手動步驟、補一個缺口，還是只是把原本功能換成另一個介面。"
         },
         {
           "label": "Production 影響",
-          "text": "針對「Blender／DCC 製作：Behind th…l Airport 的製作重點」，Blender 團隊可把案例拆成可複用的流程節點，判斷哪些方法適合導入、哪些只適用於原專案條件。"
+          "text": "對 Unreal Engine，可用一個真實任務比較 Unreal Engine（Voxel Plu…4無料版販売開始！） 導入前後的操作步驟、人工修正、輸出結果與交接成本；若工具能減少重複操作但增加資料轉換或版本依賴，總成本未必下降。"
         },
         {
           "label": "導入測試與限制",
-          "text": "若要把「Blender／DCC 製作：Behind th…l Airport 的製作重點」納入 production，仍需用實際 DCC／引擎版本、代表性資產與目標輸出驗證；單一案例、展示或宣傳頁不能直接當成固定工時、品質或效能收益。"
+          "text": "Unreal Engine（Voxel Plu…4無料版販売開始！） 的工具介紹通常不會涵蓋所有 production 邊界條件；部署前仍需確認版本支援、檔案相容、批次處理、例外錯誤與團隊維護責任。"
         }
       ],
-      "rank_global": 13,
-      "homepage_tier": "next10"
+      "rank_global": 16,
+      "homepage_tier": "category_only"
     },
     {
       "id": "cg-channel-autodesk-calls-for-entries-for-its-2012-animation-reel",
       "title": "3D 動作／Rig：Autodesk…tion reel 的製作重點",
-      "summary": "這則內容聚焦 動畫 的製作應用。對 Animation 流程，先看它實際改變哪些操作、交換或輸出步驟，再決定是否納入現有 SOP。",
+      "summary": "這則內容主要談 動畫作品集（Autodesk…tion reel），與 動畫 的製作實作直接相關。它能提供具體方法或結果作為對照，但仍要區分哪些是可複用流程、哪些只成立於單一作品或特定專案條件。",
       "quick_impact": "★★★☆☆",
       "source_url": "https://www.cgchannel.com/2012/06/autodesk-calls-for-entries-for-its-2012-animation-reel",
       "category": "3d-animation",
@@ -701,24 +760,192 @@
       "full_analysis": [
         {
           "label": "技術／流程變更",
-          "text": "「3D 動作／Rig：Autodesk…tion reel 的製作重點」聚焦 動畫，可先從 實際製作 角度拆解它對現有製作流程的實際變化。"
+          "text": "內容重點落在 動畫作品集（Autodesk…tion reel），並涉及 動畫。先辨認文章實際展示的是方法、工具能力還是單一作品結果，才能避免把展示效果誤當成可直接複製的流程。"
         },
         {
           "label": "Production 影響",
-          "text": "針對「3D 動作／Rig：Autodesk…tion reel 的製作重點」，Animation 團隊應先用小規模案例確認它解決的是 authoring、交換、品質控制還是 runtime 問題，再決定導入範圍。"
+          "text": "對 Animation，可以把 動畫作品集（Autodesk…tion reel） 的做法或結果對照目前 pipeline，找出它可能影響的操作、交接或品質檢查點；只有能對應到真實工作步驟的部分，才值得進一步投入測試。"
         },
         {
           "label": "導入測試與限制",
-          "text": "若要把「3D 動作／Rig：Autodesk…tion reel 的製作重點」納入 production，仍需用實際 DCC／引擎版本、代表性資產與目標輸出驗證；單一案例、展示或宣傳頁不能直接當成固定工時、品質或效能收益。"
+          "text": "動畫作品集（Autodesk…tion reel） 目前只有單一來源可供參考，通常不足以證明跨專案穩定性；若要正式導入，仍需補做版本、資產規模與輸出條件的驗證。"
         }
       ],
-      "rank_global": 14,
-      "homepage_tier": "next10"
+      "rank_global": 17,
+      "homepage_tier": "category_only"
+    },
+    {
+      "id": "3dnchu-blockblender-2-0",
+      "title": "Blender／DCC 製作：BlockBlen….schem統合！ 的製作重點",
+      "summary": "這則內容主要談 Blender（BlockBlen….schem統合！），與 Blender 的製作實作直接相關。它能提供具體方法或結果作為對照，但仍要區分哪些是可複用流程、哪些只成立於單一作品或特定專案條件。",
+      "quick_impact": "★★☆☆☆",
+      "source_url": "https://3dnchu.com/archives/blockblender-2-0",
+      "category": "blender-dcc",
+      "subcategory": "blender",
+      "ranking_score": 60.0,
+      "analysis_level": "BRIEF",
+      "brief_reason": "single-source-verified-production-tip",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "內容重點落在 Blender（BlockBlen….schem統合！），並涉及 Blender。先辨認文章實際展示的是方法、工具能力還是單一作品結果，才能避免把展示效果誤當成可直接複製的流程。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對 Blender，可以把 Blender（BlockBlen….schem統合！） 的做法或結果對照目前 pipeline，找出它可能影響的操作、交接或品質檢查點；只有能對應到真實工作步驟的部分，才值得進一步投入測試。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "Blender（BlockBlen….schem統合！） 目前只有單一來源可供參考，通常不足以證明跨專案穩定性；若要正式導入，仍需補做版本、資產規模與輸出條件的驗證。"
+        }
+      ],
+      "rank_global": 18,
+      "homepage_tier": "category_only"
+    },
+    {
+      "id": "3dnchu-project-titan-sidefx",
+      "title": "Blender／DCC 製作：Project T…FX公式順次公開！ 的製作重點",
+      "summary": "這則內容主要談 Unreal Engine、Houdini（Project T…FX公式順次公開！），與 Unreal Engine、Houdini 的製作實作直接相關。它能提供具體方法或結果作為對照，但仍要區分哪些是可複用流程、哪些只成立於單一作品或特定專案條件。",
+      "quick_impact": "★★☆☆☆",
+      "source_url": "https://3dnchu.com/archives/project-titan-sidefx",
+      "category": "blender-dcc",
+      "subcategory": "houdini",
+      "ranking_score": 60.0,
+      "analysis_level": "BRIEF",
+      "brief_reason": "single-source-verified-production-tip",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "內容重點落在 Unreal Engine、Houdini（Project T…FX公式順次公開！），並涉及 Unreal Engine、Houdini。先辨認文章實際展示的是方法、工具能力還是單一作品結果，才能避免把展示效果誤當成可直接複製的流程。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對 Houdini，可以把 Unreal Engine、Houdini（Project T…FX公式順次公開！） 的做法或結果對照目前 pipeline，找出它可能影響的操作、交接或品質檢查點；只有能對應到真實工作步驟的部分，才值得進一步投入測試。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "Unreal Engine、Houdini（Project T…FX公式順次公開！） 目前只有單一來源可供參考，通常不足以證明跨專案穩定性；若要正式導入，仍需補做版本、資產規模與輸出條件的驗證。"
+        }
+      ],
+      "rank_global": 19,
+      "homepage_tier": "category_only"
+    },
+    {
+      "id": "3dnchu-quicksplat",
+      "title": "新技術／Production Case：QuickSpla…精度3D構築技術！ 的製作重點",
+      "summary": "這則內容主要談 Production Case（QuickSpla…精度3D構築技術！），與 Production Case 的製作實作直接相關。它能提供具體方法或結果作為對照，但仍要區分哪些是可複用流程、哪些只成立於單一作品或特定專案條件。",
+      "quick_impact": "★★☆☆☆",
+      "source_url": "https://3dnchu.com/archives/quicksplat",
+      "category": "emerging-case",
+      "subcategory": "case-study",
+      "ranking_score": 60.0,
+      "analysis_level": "BRIEF",
+      "brief_reason": "emerging-research-limited-production-evidence",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "內容重點落在 Production Case（QuickSpla…精度3D構築技術！），並涉及 Production Case。先辨認文章實際展示的是方法、工具能力還是單一作品結果，才能避免把展示效果誤當成可直接複製的流程。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對 Production Case，可以把 Production Case（QuickSpla…精度3D構築技術！） 的做法或結果對照目前 pipeline，找出它可能影響的操作、交接或品質檢查點；只有能對應到真實工作步驟的部分，才值得進一步投入測試。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "Production Case（QuickSpla…精度3D構築技術！） 目前只有單一來源可供參考，通常不足以證明跨專案穩定性；若要正式導入，仍需補做版本、資產規模與輸出條件的驗證。"
+        }
+      ],
+      "rank_global": 20,
+      "homepage_tier": "category_only"
+    },
+    {
+      "id": "3dnchu-true-terrain-5",
+      "title": "Blender／DCC 製作：True TERR…（$49）」無料！ 的製作重點",
+      "summary": "這則內容主要談 VFX、Blender（True TERR…（$49）」無料！），與 VFX、Blender 的製作實作直接相關。它能提供具體方法或結果作為對照，但仍要區分哪些是可複用流程、哪些只成立於單一作品或特定專案條件。",
+      "quick_impact": "★★☆☆☆",
+      "source_url": "https://3dnchu.com/archives/true-terrain-5",
+      "category": "blender-dcc",
+      "subcategory": "blender",
+      "ranking_score": 60.0,
+      "analysis_level": "BRIEF",
+      "brief_reason": "single-source-verified-production-tip",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "內容重點落在 VFX、Blender（True TERR…（$49）」無料！），並涉及 VFX、Blender。先辨認文章實際展示的是方法、工具能力還是單一作品結果，才能避免把展示效果誤當成可直接複製的流程。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對 Blender，可以把 VFX、Blender（True TERR…（$49）」無料！） 的做法或結果對照目前 pipeline，找出它可能影響的操作、交接或品質檢查點；只有能對應到真實工作步驟的部分，才值得進一步投入測試。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "VFX、Blender（True TERR…（$49）」無料！） 目前只有單一來源可供參考，通常不足以證明跨專案穩定性；若要正式導入，仍需補做版本、資產規模與輸出條件的驗證。"
+        }
+      ],
+      "rank_global": 21,
+      "homepage_tier": "category_only"
+    },
+    {
+      "id": "3dnchu-univ-v1-2",
+      "title": "Blender／DCC 製作：UniV v1.2…r！無料入手可能！ 的製作重點",
+      "summary": "這則內容主要談 UV、Blender（UniV v1.2…r！無料入手可能！），與 UV、Blender 的製作實作直接相關。它能提供具體方法或結果作為對照，但仍要區分哪些是可複用流程、哪些只成立於單一作品或特定專案條件。",
+      "quick_impact": "★★☆☆☆",
+      "source_url": "https://3dnchu.com/archives/univ-v1-2",
+      "category": "blender-dcc",
+      "subcategory": "blender",
+      "ranking_score": 60.0,
+      "analysis_level": "BRIEF",
+      "brief_reason": "single-source-verified-production-tip",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "內容重點落在 UV、Blender（UniV v1.2…r！無料入手可能！），並涉及 UV、Blender。先辨認文章實際展示的是方法、工具能力還是單一作品結果，才能避免把展示效果誤當成可直接複製的流程。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對 Blender，可以把 UV、Blender（UniV v1.2…r！無料入手可能！） 的做法或結果對照目前 pipeline，找出它可能影響的操作、交接或品質檢查點；只有能對應到真實工作步驟的部分，才值得進一步投入測試。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "UV、Blender（UniV v1.2…r！無料入手可能！） 目前只有單一來源可供參考，通常不足以證明跨專案穩定性；若要正式導入，仍需補做版本、資產規模與輸出條件的驗證。"
+        }
+      ],
+      "rank_global": 22,
+      "homepage_tier": "category_only"
+    },
+    {
+      "id": "3dnchu-xmd-lifetime-membership",
+      "title": "Blender／DCC 製作：XMD Lifet…Brush用管理！ 的製作重點",
+      "summary": "這則內容主要談 Substance（XMD Lifet…Brush用管理！），與 Substance 的製作實作直接相關。它能提供具體方法或結果作為對照，但仍要區分哪些是可複用流程、哪些只成立於單一作品或特定專案條件。",
+      "quick_impact": "★★☆☆☆",
+      "source_url": "https://3dnchu.com/archives/xmd-lifetime-membership",
+      "category": "blender-dcc",
+      "subcategory": "substance",
+      "ranking_score": 60.0,
+      "analysis_level": "BRIEF",
+      "brief_reason": "single-source-verified-production-tip",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "內容重點落在 Substance（XMD Lifet…Brush用管理！），並涉及 Substance。先辨認文章實際展示的是方法、工具能力還是單一作品結果，才能避免把展示效果誤當成可直接複製的流程。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對 Substance，可以把 Substance（XMD Lifet…Brush用管理！） 的做法或結果對照目前 pipeline，找出它可能影響的操作、交接或品質檢查點；只有能對應到真實工作步驟的部分，才值得進一步投入測試。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "Substance（XMD Lifet…Brush用管理！） 目前只有單一來源可供參考，通常不足以證明跨專案穩定性；若要正式導入，仍需補做版本、資產規模與輸出條件的驗證。"
+        }
+      ],
+      "rank_global": 23,
+      "homepage_tier": "category_only"
     },
     {
       "id": "80-level-artist-shares-free-blender-rig-of-rumi-from-kpop-demon-hunte",
       "title": "Blender／DCC 製作：Artist Sh…n Hunters 的製作重點",
-      "summary": "這則內容聚焦 Blender 的製作應用。對 Blender 流程，先看它實際改變哪些操作、交換或輸出步驟，再決定是否納入現有 SOP。",
+      "summary": "這則內容主要談 可下載 Rig（Artist Sh…n Hunters），與 Blender 的製作實作直接相關。它能提供具體方法或結果作為對照，但仍要區分哪些是可複用流程、哪些只成立於單一作品或特定專案條件。",
       "quick_impact": "★★☆☆☆",
       "source_url": "https://80.lv/articles/artist-shares-free-blender-rig-of-rumi-from-kpop-demon-hunters",
       "category": "blender-dcc",
@@ -729,19 +956,19 @@
       "full_analysis": [
         {
           "label": "技術／流程變更",
-          "text": "「Blender／DCC 製作：Artist Sh…n Hunters 的製作重點」聚焦 Blender，可先從 實際製作 角度拆解它對現有製作流程的實際變化。"
+          "text": "內容重點落在 可下載 Rig（Artist Sh…n Hunters），並涉及 Blender。先辨認文章實際展示的是方法、工具能力還是單一作品結果，才能避免把展示效果誤當成可直接複製的流程。"
         },
         {
           "label": "Production 影響",
-          "text": "針對「Blender／DCC 製作：Artist Sh…n Hunters 的製作重點」，Blender 團隊應先用小規模案例確認它解決的是 authoring、交換、品質控制還是 runtime 問題，再決定導入範圍。"
+          "text": "對 Blender，可以把 可下載 Rig（Artist Sh…n Hunters） 的做法或結果對照目前 pipeline，找出它可能影響的操作、交接或品質檢查點；只有能對應到真實工作步驟的部分，才值得進一步投入測試。"
         },
         {
           "label": "導入測試與限制",
-          "text": "若要把「Blender／DCC 製作：Artist Sh…n Hunters 的製作重點」納入 production，仍需用實際 DCC／引擎版本、代表性資產與目標輸出驗證；單一案例、展示或宣傳頁不能直接當成固定工時、品質或效能收益。"
+          "text": "可下載 Rig（Artist Sh…n Hunters） 目前只有單一來源可供參考，通常不足以證明跨專案穩定性；若要正式導入，仍需補做版本、資產規模與輸出條件的驗證。"
         }
       ],
-      "rank_global": 15,
-      "homepage_tier": "next10"
+      "rank_global": 24,
+      "homepage_tier": "category_only"
     }
   ],
   "visual_evidence": {}
