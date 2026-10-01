@@ -155,8 +155,10 @@ assert len(analysis) == 3
 assert [x["label"] for x in analysis] == ["技術／流程變更", "Production 影響", "導入測試與限制"]
 assert "Rendering advancements" not in analysis[0]["text"]
 assert reader_language_ok(analysis[0]["text"], 3.0)
-assert "Blender 5.2 LTS：版本更新" in analysis[0]["text"]
-assert "Blender 5.2 LTS：版本更新" in analysis[2]["text"]
+assert "新增能力" in summary
+assert "升版前後" in analysis[1]["text"]
+assert "舊檔" in analysis[2]["text"]
+assert "先看它實際改變哪些操作、交換或輸出步驟" not in summary
 assert len({x["text"] for x in analysis}) == 3
 for block in analysis:
     assert "Collector" not in block["text"]
@@ -263,6 +265,49 @@ assert not ({x["text"] for x in dishes_analysis} & {x["text"] for x in deer_anal
 )
 
 
+marmoset_meta = meta(
+    "https://80.lv/articles/marmoset-toolbag-inspired-texture-baking-add-on-released-for-blender",
+    "Marmoset Toolbag-Inspired Texture Baking Add-On Released for Blender",
+    "A Blender add-on brings a Marmoset Toolbag-inspired texture baking workflow to artists.",
+    "2026-10-01",
+    True,
+)
+marmoset_summary = production_summary(marmoset_meta, "blender-dcc", "blender")
+marmoset_analysis = editorial_analysis(marmoset_meta, "blender-dcc", "blender")
+assert "Marmoset Toolbag 式烘焙" in marmoset_summary
+assert "貼圖烘焙" in marmoset_summary
+assert any("Marmoset Toolbag 式烘焙" in x["text"] for x in marmoset_analysis)
+assert "先看它實際改變哪些操作、交換或輸出步驟" not in marmoset_summary
+
+grease_meta = meta(
+    "https://80.lv/articles/the-long-awaited-shape-keys-for-blender-s-grease-pencil-tested-on-a-character-rig",
+    "The Long-Awaited Shape Keys for Blender's Grease Pencil Tested on a Character Rig",
+    "Shape Keys for Grease Pencil are demonstrated on a Blender character rig.",
+    "2026-10-01",
+    True,
+)
+grease_summary = production_summary(grease_meta, "blender-dcc", "blender")
+assert "Shape Keys" in grease_summary
+assert "Grease Pencil" in grease_summary
+assert "角色 Rig" in grease_summary
+
+mcp_meta = meta(
+    "https://www.cgchannel.com/2026/09/maxon-releases-cinema-4d-2026-4-with-a-new-mcp-server",
+    "Maxon releases Cinema 4D 2026.4 with a new MCP Server",
+    "Cinema 4D 2026.4 adds a new MCP Server for production workflows.",
+    "2026-10-01",
+    True,
+)
+mcp_summary = production_summary(mcp_meta, "blender-dcc", "other-dcc")
+mcp_analysis = editorial_analysis(mcp_meta, "blender-dcc", "other-dcc")
+assert "Cinema 4D" in mcp_summary
+assert "MCP Server" in mcp_summary
+assert any("MCP Server" in x["text"] for x in mcp_analysis)
+
+for text in [marmoset_summary, grease_summary, mcp_summary]:
+    assert reader_language_ok(text, 2.5), text
+
+
 summary_variants = [
     production_summary(
         meta(
@@ -344,4 +389,4 @@ for banned_reader_phrase in (
 assert reader_language_ok("Unity Spline Architect：大量物件 GPU 實例化更新", 4.0)
 assert reader_language_ok("Redchillies.vfx：Netflix 影集特效製作拆解", 4.0)
 
-print("COLLECTOR CONTENT QUALITY PASS: landing/index rejection + promo rejection + concise source-grounded reader copy + title normalization + subject-first classification")
+print("COLLECTOR CONTENT QUALITY PASS: landing/index rejection + promo rejection + production-dense source-grounded reader copy + title normalization + subject-first classification")
