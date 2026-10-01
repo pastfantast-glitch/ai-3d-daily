@@ -18,6 +18,7 @@ import json
 import re
 import sys
 import time
+import subprocess
 
 import requests
 from bs4 import BeautifulSoup
@@ -838,6 +839,77 @@ def selection_fingerprint(items: list[dict]) -> str:
     ).hexdigest()
 
 
+def git_json_at_ref(ref: str, relative_path: str):
+    ref = str(ref or "").strip().lower()
+    if not re.fullmatch(r"[0-9a-f]{40}", ref):
+        raise SystemExit("COLLECTOR FAILED: historical selection restore requires a full 40-char receipt commit SHA")
+    proc = subprocess.run(
+        ["git", "show", f"{ref}:{relative_path}"],
+        cwd=ROOT,
+        text=True,
+        capture_output=True,
+    )
+    if proc.returncode:
+        raise SystemExit(
+            f"COLLECTOR FAILED: cannot read verified historical artifact {relative_path} at {ref}"
+        )
+    try:
+        return json.loads(proc.stdout)
+    except json.JSONDecodeError:
+        raise SystemExit(
+            f"COLLECTOR FAILED: malformed historical JSON {relative_path} at {ref}"
+        )
+
+
+def historical_selection_restore_ref(data: dict, done: dict, override: dict, report_date: str) -> str:
+    """Authorize an editorial-only rollback only to an exact selection from an ancestor DONE receipt."""
+    ref = str(override.get("restore_selection_from_receipt_commit") or "").strip().lower()
+    if not ref:
+        return ""
+
+    ancestor = subprocess.run(
+        ["git", "merge-base", "--is-ancestor", ref, "HEAD"],
+        cwd=ROOT,
+        stdout=subprocess.DEVNULL,
+        stderr=subprocess.DEVNULL,
+    )
+    if ancestor.returncode:
+        raise SystemExit("COLLECTOR FAILED: historical selection receipt commit is not an ancestor of current main")
+
+    historical_done = git_json_at_ref(ref, f"data/publish/{report_date}.done.json")
+    historical_data = git_json_at_ref(ref, f"data/daily/{report_date}.json")
+    if str(historical_done.get("state") or "").upper() != "DONE":
+        raise SystemExit("COLLECTOR FAILED: historical selection restore requires state=DONE receipt")
+    if str(historical_done.get("date") or "") != report_date or str(historical_data.get("date") or "") != report_date:
+        raise SystemExit("COLLECTOR FAILED: historical selection restore date mismatch")
+
+    current_items = data.get("items") or []
+    historical_items = historical_data.get("items") or []
+    current_ids = [str(x.get("id") or "") for x in current_items]
+    historical_ids = [str(x) for x in ((historical_done.get("canonical") or {}).get("ids") or [])]
+    if current_ids != historical_ids:
+        raise SystemExit("COLLECTOR FAILED: restored canonical IDs/order differ from historical verified DONE receipt")
+    if selection_fingerprint(current_items) != selection_fingerprint(historical_items):
+        raise SystemExit("COLLECTOR FAILED: restored selection fingerprint differs from historical verified canonical dataset")
+
+    publish_sha = str(historical_done.get("publish_commit_sha") or "").strip().lower()
+    if not re.fullmatch(r"[0-9a-f]{40}", publish_sha):
+        raise SystemExit("COLLECTOR FAILED: historical verified DONE receipt has invalid publish SHA")
+    exists = subprocess.run(
+        ["git", "cat-file", "-e", f"{publish_sha}^{{commit}}"],
+        cwd=ROOT,
+        stdout=subprocess.DEVNULL,
+        stderr=subprocess.DEVNULL,
+    )
+    if exists.returncode:
+        raise SystemExit("COLLECTOR FAILED: historical verified publish commit is unavailable in full history")
+
+    current_done_ids = [str(x) for x in ((done.get("canonical") or {}).get("ids") or [])]
+    if current_done_ids == current_ids:
+        raise SystemExit("COLLECTOR FAILED: historical selection restore requested but current DONE already matches canonical selection")
+    return ref
+
+
 def run_editorial_repair(report_date: str, runtime: dict, override_path: Path) -> int:
     daily_path = ROOT / "data" / "daily" / f"{report_date}.json"
     session_path = ROOT / "data" / "candidates" / "collection-session" / f"{report_date}.json"
@@ -871,8 +943,9 @@ def run_editorial_repair(report_date: str, runtime: dict, override_path: Path) -
             f"missing={missing} unknown={unknown}"
         )
 
-    done_ids = {str(x) for x in ((done.get("canonical") or {}).get("ids") or [])}
-    if set(ids) != done_ids:
+    restore_ref = historical_selection_restore_ref(data, done, override, report_date)
+    done_ids = [str(x) for x in ((done.get("canonical") or {}).get("ids") or [])]
+    if not restore_ref and ids != done_ids:
         raise SystemExit("COLLECTOR FAILED: editorial repair item set differs from verified DONE receipt")
 
     source_review = override.get("source_review") or {}
@@ -986,7 +1059,12 @@ def run_editorial_repair(report_date: str, runtime: dict, override_path: Path) -
         "source_review_method": str(source_review.get("method") or ""),
         "selection_fingerprint": before_fingerprint,
         "factual_fallback_allowed": True,
-        "repair_mode": "selection-preserving-source-reverified",
+        "repair_mode": (
+            "historical-verified-selection-restore-source-reverified"
+            if restore_ref
+            else "selection-preserving-source-reverified"
+        ),
+        "restored_from_verified_receipt_commit": restore_ref or None,
     }
 
     decisions = collection.get("candidate_decisions") or []

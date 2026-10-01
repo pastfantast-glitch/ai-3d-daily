@@ -11,6 +11,8 @@ from pathlib import Path
 import hashlib
 import json
 import sys
+import re
+import subprocess
 
 ROOT = Path(__file__).resolve().parents[1]
 SCRIPTS = ROOT / 'scripts'
@@ -81,6 +83,84 @@ def policy_recollect_pending(date: str, data: dict) -> bool:
     )
 
 
+def pending_verified_historical_editorial_restore(date: str, data: dict) -> bool:
+    """Allow private canonical restore to precede public rerender only when an ancestor DONE proves the exact selection."""
+    override_path = ROOT / 'data' / 'editorial-overrides' / f'{date}.json'
+    current_done_path = ROOT / 'data' / 'publish' / f'{date}.done.json'
+    if not override_path.exists() or not current_done_path.exists():
+        return False
+    try:
+        override = json.loads(override_path.read_text('utf-8'))
+        current_done = json.loads(current_done_path.read_text('utf-8'))
+    except Exception:
+        return False
+    ref = str(override.get('restore_selection_from_receipt_commit') or '').strip().lower()
+    if (
+        override.get('preserve_selection') is not True
+        or str(override.get('date') or '') != date
+        or not re.fullmatch(r'[0-9a-f]{40}', ref)
+        or str(current_done.get('state') or '').upper() != 'DONE'
+    ):
+        return False
+
+    current_items = data.get('items') or []
+    current_ids = [str(x.get('id') or '') for x in current_items]
+    patches = override.get('items') or {}
+    if not isinstance(patches, dict) or set(patches) != set(current_ids) or len(patches) != len(current_ids):
+        return False
+
+    ancestor = subprocess.run(
+        ['git', 'merge-base', '--is-ancestor', ref, 'HEAD'],
+        cwd=ROOT,
+        stdout=subprocess.DEVNULL,
+        stderr=subprocess.DEVNULL,
+    )
+    if ancestor.returncode:
+        return False
+
+    def git_json(relative_path: str):
+        proc = subprocess.run(
+            ['git', 'show', f'{ref}:{relative_path}'],
+            cwd=ROOT,
+            text=True,
+            capture_output=True,
+        )
+        if proc.returncode:
+            return None
+        try:
+            return json.loads(proc.stdout)
+        except json.JSONDecodeError:
+            return None
+
+    historical_done = git_json(f'data/publish/{date}.done.json')
+    historical_data = git_json(f'data/daily/{date}.json')
+    if not isinstance(historical_done, dict) or not isinstance(historical_data, dict):
+        return False
+    if str(historical_done.get('state') or '').upper() != 'DONE':
+        return False
+    historical_ids = [str(x) for x in ((historical_done.get('canonical') or {}).get('ids') or [])]
+    if current_ids != historical_ids:
+        return False
+
+    def selection_rows(items):
+        return [
+            (
+                str(x.get('id') or ''),
+                str(x.get('source_url') or '').rstrip('/'),
+                int(x.get('rank_global', 0) or 0),
+                str(x.get('category') or ''),
+                str(x.get('subcategory') or ''),
+            )
+            for x in (items or [])
+        ]
+
+    if selection_rows(current_items) != selection_rows(historical_data.get('items') or []):
+        return False
+
+    current_done_ids = [str(x) for x in ((current_done.get('canonical') or {}).get('ids') or [])]
+    return current_done_ids != current_ids
+
+
 def runtime_surface_errors():
     errors = []
     canonical = (ROOT / 'canonical-client.js').read_text('utf-8')
@@ -122,8 +202,9 @@ def main():
     public_items = top + next10
 
     pending_republish = policy_recollect_pending(date, data)
+    pending_historical_restore = pending_verified_historical_editorial_restore(date, data)
     errors = []
-    if not pending_republish:
+    if not pending_republish and not pending_historical_restore:
         errors += [f'home: {e}' for e in check_surface(ROOT / 'index.html', date, public_items, 'home', depth, legacy_min)]
         errors += [f'daily: {e}' for e in check_surface(ROOT / date / 'index.html', date, public_items, 'daily', depth, legacy_min)]
 
@@ -143,7 +224,13 @@ def main():
         raise SystemExit(1)
 
     counts = data.get('metadata', {}).get('analysis_level_counts', {})
-    state = ' pending-policy-republish' if pending_republish else ''
+    state = (
+        ' pending-policy-republish'
+        if pending_republish
+        else ' pending-verified-historical-editorial-restore'
+        if pending_historical_restore
+        else ''
+    )
     print(f'PAGES TIER CONTRACT PASS: {date} FULL={counts.get("FULL", 0)} BRIEF={counts.get("BRIEF", 0)} REJECT={counts.get("REJECT", 0)}{state}')
 
 
