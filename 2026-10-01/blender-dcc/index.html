@@ -6,7 +6,7 @@
   <title>
    Blender / DCC｜2026-10-01｜AI 3D Daily
   </title>
-  <meta content="2026-10-01 Blender / DCC Production Intelligence：Blender / DCC 工具與工作流 / Blender Tips，共 13 項可驗證情報。" name="description"/>
+  <meta content="2026-10-01 Blender / DCC Production Intelligence：Blender / DCC 工具與工作流 / Blender Tips，共 8 項可驗證情報。" name="description"/>
   <link href="../../styles.css?v=20261001-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
   <link href="../../shared-components.css?v=20261001-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
   <link href="../../category.css?v=20261001-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
@@ -58,13 +58,13 @@
   <main class="page category-main">
    <article class="category-card" data-intel-id="80-level-marmoset-toolbag-inspired-texture-baking-add-on-released-for" data-intel-role="card">
     <div class="category-meta">
-     #03 · blender
+     #02 · blender
     </div>
     <h2>
-     Blender／DCC 製作：Marmoset…r Blender 的製作重點
+     Fyr Baker：把 Marmoset 式貼圖烘焙流程帶進 Blender
     </h2>
     <p class="summary">
-     這項工具的核心是 Marmoset Toolbag 式烘焙、貼圖烘焙，作用範圍落在 貼圖／材質、烘焙、Blender。對 Blender 流程，應直接看它減少哪些手動步驟、提供哪些控制，以及是否能和既有 DCC／引擎資料交換方式共存。
+     Fyr Baker 把 Marmoset Toolbag 類型的專用烘焙流程帶進 Blender：設定可保存在場景內，支援背景 GPU 烘焙、高低模投射、包覆網格、環境遮蔽、曲率與 ID 等貼圖，並可依 Substance Painter、Unreal、Unity 流程整理輸出。
     </p>
     <figure class="case-preview" data-intel-id="80-level-marmoset-toolbag-inspired-texture-baking-add-on-released-for" data-intel-role="visual" data-visual-id="80-level-marmoset-toolbag-inspired-texture-baking-add-on-released-for">
      <a href="https://80.lv/articles/marmoset-toolbag-inspired-texture-baking-add-on-released-for-blender" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
@@ -89,19 +89,19 @@
        技術／流程變更
       </h4>
       <p>
-       工具主題是 Marmoset Toolbag 式烘焙、貼圖烘焙，主要作用在 貼圖／材質、烘焙、Blender。需要看清楚它是取代既有手動步驟、補一個缺口，還是只是把原本功能換成另一個介面。
+       它的核心不是單純增加一個 Bake 按鈕，而是把 Marmoset Toolbag 式的迭代方式搬進 Blender：設定留在場景、結果可預覽，cage 可直接調整，修改模型後只需重烘需要的 maps，不必來回切換獨立軟體。
       </p>
       <h4>
        Production 影響
       </h4>
       <p>
-       對 Blender，可用一個真實任務比較 Marmoset Toolbag 式烘焙、貼圖烘焙 導入前後的操作步驟、人工修正、輸出結果與交接成本；若工具能減少重複操作但增加資料轉換或版本依賴，總成本未必下降。
+       對角色／道具 Texture 流程，可直接拿同一個 high-low asset 比較 Blender 原生、Fyr Baker 與既有 Marmoset／Substance 路徑，記錄 cage 調整、批次輸出、命名與引擎 preset 是否真的減少人工步驟。
       </p>
       <h4>
        導入測試與限制
       </h4>
       <p>
-       Marmoset Toolbag 式烘焙、貼圖烘焙 的工具介紹通常不會涵蓋所有 production 邊界條件；部署前仍需確認版本支援、檔案相容、批次處理、例外錯誤與團隊維護責任。
+       目前 add-on 需求為 Blender 5.1 以上，GPU 加速效果也與平台／顯卡支援有關；正式導入仍要測 UDIM、複雜材質節點、批次資產與失敗重烘時的穩定性。
       </p>
       <p class="analysis-level-note">
        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
@@ -114,13 +114,13 @@
    </article>
    <article class="category-card" data-intel-id="80-level-the-long-awaited-shape-keys-for-blender-s-grease-pencil-test" data-intel-role="card">
     <div class="category-meta">
-     #04 · blender
+     #03 · blender
     </div>
     <h2>
-     Blender／DCC 製作：The Long-…acter Rig 的製作重點
+     Blender Grease Pencil Shape Keys：角色 Rig 實測與目前限制
     </h2>
     <p class="summary">
-     這項工具的核心是 Shape Keys、Grease Pencil、角色 Rig，作用範圍落在 Blender。對 Blender 流程，應直接看它減少哪些手動步驟、提供哪些控制，以及是否能和既有 DCC／引擎資料交換方式共存。
+     Grease Pencil 的 Shape Keys 可用 Bézier 曲線保存並快速切換 2D 形狀狀態，Mumu Mundo 也把它接到角色 Rig 實測；目前仍有控制點難選、Edit Mode 只能看單一 Shape Key、Armature／Driver 互動與大幅變形填色失真的問題。
     </p>
     <figure class="case-preview" data-intel-id="80-level-the-long-awaited-shape-keys-for-blender-s-grease-pencil-test" data-intel-role="visual" data-visual-id="80-level-the-long-awaited-shape-keys-for-blender-s-grease-pencil-test">
      <a href="https://80.lv/articles/the-long-awaited-shape-keys-for-blender-s-grease-pencil-tested-on-a-character-rig" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
@@ -145,19 +145,19 @@
        技術／流程變更
       </h4>
       <p>
-       工具主題是 Shape Keys、Grease Pencil、角色 Rig，主要作用在 Blender。需要看清楚它是取代既有手動步驟、補一個缺口，還是只是把原本功能換成另一個介面。
+       對 2D rigging 來說，Shape Keys 讓嘴型、表情或局部輪廓不必完全依賴骨架變形，而能保存多個明確 shape state；這會讓 Grease Pencil 更接近傳統 2D deformation 與 Blender rig 系統的混合流程。
       </p>
       <h4>
        Production 影響
       </h4>
       <p>
-       對 Blender，可用一個真實任務比較 Shape Keys、Grease Pencil、角色 Rig 導入前後的操作步驟、人工修正、輸出結果與交接成本；若工具能減少重複操作但增加資料轉換或版本依賴，總成本未必下降。
+       若用在角色製作，可先建立幾組嘴型與大表情，測試 Shape Key、Armature、Driver 疊加後的可編輯性與 animator 操作負擔；這比只測單一靜態形狀更能看出它是否適合正式 Rig。
       </p>
       <h4>
        導入測試與限制
       </h4>
       <p>
-       Shape Keys、Grease Pencil、角色 Rig 的工具介紹通常不會涵蓋所有 production 邊界條件；部署前仍需確認版本支援、檔案相容、批次處理、例外錯誤與團隊維護責任。
+       目前功能仍在開發中，控制點選取、Driver 後數值鎖定、Bézier 顯示與大變形 fill 都有已知限制；適合做技術預研與 Rig prototype，尚不宜直接視為成熟量產方案。
       </p>
       <p class="analysis-level-note">
        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
@@ -168,127 +168,15 @@
      來源 ↗
     </a>
    </article>
-   <article class="category-card" data-intel-id="3dnchu-deeppaintclassjpn-gaku-2026-2" data-intel-role="card">
-    <div class="category-meta">
-     #06 · blender
-    </div>
-    <h2>
-     Blender／DCC 製作：立体絵画教室, B…催！受講生募集中！ 的製作重點
-    </h2>
-    <p class="summary">
-     這則內容主要談 Blender（立体絵画教室, B…催！受講生募集中！），與 Blender 的製作實作直接相關。它能提供具體方法或結果作為對照，但仍要區分哪些是可複用流程、哪些只成立於單一作品或特定專案條件。
-    </p>
-    <figure class="case-preview" data-intel-id="3dnchu-deeppaintclassjpn-gaku-2026-2" data-intel-role="visual" data-visual-id="3dnchu-deeppaintclassjpn-gaku-2026-2">
-     <a href="https://3dnchu.com/archives/deeppaintclassjpn-gaku-2026-2" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
-      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-10-01/3dnchu-deeppaintclassjpn-gaku-2026-2.jpg"/>
-     </a>
-     <figcaption>
-      <span>
-       SOURCE PREVIEW
-      </span>
-      · Local visual evidence · 點圖開啟原始來源
-     </figcaption>
-    </figure>
-    <div class="quick-impact">
-     <span><b class="quick-impact-label">Blender</b> ★★★★☆</span>
-    </div>
-    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
-     <summary>
-      完整分析
-     </summary>
-     <div class="detail-body canonical-analysis-body brief-analysis-body">
-      <h4>
-       技術／流程變更
-      </h4>
-      <p>
-       內容重點落在 Blender（立体絵画教室, B…催！受講生募集中！），並涉及 Blender。先辨認文章實際展示的是方法、工具能力還是單一作品結果，才能避免把展示效果誤當成可直接複製的流程。
-      </p>
-      <h4>
-       Production 影響
-      </h4>
-      <p>
-       對 Blender，可以把 Blender（立体絵画教室, B…催！受講生募集中！） 的做法或結果對照目前 pipeline，找出它可能影響的操作、交接或品質檢查點；只有能對應到真實工作步驟的部分，才值得進一步投入測試。
-      </p>
-      <h4>
-       導入測試與限制
-      </h4>
-      <p>
-       Blender（立体絵画教室, B…催！受講生募集中！） 目前只有單一來源可供參考，通常不足以證明跨專案穩定性；若要正式導入，仍需補做版本、資產規模與輸出條件的驗證。
-      </p>
-      <p class="analysis-level-note">
-       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
-      </p>
-     </div>
-    </details>
-    <a class="source" href="https://3dnchu.com/archives/deeppaintclassjpn-gaku-2026-2" rel="noopener noreferrer" target="_blank">
-     來源 ↗
-    </a>
-   </article>
-   <article class="category-card" data-intel-id="3dnchu-full-control-lattice-generator-v1-0" data-intel-role="card">
-    <div class="category-meta">
-     #07 · blender
-    </div>
-    <h2>
-     Blender／DCC 製作：Full Cont…BCON26紹介！ 的製作重點
-    </h2>
-    <p class="summary">
-     這則內容主要談 程序化（Full Cont…BCON26紹介！），與 Geometry Nodes、Blender 的製作實作直接相關。它能提供具體方法或結果作為對照，但仍要區分哪些是可複用流程、哪些只成立於單一作品或特定專案條件。
-    </p>
-    <figure class="case-preview" data-intel-id="3dnchu-full-control-lattice-generator-v1-0" data-intel-role="visual" data-visual-id="3dnchu-full-control-lattice-generator-v1-0">
-     <a href="https://3dnchu.com/archives/full-control-lattice-generator-v1-0" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
-      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-10-01/3dnchu-full-control-lattice-generator-v1-0.jpg"/>
-     </a>
-     <figcaption>
-      <span>
-       SOURCE PREVIEW
-      </span>
-      · Local visual evidence · 點圖開啟原始來源
-     </figcaption>
-    </figure>
-    <div class="quick-impact">
-     <span><b class="quick-impact-label">Blender</b> ★★★★☆</span>
-    </div>
-    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
-     <summary>
-      完整分析
-     </summary>
-     <div class="detail-body canonical-analysis-body brief-analysis-body">
-      <h4>
-       技術／流程變更
-      </h4>
-      <p>
-       內容重點落在 程序化（Full Cont…BCON26紹介！），並涉及 Geometry Nodes、Blender。先辨認文章實際展示的是方法、工具能力還是單一作品結果，才能避免把展示效果誤當成可直接複製的流程。
-      </p>
-      <h4>
-       Production 影響
-      </h4>
-      <p>
-       對 Blender，可以把 程序化（Full Cont…BCON26紹介！） 的做法或結果對照目前 pipeline，找出它可能影響的操作、交接或品質檢查點；只有能對應到真實工作步驟的部分，才值得進一步投入測試。
-      </p>
-      <h4>
-       導入測試與限制
-      </h4>
-      <p>
-       程序化（Full Cont…BCON26紹介！） 目前只有單一來源可供參考，通常不足以證明跨專案穩定性；若要正式導入，仍需補做版本、資產規模與輸出條件的驗證。
-      </p>
-      <p class="analysis-level-note">
-       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
-      </p>
-     </div>
-    </details>
-    <a class="source" href="https://3dnchu.com/archives/full-control-lattice-generator-v1-0" rel="noopener noreferrer" target="_blank">
-     來源 ↗
-    </a>
-   </article>
    <article class="category-card" data-intel-id="cg-channel-learn-to-create-complex-patterns-in-substance-designer" data-intel-role="card">
     <div class="category-meta">
-     #08 · substance
+     #05 · substance
     </div>
     <h2>
-     Blender／DCC 製作：Learn to…Designer 的製作重點
+     Substance Designer → ZBrush → Maya：複雜硬表面圖樣的模組化流程
     </h2>
     <p class="summary">
-     這篇教學主要拆解 Substance Designer、程序化圖樣，並把 Substance 放進可跟著操作的製作流程。對 Substance 而言，比單看成果更重要的是素材前置、主要操作、人工修正與輸出如何銜接，能否轉成現有 SOP 的具體步驟。
+     Nate Stephens 示範先在 Substance Designer 以程序化方式建立複雜裝飾圖樣與 height template，再進 ZBrush 雕刻、retopo，最後到 Maya 補拓撲與 UV；重點是把可反覆修改的圖樣網路當成環境資產細節來源。
     </p>
     <figure class="case-preview" data-intel-id="cg-channel-learn-to-create-complex-patterns-in-substance-designer" data-intel-role="visual" data-visual-id="cg-channel-learn-to-create-complex-patterns-in-substance-designer">
      <a href="https://www.cgchannel.com/2019/05/learn-to-create-complex-patterns-in-substance-designer" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
@@ -313,19 +201,19 @@
        技術／流程變更
       </h4>
       <p>
-       教學核心落在 Substance Designer、程序化圖樣，並透過 Substance 展示一條可重現的操作路徑。閱讀時應把內容拆成素材前置、主要操作、人工修正與輸出結果，才能看出真正可複用的步驟。
+       這條流程把「圖樣設計」從一次性雕刻拆成可參數化來源：Designer 負責迭代形狀與高度資料，ZBrush 負責立體精修，Maya 處理最終拓撲與 UV，因此同一套 network 能延伸到多個同系列資產。
       </p>
       <h4>
        Production 影響
       </h4>
       <p>
-       對 Substance 團隊，可先把 Substance Designer、程序化圖樣 的明確步驟轉成 checklist，再用現有資產跑一次；若能在相同品質下減少返工，或讓新人更快到達可 review 狀態，才具有流程導入價值。
+       對場景／Hard Surface 團隊，可挑一組常重複出現的門飾、地磚或牆面 ornament，測試程序化 template 是否能維持 texel density、造型一致性並減少重複雕刻時間。
       </p>
       <h4>
        導入測試與限制
       </h4>
       <p>
-       以 Substance Designer、程序化圖樣 為例，教學能證明方法可操作，但不代表它已覆蓋大量資產、多人協作或不同版本條件；還需要另外驗證命名、批次處理、檔案交換與例外情況。
+       這是 2019 年的教學內容，工具版本已舊；適合吸收「程序化圖樣 → 雕刻 → retopo」的流程觀念，但節點、UI 與現行 Substance／ZBrush／Maya 功能需要用目前版本重新驗證。
       </p>
       <p class="analysis-level-note">
        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
@@ -336,15 +224,71 @@
      來源 ↗
     </a>
    </article>
-   <article class="category-card" data-intel-id="cg-channel-ai-developer-anthropic-becomes-blenders-latest-corporate-pat" data-intel-role="card">
+   <article class="category-card" data-intel-id="blender-official-previous-versions" data-intel-role="card">
     <div class="category-meta">
-     #13 · blender
+     #07 · blender
     </div>
     <h2>
-     Blender／DCC 製作：AI develo…te Patron 的製作重點
+     Blender Previous Versions：舊版下載、Source Archive 與相容性回溯
     </h2>
     <p class="summary">
-     這項工具的核心是 Blender（AI develo…te Patron），作用範圍落在 Blender。對 Blender 流程，應直接看它減少哪些手動步驟、提供哪些控制，以及是否能和既有 DCC／引擎資料交換方式共存。
+     Blender 官方長期保留歷代版本與 source archive，讓舊 .blend 專案可回到當時版本重現；頁面也提醒部分舊版需要特定硬體與作業系統，因此它更像 legacy pipeline 的回溯資源，而不是新功能更新。
+    </p>
+    <figure class="case-preview" data-intel-id="blender-official-previous-versions" data-intel-role="visual" data-visual-id="blender-official-previous-versions">
+     <a href="https://www.blender.org/download/previous-versions" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-10-01/blender-official-previous-versions.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">Blender</b> ★★★☆☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       技術／流程變更
+      </h4>
+      <p>
+       對長期專案而言，保留舊版執行環境很重要：當 add-on、Python API、shader 或模擬結果因升版改變時，可先用原版本確認問題來自資產本身還是版本差異，再決定 migration 策略。
+      </p>
+      <h4>
+       Production 影響
+      </h4>
+      <p>
+       團隊可把關鍵專案的 Blender 版本、add-on 版本與 Python 環境寫進 manifest，必要時從官方 archive 重建；比只保存 .blend 檔更能提高數年後重開案或修舊資產的成功率。
+      </p>
+      <h4>
+       導入測試與限制
+      </h4>
+      <p>
+       這個頁面本身不是 2026 的技術更新，資訊價值在版本保存與相容性追蹤；正式 production 仍應優先使用受支援的 Stable／LTS 版本，舊版只在重現與遷移情境使用。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://www.blender.org/download/previous-versions" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="cg-channel-ai-developer-anthropic-becomes-blenders-latest-corporate-pat" data-intel-role="card">
+    <div class="category-meta">
+     #10 · blender
+    </div>
+    <h2>
+     Blender 開發資助與 AI 自動化：Anthropic 捐款與 MCP 連接
+    </h2>
+    <p class="summary">
+     這則資訊主要是 Blender Development Fund 的企業贊助事件，後續已由年度 Patron 改為一次性捐款；較具製作關聯的是 Blender Lab 同期建立的 MCP Server，可讓 Claude 協助 scene debugging 或批次修改物件，且資金原先特別指向 Blender core 與 Python API。
     </p>
     <figure class="case-preview" data-intel-id="cg-channel-ai-developer-anthropic-becomes-blenders-latest-corporate-pat" data-intel-role="visual" data-visual-id="cg-channel-ai-developer-anthropic-becomes-blenders-latest-corporate-pat">
      <a href="https://www.cgchannel.com/2026/04/ai-developer-anthropic-becomes-blenders-latest-corporate-patron" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
@@ -369,19 +313,19 @@
        技術／流程變更
       </h4>
       <p>
-       工具主題是 Blender（AI develo…te Patron），主要作用在 Blender。需要看清楚它是取代既有手動步驟、補一個缺口，還是只是把原本功能換成另一個介面。
+       對 Technical Art 而言，值得拆開看兩件事：資助屬治理／資源面，MCP Server 才是可測的工具面；後者把自然語言指令接到 Blender 操作，適合評估 scene inspection、批次修正與規則化任務。
       </p>
       <h4>
        Production 影響
       </h4>
       <p>
-       對 Blender，可用一個真實任務比較 Blender（AI develo…te Patron） 導入前後的操作步驟、人工修正、輸出結果與交接成本；若工具能減少重複操作但增加資料轉換或版本依賴，總成本未必下降。
+       若要評估 MCP，應限制在可撤銷、可 review 的任務，例如命名檢查、物件屬性批修或場景診斷，再比較 Python script 與 AI agent 的可預測性、權限範圍及錯誤成本。
       </p>
       <h4>
        導入測試與限制
       </h4>
       <p>
-       Blender（AI develo…te Patron） 的工具介紹通常不會涵蓋所有 production 邊界條件；部署前仍需確認版本支援、檔案相容、批次處理、例外錯誤與團隊維護責任。
+       這不是 Blender 核心功能全面轉向 AI 的證據，且贊助狀態後來已調整；治理爭議與工具能力應分開判讀，實際導入仍以 MCP add-on 的權限、穩定性與資料安全為準。
       </p>
       <p class="analysis-level-note">
        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
@@ -394,13 +338,13 @@
    </article>
    <article class="category-card" data-intel-id="cg-channel-maxon-releases-cinema-4d-2026-4-with-a-new-mcp-server" data-intel-role="card">
     <div class="category-meta">
-     #15 · other-dcc
+     #12 · other-dcc
     </div>
     <h2>
-     Blender／DCC 製作：Maxon rel…CP Server 的製作重點
+     Cinema 4D 2026.4：官方 MCP 自然語言自動化介面
     </h2>
     <p class="summary">
-     這項工具的核心是 MCP Server、Cinema 4D，作用範圍落在 動畫。對 其他 DCC 流程，應直接看它減少哪些手動步驟、提供哪些控制，以及是否能和既有 DCC／引擎資料交換方式共存。
+     Cinema 4D 2026.4 新增官方 MCP Server，可把 Claude Desktop、ChatGPT Desktop 等外部 AI 接到 Cinema 4D，以自然語言執行程序化、反覆或重複任務；Server 預設關閉，可在本機運行，所有動作也會進 undo stack。
     </p>
     <figure class="case-preview" data-intel-id="cg-channel-maxon-releases-cinema-4d-2026-4-with-a-new-mcp-server" data-intel-role="visual" data-visual-id="cg-channel-maxon-releases-cinema-4d-2026-4-with-a-new-mcp-server">
      <a href="https://www.cgchannel.com/2026/09/maxon-releases-cinema-4d-2026-4-with-a-new-mcp-server" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
@@ -425,19 +369,19 @@
        技術／流程變更
       </h4>
       <p>
-       工具主題是 MCP Server、Cinema 4D，主要作用在 動畫。需要看清楚它是取代既有手動步驟、補一個缺口，還是只是把原本功能換成另一個介面。
+       對 Motion／3D 團隊，MCP 最適合先處理可描述、可驗證、可撤銷的重複工作，例如批次調整物件、建立規則化場景操作或快速迭代參數，而不是把造型判斷與最終視覺決策交給模型。
       </p>
       <h4>
        Production 影響
       </h4>
       <p>
-       對 其他 DCC，可用一個真實任務比較 MCP Server、Cinema 4D 導入前後的操作步驟、人工修正、輸出結果與交接成本；若工具能減少重複操作但增加資料轉換或版本依賴，總成本未必下降。
+       實測時可把同一個批次任務分別用手動、Python／Script 與 MCP 完成，量測步驟、錯誤率、回退能力與維護成本，才能判斷自然語言介面是否真的比既有 automation 更有效率。
       </p>
       <h4>
        導入測試與限制
       </h4>
       <p>
-       MCP Server、Cinema 4D 的工具介紹通常不會涵蓋所有 production 邊界條件；部署前仍需確認版本支援、檔案相容、批次處理、例外錯誤與團隊維護責任。
+       MCP Server 只在完整版 Cinema 4D 提供，不適用 Lite、Team Render 或 command-line render；若連雲端 AI，還要另外評估場景資料外送、權限與公司資產保密規範。
       </p>
       <p class="analysis-level-note">
        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
@@ -448,19 +392,19 @@
      來源 ↗
     </a>
    </article>
-   <article class="category-card" data-intel-id="3dnchu-blockblender-2-0" data-intel-role="card">
+   <article class="category-card" data-intel-id="blender-official-behind-the-scenes-nashville-international-airport" data-intel-role="card">
     <div class="category-meta">
-     #18 · blender
+     #13 · blender
     </div>
     <h2>
-     Blender／DCC 製作：BlockBlen….schem統合！ 的製作重點
+     Nashville 機場巨型螢幕：Blender 程序化與跨軟體製作流程
     </h2>
     <p class="summary">
-     這則內容主要談 Blender（BlockBlen….schem統合！），與 Blender 的製作實作直接相關。它能提供具體方法或結果作為對照，但仍要區分哪些是可複用流程、哪些只成立於單一作品或特定專案條件。
+     Gentilhomme 為 Nashville 機場兩面最高 11200×2160 的巨型 LED 螢幕製作超過 40 分鐘內容，其中 6 段全 CGI 使用 Blender；Geometry Nodes 負責大量程序化排列，也接收 Maya／Substance 的 OBJ＋4K UDIM 與 Houdini 模擬，最後以 Cycles multipass EXR 進 After Effects。
     </p>
-    <figure class="case-preview" data-intel-id="3dnchu-blockblender-2-0" data-intel-role="visual" data-visual-id="3dnchu-blockblender-2-0">
-     <a href="https://3dnchu.com/archives/blockblender-2-0" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
-      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-10-01/3dnchu-blockblender-2-0.jpg"/>
+    <figure class="case-preview" data-intel-id="blender-official-behind-the-scenes-nashville-international-airport" data-intel-role="visual" data-visual-id="blender-official-behind-the-scenes-nashville-international-airport">
+     <a href="https://www.blender.org/user-stories/behind-the-scenes-nashville-international-airport" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-10-01/blender-official-behind-the-scenes-nashville-international-airport.jpg"/>
      </a>
      <figcaption>
       <span>
@@ -470,7 +414,7 @@
      </figcaption>
     </figure>
     <div class="quick-impact">
-     <span><b class="quick-impact-label">Blender</b> ★★☆☆☆</span>
+     <span><b class="quick-impact-label">Blender</b> ★★★☆☆</span>
     </div>
     <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
      <summary>
@@ -481,262 +425,38 @@
        技術／流程變更
       </h4>
       <p>
-       內容重點落在 Blender（BlockBlen….schem統合！），並涉及 Blender。先辨認文章實際展示的是方法、工具能力還是單一作品結果，才能避免把展示效果誤當成可直接複製的流程。
+       案例顯示 Blender 在這裡不是孤立 DCC，而是 pipeline hub：外部模型、UDIM、Houdini simulation 都可進場景與 Geometry Nodes，再由 Cycles 統一輸出；團隊甚至自製 render script 管理檔名、frame mapping、Deadline 與 multipass。
       </p>
       <h4>
        Production 影響
       </h4>
       <p>
-       對 Blender，可以把 Blender（BlockBlen….schem統合！） 的做法或結果對照目前 pipeline，找出它可能影響的操作、交接或品質檢查點；只有能對應到真實工作步驟的部分，才值得進一步投入測試。
+       對跨 DCC 場景團隊，最值得借鏡的是把「容易改的東西留到最便宜的階段」：例如燈光時序先分層輸出，再在 comp retime，而不是每次修改都重新做高解析 3D render。
       </p>
       <h4>
        導入測試與限制
       </h4>
       <p>
-       Blender（BlockBlen….schem統合！） 目前只有單一來源可供參考，通常不足以證明跨專案穩定性；若要正式導入，仍需補做版本、資產規模與輸出條件的驗證。
+       超寬螢幕與長鏡頭讓這個專案的 render farm、採樣與細節需求遠高於一般遊戲畫面；方法可借鏡，但 20 台 render node、超高解析 EXR 與離線 Cycles 成本不能直接套到即時引擎預算。
       </p>
       <p class="analysis-level-note">
        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
       </p>
      </div>
     </details>
-    <a class="source" href="https://3dnchu.com/archives/blockblender-2-0" rel="noopener noreferrer" target="_blank">
-     來源 ↗
-    </a>
-   </article>
-   <article class="category-card" data-intel-id="3dnchu-project-titan-sidefx" data-intel-role="card">
-    <div class="category-meta">
-     #19 · houdini
-    </div>
-    <h2>
-     Blender／DCC 製作：Project T…FX公式順次公開！ 的製作重點
-    </h2>
-    <p class="summary">
-     這則內容主要談 Unreal Engine、Houdini（Project T…FX公式順次公開！），與 Unreal Engine、Houdini 的製作實作直接相關。它能提供具體方法或結果作為對照，但仍要區分哪些是可複用流程、哪些只成立於單一作品或特定專案條件。
-    </p>
-    <figure class="case-preview" data-intel-id="3dnchu-project-titan-sidefx" data-intel-role="visual" data-visual-id="3dnchu-project-titan-sidefx">
-     <a href="https://3dnchu.com/archives/project-titan-sidefx" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
-      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-10-01/3dnchu-project-titan-sidefx.jpg"/>
-     </a>
-     <figcaption>
-      <span>
-       SOURCE PREVIEW
-      </span>
-      · Local visual evidence · 點圖開啟原始來源
-     </figcaption>
-    </figure>
-    <div class="quick-impact">
-     <span><b class="quick-impact-label">Houdini</b> ★★☆☆☆</span>
-    </div>
-    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
-     <summary>
-      完整分析
-     </summary>
-     <div class="detail-body canonical-analysis-body brief-analysis-body">
-      <h4>
-       技術／流程變更
-      </h4>
-      <p>
-       內容重點落在 Unreal Engine、Houdini（Project T…FX公式順次公開！），並涉及 Unreal Engine、Houdini。先辨認文章實際展示的是方法、工具能力還是單一作品結果，才能避免把展示效果誤當成可直接複製的流程。
-      </p>
-      <h4>
-       Production 影響
-      </h4>
-      <p>
-       對 Houdini，可以把 Unreal Engine、Houdini（Project T…FX公式順次公開！） 的做法或結果對照目前 pipeline，找出它可能影響的操作、交接或品質檢查點；只有能對應到真實工作步驟的部分，才值得進一步投入測試。
-      </p>
-      <h4>
-       導入測試與限制
-      </h4>
-      <p>
-       Unreal Engine、Houdini（Project T…FX公式順次公開！） 目前只有單一來源可供參考，通常不足以證明跨專案穩定性；若要正式導入，仍需補做版本、資產規模與輸出條件的驗證。
-      </p>
-      <p class="analysis-level-note">
-       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
-      </p>
-     </div>
-    </details>
-    <a class="source" href="https://3dnchu.com/archives/project-titan-sidefx" rel="noopener noreferrer" target="_blank">
-     來源 ↗
-    </a>
-   </article>
-   <article class="category-card" data-intel-id="3dnchu-true-terrain-5" data-intel-role="card">
-    <div class="category-meta">
-     #21 · blender
-    </div>
-    <h2>
-     Blender／DCC 製作：True TERR…（$49）」無料！ 的製作重點
-    </h2>
-    <p class="summary">
-     這則內容主要談 VFX、Blender（True TERR…（$49）」無料！），與 VFX、Blender 的製作實作直接相關。它能提供具體方法或結果作為對照，但仍要區分哪些是可複用流程、哪些只成立於單一作品或特定專案條件。
-    </p>
-    <figure class="case-preview" data-intel-id="3dnchu-true-terrain-5" data-intel-role="visual" data-visual-id="3dnchu-true-terrain-5">
-     <a href="https://3dnchu.com/archives/true-terrain-5" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
-      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-10-01/3dnchu-true-terrain-5.jpg"/>
-     </a>
-     <figcaption>
-      <span>
-       SOURCE PREVIEW
-      </span>
-      · Local visual evidence · 點圖開啟原始來源
-     </figcaption>
-    </figure>
-    <div class="quick-impact">
-     <span><b class="quick-impact-label">Blender</b> ★★☆☆☆</span>
-    </div>
-    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
-     <summary>
-      完整分析
-     </summary>
-     <div class="detail-body canonical-analysis-body brief-analysis-body">
-      <h4>
-       技術／流程變更
-      </h4>
-      <p>
-       內容重點落在 VFX、Blender（True TERR…（$49）」無料！），並涉及 VFX、Blender。先辨認文章實際展示的是方法、工具能力還是單一作品結果，才能避免把展示效果誤當成可直接複製的流程。
-      </p>
-      <h4>
-       Production 影響
-      </h4>
-      <p>
-       對 Blender，可以把 VFX、Blender（True TERR…（$49）」無料！） 的做法或結果對照目前 pipeline，找出它可能影響的操作、交接或品質檢查點；只有能對應到真實工作步驟的部分，才值得進一步投入測試。
-      </p>
-      <h4>
-       導入測試與限制
-      </h4>
-      <p>
-       VFX、Blender（True TERR…（$49）」無料！） 目前只有單一來源可供參考，通常不足以證明跨專案穩定性；若要正式導入，仍需補做版本、資產規模與輸出條件的驗證。
-      </p>
-      <p class="analysis-level-note">
-       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
-      </p>
-     </div>
-    </details>
-    <a class="source" href="https://3dnchu.com/archives/true-terrain-5" rel="noopener noreferrer" target="_blank">
-     來源 ↗
-    </a>
-   </article>
-   <article class="category-card" data-intel-id="3dnchu-univ-v1-2" data-intel-role="card">
-    <div class="category-meta">
-     #22 · blender
-    </div>
-    <h2>
-     Blender／DCC 製作：UniV v1.2…r！無料入手可能！ 的製作重點
-    </h2>
-    <p class="summary">
-     這則內容主要談 UV、Blender（UniV v1.2…r！無料入手可能！），與 UV、Blender 的製作實作直接相關。它能提供具體方法或結果作為對照，但仍要區分哪些是可複用流程、哪些只成立於單一作品或特定專案條件。
-    </p>
-    <figure class="case-preview" data-intel-id="3dnchu-univ-v1-2" data-intel-role="visual" data-visual-id="3dnchu-univ-v1-2">
-     <a href="https://3dnchu.com/archives/univ-v1-2" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
-      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-10-01/3dnchu-univ-v1-2.jpg"/>
-     </a>
-     <figcaption>
-      <span>
-       SOURCE PREVIEW
-      </span>
-      · Local visual evidence · 點圖開啟原始來源
-     </figcaption>
-    </figure>
-    <div class="quick-impact">
-     <span><b class="quick-impact-label">Blender</b> ★★☆☆☆</span>
-    </div>
-    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
-     <summary>
-      完整分析
-     </summary>
-     <div class="detail-body canonical-analysis-body brief-analysis-body">
-      <h4>
-       技術／流程變更
-      </h4>
-      <p>
-       內容重點落在 UV、Blender（UniV v1.2…r！無料入手可能！），並涉及 UV、Blender。先辨認文章實際展示的是方法、工具能力還是單一作品結果，才能避免把展示效果誤當成可直接複製的流程。
-      </p>
-      <h4>
-       Production 影響
-      </h4>
-      <p>
-       對 Blender，可以把 UV、Blender（UniV v1.2…r！無料入手可能！） 的做法或結果對照目前 pipeline，找出它可能影響的操作、交接或品質檢查點；只有能對應到真實工作步驟的部分，才值得進一步投入測試。
-      </p>
-      <h4>
-       導入測試與限制
-      </h4>
-      <p>
-       UV、Blender（UniV v1.2…r！無料入手可能！） 目前只有單一來源可供參考，通常不足以證明跨專案穩定性；若要正式導入，仍需補做版本、資產規模與輸出條件的驗證。
-      </p>
-      <p class="analysis-level-note">
-       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
-      </p>
-     </div>
-    </details>
-    <a class="source" href="https://3dnchu.com/archives/univ-v1-2" rel="noopener noreferrer" target="_blank">
-     來源 ↗
-    </a>
-   </article>
-   <article class="category-card" data-intel-id="3dnchu-xmd-lifetime-membership" data-intel-role="card">
-    <div class="category-meta">
-     #23 · substance
-    </div>
-    <h2>
-     Blender／DCC 製作：XMD Lifet…Brush用管理！ 的製作重點
-    </h2>
-    <p class="summary">
-     這則內容主要談 Substance（XMD Lifet…Brush用管理！），與 Substance 的製作實作直接相關。它能提供具體方法或結果作為對照，但仍要區分哪些是可複用流程、哪些只成立於單一作品或特定專案條件。
-    </p>
-    <figure class="case-preview" data-intel-id="3dnchu-xmd-lifetime-membership" data-intel-role="visual" data-visual-id="3dnchu-xmd-lifetime-membership">
-     <a href="https://3dnchu.com/archives/xmd-lifetime-membership" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
-      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-10-01/3dnchu-xmd-lifetime-membership.jpg"/>
-     </a>
-     <figcaption>
-      <span>
-       SOURCE PREVIEW
-      </span>
-      · Local visual evidence · 點圖開啟原始來源
-     </figcaption>
-    </figure>
-    <div class="quick-impact">
-     <span><b class="quick-impact-label">Substance</b> ★★☆☆☆</span>
-    </div>
-    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
-     <summary>
-      完整分析
-     </summary>
-     <div class="detail-body canonical-analysis-body brief-analysis-body">
-      <h4>
-       技術／流程變更
-      </h4>
-      <p>
-       內容重點落在 Substance（XMD Lifet…Brush用管理！），並涉及 Substance。先辨認文章實際展示的是方法、工具能力還是單一作品結果，才能避免把展示效果誤當成可直接複製的流程。
-      </p>
-      <h4>
-       Production 影響
-      </h4>
-      <p>
-       對 Substance，可以把 Substance（XMD Lifet…Brush用管理！） 的做法或結果對照目前 pipeline，找出它可能影響的操作、交接或品質檢查點；只有能對應到真實工作步驟的部分，才值得進一步投入測試。
-      </p>
-      <h4>
-       導入測試與限制
-      </h4>
-      <p>
-       Substance（XMD Lifet…Brush用管理！） 目前只有單一來源可供參考，通常不足以證明跨專案穩定性；若要正式導入，仍需補做版本、資產規模與輸出條件的驗證。
-      </p>
-      <p class="analysis-level-note">
-       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
-      </p>
-     </div>
-    </details>
-    <a class="source" href="https://3dnchu.com/archives/xmd-lifetime-membership" rel="noopener noreferrer" target="_blank">
+    <a class="source" href="https://www.blender.org/user-stories/behind-the-scenes-nashville-international-airport" rel="noopener noreferrer" target="_blank">
      來源 ↗
     </a>
    </article>
    <article class="category-card" data-intel-id="80-level-artist-shares-free-blender-rig-of-rumi-from-kpop-demon-hunte" data-intel-role="card">
     <div class="category-meta">
-     #24 · blender
+     #15 · blender
     </div>
     <h2>
-     Blender／DCC 製作：Artist Sh…n Hunters 的製作重點
+     Rumi 免費 Blender Rig：動態動作與 Facial Expression 測試素材
     </h2>
     <p class="summary">
-     這則內容主要談 可下載 Rig（Artist Sh…n Hunters），與 Blender 的製作實作直接相關。它能提供具體方法或結果作為對照，但仍要區分哪些是可複用流程、哪些只成立於單一作品或特定專案條件。
+     A$AP BERG 分享《KPop Demon Hunters》Rumi 的免費 Blender Rig；目前是 test version，但已能支援角色動態姿勢與情緒化臉部表情，作者也展示早期 setup，並計畫延伸到 Zoe、Mira 等角色。
     </p>
     <figure class="case-preview" data-intel-id="80-level-artist-shares-free-blender-rig-of-rumi-from-kpop-demon-hunte" data-intel-role="visual" data-visual-id="80-level-artist-shares-free-blender-rig-of-rumi-from-kpop-demon-hunte">
      <a href="https://80.lv/articles/artist-shares-free-blender-rig-of-rumi-from-kpop-demon-hunters" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
@@ -761,19 +481,19 @@
        技術／流程變更
       </h4>
       <p>
-       內容重點落在 可下載 Rig（Artist Sh…n Hunters），並涉及 Blender。先辨認文章實際展示的是方法、工具能力還是單一作品結果，才能避免把展示效果誤當成可直接複製的流程。
+       這份 Rig 的價值在於可直接拿來觀察 stylized character 的 body control 與 facial range 如何共存，而不是只看最終 posing 圖；對做二次元／卡通角色 Rig 的團隊，可作為控制器密度與表情幅度參考。
       </p>
       <h4>
        Production 影響
       </h4>
       <p>
-       對 Blender，可以把 可下載 Rig（Artist Sh…n Hunters） 的做法或結果對照目前 pipeline，找出它可能影響的操作、交接或品質檢查點；只有能對應到真實工作步驟的部分，才值得進一步投入測試。
+       可先用既有 animation checklist 測肩髖大幅度動作、極端臉部表情、輪廓保持與 animator 操作負擔，再和自家 Rig 的 control 數量、修形需求與 pose 速度比較。
       </p>
       <h4>
        導入測試與限制
       </h4>
       <p>
-       可下載 Rig（Artist Sh…n Hunters） 目前只有單一來源可供參考，通常不足以證明跨專案穩定性；若要正式導入，仍需補做版本、資產規模與輸出條件的驗證。
+       作者明確把它稱為測試版，因此控制器命名、變形穩定度、版本相容與正式授權用途都需要自行確認；適合研究與 benchmark，不應直接當成 production-ready 標準 Rig。
       </p>
       <p class="analysis-level-note">
        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。

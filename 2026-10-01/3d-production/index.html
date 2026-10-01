@@ -58,13 +58,13 @@
   <main class="page category-main">
    <article class="category-card" data-intel-id="80-level-check-out-this-comic-book-style-game-with-only-four-colors-u" data-intel-role="card">
     <div class="category-meta">
-     #02 · character-production
+     #01 · character-production
     </div>
     <h2>
-     3D 資產製作：Check Out…lors Used 的製作重點
+     SUMIGIRI：四色限制下的 Unity 漫畫風 3D 動作遊戲
     </h2>
     <p class="summary">
-     這則內容主要談 戰場環境、四色限制、漫畫風格，與 角色製作 的製作實作直接相關。它能提供具體方法或結果作為對照，但仍要區分哪些是可複用流程、哪些只成立於單一作品或特定專案條件。
+     Kenji Ma 的 Game Jam 作品 SUMIGIRI 以 Unity 製作，除黑白外只能使用四個指定色，並可調整明度與飽和度；角色以巨大畫筆潑墨戰鬥，讓色彩限制同時影響畫面辨識與玩法表現。
     </p>
     <figure class="case-preview" data-intel-id="80-level-check-out-this-comic-book-style-game-with-only-four-colors-u" data-intel-role="visual" data-visual-id="80-level-check-out-this-comic-book-style-game-with-only-four-colors-u">
      <a href="https://80.lv/articles/check-out-this-comic-book-style-game-with-only-four-colors-used" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
@@ -89,19 +89,19 @@
        技術／流程變更
       </h4>
       <p>
-       內容重點落在 戰場環境、四色限制、漫畫風格，並涉及 角色製作。先辨認文章實際展示的是方法、工具能力還是單一作品結果，才能避免把展示效果誤當成可直接複製的流程。
+       這個案例把四色 palette 限制直接放進 3D 場景與戰鬥設計：角色、敵人、墨跡與戰場都必須在極少色彩下維持層次，因此重點是明暗、輪廓與飽和度控制，而不是單純套一層漫畫 Shader。
       </p>
       <h4>
        Production 影響
       </h4>
       <p>
-       對 角色製作，可以把 戰場環境、四色限制、漫畫風格 的做法或結果對照目前 pipeline，找出它可能影響的操作、交接或品質檢查點；只有能對應到真實工作步驟的部分，才值得進一步投入測試。
+       對 Stylized／Unity 團隊，可把它當成「先定視覺預算再做資產」的案例：先鎖定 palette，再檢查角色、特效與背景的辨識度，能提早發現過度依賴顏色數量才能成立的材質與 VFX。
       </p>
       <h4>
        導入測試與限制
       </h4>
       <p>
-       戰場環境、四色限制、漫畫風格 目前只有單一來源可供參考，通常不足以證明跨專案穩定性；若要正式導入，仍需補做版本、資產規模與輸出條件的驗證。
+       這是單人 Game Jam 專案，能證明限制式美術方向可成立，但不代表已涵蓋大型關卡、多人協作、完整 UI 與多種光照條件；量產前仍要補測不同場景明暗下的可讀性。
       </p>
       <p class="analysis-level-note">
        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
@@ -114,13 +114,13 @@
    </article>
    <article class="category-card" data-intel-id="cg-channel-see-how-framestore-created-a-cg-battlefield-for-lioness-seas" data-intel-role="card">
     <div class="category-meta">
-     #10 · environment-production
+     #06 · environment-production
     </div>
     <h2>
-     3D 資產製作：See how F…Season 3 的製作重點
+     《Lioness》S3：Framestore 以全 3D 戰場支撐 180 鏡頭視差與尺度
     </h2>
     <p class="summary">
-     這篇案例把 戰場環境（See how F…Season 3） 放回實際 production 中拆解，涉及 場景製作。可從中觀察素材準備、製作決策與最終畫面之間的關係，適合拿來對照團隊現有做法，而不是只看成品展示。
+     Framestore 為《Lioness》第三季建立可與 138 英畝實景銜接的 CG 戰場；因 180 個鏡頭有大量攝影機運動，團隊採完整 3D 方案維持 parallax 與尺度，並製作壕溝、殘骸、無人機、爆炸及三個時段的環境變化。
     </p>
     <figure class="case-preview" data-intel-id="cg-channel-see-how-framestore-created-a-cg-battlefield-for-lioness-seas" data-intel-role="visual" data-visual-id="cg-channel-see-how-framestore-created-a-cg-battlefield-for-lioness-seas">
      <a href="https://www.cgchannel.com/2026/09/see-how-framestore-created-a-cg-battlefield-for-lioness-season-3" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
@@ -145,19 +145,19 @@
        技術／流程變更
       </h4>
       <p>
-       案例拆解的重點是 戰場環境（See how F…Season 3），可從 場景製作 看出製作選擇如何累積到最終畫面。比單看成品更有價值的是辨認哪些步驟依賴特定素材、工具或人工判斷。
+       這類大型環境的關鍵不是單一 hero shot，而是同一戰場必須承受 180 個攝影機角度與三種時間條件；因此 CG、FX、DMP、Comp 必須共享尺度、地形與 lighting 基準，否則跨鏡頭很容易出現接縫。
       </p>
       <h4>
        Production 影響
       </h4>
       <p>
-       對 場景製作，可把 戰場環境（See how F…Season 3） 的關鍵節點對應到自家 pipeline：哪些能直接複用、哪些需要工具化、哪些只適合 hero asset 或特定鏡頭，這比照搬整套流程更實際。
+       對大型場景團隊，可借鏡其「先建立可跨鏡頭成立的 3D 基底，再讓 FX／DMP／Comp 延伸」的分工方式；尤其適合檢查地形、破壞物、煙火與遠景是否能在不同鏡頭共用，而非逐鏡頭重做。
       </p>
       <h4>
        導入測試與限制
       </h4>
       <p>
-       戰場環境（See how F…Season 3） 的案例文章通常缺少完整工時、版本矩陣與失敗樣本，因此適合作為方法參考，不適合直接換算成本或效能收益；仍需用相近資產規模做內部驗證。
+       這是影視 VFX 場景，資產密度與鏡頭需求不同於即時遊戲；若轉到 Unreal／Unity，仍需另做 LOD、streaming、碰撞與 runtime FX 預算評估，不能直接照搬離線渲染配置。
       </p>
       <p class="analysis-level-note">
        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
@@ -170,13 +170,13 @@
    </article>
    <article class="category-card" data-intel-id="cg-channel-foundry-ships-modo-14-2" data-intel-role="card">
     <div class="category-meta">
-     #11 · character-production
+     #08 · character-production
     </div>
     <h2>
-     3D 資產製作：Foundry s…Modo 14.2 的製作重點
+     Modo 14.2：角色直接操控、USD 匯出與 Cryptomatte 工作流
     </h2>
     <p class="summary">
-     這次更新聚焦 Modo 14.2（Foundry s…Modo 14.2），涉及 Rendering。對 角色製作 而言，重點是新增能力實際介入 authoring、資產交換或輸出的哪一段，以及升版後是否會改變既有設定與相容性。
+     Modo 14.2 加入 Rig Clay，可直接在角色表面拖曳 Command Region 觸發 Deformer，不必一直找控制器；同版也加入 USD Export、原生 Cryptomatte、mPath 暫停續算，以及 retopo viewport 與 UV real-world scale 改善。
     </p>
     <figure class="case-preview" data-intel-id="cg-channel-foundry-ships-modo-14-2" data-intel-role="visual" data-visual-id="cg-channel-foundry-ships-modo-14-2">
      <a href="https://www.cgchannel.com/2020/11/foundry-ships-modo-14-2" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
@@ -201,19 +201,19 @@
        技術／流程變更
       </h4>
       <p>
-       更新內容集中在 Modo 14.2（Foundry s…Modo 14.2），並牽涉 Rendering。這類變更要先釐清新增能力位於 authoring、資產交換還是輸出端，因為同樣叫「新功能」，對美術工作量與既有專案的影響可能完全不同。
+       Rig Clay 的重點是把 pose 操作從控制器位置轉成角色表面語意區域，能降低複雜 Rig 的操作門檻；USD Export 與 Cryptomatte 則分別補強跨 DCC 資料交換與 compositing ID matte 流程。
       </p>
       <h4>
        Production 影響
       </h4>
       <p>
-       在 角色製作 流程裡，可用同一份代表性資產做升版前後對照：記錄操作步驟、手動修正次數、輸出一致性與相容性，確認 Modo 14.2（Foundry s…Modo 14.2） 是否真的降低成本，或只是增加另一套設定。
+       若有舊 Modo pipeline，可用實際角色測 Rig Clay 的選取／姿勢效率，再用同一 asset 測 USD 到下游 DCC 的 mesh、instance、joint animation、camera 與 Principled material 保留程度。
       </p>
       <h4>
        導入測試與限制
       </h4>
       <p>
-       目前資訊能確認 Modo 14.2（Foundry s…Modo 14.2） 的功能方向，但不能直接推定大型專案的穩定性、效能或插件相容性；若會改動既有資料格式或版本依賴，導入前仍需做舊檔與回退測試。
+       USD 支援並非完整：Portal／Mesh light 不支援，角色 Rig 也可能需要重整才可在其他軟體正確工作；而且 14.2 已是舊版本，應把它視為歷史功能參考，而不是現行採購依據。
       </p>
       <p class="analysis-level-note">
        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
