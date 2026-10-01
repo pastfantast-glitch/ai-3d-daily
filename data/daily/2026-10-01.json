@@ -8,7 +8,7 @@
     "preference_contract_effective_date": "2026-09-06",
     "admission_policy_effective_date": "2026-09-15",
     "collector_runtime": "autonomous-github-collector-v1",
-    "policy_recollect": false,
+    "policy_recollect": true,
     "discovery_windows": [
       "24h",
       "7d",
@@ -28,9 +28,17 @@
     "editorial": {
       "contract": "source-grounded-editorial-v1",
       "style_reference": "2026-09-25",
-      "selection_changed": null,
+      "selection_changed": false,
+      "repair_reason": "Restore the previously verified 15-item 2026-10-01 selection and replace shallow generic copy with source-reviewed, production-dense descriptions without changing IDs, source URLs, ranks or classifications.",
+      "source_reverified_count": 15,
+      "source_live_reverified_count": 15,
+      "source_verified_done_fallback_count": 0,
+      "source_verified_done_fallback_ids": [],
+      "source_review_method": "external-source-review-plus-verified-DONE-identity",
+      "selection_fingerprint": "33802c9ccf8af09eba11c3b712c44b8230256ca330a4a019f51c57fe47a96ba3",
       "factual_fallback_allowed": true,
-      "repair_mode": "automatic-source-factual-fallback"
+      "repair_mode": "historical-verified-selection-restore-source-reverified",
+      "restored_from_verified_receipt_commit": "a0a066a58f43e5b3aa1570d9c3d547ffcf0519da"
     },
     "discovery_coverage": {
       "fill_ladder_exhausted": true,
@@ -265,7 +273,7 @@
           }
         }
       },
-      "notes": "2026-10-01 autonomous GitHub Collector loaded the Published Registry snapshot before discovery, supplemented it from verified-DONE history when needed, checked rolling backlog, executed the current-main deterministic registered-source probe plan, crawled configured source indexes plus a bounded source-grounded targeted refill, and applied exact source/stable identity dedupe before ranking. Registry audit: {\"history_supplemented_items\": 0, \"latest_verified_done\": \"2026-09-30\", \"snapshot_generated_through\": \"2026-09-30\", \"snapshot_state\": \"DERIVED_FROM_VERIFIED_DONE\", \"source_identities\": 671, \"stable_ids\": 670}. Backlog entries rechecked=0. No source registration/domain supplied ranking bonus, quota or admission bypass."
+      "notes": "2026-10-01 autonomous GitHub Collector loaded the Published Registry snapshot before discovery, supplemented it from verified-DONE history when needed, checked rolling backlog, executed the current-main deterministic registered-source probe plan, crawled configured source indexes plus a bounded source-grounded targeted refill, and applied exact source/stable identity dedupe before ranking. Registry audit: {\"history_supplemented_items\": 0, \"latest_verified_done\": \"2026-09-30\", \"snapshot_generated_through\": \"2026-09-30\", \"snapshot_state\": \"DERIVED_FROM_VERIFIED_DONE\", \"source_identities\": 671, \"stable_ids\": 670}. Backlog entries rechecked=0. No source registration/domain supplied ranking bonus, quota or admission bypass. 2026-10-01 editorial-only policy recollect preserved all 15 canonical IDs, source URLs, ranks and classifications; sources reverified before copy replacement (live=15, verified-DONE+external-review fallback=0)."
     },
     "personalization": {
       "contract": "supabase-semantic-feedback-v1",
@@ -285,8 +293,8 @@
   "items": [
     {
       "id": "80-level-check-out-this-comic-book-style-game-with-only-four-colors-u",
-      "title": "3D 資產製作：Check Out…lors Used 的製作重點",
-      "summary": "這則內容聚焦 角色製作 的製作應用。對 角色製作 流程，先看它實際改變哪些操作、交換或輸出步驟，再決定是否納入現有 SOP。",
+      "title": "SUMIGIRI：四色限制下的 Unity 漫畫風 3D 動作遊戲",
+      "summary": "Kenji Ma 的 Game Jam 作品 SUMIGIRI 以 Unity 製作，除黑白外只能使用四個指定色，並可調整明度與飽和度；角色以巨大畫筆潑墨戰鬥，讓色彩限制同時影響畫面辨識與玩法表現。",
       "quick_impact": "★★★★☆",
       "source_url": "https://80.lv/articles/check-out-this-comic-book-style-game-with-only-four-colors-used",
       "category": "3d-production",
@@ -297,15 +305,15 @@
       "full_analysis": [
         {
           "label": "技術／流程變更",
-          "text": "「3D 資產製作：Check Out…lors Used 的製作重點」聚焦 角色製作，可先從 實際製作 角度拆解它對現有製作流程的實際變化。"
+          "text": "這個案例把四色 palette 限制直接放進 3D 場景與戰鬥設計：角色、敵人、墨跡與戰場都必須在極少色彩下維持層次，因此重點是明暗、輪廓與飽和度控制，而不是單純套一層漫畫 Shader。"
         },
         {
           "label": "Production 影響",
-          "text": "針對「3D 資產製作：Check Out…lors Used 的製作重點」，角色製作 團隊應先用小規模案例確認它解決的是 authoring、交換、品質控制還是 runtime 問題，再決定導入範圍。"
+          "text": "對 Stylized／Unity 團隊，可把它當成「先定視覺預算再做資產」的案例：先鎖定 palette，再檢查角色、特效與背景的辨識度，能提早發現過度依賴顏色數量才能成立的材質與 VFX。"
         },
         {
           "label": "導入測試與限制",
-          "text": "若要把「3D 資產製作：Check Out…lors Used 的製作重點」納入 production，仍需用實際 DCC／引擎版本、代表性資產與目標輸出驗證；單一案例、展示或宣傳頁不能直接當成固定工時、品質或效能收益。"
+          "text": "這是單人 Game Jam 專案，能證明限制式美術方向可成立，但不代表已涵蓋大型關卡、多人協作、完整 UI 與多種光照條件；量產前仍要補測不同場景明暗下的可讀性。"
         }
       ],
       "rank_global": 1,
@@ -313,8 +321,8 @@
     },
     {
       "id": "80-level-marmoset-toolbag-inspired-texture-baking-add-on-released-for",
-      "title": "Blender／DCC 製作：Marmoset…r Blender 的製作重點",
-      "summary": "這項工具聚焦 貼圖／材質、烘焙、Blender 的製作應用。對 Blender 流程，先看它實際改變哪些操作、交換或輸出步驟，再決定是否納入現有 SOP。",
+      "title": "Fyr Baker：把 Marmoset 式貼圖烘焙流程帶進 Blender",
+      "summary": "Fyr Baker 把 Marmoset Toolbag 類型的專用烘焙流程帶進 Blender：設定可保存在場景內，支援背景 GPU 烘焙、高低模投射、包覆網格、環境遮蔽、曲率與 ID 等貼圖，並可依 Substance Painter、Unreal、Unity 流程整理輸出。",
       "quick_impact": "★★★★☆",
       "source_url": "https://80.lv/articles/marmoset-toolbag-inspired-texture-baking-add-on-released-for-blender",
       "category": "blender-dcc",
@@ -325,15 +333,15 @@
       "full_analysis": [
         {
           "label": "技術／流程變更",
-          "text": "「Blender／DCC 製作：Marmoset…r Blender 的製作重點」聚焦 貼圖／材質、烘焙、Blender，可先從 實際製作 角度拆解它對現有製作流程的實際變化。"
+          "text": "它的核心不是單純增加一個 Bake 按鈕，而是把 Marmoset Toolbag 式的迭代方式搬進 Blender：設定留在場景、結果可預覽，cage 可直接調整，修改模型後只需重烘需要的 maps，不必來回切換獨立軟體。"
         },
         {
           "label": "Production 影響",
-          "text": "針對「Blender／DCC 製作：Marmoset…r Blender 的製作重點」，Blender 團隊應先用小規模案例確認它解決的是 authoring、交換、品質控制還是 runtime 問題，再決定導入範圍。"
+          "text": "對角色／道具 Texture 流程，可直接拿同一個 high-low asset 比較 Blender 原生、Fyr Baker 與既有 Marmoset／Substance 路徑，記錄 cage 調整、批次輸出、命名與引擎 preset 是否真的減少人工步驟。"
         },
         {
           "label": "導入測試與限制",
-          "text": "若要把「Blender／DCC 製作：Marmoset…r Blender 的製作重點」納入 production，仍需用實際 DCC／引擎版本、代表性資產與目標輸出驗證；單一案例、展示或宣傳頁不能直接當成固定工時、品質或效能收益。"
+          "text": "目前 add-on 需求為 Blender 5.1 以上，GPU 加速效果也與平台／顯卡支援有關；正式導入仍要測 UDIM、複雜材質節點、批次資產與失敗重烘時的穩定性。"
         }
       ],
       "rank_global": 2,
@@ -341,8 +349,8 @@
     },
     {
       "id": "80-level-the-long-awaited-shape-keys-for-blender-s-grease-pencil-test",
-      "title": "Blender／DCC 製作：The Long-…acter Rig 的製作重點",
-      "summary": "這項工具聚焦 Blender 的製作應用。對 Blender 流程，先看它實際改變哪些操作、交換或輸出步驟，再決定是否納入現有 SOP。",
+      "title": "Blender Grease Pencil Shape Keys：角色 Rig 實測與目前限制",
+      "summary": "Grease Pencil 的 Shape Keys 可用 Bézier 曲線保存並快速切換 2D 形狀狀態，Mumu Mundo 也把它接到角色 Rig 實測；目前仍有控制點難選、Edit Mode 只能看單一 Shape Key、Armature／Driver 互動與大幅變形填色失真的問題。",
       "quick_impact": "★★★★☆",
       "source_url": "https://80.lv/articles/the-long-awaited-shape-keys-for-blender-s-grease-pencil-tested-on-a-character-rig",
       "category": "blender-dcc",
@@ -353,15 +361,15 @@
       "full_analysis": [
         {
           "label": "技術／流程變更",
-          "text": "「Blender／DCC 製作：The Long-…acter Rig 的製作重點」聚焦 Blender，可先從 實際製作 角度拆解它對現有製作流程的實際變化。"
+          "text": "對 2D rigging 來說，Shape Keys 讓嘴型、表情或局部輪廓不必完全依賴骨架變形，而能保存多個明確 shape state；這會讓 Grease Pencil 更接近傳統 2D deformation 與 Blender rig 系統的混合流程。"
         },
         {
           "label": "Production 影響",
-          "text": "針對「Blender／DCC 製作：The Long-…acter Rig 的製作重點」，Blender 團隊應先用小規模案例確認它解決的是 authoring、交換、品質控制還是 runtime 問題，再決定導入範圍。"
+          "text": "若用在角色製作，可先建立幾組嘴型與大表情，測試 Shape Key、Armature、Driver 疊加後的可編輯性與 animator 操作負擔；這比只測單一靜態形狀更能看出它是否適合正式 Rig。"
         },
         {
           "label": "導入測試與限制",
-          "text": "若要把「Blender／DCC 製作：The Long-…acter Rig 的製作重點」納入 production，仍需用實際 DCC／引擎版本、代表性資產與目標輸出驗證；單一案例、展示或宣傳頁不能直接當成固定工時、品質或效能收益。"
+          "text": "目前功能仍在開發中，控制點選取、Driver 後數值鎖定、Bézier 顯示與大變形 fill 都有已知限制；適合做技術預研與 Rig prototype，尚不宜直接視為成熟量產方案。"
         }
       ],
       "rank_global": 3,
@@ -369,8 +377,8 @@
     },
     {
       "id": "cg-channel-ynput-launches-free-vfx-and-animation-pipeline-platform-ayon",
-      "title": "3D 動作／Rig：Ynput lau…line Ayon 的製作重點",
-      "summary": "這次內容整理 動畫、VFX 的版本／功能更新，內容型態包含 版本更新。對 Animation 流程，先看它實際改變哪些操作、交換或輸出步驟，再決定是否納入現有 SOP。",
+      "title": "AYON：整合 DCC、版本追蹤與專案管理的開源 VFX／Animation Pipeline",
+      "summary": "AYON 前身為 OpenPype，是開源影視與動畫製作管理平台，可把 Blender、Maya、Houdini 等內容製作軟體，與版本追蹤、審核、任務和專案管理集中到同一套系統，也提供 USD、Unreal 與 API 擴充能力。",
       "quick_impact": "★★★★☆",
       "source_url": "https://www.cgchannel.com/2023/08/ynput-launches-free-vfx-and-animation-pipeline-platform-ayon",
       "category": "3d-animation",
@@ -381,15 +389,15 @@
       "full_analysis": [
         {
           "label": "技術／流程變更",
-          "text": "「3D 動作／Rig：Ynput lau…line Ayon 的製作重點」屬於版本／功能更新，重點落在 動畫、VFX；升版時應先確認它改變的是 authoring、資產交換還是輸出行為。"
+          "text": "AYON 解決的不是單一 DCC 功能，而是跨軟體的 context、publish、version 與 review 一致性；對沒有大型 TD 團隊的小型工作室，現成模板與集中式 dashboard 能降低自建 pipeline 的起始成本。"
         },
         {
           "label": "Production 影響",
-          "text": "針對「3D 動作／Rig：Ynput lau…line Ayon 的製作重點」，Animation 團隊可把 動畫、VFX 放進代表性工程做前後版本比較，確認新功能是否真的減少人工步驟或改善輸出一致性。"
+          "text": "評估時應用一條真實 asset／shot 流程測試：建任務、開 DCC、publish、版本更新、review、退版，再觀察 artist 是否仍需手動搬檔或重複輸入 metadata，才能判斷整合價值。"
         },
         {
           "label": "導入測試與限制",
-          "text": "若要把「3D 動作／Rig：Ynput lau…line Ayon 的製作重點」納入 production，仍需用實際 DCC／引擎版本、代表性資產與目標輸出驗證；單一案例、展示或宣傳頁不能直接當成固定工時、品質或效能收益。"
+          "text": "AYON 本身可客製化，意味著導入成本會轉移到 connector、命名規則、權限與維護責任；若公司已有自研 tracking 或特殊資料結構，仍需先做整合 PoC，而不是假設安裝後即可取代既有 pipeline。"
         }
       ],
       "rank_global": 4,
@@ -397,8 +405,8 @@
     },
     {
       "id": "cg-channel-learn-to-create-complex-patterns-in-substance-designer",
-      "title": "Blender／DCC 製作：Learn to…Designer 的製作重點",
-      "summary": "這篇內容聚焦 Substance 的教學／製作流程，內容型態包含 教學。對 Substance 流程，先看它實際改變哪些操作、交換或輸出步驟，再決定是否納入現有 SOP。",
+      "title": "Substance Designer → ZBrush → Maya：複雜硬表面圖樣的模組化流程",
+      "summary": "Nate Stephens 示範先在 Substance Designer 以程序化方式建立複雜裝飾圖樣與 height template，再進 ZBrush 雕刻、retopo，最後到 Maya 補拓撲與 UV；重點是把可反覆修改的圖樣網路當成環境資產細節來源。",
       "quick_impact": "★★★☆☆",
       "source_url": "https://www.cgchannel.com/2019/05/learn-to-create-complex-patterns-in-substance-designer",
       "category": "blender-dcc",
@@ -409,15 +417,15 @@
       "full_analysis": [
         {
           "label": "技術／流程變更",
-          "text": "「Blender／DCC 製作：Learn to…Designer 的製作重點」以 Substance 的教學／流程為主，可拆成輸入、操作、人工修正與輸出幾個階段來看。"
+          "text": "這條流程把「圖樣設計」從一次性雕刻拆成可參數化來源：Designer 負責迭代形狀與高度資料，ZBrush 負責立體精修，Maya 處理最終拓撲與 UV，因此同一套 network 能延伸到多個同系列資產。"
         },
         {
           "label": "Production 影響",
-          "text": "針對「Blender／DCC 製作：Learn to…Designer 的製作重點」，Substance 團隊可把內容拆成 SOP、review checklist 或新人訓練素材，再與現有工具流程逐步對照。"
+          "text": "對場景／Hard Surface 團隊，可挑一組常重複出現的門飾、地磚或牆面 ornament，測試程序化 template 是否能維持 texel density、造型一致性並減少重複雕刻時間。"
         },
         {
           "label": "導入測試與限制",
-          "text": "若要把「Blender／DCC 製作：Learn to…Designer 的製作重點」納入 production，仍需用實際 DCC／引擎版本、代表性資產與目標輸出驗證；單一案例、展示或宣傳頁不能直接當成固定工時、品質或效能收益。"
+          "text": "這是 2019 年的教學內容，工具版本已舊；適合吸收「程序化圖樣 → 雕刻 → retopo」的流程觀念，但節點、UI 與現行 Substance／ZBrush／Maya 功能需要用目前版本重新驗證。"
         }
       ],
       "rank_global": 5,
@@ -425,8 +433,8 @@
     },
     {
       "id": "cg-channel-see-how-framestore-created-a-cg-battlefield-for-lioness-seas",
-      "title": "3D 資產製作：See how F…Season 3 的製作重點",
-      "summary": "這篇案例拆解聚焦 場景製作 的實際製作，內容型態包含 製作拆解。對 場景製作 流程，先看它實際改變哪些操作、交換或輸出步驟，再決定是否納入現有 SOP。",
+      "title": "《Lioness》S3：Framestore 以全 3D 戰場支撐 180 鏡頭視差與尺度",
+      "summary": "Framestore 為《Lioness》第三季建立可與 138 英畝實景銜接的 CG 戰場；因 180 個鏡頭有大量攝影機運動，團隊採完整 3D 方案維持 parallax 與尺度，並製作壕溝、殘骸、無人機、爆炸及三個時段的環境變化。",
       "quick_impact": "★★★☆☆",
       "source_url": "https://www.cgchannel.com/2026/09/see-how-framestore-created-a-cg-battlefield-for-lioness-season-3",
       "category": "3d-production",
@@ -437,15 +445,15 @@
       "full_analysis": [
         {
           "label": "技術／流程變更",
-          "text": "「3D 資產製作：See how F…Season 3 的製作重點」的價值在於把 場景製作 放回實際案例中觀察，能看到製作選擇如何影響最後結果。"
+          "text": "這類大型環境的關鍵不是單一 hero shot，而是同一戰場必須承受 180 個攝影機角度與三種時間條件；因此 CG、FX、DMP、Comp 必須共享尺度、地形與 lighting 基準，否則跨鏡頭很容易出現接縫。"
         },
         {
           "label": "Production 影響",
-          "text": "針對「3D 資產製作：See how F…Season 3 的製作重點」，場景製作 團隊可把案例拆成可複用的流程節點，判斷哪些方法適合導入、哪些只適用於原專案條件。"
+          "text": "對大型場景團隊，可借鏡其「先建立可跨鏡頭成立的 3D 基底，再讓 FX／DMP／Comp 延伸」的分工方式；尤其適合檢查地形、破壞物、煙火與遠景是否能在不同鏡頭共用，而非逐鏡頭重做。"
         },
         {
           "label": "導入測試與限制",
-          "text": "若要把「3D 資產製作：See how F…Season 3 的製作重點」納入 production，仍需用實際 DCC／引擎版本、代表性資產與目標輸出驗證；單一案例、展示或宣傳頁不能直接當成固定工時、品質或效能收益。"
+          "text": "這是影視 VFX 場景，資產密度與鏡頭需求不同於即時遊戲；若轉到 Unreal／Unity，仍需另做 LOD、streaming、碰撞與 runtime FX 預算評估，不能直接照搬離線渲染配置。"
         }
       ],
       "rank_global": 6,
@@ -453,8 +461,8 @@
     },
     {
       "id": "blender-official-previous-versions",
-      "title": "Blender／DCC 製作：Previous Versions 的製作重點",
-      "summary": "這項內容提供與 Blender 有關的可下載素材，內容型態包含 可下載素材、版本更新。對 Blender 流程，先看它實際改變哪些操作、交換或輸出步驟，再決定是否納入現有 SOP。",
+      "title": "Blender Previous Versions：舊版下載、Source Archive 與相容性回溯",
+      "summary": "Blender 官方長期保留歷代版本與 source archive，讓舊 .blend 專案可回到當時版本重現；頁面也提醒部分舊版需要特定硬體與作業系統，因此它更像 legacy pipeline 的回溯資源，而不是新功能更新。",
       "quick_impact": "★★★☆☆",
       "source_url": "https://www.blender.org/download/previous-versions",
       "category": "blender-dcc",
@@ -465,15 +473,15 @@
       "full_analysis": [
         {
           "label": "技術／流程變更",
-          "text": "「Blender／DCC 製作：Previous Versions 的製作重點」屬於版本／功能更新，重點落在 Blender；升版時應先確認它改變的是 authoring、資產交換還是輸出行為。"
+          "text": "對長期專案而言，保留舊版執行環境很重要：當 add-on、Python API、shader 或模擬結果因升版改變時，可先用原版本確認問題來自資產本身還是版本差異，再決定 migration 策略。"
         },
         {
           "label": "Production 影響",
-          "text": "針對「Blender／DCC 製作：Previous Versions 的製作重點」，Blender 團隊可把 Blender 放進代表性工程做前後版本比較，確認新功能是否真的減少人工步驟或改善輸出一致性。"
+          "text": "團隊可把關鍵專案的 Blender 版本、add-on 版本與 Python 環境寫進 manifest，必要時從官方 archive 重建；比只保存 .blend 檔更能提高數年後重開案或修舊資產的成功率。"
         },
         {
           "label": "導入測試與限制",
-          "text": "若要把「Blender／DCC 製作：Previous Versions 的製作重點」納入 production，仍需用實際 DCC／引擎版本、代表性資產與目標輸出驗證；單一案例、展示或宣傳頁不能直接當成固定工時、品質或效能收益。"
+          "text": "這個頁面本身不是 2026 的技術更新，資訊價值在版本保存與相容性追蹤；正式 production 仍應優先使用受支援的 Stable／LTS 版本，舊版只在重現與遷移情境使用。"
         }
       ],
       "rank_global": 7,
@@ -481,8 +489,8 @@
     },
     {
       "id": "cg-channel-foundry-ships-modo-14-2",
-      "title": "3D 資產製作：Foundry s…Modo 14.2 的製作重點",
-      "summary": "這則內容聚焦 Rendering 的製作應用。對 角色製作 流程，先看它實際改變哪些操作、交換或輸出步驟，再決定是否納入現有 SOP。",
+      "title": "Modo 14.2：角色直接操控、USD 匯出與 Cryptomatte 工作流",
+      "summary": "Modo 14.2 加入 Rig Clay，可直接在角色表面拖曳 Command Region 觸發 Deformer，不必一直找控制器；同版也加入 USD Export、原生 Cryptomatte、mPath 暫停續算，以及 retopo viewport 與 UV real-world scale 改善。",
       "quick_impact": "★★★☆☆",
       "source_url": "https://www.cgchannel.com/2020/11/foundry-ships-modo-14-2",
       "category": "3d-production",
@@ -493,15 +501,15 @@
       "full_analysis": [
         {
           "label": "技術／流程變更",
-          "text": "「3D 資產製作：Foundry s…Modo 14.2 的製作重點」聚焦 Rendering，可先從 實際製作 角度拆解它對現有製作流程的實際變化。"
+          "text": "Rig Clay 的重點是把 pose 操作從控制器位置轉成角色表面語意區域，能降低複雜 Rig 的操作門檻；USD Export 與 Cryptomatte 則分別補強跨 DCC 資料交換與 compositing ID matte 流程。"
         },
         {
           "label": "Production 影響",
-          "text": "針對「3D 資產製作：Foundry s…Modo 14.2 的製作重點」，角色製作 團隊應先用小規模案例確認它解決的是 authoring、交換、品質控制還是 runtime 問題，再決定導入範圍。"
+          "text": "若有舊 Modo pipeline，可用實際角色測 Rig Clay 的選取／姿勢效率，再用同一 asset 測 USD 到下游 DCC 的 mesh、instance、joint animation、camera 與 Principled material 保留程度。"
         },
         {
           "label": "導入測試與限制",
-          "text": "若要把「3D 資產製作：Foundry s…Modo 14.2 的製作重點」納入 production，仍需用實際 DCC／引擎版本、代表性資產與目標輸出驗證；單一案例、展示或宣傳頁不能直接當成固定工時、品質或效能收益。"
+          "text": "USD 支援並非完整：Portal／Mesh light 不支援，角色 Rig 也可能需要重整才可在其他軟體正確工作；而且 14.2 已是舊版本，應把它視為歷史功能參考，而不是現行採購依據。"
         }
       ],
       "rank_global": 8,
@@ -509,8 +517,8 @@
     },
     {
       "id": "cg-channel-cinema-4d-to-get-ipad-edition-and-new-generative-ai-features",
-      "title": "AI 生成：Cinema 4D…features 的製作重點",
-      "summary": "這則內容聚焦 AI 3D 生成 的製作應用。對 AI 3D 生成 流程，先看它實際改變哪些操作、交換或輸出步驟，再決定是否納入現有 SOP。",
+      "title": "Cinema 4D for iPad：HY 3D 文字／圖像生成 Base Mesh 與 UV",
+      "summary": "Maxon 宣布把 Tencent HY 3D 整合進 Cinema 4D，讓使用者由文字或參考圖生成 base 3D 與 UV；功能預定先在 iPad 版推出，再延伸到桌面版，定位偏向快速 ideation／prototype，而不是直接取代完整建模流程。",
       "quick_impact": "★★★☆☆",
       "source_url": "https://www.cgchannel.com/2026/03/cinema-4d-to-get-ipad-edition-and-new-generative-ai-features",
       "category": "ai-generation",
@@ -521,15 +529,15 @@
       "full_analysis": [
         {
           "label": "技術／流程變更",
-          "text": "「AI 生成：Cinema 4D…features 的製作重點」聚焦 AI 3D 生成，可先從 實際製作 角度拆解它對現有製作流程的實際變化。"
+          "text": "這項整合若落地，最直接改變的是 blocking 階段：concept/reference 可先轉成有 UV 的 base mesh，再交給美術做比例、拓撲、造型與材質修正，適合比較 AI 起始模型和人工 blockout 的時間差。"
         },
         {
           "label": "Production 影響",
-          "text": "針對「AI 生成：Cinema 4D…features 的製作重點」，AI 3D 生成 團隊應先用小規模案例確認它解決的是 authoring、交換、品質控制還是 runtime 問題，再決定導入範圍。"
+          "text": "對角色／道具團隊，測試重點應放在生成 mesh 的 topology、UV 可編輯性、風格一致性與後續雕刻／retopo 成本；只看生成速度會高估實際 production 節省。"
         },
         {
           "label": "導入測試與限制",
-          "text": "若要把「AI 生成：Cinema 4D…features 的製作重點」納入 production，仍需用實際 DCC／引擎版本、代表性資產與目標輸出驗證；單一案例、展示或宣傳頁不能直接當成固定工時、品質或效能收益。"
+          "text": "文章描述的是 2026 年公布的 rollout 計畫，AI 工具可能另有雲端計價，且最終功能與桌面版時程仍可能調整；導入判斷應以實際發布版本、授權與資料處理條款為準。"
         }
       ],
       "rank_global": 9,
@@ -537,8 +545,8 @@
     },
     {
       "id": "cg-channel-ai-developer-anthropic-becomes-blenders-latest-corporate-pat",
-      "title": "Blender／DCC 製作：AI develo…te Patron 的製作重點",
-      "summary": "這項工具聚焦 Blender 的製作應用。對 Blender 流程，先看它實際改變哪些操作、交換或輸出步驟，再決定是否納入現有 SOP。",
+      "title": "Blender 開發資助與 AI 自動化：Anthropic 捐款與 MCP 連接",
+      "summary": "這則資訊主要是 Blender Development Fund 的企業贊助事件，後續已由年度 Patron 改為一次性捐款；較具製作關聯的是 Blender Lab 同期建立的 MCP Server，可讓 Claude 協助 scene debugging 或批次修改物件，且資金原先特別指向 Blender core 與 Python API。",
       "quick_impact": "★★★☆☆",
       "source_url": "https://www.cgchannel.com/2026/04/ai-developer-anthropic-becomes-blenders-latest-corporate-patron",
       "category": "blender-dcc",
@@ -549,15 +557,15 @@
       "full_analysis": [
         {
           "label": "技術／流程變更",
-          "text": "「Blender／DCC 製作：AI develo…te Patron 的製作重點」聚焦 Blender，可先從 實際製作 角度拆解它對現有製作流程的實際變化。"
+          "text": "對 Technical Art 而言，值得拆開看兩件事：資助屬治理／資源面，MCP Server 才是可測的工具面；後者把自然語言指令接到 Blender 操作，適合評估 scene inspection、批次修正與規則化任務。"
         },
         {
           "label": "Production 影響",
-          "text": "針對「Blender／DCC 製作：AI develo…te Patron 的製作重點」，Blender 團隊應先用小規模案例確認它解決的是 authoring、交換、品質控制還是 runtime 問題，再決定導入範圍。"
+          "text": "若要評估 MCP，應限制在可撤銷、可 review 的任務，例如命名檢查、物件屬性批修或場景診斷，再比較 Python script 與 AI agent 的可預測性、權限範圍及錯誤成本。"
         },
         {
           "label": "導入測試與限制",
-          "text": "若要把「Blender／DCC 製作：AI develo…te Patron 的製作重點」納入 production，仍需用實際 DCC／引擎版本、代表性資產與目標輸出驗證；單一案例、展示或宣傳頁不能直接當成固定工時、品質或效能收益。"
+          "text": "這不是 Blender 核心功能全面轉向 AI 的證據，且贊助狀態後來已調整；治理爭議與工具能力應分開判讀，實際導入仍以 MCP add-on 的權限、穩定性與資料安全為準。"
         }
       ],
       "rank_global": 10,
@@ -565,8 +573,8 @@
     },
     {
       "id": "cg-channel-blackmagic-design-releases-resolve-21-1",
-      "title": "新技術／Production Case：Blackmagi…olve 21.1 的製作重點",
-      "summary": "這次內容整理 VFX 的版本／功能更新，內容型態包含 版本更新。對 Production Case 流程，先看它實際改變哪些操作、交換或輸出步驟，再決定是否納入現有 SOP。",
+      "title": "Resolve 21.1：自然語言自動化、HDR 調色與 Fusion 動態圖形",
+      "summary": "DaVinci Resolve 21.1 帶來超過 100 項更新，其中 MCP Server 可讓外部 AI 以自然語言操作剪輯與專案工作；同時強化 HDR 調色流程，並加入 25 個 Krokodove 工具供 Fusion 動態圖形與標題製作。",
       "quick_impact": "★★★☆☆",
       "source_url": "https://www.cgchannel.com/2026/09/blackmagic-design-releases-resolve-21-1",
       "category": "emerging-case",
@@ -577,15 +585,15 @@
       "full_analysis": [
         {
           "label": "技術／流程變更",
-          "text": "「新技術／Production Case：Blackmagi…olve 21.1 的製作重點」屬於版本／功能更新，重點落在 VFX；升版時應先確認它改變的是 authoring、資產交換還是輸出行為。"
+          "text": "MCP 對後期流程的價值不只在聊天控制，而是把整理 media、修改 project settings、建立 highlight reel 等重複操作變成可由外部 agent 呼叫的命令；HDR 與 Fusion 更新則仍屬傳統 artist-facing 能力。"
         },
         {
           "label": "Production 影響",
-          "text": "針對「新技術／Production Case：Blackmagi…olve 21.1 的製作重點」，Production Case 團隊可把 VFX 放進代表性工程做前後版本比較，確認新功能是否真的減少人工步驟或改善輸出一致性。"
+          "text": "對剪輯／VFX 團隊，可先選低風險任務做 MCP benchmark，例如素材整理、標記或專案設定，記錄自然語言指令的成功率與可回復性，再決定是否碰時間線與內容修改。"
         },
         {
           "label": "導入測試與限制",
-          "text": "若要把「新技術／Production Case：Blackmagi…olve 21.1 的製作重點」納入 production，仍需用實際 DCC／引擎版本、代表性資產與目標輸出驗證；單一案例、展示或宣傳頁不能直接當成固定工時、品質或效能收益。"
+          "text": "AI 控制介面增加了權限與誤操作面；即使工具支援自然語言，也不應跳過 project backup、版本控管與人工 review。Studio／免費版功能差異也要依實際部署版本確認。"
         }
       ],
       "rank_global": 11,
@@ -593,8 +601,8 @@
     },
     {
       "id": "cg-channel-maxon-releases-cinema-4d-2026-4-with-a-new-mcp-server",
-      "title": "Blender／DCC 製作：Maxon rel…CP Server 的製作重點",
-      "summary": "這項工具聚焦 動畫 的製作應用。對 其他 DCC 流程，先看它實際改變哪些操作、交換或輸出步驟，再決定是否納入現有 SOP。",
+      "title": "Cinema 4D 2026.4：官方 MCP 自然語言自動化介面",
+      "summary": "Cinema 4D 2026.4 新增官方 MCP Server，可把 Claude Desktop、ChatGPT Desktop 等外部 AI 接到 Cinema 4D，以自然語言執行程序化、反覆或重複任務；Server 預設關閉，可在本機運行，所有動作也會進 undo stack。",
       "quick_impact": "★★★☆☆",
       "source_url": "https://www.cgchannel.com/2026/09/maxon-releases-cinema-4d-2026-4-with-a-new-mcp-server",
       "category": "blender-dcc",
@@ -605,15 +613,15 @@
       "full_analysis": [
         {
           "label": "技術／流程變更",
-          "text": "「Blender／DCC 製作：Maxon rel…CP Server 的製作重點」聚焦 動畫，可先從 實際製作 角度拆解它對現有製作流程的實際變化。"
+          "text": "對 Motion／3D 團隊，MCP 最適合先處理可描述、可驗證、可撤銷的重複工作，例如批次調整物件、建立規則化場景操作或快速迭代參數，而不是把造型判斷與最終視覺決策交給模型。"
         },
         {
           "label": "Production 影響",
-          "text": "針對「Blender／DCC 製作：Maxon rel…CP Server 的製作重點」，其他 DCC 團隊應先用小規模案例確認它解決的是 authoring、交換、品質控制還是 runtime 問題，再決定導入範圍。"
+          "text": "實測時可把同一個批次任務分別用手動、Python／Script 與 MCP 完成，量測步驟、錯誤率、回退能力與維護成本，才能判斷自然語言介面是否真的比既有 automation 更有效率。"
         },
         {
           "label": "導入測試與限制",
-          "text": "若要把「Blender／DCC 製作：Maxon rel…CP Server 的製作重點」納入 production，仍需用實際 DCC／引擎版本、代表性資產與目標輸出驗證；單一案例、展示或宣傳頁不能直接當成固定工時、品質或效能收益。"
+          "text": "MCP Server 只在完整版 Cinema 4D 提供，不適用 Lite、Team Render 或 command-line render；若連雲端 AI，還要另外評估場景資料外送、權限與公司資產保密規範。"
         }
       ],
       "rank_global": 12,
@@ -621,8 +629,8 @@
     },
     {
       "id": "blender-official-behind-the-scenes-nashville-international-airport",
-      "title": "Blender／DCC 製作：Behind th…l Airport 的製作重點",
-      "summary": "這篇案例拆解聚焦 Blender 的實際製作，內容型態包含 製作拆解。對 Blender 流程，先看它實際改變哪些操作、交換或輸出步驟，再決定是否納入現有 SOP。",
+      "title": "Nashville 機場巨型螢幕：Blender 程序化與跨軟體製作流程",
+      "summary": "Gentilhomme 為 Nashville 機場兩面最高 11200×2160 的巨型 LED 螢幕製作超過 40 分鐘內容，其中 6 段全 CGI 使用 Blender；Geometry Nodes 負責大量程序化排列，也接收 Maya／Substance 的 OBJ＋4K UDIM 與 Houdini 模擬，最後以 Cycles multipass EXR 進 After Effects。",
       "quick_impact": "★★★☆☆",
       "source_url": "https://www.blender.org/user-stories/behind-the-scenes-nashville-international-airport",
       "category": "blender-dcc",
@@ -633,15 +641,15 @@
       "full_analysis": [
         {
           "label": "技術／流程變更",
-          "text": "「Blender／DCC 製作：Behind th…l Airport 的製作重點」的價值在於把 Blender 放回實際案例中觀察，能看到製作選擇如何影響最後結果。"
+          "text": "案例顯示 Blender 在這裡不是孤立 DCC，而是 pipeline hub：外部模型、UDIM、Houdini simulation 都可進場景與 Geometry Nodes，再由 Cycles 統一輸出；團隊甚至自製 render script 管理檔名、frame mapping、Deadline 與 multipass。"
         },
         {
           "label": "Production 影響",
-          "text": "針對「Blender／DCC 製作：Behind th…l Airport 的製作重點」，Blender 團隊可把案例拆成可複用的流程節點，判斷哪些方法適合導入、哪些只適用於原專案條件。"
+          "text": "對跨 DCC 場景團隊，最值得借鏡的是把「容易改的東西留到最便宜的階段」：例如燈光時序先分層輸出，再在 comp retime，而不是每次修改都重新做高解析 3D render。"
         },
         {
           "label": "導入測試與限制",
-          "text": "若要把「Blender／DCC 製作：Behind th…l Airport 的製作重點」納入 production，仍需用實際 DCC／引擎版本、代表性資產與目標輸出驗證；單一案例、展示或宣傳頁不能直接當成固定工時、品質或效能收益。"
+          "text": "超寬螢幕與長鏡頭讓這個專案的 render farm、採樣與細節需求遠高於一般遊戲畫面；方法可借鏡，但 20 台 render node、超高解析 EXR 與離線 Cycles 成本不能直接套到即時引擎預算。"
         }
       ],
       "rank_global": 13,
@@ -649,8 +657,8 @@
     },
     {
       "id": "cg-channel-autodesk-calls-for-entries-for-its-2012-animation-reel",
-      "title": "3D 動作／Rig：Autodesk…tion reel 的製作重點",
-      "summary": "這則內容聚焦 動畫 的製作應用。對 Animation 流程，先看它實際改變哪些操作、交換或輸出步驟，再決定是否納入現有 SOP。",
+      "title": "Autodesk 2012 Animation Reel：舊版 DCC 生態的歷史徵件資料",
+      "summary": "這篇是 2012 年 SIGGRAPH 的 Autodesk 動畫作品徵件公告，當時可提交由 Maya、3ds Max、Mudbox、MotionBuilder 等軟體製作的動畫、遊戲影片與影像作品；它沒有新的製作技術，較適合作為當年數位內容工具生態的歷史資料。",
       "quick_impact": "★★★☆☆",
       "source_url": "https://www.cgchannel.com/2012/06/autodesk-calls-for-entries-for-its-2012-animation-reel",
       "category": "3d-animation",
@@ -661,15 +669,15 @@
       "full_analysis": [
         {
           "label": "技術／流程變更",
-          "text": "「3D 動作／Rig：Autodesk…tion reel 的製作重點」聚焦 動畫，可先從 實際製作 角度拆解它對現有製作流程的實際變化。"
+          "text": "它反映 2012 年 Autodesk 將建模、動畫、雕刻、動作、剪輯與合成工具視為同一創作生態，但文章本身沒有 workflow breakdown、版本功能或可重現技術步驟，因此技術情報價值有限。"
         },
         {
           "label": "Production 影響",
-          "text": "針對「3D 動作／Rig：Autodesk…tion reel 的製作重點」，Animation 團隊應先用小規模案例確認它解決的是 authoring、交換、品質控制還是 runtime 問題，再決定導入範圍。"
+          "text": "若保留在歷史資料中，可用來觀察過去作品展示與 DCC 組合，而不應拿它推導今天 Maya／MotionBuilder／Flame 的能力、授權或 pipeline 建議。"
         },
         {
           "label": "導入測試與限制",
-          "text": "若要把「3D 動作／Rig：Autodesk…tion reel 的製作重點」納入 production，仍需用實際 DCC／引擎版本、代表性資產與目標輸出驗證；單一案例、展示或宣傳頁不能直接當成固定工時、品質或效能收益。"
+          "text": "徵件截止日期與 SIGGRAPH 2012 活動早已失效；後續 Admission 應更嚴格區分「提到很多 DCC 名稱」與「真的包含 production 方法」，避免此類活動舊文再次進入日報。"
         }
       ],
       "rank_global": 14,
@@ -677,8 +685,8 @@
     },
     {
       "id": "80-level-artist-shares-free-blender-rig-of-rumi-from-kpop-demon-hunte",
-      "title": "Blender／DCC 製作：Artist Sh…n Hunters 的製作重點",
-      "summary": "這則內容聚焦 Blender 的製作應用。對 Blender 流程，先看它實際改變哪些操作、交換或輸出步驟，再決定是否納入現有 SOP。",
+      "title": "Rumi 免費 Blender Rig：動態動作與 Facial Expression 測試素材",
+      "summary": "A$AP BERG 分享《KPop Demon Hunters》Rumi 的免費 Blender Rig；目前是 test version，但已能支援角色動態姿勢與情緒化臉部表情，作者也展示早期 setup，並計畫延伸到 Zoe、Mira 等角色。",
       "quick_impact": "★★☆☆☆",
       "source_url": "https://80.lv/articles/artist-shares-free-blender-rig-of-rumi-from-kpop-demon-hunters",
       "category": "blender-dcc",
@@ -689,15 +697,15 @@
       "full_analysis": [
         {
           "label": "技術／流程變更",
-          "text": "「Blender／DCC 製作：Artist Sh…n Hunters 的製作重點」聚焦 Blender，可先從 實際製作 角度拆解它對現有製作流程的實際變化。"
+          "text": "這份 Rig 的價值在於可直接拿來觀察 stylized character 的 body control 與 facial range 如何共存，而不是只看最終 posing 圖；對做二次元／卡通角色 Rig 的團隊，可作為控制器密度與表情幅度參考。"
         },
         {
           "label": "Production 影響",
-          "text": "針對「Blender／DCC 製作：Artist Sh…n Hunters 的製作重點」，Blender 團隊應先用小規模案例確認它解決的是 authoring、交換、品質控制還是 runtime 問題，再決定導入範圍。"
+          "text": "可先用既有 animation checklist 測肩髖大幅度動作、極端臉部表情、輪廓保持與 animator 操作負擔，再和自家 Rig 的 control 數量、修形需求與 pose 速度比較。"
         },
         {
           "label": "導入測試與限制",
-          "text": "若要把「Blender／DCC 製作：Artist Sh…n Hunters 的製作重點」納入 production，仍需用實際 DCC／引擎版本、代表性資產與目標輸出驗證；單一案例、展示或宣傳頁不能直接當成固定工時、品質或效能收益。"
+          "text": "作者明確把它稱為測試版，因此控制器命名、變形穩定度、版本相容與正式授權用途都需要自行確認；適合研究與 benchmark，不應直接當成 production-ready 標準 Rig。"
         }
       ],
       "rank_global": 15,
