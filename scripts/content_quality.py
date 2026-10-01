@@ -549,8 +549,17 @@ def production_details(meta: dict) -> list[str]:
 
 
 def production_subject(meta: dict, focus_text: str) -> str:
-    """Prefer concrete source subjects; keep a short title cue only when semantics are sparse."""
+    """Prefer concrete source subjects; keep semantic traits before falling back to a title cue."""
     details = production_details(meta)
+    specific_traits = [
+        x for x in source_subject_traits(meta)
+        if x not in {"可下載素材", "測試展示", "教學", "製作拆解", "版本更新"}
+    ]
+    for trait in specific_traits:
+        if trait not in details:
+            details.append(trait)
+        if len(details) >= 4:
+            break
     cue = source_title_cue(meta)
     if len(details) >= 2:
         return "、".join(details[:4])
