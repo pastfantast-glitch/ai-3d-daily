@@ -37,6 +37,68 @@ def policy_recollect_pending(date):
     published=[str(x) for x in ((receipt.get('canonical') or {}).get('ids') or [])]
     return bool(current) and current != published
 
+def pending_verified_historical_editorial_restore(date):
+    """Skip canonical rebuild only while a verified ancestor DONE selection awaits atomic rerender."""
+    data_path=ROOT/'data'/'daily'/f'{date}.json'
+    done_path=ROOT/'data'/'publish'/f'{date}.done.json'
+    override_path=ROOT/'data'/'editorial-overrides'/f'{date}.json'
+    if not data_path.exists() or not done_path.exists() or not override_path.exists(): return False
+    try:
+        data=json.loads(data_path.read_text('utf-8'))
+        receipt=json.loads(done_path.read_text('utf-8'))
+        override=json.loads(override_path.read_text('utf-8'))
+    except Exception:
+        return False
+    ref=str(override.get('restore_selection_from_receipt_commit') or '').strip().lower()
+    if (
+        str(receipt.get('state','')).upper()!='DONE'
+        or override.get('preserve_selection') is not True
+        or str(override.get('date') or '')!=date
+        or not re.fullmatch(r'[0-9a-f]{40}',ref)
+    ): return False
+
+    current_items=data.get('items') or []
+    current_ids=[str(x.get('id') or '') for x in current_items]
+    patches=override.get('items') or {}
+    if not isinstance(patches,dict) or set(patches)!=set(current_ids) or len(patches)!=len(current_ids): return False
+
+    ancestor=subprocess.run(
+        ['git','merge-base','--is-ancestor',ref,'HEAD'],
+        cwd=ROOT,stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL,
+    )
+    if ancestor.returncode: return False
+
+    def git_json(relative_path):
+        proc=subprocess.run(
+            ['git','show',f'{ref}:{relative_path}'],
+            cwd=ROOT,text=True,stdout=subprocess.PIPE,stderr=subprocess.DEVNULL,
+        )
+        if proc.returncode: return None
+        try: return json.loads(proc.stdout)
+        except json.JSONDecodeError: return None
+
+    historical_done=git_json(f'data/publish/{date}.done.json')
+    historical_data=git_json(f'data/daily/{date}.json')
+    if not isinstance(historical_done,dict) or not isinstance(historical_data,dict): return False
+    if str(historical_done.get('state','')).upper()!='DONE': return False
+    historical_ids=[str(x) for x in ((historical_done.get('canonical') or {}).get('ids') or [])]
+    if current_ids!=historical_ids: return False
+
+    def selection_rows(items):
+        return [
+            (
+                str(x.get('id') or ''),
+                str(x.get('source_url') or '').rstrip('/'),
+                int(x.get('rank_global',0) or 0),
+                str(x.get('category') or ''),
+                str(x.get('subcategory') or ''),
+            )
+            for x in (items or [])
+        ]
+    if selection_rows(current_items)!=selection_rows(historical_data.get('items') or []): return False
+    current_done_ids=[str(x) for x in ((receipt.get('canonical') or {}).get('ids') or [])]
+    return current_done_ids!=current_ids
+
 def expected_top_count(date):
     """Use canonical tier assignment for schema-v3 reports; retain legacy 5-card snapshots otherwise."""
     canonical=ROOT/'data'/'daily'/f'{date}.json'
@@ -133,9 +195,9 @@ def run_registry_normalization(work,date):
 def canonical_rebuild_simulation(date,parity=True):
     cds=canonical_dates()
     if date not in cds: rows.append((date,'canonical-rebuild','SKIP (legacy snapshot: no canonical JSON)')); return
-    if policy_recollect_pending(date):
-        rows.append((date,'canonical-parity','SKIP (controlled policy recollect pending; published archive remains authoritative)'))
-        rows.append((date,'canonical-rebuild','SKIP (controlled policy recollect pending; wait for verified republish)'))
+    if policy_recollect_pending(date) or pending_verified_historical_editorial_restore(date):
+        rows.append((date,'canonical-parity','SKIP (controlled policy/historical editorial republish pending; published archive remains authoritative)'))
+        rows.append((date,'canonical-rebuild','SKIP (controlled policy/historical editorial republish pending; wait for verified republish)'))
         return
     if date!=cds[-1]:
         if parity: validate_canonical_archive_parity(date)
