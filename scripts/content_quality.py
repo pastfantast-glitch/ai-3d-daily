@@ -666,11 +666,11 @@ def editorial_analysis(meta: dict, category: str, subcategory: str) -> list[dict
             "閱讀時應把內容拆成素材前置、主要操作、人工修正與輸出結果，才能看出真正可複用的步驟。"
         )
         impact = (
-            f"對 {label} 團隊，最有價值的是把其中明確步驟轉成 checklist，再用現有資產跑一次；"
+            f"對 {label} 團隊，可先把 {subject} 的明確步驟轉成 checklist，再用現有資產跑一次；"
             "若能在相同品質下減少返工，或讓新人更快到達可 review 狀態，才具有流程導入價值。"
         )
         limit = (
-            "教學通常以單一案例為主，能證明方法可操作，但不代表它已覆蓋大量資產、多人協作或不同版本條件；"
+            f"以 {subject} 為例，教學能證明方法可操作，但不代表它已覆蓋大量資產、多人協作或不同版本條件；"
             "還需要另外驗證命名、批次處理、檔案交換與例外情況。"
         )
     elif kind == "breakdown":
@@ -679,11 +679,11 @@ def editorial_analysis(meta: dict, category: str, subcategory: str) -> list[dict
             "比單看成品更有價值的是辨認哪些步驟依賴特定素材、工具或人工判斷。"
         )
         impact = (
-            f"對 {label}，可把案例中的關鍵節點對應到自家 pipeline：哪些能直接複用、哪些需要工具化、"
+            f"對 {label}，可把 {subject} 的關鍵節點對應到自家 pipeline：哪些能直接複用、哪些需要工具化、"
             "哪些只適合 hero asset 或特定鏡頭，這比照搬整套流程更實際。"
         )
         limit = (
-            "案例文章通常缺少完整工時、版本矩陣與失敗樣本，因此適合作為方法參考，不適合直接換算成本或效能收益；"
+            f"{subject} 的案例文章通常缺少完整工時、版本矩陣與失敗樣本，因此適合作為方法參考，不適合直接換算成本或效能收益；"
             "仍需用相近資產規模做內部驗證。"
         )
     elif kind == "download":
@@ -692,11 +692,11 @@ def editorial_analysis(meta: dict, category: str, subcategory: str) -> list[dict
             "重點是檔案格式、結構、可修改程度，以及進入 downstream 後是否仍保留需要的控制。"
         )
         impact = (
-            f"對 {label} 團隊，可直接拿代表性資產測試匯入、編輯、重定向或輸出，並記錄需要多少清理工作；"
+            f"對 {label} 團隊，可直接拿代表性資產測試 {subject} 的匯入、編輯、重定向或輸出，並記錄需要多少清理工作；"
             "如果前處理成本高，免費資產也不一定能節省 production 時間。"
         )
         limit = (
-            "可下載並不等於可直接量產使用；授權、版本、命名、拓撲／Rig 結構與 downstream 相容性都要另外確認，"
+            f"{subject} 可下載並不等於可直接量產使用；授權、版本、命名、拓撲／Rig 結構與 downstream 相容性都要另外確認，"
             "尤其是要進共用資產庫時。"
         )
     elif kind == "demo":
@@ -705,11 +705,12 @@ def editorial_analysis(meta: dict, category: str, subcategory: str) -> list[dict
             "這類素材適合拿來建立假設，但還不能只靠展示畫面判斷它是否能進入正式流程。"
         )
         impact = (
-            f"對 {label}，可把展示條件重建成小型 A/B test，用相同資產比較操作時間、可控性與輸出差異；"
+            f"對 {label}，可把 {subject} 的展示條件重建成小型 A/B test，用相同資產比較操作時間、可控性與輸出差異；"
             "能否在自家版本與資料上穩定重現，比單次效果漂亮更重要。"
         )
         limit = (
-            "展示通常會挑選成功案例，未必涵蓋失敗條件、邊界案例與效能成本；導入前需要補測不同資產複雜度與輸出需求。"
+            f"{subject} 的展示通常會挑選成功案例，未必涵蓋失敗條件、邊界案例與效能成本；"
+            "導入前需要補測不同資產複雜度與輸出需求。"
         )
     elif kind == "tool":
         technical = (
@@ -717,11 +718,12 @@ def editorial_analysis(meta: dict, category: str, subcategory: str) -> list[dict
             "還是只是把原本功能換成另一個介面。"
         )
         impact = (
-            f"對 {label}，可用一個真實任務比較導入前後的操作步驟、人工修正、輸出結果與交接成本；"
+            f"對 {label}，可用一個真實任務比較 {subject} 導入前後的操作步驟、人工修正、輸出結果與交接成本；"
             "若工具能減少重複操作但增加資料轉換或版本依賴，總成本未必下降。"
         )
         limit = (
-            "工具介紹通常不會涵蓋所有 production 邊界條件；部署前仍需確認版本支援、檔案相容、批次處理、例外錯誤與團隊維護責任。"
+            f"{subject} 的工具介紹通常不會涵蓋所有 production 邊界條件；"
+            "部署前仍需確認版本支援、檔案相容、批次處理、例外錯誤與團隊維護責任。"
         )
     else:
         technical = (
@@ -729,11 +731,12 @@ def editorial_analysis(meta: dict, category: str, subcategory: str) -> list[dict
             "才能避免把展示效果誤當成可直接複製的流程。"
         )
         impact = (
-            f"對 {label}，可以把內容中的做法或結果對照目前 pipeline，找出它可能影響的操作、交接或品質檢查點；"
+            f"對 {label}，可以把 {subject} 的做法或結果對照目前 pipeline，找出它可能影響的操作、交接或品質檢查點；"
             "只有能對應到真實工作步驟的部分，才值得進一步投入測試。"
         )
         limit = (
-            "單一來源能提供方向與實例，但通常不足以證明跨專案穩定性；若要正式導入，仍需補做版本、資產規模與輸出條件的驗證。"
+            f"{subject} 目前只有單一來源可供參考，通常不足以證明跨專案穩定性；"
+            "若要正式導入，仍需補做版本、資產規模與輸出條件的驗證。"
         )
 
     return [
