@@ -204,6 +204,21 @@ def load_hybrid_config():
         raise ValueError('hybrid targeted_refill.use_discovery_source_pool must be true when discovery sources are configured')
     if probe and refill.get('use_registered_source_coverage_probe') is not True:
         raise ValueError('hybrid targeted_refill must consume registered source coverage probe results')
+    if refill.get('enabled') is not True:
+        raise ValueError('hybrid targeted_refill.enabled must be true')
+    refill_effective = str(refill.get('registered_source_refill_effective_date', '')).strip()
+    if not _valid_date(refill_effective):
+        raise ValueError('hybrid targeted_refill.registered_source_refill_effective_date must be YYYY-MM-DD')
+    if refill.get('trigger_total_survivors_below_normal_floor') is not True:
+        raise ValueError('hybrid targeted_refill must trigger when total survivors are below the normal floor')
+    if str(refill.get('registered_source_refill_selection_policy', '')).strip() != 'deterministic-next-rotation':
+        raise ValueError('hybrid targeted_refill registered-source selection must use deterministic-next-rotation')
+    if int(refill.get('registered_source_refill_batch_size', 0) or 0) <= 0:
+        raise ValueError('hybrid targeted_refill registered_source_refill_batch_size must be >0')
+    if int(refill.get('registered_source_refill_max_batches', 0) or 0) <= 0:
+        raise ValueError('hybrid targeted_refill registered_source_refill_max_batches must be >0')
+    if refill.get('stop_when_normal_floor_met') is not True:
+        raise ValueError('hybrid targeted_refill must stop when the normal floor is met')
 
     return cfg
 
@@ -273,12 +288,50 @@ def registered_source_probe_plan(data_or_date, cfg=None):
     groups = max(1, (len(noncore) + per_day - 1) // per_day) if per_day else 1
     group = dt.date.fromisoformat(value).toordinal() % groups
     start = group * per_day
-    selected = set(core + noncore[start:start + per_day])
+    primary_rotating = noncore[start:start + per_day]
+    selected = set(core + primary_rotating)
+    # Refill order is deterministic and source-neutral: continue from the next
+    # rotation group, then wrap once. It is only consumed when the configured
+    # deficit-aware targeted-refill stage is triggered.
+    refill_order = noncore[start + per_day:] + noncore[:start]
     return {
         'selected': [sid for sid in sources if sid in selected],
         'not_scheduled': [sid for sid in sources if sid not in selected],
+        'refill_order': [sid for sid in refill_order if sid not in selected],
         'group': group,
         'groups': groups,
+    }
+
+
+def registered_source_refill_plan(data_or_date, already_selected, deficit, cfg=None):
+    """Return one bounded deterministic refill batch for registered sources.
+
+    This is an authoritative extension of the daily probe plan, not an all-source
+    sweep. It is activated only when current-main targeted-refill policy says the
+    total verified unpublished survivor count is below the normal release floor.
+    """
+    cfg = cfg or load_hybrid_config()
+    value = _date_value(data_or_date)
+    if not _valid_date(value):
+        raise ValueError('registered source refill plan requires YYYY-MM-DD')
+    refill = cfg.get('targeted_refill') or {}
+    effective = str(refill.get('registered_source_refill_effective_date', '')).strip()
+    if not (_valid_date(effective) and value >= effective):
+        return {'selected': [], 'remaining': [], 'exhausted': True}
+    if refill.get('enabled') is not True or int(deficit or 0) <= 0:
+        return {'selected': [], 'remaining': [], 'exhausted': True}
+
+    plan = registered_source_probe_plan(value, cfg)
+    already = {str(x).strip() for x in (already_selected or []) if str(x).strip()}
+    remaining = [sid for sid in plan.get('refill_order') or [] if sid not in already]
+    batch_size = int(refill.get('registered_source_refill_batch_size', 0) or 0)
+    take = min(len(remaining), batch_size, max(1, int(deficit)))
+    selected = remaining[:take]
+    remaining_after = remaining[take:]
+    return {
+        'selected': selected,
+        'remaining': remaining_after,
+        'exhausted': not remaining_after,
     }
 
 
@@ -318,7 +371,32 @@ def registered_source_probe_errors(data, cfg=None):
     ordered = [str(x.get('id')) for x in discovery_sources(cfg)]
     expected = set(ordered)
     plan = registered_source_probe_plan(data, cfg)
-    selected = set(plan['selected'])
+    primary_selected = set(plan['selected'])
+    selected = set(primary_selected)
+    refill_cfg = cfg.get('targeted_refill') or {}
+    refill_effective = str(refill_cfg.get('registered_source_refill_effective_date', '')).strip()
+    strict_refill_audit = _valid_date(refill_effective) and _date_value(data) >= refill_effective
+    refill_selected = []
+    if strict_refill_audit:
+        raw_refill = probe.get('refill_selected') or []
+        if not isinstance(raw_refill, list) or not all(str(x).strip() for x in raw_refill):
+            errors.append('discovery coverage: registered_source_probe.refill_selected must be a string list')
+            raw_refill = []
+        refill_selected = [str(x).strip() for x in raw_refill if str(x).strip()]
+        if len(refill_selected) != len(set(refill_selected)):
+            errors.append('discovery coverage: registered_source_probe.refill_selected must be unique')
+        max_refill = int(refill_cfg.get('registered_source_refill_batch_size', 0) or 0) * int(
+            refill_cfg.get('registered_source_refill_max_batches', 0) or 0
+        )
+        if len(refill_selected) > max_refill:
+            errors.append('discovery coverage: registered_source_probe.refill_selected exceeds configured bounded refill budget')
+        expected_prefix = list(plan.get('refill_order') or [])[:len(refill_selected)]
+        if refill_selected != expected_prefix:
+            errors.append('discovery coverage: registered_source_probe.refill_selected must follow deterministic refill order')
+        selected.update(refill_selected)
+        initial_selected = probe.get('initial_selected')
+        if initial_selected != list(plan['selected']):
+            errors.append('discovery coverage: registered_source_probe.initial_selected must equal authoritative daily plan')
     unknown = set(records) - expected
     if unknown:
         errors.append(f'discovery coverage: registered_source_probe has unknown sources {sorted(unknown)}')
@@ -337,6 +415,8 @@ def registered_source_probe_errors(data, cfg=None):
             errors.append(f'discovery coverage: registered source {sid} has invalid method={method!r}')
         if sid in selected and status == 'not-scheduled':
             errors.append(f'discovery coverage: registered source {sid} is selected today and must be attempted')
+        if strict_refill_audit and sid not in selected and status != 'not-scheduled':
+            errors.append(f'discovery coverage: registered source {sid} was not selected and must remain not-scheduled')
         if status == 'not-scheduled' and method != 'rolling-window':
             errors.append(f'discovery coverage: registered source {sid} not-scheduled must use method=rolling-window')
         found = rec.get('candidates_found')
