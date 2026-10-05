@@ -196,7 +196,11 @@ def main():
     if errors:
         raise SystemExit(f'HYBRID CONTRACT FAILED: source-neutral Coverage Audit fixture should pass: {errors}')
 
-    feature_date = max(str(probe_cfg.get('effective_date')), str(ledger_cfg.get('effective_date')))
+    feature_date = max(
+        str(probe_cfg.get('effective_date')),
+        str(ledger_cfg.get('effective_date')),
+        str(refill.get('registered_source_refill_effective_date')),
+    )
     plan = registered_source_probe_plan(feature_date, hybrid)
     selected_today = set(plan['selected'])
     source_records = {}
