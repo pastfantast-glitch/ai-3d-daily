@@ -11,6 +11,7 @@ from discovery_hybrid import (
     positive_samples,
     registered_source_probe_errors,
     registered_source_probe_plan,
+    registered_source_refill_plan,
 )
 from intelligence_v2 import load_config
 
@@ -162,6 +163,16 @@ def main():
         raise SystemExit('HYBRID CONTRACT FAILED: registered source coverage probe must be recall-only with zero ranking bonus/quota/bypass')
     if refill.get('use_registered_source_coverage_probe') is not True:
         raise SystemExit('HYBRID CONTRACT FAILED: targeted refill must consume registered source coverage probe results')
+    if refill.get('trigger_total_survivors_below_normal_floor') is not True:
+        raise SystemExit('HYBRID CONTRACT FAILED: targeted refill must activate below the normal total-item floor')
+    if refill.get('registered_source_refill_selection_policy') != 'deterministic-next-rotation':
+        raise SystemExit('HYBRID CONTRACT FAILED: registered-source refill must use deterministic-next-rotation')
+    if int(refill.get('registered_source_refill_batch_size', 0) or 0) <= 0:
+        raise SystemExit('HYBRID CONTRACT FAILED: registered-source refill batch size must be positive')
+    if int(refill.get('registered_source_refill_max_batches', 0) or 0) <= 0:
+        raise SystemExit('HYBRID CONTRACT FAILED: registered-source refill max batches must be positive')
+    if refill.get('stop_when_normal_floor_met') is not True:
+        raise SystemExit('HYBRID CONTRACT FAILED: registered-source refill must stop when the normal floor is met')
 
     ledger_cfg = hybrid.get('candidate_decision_ledger') or {}
     if ledger_cfg.get('required') is not True or ledger_cfg.get('public_surface') is not False:
@@ -185,18 +196,41 @@ def main():
     if errors:
         raise SystemExit(f'HYBRID CONTRACT FAILED: source-neutral Coverage Audit fixture should pass: {errors}')
 
-    feature_date = max(str(probe_cfg.get('effective_date')), str(ledger_cfg.get('effective_date')))
-    source_records = {
-        str(source['id']): {
-            'status': 'checked',
-            'method': 'latest-index',
-            'candidates_found': 0,
-            'candidate_ids': [],
-        }
-        for source in discovery_sources(hybrid)
-    }
+    feature_date = max(
+        str(probe_cfg.get('effective_date')),
+        str(ledger_cfg.get('effective_date')),
+        str(refill.get('registered_source_refill_effective_date')),
+    )
+    plan = registered_source_probe_plan(feature_date, hybrid)
+    selected_today = set(plan['selected'])
+    source_records = {}
+    for source in discovery_sources(hybrid):
+        sid = str(source['id'])
+        if sid in selected_today:
+            source_records[sid] = {
+                'status': 'checked',
+                'method': 'latest-index',
+                'candidates_found': 0,
+                'candidate_ids': [],
+            }
+        else:
+            source_records[sid] = {
+                'status': 'not-scheduled',
+                'method': 'rolling-window',
+                'candidates_found': 0,
+                'candidate_ids': [],
+                'reason': 'deterministic-rolling-probe-not-selected',
+            }
     future_audit = dict(audit)
-    future_audit['registered_source_probe'] = {'performed': True, 'sources': source_records}
+    future_audit['registered_source_probe'] = {
+        'performed': True,
+        'initial_selected': list(plan['selected']),
+        'refill_selected': [],
+        'refill_batches': 0,
+        'pre_refill_survivors': 20,
+        'post_refill_survivors': 20,
+        'sources': source_records,
+    }
     future_fixture = {
         'date': feature_date,
         'metadata': {'discovery_coverage': future_audit},
@@ -211,7 +245,6 @@ def main():
     if probe_errors:
         raise SystemExit(f'HYBRID CONTRACT FAILED: registered source probe positive fixture should pass: {probe_errors}')
 
-    plan = registered_source_probe_plan(feature_date, hybrid)
     rolling_records = {}
     for source in discovery_sources(hybrid):
         sid = str(source['id'])
@@ -232,9 +265,52 @@ def main():
             }
     rolling_fixture = json.loads(json.dumps(future_fixture))
     rolling_fixture['metadata']['discovery_coverage']['registered_source_probe']['sources'] = rolling_records
+    rolling_fixture['metadata']['discovery_coverage']['registered_source_probe']['initial_selected'] = list(plan['selected'])
+    rolling_fixture['metadata']['discovery_coverage']['registered_source_probe']['refill_selected'] = []
     rolling_errors = registered_source_probe_errors(rolling_fixture, hybrid)
     if rolling_errors:
         raise SystemExit(f'HYBRID CONTRACT FAILED: rotating probe fixture should pass: {rolling_errors}')
+
+    refill_plan = registered_source_refill_plan(
+        feature_date,
+        plan['selected'],
+        int(low.get('normal_floor', 20)),
+        hybrid,
+    )
+    expected_refill = list(plan.get('refill_order') or [])[:int(refill.get('registered_source_refill_batch_size', 0) or 0)]
+    if list(refill_plan.get('selected') or []) != expected_refill:
+        raise SystemExit('HYBRID CONTRACT FAILED: registered-source refill plan must consume the deterministic next-rotation prefix')
+
+    refill_fixture = json.loads(json.dumps(rolling_fixture))
+    refill_probe = refill_fixture['metadata']['discovery_coverage']['registered_source_probe']
+    refill_probe['refill_selected'] = list(refill_plan.get('selected') or [])
+    refill_probe['refill_batches'] = 1 if refill_probe['refill_selected'] else 0
+    refill_probe['pre_refill_survivors'] = 8
+    refill_probe['post_refill_survivors'] = 12
+    for sid in refill_probe['refill_selected']:
+        refill_probe['sources'][sid] = {
+            'status': 'checked',
+            'method': 'latest-index',
+            'candidates_found': 0,
+            'candidate_ids': [],
+        }
+    refill_errors = registered_source_probe_errors(refill_fixture, hybrid)
+    if refill_errors:
+        raise SystemExit(f'HYBRID CONTRACT FAILED: deficit-aware refill fixture should pass: {refill_errors}')
+
+    unscheduled_checked_fixture = json.loads(json.dumps(rolling_fixture))
+    unselected = [sid for sid in plan['not_scheduled'] if sid not in set(refill_probe['refill_selected'])]
+    if unselected:
+        sid = unselected[-1]
+        unscheduled_checked_fixture['metadata']['discovery_coverage']['registered_source_probe']['sources'][sid] = {
+            'status': 'checked',
+            'method': 'latest-index',
+            'candidates_found': 0,
+            'candidate_ids': [],
+        }
+        if not registered_source_probe_errors(unscheduled_checked_fixture, hybrid):
+            raise SystemExit('HYBRID CONTRACT FAILED: unselected registered source must remain not-scheduled')
+
     ledger_fixture = {
         'schema_version': int(ledger_cfg.get('schema_version', 1)),
         'date': feature_date,

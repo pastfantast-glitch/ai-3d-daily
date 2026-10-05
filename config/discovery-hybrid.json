@@ -1,5 +1,5 @@
 {
-  "version": 11,
+  "version": 12,
   "effective_date": "2026-09-09",
   "coverage_audit": {
     "required_windows": ["24h", "7d", "30d", "6m", "evergreen"],
@@ -139,7 +139,13 @@
     "use_source_neutrality": true,
     "use_discovery_source_pool": true,
     "use_registered_source_coverage_probe": true,
-    "use_priority_sources": false
+    "use_priority_sources": false,
+    "registered_source_refill_effective_date": "2026-10-05",
+    "trigger_total_survivors_below_normal_floor": true,
+    "registered_source_refill_selection_policy": "deterministic-next-rotation",
+    "registered_source_refill_batch_size": 3,
+    "registered_source_refill_max_batches": 2,
+    "stop_when_normal_floor_met": true
   },
   "low_volume_release": {
     "enabled": true,
