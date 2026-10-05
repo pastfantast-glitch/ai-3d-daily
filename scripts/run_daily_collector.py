@@ -28,7 +28,7 @@ SCRIPTS = ROOT / "scripts"
 if str(SCRIPTS) not in sys.path:
     sys.path.insert(0, str(SCRIPTS))
 
-from discovery_hybrid import load_hybrid_config, registered_source_probe_plan
+from discovery_hybrid import load_hybrid_config, registered_source_probe_plan, registered_source_refill_plan
 from url_identity import canonicalize_url
 from content_quality import admission as content_admission, classify_content, normalize_title, production_summary, editorial_title, editorial_analysis
 
@@ -822,6 +822,26 @@ def source_probe(
     }
 
 
+def unpublished_survivor_count(
+    candidates: list[dict],
+    published_sources: set[str],
+    published_ids: set[str],
+) -> int:
+    """Count unique verified candidates that survive early Registry identity dedupe."""
+    unique: dict[str, dict] = {}
+    for candidate in candidates:
+        source_url = canonicalize_url(str(candidate.get("source_url") or ""))
+        if source_url:
+            unique.setdefault(source_url, candidate)
+    count = 0
+    for source_url, candidate in unique.items():
+        if source_url in published_sources:
+            continue
+        if str(candidate.get("candidate_id") or "") in published_ids:
+            continue
+        count += 1
+    return count
+
 
 def selection_fingerprint(items: list[dict]) -> str:
     payload = [
@@ -1186,6 +1206,7 @@ def main() -> int:
         candidates, record = source_probe(
             source, endpoints, runtime, session, report_date, used_ids
         )
+        record["selection_phase"] = "daily-plan"
         probe_records[source_id] = record
         discovered.extend(candidates)
 
@@ -1219,10 +1240,91 @@ def main() -> int:
             "from_backlog": True,
         })
 
+    low_cfg = hybrid.get("low_volume_release") or {}
+    fallback = int(low_cfg.get("fallback_floor", 0) or 0)
+    normal_floor = int(low_cfg.get("normal_floor", 0) or 0)
+    refill_cfg = hybrid.get("targeted_refill") or {}
+    max_refill_batches = int(refill_cfg.get("registered_source_refill_max_batches", 0) or 0)
+
+    pre_refill_survivors = unpublished_survivor_count(
+        discovered, published_sources, published_ids
+    )
+    post_refill_survivors = pre_refill_survivors
+    refill_selected: list[str] = []
+    refill_batches = 0
+
+    # Deficit-aware registered-source refill is an authoritative extension of the
+    # daily deterministic probe plan. It is activated only below the normal floor,
+    # proceeds in bounded batches, and never gives source/ranking/admission credit.
+    if (
+        refill_cfg.get("enabled") is True
+        and refill_cfg.get("trigger_total_survivors_below_normal_floor") is True
+        and post_refill_survivors < normal_floor
+    ):
+        while post_refill_survivors < normal_floor and refill_batches < max_refill_batches:
+            deficit = normal_floor - post_refill_survivors
+            refill_plan = registered_source_refill_plan(
+                report_date,
+                selected + refill_selected,
+                deficit,
+                hybrid,
+            )
+            batch = list(refill_plan.get("selected") or [])
+            if not batch:
+                break
+            for source_id in batch:
+                source = source_map[source_id]
+                endpoints = configured_endpoints.get(source_id) or [source["base_url"]]
+                candidates, record = source_probe(
+                    source, endpoints, runtime, session, report_date, used_ids
+                )
+                record["selection_phase"] = "targeted-refill"
+                probe_records[source_id] = record
+                for candidate in candidates:
+                    candidate["from_registered_refill"] = True
+                discovered.extend(candidates)
+                refill_selected.append(source_id)
+            refill_batches += 1
+            post_refill_survivors = unpublished_survivor_count(
+                discovered, published_sources, published_ids
+            )
+            if (
+                refill_cfg.get("stop_when_normal_floor_met") is True
+                and post_refill_survivors >= normal_floor
+            ):
+                break
+
+    post_refill_survivors = unpublished_survivor_count(
+        discovered, published_sources, published_ids
+    )
+    remaining_refill = registered_source_refill_plan(
+        report_date,
+        selected + refill_selected,
+        max(0, normal_floor - post_refill_survivors),
+        hybrid,
+    )
+    registered_refill_exhausted = bool(
+        post_refill_survivors >= normal_floor
+        or refill_batches >= max_refill_batches
+        or not (remaining_refill.get("selected") or [])
+    )
+
     by_source: dict[str, dict] = {}
     for candidate in discovered:
         by_source.setdefault(candidate["source_url"], candidate)
     discovered = list(by_source.values())
+
+    def decision_channels(candidate: dict) -> list[str]:
+        if candidate.get("from_backlog"):
+            return ["rolling-backlog", "published-registry-snapshot"]
+        channels = [
+            "registered-source-crawl",
+            f"registered-source-probe:{candidate['source_id']}",
+            "published-registry-snapshot",
+        ]
+        if candidate.get("from_registered_refill"):
+            channels.insert(2, "registered-source-targeted-refill")
+        return channels
 
     decisions: list[dict] = []
     survivors: list[dict] = []
@@ -1233,12 +1335,7 @@ def main() -> int:
         window_counts[candidate["window"]] = window_counts.get(candidate["window"], 0) + 1
         cid = candidate["candidate_id"]
         source_url = canonicalize_url(candidate["source_url"])
-        channels = [
-            "rolling-backlog" if candidate.get("from_backlog") else "registered-source-crawl",
-            "published-registry-snapshot",
-        ]
-        if not candidate.get("from_backlog"):
-            channels.insert(1, "registered-source-probe:" + candidate["source_id"])
+        channels = decision_channels(candidate)
         base = {
             "candidate_id": cid,
             "source_url": source_url,
@@ -1263,7 +1360,6 @@ def main() -> int:
 
     survivors.sort(key=lambda x: (-x["ranking_score"], x["source_url"]))
     maximum = int(intel["collection"]["daily_max_items"])
-    fallback = int((hybrid.get("low_volume_release") or {}).get("fallback_floor", 0) or 0)
     selected_items = survivors[:maximum]
     overflow = survivors[maximum:]
 
@@ -1271,15 +1367,7 @@ def main() -> int:
         decisions.append({
             "candidate_id": candidate["candidate_id"],
             "source_url": candidate["source_url"],
-            "discovery_channels": (
-                ["rolling-backlog", "published-registry-snapshot"]
-                if candidate.get("from_backlog")
-                else [
-                    "registered-source-crawl",
-                    f"registered-source-probe:{candidate['source_id']}",
-                    "published-registry-snapshot",
-                ]
-            ),
+            "discovery_channels": decision_channels(candidate),
             "decision": "published",
             "canonical_id": candidate["candidate_id"],
         })
@@ -1287,15 +1375,7 @@ def main() -> int:
         decisions.append({
             "candidate_id": candidate["candidate_id"],
             "source_url": candidate["source_url"],
-            "discovery_channels": (
-                ["rolling-backlog", "published-registry-snapshot"]
-                if candidate.get("from_backlog")
-                else [
-                    "registered-source-crawl",
-                    f"registered-source-probe:{candidate['source_id']}",
-                    "published-registry-snapshot",
-                ]
-            ),
+            "discovery_channels": decision_channels(candidate),
             "decision": "backlog",
             "reason_code": "quality-pass-beyond-daily-maximum",
         })
@@ -1340,11 +1420,24 @@ def main() -> int:
             ),
         })
 
+    attempted_source_ids = list(dict.fromkeys(selected + refill_selected))
+    targeted_refill_stage_complete = bool(attempted_source_ids) and all(
+        isinstance(probe_records.get(source_id), dict)
+        and "refill_links_checked" in probe_records[source_id]
+        for source_id in attempted_source_ids
+    )
+    fill_ladder_exhausted = bool(
+        targeted_refill_stage_complete and registered_refill_exhausted
+    )
+    backlog_remaining_eligible = sum(
+        1 for candidate in overflow if candidate.get("from_backlog")
+    )
+
     coverage = {
-        "fill_ladder_exhausted": True,
+        "fill_ladder_exhausted": fill_ladder_exhausted,
         "backlog_checked": True,
-        "backlog_remaining_eligible": 0,
-        "targeted_refill_performed": True,
+        "backlog_remaining_eligible": backlog_remaining_eligible,
+        "targeted_refill_performed": targeted_refill_stage_complete,
         "quality_first_confirmed": True,
         "windows": {
             w: {
@@ -1363,13 +1456,21 @@ def main() -> int:
         },
         "registered_source_probe": {
             "performed": True,
+            "initial_selected": selected,
+            "refill_selected": refill_selected,
+            "refill_batches": refill_batches,
+            "pre_refill_survivors": pre_refill_survivors,
+            "post_refill_survivors": post_refill_survivors,
             "sources": probe_records,
         },
         "notes": (
             f"{report_date} autonomous GitHub Collector loaded the Published Registry snapshot before discovery, "
             "supplemented it from verified-DONE history when needed, checked rolling backlog, executed the current-main "
-            "deterministic registered-source probe plan, crawled configured source indexes plus a bounded source-grounded "
-            "targeted refill, and applied exact source/stable identity dedupe before ranking. "
+            "deterministic registered-source probe plan, crawled configured source indexes plus bounded same-source refill, "
+            "then used the current-main deficit-aware deterministic registered-source refill only when the verified survivor "
+            "count remained below the normal floor, and applied exact source/stable identity dedupe before ranking. "
+            f"Registered refill: pre={pre_refill_survivors} post={post_refill_survivors} "
+            f"batches={refill_batches} selected={json.dumps(refill_selected, ensure_ascii=False)}. "
             f"Registry audit: {json.dumps(registry_audit, ensure_ascii=False, sort_keys=True)}. "
             f"Backlog entries rechecked={backlog_checked}. No source registration/domain supplied ranking bonus, quota or admission bypass."
         ),
