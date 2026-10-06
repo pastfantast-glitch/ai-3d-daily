@@ -2,7 +2,7 @@
   "date": "2026-10-06",
   "schema_version": 3,
   "metadata": {
-    "total_items": 13,
+    "total_items": 19,
     "collection_mode": "production-intelligence-preference-v1-hybrid",
     "collection_contract_effective_date": "2026-09-04",
     "preference_contract_effective_date": "2026-09-06",
@@ -18,7 +18,7 @@
     ],
     "analysis_level_counts": {
       "FULL": 0,
-      "BRIEF": 13,
+      "BRIEF": 19,
       "REJECT": 0
     },
     "analysis_level_policy": "evidence-depth-tiered; FULL=3-5 source-supported blocks; BRIEF=3 readable source-grounded angles with explicit limits; REJECT=not-publishable",
@@ -28,17 +28,9 @@
     "editorial": {
       "contract": "source-grounded-editorial-v1",
       "style_reference": "2026-09-25",
-      "selection_changed": false,
-      "repair_reason": "Restore the concrete source-specific Traditional Chinese reader style of 2026-09-23 through 2026-09-25; replace clipped English headings and generic advice with actual capabilities, art uses and explicit limits.",
-      "source_reverified_count": 13,
-      "source_live_reverified_count": 13,
-      "source_verified_done_fallback_count": 0,
-      "source_verified_done_fallback_ids": [],
-      "source_review_method": "external-source-review-plus-verified-DONE-identity",
-      "selection_fingerprint": "f82e3e2f0a9a63e0d28958c8fca9ca207c268c2258436347448c2fe968988614",
+      "selection_changed": null,
       "factual_fallback_allowed": true,
-      "repair_mode": "selection-preserving-source-reverified",
-      "restored_from_verified_receipt_commit": null
+      "repair_mode": "automatic-source-factual-fallback"
     },
     "discovery_coverage": {
       "fill_ladder_exhausted": true,
@@ -57,15 +49,15 @@
         },
         "30d": {
           "status": "exhausted",
-          "candidates_found": 1
+          "candidates_found": 2
         },
         "6m": {
           "status": "exhausted",
-          "candidates_found": 3
+          "candidates_found": 5
         },
         "evergreen": {
           "status": "exhausted",
-          "candidates_found": 45
+          "candidates_found": 50
         }
       },
       "category_candidates": {
@@ -73,7 +65,7 @@
           "candidates_considered": 0
         },
         "3d-production": {
-          "candidates_considered": 1
+          "candidates_considered": 2
         },
         "3d-animation": {
           "candidates_considered": 1
@@ -85,7 +77,7 @@
           "candidates_considered": 0
         },
         "blender-dcc": {
-          "candidates_considered": 9
+          "candidates_considered": 14
         }
       },
       "registered_source_probe": {
@@ -105,35 +97,35 @@
           "3dnchu",
           "cgworld-jp",
           "bilibili-mobile",
-          "artstation",
-          "gumroad-discover",
-          "xiaohongshu"
+          "artstation"
         ],
         "refill_batches": 2,
-        "pre_refill_survivors": 10,
-        "post_refill_survivors": 13,
+        "pre_refill_survivors": 13,
+        "post_refill_survivors": 19,
         "sources": {
           "80-level": {
             "status": "checked",
             "method": "latest-index",
-            "candidates_found": 6,
+            "candidates_found": 7,
             "candidate_ids": [
               "80-level-artist-explores-realistic-water-adhesion-on-animated-charact",
               "80-level-merging-space-colonization-solver-with-pyro-simulation-to-cr",
               "80-level-artist-recreates-lifelike-bubble-physics-in-houdini-based-on",
+              "80-level-blender-5-3-is-getting-native-3d-gaussian-splat-support",
               "80-level-hypnotizing-fluid-simulation-based-on-w-t-s-research-on-lagr",
               "80-level-stunning-forest-stream-simulation-made-with-houdini",
               "80-level-3d-artist-turned-wristwatch-into-m-bius-strip-using-houdini"
             ],
             "index_pages_checked": 2,
             "feed_urls_checked": 0,
-            "refill_links_checked": 15,
+            "refill_links_checked": 16,
+            "semantic_expansion_links_checked": 1,
             "selection_phase": "daily-plan"
           },
           "3dnchu": {
             "status": "checked",
             "method": "latest-index",
-            "candidates_found": 9,
+            "candidates_found": 12,
             "candidate_ids": [
               "3dnchu-harmoflow",
               "3dnchu-sculpt-mesh-1-0",
@@ -142,12 +134,16 @@
               "3dnchu-deeppaintclassjpn-gaku-2026-2",
               "3dnchu-full-control-lattice-generator-v1-0",
               "3dnchu-fx-maker-tools",
+              "3dnchu-g-scatter-beta",
               "3dnchu-unreal-engine-shader-book-posita33",
+              "3dnchu-virtucamera-2",
+              "3dnchu-animation-nodes-blender",
               "3dnchu-samus-free-rig"
             ],
             "index_pages_checked": 1,
             "feed_urls_checked": 2,
             "refill_links_checked": 16,
+            "semantic_expansion_links_checked": 3,
             "selection_phase": "targeted-refill"
           },
           "cgworld-jp": {
@@ -160,6 +156,7 @@
             "index_pages_checked": 2,
             "feed_urls_checked": 0,
             "refill_links_checked": 1,
+            "semantic_expansion_links_checked": 0,
             "selection_phase": "targeted-refill"
           },
           "bilibili-mobile": {
@@ -170,6 +167,7 @@
             "index_pages_checked": 1,
             "feed_urls_checked": 0,
             "refill_links_checked": 0,
+            "semantic_expansion_links_checked": 0,
             "selection_phase": "targeted-refill"
           },
           "artstation": {
@@ -184,31 +182,24 @@
             "selection_phase": "targeted-refill"
           },
           "gumroad-discover": {
-            "status": "checked",
-            "method": "latest-index",
+            "status": "not-scheduled",
+            "method": "rolling-window",
             "candidates_found": 0,
             "candidate_ids": [],
-            "index_pages_checked": 1,
-            "feed_urls_checked": 0,
-            "refill_links_checked": 0,
-            "selection_phase": "targeted-refill"
+            "reason": "deterministic-rolling-probe-not-selected"
           },
           "xiaohongshu": {
-            "status": "checked",
-            "method": "latest-index",
+            "status": "not-scheduled",
+            "method": "rolling-window",
             "candidates_found": 0,
             "candidate_ids": [],
-            "index_pages_checked": 1,
-            "feed_urls_checked": 0,
-            "refill_links_checked": 0,
-            "selection_phase": "targeted-refill"
+            "reason": "deterministic-rolling-probe-not-selected"
           },
           "cg-channel": {
             "status": "checked",
             "method": "latest-index",
-            "candidates_found": 33,
+            "candidates_found": 36,
             "candidate_ids": [
-              "cg-channel-ynput-launches-free-vfx-and-animation-pipeline-platform-ayon",
               "cg-channel-alexey-vanzhula-releases-modeler-26-for-houdini",
               "cg-channel-see-rodeo-fxs-vfx-breakdown-of-its-new-ad-for-fm-insurance",
               "cg-channel-see-how-framestore-created-a-cg-battlefield-for-lioness-seas",
@@ -216,28 +207,32 @@
               "cg-channel-check-out-koala-fxs-vertiginous-vfx-breakdown-for-fall-2",
               "cg-channel-gravity-sketch-releases-gravity-sketch-vr-in-beta",
               "cg-channel-faceware-technologies-launches-faceware-studio",
-              "cg-channel-foundry-ships-modo-14-2",
               "cg-channel-discover-5-key-features-for-cg-artists-in-godot-4-6",
-              "cg-channel-cinema-4d-to-get-ipad-edition-and-new-generative-ai-features",
               "cg-channel-10-things-cg-artists-need-to-know-about-unreal-engine-6",
               "cg-channel-see-5-key-features-for-cg-artists-in-unreal-engine-5-8",
+              "cg-channel-try-the-open-beta-of-rtx-render-for-character-creator-and-ic",
               "cg-channel-get-free-vfx-image-viewer-and-video-playback-tool-djv-3-6",
               "cg-channel-playcanvas-releases-supersplat-editor-3-0",
               "cg-channel-free-tutorial-design-mechs-in-vr-using-substance-3d-modeler",
               "cg-channel-alexey-vanzula-releases-direct-modeling-for-houdini",
+              "cg-channel-itoosoft-releases-railclone-7",
+              "cg-channel-blender-4-5-lts-is-out-check-out-its-5-key-features",
               "cg-channel-see-the-2026-blender-development-roadmap",
               "cg-channel-autodesk-releases-maya-2027-and-maya-creative-2027",
-              "cg-channel-ai-developer-anthropic-becomes-blenders-latest-corporate-pat",
               "cg-channel-sidefx-just-released-houdini-22",
               "cg-channel-armorpaint-1-0-is-out-after-eight-years-in-early-access",
-              "cg-channel-blackmagic-design-releases-resolve-21-1",
               "cg-channel-maxon-releases-cinema-4d-2026-4-with-a-new-mcp-server",
               "cg-channel-insydium-releases-nexus-2026-1-in-beta",
               "cg-channel-new-3d-software-you-may-have-missed-4-october-2026",
+              "cg-channel-rokoko-studio-2-4-now-does-retargeting",
+              "cg-channel-reallusions-3d-character-contest-returns-for-2026-with-45000",
+              "cg-channel-armature-is-a-free-ai-assisted-standalone-character-rigging",
               "cg-channel-how-dupp-film-created-a-hybrid-cg-mermaid-for-summer-of-1985",
               "cg-channel-download-130-free-fbx-mocap-moves-from-anderson-rohr",
               "cg-channel-the-pixel-farm-lifts-feature-restrictions-on-pftrack-solo",
               "cg-channel-3d-io-releases-exr-io-2-0-for-photoshop",
+              "cg-channel-baga-river-generator-lets-you-draw-rivers-into-blender-scene",
+              "cg-channel-blender-5-0-is-out-check-out-its-5-key-features",
               "cg-channel-discover-5-key-features-in-blender-5-1",
               "cg-channel-blender-5-2-lts-is-here-discover-its-5-key-features",
               "cg-channel-check-out-free-maya-animation-productivity-toolset-keyflow"
@@ -245,16 +240,18 @@
             "index_pages_checked": 4,
             "feed_urls_checked": 2,
             "refill_links_checked": 16,
+            "semantic_expansion_links_checked": 4,
             "selection_phase": "daily-plan"
           },
           "blender-official": {
             "status": "checked",
             "method": "latest-index",
-            "candidates_found": 11,
+            "candidates_found": 12,
             "candidate_ids": [
               "blender-official-blender-5-1-release",
               "blender-official-blender-5-2-lts-release",
               "blender-official-2d-isnt-dead-it-just-became-something-different-using-blende",
+              "blender-official-cycles-texture-cache",
               "blender-official-the-future-of-storyboarding-blender-for-pre-production",
               "blender-official-animation-2025-progress-planning",
               "blender-official-blender-lab-activity-report-q1-2026",
@@ -267,6 +264,7 @@
             "index_pages_checked": 5,
             "feed_urls_checked": 1,
             "refill_links_checked": 16,
+            "semantic_expansion_links_checked": 5,
             "selection_phase": "daily-plan"
           },
           "epic-developer-community": {
@@ -277,6 +275,7 @@
             "index_pages_checked": 1,
             "feed_urls_checked": 0,
             "refill_links_checked": 0,
+            "semantic_expansion_links_checked": 0,
             "selection_phase": "daily-plan"
           },
           "unity-official": {
@@ -287,6 +286,7 @@
             "index_pages_checked": 2,
             "feed_urls_checked": 0,
             "refill_links_checked": 0,
+            "semantic_expansion_links_checked": 0,
             "selection_phase": "daily-plan"
           },
           "sidefx-official": {
@@ -297,6 +297,7 @@
             "index_pages_checked": 2,
             "feed_urls_checked": 0,
             "refill_links_checked": 0,
+            "semantic_expansion_links_checked": 0,
             "selection_phase": "daily-plan"
           },
           "autodesk-area": {
@@ -307,6 +308,7 @@
             "index_pages_checked": 1,
             "feed_urls_checked": 0,
             "refill_links_checked": 0,
+            "semantic_expansion_links_checked": 0,
             "selection_phase": "daily-plan"
           },
           "adobe-substance-3d": {
@@ -317,6 +319,7 @@
             "index_pages_checked": 1,
             "feed_urls_checked": 0,
             "refill_links_checked": 0,
+            "semantic_expansion_links_checked": 0,
             "selection_phase": "daily-plan"
           },
           "game-developer": {
@@ -327,17 +330,17 @@
             "index_pages_checked": 4,
             "feed_urls_checked": 0,
             "refill_links_checked": 0,
+            "semantic_expansion_links_checked": 0,
             "selection_phase": "daily-plan"
           }
         }
       },
-      "notes": "2026-10-06 autonomous GitHub Collector loaded the Published Registry snapshot before discovery, supplemented it from verified-DONE history when needed, checked rolling backlog, executed the current-main deterministic registered-source probe plan, crawled configured source indexes plus bounded same-source refill, then used the current-main deficit-aware deterministic registered-source refill only when the verified survivor count remained below the normal floor, and applied exact source/stable identity dedupe before ranking. Registered refill: pre=10 post=13 batches=2 selected=[\"3dnchu\", \"cgworld-jp\", \"bilibili-mobile\", \"artstation\", \"gumroad-discover\", \"xiaohongshu\"]. Registry audit: {\"history_supplemented_items\": 0, \"latest_verified_done\": \"2026-10-05\", \"snapshot_generated_through\": \"2026-10-05\", \"snapshot_state\": \"DERIVED_FROM_VERIFIED_DONE\", \"source_identities\": 732, \"stable_ids\": 731}. Backlog entries rechecked=0. No source registration/domain supplied ranking bonus, quota or admission bypass. 2026-10-06 editorial-only policy recollect preserved all 13 canonical IDs, source URLs, ranks and classifications; sources reverified before copy replacement (live=13, verified-DONE+external-review fallback=0)."
+      "notes": "2026-10-06 autonomous GitHub Collector loaded the Published Registry snapshot before discovery, supplemented it from verified-DONE history when needed, checked rolling backlog, executed the current-main deterministic registered-source probe plan, crawled configured source indexes plus bounded same-source refill, then used the current-main deficit-aware deterministic registered-source refill only when the verified survivor count remained below the normal floor, and applied exact source/stable identity dedupe before ranking. Registered refill: pre=13 post=19 batches=2 selected=[\"3dnchu\", \"cgworld-jp\", \"bilibili-mobile\", \"artstation\"]. Registry audit: {\"history_supplemented_items\": 0, \"latest_verified_done\": \"2026-10-05\", \"snapshot_generated_through\": \"2026-10-06\", \"snapshot_state\": \"DERIVED_FROM_VERIFIED_DONE\", \"source_identities\": 732, \"stable_ids\": 731}. Backlog entries rechecked=0. No source registration/domain supplied ranking bonus, quota or admission bypass."
     },
     "personalization": {
       "contract": "supabase-semantic-feedback-v1",
-      "status": "unavailable",
-      "vote_count": 0,
-      "reason": "Autonomous GitHub Collector has no authoritative active-app-owner identity; current-main neutral-and-continue fallback applied without reading or committing raw user data.",
+      "status": "applied",
+      "vote_count": 14,
       "max_rank_multiplier": 0.2,
       "max_query_expansion_fraction": 0.2,
       "raw_profile_committed": false,
@@ -345,48 +348,11 @@
       "domain_weights_used": false,
       "admission_bypass": false,
       "quality_gate_bypass": false,
-      "source_quota": false
-    },
-    "homepage_tier_normalization": {
-      "selection_mode": "full-first-brief-fallback",
-      "requested_top5": 5,
-      "actual_top5": 5,
-      "top5_full_count": 0,
-      "top5_brief_fallback_count": 5,
-      "top5_full_only": false,
-      "brief_fallback_allowed": true,
-      "next10": 8
-    },
-    "registry_identity_normalization": {
-      "dropped_count": 0,
-      "rewritten_count": 0,
-      "policy": "verified-DONE-published-canonical-source-without-substantive-delta-skip",
-      "source_identity_precedence": "published-daily-html-card-then-canonical-json",
-      "url_identity": "scripts/url_identity.py",
-      "stage": "collection-before-ready",
-      "refill_required": false,
-      "category_deficits": {},
-      "daily_release_gate": {
-        "have": 13,
-        "min": 12,
-        "target": 30,
-        "max": 30,
-        "missing_to_min": 7,
-        "missing_to_target": 17,
-        "release_ready": true,
-        "category_counts": {
-          "ai-generation": 0,
-          "3d-production": 1,
-          "3d-animation": 1,
-          "engine-art": 2,
-          "emerging-case": 0,
-          "blender-dcc": 9
-        },
-        "normal_min": 20,
-        "release_mode": "LOW_VOLUME_COMPLETE",
-        "low_volume_authorized": true
-      },
-      "republication_revalidated": true
+      "source_quota": false,
+      "ranking_adjusted_count": 14,
+      "semantic_expansion_candidates": 9,
+      "profile_fingerprint": "1e1d84f7cdf5e70a9eae2f510a67acfa00e2525a6a136ea5582ea38db0dcf290",
+      "reader": "github-actions-oidc-owner-v1"
     }
   },
   "items": [
@@ -398,7 +364,8 @@
       "source_url": "https://80.lv/articles/artist-explores-realistic-water-adhesion-on-animated-characters-in-houdini",
       "category": "blender-dcc",
       "subcategory": "houdini",
-      "ranking_score": 87.0,
+      "ranking_score": 90.83,
+      "base_ranking_score": 87.0,
       "analysis_level": "BRIEF",
       "brief_reason": "practical-tutorial-limited-depth",
       "full_analysis": [
@@ -427,6 +394,7 @@
       "category": "engine-art",
       "subcategory": "shader",
       "ranking_score": 83.0,
+      "base_ranking_score": 83.0,
       "analysis_level": "BRIEF",
       "brief_reason": "single-source-verified-production-tip",
       "full_analysis": [
@@ -454,7 +422,8 @@
       "source_url": "https://80.lv/articles/merging-space-colonization-solver-with-pyro-simulation-to-create-looping-smoke-bursts",
       "category": "blender-dcc",
       "subcategory": "houdini",
-      "ranking_score": 80.0,
+      "ranking_score": 80.96,
+      "base_ranking_score": 80.0,
       "analysis_level": "BRIEF",
       "brief_reason": "single-source-verified-production-tip",
       "full_analysis": [
@@ -475,34 +444,6 @@
       "homepage_tier": "top5"
     },
     {
-      "id": "80-level-artist-recreates-lifelike-bubble-physics-in-houdini-based-on",
-      "title": "Houdini 氣泡求解器：參考 Wētā 研究重現水中氣泡運動",
-      "summary": "Pavel Morozov 依 Wētā FX 的氣泡動力學資料，在 Houdini 建立自訂求解器，展示細緻的氣泡運動；文章也介紹相關水體研究案例。",
-      "quick_impact": "★★★★☆",
-      "source_url": "https://80.lv/articles/artist-recreates-lifelike-bubble-physics-in-houdini-based-on-w-t-s-research",
-      "category": "blender-dcc",
-      "subcategory": "houdini",
-      "ranking_score": 74.0,
-      "analysis_level": "BRIEF",
-      "brief_reason": "emerging-research-limited-production-evidence",
-      "full_analysis": [
-        {
-          "label": "技術／流程變更",
-          "text": "這項展示將氣泡運動交給自訂求解器處理。文章提及另一位作者的氣泡與水體雙向耦合研究，但沒有公開 Morozov 求解器的完整實作，兩者不能視為相同系統。"
-        },
-        {
-          "label": "Production 影響",
-          "text": "可作為水中氣泡、冒泡液體與近景流體的動態參考。製作時值得觀察氣泡如何隨水流改變位置與形狀，避免只用均勻向上的粒子代替所有運動。"
-        },
-        {
-          "label": "導入測試與限制",
-          "text": "目前主要是成果展示，缺少完整節點、運算時間與可下載工程。重現前應查原始研究，並用小型水槽測試氣泡大小、上升速度與水流互動。"
-        }
-      ],
-      "rank_global": 4,
-      "homepage_tier": "top5"
-    },
-    {
       "id": "cg-channel-alexey-vanzhula-releases-modeler-26-for-houdini",
       "title": "Modeler 26.5：配合 Houdini 22 重整細分曲面建模操作",
       "summary": "Modeler 26.5 配合 Houdini 22 的細分曲面顯示方式，整合相關工具到放射選單，新增 SubD Proxy 模式，並更新 Crease、Holes 與 PolyPen。",
@@ -510,7 +451,8 @@
       "source_url": "https://www.cgchannel.com/2026/10/alexey-vanzhula-releases-modeler-26-for-houdini",
       "category": "blender-dcc",
       "subcategory": "houdini",
-      "ranking_score": 73.0,
+      "ranking_score": 75.5,
+      "base_ranking_score": 73.0,
       "analysis_level": "BRIEF",
       "brief_reason": "practical-tutorial-limited-depth",
       "full_analysis": [
@@ -527,7 +469,7 @@
           "text": "來源頁面標題仍寫 26.3，但 10/05 更新段落已介紹 26.5。升版前應核對實際插件與 Houdini 版本，測試舊檔、折痕和細分顯示，保留可回退版本。"
         }
       ],
-      "rank_global": 5,
+      "rank_global": 4,
       "homepage_tier": "top5"
     },
     {
@@ -538,7 +480,8 @@
       "source_url": "https://www.cgchannel.com/2017/08/gravity-sketch-releases-gravity-sketch-vr-in-beta",
       "category": "3d-production",
       "subcategory": "production-workflow",
-      "ranking_score": 69.0,
+      "ranking_score": 74.75,
+      "base_ranking_score": 69.0,
       "analysis_level": "BRIEF",
       "brief_reason": "single-source-verified-production-tip",
       "full_analysis": [
@@ -555,6 +498,35 @@
           "text": "這是歷史工具介紹，文中的裝置、價格與方案不能當成現況。正式使用前應查最新支援，並測輸出模型的比例、拓樸與曲面，確認後續能繼續編輯。"
         }
       ],
+      "rank_global": 5,
+      "homepage_tier": "top5"
+    },
+    {
+      "id": "80-level-artist-recreates-lifelike-bubble-physics-in-houdini-based-on",
+      "title": "Houdini 氣泡求解器：參考 Wētā 研究重現水中氣泡運動",
+      "summary": "Pavel Morozov 依 Wētā FX 的氣泡動力學資料，在 Houdini 建立自訂求解器，展示細緻的氣泡運動；文章也介紹相關水體研究案例。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://80.lv/articles/artist-recreates-lifelike-bubble-physics-in-houdini-based-on-w-t-s-research",
+      "category": "blender-dcc",
+      "subcategory": "houdini",
+      "ranking_score": 74.0,
+      "base_ranking_score": 74.0,
+      "analysis_level": "BRIEF",
+      "brief_reason": "emerging-research-limited-production-evidence",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "這項展示將氣泡運動交給自訂求解器處理。文章提及另一位作者的氣泡與水體雙向耦合研究，但沒有公開 Morozov 求解器的完整實作，兩者不能視為相同系統。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "可作為水中氣泡、冒泡液體與近景流體的動態參考。製作時值得觀察氣泡如何隨水流改變位置與形狀，避免只用均勻向上的粒子代替所有運動。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "目前主要是成果展示，缺少完整節點、運算時間與可下載工程。重現前應查原始研究，並用小型水槽測試氣泡大小、上升速度與水流互動。"
+        }
+      ],
       "rank_global": 6,
       "homepage_tier": "next10"
     },
@@ -567,6 +539,7 @@
       "category": "3d-animation",
       "subcategory": "mocap",
       "ranking_score": 69.0,
+      "base_ranking_score": 69.0,
       "analysis_level": "BRIEF",
       "brief_reason": "single-source-verified-production-tip",
       "full_analysis": [
@@ -587,84 +560,87 @@
       "homepage_tier": "next10"
     },
     {
-      "id": "cg-channel-alexey-vanzula-releases-direct-modeling-for-houdini",
-      "title": "歷史參考｜Direct Modeling HDA：Houdini 的布林與零件建模",
-      "summary": "Direct Modeling HDA 是 2018 年的 Houdini 硬表面工具，延伸 Flux HDA 的即時布林功能，加入零件庫與 Insert Mesh，方便組裝複雜造型。",
+      "id": "3dnchu-g-scatter-beta",
+      "title": "Blender 製作：程序化Geometry Nodes、Blender版本更新",
+      "summary": "Blender 製作：程序化Geometry Nodes、Blender版本更新。本文介紹Geometry Nodes、Blender的更新；目前簡介未列出完整改動，不能據此推定所有新增功能。",
       "quick_impact": "★★★☆☆",
-      "source_url": "https://www.cgchannel.com/2018/01/alexey-vanzula-releases-direct-modeling-for-houdini",
+      "source_url": "https://3dnchu.com/archives/g-scatter-beta",
       "category": "blender-dcc",
-      "subcategory": "houdini",
-      "ranking_score": 66.0,
+      "subcategory": "blender",
+      "ranking_score": 68.46,
+      "base_ranking_score": 66.0,
       "analysis_level": "BRIEF",
-      "brief_reason": "useful-tool-or-addon-limited-depth",
+      "brief_reason": "early-release-limited-evidence",
       "full_analysis": [
         {
           "label": "技術／流程變更",
-          "text": "工具以可編輯的布林組合建立形體，再用幾何零件庫與 Insert Mesh 替換面或面群，追加螺絲、孔洞等細節；作者也示範保存自製零件供重複使用。"
+          "text": "Blender 製作：程序化Geometry Nodes、Blender版本更新。本文介紹Geometry Nodes、Blender的更新；目前簡介未列出完整改動，不能據此推定所有新增功能。"
         },
         {
           "label": "Production 影響",
-          "text": "對機械道具與載具概念，可先用零件組裝和布林確定外形，再整理需要細分或烘焙的區域。可參考的是建模方式，並非直接把結果當成遊戲低模。"
+          "text": "以Blender 製作：程序化Geometry Nodes、Blender版本更新為例，可拿一個現有模型試做，比較輪廓、拓樸、UV 和烘焙結果，再記錄操作與清理時間，判斷是否比原方法省工。"
         },
         {
           "label": "導入測試與限制",
-          "text": "這篇是 Modeler 前身的歷史介紹，不能當成今天的新版本公告。若要沿用做法，應檢查現行 Modeler 的對應功能，再驗證布林拓樸、UV 與法線烘焙。"
+          "text": "使用Blender 製作：程序化Geometry Nodes、Blender版本更新前，需檢查複雜造型、細分曲面與舊檔相容性；單一示範不能保證所有資產都能得到相同品質。"
         }
       ],
       "rank_global": 8,
       "homepage_tier": "next10"
     },
     {
-      "id": "cg-channel-sidefx-just-released-houdini-22",
-      "title": "Houdini 22：Gaussian Splatting、角色綁定與材質工具更新",
-      "summary": "Houdini 22 加入 Gaussian Splatting 工具，並更新 KineFX 角色綁定、動畫與 Copernicus 影像處理；可從掃描場景、角色和材質三條工作線分別評估。",
+      "id": "cg-channel-blender-4-5-lts-is-out-check-out-its-5-key-features",
+      "title": "Blender 製作：Blender案例介紹",
+      "summary": "Blender 製作：Blender案例介紹。內容展示Blender的作品或工具；可先看具體結果，再確認作者公開了哪些操作步驟。",
       "quick_impact": "★★★☆☆",
-      "source_url": "https://www.cgchannel.com/2026/07/sidefx-just-released-houdini-22",
+      "source_url": "https://www.cgchannel.com/2025/07/blender-4-5-lts-is-out-check-out-its-5-key-features",
       "category": "blender-dcc",
-      "subcategory": "houdini",
-      "ranking_score": 66.0,
+      "subcategory": "blender",
+      "ranking_score": 67.66,
+      "base_ranking_score": 66.0,
       "analysis_level": "BRIEF",
-      "brief_reason": "useful-tool-or-addon-limited-depth",
+      "brief_reason": "single-source-verified-production-tip",
       "full_analysis": [
         {
           "label": "技術／流程變更",
-          "text": "Gaussian Splats 可由照片訓練或由 3D 場景生成，並接到變形和渲染流程。KineFX 加入可複用綁定元件；Copernicus 增加材質圖樣、地形和海洋相關功能。"
+          "text": "Blender 製作：Blender案例介紹。內容展示Blender的作品或工具；可先看具體結果，再確認作者公開了哪些操作步驟。"
         },
         {
           "label": "Production 影響",
-          "text": "場景團隊可測掃描素材如何進入鏡頭與合成；角色團隊可先看綁定模板的重用；貼圖團隊則可測程序材質。各功能應對照自身工作，避免一次全面升版。"
+          "text": "以Blender 製作：Blender案例介紹為例，可挑與目前作品相近的鏡頭或素材做小型比較，觀察形狀、動態和畫面差異，先判斷哪些結果能重現。"
         },
         {
           "label": "導入測試與限制",
-          "text": "這是版本功能整理，並不代表每個功能都適合量產。Gaussian Splats 的重打光仍含原型工具；導入時需確認記憶體、輸出格式、引擎支援與舊工程相容性。"
+          "text": "使用Blender 製作：Blender案例介紹前，目前簡介不足以確認完整實作與效能。測試時需記錄軟體版本、資產規模和輸出結果，再決定能否使用。"
         }
       ],
       "rank_global": 9,
       "homepage_tier": "next10"
     },
     {
-      "id": "3dnchu-unreal-engine-shader-book-posita33",
-      "title": "UE Shader 免費教材：從材質節點、SDF 到 Substrate",
-      "summary": "Unreal Engine Shader Book 是可免費閱讀的日文教材，涵蓋材質基礎、Shader 數學、SDF 圖形與 Substrate；部分章節另提供 GitHub 範例工程。",
+      "id": "cg-channel-reallusions-3d-character-contest-returns-for-2026-with-45000",
+      "title": "角色製作：角色製作工具介紹",
+      "summary": "角色製作：角色製作工具介紹。內容展示動畫的作品或工具；可先看具體結果，再確認作者公開了哪些操作步驟。",
       "quick_impact": "★★★☆☆",
-      "source_url": "https://3dnchu.com/archives/unreal-engine-shader-book-posita33",
-      "category": "engine-art",
-      "subcategory": "unreal",
-      "ranking_score": 63.0,
+      "source_url": "https://www.cgchannel.com/2026/06/reallusions-3d-character-contest-returns-for-2026-with-45000-in-prizes",
+      "category": "3d-production",
+      "subcategory": "character-production",
+      "ranking_score": 67.0,
+      "base_ranking_score": 63.0,
       "analysis_level": "BRIEF",
-      "brief_reason": "single-source-verified-production-tip",
+      "brief_reason": "useful-tool-or-addon-limited-depth",
       "full_analysis": [
         {
           "label": "技術／流程變更",
-          "text": "教材以材質節點與數學操作逐步建立效果，包含用 SDF 畫圓、星形等圖案，也說明 Substrate 的材質分層與混合，可搭配範例工程理解節點關係。"
+          "text": "角色製作：角色製作工具介紹。內容展示動畫的作品或工具；可先看具體結果，再確認作者公開了哪些操作步驟。"
         },
         {
           "label": "Production 影響",
-          "text": "適合已會做貼圖、想進一步控制材質效果的美術。可先選一個 SDF 或材質混合範例重做，再把參數整理成團隊能調整的材質介面。"
+          "text": "以角色製作：角色製作工具介紹為例，可用自己的角色試做姿勢與動作，觀察關節變形、腳底滑動和表情幅度，判斷是否能減少人工修正。"
         },
         {
           "label": "導入測試與限制",
-          "text": "教材主要以日文撰寫，範例也有版本與功能設定要求。跟做前應確認 UE 版本及 Substrate 設定，並檢查 Shader 指令與貼圖採樣成本，避免只照搬外觀。"
+          "text": "使用角色製作：角色製作工具介紹前，需確認骨架、控制器與軟體版本，再測極端姿勢、動作重定向與引擎匯入；介紹本身不能證明所有角色都適用。"
         }
       ],
       "rank_global": 10,
@@ -678,7 +654,8 @@
       "source_url": "https://80.lv/articles/stunning-forest-stream-simulation-made-with-houdini",
       "category": "blender-dcc",
       "subcategory": "houdini",
-      "ranking_score": 63.0,
+      "ranking_score": 66.78,
+      "base_ranking_score": 63.0,
       "analysis_level": "BRIEF",
       "brief_reason": "single-source-verified-production-tip",
       "full_analysis": [
@@ -699,6 +676,180 @@
       "homepage_tier": "next10"
     },
     {
+      "id": "cg-channel-alexey-vanzula-releases-direct-modeling-for-houdini",
+      "title": "歷史參考｜Direct Modeling HDA：Houdini 的布林與零件建模",
+      "summary": "Direct Modeling HDA 是 2018 年的 Houdini 硬表面工具，延伸 Flux HDA 的即時布林功能，加入零件庫與 Insert Mesh，方便組裝複雜造型。",
+      "quick_impact": "★★★☆☆",
+      "source_url": "https://www.cgchannel.com/2018/01/alexey-vanzula-releases-direct-modeling-for-houdini",
+      "category": "blender-dcc",
+      "subcategory": "houdini",
+      "ranking_score": 66.55,
+      "base_ranking_score": 66.0,
+      "analysis_level": "BRIEF",
+      "brief_reason": "useful-tool-or-addon-limited-depth",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "工具以可編輯的布林組合建立形體，再用幾何零件庫與 Insert Mesh 替換面或面群，追加螺絲、孔洞等細節；作者也示範保存自製零件供重複使用。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對機械道具與載具概念，可先用零件組裝和布林確定外形，再整理需要細分或烘焙的區域。可參考的是建模方式，並非直接把結果當成遊戲低模。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "這篇是 Modeler 前身的歷史介紹，不能當成今天的新版本公告。若要沿用做法，應檢查現行 Modeler 的對應功能，再驗證布林拓樸、UV 與法線烘焙。"
+        }
+      ],
+      "rank_global": 12,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "cg-channel-sidefx-just-released-houdini-22",
+      "title": "Houdini 22：Gaussian Splatting、角色綁定與材質工具更新",
+      "summary": "Houdini 22 加入 Gaussian Splatting 工具，並更新 KineFX 角色綁定、動畫與 Copernicus 影像處理；可從掃描場景、角色和材質三條工作線分別評估。",
+      "quick_impact": "★★★☆☆",
+      "source_url": "https://www.cgchannel.com/2026/07/sidefx-just-released-houdini-22",
+      "category": "blender-dcc",
+      "subcategory": "houdini",
+      "ranking_score": 66.0,
+      "base_ranking_score": 66.0,
+      "analysis_level": "BRIEF",
+      "brief_reason": "useful-tool-or-addon-limited-depth",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "Gaussian Splats 可由照片訓練或由 3D 場景生成，並接到變形和渲染流程。KineFX 加入可複用綁定元件；Copernicus 增加材質圖樣、地形和海洋相關功能。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "場景團隊可測掃描素材如何進入鏡頭與合成；角色團隊可先看綁定模板的重用；貼圖團隊則可測程序材質。各功能應對照自身工作，避免一次全面升版。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "這是版本功能整理，並不代表每個功能都適合量產。Gaussian Splats 的重打光仍含原型工具；導入時需確認記憶體、輸出格式、引擎支援與舊工程相容性。"
+        }
+      ],
+      "rank_global": 13,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "3dnchu-unreal-engine-shader-book-posita33",
+      "title": "UE Shader 免費教材：從材質節點、SDF 到 Substrate",
+      "summary": "Unreal Engine Shader Book 是可免費閱讀的日文教材，涵蓋材質基礎、Shader 數學、SDF 圖形與 Substrate；部分章節另提供 GitHub 範例工程。",
+      "quick_impact": "★★★☆☆",
+      "source_url": "https://3dnchu.com/archives/unreal-engine-shader-book-posita33",
+      "category": "engine-art",
+      "subcategory": "unreal",
+      "ranking_score": 64.59,
+      "base_ranking_score": 63.0,
+      "analysis_level": "BRIEF",
+      "brief_reason": "single-source-verified-production-tip",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "教材以材質節點與數學操作逐步建立效果，包含用 SDF 畫圓、星形等圖案，也說明 Substrate 的材質分層與混合，可搭配範例工程理解節點關係。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "適合已會做貼圖、想進一步控制材質效果的美術。可先選一個 SDF 或材質混合範例重做，再把參數整理成團隊能調整的材質介面。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "教材主要以日文撰寫，範例也有版本與功能設定要求。跟做前應確認 UE 版本及 Substrate 設定，並檢查 Shader 指令與貼圖採樣成本，避免只照搬外觀。"
+        }
+      ],
+      "rank_global": 14,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "3dnchu-virtucamera-2",
+      "title": "Blender 製作：Cinema 4D案例介紹",
+      "summary": "Blender 製作：Cinema 4D案例介紹。內容展示Cinema 4D的作品或工具；可先看具體結果，再確認作者公開了哪些操作步驟。",
+      "quick_impact": "★★★☆☆",
+      "source_url": "https://3dnchu.com/archives/virtucamera-2",
+      "category": "blender-dcc",
+      "subcategory": "blender",
+      "ranking_score": 64.59,
+      "base_ranking_score": 63.0,
+      "analysis_level": "BRIEF",
+      "brief_reason": "single-source-verified-production-tip",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "Blender 製作：Cinema 4D案例介紹。內容展示Cinema 4D的作品或工具；可先看具體結果，再確認作者公開了哪些操作步驟。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "以Blender 製作：Cinema 4D案例介紹為例，可挑與目前作品相近的鏡頭或素材做小型比較，觀察形狀、動態和畫面差異，先判斷哪些結果能重現。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "使用Blender 製作：Cinema 4D案例介紹前，目前簡介不足以確認完整實作與效能。測試時需記錄軟體版本、資產規模和輸出結果，再決定能否使用。"
+        }
+      ],
+      "rank_global": 15,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "3dnchu-animation-nodes-blender",
+      "title": "Blender 製作：動畫、Blender案例介紹",
+      "summary": "Blender 製作：動畫、Blender案例介紹。內容展示動畫、Blender的作品或工具；可先看具體結果，再確認作者公開了哪些操作步驟。",
+      "quick_impact": "★★☆☆☆",
+      "source_url": "https://3dnchu.com/archives/animation-nodes-blender",
+      "category": "blender-dcc",
+      "subcategory": "blender",
+      "ranking_score": 62.74,
+      "base_ranking_score": 60.0,
+      "analysis_level": "BRIEF",
+      "brief_reason": "single-source-verified-production-tip",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "Blender 製作：動畫、Blender案例介紹。內容展示動畫、Blender的作品或工具；可先看具體結果，再確認作者公開了哪些操作步驟。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "以Blender 製作：動畫、Blender案例介紹為例，可用自己的角色試做姿勢與動作，觀察關節變形、腳底滑動和表情幅度，判斷是否能減少人工修正。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "使用Blender 製作：動畫、Blender案例介紹前，需確認骨架、控制器與軟體版本，再測極端姿勢、動作重定向與引擎匯入；介紹本身不能證明所有角色都適用。"
+        }
+      ],
+      "rank_global": 16,
+      "homepage_tier": "category_only"
+    },
+    {
+      "id": "cg-channel-blender-5-0-is-out-check-out-its-5-key-features",
+      "title": "Blender 製作：程序化Geometry Nodes、Blender案例介紹",
+      "summary": "Blender 製作：程序化Geometry Nodes、Blender案例介紹。內容展示Geometry Nodes、Blender的作品或工具；可先看具體結果，再確認作者公開了哪些操作步驟。",
+      "quick_impact": "★★☆☆☆",
+      "source_url": "https://www.cgchannel.com/2025/11/blender-5-0-is-out-check-out-its-5-key-features",
+      "category": "blender-dcc",
+      "subcategory": "blender",
+      "ranking_score": 62.63,
+      "base_ranking_score": 60.0,
+      "analysis_level": "BRIEF",
+      "brief_reason": "single-source-verified-production-tip",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "Blender 製作：程序化Geometry Nodes、Blender案例介紹。內容展示Geometry Nodes、Blender的作品或工具；可先看具體結果，再確認作者公開了哪些操作步驟。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "以Blender 製作：程序化Geometry Nodes、Blender案例介紹為例，可拿一個現有模型試做，比較輪廓、拓樸、UV 和烘焙結果，再記錄操作與清理時間，判斷是否比原方法省工。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "使用Blender 製作：程序化Geometry Nodes、Blender案例介紹前，需檢查複雜造型、細分曲面與舊檔相容性；單一示範不能保證所有資產都能得到相同品質。"
+        }
+      ],
+      "rank_global": 17,
+      "homepage_tier": "category_only"
+    },
+    {
       "id": "3dnchu-samus-free-rig",
       "title": "歷史素材｜Samus Maya Rig：免費角色動畫練習模型",
       "summary": "Samus Free Rig 是粉絲製作的《銀河戰士》角色：Julien Desroy 製作模型，Perry Leijten 綁定，提供 Maya 檔案，並有控制器評測與動畫展示。",
@@ -706,7 +857,8 @@
       "source_url": "https://3dnchu.com/archives/samus-free-rig",
       "category": "blender-dcc",
       "subcategory": "maya",
-      "ranking_score": 60.0,
+      "ranking_score": 61.01,
+      "base_ranking_score": 60.0,
       "analysis_level": "BRIEF",
       "brief_reason": "single-source-verified-production-tip",
       "full_analysis": [
@@ -723,8 +875,8 @@
           "text": "來源是 2020 年公開的粉絲資產，免費下載不代表允許商用。使用前需查授權、檔案是否仍可取得及插件版本，再測關節穿插和新版本 Maya 的相容性。"
         }
       ],
-      "rank_global": 12,
-      "homepage_tier": "next10"
+      "rank_global": 18,
+      "homepage_tier": "category_only"
     },
     {
       "id": "80-level-3d-artist-turned-wristwatch-into-m-bius-strip-using-houdini",
@@ -735,6 +887,7 @@
       "category": "blender-dcc",
       "subcategory": "houdini",
       "ranking_score": 60.0,
+      "base_ranking_score": 60.0,
       "analysis_level": "BRIEF",
       "brief_reason": "single-source-verified-production-tip",
       "full_analysis": [
@@ -751,8 +904,8 @@
           "text": "這是 2025 年的作品展示，適合視覺發想，不能直接當成建模教學。自行重現時應檢查環帶接縫、UV 拉伸、零件穿插和動畫循環是否連續。"
         }
       ],
-      "rank_global": 13,
-      "homepage_tier": "next10"
+      "rank_global": 19,
+      "homepage_tier": "category_only"
     }
   ],
   "visual_evidence": {}

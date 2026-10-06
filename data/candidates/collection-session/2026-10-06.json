@@ -18,15 +18,15 @@
       },
       "30d": {
         "status": "exhausted",
-        "candidates_found": 1
+        "candidates_found": 2
       },
       "6m": {
         "status": "exhausted",
-        "candidates_found": 3
+        "candidates_found": 5
       },
       "evergreen": {
         "status": "exhausted",
-        "candidates_found": 45
+        "candidates_found": 50
       }
     },
     "category_candidates": {
@@ -34,7 +34,7 @@
         "candidates_considered": 0
       },
       "3d-production": {
-        "candidates_considered": 1
+        "candidates_considered": 2
       },
       "3d-animation": {
         "candidates_considered": 1
@@ -46,7 +46,7 @@
         "candidates_considered": 0
       },
       "blender-dcc": {
-        "candidates_considered": 9
+        "candidates_considered": 14
       }
     },
     "registered_source_probe": {
@@ -66,35 +66,35 @@
         "3dnchu",
         "cgworld-jp",
         "bilibili-mobile",
-        "artstation",
-        "gumroad-discover",
-        "xiaohongshu"
+        "artstation"
       ],
       "refill_batches": 2,
-      "pre_refill_survivors": 10,
-      "post_refill_survivors": 13,
+      "pre_refill_survivors": 13,
+      "post_refill_survivors": 19,
       "sources": {
         "80-level": {
           "status": "checked",
           "method": "latest-index",
-          "candidates_found": 6,
+          "candidates_found": 7,
           "candidate_ids": [
             "80-level-artist-explores-realistic-water-adhesion-on-animated-charact",
             "80-level-merging-space-colonization-solver-with-pyro-simulation-to-cr",
             "80-level-artist-recreates-lifelike-bubble-physics-in-houdini-based-on",
+            "80-level-blender-5-3-is-getting-native-3d-gaussian-splat-support",
             "80-level-hypnotizing-fluid-simulation-based-on-w-t-s-research-on-lagr",
             "80-level-stunning-forest-stream-simulation-made-with-houdini",
             "80-level-3d-artist-turned-wristwatch-into-m-bius-strip-using-houdini"
           ],
           "index_pages_checked": 2,
           "feed_urls_checked": 0,
-          "refill_links_checked": 15,
+          "refill_links_checked": 16,
+          "semantic_expansion_links_checked": 1,
           "selection_phase": "daily-plan"
         },
         "3dnchu": {
           "status": "checked",
           "method": "latest-index",
-          "candidates_found": 9,
+          "candidates_found": 12,
           "candidate_ids": [
             "3dnchu-harmoflow",
             "3dnchu-sculpt-mesh-1-0",
@@ -103,12 +103,16 @@
             "3dnchu-deeppaintclassjpn-gaku-2026-2",
             "3dnchu-full-control-lattice-generator-v1-0",
             "3dnchu-fx-maker-tools",
+            "3dnchu-g-scatter-beta",
             "3dnchu-unreal-engine-shader-book-posita33",
+            "3dnchu-virtucamera-2",
+            "3dnchu-animation-nodes-blender",
             "3dnchu-samus-free-rig"
           ],
           "index_pages_checked": 1,
           "feed_urls_checked": 2,
           "refill_links_checked": 16,
+          "semantic_expansion_links_checked": 3,
           "selection_phase": "targeted-refill"
         },
         "cgworld-jp": {
@@ -121,6 +125,7 @@
           "index_pages_checked": 2,
           "feed_urls_checked": 0,
           "refill_links_checked": 1,
+          "semantic_expansion_links_checked": 0,
           "selection_phase": "targeted-refill"
         },
         "bilibili-mobile": {
@@ -131,6 +136,7 @@
           "index_pages_checked": 1,
           "feed_urls_checked": 0,
           "refill_links_checked": 0,
+          "semantic_expansion_links_checked": 0,
           "selection_phase": "targeted-refill"
         },
         "artstation": {
@@ -145,31 +151,24 @@
           "selection_phase": "targeted-refill"
         },
         "gumroad-discover": {
-          "status": "checked",
-          "method": "latest-index",
+          "status": "not-scheduled",
+          "method": "rolling-window",
           "candidates_found": 0,
           "candidate_ids": [],
-          "index_pages_checked": 1,
-          "feed_urls_checked": 0,
-          "refill_links_checked": 0,
-          "selection_phase": "targeted-refill"
+          "reason": "deterministic-rolling-probe-not-selected"
         },
         "xiaohongshu": {
-          "status": "checked",
-          "method": "latest-index",
+          "status": "not-scheduled",
+          "method": "rolling-window",
           "candidates_found": 0,
           "candidate_ids": [],
-          "index_pages_checked": 1,
-          "feed_urls_checked": 0,
-          "refill_links_checked": 0,
-          "selection_phase": "targeted-refill"
+          "reason": "deterministic-rolling-probe-not-selected"
         },
         "cg-channel": {
           "status": "checked",
           "method": "latest-index",
-          "candidates_found": 33,
+          "candidates_found": 36,
           "candidate_ids": [
-            "cg-channel-ynput-launches-free-vfx-and-animation-pipeline-platform-ayon",
             "cg-channel-alexey-vanzhula-releases-modeler-26-for-houdini",
             "cg-channel-see-rodeo-fxs-vfx-breakdown-of-its-new-ad-for-fm-insurance",
             "cg-channel-see-how-framestore-created-a-cg-battlefield-for-lioness-seas",
@@ -177,28 +176,32 @@
             "cg-channel-check-out-koala-fxs-vertiginous-vfx-breakdown-for-fall-2",
             "cg-channel-gravity-sketch-releases-gravity-sketch-vr-in-beta",
             "cg-channel-faceware-technologies-launches-faceware-studio",
-            "cg-channel-foundry-ships-modo-14-2",
             "cg-channel-discover-5-key-features-for-cg-artists-in-godot-4-6",
-            "cg-channel-cinema-4d-to-get-ipad-edition-and-new-generative-ai-features",
             "cg-channel-10-things-cg-artists-need-to-know-about-unreal-engine-6",
             "cg-channel-see-5-key-features-for-cg-artists-in-unreal-engine-5-8",
+            "cg-channel-try-the-open-beta-of-rtx-render-for-character-creator-and-ic",
             "cg-channel-get-free-vfx-image-viewer-and-video-playback-tool-djv-3-6",
             "cg-channel-playcanvas-releases-supersplat-editor-3-0",
             "cg-channel-free-tutorial-design-mechs-in-vr-using-substance-3d-modeler",
             "cg-channel-alexey-vanzula-releases-direct-modeling-for-houdini",
+            "cg-channel-itoosoft-releases-railclone-7",
+            "cg-channel-blender-4-5-lts-is-out-check-out-its-5-key-features",
             "cg-channel-see-the-2026-blender-development-roadmap",
             "cg-channel-autodesk-releases-maya-2027-and-maya-creative-2027",
-            "cg-channel-ai-developer-anthropic-becomes-blenders-latest-corporate-pat",
             "cg-channel-sidefx-just-released-houdini-22",
             "cg-channel-armorpaint-1-0-is-out-after-eight-years-in-early-access",
-            "cg-channel-blackmagic-design-releases-resolve-21-1",
             "cg-channel-maxon-releases-cinema-4d-2026-4-with-a-new-mcp-server",
             "cg-channel-insydium-releases-nexus-2026-1-in-beta",
             "cg-channel-new-3d-software-you-may-have-missed-4-october-2026",
+            "cg-channel-rokoko-studio-2-4-now-does-retargeting",
+            "cg-channel-reallusions-3d-character-contest-returns-for-2026-with-45000",
+            "cg-channel-armature-is-a-free-ai-assisted-standalone-character-rigging",
             "cg-channel-how-dupp-film-created-a-hybrid-cg-mermaid-for-summer-of-1985",
             "cg-channel-download-130-free-fbx-mocap-moves-from-anderson-rohr",
             "cg-channel-the-pixel-farm-lifts-feature-restrictions-on-pftrack-solo",
             "cg-channel-3d-io-releases-exr-io-2-0-for-photoshop",
+            "cg-channel-baga-river-generator-lets-you-draw-rivers-into-blender-scene",
+            "cg-channel-blender-5-0-is-out-check-out-its-5-key-features",
             "cg-channel-discover-5-key-features-in-blender-5-1",
             "cg-channel-blender-5-2-lts-is-here-discover-its-5-key-features",
             "cg-channel-check-out-free-maya-animation-productivity-toolset-keyflow"
@@ -206,16 +209,18 @@
           "index_pages_checked": 4,
           "feed_urls_checked": 2,
           "refill_links_checked": 16,
+          "semantic_expansion_links_checked": 4,
           "selection_phase": "daily-plan"
         },
         "blender-official": {
           "status": "checked",
           "method": "latest-index",
-          "candidates_found": 11,
+          "candidates_found": 12,
           "candidate_ids": [
             "blender-official-blender-5-1-release",
             "blender-official-blender-5-2-lts-release",
             "blender-official-2d-isnt-dead-it-just-became-something-different-using-blende",
+            "blender-official-cycles-texture-cache",
             "blender-official-the-future-of-storyboarding-blender-for-pre-production",
             "blender-official-animation-2025-progress-planning",
             "blender-official-blender-lab-activity-report-q1-2026",
@@ -228,6 +233,7 @@
           "index_pages_checked": 5,
           "feed_urls_checked": 1,
           "refill_links_checked": 16,
+          "semantic_expansion_links_checked": 5,
           "selection_phase": "daily-plan"
         },
         "epic-developer-community": {
@@ -238,6 +244,7 @@
           "index_pages_checked": 1,
           "feed_urls_checked": 0,
           "refill_links_checked": 0,
+          "semantic_expansion_links_checked": 0,
           "selection_phase": "daily-plan"
         },
         "unity-official": {
@@ -248,6 +255,7 @@
           "index_pages_checked": 2,
           "feed_urls_checked": 0,
           "refill_links_checked": 0,
+          "semantic_expansion_links_checked": 0,
           "selection_phase": "daily-plan"
         },
         "sidefx-official": {
@@ -258,6 +266,7 @@
           "index_pages_checked": 2,
           "feed_urls_checked": 0,
           "refill_links_checked": 0,
+          "semantic_expansion_links_checked": 0,
           "selection_phase": "daily-plan"
         },
         "autodesk-area": {
@@ -268,6 +277,7 @@
           "index_pages_checked": 1,
           "feed_urls_checked": 0,
           "refill_links_checked": 0,
+          "semantic_expansion_links_checked": 0,
           "selection_phase": "daily-plan"
         },
         "adobe-substance-3d": {
@@ -278,6 +288,7 @@
           "index_pages_checked": 1,
           "feed_urls_checked": 0,
           "refill_links_checked": 0,
+          "semantic_expansion_links_checked": 0,
           "selection_phase": "daily-plan"
         },
         "game-developer": {
@@ -288,30 +299,32 @@
           "index_pages_checked": 4,
           "feed_urls_checked": 0,
           "refill_links_checked": 0,
+          "semantic_expansion_links_checked": 0,
           "selection_phase": "daily-plan"
         }
       }
     },
-    "notes": "2026-10-06 autonomous GitHub Collector loaded the Published Registry snapshot before discovery, supplemented it from verified-DONE history when needed, checked rolling backlog, executed the current-main deterministic registered-source probe plan, crawled configured source indexes plus bounded same-source refill, then used the current-main deficit-aware deterministic registered-source refill only when the verified survivor count remained below the normal floor, and applied exact source/stable identity dedupe before ranking. Registered refill: pre=10 post=13 batches=2 selected=[\"3dnchu\", \"cgworld-jp\", \"bilibili-mobile\", \"artstation\", \"gumroad-discover\", \"xiaohongshu\"]. Registry audit: {\"history_supplemented_items\": 0, \"latest_verified_done\": \"2026-10-05\", \"snapshot_generated_through\": \"2026-10-05\", \"snapshot_state\": \"DERIVED_FROM_VERIFIED_DONE\", \"source_identities\": 732, \"stable_ids\": 731}. Backlog entries rechecked=0. No source registration/domain supplied ranking bonus, quota or admission bypass. 2026-10-06 editorial-only policy recollect preserved all 13 canonical IDs, source URLs, ranks and classifications; sources reverified before copy replacement (live=13, verified-DONE+external-review fallback=0)."
+    "notes": "2026-10-06 autonomous GitHub Collector loaded the Published Registry snapshot before discovery, supplemented it from verified-DONE history when needed, checked rolling backlog, executed the current-main deterministic registered-source probe plan, crawled configured source indexes plus bounded same-source refill, then used the current-main deficit-aware deterministic registered-source refill only when the verified survivor count remained below the normal floor, and applied exact source/stable identity dedupe before ranking. Registered refill: pre=13 post=19 batches=2 selected=[\"3dnchu\", \"cgworld-jp\", \"bilibili-mobile\", \"artstation\"]. Registry audit: {\"history_supplemented_items\": 0, \"latest_verified_done\": \"2026-10-05\", \"snapshot_generated_through\": \"2026-10-06\", \"snapshot_state\": \"DERIVED_FROM_VERIFIED_DONE\", \"source_identities\": 732, \"stable_ids\": 731}. Backlog entries rechecked=0. No source registration/domain supplied ranking bonus, quota or admission bypass."
   },
   "candidate_decisions": [
     {
-      "candidate_id": "80-level-hypnotizing-fluid-simulation-based-on-w-t-s-research-on-lagr",
-      "source_url": "https://80.lv/articles/hypnotizing-fluid-simulation-based-on-w-t-s-research-on-lagrangian-waves",
+      "candidate_id": "80-level-blender-5-3-is-getting-native-3d-gaussian-splat-support",
+      "source_url": "https://80.lv/articles/blender-5-3-is-getting-native-3d-gaussian-splat-support",
       "discovery_channels": [
         "registered-source-crawl",
         "registered-source-probe:80-level",
+        "semantic-feedback-expansion",
         "published-registry-snapshot"
       ],
       "decision": "duplicate",
       "reason_code": "published-registry-exact-identity"
     },
     {
-      "candidate_id": "cg-channel-ynput-launches-free-vfx-and-animation-pipeline-platform-ayon",
-      "source_url": "https://www.cgchannel.com/2023/08/ynput-launches-free-vfx-and-animation-pipeline-platform-ayon",
+      "candidate_id": "80-level-hypnotizing-fluid-simulation-based-on-w-t-s-research-on-lagr",
+      "source_url": "https://80.lv/articles/hypnotizing-fluid-simulation-based-on-w-t-s-research-on-lagrangian-waves",
       "discovery_channels": [
         "registered-source-crawl",
-        "registered-source-probe:cg-channel",
+        "registered-source-probe:80-level",
         "published-registry-snapshot"
       ],
       "decision": "duplicate",
@@ -362,30 +375,8 @@
       "reason_code": "published-registry-exact-identity"
     },
     {
-      "candidate_id": "cg-channel-foundry-ships-modo-14-2",
-      "source_url": "https://www.cgchannel.com/2020/11/foundry-ships-modo-14-2",
-      "discovery_channels": [
-        "registered-source-crawl",
-        "registered-source-probe:cg-channel",
-        "published-registry-snapshot"
-      ],
-      "decision": "duplicate",
-      "reason_code": "published-registry-exact-identity"
-    },
-    {
       "candidate_id": "cg-channel-discover-5-key-features-for-cg-artists-in-godot-4-6",
       "source_url": "https://www.cgchannel.com/2026/01/discover-5-key-features-for-cg-artists-in-godot-4-6",
-      "discovery_channels": [
-        "registered-source-crawl",
-        "registered-source-probe:cg-channel",
-        "published-registry-snapshot"
-      ],
-      "decision": "duplicate",
-      "reason_code": "published-registry-exact-identity"
-    },
-    {
-      "candidate_id": "cg-channel-cinema-4d-to-get-ipad-edition-and-new-generative-ai-features",
-      "source_url": "https://www.cgchannel.com/2026/03/cinema-4d-to-get-ipad-edition-and-new-generative-ai-features",
       "discovery_channels": [
         "registered-source-crawl",
         "registered-source-probe:cg-channel",
@@ -408,6 +399,17 @@
     {
       "candidate_id": "cg-channel-see-5-key-features-for-cg-artists-in-unreal-engine-5-8",
       "source_url": "https://www.cgchannel.com/2026/06/see-5-key-features-for-cg-artists-in-unreal-engine-5-8",
+      "discovery_channels": [
+        "registered-source-crawl",
+        "registered-source-probe:cg-channel",
+        "published-registry-snapshot"
+      ],
+      "decision": "duplicate",
+      "reason_code": "published-registry-exact-identity"
+    },
+    {
+      "candidate_id": "cg-channel-try-the-open-beta-of-rtx-render-for-character-creator-and-ic",
+      "source_url": "https://www.cgchannel.com/2026/07/try-the-open-beta-of-rtx-render-for-character-creator-and-iclone",
       "discovery_channels": [
         "registered-source-crawl",
         "registered-source-probe:cg-channel",
@@ -450,6 +452,17 @@
       "reason_code": "published-registry-exact-identity"
     },
     {
+      "candidate_id": "cg-channel-itoosoft-releases-railclone-7",
+      "source_url": "https://www.cgchannel.com/2025/05/itoosoft-releases-railclone-7",
+      "discovery_channels": [
+        "registered-source-crawl",
+        "registered-source-probe:cg-channel",
+        "published-registry-snapshot"
+      ],
+      "decision": "duplicate",
+      "reason_code": "published-registry-exact-identity"
+    },
+    {
       "candidate_id": "cg-channel-see-the-2026-blender-development-roadmap",
       "source_url": "https://www.cgchannel.com/2026/02/see-the-2026-blender-development-roadmap",
       "discovery_channels": [
@@ -472,30 +485,8 @@
       "reason_code": "published-registry-exact-identity"
     },
     {
-      "candidate_id": "cg-channel-ai-developer-anthropic-becomes-blenders-latest-corporate-pat",
-      "source_url": "https://www.cgchannel.com/2026/04/ai-developer-anthropic-becomes-blenders-latest-corporate-patron",
-      "discovery_channels": [
-        "registered-source-crawl",
-        "registered-source-probe:cg-channel",
-        "published-registry-snapshot"
-      ],
-      "decision": "duplicate",
-      "reason_code": "published-registry-exact-identity"
-    },
-    {
       "candidate_id": "cg-channel-armorpaint-1-0-is-out-after-eight-years-in-early-access",
       "source_url": "https://www.cgchannel.com/2026/09/armorpaint-1-0-is-out-after-eight-years-in-early-access",
-      "discovery_channels": [
-        "registered-source-crawl",
-        "registered-source-probe:cg-channel",
-        "published-registry-snapshot"
-      ],
-      "decision": "duplicate",
-      "reason_code": "published-registry-exact-identity"
-    },
-    {
-      "candidate_id": "cg-channel-blackmagic-design-releases-resolve-21-1",
-      "source_url": "https://www.cgchannel.com/2026/09/blackmagic-design-releases-resolve-21-1",
       "discovery_channels": [
         "registered-source-crawl",
         "registered-source-probe:cg-channel",
@@ -538,6 +529,29 @@
       "reason_code": "published-registry-exact-identity"
     },
     {
+      "candidate_id": "cg-channel-rokoko-studio-2-4-now-does-retargeting",
+      "source_url": "https://www.cgchannel.com/2023/05/rokoko-studio-2-4-now-does-retargeting",
+      "discovery_channels": [
+        "registered-source-crawl",
+        "registered-source-probe:cg-channel",
+        "published-registry-snapshot"
+      ],
+      "decision": "duplicate",
+      "reason_code": "published-registry-exact-identity"
+    },
+    {
+      "candidate_id": "cg-channel-armature-is-a-free-ai-assisted-standalone-character-rigging",
+      "source_url": "https://www.cgchannel.com/2026/08/armature-is-a-free-ai-assisted-standalone-character-rigging-tool",
+      "discovery_channels": [
+        "registered-source-crawl",
+        "registered-source-probe:cg-channel",
+        "semantic-feedback-expansion",
+        "published-registry-snapshot"
+      ],
+      "decision": "duplicate",
+      "reason_code": "published-registry-exact-identity"
+    },
+    {
       "candidate_id": "cg-channel-how-dupp-film-created-a-hybrid-cg-mermaid-for-summer-of-1985",
       "source_url": "https://www.cgchannel.com/2026/08/how-dupp-film-created-a-hybrid-cg-mermaid-for-summer-of-1985",
       "discovery_channels": [
@@ -573,6 +587,17 @@
     {
       "candidate_id": "cg-channel-3d-io-releases-exr-io-2-0-for-photoshop",
       "source_url": "https://www.cgchannel.com/2022/03/3d-io-releases-exr-io-2-0-for-photoshop",
+      "discovery_channels": [
+        "registered-source-crawl",
+        "registered-source-probe:cg-channel",
+        "published-registry-snapshot"
+      ],
+      "decision": "duplicate",
+      "reason_code": "published-registry-exact-identity"
+    },
+    {
+      "candidate_id": "cg-channel-baga-river-generator-lets-you-draw-rivers-into-blender-scene",
+      "source_url": "https://www.cgchannel.com/2025/05/baga-river-generator-lets-you-draw-rivers-into-blender-scenes",
       "discovery_channels": [
         "registered-source-crawl",
         "registered-source-probe:cg-channel",
@@ -642,6 +667,18 @@
       "discovery_channels": [
         "registered-source-crawl",
         "registered-source-probe:blender-official",
+        "published-registry-snapshot"
+      ],
+      "decision": "duplicate",
+      "reason_code": "published-registry-exact-identity"
+    },
+    {
+      "candidate_id": "blender-official-cycles-texture-cache",
+      "source_url": "https://code.blender.org/2026/05/cycles-texture-cache",
+      "discovery_channels": [
+        "registered-source-crawl",
+        "registered-source-probe:blender-official",
+        "semantic-feedback-expansion",
         "published-registry-snapshot"
       ],
       "decision": "duplicate",
@@ -825,8 +862,7 @@
       "discovery_channels": [
         "registered-source-crawl",
         "registered-source-probe:80-level",
-        "published-registry-snapshot",
-        "editorial-repair-source-reverify"
+        "published-registry-snapshot"
       ],
       "decision": "published",
       "canonical_id": "80-level-artist-explores-realistic-water-adhesion-on-animated-charact"
@@ -838,8 +874,7 @@
         "registered-source-crawl",
         "registered-source-probe:3dnchu",
         "registered-source-targeted-refill",
-        "published-registry-snapshot",
-        "editorial-repair-source-reverify"
+        "published-registry-snapshot"
       ],
       "decision": "published",
       "canonical_id": "3dnchu-harmoflow"
@@ -850,23 +885,10 @@
       "discovery_channels": [
         "registered-source-crawl",
         "registered-source-probe:80-level",
-        "published-registry-snapshot",
-        "editorial-repair-source-reverify"
+        "published-registry-snapshot"
       ],
       "decision": "published",
       "canonical_id": "80-level-merging-space-colonization-solver-with-pyro-simulation-to-cr"
-    },
-    {
-      "candidate_id": "80-level-artist-recreates-lifelike-bubble-physics-in-houdini-based-on",
-      "source_url": "https://80.lv/articles/artist-recreates-lifelike-bubble-physics-in-houdini-based-on-w-t-s-research",
-      "discovery_channels": [
-        "registered-source-crawl",
-        "registered-source-probe:80-level",
-        "published-registry-snapshot",
-        "editorial-repair-source-reverify"
-      ],
-      "decision": "published",
-      "canonical_id": "80-level-artist-recreates-lifelike-bubble-physics-in-houdini-based-on"
     },
     {
       "candidate_id": "cg-channel-alexey-vanzhula-releases-modeler-26-for-houdini",
@@ -874,8 +896,7 @@
       "discovery_channels": [
         "registered-source-crawl",
         "registered-source-probe:cg-channel",
-        "published-registry-snapshot",
-        "editorial-repair-source-reverify"
+        "published-registry-snapshot"
       ],
       "decision": "published",
       "canonical_id": "cg-channel-alexey-vanzhula-releases-modeler-26-for-houdini"
@@ -886,11 +907,21 @@
       "discovery_channels": [
         "registered-source-crawl",
         "registered-source-probe:cg-channel",
-        "published-registry-snapshot",
-        "editorial-repair-source-reverify"
+        "published-registry-snapshot"
       ],
       "decision": "published",
       "canonical_id": "cg-channel-gravity-sketch-releases-gravity-sketch-vr-in-beta"
+    },
+    {
+      "candidate_id": "80-level-artist-recreates-lifelike-bubble-physics-in-houdini-based-on",
+      "source_url": "https://80.lv/articles/artist-recreates-lifelike-bubble-physics-in-houdini-based-on-w-t-s-research",
+      "discovery_channels": [
+        "registered-source-crawl",
+        "registered-source-probe:80-level",
+        "published-registry-snapshot"
+      ],
+      "decision": "published",
+      "canonical_id": "80-level-artist-recreates-lifelike-bubble-physics-in-houdini-based-on"
     },
     {
       "candidate_id": "cg-channel-faceware-technologies-launches-faceware-studio",
@@ -898,11 +929,58 @@
       "discovery_channels": [
         "registered-source-crawl",
         "registered-source-probe:cg-channel",
-        "published-registry-snapshot",
-        "editorial-repair-source-reverify"
+        "published-registry-snapshot"
       ],
       "decision": "published",
       "canonical_id": "cg-channel-faceware-technologies-launches-faceware-studio"
+    },
+    {
+      "candidate_id": "3dnchu-g-scatter-beta",
+      "source_url": "https://3dnchu.com/archives/g-scatter-beta",
+      "discovery_channels": [
+        "registered-source-crawl",
+        "registered-source-probe:3dnchu",
+        "semantic-feedback-expansion",
+        "registered-source-targeted-refill",
+        "published-registry-snapshot"
+      ],
+      "decision": "published",
+      "canonical_id": "3dnchu-g-scatter-beta"
+    },
+    {
+      "candidate_id": "cg-channel-blender-4-5-lts-is-out-check-out-its-5-key-features",
+      "source_url": "https://www.cgchannel.com/2025/07/blender-4-5-lts-is-out-check-out-its-5-key-features",
+      "discovery_channels": [
+        "registered-source-crawl",
+        "registered-source-probe:cg-channel",
+        "semantic-feedback-expansion",
+        "published-registry-snapshot"
+      ],
+      "decision": "published",
+      "canonical_id": "cg-channel-blender-4-5-lts-is-out-check-out-its-5-key-features"
+    },
+    {
+      "candidate_id": "cg-channel-reallusions-3d-character-contest-returns-for-2026-with-45000",
+      "source_url": "https://www.cgchannel.com/2026/06/reallusions-3d-character-contest-returns-for-2026-with-45000-in-prizes",
+      "discovery_channels": [
+        "registered-source-crawl",
+        "registered-source-probe:cg-channel",
+        "semantic-feedback-expansion",
+        "published-registry-snapshot"
+      ],
+      "decision": "published",
+      "canonical_id": "cg-channel-reallusions-3d-character-contest-returns-for-2026-with-45000"
+    },
+    {
+      "candidate_id": "80-level-stunning-forest-stream-simulation-made-with-houdini",
+      "source_url": "https://80.lv/articles/stunning-forest-stream-simulation-made-with-houdini",
+      "discovery_channels": [
+        "registered-source-crawl",
+        "registered-source-probe:80-level",
+        "published-registry-snapshot"
+      ],
+      "decision": "published",
+      "canonical_id": "80-level-stunning-forest-stream-simulation-made-with-houdini"
     },
     {
       "candidate_id": "cg-channel-alexey-vanzula-releases-direct-modeling-for-houdini",
@@ -910,8 +988,7 @@
       "discovery_channels": [
         "registered-source-crawl",
         "registered-source-probe:cg-channel",
-        "published-registry-snapshot",
-        "editorial-repair-source-reverify"
+        "published-registry-snapshot"
       ],
       "decision": "published",
       "canonical_id": "cg-channel-alexey-vanzula-releases-direct-modeling-for-houdini"
@@ -922,8 +999,7 @@
       "discovery_channels": [
         "registered-source-crawl",
         "registered-source-probe:cg-channel",
-        "published-registry-snapshot",
-        "editorial-repair-source-reverify"
+        "published-registry-snapshot"
       ],
       "decision": "published",
       "canonical_id": "cg-channel-sidefx-just-released-houdini-22"
@@ -935,23 +1011,48 @@
         "registered-source-crawl",
         "registered-source-probe:3dnchu",
         "registered-source-targeted-refill",
-        "published-registry-snapshot",
-        "editorial-repair-source-reverify"
+        "published-registry-snapshot"
       ],
       "decision": "published",
       "canonical_id": "3dnchu-unreal-engine-shader-book-posita33"
     },
     {
-      "candidate_id": "80-level-stunning-forest-stream-simulation-made-with-houdini",
-      "source_url": "https://80.lv/articles/stunning-forest-stream-simulation-made-with-houdini",
+      "candidate_id": "3dnchu-virtucamera-2",
+      "source_url": "https://3dnchu.com/archives/virtucamera-2",
       "discovery_channels": [
         "registered-source-crawl",
-        "registered-source-probe:80-level",
-        "published-registry-snapshot",
-        "editorial-repair-source-reverify"
+        "registered-source-probe:3dnchu",
+        "semantic-feedback-expansion",
+        "registered-source-targeted-refill",
+        "published-registry-snapshot"
       ],
       "decision": "published",
-      "canonical_id": "80-level-stunning-forest-stream-simulation-made-with-houdini"
+      "canonical_id": "3dnchu-virtucamera-2"
+    },
+    {
+      "candidate_id": "3dnchu-animation-nodes-blender",
+      "source_url": "https://3dnchu.com/archives/animation-nodes-blender",
+      "discovery_channels": [
+        "registered-source-crawl",
+        "registered-source-probe:3dnchu",
+        "semantic-feedback-expansion",
+        "registered-source-targeted-refill",
+        "published-registry-snapshot"
+      ],
+      "decision": "published",
+      "canonical_id": "3dnchu-animation-nodes-blender"
+    },
+    {
+      "candidate_id": "cg-channel-blender-5-0-is-out-check-out-its-5-key-features",
+      "source_url": "https://www.cgchannel.com/2025/11/blender-5-0-is-out-check-out-its-5-key-features",
+      "discovery_channels": [
+        "registered-source-crawl",
+        "registered-source-probe:cg-channel",
+        "semantic-feedback-expansion",
+        "published-registry-snapshot"
+      ],
+      "decision": "published",
+      "canonical_id": "cg-channel-blender-5-0-is-out-check-out-its-5-key-features"
     },
     {
       "candidate_id": "3dnchu-samus-free-rig",
@@ -960,8 +1061,7 @@
         "registered-source-crawl",
         "registered-source-probe:3dnchu",
         "registered-source-targeted-refill",
-        "published-registry-snapshot",
-        "editorial-repair-source-reverify"
+        "published-registry-snapshot"
       ],
       "decision": "published",
       "canonical_id": "3dnchu-samus-free-rig"
@@ -972,8 +1072,7 @@
       "discovery_channels": [
         "registered-source-crawl",
         "registered-source-probe:80-level",
-        "published-registry-snapshot",
-        "editorial-repair-source-reverify"
+        "published-registry-snapshot"
       ],
       "decision": "published",
       "canonical_id": "80-level-3d-artist-turned-wristwatch-into-m-bius-strip-using-houdini"
@@ -981,9 +1080,8 @@
   ],
   "personalization": {
     "contract": "supabase-semantic-feedback-v1",
-    "status": "unavailable",
-    "vote_count": 0,
-    "reason": "Autonomous GitHub Collector has no authoritative active-app-owner identity; current-main neutral-and-continue fallback applied without reading or committing raw user data.",
+    "status": "applied",
+    "vote_count": 14,
     "max_rank_multiplier": 0.2,
     "max_query_expansion_fraction": 0.2,
     "raw_profile_committed": false,
@@ -991,6 +1089,10 @@
     "domain_weights_used": false,
     "admission_bypass": false,
     "quality_gate_bypass": false,
-    "source_quota": false
+    "source_quota": false,
+    "ranking_adjusted_count": 14,
+    "semantic_expansion_candidates": 9,
+    "profile_fingerprint": "1e1d84f7cdf5e70a9eae2f510a67acfa00e2525a6a136ea5582ea38db0dcf290",
+    "reader": "github-actions-oidc-owner-v1"
   }
 }
