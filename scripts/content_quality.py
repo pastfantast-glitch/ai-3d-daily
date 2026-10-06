@@ -54,7 +54,7 @@ GENERIC_NAV_TITLE_EXACT = {
 }
 GENERIC_NAV_LEAVES = {
     "games", "industry", "partners", "latest", "training",
-    "demo-files", "support", "tools",
+    "demo-files", "support", "tools", "releases",
 }
 LANDING_PATH_FRAGMENTS = (
     "/products/", "/features/", "/pricing/", "/solutions/", "/services/",
