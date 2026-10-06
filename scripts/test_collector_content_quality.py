@@ -470,7 +470,7 @@ policy = editorial_policy()
 plain_policy = policy["plain_reading"]
 assert "2026-09-25" in plain_policy["reference_dates"]
 reviewed_records = policy["reviewed_reader_copy"]
-assert len(reviewed_records) == 13
+assert len(reviewed_records) >= 13  # Keep initial coverage while allowing more reviewed sources.
 seen_reviewed_blocks = set()
 for url, record in reviewed_records.items():
     source_meta = meta(url, "Source title", "Verified source description.")
