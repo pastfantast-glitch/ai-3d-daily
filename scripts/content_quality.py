@@ -536,7 +536,7 @@ def production_subject(meta: dict, focus_text: str) -> str:
 
 
 def source_content_kind(raw: str) -> str:
-    if has_any(raw, ("release", "update", "version", "beta", "alpha", "preview", "roadmap", "ships")):
+    if has_any(raw, ("release", "releases", "released", "update", "version", "beta", "alpha", "preview", "roadmap", "ships", "launches", "launched")):
         return "update"
     if has_any(raw, ("tutorial", "guide", "course", "training", "workflow", "learn how", "learn to")):
         return "tutorial"
@@ -684,8 +684,9 @@ def editorial_analysis(meta: dict, category: str, subcategory: str) -> list[dict
     else:
         use = "可挑與目前作品相近的鏡頭或素材做小型比較，觀察形狀、動態和畫面差異，先判斷哪些結果能重現。"
         test = "目前簡介不足以確認完整實作與效能。測試時需記錄軟體版本、資產規模和輸出結果，再決定能否使用。"
+    technical = fact if fact.startswith(title) else f"{title}。{fact}"
     return [
-        {"label": "技術／流程變更", "text": clean(f"{title}。{fact}", 620)},
+        {"label": "技術／流程變更", "text": clean(technical, 620)},
         {"label": "Production 影響", "text": clean(f"以{title}為例，{use}", 620)},
         {"label": "導入測試與限制", "text": clean(f"使用{title}前，{test}", 620)},
     ]
