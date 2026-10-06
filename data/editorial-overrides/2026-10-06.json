@@ -1,89 +1,17 @@
 {
   "schema_version": 1,
-  "effective_date": "2026-09-27",
-  "contract": "source-grounded-editorial-v1",
+  "date": "2026-10-06",
   "style_reference": "2026-09-25",
-  "reader_language": "zh-Hant",
-  "mode": "source-grounded-editorial-with-factual-fallback",
-  "selection_preserving_repair": {
-    "directory": "data/editorial-overrides",
-    "require_exact_item_set": true,
-    "reverify_sources": true,
-    "unreachable_source_policy": "require-exact-verified-DONE-id+source identity and current external source-review evidence; never applies to new-item Admission"
+  "preserve_selection": true,
+  "reason": "Restore the concrete source-specific Traditional Chinese reader style of 2026-09-23 through 2026-09-25; replace clipped English headings and generic advice with actual capabilities, art uses and explicit limits.",
+  "source_review": {
+    "status": "verified",
+    "reviewed_on": "2026-10-06",
+    "reviewed_count": 13,
+    "method": "external-source-review-plus-verified-DONE-identity"
   },
-  "factual_fallback": {
-    "enabled": true,
-    "max_source_description_chars": 280,
-    "allow_shorter_brief_instead_of_generic_padding": true
-  },
-  "qa": {
-    "min_summary_chars": 28,
-    "min_analysis_block_chars": 36,
-    "max_cross_item_signature_occurrences": 2,
-    "banned_phrases": [
-      "來源頁面顯示",
-      "頁面內容指出：",
-      "Collector 因此",
-      "具有直接 Production 參考價值",
-      "來源可驗證的製作重點包含",
-      "來源可驗證的主題落在",
-      "近期工具、流程或案例參考",
-      "近期製作參考",
-      "值得進一步實測",
-      "可作為近期參考項目",
-      "建立測試檔",
-      "應優先理解它改變的是",
-      "用來決定是否值得深入閱讀",
-      "來源主題為",
-      "來源題名線索",
-      "目前可確認的製作面向包含",
-      "讀者標題為",
-      "Production 檢查點為"
-    ],
-    "banned_title_patterns": [
-      "(?:製作情報：){2,}",
-      "(?:Blender／DCC：){2,}",
-      "^製作情報：Blender／DCC：Blender／DCC：",
-      "^製作情報："
-    ]
-  },
-  "language_quality": {
-    "effective_date": "2026-09-28",
-    "forbid_japanese_kana": true,
-    "title_max_latin_letters_per_han": 4,
-    "summary_max_latin_letters_per_han": 2.5,
-    "analysis_max_latin_letters_per_han": 3,
-    "allow_technical_terms": true,
-    "requirement": "Reader-facing title, summary and analysis must be predominantly Traditional Chinese; product/tool names and established technical terms may remain in English."
-  },
-  "plain_reading": {
-    "effective_date": "2026-10-06",
-    "reference_dates": [
-      "2026-09-23",
-      "2026-09-24",
-      "2026-09-25"
-    ],
-    "title_rule": "用完整中文說清楚產品、功能或作品；保留正確工具名稱與版本，禁止截斷英文標題。",
-    "summary_rule": "一至兩句直接說明作者做了什麼、用了哪些方法、得到什麼結果。",
-    "analysis_rule": "三段分別說明具體做法、與美術工作的關係、可實際檢查的限制；已知事實與建議要分開。",
-    "limited_evidence_rule": "資訊不足時說清楚可確認的內容與缺少的資訊，不能用抽象套話補字數。",
-    "banned_phrases": [
-      "這類變更要先釐清新增能力位於 authoring",
-      "因為同樣叫「新功能」",
-      "作用範圍落在",
-      "的製作實作直接相關",
-      "才能避免把展示效果誤當成可直接複製的流程",
-      "只有能對應到真實工作步驟的部分",
-      "內容型態包含",
-      "的製作重點"
-    ],
-    "banned_title_patterns": [
-      "…",
-      "\\.{3}"
-    ]
-  },
-  "reviewed_reader_copy": {
-    "https://80.lv/articles/artist-explores-realistic-water-adhesion-on-animated-characters-in-houdini": {
+  "items": {
+    "80-level-artist-explores-realistic-water-adhesion-on-animated-charact": {
       "source_url": "https://80.lv/articles/artist-explores-realistic-water-adhesion-on-animated-characters-in-houdini",
       "title": "Houdini 水滴附著：讓水沿動態角色表面累積、滴落與飛濺",
       "summary": "Milad Sãvar 用 Houdini 製作角色表面的水滴效果，透過 VEX、SOP Solver 與粒子控制，處理水的附著、滴落和飛濺，並提供 HIP 檔案。",
@@ -100,12 +28,9 @@
           "label": "導入測試與限制",
           "text": "目前是作者的研發案例，尚無跨角色效能數據。測試時應檢查快速動作、關節彎曲和細小表面，確認粒子不穿透、附著不漂移，再評估模擬成本。"
         }
-      ],
-      "source_reviewed": true,
-      "reviewed_on": "2026-10-06",
-      "style_reference": "2026-09-25"
+      ]
     },
-    "https://3dnchu.com/archives/harmoflow": {
+    "3dnchu-harmoflow": {
       "source_url": "https://3dnchu.com/archives/harmoflow",
       "title": "HarmoFlow：支援 PBR／NPR 的 3D 貼圖繪製與 PSD 輸出",
       "summary": "HarmoFlow 是 Windows 用的 3D 貼圖繪製工具，可在模型或 UV 上作畫，編輯材質，並輸出保留圖層的 PSD；目前提供試用版。",
@@ -122,12 +47,9 @@
           "label": "導入測試與限制",
           "text": "來源是工具介紹，尚無大型資產的測試結果。導入前應確認貼圖尺寸、透明通道、PSD 圖層與色彩空間，並比較工具預覽和遊戲引擎的結果。"
         }
-      ],
-      "source_reviewed": true,
-      "reviewed_on": "2026-10-06",
-      "style_reference": "2026-09-25"
+      ]
     },
-    "https://80.lv/articles/merging-space-colonization-solver-with-pyro-simulation-to-create-looping-smoke-bursts": {
+    "80-level-merging-space-colonization-solver-with-pyro-simulation-to-cr": {
       "source_url": "https://80.lv/articles/merging-space-colonization-solver-with-pyro-simulation-to-create-looping-smoke-bursts",
       "title": "Houdini 分枝煙霧：用 Space Colonization 路徑引導 Pyro",
       "summary": "Karlis Stigis 先建立分枝路徑，再把路徑方向轉成速度場，配合 Pyro 產生沿枝節擴散的煙霧，最後用 Solaris 與 Karma 渲染。",
@@ -144,12 +66,9 @@
           "label": "導入測試與限制",
           "text": "作者使用固定容器內的 Minimal OpenCL 求解器。換成開放場景前需測試速度場邊界、體素解析度和循環接縫；遊戲內使用還要另做烘焙或即時效果版本。"
         }
-      ],
-      "source_reviewed": true,
-      "reviewed_on": "2026-10-06",
-      "style_reference": "2026-09-25"
+      ]
     },
-    "https://80.lv/articles/artist-recreates-lifelike-bubble-physics-in-houdini-based-on-w-t-s-research": {
+    "80-level-artist-recreates-lifelike-bubble-physics-in-houdini-based-on": {
       "source_url": "https://80.lv/articles/artist-recreates-lifelike-bubble-physics-in-houdini-based-on-w-t-s-research",
       "title": "Houdini 氣泡求解器：參考 Wētā 研究重現水中氣泡運動",
       "summary": "Pavel Morozov 依 Wētā FX 的氣泡動力學資料，在 Houdini 建立自訂求解器，展示細緻的氣泡運動；文章也介紹相關水體研究案例。",
@@ -166,12 +85,9 @@
           "label": "導入測試與限制",
           "text": "目前主要是成果展示，缺少完整節點、運算時間與可下載工程。重現前應查原始研究，並用小型水槽測試氣泡大小、上升速度與水流互動。"
         }
-      ],
-      "source_reviewed": true,
-      "reviewed_on": "2026-10-06",
-      "style_reference": "2026-09-25"
+      ]
     },
-    "https://www.cgchannel.com/2026/10/alexey-vanzhula-releases-modeler-26-for-houdini": {
+    "cg-channel-alexey-vanzhula-releases-modeler-26-for-houdini": {
       "source_url": "https://www.cgchannel.com/2026/10/alexey-vanzhula-releases-modeler-26-for-houdini",
       "title": "Modeler 26.5：配合 Houdini 22 重整細分曲面建模操作",
       "summary": "Modeler 26.5 配合 Houdini 22 的細分曲面顯示方式，整合相關工具到放射選單，新增 SubD Proxy 模式，並更新 Crease、Holes 與 PolyPen。",
@@ -188,12 +104,9 @@
           "label": "導入測試與限制",
           "text": "來源頁面標題仍寫 26.3，但 10/05 更新段落已介紹 26.5。升版前應核對實際插件與 Houdini 版本，測試舊檔、折痕和細分顯示，保留可回退版本。"
         }
-      ],
-      "source_reviewed": true,
-      "reviewed_on": "2026-10-06",
-      "style_reference": "2026-09-25"
+      ]
     },
-    "https://www.cgchannel.com/2017/08/gravity-sketch-releases-gravity-sketch-vr-in-beta": {
+    "cg-channel-gravity-sketch-releases-gravity-sketch-vr-in-beta": {
       "source_url": "https://www.cgchannel.com/2017/08/gravity-sketch-releases-gravity-sketch-vr-in-beta",
       "title": "歷史參考｜Gravity Sketch VR：在虛擬空間畫 3D 草模",
       "summary": "這篇 2017 年文章介紹 Gravity Sketch VR：以 VR 控制器繪製曲線與曲面，搭配旋轉成形和對稱建模，再匯出到其他 3D 軟體整理。",
@@ -210,12 +123,9 @@
           "label": "導入測試與限制",
           "text": "這是歷史工具介紹，文中的裝置、價格與方案不能當成現況。正式使用前應查最新支援，並測輸出模型的比例、拓樸與曲面，確認後續能繼續編輯。"
         }
-      ],
-      "source_reviewed": true,
-      "reviewed_on": "2026-10-06",
-      "style_reference": "2026-09-25"
+      ]
     },
-    "https://www.cgchannel.com/2020/05/faceware-technologies-launches-faceware-studio": {
+    "cg-channel-faceware-technologies-launches-faceware-studio": {
       "source_url": "https://www.cgchannel.com/2020/05/faceware-technologies-launches-faceware-studio",
       "title": "歷史參考｜Faceware Studio：即時臉部動捕與表情調整",
       "summary": "這篇 2020 年文章介紹 Faceware Studio：從演員影片解算臉部動作，再把資料傳到 MotionBuilder、Unity 或 Unreal，並提供表情強度與輸出控制。",
@@ -232,12 +142,9 @@
           "label": "導入測試與限制",
           "text": "文章反映 2020 年版本，授權、插件與硬體支援需另查最新資訊。測試應包含嘴型、眨眼、頭部轉向、追蹤丟失和串流延遲，不能只看正面示範。"
         }
-      ],
-      "source_reviewed": true,
-      "reviewed_on": "2026-10-06",
-      "style_reference": "2026-09-25"
+      ]
     },
-    "https://www.cgchannel.com/2018/01/alexey-vanzula-releases-direct-modeling-for-houdini": {
+    "cg-channel-alexey-vanzula-releases-direct-modeling-for-houdini": {
       "source_url": "https://www.cgchannel.com/2018/01/alexey-vanzula-releases-direct-modeling-for-houdini",
       "title": "歷史參考｜Direct Modeling HDA：Houdini 的布林與零件建模",
       "summary": "Direct Modeling HDA 是 2018 年的 Houdini 硬表面工具，延伸 Flux HDA 的即時布林功能，加入零件庫與 Insert Mesh，方便組裝複雜造型。",
@@ -254,12 +161,9 @@
           "label": "導入測試與限制",
           "text": "這篇是 Modeler 前身的歷史介紹，不能當成今天的新版本公告。若要沿用做法，應檢查現行 Modeler 的對應功能，再驗證布林拓樸、UV 與法線烘焙。"
         }
-      ],
-      "source_reviewed": true,
-      "reviewed_on": "2026-10-06",
-      "style_reference": "2026-09-25"
+      ]
     },
-    "https://www.cgchannel.com/2026/07/sidefx-just-released-houdini-22": {
+    "cg-channel-sidefx-just-released-houdini-22": {
       "source_url": "https://www.cgchannel.com/2026/07/sidefx-just-released-houdini-22",
       "title": "Houdini 22：Gaussian Splatting、角色綁定與材質工具更新",
       "summary": "Houdini 22 加入 Gaussian Splatting 工具，並更新 KineFX 角色綁定、動畫與 Copernicus 影像處理；可從掃描場景、角色和材質三條工作線分別評估。",
@@ -276,12 +180,9 @@
           "label": "導入測試與限制",
           "text": "這是版本功能整理，並不代表每個功能都適合量產。Gaussian Splats 的重打光仍含原型工具；導入時需確認記憶體、輸出格式、引擎支援與舊工程相容性。"
         }
-      ],
-      "source_reviewed": true,
-      "reviewed_on": "2026-10-06",
-      "style_reference": "2026-09-25"
+      ]
     },
-    "https://3dnchu.com/archives/unreal-engine-shader-book-posita33": {
+    "3dnchu-unreal-engine-shader-book-posita33": {
       "source_url": "https://3dnchu.com/archives/unreal-engine-shader-book-posita33",
       "title": "UE Shader 免費教材：從材質節點、SDF 到 Substrate",
       "summary": "Unreal Engine Shader Book 是可免費閱讀的日文教材，涵蓋材質基礎、Shader 數學、SDF 圖形與 Substrate；部分章節另提供 GitHub 範例工程。",
@@ -298,12 +199,9 @@
           "label": "導入測試與限制",
           "text": "教材主要以日文撰寫，範例也有版本與功能設定要求。跟做前應確認 UE 版本及 Substrate 設定，並檢查 Shader 指令與貼圖採樣成本，避免只照搬外觀。"
         }
-      ],
-      "source_reviewed": true,
-      "reviewed_on": "2026-10-06",
-      "style_reference": "2026-09-25"
+      ]
     },
-    "https://80.lv/articles/stunning-forest-stream-simulation-made-with-houdini": {
+    "80-level-stunning-forest-stream-simulation-made-with-houdini": {
       "source_url": "https://80.lv/articles/stunning-forest-stream-simulation-made-with-houdini",
       "title": "Houdini 森林溪流：以 Paradigm GPU 求解器模擬流水",
       "summary": "Enrique De la Garza 在 Houdini 製作森林溪流，使用 Paradigm 的 GPU 流體求解器，並以 Karma XPU 渲染植被與場景，展示個人作品的製作方式。",
@@ -320,12 +218,9 @@
           "label": "導入測試與限制",
           "text": "文章發表時 Paradigm 仍是公開測試版，作者的速度描述不能直接套用到其他硬體。需另測顯存、碰撞細节與快取；遊戲場景還要轉成適合即時播放的效果。"
         }
-      ],
-      "source_reviewed": true,
-      "reviewed_on": "2026-10-06",
-      "style_reference": "2026-09-25"
+      ]
     },
-    "https://3dnchu.com/archives/samus-free-rig": {
+    "3dnchu-samus-free-rig": {
       "source_url": "https://3dnchu.com/archives/samus-free-rig",
       "title": "歷史素材｜Samus Maya Rig：免費角色動畫練習模型",
       "summary": "Samus Free Rig 是粉絲製作的《銀河戰士》角色：Julien Desroy 製作模型，Perry Leijten 綁定，提供 Maya 檔案，並有控制器評測與動畫展示。",
@@ -342,12 +237,9 @@
           "label": "導入測試與限制",
           "text": "來源是 2020 年公開的粉絲資產，免費下載不代表允許商用。使用前需查授權、檔案是否仍可取得及插件版本，再測關節穿插和新版本 Maya 的相容性。"
         }
-      ],
-      "source_reviewed": true,
-      "reviewed_on": "2026-10-06",
-      "style_reference": "2026-09-25"
+      ]
     },
-    "https://80.lv/articles/3d-artist-turned-wristwatch-into-m-bius-strip-using-houdini": {
+    "80-level-3d-artist-turned-wristwatch-into-m-bius-strip-using-houdini": {
       "source_url": "https://80.lv/articles/3d-artist-turned-wristwatch-into-m-bius-strip-using-houdini",
       "title": "Houdini 手錶動畫：把錶帶變成莫比烏斯環",
       "summary": "Matt Taylor 以 Junghans Max Bill 手錶為題材，在 Houdini 將錶帶做成帶有半圈扭轉的莫比烏斯環，讓一般產品動畫呈現不尋常的連續造型。",
@@ -364,10 +256,7 @@
           "label": "導入測試與限制",
           "text": "這是 2025 年的作品展示，適合視覺發想，不能直接當成建模教學。自行重現時應檢查環帶接縫、UV 拉伸、零件穿插和動畫循環是否連續。"
         }
-      ],
-      "source_reviewed": true,
-      "reviewed_on": "2026-10-06",
-      "style_reference": "2026-09-25"
+      ]
     }
   }
 }

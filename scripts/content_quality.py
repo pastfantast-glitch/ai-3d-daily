@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Shared content-quality policy for autonomous Production Intelligence collection.
-Policy revision: 2026-09-29 concise source-grounded reader copy.\nEditorial contract: verification stays in QA/metadata; reader copy follows the concise style while retaining the 2026-09-25 contract baseline.
+Policy revision: 2026-10-06 concrete zh-Hant reader copy modeled on 2026-09-23/24/25.
+Reviewed source copy takes precedence; unreviewed sources keep a concise, conservative brief.
 
 This module is deliberately deterministic and source-grounded. It rejects index,
 product/marketing landing, governance/event, and non-production pages before ranking;
@@ -486,55 +487,6 @@ def friendly_label(category: str, subcategory: str) -> str:
     return SUBCATEGORY_LABELS.get(subcategory) or CATEGORY_LABELS.get(category) or "Production"
 
 
-def editorial_title(meta: dict, category: str, subcategory: str) -> str:
-    raw = normalize_title(meta.get("title"))
-
-    def framed(value: str) -> str:
-        value = clean(value, 180)
-        if reader_language_ok(value, 4.0):
-            return value
-        category_label = CATEGORY_LABELS.get(category) or "製作重點"
-        if not HAN_RE.search(category_label):
-            category_label = clean(f"{category_label} 製作", 40)
-        subject = source_title_cue(meta)
-        if not subject:
-            subject = re.split(r"\s*[|｜—–-]\s*", value, maxsplit=1)[0]
-            subject = clean(subject, 18)
-        if subject:
-            candidate = clean(f"{category_label}：{subject} 的製作重點", 180)
-            if reader_language_ok(candidate, 4.0):
-                return candidate
-        focus = production_focus(meta)
-        focus_text = "、".join(focus[:2]) if focus else "製作流程"
-        return clean(f"{category_label}：{focus_text} 技術與製作重點", 180)
-
-    if reader_language_ok(raw, 4.0):
-        return raw
-
-    label = friendly_label(category, subcategory)
-    if not re.search(r"[\u3400-\u9fff]", label):
-        label = CATEGORY_LABELS.get(category) or "製作情報"
-    if not re.search(r"[\u3400-\u9fff]", label):
-        label = "製作情報"
-
-    patterns = (
-        (r"^Blender\s+(.+?)\s+Release$", lambda m: f"Blender {m.group(1)}：版本更新"),
-        (r"^Tutorial:\s*(.+)$", lambda m: f"{m.group(1)}：製作教學"),
-        (r"^Breakdown:\s*(.+)$", lambda m: f"{m.group(1)}：製作拆解"),
-        (r"^(.+?)\s+is out$", lambda m: f"{m.group(1)}：版本更新"),
-        (r"^(.+?)\s+releases\s+(.+)$", lambda m: f"{m.group(2)}：{m.group(1)} 發布更新"),
-        (r"^10 things CG artists need to know about\s+(.+)$", lambda m: f"{m.group(1)}：CG 藝術家需關注的 10 項重點"),
-        (r"^(.+?)\s+is here:\s*discover its\s+(\d+)\s+key features.*$", lambda m: f"{m.group(1)}：{m.group(2)} 項重點功能"),
-        (r"^New CG software you may have missed:\s*(.+)$", lambda m: f"本週 CG 工具更新：{m.group(1)}"),
-        (r"^How\s+(.+?)\s+created\s+(.+)$", lambda m: f"{m.group(2)}：{m.group(1)} 製作拆解"),
-        (r"^Get free\s+(.+)$", lambda m: f"免費工具：{m.group(1)}"),
-    )
-    for pattern, render in patterns:
-        match = re.match(pattern, raw, flags=re.I)
-        if match:
-            return framed(render(match))
-    return framed(raw)
-
 def production_focus(meta: dict) -> list[str]:
     text = f"{normalize_title(meta.get('title'))} {clean(meta.get('description'), 900)}".casefold()
     out: list[str] = []
@@ -584,7 +536,7 @@ def production_subject(meta: dict, focus_text: str) -> str:
 
 
 def source_content_kind(raw: str) -> str:
-    if has_any(raw, ("release", "update", "version", "beta", "alpha", "preview", "roadmap", "ships")):
+    if has_any(raw, ("release", "releases", "released", "update", "version", "beta", "alpha", "preview", "roadmap", "ships", "launches", "launched")):
         return "update"
     if has_any(raw, ("tutorial", "guide", "course", "training", "workflow", "learn how", "learn to")):
         return "tutorial"
@@ -607,162 +559,134 @@ def source_fact(meta: dict) -> str:
     return description or normalize_title(meta.get("title"))
 
 
-def production_summary(meta: dict, category: str, subcategory: str) -> str:
-    title = editorial_title(meta, category, subcategory)
-    raw = f"{normalize_title(meta.get('title'))} {clean(meta.get('description'), 600)}".casefold()
-    label = friendly_label(category, subcategory)
+
+# Reader copy follows the concrete 2026-09-23/24/25 examples. Discovery,
+# Admission, scoring and publication ownership are deliberately unchanged.
+def reviewed_reader_copy(meta: dict) -> dict | None:
+    records = editorial_policy().get("reviewed_reader_copy") or {}
+    url = str(meta.get("url") or "").split("#", 1)[0].rstrip("/")
+    record = records.get(url)
+    if not isinstance(record, dict) or record.get("source_reviewed") is not True:
+        return None
+    return record
+
+
+def plain_subject(meta: dict, category: str, subcategory: str) -> str:
+    raw = normalize_title(meta.get("title"))
+    if reader_language_ok(raw, 4.0):
+        return raw
+    text = f"{raw} {clean(meta.get('description'), 650)}".casefold()
+    release = re.match(r"^.+?\s+(?:releases?|ships?|launches?|just released)\s+(.+)$", raw, re.I)
+    if release:
+        product = re.split(r"\s+(?:for|with)\s+", release.group(1), maxsplit=1, flags=re.I)[0]
+        if len(product) <= 40:
+            detail = "、".join(production_details(meta)[:2])
+            return f"{product}：{detail + '與' if detail else ''}版本更新"
+    blender = re.match(r"^Blender\s+(.+?)\s+Release$", raw, re.I)
+    if blender:
+        return f"Blender {blender.group(1)}：版本更新"
+
+    # Translate concrete subjects, rather than clipping an English headline.
+    nouns = (
+        (("water adhesion",), "動態角色表面的水滴附著"),
+        (("space colonization",), "分枝路徑與煙霧模擬"),
+        (("bubble",), "水中氣泡運動"),
+        (("forest stream",), "森林溪流模擬"),
+        (("wristwatch", "möbius"), "手錶與莫比烏斯環"),
+        (("deer",), "麋鹿建模"),
+        (("dishes",), "餐具建模"),
+        (("facial", "lip sync"), "臉部表演與綁定"),
+        (("everyday", "daily action"), "日常動作素材"),
+        (("combat", "attack animation"), "戰鬥動作素材"),
+        (("locomotion", "walk", "run cycle"), "行走與跑步循環"),
+        (("hard surface", "hard-surface"), "硬表面建模"),
+        (("character", "creature"), "角色製作"),
+        (("environment", "terrain"), "場景與地形製作"),
+    )
+    subjects = [label for terms, label in nouns if has_any(text, terms)]
+    traits = [x for x in source_subject_traits(meta) if x in {"風格化", "寫實", "程序化"}]
+    details = production_details(meta)
     focus = production_focus(meta)
-    focus_text = "、".join(focus) if focus else label
-    subject = production_subject(meta, focus_text)
+    translated_focus = {"Rigging": "骨架綁定", "Retarget": "動作重定向", "Rendering": "渲染",
+                        "Displacement": "置換細節", "Mocap": "動作捕捉"}
+    terms = subjects[:1] or details[:2] or [translated_focus.get(x, x) for x in focus[:2]]
+    label = friendly_label(category, subcategory)
+    if not HAN_RE.search(label):
+        label += " 製作"
+    topic = "、".join(terms) if terms else label
+    trait = "、".join(traits[:1])
+    if trait and trait not in topic:
+        topic = trait + topic
+    # Short proper tool names and fixture titles remain whole. No middle ellipsis.
+    if len(raw) <= 36 and not KANA_RE.search(raw):
+        raw = re.sub(r"\bWorkflow\b", "流程", raw, flags=re.I)
+        if reader_language_ok(raw, 4.0):
+            return f"{raw}：{topic}"
+        if len(LATIN_RE.findall(raw)) <= 24:
+            return f"{raw}：{topic}製作介紹"
+    suffix = {"update": "版本更新", "tutorial": "製作教學", "breakdown": "製作拆解",
+              "download": "下載介紹", "demo": "效果展示", "tool": "工具介紹",
+              "reference": "案例介紹"}[source_content_kind(text)]
+    return clean(f"{label}：{topic}{suffix}", 180)
+
+
+def editorial_title(meta: dict, category: str, subcategory: str) -> str:
+    reviewed = reviewed_reader_copy(meta)
+    return reviewed["title"] if reviewed else plain_subject(meta, category, subcategory)
+
+
+def plain_reader_context(meta: dict, category: str, subcategory: str) -> tuple[str, str, str]:
+    title = editorial_title(meta, category, subcategory)
+    raw = f"{normalize_title(meta.get('title'))} {clean(meta.get('description'), 650)}".casefold()
     kind = source_content_kind(raw)
-
-    if not clean(meta.get("description")):
-        return clean(
-            f"{title} 與 {subject} 有關，但目前可讀資訊有限；先保留為精簡 BRIEF，只描述來源能直接支持的製作面向。",
-            360,
-        )
-
-    if kind == "update":
-        text = (
-            f"這次更新聚焦 {subject}，涉及 {focus_text}。對 {label} 而言，重點是新增能力實際介入 "
-            "authoring、資產交換或輸出的哪一段，以及升版後是否會改變既有設定與相容性。"
-        )
-    elif kind == "tutorial":
-        text = (
-            f"這篇教學主要拆解 {subject}，並把 {focus_text} 放進可跟著操作的製作流程。"
-            f"對 {label} 而言，比單看成果更重要的是素材前置、主要操作、人工修正與輸出如何銜接，能否轉成現有 SOP 的具體步驟。"
-        )
-    elif kind == "breakdown":
-        text = (
-            f"這篇案例把 {subject} 放回實際 production 中拆解，涉及 {focus_text}。"
-            "可從中觀察素材準備、製作決策與最終畫面之間的關係，適合拿來對照團隊現有做法，而不是只看成品展示。"
-        )
+    detail = "、".join(production_details(meta))
+    focus = "、".join(production_focus(meta)) or friendly_label(category, subcategory)
+    if reader_language_ok(source_fact(meta), 2.5):
+        fact = source_fact(meta)
+    elif has_any(raw, ("marmoset toolbag",)) and has_any(raw, ("baking", "bake")):
+        fact = "這個 Blender 外掛提供 Marmoset Toolbag 式烘焙操作，讓美術在 Blender 中進行貼圖烘焙。"
+    elif has_any(raw, ("shape keys",)) and has_any(raw, ("grease pencil",)):
+        fact = "內容展示 Grease Pencil 的 Shape Keys 在角色 Rig 上的使用方式，讓美術觀察繪製形狀如何配合角色變形。"
+    elif has_any(raw, ("mcp server",)):
+        fact = f"{title.split('：')[0]} 加入 MCP Server，提供軟體與外部工具連接的新入口；實際可用指令仍需查對文件。"
+    elif kind == "update":
+        fact = f"{title}。本文介紹{detail or focus}的更新；目前簡介未列出完整改動，不能據此推定所有新增功能。"
     elif kind == "download":
-        text = (
-            f"這項內容提供 {subject}，並與 {focus_text} 的實際使用有關。"
-            "真正值得評估的是資產／工具進入現有流程後的格式、可編輯性、相容性與後續維護成本，而不只是免費或可下載。"
-        )
-    elif kind == "demo":
-        text = (
-            f"這項展示聚焦 {subject}，可用來觀察 {focus_text} 的控制方式與結果表現。"
-            "若要轉成 production 參考，還要確認同樣方法在自家資產、版本與輸出條件下是否能重現。"
-        )
-    elif kind == "tool":
-        text = (
-            f"這項工具的核心是 {subject}，作用範圍落在 {focus_text}。"
-            f"對 {label} 流程，應直接看它減少哪些手動步驟、提供哪些控制，以及是否能和既有 DCC／引擎資料交換方式共存。"
-        )
+        fact = f"{title}。內容提供與{detail or focus}有關的素材；檔案格式、控制器與授權需查下載頁面的說明。"
+    elif kind == "tutorial":
+        fact = f"{title}。這篇教學介紹{detail or focus}的做法，可先跟著範例操作，再用自己的資產重做。"
     else:
-        text = (
-            f"這則內容主要談 {subject}，與 {focus_text} 的製作實作直接相關。"
-            "它能提供具體方法或結果作為對照，但仍要區分哪些是可複用流程、哪些只成立於單一作品或特定專案條件。"
-        )
-    return clean(text, 460)
+        fact = f"{title}。內容展示{detail or focus}的作品或工具；可先看具體結果，再確認作者公開了哪些操作步驟。"
+    return title, clean(fact, 460), raw
+
+
+def production_summary(meta: dict, category: str, subcategory: str) -> str:
+    reviewed = reviewed_reader_copy(meta)
+    if reviewed:
+        return reviewed["summary"]
+    return plain_reader_context(meta, category, subcategory)[1]
+
 
 def editorial_analysis(meta: dict, category: str, subcategory: str) -> list[dict]:
-    raw = f"{normalize_title(meta.get('title'))} {clean(meta.get('description'), 600)}".casefold()
-    label = friendly_label(category, subcategory)
-    focus = production_focus(meta)
-    focus_text = "、".join(focus) if focus else label
-    subject = production_subject(meta, focus_text)
-    kind = source_content_kind(raw)
-
-    if kind == "update":
-        technical = (
-            f"更新內容集中在 {subject}，並牽涉 {focus_text}。這類變更要先釐清新增能力位於 authoring、資產交換還是輸出端，"
-            "因為同樣叫「新功能」，對美術工作量與既有專案的影響可能完全不同。"
-        )
-        impact = (
-            f"在 {label} 流程裡，可用同一份代表性資產做升版前後對照：記錄操作步驟、手動修正次數、輸出一致性與相容性，"
-            f"確認 {subject} 是否真的降低成本，或只是增加另一套設定。"
-        )
-        limit = (
-            f"目前資訊能確認 {subject} 的功能方向，但不能直接推定大型專案的穩定性、效能或插件相容性；"
-            "若會改動既有資料格式或版本依賴，導入前仍需做舊檔與回退測試。"
-        )
-    elif kind == "tutorial":
-        technical = (
-            f"教學核心落在 {subject}，並透過 {focus_text} 展示一條可重現的操作路徑。"
-            "閱讀時應把內容拆成素材前置、主要操作、人工修正與輸出結果，才能看出真正可複用的步驟。"
-        )
-        impact = (
-            f"對 {label} 團隊，可先把 {subject} 的明確步驟轉成 checklist，再用現有資產跑一次；"
-            "若能在相同品質下減少返工，或讓新人更快到達可 review 狀態，才具有流程導入價值。"
-        )
-        limit = (
-            f"以 {subject} 為例，教學能證明方法可操作，但不代表它已覆蓋大量資產、多人協作或不同版本條件；"
-            "還需要另外驗證命名、批次處理、檔案交換與例外情況。"
-        )
-    elif kind == "breakdown":
-        technical = (
-            f"案例拆解的重點是 {subject}，可從 {focus_text} 看出製作選擇如何累積到最終畫面。"
-            "比單看成品更有價值的是辨認哪些步驟依賴特定素材、工具或人工判斷。"
-        )
-        impact = (
-            f"對 {label}，可把 {subject} 的關鍵節點對應到自家 pipeline：哪些能直接複用、哪些需要工具化、"
-            "哪些只適合 hero asset 或特定鏡頭，這比照搬整套流程更實際。"
-        )
-        limit = (
-            f"{subject} 的案例文章通常缺少完整工時、版本矩陣與失敗樣本，因此適合作為方法參考，不適合直接換算成本或效能收益；"
-            "仍需用相近資產規模做內部驗證。"
-        )
-    elif kind == "download":
-        technical = (
-            f"內容提供 {subject}，與 {focus_text} 的實際匯入與編輯有關。"
-            "重點是檔案格式、結構、可修改程度，以及進入 downstream 後是否仍保留需要的控制。"
-        )
-        impact = (
-            f"對 {label} 團隊，可直接拿代表性資產測試 {subject} 的匯入、編輯、重定向或輸出，並記錄需要多少清理工作；"
-            "如果前處理成本高，免費資產也不一定能節省 production 時間。"
-        )
-        limit = (
-            f"{subject} 可下載並不等於可直接量產使用；授權、版本、命名、拓撲／Rig 結構與 downstream 相容性都要另外確認，"
-            "尤其是要進共用資產庫時。"
-        )
-    elif kind == "demo":
-        technical = (
-            f"展示內容聚焦 {subject}，可直接觀察 {focus_text} 的控制粒度、結果品質與可重現性。"
-            "這類素材適合拿來建立假設，但還不能只靠展示畫面判斷它是否能進入正式流程。"
-        )
-        impact = (
-            f"對 {label}，可把 {subject} 的展示條件重建成小型 A/B test，用相同資產比較操作時間、可控性與輸出差異；"
-            "能否在自家版本與資料上穩定重現，比單次效果漂亮更重要。"
-        )
-        limit = (
-            f"{subject} 的展示通常會挑選成功案例，未必涵蓋失敗條件、邊界案例與效能成本；"
-            "導入前需要補測不同資產複雜度與輸出需求。"
-        )
-    elif kind == "tool":
-        technical = (
-            f"工具主題是 {subject}，主要作用在 {focus_text}。需要看清楚它是取代既有手動步驟、補一個缺口，"
-            "還是只是把原本功能換成另一個介面。"
-        )
-        impact = (
-            f"對 {label}，可用一個真實任務比較 {subject} 導入前後的操作步驟、人工修正、輸出結果與交接成本；"
-            "若工具能減少重複操作但增加資料轉換或版本依賴，總成本未必下降。"
-        )
-        limit = (
-            f"{subject} 的工具介紹通常不會涵蓋所有 production 邊界條件；"
-            "部署前仍需確認版本支援、檔案相容、批次處理、例外錯誤與團隊維護責任。"
-        )
+    reviewed = reviewed_reader_copy(meta)
+    if reviewed:
+        return [dict(x) for x in reviewed["full_analysis"]]
+    title, fact, raw = plain_reader_context(meta, category, subcategory)
+    if has_any(raw, ("mocap", "animation", "rigging", "rig", "facial")):
+        use = "可用自己的角色試做姿勢與動作，觀察關節變形、腳底滑動和表情幅度，判斷是否能減少人工修正。"
+        test = "需確認骨架、控制器與軟體版本，再測極端姿勢、動作重定向與引擎匯入；介紹本身不能證明所有角色都適用。"
+    elif has_any(raw, ("baking", "texture", "material", "shader", "grease pencil")):
+        use = "可選一個角色或道具測試貼圖與材質，對照原設定的分色、光影和細節，記錄哪些地方仍要人工修改。"
+        test = "需在實際引擎檢查色彩空間、透明通道、貼圖尺寸與不同光向；工具預覽和最終遊戲畫面可能有差異。"
+    elif has_any(raw, ("modeling", "sculpt", "retopo", "geometry")):
+        use = "可拿一個現有模型試做，比較輪廓、拓樸、UV 和烘焙結果，再記錄操作與清理時間，判斷是否比原方法省工。"
+        test = "需檢查複雜造型、細分曲面與舊檔相容性；單一示範不能保證所有資產都能得到相同品質。"
     else:
-        technical = (
-            f"內容重點落在 {subject}，並涉及 {focus_text}。先辨認文章實際展示的是方法、工具能力還是單一作品結果，"
-            "才能避免把展示效果誤當成可直接複製的流程。"
-        )
-        impact = (
-            f"對 {label}，可以把 {subject} 的做法或結果對照目前 pipeline，找出它可能影響的操作、交接或品質檢查點；"
-            "只有能對應到真實工作步驟的部分，才值得進一步投入測試。"
-        )
-        limit = (
-            f"{subject} 目前只有單一來源可供參考，通常不足以證明跨專案穩定性；"
-            "若要正式導入，仍需補做版本、資產規模與輸出條件的驗證。"
-        )
-
+        use = "可挑與目前作品相近的鏡頭或素材做小型比較，觀察形狀、動態和畫面差異，先判斷哪些結果能重現。"
+        test = "目前簡介不足以確認完整實作與效能。測試時需記錄軟體版本、資產規模和輸出結果，再決定能否使用。"
+    technical = fact if fact.startswith(title) else f"{title}。{fact}"
     return [
         {"label": "技術／流程變更", "text": clean(technical, 620)},
-        {"label": "Production 影響", "text": clean(impact, 620)},
-        {"label": "導入測試與限制", "text": clean(limit, 620)},
+        {"label": "Production 影響", "text": clean(f"以{title}為例，{use}", 620)},
+        {"label": "導入測試與限制", "text": clean(f"使用{title}前，{test}", 620)},
     ]
-
-
