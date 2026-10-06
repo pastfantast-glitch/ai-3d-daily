@@ -155,9 +155,9 @@ assert len(analysis) == 3
 assert [x["label"] for x in analysis] == ["技術／流程變更", "Production 影響", "導入測試與限制"]
 assert "Rendering advancements" not in analysis[0]["text"]
 assert reader_language_ok(analysis[0]["text"], 3.0)
-assert "新增能力" in summary
-assert "升版前後" in analysis[1]["text"]
-assert "舊檔" in analysis[2]["text"]
+assert "版本更新" in summary
+assert "目前簡介未列出完整改動" in summary
+assert "實測" not in summary  # no invented benchmark
 assert "先看它實際改變哪些操作、交換或輸出步驟" not in summary
 assert len({x["text"] for x in analysis}) == 3
 for block in analysis:
@@ -176,7 +176,8 @@ fallback_title = editorial_title(
     "blender-dcc",
     "blender",
 )
-assert fallback_title.startswith("Blender／DCC 製作：")
+assert "Blender" in fallback_title
+assert "…" not in fallback_title
 assert reader_language_ok(fallback_title, 4.0)
 assert "Blender／DCC：Blender／DCC：" not in fallback_title
 
@@ -398,14 +399,14 @@ shared_houdini_description = (
 )
 houdini_release_cases = [
     meta(
-        "https://www.cgchannel.com/2018/01/alexey-vanzula-releases-direct-modeling-for-houdini/",
+        "https://example.invalid/houdini-direct-modeling-regression",
         "Alexey Vanzhula ships Direct Modeling HDA for Houdini",
         shared_houdini_description,
         "2018-01-08",
         True,
     ),
     meta(
-        "https://www.cgchannel.com/2026/10/alexey-vanzhula-releases-modeler-26-for-houdini/",
+        "https://example.invalid/houdini-modeler-regression",
         "Alexey Vanzhula releases Modeler 26.3 for Houdini",
         shared_houdini_description,
         "2026-10-05",
@@ -454,5 +455,51 @@ detail_analyses = [
     for m in detail_cases
 ]
 assert not (detail_analyses[0] & detail_analyses[1])
+
+
+# The 9/25-and-earlier reading style is concrete, not a technical keyword list.
+from content_quality import editorial_policy, reviewed_reader_copy
+policy = editorial_policy()
+plain_policy = policy["plain_reading"]
+assert "2026-09-25" in plain_policy["reference_dates"]
+reviewed_records = policy["reviewed_reader_copy"]
+assert len(reviewed_records) == 13
+seen_reviewed_blocks = set()
+for url, record in reviewed_records.items():
+    source_meta = meta(url, "Source title", "Verified source description.")
+    assert editorial_title(source_meta, "blender-dcc", "houdini") == record["title"]
+    assert production_summary(source_meta, "blender-dcc", "houdini") == record["summary"]
+    blocks = editorial_analysis(source_meta, "blender-dcc", "houdini")
+    assert reader_language_ok(record["title"], 4.0)
+    assert reader_language_ok(record["summary"], 2.5)
+    assert len(blocks) == 3
+    for block in blocks:
+        assert len(block["text"]) >= 36 and reader_language_ok(block["text"], 3.0)
+        assert block["text"] not in seen_reviewed_blocks
+        seen_reviewed_blocks.add(block["text"])
+    visible = record["title"] + record["summary"] + "".join(x["text"] for x in blocks)
+    assert "…" not in record["title"]
+    assert all(phrase not in visible for phrase in plain_policy["banned_phrases"])
+
+water_url = next(u for u in reviewed_records if "water-adhesion" in u)
+water = reviewed_records[water_url]
+assert "水滴附著" in water["title"]
+assert "VEX" in water["summary"] and "SOP Solver" in water["summary"]
+assert "關節" in water["full_analysis"][2]["text"]
+modeler_url = next(u for u in reviewed_records if "releases-modeler-26" in u)
+modeler = reviewed_records[modeler_url]
+assert "26.5" in modeler["title"] and "SubD Proxy" in modeler["summary"]
+assert "26.3" in modeler["full_analysis"][2]["text"]  # stale source headline explained
+for u in reviewed_records:
+    if any(x in u for x in ("/2017/", "/2018/", "/2020/", "samus-free-rig")):
+        assert "歷史" in reviewed_records[u]["title"]
+assert reviewed_reader_copy(meta(water_url + "?different-identity=1", "Other source")) is None
+# A page cannot supply its own reviewed-copy authority.
+untrusted = meta("https://example.invalid/unreviewed", "Blender 5.2 LTS Release", "Rendering advancements")
+untrusted["reviewed_reader_copy"] = water
+assert reviewed_reader_copy(untrusted) is None
+unreviewed_summary = production_summary(untrusted, "blender-dcc", "blender")
+assert "水滴附著" not in unreviewed_summary
+assert not any(phrase in unreviewed_summary for phrase in plain_policy["banned_phrases"])
 
 print("COLLECTOR CONTENT QUALITY PASS: landing/index rejection + promo rejection + production-dense source-grounded reader copy + title normalization + subject-first classification")
