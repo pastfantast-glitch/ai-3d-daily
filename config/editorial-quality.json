@@ -368,6 +368,138 @@
       "source_reviewed": true,
       "reviewed_on": "2026-10-06",
       "style_reference": "2026-09-25"
+    },
+    "https://3dnchu.com/archives/g-scatter-beta": {
+      "source_url": "https://3dnchu.com/archives/g-scatter-beta",
+      "title": "歷史參考｜G Scatter：用密度與遮罩控制 Blender 草木散布",
+      "summary": "這篇 2021 年文章介紹 G Scatter 測試版：以 Blender 2.93 的幾何節點為基礎，透過介面把物件散布到表面，調整密度、尺寸、隨機變化與遮罩。",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "操作先選承載表面與要複製的物件，再執行散布；介面將密度、縮放、隨機化、群組與遮罩集中管理，不必逐一搭建底層節點。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "場景美術可參考它如何批次配置草、石頭或其他重複物件。建議把植被分布與遮罩分開調整，方便控制道路邊界與畫面疏密。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "原文描述的是 2021 年測試版，當時預設集與貼圖支援仍在開發。現行版本相容性、下載條件與大量物件效能，需另查官方資訊並實測。"
+        }
+      ],
+      "source_reviewed": true,
+      "reviewed_on": "2026-10-06",
+      "style_reference": "2026-09-25"
+    },
+    "https://www.cgchannel.com/2025/07/blender-4-5-lts-is-out-check-out-its-5-key-features": {
+      "source_url": "https://www.cgchannel.com/2025/07/blender-4-5-lts-is-out-check-out-its-5-key-features",
+      "title": "歷史版本｜Blender 4.5 LTS：視窗效能、布林與法線控制更新",
+      "summary": "這篇 2025 年版本回顧整理 Blender 4.5 LTS 的更新，包括 Vulkan 視窗後端、Manifold 布林求解器，以及幾何節點中的網格法線控制。",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "Vulkan 後端補齊細分、虛擬實境與 USD 流程支援；建模方面加入 Manifold 布林求解器，Set Mesh Normal 節點則可設定自訂法線。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "硬表面美術可比較新布林求解器的切割結果；場景美術可利用自訂法線調整相鄰物件的光滑銜接。視窗後端更新也與大型場景操作有關。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "4.5 的預設後端仍是 OpenGL，Vulkan 需手動啟用；Manifold 求解器限流形網格。這是舊版本回顧，升級前應另核對現行版本及專案相容性。"
+        }
+      ],
+      "source_reviewed": true,
+      "reviewed_on": "2026-10-06",
+      "style_reference": "2026-09-25"
+    },
+    "https://www.cgchannel.com/2026/06/reallusions-3d-character-contest-returns-for-2026-with-45000-in-prizes": {
+      "source_url": "https://www.cgchannel.com/2026/06/reallusions-3d-character-contest-returns-for-2026-with-45000-in-prizes",
+      "title": "歷史活動｜Reallusion 角色競賽：設計、動畫與綁定的製作要求",
+      "summary": "這篇 2026 年活動介紹整理 Reallusion 角色競賽的設計、動畫與 AccuRIG 類別。徵件已結束，仍可參考角色作品與製作過程的展示要求。",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "設計與動畫類別以 Character Creator 角色為基礎；AccuRIG 類別可使用自行製作的模型並完成綁定。參賽作品須附製作紀錄，呈現從草稿到成品的過程。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "角色美術可把評分與交件項目當作作品集檢查清單：角色個性、服裝配件、姿勢表情、轉台與過程說明，應共同交代設計如何落實到模型。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "截至今天徵件已結束，本文不代表仍可報名。官方規則允許以 AI 輔助概念或參考，但最終渲染、轉台與動畫須由傳統 3D 流程完成。"
+        }
+      ],
+      "source_reviewed": true,
+      "reviewed_on": "2026-10-06",
+      "style_reference": "2026-09-25"
+    },
+    "https://3dnchu.com/archives/virtucamera-2": {
+      "source_url": "https://3dnchu.com/archives/virtucamera-2",
+      "title": "VirtuCamera 2：用手機移動錄製 3D 鏡頭動畫",
+      "summary": "VirtuCamera 2 將手機的位置與旋轉透過 Wi-Fi 傳到 3D 軟體的攝影機，可在手機上觀看場景並錄製運鏡；新版支援 iOS、Android 與多種軟體外掛。",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "手機動作對應到場景內攝影機，錄製後保存為關鍵影格；介面可切換鏡頭、控制播放與焦距，並調整移動倍率及平滑程度。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "鏡頭布局與動畫美術可用實際手持動作試拍構圖、跟拍和長距離運鏡。建議先用它探索鏡頭節奏，再回到時間軸整理關鍵影格。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "使用前需安裝對應軟體的外掛，並確認手機與電腦連線。最大 60 fps 是功能上限；實際延遲、視窗串流與錄製效果仍需以專案場景測試。"
+        }
+      ],
+      "source_reviewed": true,
+      "reviewed_on": "2026-10-06",
+      "style_reference": "2026-09-25"
+    },
+    "https://3dnchu.com/archives/animation-nodes-blender": {
+      "source_url": "https://3dnchu.com/archives/animation-nodes-blender",
+      "title": "歷史參考｜Animation Nodes：在 Blender 以節點控制動態圖像",
+      "summary": "這篇 2020 年文章介紹 Animation Nodes：以視覺化節點在 Blender 製作動態圖像，並收錄展示作品、安裝教學與一個影像轉文字的場景檔。",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "這套附加元件由 Jacques Lucke 等人開發，以連接節點的方式組織動畫邏輯。原文主要提供作品範例及外部教學，並非逐步拆解所有範例的完整教程。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "動態圖像美術可從展示作品研究重複物件、抽象形狀與資料驅動動畫的表現。若要重製影像轉文字範例，可先檢查原文附帶的場景檔與節點組織。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "文章使用的是早期 Blender 環境；現行安裝包須對應軟體版本，不能直接套用舊教學。建議以小型場景先測試節點執行與渲染穩定性。"
+        }
+      ],
+      "source_reviewed": true,
+      "reviewed_on": "2026-10-06",
+      "style_reference": "2026-09-25"
+    },
+    "https://www.cgchannel.com/2025/11/blender-5-0-is-out-check-out-its-5-key-features": {
+      "source_url": "https://www.cgchannel.com/2025/11/blender-5-0-is-out-check-out-its-5-key-features",
+      "title": "歷史版本｜Blender 5.0：體積節點、物件散布與渲染更新",
+      "summary": "這篇 2025 年版本回顧整理 Blender 5.0 的製作功能：幾何節點可處理體積網格與距離場，新增物件散布修改器，並更新 Cycles 的材質及體積渲染。",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "幾何節點可將網格或點雲轉為距離場，再做布林組合；新修改器支援陣列、表面散布與實例隨機化，讓重複物件的配置更容易調整。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "場景與動態圖像美術可參考新散布工具，材質美術則可查看金屬薄膜效果與次表面散射更新。體積流程也提供煙霧與科學資料視覺化的整理方向。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "這是 5.0 的功能回顧，不代表目前最新版本。測試舊專案時應比對節點、材質與體積渲染的結果，確認修改器設定和外掛相容性。"
+        }
+      ],
+      "source_reviewed": true,
+      "reviewed_on": "2026-10-06",
+      "style_reference": "2026-09-25"
     }
   }
 }
