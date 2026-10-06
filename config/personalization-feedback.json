@@ -11,7 +11,12 @@
     "owner_resolution": "active app owner account",
     "raw_profile_must_not_be_committed": true,
     "browser_publishable_key_only": true,
-    "server_secret_in_repository": false
+    "server_secret_in_repository": false,
+    "collector_reader": {
+      "function": "ai3d-personalization",
+      "authentication": "github-actions-oidc",
+      "timeout_seconds": 20
+    }
   },
   "signals": {
     "like": 1.0,

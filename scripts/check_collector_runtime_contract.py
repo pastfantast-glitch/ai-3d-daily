@@ -112,7 +112,9 @@ if SCRIPT.exists():
         "quality_first_confirmed",
         "analysis_level",
         '"BRIEF"',
-        "Autonomous GitHub Collector has no authoritative active-app-owner identity",
+        "load_owner_preferences",
+        "apply_candidate_personalization",
+        "positive_expansion_terms",
     ):
         if token not in content:
             fail(f"run_daily_collector.py missing contract token: {token}")
@@ -135,6 +137,7 @@ if WORKFLOW.exists():
         "cancel-in-progress: false",
         "contents: write",
         "actions: read",
+        "id-token: write",
         "fetch-depth: 0",
         'python scripts/run_daily_collector.py "$DATE"',
         "--replace-done",

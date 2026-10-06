@@ -63,6 +63,12 @@ def load_config():
     if source.get('server_secret_in_repository') is not False:
         raise ValueError('server secret must never be stored in repository')
 
+    reader = source.get('collector_reader') or {}
+    if reader.get('function') != 'ai3d-personalization' or reader.get('authentication') != 'github-actions-oidc':
+        raise ValueError('Collector must use the authenticated owner OIDC reader')
+    if not 5 <= _number(reader.get('timeout_seconds'), 0) <= 30:
+        raise ValueError('owner reader timeout must be bounded to 5..30 seconds')
+
     signals = cfg.get('signals') or {}
     if _number(signals.get('like')) <= 0 or _number(signals.get('dislike')) >= 0:
         raise ValueError('like must be positive and dislike must be negative')

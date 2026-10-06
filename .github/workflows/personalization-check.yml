@@ -1,0 +1,31 @@
+name: Live owner personalization check
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'config/personalization-feedback.json'
+      - 'scripts/collector_personalization.py'
+      - 'scripts/check_live_personalization.py'
+      - 'supabase/functions/ai3d-personalization/**'
+      - '.github/workflows/daily-collector.yml'
+      - '.github/workflows/personalization-check.yml'
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - name: Install locked pipeline dependencies
+        run: pip install -r requirements-pipeline.txt
+      - name: Verify owner feedback reaches real Collector ranking and discovery helpers
+        run: python scripts/check_live_personalization.py
