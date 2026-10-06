@@ -1,0 +1,262 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-06",
+  "style_reference": "2026-09-25",
+  "preserve_selection": true,
+  "reason": "Restore the concrete source-specific Traditional Chinese reader style of 2026-09-23 through 2026-09-25; replace clipped English headings and generic advice with actual capabilities, art uses and explicit limits.",
+  "source_review": {
+    "status": "verified",
+    "reviewed_on": "2026-10-06",
+    "reviewed_count": 13,
+    "method": "external-source-review-plus-verified-DONE-identity"
+  },
+  "items": {
+    "80-level-artist-explores-realistic-water-adhesion-on-animated-charact": {
+      "source_url": "https://80.lv/articles/artist-explores-realistic-water-adhesion-on-animated-characters-in-houdini",
+      "title": "Houdini 水滴附著：讓水沿動態角色表面累積、滴落與飛濺",
+      "summary": "Milad Sãvar 用 Houdini 製作角色表面的水滴效果，透過 VEX、SOP Solver 與粒子控制，處理水的附著、滴落和飛濺，並提供 HIP 檔案。",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "流程以自訂 VEX 和 SOP Solver 處理碰撞，再控制粒子的速度、位置與表面附著；搭配 POP Fluid、Gas Tension 和後處理，修補水滴之間的空隙。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "適合參考角色淋雨、濕身或濺水鏡頭。對特效美術而言，可把水滴黏在身上的階段與離開表面後的飛濺分開控制，較容易調整畫面節奏。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "目前是作者的研發案例，尚無跨角色效能數據。測試時應檢查快速動作、關節彎曲和細小表面，確認粒子不穿透、附著不漂移，再評估模擬成本。"
+        }
+      ]
+    },
+    "3dnchu-harmoflow": {
+      "source_url": "https://3dnchu.com/archives/harmoflow",
+      "title": "HarmoFlow：支援 PBR／NPR 的 3D 貼圖繪製與 PSD 輸出",
+      "summary": "HarmoFlow 是 Windows 用的 3D 貼圖繪製工具，可在模型或 UV 上作畫，編輯材質，並輸出保留圖層的 PSD；目前提供試用版。",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "工具同時提供 3D 與 UV 繪製，並以 PBR／NPR 材質預覽檢查外觀；保留圖層的 PSD 輸出，讓貼圖能繼續交給影像編輯軟體修改。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對手繪與卡通角色貼圖，可測試直接在模型上畫分色、再回 PSD 整理圖層的方式，是否比現有工具更容易維持設定圖的用色與筆觸。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "來源是工具介紹，尚無大型資產的測試結果。導入前應確認貼圖尺寸、透明通道、PSD 圖層與色彩空間，並比較工具預覽和遊戲引擎的結果。"
+        }
+      ]
+    },
+    "80-level-merging-space-colonization-solver-with-pyro-simulation-to-cr": {
+      "source_url": "https://80.lv/articles/merging-space-colonization-solver-with-pyro-simulation-to-create-looping-smoke-bursts",
+      "title": "Houdini 分枝煙霧：用 Space Colonization 路徑引導 Pyro",
+      "summary": "Karlis Stigis 先建立分枝路徑，再把路徑方向轉成速度場，配合 Pyro 產生沿枝節擴散的煙霧，最後用 Solaris 與 Karma 渲染。",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "分枝演算法連接點群，Edge Transport 計算沿路徑的距離，再轉成向外流動的速度。Pyro 以 Copy 注入速度場，讓煙霧持續沿分枝方向移動。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "適合需要特定走向的魔法、能量或煙霧鏡頭。美術可以先改路徑與發射點，再調整煙霧細節，將形狀設計和流體模擬分開迭代。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "作者使用固定容器內的 Minimal OpenCL 求解器。換成開放場景前需測試速度場邊界、體素解析度和循環接縫；遊戲內使用還要另做烘焙或即時效果版本。"
+        }
+      ]
+    },
+    "80-level-artist-recreates-lifelike-bubble-physics-in-houdini-based-on": {
+      "source_url": "https://80.lv/articles/artist-recreates-lifelike-bubble-physics-in-houdini-based-on-w-t-s-research",
+      "title": "Houdini 氣泡求解器：參考 Wētā 研究重現水中氣泡運動",
+      "summary": "Pavel Morozov 依 Wētā FX 的氣泡動力學資料，在 Houdini 建立自訂求解器，展示細緻的氣泡運動；文章也介紹相關水體研究案例。",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "這項展示將氣泡運動交給自訂求解器處理。文章提及另一位作者的氣泡與水體雙向耦合研究，但沒有公開 Morozov 求解器的完整實作，兩者不能視為相同系統。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "可作為水中氣泡、冒泡液體與近景流體的動態參考。製作時值得觀察氣泡如何隨水流改變位置與形狀，避免只用均勻向上的粒子代替所有運動。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "目前主要是成果展示，缺少完整節點、運算時間與可下載工程。重現前應查原始研究，並用小型水槽測試氣泡大小、上升速度與水流互動。"
+        }
+      ]
+    },
+    "cg-channel-alexey-vanzhula-releases-modeler-26-for-houdini": {
+      "source_url": "https://www.cgchannel.com/2026/10/alexey-vanzhula-releases-modeler-26-for-houdini",
+      "title": "Modeler 26.5：配合 Houdini 22 重整細分曲面建模操作",
+      "summary": "Modeler 26.5 配合 Houdini 22 的細分曲面顯示方式，整合相關工具到放射選單，新增 SubD Proxy 模式，並更新 Crease、Holes 與 PolyPen。",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "新版將細分曲面顯示工具集中到同一個選單，以 SubD Proxy 操作控制籠，並重新整理 Crease。Holes 可從選取頂點建立孔洞，減少在不同工具間切換。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對在 Houdini 做硬表面或角色細分建模的美術，可先測控制籠、折痕與孔洞編輯是否更順手，再比較同一資產在既有工具和新版中的操作時間。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "來源頁面標題仍寫 26.3，但 10/05 更新段落已介紹 26.5。升版前應核對實際插件與 Houdini 版本，測試舊檔、折痕和細分顯示，保留可回退版本。"
+        }
+      ]
+    },
+    "cg-channel-gravity-sketch-releases-gravity-sketch-vr-in-beta": {
+      "source_url": "https://www.cgchannel.com/2017/08/gravity-sketch-releases-gravity-sketch-vr-in-beta",
+      "title": "歷史參考｜Gravity Sketch VR：在虛擬空間畫 3D 草模",
+      "summary": "這篇 2017 年文章介紹 Gravity Sketch VR：以 VR 控制器繪製曲線與曲面，搭配旋轉成形和對稱建模，再匯出到其他 3D 軟體整理。",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "工具把草圖操作移進 3D 空間，可畫直線與平面、旋轉筆畫產生曲面，也能做對稱造型。當年的不同方案提供不同格式與圖層數限制。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "適合用來理解載具、道具與產品概念如何先抓立體比例，再交給 DCC 精修。若團隊已有 VR 設備，可比較空間草圖與傳統草模的溝通效果。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "這是歷史工具介紹，文中的裝置、價格與方案不能當成現況。正式使用前應查最新支援，並測輸出模型的比例、拓樸與曲面，確認後續能繼續編輯。"
+        }
+      ]
+    },
+    "cg-channel-faceware-technologies-launches-faceware-studio": {
+      "source_url": "https://www.cgchannel.com/2020/05/faceware-technologies-launches-faceware-studio",
+      "title": "歷史參考｜Faceware Studio：即時臉部動捕與表情調整",
+      "summary": "這篇 2020 年文章介紹 Faceware Studio：從演員影片解算臉部動作，再把資料傳到 MotionBuilder、Unity 或 Unreal，並提供表情強度與輸出控制。",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "介面將影片輸入、臉部追蹤、表情調整與串流分成階段。Motion Effects 可設定控制器間的關聯、限制數值或調整時間，也支援自訂 Python 效果。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對即時角色表演，可先調整動捕資料與角色表情的對應，再傳到引擎。這對卡通角色尤其實用，因為演員的臉部幅度不一定適合直接套到角色上。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "文章反映 2020 年版本，授權、插件與硬體支援需另查最新資訊。測試應包含嘴型、眨眼、頭部轉向、追蹤丟失和串流延遲，不能只看正面示範。"
+        }
+      ]
+    },
+    "cg-channel-alexey-vanzula-releases-direct-modeling-for-houdini": {
+      "source_url": "https://www.cgchannel.com/2018/01/alexey-vanzula-releases-direct-modeling-for-houdini",
+      "title": "歷史參考｜Direct Modeling HDA：Houdini 的布林與零件建模",
+      "summary": "Direct Modeling HDA 是 2018 年的 Houdini 硬表面工具，延伸 Flux HDA 的即時布林功能，加入零件庫與 Insert Mesh，方便組裝複雜造型。",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "工具以可編輯的布林組合建立形體，再用幾何零件庫與 Insert Mesh 替換面或面群，追加螺絲、孔洞等細節；作者也示範保存自製零件供重複使用。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對機械道具與載具概念，可先用零件組裝和布林確定外形，再整理需要細分或烘焙的區域。可參考的是建模方式，並非直接把結果當成遊戲低模。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "這篇是 Modeler 前身的歷史介紹，不能當成今天的新版本公告。若要沿用做法，應檢查現行 Modeler 的對應功能，再驗證布林拓樸、UV 與法線烘焙。"
+        }
+      ]
+    },
+    "cg-channel-sidefx-just-released-houdini-22": {
+      "source_url": "https://www.cgchannel.com/2026/07/sidefx-just-released-houdini-22",
+      "title": "Houdini 22：Gaussian Splatting、角色綁定與材質工具更新",
+      "summary": "Houdini 22 加入 Gaussian Splatting 工具，並更新 KineFX 角色綁定、動畫與 Copernicus 影像處理；可從掃描場景、角色和材質三條工作線分別評估。",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "Gaussian Splats 可由照片訓練或由 3D 場景生成，並接到變形和渲染流程。KineFX 加入可複用綁定元件；Copernicus 增加材質圖樣、地形和海洋相關功能。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "場景團隊可測掃描素材如何進入鏡頭與合成；角色團隊可先看綁定模板的重用；貼圖團隊則可測程序材質。各功能應對照自身工作，避免一次全面升版。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "這是版本功能整理，並不代表每個功能都適合量產。Gaussian Splats 的重打光仍含原型工具；導入時需確認記憶體、輸出格式、引擎支援與舊工程相容性。"
+        }
+      ]
+    },
+    "3dnchu-unreal-engine-shader-book-posita33": {
+      "source_url": "https://3dnchu.com/archives/unreal-engine-shader-book-posita33",
+      "title": "UE Shader 免費教材：從材質節點、SDF 到 Substrate",
+      "summary": "Unreal Engine Shader Book 是可免費閱讀的日文教材，涵蓋材質基礎、Shader 數學、SDF 圖形與 Substrate；部分章節另提供 GitHub 範例工程。",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "教材以材質節點與數學操作逐步建立效果，包含用 SDF 畫圓、星形等圖案，也說明 Substrate 的材質分層與混合，可搭配範例工程理解節點關係。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "適合已會做貼圖、想進一步控制材質效果的美術。可先選一個 SDF 或材質混合範例重做，再把參數整理成團隊能調整的材質介面。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "教材主要以日文撰寫，範例也有版本與功能設定要求。跟做前應確認 UE 版本及 Substrate 設定，並檢查 Shader 指令與貼圖採樣成本，避免只照搬外觀。"
+        }
+      ]
+    },
+    "80-level-stunning-forest-stream-simulation-made-with-houdini": {
+      "source_url": "https://80.lv/articles/stunning-forest-stream-simulation-made-with-houdini",
+      "title": "Houdini 森林溪流：以 Paradigm GPU 求解器模擬流水",
+      "summary": "Enrique De la Garza 在 Houdini 製作森林溪流，使用 Paradigm 的 GPU 流體求解器，並以 Karma XPU 渲染植被與場景，展示個人作品的製作方式。",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "這個案例的流體主要由 Paradigm 求解；作者在 Houdini 先做原型，再細修結果，並用 Karma XPU 處理帶遮罩的植被。文章有工作中畫面，但沒有完整節點教學。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對場景與特效美術，可參考溪流、河床和植被如何共同建立尺度感。若要比較 GPU 求解器，應在相同水域和解析度下測試，分開記錄模擬與渲染時間。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "文章發表時 Paradigm 仍是公開測試版，作者的速度描述不能直接套用到其他硬體。需另測顯存、碰撞細节與快取；遊戲場景還要轉成適合即時播放的效果。"
+        }
+      ]
+    },
+    "3dnchu-samus-free-rig": {
+      "source_url": "https://3dnchu.com/archives/samus-free-rig",
+      "title": "歷史素材｜Samus Maya Rig：免費角色動畫練習模型",
+      "summary": "Samus Free Rig 是粉絲製作的《銀河戰士》角色：Julien Desroy 製作模型，Perry Leijten 綁定，提供 Maya 檔案，並有控制器評測與動畫展示。",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "資產把角色模型與已完成的骨架控制整理在一起，讓使用者直接練習姿勢和動作。原文指出附帶插件，並列出 Maya 2017 至 2020 的 Windows／macOS 支援。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "適合動畫練習與角色控制器研究。角色美術也可觀察裝甲分件、關節活動和表情控制如何配合，作為製作可動角色時的檢查參考。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "來源是 2020 年公開的粉絲資產，免費下載不代表允許商用。使用前需查授權、檔案是否仍可取得及插件版本，再測關節穿插和新版本 Maya 的相容性。"
+        }
+      ]
+    },
+    "80-level-3d-artist-turned-wristwatch-into-m-bius-strip-using-houdini": {
+      "source_url": "https://80.lv/articles/3d-artist-turned-wristwatch-into-m-bius-strip-using-houdini",
+      "title": "Houdini 手錶動畫：把錶帶變成莫比烏斯環",
+      "summary": "Matt Taylor 以 Junghans Max Bill 手錶為題材，在 Houdini 將錶帶做成帶有半圈扭轉的莫比烏斯環，讓一般產品動畫呈現不尋常的連續造型。",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "作品把熟悉的手錶與莫比烏斯環結合，利用環帶的扭轉造成視覺反差。文章確認使用 Houdini，但未公開節點、UV 處理或變形方法，不能推定具體演算法。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "對載具、道具與產品展示，可參考如何在保留物件辨識度的同時，只改動一個結構製造記憶點；美術可先測輪廓與鏡頭，再決定細節程度。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "這是 2025 年的作品展示，適合視覺發想，不能直接當成建模教學。自行重現時應檢查環帶接縫、UV 拉伸、零件穿插和動畫循環是否連續。"
+        }
+      ]
+    }
+  }
+}
