@@ -2,7 +2,7 @@
   "schema_version": 1,
   "date": "2026-10-06",
   "state": "WATCHDOG_TRIGGER",
-  "trigger": "fresh-personalized-policy-recollect",
-  "reason": "User requested today's republication using the latest merged Chinese-copy and live owner-feedback changes. Archive the completed editorial-only override so the existing policy-recollect pipeline performs full Discovery and bounded personalization before selection. Reviewed source copy remains in editorial-quality config. Existing DONE/public content is replaced only by the canonical writer after QA and Pages verification.",
+  "trigger": "fresh-personalized-policy-recollect-after-release-index-fix",
+  "reason": "User requested today's republication with current merged Chinese-copy and live-feedback changes. Release-index admission is now fixed in PR #78 after fresh recollection was correctly stopped by title QA. Run full Discovery and bounded personalization through the existing policy-recollect pipeline. Replace public content only via the canonical writer after QA and Pages verification.",
   "writer_idle_confirmed_externally": true
 }
