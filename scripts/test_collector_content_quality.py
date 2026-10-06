@@ -16,6 +16,11 @@ def meta(url, title, description="", published=None, article_type=False):
 
 cases = [
     (
+        meta("https://www.blender.org/download/releases/", "Release Notes — Blender",
+             "Find Blender version releases, modeling, rendering and animation features.", None, True),
+        False, "generic-navigation-or-resource-index",
+    ),
+    (
         meta("https://80.lv/articles/business", "Articles and tutorials for 2D/3D Artists",
              "Workflow breakdowns and tutorials for Unreal Engine, 3ds Max, Substance Painter, Houdini, and more."),
         False, "generic-index-title",
@@ -107,6 +112,8 @@ for m, expected, reason in cases:
     assert got_reason == reason, (m["url"], got_reason, reason)
 
 assert normalize_title("IKinema releases Action for MotionBuilder | CG Channel") == "IKinema releases Action for MotionBuilder"
+assert admission(meta("https://www.blender.org/download/releases/5-2-lts/", "Blender 5.2 LTS Release",
+                      "Blender modeling and rendering feature updates.", "2026-07-21", True))[0]
 assert normalize_title("Houdini Engine | SideFX") == "Houdini Engine"
 
 assert classify_content(
