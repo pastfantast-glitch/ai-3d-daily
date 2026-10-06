@@ -41,6 +41,12 @@ on:
       - 'scripts/intelligence_v2.py'
       - 'scripts/url_identity.py'
       - 'scripts/discovery_hybrid.py'
+      - 'scripts/collector_personalization.py'
+      - 'scripts/test_collector_personalization.py'
+      - 'scripts/check_live_personalization.py'
+      - 'supabase/functions/ai3d-personalization/**'
+      - 'supabase/config.toml'
+      - '.github/workflows/personalization-check.yml'
       - 'scripts/personalization_feedback.py'
       - 'scripts/check_personalization_feedback_contract.py'
       - 'scripts/check_discovery_hybrid_contract.py'
@@ -133,6 +139,8 @@ jobs:
           python scripts/check_release_architecture.py
           python scripts/check_collector_runtime_contract.py
           python scripts/test_collector_content_quality.py
+          python scripts/test_collector_personalization.py
+          node --test supabase/functions/ai3d-personalization/policy.test.mjs
           python scripts/check_editorial_quality.py
           python scripts/check_source_qa_coverage.py
           python scripts/test_main_ci.py

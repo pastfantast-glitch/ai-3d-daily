@@ -31,6 +31,7 @@ if str(SCRIPTS) not in sys.path:
 from discovery_hybrid import load_hybrid_config, registered_source_probe_plan, registered_source_refill_plan
 from url_identity import canonicalize_url
 from content_quality import admission as content_admission, classify_content, normalize_title, production_summary, editorial_title, editorial_analysis
+from collector_personalization import load_owner_preferences, apply_candidate_personalization, positive_expansion_terms, expand_source_links
 
 INTEL_PATH = ROOT / "config" / "intelligence-v2.json"
 DEPTH_PATH = ROOT / "config" / "full-analysis-depth.json"
@@ -650,6 +651,9 @@ def source_probe(
     session: requests.Session,
     report_date: str,
     used_ids: set[str],
+    *,
+    expansion_terms: list[str] | None = None,
+    personal_cfg: dict | None = None,
 ) -> tuple[list[dict], dict]:
     http_cfg = runtime["http"]
     disc_cfg = runtime["discovery"]
@@ -749,7 +753,10 @@ def source_probe(
                 seen_links.add(url)
                 links.append((url, title))
 
-    links = links[:max_pages]
+    if personal_cfg:
+        links, expanded_urls = expand_source_links(links, max_pages, expansion_terms or [], personal_cfg)
+    else:
+        links, expanded_urls = links[:max_pages], set()
 
     def get_page(pair):
         url, fallback = pair
@@ -809,6 +816,7 @@ def source_probe(
             "ranking_score": score_candidate(meta, category, source_id, report_date),
             "brief_reason": brief_reason(text, source_id),
             "meta": meta,
+            "from_semantic_expansion": meta["url"] in expanded_urls,
         })
     candidates.sort(key=lambda x: (-x["ranking_score"], x["source_url"]))
     return candidates, {
@@ -819,6 +827,7 @@ def source_probe(
         "index_pages_checked": len(successes),
         "feed_urls_checked": feeds_checked,
         "refill_links_checked": len(refill_links),
+        "semantic_expansion_links_checked": len(expanded_urls),
     }
 
 
@@ -1156,6 +1165,10 @@ def main() -> int:
         if override_path.exists():
             return run_editorial_repair(report_date, runtime, override_path)
 
+    preference_weights, personal = load_owner_preferences(personal_cfg)
+    expansion_terms = positive_expansion_terms(preference_weights, personal_cfg)
+    print(f"COLLECTOR PERSONALIZATION: status={personal['status']} votes={personal['vote_count']}")
+
     snapshot = load_json(SNAPSHOT_PATH)
     published_sources, published_ids, registry_audit = load_registry(
         report_date,
@@ -1204,7 +1217,8 @@ def main() -> int:
             continue
         endpoints = configured_endpoints.get(source_id) or [source["base_url"]]
         candidates, record = source_probe(
-            source, endpoints, runtime, session, report_date, used_ids
+            source, endpoints, runtime, session, report_date, used_ids,
+            expansion_terms=expansion_terms, personal_cfg=personal_cfg,
         )
         record["selection_phase"] = "daily-plan"
         probe_records[source_id] = record
@@ -1276,7 +1290,8 @@ def main() -> int:
                 source = source_map[source_id]
                 endpoints = configured_endpoints.get(source_id) or [source["base_url"]]
                 candidates, record = source_probe(
-                    source, endpoints, runtime, session, report_date, used_ids
+                    source, endpoints, runtime, session, report_date, used_ids,
+                    expansion_terms=expansion_terms, personal_cfg=personal_cfg,
                 )
                 record["selection_phase"] = "targeted-refill"
                 probe_records[source_id] = record
@@ -1324,6 +1339,8 @@ def main() -> int:
         ]
         if candidate.get("from_registered_refill"):
             channels.insert(2, "registered-source-targeted-refill")
+        if candidate.get("from_semantic_expansion"):
+            channels.insert(2, "semantic-feedback-expansion")
         return channels
 
     decisions: list[dict] = []
@@ -1358,6 +1375,10 @@ def main() -> int:
         category_counts[candidate["category"]] += 1
         survivors.append(candidate)
 
+    # Admission and Registry dedupe have already run. Feedback adjusts ranking,
+    # never eligibility, publisher selection or source identity.
+    personal['ranking_adjusted_count'] = apply_candidate_personalization(survivors, preference_weights, personal_cfg)
+    personal['semantic_expansion_candidates'] = sum(bool(x.get('from_semantic_expansion')) for x in discovered)
     survivors.sort(key=lambda x: (-x["ranking_score"], x["source_url"]))
     maximum = int(intel["collection"]["daily_max_items"])
     selected_items = survivors[:maximum]
@@ -1401,11 +1422,12 @@ def main() -> int:
             "id": candidate["candidate_id"],
             "title": reader_title,
             "summary": production_summary(meta, candidate["category"], candidate["subcategory"]),
-            "quick_impact": stars(candidate["ranking_score"]),
+            "quick_impact": stars(candidate["base_ranking_score"]),
             "source_url": candidate["source_url"],
             "category": candidate["category"],
             "subcategory": candidate["subcategory"],
             "ranking_score": candidate["ranking_score"],
+            "base_ranking_score": candidate["base_ranking_score"],
             "analysis_level": "BRIEF",
             "brief_reason": candidate["brief_reason"],
             "full_analysis": editorial_analysis(
@@ -1476,25 +1498,6 @@ def main() -> int:
         ),
     }
 
-    personal = {
-        "contract": personal_cfg["mode"],
-        "status": "unavailable",
-        "vote_count": 0,
-        "reason": (
-            "Autonomous GitHub Collector has no authoritative active-app-owner identity; "
-            "current-main neutral-and-continue fallback applied without reading or committing raw user data."
-        ),
-        "max_rank_multiplier": float(personal_cfg["ranking"]["max_rank_multiplier"]),
-        "max_query_expansion_fraction": float(
-            personal_cfg["discovery"]["max_query_expansion_fraction"]
-        ),
-        "raw_profile_committed": False,
-        "bookmarks_used": False,
-        "domain_weights_used": False,
-        "admission_bypass": False,
-        "quality_gate_bypass": False,
-        "source_quota": False,
-    }
 
     metadata = {
         "total_items": len(canonical_items),
