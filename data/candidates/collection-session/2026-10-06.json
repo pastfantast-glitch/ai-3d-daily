@@ -292,7 +292,7 @@
         }
       }
     },
-    "notes": "2026-10-06 autonomous GitHub Collector loaded the Published Registry snapshot before discovery, supplemented it from verified-DONE history when needed, checked rolling backlog, executed the current-main deterministic registered-source probe plan, crawled configured source indexes plus bounded same-source refill, then used the current-main deficit-aware deterministic registered-source refill only when the verified survivor count remained below the normal floor, and applied exact source/stable identity dedupe before ranking. Registered refill: pre=10 post=13 batches=2 selected=[\"3dnchu\", \"cgworld-jp\", \"bilibili-mobile\", \"artstation\", \"gumroad-discover\", \"xiaohongshu\"]. Registry audit: {\"history_supplemented_items\": 0, \"latest_verified_done\": \"2026-10-05\", \"snapshot_generated_through\": \"2026-10-05\", \"snapshot_state\": \"DERIVED_FROM_VERIFIED_DONE\", \"source_identities\": 732, \"stable_ids\": 731}. Backlog entries rechecked=0. No source registration/domain supplied ranking bonus, quota or admission bypass."
+    "notes": "2026-10-06 autonomous GitHub Collector loaded the Published Registry snapshot before discovery, supplemented it from verified-DONE history when needed, checked rolling backlog, executed the current-main deterministic registered-source probe plan, crawled configured source indexes plus bounded same-source refill, then used the current-main deficit-aware deterministic registered-source refill only when the verified survivor count remained below the normal floor, and applied exact source/stable identity dedupe before ranking. Registered refill: pre=10 post=13 batches=2 selected=[\"3dnchu\", \"cgworld-jp\", \"bilibili-mobile\", \"artstation\", \"gumroad-discover\", \"xiaohongshu\"]. Registry audit: {\"history_supplemented_items\": 0, \"latest_verified_done\": \"2026-10-05\", \"snapshot_generated_through\": \"2026-10-05\", \"snapshot_state\": \"DERIVED_FROM_VERIFIED_DONE\", \"source_identities\": 732, \"stable_ids\": 731}. Backlog entries rechecked=0. No source registration/domain supplied ranking bonus, quota or admission bypass. 2026-10-06 editorial-only policy recollect preserved all 13 canonical IDs, source URLs, ranks and classifications; sources reverified before copy replacement (live=13, verified-DONE+external-review fallback=0)."
   },
   "candidate_decisions": [
     {
@@ -825,7 +825,8 @@
       "discovery_channels": [
         "registered-source-crawl",
         "registered-source-probe:80-level",
-        "published-registry-snapshot"
+        "published-registry-snapshot",
+        "editorial-repair-source-reverify"
       ],
       "decision": "published",
       "canonical_id": "80-level-artist-explores-realistic-water-adhesion-on-animated-charact"
@@ -837,7 +838,8 @@
         "registered-source-crawl",
         "registered-source-probe:3dnchu",
         "registered-source-targeted-refill",
-        "published-registry-snapshot"
+        "published-registry-snapshot",
+        "editorial-repair-source-reverify"
       ],
       "decision": "published",
       "canonical_id": "3dnchu-harmoflow"
@@ -848,7 +850,8 @@
       "discovery_channels": [
         "registered-source-crawl",
         "registered-source-probe:80-level",
-        "published-registry-snapshot"
+        "published-registry-snapshot",
+        "editorial-repair-source-reverify"
       ],
       "decision": "published",
       "canonical_id": "80-level-merging-space-colonization-solver-with-pyro-simulation-to-cr"
@@ -859,7 +862,8 @@
       "discovery_channels": [
         "registered-source-crawl",
         "registered-source-probe:80-level",
-        "published-registry-snapshot"
+        "published-registry-snapshot",
+        "editorial-repair-source-reverify"
       ],
       "decision": "published",
       "canonical_id": "80-level-artist-recreates-lifelike-bubble-physics-in-houdini-based-on"
@@ -870,7 +874,8 @@
       "discovery_channels": [
         "registered-source-crawl",
         "registered-source-probe:cg-channel",
-        "published-registry-snapshot"
+        "published-registry-snapshot",
+        "editorial-repair-source-reverify"
       ],
       "decision": "published",
       "canonical_id": "cg-channel-alexey-vanzhula-releases-modeler-26-for-houdini"
@@ -881,7 +886,8 @@
       "discovery_channels": [
         "registered-source-crawl",
         "registered-source-probe:cg-channel",
-        "published-registry-snapshot"
+        "published-registry-snapshot",
+        "editorial-repair-source-reverify"
       ],
       "decision": "published",
       "canonical_id": "cg-channel-gravity-sketch-releases-gravity-sketch-vr-in-beta"
@@ -892,7 +898,8 @@
       "discovery_channels": [
         "registered-source-crawl",
         "registered-source-probe:cg-channel",
-        "published-registry-snapshot"
+        "published-registry-snapshot",
+        "editorial-repair-source-reverify"
       ],
       "decision": "published",
       "canonical_id": "cg-channel-faceware-technologies-launches-faceware-studio"
@@ -903,7 +910,8 @@
       "discovery_channels": [
         "registered-source-crawl",
         "registered-source-probe:cg-channel",
-        "published-registry-snapshot"
+        "published-registry-snapshot",
+        "editorial-repair-source-reverify"
       ],
       "decision": "published",
       "canonical_id": "cg-channel-alexey-vanzula-releases-direct-modeling-for-houdini"
@@ -914,7 +922,8 @@
       "discovery_channels": [
         "registered-source-crawl",
         "registered-source-probe:cg-channel",
-        "published-registry-snapshot"
+        "published-registry-snapshot",
+        "editorial-repair-source-reverify"
       ],
       "decision": "published",
       "canonical_id": "cg-channel-sidefx-just-released-houdini-22"
@@ -926,7 +935,8 @@
         "registered-source-crawl",
         "registered-source-probe:3dnchu",
         "registered-source-targeted-refill",
-        "published-registry-snapshot"
+        "published-registry-snapshot",
+        "editorial-repair-source-reverify"
       ],
       "decision": "published",
       "canonical_id": "3dnchu-unreal-engine-shader-book-posita33"
@@ -937,7 +947,8 @@
       "discovery_channels": [
         "registered-source-crawl",
         "registered-source-probe:80-level",
-        "published-registry-snapshot"
+        "published-registry-snapshot",
+        "editorial-repair-source-reverify"
       ],
       "decision": "published",
       "canonical_id": "80-level-stunning-forest-stream-simulation-made-with-houdini"
@@ -949,7 +960,8 @@
         "registered-source-crawl",
         "registered-source-probe:3dnchu",
         "registered-source-targeted-refill",
-        "published-registry-snapshot"
+        "published-registry-snapshot",
+        "editorial-repair-source-reverify"
       ],
       "decision": "published",
       "canonical_id": "3dnchu-samus-free-rig"
@@ -960,7 +972,8 @@
       "discovery_channels": [
         "registered-source-crawl",
         "registered-source-probe:80-level",
-        "published-registry-snapshot"
+        "published-registry-snapshot",
+        "editorial-repair-source-reverify"
       ],
       "decision": "published",
       "canonical_id": "80-level-3d-artist-turned-wristwatch-into-m-bius-strip-using-houdini"
