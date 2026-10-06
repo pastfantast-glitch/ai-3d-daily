@@ -2,7 +2,7 @@
   "schema_version": 1,
   "date": "2026-10-06",
   "state": "WATCHDOG_TRIGGER",
-  "trigger": "fresh-personalized-policy-recollect-after-release-index-fix",
-  "reason": "User requested today's republication with current merged Chinese-copy and live-feedback changes. Release-index admission is now fixed in PR #78 after fresh recollection was correctly stopped by title QA. Run full Discovery and bounded personalization through the existing policy-recollect pipeline. Replace public content only via the canonical writer after QA and Pages verification.",
+  "trigger": "fresh-personalized-policy-recollect-after-pipeline-idle",
+  "reason": "Repeat the authorized fresh recollection after all prior workflow_run bookkeeping has completed. The previous attempt correctly skipped collection because a canonical route run was active; no fresh collected dataset was published. Apply PR #77 owner feedback and PR #78 release-index admission through the canonical pipeline.",
   "writer_idle_confirmed_externally": true
 }
