@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 from __future__ import annotations
-from content_quality import admission, classify_content, normalize_title, production_summary, editorial_title, editorial_analysis, reader_language_ok
+from content_quality import admission, classify_content, normalize_title, production_summary, editorial_title, editorial_analysis, reader_language_ok, production_details, production_subject, source_title_cue, source_subject_traits
 from check_editorial_quality import copy_signature
 
 
@@ -388,5 +388,71 @@ for banned_reader_phrase in (
 
 assert reader_language_ok("Unity Spline Architect：大量物件 GPU 實例化更新", 4.0)
 assert reader_language_ok("Redchillies.vfx：Netflix 影集特效製作拆解", 4.0)
+
+
+# 2026-10-06: Houdini release headlines collided once two technical details
+# caused production_subject() to discard the article identity. Use the same
+# description deliberately to exercise that branch independently of live pages.
+shared_houdini_description = (
+    "A version update to a procedural modeling toolkit for Houdini and Cinema 4D."
+)
+houdini_release_cases = [
+    meta(
+        "https://www.cgchannel.com/2018/01/alexey-vanzula-releases-direct-modeling-for-houdini/",
+        "Alexey Vanzhula ships Direct Modeling HDA for Houdini",
+        shared_houdini_description,
+        "2018-01-08",
+        True,
+    ),
+    meta(
+        "https://www.cgchannel.com/2026/10/alexey-vanzhula-releases-modeler-26-for-houdini/",
+        "Alexey Vanzhula releases Modeler 26.3 for Houdini",
+        shared_houdini_description,
+        "2026-10-05",
+        True,
+    ),
+]
+assert all(
+    len(production_details(m) + [
+        x for x in source_subject_traits(m)
+        if x == "程序化"
+    ]) >= 2
+    for m in houdini_release_cases
+), "fixture must exercise the multi-detail subject branch"
+expected_houdini_cues = ["Direct Modeling HDA", "Modeler 26.3"]
+houdini_analyses = []
+houdini_summaries = []
+for m, cue in zip(houdini_release_cases, expected_houdini_cues):
+    assert source_title_cue(m) == cue
+    blocks = editorial_analysis(m, "blender-dcc", "houdini")
+    summary = production_summary(m, "blender-dcc", "houdini")
+    assert all(cue in block["text"] for block in blocks)
+    assert cue in summary
+    assert all(reader_language_ok(block["text"], 3.0) for block in blocks)
+    assert reader_language_ok(summary, 2.5)
+    assert blocks == editorial_analysis(m, "blender-dcc", "houdini")
+    houdini_analyses.append({block["text"] for block in blocks})
+    houdini_summaries.append(summary)
+assert not (houdini_analyses[0] & houdini_analyses[1])
+assert houdini_summaries[0] != houdini_summaries[1]
+
+# Product versions must also survive the identical author and DCC framing.
+version_meta = dict(houdini_release_cases[1])
+version_meta["title"] = "Alexey Vanzhula releases Modeler 26.5 for Houdini"
+assert source_title_cue(version_meta) == "Modeler 26.5"
+version_analysis = editorial_analysis(version_meta, "blender-dcc", "houdini")
+assert all("Modeler 26.5" in block["text"] for block in version_analysis)
+assert not ({block["text"] for block in version_analysis} & houdini_analyses[1])
+
+# Same semantic details across non-release articles must retain their title cues.
+detail_cases = [
+    meta("https://example.com/detail-a", "Workflow A", "Grease Pencil Shape Keys workflow."),
+    meta("https://example.com/detail-b", "Workflow B", "Grease Pencil Shape Keys workflow."),
+]
+detail_analyses = [
+    {block["text"] for block in editorial_analysis(m, "blender-dcc", "blender")}
+    for m in detail_cases
+]
+assert not (detail_analyses[0] & detail_analyses[1])
 
 print("COLLECTOR CONTENT QUALITY PASS: landing/index rejection + promo rejection + production-dense source-grounded reader copy + title normalization + subject-first classification")
