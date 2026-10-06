@@ -226,7 +226,17 @@ def source_title_cue(meta: dict) -> str:
     raw = clean(KANA_RE.sub("", normalize_title(meta.get("title"))))
     if not raw:
         return ""
-    if len(raw) <= 18:
+    # Release headlines often share an author prefix and a DCC suffix.
+    # Keep the product and version between them instead of shortening those away.
+    release = re.match(r"^.+?\s+(?:releases?|ships?)\s+(.+)$", raw, flags=re.I)
+    if release:
+        raw = re.sub(
+            r"\s+for\s+(?:Houdini|Blender|Maya|Cinema 4D|3ds Max)\b.*$",
+            "",
+            release.group(1),
+            flags=re.I,
+        ).strip()
+    if len(raw) <= (40 if release else 18):
         return raw
     return clean(f"{raw[:9].rstrip()}…{raw[-9:].lstrip()}", 24)
 
@@ -562,7 +572,8 @@ def production_subject(meta: dict, focus_text: str) -> str:
             break
     cue = source_title_cue(meta)
     if len(details) >= 2:
-        return "、".join(details[:4])
+        subject = "、".join(details[:4])
+        return f"{subject}（{cue}）" if cue else subject
     if details and cue:
         return f"{details[0]}（{cue}）"
     if details:
