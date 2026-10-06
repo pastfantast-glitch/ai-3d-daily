@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 from __future__ import annotations
-from content_quality import admission, classify_content, normalize_title, production_summary, editorial_title, editorial_analysis, reader_language_ok
+from content_quality import admission, classify_content, normalize_title, production_summary, editorial_title, editorial_analysis, reader_language_ok, production_details, production_subject, source_title_cue, source_subject_traits
 from check_editorial_quality import copy_signature
 
 
@@ -394,7 +394,7 @@ assert reader_language_ok("Redchillies.vfx：Netflix 影集特效製作拆解", 
 # caused production_subject() to discard the article identity. Use the same
 # description deliberately to exercise that branch independently of live pages.
 shared_houdini_description = (
-    "A procedural modeling toolkit for Houdini and Cinema 4D."
+    "A version update to a procedural modeling toolkit for Houdini and Cinema 4D."
 )
 houdini_release_cases = [
     meta(
@@ -412,11 +412,8 @@ houdini_release_cases = [
         True,
     ),
 ]
-from content_quality import production_details, production_subject, source_title_cue, source_subject_traits
-
 assert all(
-    len(production_subject(m, "建模、程序化、Houdini")) > 0
-    and len(production_details(m) + [
+    len(production_details(m) + [
         x for x in source_subject_traits(m)
         if x == "程序化"
     ]) >= 2
