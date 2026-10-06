@@ -61,10 +61,10 @@
      #07 · mocap
     </div>
     <h2>
-     3D 動作／Rig：Faceware…re Studio 的製作重點
+     歷史參考｜Faceware Studio：即時臉部動捕與表情調整
     </h2>
     <p class="summary">
-     這則內容主要談 臉部表演（Faceware…re Studio），與 Mocap 的製作實作直接相關。它能提供具體方法或結果作為對照，但仍要區分哪些是可複用流程、哪些只成立於單一作品或特定專案條件。
+     這篇 2020 年文章介紹 Faceware Studio：從演員影片解算臉部動作，再把資料傳到 MotionBuilder、Unity 或 Unreal，並提供表情強度與輸出控制。
     </p>
     <figure class="case-preview" data-intel-id="cg-channel-faceware-technologies-launches-faceware-studio" data-intel-role="visual" data-visual-id="cg-channel-faceware-technologies-launches-faceware-studio">
      <a href="https://www.cgchannel.com/2020/05/faceware-technologies-launches-faceware-studio" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
@@ -89,19 +89,19 @@
        技術／流程變更
       </h4>
       <p>
-       內容重點落在 臉部表演（Faceware…re Studio），並涉及 Mocap。先辨認文章實際展示的是方法、工具能力還是單一作品結果，才能避免把展示效果誤當成可直接複製的流程。
+       介面將影片輸入、臉部追蹤、表情調整與串流分成階段。Motion Effects 可設定控制器間的關聯、限制數值或調整時間，也支援自訂 Python 效果。
       </p>
       <h4>
        Production 影響
       </h4>
       <p>
-       對 Mocap，可以把 臉部表演（Faceware…re Studio） 的做法或結果對照目前 pipeline，找出它可能影響的操作、交接或品質檢查點；只有能對應到真實工作步驟的部分，才值得進一步投入測試。
+       對即時角色表演，可先調整動捕資料與角色表情的對應，再傳到引擎。這對卡通角色尤其實用，因為演員的臉部幅度不一定適合直接套到角色上。
       </p>
       <h4>
        導入測試與限制
       </h4>
       <p>
-       臉部表演（Faceware…re Studio） 目前只有單一來源可供參考，通常不足以證明跨專案穩定性；若要正式導入，仍需補做版本、資產規模與輸出條件的驗證。
+       文章反映 2020 年版本，授權、插件與硬體支援需另查最新資訊。測試應包含嘴型、眨眼、頭部轉向、追蹤丟失和串流延遲，不能只看正面示範。
       </p>
       <p class="analysis-level-note">
        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。

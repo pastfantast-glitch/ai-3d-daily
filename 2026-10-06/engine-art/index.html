@@ -61,20 +61,20 @@
      #02 · shader
     </div>
     <h2>
-     遊戲引擎美術：HarmoFlow…！Windows！ 的製作重點
+     HarmoFlow：支援 PBR／NPR 的 3D 貼圖繪製與 PSD 輸出
     </h2>
     <p class="summary">
-     這則內容主要談 UV（HarmoFlow…！Windows！），與 UV 的製作實作直接相關。它能提供具體方法或結果作為對照，但仍要區分哪些是可複用流程、哪些只成立於單一作品或特定專案條件。
+     HarmoFlow 是 Windows 用的 3D 貼圖繪製工具，可在模型或 UV 上作畫，編輯材質，並輸出保留圖層的 PSD；目前提供試用版。
     </p>
     <figure class="case-preview" data-intel-id="3dnchu-harmoflow" data-intel-role="visual" data-visual-id="3dnchu-harmoflow">
      <a href="https://3dnchu.com/archives/harmoflow" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
-      <img alt="SOURCE CARD preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-10-06/3dnchu-harmoflow.svg"/>
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-10-06/3dnchu-harmoflow.jpg"/>
      </a>
      <figcaption>
       <span>
-       SOURCE CARD
+       SOURCE PREVIEW
       </span>
-      · Generated source card · 點圖開啟原始來源
+      · Local visual evidence · 點圖開啟原始來源
      </figcaption>
     </figure>
     <div class="quick-impact">
@@ -89,19 +89,19 @@
        技術／流程變更
       </h4>
       <p>
-       內容重點落在 UV（HarmoFlow…！Windows！），並涉及 UV。先辨認文章實際展示的是方法、工具能力還是單一作品結果，才能避免把展示效果誤當成可直接複製的流程。
+       工具同時提供 3D 與 UV 繪製，並以 PBR／NPR 材質預覽檢查外觀；保留圖層的 PSD 輸出，讓貼圖能繼續交給影像編輯軟體修改。
       </p>
       <h4>
        Production 影響
       </h4>
       <p>
-       對 Shader／材質，可以把 UV（HarmoFlow…！Windows！） 的做法或結果對照目前 pipeline，找出它可能影響的操作、交接或品質檢查點；只有能對應到真實工作步驟的部分，才值得進一步投入測試。
+       對手繪與卡通角色貼圖，可測試直接在模型上畫分色、再回 PSD 整理圖層的方式，是否比現有工具更容易維持設定圖的用色與筆觸。
       </p>
       <h4>
        導入測試與限制
       </h4>
       <p>
-       UV（HarmoFlow…！Windows！） 目前只有單一來源可供參考，通常不足以證明跨專案穩定性；若要正式導入，仍需補做版本、資產規模與輸出條件的驗證。
+       來源是工具介紹，尚無大型資產的測試結果。導入前應確認貼圖尺寸、透明通道、PSD 圖層與色彩空間，並比較工具預覽和遊戲引擎的結果。
       </p>
       <p class="analysis-level-note">
        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
@@ -117,20 +117,20 @@
      #10 · unreal
     </div>
     <h2>
-     遊戲引擎美術：Unreal En…！Github有！ 的製作重點
+     UE Shader 免費教材：從材質節點、SDF 到 Substrate
     </h2>
     <p class="summary">
-     這則內容主要談 Shader、Unreal Engine（Unreal En…！Github有！），與 Shader、Unreal Engine 的製作實作直接相關。它能提供具體方法或結果作為對照，但仍要區分哪些是可複用流程、哪些只成立於單一作品或特定專案條件。
+     Unreal Engine Shader Book 是可免費閱讀的日文教材，涵蓋材質基礎、Shader 數學、SDF 圖形與 Substrate；部分章節另提供 GitHub 範例工程。
     </p>
     <figure class="case-preview" data-intel-id="3dnchu-unreal-engine-shader-book-posita33" data-intel-role="visual" data-visual-id="3dnchu-unreal-engine-shader-book-posita33">
      <a href="https://3dnchu.com/archives/unreal-engine-shader-book-posita33" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
-      <img alt="SOURCE CARD preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-10-06/3dnchu-unreal-engine-shader-book-posita33.svg"/>
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-10-06/3dnchu-unreal-engine-shader-book-posita33.jpg"/>
      </a>
      <figcaption>
       <span>
-       SOURCE CARD
+       SOURCE PREVIEW
       </span>
-      · Generated source card · 點圖開啟原始來源
+      · Local visual evidence · 點圖開啟原始來源
      </figcaption>
     </figure>
     <div class="quick-impact">
@@ -145,19 +145,19 @@
        技術／流程變更
       </h4>
       <p>
-       內容重點落在 Shader、Unreal Engine（Unreal En…！Github有！），並涉及 Shader、Unreal Engine。先辨認文章實際展示的是方法、工具能力還是單一作品結果，才能避免把展示效果誤當成可直接複製的流程。
+       教材以材質節點與數學操作逐步建立效果，包含用 SDF 畫圓、星形等圖案，也說明 Substrate 的材質分層與混合，可搭配範例工程理解節點關係。
       </p>
       <h4>
        Production 影響
       </h4>
       <p>
-       對 Unreal Engine，可以把 Shader、Unreal Engine（Unreal En…！Github有！） 的做法或結果對照目前 pipeline，找出它可能影響的操作、交接或品質檢查點；只有能對應到真實工作步驟的部分，才值得進一步投入測試。
+       適合已會做貼圖、想進一步控制材質效果的美術。可先選一個 SDF 或材質混合範例重做，再把參數整理成團隊能調整的材質介面。
       </p>
       <h4>
        導入測試與限制
       </h4>
       <p>
-       Shader、Unreal Engine（Unreal En…！Github有！） 目前只有單一來源可供參考，通常不足以證明跨專案穩定性；若要正式導入，仍需補做版本、資產規模與輸出條件的驗證。
+       教材主要以日文撰寫，範例也有版本與功能設定要求。跟做前應確認 UE 版本及 Substrate 設定，並檢查 Shader 指令與貼圖採樣成本，避免只照搬外觀。
       </p>
       <p class="analysis-level-note">
        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。

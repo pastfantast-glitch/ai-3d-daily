@@ -61,10 +61,10 @@
      #01 · houdini
     </div>
     <h2>
-     Blender／DCC 製作：Artist Ex…n Houdini 的製作重點
+     Houdini 水滴附著：讓水沿動態角色表面累積、滴落與飛濺
     </h2>
     <p class="summary">
-     這則內容主要談 寫實、程序化（Artist Ex…n Houdini），與 程序化、Houdini 的製作實作直接相關。它能提供具體方法或結果作為對照，但仍要區分哪些是可複用流程、哪些只成立於單一作品或特定專案條件。
+     Milad Sãvar 用 Houdini 製作角色表面的水滴效果，透過 VEX、SOP Solver 與粒子控制，處理水的附著、滴落和飛濺，並提供 HIP 檔案。
     </p>
     <figure class="case-preview" data-intel-id="80-level-artist-explores-realistic-water-adhesion-on-animated-charact" data-intel-role="visual" data-visual-id="80-level-artist-explores-realistic-water-adhesion-on-animated-charact">
      <a href="https://80.lv/articles/artist-explores-realistic-water-adhesion-on-animated-characters-in-houdini" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
@@ -89,19 +89,19 @@
        技術／流程變更
       </h4>
       <p>
-       內容重點落在 寫實、程序化（Artist Ex…n Houdini），並涉及 程序化、Houdini。先辨認文章實際展示的是方法、工具能力還是單一作品結果，才能避免把展示效果誤當成可直接複製的流程。
+       流程以自訂 VEX 和 SOP Solver 處理碰撞，再控制粒子的速度、位置與表面附著；搭配 POP Fluid、Gas Tension 和後處理，修補水滴之間的空隙。
       </p>
       <h4>
        Production 影響
       </h4>
       <p>
-       對 Houdini，可以把 寫實、程序化（Artist Ex…n Houdini） 的做法或結果對照目前 pipeline，找出它可能影響的操作、交接或品質檢查點；只有能對應到真實工作步驟的部分，才值得進一步投入測試。
+       適合參考角色淋雨、濕身或濺水鏡頭。對特效美術而言，可把水滴黏在身上的階段與離開表面後的飛濺分開控制，較容易調整畫面節奏。
       </p>
       <h4>
        導入測試與限制
       </h4>
       <p>
-       寫實、程序化（Artist Ex…n Houdini） 目前只有單一來源可供參考，通常不足以證明跨專案穩定性；若要正式導入，仍需補做版本、資產規模與輸出條件的驗證。
+       目前是作者的研發案例，尚無跨角色效能數據。測試時應檢查快速動作、關節彎曲和細小表面，確認粒子不穿透、附著不漂移，再評估模擬成本。
       </p>
       <p class="analysis-level-note">
        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
@@ -117,10 +117,10 @@
      #03 · houdini
     </div>
     <h2>
-     Blender／DCC 製作：Merging S…ke Bursts 的製作重點
+     Houdini 分枝煙霧：用 Space Colonization 路徑引導 Pyro
     </h2>
     <p class="summary">
-     這則內容主要談 程序化（Merging S…ke Bursts），與 Geometry Nodes、Houdini 的製作實作直接相關。它能提供具體方法或結果作為對照，但仍要區分哪些是可複用流程、哪些只成立於單一作品或特定專案條件。
+     Karlis Stigis 先建立分枝路徑，再把路徑方向轉成速度場，配合 Pyro 產生沿枝節擴散的煙霧，最後用 Solaris 與 Karma 渲染。
     </p>
     <figure class="case-preview" data-intel-id="80-level-merging-space-colonization-solver-with-pyro-simulation-to-cr" data-intel-role="visual" data-visual-id="80-level-merging-space-colonization-solver-with-pyro-simulation-to-cr">
      <a href="https://80.lv/articles/merging-space-colonization-solver-with-pyro-simulation-to-create-looping-smoke-bursts" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
@@ -145,19 +145,19 @@
        技術／流程變更
       </h4>
       <p>
-       內容重點落在 程序化（Merging S…ke Bursts），並涉及 Geometry Nodes、Houdini。先辨認文章實際展示的是方法、工具能力還是單一作品結果，才能避免把展示效果誤當成可直接複製的流程。
+       分枝演算法連接點群，Edge Transport 計算沿路徑的距離，再轉成向外流動的速度。Pyro 以 Copy 注入速度場，讓煙霧持續沿分枝方向移動。
       </p>
       <h4>
        Production 影響
       </h4>
       <p>
-       對 Houdini，可以把 程序化（Merging S…ke Bursts） 的做法或結果對照目前 pipeline，找出它可能影響的操作、交接或品質檢查點；只有能對應到真實工作步驟的部分，才值得進一步投入測試。
+       適合需要特定走向的魔法、能量或煙霧鏡頭。美術可以先改路徑與發射點，再調整煙霧細節，將形狀設計和流體模擬分開迭代。
       </p>
       <h4>
        導入測試與限制
       </h4>
       <p>
-       程序化（Merging S…ke Bursts） 目前只有單一來源可供參考，通常不足以證明跨專案穩定性；若要正式導入，仍需補做版本、資產規模與輸出條件的驗證。
+       作者使用固定容器內的 Minimal OpenCL 求解器。換成開放場景前需測試速度場邊界、體素解析度和循環接縫；遊戲內使用還要另做烘焙或即時效果版本。
       </p>
       <p class="analysis-level-note">
        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
@@ -173,10 +173,10 @@
      #04 · houdini
     </div>
     <h2>
-     Blender／DCC 製作：Artist Re…Research 的製作重點
+     Houdini 氣泡求解器：參考 Wētā 研究重現水中氣泡運動
     </h2>
     <p class="summary">
-     這則內容主要談 Houdini（Artist Re…Research），與 Houdini 的製作實作直接相關。它能提供具體方法或結果作為對照，但仍要區分哪些是可複用流程、哪些只成立於單一作品或特定專案條件。
+     Pavel Morozov 依 Wētā FX 的氣泡動力學資料，在 Houdini 建立自訂求解器，展示細緻的氣泡運動；文章也介紹相關水體研究案例。
     </p>
     <figure class="case-preview" data-intel-id="80-level-artist-recreates-lifelike-bubble-physics-in-houdini-based-on" data-intel-role="visual" data-visual-id="80-level-artist-recreates-lifelike-bubble-physics-in-houdini-based-on">
      <a href="https://80.lv/articles/artist-recreates-lifelike-bubble-physics-in-houdini-based-on-w-t-s-research" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
@@ -201,19 +201,19 @@
        技術／流程變更
       </h4>
       <p>
-       內容重點落在 Houdini（Artist Re…Research），並涉及 Houdini。先辨認文章實際展示的是方法、工具能力還是單一作品結果，才能避免把展示效果誤當成可直接複製的流程。
+       這項展示將氣泡運動交給自訂求解器處理。文章提及另一位作者的氣泡與水體雙向耦合研究，但沒有公開 Morozov 求解器的完整實作，兩者不能視為相同系統。
       </p>
       <h4>
        Production 影響
       </h4>
       <p>
-       對 Houdini，可以把 Houdini（Artist Re…Research） 的做法或結果對照目前 pipeline，找出它可能影響的操作、交接或品質檢查點；只有能對應到真實工作步驟的部分，才值得進一步投入測試。
+       可作為水中氣泡、冒泡液體與近景流體的動態參考。製作時值得觀察氣泡如何隨水流改變位置與形狀，避免只用均勻向上的粒子代替所有運動。
       </p>
       <h4>
        導入測試與限制
       </h4>
       <p>
-       Houdini（Artist Re…Research） 目前只有單一來源可供參考，通常不足以證明跨專案穩定性；若要正式導入，仍需補做版本、資產規模與輸出條件的驗證。
+       目前主要是成果展示，缺少完整節點、運算時間與可下載工程。重現前應查原始研究，並用小型水槽測試氣泡大小、上升速度與水流互動。
       </p>
       <p class="analysis-level-note">
        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
@@ -229,10 +229,10 @@
      #05 · houdini
     </div>
     <h2>
-     Blender／DCC 製作：Modeler 26.3 的製作重點
+     Modeler 26.5：配合 Houdini 22 重整細分曲面建模操作
     </h2>
     <p class="summary">
-     這次更新聚焦 建模、Houdini（Modeler 26.3），涉及 建模、Houdini。對 Houdini 而言，重點是新增能力實際介入 authoring、資產交換或輸出的哪一段，以及升版後是否會改變既有設定與相容性。
+     Modeler 26.5 配合 Houdini 22 的細分曲面顯示方式，整合相關工具到放射選單，新增 SubD Proxy 模式，並更新 Crease、Holes 與 PolyPen。
     </p>
     <figure class="case-preview" data-intel-id="cg-channel-alexey-vanzhula-releases-modeler-26-for-houdini" data-intel-role="visual" data-visual-id="cg-channel-alexey-vanzhula-releases-modeler-26-for-houdini">
      <a href="https://www.cgchannel.com/2026/10/alexey-vanzhula-releases-modeler-26-for-houdini" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
@@ -257,19 +257,19 @@
        技術／流程變更
       </h4>
       <p>
-       更新內容集中在 建模、Houdini（Modeler 26.3），並牽涉 建模、Houdini。這類變更要先釐清新增能力位於 authoring、資產交換還是輸出端，因為同樣叫「新功能」，對美術工作量與既有專案的影響可能完全不同。
+       新版將細分曲面顯示工具集中到同一個選單，以 SubD Proxy 操作控制籠，並重新整理 Crease。Holes 可從選取頂點建立孔洞，減少在不同工具間切換。
       </p>
       <h4>
        Production 影響
       </h4>
       <p>
-       在 Houdini 流程裡，可用同一份代表性資產做升版前後對照：記錄操作步驟、手動修正次數、輸出一致性與相容性，確認 建模、Houdini（Modeler 26.3） 是否真的降低成本，或只是增加另一套設定。
+       對在 Houdini 做硬表面或角色細分建模的美術，可先測控制籠、折痕與孔洞編輯是否更順手，再比較同一資產在既有工具和新版中的操作時間。
       </p>
       <h4>
        導入測試與限制
       </h4>
       <p>
-       目前資訊能確認 建模、Houdini（Modeler 26.3） 的功能方向，但不能直接推定大型專案的穩定性、效能或插件相容性；若會改動既有資料格式或版本依賴，導入前仍需做舊檔與回退測試。
+       來源頁面標題仍寫 26.3，但 10/05 更新段落已介紹 26.5。升版前應核對實際插件與 Houdini 版本，測試舊檔、折痕和細分顯示，保留可回退版本。
       </p>
       <p class="analysis-level-note">
        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
@@ -285,10 +285,10 @@
      #08 · houdini
     </div>
     <h2>
-     Blender／DCC 製作：Direct Modeling HDA 的製作重點
+     歷史參考｜Direct Modeling HDA：Houdini 的布林與零件建模
     </h2>
     <p class="summary">
-     這次更新聚焦 建模、Houdini（Direct Modeling HDA），涉及 建模、Houdini。對 Houdini 而言，重點是新增能力實際介入 authoring、資產交換或輸出的哪一段，以及升版後是否會改變既有設定與相容性。
+     Direct Modeling HDA 是 2018 年的 Houdini 硬表面工具，延伸 Flux HDA 的即時布林功能，加入零件庫與 Insert Mesh，方便組裝複雜造型。
     </p>
     <figure class="case-preview" data-intel-id="cg-channel-alexey-vanzula-releases-direct-modeling-for-houdini" data-intel-role="visual" data-visual-id="cg-channel-alexey-vanzula-releases-direct-modeling-for-houdini">
      <a href="https://www.cgchannel.com/2018/01/alexey-vanzula-releases-direct-modeling-for-houdini" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
@@ -313,19 +313,19 @@
        技術／流程變更
       </h4>
       <p>
-       更新內容集中在 建模、Houdini（Direct Modeling HDA），並牽涉 建模、Houdini。這類變更要先釐清新增能力位於 authoring、資產交換還是輸出端，因為同樣叫「新功能」，對美術工作量與既有專案的影響可能完全不同。
+       工具以可編輯的布林組合建立形體，再用幾何零件庫與 Insert Mesh 替換面或面群，追加螺絲、孔洞等細節；作者也示範保存自製零件供重複使用。
       </p>
       <h4>
        Production 影響
       </h4>
       <p>
-       在 Houdini 流程裡，可用同一份代表性資產做升版前後對照：記錄操作步驟、手動修正次數、輸出一致性與相容性，確認 建模、Houdini（Direct Modeling HDA） 是否真的降低成本，或只是增加另一套設定。
+       對機械道具與載具概念，可先用零件組裝和布林確定外形，再整理需要細分或烘焙的區域。可參考的是建模方式，並非直接把結果當成遊戲低模。
       </p>
       <h4>
        導入測試與限制
       </h4>
       <p>
-       目前資訊能確認 建模、Houdini（Direct Modeling HDA） 的功能方向，但不能直接推定大型專案的穩定性、效能或插件相容性；若會改動既有資料格式或版本依賴，導入前仍需做舊檔與回退測試。
+       這篇是 Modeler 前身的歷史介紹，不能當成今天的新版本公告。若要沿用做法，應檢查現行 Modeler 的對應功能，再驗證布林拓樸、UV 與法線烘焙。
       </p>
       <p class="analysis-level-note">
        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
@@ -341,10 +341,10 @@
      #09 · houdini
     </div>
     <h2>
-     Blender／DCC 製作：SideFX ju…oudini 22 的製作重點
+     Houdini 22：Gaussian Splatting、角色綁定與材質工具更新
     </h2>
     <p class="summary">
-     這則內容主要談 Houdini（SideFX ju…oudini 22），與 Houdini 的製作實作直接相關。它能提供具體方法或結果作為對照，但仍要區分哪些是可複用流程、哪些只成立於單一作品或特定專案條件。
+     Houdini 22 加入 Gaussian Splatting 工具，並更新 KineFX 角色綁定、動畫與 Copernicus 影像處理；可從掃描場景、角色和材質三條工作線分別評估。
     </p>
     <figure class="case-preview" data-intel-id="cg-channel-sidefx-just-released-houdini-22" data-intel-role="visual" data-visual-id="cg-channel-sidefx-just-released-houdini-22">
      <a href="https://www.cgchannel.com/2026/07/sidefx-just-released-houdini-22" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
@@ -369,19 +369,19 @@
        技術／流程變更
       </h4>
       <p>
-       內容重點落在 Houdini（SideFX ju…oudini 22），並涉及 Houdini。先辨認文章實際展示的是方法、工具能力還是單一作品結果，才能避免把展示效果誤當成可直接複製的流程。
+       Gaussian Splats 可由照片訓練或由 3D 場景生成，並接到變形和渲染流程。KineFX 加入可複用綁定元件；Copernicus 增加材質圖樣、地形和海洋相關功能。
       </p>
       <h4>
        Production 影響
       </h4>
       <p>
-       對 Houdini，可以把 Houdini（SideFX ju…oudini 22） 的做法或結果對照目前 pipeline，找出它可能影響的操作、交接或品質檢查點；只有能對應到真實工作步驟的部分，才值得進一步投入測試。
+       場景團隊可測掃描素材如何進入鏡頭與合成；角色團隊可先看綁定模板的重用；貼圖團隊則可測程序材質。各功能應對照自身工作，避免一次全面升版。
       </p>
       <h4>
        導入測試與限制
       </h4>
       <p>
-       Houdini（SideFX ju…oudini 22） 目前只有單一來源可供參考，通常不足以證明跨專案穩定性；若要正式導入，仍需補做版本、資產規模與輸出條件的驗證。
+       這是版本功能整理，並不代表每個功能都適合量產。Gaussian Splats 的重打光仍含原型工具；導入時需確認記憶體、輸出格式、引擎支援與舊工程相容性。
       </p>
       <p class="analysis-level-note">
        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
@@ -397,10 +397,10 @@
      #11 · houdini
     </div>
     <h2>
-     Blender／DCC 製作：Stunning…h Houdini 的製作重點
+     Houdini 森林溪流：以 Paradigm GPU 求解器模擬流水
     </h2>
     <p class="summary">
-     這則內容主要談 Houdini（Stunning…h Houdini），與 Houdini 的製作實作直接相關。它能提供具體方法或結果作為對照，但仍要區分哪些是可複用流程、哪些只成立於單一作品或特定專案條件。
+     Enrique De la Garza 在 Houdini 製作森林溪流，使用 Paradigm 的 GPU 流體求解器，並以 Karma XPU 渲染植被與場景，展示個人作品的製作方式。
     </p>
     <figure class="case-preview" data-intel-id="80-level-stunning-forest-stream-simulation-made-with-houdini" data-intel-role="visual" data-visual-id="80-level-stunning-forest-stream-simulation-made-with-houdini">
      <a href="https://80.lv/articles/stunning-forest-stream-simulation-made-with-houdini" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
@@ -425,19 +425,19 @@
        技術／流程變更
       </h4>
       <p>
-       內容重點落在 Houdini（Stunning…h Houdini），並涉及 Houdini。先辨認文章實際展示的是方法、工具能力還是單一作品結果，才能避免把展示效果誤當成可直接複製的流程。
+       這個案例的流體主要由 Paradigm 求解；作者在 Houdini 先做原型，再細修結果，並用 Karma XPU 處理帶遮罩的植被。文章有工作中畫面，但沒有完整節點教學。
       </p>
       <h4>
        Production 影響
       </h4>
       <p>
-       對 Houdini，可以把 Houdini（Stunning…h Houdini） 的做法或結果對照目前 pipeline，找出它可能影響的操作、交接或品質檢查點；只有能對應到真實工作步驟的部分，才值得進一步投入測試。
+       對場景與特效美術，可參考溪流、河床和植被如何共同建立尺度感。若要比較 GPU 求解器，應在相同水域和解析度下測試，分開記錄模擬與渲染時間。
       </p>
       <h4>
        導入測試與限制
       </h4>
       <p>
-       Houdini（Stunning…h Houdini） 目前只有單一來源可供參考，通常不足以證明跨專案穩定性；若要正式導入，仍需補做版本、資產規模與輸出條件的驗證。
+       文章發表時 Paradigm 仍是公開測試版，作者的速度描述不能直接套用到其他硬體。需另測顯存、碰撞細节與快取；遊戲場景還要轉成適合即時播放的效果。
       </p>
       <p class="analysis-level-note">
        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
@@ -453,20 +453,20 @@
      #12 · maya
     </div>
     <h2>
-     Blender／DCC 製作：Samus Fre…ya用付無償配布！ 的製作重點
+     歷史素材｜Samus Maya Rig：免費角色動畫練習模型
     </h2>
     <p class="summary">
-     這項內容提供 可下載 Rig（Samus Fre…ya用付無償配布！），並與 Maya 的實際使用有關。真正值得評估的是資產／工具進入現有流程後的格式、可編輯性、相容性與後續維護成本，而不只是免費或可下載。
+     Samus Free Rig 是粉絲製作的《銀河戰士》角色：Julien Desroy 製作模型，Perry Leijten 綁定，提供 Maya 檔案，並有控制器評測與動畫展示。
     </p>
     <figure class="case-preview" data-intel-id="3dnchu-samus-free-rig" data-intel-role="visual" data-visual-id="3dnchu-samus-free-rig">
      <a href="https://3dnchu.com/archives/samus-free-rig" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
-      <img alt="SOURCE CARD preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-10-06/3dnchu-samus-free-rig.svg"/>
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-10-06/3dnchu-samus-free-rig.jpg"/>
      </a>
      <figcaption>
       <span>
-       SOURCE CARD
+       SOURCE PREVIEW
       </span>
-      · Generated source card · 點圖開啟原始來源
+      · Local visual evidence · 點圖開啟原始來源
      </figcaption>
     </figure>
     <div class="quick-impact">
@@ -481,19 +481,19 @@
        技術／流程變更
       </h4>
       <p>
-       內容提供 可下載 Rig（Samus Fre…ya用付無償配布！），與 Maya 的實際匯入與編輯有關。重點是檔案格式、結構、可修改程度，以及進入 downstream 後是否仍保留需要的控制。
+       資產把角色模型與已完成的骨架控制整理在一起，讓使用者直接練習姿勢和動作。原文指出附帶插件，並列出 Maya 2017 至 2020 的 Windows／macOS 支援。
       </p>
       <h4>
        Production 影響
       </h4>
       <p>
-       對 Maya 團隊，可直接拿代表性資產測試 可下載 Rig（Samus Fre…ya用付無償配布！） 的匯入、編輯、重定向或輸出，並記錄需要多少清理工作；如果前處理成本高，免費資產也不一定能節省 production 時間。
+       適合動畫練習與角色控制器研究。角色美術也可觀察裝甲分件、關節活動和表情控制如何配合，作為製作可動角色時的檢查參考。
       </p>
       <h4>
        導入測試與限制
       </h4>
       <p>
-       可下載 Rig（Samus Fre…ya用付無償配布！） 可下載並不等於可直接量產使用；授權、版本、命名、拓撲／Rig 結構與 downstream 相容性都要另外確認，尤其是要進共用資產庫時。
+       來源是 2020 年公開的粉絲資產，免費下載不代表允許商用。使用前需查授權、檔案是否仍可取得及插件版本，再測關節穿插和新版本 Maya 的相容性。
       </p>
       <p class="analysis-level-note">
        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
@@ -509,10 +509,10 @@
      #13 · houdini
     </div>
     <h2>
-     Blender／DCC 製作：3D Artist…g Houdini 的製作重點
+     Houdini 手錶動畫：把錶帶變成莫比烏斯環
     </h2>
     <p class="summary">
-     這則內容主要談 Houdini（3D Artist…g Houdini），與 Houdini 的製作實作直接相關。它能提供具體方法或結果作為對照，但仍要區分哪些是可複用流程、哪些只成立於單一作品或特定專案條件。
+     Matt Taylor 以 Junghans Max Bill 手錶為題材，在 Houdini 將錶帶做成帶有半圈扭轉的莫比烏斯環，讓一般產品動畫呈現不尋常的連續造型。
     </p>
     <figure class="case-preview" data-intel-id="80-level-3d-artist-turned-wristwatch-into-m-bius-strip-using-houdini" data-intel-role="visual" data-visual-id="80-level-3d-artist-turned-wristwatch-into-m-bius-strip-using-houdini">
      <a href="https://80.lv/articles/3d-artist-turned-wristwatch-into-m-bius-strip-using-houdini" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
@@ -537,19 +537,19 @@
        技術／流程變更
       </h4>
       <p>
-       內容重點落在 Houdini（3D Artist…g Houdini），並涉及 Houdini。先辨認文章實際展示的是方法、工具能力還是單一作品結果，才能避免把展示效果誤當成可直接複製的流程。
+       作品把熟悉的手錶與莫比烏斯環結合，利用環帶的扭轉造成視覺反差。文章確認使用 Houdini，但未公開節點、UV 處理或變形方法，不能推定具體演算法。
       </p>
       <h4>
        Production 影響
       </h4>
       <p>
-       對 Houdini，可以把 Houdini（3D Artist…g Houdini） 的做法或結果對照目前 pipeline，找出它可能影響的操作、交接或品質檢查點；只有能對應到真實工作步驟的部分，才值得進一步投入測試。
+       對載具、道具與產品展示，可參考如何在保留物件辨識度的同時，只改動一個結構製造記憶點；美術可先測輪廓與鏡頭，再決定細節程度。
       </p>
       <h4>
        導入測試與限制
       </h4>
       <p>
-       Houdini（3D Artist…g Houdini） 目前只有單一來源可供參考，通常不足以證明跨專案穩定性；若要正式導入，仍需補做版本、資產規模與輸出條件的驗證。
+       這是 2025 年的作品展示，適合視覺發想，不能直接當成建模教學。自行重現時應檢查環帶接縫、UV 拉伸、零件穿插和動畫循環是否連續。
       </p>
       <p class="analysis-level-note">
        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
