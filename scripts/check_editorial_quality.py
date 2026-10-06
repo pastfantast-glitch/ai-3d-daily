@@ -103,6 +103,10 @@ def main():
     qa_cfg = cfg.get("qa") or {}
     banned = tuple(qa_cfg.get("banned_phrases") or BANNED)
     title_patterns = [re.compile(x) for x in (qa_cfg.get("banned_title_patterns") or [])]
+    plain = cfg.get("plain_reading") or {}
+    if date >= str(plain.get("effective_date") or "9999-12-31"):
+        banned += tuple(plain.get("banned_phrases") or [])
+        title_patterns += [re.compile(x) for x in (plain.get("banned_title_patterns") or [])]
     min_summary_chars = int(qa_cfg.get("min_summary_chars", 28) or 28)
     min_analysis_chars = int(qa_cfg.get("min_analysis_block_chars", 36) or 36)
     max_signature_occurrences = int(qa_cfg.get("max_cross_item_signature_occurrences", 2) or 2)
