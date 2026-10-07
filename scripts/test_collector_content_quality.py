@@ -509,4 +509,95 @@ unreviewed_summary = production_summary(untrusted, "blender-dcc", "blender")
 assert "水滴附著" not in unreviewed_summary
 assert not any(phrase in unreviewed_summary for phrase in plain_policy["banned_phrases"])
 
+# 2026-10-07: model the failed Collector's three source pairs. Identical
+# descriptions intentionally produce the same translated title/summary;
+# each analysis angle must still retain the article's source subject.
+fallback_pairs = [
+    (
+        ["Easy Custom Normals - Blenderの法線編集", "ETKCore - Blenderの法線編集"],
+        "A Blender addon for modeling workflow.",
+        "blender-dcc", "blender",
+    ),
+    (
+        ["Maya-Made Umbrella Rig With Functional Open-Close Mechanism", "Animcraft - Maya用のRigツール"],
+        "Maya rigging animation workflow for character production.",
+        "blender-dcc", "maya",
+    ),
+    (
+        ["Impressive Umbrella Rig That Folds & Unfolds Created With Blender", "映画の制作パイプライン - Blender Rig"],
+        "Blender rigging animation workflow.",
+        "blender-dcc", "blender",
+    ),
+]
+fallback_items = []
+for pair_index, (titles, description, category, subcategory) in enumerate(fallback_pairs):
+    pair_metas = [
+        meta(f"https://example.invalid/analysis-pair-{pair_index}-{index}", source_title, description)
+        for index, source_title in enumerate(titles)
+    ]
+    assert len({editorial_title(m, category, subcategory) for m in pair_metas}) == 1
+    assert len({production_summary(m, category, subcategory) for m in pair_metas}) == 1
+    pair_blocks = []
+    for index, source_meta in enumerate(pair_metas):
+        blocks = editorial_analysis(source_meta, category, subcategory)
+        cue = source_title_cue(source_meta)
+        assert cue and all(cue in block["text"] for block in blocks)
+        assert all(reader_language_ok(block["text"], 3.0) for block in blocks)
+        assert blocks == editorial_analysis(source_meta, category, subcategory)
+        pair_blocks.append({block["text"] for block in blocks})
+        fallback_items.append({
+            "id": f"analysis-pair-{pair_index}-{index}",
+            "title": editorial_title(source_meta, category, subcategory),
+            "summary": production_summary(source_meta, category, subcategory),
+            "full_analysis": blocks,
+        })
+    assert not (pair_blocks[0] & pair_blocks[1]), "same translated title must not duplicate analysis"
+
+# No recognized technical keyword: the category fallback must work as well.
+no_focus = meta("https://example.invalid/no-focus", "製作流程甲", "")
+assert not production_details(no_focus)
+assert all("製作流程甲" in b["text"] for b in editorial_analysis(no_focus, "emerging-case", "case-study"))
+
+# Run the actual editorial gate in an isolated fixture directory. Keep the
+# duplicate detector strict: deliberately reintroducing a repeated block fails.
+import contextlib
+import copy
+import io
+import json
+from pathlib import Path
+import tempfile
+from unittest.mock import patch
+import check_editorial_quality as editorial_gate
+
+with tempfile.TemporaryDirectory(prefix="collector-editorial-regression-") as temporary:
+    fixture_root = Path(temporary)
+    daily_dir = fixture_root / "data" / "daily"
+    daily_dir.mkdir(parents=True)
+    dataset = {
+        "date": "2026-10-07",
+        "items": fallback_items,
+        "metadata": {"editorial": {
+            "contract": policy["contract"],
+            "style_reference": policy["style_reference"],
+            "factual_fallback_allowed": True,
+        }},
+    }
+    daily_path = daily_dir / "2026-10-07.json"
+    with patch.object(editorial_gate, "ROOT", fixture_root), patch.object(editorial_gate.sys, "argv", ["check_editorial_quality.py", "2026-10-07"]):
+        daily_path.write_text(json.dumps(dataset, ensure_ascii=False), "utf-8")
+        with contextlib.redirect_stdout(io.StringIO()):
+            editorial_gate.main()
+        duplicate_dataset = copy.deepcopy(dataset)
+        duplicate_dataset["items"][1]["full_analysis"][0] = copy.deepcopy(dataset["items"][0]["full_analysis"][0])
+        daily_path.write_text(json.dumps(duplicate_dataset, ensure_ascii=False), "utf-8")
+        output = io.StringIO()
+        with contextlib.redirect_stdout(output):
+            try:
+                editorial_gate.main()
+            except SystemExit as exc:
+                assert exc.code == 1
+            else:
+                raise AssertionError("editorial gate must reject duplicate analysis")
+        assert "exact duplicate analysis block" in output.getvalue()
+
 print("COLLECTOR CONTENT QUALITY PASS: landing/index rejection + promo rejection + production-dense source-grounded reader copy + title normalization + subject-first classification")

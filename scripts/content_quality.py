@@ -684,9 +684,14 @@ def editorial_analysis(meta: dict, category: str, subcategory: str) -> list[dict
     else:
         use = "可挑與目前作品相近的鏡頭或素材做小型比較，觀察形狀、動態和畫面差異，先判斷哪些結果能重現。"
         test = "目前簡介不足以確認完整實作與效能。測試時需記錄軟體版本、資產規模和輸出結果，再決定能否使用。"
+    # Keep a source-grounded subject cue in every fallback analysis angle so
+    # different articles in the same workflow bucket do not collapse into the
+    # same generic copy. The cue is derived only from source content.
+    focus = "、".join(production_focus(meta)) or friendly_label(category, subcategory)
+    subject = production_subject(meta, focus)
     technical = fact if fact.startswith(title) else f"{title}。{fact}"
     return [
-        {"label": "技術／流程變更", "text": clean(technical, 620)},
-        {"label": "Production 影響", "text": clean(f"以{title}為例，{use}", 620)},
-        {"label": "導入測試與限制", "text": clean(f"使用{title}前，{test}", 620)},
+        {"label": "技術／流程變更", "text": clean(f"本篇重點是{subject}。{technical}", 620)},
+        {"label": "Production 影響", "text": clean(f"針對{subject}，{use}", 620)},
+        {"label": "導入測試與限制", "text": clean(f"測試{subject}時，{test}", 620)},
     ]
