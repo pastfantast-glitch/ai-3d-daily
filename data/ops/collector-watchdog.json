@@ -2,7 +2,7 @@
   "schema_version": 1,
   "date": "2026-10-07",
   "state": "WATCHDOG_TRIGGER",
-  "trigger": "scheduled-daily-collector-recovery",
-  "reason": "Execute today's current-main source-grounded Collector after the normal scheduled runs had not started by 07:49 Asia/Taipei. Use current-main contracts, Registry snapshot/authoritative normalization, selected registered-source probes, personalization, coverage audit, session/ledger/backlog persistence, and the existing single canonical writer handoff. No public surfaces from Collector.",
+  "trigger": "user-requested-daily-collector-recovery",
+  "reason": "User requested the 2026-10-07 backfill after PR #81 repaired duplicate fallback analysis and undefined context. Source-contract and historical regression checks passed on repaired main b94113143ac9d1a276fc1f21b855e2c713e19fc7. Execute the genuine current-main Collector, source probes, Registry, personalization and existing single canonical writer handoff.",
   "writer_idle_confirmed_externally": true
 }
