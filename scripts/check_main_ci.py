@@ -122,7 +122,10 @@ def source_evidence_sha(head, paths):
     start = head
     skipped = []
     for _ in range(MAX_WRITER_COMMITS_TO_SKIP + 1):
-        sha = git("log", "-1", "--format=%H", start, "--", *paths)
+        # Source QA runs on main/push. Follow main's first-parent history so a
+        # PR merge resolves to its tested main merge commit, not the feature
+        # commit whose checks ran only for pull_request.
+        sha = git("log", "-1", "--format=%H", start, "--first-parent", "--", *paths)
         if not sha:
             raise ValueError("cannot resolve latest source QA commit")
         trusted, parent, subject = writer_generated_commit(sha)
