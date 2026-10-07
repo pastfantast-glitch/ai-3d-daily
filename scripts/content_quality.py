@@ -687,10 +687,11 @@ def editorial_analysis(meta: dict, category: str, subcategory: str) -> list[dict
     # Keep a source-grounded subject cue in every fallback analysis angle so
     # different articles in the same workflow bucket do not collapse into the
     # same generic copy. The cue is derived only from source content.
+    focus = "、".join(production_focus(meta)) or friendly_label(category, subcategory)
     subject = production_subject(meta, focus)
     technical = fact if fact.startswith(title) else f"{title}。{fact}"
     return [
-        {"label": "技術／流程變更", "text": clean(f"{technical} 本篇重點是{subject}。", 620)},
-        {"label": "Production 影響", "text": clean(f"以{title}的{subject}為例，{use}", 620)},
-        {"label": "導入測試與限制", "text": clean(f"使用{title}處理{subject}前，{test}", 620)},
+        {"label": "技術／流程變更", "text": clean(f"本篇重點是{subject}。{technical}", 620)},
+        {"label": "Production 影響", "text": clean(f"針對{subject}，{use}", 620)},
+        {"label": "導入測試與限制", "text": clean(f"測試{subject}時，{test}", 620)},
     ]
