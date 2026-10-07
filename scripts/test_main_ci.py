@@ -1,5 +1,8 @@
 """Regression cases for Collector main-CI evidence selection."""
 import unittest
+import subprocess
+import tempfile
+from pathlib import Path
 from unittest.mock import patch
 from urllib.parse import parse_qs, urlparse
 from check_main_ci import SOURCE_WORKFLOW, fetch_runs, require_success, source_paths
@@ -13,6 +16,34 @@ def run_record(**overrides):
 
 
 class MainCITests(unittest.TestCase):
+    def test_source_evidence_follows_main_merge_in_real_git_history(self):
+        with tempfile.TemporaryDirectory(prefix="main-ci-merge-") as temporary:
+            root = Path(temporary)
+            def git(*args):
+                return subprocess.check_output(["git", *args], cwd=root, text=True, stderr=subprocess.DEVNULL).strip()
+            git("init", "-b", "main")
+            git("config", "user.name", "CI regression")
+            git("config", "user.email", "ci-regression@example.invalid")
+            watched = "scripts/source.py"
+            (root / "scripts").mkdir()
+            (root / watched).write_text("initial\n")
+            git("add", watched)
+            git("commit", "-m", "Initial source")
+            git("switch", "-c", "feature")
+            (root / watched).write_text("fixed\n")
+            git("commit", "-am", "Fix on PR branch")
+            feature_sha = git("rev-parse", "HEAD")
+            git("switch", "main")
+            git("merge", "--no-ff", "feature", "-m", "Merge tested source into main")
+            merge_sha = git("rev-parse", "HEAD")
+            self.assertEqual(git("log", "-1", "--format=%H", "HEAD", "--", watched), feature_sha)
+            with patch.object(ci, "ROOT", root):
+                self.assertEqual(ci.source_evidence_sha(merge_sha, [watched]), (merge_sha, []))
+                (root / "watchdog.json").write_text("{}\n")
+                git("add", "watchdog.json")
+                git("commit", "-m", "Trigger Collector after source QA")
+                self.assertEqual(ci.source_evidence_sha(git("rev-parse", "HEAD"), [watched]), (merge_sha, []))
+
     def test_push_run_is_accepted(self):
         self.assertEqual(require_success([run_record()], SOURCE_WORKFLOW, "abc")["run_id"], 100)
 
