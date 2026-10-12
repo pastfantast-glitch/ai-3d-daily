@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "date": "2026-10-07",
+  "date": "2026-10-13",
   "state": "WATCHDOG_TRIGGER",
-  "trigger": "user-requested-daily-collector-recovery",
-  "reason": "User requested the 2026-10-07 backfill after PR #81 repaired duplicate fallback analysis and undefined context. Source-contract and historical regression checks passed on repaired main b94113143ac9d1a276fc1f21b855e2c713e19fc7. Execute the genuine current-main Collector, source probes, Registry, personalization and existing single canonical writer handoff.",
+  "trigger": "chatgpt-0740-watchdog",
+  "reason": "2026-10-13 07:40 Asia/Taipei preflight: current-main DONE receipt absent; GitHub Actions queued=0 and in_progress=0 (no active canonical writer); newest of 100 recent workflow runs was 2026-10-12T01:29:17Z (no 2026-10-13 Asia/Taipei schedule/push Collector run); persisted collection session absent. Re-enter existing idempotent Collector only.",
   "writer_idle_confirmed_externally": true
 }
