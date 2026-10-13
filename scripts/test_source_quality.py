@@ -1,5 +1,10 @@
 """Regressions from the 2026-10-13 public edition, including selection/QA parity."""
 import unittest
+import tempfile
+import json
+import hashlib
+from pathlib import Path
+from types import SimpleNamespace
 from unittest.mock import patch
 
 from source_quality import source_quality_errors, dated_url_upper_bound
@@ -8,6 +13,33 @@ import run_daily_collector as collector
 
 
 class SourceQualityTests(unittest.TestCase):
+    def test_pre_handoff_parity_deferral_requires_valid_evidence_and_stops_at_ready(self):
+        import check_pages_tier_contract as pages
+        date = '2026-10-13'
+        data = {'metadata': {'policy_recollect': True}, 'items': [{'id': 'new'}]}
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            publish = root / 'data' / 'publish'
+            daily = root / 'data' / 'daily'
+            publish.mkdir(parents=True)
+            daily.mkdir(parents=True)
+            canonical = daily / f'{date}.json'
+            canonical.write_text(json.dumps(data), encoding='utf-8')
+            (publish / f'{date}.done.json').write_text(json.dumps(
+                {'state': 'DONE', 'canonical': {'ids': ['old']}}), encoding='utf-8')
+            with patch.object(pages, 'ROOT', root), patch.object(pages.subprocess, 'run') as run:
+                run.return_value = SimpleNamespace(returncode=1)
+                self.assertFalse(pages.policy_recollect_pending(date, data))
+                run.return_value = SimpleNamespace(returncode=0)
+                self.assertTrue(pages.policy_recollect_pending(date, data))
+                self.assertIn('--policy-republish', run.call_args.args[0])
+                (publish / f'{date}.ready').write_text(json.dumps({
+                    'canonical_sha256': hashlib.sha256(canonical.read_bytes()).hexdigest()
+                }), encoding='utf-8')
+                run.reset_mock()
+                self.assertFalse(pages.policy_recollect_pending(date, data))
+                run.assert_not_called()
+
     def test_grooming_guides_do_not_mean_tutorial(self):
         self.assertEqual(source_content_kind("a guide-based hair grooming tool"), "tool")
 
