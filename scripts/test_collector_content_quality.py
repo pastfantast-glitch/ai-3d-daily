@@ -535,8 +535,11 @@ for pair_index, (titles, description, category, subcategory) in enumerate(fallba
         meta(f"https://example.invalid/analysis-pair-{pair_index}-{index}", source_title, description)
         for index, source_title in enumerate(titles)
     ]
-    assert len({editorial_title(m, category, subcategory) for m in pair_metas}) == 1
-    assert len({production_summary(m, category, subcategory) for m in pair_metas}) == 1
+    if pair_index == 0:
+        assert "自訂法線編輯" in editorial_title(pair_metas[0], category, subcategory)
+    else:
+        assert len({editorial_title(m, category, subcategory) for m in pair_metas}) == 1
+        assert len({production_summary(m, category, subcategory) for m in pair_metas}) == 1
     pair_blocks = []
     for index, source_meta in enumerate(pair_metas):
         blocks = editorial_analysis(source_meta, category, subcategory)

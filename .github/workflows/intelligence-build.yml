@@ -194,6 +194,36 @@ jobs:
           echo "- Publication remains fail-closed; no .request/.ready was created." >> "$GITHUB_STEP_SUMMARY"
           echo "- Correct the Collector data from source evidence, then create a new handoff." >> "$GITHUB_STEP_SUMMARY"
 
+  status:
+    needs: [route, handoff, prepare, publish, collector_fix, collector_refill]
+    if: always()
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      actions: read
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: main
+          fetch-depth: 0
+      - name: Report actual date-scoped publication outcome
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PUBLISH_RESULT: ${{ needs.publish.result }}
+        run: |
+          set -euo pipefail
+          date="$(TZ=Asia/Taipei date +%F)"
+          gh api "repos/${GITHUB_REPOSITORY}/actions/runs?per_page=100" > "$RUNNER_TEMP/publication-runs.json"
+          python scripts/daily_release_status.py "$date" --runs-json "$RUNNER_TEMP/publication-runs.json" --publish-result "$PUBLISH_RESULT" --exclude-run-id "$GITHUB_RUN_ID" > "$RUNNER_TEMP/publication-status.json"
+          collector="$(python -c 'import json,sys; d=json.load(open(sys.argv[1])); print(d.get("collector_run_id", "") if d.get("state") == "COLLECTOR_FAILED" else "")' "$RUNNER_TEMP/publication-status.json")"
+          if [ -n "$collector" ]; then
+            gh run view "$collector" --log-failed > "$RUNNER_TEMP/collector-failure.log"
+            python scripts/daily_release_status.py "$date" --runs-json "$RUNNER_TEMP/publication-runs.json" --publish-result "$PUBLISH_RESULT" --exclude-run-id "$GITHUB_RUN_ID" --collector-log "$RUNNER_TEMP/collector-failure.log" > "$RUNNER_TEMP/publication-status.json"
+          fi
+          echo "## Actual publication status ($date)" >> "$GITHUB_STEP_SUMMARY"
+          cat "$RUNNER_TEMP/publication-status.json" >> "$GITHUB_STEP_SUMMARY"
+          cat "$RUNNER_TEMP/publication-status.json"
+
   prepare:
     needs: [route, handoff]
     if: always() && (needs.route.outputs.mode == 'request' || (needs.handoff.result == 'success' && needs.handoff.outputs.outcome == 'request'))
