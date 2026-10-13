@@ -2,7 +2,7 @@
   "schema_version": 1,
   "date": "2026-10-13",
   "state": "WATCHDOG_TRIGGER",
-  "trigger": "chatgpt-0740-watchdog",
-  "reason": "2026-10-13 07:40 Asia/Taipei preflight: current-main DONE receipt absent; GitHub Actions queued=0 and in_progress=0 (no active canonical writer); newest of 100 recent workflow runs was 2026-10-12T01:29:17Z (no 2026-10-13 Asia/Taipei schedule/push Collector run); persisted collection session absent. Re-enter existing idempotent Collector only.",
+  "trigger": "user-requested-policy-republish",
+  "reason": "User authorized the full reliability repair and today's corrected backfill. PR #83 is merged and main source-contract/history checks passed. Recollect today's source-grounded candidates with the repaired reader gate, early URL filtering, target refill and backlog. Preserve the old verified DONE/public release until the sole canonical publisher verifies the corrected release.",
   "writer_idle_confirmed_externally": true
 }
