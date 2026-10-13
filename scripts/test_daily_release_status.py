@@ -16,6 +16,8 @@ class StatusTests(unittest.TestCase):
                     {'id':2,'head_branch':'main','created_at':'2026-10-12T23:43:00Z','name':'Canonical intelligence publish','status':'completed','conclusion':'success'}]
             result = status.release_status('2026-10-13', root, runs)
             self.assertEqual(result['state'], 'COLLECTOR_FAILED')
+            runs.append({'id':4,'head_branch':'main','created_at':'2026-10-13T02:00:00Z','name':'Autonomous daily Collector','status':'completed','conclusion':'skipped'})
+            self.assertEqual(status.release_status('2026-10-13', root, runs)['state'], 'COLLECTOR_FAILED')
             self.assertEqual(result['last_verified_date'], '2026-10-11')
             shortage = status.release_status('2026-10-13', root, runs, collector_log='COLLECTOR FAILED: verified unpublished survivors=9 below configured fallback floor=12')
             self.assertEqual(shortage['state'], 'CANDIDATES_INSUFFICIENT')

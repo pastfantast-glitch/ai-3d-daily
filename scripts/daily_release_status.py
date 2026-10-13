@@ -70,7 +70,7 @@ def release_status(date, root=ROOT, runs=(), publish_result='', exclude_run_id=N
     elif canonical.get('items') and (root / 'data' / 'candidates' / 'collection-session' / f'{date}.json').exists():
         result['state'] = 'AWAITING_HANDOFF'
     else:
-        collectors = [r for r in relevant if r.get('name') == 'Autonomous daily Collector']
+        collectors = [r for r in relevant if r.get('name') == 'Autonomous daily Collector' and r.get('conclusion') != 'skipped']
         if collectors:
             last = max(collectors, key=lambda r: (int(r['id']), int(r.get('run_attempt', 1))))
             result['state'] = 'COLLECTOR_FAILED' if last.get('conclusion') == 'failure' else 'NOT_PUBLISHED'
