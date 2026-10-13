@@ -52,14 +52,38 @@ def policy_recollect_pending(date: str, data: dict) -> bool:
     collector_path = ROOT / 'data' / 'publish' / f'{date}.collector'
     ready_path = ROOT / 'data' / 'publish' / f'{date}.ready'
     data_path = ROOT / 'data' / 'daily' / f'{date}.json'
-    if not receipt_path.exists() or not collector_path.exists() or not data_path.exists():
+    if not receipt_path.exists() or not data_path.exists():
         return False
     try:
         receipt = json.loads(receipt_path.read_text('utf-8'))
-        collector = json.loads(collector_path.read_text('utf-8'))
     except Exception:
         return False
     if str(receipt.get('state', '')).strip().upper() != 'DONE':
+        return False
+    if not collector_path.exists():
+        # A reviewed collection lands before the gate creates its marker. Validate
+        # the actual handoff evidence; a metadata flag alone cannot waive parity.
+        if (data.get('metadata') or {}).get('policy_recollect') is not True:
+            return False
+        current_ids = [item.get('id') for item in data.get('items', [])]
+        published_ids = (receipt.get('canonical') or {}).get('ids', [])
+        if not current_ids or current_ids == published_ids:
+            return False
+        if ready_path.exists():
+            try:
+                ready = json.loads(ready_path.read_text('utf-8'))
+            except (OSError, ValueError):
+                return False
+            if ready.get('canonical_sha256') == hashlib.sha256(data_path.read_bytes()).hexdigest():
+                return False
+        validation = subprocess.run(
+            [sys.executable, str(SCRIPTS / 'finalize_collection_handoff.py'), date, '--policy-republish'],
+            cwd=ROOT,
+        )
+        return validation.returncode == 0
+    try:
+        collector = json.loads(collector_path.read_text('utf-8'))
+    except (OSError, ValueError):
         return False
     if str(collector.get('state', '')).strip().upper() != 'COLLECTOR_PERSISTED':
         return False

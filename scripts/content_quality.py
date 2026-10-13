@@ -53,6 +53,7 @@ GENERIC_NAV_TITLE_EXACT = {
     "support",
 }
 GENERIC_NAV_LEAVES = {
+    "game-development", "requirements", "filmtv",
     "games", "industry", "partners", "latest", "training",
     "demo-files", "support", "tools", "releases",
 }
@@ -342,6 +343,8 @@ def landing_reason(meta: dict) -> str | None:
 
     segments = [segment for segment in path.split("/") if segment]
     leaf = segments[-1] if segments else ""
+    if path.startswith("/industries/") and len(segments) == 2:
+        return "generic-navigation-or-resource-index"
 
     if any(fragment in title for fragment in GENERIC_TITLE_FRAGMENTS):
         return "generic-index-title"
@@ -549,6 +552,8 @@ def production_subject(meta: dict, focus_text: str) -> str:
 
 
 def source_content_kind(raw: str) -> str:
+    # "guide-based grooming" describes a hair method, not a teaching article.
+    raw = re.sub(r"\bguide[- ]based\b", "strand-based", raw, flags=re.I)
     if has_any(raw, ("release", "releases", "released", "update", "version", "beta", "alpha", "preview", "roadmap", "ships", "launches", "launched")):
         return "update"
     if has_any(raw, ("tutorial", "guide", "course", "training", "workflow", "learn how", "learn to")):

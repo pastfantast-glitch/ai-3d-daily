@@ -7,6 +7,7 @@ from collections import Counter
 import json
 import re
 import sys
+from source_quality import source_quality_errors
 
 ROOT = Path(__file__).resolve().parents[1]
 EDITORIAL_CFG = ROOT / "config" / "editorial-quality.json"
@@ -114,6 +115,7 @@ def editorial_errors(data, date, pending_override=None):
         title = str(reader.get("title") or "").strip()
         summary = str(reader.get("summary") or "").strip()
         analysis = reader.get("full_analysis") or []
+        errors.extend(f"{rid}: {error}" for error in source_quality_errors({**item, **reader}, date))
 
         if not CJK_RE.search(title):
             errors.append(f"{rid}: title must contain zh-Hant editorial framing")

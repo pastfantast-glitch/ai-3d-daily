@@ -57,6 +57,8 @@ on:
       - 'scripts/check_source_qa_coverage.py'
       - 'scripts/run_daily_collector.py'
       - 'scripts/content_quality.py'
+      - 'scripts/source_quality.py'
+      - 'scripts/test_source_quality.py'
       - 'scripts/test_collector_content_quality.py'
       - 'scripts/test_collector_reliability.py'
       - 'scripts/test_visual_budget.py'
@@ -144,6 +146,7 @@ jobs:
           python scripts/check_release_architecture.py
           python scripts/check_collector_runtime_contract.py
           python scripts/test_collector_content_quality.py
+          python scripts/test_source_quality.py
           python scripts/test_collector_reliability.py
           python scripts/test_visual_budget.py
           python scripts/test_daily_release_status.py
