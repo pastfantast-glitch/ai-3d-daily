@@ -41,6 +41,18 @@ class ReliabilityTests(unittest.TestCase):
         for i, topic in enumerate(topics):
             c = candidate(i, f'Blender：{topic}製作教學', f'這篇教學說明{topic}的製作流程，提供操作範例供美術使用自己的資產測試與比較。')
             c.update(source_id='80-level' if i < 20 else 'cg-channel', title=c['meta']['title'], description=c['meta']['description'], published='2026-10-13',window='24h',brief_reason='single-source-verified-production-tip')
+            c['meta']['published'] = '2026-10-13'
+            # This test covers refill/overflow routing. Supply reviewed fixture
+            # copy so it does not depend on the unreviewed prose fallback.
+            c['reader_copy'] = {
+                'id': c['candidate_id'], 'title': c['meta']['title'],
+                'summary': c['meta']['description'],
+                'full_analysis': [
+                    {'label': '技術／流程變更', 'text': f'{topic}示範以基礎網格開始，逐步建立輪廓與細節，再展示分層修改器的排列方式及最終輸出。'},
+                    {'label': 'Production 影響', 'text': f'{topic}的原始模型與完成模型可並列比較，觀察拓樸分布、輪廓變化和不同細分層級之間的差異。'},
+                    {'label': '導入測試與限制', 'text': f'{topic}範例只涵蓋示範資產，並未提供大量模型的處理基準；教學使用的外掛與版本需另行核對。'},
+                ],
+            }
             cases.append(c)
         def probe(source, *args, **kwargs):
             batch = cases[:20] if source['id'] == '80-level' else cases[20:]
@@ -50,7 +62,7 @@ class ReliabilityTests(unittest.TestCase):
         def load(path):
             return {'schema_version':1,'items':[]} if path == collector.BACKLOG_PATH else original(path)
         def capture(path, value):
-            outputs['backlog' if path == collector.BACKLOG_PATH else str(path.relative_to(collector.ROOT))] = value
+            outputs['backlog' if path == collector.BACKLOG_PATH else path.relative_to(collector.ROOT).as_posix()] = value
         with tempfile.TemporaryDirectory() as temporary, \
              patch.object(collector, 'ROOT', Path(temporary)), \
              patch.object(collector.sys, 'argv', ['collector','2026-10-13']), \
@@ -84,16 +96,18 @@ class ReliabilityTests(unittest.TestCase):
             summaries.append(text)
         self.assertEqual(len({copy_signature(x) for x in summaries}), 4)
 
-    def test_ambiguous_four_article_collision_is_rejected_and_other_copy_fills(self):
+    def test_historical_summary_collision_is_rejected_and_other_copy_fills(self):
         cases = [candidate(i, prefix + " Photos & 3D Renders Into Paintings With This Blender Filter", "A Blender rendering workflow tutorial.")
                  for i, prefix in enumerate(["Turn", "Convert", "Create", "Transform"])]
         # Keep rejection strict rather than making the gate ignore repeated copy.
         cases.append(candidate(4, "Blender：角色肩膀製作教學", "這篇教學說明角色肩膀的建模與關節處理，提供操作範例供美術以自己的資產測試與比較。"))
-        accepted, rejected = collector.readable_candidates(cases, "2026-10-13")
+        # Preserve the old summary-collision regression separately from the
+        # stricter source-evidence policy covered by test_source_quality.py.
+        accepted, rejected = collector.readable_candidates(cases, "2026-10-11")
         self.assertTrue(rejected)
         self.assertIn("fixture-4", [x["candidate_id"] for x in accepted])
         self.assertTrue(any("summary boilerplate" in " ".join(errors) for _, errors in rejected))
-        self.assertEqual(collector.unpublished_survivor_count(cases, set(), set(), "2026-10-13"), len(accepted))
+        self.assertEqual(collector.unpublished_survivor_count(cases, set(), set(), "2026-10-11"), len(accepted))
 
     def test_published_links_do_not_consume_article_budget(self):
         runtime = copy.deepcopy(json.loads(collector.RUNTIME_PATH.read_text()))

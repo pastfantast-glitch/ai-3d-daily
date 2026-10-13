@@ -30,7 +30,7 @@ if str(SCRIPTS) not in sys.path:
 
 from discovery_hybrid import load_hybrid_config, registered_source_probe_plan, registered_source_refill_plan
 from url_identity import canonicalize_url
-from content_quality import admission as content_admission, classify_content, normalize_title, production_summary, editorial_title, editorial_analysis
+from content_quality import admission as content_admission, classify_content, normalize_title, production_summary, editorial_title, editorial_analysis, reviewed_reader_copy
 from check_editorial_quality import editorial_errors
 from collector_personalization import load_owner_preferences, apply_candidate_personalization, positive_expansion_terms, expand_source_links
 
@@ -190,6 +190,12 @@ def parse_date(value: object) -> str | None:
     text = clean(value)
     if not text:
         return None
+    english = re.sub(r"(\d)(st|nd|rd|th)\b", r"\1", text)
+    for fmt in ("%A, %B %d, %Y", "%B %d, %Y", "%d %B %Y"):
+        try:
+            return datetime.strptime(english, fmt).date().isoformat()
+        except ValueError:
+            pass
     try:
         dt = datetime.fromisoformat(text.replace("Z", "+00:00"))
         return dt.date().isoformat()
@@ -216,6 +222,7 @@ def page_metadata(result: dict, fallback_title: str = "") -> dict | None:
     title = (
         meta_content(soup, ("property", "og:title"), ("name", "twitter:title"))
         or clean(soup.title.get_text(" ", strip=True) if soup.title else "")
+        or clean(soup.h1.get_text(" ", strip=True) if soup.h1 else "")
         or clean(fallback_title)
     )
     title = normalize_title(title)
@@ -247,12 +254,26 @@ def page_metadata(result: dict, fallback_title: str = "") -> dict | None:
         paragraphs = [clean(p.get_text(" ", strip=True), 600) for p in soup.find_all("p")]
         description = next((p for p in paragraphs if len(p) >= 60), "")
     if not published:
-        node = soup.find("time")
+        node = next((node for node in soup.find_all("time")
+                     if not node.find_parent(["aside", "nav", "footer"])), None)
         if node:
             published = clean(node.get("datetime") or node.get_text(" ", strip=True))
+    if not published:
+        # CG Channel's publication header precedes its h1. Do not consume dates
+        # from the sidebar's latest-news list or a page-wide first-date search.
+        heading = soup.find("h1")
+        if heading:
+            header = heading.find_previous_sibling()
+            if header:
+                match = re.search(r"(?:Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday),\s+[A-Z][a-z]+\s+\d{1,2}(?:st|nd|rd|th)?,\s+20\d{2}", header.get_text(" ", strip=True))
+                if match:
+                    published = match.group(0)
     final_url = canonicalize_url(result.get("final_url") or result.get("url") or "")
     if not final_url.startswith("https://") or not title:
         return None
+    reviewed = reviewed_reader_copy({"url": final_url})
+    if not parse_date(published) and reviewed:
+        published = reviewed.get("source_published_at")
     # Only an explicit article body contributes extra method evidence. Avoid
     # scanning page-wide navigation/related-story copy for reader facts.
     article = soup.find("article")
@@ -869,11 +890,17 @@ def readable_candidates(candidates: list[dict], report_date: str) -> tuple[list[
             meta = candidate["meta"]
             reader = {
                 "id": candidate["candidate_id"],
+                "source_url": candidate["source_url"],
+                "source_published_at": meta.get("published"),
                 "title": editorial_title(meta, candidate["category"], candidate["subcategory"]),
                 "summary": production_summary(meta, candidate["category"], candidate["subcategory"]),
                 "full_analysis": editorial_analysis(meta, candidate["category"], candidate["subcategory"]),
             }
             candidate["reader_copy"] = reader
+        # Cached/reviewed copy must not lose the source evidence used by QA.
+        reader = {**reader, "source_url": candidate["source_url"],
+                  "source_published_at": candidate["meta"].get("published")}
+        candidate["reader_copy"] = reader
         errors = editorial_errors({"items": copies + [reader], "metadata": metadata}, report_date)
         if errors:
             rejected.append((candidate, errors))
@@ -1477,6 +1504,7 @@ def main() -> int:
         "date": report_date,
         "readable_survivors": len(survivors),
         "selected": len(selected_items),
+        "selected_sources": [candidate["source_url"] for candidate in selected_items],
         "backlog": len(overflow),
         "editorial_rejected": len(editorial_rejections),
         "refill_goal": refill_goal,
@@ -1511,6 +1539,7 @@ def main() -> int:
             "subcategory": candidate["subcategory"],
             "ranking_score": candidate["ranking_score"],
             "base_ranking_score": candidate["base_ranking_score"],
+            "source_published_at": candidate["meta"].get("published"),
             "analysis_level": "BRIEF",
             "brief_reason": candidate["brief_reason"],
             "full_analysis": reader["full_analysis"],

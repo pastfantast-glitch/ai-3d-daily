@@ -521,6 +521,500 @@
       "source_review_urls": [
         "https://www.cgchannel.com/2025/11/blender-5-0-is-out-check-out-its-5-key-features"
       ]
+    },
+    "https://www.cgchannel.com/2026/07/sisir-is-a-promising-new-free-standalone-hair-grooming-tool": {
+      "source_url": "https://www.cgchannel.com/2026/07/sisir-is-a-promising-new-free-standalone-hair-grooming-tool",
+      "title": "Sisir：獨立毛髮梳理工具與跨軟體匯出",
+      "summary": "這篇七月工具介紹聚焦 Sisir：在角色表面繪製毛髮導引線，再以參數調整髮束，透過通用格式送往其他製作軟體。",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "工具包含導引線、毛髮與預覽三個模組，可調整長度、粗細、捲曲和分束，並使用遮罩控制毛髮分布。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "導引線使用 PLY，毛髮使用 Alembic 匯出；角色美術可沿用下游軟體的梳理與渲染流程，先確認匯入比例和方向。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "文章介紹的是測試階段工具，髮片製作仍屬規劃功能；商用授權應依下載時的條款核對，不應把免費等同於沒有使用限制。"
+        }
+      ],
+      "source_reviewed": true,
+      "reviewed_on": "2026-10-13",
+      "source_published_at": "2026-07-22",
+      "style_reference": "2026-09-25",
+      "source_review_urls": [
+        "https://www.cgchannel.com/2026/07/sisir-is-a-promising-new-free-standalone-hair-grooming-tool"
+      ]
+    },
+    "https://3dnchu.com/archives/mixar-4-1": {
+      "source_url": "https://3dnchu.com/archives/mixar-4-1",
+      "title": "Mixar 4.1：在 Blender 分支整合代理與分層繪圖",
+      "summary": "Mixar 以 Blender 5.2 為基礎，整合自然語言操作、影像轉三維、分層貼圖與攝影機工具；4.1 系列加入多場景代理作業。",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "多個場景分頁能分別執行代理，並提供接近原版操作的模式與精簡介面；這是獨立分支軟體，安裝與外掛相容性需要另行測試。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "材質製作提供圖層、遮罩與通道繪製；鏡頭工具可管理相機與景深。建議以小型場景驗證代理操作是否保留既有資產設定。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "桌面程式與基本編輯功能免費，但影像、模型及影片生成可能消耗付費額度；使用自己的模型金鑰時，費用依服務供應商計算。"
+        }
+      ],
+      "source_reviewed": true,
+      "reviewed_on": "2026-10-13",
+      "source_published_at": "2026-10-12",
+      "style_reference": "2026-09-25",
+      "source_review_urls": [
+        "https://3dnchu.com/archives/mixar-4-1"
+      ]
+    },
+    "https://80.lv/articles/creating-a-thriller-animated-series-with-hand-drawn-textures-in-blender": {
+      "source_url": "https://80.lv/articles/creating-a-thriller-animated-series-with-hand-drawn-textures-in-blender",
+      "title": "手繪陰影投回三維：驚悚動畫的混合製作流程",
+      "summary": "動畫團隊以三維角色、鏡頭與環境建立動作，再加入手繪貼圖、法線及陰影；訪談說明如何在 Blender 保留二維畫面的表現力。",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "團隊先以固定攝影機輸出不含景深的畫面，手繪陰影遮罩後投回模型，再以正式動畫攝影機渲染並加入景深。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "電纜與積雪使用幾何節點配置，部分環境沿曲線變形以調整構圖；這些方法讓風格化場景不必遵循完全寫實的空間規則。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "遠端製作配合版本管理與 Kitsu 審片。此案例包含大量美術決策，投影陰影仍須逐鏡頭檢查遮擋，不能視為一鍵套用的流程。"
+        }
+      ],
+      "source_reviewed": true,
+      "reviewed_on": "2026-10-13",
+      "source_published_at": "2026-10-12",
+      "style_reference": "2026-09-25",
+      "source_review_urls": [
+        "https://80.lv/articles/creating-a-thriller-animated-series-with-hand-drawn-textures-in-blender"
+      ]
+    },
+    "https://80.lv/articles/turn-photos-3d-renders-into-paintings-with-this-blender-filter": {
+      "source_url": "https://80.lv/articles/turn-photos-3d-renders-into-paintings-with-this-blender-filter",
+      "title": "Supa Painter：依影像與幾何資訊生成繪畫筆觸",
+      "summary": "這套 Blender 外掛可處理照片、渲染圖與材質貼圖；筆觸逐步生成，使用者能在中途停止並保存想要的繪畫效果。",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "影像編輯器支援自訂筆刷及預設，材質流程分別處理不同貼圖通道；合成流程利用深度與法線，使筆觸順著畫面中的形體。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "工具提供油彩、水彩與素描等多種風格。材質美術應分別檢查色彩、粗糙度與法線結果，避免把所有通道當成普通照片處理。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "原文列出 Blender 4.5 以上的需求，並說明開發者宣稱不使用生成式 AI；實際動畫的逐格穩定度仍需用自己的鏡頭測試。"
+        }
+      ],
+      "source_reviewed": true,
+      "reviewed_on": "2026-10-13",
+      "source_published_at": "2026-10-12",
+      "style_reference": "2026-09-25",
+      "source_review_urls": [
+        "https://80.lv/articles/turn-photos-3d-renders-into-paintings-with-this-blender-filter"
+      ]
+    },
+    "https://80.lv/articles/how-to-create-realistic-waterfall-vfx-in-houdini": {
+      "source_url": "https://80.lv/articles/how-to-create-realistic-waterfall-vfx-in-houdini",
+      "title": "Houdini 瀑布拆解：水體、白水與雙層霧氣",
+      "summary": "特效作者以五個模擬層組成瀑布：主要水體、兩組白水，以及上下兩層霧氣，並提供影片拆解與專案取得連結。",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "主水體決定瀑布輪廓，白水補足飛濺與表面細節，上下霧層則處理空間深度；各層可以分開調整而不必重做整個效果。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "專案包含各特效層與 Solaris 場景，使用 Karma 進行材質與渲染；學習時可逐層關閉，觀察每一層對輪廓和氛圍的貢獻。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "原文沒有提供硬體基準或快取大小，不能據此推定模擬成本；取得檔案前應確認作者的授權與專案版本需求。"
+        }
+      ],
+      "source_reviewed": true,
+      "reviewed_on": "2026-10-13",
+      "source_published_at": "2026-10-12",
+      "style_reference": "2026-09-25",
+      "source_review_urls": [
+        "https://80.lv/articles/how-to-create-realistic-waterfall-vfx-in-houdini"
+      ]
+    },
+    "https://www.cgchannel.com/2026/10/check-out-roxel-creatives-eerie-vfx-breakdown-for-backrooms": {
+      "source_url": "https://www.cgchannel.com/2026/10/check-out-roxel-creatives-eerie-vfx-breakdown-for-backrooms",
+      "title": "後室場景拆解：全三維空間與實拍布景延伸",
+      "summary": "Roxel Creative 公開《後室》的視效拆解，展示全三維的眩暈房間、迷宮布景延伸，以及部分外景和預演工作。",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "影片把實拍布景與數位延伸並列，眩暈房間則使用完整三維環境；場景美術可觀察重複空間如何建立尺度與壓迫感。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "拆解同時包含前期鏡頭及動作預演，適合研究正式拍攝前如何規劃空間與鏡頭銜接，而非只看最終合成畫面。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "報導明確表示尚無其他技術資料，因此不能推定節點設定、使用軟體或製作工時；此則定位為視覺案例參考。"
+        }
+      ],
+      "source_reviewed": true,
+      "reviewed_on": "2026-10-13",
+      "source_published_at": "2026-10-12",
+      "style_reference": "2026-09-25",
+      "source_review_urls": [
+        "https://www.cgchannel.com/2026/10/check-out-roxel-creatives-eerie-vfx-breakdown-for-backrooms"
+      ]
+    },
+    "https://www.cgchannel.com/2026/07/aswf-and-dreamworks-animation-release-moonray-2026-29": {
+      "source_url": "https://www.cgchannel.com/2026/07/aswf-and-dreamworks-animation-release-moonray-2026-29",
+      "title": "MoonRay 七月版本回顧：材質圖支援仍在起步",
+      "summary": "2026 年七月的 MoonRay 2026.29 更新開始導入 MaterialX 材質圖支援，並調整程序幾何的動態模糊與卡通陰影控制。",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "初期材質支援主要處理輸入輸出型別與貼圖著色器，表面及散射等類型仍在開發；不能將此版本視為完整材質標準實作。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "既有渲染器提供 Hydra 整合介面，能接入支援該介面的製作軟體。測試材質移轉時應逐項核對節點，而非僅確認檔案能開啟。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "原文提供 Linux 與 macOS 編譯資訊，混合運算另有硬體條件；這是七月版本回顧，部署前仍須查對現行版本文件。"
+        }
+      ],
+      "source_reviewed": true,
+      "reviewed_on": "2026-10-13",
+      "source_published_at": "2026-07-28",
+      "style_reference": "2026-09-25",
+      "source_review_urls": [
+        "https://www.cgchannel.com/2026/07/aswf-and-dreamworks-animation-release-moonray-2026-29"
+      ]
+    },
+    "https://www.cgchannel.com/2026/07/download-the-free-edition-of-renderman-27": {
+      "source_url": "https://www.cgchannel.com/2026/07/download-the-free-edition-of-renderman-27",
+      "title": "RenderMan 27.3 非商用版：混合渲染與授權限制",
+      "summary": "這篇七月報導介紹免費的 RenderMan 27.3 非商用版，可用於個人專案、研究與工具開發，包含多數正式版功能及混合渲染。",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "混合渲染系統加入原生材質標準與物件遮罩支援；非商用版不含風格化外觀工具，不能把免費版功能視為與商業版完全相同。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "已有多種三維軟體整合外掛，適合以既有測試資產研究渲染與材質交換；下載需要註冊帳號，授權綁定機器並有更新期限。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "此授權不等同於免費商用渲染；公開作品的署名、使用用途及續期要求，都應在取得授權時閱讀官方條款確認。"
+        }
+      ],
+      "source_reviewed": true,
+      "reviewed_on": "2026-10-13",
+      "source_published_at": "2026-07-28",
+      "style_reference": "2026-09-25",
+      "source_review_urls": [
+        "https://www.cgchannel.com/2026/07/download-the-free-edition-of-renderman-27"
+      ]
+    },
+    "https://www.cgchannel.com/2026/08/see-storm-studios-varied-vfx-breakdown-for-daredevil-born-again-s2": {
+      "source_url": "https://www.cgchannel.com/2026/08/see-storm-studios-varied-vfx-breakdown-for-daredevil-born-again-s2",
+      "title": "夜魔俠視效案例：數位替身與戰鬥道具合成",
+      "summary": "八月公開的拆解展示 Storm Studios 為《夜魔俠：重生》第二季製作的數位替身、火花及電腦生成武器，適合作為動作鏡頭參考。",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "案例包含戰鬥中的數位替身和特殊道具，重點是實拍人物與電腦生成元素如何接續，並非提供可直接套用的動作素材包。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "觀看時可逐鏡頭比較接觸點、道具運動與特效層的配合，研究何處需要替身或數位道具才能完成實拍難以呈現的效果。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "報導沒有公布軟體、完整製作流程或專案檔；目前能確認的是展示內容，不能從成片反推確切的模擬參數與成本。"
+        }
+      ],
+      "source_reviewed": true,
+      "reviewed_on": "2026-10-13",
+      "source_published_at": "2026-08-11",
+      "style_reference": "2026-09-25",
+      "source_review_urls": [
+        "https://www.cgchannel.com/2026/08/see-storm-studios-varied-vfx-breakdown-for-daredevil-born-again-s2"
+      ]
+    },
+    "https://www.cgchannel.com/2023/11/clo-virtual-fashion-releases-marvelous-designer-12-2": {
+      "source_url": "https://www.cgchannel.com/2023/11/clo-virtual-fashion-releases-marvelous-designer-12-2",
+      "title": "歷史版本｜服裝工具 12.2 的自動 UV 排版",
+      "summary": "這是 2023 年 Marvelous Designer 12.2 的功能回顧，重點包括 UV 島自動排版、通用場景格式匯出與單檔多角色交換。",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "自動排版可保留島嶼的旋轉與相對比例，也能把不同服裝放在不同貼圖區域；這些選項影響後續材質配置與貼圖密度。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "單一 FBX 可匯入或匯出多個角色，另有袖口與褲管捲邊功能；服裝美術可用來理解舊專案如何整理角色與衣片。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "本文只記錄當年的功能狀態，並非今日新品消息；現行版本、授權與交換格式支援應另外查證，避免以舊資料決定升級。"
+        }
+      ],
+      "source_reviewed": true,
+      "reviewed_on": "2026-10-13",
+      "source_published_at": "2023-11-21",
+      "style_reference": "2026-09-25",
+      "source_review_urls": [
+        "https://www.cgchannel.com/2023/11/clo-virtual-fashion-releases-marvelous-designer-12-2"
+      ]
+    },
+    "https://www.cgchannel.com/2025/08/sidefx-just-released-houdini-21-check-out-its-5-key-features": {
+      "source_url": "https://www.cgchannel.com/2025/08/sidefx-just-released-houdini-21-check-out-its-5-key-features",
+      "title": "歷史版本｜Houdini 21 的綁定與合成工具進展",
+      "summary": "這篇 2025 年報導回顧 Houdini 21，涵蓋角色自動綁定、合成框架中的流體工具，以及以學習方法處理模擬點雲的功能。",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "角色系統加入以拖放方式組裝的自動綁定工具；合成框架則擴充流動與煙霧相關求解器，讓影像處理與模擬產生更多交集。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "這些變更涉及不同製作工種，評估舊專案時應分別檢查綁定結果、合成輸出和點雲網格，避免只用單一場景代表全部流程。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "這是歷史版本整理，原文的可用性與成熟度描述均屬當時狀態；使用前應對照現行軟體版本及官方節點說明。"
+        }
+      ],
+      "source_reviewed": true,
+      "reviewed_on": "2026-10-13",
+      "source_published_at": "2025-08-27",
+      "style_reference": "2026-09-25",
+      "source_review_urls": [
+        "https://www.cgchannel.com/2025/08/sidefx-just-released-houdini-21-check-out-its-5-key-features"
+      ]
+    },
+    "https://www.cgchannel.com/2025/11/unreal-engine-5-7-five-key-features-for-cg-artists": {
+      "source_url": "https://www.cgchannel.com/2025/11/unreal-engine-5-7-five-key-features-for-cg-artists",
+      "title": "歷史版本｜虛幻引擎 5.7 的植被與材質流程",
+      "summary": "這篇 2025 年版本回顧整理虛幻引擎 5.7：程序內容生成與材質系統轉為正式功能，另加入仍屬實驗性的植被編輯器。",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "植被編輯器以程序節點圖調整現有樹木資產，設計重點是客製既有素材，而非完整取代從零建立植物模型的外部工具。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "場景美術可藉此研究植被變體與散布的連接方式；應把植被編輯器的實驗性，與已正式化的程序生成框架分開評估。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "本文不代表目前最新引擎功能清單；若移植舊場景，需依實際版本檢查外掛、材質與資產相容性，再決定是否升級。"
+        }
+      ],
+      "source_reviewed": true,
+      "reviewed_on": "2026-10-13",
+      "source_published_at": "2025-11-12",
+      "style_reference": "2026-09-25",
+      "source_review_urls": [
+        "https://www.cgchannel.com/2025/11/unreal-engine-5-7-five-key-features-for-cg-artists"
+      ]
+    },
+    "https://80.lv/articles/new-curve-based-clothing-garment-creation-houdini-tool-released": {
+      "source_url": "https://80.lv/articles/new-curve-based-clothing-garment-creation-houdini-tool-released",
+      "title": "Fibric：以曲線紗線建立可變形的布料細節",
+      "summary": "這套 Houdini 工具以實際曲線表示紗線，能控制織法、纖維、縫線及磨損，並把細節轉移到動畫或模擬後的服裝。",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "布料結構可在保留衣物形狀的情況下修改，紗線資料也能供材質、遮罩與程序效果使用；曲線幾何與貼圖式布料的成本應分開評估。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "輸出可採通用場景或動畫快取格式，也可透過 Solaris 程序在渲染時處理變形；即時用途另有貼圖烘焙流程，適合把高密度細節轉成材質。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "工具提供預設與教學，但完整刺繡工作流仍在規劃。導入時應先測布料曲線數量、渲染器支援與實際授權方案。"
+        }
+      ],
+      "source_reviewed": true,
+      "reviewed_on": "2026-10-13",
+      "source_published_at": "2026-10-13",
+      "style_reference": "2026-09-25",
+      "source_review_urls": [
+        "https://80.lv/articles/new-curve-based-clothing-garment-creation-houdini-tool-released"
+      ]
+    },
+    "https://80.lv/articles/blender-tool-for-boolean-style-cuts-with-clean-quad-topology": {
+      "source_url": "https://80.lv/articles/blender-tool-for-boolean-style-cuts-with-clean-quad-topology",
+      "title": "Boolean Master：開孔後重建四邊形拓樸",
+      "summary": "這套 Blender 外掛可在表面配置孔洞、溝槽與凹位，並重建周圍四邊形面；無法產生合適拓樸時會拒絕切割並說明原因。",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "即時預覽可吸附頂點、邊中點和面中心，孔洞靠近邊界、銳邊或其他孔洞時可能被拒絕；操作限制是其維持拓樸品質的一部分。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "重建區域以外的 UV 可以保留，重建區域內的 UV 則尚未保留；硬表面美術應把局部重新展開納入流程，而非預期完全無損。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "原文列出 Blender 4.2 以上的相容條件，另有試用與完整版；兩個獨立物件之間的布林運算仍屬後續規劃功能。"
+        }
+      ],
+      "source_reviewed": true,
+      "reviewed_on": "2026-10-13",
+      "source_published_at": "2026-10-08",
+      "style_reference": "2026-09-25",
+      "source_review_urls": [
+        "https://80.lv/articles/blender-tool-for-boolean-style-cuts-with-clean-quad-topology"
+      ]
+    },
+    "https://80.lv/articles/rodeo-fx-shared-their-house-of-the-dragon-season-3-vfx-breakdown": {
+      "source_url": "https://80.lv/articles/rodeo-fx-shared-their-house-of-the-dragon-season-3-vfx-breakdown",
+      "title": "龍族前傳拆解：街景延伸、全數位城市與戰場群眾",
+      "summary": "Rodeo FX 介紹第三季的視效工作：君臨以實拍布景配合街道延伸，滾落鎮則從零建立數位場景，另涵蓋群眾與龍焰破壞。",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "兩種城市採不同製作策略：君臨需要讓延伸元素融入實拍，滾落鎮則使用完整數位環境；場景來源會改變後续合成與清理工作。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "季末戰鬥約百個鏡頭涉及群眾作業，另有龍焰和環境破壞；這份拆解適合比較大規模場景、人物數量與特效層如何互相配合。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "報導提供鏡頭與影格數量，但沒有公開逐鏡頭成本或專案檔，不能據此推算單人工作量；可用作視覺案例而非完整重製教程。"
+        }
+      ],
+      "source_reviewed": true,
+      "reviewed_on": "2026-10-13",
+      "source_published_at": "2026-10-13",
+      "style_reference": "2026-09-25",
+      "source_review_urls": [
+        "https://80.lv/articles/rodeo-fx-shared-their-house-of-the-dragon-season-3-vfx-breakdown"
+      ]
+    },
+    "https://80.lv/articles/stylized-low-poly-fall-scene-with-a-chameleon-made-in-blender": {
+      "source_url": "https://80.lv/articles/stylized-low-poly-fall-scene-with-a-chameleon-made-in-blender",
+      "title": "Blender 秋日短景：低多邊形變色龍與高對比風格",
+      "summary": "藝術家 Vossadova 公開以變色龍為主角的秋日短景，延續低多邊形動物與高對比畫面的風格，使用 Blender 製作。",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "這是成品展示，重點在簡化造型、鮮明配色與動物角色表演；報導沒有提供建模步驟，應與逐步操作的教學文章區分。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "風格化美術可觀察角色輪廓如何在簡化環境中保持辨識度，以及配色與表演如何共同構成短場景的視覺節奏。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "文章附有作者其他作品供延伸觀看，但沒有公開燈光、材質或骨架設定；若要重現相近風格，仍須自行建立並驗證製作方案。"
+        }
+      ],
+      "source_reviewed": true,
+      "reviewed_on": "2026-10-13",
+      "source_published_at": "2026-10-13",
+      "style_reference": "2026-09-25",
+      "source_review_urls": [
+        "https://80.lv/articles/stylized-low-poly-fall-scene-with-a-chameleon-made-in-blender"
+      ]
+    },
+    "https://3dnchu.com/archives/spz-4": {
+      "source_url": "https://3dnchu.com/archives/spz-4",
+      "title": "五月工具回顧｜SPZ 4：壓縮高斯潑濺場景資料",
+      "summary": "2026 年五月介紹的 SPZ 4 針對高斯潑濺資料提供壓縮、載入與大場景處理改善；官方另有網頁轉換入口，可在點雲與壓縮格式間轉換。",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "這是場景資料格式的改進，並非一般多邊形模型壓縮工具；掃描與高斯潑濺工作者可用自己的場景比較檔案大小和載入成本。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "發布資訊列出編碼、載入與瀏覽器處理的加速幅度，但這些是發布方數據；比較時必須使用相同資料與硬體，不能直接視為專案保證。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "大型場景仍須確認使用中的檢視器是否支援第四版格式；這是五月版本的回顧，採用前應查對實際編碼器和下游工具版本。"
+        }
+      ],
+      "source_reviewed": true,
+      "reviewed_on": "2026-10-13",
+      "source_published_at": "2026-05-08",
+      "style_reference": "2026-09-25",
+      "source_review_urls": [
+        "https://3dnchu.com/archives/spz-4"
+      ]
+    },
+    "https://www.cgchannel.com/2026/10/watch-belofxs-vfx-breakdown-for-mother-mary": {
+      "source_url": "https://www.cgchannel.com/2026/10/watch-belofxs-vfx-breakdown-for-mother-mary",
+      "title": "演唱會群眾與紅色幽靈：電影視效拆解",
+      "summary": "beloFX 公開電影《Mother Mary》的視效拆解，包含演唱會場景的電腦生成群眾，以及貫穿影片的紅色幽靈布料模擬。",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "工作室為電影製作 156 個鏡頭，已公開的重點是群眾與布料兩類工作；可分開觀察大場景填充及柔性物體的動態表現。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "場景與特效美術可從拆解比較群眾的尺度、密度，以及布料形體在鏡頭中的辨識度，作為演唱會或超現實場景的視覺參考。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "報導沒有披露求解器、軟體或完整製作設定，因此目前只能確認展示內容；不應把影像展示寫成可直接操作的模擬教學。"
+        }
+      ],
+      "source_reviewed": true,
+      "reviewed_on": "2026-10-13",
+      "source_published_at": "2026-10-13",
+      "style_reference": "2026-09-25",
+      "source_review_urls": [
+        "https://www.cgchannel.com/2026/10/watch-belofxs-vfx-breakdown-for-mother-mary"
+      ]
+    },
+    "https://80.lv/articles/this-free-blender-add-on-quickly-automates-uv-unwrapping": {
+      "source_url": "https://80.lv/articles/this-free-blender-add-on-quickly-automates-uv-unwrapping",
+      "title": "UVgami：自動展開貼圖座標的開源工具",
+      "summary": "UVgami 提供自動 UV 展開，可讀取常見模型格式；報導介紹本機處理的網頁入口，以及不同展開引擎在速度、接縫與島嶼數量上的取捨。",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "預設處理引擎著重展開品質但較慢，另一套快速引擎適合燈光貼圖與繪圖準備，代價是較多接縫；使用者應按資產用途選擇。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "模型在本機處理，報導指出不會上傳至伺服器；材質美術仍應檢查展開後的拉伸、島嶼分割與排版，不能把自動完成視為驗收完成。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "部分引擎依賴支援 CUDA 的硬體與對應系統，不能假定所有瀏覽器或電腦都可使用相同後端；實際安裝方式應依工具文件確認。"
+        }
+      ],
+      "source_reviewed": true,
+      "reviewed_on": "2026-10-13",
+      "source_published_at": "2026-10-13",
+      "style_reference": "2026-09-25",
+      "source_review_urls": [
+        "https://80.lv/articles/this-free-blender-add-on-quickly-automates-uv-unwrapping"
+      ]
     }
   }
 }
