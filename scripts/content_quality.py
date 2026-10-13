@@ -144,6 +144,17 @@ FOCUS_TERMS = (
 )
 
 PRODUCTION_DETAIL_TERMS = (
+    (("oil painting", "oil-painting"), "油畫筆觸"),
+    (("watercolor", "watercolour"), "水彩風格"),
+    (("brush strokes", "brushstrokes", "brush stroke"), "筆觸處理"),
+    (("kuwahara",), "Kuwahara 影像濾鏡"),
+    (("compositor", "compositing nodes"), "合成節點"),
+    (("color palette", "colour palette"), "色盤控制"),
+    (("edge detection",), "邊緣偵測"),
+    (("normal editing", "custom normals"), "自訂法線編輯"),
+    (("uv packing", "pack uv"), "UV 排版"),
+    (("uv unwrap", "unwrapping"), "UV 展開"),
+    (("gaussian splat", "gaussian splatting"), "高斯潑濺"),
     (("marmoset toolbag", "toolbag"), "Marmoset Toolbag 式烘焙"),
     (("texture baking", "baking add-on", "bake textures"), "貼圖烘焙"),
     (("shape keys", "shape key"), "Shape Keys"),
@@ -576,12 +587,20 @@ def plain_subject(meta: dict, category: str, subcategory: str) -> str:
     if reader_language_ok(raw, 4.0):
         return raw
     text = f"{raw} {clean(meta.get('description'), 650)}".casefold()
+    version = re.match(r"^Blender\s+(\d+(?:\.\d+)*(?:\s+LTS)?)\b", raw, re.I)
+    if version and has_any(text, ("release", "released", "update", "is finally here", "is here", "is out")):
+        return f"Blender {version.group(1)}：版本更新"
     release = re.match(r"^.+?\s+(?:releases?|ships?|launches?|just released)\s+(.+)$", raw, re.I)
     if release:
         product = re.split(r"\s+(?:for|with)\s+", release.group(1), maxsplit=1, flags=re.I)[0]
         if len(product) <= 40:
             detail = "、".join(production_details(meta)[:2])
-            return f"{product}：{detail + '與' if detail else ''}版本更新"
+            title = f"{product}：{detail + '與' if detail else ''}版本更新"
+            if reader_language_ok(title, 4.0):
+                return title
+            concise = f"{product}：版本與功能更新"
+            if reader_language_ok(concise, 4.0):
+                return concise
     blender = re.match(r"^Blender\s+(.+?)\s+Release$", raw, re.I)
     if blender:
         return f"Blender {blender.group(1)}：版本更新"
@@ -595,6 +614,9 @@ def plain_subject(meta: dict, category: str, subcategory: str) -> str:
         (("wristwatch", "möbius"), "手錶與莫比烏斯環"),
         (("deer",), "麋鹿建模"),
         (("dishes",), "餐具建模"),
+        (("photos", "photographs"), "照片轉繪畫"),
+        (("painterly shader", "painting shader"), "繪畫風格著色器"),
+        (("painterly",), "繪畫風格製作"),
         (("facial", "lip sync"), "臉部表演與綁定"),
         (("everyday", "daily action"), "日常動作素材"),
         (("combat", "attack animation"), "戰鬥動作素材"),
@@ -632,7 +654,20 @@ def plain_subject(meta: dict, category: str, subcategory: str) -> str:
 
 def editorial_title(meta: dict, category: str, subcategory: str) -> str:
     reviewed = reviewed_reader_copy(meta)
-    return reviewed["title"] if reviewed else plain_subject(meta, category, subcategory)
+    if reviewed:
+        return reviewed["title"]
+    title = plain_subject(meta, category, subcategory)
+    if reader_language_ok(title, 4.0):
+        return title
+    # A short English headline is still a headline, not necessarily a proper
+    # product name. Rebuild from source-derived subjects instead of padding it.
+    topic = "、".join(production_details(meta)[:2])
+    translated = {"Rendering": "渲染", "Rigging": "骨架綁定", "Retarget": "動作重定向", "Mocap": "動作捕捉"}
+    focus = [translated.get(x, x) for x in production_focus(meta)[:2]]
+    topic = topic or "、".join(focus) or "製作流程"
+    label = friendly_label(category, subcategory)
+    title = f"{label}：{topic}製作介紹"
+    return title if reader_language_ok(title, 4.0) else f"製作流程：{topic}內容介紹"
 
 
 def plain_reader_context(meta: dict, category: str, subcategory: str) -> tuple[str, str, str]:
@@ -649,6 +684,15 @@ def plain_reader_context(meta: dict, category: str, subcategory: str) -> tuple[s
         fact = "內容展示 Grease Pencil 的 Shape Keys 在角色 Rig 上的使用方式，讓美術觀察繪製形狀如何配合角色變形。"
     elif has_any(raw, ("mcp server",)):
         fact = f"{title.split('：')[0]} 加入 MCP Server，提供軟體與外部工具連接的新入口；實際可用指令仍需查對文件。"
+    elif has_any(raw, ("paintings", "painterly", "oil painting", "watercolor", "watercolour")):
+        inputs = []
+        if has_any(raw, ("photo", "photos", "photographs")):
+            inputs.append("照片")
+        if has_any(raw, ("render", "renders", "rendering")):
+            inputs.append("渲染畫面")
+        subject = "、".join(inputs) or "畫面"
+        detail = detail or "繪畫風格"
+        fact = f"{title}。內容介紹{subject}的繪畫風格處理，涉及{detail}；具體操作與可調整參數仍需對照作者公開的範例。"
     elif kind == "update":
         fact = f"{title}。本文介紹{detail or focus}的更新；目前簡介未列出完整改動，不能據此推定所有新增功能。"
     elif kind == "download":

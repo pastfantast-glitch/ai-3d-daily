@@ -80,25 +80,9 @@ def fail(errors):
         print("-", error)
     raise SystemExit(1)
 
-def main():
-    if len(sys.argv) > 2:
-        raise SystemExit("usage: check_editorial_quality.py [YYYY-MM-DD]")
-    if len(sys.argv) == 2:
-        date = sys.argv[1]
-    else:
-        dates = sorted(p.stem for p in (ROOT / "data" / "daily").glob("20??-??-??.json"))
-        if not dates:
-            raise SystemExit("EDITORIAL QUALITY FAILED: no daily datasets")
-        date = dates[-1]
-    if not DATE_RE.fullmatch(date):
-        raise SystemExit("usage: check_editorial_quality.py [YYYY-MM-DD]")
-    if date < EFFECTIVE_DATE:
-        print(f"EDITORIAL QUALITY SKIP: {date} before {EFFECTIVE_DATE}")
-        return
-
-    data = json.loads((ROOT / "data" / "daily" / f"{date}.json").read_text("utf-8"))
+def editorial_errors(data, date, pending_override=None):
+    """Shared deterministic gate for selection and final persisted-dataset QA."""
     items = data.get("items") or []
-    pending_override = pending_editorial_override(date, data)
     cfg = load_editorial_config()
     qa_cfg = cfg.get("qa") or {}
     banned = tuple(qa_cfg.get("banned_phrases") or BANNED)
@@ -198,6 +182,28 @@ def main():
         if editorial.get("selection_changed") is not False:
             errors.append("2026-09-26 editorial repair must preserve selection")
 
+    return errors
+
+
+def main():
+    if len(sys.argv) > 2:
+        raise SystemExit("usage: check_editorial_quality.py [YYYY-MM-DD]")
+    if len(sys.argv) == 2:
+        date = sys.argv[1]
+    else:
+        dates = sorted(p.stem for p in (ROOT / "data" / "daily").glob("20??-??-??.json"))
+        if not dates:
+            raise SystemExit("EDITORIAL QUALITY FAILED: no daily datasets")
+        date = dates[-1]
+    if not DATE_RE.fullmatch(date):
+        raise SystemExit("usage: check_editorial_quality.py [YYYY-MM-DD]")
+    if date < EFFECTIVE_DATE:
+        print(f"EDITORIAL QUALITY SKIP: {date} before {EFFECTIVE_DATE}")
+        return
+    data = json.loads((ROOT / "data" / "daily" / f"{date}.json").read_text("utf-8"))
+    items = data.get("items") or []
+    pending_override = pending_editorial_override(date, data)
+    errors = editorial_errors(data, date, pending_override)
     if errors:
         fail(errors)
     pending = " pending-editorial-override" if pending_override else ""

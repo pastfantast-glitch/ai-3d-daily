@@ -31,6 +31,7 @@ if str(SCRIPTS) not in sys.path:
 from discovery_hybrid import load_hybrid_config, registered_source_probe_plan, registered_source_refill_plan
 from url_identity import canonicalize_url
 from content_quality import admission as content_admission, classify_content, normalize_title, production_summary, editorial_title, editorial_analysis
+from check_editorial_quality import editorial_errors
 from collector_personalization import load_owner_preferences, apply_candidate_personalization, positive_expansion_terms, expand_source_links
 
 INTEL_PATH = ROOT / "config" / "intelligence-v2.json"
@@ -654,6 +655,7 @@ def source_probe(
     *,
     expansion_terms: list[str] | None = None,
     personal_cfg: dict | None = None,
+    published_sources: set[str] | None = None,
 ) -> tuple[list[dict], dict]:
     http_cfg = runtime["http"]
     disc_cfg = runtime["discovery"]
@@ -665,6 +667,15 @@ def source_probe(
     feed_urls_limit = int(disc_cfg.get("feed_urls_per_source", 0) or 0)
     source_id = source["id"]
     domain = source["domain"]
+    published_sources = published_sources or set()
+    skipped_published: set[str] = set()
+
+    def unpublished_link(url: str) -> bool:
+        identity = canonicalize_url(url)
+        if identity in published_sources:
+            skipped_published.add(identity)
+            return False
+        return True
 
     index_results = [fetch(session, url, timeout) for url in endpoints]
     successes = [x for x in index_results if x.get("html")]
@@ -753,6 +764,8 @@ def source_probe(
                 seen_links.add(url)
                 links.append((url, title))
 
+    # Known published URLs never consume the bounded article fetch budget.
+    links = [(url, title) for url, title in links if unpublished_link(url)]
     if personal_cfg:
         links, expanded_urls = expand_source_links(links, max_pages, expansion_terms or [], personal_cfg)
     else:
@@ -779,7 +792,7 @@ def source_probe(
     refill_seen = set(seen_links)
     for meta in metas:
         for url, title in extract_links(meta["html"], meta["url"], domain, max_links):
-            if url not in refill_seen:
+            if url not in refill_seen and unpublished_link(url):
                 refill_seen.add(url)
                 refill_links.append((url, title))
             if len(refill_links) >= refill_pages:
@@ -828,13 +841,44 @@ def source_probe(
         "feed_urls_checked": feeds_checked,
         "refill_links_checked": len(refill_links),
         "semantic_expansion_links_checked": len(expanded_urls),
+        "published_links_skipped": len(skipped_published),
     }
+
+
+def readable_candidates(candidates: list[dict], report_date: str) -> tuple[list[dict], list[tuple[dict, list[str]]]]:
+    """Use the final editorial gate before ranking admission, including collisions.
+
+    Source-specific facts remain required. Ambiguous or repeated copy is rejected
+    with evidence instead of weakening QA or padding the batch with article names.
+    """
+    cfg = load_json(EDITORIAL_CONFIG_PATH)
+    metadata = {"editorial": {"contract": cfg.get("contract"), "style_reference": cfg.get("style_reference"), "factual_fallback_allowed": True}}
+    accepted, rejected, copies = [], [], []
+    for candidate in candidates:
+        reader = candidate.get("reader_copy")
+        if reader is None:
+            meta = candidate["meta"]
+            reader = {
+                "id": candidate["candidate_id"],
+                "title": editorial_title(meta, candidate["category"], candidate["subcategory"]),
+                "summary": production_summary(meta, candidate["category"], candidate["subcategory"]),
+                "full_analysis": editorial_analysis(meta, candidate["category"], candidate["subcategory"]),
+            }
+            candidate["reader_copy"] = reader
+        errors = editorial_errors({"items": copies + [reader], "metadata": metadata}, report_date)
+        if errors:
+            rejected.append((candidate, errors))
+        else:
+            accepted.append(candidate)
+            copies.append(reader)
+    return accepted, rejected
 
 
 def unpublished_survivor_count(
     candidates: list[dict],
     published_sources: set[str],
     published_ids: set[str],
+    report_date: str | None = None,
 ) -> int:
     """Count unique verified candidates that survive early Registry identity dedupe."""
     unique: dict[str, dict] = {}
@@ -842,14 +886,16 @@ def unpublished_survivor_count(
         source_url = canonicalize_url(str(candidate.get("source_url") or ""))
         if source_url:
             unique.setdefault(source_url, candidate)
-    count = 0
+    eligible = []
     for source_url, candidate in unique.items():
         if source_url in published_sources:
             continue
         if str(candidate.get("candidate_id") or "") in published_ids:
             continue
-        count += 1
-    return count
+        eligible.append(candidate)
+    if report_date:
+        eligible, _ = readable_candidates(sorted(eligible, key=lambda x: (-x["ranking_score"], x["source_url"])), report_date)
+    return len(eligible)
 
 
 def selection_fingerprint(items: list[dict]) -> str:
@@ -1219,6 +1265,7 @@ def main() -> int:
         candidates, record = source_probe(
             source, endpoints, runtime, session, report_date, used_ids,
             expansion_terms=expansion_terms, personal_cfg=personal_cfg,
+            published_sources=published_sources,
         )
         record["selection_phase"] = "daily-plan"
         probe_records[source_id] = record
@@ -1258,10 +1305,13 @@ def main() -> int:
     fallback = int(low_cfg.get("fallback_floor", 0) or 0)
     normal_floor = int(low_cfg.get("normal_floor", 0) or 0)
     refill_cfg = hybrid.get("targeted_refill") or {}
+    refill_goal = normal_floor
+    if refill_cfg.get("registered_source_refill_goal") == "daily-target":
+        refill_goal = max(normal_floor, int(intel["collection"]["daily_target_items"]))
     max_refill_batches = int(refill_cfg.get("registered_source_refill_max_batches", 0) or 0)
 
     pre_refill_survivors = unpublished_survivor_count(
-        discovered, published_sources, published_ids
+        discovered, published_sources, published_ids, report_date
     )
     post_refill_survivors = pre_refill_survivors
     refill_selected: list[str] = []
@@ -1273,10 +1323,10 @@ def main() -> int:
     if (
         refill_cfg.get("enabled") is True
         and refill_cfg.get("trigger_total_survivors_below_normal_floor") is True
-        and post_refill_survivors < normal_floor
+        and post_refill_survivors < refill_goal
     ):
-        while post_refill_survivors < normal_floor and refill_batches < max_refill_batches:
-            deficit = normal_floor - post_refill_survivors
+        while post_refill_survivors < refill_goal and refill_batches < max_refill_batches:
+            deficit = refill_goal - post_refill_survivors
             refill_plan = registered_source_refill_plan(
                 report_date,
                 selected + refill_selected,
@@ -1292,6 +1342,7 @@ def main() -> int:
                 candidates, record = source_probe(
                     source, endpoints, runtime, session, report_date, used_ids,
                     expansion_terms=expansion_terms, personal_cfg=personal_cfg,
+                    published_sources=published_sources,
                 )
                 record["selection_phase"] = "targeted-refill"
                 probe_records[source_id] = record
@@ -1301,25 +1352,25 @@ def main() -> int:
                 refill_selected.append(source_id)
             refill_batches += 1
             post_refill_survivors = unpublished_survivor_count(
-                discovered, published_sources, published_ids
+                discovered, published_sources, published_ids, report_date
             )
             if (
                 refill_cfg.get("stop_when_normal_floor_met") is True
-                and post_refill_survivors >= normal_floor
+                and post_refill_survivors >= refill_goal
             ):
                 break
 
     post_refill_survivors = unpublished_survivor_count(
-        discovered, published_sources, published_ids
+        discovered, published_sources, published_ids, report_date
     )
     remaining_refill = registered_source_refill_plan(
         report_date,
         selected + refill_selected,
-        max(0, normal_floor - post_refill_survivors),
+        max(0, refill_goal - post_refill_survivors),
         hybrid,
     )
     registered_refill_exhausted = bool(
-        post_refill_survivors >= normal_floor
+        post_refill_survivors >= refill_goal
         or refill_batches >= max_refill_batches
         or not (remaining_refill.get("selected") or [])
     )
@@ -1380,6 +1431,16 @@ def main() -> int:
     personal['ranking_adjusted_count'] = apply_candidate_personalization(survivors, preference_weights, personal_cfg)
     personal['semantic_expansion_candidates'] = sum(bool(x.get('from_semantic_expansion')) for x in discovered)
     survivors.sort(key=lambda x: (-x["ranking_score"], x["source_url"]))
+    survivors, editorial_rejections = readable_candidates(survivors, report_date)
+    for candidate, errors in editorial_rejections:
+        decisions.append({
+            "candidate_id": candidate["candidate_id"],
+            "source_url": candidate["source_url"],
+            "discovery_channels": decision_channels(candidate),
+            "decision": "rejected",
+            "reason_code": "editorial-quality-rejected",
+            "editorial_errors": errors,
+        })
     maximum = int(intel["collection"]["daily_max_items"])
     selected_items = survivors[:maximum]
     overflow = survivors[maximum:]
@@ -1401,6 +1462,19 @@ def main() -> int:
             "reason_code": "quality-pass-beyond-daily-maximum",
         })
 
+    # Preserve bounded public-source diagnostics in the runner log even when a
+    # failed attempt cannot commit its private artifacts. Never log owner data.
+    print("COLLECTOR DISCOVERY AUDIT: " + json.dumps({
+        "date": report_date,
+        "readable_survivors": len(survivors),
+        "selected": len(selected_items),
+        "backlog": len(overflow),
+        "editorial_rejected": len(editorial_rejections),
+        "refill_goal": refill_goal,
+        "sources": {source_id: {key: record.get(key) for key in ("status", "candidates_found", "published_links_skipped", "reason")} for source_id, record in probe_records.items()},
+        "rejection_examples": [{"id": candidate["candidate_id"], "source_url": candidate["source_url"], "source_title": candidate["meta"].get("title"), "errors": errors} for candidate, errors in editorial_rejections[:20]],
+    }, ensure_ascii=False), flush=True)
+
     if len(selected_items) < fallback:
         raise SystemExit(
             f"COLLECTOR FAILED: verified unpublished survivors={len(selected_items)} "
@@ -1410,8 +1484,8 @@ def main() -> int:
     homepage = intel["homepage"]
     canonical_items = []
     for rank, candidate in enumerate(selected_items, 1):
-        meta = candidate["meta"]
-        reader_title = editorial_title(meta, candidate["category"], candidate["subcategory"])
+        reader = candidate["reader_copy"]
+        reader_title = reader["title"]
         if not re.search(r"[\u3400-\u9fff]", reader_title):
             reader_title = clean(f"製作情報：{reader_title}", 180)
         if not re.search(r"[\u3400-\u9fff]", reader_title):
@@ -1421,7 +1495,7 @@ def main() -> int:
         canonical_items.append({
             "id": candidate["candidate_id"],
             "title": reader_title,
-            "summary": production_summary(meta, candidate["category"], candidate["subcategory"]),
+            "summary": reader["summary"],
             "quick_impact": stars(candidate["base_ranking_score"]),
             "source_url": candidate["source_url"],
             "category": candidate["category"],
@@ -1430,9 +1504,7 @@ def main() -> int:
             "base_ranking_score": candidate["base_ranking_score"],
             "analysis_level": "BRIEF",
             "brief_reason": candidate["brief_reason"],
-            "full_analysis": editorial_analysis(
-                meta, candidate["category"], candidate["subcategory"]
-            ),
+            "full_analysis": reader["full_analysis"],
             "rank_global": rank,
             "homepage_tier": (
                 "top5" if rank <= int(homepage["top5"])

@@ -3,6 +3,8 @@
 import copy
 import json
 import unittest
+import tempfile
+from pathlib import Path
 from unittest.mock import Mock, patch
 import requests
 import run_daily_collector as collector
@@ -110,18 +112,28 @@ class FeedbackTests(unittest.TestCase):
         _, (weights, audit) = self.reader()
         candidates = []
         for i in range(14):
-            title = 'Houdini Shader tutorial' if i == 13 else 'Maya animation tutorial'
+            subjects = ['肩膀', '膝蓋', '手腕', '腳踝', '腰部', '頸部', '手指', '眼睛', '嘴巴', '眉毛', '肘部', '髖部', '胸部', '衣服']
+            title = ('Houdini Shader tutorial' if i == 13 else 'Maya animation tutorial') + '：' + subjects[i]
             url = f'https://80.lv/articles/feedback-fixture-{i:02}'
             candidates.append({'candidate_id':f'fixture-{i}', 'source_id':'80-level', 'source_url':url,
                 'title':title, 'description':'Production tutorial', 'published':'2026-10-07', 'window':'24h',
                 'category':'blender-dcc', 'subcategory':'houdini' if i == 13 else 'maya', 'ranking_score':75,
                 'brief_reason':'single-source-verified-production-tip',
-                'meta':{'title':title,'description':'Production tutorial','url':url}})
+                'meta':{'title':title,'description':f'這篇教學說明角色{subjects[i]}的製作流程，提供操作範例供美術在自己的資產上測試與比較。','url':url}})
         record = {'status':'checked','method':'latest-index','candidates_found':14,
                   'candidate_ids':[c['candidate_id'] for c in candidates], 'refill_links_checked':1}
         outputs = {}
-        def capture(path, value): outputs[str(path.relative_to(collector.ROOT))] = value
-        with patch.object(collector.sys, 'argv', ['collector', '2026-10-07']), \
+        def capture(path, value):
+            key = 'data/candidates/rolling-backlog.json' if path == collector.BACKLOG_PATH else str(path.relative_to(collector.ROOT))
+            outputs[key] = value
+        original_load = collector.load_json
+        def fixture_load(path):
+            return {'schema_version': 1, 'items': []} if path == collector.BACKLOG_PATH else original_load(path)
+        # Isolate DONE/session paths from the actual published repository.
+        with tempfile.TemporaryDirectory() as temporary, \
+             patch.object(collector, 'ROOT', Path(temporary)), \
+             patch.object(collector, 'load_json', side_effect=fixture_load), \
+             patch.object(collector.sys, 'argv', ['collector', '2026-10-07']), \
              patch.object(collector, 'load_owner_preferences', return_value=(weights, audit)), \
              patch.object(collector, 'registered_source_probe_plan', return_value={'selected':['80-level']}), \
              patch.object(collector, 'registered_source_refill_plan', return_value={'selected':[]}), \

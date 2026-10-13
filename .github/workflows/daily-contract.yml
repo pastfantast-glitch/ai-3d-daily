@@ -57,6 +57,9 @@ on:
       - 'scripts/run_daily_collector.py'
       - 'scripts/content_quality.py'
       - 'scripts/test_collector_content_quality.py'
+      - 'scripts/test_collector_reliability.py'
+      - 'scripts/daily_release_status.py'
+      - 'scripts/test_daily_release_status.py'
       - 'scripts/check_editorial_quality.py'
       - 'scripts/check_collector_runtime_contract.py'
       - 'scripts/check_collection_session_contract.py'
@@ -139,6 +142,8 @@ jobs:
           python scripts/check_release_architecture.py
           python scripts/check_collector_runtime_contract.py
           python scripts/test_collector_content_quality.py
+          python scripts/test_collector_reliability.py
+          python scripts/test_daily_release_status.py
           python scripts/test_collector_personalization.py
           node --test supabase/functions/ai3d-personalization/policy.test.mjs
           python scripts/check_editorial_quality.py
