@@ -33,6 +33,7 @@ on:
       - 'config/personalization-feedback.json'
       - 'config/collector-runtime.json'
       - 'config/editorial-quality.json'
+      - 'config/visual-runtime.json'
       - 'data/editorial-overrides/**'
       - 'config/collection-session.schema.json'
       - 'config/pipeline-health.json'
@@ -58,6 +59,7 @@ on:
       - 'scripts/content_quality.py'
       - 'scripts/test_collector_content_quality.py'
       - 'scripts/test_collector_reliability.py'
+      - 'scripts/test_visual_budget.py'
       - 'scripts/daily_release_status.py'
       - 'scripts/test_daily_release_status.py'
       - 'scripts/check_editorial_quality.py'
@@ -143,6 +145,7 @@ jobs:
           python scripts/check_collector_runtime_contract.py
           python scripts/test_collector_content_quality.py
           python scripts/test_collector_reliability.py
+          python scripts/test_visual_budget.py
           python scripts/test_daily_release_status.py
           python scripts/test_collector_personalization.py
           node --test supabase/functions/ai3d-personalization/policy.test.mjs

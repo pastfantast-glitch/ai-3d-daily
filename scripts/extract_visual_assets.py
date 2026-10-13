@@ -3,6 +3,7 @@ import html as html_lib
 import io, json, re, sys, time
 from pathlib import Path
 from urllib.parse import unquote, urljoin, urlparse
+from concurrent.futures import ThreadPoolExecutor
 
 import requests
 from bs4 import BeautifulSoup
@@ -12,9 +13,13 @@ ROOT = Path(__file__).resolve().parents[1]
 VISUAL_ROOT = ROOT / 'assets' / 'visual'
 VISUAL_ROOT.mkdir(parents=True, exist_ok=True)
 UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/126 Safari/537.36'
-TIMEOUT = 25
-RETRIES = 2
-MAX_CANDIDATES = 28
+RUNTIME = json.loads((ROOT / 'config' / 'visual-runtime.json').read_text('utf-8'))
+TIMEOUT = int(RUNTIME['timeout_seconds'])
+RETRIES = int(RUNTIME['retries'])
+MAX_CANDIDATES = int(RUNTIME['max_candidates_per_item'])
+MAX_WORKERS = int(RUNTIME['max_workers'])
+ITEM_BUDGET = float(RUNTIME['per_item_budget_seconds'])
+MAX_BYTES = int(RUNTIME['max_response_bytes'])
 
 BAD = re.compile(
     r'(logo|icon|avatar|author|cookie|banner|advert|ads|sprite|placeholder|'
@@ -113,17 +118,41 @@ def load_entries(date):
 
 def request_with_retry(session, url, **kwargs):
     last = None
+    deadline = getattr(session, '_visual_deadline', None)
     for attempt in range(RETRIES + 1):
+        remaining = deadline - time.monotonic() if deadline is not None else TIMEOUT
+        if remaining <= 0:
+            raise TimeoutError('visual item time budget exhausted')
         try:
-            r = session.get(url, timeout=TIMEOUT, allow_redirects=True, **kwargs)
-            if r.status_code in (401, 403, 429):
-                raise PermissionError(f'blocked HTTP {r.status_code}')
-            r.raise_for_status()
+            r = session.get(url, timeout=min(TIMEOUT, remaining), allow_redirects=True, stream=True, **kwargs)
+            try:
+                if r.status_code in (401, 403, 429):
+                    raise PermissionError(f'blocked HTTP {r.status_code}')
+                r.raise_for_status()
+                chunks, size = [], 0
+                for chunk in r.iter_content(chunk_size=65536):
+                    if deadline is not None and time.monotonic() >= deadline:
+                        raise TimeoutError('visual item time budget exhausted')
+                    size += len(chunk)
+                    if size > MAX_BYTES:
+                        raise ValueError('visual response exceeds bounded byte budget')
+                    chunks.append(chunk)
+                r._content = b''.join(chunks)
+                r._content_consumed = True
+            finally:
+                r.close()
             return r
+        except (PermissionError, ValueError):
+            raise
         except Exception as exc:
             last = exc
+            if deadline is not None and time.monotonic() >= deadline:
+                raise TimeoutError('visual item time budget exhausted') from exc
             if attempt < RETRIES:
-                time.sleep(1.5 * (attempt + 1))
+                delay = 1.5 * (attempt + 1)
+                if deadline is not None:
+                    delay = min(delay, max(0, deadline - time.monotonic()))
+                time.sleep(delay)
     raise last
 
 
@@ -460,11 +489,111 @@ def classify_failure(exc, candidate_count=0):
     return 'identity_uncertain'
 
 
+def extract_entry(date, entry):
+    # Each worker owns its Session, deadline and stable-ID output path.
+    session = requests.Session()
+    session.headers.update({'User-Agent': UA, 'Accept-Language': 'en-US,en;q=0.8'})
+    session._visual_deadline = time.monotonic() + ITEM_BUDGET
+    rec = {
+        'id': entry['id'],
+        'page_url': entry['page_url'],
+        'status': 'pending',
+        'confidence': entry['confidence'],
+        'candidate_count': 0,
+    }
+    candidates = []
+    failures = []
+    try:
+        page = request_with_retry(session, entry['page_url'])
+        candidates = collect_candidates(entry['page_url'], page.text, entry['keywords'])
+        rec['candidate_count'] = len(candidates)
+        winner = None
+        tested = []
+        for cand in candidates[:MAX_CANDIDATES]:
+            if time.monotonic() >= session._visual_deadline:
+                failures.append({"reason": "visual item time budget exhausted"})
+                break
+            try:
+                im, score = fetch_image(session, entry['page_url'], cand)
+                tested.append({
+                    'url': cand['url'],
+                    'score': round(score, 2),
+                    'size': list(im.size),
+                    'reason': cand['reason'],
+                })
+                if winner is None or score > winner[0]:
+                    winner = (score, cand, im.copy())
+            except Exception as exc:
+                failures.append({'url': cand['url'], 'reason': str(exc)[:180]})
+
+        if not winner:
+            if time.monotonic() >= session._visual_deadline:
+                raise TimeoutError('timeout: visual item time budget exhausted')
+            raise RuntimeError('no valid representative image candidate')
+
+        score, cand, im = winner
+        out = save_image(date, entry['id'], im)
+        rec.update({
+            'status': 'ok',
+            'asset_path': str(out.relative_to(ROOT)).replace('\\', '/'),
+            'source_image_url': cand['url'],
+            'source_kind': cand['reason'],
+            'width': im.width,
+            'height': im.height,
+            'label': entry['label'],
+            'score': round(score, 2),
+            'tested': tested[:10],
+            'failures': failures[:10],
+        })
+    except Exception as exc:
+        extraction_status = classify_failure(exc, len(candidates))
+        out = save_fallback_card(
+            date,
+            entry['id'],
+            entry.get('title') or entry['id'],
+            entry['page_url'],
+        )
+        rec.update({
+            'status': 'fallback_card',
+            'extraction_status': extraction_status,
+            'fallback_reason': str(exc),
+            'error': str(exc),
+            'asset_path': str(out.relative_to(ROOT)).replace('\\', '/'),
+            'source_kind': 'generated:source-card',
+            'label': 'SOURCE CARD',
+            'width': 1200,
+            'height': 675,
+            'failures': failures[:10],
+        })
+
+    extra = f" extraction={rec.get('extraction_status')}" if rec['status'] == 'fallback_card' else ''
+    print(f"visual {entry['id']}: {rec['status']} candidates={rec['candidate_count']}{extra}", flush=True)
+
+    session.close()
+    return rec
+
+
+def verified_visual_cache(date):
+    if RUNTIME.get('reuse_verified_same_day_snapshots') is not True:
+        return {}
+    try:
+        receipt = json.loads((ROOT / 'data' / 'publish' / f'{date}.done.json').read_text('utf-8'))
+        report = json.loads((VISUAL_ROOT / date / 'manifest.json').read_text('utf-8'))
+    except (OSError, ValueError):
+        return {}
+    if receipt.get('state') != 'DONE' or receipt.get('date') != date or (receipt.get('qa') or {}).get('pages') != 'pass' or report.get('date') != date:
+        return {}
+    cache = {}
+    for rec in report.get('entries') or []:
+        asset = (ROOT / str(rec.get('asset_path') or '')).resolve()
+        if rec.get('status') == 'ok' and asset.is_relative_to((VISUAL_ROOT / date).resolve()) and asset.is_file():
+            cache[(rec['id'], rec['page_url'])] = rec
+    return cache
+
+
 def main():
     date = sys.argv[1] if len(sys.argv) > 1 else latest_date()
     entries = load_entries(date)
-    session = requests.Session()
-    session.headers.update({'User-Agent': UA, 'Accept-Language': 'en-US,en;q=0.8'})
     report = {
         'date': date,
         'identity': 'data-intel-id',
@@ -474,78 +603,15 @@ def main():
         'entries': [],
     }
 
-    for entry in entries:
-        rec = {
-            'id': entry['id'],
-            'page_url': entry['page_url'],
-            'status': 'pending',
-            'confidence': entry['confidence'],
-            'candidate_count': 0,
-        }
-        candidates = []
-        failures = []
-        try:
-            page = request_with_retry(session, entry['page_url'])
-            candidates = collect_candidates(entry['page_url'], page.text, entry['keywords'])
-            rec['candidate_count'] = len(candidates)
-            winner = None
-            tested = []
-            for cand in candidates[:MAX_CANDIDATES]:
-                try:
-                    im, score = fetch_image(session, entry['page_url'], cand)
-                    tested.append({
-                        'url': cand['url'],
-                        'score': round(score, 2),
-                        'size': list(im.size),
-                        'reason': cand['reason'],
-                    })
-                    if winner is None or score > winner[0]:
-                        winner = (score, cand, im.copy())
-                except Exception as exc:
-                    failures.append({'url': cand['url'], 'reason': str(exc)[:180]})
-
-            if not winner:
-                raise RuntimeError('no valid representative image candidate')
-
-            score, cand, im = winner
-            out = save_image(date, entry['id'], im)
-            rec.update({
-                'status': 'ok',
-                'asset_path': str(out.relative_to(ROOT)).replace('\\', '/'),
-                'source_image_url': cand['url'],
-                'source_kind': cand['reason'],
-                'width': im.width,
-                'height': im.height,
-                'label': entry['label'],
-                'score': round(score, 2),
-                'tested': tested[:10],
-                'failures': failures[:10],
-            })
-        except Exception as exc:
-            extraction_status = classify_failure(exc, len(candidates))
-            out = save_fallback_card(
-                date,
-                entry['id'],
-                entry.get('title') or entry['id'],
-                entry['page_url'],
-            )
-            rec.update({
-                'status': 'fallback_card',
-                'extraction_status': extraction_status,
-                'fallback_reason': str(exc),
-                'error': str(exc),
-                'asset_path': str(out.relative_to(ROOT)).replace('\\', '/'),
-                'source_kind': 'generated:source-card',
-                'label': 'SOURCE CARD',
-                'width': 1200,
-                'height': 675,
-                'failures': failures[:10],
-            })
-
-        report['entries'].append(rec)
-        extra = f" extraction={rec.get('extraction_status')}" if rec['status'] == 'fallback_card' else ''
-        print(f"visual {entry['id']}: {rec['status']} candidates={rec['candidate_count']}{extra}")
-
+    cache = verified_visual_cache(date)
+    def extract(entry):
+        cached = cache.get((entry['id'], entry['page_url']))
+        if cached:
+            print(f"visual {entry['id']}: reused verified same-day snapshot", flush=True)
+            return {**cached, 'label': entry['label'], 'verified_snapshot_reused': True}
+        return extract_entry(date, entry)
+    with ThreadPoolExecutor(max_workers=MAX_WORKERS) as pool:
+        report['entries'] = list(pool.map(extract, entries))
     payload = json.dumps(report, ensure_ascii=False, indent=2)
     # Current manifest is a convenience pointer for Homepage/runtime hydration.
     (VISUAL_ROOT/'manifest.json').write_text(payload, 'utf-8')
