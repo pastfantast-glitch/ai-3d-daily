@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "date": "2026-10-13",
+  "date": "2026-10-14",
   "state": "WATCHDOG_TRIGGER",
-  "trigger": "user-requested-policy-republish",
-  "reason": "User authorized the full reliability repair and today's corrected backfill. PR #83 is merged and main source-contract/history checks passed. Recollect today's source-grounded candidates with the repaired reader gate, early URL filtering, target refill and backlog. Preserve the old verified DONE/public release until the sole canonical publisher verifies the corrected release.",
+  "trigger": "chatgpt-0740-watchdog",
+  "reason": "At 2026-10-14 07:40 Asia/Taipei, current main had no valid DONE receipt, no queued or in-progress Actions run on main, no genuine Autonomous daily Collector schedule/push run created today, and no persisted collection-session for 2026-10-14; trigger the existing idempotent Collector pipeline.",
   "writer_idle_confirmed_externally": true
 }
