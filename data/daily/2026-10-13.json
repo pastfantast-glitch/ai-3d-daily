@@ -2,13 +2,13 @@
   "date": "2026-10-13",
   "schema_version": 3,
   "metadata": {
-    "total_items": 16,
+    "total_items": 30,
     "collection_mode": "production-intelligence-preference-v1-hybrid",
     "collection_contract_effective_date": "2026-09-04",
     "preference_contract_effective_date": "2026-09-06",
     "admission_policy_effective_date": "2026-09-15",
     "collector_runtime": "autonomous-github-collector-v1",
-    "policy_recollect": false,
+    "policy_recollect": true,
     "discovery_windows": [
       "24h",
       "7d",
@@ -18,7 +18,7 @@
     ],
     "analysis_level_counts": {
       "FULL": 0,
-      "BRIEF": 16,
+      "BRIEF": 30,
       "REJECT": 0
     },
     "analysis_level_policy": "evidence-depth-tiered; FULL=3-5 source-supported blocks; BRIEF=3 readable source-grounded angles with explicit limits; REJECT=not-publishable",
@@ -45,19 +45,19 @@
         },
         "7d": {
           "status": "exhausted",
-          "candidates_found": 1
+          "candidates_found": 0
         },
         "30d": {
           "status": "exhausted",
-          "candidates_found": 10
+          "candidates_found": 0
         },
         "6m": {
           "status": "exhausted",
-          "candidates_found": 5
+          "candidates_found": 4
         },
         "evergreen": {
           "status": "exhausted",
-          "candidates_found": 46
+          "candidates_found": 28
         }
       },
       "category_candidates": {
@@ -65,19 +65,19 @@
           "candidates_considered": 0
         },
         "3d-production": {
-          "candidates_considered": 4
+          "candidates_considered": 8
         },
         "3d-animation": {
-          "candidates_considered": 1
+          "candidates_considered": 6
         },
         "engine-art": {
-          "candidates_considered": 0
+          "candidates_considered": 5
         },
         "emerging-case": {
-          "candidates_considered": 1
+          "candidates_considered": 3
         },
         "blender-dcc": {
-          "candidates_considered": 10
+          "candidates_considered": 15
         }
       },
       "registered_source_probe": {
@@ -93,76 +93,64 @@
           "unity-official",
           "sidefx-official"
         ],
-        "refill_selected": [
-          "artstation",
-          "gumroad-discover",
-          "xiaohongshu",
-          "autodesk-area",
-          "adobe-substance-3d",
-          "game-developer"
-        ],
-        "refill_batches": 2,
-        "pre_refill_survivors": 16,
-        "post_refill_survivors": 16,
+        "refill_selected": [],
+        "refill_batches": 0,
+        "pre_refill_survivors": 37,
+        "post_refill_survivors": 37,
         "sources": {
           "80-level": {
             "status": "checked",
             "method": "latest-index",
-            "candidates_found": 9,
+            "candidates_found": 7,
             "candidate_ids": [
               "80-level-epic-games-tells-devs-no-more-hand-written-code-to-adopt-an",
               "80-level-creating-a-thriller-animated-series-with-hand-drawn-textures",
               "80-level-how-to-create-realistic-waterfall-vfx-in-houdini",
               "80-level-turn-photos-3d-renders-into-paintings-with-this-blender-filt",
-              "80-level-artist-explores-realistic-water-adhesion-on-animated-charact",
-              "80-level-best-3d-modeling-software-blender-maya-zbrush-more",
-              "80-level-artist-recreates-lifelike-bubble-physics-in-houdini-based-on",
-              "80-level-blender-5-3-is-getting-native-3d-gaussian-splat-support",
-              "80-level-hypnotizing-fluid-simulation-based-on-w-t-s-research-on-lagr"
+              "80-level-sony-says-ai-will-unleash-the-creativity-of-our-studios-whil",
+              "80-level-unreal-engine-5-8-is-out-today-with-big-optimization-improve",
+              "80-level-game-development"
             ],
             "index_pages_checked": 2,
             "feed_urls_checked": 0,
             "refill_links_checked": 16,
-            "semantic_expansion_links_checked": 1,
+            "semantic_expansion_links_checked": 0,
+            "published_links_skipped": 9,
             "selection_phase": "daily-plan"
           },
           "3dnchu": {
             "status": "checked",
             "method": "latest-index",
-            "candidates_found": 14,
+            "candidates_found": 10,
             "candidate_ids": [
               "3dnchu-mixar-4-1",
-              "3dnchu-sculpt-mesh-1-0",
-              "3dnchu-harmoflow",
-              "3dnchu-unimate",
-              "3dnchu-alpaca3d",
-              "3dnchu-fx-maker-tools",
-              "3dnchu-creating-high-quality-vegetation-for-games-book-jp",
+              "3dnchu-animation-tutorial-trailer",
+              "3dnchu-cesium-for-unreal",
+              "3dnchu-gasp-addons",
               "3dnchu-remi-uv-blender",
-              "3dnchu-sand-ripper",
+              "3dnchu-spz-4",
               "3dnchu-zenless-zone-zero-character-mmd-model",
-              "3dnchu-bagapie-v7",
-              "3dnchu-blender-mcp",
-              "3dnchu-solidify-plus-1-0",
-              "3dnchu-univ-v1-2"
+              "3dnchu-altermesh-2-0",
+              "3dnchu-blender-metahuman-groom-startarkit",
+              "3dnchu-uvpackmaster-for-blender"
             ],
             "index_pages_checked": 1,
             "feed_urls_checked": 2,
             "refill_links_checked": 16,
-            "semantic_expansion_links_checked": 2,
+            "semantic_expansion_links_checked": 0,
+            "published_links_skipped": 7,
             "selection_phase": "daily-plan"
           },
           "cgworld-jp": {
             "status": "checked",
             "method": "latest-index",
-            "candidates_found": 1,
-            "candidate_ids": [
-              "cgworld-jp-substance-3d-painter"
-            ],
+            "candidates_found": 0,
+            "candidate_ids": [],
             "index_pages_checked": 2,
             "feed_urls_checked": 0,
-            "refill_links_checked": 1,
+            "refill_links_checked": 0,
             "semantic_expansion_links_checked": 0,
+            "published_links_skipped": 1,
             "selection_phase": "daily-plan"
           },
           "bilibili-mobile": {
@@ -174,106 +162,73 @@
             "feed_urls_checked": 0,
             "refill_links_checked": 0,
             "semantic_expansion_links_checked": 0,
+            "published_links_skipped": 0,
             "selection_phase": "daily-plan"
           },
           "artstation": {
-            "status": "blocked",
-            "method": "latest-index",
+            "status": "not-scheduled",
+            "method": "rolling-window",
             "candidates_found": 0,
             "candidate_ids": [],
-            "reason": "http-403",
-            "index_pages_checked": 0,
-            "feed_urls_checked": 0,
-            "refill_links_checked": 0,
-            "selection_phase": "targeted-refill"
+            "reason": "deterministic-rolling-probe-not-selected"
           },
           "gumroad-discover": {
-            "status": "checked",
-            "method": "latest-index",
+            "status": "not-scheduled",
+            "method": "rolling-window",
             "candidates_found": 0,
             "candidate_ids": [],
-            "index_pages_checked": 1,
-            "feed_urls_checked": 0,
-            "refill_links_checked": 0,
-            "semantic_expansion_links_checked": 0,
-            "selection_phase": "targeted-refill"
+            "reason": "deterministic-rolling-probe-not-selected"
           },
           "xiaohongshu": {
-            "status": "checked",
-            "method": "latest-index",
+            "status": "not-scheduled",
+            "method": "rolling-window",
             "candidates_found": 0,
             "candidate_ids": [],
-            "index_pages_checked": 1,
-            "feed_urls_checked": 0,
-            "refill_links_checked": 0,
-            "semantic_expansion_links_checked": 0,
-            "selection_phase": "targeted-refill"
+            "reason": "deterministic-rolling-probe-not-selected"
           },
           "cg-channel": {
             "status": "checked",
             "method": "latest-index",
-            "candidates_found": 31,
+            "candidates_found": 17,
             "candidate_ids": [
-              "cg-channel-rizom-lab-releases-rizom-uv-2027-0",
-              "cg-channel-alexey-vanzhula-releases-modeler-26-for-houdini",
-              "cg-channel-watch-bluebolts-vfx-breakdown-for-the-dog-stars",
+              "cg-channel-sisir-is-a-promising-new-free-standalone-hair-grooming-tool",
+              "cg-channel-sidefx-just-released-houdini-21-check-out-its-5-key-features",
               "cg-channel-check-out-roxel-creatives-eerie-vfx-breakdown-for-backrooms",
-              "cg-channel-improve-your-creature-animation-for-film-vfx",
-              "cg-channel-see-framestores-detailed-vfx-breakdown-for-dead-city-season",
               "cg-channel-the-krita-foundation-releases-krita-3-0",
-              "cg-channel-gltf-files-can-now-recreate-accurate-translucent-materials",
-              "cg-channel-discover-5-key-features-for-cg-artists-in-godot-4-6",
-              "cg-channel-10-things-cg-artists-need-to-know-about-unreal-engine-6",
-              "cg-channel-see-5-key-features-for-cg-artists-in-unreal-engine-5-8",
-              "cg-channel-world-machine-software-ships-world-machine-dragontail-peak",
-              "cg-channel-get-free-vfx-image-viewer-and-video-playback-tool-djv-3-6",
-              "cg-channel-playcanvas-releases-supersplat-editor-3-0",
+              "cg-channel-otoy-unveils-sculptron",
+              "cg-channel-clo-virtual-fashion-releases-marvelous-designer-12-2",
+              "cg-channel-unreal-engine-5-7-five-key-features-for-cg-artists",
+              "cg-channel-see-reallusions-2026-roadmap-redefining-3d-with-hybrid-ai",
+              "cg-channel-aswf-and-dreamworks-animation-release-moonray-2026-29",
+              "cg-channel-create-cinematic-concept-art-for-films-and-games",
               "cg-channel-see-storm-studios-varied-vfx-breakdown-for-daredevil-born-ag",
-              "cg-channel-see-how-rebel-unit-flooded-london-for-the-end-we-start-from",
-              "cg-channel-adobe-adds-3d-printing-support-to-photoshop-cc",
               "cg-channel-amd-releases-radeon-prorender-3-1-for-blender-and-maya",
-              "cg-channel-blender-4-5-lts-is-out-check-out-its-5-key-features",
-              "cg-channel-see-the-2026-blender-development-roadmap",
-              "cg-channel-autodesk-releases-maya-2027-and-maya-creative-2027",
-              "cg-channel-new-3d-software-you-may-have-missed-4-october-2026",
-              "cg-channel-reallusions-3d-character-contest-returns-for-2026-with-45000",
-              "cg-channel-armature-is-a-free-ai-assisted-standalone-character-rigging",
-              "cg-channel-how-dupp-film-created-a-hybrid-cg-mermaid-for-summer-of-1985",
-              "cg-channel-download-130-free-fbx-mocap-moves-from-anderson-rohr",
-              "cg-channel-blender-5-0-is-out-check-out-its-5-key-features",
-              "cg-channel-discover-5-key-features-in-blender-5-1",
-              "cg-channel-blender-5-2-lts-is-here-discover-its-5-key-features",
-              "cg-channel-check-out-free-maya-animation-productivity-toolset-keyflow",
-              "cg-channel-check-out-this-weta-fx-inspired-houdini-flip-fluid-simulatio"
+              "cg-channel-sketchfabs-models-of-the-month-august-2020",
+              "cg-channel-download-the-free-edition-of-renderman-27",
+              "cg-channel-3dgs-render-5-0-lets-you-animate-gaussian-splats-inside-blen",
+              "cg-channel-check-out-this-free-gaussian-splatting-plugin-for-after-effe",
+              "cg-channel-physical-atmosphere-2-generates-insanely-detailed-blender-sk"
             ],
             "index_pages_checked": 4,
             "feed_urls_checked": 2,
             "refill_links_checked": 16,
-            "semantic_expansion_links_checked": 4,
+            "semantic_expansion_links_checked": 0,
+            "published_links_skipped": 34,
             "selection_phase": "daily-plan"
           },
           "blender-official": {
             "status": "checked",
             "method": "latest-index",
-            "candidates_found": 12,
+            "candidates_found": 2,
             "candidate_ids": [
-              "blender-official-blender-5-1-release",
-              "blender-official-blender-5-2-lts-release",
-              "blender-official-2d-isnt-dead-it-just-became-something-different-using-blende",
-              "blender-official-cycles-texture-cache",
-              "blender-official-the-future-of-storyboarding-blender-for-pre-production",
-              "blender-official-animation-2025-progress-planning",
-              "blender-official-blender-lab-activity-report-q1-2026",
-              "blender-official-user-stories",
-              "blender-official-cosmology-with-geometry-nodes",
-              "blender-official-sinking-feeling-using-blender-to-do-good",
-              "blender-official-using-blender-in-game-development-by-embark",
-              "blender-official-visual-effects-for-the-indian-blockbuster-rrr"
+              "blender-official-deprecation-and-removal-of-macos-intel-bui",
+              "blender-official-requirements"
             ],
             "index_pages_checked": 5,
             "feed_urls_checked": 1,
-            "refill_links_checked": 16,
+            "refill_links_checked": 12,
             "semantic_expansion_links_checked": 5,
+            "published_links_skipped": 12,
             "selection_phase": "daily-plan"
           },
           "epic-developer-community": {
@@ -285,6 +240,7 @@
             "feed_urls_checked": 0,
             "refill_links_checked": 0,
             "semantic_expansion_links_checked": 0,
+            "published_links_skipped": 0,
             "selection_phase": "daily-plan"
           },
           "unity-official": {
@@ -296,55 +252,47 @@
             "feed_urls_checked": 0,
             "refill_links_checked": 0,
             "semantic_expansion_links_checked": 0,
+            "published_links_skipped": 0,
             "selection_phase": "daily-plan"
           },
           "sidefx-official": {
             "status": "checked",
             "method": "latest-index",
-            "candidates_found": 0,
-            "candidate_ids": [],
+            "candidates_found": 1,
+            "candidate_ids": [
+              "sidefx-official-filmtv"
+            ],
             "index_pages_checked": 2,
             "feed_urls_checked": 0,
-            "refill_links_checked": 0,
+            "refill_links_checked": 3,
             "semantic_expansion_links_checked": 0,
+            "published_links_skipped": 3,
             "selection_phase": "daily-plan"
           },
           "autodesk-area": {
-            "status": "checked",
-            "method": "latest-index",
+            "status": "not-scheduled",
+            "method": "rolling-window",
             "candidates_found": 0,
             "candidate_ids": [],
-            "index_pages_checked": 1,
-            "feed_urls_checked": 0,
-            "refill_links_checked": 0,
-            "semantic_expansion_links_checked": 0,
-            "selection_phase": "targeted-refill"
+            "reason": "deterministic-rolling-probe-not-selected"
           },
           "adobe-substance-3d": {
-            "status": "checked",
-            "method": "latest-index",
+            "status": "not-scheduled",
+            "method": "rolling-window",
             "candidates_found": 0,
             "candidate_ids": [],
-            "index_pages_checked": 1,
-            "feed_urls_checked": 0,
-            "refill_links_checked": 0,
-            "semantic_expansion_links_checked": 0,
-            "selection_phase": "targeted-refill"
+            "reason": "deterministic-rolling-probe-not-selected"
           },
           "game-developer": {
-            "status": "checked",
-            "method": "latest-index",
+            "status": "not-scheduled",
+            "method": "rolling-window",
             "candidates_found": 0,
             "candidate_ids": [],
-            "index_pages_checked": 4,
-            "feed_urls_checked": 0,
-            "refill_links_checked": 0,
-            "semantic_expansion_links_checked": 0,
-            "selection_phase": "targeted-refill"
+            "reason": "deterministic-rolling-probe-not-selected"
           }
         }
       },
-      "notes": "2026-10-13 autonomous GitHub Collector loaded the Published Registry snapshot before discovery, supplemented it from verified-DONE history when needed, checked rolling backlog, executed the current-main deterministic registered-source probe plan, crawled configured source indexes plus bounded same-source refill, then used the current-main deficit-aware deterministic registered-source refill only when the verified survivor count remained below the normal floor, and applied exact source/stable identity dedupe before ranking. Registered refill: pre=16 post=16 batches=2 selected=[\"artstation\", \"gumroad-discover\", \"xiaohongshu\", \"autodesk-area\", \"adobe-substance-3d\", \"game-developer\"]. Registry audit: {\"history_supplemented_items\": 0, \"latest_verified_done\": \"2026-10-11\", \"snapshot_generated_through\": \"2026-10-11\", \"snapshot_state\": \"DERIVED_FROM_VERIFIED_DONE\", \"source_identities\": 790, \"stable_ids\": 789}. Backlog entries rechecked=0. No source registration/domain supplied ranking bonus, quota or admission bypass."
+      "notes": "2026-10-13 autonomous GitHub Collector loaded the Published Registry snapshot before discovery, supplemented it from verified-DONE history when needed, checked rolling backlog, executed the current-main deterministic registered-source probe plan, crawled configured source indexes plus bounded same-source refill, then used the current-main deficit-aware deterministic registered-source refill only when the verified survivor count remained below the normal floor, and applied exact source/stable identity dedupe before ranking. Registered refill: pre=37 post=37 batches=0 selected=[]. Registry audit: {\"history_supplemented_items\": 0, \"latest_verified_done\": \"2026-10-11\", \"snapshot_generated_through\": \"2026-10-13\", \"snapshot_state\": \"DERIVED_FROM_VERIFIED_DONE\", \"source_identities\": 790, \"stable_ids\": 789}. Backlog entries rechecked=0. No source registration/domain supplied ranking bonus, quota or admission bypass."
     },
     "personalization": {
       "contract": "supabase-semantic-feedback-v1",
@@ -358,57 +306,17 @@
       "admission_bypass": false,
       "quality_gate_bypass": false,
       "source_quota": false,
-      "ranking_adjusted_count": 14,
-      "semantic_expansion_candidates": 7,
+      "ranking_adjusted_count": 33,
+      "semantic_expansion_candidates": 0,
       "profile_fingerprint": "688a8fd8a5b85bc6b69b1396876f2cf0abfce067021b022f250d843bbd96d1c6",
       "reader": "github-actions-oidc-owner-v1"
-    },
-    "homepage_tier_normalization": {
-      "selection_mode": "full-first-brief-fallback",
-      "requested_top5": 5,
-      "actual_top5": 5,
-      "top5_full_count": 0,
-      "top5_brief_fallback_count": 5,
-      "top5_full_only": false,
-      "brief_fallback_allowed": true,
-      "next10": 10
-    },
-    "registry_identity_normalization": {
-      "dropped_count": 0,
-      "rewritten_count": 0,
-      "policy": "verified-DONE-published-canonical-source-without-substantive-delta-skip",
-      "source_identity_precedence": "published-daily-html-card-then-canonical-json",
-      "url_identity": "scripts/url_identity.py",
-      "stage": "collection-before-ready",
-      "refill_required": false,
-      "category_deficits": {},
-      "daily_release_gate": {
-        "have": 16,
-        "min": 12,
-        "target": 30,
-        "max": 30,
-        "missing_to_min": 4,
-        "missing_to_target": 14,
-        "release_ready": true,
-        "category_counts": {
-          "ai-generation": 0,
-          "3d-production": 4,
-          "3d-animation": 1,
-          "engine-art": 0,
-          "emerging-case": 1,
-          "blender-dcc": 10
-        },
-        "normal_min": 20,
-        "release_mode": "LOW_VOLUME_COMPLETE",
-        "low_volume_authorized": true
-      }
     }
   },
   "items": [
     {
       "id": "80-level-epic-games-tells-devs-no-more-hand-written-code-to-adopt-an",
-      "title": "跨資產製作流程：跨資產製作流程案例介紹",
-      "summary": "跨資產製作流程：跨資產製作流程案例介紹。內容展示跨資產製作流程的作品或工具；可先看具體結果，再確認作者公開了哪些操作步驟。",
+      "title": "跨資產製作流程：AI 輔助程式開發案例介紹",
+      "summary": "跨資產製作流程：AI 輔助程式開發案例介紹。本文討論導入 AI 輔助程式開發的要求與方向；實際使用的工具、人工審查和適用範圍仍需對照原文。",
       "quick_impact": "★★★★☆",
       "source_url": "https://80.lv/articles/epic-games-tells-devs-no-more-hand-written-code-to-adopt-an-ai-first-production-model",
       "category": "3d-production",
@@ -420,24 +328,53 @@
       "full_analysis": [
         {
           "label": "技術／流程變更",
-          "text": "本篇重點是跨資產製作流程（Epic Game…ion Model）。跨資產製作流程：跨資產製作流程案例介紹。內容展示跨資產製作流程的作品或工具；可先看具體結果，再確認作者公開了哪些操作步驟。"
+          "text": "本篇重點是AI 輔助程式開發（Epic Game…ion Model）。跨資產製作流程：AI 輔助程式開發案例介紹。本文討論導入 AI 輔助程式開發的要求與方向；實際使用的工具、人工審查和適用範圍仍需對照原文。"
         },
         {
           "label": "Production 影響",
-          "text": "針對跨資產製作流程（Epic Game…ion Model），可挑與目前作品相近的鏡頭或素材做小型比較，觀察形狀、動態和畫面差異，先判斷哪些結果能重現。"
+          "text": "針對AI 輔助程式開發（Epic Game…ion Model），可挑與目前作品相近的鏡頭或素材做小型比較，觀察形狀、動態和畫面差異，先判斷哪些結果能重現。"
         },
         {
           "label": "導入測試與限制",
-          "text": "測試跨資產製作流程（Epic Game…ion Model）時，目前簡介不足以確認完整實作與效能。測試時需記錄軟體版本、資產規模和輸出結果，再決定能否使用。"
+          "text": "測試AI 輔助程式開發（Epic Game…ion Model）時，目前簡介不足以確認完整實作與效能。測試時需記錄軟體版本、資產規模和輸出結果，再決定能否使用。"
         }
       ],
       "rank_global": 1,
       "homepage_tier": "top5"
     },
     {
+      "id": "cg-channel-sisir-is-a-promising-new-free-standalone-hair-grooming-tool",
+      "title": "角色製作：Blender、Maya製作教學",
+      "summary": "角色製作：Blender、Maya製作教學。這篇教學介紹Blender、Maya的做法，可先跟著範例操作，再用自己的資產重做。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://www.cgchannel.com/2026/07/sisir-is-a-promising-new-free-standalone-hair-grooming-tool",
+      "category": "3d-production",
+      "subcategory": "character-production",
+      "ranking_score": 84.25,
+      "base_ranking_score": 76.0,
+      "analysis_level": "BRIEF",
+      "brief_reason": "practical-tutorial-limited-depth",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "本篇重點是Blender、Maya（Sisir is…ming tool）。角色製作：Blender、Maya製作教學。這篇教學介紹Blender、Maya的做法，可先跟著範例操作，再用自己的資產重做。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "針對Blender、Maya（Sisir is…ming tool），可挑與目前作品相近的鏡頭或素材做小型比較，觀察形狀、動態和畫面差異，先判斷哪些結果能重現。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "測試Blender、Maya（Sisir is…ming tool）時，目前簡介不足以確認完整實作與效能。測試時需記錄軟體版本、資產規模和輸出結果，再決定能否使用。"
+        }
+      ],
+      "rank_global": 2,
+      "homepage_tier": "top5"
+    },
+    {
       "id": "80-level-creating-a-thriller-animated-series-with-hand-drawn-textures",
-      "title": "Blender 製作：程序化動畫、Geometry Nodes案例介紹",
-      "summary": "Blender 製作：程序化動畫、Geometry Nodes案例介紹。內容展示動畫、Geometry Nodes、Blender、Substance的作品或工具；可先看具體結果，再確認作者公開了哪些操作步驟。",
+      "title": "Blender 製作：程序化手繪貼圖案例介紹",
+      "summary": "Blender 製作：程序化手繪貼圖案例介紹。內容介紹手繪貼圖的製作與使用；涉及手繪貼圖，可對照作者公開的畫面與操作範例，確認如何保留筆觸和分色。",
       "quick_impact": "★★★★☆",
       "source_url": "https://80.lv/articles/creating-a-thriller-animated-series-with-hand-drawn-textures-in-blender",
       "category": "blender-dcc",
@@ -449,24 +386,24 @@
       "full_analysis": [
         {
           "label": "技術／流程變更",
-          "text": "本篇重點是程序化（Creating…n Blender）。Blender 製作：程序化動畫、Geometry Nodes案例介紹。內容展示動畫、Geometry Nodes、Blender、Substance的作品或工具；可先看具體結果，再確認作者公開了哪些操作步驟。"
+          "text": "本篇重點是手繪貼圖、程序化（Creating…n Blender）。Blender 製作：程序化手繪貼圖案例介紹。內容介紹手繪貼圖的製作與使用；涉及手繪貼圖，可對照作者公開的畫面與操作範例，確認如何保留筆觸和分色。"
         },
         {
           "label": "Production 影響",
-          "text": "針對程序化（Creating…n Blender），可用自己的角色試做姿勢與動作，觀察關節變形、腳底滑動和表情幅度，判斷是否能減少人工修正。"
+          "text": "針對手繪貼圖、程序化（Creating…n Blender），可用自己的角色試做姿勢與動作，觀察關節變形、腳底滑動和表情幅度，判斷是否能減少人工修正。"
         },
         {
           "label": "導入測試與限制",
-          "text": "測試程序化（Creating…n Blender）時，需確認骨架、控制器與軟體版本，再測極端姿勢、動作重定向與引擎匯入；介紹本身不能證明所有角色都適用。"
+          "text": "測試手繪貼圖、程序化（Creating…n Blender）時，需確認骨架、控制器與軟體版本，再測極端姿勢、動作重定向與引擎匯入；介紹本身不能證明所有角色都適用。"
         }
       ],
-      "rank_global": 2,
+      "rank_global": 3,
       "homepage_tier": "top5"
     },
     {
       "id": "80-level-turn-photos-3d-renders-into-paintings-with-this-blender-filt",
-      "title": "Blender 製作：Blender案例介紹",
-      "summary": "Blender 製作：Blender案例介紹。內容展示Blender的作品或工具；可先看具體結果，再確認作者公開了哪些操作步驟。",
+      "title": "Blender 製作：照片與影像製作案例介紹",
+      "summary": "Blender 製作：照片與影像製作案例介紹。內容介紹照片、渲染畫面的繪畫風格處理，涉及手繪貼圖、合成節點；具體操作與可調整參數仍需對照作者公開的範例。",
       "quick_impact": "★★★★☆",
       "source_url": "https://80.lv/articles/turn-photos-3d-renders-into-paintings-with-this-blender-filter",
       "category": "blender-dcc",
@@ -478,18 +415,18 @@
       "full_analysis": [
         {
           "label": "技術／流程變更",
-          "text": "本篇重點是Blender（Turn Phot…er Filter）。Blender 製作：Blender案例介紹。內容展示Blender的作品或工具；可先看具體結果，再確認作者公開了哪些操作步驟。"
+          "text": "本篇重點是手繪貼圖、合成節點（Turn Phot…er Filter）。Blender 製作：照片與影像製作案例介紹。內容介紹照片、渲染畫面的繪畫風格處理，涉及手繪貼圖、合成節點；具體操作與可調整參數仍需對照作者公開的範例。"
         },
         {
           "label": "Production 影響",
-          "text": "針對Blender（Turn Phot…er Filter），可挑與目前作品相近的鏡頭或素材做小型比較，觀察形狀、動態和畫面差異，先判斷哪些結果能重現。"
+          "text": "針對手繪貼圖、合成節點（Turn Phot…er Filter），可挑與目前作品相近的鏡頭或素材做小型比較，觀察形狀、動態和畫面差異，先判斷哪些結果能重現。"
         },
         {
           "label": "導入測試與限制",
-          "text": "測試Blender（Turn Phot…er Filter）時，目前簡介不足以確認完整實作與效能。測試時需記錄軟體版本、資產規模和輸出結果，再決定能否使用。"
+          "text": "測試手繪貼圖、合成節點（Turn Phot…er Filter）時，目前簡介不足以確認完整實作與效能。測試時需記錄軟體版本、資產規模和輸出結果，再決定能否使用。"
         }
       ],
-      "rank_global": 3,
+      "rank_global": 4,
       "homepage_tier": "top5"
     },
     {
@@ -518,7 +455,7 @@
           "text": "測試Blender（Mixar 4.1…Mac＆Linux）時，目前簡介不足以確認完整實作與效能。測試時需記錄軟體版本、資產規模和輸出結果，再決定能否使用。"
         }
       ],
-      "rank_global": 4,
+      "rank_global": 5,
       "homepage_tier": "top5"
     },
     {
@@ -547,13 +484,245 @@
           "text": "測試寫實（How to Cr…n Houdini）時，目前簡介不足以確認完整實作與效能。測試時需記錄軟體版本、資產規模和輸出結果，再決定能否使用。"
         }
       ],
-      "rank_global": 5,
-      "homepage_tier": "top5"
+      "rank_global": 6,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "cg-channel-sidefx-just-released-houdini-21-check-out-its-5-key-features",
+      "title": "Houdini 製作：角色 Rig版本更新",
+      "summary": "Houdini 製作：角色 Rig版本更新。本文介紹角色 Rig的更新；目前簡介未列出完整改動，不能據此推定所有新增功能。",
+      "quick_impact": "★★★☆☆",
+      "source_url": "https://www.cgchannel.com/2025/08/sidefx-just-released-houdini-21-check-out-its-5-key-features",
+      "category": "blender-dcc",
+      "subcategory": "houdini",
+      "ranking_score": 77.38,
+      "base_ranking_score": 73.0,
+      "analysis_level": "BRIEF",
+      "brief_reason": "practical-tutorial-limited-depth",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "本篇重點是角色 Rig（SideFX ju…features）。Houdini 製作：角色 Rig版本更新。本文介紹角色 Rig的更新；目前簡介未列出完整改動，不能據此推定所有新增功能。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "針對角色 Rig（SideFX ju…features），可挑與目前作品相近的鏡頭或素材做小型比較，觀察形狀、動態和畫面差異，先判斷哪些結果能重現。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "測試角色 Rig（SideFX ju…features）時，目前簡介不足以確認完整實作與效能。測試時需記錄軟體版本、資產規模和輸出結果，再決定能否使用。"
+        }
+      ],
+      "rank_global": 7,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "80-level-sony-says-ai-will-unleash-the-creativity-of-our-studios-whil",
+      "title": "Animation 製作：生成式 AI案例介紹",
+      "summary": "Animation 製作：生成式 AI案例介紹。內容展示生成式 AI的作品或工具；可先看具體結果，再確認作者公開了哪些操作步驟。",
+      "quick_impact": "★★★☆☆",
+      "source_url": "https://80.lv/articles/sony-says-ai-will-unleash-the-creativity-of-our-studios-while-humans-remain-at-the-center",
+      "category": "3d-animation",
+      "subcategory": "animation",
+      "ranking_score": 76.33,
+      "base_ranking_score": 73.0,
+      "analysis_level": "BRIEF",
+      "brief_reason": "practical-tutorial-limited-depth",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "本篇重點是生成式 AI（Sony Says…e Center\"）。Animation 製作：生成式 AI案例介紹。內容展示生成式 AI的作品或工具；可先看具體結果，再確認作者公開了哪些操作步驟。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "針對生成式 AI（Sony Says…e Center\"），可用自己的角色試做姿勢與動作，觀察關節變形、腳底滑動和表情幅度，判斷是否能減少人工修正。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "測試生成式 AI（Sony Says…e Center\"）時，需確認骨架、控制器與軟體版本，再測極端姿勢、動作重定向與引擎匯入；介紹本身不能證明所有角色都適用。"
+        }
+      ],
+      "rank_global": 8,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "sidefx-official-filmtv",
+      "title": "Film & TV：程序化、Houdini製作介紹",
+      "summary": "Film & TV：程序化、Houdini製作介紹。這篇教學介紹程序化、Houdini的做法，可先跟著範例操作，再用自己的資產重做。",
+      "quick_impact": "★★★☆☆",
+      "source_url": "https://www.sidefx.com/industries/filmtv",
+      "category": "engine-art",
+      "subcategory": "shader",
+      "ranking_score": 75.5,
+      "base_ranking_score": 73.0,
+      "analysis_level": "BRIEF",
+      "brief_reason": "practical-tutorial-limited-depth",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "本篇重點是程序化（Film & TV）。Film & TV：程序化、Houdini製作介紹。這篇教學介紹程序化、Houdini的做法，可先跟著範例操作，再用自己的資產重做。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "針對程序化（Film & TV），可挑與目前作品相近的鏡頭或素材做小型比較，觀察形狀、動態和畫面差異，先判斷哪些結果能重現。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "測試程序化（Film & TV）時，目前簡介不足以確認完整實作與效能。測試時需記錄軟體版本、資產規模和輸出結果，再決定能否使用。"
+        }
+      ],
+      "rank_global": 9,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "cg-channel-see-reallusions-2026-roadmap-redefining-3d-with-hybrid-ai",
+      "title": "角色製作：角色製作版本更新",
+      "summary": "角色製作：角色製作版本更新。本文介紹角色製作的更新；目前簡介未列出完整改動，不能據此推定所有新增功能。",
+      "quick_impact": "★★★☆☆",
+      "source_url": "https://www.cgchannel.com/2026/04/see-reallusions-2026-roadmap-redefining-3d-with-hybrid-ai",
+      "category": "3d-production",
+      "subcategory": "character-production",
+      "ranking_score": 74.75,
+      "base_ranking_score": 69.0,
+      "analysis_level": "BRIEF",
+      "brief_reason": "useful-tool-or-addon-limited-depth",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "本篇重點是角色製作（See Reall…hybrid AI）。角色製作：角色製作版本更新。本文介紹角色製作的更新；目前簡介未列出完整改動，不能據此推定所有新增功能。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "針對角色製作（See Reall…hybrid AI），可挑與目前作品相近的鏡頭或素材做小型比較，觀察形狀、動態和畫面差異，先判斷哪些結果能重現。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "測試角色製作（See Reall…hybrid AI）時，目前簡介不足以確認完整實作與效能。測試時需記錄軟體版本、資產規模和輸出結果，再決定能否使用。"
+        }
+      ],
+      "rank_global": 10,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "80-level-unreal-engine-5-8-is-out-today-with-big-optimization-improve",
+      "title": "Unreal Engine 製作：場景與地形製作版本更新",
+      "summary": "Unreal Engine 製作：場景與地形製作版本更新。本文介紹Mesh Terrain、Unreal Engine的更新；目前簡介未列出完整改動，不能據此推定所有新增功能。",
+      "quick_impact": "★★★☆☆",
+      "source_url": "https://80.lv/articles/unreal-engine-5-8-is-out-today-with-big-optimization-improvements-and-mesh-terrain",
+      "category": "engine-art",
+      "subcategory": "unreal",
+      "ranking_score": 74.42,
+      "base_ranking_score": 72.0,
+      "analysis_level": "BRIEF",
+      "brief_reason": "early-release-limited-evidence",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "本篇重點是Mesh Terrain、Unreal Engine（Unreal En…h Terrain）。Unreal Engine 製作：場景與地形製作版本更新。本文介紹Mesh Terrain、Unreal Engine的更新；目前簡介未列出完整改動，不能據此推定所有新增功能。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "針對Mesh Terrain、Unreal Engine（Unreal En…h Terrain），可挑與目前作品相近的鏡頭或素材做小型比較，觀察形狀、動態和畫面差異，先判斷哪些結果能重現。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "測試Mesh Terrain、Unreal Engine（Unreal En…h Terrain）時，目前簡介不足以確認完整實作與效能。測試時需記錄軟體版本、資產規模和輸出結果，再決定能否使用。"
+        }
+      ],
+      "rank_global": 11,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "cg-channel-clo-virtual-fashion-releases-marvelous-designer-12-2",
+      "title": "Marvelous Designer 12.2：UV 排版與版本更新",
+      "summary": "Marvelous Designer 12.2：UV 排版與版本更新。本文介紹UV 排版的更新；目前簡介未列出完整改動，不能據此推定所有新增功能。",
+      "quick_impact": "★★★☆☆",
+      "source_url": "https://www.cgchannel.com/2023/11/clo-virtual-fashion-releases-marvelous-designer-12-2",
+      "category": "3d-production",
+      "subcategory": "character-production",
+      "ranking_score": 73.26,
+      "base_ranking_score": 69.0,
+      "analysis_level": "BRIEF",
+      "brief_reason": "single-source-verified-production-tip",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "本篇重點是UV 排版（Marvelous Designer 12.2）。Marvelous Designer 12.2：UV 排版與版本更新。本文介紹UV 排版的更新；目前簡介未列出完整改動，不能據此推定所有新增功能。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "針對UV 排版（Marvelous Designer 12.2），可挑與目前作品相近的鏡頭或素材做小型比較，觀察形狀、動態和畫面差異，先判斷哪些結果能重現。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "測試UV 排版（Marvelous Designer 12.2）時，目前簡介不足以確認完整實作與效能。測試時需記錄軟體版本、資產規模和輸出結果，再決定能否使用。"
+        }
+      ],
+      "rank_global": 12,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "cg-channel-unreal-engine-5-7-five-key-features-for-cg-artists",
+      "title": "Unreal Engine 製作：程序化、Unreal Engine版本更新",
+      "summary": "Unreal Engine 製作：程序化、Unreal Engine版本更新。本文介紹程序化、Unreal Engine的更新；目前簡介未列出完整改動，不能據此推定所有新增功能。",
+      "quick_impact": "★★★☆☆",
+      "source_url": "https://www.cgchannel.com/2025/11/unreal-engine-5-7-five-key-features-for-cg-artists",
+      "category": "engine-art",
+      "subcategory": "unreal",
+      "ranking_score": 73.1,
+      "base_ranking_score": 69.0,
+      "analysis_level": "BRIEF",
+      "brief_reason": "single-source-verified-production-tip",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "本篇重點是程序化（Unreal En…G artists）。Unreal Engine 製作：程序化、Unreal Engine版本更新。本文介紹程序化、Unreal Engine的更新；目前簡介未列出完整改動，不能據此推定所有新增功能。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "針對程序化（Unreal En…G artists），可挑與目前作品相近的鏡頭或素材做小型比較，觀察形狀、動態和畫面差異，先判斷哪些結果能重現。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "測試程序化（Unreal En…G artists）時，目前簡介不足以確認完整實作與效能。測試時需記錄軟體版本、資產規模和輸出結果，再決定能否使用。"
+        }
+      ],
+      "rank_global": 13,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "blender-official-deprecation-and-removal-of-macos-intel-bui",
+      "title": "Blender 製作：渲染、Blender版本更新",
+      "summary": "Blender 製作：渲染、Blender版本更新。本文介紹Rendering、Blender的更新；目前簡介未列出完整改動，不能據此推定所有新增功能。",
+      "quick_impact": "★★★☆☆",
+      "source_url": "https://devtalk.blender.org/t/deprecation-and-removal-of-macos-intel-builds-in-blender-5-0/38835",
+      "category": "blender-dcc",
+      "subcategory": "blender",
+      "ranking_score": 72.48,
+      "base_ranking_score": 69.0,
+      "analysis_level": "BRIEF",
+      "brief_reason": "short-official-announcement",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "本篇重點是Rendering、Blender（Deprecati…ender 5.0）。Blender 製作：渲染、Blender版本更新。本文介紹Rendering、Blender的更新；目前簡介未列出完整改動，不能據此推定所有新增功能。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "針對Rendering、Blender（Deprecati…ender 5.0），可挑與目前作品相近的鏡頭或素材做小型比較，觀察形狀、動態和畫面差異，先判斷哪些結果能重現。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "測試Rendering、Blender（Deprecati…ender 5.0）時，目前簡介不足以確認完整實作與效能。測試時需記錄軟體版本、資產規模和輸出結果，再決定能否使用。"
+        }
+      ],
+      "rank_global": 14,
+      "homepage_tier": "next10"
     },
     {
       "id": "cg-channel-check-out-roxel-creatives-eerie-vfx-breakdown-for-backrooms",
-      "title": "場景製作：VFX 拆解製作拆解",
-      "summary": "場景製作：VFX 拆解製作拆解。內容展示VFX 拆解的作品或工具；可先看具體結果，再確認作者公開了哪些操作步驟。",
+      "title": "場景製作：合成節點、VFX 拆解製作拆解",
+      "summary": "場景製作：合成節點、VFX 拆解製作拆解。內容展示合成節點、VFX 拆解的作品或工具；可先看具體結果，再確認作者公開了哪些操作步驟。",
       "quick_impact": "★★★☆☆",
       "source_url": "https://www.cgchannel.com/2026/10/check-out-roxel-creatives-eerie-vfx-breakdown-for-backrooms",
       "category": "3d-production",
@@ -565,19 +734,77 @@
       "full_analysis": [
         {
           "label": "技術／流程變更",
-          "text": "本篇重點是VFX 拆解（Check out…Backrooms）。場景製作：VFX 拆解製作拆解。內容展示VFX 拆解的作品或工具；可先看具體結果，再確認作者公開了哪些操作步驟。"
+          "text": "本篇重點是合成節點、VFX 拆解（Check out…Backrooms）。場景製作：合成節點、VFX 拆解製作拆解。內容展示合成節點、VFX 拆解的作品或工具；可先看具體結果，再確認作者公開了哪些操作步驟。"
         },
         {
           "label": "Production 影響",
-          "text": "針對VFX 拆解（Check out…Backrooms），可挑與目前作品相近的鏡頭或素材做小型比較，觀察形狀、動態和畫面差異，先判斷哪些結果能重現。"
+          "text": "針對合成節點、VFX 拆解（Check out…Backrooms），可挑與目前作品相近的鏡頭或素材做小型比較，觀察形狀、動態和畫面差異，先判斷哪些結果能重現。"
         },
         {
           "label": "導入測試與限制",
-          "text": "測試VFX 拆解（Check out…Backrooms）時，目前簡介不足以確認完整實作與效能。測試時需記錄軟體版本、資產規模和輸出結果，再決定能否使用。"
+          "text": "測試合成節點、VFX 拆解（Check out…Backrooms）時，目前簡介不足以確認完整實作與效能。測試時需記錄軟體版本、資產規模和輸出結果，再決定能否使用。"
         }
       ],
-      "rank_global": 6,
+      "rank_global": 15,
       "homepage_tier": "next10"
+    },
+    {
+      "id": "3dnchu-animation-tutorial-trailer",
+      "title": "製作流程：Substance Designer內容介紹",
+      "summary": "製作流程：Substance Designer內容介紹。這篇教學介紹Substance Designer的做法，可先跟著範例操作，再用自己的資產重做。",
+      "quick_impact": "★★★☆☆",
+      "source_url": "https://3dnchu.com/archives/animation-tutorial-trailer",
+      "category": "3d-animation",
+      "subcategory": "animation",
+      "ranking_score": 71.18,
+      "base_ranking_score": 70.0,
+      "analysis_level": "BRIEF",
+      "brief_reason": "practical-tutorial-limited-depth",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "本篇重點是Substance Designer（Animation…氏映像！※表現注意）。製作流程：Substance Designer內容介紹。這篇教學介紹Substance Designer的做法，可先跟著範例操作，再用自己的資產重做。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "針對Substance Designer（Animation…氏映像！※表現注意），可用自己的角色試做姿勢與動作，觀察關節變形、腳底滑動和表情幅度，判斷是否能減少人工修正。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "測試Substance Designer（Animation…氏映像！※表現注意）時，需確認骨架、控制器與軟體版本，再測極端姿勢、動作重定向與引擎匯入；介紹本身不能證明所有角色都適用。"
+        }
+      ],
+      "rank_global": 16,
+      "homepage_tier": "category_only"
+    },
+    {
+      "id": "cg-channel-aswf-and-dreamworks-animation-release-moonray-2026-29",
+      "title": "MoonRay 2026.29：版本更新",
+      "summary": "MoonRay 2026.29：版本更新。本文介紹動畫的更新；目前簡介未列出完整改動，不能據此推定所有新增功能。",
+      "quick_impact": "★★★☆☆",
+      "source_url": "https://www.cgchannel.com/2026/07/aswf-and-dreamworks-animation-release-moonray-2026-29",
+      "category": "3d-animation",
+      "subcategory": "animation",
+      "ranking_score": 70.45,
+      "base_ranking_score": 69.0,
+      "analysis_level": "BRIEF",
+      "brief_reason": "single-source-verified-production-tip",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "本篇重點是動畫（MoonRay 2026.29）。MoonRay 2026.29：版本更新。本文介紹動畫的更新；目前簡介未列出完整改動，不能據此推定所有新增功能。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "針對動畫（MoonRay 2026.29），可用自己的角色試做姿勢與動作，觀察關節變形、腳底滑動和表情幅度，判斷是否能減少人工修正。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "測試動畫（MoonRay 2026.29）時，需確認骨架、控制器與軟體版本，再測極端姿勢、動作重定向與引擎匯入；介紹本身不能證明所有角色都適用。"
+        }
+      ],
+      "rank_global": 17,
+      "homepage_tier": "category_only"
     },
     {
       "id": "cg-channel-the-krita-foundation-releases-krita-3-0",
@@ -605,13 +832,42 @@
           "text": "測試動畫（Krita 3.0）時，需確認骨架、控制器與軟體版本，再測極端姿勢、動作重定向與引擎匯入；介紹本身不能證明所有角色都適用。"
         }
       ],
-      "rank_global": 7,
-      "homepage_tier": "next10"
+      "rank_global": 18,
+      "homepage_tier": "category_only"
+    },
+    {
+      "id": "cg-channel-otoy-unveils-sculptron",
+      "title": "Otoy unveils Sculptron：動畫製作介紹",
+      "summary": "Otoy unveils Sculptron：動畫製作介紹。本文介紹動畫的更新；目前簡介未列出完整改動，不能據此推定所有新增功能。",
+      "quick_impact": "★★★☆☆",
+      "source_url": "https://www.cgchannel.com/2019/12/otoy-unveils-sculptron",
+      "category": "3d-animation",
+      "subcategory": "animation",
+      "ranking_score": 70.16,
+      "base_ranking_score": 69.0,
+      "analysis_level": "BRIEF",
+      "brief_reason": "early-release-limited-evidence",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "本篇重點是動畫（Otoy unve…Sculptron）。Otoy unveils Sculptron：動畫製作介紹。本文介紹動畫的更新；目前簡介未列出完整改動，不能據此推定所有新增功能。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "針對動畫（Otoy unve…Sculptron），可用自己的角色試做姿勢與動作，觀察關節變形、腳底滑動和表情幅度，判斷是否能減少人工修正。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "測試動畫（Otoy unve…Sculptron）時，需確認骨架、控制器與軟體版本，再測極端姿勢、動作重定向與引擎匯入；介紹本身不能證明所有角色都適用。"
+        }
+      ],
+      "rank_global": 19,
+      "homepage_tier": "category_only"
     },
     {
       "id": "cg-channel-amd-releases-radeon-prorender-3-1-for-blender-and-maya",
-      "title": "Radeon ProRender 3.1：版本更新",
-      "summary": "Radeon ProRender 3.1：版本更新。本文介紹Blender、Maya的更新；目前簡介未列出完整改動，不能據此推定所有新增功能。",
+      "title": "Radeon ProRender 3.1：合成節點與版本更新",
+      "summary": "Radeon ProRender 3.1：合成節點與版本更新。本文介紹合成節點的更新；目前簡介未列出完整改動，不能據此推定所有新增功能。",
       "quick_impact": "★★★☆☆",
       "source_url": "https://www.cgchannel.com/2021/04/amd-releases-radeon-prorender-3-1-for-blender-and-maya",
       "category": "blender-dcc",
@@ -623,19 +879,48 @@
       "full_analysis": [
         {
           "label": "技術／流程變更",
-          "text": "本篇重點是Blender、Maya（Radeon ProRender 3.1）。Radeon ProRender 3.1：版本更新。本文介紹Blender、Maya的更新；目前簡介未列出完整改動，不能據此推定所有新增功能。"
+          "text": "本篇重點是合成節點（Radeon ProRender 3.1）。Radeon ProRender 3.1：合成節點與版本更新。本文介紹合成節點的更新；目前簡介未列出完整改動，不能據此推定所有新增功能。"
         },
         {
           "label": "Production 影響",
-          "text": "針對Blender、Maya（Radeon ProRender 3.1），可挑與目前作品相近的鏡頭或素材做小型比較，觀察形狀、動態和畫面差異，先判斷哪些結果能重現。"
+          "text": "針對合成節點（Radeon ProRender 3.1），可挑與目前作品相近的鏡頭或素材做小型比較，觀察形狀、動態和畫面差異，先判斷哪些結果能重現。"
         },
         {
           "label": "導入測試與限制",
-          "text": "測試Blender、Maya（Radeon ProRender 3.1）時，目前簡介不足以確認完整實作與效能。測試時需記錄軟體版本、資產規模和輸出結果，再決定能否使用。"
+          "text": "測試合成節點（Radeon ProRender 3.1）時，目前簡介不足以確認完整實作與效能。測試時需記錄軟體版本、資產規模和輸出結果，再決定能否使用。"
         }
       ],
-      "rank_global": 8,
-      "homepage_tier": "next10"
+      "rank_global": 20,
+      "homepage_tier": "category_only"
+    },
+    {
+      "id": "cg-channel-create-cinematic-concept-art-for-films-and-games",
+      "title": "Blender 製作：Blender製作教學",
+      "summary": "Blender 製作：Blender製作教學。這篇教學介紹Blender的做法，可先跟著範例操作，再用自己的資產重做。",
+      "quick_impact": "★★★☆☆",
+      "source_url": "https://www.cgchannel.com/2024/04/create-cinematic-concept-art-for-films-and-games",
+      "category": "blender-dcc",
+      "subcategory": "blender",
+      "ranking_score": 68.69,
+      "base_ranking_score": 67.0,
+      "analysis_level": "BRIEF",
+      "brief_reason": "practical-tutorial-limited-depth",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "本篇重點是Blender（Create Ci…and Games）。Blender 製作：Blender製作教學。這篇教學介紹Blender的做法，可先跟著範例操作，再用自己的資產重做。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "針對Blender（Create Ci…and Games），可挑與目前作品相近的鏡頭或素材做小型比較，觀察形狀、動態和畫面差異，先判斷哪些結果能重現。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "測試Blender（Create Ci…and Games）時，目前簡介不足以確認完整實作與效能。測試時需記錄軟體版本、資產規模和輸出結果，再決定能否使用。"
+        }
+      ],
+      "rank_global": 21,
+      "homepage_tier": "category_only"
     },
     {
       "id": "3dnchu-zenless-zone-zero-character-mmd-model",
@@ -663,37 +948,66 @@
           "text": "測試角色製作（Zenless Z…MD（PMX）形式）時，目前簡介不足以確認完整實作與效能。測試時需記錄軟體版本、資產規模和輸出結果，再決定能否使用。"
         }
       ],
-      "rank_global": 9,
-      "homepage_tier": "next10"
+      "rank_global": 22,
+      "homepage_tier": "category_only"
     },
     {
-      "id": "3dnchu-sand-ripper",
-      "title": "跨資產製作流程：貼圖／材質案例介紹",
-      "summary": "跨資產製作流程：貼圖／材質案例介紹。內容展示貼圖／材質的作品或工具；可先看具體結果，再確認作者公開了哪些操作步驟。",
+      "id": "80-level-game-development",
+      "title": "Articles：AI 輔助程式開發製作介紹",
+      "summary": "Articles：AI 輔助程式開發製作介紹。本文討論導入 AI 輔助程式開發的要求與方向；實際使用的工具、人工審查和適用範圍仍需對照原文。",
       "quick_impact": "★★★☆☆",
-      "source_url": "https://3dnchu.com/archives/sand-ripper",
+      "source_url": "https://80.lv/articles/game-development",
       "category": "3d-production",
       "subcategory": "production-workflow",
-      "ranking_score": 67.14,
+      "ranking_score": 68.25,
       "base_ranking_score": 63.0,
       "analysis_level": "BRIEF",
       "brief_reason": "single-source-verified-production-tip",
       "full_analysis": [
         {
           "label": "技術／流程變更",
-          "text": "本篇重點是貼圖／材質（Sand Ripp…！上動作！＆無料！）。跨資產製作流程：貼圖／材質案例介紹。內容展示貼圖／材質的作品或工具；可先看具體結果，再確認作者公開了哪些操作步驟。"
+          "text": "本篇重點是AI 輔助程式開發（Articles）。Articles：AI 輔助程式開發製作介紹。本文討論導入 AI 輔助程式開發的要求與方向；實際使用的工具、人工審查和適用範圍仍需對照原文。"
         },
         {
           "label": "Production 影響",
-          "text": "針對貼圖／材質（Sand Ripp…！上動作！＆無料！），可選一個角色或道具測試貼圖與材質，對照原設定的分色、光影和細節，記錄哪些地方仍要人工修改。"
+          "text": "針對AI 輔助程式開發（Articles），可挑與目前作品相近的鏡頭或素材做小型比較，觀察形狀、動態和畫面差異，先判斷哪些結果能重現。"
         },
         {
           "label": "導入測試與限制",
-          "text": "測試貼圖／材質（Sand Ripp…！上動作！＆無料！）時，需在實際引擎檢查色彩空間、透明通道、貼圖尺寸與不同光向；工具預覽和最終遊戲畫面可能有差異。"
+          "text": "測試AI 輔助程式開發（Articles）時，目前簡介不足以確認完整實作與效能。測試時需記錄軟體版本、資產規模和輸出結果，再決定能否使用。"
         }
       ],
-      "rank_global": 10,
-      "homepage_tier": "next10"
+      "rank_global": 23,
+      "homepage_tier": "category_only"
+    },
+    {
+      "id": "cg-channel-sketchfabs-models-of-the-month-august-2020",
+      "title": "角色製作：角色製作案例介紹",
+      "summary": "角色製作：角色製作案例介紹。內容展示角色製作的作品或工具；可先看具體結果，再確認作者公開了哪些操作步驟。",
+      "quick_impact": "★★★☆☆",
+      "source_url": "https://www.cgchannel.com/2020/09/sketchfabs-models-of-the-month-august-2020",
+      "category": "3d-production",
+      "subcategory": "character-production",
+      "ranking_score": 68.25,
+      "base_ranking_score": 63.0,
+      "analysis_level": "BRIEF",
+      "brief_reason": "single-source-verified-production-tip",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "本篇重點是角色製作（Sketchfab…gust 2020）。角色製作：角色製作案例介紹。內容展示角色製作的作品或工具；可先看具體結果，再確認作者公開了哪些操作步驟。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "針對角色製作（Sketchfab…gust 2020），可挑與目前作品相近的鏡頭或素材做小型比較，觀察形狀、動態和畫面差異，先判斷哪些結果能重現。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "測試角色製作（Sketchfab…gust 2020）時，目前簡介不足以確認完整實作與效能。測試時需記錄軟體版本、資產規模和輸出結果，再決定能否使用。"
+        }
+      ],
+      "rank_global": 24,
+      "homepage_tier": "category_only"
     },
     {
       "id": "cg-channel-see-storm-studios-varied-vfx-breakdown-for-daredevil-born-ag",
@@ -721,8 +1035,95 @@
           "text": "測試VFX 拆解、戰鬥動作（Storm Stu…Again S2）時，目前簡介不足以確認完整實作與效能。測試時需記錄軟體版本、資產規模和輸出結果，再決定能否使用。"
         }
       ],
-      "rank_global": 11,
-      "homepage_tier": "next10"
+      "rank_global": 25,
+      "homepage_tier": "category_only"
+    },
+    {
+      "id": "cg-channel-download-the-free-edition-of-renderman-27",
+      "title": "Rendering 製作：舊版本取得下載介紹",
+      "summary": "Rendering 製作：舊版本取得下載介紹。內容提供與舊版本取得有關的素材；檔案格式、控制器與授權需查下載頁面的說明。",
+      "quick_impact": "★★★☆☆",
+      "source_url": "https://www.cgchannel.com/2026/07/download-the-free-edition-of-renderman-27",
+      "category": "engine-art",
+      "subcategory": "rendering",
+      "ranking_score": 66.18,
+      "base_ranking_score": 63.0,
+      "analysis_level": "BRIEF",
+      "brief_reason": "useful-tool-or-addon-limited-depth",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "本篇重點是舊版本取得（Download…rMan 27.3）。Rendering 製作：舊版本取得下載介紹。內容提供與舊版本取得有關的素材；檔案格式、控制器與授權需查下載頁面的說明。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "針對舊版本取得（Download…rMan 27.3），可挑與目前作品相近的鏡頭或素材做小型比較，觀察形狀、動態和畫面差異，先判斷哪些結果能重現。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "測試舊版本取得（Download…rMan 27.3）時，目前簡介不足以確認完整實作與效能。測試時需記錄軟體版本、資產規模和輸出結果，再決定能否使用。"
+        }
+      ],
+      "rank_global": 26,
+      "homepage_tier": "category_only"
+    },
+    {
+      "id": "3dnchu-blender-metahuman-groom-startarkit",
+      "title": "製作流程：MetaHuman、Unreal Engine內容介紹",
+      "summary": "製作流程：MetaHuman、Unreal Engine內容介紹。內容展示MetaHuman、Unreal Engine、Blender的作品或工具；可先看具體結果，再確認作者公開了哪些操作步驟。",
+      "quick_impact": "★★☆☆☆",
+      "source_url": "https://3dnchu.com/archives/blender-metahuman-groom-startarkit",
+      "category": "blender-dcc",
+      "subcategory": "blender",
+      "ranking_score": 65.11,
+      "base_ranking_score": 60.0,
+      "analysis_level": "BRIEF",
+      "brief_reason": "single-source-verified-production-tip",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "本篇重點是MetaHuman、Unreal Engine、Blender（Blender M…説動画）無料公開！）。製作流程：MetaHuman、Unreal Engine內容介紹。內容展示MetaHuman、Unreal Engine、Blender的作品或工具；可先看具體結果，再確認作者公開了哪些操作步驟。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "針對MetaHuman、Unreal Engine、Blender（Blender M…説動画）無料公開！），可挑與目前作品相近的鏡頭或素材做小型比較，觀察形狀、動態和畫面差異，先判斷哪些結果能重現。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "測試MetaHuman、Unreal Engine、Blender（Blender M…説動画）無料公開！）時，目前簡介不足以確認完整實作與效能。測試時需記錄軟體版本、資產規模和輸出結果，再決定能否使用。"
+        }
+      ],
+      "rank_global": 27,
+      "homepage_tier": "category_only"
+    },
+    {
+      "id": "3dnchu-cesium-for-unreal",
+      "title": "Unreal Engine 製作：Unreal Engine案例介紹",
+      "summary": "Unreal Engine 製作：Unreal Engine案例介紹。內容展示Unreal Engine的作品或工具；可先看具體結果，再確認作者公開了哪些操作步驟。",
+      "quick_impact": "★★★☆☆",
+      "source_url": "https://3dnchu.com/archives/cesium-for-unreal",
+      "category": "engine-art",
+      "subcategory": "unreal",
+      "ranking_score": 64.59,
+      "base_ranking_score": 63.0,
+      "analysis_level": "BRIEF",
+      "brief_reason": "single-source-verified-production-tip",
+      "full_analysis": [
+        {
+          "label": "技術／流程變更",
+          "text": "本篇重點是Unreal Engine（Cesium fo…UE4向無料公開！）。Unreal Engine 製作：Unreal Engine案例介紹。內容展示Unreal Engine的作品或工具；可先看具體結果，再確認作者公開了哪些操作步驟。"
+        },
+        {
+          "label": "Production 影響",
+          "text": "針對Unreal Engine（Cesium fo…UE4向無料公開！），可挑與目前作品相近的鏡頭或素材做小型比較，觀察形狀、動態和畫面差異，先判斷哪些結果能重現。"
+        },
+        {
+          "label": "導入測試與限制",
+          "text": "測試Unreal Engine（Cesium fo…UE4向無料公開！）時，目前簡介不足以確認完整實作與效能。測試時需記錄軟體版本、資產規模和輸出結果，再決定能否使用。"
+        }
+      ],
+      "rank_global": 28,
+      "homepage_tier": "category_only"
     },
     {
       "id": "3dnchu-remi-uv-blender",
@@ -750,123 +1151,36 @@
           "text": "測試UV、Blender（Remi | 壊修…料Blender！）時，目前簡介不足以確認完整實作與效能。測試時需記錄軟體版本、資產規模和輸出結果，再決定能否使用。"
         }
       ],
-      "rank_global": 12,
-      "homepage_tier": "next10"
+      "rank_global": 29,
+      "homepage_tier": "category_only"
     },
     {
-      "id": "3dnchu-bagapie-v7",
-      "title": "Blender 製作：程序化Geometry Nodes、Blender案例介紹",
-      "summary": "Blender 製作：程序化Geometry Nodes、Blender案例介紹。內容展示Geometry Nodes、Blender的作品或工具；可先看具體結果，再確認作者公開了哪些操作步驟。",
-      "quick_impact": "★★☆☆☆",
-      "source_url": "https://3dnchu.com/archives/bagapie-v7",
+      "id": "blender-official-requirements",
+      "title": "Blender：Blender製作介紹",
+      "summary": "Blender：Blender製作介紹。內容展示Blender的作品或工具；可先看具體結果，再確認作者公開了哪些操作步驟。",
+      "quick_impact": "★★★☆☆",
+      "source_url": "https://www.blender.org/download/requirements",
       "category": "blender-dcc",
       "subcategory": "blender",
-      "ranking_score": 63.56,
-      "base_ranking_score": 60.0,
+      "ranking_score": 64.59,
+      "base_ranking_score": 63.0,
       "analysis_level": "BRIEF",
-      "brief_reason": "single-source-verified-production-tip",
+      "brief_reason": "short-official-announcement",
       "full_analysis": [
         {
           "label": "技術／流程變更",
-          "text": "本篇重點是程序化（BagaPie V…！無料版＆付有料版）。Blender 製作：程序化Geometry Nodes、Blender案例介紹。內容展示Geometry Nodes、Blender的作品或工具；可先看具體結果，再確認作者公開了哪些操作步驟。"
+          "text": "本篇重點是Blender（Requirements）。Blender：Blender製作介紹。內容展示Blender的作品或工具；可先看具體結果，再確認作者公開了哪些操作步驟。"
         },
         {
           "label": "Production 影響",
-          "text": "針對程序化（BagaPie V…！無料版＆付有料版），可拿一個現有模型試做，比較輪廓、拓樸、UV 和烘焙結果，再記錄操作與清理時間，判斷是否比原方法省工。"
+          "text": "針對Blender（Requirements），可挑與目前作品相近的鏡頭或素材做小型比較，觀察形狀、動態和畫面差異，先判斷哪些結果能重現。"
         },
         {
           "label": "導入測試與限制",
-          "text": "測試程序化（BagaPie V…！無料版＆付有料版）時，需檢查複雜造型、細分曲面與舊檔相容性；單一示範不能保證所有資產都能得到相同品質。"
+          "text": "測試Blender（Requirements）時，目前簡介不足以確認完整實作與效能。測試時需記錄軟體版本、資產規模和輸出結果，再決定能否使用。"
         }
       ],
-      "rank_global": 13,
-      "homepage_tier": "next10"
-    },
-    {
-      "id": "3dnchu-solidify-plus-1-0",
-      "title": "Blender 製作：程序化Geometry Nodes、Blender案例介紹",
-      "summary": "Blender 製作：程序化Geometry Nodes、Blender案例介紹。內容展示Geometry Nodes、Blender的作品或工具；可先看具體結果，再確認作者公開了哪些操作步驟。",
-      "quick_impact": "★★☆☆☆",
-      "source_url": "https://3dnchu.com/archives/solidify-plus-1-0",
-      "category": "blender-dcc",
-      "subcategory": "blender",
-      "ranking_score": 62.02,
-      "base_ranking_score": 60.0,
-      "analysis_level": "BRIEF",
-      "brief_reason": "useful-tool-or-addon-limited-depth",
-      "full_analysis": [
-        {
-          "label": "技術／流程變更",
-          "text": "本篇重點是程序化（Solidify…odes！無料版！）。Blender 製作：程序化Geometry Nodes、Blender案例介紹。內容展示Geometry Nodes、Blender的作品或工具；可先看具體結果，再確認作者公開了哪些操作步驟。"
-        },
-        {
-          "label": "Production 影響",
-          "text": "針對程序化（Solidify…odes！無料版！），可拿一個現有模型試做，比較輪廓、拓樸、UV 和烘焙結果，再記錄操作與清理時間，判斷是否比原方法省工。"
-        },
-        {
-          "label": "導入測試與限制",
-          "text": "測試程序化（Solidify…odes！無料版！）時，需檢查複雜造型、細分曲面與舊檔相容性；單一示範不能保證所有資產都能得到相同品質。"
-        }
-      ],
-      "rank_global": 14,
-      "homepage_tier": "next10"
-    },
-    {
-      "id": "3dnchu-blender-mcp",
-      "title": "Blender 製作：MCP Server案例介紹",
-      "summary": "Blender 製作：MCP Server案例介紹。內容展示MCP Server的作品或工具；可先看具體結果，再確認作者公開了哪些操作步驟。",
-      "quick_impact": "★★☆☆☆",
-      "source_url": "https://3dnchu.com/archives/blender-mcp",
-      "category": "blender-dcc",
-      "subcategory": "blender",
-      "ranking_score": 61.51,
-      "base_ranking_score": 60.0,
-      "analysis_level": "BRIEF",
-      "brief_reason": "single-source-verified-production-tip",
-      "full_analysis": [
-        {
-          "label": "技術／流程變更",
-          "text": "本篇重點是MCP Server（Blender M…ithub上公開！）。Blender 製作：MCP Server案例介紹。內容展示MCP Server的作品或工具；可先看具體結果，再確認作者公開了哪些操作步驟。"
-        },
-        {
-          "label": "Production 影響",
-          "text": "針對MCP Server（Blender M…ithub上公開！），可挑與目前作品相近的鏡頭或素材做小型比較，觀察形狀、動態和畫面差異，先判斷哪些結果能重現。"
-        },
-        {
-          "label": "導入測試與限制",
-          "text": "測試MCP Server（Blender M…ithub上公開！）時，目前簡介不足以確認完整實作與效能。測試時需記錄軟體版本、資產規模和輸出結果，再決定能否使用。"
-        }
-      ],
-      "rank_global": 15,
-      "homepage_tier": "next10"
-    },
-    {
-      "id": "3dnchu-univ-v1-2",
-      "title": "Blender 製作：UV、Blender案例介紹",
-      "summary": "Blender 製作：UV、Blender案例介紹。內容展示UV、Blender的作品或工具；可先看具體結果，再確認作者公開了哪些操作步驟。",
-      "quick_impact": "★★☆☆☆",
-      "source_url": "https://3dnchu.com/archives/univ-v1-2",
-      "category": "blender-dcc",
-      "subcategory": "blender",
-      "ranking_score": 61.51,
-      "base_ranking_score": 60.0,
-      "analysis_level": "BRIEF",
-      "brief_reason": "single-source-verified-production-tip",
-      "full_analysis": [
-        {
-          "label": "技術／流程變更",
-          "text": "本篇重點是UV、Blender（UniV v1.2…r！無料入手可能！）。Blender 製作：UV、Blender案例介紹。內容展示UV、Blender的作品或工具；可先看具體結果，再確認作者公開了哪些操作步驟。"
-        },
-        {
-          "label": "Production 影響",
-          "text": "針對UV、Blender（UniV v1.2…r！無料入手可能！），可挑與目前作品相近的鏡頭或素材做小型比較，觀察形狀、動態和畫面差異，先判斷哪些結果能重現。"
-        },
-        {
-          "label": "導入測試與限制",
-          "text": "測試UV、Blender（UniV v1.2…r！無料入手可能！）時，目前簡介不足以確認完整實作與效能。測試時需記錄軟體版本、資產規模和輸出結果，再決定能否使用。"
-        }
-      ],
-      "rank_global": 16,
+      "rank_global": 30,
       "homepage_tier": "category_only"
     }
   ],
