@@ -253,10 +253,19 @@ def page_metadata(result: dict, fallback_title: str = "") -> dict | None:
     final_url = canonicalize_url(result.get("final_url") or result.get("url") or "")
     if not final_url.startswith("https://") or not title:
         return None
+    # Only an explicit article body contributes extra method evidence. Avoid
+    # scanning page-wide navigation/related-story copy for reader facts.
+    article = soup.find("article")
+    excerpt = ""
+    if article:
+        paragraphs = [clean(p.get_text(" ", strip=True)) for p in article.find_all("p")
+                      if not p.find_parent(["nav", "aside", "footer"])]
+        excerpt = clean(" ".join(p for p in paragraphs if len(p) >= 30), 1600)
     return {
         "url": final_url,
         "title": clean(title, 220),
         "description": clean(description, 650),
+        "article_excerpt": excerpt,
         "published": parse_date(published),
         "article_type": article_type,
         "html": html,

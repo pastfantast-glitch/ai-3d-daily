@@ -7,7 +7,7 @@ from pathlib import Path
 from unittest.mock import patch
 
 import run_daily_collector as collector
-from content_quality import editorial_title, production_summary, reader_language_ok
+from content_quality import editorial_title, production_summary, reader_language_ok, production_details
 from check_editorial_quality import copy_signature
 
 
@@ -19,6 +19,22 @@ def candidate(index, title, description):
 
 
 class ReliabilityTests(unittest.TestCase):
+    def test_ai_policy_and_hand_drawn_case_are_described_as_their_actual_subjects(self):
+        cases = [candidate(0, 'Epic Games Tells Devs No More Hand-Written Code: AI-First Production', 'AI-first production model.'),
+                 candidate(1, 'Creating An Animated Series With Hand-Drawn Textures In Blender', 'Hand-drawn textures for animation.')]
+        summaries = [production_summary(x['meta'], x['category'], x['subcategory']) for x in cases]
+        self.assertIn('要求與方向', summaries[0])
+        self.assertIn('手繪貼圖的製作與使用', summaries[1])
+        self.assertTrue(all('作品或工具' not in s for s in summaries))
+
+    def test_article_body_methods_are_used_without_related_story_noise(self):
+        result = {'url':'https://80.lv/articles/tool-fixture','final_url':'https://80.lv/articles/tool-fixture',
+                  'html':'<title>Blender image filter</title><meta name="description" content="A Blender rendering tool."><nav><p>Watercolor workflow with color palette management in another story.</p></nav><article><p>This Blender filter uses a Kuwahara algorithm to process rendered images.</p><aside><p>Watercolor workflow and oil painting in related stories.</p></aside></article>'}
+        m = collector.page_metadata(result)
+        self.assertIn('Kuwahara', m['article_excerpt'])
+        self.assertIn('Kuwahara 影像濾鏡', production_details(m))
+        self.assertNotIn('水彩風格', production_details(m))
+
     def test_refill_continues_past_twenty_and_preserves_verified_overflow(self):
         topics = ['肩膀','膝蓋','手腕','腳踝','腰部','頸部','手指','眼睛','嘴巴','眉毛','肘部','髖部','胸部','衣服','帽子','鞋子','裙子','頭髮','背包','手套','門窗','屋頂','地板','岩石','樹木','草地','河流','橋樑','牆面','階梯','欄杆','雕像','路燈','長椅']
         cases = []

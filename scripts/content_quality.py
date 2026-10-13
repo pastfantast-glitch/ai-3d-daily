@@ -144,6 +144,8 @@ FOCUS_TERMS = (
 )
 
 PRODUCTION_DETAIL_TERMS = (
+    (("hand-written code", "handwritten code", "ai-first"), "AI 輔助程式開發"),
+    (("hand-drawn textures", "hand-painted", "hand painting"), "手繪貼圖"),
     (("oil painting", "oil-painting"), "油畫筆觸"),
     (("watercolor", "watercolour"), "水彩風格"),
     (("brush strokes", "brushstrokes", "brush stroke"), "筆觸處理"),
@@ -511,7 +513,7 @@ def production_focus(meta: dict) -> list[str]:
 
 def production_details(meta: dict) -> list[str]:
     """Extract concrete reader-facing technical subjects without inventing source claims."""
-    text = f"{normalize_title(meta.get('title'))} {clean(meta.get('description'), 900)}".casefold()
+    text = f"{normalize_title(meta.get('title'))} {clean(meta.get('description'), 900)} {clean(meta.get('article_excerpt'), 1600)}".casefold()
     out: list[str] = []
     for needles, label in PRODUCTION_DETAIL_TERMS:
         if has_any(text, needles) and label not in out:
@@ -614,7 +616,7 @@ def plain_subject(meta: dict, category: str, subcategory: str) -> str:
         (("wristwatch", "möbius"), "手錶與莫比烏斯環"),
         (("deer",), "麋鹿建模"),
         (("dishes",), "餐具建模"),
-        (("photos", "photographs"), "照片轉繪畫"),
+        (("photos", "photographs"), "照片與影像製作"),
         (("painterly shader", "painting shader"), "繪畫風格著色器"),
         (("painterly",), "繪畫風格製作"),
         (("facial", "lip sync"), "臉部表演與綁定"),
@@ -684,6 +686,10 @@ def plain_reader_context(meta: dict, category: str, subcategory: str) -> tuple[s
         fact = "內容展示 Grease Pencil 的 Shape Keys 在角色 Rig 上的使用方式，讓美術觀察繪製形狀如何配合角色變形。"
     elif has_any(raw, ("mcp server",)):
         fact = f"{title.split('：')[0]} 加入 MCP Server，提供軟體與外部工具連接的新入口；實際可用指令仍需查對文件。"
+    elif has_any(raw, ("hand-written code", "handwritten code", "ai-first")):
+        fact = f"{title}。本文討論導入 AI 輔助程式開發的要求與方向；實際使用的工具、人工審查和適用範圍仍需對照原文。"
+    elif has_any(raw, ("hand-drawn textures", "hand-painted", "hand painting")):
+        fact = f"{title}。內容介紹手繪貼圖的製作與使用；涉及{detail or focus}，可對照作者公開的畫面與操作範例，確認如何保留筆觸和分色。"
     elif has_any(raw, ("paintings", "painterly", "oil painting", "watercolor", "watercolour")):
         inputs = []
         if has_any(raw, ("photo", "photos", "photographs")):
