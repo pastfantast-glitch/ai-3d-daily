@@ -8,6 +8,12 @@ URL = 'https://example.com/2026/10/article'
 
 
 class ArticleEvidenceTests(unittest.TestCase):
+    def test_embedded_publisher_marketing_is_not_method_evidence(self):
+        html = '<article><p>The software exports baked maps and animated assets for compositing.</p><p>Have your say on this story by following our social accounts.</p><p>Are you a fan of what we do here at 80 Level? Set us as a Preferred Source.</p></article>'
+        evidence = extract_article_evidence(html, URL)
+        self.assertEqual(len(evidence['blocks']), 1)
+        self.assertNotIn('Preferred Source', str(evidence))
+
     def test_interview_h4_sections_and_unwrapped_related_content(self):
         html = '<article><div id="80lv__article__body"><h4>Rigging method</h4><p>The artist uses Control Rig directly in the engine to pose characters.</p><h2>Related Posts</h2><p>This unrelated product was released many years earlier.</p></div></article>'
         evidence = extract_article_evidence(html, URL)

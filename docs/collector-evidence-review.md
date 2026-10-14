@@ -8,13 +8,15 @@ GitHub 排程 `38490380054` 與 `38494921839` 都找到 23 篇候選、淘汰 23
 
 10/12 第一個排程 `38188934539` 只留下 7 篇，低於 12 篇門檻；當時日誌沒有完整正文與淘汰分佈，因此不能推論其全部損失原因。10/13 更正稿有 17 篇人工核對內容，這證明發布管線可運作，沒有證明自動撰稿已足夠。
 
+新抽取流程的本機實際重跑找到 36 篇候選，36 篇皆抽到正文，但仍有 36 篇通用分析問題，22 篇同時缺少歷史標示。原文證據已可讀取，固定模板仍不能取代人工編輯；這次重跑未達發布門檻，沒有產生發布稿。
+
 六篇樣本在修改前後使用相同 HTML，比較如下。字數是來源文字字符數，不是中文稿字數；抽取變短可能表示移除了相關文章及留言。
 
 | 來源文章 | 原抽取字符 | 新抽取字符 | 證據段落 | 小標題 |
 | --- | ---: | ---: | ---: | ---: |
 | [Ghost Stride 技術訪談](https://80.lv/articles/how-this-painterly-animated-short-was-rigged-animated-entirely-in-unreal-engine) | 1600 | 29991 | 61 | 9 |
-| [19 組免費動捕](https://80.lv/articles/get-ready-for-halloween-with-these-19-free-mocap-animations) | 1530 | 1523 | 8 | 0 |
-| [CozyBlanket Pro](https://www.cgchannel.com/2026/10/sparseal-releases-cozyblanket-pro) | 1600 | 4869 | 29 | 0 |
+| [19 組免費動捕](https://80.lv/articles/get-ready-for-halloween-with-these-19-free-mocap-animations) | 1530 | 1088 | 6 | 0 |
+| [CozyBlanket Pro](https://www.cgchannel.com/2026/10/sparseal-releases-cozyblanket-pro) | 1600 | 4527 | 28 | 0 |
 | [四分鐘 4DGS](https://www.cgchannel.com/2026/04/dne-and-gracia-release-4-minute-streamable-4dgs-performance) | 1524 | 1518 | 7 | 0 |
 | [MIRROR 0.34](https://3dnchu.com/archives/mirror-0-34beta) | 1600 | 1311 | 13 | 3 |
 | [Infinity Weather 2.0](https://3dnchu.com/archives/infinity-weather-2-0) | 1138 | 534 | 6 | 1 |

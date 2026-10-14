@@ -16,6 +16,8 @@ NOISE = re.compile(r'(?:^|[\s_-])(?:related|sidebar|comments?|conversation|newsl
                    r'social|share|advertisement|advert|cookie|next-prev|post-meta)(?:$|[\s_-])', re.I)
 MAX_CHARS = 48000
 MAX_BLOCKS = 200
+TEXT_NOISE = re.compile(r'^(?:Have your say on this story|Are you a fan of what we do here)'
+                        r'|subscribe to our Newsletter.*80 Level', re.I)
 
 
 def clean(text):
@@ -56,7 +58,7 @@ def extract_article_evidence(html: str, url: str) -> dict:
                 break
             section = text
             continue
-        if len(text) < 20 or text in seen:
+        if len(text) < 20 or text in seen or TEXT_NOISE.search(text):
             continue
         seen.add(text)
         observed += len(text)
