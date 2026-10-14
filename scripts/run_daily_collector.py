@@ -19,6 +19,7 @@ import re
 import sys
 import time
 import subprocess
+import os
 
 import requests
 from bs4 import BeautifulSoup
@@ -32,6 +33,7 @@ from discovery_hybrid import load_hybrid_config, registered_source_probe_plan, r
 from url_identity import canonicalize_url
 from content_quality import admission as content_admission, classify_content, normalize_title, production_summary, editorial_title, editorial_analysis, reviewed_reader_copy
 from check_editorial_quality import editorial_errors
+from article_evidence import extract_article_evidence, review_record, loss_summary
 from collector_personalization import load_owner_preferences, apply_candidate_personalization, positive_expansion_terms, expand_source_links
 
 INTEL_PATH = ROOT / "config" / "intelligence-v2.json"
@@ -250,9 +252,6 @@ def page_metadata(result: dict, fallback_title: str = "") -> dict | None:
             description = clean(obj.get("description") or description)
             published = clean(obj.get("datePublished") or published)
             break
-    if not description:
-        paragraphs = [clean(p.get_text(" ", strip=True), 600) for p in soup.find_all("p")]
-        description = next((p for p in paragraphs if len(p) >= 60), "")
     if not published:
         node = next((node for node in soup.find_all("time")
                      if not node.find_parent(["aside", "nav", "footer"])), None)
@@ -276,17 +275,16 @@ def page_metadata(result: dict, fallback_title: str = "") -> dict | None:
         published = reviewed.get("source_published_at")
     # Only an explicit article body contributes extra method evidence. Avoid
     # scanning page-wide navigation/related-story copy for reader facts.
-    article = soup.find("article")
-    excerpt = ""
-    if article:
-        paragraphs = [clean(p.get_text(" ", strip=True)) for p in article.find_all("p")
-                      if not p.find_parent(["nav", "aside", "footer"])]
-        excerpt = clean(" ".join(p for p in paragraphs if len(p) >= 30), 1600)
+    evidence = extract_article_evidence(html, final_url)
+    excerpt = " ".join(block['text'] for block in evidence['blocks'])
+    if not description:
+        description = next((b['text'] for b in evidence['blocks'] if len(b['text']) >= 60), '')
     return {
         "url": final_url,
         "title": clean(title, 220),
         "description": clean(description, 650),
         "article_excerpt": excerpt,
+        "article_evidence": evidence,
         "published": parse_date(published),
         "article_type": article_type,
         "html": html,
@@ -1500,6 +1498,21 @@ def main() -> int:
 
     # Preserve bounded public-source diagnostics in the runner log even when a
     # failed attempt cannot commit its private artifacts. Never log owner data.
+    evidence_audit = loss_summary(discovered, editorial_rejections)
+    print("COLLECTOR ARTICLE EVIDENCE AUDIT: " + json.dumps(evidence_audit, ensure_ascii=False), flush=True)
+    # Evidence packets are temporary review artifacts, never public reader copy.
+    # Explicit field allowlists exclude HTML, credentials and owner preferences.
+    audit_path = os.environ.get('COLLECTOR_REVIEW_PACKET')
+    if audit_path:
+        error_map = {c['candidate_id']: errors for c, errors in editorial_rejections}
+        write_json(Path(audit_path), {
+            'schema_version': 1, 'date': report_date, 'summary': evidence_audit,
+            'sources': {sid: {key: record.get(key) for key in (
+                'status', 'candidates_found', 'published_links_skipped', 'reason',
+                'index_pages_checked', 'feed_urls_checked', 'refill_links_checked',
+            )} for sid, record in probe_records.items()},
+            'articles': [review_record(c, error_map.get(c['candidate_id'], [])) for c in discovered],
+        })
     print("COLLECTOR DISCOVERY AUDIT: " + json.dumps({
         "date": report_date,
         "readable_survivors": len(survivors),

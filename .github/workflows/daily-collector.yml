@@ -16,6 +16,7 @@ on:
       - 'config/collector-runtime.json'
       - 'data/ops/collector-watchdog.json'
       - 'scripts/run_daily_collector.py'
+      - 'scripts/article_evidence.py'
       - 'scripts/collector_personalization.py'
       - 'config/personalization-feedback.json'
       - 'scripts/content_quality.py'
@@ -197,12 +198,22 @@ jobs:
         shell: bash
         env:
           DATE: ${{ steps.preflight.outputs.date }}
+          COLLECTOR_REVIEW_PACKET: ${{ runner.temp }}/collector-review.json
         run: |
           if [ "${{ steps.preflight.outputs.policy_recollect }}" = "true" ]; then
             python scripts/run_daily_collector.py "$DATE" --replace-done
           else
             python scripts/run_daily_collector.py "$DATE"
           fi
+
+      - name: Preserve source evidence for human editorial review
+        if: always() && steps.preflight.outputs.skip != 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: collector-review-${{ steps.preflight.outputs.date }}-${{ github.run_id }}
+          path: ${{ runner.temp }}/collector-review.json
+          if-no-files-found: ignore
+          retention-days: 7
 
       - name: Validate Collector session and canonical/private boundary
         if: steps.preflight.outputs.skip != 'true'
