@@ -1,0 +1,945 @@
+{
+  "date": "2026-10-16",
+  "schema_version": 3,
+  "metadata": {
+    "total_items": 20,
+    "collection_mode": "production-intelligence-preference-v1-hybrid",
+    "collection_contract_effective_date": "2026-09-04",
+    "preference_contract_effective_date": "2026-09-06",
+    "admission_policy_effective_date": "2026-09-15",
+    "collector_runtime": "autonomous-github-collector-v1",
+    "policy_recollect": false,
+    "discovery_windows": [
+      "24h",
+      "7d",
+      "30d",
+      "6m",
+      "evergreen"
+    ],
+    "analysis_level_counts": {
+      "FULL": 0,
+      "BRIEF": 20,
+      "REJECT": 0
+    },
+    "analysis_level_policy": "evidence-depth-tiered; FULL=3-5 source-supported blocks; BRIEF=3 readable source-grounded angles with explicit limits; REJECT=not-publishable",
+    "full_analysis_depth_contract": "v6-tiered-evidence-three-angle-reading",
+    "full_analysis_style_reference": "2026-09-12",
+    "full_analysis_heading_language": "zh-Hant",
+    "editorial": {
+      "contract": "source-grounded-editorial-v1",
+      "style_reference": "2026-09-25",
+      "selection_changed": null,
+      "factual_fallback_allowed": true,
+      "repair_mode": "automatic-source-factual-fallback"
+    },
+    "discovery_coverage": {
+      "fill_ladder_exhausted": true,
+      "backlog_checked": true,
+      "backlog_remaining_eligible": 0,
+      "targeted_refill_performed": true,
+      "quality_first_confirmed": true,
+      "windows": {
+        "24h": {
+          "status": "exhausted",
+          "candidates_found": 3
+        },
+        "7d": {
+          "status": "exhausted",
+          "candidates_found": 4
+        },
+        "30d": {
+          "status": "exhausted",
+          "candidates_found": 0
+        },
+        "6m": {
+          "status": "exhausted",
+          "candidates_found": 8
+        },
+        "evergreen": {
+          "status": "exhausted",
+          "candidates_found": 15
+        }
+      },
+      "category_candidates": {
+        "ai-generation": {
+          "candidates_considered": 0
+        },
+        "3d-production": {
+          "candidates_considered": 4
+        },
+        "3d-animation": {
+          "candidates_considered": 0
+        },
+        "engine-art": {
+          "candidates_considered": 3
+        },
+        "emerging-case": {
+          "candidates_considered": 5
+        },
+        "blender-dcc": {
+          "candidates_considered": 18
+        }
+      },
+      "registered_source_probe": {
+        "performed": true,
+        "initial_selected": [
+          "80-level",
+          "3dnchu",
+          "cgworld-jp",
+          "bilibili-mobile",
+          "cg-channel",
+          "blender-official",
+          "epic-developer-community",
+          "unity-official",
+          "sidefx-official"
+        ],
+        "refill_selected": [
+          "artstation",
+          "gumroad-discover",
+          "xiaohongshu",
+          "autodesk-area",
+          "adobe-substance-3d",
+          "game-developer"
+        ],
+        "refill_batches": 2,
+        "pre_refill_survivors": 20,
+        "post_refill_survivors": 20,
+        "sources": {
+          "80-level": {
+            "status": "checked",
+            "method": "latest-index",
+            "candidates_found": 3,
+            "candidate_ids": [
+              "80-level-how-brigador-killers-makes-blowing-up-buildings-part-of-the",
+              "80-level-beastlink-devs-detail-the-tech-behind-its-massive-kaiju-dest",
+              "80-level-unity-destruction-prototype-with-fully-procedural-runtime-fr"
+            ],
+            "index_pages_checked": 2,
+            "feed_urls_checked": 0,
+            "refill_links_checked": 8,
+            "semantic_expansion_links_checked": 0,
+            "published_links_skipped": 5,
+            "selection_phase": "daily-plan"
+          },
+          "3dnchu": {
+            "status": "checked",
+            "method": "latest-index",
+            "candidates_found": 9,
+            "candidate_ids": [
+              "3dnchu-cinebench-r20",
+              "3dnchu-hair-tool-for-blender-2-0",
+              "3dnchu-ue5-kurie-vfx-shader-v1-0",
+              "3dnchu-comics-shader-v4-0",
+              "3dnchu-garment-tool-b3d",
+              "3dnchu-geometry-node-particle-system-v4",
+              "3dnchu-lightning-boy-shader-2-1",
+              "3dnchu-mercedes-c63-amg-free-model",
+              "3dnchu-simply-material-fashion-design-1-0"
+            ],
+            "index_pages_checked": 1,
+            "feed_urls_checked": 2,
+            "refill_links_checked": 16,
+            "semantic_expansion_links_checked": 2,
+            "published_links_skipped": 4,
+            "selection_phase": "daily-plan"
+          },
+          "cgworld-jp": {
+            "status": "checked",
+            "method": "latest-index",
+            "candidates_found": 0,
+            "candidate_ids": [],
+            "index_pages_checked": 2,
+            "feed_urls_checked": 0,
+            "refill_links_checked": 0,
+            "semantic_expansion_links_checked": 0,
+            "published_links_skipped": 1,
+            "selection_phase": "daily-plan"
+          },
+          "bilibili-mobile": {
+            "status": "checked",
+            "method": "latest-index",
+            "candidates_found": 0,
+            "candidate_ids": [],
+            "index_pages_checked": 1,
+            "feed_urls_checked": 0,
+            "refill_links_checked": 0,
+            "semantic_expansion_links_checked": 0,
+            "published_links_skipped": 0,
+            "selection_phase": "daily-plan"
+          },
+          "artstation": {
+            "status": "blocked",
+            "method": "latest-index",
+            "candidates_found": 0,
+            "candidate_ids": [],
+            "reason": "http-403",
+            "index_pages_checked": 0,
+            "feed_urls_checked": 0,
+            "refill_links_checked": 0,
+            "selection_phase": "targeted-refill"
+          },
+          "gumroad-discover": {
+            "status": "checked",
+            "method": "latest-index",
+            "candidates_found": 0,
+            "candidate_ids": [],
+            "index_pages_checked": 1,
+            "feed_urls_checked": 0,
+            "refill_links_checked": 0,
+            "semantic_expansion_links_checked": 0,
+            "published_links_skipped": 0,
+            "selection_phase": "targeted-refill"
+          },
+          "xiaohongshu": {
+            "status": "checked",
+            "method": "latest-index",
+            "candidates_found": 0,
+            "candidate_ids": [],
+            "index_pages_checked": 1,
+            "feed_urls_checked": 0,
+            "refill_links_checked": 0,
+            "semantic_expansion_links_checked": 0,
+            "published_links_skipped": 0,
+            "selection_phase": "targeted-refill"
+          },
+          "cg-channel": {
+            "status": "checked",
+            "method": "latest-index",
+            "candidates_found": 18,
+            "candidate_ids": [
+              "cg-channel-maxon-releases-zbrush-2027-0-and-zbrush-for-ipad-2027-0",
+              "cg-channel-maxon-releases-cinema-4d-2027-0",
+              "cg-channel-sparseal-releases-cozyblanket-pro",
+              "cg-channel-watch-vinefxs-explosive-vfx-breakdown-for-pompeii-out-of-tim",
+              "cg-channel-foundry-releases-mari-8-0",
+              "cg-channel-get-free-maya-character-rigging-toolset-mgear-5-4",
+              "cg-channel-see-reallusions-2026-roadmap-redefining-3d-with-hybrid-ai",
+              "cg-channel-maxon-releases-cinema-4d-2026-3",
+              "cg-channel-autodesk-releases-3ds-max-2027-2-with-editable-gaussian-spla",
+              "cg-channel-miquel-campos-ships-mgear-free-maya-rigging-framework",
+              "cg-channel-ipad-app-cozyblanket-puts-the-fun-back-into-retopology",
+              "cg-channel-free-tool-p4houdini-builds-version-control-into-houdini",
+              "cg-channel-maxon-releases-zbrush-for-ipad",
+              "cg-channel-get-free-maya-and-ue5-rigging-tools-mgear-5-0-and-uegear-1-0",
+              "cg-channel-maxon-releases-cinema-4d-2025-3-with-liquid-simulation-and-u",
+              "cg-channel-the-desktop-edition-of-zbrush-is-finally-getting-a-new-inter",
+              "cg-channel-motion-design-tool-autograph-is-now-free-to-studios",
+              "cg-channel-check-out-this-free-gaussian-splatting-plugin-for-after-effe"
+            ],
+            "index_pages_checked": 4,
+            "feed_urls_checked": 2,
+            "refill_links_checked": 16,
+            "semantic_expansion_links_checked": 0,
+            "published_links_skipped": 38,
+            "selection_phase": "daily-plan"
+          },
+          "blender-official": {
+            "status": "checked",
+            "method": "latest-index",
+            "candidates_found": 0,
+            "candidate_ids": [],
+            "index_pages_checked": 5,
+            "feed_urls_checked": 1,
+            "refill_links_checked": 0,
+            "semantic_expansion_links_checked": 5,
+            "published_links_skipped": 12,
+            "selection_phase": "daily-plan"
+          },
+          "epic-developer-community": {
+            "status": "checked",
+            "method": "latest-index",
+            "candidates_found": 0,
+            "candidate_ids": [],
+            "index_pages_checked": 1,
+            "feed_urls_checked": 0,
+            "refill_links_checked": 0,
+            "semantic_expansion_links_checked": 0,
+            "published_links_skipped": 0,
+            "selection_phase": "daily-plan"
+          },
+          "unity-official": {
+            "status": "checked",
+            "method": "latest-index",
+            "candidates_found": 0,
+            "candidate_ids": [],
+            "index_pages_checked": 2,
+            "feed_urls_checked": 0,
+            "refill_links_checked": 0,
+            "semantic_expansion_links_checked": 0,
+            "published_links_skipped": 0,
+            "selection_phase": "daily-plan"
+          },
+          "sidefx-official": {
+            "status": "checked",
+            "method": "latest-index",
+            "candidates_found": 0,
+            "candidate_ids": [],
+            "index_pages_checked": 2,
+            "feed_urls_checked": 0,
+            "refill_links_checked": 0,
+            "semantic_expansion_links_checked": 0,
+            "published_links_skipped": 3,
+            "selection_phase": "daily-plan"
+          },
+          "autodesk-area": {
+            "status": "checked",
+            "method": "latest-index",
+            "candidates_found": 0,
+            "candidate_ids": [],
+            "index_pages_checked": 1,
+            "feed_urls_checked": 0,
+            "refill_links_checked": 0,
+            "semantic_expansion_links_checked": 0,
+            "published_links_skipped": 0,
+            "selection_phase": "targeted-refill"
+          },
+          "adobe-substance-3d": {
+            "status": "checked",
+            "method": "latest-index",
+            "candidates_found": 0,
+            "candidate_ids": [],
+            "index_pages_checked": 1,
+            "feed_urls_checked": 0,
+            "refill_links_checked": 0,
+            "semantic_expansion_links_checked": 0,
+            "published_links_skipped": 0,
+            "selection_phase": "targeted-refill"
+          },
+          "game-developer": {
+            "status": "checked",
+            "method": "latest-index",
+            "candidates_found": 0,
+            "candidate_ids": [],
+            "index_pages_checked": 1,
+            "feed_urls_checked": 0,
+            "refill_links_checked": 0,
+            "semantic_expansion_links_checked": 0,
+            "published_links_skipped": 0,
+            "selection_phase": "targeted-refill"
+          }
+        }
+      },
+      "notes": "2026-10-16 autonomous GitHub Collector loaded the Published Registry snapshot before discovery, supplemented it from verified-DONE history when needed, checked rolling backlog, executed the current-main deterministic registered-source probe plan, crawled configured source indexes plus bounded same-source refill, then used the current-main deficit-aware deterministic registered-source refill only when the verified survivor count remained below the normal floor, and applied exact source/stable identity dedupe before ranking. Registered refill: pre=20 post=20 batches=2 selected=[\"artstation\", \"gumroad-discover\", \"xiaohongshu\", \"autodesk-area\", \"adobe-substance-3d\", \"game-developer\"]. Registry audit: {\"history_supplemented_items\": 0, \"latest_verified_done\": \"2026-10-13\", \"snapshot_generated_through\": \"2026-10-13\", \"snapshot_state\": \"DERIVED_FROM_VERIFIED_DONE\", \"source_identities\": 807, \"stable_ids\": 806}. Backlog entries rechecked=0. No source registration/domain supplied ranking bonus, quota or admission bypass."
+    },
+    "personalization": {
+      "contract": "supabase-semantic-feedback-v1",
+      "status": "applied",
+      "vote_count": 14,
+      "max_rank_multiplier": 0.2,
+      "max_query_expansion_fraction": 0.2,
+      "raw_profile_committed": false,
+      "bookmarks_used": false,
+      "domain_weights_used": false,
+      "admission_bypass": false,
+      "quality_gate_bypass": false,
+      "source_quota": false,
+      "ranking_adjusted_count": 25,
+      "semantic_expansion_candidates": 1,
+      "profile_fingerprint": "2df65319ebaceede679f1f6481f06d39fa9dba7ebf259df3a587d7197c44faf0",
+      "reader": "github-actions-oidc-owner-v1"
+    }
+  },
+  "items": [
+    {
+      "id": "80-level-how-brigador-killers-makes-blowing-up-buildings-part-of-the",
+      "title": "《Brigador Killers》：精靈圖破壞場景的製作與視覺辨識",
+      "summary": "團隊把模型轉成多角度精靈圖，輸出顏色與深度資訊供引擎處理遮擋及光照；破壞效果另依物件配置，並降低受損場景的對比，保持戰鬥畫面清楚。",
+      "quick_impact": "★★★★★",
+      "source_url": "https://80.lv/articles/how-brigador-killers-makes-blowing-up-buildings-part-of-the-strategy",
+      "category": "3d-production",
+      "subcategory": "environment-production",
+      "ranking_score": 99.44,
+      "base_ranking_score": 90.0,
+      "source_published_at": "2026-10-15",
+      "analysis_level": "BRIEF",
+      "brief_reason": "single-source-verified-production-tip",
+      "full_analysis": [
+        {
+          "label": "模型如何變成遊戲素材",
+          "text": "資產在 Plasticity 或 Blender 建形、以 Substance Painter 貼圖，再由 Blender 腳本渲染。環境物件採四個方向，載具採多角度旋轉；輸出的深度資訊用於精靈圖穿插遮擋及推導光照法線。"
+        },
+        {
+          "label": "破壞效果與注意力分配",
+          "text": "各物件的效果堆疊會一起觸發粒子、精靈圖及聲光。團隊讓受損物件降低對比與色彩，並控制煙塵、碎片的視覺權重，避免掩蓋角色及正在攻擊玩家的敵人。"
+        },
+        {
+          "label": "效能取捨仍需保留",
+          "text": "這是以精靈圖呈現的遊戲，團隊仍管理繪製呼叫、貼圖解析度及動態光源大小；大型爆炸的強光只短暫存在，碎片以查找表換色重用，不能視為全三維即時破壞的同等成本。"
+        }
+      ],
+      "rank_global": 1,
+      "homepage_tier": "top5"
+    },
+    {
+      "id": "cg-channel-maxon-releases-zbrush-2027-0-and-zbrush-for-ipad-2027-0",
+      "title": "ZBrush 2027：UV 編輯器與子工具狀態切換",
+      "summary": "桌面版新增 UV 編輯器，可依多邊形群組展開並調整打包及紋素密度；選取集合還能保存子工具的群組、遮罩與上色等狀態。iPad 版則補上投影繪圖及三維圖層。",
+      "quick_impact": "★★★★★",
+      "source_url": "https://www.cgchannel.com/2026/10/maxon-releases-zbrush-2027-0-and-zbrush-for-ipad-2027-0",
+      "category": "3d-production",
+      "subcategory": "production-workflow",
+      "ranking_score": 96.26,
+      "base_ranking_score": 89.0,
+      "source_published_at": "2026-10-15",
+      "analysis_level": "BRIEF",
+      "brief_reason": "single-source-verified-production-tip",
+      "full_analysis": [
+        {
+          "label": "雕刻內處理展開與貼圖配置",
+          "text": "新編輯器沿用 Cinema 4D 的底層技術，除了自動展開，也能手動編輯、調整打包與紋素密度，支援 UDIM 及條帶貼圖流程；目的在減少修改雕刻時往返其他 DCC 的次數。"
+        },
+        {
+          "label": "保存同一資產的多種工作狀態",
+          "text": "選取集合不只保存面或點的選取，還能記錄子工具的群組、遮罩、上色、UV 與變形目標。文章舉例包括切換展開與擺姿勢所需的群組，以及審圖時切換配色。"
+        },
+        {
+          "label": "桌面與平板功能不要混列",
+          "text": "iPad 版這次新增的是 Spotlight 投影繪圖與三維圖層，桌面版的新 UV 編輯器不能一併當成平板功能。文章分列兩個平台，並沒有宣稱功能已完全一致。"
+        }
+      ],
+      "rank_global": 2,
+      "homepage_tier": "top5"
+    },
+    {
+      "id": "cg-channel-sparseal-releases-cozyblanket-pro",
+      "title": "CozyBlanket Pro：手繪引導線輔助重拓樸、UV 與烘焙",
+      "summary": "這款獨立的新產品先由美術在模型表面畫拓樸或接縫引導，再由本機 AI 補齊細節；也提供手動調整、貼圖烘焙及模型匯出，現階段以 iPad 版本提供。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://www.cgchannel.com/2026/10/sparseal-releases-cozyblanket-pro",
+      "category": "3d-production",
+      "subcategory": "production-workflow",
+      "ranking_score": 87.66,
+      "base_ranking_score": 83.0,
+      "source_published_at": "2026-10-13",
+      "analysis_level": "BRIEF",
+      "brief_reason": "single-source-verified-production-tip",
+      "full_analysis": [
+        {
+          "label": "重拓樸仍由引導線決定方向",
+          "text": "美術先畫出拓樸區塊邊界，工具補出內部網格，再以更多引導線或手動頂點、邊與面的編輯細修。文章也指出早期臉部示範的拓樸並不理想，結果仍取決於引導線品質。"
+        },
+        {
+          "label": "展開、烘焙與交付格式",
+          "text": "UV 接縫可由手繪起始線引導自動生成，再調整配置及密度；烘焙包括頂點色、切線空間與環境遮蔽貼圖，支援 UDIM，重拓樸模型可輸出 OBJ 或 glTF。"
+        },
+        {
+          "label": "產品與平台的購買界線",
+          "text": "Pro 與原版不共用程式架構及檔案格式，舊版使用者沒有直接升級路徑。桌面版及網路橋接仍在開發且未公布日期，並預告需另購，不能當成目前已含的桌面工具。"
+        }
+      ],
+      "rank_global": 3,
+      "homepage_tier": "top5"
+    },
+    {
+      "id": "cg-channel-maxon-releases-cinema-4d-2027-0",
+      "title": "Cinema 4D 2027：場景散布、液體泡沫與節點控制",
+      "summary": "新版以專用產生器沿表面、曲線或 UV 散布物件，並為既有液體模擬增加噴濺、泡沫與氣泡；另外提供節點式場域及效果器，擴充動態圖像製作的控制方式。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://www.cgchannel.com/2026/10/maxon-releases-cinema-4d-2027-0",
+      "category": "blender-dcc",
+      "subcategory": "other-dcc",
+      "ranking_score": 87.44,
+      "base_ranking_score": 86.0,
+      "source_published_at": "2026-10-15",
+      "analysis_level": "BRIEF",
+      "brief_reason": "single-source-verified-production-tip",
+      "full_analysis": [
+        {
+          "label": "佈景由分布規則與個別覆寫組成",
+          "text": "散布產生器可依表面、曲線及 UV 放置物件，透過貼圖、密度、距離與過濾條件限定範圍，並調整群聚及隨機變化；散布標籤允許個別物件覆寫設定，供植栽或碎石佈景使用。"
+        },
+        {
+          "label": "次級液體效果依既有模擬產生",
+          "text": "液體特效發射器讀取既有模擬粒子，於快速彎曲的表面產生浪花與泡沫，在困住空氣的位置產生氣泡；修改器則能將原粒子直接轉成液體特效粒子，兩者用途不同。"
+        },
+        {
+          "label": "節點與跨軟體交換的新增範圍",
+          "text": "新場域與效果器可由節點圖建立控制規則，並相容既有 MCP 伺服器；同版也能把相機、燈光、基本物件等貼到 Autograph。這是指定資料類型的交換，不能延伸成完整場景無損轉移。"
+        }
+      ],
+      "rank_global": 4,
+      "homepage_tier": "top5"
+    },
+    {
+      "id": "cg-channel-foundry-releases-mari-8-0",
+      "title": "Mari 8：三平面投影、六角拼貼與遮罩節點更新",
+      "summary": "Mari 8.0 正式版增加單圖三平面投影及六角拼貼節點，並擴充對照、調色與遮罩生成方式；原文由七月測試版介紹更新而來，這次已標示正式發布。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://www.cgchannel.com/2026/10/foundry-releases-mari-8-0",
+      "category": "blender-dcc",
+      "subcategory": "other-dcc",
+      "ranking_score": 83.17,
+      "base_ranking_score": 80.0,
+      "source_published_at": "2026-10-14",
+      "analysis_level": "BRIEF",
+      "brief_reason": "single-source-verified-production-tip",
+      "full_analysis": [
+        {
+          "label": "減少接縫與規律重複",
+          "text": "新的三平面拼貼節點沿三軸投影同一張二維貼圖，提供細節保留與混合控制，供 UV 扭曲、接縫或尚無 UV 的模型使用；六角拼貼則用六角網格混合紋理，減少明顯重複。"
+        },
+        {
+          "label": "材質比較與局部遮罩",
+          "text": "對照節點可在兩條節點流之間做滑動比較，色彩重映射節點集中調整色相、飽和度、曝光與伽瑪；遮罩可從畫布選取、選取群組及模型顏色產生，也能為任意節點加入遮罩入口。"
+        },
+        {
+          "label": "正式版與資料讀取的界線",
+          "text": "文章開頭說明內容從七月公開測試版更新至正式版，並列出轉向 CY2025 視效參考平台。USD 相機支援是唯讀，不能把它說成已能在 Mari 內編修或回寫相機。"
+        }
+      ],
+      "rank_global": 5,
+      "homepage_tier": "top5"
+    },
+    {
+      "id": "cg-channel-get-free-maya-character-rigging-toolset-mgear-5-4",
+      "title": "mGear 5.4：統一臉部綁定、動畫選取器與關鍵姿勢殘影",
+      "summary": "十月更新將眼睛、嘴唇及眉毛綁定整合到同一套臉部引擎，並重寫動畫選取介面；動畫師可用三維殘影比較控制器關鍵影格中的角色姿勢。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://www.cgchannel.com/2026/10/get-free-maya-character-rigging-toolset-mgear-5-4",
+      "category": "blender-dcc",
+      "subcategory": "maya",
+      "ranking_score": 82.78,
+      "base_ranking_score": 80.0,
+      "source_published_at": "2026-10-14",
+      "analysis_level": "BRIEF",
+      "brief_reason": "useful-tool-or-addon-limited-depth",
+      "full_analysis": [
+        {
+          "label": "臉部綁定共用介面與建置流程",
+          "text": "Facial Rigger 3.0 整合原本分開的眼睛、嘴唇及眉毛綁定，統一幾何選取方式，臉部可與整體角色一起建置。舊版眼睛綁定器仍保留，讓既有角色維持原建置方式。"
+        },
+        {
+          "label": "選取器與姿勢比較工具",
+          "text": "新動畫選取器加入向量形狀、互動元件、鏡像、條件顯示及視埠固定等功能；Blocking Ghosts 則針對正在觀察的控制器，在關鍵影格顯示半透明角色姿勢，供動作比較。"
+        },
+        {
+          "label": "不同版本的更新分開看",
+          "text": "原文從 2025 年開始累積 5.x 更新，變形目標轉移與姿勢驅動設定屬於較早的 5.3；5.4 另外更新次級動作求解器。套件列明支援 Maya 2022 以上，不能把各版新增項目混為同次發布。"
+        }
+      ],
+      "rank_global": 6,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "cg-channel-watch-vinefxs-explosive-vfx-breakdown-for-pompeii-out-of-tim",
+      "title": "《龐貝：末日時刻》特效拆解：城市重建與火山噴發",
+      "summary": "Vine FX 為紀錄劇的戲劇重建段落製作維蘇威火山與龐貝城的三維場景，並呈現熔融岩石、浮石及熱灰覆蓋城市和周邊地景的噴發效果；文章未公開使用的軟體或模擬設定。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://www.cgchannel.com/2026/10/watch-vinefxs-explosive-vfx-breakdown-for-pompeii-out-of-time",
+      "category": "emerging-case",
+      "subcategory": "case-study",
+      "ranking_score": 81.0,
+      "base_ranking_score": 81.0,
+      "source_published_at": "2026-10-14",
+      "analysis_level": "BRIEF",
+      "brief_reason": "production-reference-limited-depth",
+      "full_analysis": [
+        {
+          "label": "三維場景服務歷史重建",
+          "text": "這份拆解對應三集紀錄劇的戲劇重建部分，工作範圍包括以三維方式重建維蘇威火山與山腳城市，用來搭配紀錄片中的訪談與敘事。"
+        },
+        {
+          "label": "噴發效果與地景的關係",
+          "text": "展示焦點是噴發物落向龐貝城、周邊鄉野及那不勒斯灣的畫面，包含熔融岩石、碎裂浮石及熱灰。可從拆解觀察災害尺度與地景如何配合，而非取得完整的製作步驟。"
+        },
+        {
+          "label": "可確認的技術資訊有限",
+          "text": "文章把其他技術資訊標為尚無內容，沒有列出模擬工具、參數、快取規格或製作工時。因此這則只提供場景與效果範圍的拆解參考，不據此指定使用 Houdini 或其他軟體。"
+        }
+      ],
+      "rank_global": 7,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "cg-channel-see-reallusions-2026-roadmap-redefining-3d-with-hybrid-ai",
+      "title": "歷史參考：Reallusion 四月角色工具與混合 AI 路線圖",
+      "summary": "2026 年四月的廠商贊助文章規劃角色頭像重建、網格包覆、臉部動捕與關節修形，並介紹由三維預演引導生成影像的方向；這裡整理的是當時規劃，並未核實各功能今日的上市狀態。",
+      "quick_impact": "★★★☆☆",
+      "source_url": "https://www.cgchannel.com/2026/04/see-reallusions-2026-roadmap-redefining-3d-with-hybrid-ai",
+      "category": "3d-production",
+      "subcategory": "character-production",
+      "ranking_score": 77.48,
+      "base_ranking_score": 72.0,
+      "source_published_at": "2026-04-16",
+      "analysis_level": "BRIEF",
+      "brief_reason": "useful-tool-or-addon-limited-depth",
+      "full_analysis": [
+        {
+          "label": "角色網格與姿勢變形方向",
+          "text": "路線圖提出將模型包覆到標準角色拓樸、從參考圖生成衣物與自動蒙皮，以及以關節修正變形改善姿勢中的肌肉形狀。這些是廠商描述的規劃能力，並非本次獨立測得的成果。"
+        },
+        {
+          "label": "頭像與臉部動作的預告",
+          "text": "Headshot 3 規劃以自家模型重建頭部，補上曲線調形、鏡頭校正及紋理遮罩操作；AccuFace 2 則宣告為新角色面部配置更新追蹤，支援網路攝影機與影片輸入。"
+        },
+        {
+          "label": "贊助內容與發布狀態的限制",
+          "text": "這是標註贊助的 2026 年四月路線圖，含上市前優惠及尚稱即將更新的產品；文章不能證明十月的交付日期、實際品質或全部功能均已可用，也不採用其中的促銷承諾作為購買建議。"
+        }
+      ],
+      "rank_global": 8,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "cg-channel-autodesk-releases-3ds-max-2027-2-with-editable-gaussian-spla",
+      "title": "3ds Max 七月版本回顧：高斯潑濺與點實例修改器",
+      "summary": "2027.2 版在七月加入高斯潑濺匯入與編輯，配合 Arnold 可重打光及渲染；新的點物件與實例修改器，則讓場景物件依點資料在渲染時計算實例。",
+      "quick_impact": "★★★☆☆",
+      "source_url": "https://www.cgchannel.com/2026/07/autodesk-releases-3ds-max-2027-2-with-editable-gaussian-splats",
+      "category": "blender-dcc",
+      "subcategory": "other-dcc",
+      "ranking_score": 70.82,
+      "base_ranking_score": 69.0,
+      "source_published_at": "2026-07-22",
+      "analysis_level": "BRIEF",
+      "brief_reason": "emerging-research-limited-production-evidence",
+      "full_analysis": [
+        {
+          "label": "掃描資料進入既有修改器流程",
+          "text": "高斯潑濺可用 PLY、SPZ 或 LCC 格式匯入，在 ActiveShade 預覽，並用點修改器或其他既有修改器操作；重打光與最終渲染依賴 Arnold 整合，並非所有渲染器自動支援。"
+        },
+        {
+          "label": "點資料作為佈景載體",
+          "text": "新點物件可表示可編輯點、點球與高斯潑濺；多邊形網格還能按頂點、表面密度或體積轉成點。點實例修改器引用場景物件放到這些位置，供植栽佈景或動態圖像使用。"
+        },
+        {
+          "label": "點物件不等於任意點雲",
+          "text": "文章明確限定點實例修改器可作用於多邊形網格或點物件，不能直接作用於點雲或粒子系統；它能引用網格及高斯潑濺。因此不能把支援點資料擴大成所有掃描格式都能直接實例化。"
+        }
+      ],
+      "rank_global": 9,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "cg-channel-maxon-releases-cinema-4d-2026-3",
+      "title": "Cinema 4D 六月版本回顧：UV 編輯器與粒子屬性管理",
+      "summary": "2026.3 版在六月重做 UV 編輯器，使選取及變換更貼近建模操作；同版加入三種複製物件分布方式及粒子屬性管理器。本則整理六月版本的製作功能，不當作十月的新發布公告。",
+      "quick_impact": "★★★☆☆",
+      "source_url": "https://www.cgchannel.com/2026/06/maxon-releases-cinema-4d-2026-3",
+      "category": "blender-dcc",
+      "subcategory": "other-dcc",
+      "ranking_score": 70.03,
+      "base_ranking_score": 69.0,
+      "source_published_at": "2026-06-10",
+      "analysis_level": "BRIEF",
+      "brief_reason": "useful-tool-or-addon-limited-depth",
+      "full_analysis": [
+        {
+          "label": "展開操作與建模流程對齊",
+          "text": "新 UV 編輯器取代舊有 BodyPaint 編輯器，支援展開、打包、鬆弛、接縫、紋素密度與 UDIM；許多選取及變換在三維與 UV 視圖的操作接近，減少兩套介面的差異。"
+        },
+        {
+          "label": "複製分布保留幾何依據",
+          "text": "UV 投影分布依物件 UV 配置複製物件，即使之後細分表面也不改變位置；另外兩種模式分別沿面的外框及邊線分布，讓動態圖像佈置可依模型結構設定。"
+        },
+        {
+          "label": "粒子管理與新版內容的區別",
+          "text": "粒子屬性管理器把建立、檢視與編輯屬性集中在一處，讓粒子資料不必分散管理。本則的版本及時間依六月來源標示，原文沒有附管理大量粒子屬性的效能基準，不延伸推定操作加速幅度。"
+        }
+      ],
+      "rank_global": 10,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "cg-channel-ipad-app-cozyblanket-puts-the-fun-back-into-retopology",
+      "title": "歷史參考：原版 CozyBlanket 的手繪重拓樸與四邊面帶",
+      "summary": "2022 年的 CozyBlanket 讓使用者在高模表面手繪新的邊流，產生可編輯的低面數網格；當時 1.3 更新加入整段四邊面帶、拓樸島滑動及頂點固定，本則整理的是該版本的手動操作流程。",
+      "quick_impact": "★★★☆☆",
+      "source_url": "https://www.cgchannel.com/2022/05/ipad-app-cozyblanket-puts-the-fun-back-into-retopology",
+      "category": "blender-dcc",
+      "subcategory": "blender",
+      "ranking_score": 69.09,
+      "base_ranking_score": 66.0,
+      "source_published_at": "2022-05-06",
+      "analysis_level": "BRIEF",
+      "brief_reason": "single-source-verified-production-tip",
+      "full_analysis": [
+        {
+          "label": "手繪邊流與低模細修",
+          "text": "原版工具讓使用者沿高解析模型畫出新拓樸，再滑動頂點或邊、分割與合併面。這份 2022 年介紹描述的是手動控制邊流的重拓樸流程，所列修改方式都直接作用於使用者正在整理的網格。"
+        },
+        {
+          "label": "四邊面帶與局部固定",
+          "text": "1.3 可一次畫出整條四邊面帶，並成組移動頂點，使拓樸島沿高模表面滑動；固定頂點可阻止特定位置跟著移動，另能合併頂點，適合理解局部調整的操作分工。"
+        },
+        {
+          "label": "檔案輸出與舊版條件",
+          "text": "原文記錄 1.2 增加 STL 輸出並支援 OBJ 匯入及匯出，1.3 當時面向 iPadOS 14 以上。文章並未涵蓋後來產品的改動，因此檔案格式、購買方案與相容條件都應按這份舊版紀錄理解。"
+        }
+      ],
+      "rank_global": 11,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "80-level-beastlink-devs-detail-the-tech-behind-its-massive-kaiju-dest",
+      "title": "《BeastLink》：模組城市破壞與多人同步的製作取捨",
+      "summary": "開發團隊以模組組合建築，依玩家接近程度動態建立場景；破壞同步則按事件對玩家的影響決定精確程度，並以自訂引擎、物理及網路處理支援大量碎片。",
+      "quick_impact": "★★★☆☆",
+      "source_url": "https://80.lv/articles/beastlink-devs-detail-the-tech-behind-its-massive-kaiju-destruction-with-millions-of-dynamic-pieces",
+      "category": "engine-art",
+      "subcategory": "unreal",
+      "ranking_score": 67.74,
+      "base_ranking_score": 66.0,
+      "source_published_at": "2026-05-11",
+      "analysis_level": "BRIEF",
+      "brief_reason": "production-reference-limited-depth",
+      "full_analysis": [
+        {
+          "label": "模組與美術編修如何分工",
+          "text": "城市建築由套件組合外牆與室內，再由美術調整窗戶、飾條、店面和破壞道具；橋樑及地標仍需手工製成可破壞資產，程序化並未消除特殊場景的製作工作。"
+        },
+        {
+          "label": "同步精度按互動需求分配",
+          "text": "遠方怪獸擊倒建築時，客戶端可以模擬近似結果；玩家以手榴彈炸開入口時則需要精確一致。團隊依事件安排優先級，再由客戶端與伺服器校正差異。"
+        },
+        {
+          "label": "自訂技術帶來場景限制",
+          "text": "受訪者說明團隊修改了渲染、Nanite 與網路物理，並以專用網格處理器整理破片資料。系統不相容預先放置的貼花；這是特定專案的引擎改造經驗，並非原生引擎開關即可重現。"
+        }
+      ],
+      "rank_global": 12,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "3dnchu-ue5-kurie-vfx-shader-v1-0",
+      "title": "Kurie VFX Shader：整合 UE5 特效常用功能的母材質包",
+      "summary": "Kurie 公開可重用及自訂的 UE5 特效母材質包，將特效製作常用功能集中提供；文章附專案導入方式與日文操作文件，並標明採用 MIT 授權。",
+      "quick_impact": "★★★☆☆",
+      "source_url": "https://3dnchu.com/archives/ue5-kurie-vfx-shader-v1-0",
+      "category": "engine-art",
+      "subcategory": "unreal",
+      "ranking_score": 67.19,
+      "base_ranking_score": 66.0,
+      "source_published_at": "2026-05-07",
+      "analysis_level": "BRIEF",
+      "brief_reason": "single-source-verified-production-tip",
+      "full_analysis": [
+        {
+          "label": "以共用母材質整理特效設定",
+          "text": "這份工具把特效常用功能整合為 UE5 通用母材質，主打可重用及容易自訂；適合閱讀母材質如何組織共用設定，但原文沒有逐一列出內部節點或全部參數。"
+        },
+        {
+          "label": "取得與導入方式",
+          "text": "原文說明可下載 ZIP 後放入 UE5 專案，程式庫位於 GitHub，並提供 Zenn 上的日文說明。這些是可追溯的導入入口，不能把工具介紹當成完整的逐步節點教學。"
+        },
+        {
+          "label": "授權與效果評估範圍",
+          "text": "文章明確列為 MIT 授權，商業及個人用途均可使用；但沒有提供不同材質設定的著色器成本、平台測試或版本相容表，因此不能從免費授權推定其效能已符合遊戲規格。"
+        }
+      ],
+      "rank_global": 13,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "80-level-unity-destruction-prototype-with-fully-procedural-runtime-fr",
+      "title": "Unity 破壞原型：執行時切割網格與分幀物理計算",
+      "summary": "《Open Plan》的開發原型不使用預先切好的破片，而是在執行時運算斷裂；每個網格的破壞材質定義碎裂模式、音效與質量，搭配記憶體及分幀計算最佳化。",
+      "quick_impact": "★★★☆☆",
+      "source_url": "https://80.lv/articles/unity-destruction-prototype-with-fully-procedural-runtime-fracturing",
+      "category": "engine-art",
+      "subcategory": "unity",
+      "ranking_score": 67.11,
+      "base_ranking_score": 66.0,
+      "source_published_at": "2026-07-23",
+      "analysis_level": "BRIEF",
+      "brief_reason": "single-source-verified-production-tip",
+      "full_analysis": [
+        {
+          "label": "破壞材質定義物件反應",
+          "text": "開發者說明每次斷裂都在執行時產生，網格另有破壞材質控制碎裂模式、聲音與質量。這些設定把模型如何破裂與破裂後的感官回饋放在同一個物件描述中。"
+        },
+        {
+          "label": "場景繁忙時如何分配計算",
+          "text": "系統主要使用 PhysX，並結合 Unity 的進階網格介面、謹慎配置記憶體及減少物理關節；當場景繁忙時，把昂貴計算攤到多個影格，屬於這個原型已說明的效能策略。"
+        },
+        {
+          "label": "展示內容與證據界線",
+          "text": "2026 年七月的介紹展示可切割物件的雷射與吸引碎片的黑洞手榴彈，但仍稱為開發中原型。文中沒有附完整實作或硬體幀率數據，不能據此保證大量資產的穩定運作。"
+        }
+      ],
+      "rank_global": 14,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "cg-channel-motion-design-tool-autograph-is-now-free-to-studios",
+      "title": "Autograph 授權回顧：工作室也可免費商用合成工具",
+      "summary": "2026 年五月，Maxon 把 Autograph 團隊授權也改為免費，允許工作室使用多個席次製作商業專案；軟體結合圖層合成、三維資產操作與多尺寸輸出設計，免費版本保留命令列及 Python。",
+      "quick_impact": "★★★☆☆",
+      "source_url": "https://www.cgchannel.com/2026/05/motion-design-tool-autograph-is-now-free-to-studios",
+      "category": "emerging-case",
+      "subcategory": "case-study",
+      "ranking_score": 63.0,
+      "base_ranking_score": 63.0,
+      "source_published_at": "2026-05-07",
+      "analysis_level": "BRIEF",
+      "brief_reason": "useful-tool-or-addon-limited-depth",
+      "full_analysis": [
+        {
+          "label": "圖層合成與三維資料並用",
+          "text": "Autograph 採圖層堆疊與攝影表式時間軸，另有操作三維資產的模式；原文列出 USD、OpenEXR、ACES 及色彩管理支援，並以同檔交付多種解析度和長寬比作為設計方向。"
+        },
+        {
+          "label": "個人免費擴大到團隊",
+          "text": "五月公告把原先需付費的團隊授權改為免費，工作室可使用不限席次於商業製作；文章說明不限制解析度或功能，且保留命令列與 Python，這是授權範圍的具體變更。"
+        },
+        {
+          "label": "後續開發與作業系統狀態",
+          "text": "原文曾質疑免費後的開發資金，但五月八日補充了 Maxon 將提供資源並持續開發的回覆。當時列出 Windows 與 macOS，Linux 暫停提供，不能省略更新回覆或聲稱三平台皆可用。"
+        }
+      ],
+      "rank_global": 15,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "cg-channel-check-out-this-free-gaussian-splatting-plugin-for-after-effe",
+      "title": "AE 高斯潑濺外掛：匯入掃描、相機景深與漸層染色",
+      "summary": "Kiri Innovations 的免費外掛把 PLY 高斯潑濺掃描放入 After Effects 合成，配合原生三維相機與景深；也可裁切、漸層染色，或以雜訊及位移製作動態圖像效果。",
+      "quick_impact": "★★★☆☆",
+      "source_url": "https://www.cgchannel.com/2026/07/check-out-this-free-gaussian-splatting-plugin-for-after-effects",
+      "category": "emerging-case",
+      "subcategory": "research",
+      "ranking_score": 63.0,
+      "base_ranking_score": 63.0,
+      "source_published_at": "2026-07-30",
+      "analysis_level": "BRIEF",
+      "brief_reason": "useful-tool-or-addon-limited-depth",
+      "full_analysis": [
+        {
+          "label": "掃描資料在合成內拍攝",
+          "text": "外掛把 PLY 格式的高斯潑濺匯入合成，以原生三維相機觀看並支援景深。它處理的是既有掃描資料的使用，掃描生成仍需其他工具，不能描述成從影片直接重建的合成指令。"
+        },
+        {
+          "label": "剪裁與外觀變形",
+          "text": "可用裁切限定掃描範圍，以漸層重新著色，或加入雜訊與位移產生動態外觀；文章同時指出它比同廠 Blender 外掛的編輯選項少，不應把兩邊功能清單混在一起。"
+        },
+        {
+          "label": "相容與授權範圍",
+          "text": "原文列出支援 After Effects 2025 以上的 Windows 及 macOS，程式以 MIT 授權開源。這是七月介紹的免費外掛，文章沒有給出大型掃描的記憶體容量或渲染速度基準。"
+        }
+      ],
+      "rank_global": 16,
+      "homepage_tier": "category_only"
+    },
+    {
+      "id": "3dnchu-geometry-node-particle-system-v4",
+      "title": "歷史參考：幾何節點粒子模擬第四版的屬性與碰撞",
+      "summary": "2024 年公開的 Geometry Nodes 粒子資產面向 Blender 4.1，包含粒子求解、尺寸碰撞與射線碰撞子群組，並讓生命進度、速度、旋轉及尺寸可被其他節點讀取。",
+      "quick_impact": "★★☆☆☆",
+      "source_url": "https://3dnchu.com/archives/geometry-node-particle-system-v4",
+      "category": "blender-dcc",
+      "subcategory": "blender",
+      "ranking_score": 61.8,
+      "base_ranking_score": 60.0,
+      "source_published_at": "2024-01-17",
+      "analysis_level": "BRIEF",
+      "brief_reason": "single-source-verified-production-tip",
+      "full_analysis": [
+        {
+          "label": "粒子功能拆成節點群組",
+          "text": "主要群組負責第四版粒子模擬，另有讓實例朝向相機及忽略物件變換的輔助群組。求解器與碰撞功能分開列示，可據此理解這份幾何節點資產的模組分工。"
+        },
+        {
+          "label": "具名屬性連接材質與其他節點",
+          "text": "資料列有正規化年齡、每影格位移、旋轉與尺寸等具名屬性，文章明確指出它們能被著色器編輯器及其他節點引用；這提供了把粒子狀態連到外觀控制的資料入口。"
+        },
+        {
+          "label": "碰撞假設與實驗狀態",
+          "text": "尺寸碰撞會考慮粒子大小，射線碰撞則忽略尺寸，文中還註明相關版本仍在測試。此為 2024 年面向 Blender 4.1 的實驗性資產，不能視為所有碰撞情境已經過驗證。"
+        }
+      ],
+      "rank_global": 17,
+      "homepage_tier": "category_only"
+    },
+    {
+      "id": "3dnchu-comics-shader-v4-0",
+      "title": "歷史參考：Blender 漫畫材質第四版的節點與引用方式",
+      "summary": "2020 年的 Comics Shader 4.0 以節點群組製作程序化漫畫材質，面向 Blender 2.83 與 EEVEE；提供完整及精簡版本，交付形式是場景檔，並非安裝式外掛。",
+      "quick_impact": "★★☆☆☆",
+      "source_url": "https://3dnchu.com/archives/comics-shader-v4-0",
+      "category": "blender-dcc",
+      "subcategory": "blender",
+      "ranking_score": 61.3,
+      "base_ranking_score": 60.0,
+      "source_published_at": "2020-08-27",
+      "analysis_level": "BRIEF",
+      "brief_reason": "single-source-verified-production-tip",
+      "full_analysis": [
+        {
+          "label": "漫畫外觀由節點群組建立",
+          "text": "這套原名 Manga Shader 的工具，以一組節點群組建立程序化漫畫風格材質。文章介紹的是第四版，當時針對 Blender 2.83 之後的版本運作進行說明。"
+        },
+        {
+          "label": "場景引用取代外掛安裝",
+          "text": "交付物是 .blend 場景檔，作者建議以外部引用方式使用。對材質管理而言，應區分節點資產引用與安裝外掛這兩種流程，不能把它描述成提供專屬安裝面板的工具。"
+        },
+        {
+          "label": "精簡版本與年代限制",
+          "text": "原文另列免費精簡版本，並指出其功能少於完整版本；文章發布於 2020 年，沒有驗證新版 Blender 或目前 EEVEE 的相容性，這裡保留的是當年的材質與交付方式。"
+        }
+      ],
+      "rank_global": 18,
+      "homepage_tier": "category_only"
+    },
+    {
+      "id": "3dnchu-lightning-boy-shader-2-1",
+      "title": "歷史參考：Lightning Boy 卡通材質改以外掛管理節點",
+      "summary": "2021 年的 Lightning Boy Shader 2.1 把原本場景檔形式的 NPR 材質改為外掛，提供直接建立節點與自動化操作面板；當時針對 Blender 2.93 和 EEVEE 最佳化。",
+      "quick_impact": "★★☆☆☆",
+      "source_url": "https://3dnchu.com/archives/lightning-boy-shader-2-1",
+      "category": "blender-dcc",
+      "subcategory": "blender",
+      "ranking_score": 61.3,
+      "base_ranking_score": 60.0,
+      "source_published_at": "2021-07-22",
+      "analysis_level": "BRIEF",
+      "brief_reason": "single-source-verified-production-tip",
+      "full_analysis": [
+        {
+          "label": "從場景素材轉為外掛",
+          "text": "這次更新的具體改變是由 .blend 場景交付轉成外掛，並以 Blender 2.93 為最佳化目標。對使用者而言，材質工具的建立入口因此從場景素材取用轉向外掛操作。"
+        },
+        {
+          "label": "節點建立與面板操作",
+          "text": "原文列出可直接在著色器編輯器建立節點，以及提供自動化動作的面板；隨附場景與使用指南解釋各項功能，能追溯工具的操作安排與文件內容。"
+        },
+        {
+          "label": "適用版本須按舊文理解",
+          "text": "這是 2021 年的 2.1 版介紹，文中指定 EEVEE 與 Blender 2.93，沒有涵蓋後續版本改動或跨引擎匯出。不能把這份舊文當成今日外掛相容性或最新功能的證明。"
+        }
+      ],
+      "rank_global": 19,
+      "homepage_tier": "category_only"
+    },
+    {
+      "id": "3dnchu-simply-material-fashion-design-1-0",
+      "title": "歷史參考：服裝材質外掛以多層貼圖組織布料外觀",
+      "summary": "2023 年的 Simply Material Fashion Design 以基底、微細節、覆蓋及額外圖像等層次建立服裝材質，另提供絨毛、磨損與撕裂等外觀選項；素材使用限制需要和工具功能分開理解。",
+      "quick_impact": "★★☆☆☆",
+      "source_url": "https://3dnchu.com/archives/simply-material-fashion-design-1-0",
+      "category": "blender-dcc",
+      "subcategory": "blender",
+      "ranking_score": 61.3,
+      "base_ranking_score": 60.0,
+      "source_published_at": "2023-02-02",
+      "analysis_level": "BRIEF",
+      "brief_reason": "single-source-verified-production-tip",
+      "full_analysis": [
+        {
+          "label": "四類圖像資料分工",
+          "text": "基底貼圖提供主要紋理，微細節補充近距離細部，覆蓋貼圖處理皺褶與雜訊，額外圖像用於標誌或圖案。這些分層描述比單一「布料材質」標籤更清楚說明可調整的內容。"
+        },
+        {
+          "label": "布料以外的表面選項",
+          "text": "原文還列出次表面、菲涅耳、發光、髒污、程序化與繪製撕裂、絨毛及天鵝絨等選項。這是工具宣告的材質功能清單，沒有提供它們在遊戲引擎內重建的節點或成本。"
+        },
+        {
+          "label": "素材授權與舊版界線",
+          "text": "文章說明部分圖像來自作者及 AI 生成，並列有商用允許、轉售與編輯受限制的敘述，詳細條款另有入口。此為 2023 年資料，不能把舊文簡介當成今日素材再利用的完整授權。"
+        }
+      ],
+      "rank_global": 20,
+      "homepage_tier": "category_only"
+    }
+  ],
+  "visual_evidence": {}
+}
