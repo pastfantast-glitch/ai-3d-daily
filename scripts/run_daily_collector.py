@@ -34,6 +34,7 @@ from url_identity import canonicalize_url
 from content_quality import admission as content_admission, classify_content, normalize_title, production_summary, editorial_title, editorial_analysis, reviewed_reader_copy
 from check_editorial_quality import editorial_errors
 from article_evidence import extract_article_evidence, review_record, loss_summary
+from ai_editorial import repair_candidate
 from collector_personalization import load_owner_preferences, apply_candidate_personalization, positive_expansion_terms, expand_source_links
 
 INTEL_PATH = ROOT / "config" / "intelligence-v2.json"
@@ -900,6 +901,16 @@ def readable_candidates(candidates: list[dict], report_date: str) -> tuple[list[
                   "source_published_at": candidate["meta"].get("published")}
         candidate["reader_copy"] = reader
         errors = editorial_errors({"items": copies + [reader], "metadata": metadata}, report_date)
+        if errors:
+            def validate_ai_copy(copy):
+                return editorial_errors({"items": copies + [copy], "metadata": metadata}, report_date)
+            repaired, ai_errors = repair_candidate(candidate, report_date, errors, validate_ai_copy)
+            if repaired is not None:
+                reader = repaired
+                candidate["reader_copy"] = reader
+                errors = validate_ai_copy(reader)
+            else:
+                errors = errors + ai_errors
         if errors:
             rejected.append((candidate, errors))
         else:

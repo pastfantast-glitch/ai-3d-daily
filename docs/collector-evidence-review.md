@@ -1,8 +1,28 @@
-# 正文證據與人工審稿
+# 正文證據與排程 AI 審稿
 
-目前的自動 Collector 以固定規則產生讀者文字，沒有呼叫摘要模型。這次修正完成正文抽取、失敗原因統計及人工審稿交接；正文抽取成功不代表中文稿已核准，也不會自動升為 FULL。
+Collector 排程現在可對不合格文案呼叫 AI 編修及獨立審稿，然後回到原有品質檢查與唯一發布流程。正文擷取、AI 審稿通過都不會自動升為 FULL。人工草稿工具保留為無法自動通過時的備援。
 
-## 2026-10-14 實際診斷
+## 2026-10-15 AI 審稿設定
+
+在 GitHub 儲存庫 Settings → Secrets and variables → Actions 設定：
+
+- Repository secret `OPENAI_API_KEY`：具備模型呼叫權限與可用額度的 API 金鑰；不要貼進程式或 PR。
+- Repository variable `AI_EDITOR_MODEL`：可使用 Responses API 與 Structured Outputs 的編修模型 ID。
+- Repository variable `AI_REVIEW_MODEL`：支援相同功能的審稿模型 ID。可使用相同模型，但審稿必須是全新請求，不繼承編修對話。
+
+未設定時 Collector 會在「Validate scheduled AI editorial settings」明確失敗，不冒稱 AI 已審核，也不建立發布資料。設定檢查只驗證值存在；模型存取、API 額度與實際文案品質須由真實執行確認。既有排程、Watchdog、單一 writer、交接與發布門檻不變；不用新增 ChatGPT 任務。
+
+只有通過來源準入與去重後、被既有文案檢查拒絕的候選會送入 AI。API 僅接收來源 URL／標題／日期、已擷取正文證據、待修稿及品質規則；不傳送偏好、登入憑證或完整 HTML。正文及草稿中的指令都視為不可信資料。
+
+流程為「編修 → 程式檢查 → 獨立 AI 審稿 → 批次重複檢查」。來源不足、正文截斷、錯誤引用、無法確認主張或任一審稿檢查失敗，都會退件。最多兩輪編修；不合格候選仍被排除並由原有補找流程補量。審稿不是事實正確的數學保證，仍需抽查。
+
+`config/ai-editorial.json` 限制每次最多 40 篇、120 次 API 請求、15 分鐘 AI 用時、單次請求 60 秒與 4500 輸出 tokens。HTTP 失敗不自動重試；用量不因重新計算候選數而無限重複。同一來源／日期／正文／草稿失敗結果只嘗試一次。超過預算仍保留退件原因，發布篇數不足時照常停止。
+
+審稿包保留 AI 的核准或退件狀態、來源證據雜湊、段落 ID、模型 ID 與修改次數，七天後清除。AI 核准只作用於該次 Collector 記憶體內文案，不冒用人工 `source_reviewed`，不寫入人工審稿規則庫。原有發布流程只接收通過所有檢查的讀者文字。
+
+API 參考：[Responses Structured Outputs](https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses)。
+
+## 2026-10-14 人工審稿階段的實際診斷
 
 GitHub 排程 `38490380054` 與 `38494921839` 都找到 23 篇候選、淘汰 23 篇、留下 0 篇。日誌最多顯示 20 個淘汰樣本；這 20 個全部有通用分析填充問題，其中 10 個同時缺少舊文標示。這些數字不能當作所有 23 篇的完整原因統計。
 
@@ -31,7 +51,7 @@ GitHub 排程 `38490380054` 與 `38494921839` 都找到 23 篇候選、淘汰 23
 
 包內每篇包含來源 URL、標題、日期、描述、抽取方法、段落 ID、章節、參考連結及證據摘要雜湊。最多保存 48,000 字符和 200 段，`truncated` 與 `observed_char_count` 明確記錄截斷；有截斷時仍須開原文補讀。原因統計可能重疊：同一篇可同時是舊文與模板分析，不應把原因數相加當作篇數。
 
-## 撰寫與核准
+## 人工備援：撰寫與核准
 
 ```bash
 python scripts/prepare_editorial_review.py collector-review.json review-drafts.json
@@ -45,4 +65,4 @@ python scripts/prepare_editorial_review.py collector-review.json review-drafts.j
 
 以目標日期再次蒐集與品質檢查，確認日期、去重、來源專屬內容、歷史標示及發布門檻皆通過，才由原有唯一發布管線交接。短快訊可以維持 BRIEF，長篇解析的深度仍須按既有 FULL 規則判斷。
 
-本階段沒有調低篇數門檻，也沒有修復所有來源的文章發現能力。下一步以審稿包確認新正文內容可以產生合格中文稿，再量測來源漏抓與建立持續審稿流程。
+AI 審稿改動沒有調低篇數門檻，也沒有修復所有來源的文章發現能力。真實模型品質、費用和每日成功率尚待啟用後量測；未完成真實執行前不可宣稱已恢復全自動發布。

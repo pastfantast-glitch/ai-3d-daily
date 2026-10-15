@@ -17,6 +17,8 @@ on:
       - 'data/ops/collector-watchdog.json'
       - 'scripts/run_daily_collector.py'
       - 'scripts/article_evidence.py'
+      - 'scripts/ai_editorial.py'
+      - 'config/ai-editorial.json'
       - 'scripts/collector_personalization.py'
       - 'config/personalization-feedback.json'
       - 'scripts/content_quality.py'
@@ -193,11 +195,23 @@ jobs:
         if: steps.preflight.outputs.skip != 'true'
         run: python scripts/check_collector_runtime_contract.py
 
+      - name: Validate scheduled AI editorial settings
+        if: steps.preflight.outputs.skip != 'true'
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          AI_EDITOR_MODEL: ${{ vars.AI_EDITOR_MODEL }}
+          AI_REVIEW_MODEL: ${{ vars.AI_REVIEW_MODEL }}
+        run: python scripts/ai_editorial.py
+
       - name: Run genuine source-grounded Discovery and build Collector artifacts
         if: steps.preflight.outputs.skip != 'true'
         shell: bash
         env:
           DATE: ${{ steps.preflight.outputs.date }}
+          AI_EDITORIAL_ENABLED: 'true'
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          AI_EDITOR_MODEL: ${{ vars.AI_EDITOR_MODEL }}
+          AI_REVIEW_MODEL: ${{ vars.AI_REVIEW_MODEL }}
           COLLECTOR_REVIEW_PACKET: ${{ runner.temp }}/collector-review.json
         run: |
           if [ "${{ steps.preflight.outputs.policy_recollect }}" = "true" ]; then
@@ -206,7 +220,7 @@ jobs:
             python scripts/run_daily_collector.py "$DATE"
           fi
 
-      - name: Preserve source evidence for human editorial review
+      - name: Preserve source evidence and AI editorial decisions
         if: always() && steps.preflight.outputs.skip != 'true'
         uses: actions/upload-artifact@v4
         with:
