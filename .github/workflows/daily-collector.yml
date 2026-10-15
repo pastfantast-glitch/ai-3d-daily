@@ -17,6 +17,8 @@ on:
       - 'data/ops/collector-watchdog.json'
       - 'scripts/run_daily_collector.py'
       - 'scripts/article_evidence.py'
+      - 'scripts/editorial_review.py'
+      - 'data/editorial-reviews/**'
       - 'scripts/collector_personalization.py'
       - 'config/personalization-feedback.json'
       - 'scripts/content_quality.py'
@@ -39,7 +41,7 @@ concurrency:
 
 jobs:
   collect:
-    if: github.event_name != 'push' || contains(github.event.head_commit.message, '[collector-test]') || contains(github.event.head_commit.message, '[policy-recollect]') || contains(github.event.head_commit.message, '[collector-watchdog]')
+    if: github.event_name != 'push' || contains(github.event.head_commit.message, '[collector-test]') || contains(github.event.head_commit.message, '[policy-recollect]') || contains(github.event.head_commit.message, '[collector-watchdog]') || contains(github.event.head_commit.message, '[editorial-review]')
     permissions:
       contents: write
       actions: read
@@ -84,6 +86,10 @@ jobs:
               echo "Collector watchdog trigger requires an explicit YYYY-MM-DD in the triggering commit message."
               exit 1
             }
+          fi
+          if [ -z "$date" ] && [[ "${HEAD_MESSAGE:-}" == *"[editorial-review]"* ]]; then
+            date="$(printf '%s\n' "$HEAD_MESSAGE" | grep -oE '20[0-9]{2}-[0-9]{2}-[0-9]{2}' | head -1 || true)"
+            [ -n "$date" ] || { echo "Editorial review commit requires an explicit date"; exit 1; }
           fi
           if [ -z "$date" ]; then
             date="$(TZ=Asia/Taipei date +%F)"
@@ -193,6 +199,23 @@ jobs:
         if: steps.preflight.outputs.skip != 'true'
         run: python scripts/check_collector_runtime_contract.py
 
+      - name: Verify ChatGPT editorial results against original Collector artifact
+        if: steps.preflight.outputs.skip != 'true'
+        shell: bash
+        env:
+          DATE: ${{ steps.preflight.outputs.date }}
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          if [ -f "data/editorial-reviews/$DATE.json" ]; then
+            source_run="$(python scripts/editorial_review.py "$DATE" --run-id-only)"
+            review_dir="$RUNNER_TEMP/editorial-source-$source_run"
+            mkdir -p "$review_dir"
+            gh api "repos/$GITHUB_REPOSITORY/actions/runs/$source_run" > "$review_dir/run.json"
+            gh run download "$source_run" --repo "$GITHUB_REPOSITORY" --name "collector-review-$DATE-$source_run" --dir "$review_dir"
+            python scripts/editorial_review.py "$DATE" --packet "$review_dir/collector-review.json" --run-json "$review_dir/run.json"
+          fi
+
       - name: Run genuine source-grounded Discovery and build Collector artifacts
         if: steps.preflight.outputs.skip != 'true'
         shell: bash
@@ -206,7 +229,7 @@ jobs:
             python scripts/run_daily_collector.py "$DATE"
           fi
 
-      - name: Preserve source evidence for human editorial review
+      - name: Preserve source evidence for ChatGPT scheduled review
         if: always() && steps.preflight.outputs.skip != 'true'
         uses: actions/upload-artifact@v4
         with:

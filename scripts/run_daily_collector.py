@@ -34,6 +34,7 @@ from url_identity import canonicalize_url
 from content_quality import admission as content_admission, classify_content, normalize_title, production_summary, editorial_title, editorial_analysis, reviewed_reader_copy
 from check_editorial_quality import editorial_errors
 from article_evidence import extract_article_evidence, review_record, loss_summary
+from editorial_review import candidate_copy
 from collector_personalization import load_owner_preferences, apply_candidate_personalization, positive_expansion_terms, expand_source_links
 
 INTEL_PATH = ROOT / "config" / "intelligence-v2.json"
@@ -899,7 +900,13 @@ def readable_candidates(candidates: list[dict], report_date: str) -> tuple[list[
         reader = {**reader, "source_url": candidate["source_url"],
                   "source_published_at": candidate["meta"].get("published")}
         candidate["reader_copy"] = reader
+        reviewed, review_errors = candidate_copy(candidate, report_date, ROOT)
+        if reviewed is not None:
+            reader = reviewed
+            candidate["reader_copy"] = reader
         errors = editorial_errors({"items": copies + [reader], "metadata": metadata}, report_date)
+        if review_errors:
+            errors += review_errors
         if errors:
             rejected.append((candidate, errors))
         else:
@@ -1507,6 +1514,8 @@ def main() -> int:
         error_map = {c['candidate_id']: errors for c, errors in editorial_rejections}
         write_json(Path(audit_path), {
             'schema_version': 1, 'date': report_date, 'summary': evidence_audit,
+            'source_run_id': int(os.environ['GITHUB_RUN_ID']) if os.environ.get('GITHUB_RUN_ID') else None,
+            'source_head_sha': os.environ.get('GITHUB_SHA'),
             'sources': {sid: {key: record.get(key) for key in (
                 'status', 'candidates_found', 'published_links_skipped', 'reason',
                 'index_pages_checked', 'feed_urls_checked', 'refill_links_checked',

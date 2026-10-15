@@ -46,6 +46,8 @@ def main() -> int:
         '.github/workflows/daily-collector.yml',
         '.github/workflows/daily-contract.yml',
         'config/collector-runtime.json',
+        'scripts/editorial_review.py',
+        'scripts/test_editorial_review.py',
         'config/editorial-quality.json',
         'scripts/run_daily_collector.py',
         'scripts/check_collector_runtime_contract.py',
@@ -73,6 +75,8 @@ def main() -> int:
         errors.append('referenced pipeline source missing from repository: ' + ', '.join(missing_files))
     if missing_watches:
         errors.append('daily-contract.yml path filter misses pipeline source: ' + ', '.join(missing_watches))
+    if 'data/editorial-reviews/**' not in watched:
+        errors.append('daily-contract.yml must watch data/editorial-reviews/**')
     if 'data/editorial-overrides/**' not in watched:
         errors.append('daily-contract.yml must watch data/editorial-overrides/** because overrides change reader copy')
     for command in (
