@@ -48,6 +48,16 @@ def candidate(a):
 
 
 class Tests(unittest.TestCase):
+    def test_scheduled_helper_keeps_drafts_unapproved(self):
+        from prepare_editorial_review import scheduled_drafts
+        a = article()
+        result = scheduled_drafts({'date': DATE, 'articles': [a]}, 123, SHA)
+        row = result['items'][a['id']]
+        self.assertIs(row['review']['approved'], False)
+        self.assertIsNone(row['reviewed_on'])
+        self.assertNotIn('source_reviewed', row)
+        self.assertEqual(result['source_run_id'], 123)
+
     def test_approved_record_preserves_identity_and_strips_internal_fields(self):
         a = article()
         result = review.validate_record(record(a), a, DATE)
