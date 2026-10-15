@@ -59,9 +59,9 @@ on:
       - 'scripts/content_quality.py'
       - 'scripts/source_quality.py'
       - 'scripts/article_evidence.py'
-      - 'scripts/ai_editorial.py'
-      - 'scripts/test_ai_editorial.py'
-      - 'config/ai-editorial.json'
+      - 'scripts/editorial_review.py'
+      - 'scripts/test_editorial_review.py'
+      - 'data/editorial-reviews/**'
       - 'scripts/prepare_editorial_review.py'
       - 'scripts/test_article_evidence.py'
       - 'scripts/test_source_quality.py'
@@ -154,7 +154,7 @@ jobs:
           python scripts/test_collector_content_quality.py
           python scripts/test_source_quality.py
           python scripts/test_article_evidence.py
-          python scripts/test_ai_editorial.py
+          python scripts/test_editorial_review.py
           python scripts/test_collector_reliability.py
           python scripts/test_visual_budget.py
           python scripts/test_daily_release_status.py
