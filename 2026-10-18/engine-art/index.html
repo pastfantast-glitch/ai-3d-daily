@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   遊戲引擎｜2026-10-18｜AI 3D Daily
+  </title>
+  <meta content="2026-10-18 遊戲引擎 Production Intelligence：遊戲引擎 / 引擎端美術內容，共 2 項可驗證情報。" name="description"/>
+  <link href="../../styles.css?v=20261018-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../../shared-components.css?v=20261018-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../../category.css?v=20261018-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+ </head>
+ <body class="category-page" data-category="engine-art" data-report-date="2026-10-18">
+  <nav aria-label="Production Intelligence 分類" class="global-category-nav">
+   <div class="page global-category-nav-inner">
+    <div class="archive-nav-controls">
+     <a class="archive-nav-home" href="../../">
+      ← 首頁
+     </a>
+     <div class="archive-nav-date">
+      <a aria-label="前一日日報" class="archive-nav-arrow" href="../../2026-10-17/engine-art/">
+       ←
+      </a>
+      <span>
+       2026-10-18
+      </span>
+     </div>
+    </div>
+    <span aria-hidden="true" class="archive-nav-divider">
+    </span>
+    <a class="global-category-link" href="../#top">
+     TOP5
+    </a>
+    <a class="global-category-link" data-category="ai-generation" href="../ai-generation/">
+     AI 生成
+    </a>
+    <a class="global-category-link" data-category="3d-production" href="../3d-production/">
+     3D 製作
+    </a>
+    <a class="global-category-link" data-category="3d-animation" href="../3d-animation/">
+     3D 動作
+    </a>
+    <a class="global-category-link is-active" data-category="engine-art" href="../engine-art/">
+     遊戲引擎
+    </a>
+    <a class="global-category-link" data-category="emerging-case" href="../emerging-case/">
+     新技術 / Case
+    </a>
+    <a class="global-category-link" data-category="blender-dcc" href="../blender-dcc/">
+     Blender / DCC
+    </a>
+    <a class="global-category-link global-history-link" data-global-view="history" href="../../history/">
+     歷史日報
+    </a>
+   </div>
+  </nav>
+  <main class="page category-main">
+   <article class="category-card" data-intel-id="cg-channel-dne-and-gracia-release-4-minute-streamable-4dgs-performance" data-intel-role="card">
+    <div class="category-meta">
+     #02 · optimization
+    </div>
+    <h2>
+     歷史參考｜DNE 與 Gracia：以 WebGPU 串流四分鐘 4DGS 演出
+    </h2>
+    <p class="summary">
+     這篇 2026 年四月贊助報導介紹 Amy May 的四分鐘演出：DNE 以多攝影機體積擷取，Gracia 轉成 4D 高斯潑濺並透過 WebGPU 串流，無需另裝播放器。
+    </p>
+    <figure class="case-preview" data-intel-id="cg-channel-dne-and-gracia-release-4-minute-streamable-4dgs-performance" data-intel-role="visual" data-visual-id="cg-channel-dne-and-gracia-release-4-minute-streamable-4dgs-performance">
+     <a href="https://www.cgchannel.com/2026/04/dne-and-gracia-release-4-minute-streamable-4dgs-performance" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-10-18/cg-channel-dne-and-gracia-release-4-minute-streamable-4dgs-performance.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">效能優化</b> ★★★★☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       多機擷取至串流重建流程
+      </h4>
+      <p>
+       拍攝使用為四維重建設計的攝影機網格，燈光、間距與角度覆蓋以體積輸出為目標校正，再接到 Gracia 的 4DGS 處理管線。這個案例不是把單一平面影片加進三維場景，而是以多視角記錄演出。
+      </p>
+      <h4>
+       瀏覽器播放與交付成本影響
+      </h4>
+      <p>
+       文章列出的四分鐘演出以 WebGPU 即時串流，位元率為每秒十七至七十五 Mbps，播放目標涵蓋桌面、行動裝置及 Meta Quest 3。推論上，免裝應用程式能降低觀看入口的步驟，但不代表傳輸流量或擷取成本也消失。
+      </p>
+      <h4>
+       贊助示範與跨裝置驗證限制
+      </h4>
+      <p>
+       這是廠商贊助案例，文中的即時串流與無長度上限是介紹中的主張，並非逐裝置的獨立壓力測試。文章沒有提供不同網速、瀏覽器或行動硬體的完整結果，不能由一段演出推定任意裝置都能穩定播放。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://www.cgchannel.com/2026/04/dne-and-gracia-release-4-minute-streamable-4dgs-performance" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="cg-channel-machina-fractals-plugins-create-real-time-3d-fractals-in-ue5" data-intel-role="card">
+    <div class="category-meta">
+     #07 · unreal
+    </div>
+    <h2>
+     歷史參考｜Machina Fractals：UE5 分形材質與三套插件差異
+    </h2>
+    <p class="summary">
+     這篇 2024 年更新文章回顧 Machina Fractals 的 Essence、Mecha 與 Ultima：可在 UE5 生成動畫分形，但各套公式、貼圖與碰撞網格能力不同，不能混成同一組功能。
+    </p>
+    <figure class="case-preview" data-intel-id="cg-channel-machina-fractals-plugins-create-real-time-3d-fractals-in-ue5" data-intel-role="visual" data-visual-id="cg-channel-machina-fractals-plugins-create-real-time-3d-fractals-in-ue5">
+     <a href="https://www.cgchannel.com/2024/08/machina-fractals-plugins-create-real-time-3d-fractals-in-ue5" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-10-18/cg-channel-machina-fractals-plugins-create-real-time-3d-fractals-in-ue5.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">Unreal</b> ★★★☆☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       可動畫分形的材質工作流
+      </h4>
+      <p>
+       Essence 提供九種可調整分形材質，分為偏即時的六種 Lite 與偏離線的三種 Uber。使用者可修改色彩、形體、三平面或自發光貼圖，再用 Sequencer 動畫參數；文中也說明材質公式在可調性與互動效能之間取捨。
+      </p>
+      <h4>
+       插件分工對環境製作的影響
+      </h4>
+      <p>
+       Mecha 增加金屬度／粗糙度流程的 PBR 貼圖與可循環參數，並可產生遊戲碰撞網格。2024 年的 Ultima 則提供七種公式與 Kaleido 後製效果，但不支援碰撞網格，選擇時須分清視覺展示與可碰撞場景的需求。
+      </p>
+      <h4>
+       渲染模式與硬體相容限制
+      </h4>
+      <p>
+       文章指出分形可用 Unreal 的混合光追渲染，但當時不支援路徑追蹤；所有列出的插件需求為 UE5.1 以上，建議至少 RTX 2080 Ti 或至少八 GB 顯示記憶體。這是歷史版本條件，不是對目前所有引擎版本的相容保證。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://www.cgchannel.com/2024/08/machina-fractals-plugins-create-real-time-3d-fractals-in-ue5" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <nav aria-label="相鄰分類" class="category-bottom-nav">
+    <a href="../3d-animation/">
+     ← 3D 動作
+    </a>
+    <a href="../#top">
+     TOP5
+    </a>
+    <a href="../emerging-case/">
+     新技術 / Case →
+    </a>
+   </nav>
+  </main>
+  <script defer="" src="../../archive-nav-state.js?v=20261018-r1-workspace-v10-history-current-workspace">
+  </script>
+ </body>
+</html>
