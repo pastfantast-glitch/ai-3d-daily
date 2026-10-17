@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   遊戲引擎｜2026-10-17｜AI 3D Daily
+  </title>
+  <meta content="2026-10-17 遊戲引擎 Production Intelligence：遊戲引擎 / 引擎端美術內容，共 1 項可驗證情報。" name="description"/>
+  <link href="../../styles.css?v=20261017-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../../shared-components.css?v=20261017-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../../category.css?v=20261017-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+ </head>
+ <body class="category-page" data-category="engine-art" data-report-date="2026-10-17">
+  <nav aria-label="Production Intelligence 分類" class="global-category-nav">
+   <div class="page global-category-nav-inner">
+    <div class="archive-nav-controls">
+     <a class="archive-nav-home" href="../../">
+      ← 首頁
+     </a>
+     <div class="archive-nav-date">
+      <a aria-label="前一日日報" class="archive-nav-arrow" href="../../2026-10-13/engine-art/">
+       ←
+      </a>
+      <span>
+       2026-10-17
+      </span>
+     </div>
+    </div>
+    <span aria-hidden="true" class="archive-nav-divider">
+    </span>
+    <a class="global-category-link" href="../#top">
+     TOP5
+    </a>
+    <a class="global-category-link" data-category="ai-generation" href="../ai-generation/">
+     AI 生成
+    </a>
+    <a class="global-category-link" data-category="3d-production" href="../3d-production/">
+     3D 製作
+    </a>
+    <a class="global-category-link" data-category="3d-animation" href="../3d-animation/">
+     3D 動作
+    </a>
+    <a class="global-category-link is-active" data-category="engine-art" href="../engine-art/">
+     遊戲引擎
+    </a>
+    <a class="global-category-link" data-category="emerging-case" href="../emerging-case/">
+     新技術 / Case
+    </a>
+    <a class="global-category-link" data-category="blender-dcc" href="../blender-dcc/">
+     Blender / DCC
+    </a>
+    <a class="global-category-link global-history-link" data-global-view="history" href="../../history/">
+     歷史日報
+    </a>
+   </div>
+  </nav>
+  <main class="page category-main">
+   <article class="category-card" data-intel-id="80-level-this-tool-speeds-up-texturing-workflow-between-painter-ue5" data-intel-role="card">
+    <div class="category-meta">
+     #03 · unreal
+    </div>
+    <h2>
+     TexBridge：把 Painter 貼圖送進 UE5 並自動建立材質實例
+    </h2>
+    <p class="summary">
+     Moss3D 的 TexBridge 可從 Substance 3D Painter 匯出貼圖並送進 Unreal Engine 5，自動設定貼圖類型、建立各貼圖組的材質實例，還能指定給選取的靜態網格。
+    </p>
+    <figure class="case-preview" data-intel-id="80-level-this-tool-speeds-up-texturing-workflow-between-painter-ue5" data-intel-role="visual" data-visual-id="80-level-this-tool-speeds-up-texturing-workflow-between-painter-ue5">
+     <a href="https://80.lv/articles/this-tool-speeds-up-texturing-workflow-between-painter-ue5" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-10-17/80-level-this-tool-speeds-up-texturing-workflow-between-painter-ue5.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">Unreal</b> ★★★★★</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       貼圖往返與材質建立流程
+      </h4>
+      <p>
+       兩套軟體保持開啟後，選擇匯出預設、貼圖組與 Unreal 目的資料夾，再執行 Export + Send。工具會匯出及匯入貼圖，為每組建立材質實例，並可套用到選取的靜態網格，集中處理貼圖更新步驟。
+      </p>
+      <h4>
+       貼圖設定與團隊交接價值
+      </h4>
+      <p>
+       法線貼圖採用對應壓縮，打包 ORM 使用 Masks 並關閉 sRGB，另可處理 OpenGL 至 DirectX 法線轉換。匯出設定與材質映射能存成共用設定檔，因此可把重複的匯入設定交接給團隊，而不必每次重新指定。
+      </p>
+      <h4>
+       同機連線與版本相容限制
+      </h4>
+      <p>
+       TexBridge 透過 Unreal 內建的 Python Remote Execution 連線，不需要另裝 Unreal 插件。文章列出的條件是 Windows、Painter 8.3 以上與 UE5，而且兩套程式必須在同一台電腦；不能據此視為跨主機或跨平台傳輸工具。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://80.lv/articles/this-tool-speeds-up-texturing-workflow-between-painter-ue5" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <nav aria-label="相鄰分類" class="category-bottom-nav">
+    <a href="../3d-animation/">
+     ← 3D 動作
+    </a>
+    <a href="../#top">
+     TOP5
+    </a>
+    <a href="../emerging-case/">
+     新技術 / Case →
+    </a>
+   </nav>
+  </main>
+  <script defer="" src="../../archive-nav-state.js?v=20261017-r1-workspace-v10-history-current-workspace">
+  </script>
+ </body>
+</html>

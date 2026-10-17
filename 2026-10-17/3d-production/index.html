@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   3D 製作｜2026-10-17｜AI 3D Daily
+  </title>
+  <meta content="2026-10-17 3D 製作 Production Intelligence：3D 角色製作 / 3D 物件製作 / 3D 場景製作 / 製作流程，共 5 項可驗證情報。" name="description"/>
+  <link href="../../styles.css?v=20261017-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../../shared-components.css?v=20261017-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../../category.css?v=20261017-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+ </head>
+ <body class="category-page" data-category="3d-production" data-report-date="2026-10-17">
+  <nav aria-label="Production Intelligence 分類" class="global-category-nav">
+   <div class="page global-category-nav-inner">
+    <div class="archive-nav-controls">
+     <a class="archive-nav-home" href="../../">
+      ← 首頁
+     </a>
+     <div class="archive-nav-date">
+      <a aria-label="前一日日報" class="archive-nav-arrow" href="../../2026-10-13/3d-production/">
+       ←
+      </a>
+      <span>
+       2026-10-17
+      </span>
+     </div>
+    </div>
+    <span aria-hidden="true" class="archive-nav-divider">
+    </span>
+    <a class="global-category-link" href="../#top">
+     TOP5
+    </a>
+    <a class="global-category-link" data-category="ai-generation" href="../ai-generation/">
+     AI 生成
+    </a>
+    <a class="global-category-link is-active" data-category="3d-production" href="../3d-production/">
+     3D 製作
+    </a>
+    <a class="global-category-link" data-category="3d-animation" href="../3d-animation/">
+     3D 動作
+    </a>
+    <a class="global-category-link" data-category="engine-art" href="../engine-art/">
+     遊戲引擎
+    </a>
+    <a class="global-category-link" data-category="emerging-case" href="../emerging-case/">
+     新技術 / Case
+    </a>
+    <a class="global-category-link" data-category="blender-dcc" href="../blender-dcc/">
+     Blender / DCC
+    </a>
+    <a class="global-category-link global-history-link" data-global-view="history" href="../../history/">
+     歷史日報
+    </a>
+   </div>
+  </nav>
+  <main class="page category-main">
+   <article class="category-card" data-intel-id="80-level-sculpting-scales-simulating-clothes-for-creature-chef-in-zbr" data-intel-role="card">
+    <div class="category-meta">
+     #02 · character-production
+    </div>
+    <h2>
+     怪物廚師角色：拆解非人形服裝、鱗片雕刻與手繪配色
+    </h2>
+    <p class="summary">
+     Yuriy Barchuk 以 ZBrush 雕刻怪物廚師，在 Marvelous Designer 模擬服裝，再到 Maya 整理拓樸；鱗片結合筆刷雕刻與手繪色差，最後在 Unreal Engine 5.7 呈現。
+    </p>
+    <figure class="case-preview" data-intel-id="80-level-sculpting-scales-simulating-clothes-for-creature-chef-in-zbr" data-intel-role="visual" data-visual-id="80-level-sculpting-scales-simulating-clothes-for-creature-chef-in-zbr">
+     <a href="https://80.lv/articles/sculpting-scales-simulating-clothes-for-creature-chef-in-zbrush-marvelous-designer" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-10-17/80-level-sculpting-scales-simulating-clothes-for-creature-chef-in-zbr.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">角色製作</b> ★★★★★</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       非人形服裝重建流程
+      </h4>
+      <p>
+       作者先在 Marvelous Designer 完成布料與 UV，再把平面紙樣送進 ZBrush 降低拓樸密度，於 Maya 用 Quad Draw 修整及轉移 UV，最後透過 UV 空間轉移回立體服裝，讓後續雕刻使用較乾淨的網格。
+      </p>
+      <h4>
+       鱗片層次與配色控制
+      </h4>
+      <p>
+       身體依部位拆開，鱗片類型各用獨立圖層與 Morph Target 調強弱；貼圖則在程序結果上逐片手繪明暗與色差。這套做法把形狀凸起和橘白交界的顏色變化分開處理，而非只靠同一張鱗片紋理。
+      </p>
+      <h4>
+       非人形服裝與表情限制
+      </h4>
+      <p>
+       尾巴與腿形使傳統紙樣無法直接沿用，內裙也需改用其他軟體製作。作者的基本骨架同樣有限，額外增加耳朵等關節來表達情緒；這是針對該角色調整的流程，不是任意生物都能直接套用的成套解法。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://80.lv/articles/sculpting-scales-simulating-clothes-for-creature-chef-in-zbrush-marvelous-designer" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="80-level-kenney-shape-tool-for-generating-extruded-3d-models-from-2d" data-intel-role="card">
+    <div class="category-meta">
+     #04 · production-workflow
+    </div>
+    <h2>
+     Kenney Shape 改為免費：以像素深度生成 3D 道具
+    </h2>
+    <p class="summary">
+     Kenney Shape 現在可免費取得：先畫像素圖，再指定各像素深度來擠出 3D 形狀，工具會自動產生 UV，並可輸出模型、體素或平面影像。
+    </p>
+    <figure class="case-preview" data-intel-id="80-level-kenney-shape-tool-for-generating-extruded-3d-models-from-2d" data-intel-role="visual" data-visual-id="80-level-kenney-shape-tool-for-generating-extruded-3d-models-from-2d">
+     <a href="https://80.lv/articles/kenney-shape-tool-for-generating-extruded-3d-models-from-2d-pixel-art-is-now-free" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-10-17/80-level-kenney-shape-tool-for-generating-extruded-3d-models-from-2d.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">製作流程</b> ★★★★☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       像素擠出與自動 UV 流程
+      </h4>
+      <p>
+       使用者先繪製二維像素物件，逐像素指定深度，工具再生成立體模型並自動處理 UV。成品可輸出為三維或體素模型，也能輸出點陣與向量影像；因此同一造型可作為不同資產形式的起點。
+      </p>
+      <h4>
+       低複雜度道具的製作價值
+      </h4>
+      <p>
+       文章列出 Unity、Unreal Engine、Godot 與 Blender 等後續工具，也列出 MagicaVoxel 等體素軟體。推論上，這種由像素輪廓控制厚度的方式較適合作為風格化小物的起稿，而不是取代精細曲面雕刻。
+      </p>
+      <h4>
+       停止更新與平台導入限制
+      </h4>
+      <p>
+       作者因轉向其他專案而將工具改為永久免費，並明確表示不再更新，2026 年十月版是最後一次更新。下載平台列為 Windows 與 Linux；免費不代表仍有持續開發或其他作業系統的支援承諾。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://80.lv/articles/kenney-shape-tool-for-generating-extruded-3d-models-from-2d-pixel-art-is-now-free" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="cg-channel-maxon-releases-zbrush-2027-0-and-zbrush-for-ipad-2027-0" data-intel-role="card">
+    <div class="category-meta">
+     #06 · production-workflow
+    </div>
+    <h2>
+     ZBrush 2027.0 新增 UV 編輯器；iPad 版加入投影繪製與圖層
+    </h2>
+    <p class="summary">
+     桌面版 ZBrush 2027.0 新增 UV Editor 與 Selection Sets，可儲存不同分組、遮罩及 UV 狀態；iPad 版則加入 Spotlight 和 3D Layers，兩個平台的新增功能並不相同。
+    </p>
+    <figure class="case-preview" data-intel-id="cg-channel-maxon-releases-zbrush-2027-0-and-zbrush-for-ipad-2027-0" data-intel-role="visual" data-visual-id="cg-channel-maxon-releases-zbrush-2027-0-and-zbrush-for-ipad-2027-0">
+     <a href="https://www.cgchannel.com/2026/10/maxon-releases-zbrush-2027-0-and-zbrush-for-ipad-2027-0" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-10-17/cg-channel-maxon-releases-zbrush-2027-0-and-zbrush-for-ipad-2027-0.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">製作流程</b> ★★★★☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       雕刻內建 UV 工作流
+      </h4>
+      <p>
+       桌面版新編輯器與 Cinema 4D 使用相同基礎技術，提供三種自動展開方式，其中一種按 Polygroup 展開；也能手動調整布局、打包與像素密度，並支援 UDIM 和 trim sheet，減少雕刻迭代時往返其他 DCC。
+      </p>
+      <h4>
+       選取狀態對角色製作的價值
+      </h4>
+      <p>
+       Selection Sets 不只儲存頂點或面的選取，還能保留 SubTool 的 Polygroups、遮罩、Polypaint、UV 與 morph target 狀態。文章舉例可在 UV 工作與角色擺姿用的分組之間切換，也可在客戶審查時切換配色。
+      </p>
+      <h4>
+       桌面與平板功能相容限制
+      </h4>
+      <p>
+       iPad 版這次加入的是 Spotlight 投影繪製與非線性的 3D Layers，並不能據此推定取得桌面新增的 UV 編輯器。系統條件也分開列出：桌面需 Windows 11 或 macOS 15 以上，平板需 iPadOS 17 以上及 A12 Bionic 或更新處理器。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://www.cgchannel.com/2026/10/maxon-releases-zbrush-2027-0-and-zbrush-for-ipad-2027-0" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="80-level-rizomuv-2027-introduces-faster-unfolding-live-updates-full-u" data-intel-role="card">
+    <div class="category-meta">
+     #07 · production-workflow
+    </div>
+    <h2>
+     RizomUV 2027：即時重算 UV、場景管理與密度繪製
+    </h2>
+    <p class="summary">
+     RizomUV 2027 新增可自訂工作區、Live Update 與 Scene Outliner；調整邊約束時會重算對應島嶼，也能用遮蔽資訊及直接繪製方式分配貼圖密度。
+    </p>
+    <figure class="case-preview" data-intel-id="80-level-rizomuv-2027-introduces-faster-unfolding-live-updates-full-u" data-intel-role="visual" data-visual-id="80-level-rizomuv-2027-introduces-faster-unfolding-live-updates-full-u">
+     <a href="https://80.lv/articles/rizomuv-2027-introduces-faster-unfolding-live-updates-full-ui-customization" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-10-17/80-level-rizomuv-2027-introduces-faster-unfolding-live-updates-full-u.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">製作流程</b> ★★★★☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       邊約束即時重算工作流
+      </h4>
+      <p>
+       Live Update 開啟時，新增或移除邊約束會自動重算受影響的 UV 島嶼；Align Borders 則在展開或最佳化時將邊界對齊 U、V 軸。這讓接縫調整和邊界整理能在同一輪操作中觀察結果。
+      </p>
+      <h4>
+       場景與貼圖預算控制
+      </h4>
+      <p>
+       Scene Outliner 管理 OBJ、FBX 的物件、材質與多邊形群組，大型 FBX 可只載入需要的物件。密度圖也能從環境遮蔽生成，或直接在模型上繪製，讓較隱蔽的表面分配較少貼圖空間。
+      </p>
+      <h4>
+       展開加速數據的驗證限制
+      </h4>
+      <p>
+       新版同時平行處理多個島嶼，並修改單島求解器；大型 UV 島最佳化可快五倍是 Rizom-Lab 的宣稱。文章未給同一資產在不同硬體上的比較表，因此不能把這個數字延伸成每種場景都能達到的加速。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://80.lv/articles/rizomuv-2027-introduces-faster-unfolding-live-updates-full-ui-customization" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="cg-channel-sparseal-releases-cozyblanket-pro" data-intel-role="card">
+    <div class="category-meta">
+     #08 · production-workflow
+    </div>
+    <h2>
+     CozyBlanket Pro：畫引導線補拓樸，並整合 UV 與烘焙
+    </h2>
+    <p class="summary">
+     Sparseal 推出獨立產品 CozyBlanket Pro：先在模型表面畫拓樸或 UV 接縫引導線，再由本機 AI 補齊，並可烘焙高低模貼圖；目前先提供 iPad 版。
+    </p>
+    <figure class="case-preview" data-intel-id="cg-channel-sparseal-releases-cozyblanket-pro" data-intel-role="visual" data-visual-id="cg-channel-sparseal-releases-cozyblanket-pro">
+     <a href="https://www.cgchannel.com/2026/10/sparseal-releases-cozyblanket-pro" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-10-17/cg-channel-sparseal-releases-cozyblanket-pro.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">製作流程</b> ★★★★☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       手動引導與自動補面工作流
+      </h4>
+      <p>
+       使用者用 Pencil 在模型表面畫拓樸區塊邊界，由 AI 補出細節，再加引導線或手動移動頂點、邊和面修正。UV 也先手畫部分接縫，再由程式補齊，其核心是人工決定結構，並非完全放手自動生成。
+      </p>
+      <h4>
+       高低模交接與輸出價值
+      </h4>
+      <p>
+       烘焙工具可從高模轉出頂點色、切線空間或環境遮蔽貼圖，支援 UDIM；低模可輸出 OBJ 或 glTF，貼圖另有多種影像格式。對雕刻或掃描資產而言，這使拓樸、UV 和基本烘焙能在同一工具銜接。
+      </p>
+      <h4>
+       臉部拓樸與桌面版本限制
+      </h4>
+      <p>
+       報導提醒早期展示曾產生不尋常的臉部拓樸，品質仍取決於引導線。它也不是原 CozyBlanket 的直接升級，檔案格式不同；桌面版與網路橋接還在開發，沒有公布日期，不能當成已可跨桌面流程部署。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://www.cgchannel.com/2026/10/sparseal-releases-cozyblanket-pro" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <nav aria-label="相鄰分類" class="category-bottom-nav">
+    <a href="../ai-generation/">
+     ← AI 生成
+    </a>
+    <a href="../#top">
+     TOP5
+    </a>
+    <a href="../3d-animation/">
+     3D 動作 →
+    </a>
+   </nav>
+  </main>
+  <script defer="" src="../../archive-nav-state.js?v=20261017-r1-workspace-v10-history-current-workspace">
+  </script>
+ </body>
+</html>

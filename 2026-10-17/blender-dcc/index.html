@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   Blender / DCC｜2026-10-17｜AI 3D Daily
+  </title>
+  <meta content="2026-10-17 Blender / DCC Production Intelligence：Blender / DCC 工具與工作流 / Blender Tips，共 9 項可驗證情報。" name="description"/>
+  <link href="../../styles.css?v=20261017-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../../shared-components.css?v=20261017-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../../category.css?v=20261017-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+ </head>
+ <body class="category-page" data-category="blender-dcc" data-report-date="2026-10-17">
+  <nav aria-label="Production Intelligence 分類" class="global-category-nav">
+   <div class="page global-category-nav-inner">
+    <div class="archive-nav-controls">
+     <a class="archive-nav-home" href="../../">
+      ← 首頁
+     </a>
+     <div class="archive-nav-date">
+      <a aria-label="前一日日報" class="archive-nav-arrow" href="../../2026-10-13/blender-dcc/">
+       ←
+      </a>
+      <span>
+       2026-10-17
+      </span>
+     </div>
+    </div>
+    <span aria-hidden="true" class="archive-nav-divider">
+    </span>
+    <a class="global-category-link" href="../#top">
+     TOP5
+    </a>
+    <a class="global-category-link" data-category="ai-generation" href="../ai-generation/">
+     AI 生成
+    </a>
+    <a class="global-category-link" data-category="3d-production" href="../3d-production/">
+     3D 製作
+    </a>
+    <a class="global-category-link" data-category="3d-animation" href="../3d-animation/">
+     3D 動作
+    </a>
+    <a class="global-category-link" data-category="engine-art" href="../engine-art/">
+     遊戲引擎
+    </a>
+    <a class="global-category-link" data-category="emerging-case" href="../emerging-case/">
+     新技術 / Case
+    </a>
+    <a class="global-category-link is-active" data-category="blender-dcc" href="../blender-dcc/">
+     Blender / DCC
+    </a>
+    <a class="global-category-link global-history-link" data-global-view="history" href="../../history/">
+     歷史日報
+    </a>
+   </div>
+  </nav>
+  <main class="page category-main">
+   <article class="category-card" data-intel-id="80-level-see-how-you-can-make-a-blender-animation-of-spider-man-skati" data-intel-role="card">
+    <div class="category-meta">
+     #05 · blender
+    </div>
+    <h2>
+     Blender 蜘蛛人滑板動畫：先做板身運動，再接角色姿勢
+    </h2>
+    <p class="summary">
+     Tonq 拆解蜘蛛人滑板短片：先為每個鏡頭安排滑板動作，再細修角色姿勢，並用實拍翻板參考、既有 IK／FK 骨架與自製板身 rig 完成動態鏡頭。
+    </p>
+    <figure class="case-preview" data-intel-id="80-level-see-how-you-can-make-a-blender-animation-of-spider-man-skati" data-intel-role="visual" data-visual-id="80-level-see-how-you-can-make-a-blender-animation-of-spider-man-skati">
+     <a href="https://80.lv/articles/see-how-you-can-make-a-blender-animation-of-spider-man-skating" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-10-17/80-level-see-how-you-can-make-a-blender-animation-of-spider-man-skati.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">Blender</b> ★★★★☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       滑板與角色同步流程
+      </h4>
+      <p>
+       作者在滑板上加 Empty，複製其位置並把蜘蛛人骨架配對到這個參照，再從每個鏡頭的板身運動開始處理。角色姿勢約每三至五格調整一次，用細小的姿態變化補出動作，而不是先做全身再追板子。
+      </p>
+      <h4>
+       實拍參考對動作製作的影響
+      </h4>
+      <p>
+       倒掛玩滑板的鏡頭使用作者拍攝的翻板影片作參考，但手部由向上拋改成向下放，配合角色倒立的位置。這個例子說明參考動作仍須依鏡頭方向轉換，不能只逐格複製現實姿勢。
+      </p>
+      <h4>
+       骨架來源與案例適用限制
+      </h4>
+      <p>
+       蜘蛛人使用 Reza 提供的 IK／FK 模型，滑板則沿用作者過去製作的 rig。作者另提醒連看似靜止的部位也要調整骨骼；此拆解描述的是特定短片的人工動畫方法，沒有提供通用自動化或效能測試結果。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://80.lv/articles/see-how-you-can-make-a-blender-animation-of-spider-man-skating" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="80-level-see-how-this-sparkly-glass-like-apple-was-made-in-blender" data-intel-role="card">
+    <div class="category-meta">
+     #09 · blender
+    </div>
+    <h2>
+     Blender 玻璃感蘋果：雙層模型配手繪 Matcap 與假閃光
+    </h2>
+    <p class="summary">
+     Moop-A-Doop 把蘋果拆成半透明外殼與內層，兩層都用手繪 Matcap 著色；內部加入 SDF 光線步進細節，再以 Voronoi 與觀看方向製造閃爍感。
+    </p>
+    <figure class="case-preview" data-intel-id="80-level-see-how-this-sparkly-glass-like-apple-was-made-in-blender" data-intel-role="visual" data-visual-id="80-level-see-how-this-sparkly-glass-like-apple-was-made-in-blender">
+     <a href="https://80.lv/articles/see-how-this-sparkly-glass-like-apple-was-made-in-blender" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-10-17/80-level-see-how-this-sparkly-glass-like-apple-was-made-in-blender.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">Blender</b> ★★★★☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       雙層模型與材質技術
+      </h4>
+      <p>
+       半透明外殼負責亮面，內層用來假造深度，兩層都以手繪 Matcap 作為底色。作者另把光線步進的計算從世界空間換到物件空間，讓不同物件能各有內部星形並支援旋轉。
+      </p>
+      <h4>
+       視線方向對閃光製作的影響
+      </h4>
+      <p>
+       假閃光由 Voronoi 紋理與觀看方向的內積製造，切片部分再搭配實色漸層 Matcap 假造反射線。對風格化材質而言，這個案例把透明外觀拆成可分別控制的深度、閃點與線條，而非完全依賴真實玻璃反射。
+      </p>
+      <h4>
+       假反射與即時用途的驗證限制
+      </h4>
+      <p>
+       作者明確使用假深度與假閃光，不能把蘋果的外觀當成物理正確玻璃的驗證；內部細節使用 B3Dsdf 的 SDF 基元。文章沒有提供遊戲引擎效能數字，若要移植，仍須另外確認光線步進的實際運算成本。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://80.lv/articles/see-how-this-sparkly-glass-like-apple-was-made-in-blender" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="cg-channel-get-free-maya-character-rigging-toolset-mgear-5-4" data-intel-role="card">
+    <div class="category-meta">
+     #10 · maya
+    </div>
+    <h2>
+     mGear 5.4：統一臉部 Rig，加入動畫殘影與新版選取器
+    </h2>
+    <p class="summary">
+     mGear 5.4 在 Maya 統一眼、唇、眉的臉部綁定流程，新增 Blocking Ghosts 關鍵影格殘影；Anim Picker 2.0 也改用 SVG 形狀與互動元件，方便動畫操作。
+    </p>
+    <figure class="case-preview" data-intel-id="cg-channel-get-free-maya-character-rigging-toolset-mgear-5-4" data-intel-role="visual" data-visual-id="cg-channel-get-free-maya-character-rigging-toolset-mgear-5-4">
+     <a href="https://www.cgchannel.com/2026/10/get-free-maya-character-rigging-toolset-mgear-5-4" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-10-17/cg-channel-get-free-maya-character-rigging-toolset-mgear-5-4.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">Maya</b> ★★★★☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       臉部 Rig 與次級動作流程
+      </h4>
+      <p>
+       Facial Rigger 3.0 將眼、唇、眉整合到共用引擎與幾何選取介面，臉部也隨角色一起建立。Spring Manager 2.0 另把求解後端拆開，包含原有 Classic、Classic Gravity 與 Bone Dynamics，供拖尾部位或衣物的次級動作使用。
+      </p>
+      <h4>
+       動畫選取與姿勢檢查製作價值
+      </h4>
+      <p>
+       Anim Picker 2.0 重寫了選取器，支援 SVG 形狀、互動元件、視埠釘選、條件顯示與鏡像；Blocking Ghosts 則顯示正在觀察控制器各關鍵格的半透明角色。兩者分別處理控制器存取與姿勢對照，不能混成同一項功能。
+      </p>
+      <h4>
+       升版相容與效能宣稱的限制
+      </h4>
+      <p>
+       5.4 仍保留舊版 Eye Rigger，讓既有 rig 正常建立；報導稱建置速度約為先前兩倍，但沒有列出各角色的測試表。工具需求列 Maya 2022 以上，既有角色仍應核對實際使用的臉部系統，不能只憑速度宣稱判定全面相容。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://www.cgchannel.com/2026/10/get-free-maya-character-rigging-toolset-mgear-5-4" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="cg-channel-foundry-releases-mari-8-0" data-intel-role="card">
+    <div class="category-meta">
+     #11 · other-dcc
+    </div>
+    <h2>
+     Mari 8.0：三平面與六角貼圖節點，新增遮罩和材質比較工具
+    </h2>
+    <p class="summary">
+     Mari 8.0 正式版加入超過五十個節點，包含 Tri-Planar Tiled、Hex Tile 與 A/B 比較；也能由選取範圍或表面顏色建立遮罩，並新增 USD 攝影機唯讀支援。
+    </p>
+    <figure class="case-preview" data-intel-id="cg-channel-foundry-releases-mari-8-0" data-intel-role="visual" data-visual-id="cg-channel-foundry-releases-mari-8-0">
+     <a href="https://www.cgchannel.com/2026/10/foundry-releases-mari-8-0" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE CARD preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-10-17/cg-channel-foundry-releases-mari-8-0.svg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE CARD
+      </span>
+      · Generated source card · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">其他 DCC</b> ★★★★☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       三平面與六角拼接貼圖技術
+      </h4>
+      <p>
+       Tri-Planar Tiled 將同一張影像沿三軸投射，搭配細節保留與噪波混合，用來處理 UV 扭曲、接縫或無 UV 的模型。Hex Tile 改以六角格混合紋理，目標是降低規則矩形拼接時容易看出的重複。
+      </p>
+      <h4>
+       材質比較與遮罩製作價值
+      </h4>
+      <p>
+       Compare 可在不同節點流之間做 A/B 擦拭比較；Color Remap 集中色相、飽和度、曝光及 gamma。遮罩則可由畫布選取、Selection Groups 或模型表面顏色建立，讓外觀迭代和局部材質分區留在節點流程中。
+      </p>
+      <h4>
+       正式版日期與管線相容限制
+      </h4>
+      <p>
+       文章最初是七月二日的公開測試版報導，後來更新為正式版，不能把兩者當成同日發布。版本採用 CY2025 參考平台，USD 攝影機只讀；系統列 Windows 11 與 Rocky Linux／RHEL 9，升版需分別核對管線條件。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://www.cgchannel.com/2026/10/foundry-releases-mari-8-0" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="cg-channel-maxon-releases-cinema-4d-2027-0" data-intel-role="card">
+    <div class="category-meta">
+     #12 · other-dcc
+    </div>
+    <h2>
+     Cinema 4D 2027.0：新增 Scatter 場景散布與液體泡沫工具
+    </h2>
+    <p class="summary">
+     Cinema 4D 2027.0 新增 Scatter Generator 與逐物件覆寫標籤，可沿表面、曲線或 UV 散布物件；Liquid FX 則在既有液體模擬上生成泡沫、飛濺與氣泡。
+    </p>
+    <figure class="case-preview" data-intel-id="cg-channel-maxon-releases-cinema-4d-2027-0" data-intel-role="visual" data-visual-id="cg-channel-maxon-releases-cinema-4d-2027-0">
+     <a href="https://www.cgchannel.com/2026/10/maxon-releases-cinema-4d-2027-0" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-10-17/cg-channel-maxon-releases-cinema-4d-2027-0.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">其他 DCC</b> ★★★★☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       物件散布與密度控制流程
+      </h4>
+      <p>
+       Scatter Generator 可沿表面、曲線或 UV 分布物件，用貼圖、密度圖、篩選及鄰近條件限制區域，再加入群聚和位置、比例、顏色隨機變化。Scatter Tag 則逐物件覆寫散布設定，將大範圍配置與局部調整分開。
+      </p>
+      <h4>
+       液體次級效果的製作價值
+      </h4>
+      <p>
+       Liquid FX Emitter 評估既有液體粒子，在快速彎曲表面生成飛濺與泡沫，在液體包住空氣處生成氣泡。Modifier 另可直接把粒子轉成 Liquid FX，用於整個液體體積，例如杯中上升氣泡，不只侷限在水面。
+      </p>
+      <h4>
+       功能世代與相容條件限制
+      </h4>
+      <p>
+       液體模擬早在 2025.3 已引入，2027.0 的變更是補上專用泡沫、飛濺和氣泡功能，不能說液體系統首次出現。新版需求是 Windows 11 或 macOS 15 以上；新散布比舊方法更快更容易也是廠商說法，並非本文獨立測速結果。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://www.cgchannel.com/2026/10/maxon-releases-cinema-4d-2027-0" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="80-level-creating-a-thriller-animated-series-with-hand-drawn-textures" data-intel-role="card">
+    <div class="category-meta">
+     #14 · blender
+    </div>
+    <h2>
+     EUTHANAZIES 動畫：用手繪陰影重投影融合 Blender 與 2D
+    </h2>
+    <p class="summary">
+     BONI IS SCARED 以 Blender 的角色、場景與攝影機打底，加入手繪貼圖、法線與動態模糊；團隊先從固定視角畫陰影遮罩，再投回模型，重新以動畫鏡頭渲染。
+    </p>
+    <figure class="case-preview" data-intel-id="80-level-creating-a-thriller-animated-series-with-hand-drawn-textures" data-intel-role="visual" data-visual-id="80-level-creating-a-thriller-animated-series-with-hand-drawn-textures">
+     <a href="https://80.lv/articles/creating-a-thriller-animated-series-with-hand-drawn-textures-in-blender" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-10-17/80-level-creating-a-thriller-animated-series-with-hand-drawn-textures.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">Blender</b> ★★★★☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       手繪陰影重投影流程
+      </h4>
+      <p>
+       團隊先以固定攝影機、不開景深預渲染每個鏡頭，在畫面上手繪陰影遮罩，再重投影到三維模型。最後改用實際動畫攝影機並開啟景深重算，將手畫的陰影外觀帶回有鏡頭運動的畫面。
+      </p>
+      <h4>
+       程序場景與遠端協作製作價值
+      </h4>
+      <p>
+       纜線和積雪用自訂 Geometry Nodes，整片環境則能沿曲線變形以調整構圖。團隊另建立版本控制與 Kitsu 審片流程，讓分散各地的動畫師發布預覽、取得回饋及保留版本，避免覆寫彼此成果。
+      </p>
+      <h4>
+       概念驗證與量產成熟度限制
+      </h4>
+      <p>
+       團隊把預告定位為概念驗證：完成的是技術及視覺基礎，試播集還要處理寫作、配音與敘事。手繪陰影的技術整合也經過大量嘗試，因此不能把展示片完成解讀為完整影集已經量產或所有鏡頭都能低成本套用。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://80.lv/articles/creating-a-thriller-animated-series-with-hand-drawn-textures-in-blender" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="cg-channel-autodesk-releases-3ds-max-2027-2-with-editable-gaussian-spla" data-intel-role="card">
+    <div class="category-meta">
+     #16 · other-dcc
+    </div>
+    <h2>
+     版本回顧｜3ds Max 2027.2：可編輯高斯潑濺與點實例
+    </h2>
+    <p class="summary">
+     2026 年七月的 3ds Max 2027.2 報導介紹 Points 物件及點修改器，支援匯入高斯潑濺，並透過 Arnold 重新打光與渲染；這是既有版本功能回顧。
+    </p>
+    <figure class="case-preview" data-intel-id="cg-channel-autodesk-releases-3ds-max-2027-2-with-editable-gaussian-spla" data-intel-role="visual" data-visual-id="cg-channel-autodesk-releases-3ds-max-2027-2-with-editable-gaussian-spla">
+     <a href="https://www.cgchannel.com/2026/07/autodesk-releases-3ds-max-2027-2-with-editable-gaussian-splats" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-10-17/cg-channel-autodesk-releases-3ds-max-2027-2-with-editable-gaussian-spla.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">其他 DCC</b> ★★★☆☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       點資料與高斯潑濺工作流
+      </h4>
+      <p>
+       新版以 Points 物件承接可編輯點、點球與高斯潑濺，Turn to Point 可從網格頂點、表面密度或體積產生點。潑濺資料支援 PLY、SPZ 和 LCC 匯入，之後可在 ActiveShade 預覽，配合修改器處理並交給 Arnold 渲染。
+      </p>
+      <h4>
+       環境佈置與實例化製作價值
+      </h4>
+      <p>
+       Point Instance 以場景物件為來源，在指定點上放置渲染時實例；文章把植被與大量環境物件列為用途。推論上，它能讓場景佈置的點分布與最終實例幾何分開管理，但不能把互動性改善解讀成任何資產都能無限制增加。
+      </p>
+      <h4>
+       點類型與渲染器相容限制
+      </h4>
+      <p>
+       Point Instance 可套在多邊形網格或 Point 物件，但不適用點雲與粒子系統。潑濺的 Arnold 渲染則依賴 MAXtoA 5.9.3 對 Arnold 7.5.2 的支援；匯入檔案成功，不代表任意點資料或其他渲染器都支援相同功能。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://www.cgchannel.com/2026/07/autodesk-releases-3ds-max-2027-2-with-editable-gaussian-splats" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="cg-channel-maxon-releases-cinema-4d-2026-3" data-intel-role="card">
+    <div class="category-meta">
+     #17 · other-dcc
+    </div>
+    <h2>
+     版本回顧｜Cinema 4D 2026.3：UV 編輯器與粒子屬性管理
+    </h2>
+    <p class="summary">
+     這篇 2026 年六月報導介紹 Cinema 4D 2026.3：重整 UV 編輯器、加入 Particle Property Manager，並為 Cloner 增加 UV Projection、Rivet 與 Edge 分布方式；不是今天的新版本發布。
+    </p>
+    <figure class="case-preview" data-intel-id="cg-channel-maxon-releases-cinema-4d-2026-3" data-intel-role="visual" data-visual-id="cg-channel-maxon-releases-cinema-4d-2026-3">
+     <a href="https://www.cgchannel.com/2026/06/maxon-releases-cinema-4d-2026-3" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-10-17/cg-channel-maxon-releases-cinema-4d-2026-3.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">其他 DCC</b> ★★★☆☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       建模與 UV 整合工作流
+      </h4>
+      <p>
+       這一版以新 UV Editor 取代 BodyPaint 3D 的舊編輯器，讓選取與變換在建模、UV 兩個情境下近似操作。功能仍包含自動展開、放鬆、接縫編輯、像素密度與 UDIM，改善的是整合方式而非所有 UV 功能都首次出現。
+      </p>
+      <h4>
+       複製物分布與粒子控制價值
+      </h4>
+      <p>
+       Cloner 的 UV Projection 依 UV 座標散布，所以表面後續細分不影響複製物位置；Rivet 沿面輪廓、Edge 沿邊分布。Particle Property Manager 另集中建立、檢視與編輯粒子屬性，兩組功能分別服務配置與模擬資料管理。
+      </p>
+      <h4>
+       舊版本系統需求的引用限制
+      </h4>
+      <p>
+       本文是六月的 2026.3 版本資訊，列出的需求為 Windows 10 以上或 macOS 14 以上。這些條件只能用來理解當時版本，不能替代十月 2027.0 的系統條件；閱讀時應避免把版本回顧當成今日最新更新。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://www.cgchannel.com/2026/06/maxon-releases-cinema-4d-2026-3" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="cg-channel-ipad-app-cozyblanket-puts-the-fun-back-into-retopology" data-intel-role="card">
+    <div class="category-meta">
+     #18 · blender
+    </div>
+    <h2>
+     歷史參考｜CozyBlanket 1.3：在 iPad 表面畫四邊形拓樸
+    </h2>
+    <p class="summary">
+     這篇 2022 年報導介紹原版 CozyBlanket 1.3：在高模表面手畫新拓樸，新增整條四邊形帶、頂點固定與拓樸島移動；不是 2026 年的 CozyBlanket Pro。
+    </p>
+    <figure class="case-preview" data-intel-id="cg-channel-ipad-app-cozyblanket-puts-the-fun-back-into-retopology" data-intel-role="visual" data-visual-id="cg-channel-ipad-app-cozyblanket-puts-the-fun-back-into-retopology">
+     <a href="https://www.cgchannel.com/2022/05/ipad-app-cozyblanket-puts-the-fun-back-into-retopology" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE CARD preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-10-17/cg-channel-ipad-app-cozyblanket-puts-the-fun-back-into-retopology.svg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE CARD
+      </span>
+      · Generated source card · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">Blender</b> ★★★☆☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       手畫邊流與拓樸編輯流程
+      </h4>
+      <p>
+       原版工具讓使用者在高解析模型上畫出低模邊流，再滑動頂點、邊，或拆分與合併面。1.3 增加整條四邊形帶的繪製與拓樸島移動，頂點也可固定，讓新面片沿高模表面整理，而非描述 AI 自動完成整張網格。
+      </p>
+      <h4>
+       拓樸輸出與列印交接價值
+      </h4>
+      <p>
+       報導記錄原版 1.2 已加入 STL 輸出，並可用 OBJ 匯入或匯出。這提供了將重拓樸成果帶到其他軟體或列印準備流程的出口；推論上，本文較適合拿來比較觸控式手動重拓樸的操作，而非評估新版 AI 效果。
+      </p>
+      <h4>
+       歷史授權與平台資訊限制
+      </h4>
+      <p>
+       2022 年文章列 iPadOS 14 以上，建議但不強制使用 Apple Pencil，儲存或輸出需付費解鎖。這是當年的版本與授權記錄，不能當作原版今日仍可購買的保證，更不能代替獨立產品 Pro 的平台及檔案相容資訊。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://www.cgchannel.com/2022/05/ipad-app-cozyblanket-puts-the-fun-back-into-retopology" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <nav aria-label="相鄰分類" class="category-bottom-nav">
+    <a href="../emerging-case/">
+     ← 新技術 / Case
+    </a>
+    <a href="../#top">
+     TOP5
+    </a>
+    <a href="../ai-generation/">
+     AI 生成 →
+    </a>
+   </nav>
+  </main>
+  <script defer="" src="../../archive-nav-state.js?v=20261017-r1-workspace-v10-history-current-workspace">
+  </script>
+ </body>
+</html>
