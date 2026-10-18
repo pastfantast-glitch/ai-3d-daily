@@ -1,0 +1,1169 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-19",
+  "reviewer": "chatgpt-scheduled-task",
+  "source_run_id": 39176735331,
+  "source_head_sha": "d7fa7eeab597f00b6447ff5fd21d32f201b74e1b",
+  "items": {
+    "3dnchu-polygon-smoothing-groups-beta": {
+      "source_url": "https://3dnchu.com/archives/polygon-smoothing-groups-beta",
+      "source_published_at": "2024-10-15",
+      "reviewed_on": "2026-10-19",
+      "source_evidence_sha256": "35a311c86d0ce4d69b722958c407b876a67b5cae0b7586fba5797e9c3977ce92",
+      "evidence_refs": [
+        "p001",
+        "p002",
+        "p004"
+      ],
+      "title": "歷史參考｜Blender 平滑群組工具：管理硬邊與接縫",
+      "summary": "這篇 2024 年文章介紹 Polygon Smoothing Groups 測試版，可在 Blender 指派平滑群組、管理硬邊與接縫；操作介面讓作者聯想到 3ds Max，但不是檔案相容功能的證明。",
+      "full_analysis": [
+        {
+          "label": "平滑群組與硬邊控制流程",
+          "text": "插件將多邊形平滑群組、硬邊與接縫管理集中處理，讓美術定義硬表面或有機造型的表面外觀。這裡控制的是模型平滑與邊界的呈現，文章沒有把它描述成新增幾何細節的雕刻工具。",
+          "evidence_refs": [
+            "p001",
+            "p002"
+          ]
+        },
+        {
+          "label": "既有建模習慣的轉換價值",
+          "text": "文章作者認為群組管理介面類似 3ds Max 或 LightWave，也提到接縫設定方便。推論上，熟悉群組式平滑管理的美術可拿它比較 Blender 的操作習慣，但介面相似不代表不同軟體之間的群組資料會自動一致。",
+          "evidence_refs": [
+            "p004"
+          ]
+        },
+        {
+          "label": "測試版與跨軟體相容限制",
+          "text": "來源記錄的是測試版，當時列出 Blender 4.2 與二十美元售價，不能視為目前版本或價格確認。文中沒有說明 FBX 群組保存、引擎法線或跨 DCC 往返結果，因此不能補寫這些互通能力。",
+          "evidence_refs": [
+            "p001",
+            "p004"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p002",
+          "p004"
+        ]
+      }
+    },
+    "3dnchu-jigglegen-2-0": {
+      "source_url": "https://3dnchu.com/archives/jigglegen-2-0",
+      "source_published_at": "2026-09-10",
+      "reviewed_on": "2026-10-19",
+      "source_evidence_sha256": "402c1004fe1d11c5e04e28e6787a24f280abae095a5219b42ca47168e444f206",
+      "evidence_refs": [
+        "p001",
+        "p002",
+        "p003",
+        "p004",
+        "p005",
+        "p006",
+        "p007",
+        "p009",
+        "p010",
+        "p013",
+        "p014",
+        "p015",
+        "p017",
+        "p018",
+        "p022",
+        "p023"
+      ],
+      "title": "JiggleGen 2.0：用布料代理網格替身體、衣物與髮絲加擺動",
+      "summary": "JiggleGen 2.0 在 Blender 以頂點群組指定擺動區域，自動建立 Cloth 代理網格與固定群組，再把變形傳回原模型；新版重寫介面與程式，並實驗支援節點布料。",
+      "full_analysis": [
+        {
+          "label": "代理布料到原模型的變形流程",
+          "text": "工具先依頂點群組建立 Cloth 模擬代理與 Pin Group，再透過 Surface Deform 把變形帶回原模型，也能從非擺動區域生成碰撞網格。它自動化的是反覆設定步驟，生成後仍使用 Blender 原生 Cloth 參數調整。",
+          "evidence_refs": [
+            "p002",
+            "p003",
+            "p004",
+            "p005",
+            "p006"
+          ]
+        },
+        {
+          "label": "多部位設定與資產保護的製作價值",
+          "text": "身體、衣物與配件可放在 Batch List，複製設定並批次套用；Hair Curves 也能建立髮絲用 Hair Cage。文章另列出不修改原模型網格、形狀鍵、材質、UV 與權重的非破壞流程，便於把擺動設定與原始資產分開管理。",
+          "evidence_refs": [
+            "p007",
+            "p009",
+            "p010",
+            "p022"
+          ]
+        },
+        {
+          "label": "實驗性節點布料的導入限制",
+          "text": "Blender 5.2 以上的 Geometry Nodes Cloth 支援仍標為實驗性，作者建議使用較成熟的 Classic Cloth Modifier。新版雖可逐部位選方式並列出生成成功、略過與失敗報告，不能把實驗支援當成所有模型都已穩定可用。",
+          "evidence_refs": [
+            "p013",
+            "p014",
+            "p015",
+            "p017",
+            "p018",
+            "p023"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p002",
+          "p003",
+          "p004",
+          "p005",
+          "p006",
+          "p007",
+          "p009",
+          "p010",
+          "p013",
+          "p014",
+          "p015",
+          "p017",
+          "p018",
+          "p022",
+          "p023"
+        ]
+      }
+    },
+    "3dnchu-procedural-city-generator-ue4": {
+      "source_url": "https://3dnchu.com/archives/procedural-city-generator-ue4",
+      "source_published_at": "2020-10-27",
+      "reviewed_on": "2026-10-19",
+      "source_evidence_sha256": "530fef72a55789249a9253c2f3917962e77f1de828bd1352cd94e5571695853d",
+      "evidence_refs": [
+        "p001",
+        "p003",
+        "p004",
+        "p005",
+        "p006",
+        "p009",
+        "p011",
+        "p012",
+        "p014",
+        "p016"
+      ],
+      "title": "歷史參考｜UE4 城市生成工具：先分區，再配置道路與資產",
+      "summary": "這篇 2020 年文章介紹 Coqui Games 的 Procedural City Generator：在 UE4 編輯器定義城市邊界與分區，生成道路後配置建築、道具與植被；不是現今 UE5 PCG 系統的更新。",
+      "full_analysis": [
+        {
+          "label": "分區到道路與建築的生成流程",
+          "text": "先命名城市並調整邊界形狀，再指定各分區能生成的建築、道具與植被，接著建立高速路、幹道及支路。道路滿意後才放置建築與其他資產，各階段可以重做或自訂，將城市配置拆成可迭代的步驟。",
+          "evidence_refs": [
+            "p003",
+            "p004",
+            "p005"
+          ]
+        },
+        {
+          "label": "自訂資產與大型場景的製作價值",
+          "text": "工具允許替換自己的建築、道具與植被網格，也提供關卡串流準備及 HLOD 體積生成。推論上，可把它當作城市佈局骨架，再由美術調整各區風格，但有 HLOD 工具不代表已保證任何規模的場景效能。",
+          "evidence_refs": [
+            "p006",
+            "p009",
+            "p011",
+            "p012",
+            "p014"
+          ]
+        },
+        {
+          "label": "UE4 早期版本與破壞系統限制",
+          "text": "這是 2020 年 UE4 資產的介紹，文中購買版本仍標早期存取；ApexDestruction 可透過藍圖加入，Chaos 當時只是未來規劃。不能把舊文簡稱 PCG 誤認成 UE5 原生同名框架，也不能推定其後續升版或 Chaos 支援已完成。",
+          "evidence_refs": [
+            "p001",
+            "p006",
+            "p016"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p003",
+          "p004",
+          "p005",
+          "p006",
+          "p009",
+          "p011",
+          "p012",
+          "p014",
+          "p016"
+        ]
+      }
+    },
+    "3dnchu-vertex-anim-toolset-ue4": {
+      "source_url": "https://3dnchu.com/archives/vertex-anim-toolset-ue4",
+      "source_published_at": "2019-11-19",
+      "reviewed_on": "2026-10-19",
+      "source_evidence_sha256": "db959369a237952b4dbca21dc33fc04b5230dcbb1bef64c46c7621e994fb99c9",
+      "evidence_refs": [
+        "p001",
+        "p002",
+        "p003",
+        "p004",
+        "p006",
+        "p007",
+        "p008"
+      ],
+      "title": "歷史參考｜UE4 頂點動畫工具：把骨架與 Morph 動作烘成貼圖",
+      "summary": "這篇 2019 年文章介紹 Vertex Anim Toolset：在 UE4 內把骨架與 Morph Target 動畫烘進貼圖，再由材質驅動靜態網格，並為不同 LOD 建立讀取動畫資料的 UV。",
+      "full_analysis": [
+        {
+          "label": "骨架動畫轉貼圖的製作流程",
+          "text": "插件把骨骼與形狀目標的動畫資料烘進貼圖，並從骨架網格建立靜態網格，附加特殊 UV，讓各個 LOD 能讀同一套動畫資料；材質著色器再使用貼圖重現變形，也可把多段動畫放入同一張貼圖。",
+          "evidence_refs": [
+            "p001",
+            "p002",
+            "p003",
+            "p004"
+          ]
+        },
+        {
+          "label": "減少工具往返的工作流價值",
+          "text": "文章強調烘焙能在 UE4 內完成，不必先把買來的動畫資產送到 Houdini 或 Blender 再處理。推論上，這可縮短靜態網格頂點動畫的準備路徑，但不等於動畫從此不占記憶體，或保留骨架控制器所有互動能力。",
+          "evidence_refs": [
+            "p002",
+            "p006"
+          ]
+        },
+        {
+          "label": "效能宣稱與現代引擎相容限制",
+          "text": "來源把材質驅動靜態網格描述為較有效率的播放方式，但沒有列出角色數、貼圖尺寸與測速結果。它是 2019 年 UE4 插件介紹，不能由此保證當前 UE5 相容，或宣稱任意動畫都能取得固定的效能倍數。",
+          "evidence_refs": [
+            "p001",
+            "p002",
+            "p007",
+            "p008"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p002",
+          "p003",
+          "p004",
+          "p006",
+          "p007",
+          "p008"
+        ]
+      }
+    },
+    "3dnchu-altermesh-2-0": {
+      "source_url": "https://3dnchu.com/archives/altermesh-2-0",
+      "source_published_at": "2023-10-19",
+      "reviewed_on": "2026-10-19",
+      "source_evidence_sha256": "cb1285af5311a3dc360cabbc28a0f4b11349dbfc73c979c296361747e0c5ce03",
+      "evidence_refs": [
+        "p001",
+        "p002",
+        "p003",
+        "p004"
+      ],
+      "title": "歷史參考｜AlterMesh 2.0 預告：在 Unreal 使用幾何節點",
+      "summary": "2023 年的 AlterMesh 2.0 預告介紹在 Unreal Engine 使用 Blender Geometry Nodes，並展示 cinematic／runtime 模式；當時規劃十一月發布，不是今天的功能上市消息。",
+      "full_analysis": [
+        {
+          "label": "幾何節點進入引擎的技術方向",
+          "text": "AlterMesh 被介紹為在 Unreal Engine 使用 Blender Geometry Nodes 的插件，文章附的展示文字特別提到 cinematic 與 runtime 模式。可確認的是這個跨軟體方向與展示，本文沒有提供完整的節點支援清單。",
+          "evidence_refs": [
+            "p001",
+            "p002"
+          ]
+        },
+        {
+          "label": "程序資產交接的潛在製作價值",
+          "text": "推論上，讓已在 Blender 建立的幾何節點流程進入 Unreal，可作為程序資產與鏡頭製作的銜接方向。來源仍把它稱為插件，也表達希望引擎原生能更容易做到類似操作，不能改寫成 Unreal 已直接內建 Geometry Nodes。",
+          "evidence_refs": [
+            "p001",
+            "p002",
+            "p004"
+          ]
+        },
+        {
+          "label": "預告與非商用授權的資訊限制",
+          "text": "文章當時寫預定 2023 年十一月發布，並列出個人非商用版免費。這不是今日版本狀態確認，也不是工作室商用免費的依據；缺少節點、平台與效能細節，不能從展示推定所有 Blender 節點都能在遊戲中直接運作。",
+          "evidence_refs": [
+            "p001",
+            "p003",
+            "p004"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p002",
+          "p003",
+          "p004"
+        ]
+      }
+    },
+    "3dnchu-blenderesse-freeassets-geonodes": {
+      "source_url": "https://3dnchu.com/archives/blenderesse-freeassets-geonodes",
+      "source_published_at": "2024-10-17",
+      "reviewed_on": "2026-10-19",
+      "source_evidence_sha256": "2abef292beed1c2fc470ff164227487b31f8e6d730891b56bfae3e12e185d777",
+      "evidence_refs": [
+        "p001",
+        "p002",
+        "p003",
+        "p004"
+      ],
+      "title": "歷史參考｜Blenderesse 幾何節點資產改免費，仍須核對版本",
+      "summary": "這篇 2024 年文章記錄 Miettinen Jesse 將 Gumroad 上的 Geometry Nodes 等產品改為免費；作者同時提醒選對 Blender 版本，並說不確定其中的融化效果是否仍能運作。",
+      "full_analysis": [
+        {
+          "label": "幾何節點資產的取得流程",
+          "text": "這次消息是作者把既有產品改為免費，文章介紹的對象包括 Blender Geometry Nodes 資產，並非發布一套新的統一求解器。可確認的變更是當時的取得費用，本文沒有逐項列出所有節點資產的功能。",
+          "evidence_refs": [
+            "p001",
+            "p002",
+            "p003"
+          ]
+        },
+        {
+          "label": "學習程序製作的參考價值",
+          "text": "文章作者把這批免費資產視為學習材料。推論上，對幾何節點練習可先挑一項符合版本的現成資產閱讀與修改，不必把免費消息延伸成每項資產都已經過正式專案驗證，或都能解決相同類型的製作問題。",
+          "evidence_refs": [
+            "p001",
+            "p004"
+          ]
+        },
+        {
+          "label": "融化效果與版本相容限制",
+          "text": "原作者明確要求確認正確 Blender 版本，且不確定融化效果是否仍能使用，因此不能宣稱整批在目前版本完全相容。這篇 2024 年消息也沒有確認今日下載和商用授權細則，免費取得不能替代實際使用條款核對。",
+          "evidence_refs": [
+            "p002",
+            "p003"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p002",
+          "p003",
+          "p004"
+        ]
+      }
+    },
+    "3dnchu-fakebones": {
+      "source_url": "https://3dnchu.com/archives/fakebones",
+      "source_published_at": "2026-03-28",
+      "reviewed_on": "2026-10-19",
+      "source_evidence_sha256": "3f2c7dfafe270384aa108f9fd6af38161942e895f2dd8baa3773f47b4149f195",
+      "evidence_refs": [
+        "p001",
+        "p002",
+        "p004"
+      ],
+      "title": "歷史參考｜FakeBones：保留原骨架，以假骨顯示改善編輯",
+      "summary": "2026 年三月介紹的 FakeBones 會在 Blender 生成球形與錐形 Empty，以約束跟隨匯入骨架，改善 Maya、Unreal 骨軸差異造成的顯示問題，而不改掉原本骨架結構。",
+      "full_analysis": [
+        {
+          "label": "關節與連線的替代顯示流程",
+          "text": "插件以球形 Empty 表示關節、錐形 Empty 表示骨骼連線，再用約束產生動態伸縮效果。物件集中到 FakeBones 集合，設成不可選且總在前方顯示，讓骨架關係更容易閱讀，而不是重建原本的變形骨架。",
+          "evidence_refs": [
+            "p002"
+          ]
+        },
+        {
+          "label": "跨 DCC 骨架編輯的製作價值",
+          "text": "來源強調原骨架資料不受干擾，額外建立的是受約束的假骨顯示。推論上，對匯入 Maya 或 Unreal 骨架後看不清連接關係的編輯情境，可以先改善視覺辨識，而不必為了 Blender 顯示習慣改掉原骨結構。",
+          "evidence_refs": [
+            "p001",
+            "p002",
+            "p004"
+          ]
+        },
+        {
+          "label": "視覺修正與資料修復的限制",
+          "text": "這項工具處理的是骨軸差異下的骨架外觀，不能把假骨顯示等同於修正綁定姿勢、權重或匯出座標。文章未提供各種 FBX 往返的實測，2026 年三月所述免費發布狀態也不能自動證明目前所有 DCC 版本互通。",
+          "evidence_refs": [
+            "p001",
+            "p002",
+            "p004"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p002",
+          "p004"
+        ]
+      }
+    },
+    "3dnchu-has-paint-layers-v0-2-9": {
+      "source_url": "https://3dnchu.com/archives/has-paint-layers-v0-2-9",
+      "source_published_at": "2024-06-05",
+      "reviewed_on": "2026-10-19",
+      "source_evidence_sha256": "ede6957a09d80de9b52039369e387e5b721e3b45f15f2b13407132cb0e35deb7",
+      "evidence_refs": [
+        "p001",
+        "p002",
+        "p003",
+        "p004",
+        "p005",
+        "p006",
+        "p007",
+        "p008",
+        "p009"
+      ],
+      "title": "歷史參考｜HAS Paint Layers：在 Blender 分層繪製 PBR 貼圖",
+      "summary": "2024 年的 HAS Paint Layers 0.2.9 介紹多層貼圖繪製，可將圖層分配給粗糙度、金屬度、透明度與法線等材質通道，也能載入現有貼圖和使用調整層。",
+      "full_analysis": [
+        {
+          "label": "圖層與材質通道的貼圖流程",
+          "text": "插件可建立、整理多個繪畫圖層，並用調整層控制底下圖層的色彩、遮罩與效果。圖層能分配到粗糙度、金屬度、透明度及法線等屬性，讓不同材質資訊有各自的編輯入口，而不是把所有變化畫進同一張顏色圖。",
+          "evidence_refs": [
+            "p003",
+            "p004",
+            "p005",
+            "p006"
+          ]
+        },
+        {
+          "label": "現有資產與節點材質交接價值",
+          "text": "現成貼圖可直接載入成圖層；選擇自訂著色器類型後，產生的節點群組可放進其他材質設定。推論上，這有助於在原有 Blender 材質上逐步加畫，而不必先假設所有資產都要改用完全相同的固定材質模板。",
+          "evidence_refs": [
+            "p007",
+            "p009"
+          ]
+        },
+        {
+          "label": "圖層結果與編輯工具相容限制",
+          "text": "文章稱建立的圖層在未安裝插件的其他 Blender 版本仍能運作，這不等於那些環境也能取得相同插件編輯介面。當時列出的插件需求是 Blender 4.0 以上；今日升版相容、跨軟體圖層輸出與檔案格式仍未由本文證實。",
+          "evidence_refs": [
+            "p001",
+            "p002",
+            "p008"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p002",
+          "p003",
+          "p004",
+          "p005",
+          "p006",
+          "p007",
+          "p008",
+          "p009"
+        ]
+      }
+    },
+    "3dnchu-mio3-uv-v1-0": {
+      "source_url": "https://3dnchu.com/archives/mio3-uv-v1-0",
+      "source_published_at": "2024-10-14",
+      "reviewed_on": "2026-10-19",
+      "source_evidence_sha256": "0a6935288be1d3776b3edf0cb12ab3bdd416a255060a43b87b9b51ceb89515c3",
+      "evidence_refs": [
+        "p001",
+        "p003",
+        "p004",
+        "p005",
+        "p014",
+        "p018",
+        "p019",
+        "p020",
+        "p024",
+        "p025",
+        "p026",
+        "p029",
+        "p033",
+        "p034",
+        "p036",
+        "p037"
+      ],
+      "title": "歷史參考｜Mio3 UV 1.0：角色 UV 的直線展開、對稱與排序",
+      "summary": "這篇 2024 年文章介紹 Mio3 UV 角色 UV 輔助工具，包含直線與格狀展開、形狀複製、依三維位置排列及對稱選取，也能顯示檢查格與邊距指南。",
+      "full_analysis": [
+        {
+          "label": "展開與島嶼形狀整理流程",
+          "text": "工具可讓選定邊環直線展開，或把所選面展為矩形，並能複製 UV 形狀且保留原位置。接縫對齊會處理對應同一三維頂點的 UV 座標，讓展開、拉直與重複部位形狀整理有較明確的操作分工。",
+          "evidence_refs": [
+            "p004",
+            "p005",
+            "p014",
+            "p019",
+            "p020"
+          ]
+        },
+        {
+          "label": "角色部位排序與檢查的製作價值",
+          "text": "插件可依三維座標排序島嶼、依部位調整朝向與順序，也有三維對稱選取及對稱化。搭配檢查格與邊距指南，推論上，適合整理角色左右部位的可讀布局，但不代表每種不對稱角色都應強制重疊 UV。",
+          "evidence_refs": [
+            "p018",
+            "p024",
+            "p025",
+            "p026",
+            "p029",
+            "p033",
+            "p034"
+          ]
+        },
+        {
+          "label": "保留布局與歷史版本的操作限制",
+          "text": "一般展開只說盡可能保留原位置、尺寸與角度，不是完全不改布局的保證。文末同時保留申請擴充套件審查的舊貼文與已公開的更新註記；這是 2024 年的開發記錄，不能據此推定目前仍待審或沒有任何相容問題。",
+          "evidence_refs": [
+            "p003",
+            "p036",
+            "p037"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p003",
+          "p004",
+          "p005",
+          "p014",
+          "p018",
+          "p019",
+          "p020",
+          "p024",
+          "p025",
+          "p026",
+          "p029",
+          "p033",
+          "p034",
+          "p036",
+          "p037"
+        ]
+      }
+    },
+    "3dnchu-select-polygons-by-angle-b3d": {
+      "source_url": "https://3dnchu.com/archives/select-polygons-by-angle-b3d",
+      "source_published_at": "2024-08-29",
+      "reviewed_on": "2026-10-19",
+      "source_evidence_sha256": "baad777c6f82f08b61ff0fd02a506026fe7790112bdf705dc482a0b90b6c2c9a",
+      "evidence_refs": [
+        "p001",
+        "p002",
+        "p003",
+        "p004",
+        "p005",
+        "p006",
+        "p007"
+      ],
+      "title": "歷史參考｜Blender 按法線角度延伸選取連續面",
+      "summary": "2024 年介紹的 Select Polygons By Angle 可從目前選定面，依零至一百八十度的法線角度門檻延伸選取，並用 Shift 累加範圍，面向硬表面模型的區域選擇。",
+      "full_analysis": [
+        {
+          "label": "角度門檻與面選取流程",
+          "text": "插件從目前選取的多邊形出發，依指定法線角度門檻選擇連續表面，門檻可在三維視埠直接調為零至一百八十度。這是以幾何方向延伸面選取，而不是依材質名稱或貼圖顏色自動分區。",
+          "evidence_refs": [
+            "p001",
+            "p002",
+            "p003",
+            "p004"
+          ]
+        },
+        {
+          "label": "硬表面區域處理的製作價值",
+          "text": "按住 Shift 可在不取消先前選取的情況下增加範圍，功能集中在 N 面板的 Select By Angle 頁籤。推論上，當模型有連續平面與斜面時，可用角度調整逐步組合區域，減少逐面點選，但選到的範圍仍取決於實際法線。",
+          "evidence_refs": [
+            "p002",
+            "p005",
+            "p006"
+          ]
+        },
+        {
+          "label": "選取工具與表面修復的限制",
+          "text": "來源介紹的是選取功能，沒有說會自動修復法線、拓樸或建立平滑群組，不能把選取結果當作模型品質已修正。文章當時列 Blender 4.2 與五美元價格，僅代表 2024 年資訊，不是目前售價與升版相容確認。",
+          "evidence_refs": [
+            "p001",
+            "p002",
+            "p007"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p002",
+          "p003",
+          "p004",
+          "p005",
+          "p006",
+          "p007"
+        ]
+      }
+    },
+    "3dnchu-textools-v1-6": {
+      "source_url": "https://3dnchu.com/archives/textools-v1-6",
+      "source_published_at": "2024-03-04",
+      "reviewed_on": "2026-10-19",
+      "source_evidence_sha256": "a6db95d7c737cf17e7ebded7af5a8684c77e7479a89f4f3b47651fb82635bb00",
+      "evidence_refs": [
+        "p001",
+        "p004",
+        "p005",
+        "p012",
+        "p013",
+        "p015",
+        "p017",
+        "p018",
+        "p019",
+        "p029",
+        "p030",
+        "p041",
+        "p044"
+      ],
+      "title": "歷史參考｜TexTools 1.6 系列：UV 整理、密度與烘焙更新",
+      "summary": "這篇 2024 年文章回顧 TexTools 的 UV、貼圖密度與烘焙工具更新，包含多島接縫縫合、UDIM 烘焙及 ACES 選項，並補述 1.6.1 的後續發布狀態。",
+      "full_analysis": [
+        {
+          "label": "接縫縫合與 UV 編輯流程",
+          "text": "Stitch 能保留原選取位置，同時縫合多個島嶼或物件的多條邊；Align World 加入軸向與選取敏感度控制。UV 通道的選取、增加、刪除及交換也擴大到全部所選物件，讓多資產整理不只作用在目前啟用物件。",
+          "evidence_refs": [
+            "p004",
+            "p005",
+            "p030"
+          ]
+        },
+        {
+          "label": "密度與貼圖烘焙的製作價值",
+          "text": "更新可用自訂單位調整貼圖密度比例，支援 UDIM 烘焙，並加入 ACES 色彩空間選項。文章也記錄 macOS、Linux 自訂烘焙模式黑圖與既有圖像覆寫等修正，這些是具體工作流改進，不代表任何材質都能不經檢查直接烘焙。",
+          "evidence_refs": [
+            "p012",
+            "p013",
+            "p015",
+            "p017",
+            "p018",
+            "p019"
+          ]
+        },
+        {
+          "label": "功能分版本與下載分支限制",
+          "text": "部分 UV 功能只在 Blender 3.2 以上顯示，檢查格與預覽工具另列 3.0 以上需求，不能一概說所有舊版都完整支援。文末先區分發布版與開發最新版，又補註 1.6.1 已正式發布；這些是當年的版本狀態，不能當成目前最新版本。",
+          "evidence_refs": [
+            "p029",
+            "p041",
+            "p044"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p004",
+          "p005",
+          "p012",
+          "p013",
+          "p015",
+          "p017",
+          "p018",
+          "p019",
+          "p029",
+          "p030",
+          "p041",
+          "p044"
+        ]
+      }
+    },
+    "cg-channel-see-magic-dust-vfxs-breakdown-for-outlander-blood-of-my-bloo": {
+      "source_url": "https://www.cgchannel.com/2026/10/see-magic-dust-vfxs-breakdown-for-outlander-blood-of-my-blood",
+      "source_published_at": "2026-10-18",
+      "reviewed_on": "2026-10-19",
+      "source_evidence_sha256": "682661339932b5f568517da7a6eb841f6ac912ff70d82ffcfcb5a65b87bab465",
+      "evidence_refs": [
+        "p001",
+        "p002",
+        "p003",
+        "p004"
+      ],
+      "title": "《Outlander》前傳視效拆解：場景延伸與河流增強",
+      "summary": "Magic Dust VFX 公開《Outlander: Blood of My Blood》第一季拆解，完成超過三百個鏡頭，包含十八世紀蘇格蘭鄉間的場景延伸、數位繪景，以及實拍河流的湍急化處理。",
+      "full_analysis": [
+        {
+          "label": "歷史場景延伸的製作流程",
+          "text": "Magic Dust 是本季主要視效供應商，工作包含場景延伸與數位繪景，目標是十八世紀蘇格蘭鄉間。可確認的是實際鏡頭工作類型與地點設定，文章沒有把所有環境都說成全三維重建，或提供完整資產建置步驟。",
+          "evidence_refs": [
+            "p001",
+            "p002"
+          ]
+        },
+        {
+          "label": "實拍河流增強的鏡頭製作價值",
+          "text": "另一組重點鏡頭以實拍河流為基礎，讓水流看起來更快速、也更具危險感。推論上，這可作為保留拍攝基底、再用視效調整敘事情緒的參考，而不是把整段河流一律理解為從零開始製作的完整流體模擬。",
+          "evidence_refs": [
+            "p003"
+          ]
+        },
+        {
+          "label": "拆解介紹的技術資訊限制",
+          "text": "技術欄直接註明尚無其他資訊，因此不能補寫採用哪個水體求解器、合成軟體或運算時間。超過三百個鏡頭是供應商整體貢獻，原文沒有把它分配到河流或繪景各類，不能把總數當作單一效果的工作量。",
+          "evidence_refs": [
+            "p002",
+            "p004"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p002",
+          "p003",
+          "p004"
+        ]
+      }
+    },
+    "cg-channel-maxon-releases-redshift-2027-0": {
+      "source_url": "https://www.cgchannel.com/2026/10/maxon-releases-redshift-2027-0",
+      "source_published_at": "2026-10-18",
+      "reviewed_on": "2026-10-19",
+      "source_evidence_sha256": "32733a0b6cee7573067425c409353006641aead8daa8fce6583af7a8ed338760",
+      "evidence_refs": [
+        "p001",
+        "p005",
+        "p006",
+        "p007",
+        "p008",
+        "p009",
+        "p010",
+        "p012",
+        "p013",
+        "p014",
+        "p015",
+        "p016",
+        "p022"
+      ],
+      "title": "Redshift 2027.0：程序毛髮、ACES 2 與即時預覽更新",
+      "summary": "Redshift 2027.0 加入 Fur Object 與 ACES 2，3ds Max 整合支援 tyFlow 體積模擬；Redshift Live 新增光追景深與折射，但仍有體積、毛髮和點雲限制。",
+      "full_analysis": [
+        {
+          "label": "程序毛髮與色彩管理的渲染流程",
+          "text": "Fur Object 在渲染時生成頭髮、毛皮或草，提供密度、重力、捲曲、尖細等控制，適用 3ds Max、Cinema 4D、Houdini 與 Maya。ACES 2 在 Cinema 4D 預設使用，Houdini 和 Maya 則可手動設定，兩種整合方式不能混為自動啟用。",
+          "evidence_refs": [
+            "p005",
+            "p006",
+            "p007",
+            "p008",
+            "p009"
+          ]
+        },
+        {
+          "label": "記憶體與宿主整合的製作影響",
+          "text": "記憶體系統重整縮短首個像素等待，文章舉發布說明中的建築場景減少百分之十五渲染時間。3ds Max 整合另列原生 tyFlow Inferno 模擬支援，這是特定宿主能力；場景測速數字不應延伸成所有資產固定提升百分之十五。",
+          "evidence_refs": [
+            "p010",
+            "p015",
+            "p016"
+          ]
+        },
+        {
+          "label": "即時預覽與最終渲染的能力限制",
+          "text": "Redshift Live 現在支援真正光追景深、透射折射與光源發散，但透射不含色散，仍限制體積、毛髮及點雲。因此核心渲染器有程序毛髮，不表示 Live 也能完整顯示；發布說明另以 2026.10 稱此版，核對版本時應留意。",
+          "evidence_refs": [
+            "p012",
+            "p013",
+            "p014",
+            "p022"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p005",
+          "p006",
+          "p007",
+          "p008",
+          "p009",
+          "p010",
+          "p012",
+          "p013",
+          "p014",
+          "p015",
+          "p016",
+          "p022"
+        ]
+      }
+    },
+    "cg-channel-chaos-releases-vantage-3-0": {
+      "source_url": "https://www.cgchannel.com/2025/10/chaos-releases-vantage-3-0",
+      "source_published_at": "2025-10-16",
+      "reviewed_on": "2026-10-19",
+      "source_evidence_sha256": "796dfc9df692406f296b71171d95320c961718546e72e56df778c48bc43a1274",
+      "evidence_refs": [
+        "p001",
+        "p003",
+        "p007",
+        "p008",
+        "p009",
+        "p010",
+        "p011",
+        "p014",
+        "p015",
+        "p016"
+      ],
+      "title": "歷史參考｜Vantage 3.0：USD、MaterialX 與高斯潑濺預覽",
+      "summary": "2025 年 Vantage 3.0 報導介紹初步 USD／MaterialX 支援，可匯入靜態和動畫場景，也能渲染高斯潑濺與部分體積資料；並非所有格式與管線都已完全支援。",
+      "full_analysis": [
+        {
+          "label": "USD 場景與材質的匯入流程",
+          "text": "Vantage 3.0 開始支援 USD 與 MaterialX，可匯入靜態或動畫場景，接受 usd、usda、usdc 及 usdz，並以 MaterialX 著色器渲染。這擴大了原先偏向 V-Ray 場景的入口，但屬初步支援，不等於每項 USD 特性都能完整重現。",
+          "evidence_refs": [
+            "p003",
+            "p007",
+            "p008",
+            "p009"
+          ]
+        },
+        {
+          "label": "潑濺與體積資料的製作價值",
+          "text": "高斯潑濺能透過 vrscene 或即時連接進入，體積則主要列 V-Ray Volume Grid、Phoenix 輸出的快取。推論上，可在大場景預覽時銜接不同類型的環境資料，但應按來源格式分流，不能把每種資料都當成一般模型匯入。",
+          "evidence_refs": [
+            "p011",
+            "p014",
+            "p015",
+            "p016"
+          ]
+        },
+        {
+          "label": "未交付整合與格式支援限制",
+          "text": "Hydra render delegate 當時仍是計畫，初始版本尚不可用；文章也明言發布說明未提直接匯入 PLY 潑濺。這是 2025 年版本記錄，不能把計畫當作已完成，也不能因支援渲染潑濺就宣稱任意 PLY 檔都可直接載入。",
+          "evidence_refs": [
+            "p010",
+            "p014"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p003",
+          "p007",
+          "p008",
+          "p009",
+          "p010",
+          "p011",
+          "p014",
+          "p015",
+          "p016"
+        ]
+      }
+    },
+    "cg-channel-andersson-technologies-ships-syntheyes-1502": {
+      "source_url": "https://www.cgchannel.com/2015/02/andersson-technologies-ships-syntheyes-1502",
+      "source_published_at": "2015-02-05",
+      "reviewed_on": "2026-10-19",
+      "source_evidence_sha256": "581ab46533a108c20cdb00f18976a08c7dd7d93e65793d957831a1096c0f80a6",
+      "evidence_refs": [
+        "p001",
+        "p003",
+        "p004",
+        "p005",
+        "p007"
+      ],
+      "title": "歷史參考｜SynthEyes 1502：加強 Fusion 匯出與角點定位",
+      "summary": "2015 年 SynthEyes 1502 更新改善 Fusion 交接，可匯出平面追蹤、網格、多攝影機與鏡頭畸變影像映射，並另建匯出器把追蹤結果轉為 Fusion 的角點定位節點。",
+      "full_analysis": [
+        {
+          "label": "三維追蹤到 Fusion 的交接流程",
+          "text": "舊版 Fusion 匯出器擴充三維平面追蹤器、基本或匯入網格、追蹤生成網格、紋理及多攝影機，鏡頭畸變則透過影像映射傳遞。它改進的是已有追蹤資料的合成交接，不是把 Fusion 轉成另一套自動建模軟體。",
+          "evidence_refs": [
+            "p001",
+            "p003",
+            "p004"
+          ]
+        },
+        {
+          "label": "角點定位與貼合鏡頭的製作價值",
+          "text": "第二個匯出器會從二維或三維平面追蹤建立 Fusion corner pin 節點，和完整三維網格匯出是不同路徑。推論上，平面替換與三維合成可依鏡頭需求選擇資料形式，不必為每種平面貼合工作都交付整個三維場景。",
+          "evidence_refs": [
+            "p003",
+            "p005"
+          ]
+        },
+        {
+          "label": "歷史版本與鏡頭重建的驗證限制",
+          "text": "文中認為影像映射有助於重現未被軟體硬編碼的鏡頭畸變，但沒有逐鏡頭的精度測試。所列 Windows、Linux、Mac OS X 與授權價格均屬 2015 年，不能由此保證目前 Fusion 或作業系統仍與這個舊匯出器相容。",
+          "evidence_refs": [
+            "p004",
+            "p007"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p003",
+          "p004",
+          "p005",
+          "p007"
+        ]
+      }
+    },
+    "cg-channel-tyflow-2-0-simulates-smoke-and-fire-as-well-as-particles": {
+      "source_url": "https://www.cgchannel.com/2026/03/tyflow-2-0-simulates-smoke-and-fire-as-well-as-particles",
+      "source_published_at": "2026-03-05",
+      "reviewed_on": "2026-10-19",
+      "source_evidence_sha256": "6e4d24d139c64efc7a30b657fb5eb6555b5cbcc47c5c825222b8b25527884199",
+      "evidence_refs": [
+        "p001",
+        "p008",
+        "p009",
+        "p010",
+        "p011",
+        "p012",
+        "p013",
+        "p014",
+        "p015",
+        "p021",
+        "p022"
+      ],
+      "title": "歷史參考｜tyFlow 2.0：GPU 稀疏煙火與機器學習細節化",
+      "summary": "2026 年三月的 tyFlow 2.0 報導介紹 Zenith GPU 稀疏流體，可用粒子、表面或貼圖驅動煙火，並以預訓練模型增加細節；GPU 與輸出能力須分別核對授權。",
+      "full_analysis": [
+        {
+          "label": "粒子驅動與煙火預覽流程",
+          "text": "Zenith 可用粒子資料、表面屬性、貼圖或運算式驅動發射，再以力場、渦度與平流控制運動。預覽整合 Nitrous 與自訂光線步進，提供熱輝光、運動模糊等顯示，讓既有粒子流程能銜接體積煙火，而非只處理離散粒子。",
+          "evidence_refs": [
+            "p008",
+            "p009",
+            "p011",
+            "p012"
+          ]
+        },
+        {
+          "label": "細節化與管線輸出的製作價值",
+          "text": "預訓練模型可提高模擬解析度與銳利度，體素插值可做時間重定；模擬資料另透過自訂 API 開放給渲染器或插件。推論上，可把基礎動態、細節化與後續渲染分開處理，但模型細化不等於已驗證任意模擬都能提升品質。",
+          "evidence_refs": [
+            "p013",
+            "p014"
+          ]
+        },
+        {
+          "label": "CUDA、授權與規模宣稱的限制",
+          "text": "Zenith 與細節化模型依賴 CUDA，需要相容 NVIDIA 顯示卡；文章雖稱免費版有流體運算子，也明列 Free 缺 GPU 加速和快取匯出，完整輸出及渲染需 Pro。二十四 GB 上可管理數十億體素是作者宣稱，不能當作所有場景的實測保證。",
+          "evidence_refs": [
+            "p010",
+            "p013",
+            "p015",
+            "p021",
+            "p022"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p008",
+          "p009",
+          "p010",
+          "p011",
+          "p012",
+          "p013",
+          "p014",
+          "p015",
+          "p021",
+          "p022"
+        ]
+      }
+    }
+  }
+}
