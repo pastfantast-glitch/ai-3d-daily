@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   遊戲引擎｜2026-10-19｜AI 3D Daily
+  </title>
+  <meta content="2026-10-19 遊戲引擎 Production Intelligence：遊戲引擎 / 引擎端美術內容，共 2 項可驗證情報。" name="description"/>
+  <link href="../../styles.css?v=20261019-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../../shared-components.css?v=20261019-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../../category.css?v=20261019-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+ </head>
+ <body class="category-page" data-category="engine-art" data-report-date="2026-10-19">
+  <nav aria-label="Production Intelligence 分類" class="global-category-nav">
+   <div class="page global-category-nav-inner">
+    <div class="archive-nav-controls">
+     <a class="archive-nav-home" href="../../">
+      ← 首頁
+     </a>
+     <div class="archive-nav-date">
+      <a aria-label="前一日日報" class="archive-nav-arrow" href="../../2026-10-18/engine-art/">
+       ←
+      </a>
+      <span>
+       2026-10-19
+      </span>
+     </div>
+    </div>
+    <span aria-hidden="true" class="archive-nav-divider">
+    </span>
+    <a class="global-category-link" href="../#top">
+     TOP5
+    </a>
+    <a class="global-category-link" data-category="ai-generation" href="../ai-generation/">
+     AI 生成
+    </a>
+    <a class="global-category-link" data-category="3d-production" href="../3d-production/">
+     3D 製作
+    </a>
+    <a class="global-category-link" data-category="3d-animation" href="../3d-animation/">
+     3D 動作
+    </a>
+    <a class="global-category-link is-active" data-category="engine-art" href="../engine-art/">
+     遊戲引擎
+    </a>
+    <a class="global-category-link" data-category="emerging-case" href="../emerging-case/">
+     新技術 / Case
+    </a>
+    <a class="global-category-link" data-category="blender-dcc" href="../blender-dcc/">
+     Blender / DCC
+    </a>
+    <a class="global-category-link global-history-link" data-global-view="history" href="../../history/">
+     歷史日報
+    </a>
+   </div>
+  </nav>
+  <main class="page category-main">
+   <article class="category-card" data-intel-id="cg-channel-chaos-releases-vantage-3-0" data-intel-role="card">
+    <div class="category-meta">
+     #03 · rendering
+    </div>
+    <h2>
+     歷史參考｜Vantage 3.0：USD、MaterialX 與高斯潑濺預覽
+    </h2>
+    <p class="summary">
+     2025 年 Vantage 3.0 報導介紹初步 USD／MaterialX 支援，可匯入靜態和動畫場景，也能渲染高斯潑濺與部分體積資料；並非所有格式與管線都已完全支援。
+    </p>
+    <figure class="case-preview" data-intel-id="cg-channel-chaos-releases-vantage-3-0" data-intel-role="visual" data-visual-id="cg-channel-chaos-releases-vantage-3-0">
+     <a href="https://www.cgchannel.com/2025/10/chaos-releases-vantage-3-0" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-10-19/cg-channel-chaos-releases-vantage-3-0.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">渲染</b> ★★★☆☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       USD 場景與材質的匯入流程
+      </h4>
+      <p>
+       Vantage 3.0 開始支援 USD 與 MaterialX，可匯入靜態或動畫場景，接受 usd、usda、usdc 及 usdz，並以 MaterialX 著色器渲染。這擴大了原先偏向 V-Ray 場景的入口，但屬初步支援，不等於每項 USD 特性都能完整重現。
+      </p>
+      <h4>
+       潑濺與體積資料的製作價值
+      </h4>
+      <p>
+       高斯潑濺能透過 vrscene 或即時連接進入，體積則主要列 V-Ray Volume Grid、Phoenix 輸出的快取。推論上，可在大場景預覽時銜接不同類型的環境資料，但應按來源格式分流，不能把每種資料都當成一般模型匯入。
+      </p>
+      <h4>
+       未交付整合與格式支援限制
+      </h4>
+      <p>
+       Hydra render delegate 當時仍是計畫，初始版本尚不可用；文章也明言發布說明未提直接匯入 PLY 潑濺。這是 2025 年版本記錄，不能把計畫當作已完成，也不能因支援渲染潑濺就宣稱任意 PLY 檔都可直接載入。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://www.cgchannel.com/2025/10/chaos-releases-vantage-3-0" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="3dnchu-procedural-city-generator-ue4" data-intel-role="card">
+    <div class="category-meta">
+     #08 · unreal
+    </div>
+    <h2>
+     歷史參考｜UE4 城市生成工具：先分區，再配置道路與資產
+    </h2>
+    <p class="summary">
+     這篇 2020 年文章介紹 Coqui Games 的 Procedural City Generator：在 UE4 編輯器定義城市邊界與分區，生成道路後配置建築、道具與植被；不是現今 UE5 PCG 系統的更新。
+    </p>
+    <figure class="case-preview" data-intel-id="3dnchu-procedural-city-generator-ue4" data-intel-role="visual" data-visual-id="3dnchu-procedural-city-generator-ue4">
+     <a href="https://3dnchu.com/archives/procedural-city-generator-ue4" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-10-19/3dnchu-procedural-city-generator-ue4.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">Unreal</b> ★★★☆☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       分區到道路與建築的生成流程
+      </h4>
+      <p>
+       先命名城市並調整邊界形狀，再指定各分區能生成的建築、道具與植被，接著建立高速路、幹道及支路。道路滿意後才放置建築與其他資產，各階段可以重做或自訂，將城市配置拆成可迭代的步驟。
+      </p>
+      <h4>
+       自訂資產與大型場景的製作價值
+      </h4>
+      <p>
+       工具允許替換自己的建築、道具與植被網格，也提供關卡串流準備及 HLOD 體積生成。推論上，可把它當作城市佈局骨架，再由美術調整各區風格，但有 HLOD 工具不代表已保證任何規模的場景效能。
+      </p>
+      <h4>
+       UE4 早期版本與破壞系統限制
+      </h4>
+      <p>
+       這是 2020 年 UE4 資產的介紹，文中購買版本仍標早期存取；ApexDestruction 可透過藍圖加入，Chaos 當時只是未來規劃。不能把舊文簡稱 PCG 誤認成 UE5 原生同名框架，也不能推定其後續升版或 Chaos 支援已完成。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://3dnchu.com/archives/procedural-city-generator-ue4" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <nav aria-label="相鄰分類" class="category-bottom-nav">
+    <a href="../3d-animation/">
+     ← 3D 動作
+    </a>
+    <a href="../#top">
+     TOP5
+    </a>
+    <a href="../emerging-case/">
+     新技術 / Case →
+    </a>
+   </nav>
+  </main>
+  <script defer="" src="../../archive-nav-state.js?v=20261019-r1-workspace-v10-history-current-workspace">
+  </script>
+ </body>
+</html>

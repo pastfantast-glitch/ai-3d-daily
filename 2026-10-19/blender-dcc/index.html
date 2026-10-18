@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   Blender / DCC｜2026-10-19｜AI 3D Daily
+  </title>
+  <meta content="2026-10-19 Blender / DCC Production Intelligence：Blender / DCC 工具與工作流 / Blender Tips，共 11 項可驗證情報。" name="description"/>
+  <link href="../../styles.css?v=20261019-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../../shared-components.css?v=20261019-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../../category.css?v=20261019-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+ </head>
+ <body class="category-page" data-category="blender-dcc" data-report-date="2026-10-19">
+  <nav aria-label="Production Intelligence 分類" class="global-category-nav">
+   <div class="page global-category-nav-inner">
+    <div class="archive-nav-controls">
+     <a class="archive-nav-home" href="../../">
+      ← 首頁
+     </a>
+     <div class="archive-nav-date">
+      <a aria-label="前一日日報" class="archive-nav-arrow" href="../../2026-10-18/blender-dcc/">
+       ←
+      </a>
+      <span>
+       2026-10-19
+      </span>
+     </div>
+    </div>
+    <span aria-hidden="true" class="archive-nav-divider">
+    </span>
+    <a class="global-category-link" href="../#top">
+     TOP5
+    </a>
+    <a class="global-category-link" data-category="ai-generation" href="../ai-generation/">
+     AI 生成
+    </a>
+    <a class="global-category-link" data-category="3d-production" href="../3d-production/">
+     3D 製作
+    </a>
+    <a class="global-category-link" data-category="3d-animation" href="../3d-animation/">
+     3D 動作
+    </a>
+    <a class="global-category-link" data-category="engine-art" href="../engine-art/">
+     遊戲引擎
+    </a>
+    <a class="global-category-link" data-category="emerging-case" href="../emerging-case/">
+     新技術 / Case
+    </a>
+    <a class="global-category-link is-active" data-category="blender-dcc" href="../blender-dcc/">
+     Blender / DCC
+    </a>
+    <a class="global-category-link global-history-link" data-global-view="history" href="../../history/">
+     歷史日報
+    </a>
+   </div>
+  </nav>
+  <main class="page category-main">
+   <article class="category-card" data-intel-id="cg-channel-maxon-releases-redshift-2027-0" data-intel-role="card">
+    <div class="category-meta">
+     #02 · other-dcc
+    </div>
+    <h2>
+     Redshift 2027.0：程序毛髮、ACES 2 與即時預覽更新
+    </h2>
+    <p class="summary">
+     Redshift 2027.0 加入 Fur Object 與 ACES 2，3ds Max 整合支援 tyFlow 體積模擬；Redshift Live 新增光追景深與折射，但仍有體積、毛髮和點雲限制。
+    </p>
+    <figure class="case-preview" data-intel-id="cg-channel-maxon-releases-redshift-2027-0" data-intel-role="visual" data-visual-id="cg-channel-maxon-releases-redshift-2027-0">
+     <a href="https://www.cgchannel.com/2026/10/maxon-releases-redshift-2027-0" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-10-19/cg-channel-maxon-releases-redshift-2027-0.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">其他 DCC</b> ★★★★☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       程序毛髮與色彩管理的渲染流程
+      </h4>
+      <p>
+       Fur Object 在渲染時生成頭髮、毛皮或草，提供密度、重力、捲曲、尖細等控制，適用 3ds Max、Cinema 4D、Houdini 與 Maya。ACES 2 在 Cinema 4D 預設使用，Houdini 和 Maya 則可手動設定，兩種整合方式不能混為自動啟用。
+      </p>
+      <h4>
+       記憶體與宿主整合的製作影響
+      </h4>
+      <p>
+       記憶體系統重整縮短首個像素等待，文章舉發布說明中的建築場景減少百分之十五渲染時間。3ds Max 整合另列原生 tyFlow Inferno 模擬支援，這是特定宿主能力；場景測速數字不應延伸成所有資產固定提升百分之十五。
+      </p>
+      <h4>
+       即時預覽與最終渲染的能力限制
+      </h4>
+      <p>
+       Redshift Live 現在支援真正光追景深、透射折射與光源發散，但透射不含色散，仍限制體積、毛髮及點雲。因此核心渲染器有程序毛髮，不表示 Live 也能完整顯示；發布說明另以 2026.10 稱此版，核對版本時應留意。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://www.cgchannel.com/2026/10/maxon-releases-redshift-2027-0" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="3dnchu-polygon-smoothing-groups-beta" data-intel-role="card">
+    <div class="category-meta">
+     #04 · blender
+    </div>
+    <h2>
+     歷史參考｜Blender 平滑群組工具：管理硬邊與接縫
+    </h2>
+    <p class="summary">
+     這篇 2024 年文章介紹 Polygon Smoothing Groups 測試版，可在 Blender 指派平滑群組、管理硬邊與接縫；操作介面讓作者聯想到 3ds Max，但不是檔案相容功能的證明。
+    </p>
+    <figure class="case-preview" data-intel-id="3dnchu-polygon-smoothing-groups-beta" data-intel-role="visual" data-visual-id="3dnchu-polygon-smoothing-groups-beta">
+     <a href="https://3dnchu.com/archives/polygon-smoothing-groups-beta" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-10-19/3dnchu-polygon-smoothing-groups-beta.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">Blender</b> ★★★☆☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       平滑群組與硬邊控制流程
+      </h4>
+      <p>
+       插件將多邊形平滑群組、硬邊與接縫管理集中處理，讓美術定義硬表面或有機造型的表面外觀。這裡控制的是模型平滑與邊界的呈現，文章沒有把它描述成新增幾何細節的雕刻工具。
+      </p>
+      <h4>
+       既有建模習慣的轉換價值
+      </h4>
+      <p>
+       文章作者認為群組管理介面類似 3ds Max 或 LightWave，也提到接縫設定方便。推論上，熟悉群組式平滑管理的美術可拿它比較 Blender 的操作習慣，但介面相似不代表不同軟體之間的群組資料會自動一致。
+      </p>
+      <h4>
+       測試版與跨軟體相容限制
+      </h4>
+      <p>
+       來源記錄的是測試版，當時列出 Blender 4.2 與二十美元售價，不能視為目前版本或價格確認。文中沒有說明 FBX 群組保存、引擎法線或跨 DCC 往返結果，因此不能補寫這些互通能力。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://3dnchu.com/archives/polygon-smoothing-groups-beta" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="cg-channel-tyflow-2-0-simulates-smoke-and-fire-as-well-as-particles" data-intel-role="card">
+    <div class="category-meta">
+     #05 · other-dcc
+    </div>
+    <h2>
+     歷史參考｜tyFlow 2.0：GPU 稀疏煙火與機器學習細節化
+    </h2>
+    <p class="summary">
+     2026 年三月的 tyFlow 2.0 報導介紹 Zenith GPU 稀疏流體，可用粒子、表面或貼圖驅動煙火，並以預訓練模型增加細節；GPU 與輸出能力須分別核對授權。
+    </p>
+    <figure class="case-preview" data-intel-id="cg-channel-tyflow-2-0-simulates-smoke-and-fire-as-well-as-particles" data-intel-role="visual" data-visual-id="cg-channel-tyflow-2-0-simulates-smoke-and-fire-as-well-as-particles">
+     <a href="https://www.cgchannel.com/2026/03/tyflow-2-0-simulates-smoke-and-fire-as-well-as-particles" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE CARD preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-10-19/cg-channel-tyflow-2-0-simulates-smoke-and-fire-as-well-as-particles.svg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE CARD
+      </span>
+      · Generated source card · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">其他 DCC</b> ★★★☆☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       粒子驅動與煙火預覽流程
+      </h4>
+      <p>
+       Zenith 可用粒子資料、表面屬性、貼圖或運算式驅動發射，再以力場、渦度與平流控制運動。預覽整合 Nitrous 與自訂光線步進，提供熱輝光、運動模糊等顯示，讓既有粒子流程能銜接體積煙火，而非只處理離散粒子。
+      </p>
+      <h4>
+       細節化與管線輸出的製作價值
+      </h4>
+      <p>
+       預訓練模型可提高模擬解析度與銳利度，體素插值可做時間重定；模擬資料另透過自訂 API 開放給渲染器或插件。推論上，可把基礎動態、細節化與後續渲染分開處理，但模型細化不等於已驗證任意模擬都能提升品質。
+      </p>
+      <h4>
+       CUDA、授權與規模宣稱的限制
+      </h4>
+      <p>
+       Zenith 與細節化模型依賴 CUDA，需要相容 NVIDIA 顯示卡；文章雖稱免費版有流體運算子，也明列 Free 缺 GPU 加速和快取匯出，完整輸出及渲染需 Pro。二十四 GB 上可管理數十億體素是作者宣稱，不能當作所有場景的實測保證。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://www.cgchannel.com/2026/03/tyflow-2-0-simulates-smoke-and-fire-as-well-as-particles" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="3dnchu-jigglegen-2-0" data-intel-role="card">
+    <div class="category-meta">
+     #07 · blender
+    </div>
+    <h2>
+     JiggleGen 2.0：用布料代理網格替身體、衣物與髮絲加擺動
+    </h2>
+    <p class="summary">
+     JiggleGen 2.0 在 Blender 以頂點群組指定擺動區域，自動建立 Cloth 代理網格與固定群組，再把變形傳回原模型；新版重寫介面與程式，並實驗支援節點布料。
+    </p>
+    <figure class="case-preview" data-intel-id="3dnchu-jigglegen-2-0" data-intel-role="visual" data-visual-id="3dnchu-jigglegen-2-0">
+     <a href="https://3dnchu.com/archives/jigglegen-2-0" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-10-19/3dnchu-jigglegen-2-0.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">Blender</b> ★★★☆☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       代理布料到原模型的變形流程
+      </h4>
+      <p>
+       工具先依頂點群組建立 Cloth 模擬代理與 Pin Group，再透過 Surface Deform 把變形帶回原模型，也能從非擺動區域生成碰撞網格。它自動化的是反覆設定步驟，生成後仍使用 Blender 原生 Cloth 參數調整。
+      </p>
+      <h4>
+       多部位設定與資產保護的製作價值
+      </h4>
+      <p>
+       身體、衣物與配件可放在 Batch List，複製設定並批次套用；Hair Curves 也能建立髮絲用 Hair Cage。文章另列出不修改原模型網格、形狀鍵、材質、UV 與權重的非破壞流程，便於把擺動設定與原始資產分開管理。
+      </p>
+      <h4>
+       實驗性節點布料的導入限制
+      </h4>
+      <p>
+       Blender 5.2 以上的 Geometry Nodes Cloth 支援仍標為實驗性，作者建議使用較成熟的 Classic Cloth Modifier。新版雖可逐部位選方式並列出生成成功、略過與失敗報告，不能把實驗支援當成所有模型都已穩定可用。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://3dnchu.com/archives/jigglegen-2-0" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="3dnchu-mio3-uv-v1-0" data-intel-role="card">
+    <div class="category-meta">
+     #10 · blender
+    </div>
+    <h2>
+     歷史參考｜Mio3 UV 1.0：角色 UV 的直線展開、對稱與排序
+    </h2>
+    <p class="summary">
+     這篇 2024 年文章介紹 Mio3 UV 角色 UV 輔助工具，包含直線與格狀展開、形狀複製、依三維位置排列及對稱選取，也能顯示檢查格與邊距指南。
+    </p>
+    <figure class="case-preview" data-intel-id="3dnchu-mio3-uv-v1-0" data-intel-role="visual" data-visual-id="3dnchu-mio3-uv-v1-0">
+     <a href="https://3dnchu.com/archives/mio3-uv-v1-0" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-10-19/3dnchu-mio3-uv-v1-0.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">Blender</b> ★★☆☆☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       展開與島嶼形狀整理流程
+      </h4>
+      <p>
+       工具可讓選定邊環直線展開，或把所選面展為矩形，並能複製 UV 形狀且保留原位置。接縫對齊會處理對應同一三維頂點的 UV 座標，讓展開、拉直與重複部位形狀整理有較明確的操作分工。
+      </p>
+      <h4>
+       角色部位排序與檢查的製作價值
+      </h4>
+      <p>
+       插件可依三維座標排序島嶼、依部位調整朝向與順序，也有三維對稱選取及對稱化。搭配檢查格與邊距指南，推論上，適合整理角色左右部位的可讀布局，但不代表每種不對稱角色都應強制重疊 UV。
+      </p>
+      <h4>
+       保留布局與歷史版本的操作限制
+      </h4>
+      <p>
+       一般展開只說盡可能保留原位置、尺寸與角度，不是完全不改布局的保證。文末同時保留申請擴充套件審查的舊貼文與已公開的更新註記；這是 2024 年的開發記錄，不能據此推定目前仍待審或沒有任何相容問題。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://3dnchu.com/archives/mio3-uv-v1-0" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="3dnchu-altermesh-2-0" data-intel-role="card">
+    <div class="category-meta">
+     #11 · blender
+    </div>
+    <h2>
+     歷史參考｜AlterMesh 2.0 預告：在 Unreal 使用幾何節點
+    </h2>
+    <p class="summary">
+     2023 年的 AlterMesh 2.0 預告介紹在 Unreal Engine 使用 Blender Geometry Nodes，並展示 cinematic／runtime 模式；當時規劃十一月發布，不是今天的功能上市消息。
+    </p>
+    <figure class="case-preview" data-intel-id="3dnchu-altermesh-2-0" data-intel-role="visual" data-visual-id="3dnchu-altermesh-2-0">
+     <a href="https://3dnchu.com/archives/altermesh-2-0" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-10-19/3dnchu-altermesh-2-0.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">Blender</b> ★★☆☆☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       幾何節點進入引擎的技術方向
+      </h4>
+      <p>
+       AlterMesh 被介紹為在 Unreal Engine 使用 Blender Geometry Nodes 的插件，文章附的展示文字特別提到 cinematic 與 runtime 模式。可確認的是這個跨軟體方向與展示，本文沒有提供完整的節點支援清單。
+      </p>
+      <h4>
+       程序資產交接的潛在製作價值
+      </h4>
+      <p>
+       推論上，讓已在 Blender 建立的幾何節點流程進入 Unreal，可作為程序資產與鏡頭製作的銜接方向。來源仍把它稱為插件，也表達希望引擎原生能更容易做到類似操作，不能改寫成 Unreal 已直接內建 Geometry Nodes。
+      </p>
+      <h4>
+       預告與非商用授權的資訊限制
+      </h4>
+      <p>
+       文章當時寫預定 2023 年十一月發布，並列出個人非商用版免費。這不是今日版本狀態確認，也不是工作室商用免費的依據；缺少節點、平台與效能細節，不能從展示推定所有 Blender 節點都能在遊戲中直接運作。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://3dnchu.com/archives/altermesh-2-0" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="3dnchu-blenderesse-freeassets-geonodes" data-intel-role="card">
+    <div class="category-meta">
+     #12 · blender
+    </div>
+    <h2>
+     歷史參考｜Blenderesse 幾何節點資產改免費，仍須核對版本
+    </h2>
+    <p class="summary">
+     這篇 2024 年文章記錄 Miettinen Jesse 將 Gumroad 上的 Geometry Nodes 等產品改為免費；作者同時提醒選對 Blender 版本，並說不確定其中的融化效果是否仍能運作。
+    </p>
+    <figure class="case-preview" data-intel-id="3dnchu-blenderesse-freeassets-geonodes" data-intel-role="visual" data-visual-id="3dnchu-blenderesse-freeassets-geonodes">
+     <a href="https://3dnchu.com/archives/blenderesse-freeassets-geonodes" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-10-19/3dnchu-blenderesse-freeassets-geonodes.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">Blender</b> ★★☆☆☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       幾何節點資產的取得流程
+      </h4>
+      <p>
+       這次消息是作者把既有產品改為免費，文章介紹的對象包括 Blender Geometry Nodes 資產，並非發布一套新的統一求解器。可確認的變更是當時的取得費用，本文沒有逐項列出所有節點資產的功能。
+      </p>
+      <h4>
+       學習程序製作的參考價值
+      </h4>
+      <p>
+       文章作者把這批免費資產視為學習材料。推論上，對幾何節點練習可先挑一項符合版本的現成資產閱讀與修改，不必把免費消息延伸成每項資產都已經過正式專案驗證，或都能解決相同類型的製作問題。
+      </p>
+      <h4>
+       融化效果與版本相容限制
+      </h4>
+      <p>
+       原作者明確要求確認正確 Blender 版本，且不確定融化效果是否仍能使用，因此不能宣稱整批在目前版本完全相容。這篇 2024 年消息也沒有確認今日下載和商用授權細則，免費取得不能替代實際使用條款核對。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://3dnchu.com/archives/blenderesse-freeassets-geonodes" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="3dnchu-has-paint-layers-v0-2-9" data-intel-role="card">
+    <div class="category-meta">
+     #13 · blender
+    </div>
+    <h2>
+     歷史參考｜HAS Paint Layers：在 Blender 分層繪製 PBR 貼圖
+    </h2>
+    <p class="summary">
+     2024 年的 HAS Paint Layers 0.2.9 介紹多層貼圖繪製，可將圖層分配給粗糙度、金屬度、透明度與法線等材質通道，也能載入現有貼圖和使用調整層。
+    </p>
+    <figure class="case-preview" data-intel-id="3dnchu-has-paint-layers-v0-2-9" data-intel-role="visual" data-visual-id="3dnchu-has-paint-layers-v0-2-9">
+     <a href="https://3dnchu.com/archives/has-paint-layers-v0-2-9" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-10-19/3dnchu-has-paint-layers-v0-2-9.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">Blender</b> ★★☆☆☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       圖層與材質通道的貼圖流程
+      </h4>
+      <p>
+       插件可建立、整理多個繪畫圖層，並用調整層控制底下圖層的色彩、遮罩與效果。圖層能分配到粗糙度、金屬度、透明度及法線等屬性，讓不同材質資訊有各自的編輯入口，而不是把所有變化畫進同一張顏色圖。
+      </p>
+      <h4>
+       現有資產與節點材質交接價值
+      </h4>
+      <p>
+       現成貼圖可直接載入成圖層；選擇自訂著色器類型後，產生的節點群組可放進其他材質設定。推論上，這有助於在原有 Blender 材質上逐步加畫，而不必先假設所有資產都要改用完全相同的固定材質模板。
+      </p>
+      <h4>
+       圖層結果與編輯工具相容限制
+      </h4>
+      <p>
+       文章稱建立的圖層在未安裝插件的其他 Blender 版本仍能運作，這不等於那些環境也能取得相同插件編輯介面。當時列出的插件需求是 Blender 4.0 以上；今日升版相容、跨軟體圖層輸出與檔案格式仍未由本文證實。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://3dnchu.com/archives/has-paint-layers-v0-2-9" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="3dnchu-select-polygons-by-angle-b3d" data-intel-role="card">
+    <div class="category-meta">
+     #14 · blender
+    </div>
+    <h2>
+     歷史參考｜Blender 按法線角度延伸選取連續面
+    </h2>
+    <p class="summary">
+     2024 年介紹的 Select Polygons By Angle 可從目前選定面，依零至一百八十度的法線角度門檻延伸選取，並用 Shift 累加範圍，面向硬表面模型的區域選擇。
+    </p>
+    <figure class="case-preview" data-intel-id="3dnchu-select-polygons-by-angle-b3d" data-intel-role="visual" data-visual-id="3dnchu-select-polygons-by-angle-b3d">
+     <a href="https://3dnchu.com/archives/select-polygons-by-angle-b3d" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-10-19/3dnchu-select-polygons-by-angle-b3d.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">Blender</b> ★★☆☆☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       角度門檻與面選取流程
+      </h4>
+      <p>
+       插件從目前選取的多邊形出發，依指定法線角度門檻選擇連續表面，門檻可在三維視埠直接調為零至一百八十度。這是以幾何方向延伸面選取，而不是依材質名稱或貼圖顏色自動分區。
+      </p>
+      <h4>
+       硬表面區域處理的製作價值
+      </h4>
+      <p>
+       按住 Shift 可在不取消先前選取的情況下增加範圍，功能集中在 N 面板的 Select By Angle 頁籤。推論上，當模型有連續平面與斜面時，可用角度調整逐步組合區域，減少逐面點選，但選到的範圍仍取決於實際法線。
+      </p>
+      <h4>
+       選取工具與表面修復的限制
+      </h4>
+      <p>
+       來源介紹的是選取功能，沒有說會自動修復法線、拓樸或建立平滑群組，不能把選取結果當作模型品質已修正。文章當時列 Blender 4.2 與五美元價格，僅代表 2024 年資訊，不是目前售價與升版相容確認。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://3dnchu.com/archives/select-polygons-by-angle-b3d" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="3dnchu-textools-v1-6" data-intel-role="card">
+    <div class="category-meta">
+     #15 · blender
+    </div>
+    <h2>
+     歷史參考｜TexTools 1.6 系列：UV 整理、密度與烘焙更新
+    </h2>
+    <p class="summary">
+     這篇 2024 年文章回顧 TexTools 的 UV、貼圖密度與烘焙工具更新，包含多島接縫縫合、UDIM 烘焙及 ACES 選項，並補述 1.6.1 的後續發布狀態。
+    </p>
+    <figure class="case-preview" data-intel-id="3dnchu-textools-v1-6" data-intel-role="visual" data-visual-id="3dnchu-textools-v1-6">
+     <a href="https://3dnchu.com/archives/textools-v1-6" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-10-19/3dnchu-textools-v1-6.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">Blender</b> ★★☆☆☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       接縫縫合與 UV 編輯流程
+      </h4>
+      <p>
+       Stitch 能保留原選取位置，同時縫合多個島嶼或物件的多條邊；Align World 加入軸向與選取敏感度控制。UV 通道的選取、增加、刪除及交換也擴大到全部所選物件，讓多資產整理不只作用在目前啟用物件。
+      </p>
+      <h4>
+       密度與貼圖烘焙的製作價值
+      </h4>
+      <p>
+       更新可用自訂單位調整貼圖密度比例，支援 UDIM 烘焙，並加入 ACES 色彩空間選項。文章也記錄 macOS、Linux 自訂烘焙模式黑圖與既有圖像覆寫等修正，這些是具體工作流改進，不代表任何材質都能不經檢查直接烘焙。
+      </p>
+      <h4>
+       功能分版本與下載分支限制
+      </h4>
+      <p>
+       部分 UV 功能只在 Blender 3.2 以上顯示，檢查格與預覽工具另列 3.0 以上需求，不能一概說所有舊版都完整支援。文末先區分發布版與開發最新版，又補註 1.6.1 已正式發布；這些是當年的版本狀態，不能當成目前最新版本。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://3dnchu.com/archives/textools-v1-6" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="3dnchu-fakebones" data-intel-role="card">
+    <div class="category-meta">
+     #16 · blender
+    </div>
+    <h2>
+     歷史參考｜FakeBones：保留原骨架，以假骨顯示改善編輯
+    </h2>
+    <p class="summary">
+     2026 年三月介紹的 FakeBones 會在 Blender 生成球形與錐形 Empty，以約束跟隨匯入骨架，改善 Maya、Unreal 骨軸差異造成的顯示問題，而不改掉原本骨架結構。
+    </p>
+    <figure class="case-preview" data-intel-id="3dnchu-fakebones" data-intel-role="visual" data-visual-id="3dnchu-fakebones">
+     <a href="https://3dnchu.com/archives/fakebones" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-10-19/3dnchu-fakebones.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">Blender</b> ★★☆☆☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       關節與連線的替代顯示流程
+      </h4>
+      <p>
+       插件以球形 Empty 表示關節、錐形 Empty 表示骨骼連線，再用約束產生動態伸縮效果。物件集中到 FakeBones 集合，設成不可選且總在前方顯示，讓骨架關係更容易閱讀，而不是重建原本的變形骨架。
+      </p>
+      <h4>
+       跨 DCC 骨架編輯的製作價值
+      </h4>
+      <p>
+       來源強調原骨架資料不受干擾，額外建立的是受約束的假骨顯示。推論上，對匯入 Maya 或 Unreal 骨架後看不清連接關係的編輯情境，可以先改善視覺辨識，而不必為了 Blender 顯示習慣改掉原骨結構。
+      </p>
+      <h4>
+       視覺修正與資料修復的限制
+      </h4>
+      <p>
+       這項工具處理的是骨軸差異下的骨架外觀，不能把假骨顯示等同於修正綁定姿勢、權重或匯出座標。文章未提供各種 FBX 往返的實測，2026 年三月所述免費發布狀態也不能自動證明目前所有 DCC 版本互通。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://3dnchu.com/archives/fakebones" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <nav aria-label="相鄰分類" class="category-bottom-nav">
+    <a href="../emerging-case/">
+     ← 新技術 / Case
+    </a>
+    <a href="../#top">
+     TOP5
+    </a>
+    <a href="../ai-generation/">
+     AI 生成 →
+    </a>
+   </nav>
+  </main>
+  <script defer="" src="../../archive-nav-state.js?v=20261019-r1-workspace-v10-history-current-workspace">
+  </script>
+ </body>
+</html>
