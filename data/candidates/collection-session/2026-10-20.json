@@ -1,0 +1,624 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-20",
+  "discovery_coverage": {
+    "fill_ladder_exhausted": true,
+    "backlog_checked": true,
+    "backlog_remaining_eligible": 0,
+    "targeted_refill_performed": true,
+    "quality_first_confirmed": true,
+    "windows": {
+      "24h": {
+        "status": "exhausted",
+        "candidates_found": 4
+      },
+      "7d": {
+        "status": "exhausted",
+        "candidates_found": 2
+      },
+      "30d": {
+        "status": "exhausted",
+        "candidates_found": 1
+      },
+      "6m": {
+        "status": "exhausted",
+        "candidates_found": 1
+      },
+      "evergreen": {
+        "status": "exhausted",
+        "candidates_found": 17
+      }
+    },
+    "category_candidates": {
+      "ai-generation": {
+        "candidates_considered": 1
+      },
+      "3d-production": {
+        "candidates_considered": 5
+      },
+      "3d-animation": {
+        "candidates_considered": 2
+      },
+      "engine-art": {
+        "candidates_considered": 3
+      },
+      "emerging-case": {
+        "candidates_considered": 3
+      },
+      "blender-dcc": {
+        "candidates_considered": 11
+      }
+    },
+    "registered_source_probe": {
+      "performed": true,
+      "initial_selected": [
+        "80-level",
+        "artstation",
+        "gumroad-discover",
+        "xiaohongshu",
+        "cg-channel",
+        "blender-official",
+        "epic-developer-community",
+        "unity-official",
+        "sidefx-official"
+      ],
+      "refill_selected": [
+        "autodesk-area",
+        "adobe-substance-3d",
+        "game-developer",
+        "3dnchu",
+        "cgworld-jp",
+        "bilibili-mobile"
+      ],
+      "refill_batches": 2,
+      "pre_refill_survivors": 11,
+      "post_refill_survivors": 17,
+      "sources": {
+        "80-level": {
+          "status": "checked",
+          "method": "latest-index",
+          "candidates_found": 6,
+          "candidate_ids": [
+            "80-level-gunfire-reborn-s-dragonchaser-reimagined-as-painterly-3d-ass",
+            "80-level-animation-director-breaks-down-the-tricks-behind-a-spirited",
+            "80-level-making-realistic-tileable-forest-floor-material-using-substa",
+            "80-level-master-spirited-away-inspired-stylized-animated-water-in-ble",
+            "80-level-spirited-away-s-train-tracks-scene-recreated-in-3d-with-unre",
+            "80-level-three-ghibli-s-spirited-away-scenes-recreated-with-blender"
+          ],
+          "index_pages_checked": 2,
+          "feed_urls_checked": 0,
+          "refill_links_checked": 16,
+          "semantic_expansion_links_checked": 0,
+          "published_links_skipped": 3,
+          "selection_phase": "daily-plan"
+        },
+        "3dnchu": {
+          "status": "checked",
+          "method": "latest-index",
+          "candidates_found": 8,
+          "candidate_ids": [
+            "3dnchu-get-started-with-lam-for-ue4",
+            "3dnchu-stylized-post-process-for-ue5",
+            "3dnchu-utc-liquid-shader-1-0",
+            "3dnchu-altermesh-2-0-released",
+            "3dnchu-lazy-animation-v1-0",
+            "3dnchu-neuralangelo-nvidia",
+            "3dnchu-rbc-addon-v1-2",
+            "3dnchu-shell-texture-fur-b3d-yogyog"
+          ],
+          "index_pages_checked": 4,
+          "feed_urls_checked": 2,
+          "refill_links_checked": 16,
+          "semantic_expansion_links_checked": 5,
+          "published_links_skipped": 27,
+          "selection_phase": "targeted-refill"
+        },
+        "cgworld-jp": {
+          "status": "checked",
+          "method": "latest-index",
+          "candidates_found": 1,
+          "candidate_ids": [
+            "cgworld-jp-substance-3d-designer"
+          ],
+          "index_pages_checked": 2,
+          "feed_urls_checked": 0,
+          "refill_links_checked": 1,
+          "semantic_expansion_links_checked": 1,
+          "published_links_skipped": 1,
+          "selection_phase": "targeted-refill"
+        },
+        "bilibili-mobile": {
+          "status": "checked",
+          "method": "latest-index",
+          "candidates_found": 0,
+          "candidate_ids": [],
+          "index_pages_checked": 1,
+          "feed_urls_checked": 0,
+          "refill_links_checked": 0,
+          "semantic_expansion_links_checked": 0,
+          "published_links_skipped": 0,
+          "selection_phase": "targeted-refill"
+        },
+        "artstation": {
+          "status": "blocked",
+          "method": "latest-index",
+          "candidates_found": 0,
+          "candidate_ids": [],
+          "reason": "http-403",
+          "index_pages_checked": 0,
+          "feed_urls_checked": 0,
+          "refill_links_checked": 0,
+          "selection_phase": "daily-plan"
+        },
+        "gumroad-discover": {
+          "status": "checked",
+          "method": "latest-index",
+          "candidates_found": 0,
+          "candidate_ids": [],
+          "index_pages_checked": 1,
+          "feed_urls_checked": 0,
+          "refill_links_checked": 0,
+          "semantic_expansion_links_checked": 0,
+          "published_links_skipped": 0,
+          "selection_phase": "daily-plan"
+        },
+        "xiaohongshu": {
+          "status": "checked",
+          "method": "latest-index",
+          "candidates_found": 0,
+          "candidate_ids": [],
+          "index_pages_checked": 1,
+          "feed_urls_checked": 0,
+          "refill_links_checked": 0,
+          "semantic_expansion_links_checked": 0,
+          "published_links_skipped": 0,
+          "selection_phase": "daily-plan"
+        },
+        "cg-channel": {
+          "status": "checked",
+          "method": "latest-index",
+          "candidates_found": 8,
+          "candidate_ids": [
+            "cg-channel-tutorial-creating-incendiary-burn-fx-for-game-characters",
+            "cg-channel-new-cg-software-you-may-have-missed-18-october-2026",
+            "cg-channel-master-the-art-of-grooming-cg-hair-in-xgen",
+            "cg-channel-tutorial-dynamic-effects-animation-for-games",
+            "cg-channel-new-cg-software-you-may-have-missed-7-september-2026",
+            "cg-channel-10bit-fx-ships-notch-0-9-23",
+            "cg-channel-jangafx-releases-illugen-1-0",
+            "cg-channel-sitni-sati-releases-fumefx-7-0-for-maya-with-fumefx-gpu"
+          ],
+          "index_pages_checked": 4,
+          "feed_urls_checked": 2,
+          "refill_links_checked": 9,
+          "semantic_expansion_links_checked": 0,
+          "published_links_skipped": 43,
+          "selection_phase": "daily-plan"
+        },
+        "blender-official": {
+          "status": "checked",
+          "method": "latest-index",
+          "candidates_found": 2,
+          "candidate_ids": [
+            "blender-official-2026-10-13-sculpt-paint-texture-module-mee",
+            "blender-official-sculpt-paint-texture-module-meeting-overvi"
+          ],
+          "index_pages_checked": 5,
+          "feed_urls_checked": 1,
+          "refill_links_checked": 16,
+          "semantic_expansion_links_checked": 5,
+          "published_links_skipped": 11,
+          "selection_phase": "daily-plan"
+        },
+        "epic-developer-community": {
+          "status": "checked",
+          "method": "latest-index",
+          "candidates_found": 0,
+          "candidate_ids": [],
+          "index_pages_checked": 1,
+          "feed_urls_checked": 0,
+          "refill_links_checked": 0,
+          "semantic_expansion_links_checked": 0,
+          "published_links_skipped": 0,
+          "selection_phase": "daily-plan"
+        },
+        "unity-official": {
+          "status": "checked",
+          "method": "latest-index",
+          "candidates_found": 0,
+          "candidate_ids": [],
+          "index_pages_checked": 2,
+          "feed_urls_checked": 0,
+          "refill_links_checked": 0,
+          "semantic_expansion_links_checked": 0,
+          "published_links_skipped": 0,
+          "selection_phase": "daily-plan"
+        },
+        "sidefx-official": {
+          "status": "checked",
+          "method": "latest-index",
+          "candidates_found": 0,
+          "candidate_ids": [],
+          "index_pages_checked": 2,
+          "feed_urls_checked": 0,
+          "refill_links_checked": 0,
+          "semantic_expansion_links_checked": 0,
+          "published_links_skipped": 3,
+          "selection_phase": "daily-plan"
+        },
+        "autodesk-area": {
+          "status": "checked",
+          "method": "latest-index",
+          "candidates_found": 0,
+          "candidate_ids": [],
+          "index_pages_checked": 1,
+          "feed_urls_checked": 0,
+          "refill_links_checked": 0,
+          "semantic_expansion_links_checked": 0,
+          "published_links_skipped": 0,
+          "selection_phase": "targeted-refill"
+        },
+        "adobe-substance-3d": {
+          "status": "checked",
+          "method": "latest-index",
+          "candidates_found": 0,
+          "candidate_ids": [],
+          "index_pages_checked": 1,
+          "feed_urls_checked": 0,
+          "refill_links_checked": 0,
+          "semantic_expansion_links_checked": 2,
+          "published_links_skipped": 0,
+          "selection_phase": "targeted-refill"
+        },
+        "game-developer": {
+          "status": "checked",
+          "method": "latest-index",
+          "candidates_found": 0,
+          "candidate_ids": [],
+          "index_pages_checked": 1,
+          "feed_urls_checked": 0,
+          "refill_links_checked": 0,
+          "semantic_expansion_links_checked": 0,
+          "published_links_skipped": 0,
+          "selection_phase": "targeted-refill"
+        }
+      }
+    },
+    "notes": "2026-10-20 autonomous GitHub Collector loaded the Published Registry snapshot before discovery, supplemented it from verified-DONE history when needed, checked rolling backlog, executed the current-main deterministic registered-source probe plan, crawled configured source indexes plus bounded same-source refill, then used the current-main deficit-aware deterministic registered-source refill only when the verified survivor count remained below the normal floor, and applied exact source/stable identity dedupe before ranking. Registered refill: pre=11 post=17 batches=2 selected=[\"autodesk-area\", \"adobe-substance-3d\", \"game-developer\", \"3dnchu\", \"cgworld-jp\", \"bilibili-mobile\"]. Registry audit: {\"history_supplemented_items\": 0, \"latest_verified_done\": \"2026-10-19\", \"snapshot_generated_through\": \"2026-10-19\", \"snapshot_state\": \"DERIVED_FROM_VERIFIED_DONE\", \"source_identities\": 857, \"stable_ids\": 856}. Backlog entries rechecked=0. No source registration/domain supplied ranking bonus, quota or admission bypass."
+  },
+  "candidate_decisions": [
+    {
+      "candidate_id": "blender-official-2026-10-13-sculpt-paint-texture-module-mee",
+      "source_url": "https://devtalk.blender.org/t/2026-10-13-sculpt-paint-texture-module-meeting/46025",
+      "discovery_channels": [
+        "registered-source-crawl",
+        "registered-source-probe:blender-official",
+        "semantic-feedback-expansion",
+        "published-registry-snapshot"
+      ],
+      "decision": "rejected",
+      "reason_code": "editorial-quality-rejected",
+      "editorial_errors": [
+        "blender-official-2026-10-13-sculpt-paint-texture-module-mee: generic analysis padding is not source-specific evidence"
+      ]
+    },
+    {
+      "candidate_id": "cg-channel-new-cg-software-you-may-have-missed-18-october-2026",
+      "source_url": "https://www.cgchannel.com/2026/10/new-cg-software-you-may-have-missed-18-october-2026",
+      "discovery_channels": [
+        "registered-source-crawl",
+        "registered-source-probe:cg-channel",
+        "published-registry-snapshot"
+      ],
+      "decision": "rejected",
+      "reason_code": "editorial-quality-rejected",
+      "editorial_errors": [
+        "cg-channel-new-cg-software-you-may-have-missed-18-october-2026: generic analysis padding is not source-specific evidence"
+      ]
+    },
+    {
+      "candidate_id": "blender-official-sculpt-paint-texture-module-meeting-overvi",
+      "source_url": "https://devtalk.blender.org/t/sculpt-paint-texture-module-meeting-overview/33567",
+      "discovery_channels": [
+        "registered-source-crawl",
+        "registered-source-probe:blender-official",
+        "published-registry-snapshot"
+      ],
+      "decision": "rejected",
+      "reason_code": "editorial-quality-rejected",
+      "editorial_errors": [
+        "blender-official-sculpt-paint-texture-module-meeting-overvi: old source requires an explicit historical title and source year in summary",
+        "blender-official-sculpt-paint-texture-module-meeting-overvi: generic analysis padding is not source-specific evidence"
+      ]
+    },
+    {
+      "candidate_id": "cg-channel-new-cg-software-you-may-have-missed-7-september-2026",
+      "source_url": "https://www.cgchannel.com/2026/09/new-cg-software-you-may-have-missed-7-september-2026",
+      "discovery_channels": [
+        "registered-source-crawl",
+        "registered-source-probe:cg-channel",
+        "published-registry-snapshot"
+      ],
+      "decision": "rejected",
+      "reason_code": "editorial-quality-rejected",
+      "editorial_errors": [
+        "cg-channel-new-cg-software-you-may-have-missed-7-september-2026: generic analysis padding is not source-specific evidence"
+      ]
+    },
+    {
+      "candidate_id": "cgworld-jp-substance-3d-designer",
+      "source_url": "https://cgworld.jp/substance-3d-designer",
+      "discovery_channels": [
+        "registered-source-crawl",
+        "registered-source-probe:cgworld-jp",
+        "semantic-feedback-expansion",
+        "registered-source-targeted-refill",
+        "published-registry-snapshot"
+      ],
+      "decision": "rejected",
+      "reason_code": "editorial-quality-rejected",
+      "editorial_errors": [
+        "cgworld-jp-substance-3d-designer: generic analysis padding is not source-specific evidence"
+      ]
+    },
+    {
+      "candidate_id": "3dnchu-utc-liquid-shader-1-0",
+      "source_url": "https://3dnchu.com/archives/utc-liquid-shader-1-0",
+      "discovery_channels": [
+        "registered-source-crawl",
+        "registered-source-probe:3dnchu",
+        "registered-source-targeted-refill",
+        "published-registry-snapshot"
+      ],
+      "decision": "rejected",
+      "reason_code": "editorial-quality-rejected",
+      "editorial_errors": [
+        "3dnchu-utc-liquid-shader-1-0: old source requires an explicit historical title and source year in summary",
+        "3dnchu-utc-liquid-shader-1-0: generic analysis padding is not source-specific evidence"
+      ]
+    },
+    {
+      "candidate_id": "80-level-spirited-away-s-train-tracks-scene-recreated-in-3d-with-unre",
+      "source_url": "https://80.lv/articles/spirited-away-s-train-tracks-scene-recreated-in-3d-with-unreal-engine-5",
+      "discovery_channels": [
+        "registered-source-crawl",
+        "registered-source-probe:80-level",
+        "published-registry-snapshot"
+      ],
+      "decision": "rejected",
+      "reason_code": "editorial-quality-rejected",
+      "editorial_errors": [
+        "80-level-spirited-away-s-train-tracks-scene-recreated-in-3d-with-unre: old source requires an explicit historical title and source year in summary",
+        "80-level-spirited-away-s-train-tracks-scene-recreated-in-3d-with-unre: generic analysis padding is not source-specific evidence"
+      ]
+    },
+    {
+      "candidate_id": "3dnchu-shell-texture-fur-b3d-yogyog",
+      "source_url": "https://3dnchu.com/archives/shell-texture-fur-b3d-yogyog",
+      "discovery_channels": [
+        "registered-source-crawl",
+        "registered-source-probe:3dnchu",
+        "registered-source-targeted-refill",
+        "published-registry-snapshot"
+      ],
+      "decision": "rejected",
+      "reason_code": "editorial-quality-rejected",
+      "editorial_errors": [
+        "3dnchu-shell-texture-fur-b3d-yogyog: old source requires an explicit historical title and source year in summary",
+        "3dnchu-shell-texture-fur-b3d-yogyog: generic analysis padding is not source-specific evidence"
+      ]
+    },
+    {
+      "candidate_id": "cg-channel-tutorial-creating-incendiary-burn-fx-for-game-characters",
+      "source_url": "https://www.cgchannel.com/2026/10/tutorial-creating-incendiary-burn-fx-for-game-characters",
+      "discovery_channels": [
+        "registered-source-crawl",
+        "registered-source-probe:cg-channel",
+        "published-registry-snapshot"
+      ],
+      "decision": "published",
+      "canonical_id": "cg-channel-tutorial-creating-incendiary-burn-fx-for-game-characters"
+    },
+    {
+      "candidate_id": "80-level-gunfire-reborn-s-dragonchaser-reimagined-as-painterly-3d-ass",
+      "source_url": "https://80.lv/articles/gunfire-reborn-s-dragonchaser-reimagined-as-painterly-3d-asset-in-wayfinder-s-style",
+      "discovery_channels": [
+        "registered-source-crawl",
+        "registered-source-probe:80-level",
+        "published-registry-snapshot"
+      ],
+      "decision": "published",
+      "canonical_id": "80-level-gunfire-reborn-s-dragonchaser-reimagined-as-painterly-3d-ass"
+    },
+    {
+      "candidate_id": "80-level-animation-director-breaks-down-the-tricks-behind-a-spirited",
+      "source_url": "https://80.lv/articles/animation-director-breaks-down-the-tricks-behind-a-spirited-away-scene",
+      "discovery_channels": [
+        "registered-source-crawl",
+        "registered-source-probe:80-level",
+        "published-registry-snapshot"
+      ],
+      "decision": "published",
+      "canonical_id": "80-level-animation-director-breaks-down-the-tricks-behind-a-spirited"
+    },
+    {
+      "candidate_id": "80-level-making-realistic-tileable-forest-floor-material-using-substa",
+      "source_url": "https://80.lv/articles/making-realistic-tileable-forest-floor-material-using-substance-3d-designer-s-nodes",
+      "discovery_channels": [
+        "registered-source-crawl",
+        "registered-source-probe:80-level",
+        "published-registry-snapshot"
+      ],
+      "decision": "published",
+      "canonical_id": "80-level-making-realistic-tileable-forest-floor-material-using-substa"
+    },
+    {
+      "candidate_id": "cg-channel-master-the-art-of-grooming-cg-hair-in-xgen",
+      "source_url": "https://www.cgchannel.com/2021/08/master-the-art-of-grooming-cg-hair-in-xgen",
+      "discovery_channels": [
+        "registered-source-crawl",
+        "registered-source-probe:cg-channel",
+        "published-registry-snapshot"
+      ],
+      "decision": "published",
+      "canonical_id": "cg-channel-master-the-art-of-grooming-cg-hair-in-xgen"
+    },
+    {
+      "candidate_id": "cg-channel-tutorial-dynamic-effects-animation-for-games",
+      "source_url": "https://www.cgchannel.com/2023/11/tutorial-dynamic-effects-animation-for-games",
+      "discovery_channels": [
+        "registered-source-crawl",
+        "registered-source-probe:cg-channel",
+        "published-registry-snapshot"
+      ],
+      "decision": "published",
+      "canonical_id": "cg-channel-tutorial-dynamic-effects-animation-for-games"
+    },
+    {
+      "candidate_id": "80-level-master-spirited-away-inspired-stylized-animated-water-in-ble",
+      "source_url": "https://80.lv/articles/master-spirited-away-inspired-stylized-animated-water-in-blender",
+      "discovery_channels": [
+        "registered-source-crawl",
+        "registered-source-probe:80-level",
+        "published-registry-snapshot"
+      ],
+      "decision": "published",
+      "canonical_id": "80-level-master-spirited-away-inspired-stylized-animated-water-in-ble"
+    },
+    {
+      "candidate_id": "cg-channel-10bit-fx-ships-notch-0-9-23",
+      "source_url": "https://www.cgchannel.com/2020/06/10bit-fx-ships-notch-0-9-23",
+      "discovery_channels": [
+        "registered-source-crawl",
+        "registered-source-probe:cg-channel",
+        "published-registry-snapshot"
+      ],
+      "decision": "published",
+      "canonical_id": "cg-channel-10bit-fx-ships-notch-0-9-23"
+    },
+    {
+      "candidate_id": "cg-channel-jangafx-releases-illugen-1-0",
+      "source_url": "https://www.cgchannel.com/2025/07/jangafx-releases-illugen-1-0",
+      "discovery_channels": [
+        "registered-source-crawl",
+        "registered-source-probe:cg-channel",
+        "published-registry-snapshot"
+      ],
+      "decision": "published",
+      "canonical_id": "cg-channel-jangafx-releases-illugen-1-0"
+    },
+    {
+      "candidate_id": "cg-channel-sitni-sati-releases-fumefx-7-0-for-maya-with-fumefx-gpu",
+      "source_url": "https://www.cgchannel.com/2026/03/sitni-sati-releases-fumefx-7-0-for-maya-with-fumefx-gpu",
+      "discovery_channels": [
+        "registered-source-crawl",
+        "registered-source-probe:cg-channel",
+        "published-registry-snapshot"
+      ],
+      "decision": "published",
+      "canonical_id": "cg-channel-sitni-sati-releases-fumefx-7-0-for-maya-with-fumefx-gpu"
+    },
+    {
+      "candidate_id": "3dnchu-get-started-with-lam-for-ue4",
+      "source_url": "https://3dnchu.com/archives/get-started-with-lam-for-ue4",
+      "discovery_channels": [
+        "registered-source-crawl",
+        "registered-source-probe:3dnchu",
+        "registered-source-targeted-refill",
+        "published-registry-snapshot"
+      ],
+      "decision": "published",
+      "canonical_id": "3dnchu-get-started-with-lam-for-ue4"
+    },
+    {
+      "candidate_id": "3dnchu-stylized-post-process-for-ue5",
+      "source_url": "https://3dnchu.com/archives/stylized-post-process-for-ue5",
+      "discovery_channels": [
+        "registered-source-crawl",
+        "registered-source-probe:3dnchu",
+        "registered-source-targeted-refill",
+        "published-registry-snapshot"
+      ],
+      "decision": "published",
+      "canonical_id": "3dnchu-stylized-post-process-for-ue5"
+    },
+    {
+      "candidate_id": "3dnchu-lazy-animation-v1-0",
+      "source_url": "https://3dnchu.com/archives/lazy-animation-v1-0",
+      "discovery_channels": [
+        "registered-source-crawl",
+        "registered-source-probe:3dnchu",
+        "semantic-feedback-expansion",
+        "registered-source-targeted-refill",
+        "published-registry-snapshot"
+      ],
+      "decision": "published",
+      "canonical_id": "3dnchu-lazy-animation-v1-0"
+    },
+    {
+      "candidate_id": "3dnchu-altermesh-2-0-released",
+      "source_url": "https://3dnchu.com/archives/altermesh-2-0-released",
+      "discovery_channels": [
+        "registered-source-crawl",
+        "registered-source-probe:3dnchu",
+        "registered-source-targeted-refill",
+        "published-registry-snapshot"
+      ],
+      "decision": "published",
+      "canonical_id": "3dnchu-altermesh-2-0-released"
+    },
+    {
+      "candidate_id": "3dnchu-rbc-addon-v1-2",
+      "source_url": "https://3dnchu.com/archives/rbc-addon-v1-2",
+      "discovery_channels": [
+        "registered-source-crawl",
+        "registered-source-probe:3dnchu",
+        "registered-source-targeted-refill",
+        "published-registry-snapshot"
+      ],
+      "decision": "published",
+      "canonical_id": "3dnchu-rbc-addon-v1-2"
+    },
+    {
+      "candidate_id": "80-level-three-ghibli-s-spirited-away-scenes-recreated-with-blender",
+      "source_url": "https://80.lv/articles/three-ghibli-s-spirited-away-scenes-recreated-with-blender",
+      "discovery_channels": [
+        "registered-source-crawl",
+        "registered-source-probe:80-level",
+        "published-registry-snapshot"
+      ],
+      "decision": "published",
+      "canonical_id": "80-level-three-ghibli-s-spirited-away-scenes-recreated-with-blender"
+    },
+    {
+      "candidate_id": "3dnchu-neuralangelo-nvidia",
+      "source_url": "https://3dnchu.com/archives/neuralangelo-nvidia",
+      "discovery_channels": [
+        "registered-source-crawl",
+        "registered-source-probe:3dnchu",
+        "registered-source-targeted-refill",
+        "published-registry-snapshot"
+      ],
+      "decision": "published",
+      "canonical_id": "3dnchu-neuralangelo-nvidia"
+    }
+  ],
+  "personalization": {
+    "contract": "supabase-semantic-feedback-v1",
+    "status": "applied",
+    "vote_count": 14,
+    "max_rank_multiplier": 0.2,
+    "max_query_expansion_fraction": 0.2,
+    "raw_profile_committed": false,
+    "bookmarks_used": false,
+    "domain_weights_used": false,
+    "admission_bypass": false,
+    "quality_gate_bypass": false,
+    "source_quota": false,
+    "ranking_adjusted_count": 21,
+    "semantic_expansion_candidates": 3,
+    "profile_fingerprint": "b1fcec684d92e2e2f52c42014fff91931d0e0baa566386ebc795a8aae0bea9b3",
+    "reader": "github-actions-oidc-owner-v1"
+  }
+}
