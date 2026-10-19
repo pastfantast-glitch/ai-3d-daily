@@ -1,0 +1,1285 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-20",
+  "reviewer": "chatgpt-scheduled-task",
+  "source_run_id": 39343278635,
+  "source_head_sha": "80e6d25eec20caa8011c393e6f2642cb90d2102e",
+  "items": {
+    "80-level-gunfire-reborn-s-dragonchaser-reimagined-as-painterly-3d-ass": {
+      "source_url": "https://80.lv/articles/gunfire-reborn-s-dragonchaser-reimagined-as-painterly-3d-asset-in-wayfinder-s-style",
+      "source_published_at": "2026-10-19",
+      "reviewed_on": "2026-10-20",
+      "source_evidence_sha256": "a59483e2c2fd3bb8340c5f4ef76c93d24aa7d1377a7abfaaab9edc4fd4f967f2",
+      "evidence_refs": [
+        "p001",
+        "p012",
+        "p013",
+        "p014",
+        "p015",
+        "p016",
+        "p017",
+        "p020",
+        "p021",
+        "p022",
+        "p023",
+        "p024"
+      ],
+      "title": "Dragonchaser 風格化武器：雕刻材質層次，再用分段漸層保留筆觸",
+      "summary": "Max Osta 將《Gunfire Reborn》的 Dragonchaser 重新詮釋為 Wayfinder 式道具：Blender 建模、ZBrush 雕刻，Painter 結合程序遮罩與手繪分段，最後在 Eevee 調整材質和燈光。",
+      "full_analysis": [
+        {
+          "label": "雕刻輪廓與程序繩索的製作流程",
+          "text": "作者先在 Blender 定比例，再到 ZBrush 做木紋、缺口與邊緣；低模回頭貼合雕刻後的新輪廓。繩索則不用雕刻，而以 Screw、Curve、Subdivision 修改器及合併重疊點處理，將大型形狀和繩面材質分開製作。",
+          "evidence_refs": [
+            "p014",
+            "p015",
+            "p016",
+            "p017"
+          ]
+        },
+        {
+          "label": "手繪分段與材質層次控制",
+          "text": "Painter 的手繪層使用 Paint、Blur、Quantize 堆疊，先以模糊控制過渡，再將漸層壓成色帶；AO 與 Curvature 相關圖層也大量用 Quantize。繩面另以不同三平面角度的線性漸層和錨點組織細節，並非每種材質都靠同一套現成智慧材質。",
+          "evidence_refs": [
+            "p020",
+            "p021",
+            "p022",
+            "p023"
+          ]
+        },
+        {
+          "label": "個人風格詮釋與燈光驗證限制",
+          "text": "作者明確把此作定位為自己的武器詮釋，因參考圖對材質分區並不一致。Eevee 中還需壓低玉石的金屬感、關閉部分燈光的高光或漫反射；這些是為指定展示外觀調整，不能當作所有風格化資產通用的物理材質數值。",
+          "evidence_refs": [
+            "p012",
+            "p013",
+            "p024"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p012",
+          "p013",
+          "p014",
+          "p015",
+          "p016",
+          "p017",
+          "p020",
+          "p021",
+          "p022",
+          "p023",
+          "p024"
+        ]
+      }
+    },
+    "80-level-animation-director-breaks-down-the-tricks-behind-a-spirited": {
+      "source_url": "https://80.lv/articles/animation-director-breaks-down-the-tricks-behind-a-spirited-away-scene",
+      "source_published_at": "2026-10-19",
+      "reviewed_on": "2026-10-20",
+      "source_evidence_sha256": "2654fd0bf0c27b60610b891702ab9fb05a56a33b8cffca6e253a6458ae121ee5",
+      "evidence_refs": [
+        "p001",
+        "p002",
+        "p003",
+        "p004",
+        "p005",
+        "p006",
+        "p007"
+      ],
+      "title": "《神隱少女》動作分析：用停頓與重心變化表達拉扯阻力",
+      "summary": "動畫導演 Huu Tu Nguyen 分析千尋伸手拉物的動作，指出肌肉、身體平衡和特別停頓共同表現阻力；文章另列不同作者將吉卜力水效與場景轉成三維的案例。",
+      "full_analysis": [
+        {
+          "label": "停頓與身體反應的動作設計",
+          "text": "這段拉扯並非單純抓取後往回移動，而是讓身體對阻力作出反應、尋找平衡，再透過特別停頓強調用力。可確認的技術重點是動作節奏與身體運動的配合，本文沒有提供逐格骨架或關節角度。",
+          "evidence_refs": [
+            "p002",
+            "p003"
+          ]
+        },
+        {
+          "label": "二維表演對三維動畫的製作價值",
+          "text": "推論上，製作三維角色拉扯動作時，可先觀察停頓落點、身體如何承受阻力及重心如何回復，而不是只複製手掌的位移路徑。這是從導演對平衡與肌肉運動的分析延伸出的練習方向，並非作者公布的三維綁定流程。",
+          "evidence_refs": [
+            "p001",
+            "p003"
+          ]
+        },
+        {
+          "label": "跨工具範例的來源與方法限制",
+          "text": "文章提到 After Effects、Unity、Blender 與 UE5 的重現案例，但來自不同作者、也涵蓋水效和場景，不是同一份工程一路轉換。不能把這些例子拼成一套已驗證的軟體交換方法，或聲稱文中已公開完整三維水體演算法。",
+          "evidence_refs": [
+            "p004",
+            "p005",
+            "p006",
+            "p007"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p002",
+          "p003",
+          "p004",
+          "p005",
+          "p006",
+          "p007"
+        ]
+      }
+    },
+    "80-level-making-realistic-tileable-forest-floor-material-using-substa": {
+      "source_url": "https://80.lv/articles/making-realistic-tileable-forest-floor-material-using-substance-3d-designer-s-nodes",
+      "source_published_at": "2026-10-19",
+      "reviewed_on": "2026-10-20",
+      "source_evidence_sha256": "131d57ccd697a25c932690c76421fe7b7b9d7c1883d69a6242de4f14311310dd",
+      "evidence_refs": [
+        "p001",
+        "p006",
+        "p007",
+        "p008",
+        "p009",
+        "p010",
+        "p011",
+        "p012",
+        "p013",
+        "p014",
+        "p016",
+        "p017",
+        "p018",
+        "p020"
+      ],
+      "title": "Designer 森林地面：以樣條長出樹根，降低平鋪重複感",
+      "summary": "Zeqi Mu 在 Substance 3D Designer 用樣條生成分層樹根，再以 Shape Splatter v2 疊加石頭與苔蘚；展示到 UE5 時使用 Nanite 位移，並為三葉草加入次表面散射遮罩。",
+      "full_analysis": [
+        {
+          "label": "主根到細節的程序材質流程",
+          "text": "作者先試 Cells 2，發現難以還原根系層級，改以 Scatter Splines on Splines 控制根的生長、密度與粗細。主根刻意稀疏，並將多個高斯噪波乘入高度圖，讓大形狀與表面起伏各自產生變化。",
+          "evidence_refs": [
+            "p006",
+            "p007",
+            "p008",
+            "p009",
+            "p010"
+          ]
+        },
+        {
+          "label": "石頭與苔蘚法線的製作控制",
+          "text": "小石頭用 Shape Splatter v2 的 SDF 石頭功能，在函數圖隨機調整圓度及切面數；苔蘚也用該節點散布，但法線直接由節點產出，而不是從合併高度圖推導。這讓不同層的細節不必全擠進同一張高度轉法線結果。",
+          "evidence_refs": [
+            "p011",
+            "p012",
+            "p013",
+            "p014"
+          ]
+        },
+        {
+          "label": "平鋪構圖與引擎展示的驗證限制",
+          "text": "作者把避免根系平鋪重複列為主要難題，不能只看單塊材質就判定接縫與重複已解決。UE5 展示還開啟 Nanite 位移、替三葉草加散射遮罩；本文沒有提供各平台效能比較，因此效果展示不等於任意遊戲平台都能直接採用。",
+          "evidence_refs": [
+            "p016",
+            "p017",
+            "p018",
+            "p020"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p006",
+          "p007",
+          "p008",
+          "p009",
+          "p010",
+          "p011",
+          "p012",
+          "p013",
+          "p014",
+          "p016",
+          "p017",
+          "p018",
+          "p020"
+        ]
+      }
+    },
+    "80-level-master-spirited-away-inspired-stylized-animated-water-in-ble": {
+      "source_url": "https://80.lv/articles/master-spirited-away-inspired-stylized-animated-water-in-blender",
+      "source_published_at": "2024-05-08",
+      "reviewed_on": "2026-10-20",
+      "source_evidence_sha256": "3e171d3397b789d063a7b13bdc121bd9dbd023bde282803b07ad8954c48fd142",
+      "evidence_refs": [
+        "p001",
+        "p002",
+        "p003",
+        "p005"
+      ],
+      "title": "歷史參考｜Blender 動漫瀑布教學：分開處理水面、泡沫與粒子",
+      "summary": "這篇 2024 年文章介紹 crzyzhaa 的《神隱少女》風格瀑布教學，涵蓋 Blender 幾何節點、造型、水體著色、泡沫物件和粒子，當時也提供免費專案檔。",
+      "full_analysis": [
+        {
+          "label": "瀑布與泡沫分工的製作流程",
+          "text": "教學介紹把模型、水體著色器、底部區域、泡沫物件、粒子及動畫分成步驟，並加入岩石等細節。這裡可確認的是示範的組成與順序範圍，文章沒有列出完整節點連線，不能補寫特定水流求解方式。",
+          "evidence_refs": [
+            "p001",
+            "p002",
+            "p003"
+          ]
+        },
+        {
+          "label": "風格化水體的學習參考價值",
+          "text": "來源把重點放在動漫式瀑布與卡通外觀的著色練習，並提到可取得專案檔。推論上，對風格化效果美術，可分別研究水體、泡沫與粒子的外觀如何組合，但不能把這套示範等同於物理正確的通用流體系統。",
+          "evidence_refs": [
+            "p001",
+            "p003",
+            "p005"
+          ]
+        },
+        {
+          "label": "舊專案取得與引擎移植限制",
+          "text": "免費檔案是 2024 年文章記錄的提供方式，本文沒有確認今日連結、Blender 版本或商用授權條件。它也未提供遊戲引擎移植和效能測試，因此不能由 Blender 教學直接推定已能在 UE 或 Unity 達到相同結果。",
+          "evidence_refs": [
+            "p002",
+            "p003",
+            "p005"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p002",
+          "p003",
+          "p005"
+        ]
+      }
+    },
+    "80-level-three-ghibli-s-spirited-away-scenes-recreated-with-blender": {
+      "source_url": "https://80.lv/articles/three-ghibli-s-spirited-away-scenes-recreated-with-blender",
+      "source_published_at": "2024-08-15",
+      "reviewed_on": "2026-10-20",
+      "source_evidence_sha256": "0a9a4391287465e8673ef9dce9e40fe30b9e8fd1340b459d2579c7cc73daae20",
+      "evidence_refs": [
+        "p001",
+        "p002",
+        "p003",
+        "p004",
+        "p005",
+        "p006"
+      ],
+      "title": "歷史參考｜Noggi 用 Blender 重現三個《神隱少女》場景",
+      "summary": "2024 年 Noggi 的幕後影片討論三個吉卜力場景如何由二維重現為三維，也反思三維動畫的限制；Patreon 專案內容另列八支自訂筆刷和合成濾鏡。",
+      "full_analysis": [
+        {
+          "label": "二維場景轉三維的設計問題",
+          "text": "Noggi 以 Blender 重現三個場景，並直接提問能否、以及是否應該把完整二維畫面轉成三維。文章記錄其對三維動畫限制與個人心得的討論，並非宣稱只要建好模型就能在任意鏡頭保留原動畫風格。",
+          "evidence_refs": [
+            "p001",
+            "p002",
+            "p003"
+          ]
+        },
+        {
+          "label": "貼圖筆刷與合成工具的製作價值",
+          "text": "Patreon 所列專案內容包含八支自訂貼圖繪畫筆刷，以及名為 dehance 的合成濾鏡。推論上，這反映三維場景外還有繪畫和合成工具參與風格建立；但本文沒有解釋濾鏡演算法，不能自行補上筆觸生成或降噪機制。",
+          "evidence_refs": [
+            "p004",
+            "p005",
+            "p006"
+          ]
+        },
+        {
+          "label": "幕後介紹與檔案取得限制",
+          "text": "公開文章只是幕後影片與專案入口，細部工程和自訂工具指向 Patreon，不可稱為所有檔案免費公開。本文未列 Blender 版本、完整材質連線或跨鏡頭測試，因此只能作 2024 年的風格重現案例，而非保證可直接套用的製作套件。",
+          "evidence_refs": [
+            "p002",
+            "p003",
+            "p004",
+            "p005",
+            "p006"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p002",
+          "p003",
+          "p004",
+          "p005",
+          "p006"
+        ]
+      }
+    },
+    "cg-channel-tutorial-creating-incendiary-burn-fx-for-game-characters": {
+      "source_url": "https://www.cgchannel.com/2026/10/tutorial-creating-incendiary-burn-fx-for-game-characters",
+      "source_published_at": "2026-10-19",
+      "reviewed_on": "2026-10-20",
+      "source_evidence_sha256": "4863414a683e3a2dce6e2122434976bdb21142962404d35c7431b148b6fa9b64",
+      "evidence_refs": [
+        "p001",
+        "p002",
+        "p003",
+        "p004",
+        "p005",
+        "p006",
+        "p007",
+        "p008",
+        "p011",
+        "p014"
+      ],
+      "title": "角色燃燒遊戲特效課程：串接 Niagara、Houdini 與程序貼圖",
+      "summary": "Ashley Lyons 的課程以 Unreal 材質和 Niagara 點燃角色，再轉成煙與灰；Designer 製作火星貼圖，Houdini Pyro 則產生可供引擎使用的序列貼圖，教學超過六小時。",
+      "full_analysis": [
+        {
+          "label": "燃燒材質到粒子系統的流程",
+          "text": "課程先在 Unreal Material Editor 建立可調參數的主材質，再以 Niagara 設定發射器、生成、運動和時序，讓角色燃起並散成煙灰。這是材質與粒子共同驅動的遊戲效果，不是只在角色表面貼一段火焰影片。",
+          "evidence_refs": [
+            "p003",
+            "p004",
+            "p005"
+          ]
+        },
+        {
+          "label": "離線模擬與程序貼圖的製作價值",
+          "text": "Designer 用於火星系統的程序貼圖；Houdini Pyro 另外模擬煙火並渲染 flipbook。兩種資產交給 Niagara 使用，推論上可把高成本煙火形態先轉為貼圖，再在引擎安排播放與粒子時序，但本文沒有提供遊戲內耗時數據。",
+          "evidence_refs": [
+            "p006",
+            "p007"
+          ]
+        },
+        {
+          "label": "課程介紹與成果驗證限制",
+          "text": "來源列可下載 Houdini、Designer 專案與貼圖，但取得方式是 Gnomon 訂閱，不是全部免費課程。CG Channel 亦揭露由 Gnomon 持有；文章介紹的可用於製作之定位不等於獨立效能驗證，仍缺目標平台的實際測試。",
+          "evidence_refs": [
+            "p002",
+            "p008",
+            "p011",
+            "p014"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p002",
+          "p003",
+          "p004",
+          "p005",
+          "p006",
+          "p007",
+          "p008",
+          "p011",
+          "p014"
+        ]
+      }
+    },
+    "cg-channel-master-the-art-of-grooming-cg-hair-in-xgen": {
+      "source_url": "https://www.cgchannel.com/2021/08/master-the-art-of-grooming-cg-hair-in-xgen",
+      "source_published_at": "2021-08-22",
+      "reviewed_on": "2026-10-20",
+      "source_evidence_sha256": "626f09d20a32c6e8e78e5378548b6daae3aa8fe380c296c999919218f0f8081e",
+      "evidence_refs": [
+        "p001",
+        "p002",
+        "p003",
+        "p004",
+        "p005",
+        "p006",
+        "p007",
+        "p010",
+        "p012"
+      ],
+      "title": "歷史參考｜XGen 男性毛髮教學：密度圖、雜毛與 Arnold 呈現",
+      "summary": "2021 年《Creating a Male Groom With XGen》課程從頭模準備到男性頭髮、眉睫和粗細鬍鬚，搭配 Mari 密度圖與 Arnold 外觀開發；適合已有 Maya 經驗的 XGen 初學者。",
+      "full_analysis": [
+        {
+          "label": "頭模準備與毛髮整理流程",
+          "text": "課程先整理可供 XGen 使用的頭模，再處理髮型、修改器、Mari 密度圖與雜毛表達式，範圍包含眉毛、睫毛與不同粗細的臉部毛髮。最後進入程序毛髮外觀開發和 Arnold 渲染，將形態與材質呈現分開學習。",
+          "evidence_refs": [
+            "p003",
+            "p004",
+            "p005"
+          ]
+        },
+        {
+          "label": "角色毛髮的練習素材價值",
+          "text": "教學超過五小時，提供基礎頭部幾何與照片參考，並分享製作管線中的整理技巧。推論上，這可用於練習從密度分布到局部雜毛的完整角色毛髮，而不必先把主要時間花在重新製作頭模；它不是建模零基礎課程。",
+          "evidence_refs": [
+            "p002",
+            "p006",
+            "p007"
+          ]
+        },
+        {
+          "label": "舊版課程與取得條件限制",
+          "text": "文章明確假設已有 Maya 經驗，專注 XGen 新使用者，課程需透過 Gnomon 訂閱，不能把試用等同永久免費。2021 年文章沒有提供當前 Maya／Arnold 的相容測試，也揭露媒體與 Gnomon 的所有權關係。",
+          "evidence_refs": [
+            "p002",
+            "p010",
+            "p012"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p002",
+          "p003",
+          "p004",
+          "p005",
+          "p006",
+          "p007",
+          "p010",
+          "p012"
+        ]
+      }
+    },
+    "cg-channel-tutorial-dynamic-effects-animation-for-games": {
+      "source_url": "https://www.cgchannel.com/2023/11/tutorial-dynamic-effects-animation-for-games",
+      "source_published_at": "2023-11-05",
+      "reviewed_on": "2026-10-20",
+      "source_evidence_sha256": "7d54a16fce7683308207bcdedb8a664ce6f88cf1d7e9611b0894d89aa9dc6c20",
+      "evidence_refs": [
+        "p001",
+        "p002",
+        "p003",
+        "p004",
+        "p005",
+        "p006",
+        "p007",
+        "p008",
+        "p011",
+        "p013"
+      ],
+      "title": "歷史參考｜遊戲消散特效：破碎模型、Niagara 與手繪煙霧",
+      "summary": "2023 年 Antonio Cappiello 的課程以 Houdini 低模程序建模和 RBD 破碎製作資產，在 Unreal 組合消散材質、Niagara、序列貼圖與鏡頭節奏，並示範 Photoshop 逐格煙霧。",
+      "full_analysis": [
+        {
+          "label": "破碎資產與消散動畫流程",
+          "text": "先在 Houdini 程序化建立低模資產，以 RBD 模擬破碎，再把模型匯進 Unreal，設定消散材質與 Niagara 環境粒子。最後組成關卡序列，動畫化材質參數、粒子配置與運動，再加入鏡頭震動和膠片顆粒。",
+          "evidence_refs": [
+            "p003",
+            "p004",
+            "p005",
+            "p006"
+          ]
+        },
+        {
+          "label": "煙霧貼圖與動態節奏的製作價值",
+          "text": "課程將 Houdini 渲染的 flipbook 匯入引擎建立材質及發射器，也簡介 Photoshop 時間軸、套索及濾鏡的逐格煙霧。推論上，離線模擬與手繪能提供不同類型的煙霧素材，最後仍需在序列中安排出現順序與時序。",
+          "evidence_refs": [
+            "p006",
+            "p007"
+          ]
+        },
+        {
+          "label": "教材取得與實際平台驗證限制",
+          "text": "來源列可下載 Houdini、Photoshop 與 Unreal 檔案，但透過 Gnomon 訂閱取得，並非完整免費教程。它是 2023 年的課程介紹，沒有逐平台效能或當前引擎版本測試；媒體也揭露由課程供應方 Gnomon 持有。",
+          "evidence_refs": [
+            "p002",
+            "p008",
+            "p011",
+            "p013"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p002",
+          "p003",
+          "p004",
+          "p005",
+          "p006",
+          "p007",
+          "p008",
+          "p011",
+          "p013"
+        ]
+      }
+    },
+    "cg-channel-10bit-fx-ships-notch-0-9-23": {
+      "source_url": "https://www.cgchannel.com/2020/06/10bit-fx-ships-notch-0-9-23",
+      "source_published_at": "2020-06-19",
+      "reviewed_on": "2026-10-20",
+      "source_evidence_sha256": "5b619163aef48157fc0c87f6b5f6f3f253268f86f9db193a4d6deb1199451572",
+      "evidence_refs": [
+        "p001",
+        "p008",
+        "p009",
+        "p011",
+        "p014",
+        "p017",
+        "p018",
+        "p019",
+        "p020",
+        "p021",
+        "p022",
+        "p025",
+        "p026",
+        "p027",
+        "p028",
+        "p029",
+        "p031",
+        "p034"
+      ],
+      "title": "歷史參考｜Notch 0.9.23：路徑追蹤、AI 放大與版本相容變更",
+      "summary": "這篇 2020 年更新文章回顧 Notch 0.9.23 的路徑追蹤、CPU／GPU 降噪與影像放大，並補上 0.9.23.121 的 GPU 去背及串流功能；不同 AI 功能的硬體需求並不相同。",
+      "full_analysis": [
+        {
+          "label": "路徑追蹤與影像處理的渲染技術",
+          "text": "此版加入以 DirectX 為基礎的路徑追蹤元件，降噪可選 GPU OptiX 或 CPU OIDN；AI 放大另採 NVIDIA NGX，要求 RTX 系列顯示卡。不能因路徑追蹤不綁單一廠牌，就推定所有降噪及放大功能也沒有硬體限制。",
+          "evidence_refs": [
+            "p008",
+            "p009",
+            "p011",
+            "p014",
+            "p017",
+            "p018"
+          ]
+        },
+        {
+          "label": "低解析度渲染與串流的製作價值",
+          "text": "報導描述先低解析度渲染再放大的用法，但廠商也提醒雜訊可能被放成較模糊的雜訊。後續 0.9.23.121 再加 GPU 色鍵去背、RTMP 和 DirectShow 串流，分別涉及畫面處理與輸出，不是同一項加速功能。",
+          "evidence_refs": [
+            "p019",
+            "p020",
+            "p021",
+            "p022",
+            "p028",
+            "p029",
+            "p031"
+          ]
+        },
+        {
+          "label": "專案向後相容與歷史版本限制",
+          "text": "0.9.23 更換內部時間基準，能準確儲存不同影格率的鍵，但新版建立的工程不能正確回到舊版，舊工程則可開進新版。文章亦記錄停止三十二位元支援；這些是當年的升版界線，不能拿來保證今日 Notch 與硬體的相容狀態。",
+          "evidence_refs": [
+            "p025",
+            "p026",
+            "p027",
+            "p034"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p008",
+          "p009",
+          "p011",
+          "p014",
+          "p017",
+          "p018",
+          "p019",
+          "p020",
+          "p021",
+          "p022",
+          "p025",
+          "p026",
+          "p027",
+          "p028",
+          "p029",
+          "p031",
+          "p034"
+        ]
+      }
+    },
+    "cg-channel-jangafx-releases-illugen-1-0": {
+      "source_url": "https://www.cgchannel.com/2025/07/jangafx-releases-illugen-1-0",
+      "source_published_at": "2025-07-29",
+      "reviewed_on": "2026-10-20",
+      "source_evidence_sha256": "b3474de422fb8d22d3c37219281a834cc50a11286b95d2340d410872b7bcd9ca",
+      "evidence_refs": [
+        "p001",
+        "p002",
+        "p004",
+        "p005",
+        "p006",
+        "p007",
+        "p008",
+        "p010",
+        "p011",
+        "p012",
+        "p013",
+        "p014",
+        "p015",
+        "p016",
+        "p034",
+        "p035",
+        "p036",
+        "p037"
+      ],
+      "title": "歷史參考｜IlluGen 1.0：同一節點圖建立遊戲特效網格與貼圖",
+      "summary": "2025 年 IlluGen 1.0 以同一節點圖製作特效用二維貼圖與簡單三維形體，結合動畫時間軸，可輸出 flipbook、flowmap、UV 扭曲圖與逐格網格。",
+      "full_analysis": [
+        {
+          "label": "二維與三維資產共同製作流程",
+          "text": "IlluGen 以節點連線建立貼圖和三維資產，在同一張圖中工作，另有時間軸、關鍵影格、曲線編輯與循環動畫。三維能力面向能量束等效果的基礎形體，不能把它描述成完整角色雕刻或一般 DCC 的全功能替代品。",
+          "evidence_refs": [
+            "p002",
+            "p004",
+            "p005",
+            "p006",
+            "p007",
+            "p008"
+          ]
+        },
+        {
+          "label": "特效輸出與重用的製作價值",
+          "text": "輸出包含二維序列、非正方形貼圖、flowmap 與 UV 扭曲圖；mesh flipbook 則把每格幾何用頂點色區分。子圖可封裝常用節點，曲線與色彩漸層預設亦能分享，推論上有助於把常用效果的資產建立和交付拆成可重用部分。",
+          "evidence_refs": [
+            "p010",
+            "p011",
+            "p012",
+            "p034",
+            "p035",
+            "p036",
+            "p037"
+          ]
+        },
+        {
+          "label": "初版文件與平台導入限制",
+          "text": "報導當時只找到簡短產品摘要，未見線上文件，較詳資料來自一點零發布說明；本文因此不是已驗證所有引擎匯入的操作指南。所列 Windows 10、RHEL 9、macOS 15 以上是 2025 年條件，不能自動延伸為當前平台完整相容。",
+          "evidence_refs": [
+            "p013",
+            "p014",
+            "p015",
+            "p016"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p002",
+          "p004",
+          "p005",
+          "p006",
+          "p007",
+          "p008",
+          "p010",
+          "p011",
+          "p012",
+          "p013",
+          "p014",
+          "p015",
+          "p016",
+          "p034",
+          "p035",
+          "p036",
+          "p037"
+        ]
+      }
+    },
+    "cg-channel-sitni-sati-releases-fumefx-7-0-for-maya-with-fumefx-gpu": {
+      "source_url": "https://www.cgchannel.com/2026/03/sitni-sati-releases-fumefx-7-0-for-maya-with-fumefx-gpu",
+      "source_published_at": "2026-03-26",
+      "reviewed_on": "2026-10-20",
+      "source_evidence_sha256": "0cd843935d13b826a383178697c38b1515055d2ddd1eb89409d8f2b3776c565b",
+      "evidence_refs": [
+        "p001",
+        "p002",
+        "p004",
+        "p005",
+        "p006",
+        "p007",
+        "p008",
+        "p009",
+        "p010",
+        "p011"
+      ],
+      "title": "歷史參考｜Maya FumeFX 7.0：CUDA 煙火求解與超記憶體回退",
+      "summary": "2026 年三月的 Maya 版 FumeFX 7.0 加入 CUDA GPU 求解器，顯示記憶體不足時回退 CPU；來源也提醒 GPU 和 CPU 雖採相同網格原理，輸出不會完全一致。",
+      "full_analysis": [
+        {
+          "label": "密集網格煙火的求解流程",
+          "text": "Maya 版七點零加入 GPU 煙火求解器，和 CPU 採相同密集網格方式及基礎原理，但結果並非完全相同。當模擬超出顯示記憶體會自動回到 CPU，這是容量處理機制，不代表兩種後端可產生逐值一致的模擬。",
+          "evidence_refs": [
+            "p005",
+            "p007",
+            "p008"
+          ]
+        },
+        {
+          "label": "GPU 與 CPU 的效能比較限制",
+          "text": "二至五倍加速來自廠商以 RTX 4090 與 Ryzen 9 7900X 比較，且依模擬尺寸和複雜度變動；CPU 預先配置記憶體另稱可快約百分之十至十五。這些是不同條件的宣稱，不能相加或寫成所有硬體固定可達的加速。",
+          "evidence_refs": [
+            "p002",
+            "p006",
+            "p010"
+          ]
+        },
+        {
+          "label": "平台與顯示卡的導入限制",
+          "text": "GPU 求解器採 CUDA，需要 NVIDIA；文中建議至少二十四 GB 顯示記憶體，也列 RTX 3090 等級建議。Maya 版需求是 Maya 2024 以上且限 Windows 10 以上；不能把 3ds Max 的七點五版本功能或其他平台支援一併算入。",
+          "evidence_refs": [
+            "p004",
+            "p008",
+            "p009",
+            "p011"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p002",
+          "p004",
+          "p005",
+          "p006",
+          "p007",
+          "p008",
+          "p009",
+          "p010",
+          "p011"
+        ]
+      }
+    },
+    "3dnchu-get-started-with-lam-for-ue4": {
+      "source_url": "https://3dnchu.com/archives/get-started-with-lam-for-ue4",
+      "source_published_at": "2015-11-19",
+      "reviewed_on": "2026-10-20",
+      "source_evidence_sha256": "2d1549d6734f37ac4bc0bc5612dd59300da09422385bc17537649f6b4f9f69d2",
+      "evidence_refs": [
+        "p001",
+        "p002",
+        "p003",
+        "p004"
+      ],
+      "title": "歷史參考｜UE4 Landscape Auto Material：依地形配置材質的早期展示",
+      "summary": "2015 年的 LAM 使用影片介紹 UE4 地形自動材質，依地面起伏反映素材；當時仍記錄 Marketplace 預定發布，並非現在可購買或新版引擎相容的確認。",
+      "full_analysis": [
+        {
+          "label": "地形起伏與材質配置流程",
+          "text": "來源介紹以 LAM 強化 UE4 Landscape，讓素材隨地面起伏自動反映，並公開實際使用影片。可確認的是這個自動配置方向，文章沒有列出判定高度或坡度的公式，不能補寫特定遮罩運算或混合演算法。",
+          "evidence_refs": [
+            "p001",
+            "p003"
+          ]
+        },
+        {
+          "label": "場景配置自動化的製作價值",
+          "text": "作者把這種自動配置與 Maya、Max 常需寫腳本的工作作比較，認為省去配置步驟有幫助。推論上，它可作為把重複地形材質工作轉成規則的早期案例，但本文不是各 DCC 與引擎的正式效率對照。",
+          "evidence_refs": [
+            "p002",
+            "p003"
+          ]
+        },
+        {
+          "label": "回應速度與發布階段限制",
+          "text": "作者也希望更新反應更快，卻沒有提供耗時數字；購買段落只寫預定在 Marketplace 發布。這是 2015 年的介紹，不應把作者感想寫成測速結論，也不能藉此宣稱目前 UE5 可直接使用或有特定免費授權。",
+          "evidence_refs": [
+            "p002",
+            "p004"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p002",
+          "p003",
+          "p004"
+        ]
+      }
+    },
+    "3dnchu-stylized-post-process-for-ue5": {
+      "source_url": "https://3dnchu.com/archives/stylized-post-process-for-ue5",
+      "source_published_at": "2023-06-08",
+      "reviewed_on": "2026-10-20",
+      "source_evidence_sha256": "7468c2e3d1e98fefbc290ac6a5a1fd67102cab901a2a175238724bbf353efe59",
+      "evidence_refs": [
+        "p001",
+        "p002",
+        "p005",
+        "p006",
+        "p007",
+        "p008",
+        "p009",
+        "p010",
+        "p011",
+        "p012"
+      ],
+      "title": "歷史參考｜UE5 風格化後製：外框、排線與單一主材質",
+      "summary": "這篇 2023 年文章介紹 UE5 風格化後製材質，包含外框、程序或自訂紋理排線，以及外框、背景和著色偏移；文中另保留 v2.0 的後續開發預告。",
+      "full_analysis": [
+        {
+          "label": "外框與排線的後製技術",
+          "text": "功能列出依摺痕、深度、法線、邊緣與著色的線條表現，也有噪波程序排線或自訂紋理，並可偏移外框、背景及著色。這些是後製材質的可調方向，不代表它已改變模型拓樸或生成真正的幾何外殼。",
+          "evidence_refs": [
+            "p005",
+            "p006",
+            "p007"
+          ]
+        },
+        {
+          "label": "單一主材質的製作維護價值",
+          "text": "作者刻意把功能建在一個主材質內，理由是提高可讀性並避免參照遺失。推論上，整合式材質便於沿同一入口理解參數，但文章沒有列所有分支的運算成本，不能把單一材質誤寫成一定比拆分效果更快。",
+          "evidence_refs": [
+            "p008",
+            "p011"
+          ]
+        },
+        {
+          "label": "示例資產與版本預告限制",
+          "text": "範例關卡不包含 ALSV4，也假設使用者已會基本 Unreal 後製。文中 v2.0 是開發與預定 2025 年春季公開的註記，不是本文已驗證完成；免費 GitHub 與 Gumroad 贊助管道亦不能取代今日下載和授權狀態核對。",
+          "evidence_refs": [
+            "p002",
+            "p009",
+            "p010",
+            "p011",
+            "p012"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p002",
+          "p005",
+          "p006",
+          "p007",
+          "p008",
+          "p009",
+          "p010",
+          "p011",
+          "p012"
+        ]
+      }
+    },
+    "3dnchu-altermesh-2-0-released": {
+      "source_url": "https://3dnchu.com/archives/altermesh-2-0-released",
+      "source_published_at": "2023-11-07",
+      "reviewed_on": "2026-10-20",
+      "source_evidence_sha256": "9e6c4287544008041378e430571055ac4119198878a5fb48125c0927f1679d7d",
+      "evidence_refs": [
+        "p001",
+        "p002",
+        "p003",
+        "p004",
+        "p005",
+        "p006",
+        "p007",
+        "p008",
+        "p009",
+        "p010"
+      ],
+      "title": "歷史參考｜AlterMesh 2.0 正式版：保留幾何節點參數並輸出動畫",
+      "summary": "2023 年十一月的 AlterMesh 2.0 發布介紹在 UE5 使用 Blender Geometry Nodes，保留可編輯參數，加入 VAT 動畫、電影鏡頭參數鍵格，以及屬性與 UV 輸出視覺化。",
+      "full_analysis": [
+        {
+          "label": "幾何節點參數的非破壞工作流",
+          "text": "文章介紹在 UE5 保留 Blender 幾何節點與可編輯來源，透過屬性映射傳遞資料；資產編輯器能視覺化屬性與 UV 輸出。這個流程重點是繼續調整程序資產，不是把每次變更都當成無法回編的固定網格。",
+          "evidence_refs": [
+            "p001",
+            "p002",
+            "p003",
+            "p004",
+            "p007"
+          ]
+        },
+        {
+          "label": "動畫與實例化的製作價值",
+          "text": "此版列出支援 VAT 的動畫 GeoNodes、電影鏡頭中的參數鍵格，以及包含植被的實例化。推論上，可把程序參數變化、烘焙動畫與大量重複資產分別考量，不應把三者混成所有幾何節點都能即時無限制執行的承諾。",
+          "evidence_refs": [
+            "p005",
+            "p006",
+            "p008",
+            "p009"
+          ]
+        },
+        {
+          "label": "正式發布與免費版本資訊限制",
+          "text": "這篇是 2023 年十一月正式發布介紹，不能與十月預告混為一談。當時列九十九點九九美元售價，作者只疑問免費版是否消失，沒有確認答案；因此不能宣稱免費版一定存在或已停用，也未證明目前引擎版本的完整相容。",
+          "evidence_refs": [
+            "p001",
+            "p010"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p002",
+          "p003",
+          "p004",
+          "p005",
+          "p006",
+          "p007",
+          "p008",
+          "p009",
+          "p010"
+        ]
+      }
+    },
+    "3dnchu-lazy-animation-v1-0": {
+      "source_url": "https://3dnchu.com/archives/lazy-animation-v1-0",
+      "source_published_at": "2024-10-06",
+      "reviewed_on": "2026-10-20",
+      "source_evidence_sha256": "2d853defd998beb70950a19d7764ee1c6c6ad2c346620021973678bd71089868",
+      "evidence_refs": [
+        "p001",
+        "p002",
+        "p003",
+        "p004"
+      ],
+      "title": "歷史參考｜Lazy Animation：快速建立移動動畫，但會清除舊鍵格",
+      "summary": "2024 年的 Lazy Animation 1.0 可替選取物件快速加移動鍵格、沿自訂曲線動畫並反轉；來源特別警告啟用時會刪除既有鍵格，也可能重設旋轉。",
+      "full_analysis": [
+        {
+          "label": "選取物件到曲線動畫的流程",
+          "text": "插件讓使用者替選取物件快速加入移動鍵格，沿自訂曲線路徑動畫，並支援逐格、同步模式及反轉。它處理的是物件移動的快速設定，文章沒有把它描述成能自動完成角色表演、步態或接觸解算的系統。",
+          "evidence_refs": [
+            "p001",
+            "p002"
+          ]
+        },
+        {
+          "label": "簡單移動設定的製作價值",
+          "text": "推論上，對尚未建立複雜動畫的物件，可用它快速建立位置變化和反向移動，再比較不同時間安排。這個用途須與既有動畫資產分開評估，因來源明確說為避免錯誤，啟用時會清掉原鍵格，並不是無條件保留既有工作的疊加工具。",
+          "evidence_refs": [
+            "p002",
+            "p003"
+          ]
+        },
+        {
+          "label": "鍵格清除與旋轉重設風險",
+          "text": "原文提醒舊鍵格、旋轉可能重設，並建議先處理旋轉或加入沒有旋轉的 Empty。若要試用，應先保留可回復的動畫副本；這是針對明示資料損失風險的防護建議，不代表本文已驗證每種父子層級都安全。",
+          "evidence_refs": [
+            "p003",
+            "p004"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p002",
+          "p003",
+          "p004"
+        ]
+      }
+    },
+    "3dnchu-neuralangelo-nvidia": {
+      "source_url": "https://3dnchu.com/archives/neuralangelo-nvidia",
+      "source_published_at": "2023-06-07",
+      "reviewed_on": "2026-10-20",
+      "source_evidence_sha256": "8c2f0690b5b17c3e98f395c12eca4cfa6a3569eff45d0de0fe3e9092284558d0",
+      "evidence_refs": [
+        "p001",
+        "p002",
+        "p004",
+        "p005",
+        "p006",
+        "p007"
+      ],
+      "title": "歷史參考｜Neuralangelo：從 RGB 影片重建細緻三維表面",
+      "summary": "2023 年 NVIDIA Research 的 Neuralangelo 研究結合多解析度雜湊網格與神經表面渲染，從多視角 RGB 影片重建三維結構，並以由粗到細最佳化控制細節。",
+      "full_analysis": [
+        {
+          "label": "多視角到表面重建的技術流程",
+          "text": "研究把多解析度三維雜湊網格與神經表面渲染結合，使用數值梯度平滑高階導數，再以由粗至細的網格最佳化控制不同細節層級。來源描述不依賴額外深度即可從多視角影像恢復表面，不是只以單張提示圖生成任意模型。",
+          "evidence_refs": [
+            "p002",
+            "p005"
+          ]
+        },
+        {
+          "label": "實景資產重建的製作潛力",
+          "text": "文章將建築、雕塑等實物列為重建對象，也提到手機或無人機影片。推論上，這種 RGB 擷取路徑可作為環境與實物數位化的研究參考，但表面重建成果不能直接等同於已完成低模拓樸、UV、綁定或所有遊戲交付需求。",
+          "evidence_refs": [
+            "p002",
+            "p004",
+            "p005",
+            "p007"
+          ]
+        },
+        {
+          "label": "研究展示與量產能力的驗證限制",
+          "text": "本文是 CVPR 2023 研究介紹，作者仍期待程式碼公開，未提供當前下載、完整硬體需求或每種材質的重建測試。文章對玻璃等複雜表面的高保真描述，也不代表任意手機影片都能達同樣結果，更不能據此宣布三維掃描器已被取代。",
+          "evidence_refs": [
+            "p004",
+            "p005",
+            "p006"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p002",
+          "p004",
+          "p005",
+          "p006",
+          "p007"
+        ]
+      }
+    },
+    "3dnchu-rbc-addon-v1-2": {
+      "source_url": "https://3dnchu.com/archives/rbc-addon-v1-2",
+      "source_published_at": "2023-01-21",
+      "reviewed_on": "2026-10-20",
+      "source_evidence_sha256": "2a1225a26ad77302665f2a01c0452df5be59696bf84322596e865455496338ef",
+      "evidence_refs": [
+        "p001",
+        "p002",
+        "p003",
+        "p004",
+        "p005",
+        "p006"
+      ],
+      "title": "歷史參考｜RBC 1.2：在 Blender 建立可調整的物理車輛 Rig",
+      "summary": "2023 年 RBC Addon 1.2 介紹快速配置物理車輛 rig，提供行為調整及驅動器、鍵盤、手把控制；當時另有免費版，但文章未完整比較免費與 Pro 的功能。",
+      "full_analysis": [
+        {
+          "label": "車輛 Rig 與控制輸入的流程",
+          "text": "插件以介面快速配置物理式車輛 rig，再用調整選項控制行為，列出的輸入包含驅動器、鍵盤及遊戲手把。這裡可確認的是車輛設定和控制方向，文章沒有提供每個輪軸、懸吊或輪胎模型的實作細節。",
+          "evidence_refs": [
+            "p001",
+            "p002",
+            "p003",
+            "p004",
+            "p005"
+          ]
+        },
+        {
+          "label": "動畫車輛設定的製作價值",
+          "text": "來源主張能在數分鐘建立並調整車輛 rig，推論上可把它當作快速試動態的工具候選，而不是先自行搭完整控制系統。不過數分鐘是產品介紹的說法，未附不同車型、不同操作者的測時，不能寫成固定交付速度。",
+          "evidence_refs": [
+            "p002",
+            "p003",
+            "p004"
+          ]
+        },
+        {
+          "label": "免費版與物理精度的資訊限制",
+          "text": "文章同時提到免費版本及付費 Pro，卻沒有列出完整差異，因此不能把所有宣傳能力都算進免費版。它也沒有給碰撞、懸吊或駕駛穩定性的實測，當年的售價與提供管道只能作 2023 年參考，不是今日授權確認。",
+          "evidence_refs": [
+            "p001",
+            "p002",
+            "p005",
+            "p006"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p002",
+          "p003",
+          "p004",
+          "p005",
+          "p006"
+        ]
+      }
+    }
+  }
+}
