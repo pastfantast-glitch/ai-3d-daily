@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   新技術 / Case｜2026-10-20｜AI 3D Daily
+  </title>
+  <meta content="2026-10-20 新技術 / Case Production Intelligence：新技術 / Production Case，共 3 項可驗證情報。" name="description"/>
+  <link href="../../styles.css?v=20261020-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../../shared-components.css?v=20261020-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../../category.css?v=20261020-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+ </head>
+ <body class="category-page" data-category="emerging-case" data-report-date="2026-10-20">
+  <nav aria-label="Production Intelligence 分類" class="global-category-nav">
+   <div class="page global-category-nav-inner">
+    <div class="archive-nav-controls">
+     <a class="archive-nav-home" href="../../">
+      ← 首頁
+     </a>
+     <div class="archive-nav-date">
+      <a aria-label="前一日日報" class="archive-nav-arrow" href="../../2026-10-19/emerging-case/">
+       ←
+      </a>
+      <span>
+       2026-10-20
+      </span>
+     </div>
+    </div>
+    <span aria-hidden="true" class="archive-nav-divider">
+    </span>
+    <a class="global-category-link" href="../#top">
+     TOP5
+    </a>
+    <a class="global-category-link" data-category="ai-generation" href="../ai-generation/">
+     AI 生成
+    </a>
+    <a class="global-category-link" data-category="3d-production" href="../3d-production/">
+     3D 製作
+    </a>
+    <a class="global-category-link" data-category="3d-animation" href="../3d-animation/">
+     3D 動作
+    </a>
+    <a class="global-category-link" data-category="engine-art" href="../engine-art/">
+     遊戲引擎
+    </a>
+    <a class="global-category-link is-active" data-category="emerging-case" href="../emerging-case/">
+     新技術 / Case
+    </a>
+    <a class="global-category-link" data-category="blender-dcc" href="../blender-dcc/">
+     Blender / DCC
+    </a>
+    <a class="global-category-link global-history-link" data-global-view="history" href="../../history/">
+     歷史日報
+    </a>
+   </div>
+  </nav>
+  <main class="page category-main">
+   <article class="category-card" data-intel-id="cg-channel-10bit-fx-ships-notch-0-9-23" data-intel-role="card">
+    <div class="category-meta">
+     #08 · case-study
+    </div>
+    <h2>
+     歷史參考｜Notch 0.9.23：路徑追蹤、AI 放大與版本相容變更
+    </h2>
+    <p class="summary">
+     這篇 2020 年更新文章回顧 Notch 0.9.23 的路徑追蹤、CPU／GPU 降噪與影像放大，並補上 0.9.23.121 的 GPU 去背及串流功能；不同 AI 功能的硬體需求並不相同。
+    </p>
+    <figure class="case-preview" data-intel-id="cg-channel-10bit-fx-ships-notch-0-9-23" data-intel-role="visual" data-visual-id="cg-channel-10bit-fx-ships-notch-0-9-23">
+     <a href="https://www.cgchannel.com/2020/06/10bit-fx-ships-notch-0-9-23" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-10-20/cg-channel-10bit-fx-ships-notch-0-9-23.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">製作案例</b> ★★★☆☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       路徑追蹤與影像處理的渲染技術
+      </h4>
+      <p>
+       此版加入以 DirectX 為基礎的路徑追蹤元件，降噪可選 GPU OptiX 或 CPU OIDN；AI 放大另採 NVIDIA NGX，要求 RTX 系列顯示卡。不能因路徑追蹤不綁單一廠牌，就推定所有降噪及放大功能也沒有硬體限制。
+      </p>
+      <h4>
+       低解析度渲染與串流的製作價值
+      </h4>
+      <p>
+       報導描述先低解析度渲染再放大的用法，但廠商也提醒雜訊可能被放成較模糊的雜訊。後續 0.9.23.121 再加 GPU 色鍵去背、RTMP 和 DirectShow 串流，分別涉及畫面處理與輸出，不是同一項加速功能。
+      </p>
+      <h4>
+       專案向後相容與歷史版本限制
+      </h4>
+      <p>
+       0.9.23 更換內部時間基準，能準確儲存不同影格率的鍵，但新版建立的工程不能正確回到舊版，舊工程則可開進新版。文章亦記錄停止三十二位元支援；這些是當年的升版界線，不能拿來保證今日 Notch 與硬體的相容狀態。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://www.cgchannel.com/2020/06/10bit-fx-ships-notch-0-9-23" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="cg-channel-jangafx-releases-illugen-1-0" data-intel-role="card">
+    <div class="category-meta">
+     #09 · case-study
+    </div>
+    <h2>
+     歷史參考｜IlluGen 1.0：同一節點圖建立遊戲特效網格與貼圖
+    </h2>
+    <p class="summary">
+     2025 年 IlluGen 1.0 以同一節點圖製作特效用二維貼圖與簡單三維形體，結合動畫時間軸，可輸出 flipbook、flowmap、UV 扭曲圖與逐格網格。
+    </p>
+    <figure class="case-preview" data-intel-id="cg-channel-jangafx-releases-illugen-1-0" data-intel-role="visual" data-visual-id="cg-channel-jangafx-releases-illugen-1-0">
+     <a href="https://www.cgchannel.com/2025/07/jangafx-releases-illugen-1-0" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-10-20/cg-channel-jangafx-releases-illugen-1-0.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">製作案例</b> ★★★☆☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       二維與三維資產共同製作流程
+      </h4>
+      <p>
+       IlluGen 以節點連線建立貼圖和三維資產，在同一張圖中工作，另有時間軸、關鍵影格、曲線編輯與循環動畫。三維能力面向能量束等效果的基礎形體，不能把它描述成完整角色雕刻或一般 DCC 的全功能替代品。
+      </p>
+      <h4>
+       特效輸出與重用的製作價值
+      </h4>
+      <p>
+       輸出包含二維序列、非正方形貼圖、flowmap 與 UV 扭曲圖；mesh flipbook 則把每格幾何用頂點色區分。子圖可封裝常用節點，曲線與色彩漸層預設亦能分享，推論上有助於把常用效果的資產建立和交付拆成可重用部分。
+      </p>
+      <h4>
+       初版文件與平台導入限制
+      </h4>
+      <p>
+       報導當時只找到簡短產品摘要，未見線上文件，較詳資料來自一點零發布說明；本文因此不是已驗證所有引擎匯入的操作指南。所列 Windows 10、RHEL 9、macOS 15 以上是 2025 年條件，不能自動延伸為當前平台完整相容。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://www.cgchannel.com/2025/07/jangafx-releases-illugen-1-0" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="3dnchu-neuralangelo-nvidia" data-intel-role="card">
+    <div class="category-meta">
+     #17 · research
+    </div>
+    <h2>
+     歷史參考｜Neuralangelo：從 RGB 影片重建細緻三維表面
+    </h2>
+    <p class="summary">
+     2023 年 NVIDIA Research 的 Neuralangelo 研究結合多解析度雜湊網格與神經表面渲染，從多視角 RGB 影片重建三維結構，並以由粗到細最佳化控制細節。
+    </p>
+    <figure class="case-preview" data-intel-id="3dnchu-neuralangelo-nvidia" data-intel-role="visual" data-visual-id="3dnchu-neuralangelo-nvidia">
+     <a href="https://3dnchu.com/archives/neuralangelo-nvidia" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-10-20/3dnchu-neuralangelo-nvidia.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">研究</b> ★★☆☆☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       多視角到表面重建的技術流程
+      </h4>
+      <p>
+       研究把多解析度三維雜湊網格與神經表面渲染結合，使用數值梯度平滑高階導數，再以由粗至細的網格最佳化控制不同細節層級。來源描述不依賴額外深度即可從多視角影像恢復表面，不是只以單張提示圖生成任意模型。
+      </p>
+      <h4>
+       實景資產重建的製作潛力
+      </h4>
+      <p>
+       文章將建築、雕塑等實物列為重建對象，也提到手機或無人機影片。推論上，這種 RGB 擷取路徑可作為環境與實物數位化的研究參考，但表面重建成果不能直接等同於已完成低模拓樸、UV、綁定或所有遊戲交付需求。
+      </p>
+      <h4>
+       研究展示與量產能力的驗證限制
+      </h4>
+      <p>
+       本文是 CVPR 2023 研究介紹，作者仍期待程式碼公開，未提供當前下載、完整硬體需求或每種材質的重建測試。文章對玻璃等複雜表面的高保真描述，也不代表任意手機影片都能達同樣結果，更不能據此宣布三維掃描器已被取代。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://3dnchu.com/archives/neuralangelo-nvidia" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <nav aria-label="相鄰分類" class="category-bottom-nav">
+    <a href="../engine-art/">
+     ← 遊戲引擎
+    </a>
+    <a href="../#top">
+     TOP5
+    </a>
+    <a href="../blender-dcc/">
+     Blender / DCC →
+    </a>
+   </nav>
+  </main>
+  <script defer="" src="../../archive-nav-state.js?v=20261020-r1-workspace-v10-history-current-workspace">
+  </script>
+ </body>
+</html>

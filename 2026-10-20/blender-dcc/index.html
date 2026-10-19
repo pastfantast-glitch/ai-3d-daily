@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   Blender / DCC｜2026-10-20｜AI 3D Daily
+  </title>
+  <meta content="2026-10-20 Blender / DCC Production Intelligence：Blender / DCC 工具與工作流 / Blender Tips，共 7 項可驗證情報。" name="description"/>
+  <link href="../../styles.css?v=20261020-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../../shared-components.css?v=20261020-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../../category.css?v=20261020-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+ </head>
+ <body class="category-page" data-category="blender-dcc" data-report-date="2026-10-20">
+  <nav aria-label="Production Intelligence 分類" class="global-category-nav">
+   <div class="page global-category-nav-inner">
+    <div class="archive-nav-controls">
+     <a class="archive-nav-home" href="../../">
+      ← 首頁
+     </a>
+     <div class="archive-nav-date">
+      <a aria-label="前一日日報" class="archive-nav-arrow" href="../../2026-10-19/blender-dcc/">
+       ←
+      </a>
+      <span>
+       2026-10-20
+      </span>
+     </div>
+    </div>
+    <span aria-hidden="true" class="archive-nav-divider">
+    </span>
+    <a class="global-category-link" href="../#top">
+     TOP5
+    </a>
+    <a class="global-category-link" data-category="ai-generation" href="../ai-generation/">
+     AI 生成
+    </a>
+    <a class="global-category-link" data-category="3d-production" href="../3d-production/">
+     3D 製作
+    </a>
+    <a class="global-category-link" data-category="3d-animation" href="../3d-animation/">
+     3D 動作
+    </a>
+    <a class="global-category-link" data-category="engine-art" href="../engine-art/">
+     遊戲引擎
+    </a>
+    <a class="global-category-link" data-category="emerging-case" href="../emerging-case/">
+     新技術 / Case
+    </a>
+    <a class="global-category-link is-active" data-category="blender-dcc" href="../blender-dcc/">
+     Blender / DCC
+    </a>
+    <a class="global-category-link global-history-link" data-global-view="history" href="../../history/">
+     歷史日報
+    </a>
+   </div>
+  </nav>
+  <main class="page category-main">
+   <article class="category-card" data-intel-id="80-level-making-realistic-tileable-forest-floor-material-using-substa" data-intel-role="card">
+    <div class="category-meta">
+     #04 · substance
+    </div>
+    <h2>
+     Designer 森林地面：以樣條長出樹根，降低平鋪重複感
+    </h2>
+    <p class="summary">
+     Zeqi Mu 在 Substance 3D Designer 用樣條生成分層樹根，再以 Shape Splatter v2 疊加石頭與苔蘚；展示到 UE5 時使用 Nanite 位移，並為三葉草加入次表面散射遮罩。
+    </p>
+    <figure class="case-preview" data-intel-id="80-level-making-realistic-tileable-forest-floor-material-using-substa" data-intel-role="visual" data-visual-id="80-level-making-realistic-tileable-forest-floor-material-using-substa">
+     <a href="https://80.lv/articles/making-realistic-tileable-forest-floor-material-using-substance-3d-designer-s-nodes" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-10-20/80-level-making-realistic-tileable-forest-floor-material-using-substa.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">Substance</b> ★★★★☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       主根到細節的程序材質流程
+      </h4>
+      <p>
+       作者先試 Cells 2，發現難以還原根系層級，改以 Scatter Splines on Splines 控制根的生長、密度與粗細。主根刻意稀疏，並將多個高斯噪波乘入高度圖，讓大形狀與表面起伏各自產生變化。
+      </p>
+      <h4>
+       石頭與苔蘚法線的製作控制
+      </h4>
+      <p>
+       小石頭用 Shape Splatter v2 的 SDF 石頭功能，在函數圖隨機調整圓度及切面數；苔蘚也用該節點散布，但法線直接由節點產出，而不是從合併高度圖推導。這讓不同層的細節不必全擠進同一張高度轉法線結果。
+      </p>
+      <h4>
+       平鋪構圖與引擎展示的驗證限制
+      </h4>
+      <p>
+       作者把避免根系平鋪重複列為主要難題，不能只看單塊材質就判定接縫與重複已解決。UE5 展示還開啟 Nanite 位移、替三葉草加散射遮罩；本文沒有提供各平台效能比較，因此效果展示不等於任意遊戲平台都能直接採用。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://80.lv/articles/making-realistic-tileable-forest-floor-material-using-substance-3d-designer-s-nodes" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="80-level-master-spirited-away-inspired-stylized-animated-water-in-ble" data-intel-role="card">
+    <div class="category-meta">
+     #07 · blender
+    </div>
+    <h2>
+     歷史參考｜Blender 動漫瀑布教學：分開處理水面、泡沫與粒子
+    </h2>
+    <p class="summary">
+     這篇 2024 年文章介紹 crzyzhaa 的《神隱少女》風格瀑布教學，涵蓋 Blender 幾何節點、造型、水體著色、泡沫物件和粒子，當時也提供免費專案檔。
+    </p>
+    <figure class="case-preview" data-intel-id="80-level-master-spirited-away-inspired-stylized-animated-water-in-ble" data-intel-role="visual" data-visual-id="80-level-master-spirited-away-inspired-stylized-animated-water-in-ble">
+     <a href="https://80.lv/articles/master-spirited-away-inspired-stylized-animated-water-in-blender" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-10-20/80-level-master-spirited-away-inspired-stylized-animated-water-in-ble.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">Blender</b> ★★★☆☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       瀑布與泡沫分工的製作流程
+      </h4>
+      <p>
+       教學介紹把模型、水體著色器、底部區域、泡沫物件、粒子及動畫分成步驟，並加入岩石等細節。這裡可確認的是示範的組成與順序範圍，文章沒有列出完整節點連線，不能補寫特定水流求解方式。
+      </p>
+      <h4>
+       風格化水體的學習參考價值
+      </h4>
+      <p>
+       來源把重點放在動漫式瀑布與卡通外觀的著色練習，並提到可取得專案檔。推論上，對風格化效果美術，可分別研究水體、泡沫與粒子的外觀如何組合，但不能把這套示範等同於物理正確的通用流體系統。
+      </p>
+      <h4>
+       舊專案取得與引擎移植限制
+      </h4>
+      <p>
+       免費檔案是 2024 年文章記錄的提供方式，本文沒有確認今日連結、Blender 版本或商用授權條件。它也未提供遊戲引擎移植和效能測試，因此不能由 Blender 教學直接推定已能在 UE 或 Unity 達到相同結果。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://80.lv/articles/master-spirited-away-inspired-stylized-animated-water-in-blender" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="cg-channel-sitni-sati-releases-fumefx-7-0-for-maya-with-fumefx-gpu" data-intel-role="card">
+    <div class="category-meta">
+     #10 · maya
+    </div>
+    <h2>
+     歷史參考｜Maya FumeFX 7.0：CUDA 煙火求解與超記憶體回退
+    </h2>
+    <p class="summary">
+     2026 年三月的 Maya 版 FumeFX 7.0 加入 CUDA GPU 求解器，顯示記憶體不足時回退 CPU；來源也提醒 GPU 和 CPU 雖採相同網格原理，輸出不會完全一致。
+    </p>
+    <figure class="case-preview" data-intel-id="cg-channel-sitni-sati-releases-fumefx-7-0-for-maya-with-fumefx-gpu" data-intel-role="visual" data-visual-id="cg-channel-sitni-sati-releases-fumefx-7-0-for-maya-with-fumefx-gpu">
+     <a href="https://www.cgchannel.com/2026/03/sitni-sati-releases-fumefx-7-0-for-maya-with-fumefx-gpu" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-10-20/cg-channel-sitni-sati-releases-fumefx-7-0-for-maya-with-fumefx-gpu.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">Maya</b> ★★★☆☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       密集網格煙火的求解流程
+      </h4>
+      <p>
+       Maya 版七點零加入 GPU 煙火求解器，和 CPU 採相同密集網格方式及基礎原理，但結果並非完全相同。當模擬超出顯示記憶體會自動回到 CPU，這是容量處理機制，不代表兩種後端可產生逐值一致的模擬。
+      </p>
+      <h4>
+       GPU 與 CPU 的效能比較限制
+      </h4>
+      <p>
+       二至五倍加速來自廠商以 RTX 4090 與 Ryzen 9 7900X 比較，且依模擬尺寸和複雜度變動；CPU 預先配置記憶體另稱可快約百分之十至十五。這些是不同條件的宣稱，不能相加或寫成所有硬體固定可達的加速。
+      </p>
+      <h4>
+       平台與顯示卡的導入限制
+      </h4>
+      <p>
+       GPU 求解器採 CUDA，需要 NVIDIA；文中建議至少二十四 GB 顯示記憶體，也列 RTX 3090 等級建議。Maya 版需求是 Maya 2024 以上且限 Windows 10 以上；不能把 3ds Max 的七點五版本功能或其他平台支援一併算入。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://www.cgchannel.com/2026/03/sitni-sati-releases-fumefx-7-0-for-maya-with-fumefx-gpu" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="3dnchu-lazy-animation-v1-0" data-intel-role="card">
+    <div class="category-meta">
+     #13 · blender
+    </div>
+    <h2>
+     歷史參考｜Lazy Animation：快速建立移動動畫，但會清除舊鍵格
+    </h2>
+    <p class="summary">
+     2024 年的 Lazy Animation 1.0 可替選取物件快速加移動鍵格、沿自訂曲線動畫並反轉；來源特別警告啟用時會刪除既有鍵格，也可能重設旋轉。
+    </p>
+    <figure class="case-preview" data-intel-id="3dnchu-lazy-animation-v1-0" data-intel-role="visual" data-visual-id="3dnchu-lazy-animation-v1-0">
+     <a href="https://3dnchu.com/archives/lazy-animation-v1-0" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-10-20/3dnchu-lazy-animation-v1-0.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">Blender</b> ★★☆☆☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       選取物件到曲線動畫的流程
+      </h4>
+      <p>
+       插件讓使用者替選取物件快速加入移動鍵格，沿自訂曲線路徑動畫，並支援逐格、同步模式及反轉。它處理的是物件移動的快速設定，文章沒有把它描述成能自動完成角色表演、步態或接觸解算的系統。
+      </p>
+      <h4>
+       簡單移動設定的製作價值
+      </h4>
+      <p>
+       推論上，對尚未建立複雜動畫的物件，可用它快速建立位置變化和反向移動，再比較不同時間安排。這個用途須與既有動畫資產分開評估，因來源明確說為避免錯誤，啟用時會清掉原鍵格，並不是無條件保留既有工作的疊加工具。
+      </p>
+      <h4>
+       鍵格清除與旋轉重設風險
+      </h4>
+      <p>
+       原文提醒舊鍵格、旋轉可能重設，並建議先處理旋轉或加入沒有旋轉的 Empty。若要試用，應先保留可回復的動畫副本；這是針對明示資料損失風險的防護建議，不代表本文已驗證每種父子層級都安全。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://3dnchu.com/archives/lazy-animation-v1-0" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="3dnchu-altermesh-2-0-released" data-intel-role="card">
+    <div class="category-meta">
+     #14 · blender
+    </div>
+    <h2>
+     歷史參考｜AlterMesh 2.0 正式版：保留幾何節點參數並輸出動畫
+    </h2>
+    <p class="summary">
+     2023 年十一月的 AlterMesh 2.0 發布介紹在 UE5 使用 Blender Geometry Nodes，保留可編輯參數，加入 VAT 動畫、電影鏡頭參數鍵格，以及屬性與 UV 輸出視覺化。
+    </p>
+    <figure class="case-preview" data-intel-id="3dnchu-altermesh-2-0-released" data-intel-role="visual" data-visual-id="3dnchu-altermesh-2-0-released">
+     <a href="https://3dnchu.com/archives/altermesh-2-0-released" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-10-20/3dnchu-altermesh-2-0-released.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">Blender</b> ★★☆☆☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       幾何節點參數的非破壞工作流
+      </h4>
+      <p>
+       文章介紹在 UE5 保留 Blender 幾何節點與可編輯來源，透過屬性映射傳遞資料；資產編輯器能視覺化屬性與 UV 輸出。這個流程重點是繼續調整程序資產，不是把每次變更都當成無法回編的固定網格。
+      </p>
+      <h4>
+       動畫與實例化的製作價值
+      </h4>
+      <p>
+       此版列出支援 VAT 的動畫 GeoNodes、電影鏡頭中的參數鍵格，以及包含植被的實例化。推論上，可把程序參數變化、烘焙動畫與大量重複資產分別考量，不應把三者混成所有幾何節點都能即時無限制執行的承諾。
+      </p>
+      <h4>
+       正式發布與免費版本資訊限制
+      </h4>
+      <p>
+       這篇是 2023 年十一月正式發布介紹，不能與十月預告混為一談。當時列九十九點九九美元售價，作者只疑問免費版是否消失，沒有確認答案；因此不能宣稱免費版一定存在或已停用，也未證明目前引擎版本的完整相容。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://3dnchu.com/archives/altermesh-2-0-released" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="3dnchu-rbc-addon-v1-2" data-intel-role="card">
+    <div class="category-meta">
+     #15 · blender
+    </div>
+    <h2>
+     歷史參考｜RBC 1.2：在 Blender 建立可調整的物理車輛 Rig
+    </h2>
+    <p class="summary">
+     2023 年 RBC Addon 1.2 介紹快速配置物理車輛 rig，提供行為調整及驅動器、鍵盤、手把控制；當時另有免費版，但文章未完整比較免費與 Pro 的功能。
+    </p>
+    <figure class="case-preview" data-intel-id="3dnchu-rbc-addon-v1-2" data-intel-role="visual" data-visual-id="3dnchu-rbc-addon-v1-2">
+     <a href="https://3dnchu.com/archives/rbc-addon-v1-2" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-10-20/3dnchu-rbc-addon-v1-2.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">Blender</b> ★★☆☆☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       車輛 Rig 與控制輸入的流程
+      </h4>
+      <p>
+       插件以介面快速配置物理式車輛 rig，再用調整選項控制行為，列出的輸入包含驅動器、鍵盤及遊戲手把。這裡可確認的是車輛設定和控制方向，文章沒有提供每個輪軸、懸吊或輪胎模型的實作細節。
+      </p>
+      <h4>
+       動畫車輛設定的製作價值
+      </h4>
+      <p>
+       來源主張能在數分鐘建立並調整車輛 rig，推論上可把它當作快速試動態的工具候選，而不是先自行搭完整控制系統。不過數分鐘是產品介紹的說法，未附不同車型、不同操作者的測時，不能寫成固定交付速度。
+      </p>
+      <h4>
+       免費版與物理精度的資訊限制
+      </h4>
+      <p>
+       文章同時提到免費版本及付費 Pro，卻沒有列出完整差異，因此不能把所有宣傳能力都算進免費版。它也沒有給碰撞、懸吊或駕駛穩定性的實測，當年的售價與提供管道只能作 2023 年參考，不是今日授權確認。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://3dnchu.com/archives/rbc-addon-v1-2" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="80-level-three-ghibli-s-spirited-away-scenes-recreated-with-blender" data-intel-role="card">
+    <div class="category-meta">
+     #16 · blender
+    </div>
+    <h2>
+     歷史參考｜Noggi 用 Blender 重現三個《神隱少女》場景
+    </h2>
+    <p class="summary">
+     2024 年 Noggi 的幕後影片討論三個吉卜力場景如何由二維重現為三維，也反思三維動畫的限制；Patreon 專案內容另列八支自訂筆刷和合成濾鏡。
+    </p>
+    <figure class="case-preview" data-intel-id="80-level-three-ghibli-s-spirited-away-scenes-recreated-with-blender" data-intel-role="visual" data-visual-id="80-level-three-ghibli-s-spirited-away-scenes-recreated-with-blender">
+     <a href="https://80.lv/articles/three-ghibli-s-spirited-away-scenes-recreated-with-blender" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-10-20/80-level-three-ghibli-s-spirited-away-scenes-recreated-with-blender.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">Blender</b> ★★☆☆☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       二維場景轉三維的設計問題
+      </h4>
+      <p>
+       Noggi 以 Blender 重現三個場景，並直接提問能否、以及是否應該把完整二維畫面轉成三維。文章記錄其對三維動畫限制與個人心得的討論，並非宣稱只要建好模型就能在任意鏡頭保留原動畫風格。
+      </p>
+      <h4>
+       貼圖筆刷與合成工具的製作價值
+      </h4>
+      <p>
+       Patreon 所列專案內容包含八支自訂貼圖繪畫筆刷，以及名為 dehance 的合成濾鏡。推論上，這反映三維場景外還有繪畫和合成工具參與風格建立；但本文沒有解釋濾鏡演算法，不能自行補上筆觸生成或降噪機制。
+      </p>
+      <h4>
+       幕後介紹與檔案取得限制
+      </h4>
+      <p>
+       公開文章只是幕後影片與專案入口，細部工程和自訂工具指向 Patreon，不可稱為所有檔案免費公開。本文未列 Blender 版本、完整材質連線或跨鏡頭測試，因此只能作 2024 年的風格重現案例，而非保證可直接套用的製作套件。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://80.lv/articles/three-ghibli-s-spirited-away-scenes-recreated-with-blender" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <nav aria-label="相鄰分類" class="category-bottom-nav">
+    <a href="../emerging-case/">
+     ← 新技術 / Case
+    </a>
+    <a href="../#top">
+     TOP5
+    </a>
+    <a href="../ai-generation/">
+     AI 生成 →
+    </a>
+   </nav>
+  </main>
+  <script defer="" src="../../archive-nav-state.js?v=20261020-r1-workspace-v10-history-current-workspace">
+  </script>
+ </body>
+</html>

@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   3D 製作｜2026-10-20｜AI 3D Daily
+  </title>
+  <meta content="2026-10-20 3D 製作 Production Intelligence：3D 角色製作 / 3D 物件製作 / 3D 場景製作 / 製作流程，共 4 項可驗證情報。" name="description"/>
+  <link href="../../styles.css?v=20261020-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../../shared-components.css?v=20261020-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../../category.css?v=20261020-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+ </head>
+ <body class="category-page" data-category="3d-production" data-report-date="2026-10-20">
+  <nav aria-label="Production Intelligence 分類" class="global-category-nav">
+   <div class="page global-category-nav-inner">
+    <div class="archive-nav-controls">
+     <a class="archive-nav-home" href="../../">
+      ← 首頁
+     </a>
+     <div class="archive-nav-date">
+      <a aria-label="前一日日報" class="archive-nav-arrow" href="../../2026-10-19/3d-production/">
+       ←
+      </a>
+      <span>
+       2026-10-20
+      </span>
+     </div>
+    </div>
+    <span aria-hidden="true" class="archive-nav-divider">
+    </span>
+    <a class="global-category-link" href="../#top">
+     TOP5
+    </a>
+    <a class="global-category-link" data-category="ai-generation" href="../ai-generation/">
+     AI 生成
+    </a>
+    <a class="global-category-link is-active" data-category="3d-production" href="../3d-production/">
+     3D 製作
+    </a>
+    <a class="global-category-link" data-category="3d-animation" href="../3d-animation/">
+     3D 動作
+    </a>
+    <a class="global-category-link" data-category="engine-art" href="../engine-art/">
+     遊戲引擎
+    </a>
+    <a class="global-category-link" data-category="emerging-case" href="../emerging-case/">
+     新技術 / Case
+    </a>
+    <a class="global-category-link" data-category="blender-dcc" href="../blender-dcc/">
+     Blender / DCC
+    </a>
+    <a class="global-category-link global-history-link" data-global-view="history" href="../../history/">
+     歷史日報
+    </a>
+   </div>
+  </nav>
+  <main class="page category-main">
+   <article class="category-card" data-intel-id="cg-channel-tutorial-creating-incendiary-burn-fx-for-game-characters" data-intel-role="card">
+    <div class="category-meta">
+     #01 · character-production
+    </div>
+    <h2>
+     角色燃燒遊戲特效課程：串接 Niagara、Houdini 與程序貼圖
+    </h2>
+    <p class="summary">
+     Ashley Lyons 的課程以 Unreal 材質和 Niagara 點燃角色，再轉成煙與灰；Designer 製作火星貼圖，Houdini Pyro 則產生可供引擎使用的序列貼圖，教學超過六小時。
+    </p>
+    <figure class="case-preview" data-intel-id="cg-channel-tutorial-creating-incendiary-burn-fx-for-game-characters" data-intel-role="visual" data-visual-id="cg-channel-tutorial-creating-incendiary-burn-fx-for-game-characters">
+     <a href="https://www.cgchannel.com/2026/10/tutorial-creating-incendiary-burn-fx-for-game-characters" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-10-20/cg-channel-tutorial-creating-incendiary-burn-fx-for-game-characters.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">角色製作</b> ★★★★★</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       燃燒材質到粒子系統的流程
+      </h4>
+      <p>
+       課程先在 Unreal Material Editor 建立可調參數的主材質，再以 Niagara 設定發射器、生成、運動和時序，讓角色燃起並散成煙灰。這是材質與粒子共同驅動的遊戲效果，不是只在角色表面貼一段火焰影片。
+      </p>
+      <h4>
+       離線模擬與程序貼圖的製作價值
+      </h4>
+      <p>
+       Designer 用於火星系統的程序貼圖；Houdini Pyro 另外模擬煙火並渲染 flipbook。兩種資產交給 Niagara 使用，推論上可把高成本煙火形態先轉為貼圖，再在引擎安排播放與粒子時序，但本文沒有提供遊戲內耗時數據。
+      </p>
+      <h4>
+       課程介紹與成果驗證限制
+      </h4>
+      <p>
+       來源列可下載 Houdini、Designer 專案與貼圖，但取得方式是 Gnomon 訂閱，不是全部免費課程。CG Channel 亦揭露由 Gnomon 持有；文章介紹的可用於製作之定位不等於獨立效能驗證，仍缺目標平台的實際測試。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://www.cgchannel.com/2026/10/tutorial-creating-incendiary-burn-fx-for-game-characters" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="80-level-gunfire-reborn-s-dragonchaser-reimagined-as-painterly-3d-ass" data-intel-role="card">
+    <div class="category-meta">
+     #02 · environment-production
+    </div>
+    <h2>
+     Dragonchaser 風格化武器：雕刻材質層次，再用分段漸層保留筆觸
+    </h2>
+    <p class="summary">
+     Max Osta 將《Gunfire Reborn》的 Dragonchaser 重新詮釋為 Wayfinder 式道具：Blender 建模、ZBrush 雕刻，Painter 結合程序遮罩與手繪分段，最後在 Eevee 調整材質和燈光。
+    </p>
+    <figure class="case-preview" data-intel-id="80-level-gunfire-reborn-s-dragonchaser-reimagined-as-painterly-3d-ass" data-intel-role="visual" data-visual-id="80-level-gunfire-reborn-s-dragonchaser-reimagined-as-painterly-3d-ass">
+     <a href="https://80.lv/articles/gunfire-reborn-s-dragonchaser-reimagined-as-painterly-3d-asset-in-wayfinder-s-style" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-10-20/80-level-gunfire-reborn-s-dragonchaser-reimagined-as-painterly-3d-ass.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">場景製作</b> ★★★★★</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       雕刻輪廓與程序繩索的製作流程
+      </h4>
+      <p>
+       作者先在 Blender 定比例，再到 ZBrush 做木紋、缺口與邊緣；低模回頭貼合雕刻後的新輪廓。繩索則不用雕刻，而以 Screw、Curve、Subdivision 修改器及合併重疊點處理，將大型形狀和繩面材質分開製作。
+      </p>
+      <h4>
+       手繪分段與材質層次控制
+      </h4>
+      <p>
+       Painter 的手繪層使用 Paint、Blur、Quantize 堆疊，先以模糊控制過渡，再將漸層壓成色帶；AO 與 Curvature 相關圖層也大量用 Quantize。繩面另以不同三平面角度的線性漸層和錨點組織細節，並非每種材質都靠同一套現成智慧材質。
+      </p>
+      <h4>
+       個人風格詮釋與燈光驗證限制
+      </h4>
+      <p>
+       作者明確把此作定位為自己的武器詮釋，因參考圖對材質分區並不一致。Eevee 中還需壓低玉石的金屬感、關閉部分燈光的高光或漫反射；這些是為指定展示外觀調整，不能當作所有風格化資產通用的物理材質數值。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://80.lv/articles/gunfire-reborn-s-dragonchaser-reimagined-as-painterly-3d-asset-in-wayfinder-s-style" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="cg-channel-master-the-art-of-grooming-cg-hair-in-xgen" data-intel-role="card">
+    <div class="category-meta">
+     #05 · character-production
+    </div>
+    <h2>
+     歷史參考｜XGen 男性毛髮教學：密度圖、雜毛與 Arnold 呈現
+    </h2>
+    <p class="summary">
+     2021 年《Creating a Male Groom With XGen》課程從頭模準備到男性頭髮、眉睫和粗細鬍鬚，搭配 Mari 密度圖與 Arnold 外觀開發；適合已有 Maya 經驗的 XGen 初學者。
+    </p>
+    <figure class="case-preview" data-intel-id="cg-channel-master-the-art-of-grooming-cg-hair-in-xgen" data-intel-role="visual" data-visual-id="cg-channel-master-the-art-of-grooming-cg-hair-in-xgen">
+     <a href="https://www.cgchannel.com/2021/08/master-the-art-of-grooming-cg-hair-in-xgen" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-10-20/cg-channel-master-the-art-of-grooming-cg-hair-in-xgen.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">角色製作</b> ★★★★☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       頭模準備與毛髮整理流程
+      </h4>
+      <p>
+       課程先整理可供 XGen 使用的頭模，再處理髮型、修改器、Mari 密度圖與雜毛表達式，範圍包含眉毛、睫毛與不同粗細的臉部毛髮。最後進入程序毛髮外觀開發和 Arnold 渲染，將形態與材質呈現分開學習。
+      </p>
+      <h4>
+       角色毛髮的練習素材價值
+      </h4>
+      <p>
+       教學超過五小時，提供基礎頭部幾何與照片參考，並分享製作管線中的整理技巧。推論上，這可用於練習從密度分布到局部雜毛的完整角色毛髮，而不必先把主要時間花在重新製作頭模；它不是建模零基礎課程。
+      </p>
+      <h4>
+       舊版課程與取得條件限制
+      </h4>
+      <p>
+       文章明確假設已有 Maya 經驗，專注 XGen 新使用者，課程需透過 Gnomon 訂閱，不能把試用等同永久免費。2021 年文章沒有提供當前 Maya／Arnold 的相容測試，也揭露媒體與 Gnomon 的所有權關係。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://www.cgchannel.com/2021/08/master-the-art-of-grooming-cg-hair-in-xgen" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="3dnchu-get-started-with-lam-for-ue4" data-intel-role="card">
+    <div class="category-meta">
+     #11 · environment-production
+    </div>
+    <h2>
+     歷史參考｜UE4 Landscape Auto Material：依地形配置材質的早期展示
+    </h2>
+    <p class="summary">
+     2015 年的 LAM 使用影片介紹 UE4 地形自動材質，依地面起伏反映素材；當時仍記錄 Marketplace 預定發布，並非現在可購買或新版引擎相容的確認。
+    </p>
+    <figure class="case-preview" data-intel-id="3dnchu-get-started-with-lam-for-ue4" data-intel-role="visual" data-visual-id="3dnchu-get-started-with-lam-for-ue4">
+     <a href="https://3dnchu.com/archives/get-started-with-lam-for-ue4" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-10-20/3dnchu-get-started-with-lam-for-ue4.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">場景製作</b> ★★★☆☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       地形起伏與材質配置流程
+      </h4>
+      <p>
+       來源介紹以 LAM 強化 UE4 Landscape，讓素材隨地面起伏自動反映，並公開實際使用影片。可確認的是這個自動配置方向，文章沒有列出判定高度或坡度的公式，不能補寫特定遮罩運算或混合演算法。
+      </p>
+      <h4>
+       場景配置自動化的製作價值
+      </h4>
+      <p>
+       作者把這種自動配置與 Maya、Max 常需寫腳本的工作作比較，認為省去配置步驟有幫助。推論上，它可作為把重複地形材質工作轉成規則的早期案例，但本文不是各 DCC 與引擎的正式效率對照。
+      </p>
+      <h4>
+       回應速度與發布階段限制
+      </h4>
+      <p>
+       作者也希望更新反應更快，卻沒有提供耗時數字；購買段落只寫預定在 Marketplace 發布。這是 2015 年的介紹，不應把作者感想寫成測速結論，也不能藉此宣稱目前 UE5 可直接使用或有特定免費授權。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://3dnchu.com/archives/get-started-with-lam-for-ue4" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <nav aria-label="相鄰分類" class="category-bottom-nav">
+    <a href="../ai-generation/">
+     ← AI 生成
+    </a>
+    <a href="../#top">
+     TOP5
+    </a>
+    <a href="../3d-animation/">
+     3D 動作 →
+    </a>
+   </nav>
+  </main>
+  <script defer="" src="../../archive-nav-state.js?v=20261020-r1-workspace-v10-history-current-workspace">
+  </script>
+ </body>
+</html>
