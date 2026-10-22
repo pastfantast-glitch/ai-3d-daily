@@ -4,14 +4,14 @@
   <meta charset="utf-8"/>
   <meta content="width=device-width,initial-scale=1" name="viewport"/>
   <title>
-   AI／3D／遊戲美術 Production Intelligence｜2026-10-21
+   AI／3D／遊戲美術 Production Intelligence｜2026-10-23
   </title>
   <link href="styles.css?v=20260903-r2" rel="stylesheet"/>
-  <link href="shared-components.css?v=20261021-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
-  <link href="home.css?v=20261021-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
-  <link href="home-content.css?v=20261021-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
-  <link href="home-components.css?v=20261021-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
-  <meta content="2026-10-21 AI／3D／遊戲美術 Production Intelligence：精選 14 項可驗證的製作工具、流程、動畫、引擎與 DCC 情報。" name="description"/>
+  <link href="shared-components.css?v=20261023-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="home.css?v=20261023-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="home-content.css?v=20261023-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="home-components.css?v=20261023-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <meta content="2026-10-23 AI／3D／遊戲美術 Production Intelligence：精選 15 項可驗證的製作工具、流程、動畫、引擎與 DCC 情報。" name="description"/>
  </head>
  <body class="home-page">
   <header class="home-hero">
@@ -23,7 +23,7 @@
      Production Intelligence
     </h1>
     <p class="week-asof">
-     2026-10-21
+     2026-10-23
     </p>
    </div>
   </header>
@@ -68,20 +68,20 @@
      </div>
     </div>
     <div class="top-list">
-     <article class="home-card top-item" data-intel-id="80-level-yuki-ito-released-a-breakdown-version-of-their-houdini-water" data-intel-role="card">
+     <article class="home-card top-item" data-intel-id="80-level-terraforming-the-alters-last-variable-with-blender-zbrush-ue" data-intel-role="card">
       <div class="top-no">
        01
       </div>
       <div class="top-main">
        <h2>
-        自學創作者公開 Houdini 水體特效拆解：從預演、FLIP 到最終燈光
+        《The Alters: Last Variable》植被管線：Nanite 實體葉片、PCG 散佈與全域 HISM
        </h2>
        <p class="summary">
-        Yuki Ito 的第二支水體特效作品集同步展示製作拆解，內容涵蓋泡沫預演、Houdini FLIP 粒子、碰撞網格與水下微光燈光調整。
+        三名環境美術建立可在荒蕪與地景改造兩種狀態運作的關卡，使用 Blender、ZBrush、Substance、UE5 PCG 與不透明 Nanite 幾何製作外星植被。
        </p>
-       <figure class="case-preview" data-intel-id="80-level-yuki-ito-released-a-breakdown-version-of-their-houdini-water" data-intel-role="visual" data-visual-id="80-level-yuki-ito-released-a-breakdown-version-of-their-houdini-water">
-        <a href="https://80.lv/articles/yuki-ito-released-a-breakdown-version-of-their-houdini-water-fx-showreel" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
-         <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-10-21/80-level-yuki-ito-released-a-breakdown-version-of-their-houdini-water.jpg"/>
+       <figure class="case-preview" data-intel-id="80-level-terraforming-the-alters-last-variable-with-blender-zbrush-ue" data-intel-role="visual" data-visual-id="80-level-terraforming-the-alters-last-variable-with-blender-zbrush-ue">
+        <a href="https://80.lv/articles/terraforming-the-alters-last-variable-with-blender-zbrush-ue5" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+         <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-10-23/80-level-terraforming-the-alters-last-variable-with-blender-zbrush-ue.jpg"/>
         </a>
         <figcaption>
          <span>
@@ -91,7 +91,7 @@
         </figcaption>
        </figure>
        <div class="quick-impact">
-        <span><b class="quick-impact-label">Houdini</b> ★★★★★</span>
+        <span><b class="quick-impact-label">Blender</b> ★★★★☆</span>
        </div>
        <details class="canonical-analysis canonical-analysis-brief home-full-analysis" data-analysis-level="BRIEF">
         <summary>
@@ -99,47 +99,47 @@
         </summary>
         <div class="detail-body canonical-analysis-body brief-analysis-body home-analysis-body">
          <h4>
-          水體技術流程
+          外星植被技術流程
          </h4>
          <p>
-          拆解把鏡頭製作依序呈現為場景預演、流體模擬設定與最終渲染，並具體展示泡沫、FLIP 粒子、碰撞網格及燈光調整。
+          團隊先以 beauty corner 測試資產、Shader 與地形混合，再用不透明 Nanite 切片幾何製作葉片，配合頂點色驅動 WPO 風動。
          </p>
          <h4>
-          製作影響與能力累積
+          大範圍製作影響
          </h4>
          <p>
-          Ito 在工作與週末持續自學 Houdini、Nuke；可確認的成果是水體行為與寫實渲染獲資深創作者肯定，但來源未量化練習時數。
+          關卡散佈完全依靠引擎內 PCG、Geometry Script 苔蘚與射線散佈工具，並大量重用 Level Instance，以便在短時間填滿過度生長的世界。
          </p>
          <h4>
-          可驗證的畫面重點
+          效能限制與驗證
          </h4>
          <p>
-          作品集可直接核對泡沫配置、碰撞水體與水面下方微光三項處理，另有幻想發光、寫實泡沫與海岸岩石碰撞案例；來源沒有粒子數量、解算時間或硬體效能數據。
+          大量 Blueprint 與 Packed Level Actor 產生分散 HISM，技術團隊改為每種網格全關卡共用一個全域 HISM；非均勻縮放且有碰撞的 Actor 不宜打包。
          </p>
          <p class="analysis-level-note">
           BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
          </p>
         </div>
        </details>
-       <a class="source" href="https://80.lv/articles/yuki-ito-released-a-breakdown-version-of-their-houdini-water-fx-showreel" rel="noopener noreferrer" target="_blank">
+       <a class="source" href="https://80.lv/articles/terraforming-the-alters-last-variable-with-blender-zbrush-ue5" rel="noopener noreferrer" target="_blank">
         來源
        </a>
       </div>
      </article>
-     <article class="home-card top-item" data-intel-id="cg-channel-plasticity-2026-2-is-out" data-intel-role="card">
+     <article class="home-card top-item" data-intel-id="80-level-interview-how-final-fantasy-resonance-turns-hd-2d-pixel-art" data-intel-role="card">
       <div class="top-no">
        02
       </div>
       <div class="top-main">
        <h2>
-        Plasticity 2026.2 加入資產庫、曲率分析與 Studio 曲面約束
+        《Final Fantasy Resonance》以動態鏡頭與像素化 3D 打造電影式像素美術
        </h2>
        <p class="summary">
-        Plasticity 2026.2 可把零件整理成可分享資產庫，新增三種模式的曲率分析與 Project Align；Studio 版另提供維持 G0、G1、G2 連續性的曲面約束。
+        團隊把 3D CG 轉成像素影像，並以動態攝影機、燈光、景深、Bloom 與逐鏡調整的角色朝向，讓像素角色能在 3D 場景中演完整事件。
        </p>
-       <figure class="case-preview" data-intel-id="cg-channel-plasticity-2026-2-is-out" data-intel-role="visual" data-visual-id="cg-channel-plasticity-2026-2-is-out">
-        <a href="https://www.cgchannel.com/2026/10/plasticity-2026-2-is-out" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
-         <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-10-21/cg-channel-plasticity-2026-2-is-out.jpg"/>
+       <figure class="case-preview" data-intel-id="80-level-interview-how-final-fantasy-resonance-turns-hd-2d-pixel-art" data-intel-role="visual" data-visual-id="80-level-interview-how-final-fantasy-resonance-turns-hd-2d-pixel-art">
+        <a href="https://80.lv/articles/interview-how-final-fantasy-resonance-turns-hd-2d-pixel-art-into-a-cinematic-experience" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+         <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-10-23/80-level-interview-how-final-fantasy-resonance-turns-hd-2d-pixel-art.jpg"/>
         </a>
         <figcaption>
          <span>
@@ -149,7 +149,7 @@
         </figcaption>
        </figure>
        <div class="quick-impact">
-        <span><b class="quick-impact-label">場景製作</b> ★★★★★</span>
+        <span><b class="quick-impact-label">製作案例</b> ★★★★☆</span>
        </div>
        <details class="canonical-analysis canonical-analysis-brief home-full-analysis" data-analysis-level="BRIEF">
         <summary>
@@ -157,47 +157,47 @@
         </summary>
         <div class="detail-body canonical-analysis-body brief-analysis-body home-analysis-body">
          <h4>
-          曲面建模技術更新
+          電影式像素技術流程
          </h4>
          <p>
-          Project Align 可沿目標曲面邊緣、依向量或法線排列控制點；曲率分析則用 Gaussian、Mean、Max 三種模式檢查不同表面問題。
+          環境先由概念圖與簡易 3D 地形確立尺度、動線和攝影機，再配置資產並以燈光統整；大型召喚物與飛空艇則由 3D CG 轉為像素表現。
          </p>
          <h4>
-          重複零件的製作影響
+          角色與鏡頭製作影響
          </h4>
          <p>
-          新的 Assets 系統可把元件組成可拖入視窗的共享資產庫，對螺栓等機械零件的重複配置與團隊共用更直接。
+          所有視覺以移動鏡頭為前提，角色會依觀看角度微調朝向；事件鏡頭不足時甚至重畫像素圖，避免角色看似浮空或陷入地面。
          </p>
          <h4>
-          版本限制與導入驗證
+          品質限制與創作判斷
          </h4>
          <p>
-          曲面約束只在 Studio 版提供；正式導入前也應核對 Windows 10、Ubuntu 22.04、macOS 12 以上的系統需求與授權方案。
+          完整像素事件耗時，團隊也曾因懷舊感而容忍品質妥協，最後才重新修整；燈光、景深與 Bloom 另用來融合二維角色和三維背景，因此懷舊被當作靈感，而不是降低完成度的理由。
          </p>
          <p class="analysis-level-note">
           BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
          </p>
         </div>
        </details>
-       <a class="source" href="https://www.cgchannel.com/2026/10/plasticity-2026-2-is-out" rel="noopener noreferrer" target="_blank">
+       <a class="source" href="https://80.lv/articles/interview-how-final-fantasy-resonance-turns-hd-2d-pixel-art-into-a-cinematic-experience" rel="noopener noreferrer" target="_blank">
         來源
        </a>
       </div>
      </article>
-     <article class="home-card top-item" data-intel-id="80-level-creating-realistic-textures-on-an-old-woven-basket" data-intel-role="card">
+     <article class="home-card top-item" data-intel-id="cg-channel-check-out-accenture-songs-vfx-breakdown-for-lanterns" data-intel-role="card">
       <div class="top-no">
        03
       </div>
       <div class="top-main">
        <h2>
-        老藤籃道具完整流程：模組化編織、實物掃描與六組 4K UV
+        《Lanterns》特效拆解：從綠燈能量構造到雷雨海面與燃燒車輛
        </h2>
        <p class="summary">
-        Shubham Vijay 拆解老藤籃道具：先研究編織結構，再以可平鋪模組塑形，並整合 RealityScan、ZBrush、Maya、Substance 3D Painter 與 Marmoset Toolbag。
+        Accenture Song 公開《Lanterns》特效內容，能量構造物尺度從鈔票、開瓶器延伸到大型隧道鑽掘機，另包含燃燒車輛與雷光逆照的 CG 海面。
        </p>
-       <figure class="case-preview" data-intel-id="80-level-creating-realistic-textures-on-an-old-woven-basket" data-intel-role="visual" data-visual-id="80-level-creating-realistic-textures-on-an-old-woven-basket">
-        <a href="https://80.lv/articles/creating-realistic-textures-on-an-old-woven-basket" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
-         <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-10-21/80-level-creating-realistic-textures-on-an-old-woven-basket.jpg"/>
+       <figure class="case-preview" data-intel-id="cg-channel-check-out-accenture-songs-vfx-breakdown-for-lanterns" data-intel-role="visual" data-visual-id="cg-channel-check-out-accenture-songs-vfx-breakdown-for-lanterns">
+        <a href="https://www.cgchannel.com/2026/10/check-out-accenture-songs-vfx-breakdown-for-lanterns" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+         <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-10-23/cg-channel-check-out-accenture-songs-vfx-breakdown-for-lanterns.jpg"/>
         </a>
         <figcaption>
          <span>
@@ -207,7 +207,7 @@
         </figcaption>
        </figure>
        <div class="quick-impact">
-        <span><b class="quick-impact-label">製作流程</b> ★★★★☆</span>
+        <span><b class="quick-impact-label">製作案例</b> ★★★★☆</span>
        </div>
        <details class="canonical-analysis canonical-analysis-brief home-full-analysis" data-analysis-level="BRIEF">
         <summary>
@@ -215,47 +215,47 @@
         </summary>
         <div class="detail-body canonical-analysis-body brief-analysis-body home-analysis-body">
          <h4>
-          建模與掃描技術流程
+          能量構造技術範圍
          </h4>
          <p>
-          藤條先拆成水平、垂直與斜向模組，平鋪後用 Lattice 塑成籃體；實物枝條則經 RealityScan 重建、ZBrush 清理與 Maya 拓樸。
+          拆解聚焦綠燈能力把想像轉成現實的能量構造物，涵蓋鈔票、開瓶器等生活物件與大型隧道鑽掘機，顯示同一視覺概念跨越明顯尺度差異。
          </p>
          <h4>
-          材質製作影響
+          環境特效製作影響
          </h4>
          <p>
-          六組 4K UV 透過重複物件疊放維持紋理密度，烘焙法線、AO 與曲率後，再以高度、粗糙度、灰塵及日曬褪色建立使用痕跡。
+          除角色能力外，團隊也製作燃燒車輛，以及由閃電背光、霧帶漂移覆蓋的 CG 海面，工作範圍同時包含火焰、水體、光線與大氣。
          </p>
          <h4>
-          限制與交付判斷
+          公開資訊限制
          </h4>
          <p>
-          作者為最終展示保留較高面數，且坦言反覆微調增加工時；因此這套配置適合展示資產，不代表已針對即時效能最佳化，也未提供遊戲引擎效能數據。
+          目前資料只列工作室、作品與效果項目，沒有揭露使用軟體、模擬方法、鏡頭數或效能數據；可以確認的是效果類型與尺度，不能據此宣稱特定解算或合成管線。
          </p>
          <p class="analysis-level-note">
           BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
          </p>
         </div>
        </details>
-       <a class="source" href="https://80.lv/articles/creating-realistic-textures-on-an-old-woven-basket" rel="noopener noreferrer" target="_blank">
+       <a class="source" href="https://www.cgchannel.com/2026/10/check-out-accenture-songs-vfx-breakdown-for-lanterns" rel="noopener noreferrer" target="_blank">
         來源
        </a>
       </div>
      </article>
-     <article class="home-card top-item" data-intel-id="cg-channel-check-out-digital-domains-vfx-breakdown-for-disclosure-day" data-intel-role="card">
+     <article class="home-card top-item" data-intel-id="80-level-building-an-abandoned-the-last-of-us-inspired-mediterranean" data-intel-role="card">
       <div class="top-no">
        04
       </div>
       <div class="top-main">
        <h2>
-        Digital Domain 拆解《Disclosure Day》418 個特效鏡頭與三級生物肌肉系統
+        地中海廢墟場景拆解：模組建築、RGB 主材質與手工植被配置
        </h2>
        <p class="summary">
-        Digital Domain 作為主要特效供應商完成 418 個鏡頭，四分鐘拆解涵蓋 40 鏡頭火車追逐、麥田圈，以及外星生物與其鹿、紅雀偽裝形態。
+        作者以五個月完成《Mediterranean Echoes》地中海廢墟場景，先用比例白模規劃模組、飾條貼圖與平鋪材質，再透過 3ds Max、ZBrush、Substance 與 Unreal Engine 建構成品。
        </p>
-       <figure class="case-preview" data-intel-id="cg-channel-check-out-digital-domains-vfx-breakdown-for-disclosure-day" data-intel-role="visual" data-visual-id="cg-channel-check-out-digital-domains-vfx-breakdown-for-disclosure-day">
-        <a href="https://www.cgchannel.com/2026/10/check-out-digital-domains-vfx-breakdown-for-disclosure-day" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
-         <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-10-21/cg-channel-check-out-digital-domains-vfx-breakdown-for-disclosure-day.jpg"/>
+       <figure class="case-preview" data-intel-id="80-level-building-an-abandoned-the-last-of-us-inspired-mediterranean" data-intel-role="visual" data-visual-id="80-level-building-an-abandoned-the-last-of-us-inspired-mediterranean">
+        <a href="https://80.lv/articles/building-an-abandoned-the-last-of-us-inspired-mediterranean-house-with-custom-materials" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+         <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-10-23/80-level-building-an-abandoned-the-last-of-us-inspired-mediterranean.jpg"/>
         </a>
         <figcaption>
          <span>
@@ -265,7 +265,7 @@
         </figcaption>
        </figure>
        <div class="quick-impact">
-        <span><b class="quick-impact-label">製作案例</b> ★★★★☆</span>
+        <span><b class="quick-impact-label">場景製作</b> ★★★★☆</span>
        </div>
        <details class="canonical-analysis canonical-analysis-brief home-full-analysis" data-analysis-level="BRIEF">
         <summary>
@@ -273,57 +273,57 @@
         </summary>
         <div class="detail-body canonical-analysis-body brief-analysis-body home-analysis-body">
          <h4>
-          生物角色技術設計
+          建築與材質技術流程
          </h4>
          <p>
-          團隊建立三級 Creature Muscle 系統：英雄資產採高細節層，中等資產採中階層，低細節層則自動化，以配合不同鏡頭需求。
+          破牆採 Designer 程序材質、木件高模做成可重用 Trim Sheet，高模資料另烘到第二組 UV 輸出 RGB Mask，最後統合進單一主材質。
          </p>
          <h4>
-          大型製作的鏡頭影響
+          資產預算製作影響
          </h4>
          <p>
-          418 個交付鏡頭同時包含追逐、環境事件與生物工作；依三級系統的描述可推論，細節分級用來讓生物資產對應不同鏡頭需求。
+          專案以每公尺 512 像素和 2K 貼圖為常態，輪廓處才增加多邊形；小型物件使用 Atlas 與低解析度，Megascans 約占場景百分之五。
          </p>
          <h4>
-          拆解內容的驗證邊界
+          限制與取捨驗證
          </h4>
          <p>
-          公開資料只說明肌肉系統分為英雄、中階與自動化低階三級，未提供模擬器、效能或製作工時數據；不能據此推定加速比例或各層的鏡頭分配。
+          作者未使用 Nanite，地表植被風格失配後改用 Megascans，並指出 Designer 材質與植被反覆修改到最後；這些是五個月工期的主要挑戰。
          </p>
          <p class="analysis-level-note">
           BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
          </p>
         </div>
        </details>
-       <a class="source" href="https://www.cgchannel.com/2026/10/check-out-digital-domains-vfx-breakdown-for-disclosure-day" rel="noopener noreferrer" target="_blank">
+       <a class="source" href="https://80.lv/articles/building-an-abandoned-the-last-of-us-inspired-mediterranean-house-with-custom-materials" rel="noopener noreferrer" target="_blank">
         來源
        </a>
       </div>
      </article>
-     <article class="home-card top-item" data-intel-id="cg-channel-watch-raynaults-vfx-breakdown-for-mayday" data-intel-role="card">
+     <article class="home-card top-item" data-intel-id="80-level-these-2d-characters-from-popular-manga-are-made-in-3d-with-b" data-intel-role="card">
       <div class="top-no">
        05
       </div>
       <div class="top-main">
        <h2>
-        Raynault 拆解《Mayday》尺度躍升鏡頭：從地面一路升至高層大氣
+        Blender 重製漫畫封面：Grease Pencil、Lattice 與 Shape Keys 保留二維觀感
        </h2>
        <p class="summary">
-        Raynault VFX 公開單一鏡頭拆解：攝影機由地面升空，穿越完整 CG 重建的華盛頓特區並抵達高層大氣；團隊另製作蘇聯時代莫斯科街景與 1980 年代車輛。
+        Chloe Worthy 與 Taanthip Tuchinda 以 ZBrush、Substance 3D Painter 和 Blender 重製漫畫封面，透過 Grease Pencil、視角變形與角色動畫保留平面構圖特徵。
        </p>
-       <figure class="case-preview" data-intel-id="cg-channel-watch-raynaults-vfx-breakdown-for-mayday" data-intel-role="visual" data-visual-id="cg-channel-watch-raynaults-vfx-breakdown-for-mayday">
-        <a href="https://www.cgchannel.com/2026/10/watch-raynaults-vfx-breakdown-for-mayday" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
-         <img alt="SOURCE CARD preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-10-21/cg-channel-watch-raynaults-vfx-breakdown-for-mayday.svg"/>
+       <figure class="case-preview" data-intel-id="80-level-these-2d-characters-from-popular-manga-are-made-in-3d-with-b" data-intel-role="visual" data-visual-id="80-level-these-2d-characters-from-popular-manga-are-made-in-3d-with-b">
+        <a href="https://80.lv/articles/these-2d-characters-from-popular-manga-are-made-in-3d-with-blender" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+         <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-10-23/80-level-these-2d-characters-from-popular-manga-are-made-in-3d-with-b.jpg"/>
         </a>
         <figcaption>
          <span>
-          SOURCE CARD
+          SOURCE PREVIEW
          </span>
-         · Generated source card · 點圖開啟原始來源
+         · Local visual evidence · 點圖開啟原始來源
         </figcaption>
        </figure>
        <div class="quick-impact">
-        <span><b class="quick-impact-label">製作案例</b> ★★★★☆</span>
+        <span><b class="quick-impact-label">Blender</b> ★★★★☆</span>
        </div>
        <details class="canonical-analysis canonical-analysis-brief home-full-analysis" data-analysis-level="BRIEF">
         <summary>
@@ -331,29 +331,29 @@
         </summary>
         <div class="detail-body canonical-analysis-body brief-analysis-body home-analysis-body">
          <h4>
-          尺度轉換技術重點
+          二維化角色技術流程
          </h4>
          <p>
-          核心鏡頭採 powers-of-ten 式尺度變化，從近地視角連續推向城市全景與高層大氣，且中段城市為完整 CG 重建。
+          兩名作者分工角色建模與貼圖，再由 Worthy 統整 Grease Pencil 效果、動畫和 Blender 渲染；角色雕刻與主要貼圖分別使用 ZBrush 與 Painter。
          </p>
          <h4>
-          場景製作影響
+          構圖製作影響
          </h4>
          <p>
-          除華盛頓特區外，團隊也重建蘇聯時代莫斯科街道與符合 1980 年代設定的 CG 車輛，工作橫跨城市與時代考證。
+          Lattice 用來調整觀看角度，以接近漫畫封面的透視縮短但不過度變形；Koga 的姿勢與女性化表現則是作者主動重新詮釋。
          </p>
          <h4>
-          資訊限制與判斷
+          動畫資訊限制
          </h4>
          <p>
-          來源只描述完整 CG 華盛頓、蘇聯時代莫斯科街道與 1980 年代車輛等成片範圍，沒有披露城市生成、合成方法、使用軟體或資產數量；不能延伸為特定技術流程。
+          眼睛使用 Shape Keys、頭髮動態以 Weight Painting 製作，但來源未提供 Rig 結構、幀率、Shader 或 Grease Pencil 節點設定，不能推定完整流程。
          </p>
          <p class="analysis-level-note">
           BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
          </p>
         </div>
        </details>
-       <a class="source" href="https://www.cgchannel.com/2026/10/watch-raynaults-vfx-breakdown-for-mayday" rel="noopener noreferrer" target="_blank">
+       <a class="source" href="https://80.lv/articles/these-2d-characters-from-popular-manga-are-made-in-3d-with-blender" rel="noopener noreferrer" target="_blank">
         來源
        </a>
       </div>
@@ -372,16 +372,16 @@
      </div>
     </div>
     <div class="more-grid">
-     <article class="home-card more-card" data-intel-id="cg-channel-animate-a-league-of-legends-inspired-recall-animation" data-intel-role="card">
+     <article class="home-card more-card" data-intel-id="3dnchu-stove-3d" data-intel-role="card">
       <h4>
-       歷史參考｜2024 年遊戲 Recall 動畫課：以 Maya、animBot 打磨節奏與姿勢
+       Stove 整合低模建模、自動 UV、3D 塗裝與資產尺度檢查
       </h4>
       <p class="summary">
-       這份 2024 年中階課程超過六小時，由 Riot Games 動畫師 Benjamin Davis 示範先在 Clip Studio Paint 發想，再於 Maya 與 animBot 製作《英雄聯盟》風格 Recall 動畫。
+       Stove 面向低模、風格化與復古遊戲資產，將頂點編輯、自動 UV、模型表面塗裝、Asset Zoo 對照與 OBJ 匯出集中在簡化介面。
       </p>
-      <figure class="case-preview" data-intel-id="cg-channel-animate-a-league-of-legends-inspired-recall-animation" data-intel-role="visual" data-visual-id="cg-channel-animate-a-league-of-legends-inspired-recall-animation">
-       <a href="https://www.cgchannel.com/2024/05/animate-a-league-of-legends-inspired-recall-animation" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
-        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-10-21/cg-channel-animate-a-league-of-legends-inspired-recall-animation.jpg"/>
+      <figure class="case-preview" data-intel-id="3dnchu-stove-3d" data-intel-role="visual" data-visual-id="3dnchu-stove-3d">
+       <a href="https://3dnchu.com/archives/stove-3d" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-10-23/3dnchu-stove-3d.jpg"/>
        </a>
        <figcaption>
         <span>
@@ -391,7 +391,7 @@
        </figcaption>
       </figure>
       <div class="quick-impact">
-       <span><b class="quick-impact-label">動畫</b> ★★★★☆</span>
+       <span><b class="quick-impact-label">製作流程</b> ★★★★☆</span>
       </div>
       <details class="canonical-analysis canonical-analysis-brief home-full-analysis" data-analysis-level="BRIEF">
        <summary>
@@ -399,42 +399,42 @@
        </summary>
        <div class="detail-body canonical-analysis-body brief-analysis-body home-analysis-body">
         <h4>
-         遊戲動畫工作流程
+         低模資產技術流程
         </h4>
         <p>
-         課程先用 Clip Studio Paint 畫發想草圖，再進入 Maya 建立與修整動畫，並透過 animBot 工具縮短操作流程。
+         使用者可從 Primitive 或 OBJ 編輯頂點、邊與面，修改後重新自動產生 UV，再直接在模型表面塗色並以 OBJ 送往遊戲引擎。
         </p>
         <h4>
-         作品集製作影響
+         系列資產製作影響
         </h4>
         <p>
-         教學聚焦俐落節奏、強勢姿勢與短暫停頓，並說明如何把這些選擇整理成具辨識度的作品集或 demo reel。
+         示範把既有柵欄複製改成長椅，重新展 UV 後個別上色，最後放進 Asset Zoo 與其他物件比對尺度和外觀一致性。
         </p>
         <h4>
-         歷史版本與使用限制
+         功能限制與導入驗證
         </h4>
         <p>
-         內容錄製於 2024 年，使用 Kiel Figgins 的商業角色 Rig，且需透過 Gnomon Workshop 訂閱觀看；文中月費、年費與工具版本都應另行核對。
+         工具不以高模寫實、渲染或關卡製作為目標，目前也不支援骨架與骨骼動畫；支援 Windows、macOS、Linux，文章價格僅是當時資訊。
         </p>
         <p class="analysis-level-note">
          BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
         </p>
        </div>
       </details>
-      <a class="source" href="https://www.cgchannel.com/2024/05/animate-a-league-of-legends-inspired-recall-animation" rel="noopener noreferrer" target="_blank">
+      <a class="source" href="https://3dnchu.com/archives/stove-3d" rel="noopener noreferrer" target="_blank">
        來源
       </a>
      </article>
-     <article class="home-card more-card" data-intel-id="cgworld-jp-01-202610-splayerexp" data-intel-role="card">
+     <article class="home-card more-card" data-intel-id="cg-channel-watch-framestores-vfx-breakdown-for-period-drama-east-of-ede" data-intel-role="card">
       <h4>
-       SP Layer Exporter 將 Painter 圖層與遮罩輸出為 PSD，並記錄轉換報告
+       Framestore 為《East of Eden》重建二十世紀初加州與隱形特效
       </h4>
       <p class="summary">
-       免費的 SP Layer Exporter 可在不安裝 Photoshop 時直接輸出 8-bit PSD，保留圖層名稱、順序、群組、顯示狀態、不透明度與遮罩；另可輸出 PNG 與 JSON 報告。
+       Framestore 以大規模 CG 環境補足實拍地點，重建住宅、Brothel Row 與舊金山唐人街，並處理四鏡頭火災、動物動畫、槍火及假髮清理。
       </p>
-      <figure class="case-preview" data-intel-id="cgworld-jp-01-202610-splayerexp" data-intel-role="visual" data-visual-id="cgworld-jp-01-202610-splayerexp">
-       <a href="https://cgworld.jp/flashnews/01-202610-SPLayerExp.html" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
-        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-10-21/cgworld-jp-01-202610-splayerexp.jpg"/>
+      <figure class="case-preview" data-intel-id="cg-channel-watch-framestores-vfx-breakdown-for-period-drama-east-of-ede" data-intel-role="visual" data-visual-id="cg-channel-watch-framestores-vfx-breakdown-for-period-drama-east-of-ede">
+       <a href="https://www.cgchannel.com/2026/10/watch-framestores-vfx-breakdown-for-period-drama-east-of-eden" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-10-23/cg-channel-watch-framestores-vfx-breakdown-for-period-drama-east-of-ede.jpg"/>
        </a>
        <figcaption>
         <span>
@@ -444,7 +444,7 @@
        </figcaption>
       </figure>
       <div class="quick-impact">
-       <span><b class="quick-impact-label">Substance</b> ★★★☆☆</span>
+       <span><b class="quick-impact-label">製作案例</b> ★★★★☆</span>
       </div>
       <details class="canonical-analysis canonical-analysis-brief home-full-analysis" data-analysis-level="BRIEF">
        <summary>
@@ -452,307 +452,42 @@
        </summary>
        <div class="detail-body canonical-analysis-body brief-analysis-body home-analysis-body">
         <h4>
-         貼圖交接技術流程
+         年代場景技術流程
         </h4>
         <p>
-         工具從 Painter 選定材質與通道後，可輸出 PSD、各圖層與遮罩 PNG、合成結果，以及記錄階層和處理狀態的 JSON。
+         核心挑戰是重建二十世紀初加州；團隊從拍攝參考一路建立最終 CG 環境，將個別住宅、Brothel Row 與舊金山唐人街整合進實拍地點。
         </p>
         <h4>
-         後製協作影響
+         鏡頭製作影響
         </h4>
         <p>
-         保留圖層順序、群組、可見性與不透明度，並留下繪製模式轉換報告，讓 Painter 到 PSD 的差異更容易追查；MIT 授權允許商用。
+         工作不只涵蓋大場景，還包括 Ames House 四鏡頭火災、受槍聲驚動的鹿、血液、槍口火光及假髮和義肢清理。
         </p>
         <h4>
-         格式限制與驗證
+         拆解資訊限制
         </h4>
         <p>
-         圖層會被點陣化，Painter 專屬濾鏡與生成器無法保持可編輯，繪製模式轉換也可能改變色彩；不支援 UDIM，且 PSD 受單邊三萬像素與 2GB 上限約束。
+         來源列出工作室、作品和效果種類，未交代建模、資產數量、群集、合成或火災模擬方法；目前只能確認實景延伸與支援特效範圍，不能推定具體管線。
         </p>
         <p class="analysis-level-note">
          BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
         </p>
        </div>
       </details>
-      <a class="source" href="https://cgworld.jp/flashnews/01-202610-SPLayerExp.html" rel="noopener noreferrer" target="_blank">
+      <a class="source" href="https://www.cgchannel.com/2026/10/watch-framestores-vfx-breakdown-for-period-drama-east-of-eden" rel="noopener noreferrer" target="_blank">
        來源
       </a>
      </article>
-     <article class="home-card more-card" data-intel-id="cg-channel-mikros-image-open-sources-puli-and-colortribe" data-intel-role="card">
+     <article class="home-card more-card" data-intel-id="cg-channel-luiz-elias-releases-mush3d-3-0" data-intel-role="card">
       <h4>
-       歷史參考｜2012 年 Mikros Image 開源 Puli 與 ColorTribe 製作工具
+       Mush3D 3.0 以四面體變形與 Pose Trainer 修正動畫快取
       </h4>
       <p class="summary">
-       2012 年 Mikros Image 開源兩套製作工具：Puli 是支援 Maya、Nuke 的 Python 算圖管理系統；ColorTribe 則整合螢幕量測、色彩修正載入與遠端狀態查看。
+       Mush3D 3.0 可在 Alembic 動畫快取上逐幀雕刻修正，新增四面體軟組織次級運動與本機 Pose Trainer，將參考姿勢的修正套用到整段動畫。
       </p>
-      <figure class="case-preview" data-intel-id="cg-channel-mikros-image-open-sources-puli-and-colortribe" data-intel-role="visual" data-visual-id="cg-channel-mikros-image-open-sources-puli-and-colortribe">
-       <a href="https://www.cgchannel.com/2012/09/mikros-image-open-sources-puli-and-colortribe" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
-        <img alt="SOURCE CARD preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-10-21/cg-channel-mikros-image-open-sources-puli-and-colortribe.svg"/>
-       </a>
-       <figcaption>
-        <span>
-         SOURCE CARD
-        </span>
-        · Generated source card · 點圖開啟原始來源
-       </figcaption>
-      </figure>
-      <div class="quick-impact">
-       <span><b class="quick-impact-label">Maya</b> ★★★☆☆</span>
-      </div>
-      <details class="canonical-analysis canonical-analysis-brief home-full-analysis" data-analysis-level="BRIEF">
-       <summary>
-        完整分析
-       </summary>
-       <div class="detail-body canonical-analysis-body brief-analysis-body home-analysis-body">
-        <h4>
-         算圖與色彩技術組成
-        </h4>
-        <p>
-         Puli 可在本機、遠端網路或雲端間分配算圖並提供中繼資料報告；ColorTribe 由 ColorHealer、ColorKeeper、ColorChief 組成。
-        </p>
-        <h4>
-         管線製作影響
-        </h4>
-        <p>
-         兩套工具與既有 TuttleOFX、Duke 同列開源專案，分別補上算圖調度、顯示器校色與遠端狀態追蹤等製作環節。
-        </p>
-        <h4>
-         歷史相容性限制
-        </h4>
-        <p>
-         來源發布於 2012 年，只明確記載當時與 Maya、Nuke 的相容性；目前維護狀態與新版 DCC 相容性不能由本文確認。
-        </p>
-        <p class="analysis-level-note">
-         BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
-        </p>
-       </div>
-      </details>
-      <a class="source" href="https://www.cgchannel.com/2012/09/mikros-image-open-sources-puli-and-colortribe" rel="noopener noreferrer" target="_blank">
-       來源
-      </a>
-     </article>
-     <article class="home-card more-card" data-intel-id="cgworld-jp-01-202607-nyannecoposmask" data-intel-role="card">
-      <h4>
-       Nyanneco Position Mask 以位置圖生成髮絲高光與條紋遮罩
-      </h4>
-      <p class="summary">
-       這款 Substance 3D Painter 生成器讀取烘焙後的 Position 圖，以 Line 或 Distribute 模式配置帶狀形狀，可製作髮絲高光、條紋等顯示遮罩。
-      </p>
-      <figure class="case-preview" data-intel-id="cgworld-jp-01-202607-nyannecoposmask" data-intel-role="visual" data-visual-id="cgworld-jp-01-202607-nyannecoposmask">
-       <a href="https://cgworld.jp/flashnews/01-202607-NyannecoPosMask.html" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
-        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-10-21/cgworld-jp-01-202607-nyannecoposmask.jpg"/>
-       </a>
-       <figcaption>
-        <span>
-         SOURCE PREVIEW
-        </span>
-        · Local visual evidence · 點圖開啟原始來源
-       </figcaption>
-      </figure>
-      <div class="quick-impact">
-       <span><b class="quick-impact-label">Substance</b> ★★★☆☆</span>
-      </div>
-      <details class="canonical-analysis canonical-analysis-brief home-full-analysis" data-analysis-level="BRIEF">
-       <summary>
-        完整分析
-       </summary>
-       <div class="detail-body canonical-analysis-body brief-analysis-body home-analysis-body">
-        <h4>
-         遮罩生成技術流程
-        </h4>
-        <p>
-         先把 SBSAR 匯入 Painter 並烘焙 Position 圖，再把生成器放入 Fill；Line mode 畫單線，Distribute mode 分布形狀，並可由預設值起步。
-        </p>
-        <h4>
-         材質製作影響
-        </h4>
-        <p>
-         位置資訊驅動的帶狀遮罩可用於髮絲高光或縞紋，並由參數在單線與分布形狀間切換；來源未提供與手繪遮罩的工時比較。
-        </p>
-        <h4>
-         品質限制與實測重點
-        </h4>
-        <p>
-         輸出精度受 Position 圖解析度與抗鋸齒影響；重疊 UV 可能生成錯誤，內建模糊也不會跨 UV 接縫無縫延伸。
-        </p>
-        <p class="analysis-level-note">
-         BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
-        </p>
-       </div>
-      </details>
-      <a class="source" href="https://cgworld.jp/flashnews/01-202607-NyannecoPosMask.html" rel="noopener noreferrer" target="_blank">
-       來源
-      </a>
-     </article>
-     <article class="home-card more-card" data-intel-id="cgworld-jp-01-202608-s3d-tapestry" data-intel-role="card">
-      <h4>
-       Tapestry 以 Substance 3D 數位雙生串接設計、打樣與行銷資產
-      </h4>
-      <p class="summary">
-       Tapestry 將草圖與設計卡轉成 3D 模型，使用 Painter 建立材質、Stager 輸出商品視覺，再以共用材質庫和攝影棚標準化，讓單一模型跨產品開發與行銷重用。
-      </p>
-      <figure class="case-preview" data-intel-id="cgworld-jp-01-202608-s3d-tapestry" data-intel-role="visual" data-visual-id="cgworld-jp-01-202608-s3d-tapestry">
-       <a href="https://cgworld.jp/flashnews/01-202608-S3D-Tapestry.html" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
-        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-10-21/cgworld-jp-01-202608-s3d-tapestry.jpg"/>
-       </a>
-       <figcaption>
-        <span>
-         SOURCE PREVIEW
-        </span>
-        · Local visual evidence · 點圖開啟原始來源
-       </figcaption>
-      </figure>
-      <div class="quick-impact">
-       <span><b class="quick-impact-label">Substance</b> ★★★☆☆</span>
-      </div>
-      <details class="canonical-analysis canonical-analysis-brief home-full-analysis" data-analysis-level="BRIEF">
-       <summary>
-        完整分析
-       </summary>
-       <div class="detail-body canonical-analysis-body brief-analysis-body home-analysis-body">
-        <h4>
-         數位雙生製作流程
-        </h4>
-        <p>
-         團隊先用 3D 模型提早驗證形體，再於 Painter 加入刺繡、壓印與程序式磨耗，最後送到 Stager 輸出靜態圖或 360 度動畫。
-        </p>
-        <h4>
-         跨部門製作影響
-        </h4>
-        <p>
-         標準化材質與硬體資產庫可供全球團隊共用；同一個 Quilted Tabby 26 模型也延伸到電商圖、快閃店與活動裝置。
-        </p>
-        <h4>
-         寫實輸出與效益驗證
-        </h4>
-        <p>
-         團隊用實體攝影棚的燈光與機位校準渲染，並以 3D 視覺化和列印取代部分模具與實體樣品迭代；來源宣稱縮短前置期與降低成本，但未提供比例或金額。
-        </p>
-        <p class="analysis-level-note">
-         BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
-        </p>
-       </div>
-      </details>
-      <a class="source" href="https://cgworld.jp/flashnews/01-202608-S3D-Tapestry.html" rel="noopener noreferrer" target="_blank">
-       來源
-      </a>
-     </article>
-     <article class="home-card more-card" data-intel-id="3dnchu-unreal-engine-5-2" data-intel-role="card">
-      <h4>
-       歷史參考｜2023 年 Unreal Engine 5.2：PCG、Substrate 與製作工具更新
-      </h4>
-      <p class="summary">
-       這份 2023 年 Unreal Engine 5.2 發布整理列出實驗性 PCG、Apple Silicon 原生支援，以及材質、建模、幾何腳本、Chaos Flesh 與 Niagara 快取等功能。
-      </p>
-      <figure class="case-preview" data-intel-id="3dnchu-unreal-engine-5-2" data-intel-role="visual" data-visual-id="3dnchu-unreal-engine-5-2">
-       <a href="https://3dnchu.com/archives/unreal-engine-5-2" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
-        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-10-21/3dnchu-unreal-engine-5-2.jpg"/>
-       </a>
-       <figcaption>
-        <span>
-         SOURCE PREVIEW
-        </span>
-        · Local visual evidence · 點圖開啟原始來源
-       </figcaption>
-      </figure>
-      <div class="quick-impact">
-       <span><b class="quick-impact-label">Unreal</b> ★★★☆☆</span>
-      </div>
-      <details class="canonical-analysis canonical-analysis-brief home-full-analysis" data-analysis-level="BRIEF">
-       <summary>
-        完整分析
-       </summary>
-       <div class="detail-body canonical-analysis-body brief-analysis-body home-analysis-body">
-        <h4>
-         引擎技術更新範圍
-        </h4>
-        <p>
-         5.2 同時涵蓋程序內容生成、Apple Silicon、材質 Switch 節點、模型與 UV 工具、幾何腳本、軟體模擬及 Niagara 快取。
-        </p>
-        <h4>
-         美術製作影響
-        </h4>
-        <p>
-         建模 Transform 面板、UV Seam、Render Capture Bake 與網格表面取樣，讓部分模型處理與烘焙工作可直接在引擎工具內完成。
-        </p>
-        <h4>
-         歷史版本限制
-        </h4>
-        <p>
-         本文記錄的是 2023 年 5.2，且 PCG、幾何腳本、Niagara 快取等項目當時標示實驗或測試階段，不應視為目前版本狀態。
-        </p>
-        <p class="analysis-level-note">
-         BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
-        </p>
-       </div>
-      </details>
-      <a class="source" href="https://3dnchu.com/archives/unreal-engine-5-2" rel="noopener noreferrer" target="_blank">
-       來源
-      </a>
-     </article>
-     <article class="home-card more-card" data-intel-id="3dnchu-unreal-engine-5-early-access" data-intel-role="card">
-      <h4>
-       歷史參考｜2021 年 UE5 早期存取：Nanite、Lumen 與 World Partition 初期樣貌
-      </h4>
-      <p class="summary">
-       這份 2021 年早期存取紀錄整理虛擬化幾何、動態全域照明、時間式超解析度、大型世界分區、資料層、控制綁定與程序音訊，並附《古代山谷》範例。
-      </p>
-      <figure class="case-preview" data-intel-id="3dnchu-unreal-engine-5-early-access" data-intel-role="visual" data-visual-id="3dnchu-unreal-engine-5-early-access">
-       <a href="https://3dnchu.com/archives/unreal-engine-5-early-access" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
-        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-10-21/3dnchu-unreal-engine-5-early-access.jpg"/>
-       </a>
-       <figcaption>
-        <span>
-         SOURCE PREVIEW
-        </span>
-        · Local visual evidence · 點圖開啟原始來源
-       </figcaption>
-      </figure>
-      <div class="quick-impact">
-       <span><b class="quick-impact-label">Unreal</b> ★★★☆☆</span>
-      </div>
-      <details class="canonical-analysis canonical-analysis-brief home-full-analysis" data-analysis-level="BRIEF">
-       <summary>
-        完整分析
-       </summary>
-       <div class="detail-body canonical-analysis-body brief-analysis-body home-analysis-body">
-        <h4>
-         早期引擎技術組成
-        </h4>
-        <p>
-         Nanite 處理虛擬化微多邊形幾何，Lumen 提供動態全域照明，Temporal Super Resolution 則負責穩定且銳利的升頻畫面。
-        </p>
-        <h4>
-         大型場景製作影響
-        </h4>
-        <p>
-         World Partition 以網格單元管理大型世界並自動換入 HLOD，配合一個 Actor 一份資料與 Data Layers，可減少多人編輯衝突並保存場景版本。
-        </p>
-        <h4>
-         歷史版本與驗證限制
-        </h4>
-        <p>
-         這是 2021 年早期存取版本而非正式版；《古代山谷》僅是當時供下載的範例，現行功能與 UE4 專案升級相容性需依新版文件重驗。
-        </p>
-        <p class="analysis-level-note">
-         BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
-        </p>
-       </div>
-      </details>
-      <a class="source" href="https://3dnchu.com/archives/unreal-engine-5-early-access" rel="noopener noreferrer" target="_blank">
-       來源
-      </a>
-     </article>
-     <article class="home-card more-card" data-intel-id="3dnchu-motion-symphony" data-intel-role="card">
-      <h4>
-       歷史參考｜2021 年 UE4 Motion Symphony：以動作匹配簡化動畫圖表
-      </h4>
-      <p class="summary">
-       這篇 2021 年資料介紹 UE4 外掛 Motion Symphony：以動作匹配為核心，搭配可獨立使用的姿勢匹配節點，在模組化動畫圖表中組合角色動作。
-      </p>
-      <figure class="case-preview" data-intel-id="3dnchu-motion-symphony" data-intel-role="visual" data-visual-id="3dnchu-motion-symphony">
-       <a href="https://3dnchu.com/archives/motion-symphony" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
-        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-10-21/3dnchu-motion-symphony.jpg"/>
+      <figure class="case-preview" data-intel-id="cg-channel-luiz-elias-releases-mush3d-3-0" data-intel-role="visual" data-visual-id="cg-channel-luiz-elias-releases-mush3d-3-0">
+       <a href="https://www.cgchannel.com/2026/06/luiz-elias-releases-mush3d-3-0" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-10-23/cg-channel-luiz-elias-releases-mush3d-3-0.jpg"/>
        </a>
        <figcaption>
         <span>
@@ -770,42 +505,148 @@
        </summary>
        <div class="detail-body canonical-analysis-body brief-analysis-body home-analysis-body">
         <h4>
-         角色動畫技術設計
+         動畫修正技術流程
         </h4>
         <p>
-         外掛主打以單一節點處理高忠實度移動，並提供 Motion Snapshot 與多個姿勢匹配節點，讓動作匹配能與其他合成方式搭配。
+         使用者能以類似 ZBrush 的筆刷逐幀雕刻，並用關鍵幀控制修正強度；也可遮罩局部套用 Delta Mush、Jiggle 或 Cloth 變形。
         </p>
         <h4>
-         動畫圖表製作影響
+         角色製作影響
         </h4>
         <p>
-         其定位是縮減動畫圖表複雜度並提供模組化工作流，而非取代完整角色或移動系統；團隊仍要自行決定節點如何接入專案。
+         四面體解算器在遮罩區域下建立體積以產生軟組織次級運動；Pose Trainer 可由手雕或掃描姿勢學習，再自動修正動畫與臉部轉移。
         </p>
         <h4>
-         歷史版本與導入限制
+         授權與功能限制
         </h4>
         <p>
-         動作匹配對動畫素材有前置要求，來源要求先讀 FAQ、文件與動畫製作指南；文中 249.99 美元價格與 UE4 Marketplace 狀態皆屬 2021 年資訊。
+         免費版只有雕刻工具且限 OBJ 匯入匯出，不含 Pose Trainer 或四面體模擬；Pro 改為年租制，文中價格為每年 980 美元。
         </p>
         <p class="analysis-level-note">
          BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
         </p>
        </div>
       </details>
-      <a class="source" href="https://3dnchu.com/archives/motion-symphony" rel="noopener noreferrer" target="_blank">
+      <a class="source" href="https://www.cgchannel.com/2026/06/luiz-elias-releases-mush3d-3-0" rel="noopener noreferrer" target="_blank">
        來源
       </a>
      </article>
-     <article class="home-card more-card" data-intel-id="3dnchu-dt2db-bridge" data-intel-role="card">
+     <article class="home-card more-card" data-intel-id="cg-channel-e-on-software-ships-carbon-scatter-ozone-5-ple" data-intel-role="card">
       <h4>
-       歷史參考｜2023 年 DT2DB Bridge 串接 Dream Textures 與 DeepBump
+       歷史參考｜2011 年 Carbon Scatter 植被實例外掛與 Ozone 5 學習版
       </h4>
       <p class="summary">
-       這篇 2023 年資料介紹免費 Blender 外掛 DT2DB Bridge：它串接 Dream Textures 的文字生成影像與 DeepBump 的法線、高度圖生成，集中處理 PBR 材質。
+       2011 年 e-on software 推出 3ds Max 用 Carbon Scatter 實例外掛，分成 Single、Multi、Multi-CE 三版；同時發布帶浮水印的 Ozone 5 個人學習版。
       </p>
-      <figure class="case-preview" data-intel-id="3dnchu-dt2db-bridge" data-intel-role="visual" data-visual-id="3dnchu-dt2db-bridge">
-       <a href="https://3dnchu.com/archives/dt2db-bridge" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
-        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-10-21/3dnchu-dt2db-bridge.jpg"/>
+      <figure class="case-preview" data-intel-id="cg-channel-e-on-software-ships-carbon-scatter-ozone-5-ple" data-intel-role="visual" data-visual-id="cg-channel-e-on-software-ships-carbon-scatter-ozone-5-ple">
+       <a href="https://www.cgchannel.com/2011/03/e-on-software-ships-carbon-scatter-ozone-5-ple" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+        <img alt="SOURCE CARD preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-10-23/cg-channel-e-on-software-ships-carbon-scatter-ozone-5-ple.svg"/>
+       </a>
+       <figcaption>
+        <span>
+         SOURCE CARD
+        </span>
+        · Generated source card · 點圖開啟原始來源
+       </figcaption>
+      </figure>
+      <div class="quick-impact">
+       <span><b class="quick-impact-label">其他 DCC</b> ★★★☆☆</span>
+      </div>
+      <details class="canonical-analysis canonical-analysis-brief home-full-analysis" data-analysis-level="BRIEF">
+       <summary>
+        完整分析
+       </summary>
+       <div class="detail-body canonical-analysis-body brief-analysis-body home-analysis-body">
+        <h4>
+         植被實例技術版本
+        </h4>
+        <p>
+         Single 綁定一種相容宿主但可用該宿主的相容渲染器；Multi 支援所有相容宿主與渲染器，Multi-CE 另含超過一百種植物。
+        </p>
+        <h4>
+         素材庫製作影響
+        </h4>
+        <p>
+         Single 與 Multi 只附八種植物，Multi-CE 的一百多種植物不能被前兩版讀取，因此素材庫規模與版本相容性直接綁定授權層級。
+        </p>
+        <h4>
+         歷史版本限制
+        </h4>
+        <p>
+         這是 2011 年價格與相容資訊，Ozone 5 PLE 也是帶浮水印教育版；目前產品狀態、下載連結及新版 3ds Max 相容性不能由本文確認。
+        </p>
+        <p class="analysis-level-note">
+         BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+        </p>
+       </div>
+      </details>
+      <a class="source" href="https://www.cgchannel.com/2011/03/e-on-software-ships-carbon-scatter-ozone-5-ple" rel="noopener noreferrer" target="_blank">
+       來源
+      </a>
+     </article>
+     <article class="home-card more-card" data-intel-id="3dnchu-ue5-real-time-visualization-book" data-intel-role="card">
+      <h4>
+       歷史參考｜2023 年 UE5 即時視覺化教材：CAD、燈光、VR 與互動展示
+      </h4>
+      <p class="summary">
+       這份 2023 年資料介紹一本 UE5 入門書，內容從 CAD 匯入與 DataPrep、材質燈光、後製與即時光追，延伸到 VR、Movie Render Queue 及互動 Blueprint。
+      </p>
+      <figure class="case-preview" data-intel-id="3dnchu-ue5-real-time-visualization-book" data-intel-role="visual" data-visual-id="3dnchu-ue5-real-time-visualization-book">
+       <a href="https://3dnchu.com/archives/ue5-real-time-visualization-book" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-10-23/3dnchu-ue5-real-time-visualization-book.jpg"/>
+       </a>
+       <figcaption>
+        <span>
+         SOURCE PREVIEW
+        </span>
+        · Local visual evidence · 點圖開啟原始來源
+       </figcaption>
+      </figure>
+      <div class="quick-impact">
+       <span><b class="quick-impact-label">Unreal</b> ★★★☆☆</span>
+      </div>
+      <details class="canonical-analysis canonical-analysis-brief home-full-analysis" data-analysis-level="BRIEF">
+       <summary>
+        完整分析
+       </summary>
+       <div class="detail-body canonical-analysis-body brief-analysis-body home-analysis-body">
+        <h4>
+         CAD 視覺化技術流程
+        </h4>
+        <p>
+         教材涵蓋 DataPrep 轉換 CAD 組件、跨專案 Migration、Megascans、材質、燈光、後製、渲染與 VR 輸出，也包含即時光線追蹤基礎。
+        </p>
+        <h4>
+         互動展示製作影響
+        </h4>
+        <p>
+         Blueprint 範例包含燈光開關、選配零件、Timeline 開合、Widget UI 與 Variant Manager，讓工業產品展示不只停留在靜態畫面。
+        </p>
+        <h4>
+         歷史內容限制
+        </h4>
+        <p>
+         書籍於 2022 年底推出、本文發布於 2023 年，還包含 UE4 專案沿用內容；現行 UE5 介面、即時光追與外掛流程需依新版文件重驗。
+        </p>
+        <p class="analysis-level-note">
+         BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+        </p>
+       </div>
+      </details>
+      <a class="source" href="https://3dnchu.com/archives/ue5-real-time-visualization-book" rel="noopener noreferrer" target="_blank">
+       來源
+      </a>
+     </article>
+     <article class="home-card more-card" data-intel-id="3dnchu-easy-custom-normals" data-intel-role="card">
+      <h4>
+       歷史參考｜2025 年 Easy Custom Normals 以 Geometry Nodes 平滑卡通模型法線
+      </h4>
+      <p class="summary">
+       2025 年發布的 Blender 外掛以加權法線與拉普拉斯平滑改善不均三角網格，並透過 Geometry Nodes 提供即時、非破壞預覽，可輸出遊戲或 VTuber 模型法線。
+      </p>
+      <figure class="case-preview" data-intel-id="3dnchu-easy-custom-normals" data-intel-role="visual" data-visual-id="3dnchu-easy-custom-normals">
+       <a href="https://3dnchu.com/archives/easy-custom-normals" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-10-23/3dnchu-easy-custom-normals.jpg"/>
        </a>
        <figcaption>
         <span>
@@ -823,29 +664,241 @@
        </summary>
        <div class="detail-body canonical-analysis-body brief-analysis-body home-analysis-body">
         <h4>
-         AI 材質技術流程
+         法線平滑技術流程
         </h4>
         <p>
-         Dream Textures 先以 Stable Diffusion 從文字提示生成影像，DeepBump 再由單張影像產生法線與高度圖，Bridge 以專用面板串起兩者。
+         Laplacian Smooth Normals Modifier 不依賴規整拓樸，並可反轉面權重處理陰影瑕疵；Geometry Nodes 讓結果可即時查看而不必手動接線或烘焙。
         </p>
         <h4>
-         材質製作影響
+         卡通角色製作影響
         </h4>
         <p>
-         外掛能用 ColorRamp 建立金屬度與粗糙度貼圖，並把可重用的 Beautify 標籤附加到提示詞；其設計目的就是集中並加快材質流程。
+         工具針對動畫風格臉與頭髮的法線整理，來源表示可直接用於 Blender，或將自訂頂點法線交付遊戲與 VTuber 模型。
         </p>
         <h4>
-         歷史相依與導入限制
+         歷史功能限制
         </h4>
         <p>
-         DT2DB Bridge 本身不是完整生成器，必須另裝 Dream Textures 與 DeepBump；來源為 2023 年，現行 Blender 相容性未在本文證實。
+         本文是 2025 年 v1.0.0 資訊，動畫臉 Proxy 當時仍標示即將推出；來源未提供 Blender 版本範圍、效能數據或目前功能狀態。
         </p>
         <p class="analysis-level-note">
          BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
         </p>
        </div>
       </details>
-      <a class="source" href="https://3dnchu.com/archives/dt2db-bridge" rel="noopener noreferrer" target="_blank">
+      <a class="source" href="https://3dnchu.com/archives/easy-custom-normals" rel="noopener noreferrer" target="_blank">
+       來源
+      </a>
+     </article>
+     <article class="home-card more-card" data-intel-id="3dnchu-coloso-3dcgmodeler-fusako-jp" data-intel-role="card">
+      <h4>
+       歷史參考｜2026 年 VTuber 角色全流程課：從 Blender 建模到 Unity 驗收
+      </h4>
+      <p class="summary">
+       這份 2026 年課程評測涵蓋約 26 小時的 VTuber 角色流程：Blender 建模、可變形拓樸、UV、Painter 貼圖、表情、Rig、Skinning 與 Unity 設定。
+      </p>
+      <figure class="case-preview" data-intel-id="3dnchu-coloso-3dcgmodeler-fusako-jp" data-intel-role="visual" data-visual-id="3dnchu-coloso-3dcgmodeler-fusako-jp">
+       <a href="https://3dnchu.com/archives/coloso-3dcgmodeler-fusako-jp" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-10-23/3dnchu-coloso-3dcgmodeler-fusako-jp.jpg"/>
+       </a>
+       <figcaption>
+        <span>
+         SOURCE PREVIEW
+        </span>
+        · Local visual evidence · 點圖開啟原始來源
+       </figcaption>
+      </figure>
+      <div class="quick-impact">
+       <span><b class="quick-impact-label">Blender</b> ★★☆☆☆</span>
+      </div>
+      <details class="canonical-analysis canonical-analysis-brief home-full-analysis" data-analysis-level="BRIEF">
+       <summary>
+        完整分析
+       </summary>
+       <div class="detail-body canonical-analysis-body brief-analysis-body home-analysis-body">
+        <h4>
+         角色資產技術流程
+        </h4>
+        <p>
+         課程依臉、髮、身體、衣裝從粗模推進到網格整理，再以 Mio3 UV 展開、Painter 烘焙貼圖、表情製作及 Rig、Skinning 完成角色。
+        </p>
+        <h4>
+         Unity 交付製作影響
+        </h4>
+        <p>
+         Unity 段落處理搖擺物碰撞、法線問題、外觀與 Shader，最後用 3tene 讓角色跳舞，藉實際動作找出破綻並回修。
+        </p>
+        <h4>
+         學習門檻與限制
+        </h4>
+        <p>
+         課程定位 Blender 中級者，不細講素描與造形平衡；雖附完成模型供比較，最終外觀仍仰賴觀察力，文中軟體版本與優惠屬 2026 年資料。
+        </p>
+        <p class="analysis-level-note">
+         BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+        </p>
+       </div>
+      </details>
+      <a class="source" href="https://3dnchu.com/archives/coloso-3dcgmodeler-fusako-jp" rel="noopener noreferrer" target="_blank">
+       來源
+      </a>
+     </article>
+     <article class="home-card more-card" data-intel-id="3dnchu-photogrammetry-vs-img2mat" data-intel-role="card">
+      <h4>
+       歷史參考｜2020 年磚牆 PBR 比較：攝影測量與單張照片材質生成
+      </h4>
+      <p class="summary">
+       2020 年測試以磚牆比較兩條 PBR 流程：攝影測量經 RAW 去光、3DF Zephyr 重建、ZBrush 與 Substance 烘焙；另一條用 Alchemist 從單張照片生成。
+      </p>
+      <figure class="case-preview" data-intel-id="3dnchu-photogrammetry-vs-img2mat" data-intel-role="visual" data-visual-id="3dnchu-photogrammetry-vs-img2mat">
+       <a href="https://3dnchu.com/archives/photogrammetry-vs-img2mat" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-10-23/3dnchu-photogrammetry-vs-img2mat.jpg"/>
+       </a>
+       <figcaption>
+        <span>
+         SOURCE PREVIEW
+        </span>
+        · Local visual evidence · 點圖開啟原始來源
+       </figcaption>
+      </figure>
+      <div class="quick-impact">
+       <span><b class="quick-impact-label">Substance</b> ★★☆☆☆</span>
+      </div>
+      <details class="canonical-analysis canonical-analysis-brief home-full-analysis" data-analysis-level="BRIEF">
+       <summary>
+        完整分析
+       </summary>
+       <div class="detail-body canonical-analysis-body brief-analysis-body home-analysis-body">
+        <h4>
+         兩種材質技術流程
+        </h4>
+        <p>
+         攝影測量流程包含 PhotoLab RAW 前處理與去光、Zephyr 重建、ZBrush 低模烘焙底、Designer 烘焙與粗糙度、Painter 手動修縫。
+        </p>
+        <h4>
+         製作品質與時間影響
+        </h4>
+        <p>
+         來源觀察攝影測量能保留更立體且銳利的磚牆邊緣；Alchemist 結果不完美但可用，優勢是從單張照片大幅縮短製作時間。
+        </p>
+        <h4>
+         歷史比較限制
+        </h4>
+        <p>
+         測試發布於 2020 年，工具仍以 Substance Alchemist 名稱呈現；來源沒有量化耗時、解析度或誤差，不能直接外推到目前 Image to Material。
+        </p>
+        <p class="analysis-level-note">
+         BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+        </p>
+       </div>
+      </details>
+      <a class="source" href="https://3dnchu.com/archives/photogrammetry-vs-img2mat" rel="noopener noreferrer" target="_blank">
+       來源
+      </a>
+     </article>
+     <article class="home-card more-card" data-intel-id="3dnchu-sakura-ux-enhancer" data-intel-role="card">
+      <h4>
+       歷史參考｜2024 年 Sakura UX Enhancer 集中 Blender 顯示切換與小型自動化
+      </h4>
+      <p class="summary">
+       2024 年的 Sakura UX Enhancer 在 Blender 介面加入 Modifier、骨架、燈光、渲染器與色彩空間切換，也擴充 Node、Image Editor 和自動 Viewport 控制。
+      </p>
+      <figure class="case-preview" data-intel-id="3dnchu-sakura-ux-enhancer" data-intel-role="visual" data-visual-id="3dnchu-sakura-ux-enhancer">
+       <a href="https://3dnchu.com/archives/sakura-ux-enhancer" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+        <img alt="SOURCE CARD preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-10-23/3dnchu-sakura-ux-enhancer.svg"/>
+       </a>
+       <figcaption>
+        <span>
+         SOURCE CARD
+        </span>
+        · Generated source card · 點圖開啟原始來源
+       </figcaption>
+      </figure>
+      <div class="quick-impact">
+       <span><b class="quick-impact-label">Blender</b> ★★☆☆☆</span>
+      </div>
+      <details class="canonical-analysis canonical-analysis-brief home-full-analysis" data-analysis-level="BRIEF">
+       <summary>
+        完整分析
+       </summary>
+       <div class="detail-body canonical-analysis-body brief-analysis-body home-analysis-body">
+        <h4>
+         介面工具技術範圍
+        </h4>
+        <p>
+         3D View Header 可切換隔離視圖、Modifier、骨架、線框、燈光參數、渲染器、AO 與色彩空間；Node Editor 還能雙擊看圖及直接烘焙。
+        </p>
+        <h4>
+         日常操作製作影響
+        </h4>
+        <p>
+         外掛能把作用中材質圖片送到 Image Editor，依模式自動更換 Viewport 設定，並提供相關圖片搜尋，目標是減少反覆尋找面板的操作。
+        </p>
+        <h4>
+         歷史版本與設定限制
+        </h4>
+        <p>
+         所有功能可個別調整，只啟用需要的部分；本文記錄 2024 年版本與當時十美元價格，目前 Blender 相容性及售價需另行核對。
+        </p>
+        <p class="analysis-level-note">
+         BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+        </p>
+       </div>
+      </details>
+      <a class="source" href="https://3dnchu.com/archives/sakura-ux-enhancer" rel="noopener noreferrer" target="_blank">
+       來源
+      </a>
+     </article>
+     <article class="home-card more-card" data-intel-id="3dnchu-virtucamera-for-blender-addon" data-intel-role="card">
+      <h4>
+       歷史參考｜2021 年 VirtuCamera 以 iOS 裝置錄製 Blender 虛擬攝影機
+      </h4>
+      <p class="summary">
+       2021 年 VirtuCamera Blender 外掛讓 iPhone、iPad 或 iPod Touch 經 Wi-Fi 傳送裝置動作與即時 Viewport，並從 App 控制播放、焦距及攝影機位移尺度。
+      </p>
+      <figure class="case-preview" data-intel-id="3dnchu-virtucamera-for-blender-addon" data-intel-role="visual" data-visual-id="3dnchu-virtucamera-for-blender-addon">
+       <a href="https://3dnchu.com/archives/virtucamera-for-blender-addon" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-10-23/3dnchu-virtucamera-for-blender-addon.jpg"/>
+       </a>
+       <figcaption>
+        <span>
+         SOURCE PREVIEW
+        </span>
+        · Local visual evidence · 點圖開啟原始來源
+       </figcaption>
+      </figure>
+      <div class="quick-impact">
+       <span><b class="quick-impact-label">Blender</b> ★★☆☆☆</span>
+      </div>
+      <details class="canonical-analysis canonical-analysis-brief home-full-analysis" data-analysis-level="BRIEF">
+       <summary>
+        完整分析
+       </summary>
+       <div class="detail-body canonical-analysis-body brief-analysis-body home-analysis-body">
+        <h4>
+         虛擬攝影技術流程
+        </h4>
+        <p>
+         裝置移動會透過 Wi-Fi 轉成 3D 攝影機動畫，Viewport 同步串流到 App；可控制播放、切換場景攝影機、動畫焦距並縮放移動距離。
+        </p>
+        <h4>
+         鏡頭製作影響
+        </h4>
+        <p>
+         動作與畫面最高可用每秒六十幀傳送，另有攝影機穩定器移除手部雜訊，也能自訂 App 按鈕呼叫製作腳本。
+        </p>
+        <h4>
+         歷史相依與限制
+        </h4>
+        <p>
+         來源要求足以執行三維場景的電腦、Windows、macOS 或 Linux、對應 Maya 或 Blender 外掛，以及 iOS 12.1 以上裝置；本文價格與相容性屬 2021 年，需按現況重驗。
+        </p>
+        <p class="analysis-level-note">
+         BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+        </p>
+       </div>
+      </details>
+      <a class="source" href="https://3dnchu.com/archives/virtucamera-for-blender-addon" rel="noopener noreferrer" target="_blank">
        來源
       </a>
      </article>
@@ -909,7 +962,7 @@
     </div>
    </section>
   </main>
-  <script src="home.js?v=20261021-r1-workspace-v10-history-current-workspace">
+  <script src="home.js?v=20261023-r1-workspace-v10-history-current-workspace">
   </script>
  </body>
 </html>

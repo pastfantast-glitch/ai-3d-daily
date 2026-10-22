@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   Blender / DCC｜2026-10-23｜AI 3D Daily
+  </title>
+  <meta content="2026-10-23 Blender / DCC Production Intelligence：Blender / DCC 工具與工作流 / Blender Tips，共 8 項可驗證情報。" name="description"/>
+  <link href="../../styles.css?v=20261023-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../../shared-components.css?v=20261023-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../../category.css?v=20261023-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+ </head>
+ <body class="category-page" data-category="blender-dcc" data-report-date="2026-10-23">
+  <nav aria-label="Production Intelligence 分類" class="global-category-nav">
+   <div class="page global-category-nav-inner">
+    <div class="archive-nav-controls">
+     <a class="archive-nav-home" href="../../">
+      ← 首頁
+     </a>
+     <div class="archive-nav-date">
+      <a aria-label="前一日日報" class="archive-nav-arrow" href="../../2026-10-21/blender-dcc/">
+       ←
+      </a>
+      <span>
+       2026-10-23
+      </span>
+     </div>
+    </div>
+    <span aria-hidden="true" class="archive-nav-divider">
+    </span>
+    <a class="global-category-link" href="../#top">
+     TOP5
+    </a>
+    <a class="global-category-link" data-category="ai-generation" href="../ai-generation/">
+     AI 生成
+    </a>
+    <a class="global-category-link" data-category="3d-production" href="../3d-production/">
+     3D 製作
+    </a>
+    <a class="global-category-link" data-category="3d-animation" href="../3d-animation/">
+     3D 動作
+    </a>
+    <a class="global-category-link" data-category="engine-art" href="../engine-art/">
+     遊戲引擎
+    </a>
+    <a class="global-category-link" data-category="emerging-case" href="../emerging-case/">
+     新技術 / Case
+    </a>
+    <a class="global-category-link is-active" data-category="blender-dcc" href="../blender-dcc/">
+     Blender / DCC
+    </a>
+    <a class="global-category-link global-history-link" data-global-view="history" href="../../history/">
+     歷史日報
+    </a>
+   </div>
+  </nav>
+  <main class="page category-main">
+   <article class="category-card" data-intel-id="80-level-terraforming-the-alters-last-variable-with-blender-zbrush-ue" data-intel-role="card">
+    <div class="category-meta">
+     #01 · blender
+    </div>
+    <h2>
+     《The Alters: Last Variable》植被管線：Nanite 實體葉片、PCG 散佈與全域 HISM
+    </h2>
+    <p class="summary">
+     三名環境美術建立可在荒蕪與地景改造兩種狀態運作的關卡，使用 Blender、ZBrush、Substance、UE5 PCG 與不透明 Nanite 幾何製作外星植被。
+    </p>
+    <figure class="case-preview" data-intel-id="80-level-terraforming-the-alters-last-variable-with-blender-zbrush-ue" data-intel-role="visual" data-visual-id="80-level-terraforming-the-alters-last-variable-with-blender-zbrush-ue">
+     <a href="https://80.lv/articles/terraforming-the-alters-last-variable-with-blender-zbrush-ue5" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-10-23/80-level-terraforming-the-alters-last-variable-with-blender-zbrush-ue.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">Blender</b> ★★★★☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       外星植被技術流程
+      </h4>
+      <p>
+       團隊先以 beauty corner 測試資產、Shader 與地形混合，再用不透明 Nanite 切片幾何製作葉片，配合頂點色驅動 WPO 風動。
+      </p>
+      <h4>
+       大範圍製作影響
+      </h4>
+      <p>
+       關卡散佈完全依靠引擎內 PCG、Geometry Script 苔蘚與射線散佈工具，並大量重用 Level Instance，以便在短時間填滿過度生長的世界。
+      </p>
+      <h4>
+       效能限制與驗證
+      </h4>
+      <p>
+       大量 Blueprint 與 Packed Level Actor 產生分散 HISM，技術團隊改為每種網格全關卡共用一個全域 HISM；非均勻縮放且有碰撞的 Actor 不宜打包。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://80.lv/articles/terraforming-the-alters-last-variable-with-blender-zbrush-ue5" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="80-level-these-2d-characters-from-popular-manga-are-made-in-3d-with-b" data-intel-role="card">
+    <div class="category-meta">
+     #05 · blender
+    </div>
+    <h2>
+     Blender 重製漫畫封面：Grease Pencil、Lattice 與 Shape Keys 保留二維觀感
+    </h2>
+    <p class="summary">
+     Chloe Worthy 與 Taanthip Tuchinda 以 ZBrush、Substance 3D Painter 和 Blender 重製漫畫封面，透過 Grease Pencil、視角變形與角色動畫保留平面構圖特徵。
+    </p>
+    <figure class="case-preview" data-intel-id="80-level-these-2d-characters-from-popular-manga-are-made-in-3d-with-b" data-intel-role="visual" data-visual-id="80-level-these-2d-characters-from-popular-manga-are-made-in-3d-with-b">
+     <a href="https://80.lv/articles/these-2d-characters-from-popular-manga-are-made-in-3d-with-blender" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-10-23/80-level-these-2d-characters-from-popular-manga-are-made-in-3d-with-b.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">Blender</b> ★★★★☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       二維化角色技術流程
+      </h4>
+      <p>
+       兩名作者分工角色建模與貼圖，再由 Worthy 統整 Grease Pencil 效果、動畫和 Blender 渲染；角色雕刻與主要貼圖分別使用 ZBrush 與 Painter。
+      </p>
+      <h4>
+       構圖製作影響
+      </h4>
+      <p>
+       Lattice 用來調整觀看角度，以接近漫畫封面的透視縮短但不過度變形；Koga 的姿勢與女性化表現則是作者主動重新詮釋。
+      </p>
+      <h4>
+       動畫資訊限制
+      </h4>
+      <p>
+       眼睛使用 Shape Keys、頭髮動態以 Weight Painting 製作，但來源未提供 Rig 結構、幀率、Shader 或 Grease Pencil 節點設定，不能推定完整流程。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://80.lv/articles/these-2d-characters-from-popular-manga-are-made-in-3d-with-blender" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="cg-channel-e-on-software-ships-carbon-scatter-ozone-5-ple" data-intel-role="card">
+    <div class="category-meta">
+     #09 · other-dcc
+    </div>
+    <h2>
+     歷史參考｜2011 年 Carbon Scatter 植被實例外掛與 Ozone 5 學習版
+    </h2>
+    <p class="summary">
+     2011 年 e-on software 推出 3ds Max 用 Carbon Scatter 實例外掛，分成 Single、Multi、Multi-CE 三版；同時發布帶浮水印的 Ozone 5 個人學習版。
+    </p>
+    <figure class="case-preview" data-intel-id="cg-channel-e-on-software-ships-carbon-scatter-ozone-5-ple" data-intel-role="visual" data-visual-id="cg-channel-e-on-software-ships-carbon-scatter-ozone-5-ple">
+     <a href="https://www.cgchannel.com/2011/03/e-on-software-ships-carbon-scatter-ozone-5-ple" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE CARD preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-10-23/cg-channel-e-on-software-ships-carbon-scatter-ozone-5-ple.svg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE CARD
+      </span>
+      · Generated source card · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">其他 DCC</b> ★★★☆☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       植被實例技術版本
+      </h4>
+      <p>
+       Single 綁定一種相容宿主但可用該宿主的相容渲染器；Multi 支援所有相容宿主與渲染器，Multi-CE 另含超過一百種植物。
+      </p>
+      <h4>
+       素材庫製作影響
+      </h4>
+      <p>
+       Single 與 Multi 只附八種植物，Multi-CE 的一百多種植物不能被前兩版讀取，因此素材庫規模與版本相容性直接綁定授權層級。
+      </p>
+      <h4>
+       歷史版本限制
+      </h4>
+      <p>
+       這是 2011 年價格與相容資訊，Ozone 5 PLE 也是帶浮水印教育版；目前產品狀態、下載連結及新版 3ds Max 相容性不能由本文確認。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://www.cgchannel.com/2011/03/e-on-software-ships-carbon-scatter-ozone-5-ple" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="3dnchu-easy-custom-normals" data-intel-role="card">
+    <div class="category-meta">
+     #11 · blender
+    </div>
+    <h2>
+     歷史參考｜2025 年 Easy Custom Normals 以 Geometry Nodes 平滑卡通模型法線
+    </h2>
+    <p class="summary">
+     2025 年發布的 Blender 外掛以加權法線與拉普拉斯平滑改善不均三角網格，並透過 Geometry Nodes 提供即時、非破壞預覽，可輸出遊戲或 VTuber 模型法線。
+    </p>
+    <figure class="case-preview" data-intel-id="3dnchu-easy-custom-normals" data-intel-role="visual" data-visual-id="3dnchu-easy-custom-normals">
+     <a href="https://3dnchu.com/archives/easy-custom-normals" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-10-23/3dnchu-easy-custom-normals.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">Blender</b> ★★☆☆☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       法線平滑技術流程
+      </h4>
+      <p>
+       Laplacian Smooth Normals Modifier 不依賴規整拓樸，並可反轉面權重處理陰影瑕疵；Geometry Nodes 讓結果可即時查看而不必手動接線或烘焙。
+      </p>
+      <h4>
+       卡通角色製作影響
+      </h4>
+      <p>
+       工具針對動畫風格臉與頭髮的法線整理，來源表示可直接用於 Blender，或將自訂頂點法線交付遊戲與 VTuber 模型。
+      </p>
+      <h4>
+       歷史功能限制
+      </h4>
+      <p>
+       本文是 2025 年 v1.0.0 資訊，動畫臉 Proxy 當時仍標示即將推出；來源未提供 Blender 版本範圍、效能數據或目前功能狀態。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://3dnchu.com/archives/easy-custom-normals" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="3dnchu-coloso-3dcgmodeler-fusako-jp" data-intel-role="card">
+    <div class="category-meta">
+     #12 · blender
+    </div>
+    <h2>
+     歷史參考｜2026 年 VTuber 角色全流程課：從 Blender 建模到 Unity 驗收
+    </h2>
+    <p class="summary">
+     這份 2026 年課程評測涵蓋約 26 小時的 VTuber 角色流程：Blender 建模、可變形拓樸、UV、Painter 貼圖、表情、Rig、Skinning 與 Unity 設定。
+    </p>
+    <figure class="case-preview" data-intel-id="3dnchu-coloso-3dcgmodeler-fusako-jp" data-intel-role="visual" data-visual-id="3dnchu-coloso-3dcgmodeler-fusako-jp">
+     <a href="https://3dnchu.com/archives/coloso-3dcgmodeler-fusako-jp" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-10-23/3dnchu-coloso-3dcgmodeler-fusako-jp.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">Blender</b> ★★☆☆☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       角色資產技術流程
+      </h4>
+      <p>
+       課程依臉、髮、身體、衣裝從粗模推進到網格整理，再以 Mio3 UV 展開、Painter 烘焙貼圖、表情製作及 Rig、Skinning 完成角色。
+      </p>
+      <h4>
+       Unity 交付製作影響
+      </h4>
+      <p>
+       Unity 段落處理搖擺物碰撞、法線問題、外觀與 Shader，最後用 3tene 讓角色跳舞，藉實際動作找出破綻並回修。
+      </p>
+      <h4>
+       學習門檻與限制
+      </h4>
+      <p>
+       課程定位 Blender 中級者，不細講素描與造形平衡；雖附完成模型供比較，最終外觀仍仰賴觀察力，文中軟體版本與優惠屬 2026 年資料。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://3dnchu.com/archives/coloso-3dcgmodeler-fusako-jp" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="3dnchu-photogrammetry-vs-img2mat" data-intel-role="card">
+    <div class="category-meta">
+     #13 · substance
+    </div>
+    <h2>
+     歷史參考｜2020 年磚牆 PBR 比較：攝影測量與單張照片材質生成
+    </h2>
+    <p class="summary">
+     2020 年測試以磚牆比較兩條 PBR 流程：攝影測量經 RAW 去光、3DF Zephyr 重建、ZBrush 與 Substance 烘焙；另一條用 Alchemist 從單張照片生成。
+    </p>
+    <figure class="case-preview" data-intel-id="3dnchu-photogrammetry-vs-img2mat" data-intel-role="visual" data-visual-id="3dnchu-photogrammetry-vs-img2mat">
+     <a href="https://3dnchu.com/archives/photogrammetry-vs-img2mat" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-10-23/3dnchu-photogrammetry-vs-img2mat.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">Substance</b> ★★☆☆☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       兩種材質技術流程
+      </h4>
+      <p>
+       攝影測量流程包含 PhotoLab RAW 前處理與去光、Zephyr 重建、ZBrush 低模烘焙底、Designer 烘焙與粗糙度、Painter 手動修縫。
+      </p>
+      <h4>
+       製作品質與時間影響
+      </h4>
+      <p>
+       來源觀察攝影測量能保留更立體且銳利的磚牆邊緣；Alchemist 結果不完美但可用，優勢是從單張照片大幅縮短製作時間。
+      </p>
+      <h4>
+       歷史比較限制
+      </h4>
+      <p>
+       測試發布於 2020 年，工具仍以 Substance Alchemist 名稱呈現；來源沒有量化耗時、解析度或誤差，不能直接外推到目前 Image to Material。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://3dnchu.com/archives/photogrammetry-vs-img2mat" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="3dnchu-sakura-ux-enhancer" data-intel-role="card">
+    <div class="category-meta">
+     #14 · blender
+    </div>
+    <h2>
+     歷史參考｜2024 年 Sakura UX Enhancer 集中 Blender 顯示切換與小型自動化
+    </h2>
+    <p class="summary">
+     2024 年的 Sakura UX Enhancer 在 Blender 介面加入 Modifier、骨架、燈光、渲染器與色彩空間切換，也擴充 Node、Image Editor 和自動 Viewport 控制。
+    </p>
+    <figure class="case-preview" data-intel-id="3dnchu-sakura-ux-enhancer" data-intel-role="visual" data-visual-id="3dnchu-sakura-ux-enhancer">
+     <a href="https://3dnchu.com/archives/sakura-ux-enhancer" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE CARD preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-10-23/3dnchu-sakura-ux-enhancer.svg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE CARD
+      </span>
+      · Generated source card · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">Blender</b> ★★☆☆☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       介面工具技術範圍
+      </h4>
+      <p>
+       3D View Header 可切換隔離視圖、Modifier、骨架、線框、燈光參數、渲染器、AO 與色彩空間；Node Editor 還能雙擊看圖及直接烘焙。
+      </p>
+      <h4>
+       日常操作製作影響
+      </h4>
+      <p>
+       外掛能把作用中材質圖片送到 Image Editor，依模式自動更換 Viewport 設定，並提供相關圖片搜尋，目標是減少反覆尋找面板的操作。
+      </p>
+      <h4>
+       歷史版本與設定限制
+      </h4>
+      <p>
+       所有功能可個別調整，只啟用需要的部分；本文記錄 2024 年版本與當時十美元價格，目前 Blender 相容性及售價需另行核對。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://3dnchu.com/archives/sakura-ux-enhancer" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="3dnchu-virtucamera-for-blender-addon" data-intel-role="card">
+    <div class="category-meta">
+     #15 · blender
+    </div>
+    <h2>
+     歷史參考｜2021 年 VirtuCamera 以 iOS 裝置錄製 Blender 虛擬攝影機
+    </h2>
+    <p class="summary">
+     2021 年 VirtuCamera Blender 外掛讓 iPhone、iPad 或 iPod Touch 經 Wi-Fi 傳送裝置動作與即時 Viewport，並從 App 控制播放、焦距及攝影機位移尺度。
+    </p>
+    <figure class="case-preview" data-intel-id="3dnchu-virtucamera-for-blender-addon" data-intel-role="visual" data-visual-id="3dnchu-virtucamera-for-blender-addon">
+     <a href="https://3dnchu.com/archives/virtucamera-for-blender-addon" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-10-23/3dnchu-virtucamera-for-blender-addon.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">Blender</b> ★★☆☆☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       虛擬攝影技術流程
+      </h4>
+      <p>
+       裝置移動會透過 Wi-Fi 轉成 3D 攝影機動畫，Viewport 同步串流到 App；可控制播放、切換場景攝影機、動畫焦距並縮放移動距離。
+      </p>
+      <h4>
+       鏡頭製作影響
+      </h4>
+      <p>
+       動作與畫面最高可用每秒六十幀傳送，另有攝影機穩定器移除手部雜訊，也能自訂 App 按鈕呼叫製作腳本。
+      </p>
+      <h4>
+       歷史相依與限制
+      </h4>
+      <p>
+       來源要求足以執行三維場景的電腦、Windows、macOS 或 Linux、對應 Maya 或 Blender 外掛，以及 iOS 12.1 以上裝置；本文價格與相容性屬 2021 年，需按現況重驗。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://3dnchu.com/archives/virtucamera-for-blender-addon" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <nav aria-label="相鄰分類" class="category-bottom-nav">
+    <a href="../emerging-case/">
+     ← 新技術 / Case
+    </a>
+    <a href="../#top">
+     TOP5
+    </a>
+    <a href="../ai-generation/">
+     AI 生成 →
+    </a>
+   </nav>
+  </main>
+  <script defer="" src="../../archive-nav-state.js?v=20261023-r1-workspace-v10-history-current-workspace">
+  </script>
+ </body>
+</html>
