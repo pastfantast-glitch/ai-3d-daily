@@ -1,0 +1,1109 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-23",
+  "reviewer": "chatgpt-scheduled-task",
+  "source_run_id": 39873041060,
+  "source_head_sha": "3c6f58766a7d32fe5070648f03b91adf35b5e077",
+  "items": {
+    "80-level-interview-how-final-fantasy-resonance-turns-hd-2d-pixel-art": {
+      "source_url": "https://80.lv/articles/interview-how-final-fantasy-resonance-turns-hd-2d-pixel-art-into-a-cinematic-experience",
+      "source_published_at": "2026-10-22",
+      "reviewed_on": "2026-10-23",
+      "source_evidence_sha256": "60a8969fdf212cff001ef82a4d75e9f2da157043cb633c00aed1db88072cc69a",
+      "title": "《Final Fantasy Resonance》以動態鏡頭與像素化 3D 打造電影式像素美術",
+      "summary": "團隊把 3D CG 轉成像素影像，並以動態攝影機、燈光、景深、Bloom 與逐鏡調整的角色朝向，讓像素角色能在 3D 場景中演完整事件。",
+      "evidence_refs": [
+        "p003",
+        "p007",
+        "p012",
+        "p013",
+        "p018",
+        "p020"
+      ],
+      "full_analysis": [
+        {
+          "label": "電影式像素技術流程",
+          "text": "環境先由概念圖與簡易 3D 地形確立尺度、動線和攝影機，再配置資產並以燈光統整；大型召喚物與飛空艇則由 3D CG 轉為像素表現。",
+          "evidence_refs": [
+            "p007",
+            "p020"
+          ]
+        },
+        {
+          "label": "角色與鏡頭製作影響",
+          "text": "所有視覺以移動鏡頭為前提，角色會依觀看角度微調朝向；事件鏡頭不足時甚至重畫像素圖，避免角色看似浮空或陷入地面。",
+          "evidence_refs": [
+            "p013",
+            "p018"
+          ]
+        },
+        {
+          "label": "品質限制與創作判斷",
+          "text": "完整像素事件耗時，團隊也曾因懷舊感而容忍品質妥協，最後才重新修整；燈光、景深與 Bloom 另用來融合二維角色和三維背景，因此懷舊被當作靈感，而不是降低完成度的理由。",
+          "evidence_refs": [
+            "p008",
+            "p012",
+            "p029",
+            "p031",
+            "p032"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p003",
+          "p007",
+          "p012",
+          "p013",
+          "p018",
+          "p020",
+          "p008",
+          "p029",
+          "p031",
+          "p032"
+        ]
+      }
+    },
+    "80-level-terraforming-the-alters-last-variable-with-blender-zbrush-ue": {
+      "source_url": "https://80.lv/articles/terraforming-the-alters-last-variable-with-blender-zbrush-ue5",
+      "source_published_at": "2026-10-22",
+      "reviewed_on": "2026-10-23",
+      "source_evidence_sha256": "1a55b997cb1c02ea0343dbbaea8191b68c21817768de30a7ca08f6d925d675e0",
+      "title": "《The Alters: Last Variable》植被管線：Nanite 實體葉片、PCG 散佈與全域 HISM",
+      "summary": "三名環境美術建立可在荒蕪與地景改造兩種狀態運作的關卡，使用 Blender、ZBrush、Substance、UE5 PCG 與不透明 Nanite 幾何製作外星植被。",
+      "evidence_refs": [
+        "p004",
+        "p008",
+        "p009",
+        "p013",
+        "p016",
+        "p018"
+      ],
+      "full_analysis": [
+        {
+          "label": "外星植被技術流程",
+          "text": "團隊先以 beauty corner 測試資產、Shader 與地形混合，再用不透明 Nanite 切片幾何製作葉片，配合頂點色驅動 WPO 風動。",
+          "evidence_refs": [
+            "p007",
+            "p009"
+          ]
+        },
+        {
+          "label": "大範圍製作影響",
+          "text": "關卡散佈完全依靠引擎內 PCG、Geometry Script 苔蘚與射線散佈工具，並大量重用 Level Instance，以便在短時間填滿過度生長的世界。",
+          "evidence_refs": [
+            "p013"
+          ]
+        },
+        {
+          "label": "效能限制與驗證",
+          "text": "大量 Blueprint 與 Packed Level Actor 產生分散 HISM，技術團隊改為每種網格全關卡共用一個全域 HISM；非均勻縮放且有碰撞的 Actor 不宜打包。",
+          "evidence_refs": [
+            "p015",
+            "p016",
+            "p017"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p004",
+          "p008",
+          "p009",
+          "p013",
+          "p016",
+          "p018",
+          "p007",
+          "p015",
+          "p017"
+        ]
+      }
+    },
+    "80-level-building-an-abandoned-the-last-of-us-inspired-mediterranean": {
+      "source_url": "https://80.lv/articles/building-an-abandoned-the-last-of-us-inspired-mediterranean-house-with-custom-materials",
+      "source_published_at": "2026-10-22",
+      "reviewed_on": "2026-10-23",
+      "source_evidence_sha256": "f9ca7c953c35d45edf0aa1aef7bc0a9132d5a9964db261be79143fbff03bae4b",
+      "title": "地中海廢墟場景拆解：模組建築、RGB 主材質與手工植被配置",
+      "summary": "作者以五個月完成《Mediterranean Echoes》地中海廢墟場景，先用比例白模規劃模組、飾條貼圖與平鋪材質，再透過 3ds Max、ZBrush、Substance 與 Unreal Engine 建構成品。",
+      "evidence_refs": [
+        "p016",
+        "p019",
+        "p021",
+        "p026",
+        "p042",
+        "p061"
+      ],
+      "full_analysis": [
+        {
+          "label": "建築與材質技術流程",
+          "text": "破牆採 Designer 程序材質、木件高模做成可重用 Trim Sheet，高模資料另烘到第二組 UV 輸出 RGB Mask，最後統合進單一主材質。",
+          "evidence_refs": [
+            "p024",
+            "p026",
+            "p028",
+            "p031",
+            "p042"
+          ]
+        },
+        {
+          "label": "資產預算製作影響",
+          "text": "專案以每公尺 512 像素和 2K 貼圖為常態，輪廓處才增加多邊形；小型物件使用 Atlas 與低解析度，Megascans 約占場景百分之五。",
+          "evidence_refs": [
+            "p021",
+            "p034",
+            "p037",
+            "p038"
+          ]
+        },
+        {
+          "label": "限制與取捨驗證",
+          "text": "作者未使用 Nanite，地表植被風格失配後改用 Megascans，並指出 Designer 材質與植被反覆修改到最後；這些是五個月工期的主要挑戰。",
+          "evidence_refs": [
+            "p036",
+            "p052",
+            "p061",
+            "p063"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p016",
+          "p019",
+          "p021",
+          "p026",
+          "p042",
+          "p061",
+          "p024",
+          "p028",
+          "p031",
+          "p034",
+          "p037",
+          "p038",
+          "p036",
+          "p052",
+          "p063"
+        ]
+      }
+    },
+    "80-level-these-2d-characters-from-popular-manga-are-made-in-3d-with-b": {
+      "source_url": "https://80.lv/articles/these-2d-characters-from-popular-manga-are-made-in-3d-with-blender",
+      "source_published_at": "2026-10-22",
+      "reviewed_on": "2026-10-23",
+      "source_evidence_sha256": "ab93a3719d840e7fbb0644b149d7c4fd5270e36921fbb8881de6c7a67b47f0d9",
+      "title": "Blender 重製漫畫封面：Grease Pencil、Lattice 與 Shape Keys 保留二維觀感",
+      "summary": "Chloe Worthy 與 Taanthip Tuchinda 以 ZBrush、Substance 3D Painter 和 Blender 重製漫畫封面，透過 Grease Pencil、視角變形與角色動畫保留平面構圖特徵。",
+      "evidence_refs": [
+        "p003",
+        "p004",
+        "p005",
+        "p006"
+      ],
+      "full_analysis": [
+        {
+          "label": "二維化角色技術流程",
+          "text": "兩名作者分工角色建模與貼圖，再由 Worthy 統整 Grease Pencil 效果、動畫和 Blender 渲染；角色雕刻與主要貼圖分別使用 ZBrush 與 Painter。",
+          "evidence_refs": [
+            "p004",
+            "p005",
+            "p006"
+          ]
+        },
+        {
+          "label": "構圖製作影響",
+          "text": "Lattice 用來調整觀看角度，以接近漫畫封面的透視縮短但不過度變形；Koga 的姿勢與女性化表現則是作者主動重新詮釋。",
+          "evidence_refs": [
+            "p004",
+            "p005"
+          ]
+        },
+        {
+          "label": "動畫資訊限制",
+          "text": "眼睛使用 Shape Keys、頭髮動態以 Weight Painting 製作，但來源未提供 Rig 結構、幀率、Shader 或 Grease Pencil 節點設定，不能推定完整流程。",
+          "evidence_refs": [
+            "p005",
+            "p006"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p003",
+          "p004",
+          "p005",
+          "p006"
+        ]
+      }
+    },
+    "cg-channel-check-out-accenture-songs-vfx-breakdown-for-lanterns": {
+      "source_url": "https://www.cgchannel.com/2026/10/check-out-accenture-songs-vfx-breakdown-for-lanterns",
+      "source_published_at": "2026-10-22",
+      "reviewed_on": "2026-10-23",
+      "source_evidence_sha256": "626bb67af9351b7076164dcbb7461c7038fe552958a678c7aaa33b05539add8a",
+      "title": "《Lanterns》特效拆解：從綠燈能量構造到雷雨海面與燃燒車輛",
+      "summary": "Accenture Song 公開《Lanterns》特效內容，能量構造物尺度從鈔票、開瓶器延伸到大型隧道鑽掘機，另包含燃燒車輛與雷光逆照的 CG 海面。",
+      "evidence_refs": [
+        "p001",
+        "p002",
+        "p003",
+        "p004"
+      ],
+      "full_analysis": [
+        {
+          "label": "能量構造技術範圍",
+          "text": "拆解聚焦綠燈能力把想像轉成現實的能量構造物，涵蓋鈔票、開瓶器等生活物件與大型隧道鑽掘機，顯示同一視覺概念跨越明顯尺度差異。",
+          "evidence_refs": [
+            "p002",
+            "p003"
+          ]
+        },
+        {
+          "label": "環境特效製作影響",
+          "text": "除角色能力外，團隊也製作燃燒車輛，以及由閃電背光、霧帶漂移覆蓋的 CG 海面，工作範圍同時包含火焰、水體、光線與大氣。",
+          "evidence_refs": [
+            "p004"
+          ]
+        },
+        {
+          "label": "公開資訊限制",
+          "text": "目前資料只列工作室、作品與效果項目，沒有揭露使用軟體、模擬方法、鏡頭數或效能數據；可以確認的是效果類型與尺度，不能據此宣稱特定解算或合成管線。",
+          "evidence_refs": [
+            "p001",
+            "p002",
+            "p003",
+            "p004",
+            "p005"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p002",
+          "p003",
+          "p004",
+          "p005"
+        ]
+      }
+    },
+    "cg-channel-watch-framestores-vfx-breakdown-for-period-drama-east-of-ede": {
+      "source_url": "https://www.cgchannel.com/2026/10/watch-framestores-vfx-breakdown-for-period-drama-east-of-eden",
+      "source_published_at": "2026-10-21",
+      "reviewed_on": "2026-10-23",
+      "source_evidence_sha256": "b4ffead4e83424a7b7cc93993daebee11eb3b1b3f6e3b294bae02a02c2f0b752",
+      "title": "Framestore 為《East of Eden》重建二十世紀初加州與隱形特效",
+      "summary": "Framestore 以大規模 CG 環境補足實拍地點，重建住宅、Brothel Row 與舊金山唐人街，並處理四鏡頭火災、動物動畫、槍火及假髮清理。",
+      "evidence_refs": [
+        "p001",
+        "p002",
+        "p003",
+        "p004"
+      ],
+      "full_analysis": [
+        {
+          "label": "年代場景技術流程",
+          "text": "核心挑戰是重建二十世紀初加州；團隊從拍攝參考一路建立最終 CG 環境，將個別住宅、Brothel Row 與舊金山唐人街整合進實拍地點。",
+          "evidence_refs": [
+            "p002",
+            "p003"
+          ]
+        },
+        {
+          "label": "鏡頭製作影響",
+          "text": "工作不只涵蓋大場景，還包括 Ames House 四鏡頭火災、受槍聲驚動的鹿、血液、槍口火光及假髮和義肢清理。",
+          "evidence_refs": [
+            "p004"
+          ]
+        },
+        {
+          "label": "拆解資訊限制",
+          "text": "來源列出工作室、作品和效果種類，未交代建模、資產數量、群集、合成或火災模擬方法；目前只能確認實景延伸與支援特效範圍，不能推定具體管線。",
+          "evidence_refs": [
+            "p001",
+            "p002",
+            "p003",
+            "p004",
+            "p005"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p002",
+          "p003",
+          "p004",
+          "p005"
+        ]
+      }
+    },
+    "3dnchu-stove-3d": {
+      "source_url": "https://3dnchu.com/archives/stove-3d",
+      "source_published_at": "2026-10-21",
+      "reviewed_on": "2026-10-23",
+      "source_evidence_sha256": "2b00644b8555a38b2828717d637b34960f43cbd4dfbddb9c891f90fd06d331b6",
+      "title": "Stove 整合低模建模、自動 UV、3D 塗裝與資產尺度檢查",
+      "summary": "Stove 面向低模、風格化與復古遊戲資產，將頂點編輯、自動 UV、模型表面塗裝、Asset Zoo 對照與 OBJ 匯出集中在簡化介面。",
+      "evidence_refs": [
+        "p001",
+        "p002",
+        "p003",
+        "p004",
+        "p005",
+        "p006",
+        "p007"
+      ],
+      "full_analysis": [
+        {
+          "label": "低模資產技術流程",
+          "text": "使用者可從 Primitive 或 OBJ 編輯頂點、邊與面，修改後重新自動產生 UV，再直接在模型表面塗色並以 OBJ 送往遊戲引擎。",
+          "evidence_refs": [
+            "p003",
+            "p004",
+            "p005",
+            "p007",
+            "p009"
+          ]
+        },
+        {
+          "label": "系列資產製作影響",
+          "text": "示範把既有柵欄複製改成長椅，重新展 UV 後個別上色，最後放進 Asset Zoo 與其他物件比對尺度和外觀一致性。",
+          "evidence_refs": [
+            "p006",
+            "p009"
+          ]
+        },
+        {
+          "label": "功能限制與導入驗證",
+          "text": "工具不以高模寫實、渲染或關卡製作為目標，目前也不支援骨架與骨骼動畫；支援 Windows、macOS、Linux，文章價格僅是當時資訊。",
+          "evidence_refs": [
+            "p002",
+            "p008",
+            "p010"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p002",
+          "p003",
+          "p004",
+          "p005",
+          "p006",
+          "p007",
+          "p009",
+          "p008",
+          "p010"
+        ]
+      }
+    },
+    "cg-channel-luiz-elias-releases-mush3d-3-0": {
+      "source_url": "https://www.cgchannel.com/2026/06/luiz-elias-releases-mush3d-3-0",
+      "source_published_at": "2026-06-01",
+      "reviewed_on": "2026-10-23",
+      "source_evidence_sha256": "47a209484ec9f92846c66078a916dfad5d761b1c4a9e1503797d4febe80f5fb4",
+      "title": "Mush3D 3.0 以四面體變形與 Pose Trainer 修正動畫快取",
+      "summary": "Mush3D 3.0 可在 Alembic 動畫快取上逐幀雕刻修正，新增四面體軟組織次級運動與本機 Pose Trainer，將參考姿勢的修正套用到整段動畫。",
+      "evidence_refs": [
+        "p001",
+        "p003",
+        "p004",
+        "p008",
+        "p010",
+        "p012",
+        "p013"
+      ],
+      "full_analysis": [
+        {
+          "label": "動畫修正技術流程",
+          "text": "使用者能以類似 ZBrush 的筆刷逐幀雕刻，並用關鍵幀控制修正強度；也可遮罩局部套用 Delta Mush、Jiggle 或 Cloth 變形。",
+          "evidence_refs": [
+            "p003",
+            "p004",
+            "p006"
+          ]
+        },
+        {
+          "label": "角色製作影響",
+          "text": "四面體解算器在遮罩區域下建立體積以產生軟組織次級運動；Pose Trainer 可由手雕或掃描姿勢學習，再自動修正動畫與臉部轉移。",
+          "evidence_refs": [
+            "p008",
+            "p010",
+            "p011",
+            "p012",
+            "p013",
+            "p015"
+          ]
+        },
+        {
+          "label": "授權與功能限制",
+          "text": "免費版只有雕刻工具且限 OBJ 匯入匯出，不含 Pose Trainer 或四面體模擬；Pro 改為年租制，文中價格為每年 980 美元。",
+          "evidence_refs": [
+            "p016",
+            "p017"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p003",
+          "p004",
+          "p008",
+          "p010",
+          "p012",
+          "p013",
+          "p006",
+          "p011",
+          "p015",
+          "p016",
+          "p017"
+        ]
+      }
+    },
+    "cg-channel-e-on-software-ships-carbon-scatter-ozone-5-ple": {
+      "source_url": "https://www.cgchannel.com/2011/03/e-on-software-ships-carbon-scatter-ozone-5-ple",
+      "source_published_at": "2011-03-11",
+      "reviewed_on": "2026-10-23",
+      "source_evidence_sha256": "6c0015c70e0818b5cdebf03dddfe8d2f69b75105b2ae6938749bb2cbdeb46025",
+      "title": "歷史參考｜2011 年 Carbon Scatter 植被實例外掛與 Ozone 5 學習版",
+      "summary": "2011 年 e-on software 推出 3ds Max 用 Carbon Scatter 實例外掛，分成 Single、Multi、Multi-CE 三版；同時發布帶浮水印的 Ozone 5 個人學習版。",
+      "evidence_refs": [
+        "p002",
+        "p004",
+        "p005",
+        "p006",
+        "p007",
+        "p009"
+      ],
+      "full_analysis": [
+        {
+          "label": "植被實例技術版本",
+          "text": "Single 綁定一種相容宿主但可用該宿主的相容渲染器；Multi 支援所有相容宿主與渲染器，Multi-CE 另含超過一百種植物。",
+          "evidence_refs": [
+            "p004",
+            "p005",
+            "p006",
+            "p007"
+          ]
+        },
+        {
+          "label": "素材庫製作影響",
+          "text": "Single 與 Multi 只附八種植物，Multi-CE 的一百多種植物不能被前兩版讀取，因此素材庫規模與版本相容性直接綁定授權層級。",
+          "evidence_refs": [
+            "p007",
+            "p008"
+          ]
+        },
+        {
+          "label": "歷史版本限制",
+          "text": "這是 2011 年價格與相容資訊，Ozone 5 PLE 也是帶浮水印教育版；目前產品狀態、下載連結及新版 3ds Max 相容性不能由本文確認。",
+          "evidence_refs": [
+            "p003",
+            "p005",
+            "p006",
+            "p007",
+            "p009",
+            "p010"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p002",
+          "p004",
+          "p005",
+          "p006",
+          "p007",
+          "p009",
+          "p008",
+          "p003",
+          "p010"
+        ]
+      }
+    },
+    "3dnchu-ue5-real-time-visualization-book": {
+      "source_url": "https://3dnchu.com/archives/ue5-real-time-visualization-book",
+      "source_published_at": "2023-01-06",
+      "reviewed_on": "2026-10-23",
+      "source_evidence_sha256": "f937c7d152771afd480b143ccbf8214e36005d46a7c7e82c44802dde6f2e92e5",
+      "title": "歷史參考｜2023 年 UE5 即時視覺化教材：CAD、燈光、VR 與互動展示",
+      "summary": "這份 2023 年資料介紹一本 UE5 入門書，內容從 CAD 匯入與 DataPrep、材質燈光、後製與即時光追，延伸到 VR、Movie Render Queue 及互動 Blueprint。",
+      "evidence_refs": [
+        "p001",
+        "p004",
+        "p008",
+        "p011",
+        "p019",
+        "p024",
+        "p027"
+      ],
+      "full_analysis": [
+        {
+          "label": "CAD 視覺化技術流程",
+          "text": "教材涵蓋 DataPrep 轉換 CAD 組件、跨專案 Migration、Megascans、材質、燈光、後製、渲染與 VR 輸出，也包含即時光線追蹤基礎。",
+          "evidence_refs": [
+            "p004",
+            "p008",
+            "p009",
+            "p010",
+            "p011"
+          ]
+        },
+        {
+          "label": "互動展示製作影響",
+          "text": "Blueprint 範例包含燈光開關、選配零件、Timeline 開合、Widget UI 與 Variant Manager，讓工業產品展示不只停留在靜態畫面。",
+          "evidence_refs": [
+            "p014",
+            "p020",
+            "p021",
+            "p023",
+            "p024",
+            "p025",
+            "p026",
+            "p027",
+            "p028"
+          ]
+        },
+        {
+          "label": "歷史內容限制",
+          "text": "書籍於 2022 年底推出、本文發布於 2023 年，還包含 UE4 專案沿用內容；現行 UE5 介面、即時光追與外掛流程需依新版文件重驗。",
+          "evidence_refs": [
+            "p001",
+            "p013",
+            "p029",
+            "p030"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p004",
+          "p008",
+          "p011",
+          "p019",
+          "p024",
+          "p027",
+          "p009",
+          "p010",
+          "p014",
+          "p020",
+          "p021",
+          "p023",
+          "p025",
+          "p026",
+          "p028",
+          "p013",
+          "p029",
+          "p030"
+        ]
+      }
+    },
+    "3dnchu-coloso-3dcgmodeler-fusako-jp": {
+      "source_url": "https://3dnchu.com/archives/coloso-3dcgmodeler-fusako-jp",
+      "source_published_at": "2026-02-02",
+      "reviewed_on": "2026-10-23",
+      "source_evidence_sha256": "ec7be1a72c326e49528c5b3c7fea744d2aebcfa8aa6c2605d70928d153d1814f",
+      "title": "歷史參考｜2026 年 VTuber 角色全流程課：從 Blender 建模到 Unity 驗收",
+      "summary": "這份 2026 年課程評測涵蓋約 26 小時的 VTuber 角色流程：Blender 建模、可變形拓樸、UV、Painter 貼圖、表情、Rig、Skinning 與 Unity 設定。",
+      "evidence_refs": [
+        "p004",
+        "p005",
+        "p010",
+        "p012",
+        "p013",
+        "p014",
+        "p030",
+        "p036"
+      ],
+      "full_analysis": [
+        {
+          "label": "角色資產技術流程",
+          "text": "課程依臉、髮、身體、衣裝從粗模推進到網格整理，再以 Mio3 UV 展開、Painter 烘焙貼圖、表情製作及 Rig、Skinning 完成角色。",
+          "evidence_refs": [
+            "p024",
+            "p025",
+            "p026",
+            "p027",
+            "p028",
+            "p029"
+          ]
+        },
+        {
+          "label": "Unity 交付製作影響",
+          "text": "Unity 段落處理搖擺物碰撞、法線問題、外觀與 Shader，最後用 3tene 讓角色跳舞，藉實際動作找出破綻並回修。",
+          "evidence_refs": [
+            "p014",
+            "p015",
+            "p030",
+            "p045"
+          ]
+        },
+        {
+          "label": "學習門檻與限制",
+          "text": "課程定位 Blender 中級者，不細講素描與造形平衡；雖附完成模型供比較，最終外觀仍仰賴觀察力，文中軟體版本與優惠屬 2026 年資料。",
+          "evidence_refs": [
+            "p035",
+            "p042",
+            "p043",
+            "p046",
+            "p053"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p004",
+          "p005",
+          "p010",
+          "p012",
+          "p013",
+          "p014",
+          "p030",
+          "p036",
+          "p024",
+          "p025",
+          "p026",
+          "p027",
+          "p028",
+          "p029",
+          "p015",
+          "p045",
+          "p035",
+          "p042",
+          "p043",
+          "p046",
+          "p053"
+        ]
+      }
+    },
+    "3dnchu-easy-custom-normals": {
+      "source_url": "https://3dnchu.com/archives/easy-custom-normals",
+      "source_published_at": "2025-04-24",
+      "reviewed_on": "2026-10-23",
+      "source_evidence_sha256": "3a7138b44e00400dbeaa1be29d68496b50628131014fd412acddd872224347d7",
+      "title": "歷史參考｜2025 年 Easy Custom Normals 以 Geometry Nodes 平滑卡通模型法線",
+      "summary": "2025 年發布的 Blender 外掛以加權法線與拉普拉斯平滑改善不均三角網格，並透過 Geometry Nodes 提供即時、非破壞預覽，可輸出遊戲或 VTuber 模型法線。",
+      "evidence_refs": [
+        "p001",
+        "p002",
+        "p003",
+        "p004",
+        "p006"
+      ],
+      "full_analysis": [
+        {
+          "label": "法線平滑技術流程",
+          "text": "Laplacian Smooth Normals Modifier 不依賴規整拓樸，並可反轉面權重處理陰影瑕疵；Geometry Nodes 讓結果可即時查看而不必手動接線或烘焙。",
+          "evidence_refs": [
+            "p002",
+            "p003",
+            "p004"
+          ]
+        },
+        {
+          "label": "卡通角色製作影響",
+          "text": "工具針對動畫風格臉與頭髮的法線整理，來源表示可直接用於 Blender，或將自訂頂點法線交付遊戲與 VTuber 模型。",
+          "evidence_refs": [
+            "p002",
+            "p005",
+            "p006"
+          ]
+        },
+        {
+          "label": "歷史功能限制",
+          "text": "本文是 2025 年 v1.0.0 資訊，動畫臉 Proxy 當時仍標示即將推出；來源未提供 Blender 版本範圍、效能數據或目前功能狀態。",
+          "evidence_refs": [
+            "p005",
+            "p006",
+            "p007"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p002",
+          "p003",
+          "p004",
+          "p006",
+          "p005",
+          "p007"
+        ]
+      }
+    },
+    "3dnchu-photogrammetry-vs-img2mat": {
+      "source_url": "https://3dnchu.com/archives/photogrammetry-vs-img2mat",
+      "source_published_at": "2020-12-08",
+      "reviewed_on": "2026-10-23",
+      "source_evidence_sha256": "bce6db7ad04b4d161cfbbfbcc9c191fac49ed1b6b26a90f1d1cbec5dffdff99d",
+      "title": "歷史參考｜2020 年磚牆 PBR 比較：攝影測量與單張照片材質生成",
+      "summary": "2020 年測試以磚牆比較兩條 PBR 流程：攝影測量經 RAW 去光、3DF Zephyr 重建、ZBrush 與 Substance 烘焙；另一條用 Alchemist 從單張照片生成。",
+      "evidence_refs": [
+        "p001",
+        "p002",
+        "p003",
+        "p004",
+        "p005",
+        "p008"
+      ],
+      "full_analysis": [
+        {
+          "label": "兩種材質技術流程",
+          "text": "攝影測量流程包含 PhotoLab RAW 前處理與去光、Zephyr 重建、ZBrush 低模烘焙底、Designer 烘焙與粗糙度、Painter 手動修縫。",
+          "evidence_refs": [
+            "p002",
+            "p003",
+            "p004",
+            "p005",
+            "p006",
+            "p007"
+          ]
+        },
+        {
+          "label": "製作品質與時間影響",
+          "text": "來源觀察攝影測量能保留更立體且銳利的磚牆邊緣；Alchemist 結果不完美但可用，優勢是從單張照片大幅縮短製作時間。",
+          "evidence_refs": [
+            "p008",
+            "p009",
+            "p010"
+          ]
+        },
+        {
+          "label": "歷史比較限制",
+          "text": "測試發布於 2020 年，工具仍以 Substance Alchemist 名稱呈現；來源沒有量化耗時、解析度或誤差，不能直接外推到目前 Image to Material。",
+          "evidence_refs": [
+            "p001",
+            "p009",
+            "p010",
+            "p011"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p002",
+          "p003",
+          "p004",
+          "p005",
+          "p008",
+          "p006",
+          "p007",
+          "p009",
+          "p010",
+          "p011"
+        ]
+      }
+    },
+    "3dnchu-sakura-ux-enhancer": {
+      "source_url": "https://3dnchu.com/archives/sakura-ux-enhancer",
+      "source_published_at": "2024-04-07",
+      "reviewed_on": "2026-10-23",
+      "source_evidence_sha256": "4c863ebc0cb4918c809e01118744d7e7c340885373dc1426b3dcb6730e67baa3",
+      "title": "歷史參考｜2024 年 Sakura UX Enhancer 集中 Blender 顯示切換與小型自動化",
+      "summary": "2024 年的 Sakura UX Enhancer 在 Blender 介面加入 Modifier、骨架、燈光、渲染器與色彩空間切換，也擴充 Node、Image Editor 和自動 Viewport 控制。",
+      "evidence_refs": [
+        "p001",
+        "p003",
+        "p004",
+        "p007",
+        "p008",
+        "p009",
+        "p010"
+      ],
+      "full_analysis": [
+        {
+          "label": "介面工具技術範圍",
+          "text": "3D View Header 可切換隔離視圖、Modifier、骨架、線框、燈光參數、渲染器、AO 與色彩空間；Node Editor 還能雙擊看圖及直接烘焙。",
+          "evidence_refs": [
+            "p003",
+            "p007",
+            "p008"
+          ]
+        },
+        {
+          "label": "日常操作製作影響",
+          "text": "外掛能把作用中材質圖片送到 Image Editor，依模式自動更換 Viewport 設定，並提供相關圖片搜尋，目標是減少反覆尋找面板的操作。",
+          "evidence_refs": [
+            "p004",
+            "p009",
+            "p010",
+            "p012"
+          ]
+        },
+        {
+          "label": "歷史版本與設定限制",
+          "text": "所有功能可個別調整，只啟用需要的部分；本文記錄 2024 年版本與當時十美元價格，目前 Blender 相容性及售價需另行核對。",
+          "evidence_refs": [
+            "p005",
+            "p006",
+            "p011",
+            "p014"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p003",
+          "p004",
+          "p007",
+          "p008",
+          "p009",
+          "p010",
+          "p012",
+          "p005",
+          "p006",
+          "p011",
+          "p014"
+        ]
+      }
+    },
+    "3dnchu-virtucamera-for-blender-addon": {
+      "source_url": "https://3dnchu.com/archives/virtucamera-for-blender-addon",
+      "source_published_at": "2021-03-10",
+      "reviewed_on": "2026-10-23",
+      "source_evidence_sha256": "198d7215eaa51ef3df888a389098050124792f263176b779c4994c50542e2a68",
+      "title": "歷史參考｜2021 年 VirtuCamera 以 iOS 裝置錄製 Blender 虛擬攝影機",
+      "summary": "2021 年 VirtuCamera Blender 外掛讓 iPhone、iPad 或 iPod Touch 經 Wi-Fi 傳送裝置動作與即時 Viewport，並從 App 控制播放、焦距及攝影機位移尺度。",
+      "evidence_refs": [
+        "p001",
+        "p003",
+        "p004",
+        "p005",
+        "p012"
+      ],
+      "full_analysis": [
+        {
+          "label": "虛擬攝影技術流程",
+          "text": "裝置移動會透過 Wi-Fi 轉成 3D 攝影機動畫，Viewport 同步串流到 App；可控制播放、切換場景攝影機、動畫焦距並縮放移動距離。",
+          "evidence_refs": [
+            "p002",
+            "p003",
+            "p004"
+          ]
+        },
+        {
+          "label": "鏡頭製作影響",
+          "text": "動作與畫面最高可用每秒六十幀傳送，另有攝影機穩定器移除手部雜訊，也能自訂 App 按鈕呼叫製作腳本。",
+          "evidence_refs": [
+            "p005",
+            "p006",
+            "p007"
+          ]
+        },
+        {
+          "label": "歷史相依與限制",
+          "text": "來源要求足以執行三維場景的電腦、Windows、macOS 或 Linux、對應 Maya 或 Blender 外掛，以及 iOS 12.1 以上裝置；本文價格與相容性屬 2021 年，需按現況重驗。",
+          "evidence_refs": [
+            "p009",
+            "p010",
+            "p011",
+            "p012",
+            "p013"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p003",
+          "p004",
+          "p005",
+          "p012",
+          "p002",
+          "p006",
+          "p007",
+          "p009",
+          "p010",
+          "p011",
+          "p013"
+        ]
+      }
+    }
+  }
+}
