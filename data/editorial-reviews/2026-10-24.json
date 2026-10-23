@@ -1,0 +1,715 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-24",
+  "reviewer": "chatgpt-scheduled-task",
+  "source_run_id": 40041031166,
+  "source_head_sha": "c32f8c7beee1326243299a300affd2e059d1fb9a",
+  "items": {
+    "80-level-bluey-s-simple-2d-look-required-gameloft-s-most-technically": {
+      "source_url": "https://80.lv/articles/bluey-s-simple-2d-look-required-gameloft-s-most-technically-challenging-art-pipeline",
+      "source_published_at": "2026-10-23",
+      "reviewed_on": "2026-10-24",
+      "source_evidence_sha256": "653b2427754510d01ec984254a6958df410ac3cfe139f2cc13baeffceded43cf",
+      "title": "《Bluey’s Happy Snaps》以 SDF 平面角色與 Control Rig 重現手繪動畫",
+      "summary": "Gameloft Brisbane 把角色拆成朝向攝影機的分層二維平面，以 SDF 貼圖、Unreal Engine Control Rig、八方向資產和自訂外框 Shader，在可自由探索的三維場景中維持原作造型。",
+      "evidence_refs": [
+        "p003",
+        "p007",
+        "p008",
+        "p012",
+        "p021",
+        "p024",
+        "p030",
+        "p045"
+      ],
+      "full_analysis": [
+        {
+          "label": "角色資產技術流程",
+          "text": "角色先在 Maya 建立平面、骨架與 SDF 身體部件，再匯入 Unreal Engine 設定材質、色彩曲線和 Control Rig；眼睛則由 SDF 貝茲曲線 Shader 控制眨眼與視線。",
+          "evidence_refs": [
+            "p007",
+            "p008",
+            "p018",
+            "p021",
+            "p022"
+          ]
+        },
+        {
+          "label": "八方向動畫製作影響",
+          "text": "團隊為每名角色製作八個相隔四十五度的朝向，主要在一個角度完成動畫後複製到其餘方向再清理，並用 Shader 插值減少切換角度時的跳動。",
+          "evidence_refs": [
+            "p024",
+            "p026",
+            "p030"
+          ]
+        },
+        {
+          "label": "鏡頭與效能限制",
+          "text": "俯仰鏡頭會暴露角色由平面組成，手持拍立得還需額外壓平圖層；外框 Shader 與複雜 Rig 對低階平台負擔最大，因此以 LOD 和貼圖壓縮換回效能。",
+          "evidence_refs": [
+            "p028",
+            "p029",
+            "p039",
+            "p045"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p003",
+          "p007",
+          "p008",
+          "p012",
+          "p021",
+          "p024",
+          "p030",
+          "p045",
+          "p018",
+          "p022",
+          "p026",
+          "p028",
+          "p029",
+          "p039"
+        ]
+      }
+    },
+    "80-level-artist-shows-ziva-vfx-inspired-muscle-simulation-plug-in-for": {
+      "source_url": "https://80.lv/articles/artist-shows-ziva-vfx-inspired-muscle-simulation-plug-in-for-3ds-max-maya",
+      "source_published_at": "2026-10-23",
+      "reviewed_on": "2026-10-24",
+      "source_evidence_sha256": "6c7d48494b60fe510a1fd532a2cbd3e25ca37414fdb1934b8b41fe42b9260f6a",
+      "title": "HézFX 公開 Maya 測試：密度繪製、肌纖維方向與 Ziva VFX 對照",
+      "summary": "Shirzad Bahrami 展示 Maya、3ds Max 肌肉模擬外掛 HézFX，並以同骨架與組織對照 Ziva VFX；目前 3ds Max 版已有測試者，Maya 版仍在徵集資深 CFX 藝術家。",
+      "evidence_refs": [
+        "p002",
+        "p003",
+        "p004",
+        "p005"
+      ],
+      "full_analysis": [
+        {
+          "label": "肌肉模擬技術對照",
+          "text": "示範以紅色顯示 HézFX 模擬、藍色顯示 Ziva VFX 結果，另有使用相同骨架與組織的對照設定；來源未提供誤差或效能數值。",
+          "evidence_refs": [
+            "p003"
+          ]
+        },
+        {
+          "label": "組織解析製作影響",
+          "text": "規劃功能包含以密度繪製提高局部組織變形解析度、鄰近區域繪製，以及自動尋找肌纖維端點方向，讓解析度可集中在需要的位置。",
+          "evidence_refs": [
+            "p004"
+          ]
+        },
+        {
+          "label": "測試階段與功能限制",
+          "text": "肌肉收縮會沿纖維與肌腹逐步啟動，而非整塊同時作用；目前僅確認 3ds Max 版有超過十名測試者，Maya 版仍是限額測試，尚不能視為正式版。",
+          "evidence_refs": [
+            "p004",
+            "p005"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p002",
+          "p003",
+          "p004",
+          "p005"
+        ]
+      }
+    },
+    "80-level-how-tripo-p2-0-astra-work-together-in-blender-and-unity": {
+      "source_url": "https://80.lv/articles/how-tripo-p2-0-astra-work-together-in-blender-and-unity",
+      "source_published_at": "2026-10-23",
+      "reviewed_on": "2026-10-24",
+      "source_evidence_sha256": "72ab0d3db0c95cc44483277e48a3ca758bd89842e8c5d98aee43d10d2c420bb0",
+      "title": "Tripo P2.0 與 Astra 串接 Blender、Unity：分件生成、組裝與品質檢查",
+      "summary": "Tripo 團隊說明以 P2.0 生成可調面數、三角或四邊形拓樸、分件與智慧 UV 的資產，再由 Astra 協助組裝、綁定、動畫及導入 Blender、Unity 的工作方式。",
+      "evidence_refs": [
+        "p001",
+        "p002",
+        "p011",
+        "p015",
+        "p021",
+        "p023",
+        "p029",
+        "p031"
+      ],
+      "full_analysis": [
+        {
+          "label": "分件生成技術流程",
+          "text": "角色可將身體、頭部與頭髮分開生成，針對單一部件重做後再由 Astra 於 Blender 組裝；P2.0 另提供面數、三角或四邊形、分件、材質與自動綁定控制。",
+          "evidence_refs": [
+            "p011",
+            "p012",
+            "p015",
+            "p029"
+          ]
+        },
+        {
+          "label": "交付前製作品質驗證",
+          "text": "導入後仍須檢查比例、部件對位、輪廓和接縫，動畫階段要測試肩、肘、膝與表情的變形，並核對各部件材質和貼圖的風格一致性。",
+          "evidence_refs": [
+            "p028",
+            "p029",
+            "p030"
+          ]
+        },
+        {
+          "label": "適用階段與限制",
+          "text": "來源把現階段定位在概念、提案、原型、預視與獨立資產等前中期；自然動作、複雜動畫、臉部表情與次級運動仍需改善和人工修整。",
+          "evidence_refs": [
+            "p016",
+            "p020",
+            "p021",
+            "p031"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p002",
+          "p011",
+          "p015",
+          "p021",
+          "p023",
+          "p029",
+          "p031",
+          "p012",
+          "p028",
+          "p030",
+          "p016",
+          "p020"
+        ]
+      }
+    },
+    "80-level-this-dreamy-wooden-cabin-scene-with-glowing-water-fx-was-mad": {
+      "source_url": "https://80.lv/articles/this-dreamy-wooden-cabin-scene-with-glowing-water-fx-was-made-with-houdini",
+      "source_published_at": "2026-10-23",
+      "reviewed_on": "2026-10-24",
+      "source_evidence_sha256": "b863400b586ca3b5baa0ef68a9c66166a56a3bf03334b1b2788a40e379b557c6",
+      "title": "Houdini Solaris 木屋海景：Ocean Procedural、Karma XPU 與夜間生物發光氛圍",
+      "summary": "Mario Sánchez Aguado 將一年前放棄的 Maya、Arnold 木屋場景改以 Houdini Solaris 和 Karma XPU 重製，重點放在燈光、外觀開發、水體特效與 Nuke 合成。",
+      "evidence_refs": [
+        "p001",
+        "p003",
+        "p005",
+        "p006",
+        "p007",
+        "p008"
+      ],
+      "full_analysis": [
+        {
+          "label": "場景重製技術流程",
+          "text": "作者學習 USD 與 Solaris 後重啟專案，採用 Big Medium Small 的木屋與漁夫，重用既有岩石、珊瑚和魚，將時間集中在燈光、外觀、特效與合成。",
+          "evidence_refs": [
+            "p003",
+            "p004",
+            "p005"
+          ]
+        },
+        {
+          "label": "個人專案製作影響",
+          "text": "雖然是個人作品，作者仍把場景依不同部門的製作步驟拆分管理；這種分段方式用來整理工作，來源沒有提供實際節省的工時。",
+          "evidence_refs": [
+            "p006"
+          ]
+        },
+        {
+          "label": "水體成本與限制驗證",
+          "text": "原計畫把低頻波形與高頻位移分層，但密集幾何會拉長算圖，最後改用單一 Ocean Procedural 平面；夜景以珊瑚和魚群燈光營造發光感，再於 Nuke 加入鏡頭晃動、鏡頭效果和焦散反彈。",
+          "evidence_refs": [
+            "p007",
+            "p008"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p003",
+          "p005",
+          "p006",
+          "p007",
+          "p008",
+          "p004"
+        ]
+      }
+    },
+    "80-level-this-fish-moves-using-simple-physics-math": {
+      "source_url": "https://80.lv/articles/this-fish-moves-using-simple-physics-math",
+      "source_published_at": "2026-08-12",
+      "reviewed_on": "2026-10-24",
+      "source_evidence_sha256": "501fc51e917f908318777c5a4201868d00184712e08b5ddf4b7fbc7474a5c35c",
+      "title": "魚尾骨鏈以彈簧質點計算延遲、過衝與回穩，不需完整物理解算器",
+      "summary": "Shirzad Bahrami 公開 3ds Max 教學與腳本，以簡單物理和數學模擬魚尾波動：只驅動根骨，其餘骨骼依模擬端點的位置與速度形成連鎖動作。",
+      "evidence_refs": [
+        "p001",
+        "p002",
+        "p003",
+        "p004",
+        "p005",
+        "p009"
+      ],
+      "full_analysis": [
+        {
+          "label": "骨鏈運動技術流程",
+          "text": "每根骨骼末端被視為連在彈簧上的小質點，彈簧把端點拉向剛性跟隨父骨時應在的位置，再把端點約束回原骨長。",
+          "evidence_refs": [
+            "p003",
+            "p004"
+          ]
+        },
+        {
+          "label": "旋轉計算製作影響",
+          "text": "系統保存骨鏈靜止姿勢，為每根骨骼記錄模擬端點的位置與速度，最後計算使骨骼朝向該端點的旋轉，因此動畫師只需驅動根部。",
+          "evidence_refs": [
+            "p003",
+            "p005",
+            "p006",
+            "p007",
+            "p008"
+          ]
+        },
+        {
+          "label": "解算範圍與限制",
+          "text": "這套簡化設定能產生延遲、過衝和逐步回穩，不需要完整物理解算器；來源展示魚尾、繩索與頭髮類波動，未提供碰撞、效能或複雜肌肉處理資料，其他適用範圍仍待驗證。",
+          "evidence_refs": [
+            "p002",
+            "p003",
+            "p009"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p002",
+          "p003",
+          "p004",
+          "p005",
+          "p009",
+          "p006",
+          "p007",
+          "p008"
+        ]
+      }
+    },
+    "80-level-unity-cancels-ziva-software": {
+      "source_url": "https://80.lv/articles/unity-cancels-ziva-software",
+      "source_published_at": "2024-04-03",
+      "reviewed_on": "2026-10-24",
+      "source_evidence_sha256": "ae28f6f1405e1885a8d385e6b701c32d6b237fbd4e40260221607861de076b5a",
+      "title": "歷史參考｜2024 年 Unity 停售 Ziva 工具，DNEG 取得獨家永久授權",
+      "summary": "2024 年 Unity 宣布停售 Ziva VFX、Ziva Real-Time、Ziva Face Trainer 等工具並停止技術支援；既有訂閱者當時可轉換五年期授權，Ziva IP 則獨家永久授權給 DNEG。",
+      "evidence_refs": [
+        "p001",
+        "p002",
+        "p003",
+        "p004",
+        "p005",
+        "p006"
+      ],
+      "full_analysis": [
+        {
+          "label": "停產決策與技術範圍",
+          "text": "Unity 自 2024 年 4 月 2 日停止銷售及支援 Ziva VFX、Ziva Real-Time、Ziva Face Trainer 和相關產品，理由是公司重整後聚焦 Unity Editor、Runtime 與變現方案。",
+          "evidence_refs": [
+            "p001",
+            "p002",
+            "p003",
+            "p004"
+          ]
+        },
+        {
+          "label": "既有授權處理影響",
+          "text": "當時的既有訂閱者可透過 Ziva 客戶入口把授權轉成五年期；Unity 保留從 Ziva Dynamics 收購的技術所有權，同時把 Ziva IP 獨家永久授權給 DNEG。",
+          "evidence_refs": [
+            "p003"
+          ]
+        },
+        {
+          "label": "歷史後續與資訊限制",
+          "text": "DNEG 表示該工具會支援其生物角色管線與 IXP 部門的即時數位人、遊戲、虛擬演唱會及沉浸式專案；這是 2024 年公告，不能由本文推定目前對外產品狀態。",
+          "evidence_refs": [
+            "p005",
+            "p006"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p002",
+          "p003",
+          "p004",
+          "p005",
+          "p006"
+        ]
+      }
+    },
+    "cg-channel-new-cg-software-you-may-have-missed-18-october-2026": {
+      "source_url": "https://www.cgchannel.com/2026/10/new-cg-software-you-may-have-missed-18-october-2026",
+      "source_published_at": "2026-10-18",
+      "reviewed_on": "2026-10-24",
+      "source_evidence_sha256": "570a085e70d6ce5d924123b8265429d69b4865094834e6e0d0593457e597f623",
+      "title": "十月 CG 軟體更新：Nomad Sculpt 串接 Blender、ComfyUI RTX 節點與 IlluGen 2.0",
+      "summary": "CG Channel 彙整 2026 年 10 月多項更新，包括 Nomad Sculpt 2.9 至 2.12、ComfyUI 的本機 NVIDIA RTX 影片節點，以及強化粒子、破壞與 Unreal 匯出的 IlluGen 2.0。",
+      "evidence_refs": [
+        "p002",
+        "p003",
+        "p038",
+        "p055",
+        "p098",
+        "p130"
+      ],
+      "full_analysis": [
+        {
+          "label": "雕刻與跨軟體技術流程",
+          "text": "Nomad Sculpt 新增自動重拓樸、UV 展開、二十五種貼圖混合模式與 VDM 工具，並能即時同步 Blender、ZBrush 或其他 Nomad 執行個體。",
+          "evidence_refs": [
+            "p098",
+            "p100",
+            "p104",
+            "p105",
+            "p106",
+            "p108",
+            "p111",
+            "p115"
+          ]
+        },
+        {
+          "label": "本機影片處理影響",
+          "text": "ComfyUI 可在本機 RTX GPU 執行影片超解析、補幀和 SDR 轉 HDR 節點；超解析最高標示四倍或 8,192 像素，補幀標示二至十六倍，但補幀需 RTX 40 系列以上。",
+          "evidence_refs": [
+            "p038",
+            "p039",
+            "p041",
+            "p042",
+            "p043",
+            "p045"
+          ]
+        },
+        {
+          "label": "遊戲特效輸出與限制",
+          "text": "IlluGen 2.0 的 GPU 粒子可取樣二維圖集或三維網格，並輸出 Houdini 點快取、FGA 速度、幾何圖集和 PAT 貼圖給遊戲引擎；同篇另註明 Unreal 外掛 Atlux 只維護、不再增加大型功能。",
+          "evidence_refs": [
+            "p055",
+            "p056",
+            "p057",
+            "p059",
+            "p062",
+            "p063",
+            "p070",
+            "p071",
+            "p130",
+            "p131"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p002",
+          "p003",
+          "p038",
+          "p055",
+          "p098",
+          "p130",
+          "p100",
+          "p104",
+          "p105",
+          "p106",
+          "p108",
+          "p111",
+          "p115",
+          "p039",
+          "p041",
+          "p042",
+          "p043",
+          "p045",
+          "p056",
+          "p057",
+          "p059",
+          "p062",
+          "p063",
+          "p070",
+          "p071",
+          "p131"
+        ]
+      }
+    },
+    "cg-channel-reallusions-2026-3d-character-contest-meet-the-winners": {
+      "source_url": "https://www.cgchannel.com/2026/10/reallusions-2026-3d-character-contest-meet-the-winners",
+      "source_published_at": "2026-10-21",
+      "reviewed_on": "2026-10-24",
+      "source_evidence_sha256": "7ccb5213b5b0118ea24da94099ed4540be62077ba61be73a46e1754212364a70",
+      "title": "Reallusion 2026 角色賽：CC5、ZBrush、Blender 與 iClone 的實作案例",
+      "summary": "這篇贊助報導整理 2026 年 Reallusion 3D Character Contest：活動收到來自 49 國的 200 件作品，參賽流程涵蓋 Character Creator、iClone、AccuRIG 與多種第三方 DCC。",
+      "evidence_refs": [
+        "p001",
+        "p002",
+        "p008",
+        "p029",
+        "p039",
+        "p049",
+        "p061"
+      ],
+      "full_analysis": [
+        {
+          "label": "角色設計技術流程",
+          "text": "寫實與風格化組別使用 Character Creator 基底，再串接雕刻、材質、服裝、建模和拓樸工具；案例明列 Blender Data Link、GoZ Plus、Maya Auto Setup 的實際使用與同步問題。",
+          "evidence_refs": [
+            "p008",
+            "p010",
+            "p016",
+            "p017",
+            "p019",
+            "p021"
+          ]
+        },
+        {
+          "label": "動畫製作影響",
+          "text": "寫實與風格化動畫組以 CC3+ 角色搭配 iClone，案例分別使用動作捕捉決定節奏與角色表演、Headshot 3 建立數位替身，以及 CC5、AccuRIG 完成角色後在 iClone 即時算圖。",
+          "evidence_refs": [
+            "p029",
+            "p034",
+            "p037",
+            "p039",
+            "p041"
+          ]
+        },
+        {
+          "label": "來源性質與判讀限制",
+          "text": "文章明確標為贊助內容，並大量引用參賽者感言；可確認的是 200 件投稿、49 國與組別工作流，不能把使用者評語視為獨立效能測試。",
+          "evidence_refs": [
+            "p001",
+            "p002",
+            "p003",
+            "p007",
+            "p061"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p002",
+          "p008",
+          "p029",
+          "p039",
+          "p049",
+          "p061",
+          "p010",
+          "p016",
+          "p017",
+          "p019",
+          "p021",
+          "p034",
+          "p037",
+          "p041",
+          "p003",
+          "p007"
+        ]
+      }
+    },
+    "cg-channel-new-cg-software-you-may-have-missed-7-september-2026": {
+      "source_url": "https://www.cgchannel.com/2026/09/new-cg-software-you-may-have-missed-7-september-2026",
+      "source_published_at": "2026-09-07",
+      "reviewed_on": "2026-10-24",
+      "source_evidence_sha256": "a4529ce698ec3b6650d790377e35a1fb92dd7c108ad473bf9ba048b80e2f6a8e",
+      "title": "九月 CG 軟體更新：Blender Gaussian Splat、Unity 6.6 與 Sisir 毛髮工具",
+      "summary": "CG Channel 彙整 2026 年 9 月九項工具更新，其中 3DGS Render 5.1 強化 Blender 的 Gaussian Splat，Unity 6.6 更新烘焙與 URP 工具，Sisir 則增加辮髮與多導引線編輯。",
+      "evidence_refs": [
+        "p001",
+        "p003",
+        "p007",
+        "p060",
+        "p075",
+        "p091"
+      ],
+      "full_analysis": [
+        {
+          "label": "Gaussian Splat 技術流程",
+          "text": "3DGS Render 5.1 可用 Blender 燈光即時重打光，世界 Shader 僅有限支援；代理 Rig 的動畫烘焙改為 GPU 加速並提高變形準確度，支援 Blender 5.2。",
+          "evidence_refs": [
+            "p007",
+            "p008",
+            "p010",
+            "p011",
+            "p012",
+            "p013"
+          ]
+        },
+        {
+          "label": "毛髮與綁定製作影響",
+          "text": "免費獨立毛髮工具 Sisir 新增 Braid Clump、參數化頭模、Blendshape、Surface Comb 與多導引線編輯；同篇的 Smooth Weights 2 則標示體積權重平滑最高加速約三十五倍。",
+          "evidence_refs": [
+            "p060",
+            "p061",
+            "p062",
+            "p063",
+            "p064",
+            "p065",
+            "p071",
+            "p072"
+          ]
+        },
+        {
+          "label": "Unity 美術流程與限制",
+          "text": "Unity 6.6 新增光照貼圖與探針的 Compute Light Baker，Profiler 可檢視 GPU Resident Drawer，Project Auditor 支援 URP，也能由 VFX Graph 直接建立 Shader Graph；舊版 CPU 烘焙器已棄用。",
+          "evidence_refs": [
+            "p075",
+            "p076",
+            "p077",
+            "p078",
+            "p079",
+            "p080",
+            "p081",
+            "p082",
+            "p083"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p003",
+          "p007",
+          "p060",
+          "p075",
+          "p091",
+          "p008",
+          "p010",
+          "p011",
+          "p012",
+          "p013",
+          "p061",
+          "p062",
+          "p063",
+          "p064",
+          "p065",
+          "p071",
+          "p072",
+          "p076",
+          "p077",
+          "p078",
+          "p079",
+          "p080",
+          "p081",
+          "p082",
+          "p083"
+        ]
+      }
+    }
+  }
+}
