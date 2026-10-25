@@ -1,0 +1,183 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-26",
+  "reviewer": "chatgpt-scheduled-task",
+  "source_run_id": 40246102456,
+  "source_head_sha": "511b4c64ae3bd597d8563780bfdf7d92d6f70dcb",
+  "items": {
+    "cg-channel-adobe-releases-substance-3d-painter-12-2": {
+      "source_url": "https://www.cgchannel.com/2026/10/adobe-releases-substance-3d-painter-12-2",
+      "source_published_at": "2026-10-25",
+      "reviewed_on": "2026-10-26",
+      "source_evidence_sha256": "ec55df96ad07fa97cfb0cabdee451eab99eda06bbe19a2d1dc8b784447f3cbe9",
+      "title": "Substance 3D Painter 12.2：直接在模型上修補烘焙 Cage 與多邊形選取",
+      "summary": "Adobe 發布 Substance 3D Painter 12.2，新增以筆刷、橡皮擦和多邊形填色直接調整烘焙 Cage 的流程，並擴充 Polygon Fill 選取、混合模式及透明材質顯示。",
+      "evidence_refs": [
+        "p001",
+        "p002",
+        "p003",
+        "p005",
+        "p007",
+        "p008",
+        "p009",
+        "p010",
+        "p012",
+        "p013"
+      ],
+      "full_analysis": [
+        {
+          "label": "烘焙 Cage 修補技術流程",
+          "text": "當高模局部超出自動產生的烘焙 Cage 時，使用者不必只調整全域距離，而能在網格上用筆刷、橡皮擦或多邊形填色，局部把 Cage 修到貼合模型。",
+          "evidence_refs": [
+            "p003",
+            "p004",
+            "p005"
+          ]
+        },
+        {
+          "label": "多邊形填色製作影響",
+          "text": "Polygon Fill 新增完整四邊面 Loop 一鍵填滿與拖曳矩形區塊的局部 Loop 選取，並支援 Layer Stack 的全部混合模式；預設排除背面多邊形可避免誤填模型後側。",
+          "evidence_refs": [
+            "p007",
+            "p008",
+            "p009",
+            "p010"
+          ]
+        },
+        {
+          "label": "顯示改善與版本限制",
+          "text": "材質集清單可在游標停留時於三維視窗標示對應幾何，Viewport 也以順序無關透明度減少透明表面重疊閃爍；來源僅列支援系統，未提供效能成本。",
+          "evidence_refs": [
+            "p011",
+            "p012",
+            "p013"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p002",
+          "p003",
+          "p005",
+          "p007",
+          "p008",
+          "p009",
+          "p010",
+          "p012",
+          "p013",
+          "p004",
+          "p011"
+        ]
+      }
+    },
+    "cg-channel-adobe-releases-substance-3d-painter-12-1": {
+      "source_url": "https://www.cgchannel.com/2026/06/adobe-releases-substance-3d-painter-12-1",
+      "source_published_at": "2026-06-24",
+      "reviewed_on": "2026-10-26",
+      "source_evidence_sha256": "42278ded9f313b2f25193383a0d36fe559d076f0497cdc6c04a0e251dd338e35",
+      "title": "Substance 3D Painter 12.1：連續重烘焙、Skew 修正與硬表面自動 UV",
+      "summary": "Substance 3D Painter 12.1 重整貼圖烘焙，加入參數變更後自動更新的連續重烘焙、可在低模上繪製的 Skew 修正，以及面向機械模型的硬表面自動 UV 模式。",
+      "evidence_refs": [
+        "p001",
+        "p002",
+        "p003",
+        "p005",
+        "p006",
+        "p007",
+        "p009",
+        "p010",
+        "p011",
+        "p012",
+        "p013",
+        "p015",
+        "p017",
+        "p020"
+      ],
+      "full_analysis": [
+        {
+          "label": "烘焙修正技術流程",
+          "text": "連續重烘焙會在參數改變後更新 Normal、Curvature 等 Map；Skew 修正則在低模表面繪製烘焙法線方向，並可用筆刷 Flow、Opacity 與 Edge Protection 控制結果。",
+          "evidence_refs": [
+            "p003",
+            "p004",
+            "p005",
+            "p006",
+            "p007",
+            "p008",
+            "p009",
+            "p010"
+          ]
+        },
+        {
+          "label": "硬表面 UV 製作影響",
+          "text": "新的硬表面自動展 UV 模式針對機械模型降低變形並產生正交對齊 Layout，來源列舉機械、車輛、遊戲動畫資產與產品視覺化為適用場景。",
+          "evidence_refs": [
+            "p011",
+            "p012",
+            "p013",
+            "p014"
+          ]
+        },
+        {
+          "label": "材質標準與工作限制",
+          "text": "新專案未套 Template 時會預設 OpenPBR Shader，輸出貼圖也採 OpenPBR 命名；烘焙與繪製共用 Undo History，但來源沒有比較舊版效能或實際節省工時。",
+          "evidence_refs": [
+            "p015",
+            "p016",
+            "p017",
+            "p018",
+            "p020"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p002",
+          "p003",
+          "p005",
+          "p006",
+          "p007",
+          "p009",
+          "p010",
+          "p011",
+          "p012",
+          "p013",
+          "p015",
+          "p017",
+          "p020",
+          "p004",
+          "p008",
+          "p014",
+          "p016",
+          "p018"
+        ]
+      }
+    }
+  }
+}
