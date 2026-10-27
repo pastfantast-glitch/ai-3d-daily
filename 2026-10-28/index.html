@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   AI／3D／遊戲美術 Production Intelligence — 2026-10-28
+  </title>
+  <link href="../styles.css?v=20261028-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../shared-components.css?v=20261028-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../daily.css?v=20261028-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../shared-components.css?v=20261028-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <meta content="2026-10-28 Production Intelligence 日報：以可驗證來源整理 AI、3D 製作、動畫、遊戲引擎與 Blender／DCC 情報。" name="description"/>
+ </head>
+ <body class="archive-page" data-next="" data-previous="2026-10-25" data-report-date="2026-10-28">
+  <nav aria-label="Production Intelligence 分類" class="global-category-nav">
+   <div class="page global-category-nav-inner">
+    <div class="archive-nav-controls">
+     <a class="archive-nav-home" href="../">
+      ← 首頁
+     </a>
+     <div class="archive-nav-date">
+      <a aria-label="前一日日報" class="archive-nav-arrow" href="../2026-10-25/">
+       ←
+      </a>
+      <span>
+       2026-10-28
+      </span>
+     </div>
+    </div>
+    <span aria-hidden="true" class="archive-nav-divider">
+    </span>
+    <a class="global-category-link is-active" href="#top">
+     TOP5
+    </a>
+    <a class="global-category-link" data-category="ai-generation" href="ai-generation/">
+     AI 生成
+    </a>
+    <a class="global-category-link" data-category="3d-production" href="3d-production/">
+     3D 製作
+    </a>
+    <a class="global-category-link" data-category="3d-animation" href="3d-animation/">
+     3D 動作
+    </a>
+    <a class="global-category-link" data-category="engine-art" href="engine-art/">
+     遊戲引擎
+    </a>
+    <a class="global-category-link" data-category="emerging-case" href="emerging-case/">
+     新技術 / Case
+    </a>
+    <a class="global-category-link" data-category="blender-dcc" href="blender-dcc/">
+     Blender / DCC
+    </a>
+    <a class="global-category-link global-history-link" data-global-view="history" href="../history/">
+     歷史日報
+    </a>
+   </div>
+  </nav>
+  <main class="page daily-main">
+   <section class="block" id="top">
+    <div class="block-head">
+     <div>
+      <span>
+       2026-10-28
+      </span>
+      <h2>
+       TOP5
+      </h2>
+     </div>
+    </div>
+    <article class="news daily-card daily-card-top" data-intel-id="cg-channel-adobe-releases-substance-3d-painter-12-2" data-intel-role="card">
+     <div class="news-rank">
+      01
+     </div>
+     <div class="news-main">
+      <div class="meta">
+       <span class="pill">
+        substance
+       </span>
+      </div>
+      <h3>
+       Substance 3D Painter 12.2：直接在模型上修補烘焙 Cage 與多邊形選取
+      </h3>
+      <p class="summary">
+       Adobe 發布 Substance 3D Painter 12.2，新增以筆刷、橡皮擦和多邊形填色直接調整烘焙 Cage 的流程，並擴充 Polygon Fill 選取、混合模式及透明材質顯示。
+      </p>
+      <figure class="case-preview daily-visual" data-intel-id="cg-channel-adobe-releases-substance-3d-painter-12-2" data-intel-role="visual" data-visual-id="cg-channel-adobe-releases-substance-3d-painter-12-2">
+       <a href="https://www.cgchannel.com/2026/10/adobe-releases-substance-3d-painter-12-2" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-10-28/cg-channel-adobe-releases-substance-3d-painter-12-2.jpg"/>
+       </a>
+       <figcaption>
+        <span>
+         SOURCE PREVIEW
+        </span>
+        · Local visual evidence · 點圖開啟原始來源
+       </figcaption>
+      </figure>
+      <div class="quick-impact daily-impact">
+       <span><b class="quick-impact-label">Substance</b> ★★★★☆</span>
+      </div>
+      <details class="canonical-analysis canonical-analysis-brief daily-full-analysis" data-analysis-level="BRIEF">
+       <summary>
+        完整分析
+       </summary>
+       <div class="detail-body canonical-analysis-body brief-analysis-body daily-analysis-body">
+        <h4>
+         技術流程
+        </h4>
+        <p>
+         當高模局部超出自動產生的烘焙 Cage 時，使用者不必只調整全域距離，而能在網格上用筆刷、橡皮擦或多邊形填色，局部把 Cage 修到貼合模型。
+        </p>
+        <h4>
+         製作影響
+        </h4>
+        <p>
+         Polygon Fill 新增完整四邊面 Loop 一鍵填滿與拖曳矩形區塊的局部 Loop 選取，並支援 Layer Stack 的全部混合模式；預設排除背面多邊形可避免誤填模型後側。
+        </p>
+        <h4>
+         限制與待驗證
+        </h4>
+        <p>
+         材質集清單可在游標停留時於三維視窗標示對應幾何，Viewport 也以順序無關透明度減少透明表面重疊閃爍；來源僅列支援系統，未提供效能成本。
+        </p>
+        <p class="analysis-level-note">
+         BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+        </p>
+       </div>
+      </details>
+      <a class="source daily-source" href="https://www.cgchannel.com/2026/10/adobe-releases-substance-3d-painter-12-2" rel="noopener noreferrer" target="_blank">
+       來源
+      </a>
+     </div>
+    </article>
+    <article class="news daily-card daily-card-top" data-intel-id="80-level-this-my-little-pony-character-s-bizarre-2d-3d-look-will-brea" data-intel-role="card">
+     <div class="news-rank">
+      02
+     </div>
+     <div class="news-main">
+      <div class="meta">
+       <span class="pill">
+        character-production
+       </span>
+      </div>
+      <h3>
+       多角度 Billboard 角色：依相機角度切換平面圖像模擬三維旋轉
+      </h3>
+      <p class="summary">
+       這個角色不是完整三維模型，而是讓 Quad 始終面向相機，依觀看角度在正面、側面、背面等預繪圖像間切換，形成類似早期遊戲 Sprite 的三維旋轉錯覺。
+      </p>
+      <figure class="case-preview daily-visual" data-intel-id="80-level-this-my-little-pony-character-s-bizarre-2d-3d-look-will-brea" data-intel-role="visual" data-visual-id="80-level-this-my-little-pony-character-s-bizarre-2d-3d-look-will-brea">
+       <a href="https://80.lv/articles/this-my-little-pony-character-s-bizarre-2d-3d-look-will-break-your-brain" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-10-28/80-level-this-my-little-pony-character-s-bizarre-2d-3d-look-will-brea.jpg"/>
+       </a>
+       <figcaption>
+        <span>
+         SOURCE PREVIEW
+        </span>
+        · Local visual evidence · 點圖開啟原始來源
+       </figcaption>
+      </figure>
+      <div class="quick-impact daily-impact">
+       <span><b class="quick-impact-label">角色製作</b> ★★★★☆</span>
+      </div>
+      <details class="canonical-analysis canonical-analysis-brief daily-full-analysis" data-analysis-level="BRIEF">
+       <summary>
+        完整分析
+       </summary>
+       <div class="detail-body canonical-analysis-body brief-analysis-body daily-analysis-body">
+        <h4>
+         Billboard 技術流程
+        </h4>
+        <p>
+         引擎先計算相機觀看角度，再選擇最接近的預繪方向圖，顯示在面向相機的 Quad 上；核心仍是平面 Sprite，不是從任意角度都成立的三維網格。
+        </p>
+        <h4>
+         角色表現製作影響
+        </h4>
+        <p>
+         方法能保留二維造型，同時讓鏡頭繞角色移動；另一實作以 Rig 偵測朝向並切換 Frame，理論上也可加入身體，沿用一般二維 Rig 的做法。
+        </p>
+        <h4>
+         視角限制與導入驗證
+        </h4>
+        <p>
+         效果依賴事先準備的方向圖，鏡頭落在兩張圖之間時如何過渡並未說明；Blender 的 CamKeys 可用 Forced Perspective 與 Stepped Turn Around 做類似測試。
+        </p>
+        <p class="analysis-level-note">
+         BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+        </p>
+       </div>
+      </details>
+      <a class="source daily-source" href="https://80.lv/articles/this-my-little-pony-character-s-bizarre-2d-3d-look-will-break-your-brain" rel="noopener noreferrer" target="_blank">
+       來源
+      </a>
+     </div>
+    </article>
+    <article class="news daily-card daily-card-top" data-intel-id="80-level-real-time-motion-paths-add-on-for-blender-gets-updated" data-intel-role="card">
+     <div class="news-rank">
+      03
+     </div>
+     <div class="news-main">
+      <div class="meta">
+       <span class="pill">
+        blender
+       </span>
+      </div>
+      <h3>
+       Motion Path Pro 3.2：即時更新骨架與相機路徑並改善複雜場景延遲
+      </h3>
+      <p class="summary">
+       Blender 外掛 Motion Path Pro 3.2 可即時更新骨骼、物件、相機與 Empty 的 Motion Path，並改善複雜場景及高負載角色的延遲，也能把路徑與 Onion Skin 結合使用。
+      </p>
+      <figure class="case-preview daily-visual" data-intel-id="80-level-real-time-motion-paths-add-on-for-blender-gets-updated" data-intel-role="visual" data-visual-id="80-level-real-time-motion-paths-add-on-for-blender-gets-updated">
+       <a href="https://80.lv/articles/real-time-motion-paths-add-on-for-blender-gets-updated" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-10-28/80-level-real-time-motion-paths-add-on-for-blender-gets-updated.jpg"/>
+       </a>
+       <figcaption>
+        <span>
+         SOURCE PREVIEW
+        </span>
+        · Local visual evidence · 點圖開啟原始來源
+       </figcaption>
+      </figure>
+      <div class="quick-impact daily-impact">
+       <span><b class="quick-impact-label">Blender</b> ★★★★☆</span>
+      </div>
+      <details class="canonical-analysis canonical-analysis-brief daily-full-analysis" data-analysis-level="BRIEF">
+       <summary>
+        完整分析
+       </summary>
+       <div class="detail-body canonical-analysis-body brief-analysis-body daily-analysis-body">
+        <h4>
+         即時路徑技術流程
+        </h4>
+        <p>
+         3.2 版把即時 Motion Path 擴展到骨骼、物件、相機與 Empty，讓動畫調整後可直接看到路徑變化，並能與 Onion Skin 疊加檢查姿勢連續性。
+        </p>
+        <h4>
+         動畫修整製作影響
+        </h4>
+        <p>
+         來源表示新版移除複雜場景與高負載角色的延遲，目標是縮短動畫拋光時反覆更新路徑的等待；外掛可由 Blender 內或 Extensions 平台安裝。
+        </p>
+        <h4>
+         效能限制與待驗證
+        </h4>
+        <p>
+         正文沒有列出測試場景、角色骨數或更新時間，因此「移除延遲」仍缺少可重現的效能數據；大型製作導入前需以實際 Rig 與鏡頭驗證。
+        </p>
+        <p class="analysis-level-note">
+         BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+        </p>
+       </div>
+      </details>
+      <a class="source daily-source" href="https://80.lv/articles/real-time-motion-paths-add-on-for-blender-gets-updated" rel="noopener noreferrer" target="_blank">
+       來源
+      </a>
+     </div>
+    </article>
+    <article class="news daily-card daily-card-top" data-intel-id="80-level-building-a-stylized-mountain-cabin-with-modular-assets-and-c" data-intel-role="card">
+     <div class="news-rank">
+      04
+     </div>
+     <div class="news-main">
+      <div class="meta">
+       <span class="pill">
+        environment-production
+       </span>
+      </div>
+      <h3>
+       UE5 風格化山屋場景：模組化 Trim Sheet、RVT 混合與頂點色植被
+      </h3>
+      <p class="summary">
+       Arjun Perayil 拆解約 30 天完成的 UE5 山屋場景：以三階段 Blockout 鎖定構圖，再用模組化木板與 Trim Sheet 建屋、RVT 融合地表資產，並以頂點色控制植被色差和 WPO 風動。
+      </p>
+      <figure class="case-preview daily-visual" data-intel-id="80-level-building-a-stylized-mountain-cabin-with-modular-assets-and-c" data-intel-role="visual" data-visual-id="80-level-building-a-stylized-mountain-cabin-with-modular-assets-and-c">
+       <a href="https://80.lv/articles/building-a-stylized-mountain-cabin-with-modular-assets-and-custom-shaders" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-10-28/80-level-building-a-stylized-mountain-cabin-with-modular-assets-and-c.jpg"/>
+       </a>
+       <figcaption>
+        <span>
+         SOURCE PREVIEW
+        </span>
+        · Local visual evidence · 點圖開啟原始來源
+       </figcaption>
+      </figure>
+      <div class="quick-impact daily-impact">
+       <span><b class="quick-impact-label">場景製作</b> ★★★★☆</span>
+      </div>
+      <details class="canonical-analysis canonical-analysis-brief daily-full-analysis" data-analysis-level="BRIEF">
+       <summary>
+        完整分析
+       </summary>
+       <div class="detail-body canonical-analysis-body brief-analysis-body daily-analysis-body">
+        <h4>
+         場景與材質技術流程
+        </h4>
+        <p>
+         Blockout 依 Proxy、Value、Color 三階段確認尺度、明暗與色彩；地形使用四層高度混合並輸出 RVT，讓岩石與植被讀取地表色彩及法線，減少資產與地面的硬交界。
+        </p>
+        <h4>
+         模組化與植被製作影響
+        </h4>
+        <p>
+         山屋由少量木板、Trim Sheet 與模組牆件組裝，主 Shader 以頂點色混合污漬、色調與 AO；樹木及草地同樣用頂點色控制漸層與 WPO 風動，兼顧重複利用與造型差異。
+        </p>
+        <h4>
+         時程效能限制與驗證
+        </h4>
+        <p>
+         作者以 30 天期限、模組資產和可快速迭代材質控制範圍，並承認在視覺品質與最佳化間取捨；最終 MRQ 使用 200% Screen Percentage、停用多項即時降噪，成本需依目標硬體另行實測。
+        </p>
+        <p class="analysis-level-note">
+         BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+        </p>
+       </div>
+      </details>
+      <a class="source daily-source" href="https://80.lv/articles/building-a-stylized-mountain-cabin-with-modular-assets-and-custom-shaders" rel="noopener noreferrer" target="_blank">
+       來源
+      </a>
+     </div>
+    </article>
+    <article class="news daily-card daily-card-top" data-intel-id="cg-channel-see-lungundtrugs-beautiful-vfx-breakdown-for-der-medicus-ii" data-intel-role="card">
+     <div class="news-rank">
+      05
+     </div>
+     <div class="news-main">
+      <div class="meta">
+       <span class="pill">
+        environment-production
+       </span>
+      </div>
+      <h3>
+       《Der Medicus II》VFX Breakdown：380 多顆鏡頭拆解環境、軍隊與海洋模擬
+      </h3>
+      <p class="summary">
+       德國 Lugundtrug 公開《Der Medicus II》特效拆解；該公司是全片唯一 VFX 供應商，交付超過 380 顆鏡頭，涵蓋 CG 環境、場景延伸、數位軍隊與海洋模擬。
+      </p>
+      <figure class="case-preview daily-visual" data-intel-id="cg-channel-see-lungundtrugs-beautiful-vfx-breakdown-for-der-medicus-ii" data-intel-role="visual" data-visual-id="cg-channel-see-lungundtrugs-beautiful-vfx-breakdown-for-der-medicus-ii">
+       <a href="https://www.cgchannel.com/2026/10/see-lungundtrugs-beautiful-vfx-breakdown-for-der-medicus-ii" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+        <img alt="SOURCE CARD preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-10-28/cg-channel-see-lungundtrugs-beautiful-vfx-breakdown-for-der-medicus-ii.svg"/>
+       </a>
+       <figcaption>
+        <span>
+         SOURCE CARD
+        </span>
+        · Generated source card · 點圖開啟原始來源
+       </figcaption>
+      </figure>
+      <div class="quick-impact daily-impact">
+       <span><b class="quick-impact-label">場景製作</b> ★★★★☆</span>
+      </div>
+      <details class="canonical-analysis canonical-analysis-brief daily-full-analysis" data-analysis-level="BRIEF">
+       <summary>
+        完整分析
+       </summary>
+       <div class="detail-body canonical-analysis-body brief-analysis-body daily-analysis-body">
+        <h4>
+         技術流程
+        </h4>
+        <p>
+         Lugundtrug 以唯一 VFX 供應商身分完成超過 380 顆鏡頭，工作項目包括 CG 環境、Set Extension、數位軍隊及海洋模擬。
+        </p>
+        <h4>
+         製作影響
+        </h4>
+        <p>
+         影片不只比較合成前後，也展示每顆鏡頭採用的 CG 資產；廣角數位環境之外，還可看到佈置其中的船艦、角色與群眾動畫參考影片。
+        </p>
+        <h4>
+         限制與待驗證
+        </h4>
+        <p>
+         拆解影片在報導前已上線一段時間，但正文沒有列出軟體、算圖器或模擬參數，技術結論只能限於鏡頭與資產類型，無法由來源判斷各項效果的實作成本。
+        </p>
+        <p class="analysis-level-note">
+         BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+        </p>
+       </div>
+      </details>
+      <a class="source daily-source" href="https://www.cgchannel.com/2026/10/see-lungundtrugs-beautiful-vfx-breakdown-for-der-medicus-ii" rel="noopener noreferrer" target="_blank">
+       來源
+      </a>
+     </div>
+    </article>
+   </section>
+   <section class="block daily-more" id="more">
+    <div class="block-head">
+     <div>
+      <span>
+       2026-10-28
+      </span>
+      <h2>
+       當日其他資訊
+      </h2>
+     </div>
+    </div>
+    <article class="daily-card daily-card-more category-news" data-intel-id="cg-channel-new-cg-software-you-may-have-missed-25-october-2026" data-intel-role="card">
+     <div class="meta">
+      <span class="pill">
+       other-dcc
+      </span>
+     </div>
+     <h3>
+      CG 軟體週報：Marionette 動作編修、ArcBrush PBR 與 EdenLive 即時生成
+     </h3>
+     <p class="summary">
+      10 月 25 日軟體週報彙整多項小型更新：Blender 的 Marionette 直接拖曳角色與編修 Motion Trail；ArcBrush 1.7 封裝並預覽 PBR 貼圖集；EdenLive 則在 RTX 5090 上展示即時 720p 生成。
+     </p>
+     <figure class="case-preview daily-visual" data-intel-id="cg-channel-new-cg-software-you-may-have-missed-25-october-2026" data-intel-role="visual" data-visual-id="cg-channel-new-cg-software-you-may-have-missed-25-october-2026">
+      <a href="https://www.cgchannel.com/2026/10/new-cg-software-you-may-have-missed-25-october-2026" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+       <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-10-28/cg-channel-new-cg-software-you-may-have-missed-25-october-2026.jpg"/>
+      </a>
+      <figcaption>
+       <span>
+        SOURCE PREVIEW
+       </span>
+       · Local visual evidence · 點圖開啟原始來源
+      </figcaption>
+     </figure>
+     <div class="quick-impact daily-impact">
+      <span><b class="quick-impact-label">其他 DCC</b> ★★★★☆</span>
+     </div>
+     <details class="canonical-analysis canonical-analysis-brief daily-full-analysis" data-analysis-level="BRIEF">
+      <summary>
+       完整分析
+      </summary>
+      <div class="detail-body canonical-analysis-body brief-analysis-body daily-analysis-body">
+       <h4>
+        技術流程
+       </h4>
+       <p>
+        Marionette 讓 Blender 使用者直接拖曳手、腳或髖部擺姿勢，並以 Motion Trail 控制點或筆刷修改動作；工具另含平滑、洋蔥皮、手腳鎖定及滑步或關節跳動偵測。
+       </p>
+       <h4>
+        製作影響
+       </h4>
+       <p>
+        ArcBrush 1.7 的貼圖節點把色彩、法線、粗糙度、金屬度等通道封裝成一組貼圖集，能在三維模型預覽並輸出給 Blender、Unreal、Unity、Godot 或 Painter。
+       </p>
+       <h4>
+        限制與待驗證
+       </h4>
+       <p>
+        EdenLive 需場景或參考影片、目標首幀與文字提示；5B 權重在單張 RTX 5090 上據稱可超過 24fps 生成 720p，但即時模式只到 480p 或 720p，報導明列為實驗性工具。
+       </p>
+       <p class="analysis-level-note">
+        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+       </p>
+      </div>
+     </details>
+     <a class="source daily-source" href="https://www.cgchannel.com/2026/10/new-cg-software-you-may-have-missed-25-october-2026" rel="noopener noreferrer" target="_blank">
+      來源
+     </a>
+    </article>
+    <article class="daily-card daily-card-more category-news" data-intel-id="cg-channel-open-source-material-authoring-software-material-maker-1-8-i" data-intel-role="card">
+     <div class="meta">
+      <span class="pill">
+       substance
+      </span>
+     </div>
+     <h3>
+      Material Maker 1.8：Trim Sheet 節點與材質變更自動重新輸出
+     </h3>
+     <p class="summary">
+      開源節點材質工具 Material Maker 1.8 新增 Trim Sheet 節點與 Auto Export；約 200 個節點可即時在三維模型預覽，並把 PBR 貼圖輸出至 Godot、Unity 或 Unreal。
+     </p>
+     <figure class="case-preview daily-visual" data-intel-id="cg-channel-open-source-material-authoring-software-material-maker-1-8-i" data-intel-role="visual" data-visual-id="cg-channel-open-source-material-authoring-software-material-maker-1-8-i">
+      <a href="https://www.cgchannel.com/2026/10/open-source-material-authoring-software-material-maker-1-8-is-out" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+       <img alt="SOURCE CARD preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-10-28/cg-channel-open-source-material-authoring-software-material-maker-1-8-i.svg"/>
+      </a>
+      <figcaption>
+       <span>
+        SOURCE CARD
+       </span>
+       · Generated source card · 點圖開啟原始來源
+      </figcaption>
+     </figure>
+     <div class="quick-impact daily-impact">
+      <span><b class="quick-impact-label">Substance</b> ★★★★☆</span>
+     </div>
+     <details class="canonical-analysis canonical-analysis-brief daily-full-analysis" data-analysis-level="BRIEF">
+      <summary>
+       完整分析
+      </summary>
+      <div class="detail-body canonical-analysis-body brief-analysis-body daily-analysis-body">
+       <h4>
+        節點材質技術流程
+       </h4>
+       <p>
+        使用者由約 200 個節點組合程序貼圖，結果即時顯示於三維模型；1.8 的 Trim Sheet 節點輸出遊戲用 Trim Sheet，Auto Export 則在輸入變更時重新輸出。
+       </p>
+       <h4>
+        引擎交接製作影響
+       </h4>
+       <p>
+        完成材質可輸出 PBR Map，內建 Godot、Unity 與 Unreal 範本；同一軟體亦可直接在模型表面繪製，讓節點材質與三維貼圖共用開源工具鏈。
+       </p>
+       <h4>
+        版本範圍與導入驗證
+       </h4>
+       <p>
+        1.8 另加 Crop、高品質 Gaussian Blur、子節點搜尋與新介面主題；來源未比較大型 Graph 效能或輸出一致性，正式導入前需用現有材質驗證。
+       </p>
+       <p class="analysis-level-note">
+        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+       </p>
+      </div>
+     </details>
+     <a class="source daily-source" href="https://www.cgchannel.com/2026/10/open-source-material-authoring-software-material-maker-1-8-is-out" rel="noopener noreferrer" target="_blank">
+      來源
+     </a>
+    </article>
+    <article class="daily-card daily-card-more category-news" data-intel-id="3dnchu-spirula-studio" data-intel-role="card">
+     <div class="meta">
+      <span class="pill">
+       research
+      </span>
+     </div>
+     <h3>
+      Spirula Studio：跨品牌 GPU 的 3DGS 訓練、SfM 與貼圖網格輸出
+     </h3>
+     <p class="summary">
+      免費開源的 Spirula Studio 把影像或影片取幀、SfM 相機估算、3D Gaussian Splatting 訓練與貼圖網格生成整合在同一工具，透過 Vulkan 支援 NVIDIA、AMD、Intel 與 Apple Silicon。
+     </p>
+     <figure class="case-preview daily-visual" data-intel-id="3dnchu-spirula-studio" data-intel-role="visual" data-visual-id="3dnchu-spirula-studio">
+      <a href="https://3dnchu.com/archives/spirula-studio" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+       <img alt="SOURCE CARD preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-10-28/3dnchu-spirula-studio.svg"/>
+      </a>
+      <figcaption>
+       <span>
+        SOURCE CARD
+       </span>
+       · Generated source card · 點圖開啟原始來源
+      </figcaption>
+     </figure>
+     <div class="quick-impact daily-impact">
+      <span><b class="quick-impact-label">研究</b> ★★★★☆</span>
+     </div>
+     <details class="canonical-analysis canonical-analysis-brief daily-full-analysis" data-analysis-level="BRIEF">
+      <summary>
+       完整分析
+      </summary>
+      <div class="detail-body canonical-analysis-body brief-analysis-body daily-analysis-body">
+       <h4>
+        3DGS 生成技術流程
+       </h4>
+       <p>
+        工具由照片或影片建立資料集，內建 SfM 推估相機位置，再訓練 3DGS 並生成貼圖網格；360 度、魚眼與等距柱狀影像可直接輸入，不必先轉透視圖。
+       </p>
+       <h4>
+        跨 GPU 製作影響
+       </h4>
+       <p>
+        Vulkan 後端支援 NVIDIA、AMD、Intel 與 Apple Silicon，省去個別安裝 Python、PyTorch 和 COLMAP；內建取幀、AI 遮罩、編輯及影像或影片輸出。
+       </p>
+       <h4>
+        效能限制與實測
+       </h4>
+       <p>
+        官方稱 8GB VRAM 可處理一千萬個 SH3 Gaussian；第三方影片則表示資料準備快、訓練比 Polycam 久。LiDAR 仍屬實驗功能，效能與品質需依資料集驗證。
+       </p>
+       <p class="analysis-level-note">
+        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+       </p>
+      </div>
+     </details>
+     <a class="source daily-source" href="https://3dnchu.com/archives/spirula-studio" rel="noopener noreferrer" target="_blank">
+      來源
+     </a>
+    </article>
+    <article class="daily-card daily-card-more category-news" data-intel-id="cg-channel-check-out-free-procedural-texture-generator-material-maker" data-intel-role="card">
+     <div class="meta">
+      <span class="pill">
+       substance
+      </span>
+     </div>
+     <h3>
+      歷史參考｜2020 年 Material Maker 0.8 以 SDF 建立程序式 PBR 貼圖
+     </h3>
+     <p class="summary">
+      2020 年資料記錄 Material Maker 0.8：在 Godot 節點式材質流程加入二維與三維 SDF，可變形、旋轉、布林及散佈幾何，再由距離場產生 Height 與 Normal Map。
+     </p>
+     <figure class="case-preview daily-visual" data-intel-id="cg-channel-check-out-free-procedural-texture-generator-material-maker" data-intel-role="visual" data-visual-id="cg-channel-check-out-free-procedural-texture-generator-material-maker">
+      <a href="https://www.cgchannel.com/2020/01/check-out-free-procedural-texture-generator-material-maker" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+       <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-10-28/cg-channel-check-out-free-procedural-texture-generator-material-maker.jpg"/>
+      </a>
+      <figcaption>
+       <span>
+        SOURCE PREVIEW
+       </span>
+       · Local visual evidence · 點圖開啟原始來源
+      </figcaption>
+     </figure>
+     <div class="quick-impact daily-impact">
+      <span><b class="quick-impact-label">Substance</b> ★★★☆☆</span>
+     </div>
+     <details class="canonical-analysis canonical-analysis-brief daily-full-analysis" data-analysis-level="BRIEF">
+      <summary>
+       完整分析
+      </summary>
+      <div class="detail-body canonical-analysis-body brief-analysis-body daily-analysis-body">
+       <h4>
+        程序材質技術流程
+       </h4>
+       <p>
+        0.6 版以可編輯 GLSL 自訂節點參數與輸入輸出，也能把一段 Graph 收納成高階節點；0.8 再加入二維、三維 SDF 與材質混合工作流。
+       </p>
+       <h4>
+        SDF 貼圖製作影響
+       </h4>
+       <p>
+        SDF 能建立球體、方盒、膠囊與圓環，執行變形、擠出、旋轉及布林，亦可散佈碎石或磚塊，最後生成 Height 與 Normal Map。
+       </p>
+       <h4>
+        舊版工具限制
+       </h4>
+       <p>
+        當時工具約 20 個節點，遠少於 Substance Designer，GLSL 也沒有內建診斷；這是 2020 年 0.8 資料，只能作版本史參考，不能代表現行功能。
+       </p>
+       <p class="analysis-level-note">
+        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+       </p>
+      </div>
+     </details>
+     <a class="source daily-source" href="https://www.cgchannel.com/2020/01/check-out-free-procedural-texture-generator-material-maker" rel="noopener noreferrer" target="_blank">
+      來源
+     </a>
+    </article>
+    <article class="daily-card daily-card-more category-news" data-intel-id="cg-channel-3d-texture-painting-app-wafer-is-now-available-for-windows" data-intel-role="card">
+     <div class="meta">
+      <span class="pill">
+       production-workflow
+      </span>
+     </div>
+     <h3>
+      歷史參考｜Wafer 1.2 擴展至 Windows 與 Apple Silicon Mac
+     </h3>
+     <p class="summary">
+      2026 年 5 月更新記錄 Wafer 1.2 從 iPad 擴展到 Windows 與 Apple Silicon Mac；這款風格化三維貼圖工具可在模型或 2D 貼圖視圖作畫，支援多通道繪製、圖層、遮罩及 PBR。
+     </p>
+     <figure class="case-preview daily-visual" data-intel-id="cg-channel-3d-texture-painting-app-wafer-is-now-available-for-windows" data-intel-role="visual" data-visual-id="cg-channel-3d-texture-painting-app-wafer-is-now-available-for-windows">
+      <a href="https://www.cgchannel.com/2026/05/3d-texture-painting-app-wafer-is-now-available-for-windows" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+       <img alt="SOURCE CARD preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-10-28/cg-channel-3d-texture-painting-app-wafer-is-now-available-for-windows.svg"/>
+      </a>
+      <figcaption>
+       <span>
+        SOURCE CARD
+       </span>
+       · Generated source card · 點圖開啟原始來源
+      </figcaption>
+     </figure>
+     <div class="quick-impact daily-impact">
+      <span><b class="quick-impact-label">製作流程</b> ★★★☆☆</span>
+     </div>
+     <details class="canonical-analysis canonical-analysis-brief daily-full-analysis" data-analysis-level="BRIEF">
+      <summary>
+       完整分析
+      </summary>
+      <div class="detail-body canonical-analysis-body brief-analysis-body daily-analysis-body">
+       <h4>
+        技術流程
+       </h4>
+       <p>
+        Wafer 可匯入 OBJ、FBX 和 GLB，在三維模型或並列的 2D 貼圖視圖上作畫；筆刷支援壓力與傾斜，並提供模板、貼花、圖章、圖層遮罩與混合。
+       </p>
+       <h4>
+        製作影響
+       </h4>
+       <p>
+        多通道繪製可同時寫入數個貼圖通道；Windows 首個穩定版 1.2 與當時 iPad 版功能一致並包含 Smudge，後續也發布 Apple Silicon Mac 穩定版。
+       </p>
+       <h4>
+        限制與待驗證
+       </h4>
+       <p>
+        基礎 App 可免費測試，但儲存檔案或輸出貼圖需永久授權；正文列出的系統與價格只代表 2026 年 5 月狀態，不能推定目前方案。
+       </p>
+       <p class="analysis-level-note">
+        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+       </p>
+      </div>
+     </details>
+     <a class="source daily-source" href="https://www.cgchannel.com/2026/05/3d-texture-painting-app-wafer-is-now-available-for-windows" rel="noopener noreferrer" target="_blank">
+      來源
+     </a>
+    </article>
+    <article class="daily-card daily-card-more category-news" data-intel-id="cg-channel-free-material-authoring-tool-material-maker-now-does-3d-pain" data-intel-role="card">
+     <div class="meta">
+      <span class="pill">
+       production-workflow
+      </span>
+     </div>
+     <h3>
+      歷史參考｜2021 年 Material Maker 0.95 加入分層三維貼圖繪製
+     </h3>
+     <p class="summary">
+      2021 年 Material Maker 0.94／0.95 在節點材質之外加入三維繪製，可同步畫入底色、粗糙度、金屬度、發光與深度，並增加繪製、程序式、遮罩圖層和高動態範圍環境編輯。
+     </p>
+     <figure class="case-preview daily-visual" data-intel-id="cg-channel-free-material-authoring-tool-material-maker-now-does-3d-pain" data-intel-role="visual" data-visual-id="cg-channel-free-material-authoring-tool-material-maker-now-does-3d-pain">
+      <a href="https://www.cgchannel.com/2021/07/free-material-authoring-tool-material-maker-now-does-3d-painting" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+       <img alt="SOURCE CARD preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-10-28/cg-channel-free-material-authoring-tool-material-maker-now-does-3d-pain.svg"/>
+      </a>
+      <figcaption>
+       <span>
+        SOURCE CARD
+       </span>
+       · Generated source card · 點圖開啟原始來源
+      </figcaption>
+     </figure>
+     <div class="quick-impact daily-impact">
+      <span><b class="quick-impact-label">製作流程</b> ★★★☆☆</span>
+     </div>
+     <details class="canonical-analysis canonical-analysis-brief daily-full-analysis" data-analysis-level="BRIEF">
+      <summary>
+       完整分析
+      </summary>
+      <div class="detail-body canonical-analysis-body brief-analysis-body daily-analysis-body">
+       <h4>
+        三維繪製技術流程
+       </h4>
+       <p>
+        0.94 可用圖樣或生成式著色器當筆刷，同時寫入底色、粗糙度、金屬度、發光與深度；0.95 再加入繪製、程序式與遮罩圖層。
+       </p>
+       <h4>
+        材質預覽製作影響
+       </h4>
+       <p>
+        節點產生的 Metallic／Roughness PBR Map 可套用 Godot、Unity 與 Unreal 範本；新的 Environment Editor 能設定三維預覽與模型繪製使用的 HDRI。
+       </p>
+       <h4>
+        舊版平台限制
+       </h4>
+       <p>
+        0.95 當時只列 Windows 與 Linux，並可作 Godot Add-on 或獨立工具；這是 2021 年狀態，現行平台、效能和圖層相容性需重新驗證。
+       </p>
+       <p class="analysis-level-note">
+        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+       </p>
+      </div>
+     </details>
+     <a class="source daily-source" href="https://www.cgchannel.com/2021/07/free-material-authoring-tool-material-maker-now-does-3d-painting" rel="noopener noreferrer" target="_blank">
+      來源
+     </a>
+    </article>
+    <article class="daily-card daily-card-more category-news" data-intel-id="cg-channel-adobe-releases-substance-3d-painter-12-1" data-intel-role="card">
+     <div class="meta">
+      <span class="pill">
+       substance
+      </span>
+     </div>
+     <h3>
+      Substance 3D Painter 12.1：連續重烘焙、Skew 修正與硬表面自動 UV
+     </h3>
+     <p class="summary">
+      Substance 3D Painter 12.1 重整貼圖烘焙，加入參數變更後自動更新的連續重烘焙、可在低模上繪製的 Skew 修正，以及面向機械模型的硬表面自動 UV 模式。
+     </p>
+     <figure class="case-preview daily-visual" data-intel-id="cg-channel-adobe-releases-substance-3d-painter-12-1" data-intel-role="visual" data-visual-id="cg-channel-adobe-releases-substance-3d-painter-12-1">
+      <a href="https://www.cgchannel.com/2026/06/adobe-releases-substance-3d-painter-12-1" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+       <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-10-28/cg-channel-adobe-releases-substance-3d-painter-12-1.jpg"/>
+      </a>
+      <figcaption>
+       <span>
+        SOURCE PREVIEW
+       </span>
+       · Local visual evidence · 點圖開啟原始來源
+      </figcaption>
+     </figure>
+     <div class="quick-impact daily-impact">
+      <span><b class="quick-impact-label">Substance</b> ★★★☆☆</span>
+     </div>
+     <details class="canonical-analysis canonical-analysis-brief daily-full-analysis" data-analysis-level="BRIEF">
+      <summary>
+       完整分析
+      </summary>
+      <div class="detail-body canonical-analysis-body brief-analysis-body daily-analysis-body">
+       <h4>
+        技術流程
+       </h4>
+       <p>
+        連續重烘焙會在參數改變後更新 Normal、Curvature 等 Map；Skew 修正則在低模表面繪製烘焙法線方向，並可用筆刷 Flow、Opacity 與 Edge Protection 控制結果。
+       </p>
+       <h4>
+        製作影響
+       </h4>
+       <p>
+        新的硬表面自動展 UV 模式針對機械模型降低變形並產生正交對齊 Layout，來源列舉機械、車輛、遊戲動畫資產與產品視覺化為適用場景。
+       </p>
+       <h4>
+        限制與待驗證
+       </h4>
+       <p>
+        新專案未套 Template 時會預設 OpenPBR Shader，輸出貼圖也採 OpenPBR 命名；烘焙與繪製共用 Undo History，但來源沒有比較舊版效能或實際節省工時。
+       </p>
+       <p class="analysis-level-note">
+        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+       </p>
+      </div>
+     </details>
+     <a class="source daily-source" href="https://www.cgchannel.com/2026/06/adobe-releases-substance-3d-painter-12-1" rel="noopener noreferrer" target="_blank">
+      來源
+     </a>
+    </article>
+    <article class="daily-card daily-card-more category-news" data-intel-id="cg-channel-zen-masters-releases-zen-uv-5-0" data-intel-role="card">
+     <div class="meta">
+      <span class="pill">
+       blender
+      </span>
+     </div>
+     <h3>
+      歷史參考｜Zen UV 5.0：直接操作 UV 島並橋接自動展 UV 工具
+     </h3>
+     <p class="summary">
+      2025 年 Zen UV 5.0 為 Blender 加入 Zen UV Touch Gizmo、Auto Unwrap 與保留邊面選取狀態的 Zen Sync，並延伸交疊、拉伸面選取和 Trim Sheet 控制。
+     </p>
+     <figure class="case-preview daily-visual" data-intel-id="cg-channel-zen-masters-releases-zen-uv-5-0" data-intel-role="visual" data-visual-id="cg-channel-zen-masters-releases-zen-uv-5-0">
+      <a href="https://www.cgchannel.com/2025/03/zen-masters-releases-zen-uv-5-0" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+       <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-10-28/cg-channel-zen-masters-releases-zen-uv-5-0.jpg"/>
+      </a>
+      <figcaption>
+       <span>
+        SOURCE PREVIEW
+       </span>
+       · Local visual evidence · 點圖開啟原始來源
+      </figcaption>
+     </figure>
+     <div class="quick-impact daily-impact">
+      <span><b class="quick-impact-label">Blender</b> ★★★☆☆</span>
+     </div>
+     <details class="canonical-analysis canonical-analysis-brief daily-full-analysis" data-analysis-level="BRIEF">
+      <summary>
+       完整分析
+      </summary>
+      <div class="detail-body canonical-analysis-body brief-analysis-body daily-analysis-body">
+       <h4>
+        技術流程
+       </h4>
+       <p>
+        Zen UV Touch 讓使用者在 UV Editor 以 Gizmo 直接移動、縮放、旋轉或吸附 UV 島；既有工具也涵蓋堆疊、鏡像、隨機化、縫合與重塑。
+       </p>
+       <h4>
+        製作影響
+       </h4>
+       <p>
+        Auto Unwrap 將 Blender 工作流橋接到 Windows 專用的免費 Ministry of Flat；Zen Sync 會在工作模式切換時保留邊與面的選取，另增交疊或拉伸面選項。
+       </p>
+       <h4>
+        限制與待驗證
+       </h4>
+       <p>
+        工具另含 UDIM、Trim Sheet 與 Texel Density 管理；5.0 當時支援 Blender 4.0 以上。本文是 2025 年版本資料，不能推定目前相容性與價格。
+       </p>
+       <p class="analysis-level-note">
+        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+       </p>
+      </div>
+     </details>
+     <a class="source daily-source" href="https://www.cgchannel.com/2025/03/zen-masters-releases-zen-uv-5-0" rel="noopener noreferrer" target="_blank">
+      來源
+     </a>
+    </article>
+    <article class="daily-card daily-card-more category-news" data-intel-id="cg-channel-autodesk-releases-updates-to-max-maya-softimage-mudbox" data-intel-role="card">
+     <div class="meta">
+      <span class="pill">
+       maya
+      </span>
+     </div>
+     <h3>
+      歷史參考｜2010 年 Autodesk Advantage Pack 的 GPU 算圖與模擬更新
+     </h3>
+     <p class="summary">
+      2010 年 Autodesk 訂閱更新曾為 3ds Max 加入 iray 與 GPU PhysX、為 Maya 提供四套 Craft 相機 Rig，Softimage 則加入 Lagoa、Composite 和 MatchMover；內容僅供版本史參考。
+     </p>
+     <figure class="case-preview daily-visual" data-intel-id="cg-channel-autodesk-releases-updates-to-max-maya-softimage-mudbox" data-intel-role="visual" data-visual-id="cg-channel-autodesk-releases-updates-to-max-maya-softimage-mudbox">
+      <a href="https://www.cgchannel.com/2010/09/autodesk-releases-updates-to-max-maya-softimage-mudbox" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+       <img alt="SOURCE CARD preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-10-28/cg-channel-autodesk-releases-updates-to-max-maya-softimage-mudbox.svg"/>
+      </a>
+      <figcaption>
+       <span>
+        SOURCE CARD
+       </span>
+       · Generated source card · 點圖開啟原始來源
+      </figcaption>
+     </figure>
+     <div class="quick-impact daily-impact">
+      <span><b class="quick-impact-label">Maya</b> ★★★☆☆</span>
+     </div>
+     <details class="canonical-analysis canonical-analysis-brief daily-full-analysis" data-analysis-level="BRIEF">
+      <summary>
+       完整分析
+      </summary>
+      <div class="detail-body canonical-analysis-body brief-analysis-body daily-analysis-body">
+       <h4>
+        技術流程
+       </h4>
+       <p>
+        3ds Max 的套件整合 iray GPU 物理算圖、PhysX 剛體與最多 75 組 Substance 動態材質；Maya 則加入四套以輸入裝置驅動的 Craft Director Studio 相機 Rig。
+       </p>
+       <h4>
+        製作影響
+       </h4>
+       <p>
+        Softimage 取得 Lagoa 多物理系統、ICE 著色器與資產、合成、攝影機追蹤和立體視窗；MotionBuilder 增加同步錄製參考影片、即時曲線過濾與運動路徑上方向控制。
+       </p>
+       <h4>
+        限制與待驗證
+       </h4>
+       <p>
+        這批功能是 2010 年訂閱戶專用的半版更新，Mudbox Linux 版與當時的繪製、拓樸功能也屬舊產品線；不能用來描述現行 Autodesk 軟體功能或授權。
+       </p>
+       <p class="analysis-level-note">
+        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+       </p>
+      </div>
+     </details>
+     <a class="source daily-source" href="https://www.cgchannel.com/2010/09/autodesk-releases-updates-to-max-maya-softimage-mudbox" rel="noopener noreferrer" target="_blank">
+      來源
+     </a>
+    </article>
+    <article class="daily-card daily-card-more category-news" data-intel-id="cg-channel-epic-games-joins-the-open-3d-foundation" data-intel-role="card">
+     <div class="meta">
+      <span class="pill">
+       unreal
+      </span>
+     </div>
+     <h3>
+      歷史參考｜2022 年 Epic Games 加入 Open 3D Foundation 董事會
+     </h3>
+     <p class="summary">
+      2022 年 Epic Games 以最高級會員身分加入 Open 3D Foundation，Unreal Engine 生態副總裁 Marc Petit 進入治理董事會；該基金會由 Linux Foundation 支持開源三維技術與 Open 3D Engine。
+     </p>
+     <figure class="case-preview daily-visual" data-intel-id="cg-channel-epic-games-joins-the-open-3d-foundation" data-intel-role="visual" data-visual-id="cg-channel-epic-games-joins-the-open-3d-foundation">
+      <a href="https://www.cgchannel.com/2022/07/epic-games-joins-the-open-3d-foundation" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+       <img alt="SOURCE CARD preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-10-28/cg-channel-epic-games-joins-the-open-3d-foundation.svg"/>
+      </a>
+      <figcaption>
+       <span>
+        SOURCE CARD
+       </span>
+       · Generated source card · 點圖開啟原始來源
+      </figcaption>
+     </figure>
+     <div class="quick-impact daily-impact">
+      <span><b class="quick-impact-label">Unreal</b> ★★★☆☆</span>
+     </div>
+     <details class="canonical-analysis canonical-analysis-brief daily-full-analysis" data-analysis-level="BRIEF">
+      <summary>
+       完整分析
+      </summary>
+      <div class="detail-body canonical-analysis-body brief-analysis-body daily-analysis-body">
+       <h4>
+        基金會治理技術方向
+       </h4>
+       <p>
+        Epic 以 Premier Member 加入 O3DF，代表進入治理 Open 3D Engine 的董事會；基金會目標是支持開源圖形、算圖與開發專案，加速三維技術協作。
+       </p>
+       <h4>
+        互通標準製作影響
+       </h4>
+       <p>
+        Epic 公開說法聚焦共同標準與工具互通，讓創作者使用熟悉工具製作內容，再交付 Unreal Engine 或其他三維引擎；這屬組織承諾，不是已完成的技術功能。
+       </p>
+       <h4>
+        歷史狀態與待驗證
+       </h4>
+       <p>
+        來源以 Epic 曾資助 Godot、ArmorPaint、Blender 與 Krita 說明其開源投入；但這是 2022 年會員消息，沒有提供 2026 年治理成果或具體相容性進展。
+       </p>
+       <p class="analysis-level-note">
+        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+       </p>
+      </div>
+     </details>
+     <a class="source daily-source" href="https://www.cgchannel.com/2022/07/epic-games-joins-the-open-3d-foundation" rel="noopener noreferrer" target="_blank">
+      來源
+     </a>
+    </article>
+   </section>
+  </main>
+  <script src="../daily.js?v=20261028-r1-workspace-v10-history-current-workspace">
+  </script>
+  <script defer="" src="../archive-nav-state.js?v=20261028-r1-workspace-v10-history-current-workspace">
+  </script>
+ </body>
+</html>

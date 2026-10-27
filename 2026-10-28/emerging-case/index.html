@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   新技術 / Case｜2026-10-28｜AI 3D Daily
+  </title>
+  <meta content="2026-10-28 新技術 / Case Production Intelligence：新技術 / Production Case，共 1 項可驗證情報。" name="description"/>
+  <link href="../../styles.css?v=20261028-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../../shared-components.css?v=20261028-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../../category.css?v=20261028-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+ </head>
+ <body class="category-page" data-category="emerging-case" data-report-date="2026-10-28">
+  <nav aria-label="Production Intelligence 分類" class="global-category-nav">
+   <div class="page global-category-nav-inner">
+    <div class="archive-nav-controls">
+     <a class="archive-nav-home" href="../../">
+      ← 首頁
+     </a>
+     <div class="archive-nav-date">
+      <a aria-label="前一日日報" class="archive-nav-arrow" href="../../2026-10-25/emerging-case/">
+       ←
+      </a>
+      <span>
+       2026-10-28
+      </span>
+     </div>
+    </div>
+    <span aria-hidden="true" class="archive-nav-divider">
+    </span>
+    <a class="global-category-link" href="../#top">
+     TOP5
+    </a>
+    <a class="global-category-link" data-category="ai-generation" href="../ai-generation/">
+     AI 生成
+    </a>
+    <a class="global-category-link" data-category="3d-production" href="../3d-production/">
+     3D 製作
+    </a>
+    <a class="global-category-link" data-category="3d-animation" href="../3d-animation/">
+     3D 動作
+    </a>
+    <a class="global-category-link" data-category="engine-art" href="../engine-art/">
+     遊戲引擎
+    </a>
+    <a class="global-category-link is-active" data-category="emerging-case" href="../emerging-case/">
+     新技術 / Case
+    </a>
+    <a class="global-category-link" data-category="blender-dcc" href="../blender-dcc/">
+     Blender / DCC
+    </a>
+    <a class="global-category-link global-history-link" data-global-view="history" href="../../history/">
+     歷史日報
+    </a>
+   </div>
+  </nav>
+  <main class="page category-main">
+   <article class="category-card" data-intel-id="3dnchu-spirula-studio" data-intel-role="card">
+    <div class="category-meta">
+     #08 · research
+    </div>
+    <h2>
+     Spirula Studio：跨品牌 GPU 的 3DGS 訓練、SfM 與貼圖網格輸出
+    </h2>
+    <p class="summary">
+     免費開源的 Spirula Studio 把影像或影片取幀、SfM 相機估算、3D Gaussian Splatting 訓練與貼圖網格生成整合在同一工具，透過 Vulkan 支援 NVIDIA、AMD、Intel 與 Apple Silicon。
+    </p>
+    <figure class="case-preview" data-intel-id="3dnchu-spirula-studio" data-intel-role="visual" data-visual-id="3dnchu-spirula-studio">
+     <a href="https://3dnchu.com/archives/spirula-studio" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE CARD preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-10-28/3dnchu-spirula-studio.svg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE CARD
+      </span>
+      · Generated source card · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">研究</b> ★★★★☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       3DGS 生成技術流程
+      </h4>
+      <p>
+       工具由照片或影片建立資料集，內建 SfM 推估相機位置，再訓練 3DGS 並生成貼圖網格；360 度、魚眼與等距柱狀影像可直接輸入，不必先轉透視圖。
+      </p>
+      <h4>
+       跨 GPU 製作影響
+      </h4>
+      <p>
+       Vulkan 後端支援 NVIDIA、AMD、Intel 與 Apple Silicon，省去個別安裝 Python、PyTorch 和 COLMAP；內建取幀、AI 遮罩、編輯及影像或影片輸出。
+      </p>
+      <h4>
+       效能限制與實測
+      </h4>
+      <p>
+       官方稱 8GB VRAM 可處理一千萬個 SH3 Gaussian；第三方影片則表示資料準備快、訓練比 Polycam 久。LiDAR 仍屬實驗功能，效能與品質需依資料集驗證。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://3dnchu.com/archives/spirula-studio" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <nav aria-label="相鄰分類" class="category-bottom-nav">
+    <a href="../engine-art/">
+     ← 遊戲引擎
+    </a>
+    <a href="../#top">
+     TOP5
+    </a>
+    <a href="../blender-dcc/">
+     Blender / DCC →
+    </a>
+   </nav>
+  </main>
+  <script defer="" src="../../archive-nav-state.js?v=20261028-r1-workspace-v10-history-current-workspace">
+  </script>
+ </body>
+</html>
