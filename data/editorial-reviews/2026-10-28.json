@@ -1,0 +1,1803 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-28",
+  "reviewer": "chatgpt-scheduled-task",
+  "source_run_id": 40603865341,
+  "source_head_sha": "cfa0d4612b37e08fb5d5de0fe68b31c56ffcff69",
+  "items": {
+    "80-level-real-time-motion-paths-add-on-for-blender-gets-updated": {
+      "source_url": "https://80.lv/articles/real-time-motion-paths-add-on-for-blender-gets-updated",
+      "source_published_at": "2026-10-27",
+      "reviewed_on": "2026-10-28",
+      "source_evidence_sha256": "8eaa3b3ebef7bbe011db768dd8a2f56dd13f35c48251f546609d488ff468a8a3",
+      "title": "Motion Path Pro 3.2：即時更新骨架與相機路徑並改善複雜場景延遲",
+      "summary": "Blender 外掛 Motion Path Pro 3.2 可即時更新骨骼、物件、相機與 Empty 的 Motion Path，並改善複雜場景及高負載角色的延遲，也能把路徑與 Onion Skin 結合使用。",
+      "evidence_refs": [
+        "p001",
+        "p002",
+        "p003",
+        "p004"
+      ],
+      "full_analysis": [
+        {
+          "label": "即時路徑技術流程",
+          "text": "3.2 版把即時 Motion Path 擴展到骨骼、物件、相機與 Empty，讓動畫調整後可直接看到路徑變化，並能與 Onion Skin 疊加檢查姿勢連續性。",
+          "evidence_refs": [
+            "p002",
+            "p003"
+          ]
+        },
+        {
+          "label": "動畫修整製作影響",
+          "text": "來源表示新版移除複雜場景與高負載角色的延遲，目標是縮短動畫拋光時反覆更新路徑的等待；外掛可由 Blender 內或 Extensions 平台安裝。",
+          "evidence_refs": [
+            "p003",
+            "p004"
+          ]
+        },
+        {
+          "label": "效能限制與待驗證",
+          "text": "正文沒有列出測試場景、角色骨數或更新時間，因此「移除延遲」仍缺少可重現的效能數據；大型製作導入前需以實際 Rig 與鏡頭驗證。",
+          "evidence_refs": [
+            "p003",
+            "p004"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p002",
+          "p003",
+          "p004"
+        ]
+      }
+    },
+    "80-level-building-a-stylized-mountain-cabin-with-modular-assets-and-c": {
+      "source_url": "https://80.lv/articles/building-a-stylized-mountain-cabin-with-modular-assets-and-custom-shaders",
+      "source_published_at": "2026-10-27",
+      "reviewed_on": "2026-10-28",
+      "source_evidence_sha256": "b6c9c18b618f9bad2b7b1c3257fd92b54c1531cabc049dcb3f462c1b1313d369",
+      "title": "UE5 風格化山屋場景：模組化 Trim Sheet、RVT 混合與頂點色植被",
+      "summary": "Arjun Perayil 拆解約 30 天完成的 UE5 山屋場景：以三階段 Blockout 鎖定構圖，再用模組化木板與 Trim Sheet 建屋、RVT 融合地表資產，並以頂點色控制植被色差和 WPO 風動。",
+      "evidence_refs": [
+        "p010",
+        "p011",
+        "p012",
+        "p013",
+        "p019",
+        "p020",
+        "p021",
+        "p022",
+        "p025",
+        "p026",
+        "p027",
+        "p030",
+        "p031",
+        "p032",
+        "p035",
+        "p039",
+        "p041",
+        "p042",
+        "p045",
+        "p046",
+        "p047",
+        "p048",
+        "p049",
+        "p050",
+        "p052",
+        "p053",
+        "p054",
+        "p055",
+        "p063",
+        "p064",
+        "p065",
+        "p066",
+        "p067",
+        "p072",
+        "p073",
+        "p074",
+        "p075",
+        "p076",
+        "p077",
+        "p080",
+        "p081",
+        "p082",
+        "p084",
+        "p085",
+        "p086"
+      ],
+      "full_analysis": [
+        {
+          "label": "場景與材質技術流程",
+          "text": "Blockout 依 Proxy、Value、Color 三階段確認尺度、明暗與色彩；地形使用四層高度混合並輸出 RVT，讓岩石與植被讀取地表色彩及法線，減少資產與地面的硬交界。",
+          "evidence_refs": [
+            "p010",
+            "p011",
+            "p012",
+            "p013",
+            "p019",
+            "p020",
+            "p021",
+            "p022",
+            "p054"
+          ]
+        },
+        {
+          "label": "模組化與植被製作影響",
+          "text": "山屋由少量木板、Trim Sheet 與模組牆件組裝，主 Shader 以頂點色混合污漬、色調與 AO；樹木及草地同樣用頂點色控制漸層與 WPO 風動，兼顧重複利用與造型差異。",
+          "evidence_refs": [
+            "p025",
+            "p026",
+            "p027",
+            "p030",
+            "p031",
+            "p032",
+            "p039",
+            "p041",
+            "p042",
+            "p045",
+            "p046",
+            "p052",
+            "p053",
+            "p055"
+          ]
+        },
+        {
+          "label": "時程效能限制與驗證",
+          "text": "作者以 30 天期限、模組資產和可快速迭代材質控制範圍，並承認在視覺品質與最佳化間取捨；最終 MRQ 使用 200% Screen Percentage、停用多項即時降噪，成本需依目標硬體另行實測。",
+          "evidence_refs": [
+            "p080",
+            "p081",
+            "p082",
+            "p084",
+            "p085",
+            "p086"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p010",
+          "p011",
+          "p012",
+          "p013",
+          "p019",
+          "p020",
+          "p021",
+          "p022",
+          "p025",
+          "p026",
+          "p027",
+          "p030",
+          "p031",
+          "p032",
+          "p035",
+          "p039",
+          "p041",
+          "p042",
+          "p045",
+          "p046",
+          "p047",
+          "p048",
+          "p049",
+          "p050",
+          "p052",
+          "p053",
+          "p054",
+          "p055",
+          "p063",
+          "p064",
+          "p065",
+          "p066",
+          "p067",
+          "p072",
+          "p073",
+          "p074",
+          "p075",
+          "p076",
+          "p077",
+          "p080",
+          "p081",
+          "p082",
+          "p084",
+          "p085",
+          "p086"
+        ]
+      }
+    },
+    "80-level-this-my-little-pony-character-s-bizarre-2d-3d-look-will-brea": {
+      "source_url": "https://80.lv/articles/this-my-little-pony-character-s-bizarre-2d-3d-look-will-break-your-brain",
+      "source_published_at": "2026-10-27",
+      "reviewed_on": "2026-10-28",
+      "source_evidence_sha256": "fd863a8ab81ac07aa391c8ae4b97b6e950b92f8857a1cc74da6fd664d6eccfc3",
+      "title": "多角度 Billboard 角色：依相機角度切換平面圖像模擬三維旋轉",
+      "summary": "這個角色不是完整三維模型，而是讓 Quad 始終面向相機，依觀看角度在正面、側面、背面等預繪圖像間切換，形成類似早期遊戲 Sprite 的三維旋轉錯覺。",
+      "evidence_refs": [
+        "p001",
+        "p002",
+        "p003",
+        "p004",
+        "p005",
+        "p007"
+      ],
+      "full_analysis": [
+        {
+          "label": "Billboard 技術流程",
+          "text": "引擎先計算相機觀看角度，再選擇最接近的預繪方向圖，顯示在面向相機的 Quad 上；核心仍是平面 Sprite，不是從任意角度都成立的三維網格。",
+          "evidence_refs": [
+            "p002",
+            "p003"
+          ]
+        },
+        {
+          "label": "角色表現製作影響",
+          "text": "方法能保留二維造型，同時讓鏡頭繞角色移動；另一實作以 Rig 偵測朝向並切換 Frame，理論上也可加入身體，沿用一般二維 Rig 的做法。",
+          "evidence_refs": [
+            "p003",
+            "p004",
+            "p005"
+          ]
+        },
+        {
+          "label": "視角限制與導入驗證",
+          "text": "效果依賴事先準備的方向圖，鏡頭落在兩張圖之間時如何過渡並未說明；Blender 的 CamKeys 可用 Forced Perspective 與 Stepped Turn Around 做類似測試。",
+          "evidence_refs": [
+            "p003",
+            "p007"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p002",
+          "p003",
+          "p004",
+          "p005",
+          "p007"
+        ]
+      }
+    },
+    "80-level-this-3d-character-is-actually-flat-it-s-crazy": {
+      "source_url": "https://80.lv/articles/this-3d-character-is-actually-flat-it-s-crazy",
+      "source_published_at": "2026-07-13",
+      "reviewed_on": "2026-10-28",
+      "source_evidence_sha256": "d05efb70062fca1ba847486fa264cf633ae3227181fd7b819d0076d5c2e18323",
+      "title": "為廣角鏡頭壓扁角色頭部：Blender Lattice 強化二維輪廓",
+      "summary": "《Dust of the Simulacrum》角色仍是三維模型，但頭部被刻意壓扁並隨相機角度調整，以抵銷廣角鏡頭下的造型偏差；Blender 可用 Lattice Modifier 實作相近變形。",
+      "evidence_refs": [
+        "p001",
+        "p002",
+        "p003",
+        "p004",
+        "p005",
+        "p007"
+      ],
+      "full_analysis": [
+        {
+          "label": "鏡頭造型技術流程",
+          "text": "角色保留三維網格，但頭部沿特定觀看方向壓平並配合相機調整，使最終畫面更接近二維設計；來源指出可用 Blender Lattice Modifier 重現類似變形。",
+          "evidence_refs": [
+            "p001",
+            "p002",
+            "p003",
+            "p004"
+          ]
+        },
+        {
+          "label": "鏡頭導向製作影響",
+          "text": "這種做法把最終鏡頭讀感置於模型全角度合理性之前，允許幕後網格出現誇張形變；對固定構圖或風格化動畫，可用局部變形維持角色輪廓。",
+          "evidence_refs": [
+            "p002",
+            "p003",
+            "p005"
+          ]
+        },
+        {
+          "label": "視角限制與待驗證",
+          "text": "正文沒有說明頭部變形是否自動跟隨鏡頭、如何切換多鏡位，或極端角度是否穿幫；導入多鏡頭場景前需逐鏡檢查輪廓與變形穩定性。",
+          "evidence_refs": [
+            "p003",
+            "p005",
+            "p007"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p002",
+          "p003",
+          "p004",
+          "p005",
+          "p007"
+        ]
+      }
+    },
+    "80-level-check-out-this-weight-painting-blender-tool-designed-for-laz": {
+      "source_url": "https://80.lv/articles/check-out-this-weight-painting-blender-tool-designed-for-lazy-rigging-artists",
+      "source_published_at": "2026-04-06",
+      "reviewed_on": "2026-10-28",
+      "source_evidence_sha256": "b579f9fe47b938110ac29faf476c19be9d35126dc4a0ffce909592f2baaa74ca",
+      "title": "歷史參考｜2026 年 Weight Paint Box 以變形盒控制多頂點群組權重",
+      "summary": "2026 年資料介紹 Blender 外掛 Weight Paint Box：以可調整變形盒限定權重範圍，每個盒面有獨立平滑區，可同時處理與鏡像多個 Vertex Group，並把盒外幾何隱藏。",
+      "evidence_refs": [
+        "p001",
+        "p002",
+        "p003",
+        "p004",
+        "p005",
+        "p006",
+        "p007",
+        "p008",
+        "p009",
+        "p010",
+        "p011"
+      ],
+      "full_analysis": [
+        {
+          "label": "權重繪製技術流程",
+          "text": "使用者把目標區域放進可調整變形盒，各盒面以獨立圓形控制平滑，並可設定盒內或盒外的強度與方向，避免不同盒面的效果互相重疊。",
+          "evidence_refs": [
+            "p002",
+            "p003"
+          ]
+        },
+        {
+          "label": "Rig 製作影響",
+          "text": "工具可同時處理與鏡像多個 Vertex Group、隱藏盒外幾何並一起查看所有群組；同套件的 Draw Bone 另提供 Rigify、人形與 MetaHuman 骨架及 Smart Chain。",
+          "evidence_refs": [
+            "p003",
+            "p004",
+            "p005",
+            "p006",
+            "p007",
+            "p008",
+            "p009",
+            "p010"
+          ]
+        },
+        {
+          "label": "版本限制與待驗證",
+          "text": "這是 2026 年 4 月的功能介紹，正文未列 Blender 相容版本、複雜角色效能或權重品質比較；目前版本與大型 Rig 的穩定性仍需實測。",
+          "evidence_refs": [
+            "p001",
+            "p002",
+            "p011"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p002",
+          "p003",
+          "p004",
+          "p005",
+          "p006",
+          "p007",
+          "p008",
+          "p009",
+          "p010",
+          "p011"
+        ]
+      }
+    },
+    "3dnchu-spirula-studio": {
+      "source_url": "https://3dnchu.com/archives/spirula-studio",
+      "source_published_at": "2026-10-28",
+      "reviewed_on": "2026-10-28",
+      "source_evidence_sha256": "e6c3059c185e7f7bdb1be3c6044b53e1a11e0cc38eb8bfa27c08ba4dfc1bf76e",
+      "title": "Spirula Studio：跨品牌 GPU 的 3DGS 訓練、SfM 與貼圖網格輸出",
+      "summary": "免費開源的 Spirula Studio 把影像或影片取幀、SfM 相機估算、3D Gaussian Splatting 訓練與貼圖網格生成整合在同一工具，透過 Vulkan 支援 NVIDIA、AMD、Intel 與 Apple Silicon。",
+      "evidence_refs": [
+        "p001",
+        "p002",
+        "p003",
+        "p004",
+        "p005",
+        "p006",
+        "p007",
+        "p008",
+        "p009",
+        "p010",
+        "p011",
+        "p012",
+        "p013",
+        "p015",
+        "p016"
+      ],
+      "full_analysis": [
+        {
+          "label": "3DGS 生成技術流程",
+          "text": "工具由照片或影片建立資料集，內建 SfM 推估相機位置，再訓練 3DGS 並生成貼圖網格；360 度、魚眼與等距柱狀影像可直接輸入，不必先轉透視圖。",
+          "evidence_refs": [
+            "p002",
+            "p003",
+            "p005",
+            "p006",
+            "p009",
+            "p010"
+          ]
+        },
+        {
+          "label": "跨 GPU 製作影響",
+          "text": "Vulkan 後端支援 NVIDIA、AMD、Intel 與 Apple Silicon，省去個別安裝 Python、PyTorch 和 COLMAP；內建取幀、AI 遮罩、編輯及影像或影片輸出。",
+          "evidence_refs": [
+            "p002",
+            "p003",
+            "p004",
+            "p005",
+            "p007",
+            "p010",
+            "p013"
+          ]
+        },
+        {
+          "label": "效能限制與實測",
+          "text": "官方稱 8GB VRAM 可處理一千萬個 SH3 Gaussian；第三方影片則表示資料準備快、訓練比 Polycam 久。LiDAR 仍屬實驗功能，效能與品質需依資料集驗證。",
+          "evidence_refs": [
+            "p008",
+            "p012",
+            "p015",
+            "p016"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p002",
+          "p003",
+          "p004",
+          "p005",
+          "p006",
+          "p007",
+          "p008",
+          "p009",
+          "p010",
+          "p011",
+          "p012",
+          "p013",
+          "p015",
+          "p016"
+        ]
+      }
+    },
+    "3dnchu-hello-vfx-blender-davinci": {
+      "source_url": "https://3dnchu.com/archives/hello-vfx-blender-davinci",
+      "source_published_at": "2025-06-04",
+      "reviewed_on": "2026-10-28",
+      "source_evidence_sha256": "2243bf73fcde09ed6e016c1592e609f06bd786b315dbc14f6be026d61f23467e",
+      "title": "歷史參考｜2025 年 Blender 與 DaVinci Resolve 實拍合成入門書",
+      "summary": "2025 年出版的《Hello VFX》以 Blender 和 DaVinci Resolve 解說實拍合成，章節涵蓋畫面追蹤、色彩匹配、綠幕去背、動態遮罩、多通道合成與完整製作流程。",
+      "evidence_refs": [
+        "p001",
+        "p002",
+        "p003",
+        "p007",
+        "p008",
+        "p009",
+        "p011",
+        "p012",
+        "p013",
+        "p014",
+        "p015"
+      ],
+      "full_analysis": [
+        {
+          "label": "實拍合成技術流程",
+          "text": "書籍依序涵蓋追蹤畫面動態、匹配實拍與 CG 色彩、以 Chroma Key 和 Rotoscope 抽取主體，再把 CG Pass 疊回實拍素材。",
+          "evidence_refs": [
+            "p007",
+            "p008",
+            "p009",
+            "p011",
+            "p012",
+            "p013",
+            "p014"
+          ]
+        },
+        {
+          "label": "免費工具製作影響",
+          "text": "內容以 Blender 和 DaVinci Resolve 為主要工具，透過街景破壞、異世界與角色置入等作例連結理論和操作，降低學習實拍 VFX 的軟體成本。",
+          "evidence_refs": [
+            "p008",
+            "p009",
+            "p015"
+          ]
+        },
+        {
+          "label": "教材範圍與版本限制",
+          "text": "來源只列部分章節，沒有完整目錄、軟體版本或素材規格；這是 2025 年 6 月出版資訊，操作介面與現行版本相容性需另行確認。",
+          "evidence_refs": [
+            "p001",
+            "p003",
+            "p011",
+            "p012",
+            "p013",
+            "p014",
+            "p015"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p002",
+          "p003",
+          "p007",
+          "p008",
+          "p009",
+          "p011",
+          "p012",
+          "p013",
+          "p014",
+          "p015"
+        ]
+      }
+    },
+    "3dnchu-playblast-tool-to-blender": {
+      "source_url": "https://3dnchu.com/archives/playblast-tool-to-blender",
+      "source_published_at": "2020-09-30",
+      "reviewed_on": "2026-10-28",
+      "source_evidence_sha256": "81ada133b0e6452cf858f06f09f61e33c2c9d841166adb974a21863276d298f9",
+      "title": "歷史參考｜2020 年 Blender Playblast 外掛一鍵輸出視窗動畫預覽",
+      "summary": "2020 年資料介紹免費 Playblast tool to Blender：從視窗側欄一鍵把 Viewport 狀態輸出為 QuickTime、MP4、AVI、Ogg 或 Matroska，支援線框、Solid、材質預覽與視窗算圖模式。",
+      "evidence_refs": [
+        "p001",
+        "p002",
+        "p003",
+        "p004",
+        "p005",
+        "p006",
+        "p007",
+        "p009"
+      ],
+      "full_analysis": [
+        {
+          "label": "動畫預覽技術流程",
+          "text": "啟用外掛後，使用者可從 Viewport 左側按鈕直接輸出動畫預覽，並選擇線框、Solid、材質預覽或 Viewport Render 模式。",
+          "evidence_refs": [
+            "p001",
+            "p002",
+            "p005",
+            "p006"
+          ]
+        },
+        {
+          "label": "審片輸出製作影響",
+          "text": "輸出格式包含 QuickTime、MP4、AVI、Ogg 與 Matroska，並支援 Blender 2.83 的音訊格式；內建播放器可拖曳正反播及逐格檢查。",
+          "evidence_refs": [
+            "p003",
+            "p004",
+            "p007"
+          ]
+        },
+        {
+          "label": "舊版相容限制",
+          "text": "這是 2020 年、以 Blender 2.83 為基準的外掛資料；來源未提供後續維護狀態，因此在目前 Blender 版本導入前必須先驗證安裝與編碼輸出。",
+          "evidence_refs": [
+            "p001",
+            "p004",
+            "p009"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p002",
+          "p003",
+          "p004",
+          "p005",
+          "p006",
+          "p007",
+          "p009"
+        ]
+      }
+    },
+    "cg-channel-open-source-material-authoring-software-material-maker-1-8-i": {
+      "source_url": "https://www.cgchannel.com/2026/10/open-source-material-authoring-software-material-maker-1-8-is-out",
+      "source_published_at": "2026-10-26",
+      "reviewed_on": "2026-10-28",
+      "source_evidence_sha256": "e2195c008a0861248b2e061782ce837466ab54c58e77fead0a641317ba2e1d85",
+      "title": "Material Maker 1.8：Trim Sheet 節點與材質變更自動重新輸出",
+      "summary": "開源節點材質工具 Material Maker 1.8 新增 Trim Sheet 節點與 Auto Export；約 200 個節點可即時在三維模型預覽，並把 PBR 貼圖輸出至 Godot、Unity 或 Unreal。",
+      "evidence_refs": [
+        "p001",
+        "p002",
+        "p003",
+        "p004",
+        "p005",
+        "p006",
+        "p007",
+        "p008",
+        "p009",
+        "p010",
+        "p011",
+        "p012",
+        "p013",
+        "p015",
+        "p016"
+      ],
+      "full_analysis": [
+        {
+          "label": "節點材質技術流程",
+          "text": "使用者由約 200 個節點組合程序貼圖，結果即時顯示於三維模型；1.8 的 Trim Sheet 節點輸出遊戲用 Trim Sheet，Auto Export 則在輸入變更時重新輸出。",
+          "evidence_refs": [
+            "p003",
+            "p004",
+            "p005",
+            "p006",
+            "p009",
+            "p010",
+            "p011"
+          ]
+        },
+        {
+          "label": "引擎交接製作影響",
+          "text": "完成材質可輸出 PBR Map，內建 Godot、Unity 與 Unreal 範本；同一軟體亦可直接在模型表面繪製，讓節點材質與三維貼圖共用開源工具鏈。",
+          "evidence_refs": [
+            "p007",
+            "p008"
+          ]
+        },
+        {
+          "label": "版本範圍與導入驗證",
+          "text": "1.8 另加 Crop、高品質 Gaussian Blur、子節點搜尋與新介面主題；來源未比較大型 Graph 效能或輸出一致性，正式導入前需用現有材質驗證。",
+          "evidence_refs": [
+            "p012",
+            "p013",
+            "p014",
+            "p015",
+            "p016"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p002",
+          "p003",
+          "p004",
+          "p005",
+          "p006",
+          "p007",
+          "p008",
+          "p009",
+          "p010",
+          "p011",
+          "p012",
+          "p013",
+          "p015",
+          "p016",
+          "p014"
+        ]
+      }
+    },
+    "cg-channel-check-out-free-procedural-texture-generator-material-maker": {
+      "source_url": "https://www.cgchannel.com/2020/01/check-out-free-procedural-texture-generator-material-maker",
+      "source_published_at": "2020-01-26",
+      "reviewed_on": "2026-10-28",
+      "source_evidence_sha256": "bae8070b81dc3b0e6224a457210ab6cd202b992dc56ea98a672bfce93b8a5ffd",
+      "title": "歷史參考｜2020 年 Material Maker 0.8 以 SDF 建立程序式 PBR 貼圖",
+      "summary": "2020 年資料記錄 Material Maker 0.8：在 Godot 節點式材質流程加入二維與三維 SDF，可變形、旋轉、布林及散佈幾何，再由距離場產生 Height 與 Normal Map。",
+      "evidence_refs": [
+        "p001",
+        "p002",
+        "p003",
+        "p004",
+        "p005",
+        "p006",
+        "p007",
+        "p008",
+        "p009",
+        "p010",
+        "p012",
+        "p013",
+        "p014",
+        "p015",
+        "p016",
+        "p017",
+        "p018",
+        "p019",
+        "p020",
+        "p021",
+        "p022"
+      ],
+      "full_analysis": [
+        {
+          "label": "程序材質技術流程",
+          "text": "0.6 版以可編輯 GLSL 自訂節點參數與輸入輸出，也能把一段 Graph 收納成高階節點；0.8 再加入二維、三維 SDF 與材質混合工作流。",
+          "evidence_refs": [
+            "p004",
+            "p005",
+            "p013",
+            "p014",
+            "p015",
+            "p017",
+            "p021"
+          ]
+        },
+        {
+          "label": "SDF 貼圖製作影響",
+          "text": "SDF 能建立球體、方盒、膠囊與圓環，執行變形、擠出、旋轉及布林，亦可散佈碎石或磚塊，最後生成 Height 與 Normal Map。",
+          "evidence_refs": [
+            "p018",
+            "p019",
+            "p020"
+          ]
+        },
+        {
+          "label": "舊版工具限制",
+          "text": "當時工具約 20 個節點，遠少於 Substance Designer，GLSL 也沒有內建診斷；這是 2020 年 0.8 資料，只能作版本史參考，不能代表現行功能。",
+          "evidence_refs": [
+            "p002",
+            "p010",
+            "p014",
+            "p022"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p002",
+          "p003",
+          "p004",
+          "p005",
+          "p006",
+          "p007",
+          "p008",
+          "p009",
+          "p010",
+          "p012",
+          "p013",
+          "p014",
+          "p015",
+          "p016",
+          "p017",
+          "p018",
+          "p019",
+          "p020",
+          "p021",
+          "p022"
+        ]
+      }
+    },
+    "cg-channel-free-material-authoring-tool-material-maker-now-does-3d-pain": {
+      "source_url": "https://www.cgchannel.com/2021/07/free-material-authoring-tool-material-maker-now-does-3d-painting",
+      "source_published_at": "2021-07-07",
+      "reviewed_on": "2026-10-28",
+      "source_evidence_sha256": "f0cdd8d16fe7204615e361f4f551da764f2e5ae5ba586a28c5dd5c5ddc879672",
+      "title": "歷史參考｜2021 年 Material Maker 0.95 加入分層三維貼圖繪製",
+      "summary": "2021 年 Material Maker 0.94／0.95 在節點材質之外加入三維繪製，可同步畫入底色、粗糙度、金屬度、發光與深度，並增加繪製、程序式、遮罩圖層和高動態範圍環境編輯。",
+      "evidence_refs": [
+        "p001",
+        "p002",
+        "p003",
+        "p004",
+        "p005",
+        "p006",
+        "p007",
+        "p008",
+        "p009",
+        "p010",
+        "p011",
+        "p013"
+      ],
+      "full_analysis": [
+        {
+          "label": "三維繪製技術流程",
+          "text": "0.94 可用圖樣或生成式著色器當筆刷，同時寫入底色、粗糙度、金屬度、發光與深度；0.95 再加入繪製、程序式與遮罩圖層。",
+          "evidence_refs": [
+            "p008",
+            "p009",
+            "p010"
+          ]
+        },
+        {
+          "label": "材質預覽製作影響",
+          "text": "節點產生的 Metallic／Roughness PBR Map 可套用 Godot、Unity 與 Unreal 範本；新的 Environment Editor 能設定三維預覽與模型繪製使用的 HDRI。",
+          "evidence_refs": [
+            "p003",
+            "p004",
+            "p005",
+            "p006",
+            "p007",
+            "p011"
+          ]
+        },
+        {
+          "label": "舊版平台限制",
+          "text": "0.95 當時只列 Windows 與 Linux，並可作 Godot Add-on 或獨立工具；這是 2021 年狀態，現行平台、效能和圖層相容性需重新驗證。",
+          "evidence_refs": [
+            "p002",
+            "p013",
+            "p014"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p002",
+          "p003",
+          "p004",
+          "p005",
+          "p006",
+          "p007",
+          "p008",
+          "p009",
+          "p010",
+          "p011",
+          "p013",
+          "p014"
+        ]
+      }
+    },
+    "cg-channel-sitni-sati-releases-fumefx-7-1-for-3ds-max": {
+      "source_url": "https://www.cgchannel.com/2025/10/sitni-sati-releases-fumefx-7-1-for-3ds-max",
+      "source_published_at": "2025-10-06",
+      "reviewed_on": "2026-10-28",
+      "source_evidence_sha256": "a3403ccc3abe989273debc4cda9e870aca5375e9955dc98769bc700ffc88c4a9",
+      "title": "歷史參考｜2025 年 FumeFX 7.1 加速 Render Warps 並擴充 Alembic／VDB 交換",
+      "summary": "2025 年 FumeFX 7.1 重寫 3ds Max 的 Render Warps，官方稱標準 Modifier 約快五倍且結果更清晰；同版可直接以 Alembic 交換點雲與粒子，並簡化 Houdini、LiquiGen、EmberGen 的 VDB 匯入。",
+      "evidence_refs": [
+        "p001",
+        "p002",
+        "p007",
+        "p008",
+        "p009",
+        "p010",
+        "p011",
+        "p012",
+        "p013",
+        "p014",
+        "p015",
+        "p016",
+        "p017",
+        "p019"
+      ],
+      "full_analysis": [
+        {
+          "label": "模擬變形技術流程",
+          "text": "算圖變形用於完成模擬後再做藝術導向變形，避免整段重算；7.1 重寫演算法，並針對彎曲、錐化、扭轉、傾斜與伸展等 3ds Max 修改器最佳化。",
+          "evidence_refs": [
+            "p007",
+            "p008",
+            "p009",
+            "p010",
+            "p011"
+          ]
+        },
+        {
+          "label": "快取交換製作影響",
+          "text": "NodeWorks 可直接透過 Alembic 輸出點雲與粒子形狀，送入 Houdini 時不必手動配對屬性；也能匯入 Houdini 或 LiquiGen 粒子，以及採用 Y 軸向上的 VDB 快取。",
+          "evidence_refs": [
+            "p012",
+            "p013",
+            "p014",
+            "p015",
+            "p016"
+          ]
+        },
+        {
+          "label": "效能與平台限制",
+          "text": "約五倍速度是來源針對標準 Modifier 的說法，FFD 仍用舊取樣演算法；液體模擬要求 NVIDIA Pascal 以上，且當時 Maya、Cinema 4D 版尚未升到 7。",
+          "evidence_refs": [
+            "p010",
+            "p011",
+            "p017",
+            "p019"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p002",
+          "p007",
+          "p008",
+          "p009",
+          "p010",
+          "p011",
+          "p012",
+          "p013",
+          "p014",
+          "p015",
+          "p016",
+          "p017",
+          "p019"
+        ]
+      }
+    },
+    "cg-channel-epic-games-joins-the-open-3d-foundation": {
+      "source_url": "https://www.cgchannel.com/2022/07/epic-games-joins-the-open-3d-foundation",
+      "source_published_at": "2022-07-25",
+      "reviewed_on": "2026-10-28",
+      "source_evidence_sha256": "ecbcbf091d709a4f576b560fb1cdaf1af8ba6e74f4cc269859082408a1fcdd4c",
+      "title": "歷史參考｜2022 年 Epic Games 加入 Open 3D Foundation 董事會",
+      "summary": "2022 年 Epic Games 以最高級會員身分加入 Open 3D Foundation，Unreal Engine 生態副總裁 Marc Petit 進入治理董事會；該基金會由 Linux Foundation 支持開源三維技術與 Open 3D Engine。",
+      "evidence_refs": [
+        "p001",
+        "p003",
+        "p004",
+        "p005",
+        "p006",
+        "p007",
+        "p008",
+        "p009",
+        "p010",
+        "p011",
+        "p012",
+        "p013",
+        "p014",
+        "p015"
+      ],
+      "full_analysis": [
+        {
+          "label": "基金會治理技術方向",
+          "text": "Epic 以 Premier Member 加入 O3DF，代表進入治理 Open 3D Engine 的董事會；基金會目標是支持開源圖形、算圖與開發專案，加速三維技術協作。",
+          "evidence_refs": [
+            "p004",
+            "p005",
+            "p006",
+            "p007",
+            "p009"
+          ]
+        },
+        {
+          "label": "互通標準製作影響",
+          "text": "Epic 公開說法聚焦共同標準與工具互通，讓創作者使用熟悉工具製作內容，再交付 Unreal Engine 或其他三維引擎；這屬組織承諾，不是已完成的技術功能。",
+          "evidence_refs": [
+            "p010",
+            "p011"
+          ]
+        },
+        {
+          "label": "歷史狀態與待驗證",
+          "text": "來源以 Epic 曾資助 Godot、ArmorPaint、Blender 與 Krita 說明其開源投入；但這是 2022 年會員消息，沒有提供 2026 年治理成果或具體相容性進展。",
+          "evidence_refs": [
+            "p012",
+            "p013",
+            "p014",
+            "p015"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p003",
+          "p004",
+          "p005",
+          "p006",
+          "p007",
+          "p008",
+          "p009",
+          "p010",
+          "p011",
+          "p012",
+          "p013",
+          "p014",
+          "p015"
+        ]
+      }
+    },
+    "cg-channel-adobe-releases-substance-3d-painter-12-2": {
+      "source_url": "https://www.cgchannel.com/2026/10/adobe-releases-substance-3d-painter-12-2",
+      "source_published_at": "2026-10-25",
+      "reviewed_on": "2026-10-28",
+      "source_evidence_sha256": "ec55df96ad07fa97cfb0cabdee451eab99eda06bbe19a2d1dc8b784447f3cbe9",
+      "title": "Substance 3D Painter 12.2：直接在模型上修補烘焙 Cage 與多邊形選取",
+      "summary": "Adobe 發布 Substance 3D Painter 12.2，新增以筆刷、橡皮擦和多邊形填色直接調整烘焙 Cage 的流程，並擴充 Polygon Fill 選取、混合模式及透明材質顯示。",
+      "evidence_refs": [
+        "p001",
+        "p002",
+        "p003",
+        "p005",
+        "p007",
+        "p008",
+        "p009",
+        "p010",
+        "p012",
+        "p013"
+      ],
+      "full_analysis": [
+        {
+          "label": "技術流程",
+          "text": "當高模局部超出自動產生的烘焙 Cage 時，使用者不必只調整全域距離，而能在網格上用筆刷、橡皮擦或多邊形填色，局部把 Cage 修到貼合模型。",
+          "evidence_refs": [
+            "p003",
+            "p004",
+            "p005"
+          ]
+        },
+        {
+          "label": "製作影響",
+          "text": "Polygon Fill 新增完整四邊面 Loop 一鍵填滿與拖曳矩形區塊的局部 Loop 選取，並支援 Layer Stack 的全部混合模式；預設排除背面多邊形可避免誤填模型後側。",
+          "evidence_refs": [
+            "p007",
+            "p008",
+            "p009",
+            "p010"
+          ]
+        },
+        {
+          "label": "限制與待驗證",
+          "text": "材質集清單可在游標停留時於三維視窗標示對應幾何，Viewport 也以順序無關透明度減少透明表面重疊閃爍；來源僅列支援系統，未提供效能成本。",
+          "evidence_refs": [
+            "p011",
+            "p012",
+            "p013"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p002",
+          "p003",
+          "p005",
+          "p007",
+          "p008",
+          "p009",
+          "p010",
+          "p012",
+          "p013",
+          "p004",
+          "p011"
+        ]
+      }
+    },
+    "cg-channel-see-lungundtrugs-beautiful-vfx-breakdown-for-der-medicus-ii": {
+      "source_url": "https://www.cgchannel.com/2026/10/see-lungundtrugs-beautiful-vfx-breakdown-for-der-medicus-ii",
+      "source_published_at": "2026-10-25",
+      "reviewed_on": "2026-10-28",
+      "source_evidence_sha256": "d17da92646cff4e75eed34706ded0a0bee7f679db17178fcddaf9c32bac41a7f",
+      "title": "《Der Medicus II》VFX Breakdown：380 多顆鏡頭拆解環境、軍隊與海洋模擬",
+      "summary": "德國 Lugundtrug 公開《Der Medicus II》特效拆解；該公司是全片唯一 VFX 供應商，交付超過 380 顆鏡頭，涵蓋 CG 環境、場景延伸、數位軍隊與海洋模擬。",
+      "evidence_refs": [
+        "p001",
+        "p002",
+        "p003",
+        "p004",
+        "p005",
+        "p008"
+      ],
+      "full_analysis": [
+        {
+          "label": "技術流程",
+          "text": "Lugundtrug 以唯一 VFX 供應商身分完成超過 380 顆鏡頭，工作項目包括 CG 環境、Set Extension、數位軍隊及海洋模擬。",
+          "evidence_refs": [
+            "p001",
+            "p003"
+          ]
+        },
+        {
+          "label": "製作影響",
+          "text": "影片不只比較合成前後，也展示每顆鏡頭採用的 CG 資產；廣角數位環境之外，還可看到佈置其中的船艦、角色與群眾動畫參考影片。",
+          "evidence_refs": [
+            "p004",
+            "p005"
+          ]
+        },
+        {
+          "label": "限制與待驗證",
+          "text": "拆解影片在報導前已上線一段時間，但正文沒有列出軟體、算圖器或模擬參數，技術結論只能限於鏡頭與資產類型，無法由來源判斷各項效果的實作成本。",
+          "evidence_refs": [
+            "p002",
+            "p008"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p002",
+          "p003",
+          "p004",
+          "p005",
+          "p008"
+        ]
+      }
+    },
+    "cg-channel-new-cg-software-you-may-have-missed-25-october-2026": {
+      "source_url": "https://www.cgchannel.com/2026/10/new-cg-software-you-may-have-missed-25-october-2026",
+      "source_published_at": "2026-10-25",
+      "reviewed_on": "2026-10-28",
+      "source_evidence_sha256": "7c92b142f30c8ce0c03d7c552c07f6ca1887e149d1bd7ea42b253658ca971cd5",
+      "title": "CG 軟體週報：Marionette 動作編修、ArcBrush PBR 與 EdenLive 即時生成",
+      "summary": "10 月 25 日軟體週報彙整多項小型更新：Blender 的 Marionette 直接拖曳角色與編修 Motion Trail；ArcBrush 1.7 封裝並預覽 PBR 貼圖集；EdenLive 則在 RTX 5090 上展示即時 720p 生成。",
+      "evidence_refs": [
+        "p002",
+        "p003",
+        "p005",
+        "p007",
+        "p008",
+        "p009",
+        "p010",
+        "p011",
+        "p014",
+        "p019",
+        "p023",
+        "p024",
+        "p025",
+        "p027",
+        "p028",
+        "p029",
+        "p035",
+        "p039",
+        "p040",
+        "p041",
+        "p042",
+        "p043",
+        "p048",
+        "p049",
+        "p050"
+      ],
+      "full_analysis": [
+        {
+          "label": "技術流程",
+          "text": "Marionette 讓 Blender 使用者直接拖曳手、腳或髖部擺姿勢，並以 Motion Trail 控制點或筆刷修改動作；工具另含平滑、洋蔥皮、手腳鎖定及滑步或關節跳動偵測。",
+          "evidence_refs": [
+            "p008",
+            "p009",
+            "p010",
+            "p011",
+            "p012",
+            "p013",
+            "p014",
+            "p015",
+            "p016",
+            "p017",
+            "p018",
+            "p019"
+          ]
+        },
+        {
+          "label": "製作影響",
+          "text": "ArcBrush 1.7 的貼圖節點把色彩、法線、粗糙度、金屬度等通道封裝成一組貼圖集，能在三維模型預覽並輸出給 Blender、Unreal、Unity、Godot 或 Painter。",
+          "evidence_refs": [
+            "p023",
+            "p024",
+            "p025",
+            "p026",
+            "p027",
+            "p028",
+            "p029",
+            "p030",
+            "p035",
+            "p036"
+          ]
+        },
+        {
+          "label": "限制與待驗證",
+          "text": "EdenLive 需場景或參考影片、目標首幀與文字提示；5B 權重在單張 RTX 5090 上據稱可超過 24fps 生成 720p，但即時模式只到 480p 或 720p，報導明列為實驗性工具。",
+          "evidence_refs": [
+            "p039",
+            "p040",
+            "p041",
+            "p042",
+            "p043",
+            "p044",
+            "p045",
+            "p046",
+            "p048",
+            "p049",
+            "p050"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p002",
+          "p003",
+          "p005",
+          "p007",
+          "p008",
+          "p009",
+          "p010",
+          "p011",
+          "p014",
+          "p019",
+          "p023",
+          "p024",
+          "p025",
+          "p027",
+          "p028",
+          "p029",
+          "p035",
+          "p039",
+          "p040",
+          "p041",
+          "p042",
+          "p043",
+          "p048",
+          "p049",
+          "p050",
+          "p012",
+          "p013",
+          "p015",
+          "p016",
+          "p017",
+          "p018",
+          "p026",
+          "p030",
+          "p036",
+          "p044",
+          "p045",
+          "p046"
+        ]
+      }
+    },
+    "cg-channel-3d-texture-painting-app-wafer-is-now-available-for-windows": {
+      "source_url": "https://www.cgchannel.com/2026/05/3d-texture-painting-app-wafer-is-now-available-for-windows",
+      "source_published_at": "2026-05-17",
+      "reviewed_on": "2026-10-28",
+      "source_evidence_sha256": "81af8a8ef961ffad029be6f28d938d8b0603701f172110f786b8dbd25ce429b6",
+      "title": "歷史參考｜Wafer 1.2 擴展至 Windows 與 Apple Silicon Mac",
+      "summary": "2026 年 5 月更新記錄 Wafer 1.2 從 iPad 擴展到 Windows 與 Apple Silicon Mac；這款風格化三維貼圖工具可在模型或 2D 貼圖視圖作畫，支援多通道繪製、圖層、遮罩及 PBR。",
+      "evidence_refs": [
+        "p001",
+        "p002",
+        "p003",
+        "p007",
+        "p008",
+        "p009",
+        "p010",
+        "p014",
+        "p015",
+        "p016",
+        "p018",
+        "p019"
+      ],
+      "full_analysis": [
+        {
+          "label": "技術流程",
+          "text": "Wafer 可匯入 OBJ、FBX 和 GLB，在三維模型或並列的 2D 貼圖視圖上作畫；筆刷支援壓力與傾斜，並提供模板、貼花、圖章、圖層遮罩與混合。",
+          "evidence_refs": [
+            "p007",
+            "p008",
+            "p009"
+          ]
+        },
+        {
+          "label": "製作影響",
+          "text": "多通道繪製可同時寫入數個貼圖通道；Windows 首個穩定版 1.2 與當時 iPad 版功能一致並包含 Smudge，後續也發布 Apple Silicon Mac 穩定版。",
+          "evidence_refs": [
+            "p010",
+            "p014",
+            "p015",
+            "p016"
+          ]
+        },
+        {
+          "label": "限制與待驗證",
+          "text": "基礎 App 可免費測試，但儲存檔案或輸出貼圖需永久授權；正文列出的系統與價格只代表 2026 年 5 月狀態，不能推定目前方案。",
+          "evidence_refs": [
+            "p001",
+            "p018",
+            "p019"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p002",
+          "p003",
+          "p007",
+          "p008",
+          "p009",
+          "p010",
+          "p014",
+          "p015",
+          "p016",
+          "p018",
+          "p019"
+        ]
+      }
+    },
+    "cg-channel-adobe-releases-substance-3d-painter-12-1": {
+      "source_url": "https://www.cgchannel.com/2026/06/adobe-releases-substance-3d-painter-12-1",
+      "source_published_at": "2026-06-24",
+      "reviewed_on": "2026-10-28",
+      "source_evidence_sha256": "42278ded9f313b2f25193383a0d36fe559d076f0497cdc6c04a0e251dd338e35",
+      "title": "Substance 3D Painter 12.1：連續重烘焙、Skew 修正與硬表面自動 UV",
+      "summary": "Substance 3D Painter 12.1 重整貼圖烘焙，加入參數變更後自動更新的連續重烘焙、可在低模上繪製的 Skew 修正，以及面向機械模型的硬表面自動 UV 模式。",
+      "evidence_refs": [
+        "p001",
+        "p002",
+        "p003",
+        "p005",
+        "p006",
+        "p007",
+        "p009",
+        "p010",
+        "p011",
+        "p012",
+        "p013",
+        "p015",
+        "p017",
+        "p020"
+      ],
+      "full_analysis": [
+        {
+          "label": "技術流程",
+          "text": "連續重烘焙會在參數改變後更新 Normal、Curvature 等 Map；Skew 修正則在低模表面繪製烘焙法線方向，並可用筆刷 Flow、Opacity 與 Edge Protection 控制結果。",
+          "evidence_refs": [
+            "p003",
+            "p004",
+            "p005",
+            "p006",
+            "p007",
+            "p008",
+            "p009",
+            "p010"
+          ]
+        },
+        {
+          "label": "製作影響",
+          "text": "新的硬表面自動展 UV 模式針對機械模型降低變形並產生正交對齊 Layout，來源列舉機械、車輛、遊戲動畫資產與產品視覺化為適用場景。",
+          "evidence_refs": [
+            "p011",
+            "p012",
+            "p013",
+            "p014"
+          ]
+        },
+        {
+          "label": "限制與待驗證",
+          "text": "新專案未套 Template 時會預設 OpenPBR Shader，輸出貼圖也採 OpenPBR 命名；烘焙與繪製共用 Undo History，但來源沒有比較舊版效能或實際節省工時。",
+          "evidence_refs": [
+            "p015",
+            "p016",
+            "p017",
+            "p018",
+            "p020"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p002",
+          "p003",
+          "p005",
+          "p006",
+          "p007",
+          "p009",
+          "p010",
+          "p011",
+          "p012",
+          "p013",
+          "p015",
+          "p017",
+          "p020",
+          "p004",
+          "p008",
+          "p014",
+          "p016",
+          "p018"
+        ]
+      }
+    },
+    "cg-channel-autodesk-releases-updates-to-max-maya-softimage-mudbox": {
+      "source_url": "https://www.cgchannel.com/2010/09/autodesk-releases-updates-to-max-maya-softimage-mudbox",
+      "source_published_at": "2010-09-30",
+      "reviewed_on": "2026-10-28",
+      "source_evidence_sha256": "43d59867c77ec2ac1f7d9cdbf518921dd5698e9bfa374e053d7a1249f18a08ba",
+      "title": "歷史參考｜2010 年 Autodesk Advantage Pack 的 GPU 算圖與模擬更新",
+      "summary": "2010 年 Autodesk 訂閱更新曾為 3ds Max 加入 iray 與 GPU PhysX、為 Maya 提供四套 Craft 相機 Rig，Softimage 則加入 Lagoa、Composite 和 MatchMover；內容僅供版本史參考。",
+      "evidence_refs": [
+        "p001",
+        "p002",
+        "p003",
+        "p004",
+        "p005",
+        "p006",
+        "p009",
+        "p010",
+        "p011",
+        "p014",
+        "p015",
+        "p016",
+        "p017",
+        "p018",
+        "p019",
+        "p020",
+        "p022",
+        "p023",
+        "p024",
+        "p025",
+        "p026",
+        "p027",
+        "p028",
+        "p029"
+      ],
+      "full_analysis": [
+        {
+          "label": "技術流程",
+          "text": "3ds Max 的套件整合 iray GPU 物理算圖、PhysX 剛體與最多 75 組 Substance 動態材質；Maya 則加入四套以輸入裝置驅動的 Craft Director Studio 相機 Rig。",
+          "evidence_refs": [
+            "p003",
+            "p004",
+            "p009",
+            "p010",
+            "p011",
+            "p014",
+            "p015",
+            "p016"
+          ]
+        },
+        {
+          "label": "製作影響",
+          "text": "Softimage 取得 Lagoa 多物理系統、ICE 著色器與資產、合成、攝影機追蹤和立體視窗；MotionBuilder 增加同步錄製參考影片、即時曲線過濾與運動路徑上方向控制。",
+          "evidence_refs": [
+            "p005",
+            "p017",
+            "p018",
+            "p019",
+            "p020",
+            "p022",
+            "p023",
+            "p024",
+            "p025"
+          ]
+        },
+        {
+          "label": "限制與待驗證",
+          "text": "這批功能是 2010 年訂閱戶專用的半版更新，Mudbox Linux 版與當時的繪製、拓樸功能也屬舊產品線；不能用來描述現行 Autodesk 軟體功能或授權。",
+          "evidence_refs": [
+            "p001",
+            "p002",
+            "p006",
+            "p026",
+            "p027",
+            "p028",
+            "p029",
+            "p036"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p002",
+          "p003",
+          "p004",
+          "p005",
+          "p006",
+          "p009",
+          "p010",
+          "p011",
+          "p014",
+          "p015",
+          "p016",
+          "p017",
+          "p018",
+          "p019",
+          "p020",
+          "p022",
+          "p023",
+          "p024",
+          "p025",
+          "p026",
+          "p027",
+          "p028",
+          "p029",
+          "p036"
+        ]
+      }
+    },
+    "cg-channel-zen-masters-releases-zen-uv-5-0": {
+      "source_url": "https://www.cgchannel.com/2025/03/zen-masters-releases-zen-uv-5-0",
+      "source_published_at": "2025-03-25",
+      "reviewed_on": "2026-10-28",
+      "source_evidence_sha256": "a586959a9d10464397b750a88262c1236f89eb4054f00dc783ef2383225ee54d",
+      "title": "歷史參考｜Zen UV 5.0：直接操作 UV 島並橋接自動展 UV 工具",
+      "summary": "2025 年 Zen UV 5.0 為 Blender 加入 Zen UV Touch Gizmo、Auto Unwrap 與保留邊面選取狀態的 Zen Sync，並延伸交疊、拉伸面選取和 Trim Sheet 控制。",
+      "evidence_refs": [
+        "p001",
+        "p002",
+        "p003",
+        "p004",
+        "p005",
+        "p006",
+        "p008",
+        "p009",
+        "p010",
+        "p011",
+        "p012"
+      ],
+      "full_analysis": [
+        {
+          "label": "技術流程",
+          "text": "Zen UV Touch 讓使用者在 UV Editor 以 Gizmo 直接移動、縮放、旋轉或吸附 UV 島；既有工具也涵蓋堆疊、鏡像、隨機化、縫合與重塑。",
+          "evidence_refs": [
+            "p005",
+            "p008"
+          ]
+        },
+        {
+          "label": "製作影響",
+          "text": "Auto Unwrap 將 Blender 工作流橋接到 Windows 專用的免費 Ministry of Flat；Zen Sync 會在工作模式切換時保留邊與面的選取，另增交疊或拉伸面選項。",
+          "evidence_refs": [
+            "p009",
+            "p010",
+            "p011"
+          ]
+        },
+        {
+          "label": "限制與待驗證",
+          "text": "工具另含 UDIM、Trim Sheet 與 Texel Density 管理；5.0 當時支援 Blender 4.0 以上。本文是 2025 年版本資料，不能推定目前相容性與價格。",
+          "evidence_refs": [
+            "p003",
+            "p004",
+            "p006",
+            "p012"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p002",
+          "p003",
+          "p004",
+          "p005",
+          "p006",
+          "p008",
+          "p009",
+          "p010",
+          "p011",
+          "p012"
+        ]
+      }
+    }
+  }
+}
