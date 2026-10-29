@@ -1,0 +1,949 @@
+{
+  "date": "2026-10-30",
+  "schema_version": 3,
+  "metadata": {
+    "total_items": 20,
+    "collection_mode": "production-intelligence-preference-v1-hybrid",
+    "collection_contract_effective_date": "2026-09-04",
+    "preference_contract_effective_date": "2026-09-06",
+    "admission_policy_effective_date": "2026-09-15",
+    "collector_runtime": "autonomous-github-collector-v1",
+    "policy_recollect": false,
+    "discovery_windows": [
+      "24h",
+      "7d",
+      "30d",
+      "6m",
+      "evergreen"
+    ],
+    "analysis_level_counts": {
+      "FULL": 0,
+      "BRIEF": 20,
+      "REJECT": 0
+    },
+    "analysis_level_policy": "evidence-depth-tiered; FULL=3-5 source-supported blocks; BRIEF=3 readable source-grounded angles with explicit limits; REJECT=not-publishable",
+    "full_analysis_depth_contract": "v6-tiered-evidence-three-angle-reading",
+    "full_analysis_style_reference": "2026-09-12",
+    "full_analysis_heading_language": "zh-Hant",
+    "editorial": {
+      "contract": "source-grounded-editorial-v1",
+      "style_reference": "2026-09-25",
+      "selection_changed": null,
+      "factual_fallback_allowed": true,
+      "repair_mode": "automatic-source-factual-fallback"
+    },
+    "discovery_coverage": {
+      "fill_ladder_exhausted": true,
+      "backlog_checked": true,
+      "backlog_remaining_eligible": 0,
+      "targeted_refill_performed": true,
+      "quality_first_confirmed": true,
+      "windows": {
+        "24h": {
+          "status": "exhausted",
+          "candidates_found": 7
+        },
+        "7d": {
+          "status": "exhausted",
+          "candidates_found": 6
+        },
+        "30d": {
+          "status": "exhausted",
+          "candidates_found": 2
+        },
+        "6m": {
+          "status": "exhausted",
+          "candidates_found": 5
+        },
+        "evergreen": {
+          "status": "exhausted",
+          "candidates_found": 15
+        }
+      },
+      "category_candidates": {
+        "ai-generation": {
+          "candidates_considered": 0
+        },
+        "3d-production": {
+          "candidates_considered": 6
+        },
+        "3d-animation": {
+          "candidates_considered": 1
+        },
+        "engine-art": {
+          "candidates_considered": 1
+        },
+        "emerging-case": {
+          "candidates_considered": 2
+        },
+        "blender-dcc": {
+          "candidates_considered": 25
+        }
+      },
+      "registered_source_probe": {
+        "performed": true,
+        "initial_selected": [
+          "80-level",
+          "cg-channel",
+          "blender-official",
+          "epic-developer-community",
+          "unity-official",
+          "sidefx-official",
+          "autodesk-area",
+          "adobe-substance-3d",
+          "game-developer"
+        ],
+        "refill_selected": [
+          "3dnchu",
+          "cgworld-jp",
+          "bilibili-mobile",
+          "artstation",
+          "gumroad-discover",
+          "xiaohongshu"
+        ],
+        "refill_batches": 2,
+        "pre_refill_survivors": 17,
+        "post_refill_survivors": 20,
+        "sources": {
+          "80-level": {
+            "status": "checked",
+            "method": "latest-index",
+            "candidates_found": 14,
+            "candidate_ids": [
+              "80-level-adobe-explains-how-it-rebuilt-substance-3d-painter-s-baking",
+              "80-level-breakdown-giant-robot-in-cathedral-ruins-made-in-3d",
+              "80-level-blender-gets-handy-new-assistant-tool-for-sculpting",
+              "80-level-create-perfect-anime-faces-at-extreme-angles-with-this-blend",
+              "80-level-new-blender-add-on-makes-character-posing-much-easier",
+              "80-level-take-a-look-at-this-fantastic-animation-its-wip-from-lords-o",
+              "80-level-blender-tutorial-create-vibrant-comic-style-shader-with-outl",
+              "80-level-reallusion-s-2026-3d-character-contest-meet-the-winners",
+              "80-level-free-blender-tool-for-dolly-zoom-camera-effect",
+              "80-level-sponsored-by-adobe-substance-3d",
+              "80-level-create-stylized-simulations-with-this-custom-physics-blender",
+              "80-level-this-3d-character-is-actually-flat-it-s-crazy",
+              "80-level-blender-4-5-s-vulkan-upgrade-lets-you-smoothly-sculpt-millio",
+              "80-level-goo-engine-devs-team-up-with-blender-foundation-on-blender-n"
+            ],
+            "index_pages_checked": 2,
+            "feed_urls_checked": 0,
+            "refill_links_checked": 16,
+            "semantic_expansion_links_checked": 2,
+            "published_links_skipped": 3,
+            "selection_phase": "daily-plan"
+          },
+          "3dnchu": {
+            "status": "checked",
+            "method": "latest-index",
+            "candidates_found": 6,
+            "candidate_ids": [
+              "3dnchu-zenless-zone-zero-character-mmd-model",
+              "3dnchu-free-ruru-lopoly-lee",
+              "3dnchu-hair-tool-for-blender-v2-45",
+              "3dnchu-houdini-20-sneak-peek",
+              "3dnchu-kibali-rig-pierrick-picaut",
+              "3dnchu-the-plant-library"
+            ],
+            "index_pages_checked": 1,
+            "feed_urls_checked": 2,
+            "refill_links_checked": 13,
+            "semantic_expansion_links_checked": 0,
+            "published_links_skipped": 5,
+            "selection_phase": "targeted-refill"
+          },
+          "cgworld-jp": {
+            "status": "checked",
+            "method": "latest-index",
+            "candidates_found": 3,
+            "candidate_ids": [
+              "cgworld-jp-01-202610-c4d-mcp",
+              "cgworld-jp-01-202610-cc4dtools",
+              "cgworld-jp-01-202609-c4d-voronoi"
+            ],
+            "index_pages_checked": 2,
+            "feed_urls_checked": 0,
+            "refill_links_checked": 5,
+            "semantic_expansion_links_checked": 1,
+            "published_links_skipped": 2,
+            "selection_phase": "targeted-refill"
+          },
+          "bilibili-mobile": {
+            "status": "checked",
+            "method": "latest-index",
+            "candidates_found": 0,
+            "candidate_ids": [],
+            "index_pages_checked": 1,
+            "feed_urls_checked": 0,
+            "refill_links_checked": 0,
+            "semantic_expansion_links_checked": 0,
+            "published_links_skipped": 0,
+            "selection_phase": "targeted-refill"
+          },
+          "artstation": {
+            "status": "blocked",
+            "method": "latest-index",
+            "candidates_found": 0,
+            "candidate_ids": [],
+            "reason": "http-403",
+            "index_pages_checked": 0,
+            "feed_urls_checked": 0,
+            "refill_links_checked": 0,
+            "selection_phase": "targeted-refill"
+          },
+          "gumroad-discover": {
+            "status": "checked",
+            "method": "latest-index",
+            "candidates_found": 0,
+            "candidate_ids": [],
+            "index_pages_checked": 1,
+            "feed_urls_checked": 0,
+            "refill_links_checked": 0,
+            "semantic_expansion_links_checked": 0,
+            "published_links_skipped": 0,
+            "selection_phase": "targeted-refill"
+          },
+          "xiaohongshu": {
+            "status": "checked",
+            "method": "latest-index",
+            "candidates_found": 0,
+            "candidate_ids": [],
+            "index_pages_checked": 1,
+            "feed_urls_checked": 0,
+            "refill_links_checked": 0,
+            "semantic_expansion_links_checked": 0,
+            "published_links_skipped": 0,
+            "selection_phase": "targeted-refill"
+          },
+          "cg-channel": {
+            "status": "checked",
+            "method": "latest-index",
+            "candidates_found": 12,
+            "candidate_ids": [
+              "cg-channel-watch-image-engines-vfx-breakdown-for-the-mandalorian-and-gr",
+              "cg-channel-see-lux-aeternas-vfx-breakdown-for-brian-coxs-new-world-tour",
+              "cg-channel-autodesk-releases-arnold-7-5-4",
+              "cg-channel-metawrap-turns-your-3d-characters-into-metahumans-in-blender",
+              "cg-channel-you-can-now-sell-metahumans-or-use-them-in-unity-or-godot",
+              "cg-channel-reallusion-releases-iclone-8-6",
+              "cg-channel-autodesk-releases-arnold-7-5-2-with-support-for-gaussian-spl",
+              "cg-channel-autodesk-releases-arnold-7-5-3",
+              "cg-channel-mindbomb-ships-gfx-hotkeys-3-0",
+              "cg-channel-otoy-ships-octanerender-2022-1",
+              "cg-channel-epic-games-to-rebrand-realitycapture-as-realityscan-2-0",
+              "cg-channel-google-open-sources-gnm-head-its-parametric-human-head-model"
+            ],
+            "index_pages_checked": 4,
+            "feed_urls_checked": 2,
+            "refill_links_checked": 13,
+            "semantic_expansion_links_checked": 0,
+            "published_links_skipped": 39,
+            "selection_phase": "daily-plan"
+          },
+          "blender-official": {
+            "status": "checked",
+            "method": "latest-index",
+            "candidates_found": 0,
+            "candidate_ids": [],
+            "index_pages_checked": 5,
+            "feed_urls_checked": 1,
+            "refill_links_checked": 0,
+            "semantic_expansion_links_checked": 5,
+            "published_links_skipped": 11,
+            "selection_phase": "daily-plan"
+          },
+          "epic-developer-community": {
+            "status": "blocked",
+            "method": "latest-index",
+            "candidates_found": 0,
+            "candidate_ids": [],
+            "reason": "http-403",
+            "index_pages_checked": 0,
+            "feed_urls_checked": 0,
+            "refill_links_checked": 0,
+            "selection_phase": "daily-plan"
+          },
+          "unity-official": {
+            "status": "checked",
+            "method": "latest-index",
+            "candidates_found": 0,
+            "candidate_ids": [],
+            "index_pages_checked": 2,
+            "feed_urls_checked": 0,
+            "refill_links_checked": 0,
+            "semantic_expansion_links_checked": 0,
+            "published_links_skipped": 0,
+            "selection_phase": "daily-plan"
+          },
+          "sidefx-official": {
+            "status": "checked",
+            "method": "latest-index",
+            "candidates_found": 0,
+            "candidate_ids": [],
+            "index_pages_checked": 2,
+            "feed_urls_checked": 0,
+            "refill_links_checked": 0,
+            "semantic_expansion_links_checked": 0,
+            "published_links_skipped": 3,
+            "selection_phase": "daily-plan"
+          },
+          "autodesk-area": {
+            "status": "unavailable",
+            "method": "latest-index",
+            "candidates_found": 0,
+            "candidate_ids": [],
+            "reason": "http-503",
+            "index_pages_checked": 0,
+            "feed_urls_checked": 0,
+            "refill_links_checked": 0,
+            "selection_phase": "daily-plan"
+          },
+          "adobe-substance-3d": {
+            "status": "checked",
+            "method": "latest-index",
+            "candidates_found": 0,
+            "candidate_ids": [],
+            "index_pages_checked": 1,
+            "feed_urls_checked": 0,
+            "refill_links_checked": 0,
+            "semantic_expansion_links_checked": 0,
+            "published_links_skipped": 0,
+            "selection_phase": "daily-plan"
+          },
+          "game-developer": {
+            "status": "checked",
+            "method": "latest-index",
+            "candidates_found": 0,
+            "candidate_ids": [],
+            "index_pages_checked": 1,
+            "feed_urls_checked": 0,
+            "refill_links_checked": 0,
+            "semantic_expansion_links_checked": 0,
+            "published_links_skipped": 0,
+            "selection_phase": "daily-plan"
+          }
+        }
+      },
+      "notes": "2026-10-30 autonomous GitHub Collector loaded the Published Registry snapshot before discovery, supplemented it from verified-DONE history when needed, checked rolling backlog, executed the current-main deterministic registered-source probe plan, crawled configured source indexes plus bounded same-source refill, then used the current-main deficit-aware deterministic registered-source refill only when the verified survivor count remained below the normal floor, and applied exact source/stable identity dedupe before ranking. Registered refill: pre=17 post=20 batches=2 selected=[\"3dnchu\", \"cgworld-jp\", \"bilibili-mobile\", \"artstation\", \"gumroad-discover\", \"xiaohongshu\"]. Registry audit: {\"history_supplemented_items\": 0, \"latest_verified_done\": \"2026-10-28\", \"snapshot_generated_through\": \"2026-10-28\", \"snapshot_state\": \"DERIVED_FROM_VERIFIED_DONE\", \"source_identities\": 936, \"stable_ids\": 935}. Backlog entries rechecked=0. No source registration/domain supplied ranking bonus, quota or admission bypass."
+    },
+    "personalization": {
+      "contract": "supabase-semantic-feedback-v1",
+      "status": "applied",
+      "vote_count": 14,
+      "max_rank_multiplier": 0.2,
+      "max_query_expansion_fraction": 0.2,
+      "raw_profile_committed": false,
+      "bookmarks_used": false,
+      "domain_weights_used": false,
+      "admission_bypass": false,
+      "quality_gate_bypass": false,
+      "source_quota": false,
+      "ranking_adjusted_count": 29,
+      "semantic_expansion_candidates": 2,
+      "profile_fingerprint": "1407904e3b13b58fa88e0b167c9202ab956ad6a4e1463d3c9eef2608a74c86dd",
+      "reader": "github-actions-oidc-owner-v1"
+    }
+  },
+  "items": [
+    {
+      "id": "80-level-adobe-explains-how-it-rebuilt-substance-3d-painter-s-baking",
+      "title": "Substance 3D Painter 12.2：直接在模型上繪製 Cage 距離並即時重烘焙",
+      "summary": "Adobe 說明 Painter 12.2 的烘焙重整：使用者可在模型上以繪製與多邊形填滿操作調整 Cage 投射距離，搭配 Skew 修正、自動重烘焙、材質組反白與透明排序改善。",
+      "quick_impact": "★★★★★",
+      "source_url": "https://80.lv/articles/adobe-explains-how-it-rebuilt-substance-3d-painter-s-baking-workflow",
+      "category": "blender-dcc",
+      "subcategory": "substance",
+      "ranking_score": 99.03,
+      "base_ranking_score": 93.0,
+      "source_published_at": "2026-10-29",
+      "analysis_level": "BRIEF",
+      "brief_reason": "practical-tutorial-limited-depth",
+      "full_analysis": [
+        {
+          "label": "烘焙修正技術流程",
+          "text": "Skew 控制烘焙射線方向，Cage 則控制射線距離；兩者把 Painter 的繪製系統帶入烘焙模式，並以隱藏圖層堆疊保存修正資訊，再由自動重烘焙提供近即時預覽。"
+        },
+        {
+          "label": "資產迭代製作影響",
+          "text": "Cage 可利用重新設計的多邊形填滿工具，為個別物件加入相對偏移，不必離開 Painter 另做 Cage；材質組反白也能從清單或視窗反查複雜多材質網格。"
+        },
+        {
+          "label": "節點與透明限制待驗證",
+          "text": "Imager 以外的本次訪談重點仍是操作流程，沒有量化烘焙速度；透明排序只針對即時視窗改善，且團隊明言部分選項仍會在後續小版更新持續補足。"
+        }
+      ],
+      "rank_global": 1,
+      "homepage_tier": "top5"
+    },
+    {
+      "id": "80-level-new-blender-add-on-makes-character-posing-much-easier",
+      "title": "Marionette：拖曳手腳或髖部完成全身姿勢，並直接寫入既有 FK 關鍵幀",
+      "summary": "Blender 外掛 Marionette 讓動畫師拖曳手、腳或髖部帶動全身，支援多種人形 Rig，直接在原骨架寫入標準 FK 關鍵幀，並提供 Motion Trail、平滑與滑步檢測。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://80.lv/articles/new-blender-add-on-makes-character-posing-much-easier",
+      "category": "blender-dcc",
+      "subcategory": "blender",
+      "ranking_score": 90.54,
+      "base_ranking_score": 86.0,
+      "source_published_at": "2026-10-29",
+      "analysis_level": "BRIEF",
+      "brief_reason": "useful-tool-or-addon-limited-depth",
+      "full_analysis": [
+        {
+          "label": "全身姿勢技術流程",
+          "text": "Marionette 不替角色新增專用骨架，而是讀取既有人形 Rig，求解拖曳控制點帶動的全身動作，最後把結果寫成可復原的標準 FK 關鍵幀。"
+        },
+        {
+          "label": "動畫修整製作影響",
+          "text": "使用者可重塑 Motion Trail、用筆刷平滑軌跡，並偵測腳底滑動與關節跳動；工具也提供手指姿勢預設，適合由 Blocking 延伸到動作拋光。"
+        },
+        {
+          "label": "支援範圍與限制待驗證",
+          "text": "來源列出 Rigify、Auto-Rig Pro、Mixamo、Character Creator、UE5 Mannequin 與 3ds Max Biped 等骨架，且完全離線；但不支援臉部表情，並要求 Blender 5.0 以上。"
+        }
+      ],
+      "rank_global": 2,
+      "homepage_tier": "top5"
+    },
+    {
+      "id": "80-level-blender-gets-handy-new-assistant-tool-for-sculpting",
+      "title": "CL Sculpt Assistant：Blender 雕刻捷徑、關節彎曲與指定區域皺褶工具",
+      "summary": "CL Sculpt Assistant 把遮罩、顯示切換與筆刷集中到快捷鍵、圓餅選單和視窗面板，另提供關節彎曲、深度限制，以及沿手繪導引線生成局部皺褶的功能。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://80.lv/articles/blender-gets-handy-new-assistant-tool-for-sculpting",
+      "category": "blender-dcc",
+      "subcategory": "blender",
+      "ranking_score": 87.24,
+      "base_ranking_score": 86.0,
+      "source_published_at": "2026-10-29",
+      "analysis_level": "BRIEF",
+      "brief_reason": "useful-tool-or-addon-limited-depth",
+      "full_analysis": [
+        {
+          "label": "雕刻輔助技術流程",
+          "text": "外掛把常用遮罩、可見性與筆刷操作放進快捷鍵和圓餅選單；Base Point Bend 用於彎曲關節，Depth Limit 則限制增加或移除幾何的深度。"
+        },
+        {
+          "label": "局部皺褶製作影響",
+          "text": "使用者可先畫出導引線，再在指定位置生成乾淨皺褶；開發者將它定位為遊戲模型的快速局部造型，而不是取代 Marvelous Designer 的寫實布料模擬。"
+        },
+        {
+          "label": "版本與功能限制待驗證",
+          "text": "來源記載早期存取版已可購買並要求 Blender 4.5 以上，但沒有列出複雜模型的效能、拓樸要求或最終版時程，正式製作前仍需用實際網格測試。"
+        }
+      ],
+      "rank_global": 3,
+      "homepage_tier": "top5"
+    },
+    {
+      "id": "80-level-create-perfect-anime-faces-at-extreme-angles-with-this-blend",
+      "title": "Flattice：依相機壓平角色局部，降低動漫臉極端視角的透視變形",
+      "summary": "DillonGoo Studios 的 Flattice 可為臉、胸口或全身建立 Lattice，依相機方向壓平幾何並自動建立權重、驅動與骨架父子關係，模擬較長焦段的正交觀感。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://80.lv/articles/create-perfect-anime-faces-at-extreme-angles-with-this-blender-tool",
+      "category": "blender-dcc",
+      "subcategory": "blender",
+      "ranking_score": 87.24,
+      "base_ranking_score": 86.0,
+      "source_published_at": "2026-10-29",
+      "analysis_level": "BRIEF",
+      "brief_reason": "useful-tool-or-addon-limited-depth",
+      "full_analysis": [
+        {
+          "label": "相機變形技術流程",
+          "text": "使用者把三維游標放在目標區域並執行 Add Flattice，工具會建立 Lattice、依游標位置產生頂點群組權重、加入相機指向驅動，並自動掛接到角色 Rig。"
+        },
+        {
+          "label": "鏡頭造型製作影響",
+          "text": "生成後仍可調整參數，針對每顆鏡頭微調臉部或身體的壓平程度；它以相機相對變形減少極端角度的透視誇張，讓動漫角色輪廓更接近二維設計。"
+        },
+        {
+          "label": "實作替代與版本限制",
+          "text": "開發者指出相同效果現在也可用 Geometry Nodes 建立，Flattice 的價值在於預先封裝流程；來源列出 Blender 3.6–5.1 與 Goo Engine 3.6–4.4 相容。"
+        }
+      ],
+      "rank_global": 4,
+      "homepage_tier": "top5"
+    },
+    {
+      "id": "80-level-breakdown-giant-robot-in-cathedral-ruins-made-in-3d",
+      "title": "UE5《Silent Ruins》場景拆解：Chaos 破壞、Nanite 資產與大教堂尺度規劃",
+      "summary": "環境美術 Jueon Kim 以 Chartres Cathedral 圖面建立大教堂尺度，再用 UE5 Chaos 製作機器人撞毀結構，依資產類型選擇 ZBrush、3ds Max、RizomUV 與 Substance 流程。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://80.lv/articles/breakdown-giant-robot-in-cathedral-ruins-made-in-3d",
+      "category": "emerging-case",
+      "subcategory": "case-study",
+      "ranking_score": 87.0,
+      "base_ranking_score": 87.0,
+      "source_published_at": "2026-10-29",
+      "analysis_level": "BRIEF",
+      "brief_reason": "practical-tutorial-limited-depth",
+      "full_analysis": [
+        {
+          "label": "場景破壞技術流程",
+          "text": "作者先依平面、立面與剖面圖，以十公分增量統一牆體與拱頂尺寸；機器人定位後，使用 Fracture、Anchor Field 與 Bomb Field 模擬破壞，再以 Chaos Cache 固定結果並轉為靜態網格。"
+        },
+        {
+          "label": "資產分級製作影響",
+          "text": "Nanite 讓高面數不必一律極端減面，但作者仍依硬表面、雕刻與有機資產採五套流程；常用做法是 ZBrush Decimation 後，再用 3ds Max ProOptimizer 控制場景複雜度。"
+        },
+        {
+          "label": "場景一致性限制與驗證",
+          "text": "破面磚塊來自 Fab 並調整底色後沿斷面配置，UV 則依不規則網格與 Trim Sheet 分別在 RizomUV、3ds Max 處理；這是作者首個環境專案，來源未提供目標硬體與幀率。"
+        }
+      ],
+      "rank_global": 5,
+      "homepage_tier": "top5"
+    },
+    {
+      "id": "cg-channel-metawrap-turns-your-3d-characters-into-metahumans-in-blender",
+      "title": "MetaWrap：在 Blender 轉換雕刻、掃描與 AI 角色為完整 MetaHuman",
+      "summary": "MetaWrap 套件可把頭部或全身模型包覆到 MetaHuman 拓樸、轉移皮膚貼圖，再以 MetaSculpt 修復細節與皺紋、MetaGroom 編修毛髮，最後送入 Unreal Engine。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://www.cgchannel.com/2026/10/metawrap-turns-your-3d-characters-into-metahumans-in-blender",
+      "category": "blender-dcc",
+      "subcategory": "blender",
+      "ranking_score": 84.22,
+      "base_ranking_score": 80.0,
+      "source_published_at": "2026-10-29",
+      "analysis_level": "BRIEF",
+      "brief_reason": "useful-tool-or-addon-limited-depth",
+      "full_analysis": [
+        {
+          "label": "拓樸轉換技術流程",
+          "text": "工具可自動把雕刻、掃描或 AI 模型對應到標準 MetaHuman 拓樸，也能由使用者指定兩邊 Landmarks 引導；完成後把來源皮膚轉到 MetaHuman UV，並以 Smart Paint 清理小瑕疵。"
+        },
+        {
+          "label": "細節毛髮製作影響",
+          "text": "MetaSculpt 可從掃描恢復皮膚褶皺或雕刻表情皺紋圖；MetaGroom 則可在 Blender 與 Unreal Engine 間轉移 Groom，或混合既有毛髮再編輯。"
+        },
+        {
+          "label": "平台與相容限制",
+          "text": "來源列出的需求為 Blender 5.0 以上、Unreal Engine 5.6 以上且只支援 Windows；雖宣稱一鍵送入引擎，仍未提供大型角色或複雜 Groom 的效能測試。"
+        }
+      ],
+      "rank_global": 6,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "cg-channel-autodesk-releases-arnold-7-5-4",
+      "title": "Arnold 7.5.4：互動式 Imager 後製、獨立 Rim Light 與跨 DCC 加速視窗",
+      "summary": "Arnold 7.5.4 加入可用一般著色節點即時組合後製的 Imager、獨立 Rim Light 節點，並把加速視窗擴展到 3ds Max、Cinema 4D、Houdini、Katana 與 Maya。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://www.cgchannel.com/2026/10/autodesk-releases-arnold-7-5-4",
+      "category": "blender-dcc",
+      "subcategory": "other-dcc",
+      "ranking_score": 81.15,
+      "base_ranking_score": 80.0,
+      "source_published_at": "2026-10-28",
+      "analysis_level": "BRIEF",
+      "brief_reason": "single-source-verified-production-tip",
+      "full_analysis": [
+        {
+          "label": "算圖節點技術流程",
+          "text": "Imager 讀取著色網路並即時寫入 Beauty，可用標準 Arnold 與輸出數值的 OSL 節點做扭曲、色彩映射和拼貼；輸出 Closure 的 OpenPBR Surface 類節點不適用。"
+        },
+        {
+          "label": "跨軟體製作影響",
+          "text": "Rim Light 可把 Toon 的邊緣光拆成獨立可疊加元件；3ds Max 與 Cinema 4D 首次能直接在原生視窗以 CPU 或 GPU 算圖，Maya 互動視窗也加入動態模糊和快取播放支援。"
+        },
+        {
+          "label": "效能與平台限制",
+          "text": "官方稱十萬實例場景的互動延遲降到三分之一，但增加間接光樣本會提高計算時間；GPU 算圖只支援 Windows、Linux 並要求相容 NVIDIA 顯示卡。"
+        }
+      ],
+      "rank_global": 7,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "80-level-reallusion-s-2026-3d-character-contest-meet-the-winners",
+      "title": "Reallusion 2026 角色賽得獎流程：CC5、ZBrush、Maya 與 iClone 的跨軟體實例",
+      "summary": "Reallusion 公布 2026 角色競賽結果，得獎者案例涵蓋寫實與風格化角色、即時動畫及 AccuRIG；回饋具體提到 CC5 高解析 Morph、GoZ Plus、Maya Auto Setup 與 iClone 動作流程。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://80.lv/articles/reallusion-s-2026-3d-character-contest-meet-the-winners",
+      "category": "3d-production",
+      "subcategory": "character-production",
+      "ranking_score": 79.6,
+      "base_ranking_score": 77.0,
+      "source_published_at": "2026-10-26",
+      "analysis_level": "BRIEF",
+      "brief_reason": "single-source-verified-production-tip",
+      "full_analysis": [
+        {
+          "label": "角色往返技術流程",
+          "text": "得獎者以 Character Creator 建立可綁定基底，再往返 ZBrush 雕刻；GoZ Plus 保留細分幾何細節，Maya Auto Setup 則讓使用者能在 Maya 直接製作表情並完成算圖。"
+        },
+        {
+          "label": "迭代與動畫製作影響",
+          "text": "案例指出可快速調整主形、沿用全身骨架並測試姿勢；動畫組則使用 iClone 動作捕捉決定節奏與能量，或以 CC5、AccuRIG 和 iClone 即時完成角色與算圖。"
+        },
+        {
+          "label": "競賽證據限制與待驗證",
+          "text": "資料來自得獎者自述與主辦單位整理，能證明實際使用方式，但不是同條件軟體效能比較；部分案例也提到跨軟體同步時可能遺失資料，導入仍需版本測試。"
+        }
+      ],
+      "rank_global": 8,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "cg-channel-you-can-now-sell-metahumans-or-use-them-in-unity-or-godot",
+      "title": "歷史參考｜2025 年 MetaHuman 退出早期測試並開放 Unity、Godot 與 DCC 使用",
+      "summary": "2025 年 MetaHuman Creator、Mesh to MetaHuman 與 Animator 整合進 Unreal Engine 5.6；新授權允許角色用於其他引擎與商業專案，並新增 Maya、Houdini 免費外掛。",
+      "quick_impact": "★★★☆☆",
+      "source_url": "https://www.cgchannel.com/2025/06/you-can-now-sell-metahumans-or-use-them-in-unity-or-godot",
+      "category": "engine-art",
+      "subcategory": "unity",
+      "ranking_score": 71.98,
+      "base_ranking_score": 69.0,
+      "source_published_at": "2025-06-04",
+      "analysis_level": "BRIEF",
+      "brief_reason": "single-source-verified-production-tip",
+      "full_analysis": [
+        {
+          "label": "角色建立技術流程",
+          "text": "Creator 以參數調整臉與身體，Mesh to MetaHuman 對應掃描或外部臉模，Animator 從影片或音訊產生臉部動作；5.6 另以 Outfit Asset 讓衣服隨體型調整。"
+        },
+        {
+          "label": "跨引擎製作影響",
+          "text": "授權改為可把 MetaHuman 角色與服裝用於 Unity、Godot 或其他 DCC，Maya 外掛可直接雕刻網格與用 XGen 製作 Groom，Houdini 外掛則聚焦毛髮流程。"
+        },
+        {
+          "label": "雲端與授權限制",
+          "text": "工具仍以雲端服務提供自動綁定與貼圖合成，不能完全離線；AI 工作流可使用角色，但禁止拿 MetaHuman 訓練或強化模型，營收超過門檻另需座席授權。"
+        }
+      ],
+      "rank_global": 9,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "cg-channel-reallusion-releases-iclone-8-6",
+      "title": "歷史參考｜2025 年 iClone 8.6 支援 CC5 HD 臉部與 MetaHuman 動作交換",
+      "summary": "2025 年 iClone 8.6 支援 Character Creator 5 高解析角色與臉部 Profile，可接收 MetaHuman Animator 的 CSV 動作，並加入臉部區域強度控制和 UE5、Marmoset FBX 預設。",
+      "quick_impact": "★★★☆☆",
+      "source_url": "https://www.cgchannel.com/2025/08/reallusion-releases-iclone-8-6",
+      "category": "3d-production",
+      "subcategory": "character-production",
+      "ranking_score": 71.7,
+      "base_ranking_score": 69.0,
+      "source_published_at": "2025-08-28",
+      "analysis_level": "BRIEF",
+      "brief_reason": "single-source-verified-production-tip",
+      "full_analysis": [
+        {
+          "label": "臉部資料技術流程",
+          "text": "CC5 HD 臉部 Profile 用於動捕驅動，高解析 Profile 也相容 MetaHuman 表情系統；MetaHuman Animator 的臉部資料可用 CSV 匯入 iClone，再以免費控制外掛細修。"
+        },
+        {
+          "label": "輸出與整合製作影響",
+          "text": "時間軸可分別調整臉部區域的表情強度，FBX 輸出新增 UE5 Skeleton 與 Marmoset 預設；Blender Pipeline 外掛也能轉送燈光和相機。"
+        },
+        {
+          "label": "歷史依賴與平台限制",
+          "text": "部分功能要求已安裝 Character Creator 5，Motion Live 的臉、身體與手部整合另屬付費項目；本文記錄的是 2025 年 Windows 10 以上版本狀態。"
+        }
+      ],
+      "rank_global": 10,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "cgworld-jp-01-202610-c4d-mcp",
+      "title": "Cinema 4D 2026.4 內建 MCP：用 AI 指令串接建模、Rig、UV 與算圖佇列",
+      "summary": "Cinema 4D 2026.4 內建 MCP Server，可讓 Claude、ChatGPT 或 Codex 以自然語言組合指令，操作建模、Rig、UV、場景管理與多通道算圖，結果保留為可編輯原生場景。",
+      "quick_impact": "★★★☆☆",
+      "source_url": "https://cgworld.jp/flashnews/01-202610-C4D-MCP.html",
+      "category": "blender-dcc",
+      "subcategory": "other-dcc",
+      "ranking_score": 71.43,
+      "base_ranking_score": 68.0,
+      "source_published_at": "2026-10-01",
+      "analysis_level": "BRIEF",
+      "brief_reason": "single-source-verified-production-tip",
+      "full_analysis": [
+        {
+          "label": "AI 操作技術流程",
+          "text": "MCP Server 預設關閉，需在偏好設定啟用並更新指定客戶端後重啟；使用者還能分別授權工具群與 Python 執行權限，處理結果保留為 Cinema 4D 原生資料。"
+        },
+        {
+          "label": "批次與工具製作影響",
+          "text": "案例以 CSV 產生超過一百組三維文字 Take 並加入算圖佇列，也能把特定多邊形加工步驟整理成可套用其他模型的專用工具。"
+        },
+        {
+          "label": "自動化誤差與人工限制",
+          "text": "建築案例初次生成仍有細節錯誤，角色 Rig 的肩關節位置也需用圖片指示修正；VFX 案例中的車輛資產選擇與配置仍由美術手動完成。"
+        }
+      ],
+      "rank_global": 11,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "cgworld-jp-01-202610-cc4dtools",
+      "title": "CC4D 工具 1.1：雙向交換 Cinema 4D 角色、姿勢與臉部動畫",
+      "summary": "CC4D Tools 1.1 新增 CC4D Link，可在 Cinema 4D 與 Character Creator 4／5、iClone 8 間傳送角色、姿勢、身體與臉部動畫、Morph 和網格修改。",
+      "quick_impact": "★★★☆☆",
+      "source_url": "https://cgworld.jp/flashnews/01-202610-CC4DTools.html",
+      "category": "blender-dcc",
+      "subcategory": "other-dcc",
+      "ranking_score": 70.61,
+      "base_ranking_score": 68.0,
+      "source_published_at": "2026-10-02",
+      "analysis_level": "BRIEF",
+      "brief_reason": "useful-tool-or-addon-limited-depth",
+      "full_analysis": [
+        {
+          "label": "角色交換技術流程",
+          "text": "送出端與 Link Receiver 可免手動匯出交換角色與動作，傳入動畫可套用 Joint 或控制 Rig，再用 CC4D Bake 把結果烘焙到各控制器。"
+        },
+        {
+          "label": "Rig 與材質製作影響",
+          "text": "套件能匯入 FBX、整理 Morph、建立 FK／IK 控制與表情 Rig，也能依 FBX／JSON 設定 Redshift 材質和表情皺紋，並重新導向外部動作。"
+        },
+        {
+          "label": "骨架與版本限制",
+          "text": "從 Cascadeur 等外部來源匯入姿勢或動作時，來源與目標必須有一致的 Joint 階層與比例；本文列出的支援範圍是 Cinema 4D 2023 至 2026。"
+        }
+      ],
+      "rank_global": 12,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "80-level-this-3d-character-is-actually-flat-it-s-crazy",
+      "title": "為廣角鏡頭壓扁角色頭部：Blender Lattice 強化二維輪廓",
+      "summary": "《Dust of the Simulacrum》角色仍是三維模型，但頭部被刻意壓扁並隨相機角度調整，以抵銷廣角鏡頭下的造型偏差；Blender 可用 Lattice Modifier 實作相近變形。",
+      "quick_impact": "★★★☆☆",
+      "source_url": "https://80.lv/articles/this-3d-character-is-actually-flat-it-s-crazy",
+      "category": "3d-production",
+      "subcategory": "character-production",
+      "ranking_score": 70.37,
+      "base_ranking_score": 66.0,
+      "source_published_at": "2026-07-13",
+      "analysis_level": "BRIEF",
+      "brief_reason": "single-source-verified-production-tip",
+      "full_analysis": [
+        {
+          "label": "鏡頭造型技術流程",
+          "text": "角色保留三維網格，但頭部沿特定觀看方向壓平並配合相機調整，使最終畫面更接近二維設計；來源指出可用 Blender Lattice Modifier 重現類似變形。"
+        },
+        {
+          "label": "鏡頭導向製作影響",
+          "text": "這種做法把最終鏡頭讀感置於模型全角度合理性之前，允許幕後網格出現誇張形變；對固定構圖或風格化動畫，可用局部變形維持角色輪廓。"
+        },
+        {
+          "label": "視角限制與待驗證",
+          "text": "正文沒有說明頭部變形是否自動跟隨鏡頭、如何切換多鏡位，或極端角度是否穿幫；導入多鏡頭場景前需逐鏡檢查輪廓與變形穩定性。"
+        }
+      ],
+      "rank_global": 13,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "cg-channel-autodesk-releases-arnold-7-5-2-with-support-for-gaussian-spl",
+      "title": "Arnold 7.5.2：匯入與重打光 3D Gaussian Splat，新增八段 Toon 明暗",
+      "summary": "Arnold 7.5.2 可從 PLY 或點陣列載入 3D Gaussian Splat，透過專用 Shader 以場景燈重打光；同版加入 Tone Zones、Shader to RGBA 與 USD 26.03 初步支援。",
+      "quick_impact": "★★★☆☆",
+      "source_url": "https://www.cgchannel.com/2026/06/autodesk-releases-arnold-7-5-2-with-support-for-gaussian-splatting",
+      "category": "blender-dcc",
+      "subcategory": "other-dcc",
+      "ranking_score": 69.99,
+      "base_ranking_score": 69.0,
+      "source_published_at": "2026-06-23",
+      "analysis_level": "BRIEF",
+      "brief_reason": "emerging-research-limited-production-evidence",
+      "full_analysis": [
+        {
+          "label": "3DGS 算圖技術流程",
+          "text": "資料可由 Points 節點讀取 PLY，或直接以每點陣列匯入；Gaussian Splat Shader 能調整原資料光照，甚至完全改由 Arnold 場景燈重新照明。"
+        },
+        {
+          "label": "NPR 製作影響",
+          "text": "Tone Zones 把 RGB 光照切成最多八段，每段可獨立染色或輸出 AOV；Shader to RGBA 將表面光照轉為 RGBA，再送入 Ramp 建立卡通明暗。"
+        },
+        {
+          "label": "格式與平台限制",
+          "text": "USD Gaussian Splat 僅標示初步支援；官方稱 PLY 載入快約 1.2 至 1.4 倍，但 GPU 算圖仍只支援 Windows、Linux 且需要相容 NVIDIA 顯示卡。"
+        }
+      ],
+      "rank_global": 14,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "cg-channel-autodesk-releases-arnold-7-5-3",
+      "title": "Arnold 7.5.3：三種 BSDF 組合 Toon，GPU 首像素最高快四倍",
+      "summary": "Arnold 7.5.3 新增 Diffuse、Fuzz、Specular BSDF，可接 Shader to RGBA 建立 NPR；同版改善 GPU 與互動算圖，並擴充 Flow Render 的轉台、貼圖烘焙和長任務。",
+      "quick_impact": "★★★☆☆",
+      "source_url": "https://www.cgchannel.com/2026/07/autodesk-releases-arnold-7-5-3",
+      "category": "blender-dcc",
+      "subcategory": "other-dcc",
+      "ranking_score": 69.99,
+      "base_ranking_score": 69.0,
+      "source_published_at": "2026-07-23",
+      "analysis_level": "BRIEF",
+      "brief_reason": "single-source-verified-production-tip",
+      "full_analysis": [
+        {
+          "label": "NPR 節點技術流程",
+          "text": "Diffuse、Fuzz 與 Specular 三種 BSDF 可分別描述漫反射、絨毛與高光，再接入 Shader to RGBA，把光照結果轉成適合分段與著色的資料。"
+        },
+        {
+          "label": "互動算圖製作影響",
+          "text": "官方測試稱 GPU 首像素快一至四倍、整體快百分之一至二十；密集網格在互動編輯時改採增量更新，典型頂點與變形操作快二至二點五倍。"
+        },
+        {
+          "label": "雲端與測試限制",
+          "text": "Flow Render 可把多幀合為單一任務、最長執行二十四小時，並自動建立轉台或烘焙貼圖；效能數字來自特定測試場景，不能直接外推所有專案。"
+        }
+      ],
+      "rank_global": 15,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "cg-channel-epic-games-to-rebrand-realitycapture-as-realityscan-2-0",
+      "title": "歷史參考｜2025 年 RealityScan 2.0 預告 AI 遮罩、品質熱圖與空拍 LiDAR",
+      "summary": "2025 年 Epic 預告把桌面 RealityCapture 改名為 RealityScan 2.0，並加入背景 AI 遮罩、掃描品質熱圖、低特徵表面對齊改善及空拍 LiDAR 支援。",
+      "quick_impact": "★★★☆☆",
+      "source_url": "https://www.cgchannel.com/2025/06/epic-games-to-rebrand-realitycapture-as-realityscan-2-0",
+      "category": "3d-production",
+      "subcategory": "production-workflow",
+      "ranking_score": 67.02,
+      "base_ranking_score": 63.0,
+      "source_published_at": "2025-06-04",
+      "analysis_level": "BRIEF",
+      "brief_reason": "single-source-verified-production-tip",
+      "full_analysis": [
+        {
+          "label": "掃描重建技術流程",
+          "text": "桌面版以照片與雷射掃描資料重建三角網格；2.0 的 AI 遮罩會辨識並移除背景，品質分析工具則以熱圖指出需要補拍影像的區域。"
+        },
+        {
+          "label": "環境掃描製作影響",
+          "text": "空拍 LiDAR 可與空拍照片及地面資料合併，提高大型環境重建完整度；桌面與行動版統一品牌，目標是連接專業掃描與手機貼圖模型流程。"
+        },
+        {
+          "label": "歷史預告與授權限制",
+          "text": "來源發布時仍未確認哪些功能會進入行動版，也沒有精確日期或新系統需求；行動版 EULA 預設允許 Epic 將掃描資料用於訓練服務，但可在設定退出。"
+        }
+      ],
+      "rank_global": 16,
+      "homepage_tier": "category_only"
+    },
+    {
+      "id": "80-level-create-stylized-simulations-with-this-custom-physics-blender",
+      "title": "歷史參考｜2026 年 Goo Physics 以骨架模擬卡通頭髮、布料與軟體晃動",
+      "summary": "2026 年 4 月資料介紹 Goo Physics：以骨架為核心，為 Blender 角色建立彈跳、柔軟和黏稠的風格化模擬，完成自動運動後仍能由動畫師調整結果。",
+      "quick_impact": "★★★☆☆",
+      "source_url": "https://80.lv/articles/create-stylized-simulations-with-this-custom-physics-blender-add-on",
+      "category": "blender-dcc",
+      "subcategory": "blender",
+      "ranking_score": 66.95,
+      "base_ranking_score": 66.0,
+      "source_published_at": "2026-04-14",
+      "analysis_level": "BRIEF",
+      "brief_reason": "useful-tool-or-addon-limited-depth",
+      "full_analysis": [
+        {
+          "label": "風格模擬技術流程",
+          "text": "Goo Physics 透過客製 Geometry Nodes 配置驅動骨架運動；長骨鏈布料則以 Blender 原生 Cloth 為基礎，可用於馬尾、辮子或特定尾巴。"
+        },
+        {
+          "label": "角色動畫製作影響",
+          "text": "工具同時涵蓋頭髮、布料、道具與軟體效果，並提供預設縮短設定時間；自動模擬後仍允許動畫師修改運動，保留藝術導向控制。"
+        },
+        {
+          "label": "歷史資訊與版本限制",
+          "text": "本文僅說明 2026 年 4 月發表時的功能，沒有 Blender 相容版本、穩定性、效能或與正式 Rig 衝突的測試，因此不能直接推定目前狀態。"
+        }
+      ],
+      "rank_global": 17,
+      "homepage_tier": "category_only"
+    },
+    {
+      "id": "cg-channel-google-open-sources-gnm-head-its-parametric-human-head-model",
+      "title": "Google 開源 GNM Head：253 組頭型參數、383 組表情控制與 3ds Max 整合",
+      "summary": "Google 的 GNM Head 是以約五千人多視角掃描建立的參數化頭部模型，提供 253 組身分形狀與 383 組表情參數，並已有 Blender、Houdini、3ds Max 整合。",
+      "quick_impact": "★★★☆☆",
+      "source_url": "https://www.cgchannel.com/2026/07/google-open-sources-gnm-head-its-parametric-human-head-model",
+      "category": "blender-dcc",
+      "subcategory": "blender",
+      "ranking_score": 66.02,
+      "base_ranking_score": 63.0,
+      "source_published_at": "2026-07-15",
+      "analysis_level": "BRIEF",
+      "brief_reason": "useful-tool-or-addon-limited-depth",
+      "full_analysis": [
+        {
+          "label": "參數頭模技術流程",
+          "text": "模型把皮膚、眼睛、牙齒與舌頭分開控制；253 組身分參數包含頭型、牙齒與眼球，383 組表情參數則分配到雙眼、下臉、舌頭和虹膜。"
+        },
+        {
+          "label": "DCC 整合製作影響",
+          "text": "GNM Head 本體偏向供開發者建立工具；Blender 外掛提供滑桿即時調頭，Houdini 已有內部 HDA，更新後也提供免費 3ds Max Generator。"
+        },
+        {
+          "label": "資料代表性限制",
+          "text": "研究資料約五千人並以二十二台高解析相機擷取，但只使用二元性別和四個廣泛人口群組，Google 明言不能完整代表性別認同與全球族群多樣性。"
+        }
+      ],
+      "rank_global": 18,
+      "homepage_tier": "category_only"
+    },
+    {
+      "id": "cgworld-jp-01-202609-c4d-voronoi",
+      "title": "Cinema 4D Voronoi：用 Spline、Matrix 與粒子建立可動畫的程序式分割",
+      "summary": "Maxon 教學說明 Voronoi 分割由相鄰來源點中間形成切面，並示範用 Spline、文字、Polygon、Matrix 與粒子取代預設點生成器，製作程序式圖樣。",
+      "quick_impact": "★★★☆☆",
+      "source_url": "https://cgworld.jp/flashnews/01-202609-C4D-Voronoi.html",
+      "category": "blender-dcc",
+      "subcategory": "other-dcc",
+      "ranking_score": 63.0,
+      "base_ranking_score": 63.0,
+      "source_published_at": "2026-09-03",
+      "analysis_level": "BRIEF",
+      "brief_reason": "single-source-verified-production-tip",
+      "full_analysis": [
+        {
+          "label": "分割來源技術流程",
+          "text": "基本 Point Generator 會在相鄰點中間建立切面；改用 Spline 或文字輪廓作來源，可沿曲線密集產點，Polygon 的所有頂點也能成為分割基準。"
+        },
+        {
+          "label": "圖樣動畫製作影響",
+          "text": "Matrix 的蜂巢、放射與網格模式可建立六角、披薩切片或等距磁磚；動畫來源物件的位置與旋轉，分割圖樣會即時跟隨變化。"
+        },
+        {
+          "label": "粒子顏色限制與修正",
+          "text": "粒子通過物件時能持續改變分割，但每幀碎片數量變動會讓 Colorize Fragments 隨機閃爍；教學建議關閉該選項避免色彩 Flicker。"
+        }
+      ],
+      "rank_global": 19,
+      "homepage_tier": "category_only"
+    },
+    {
+      "id": "80-level-blender-4-5-s-vulkan-upgrade-lets-you-smoothly-sculpt-millio",
+      "title": "歷史參考｜2025 年 Blender 4.5 Vulkan 後端改善高面數雕刻互動",
+      "summary": "2025 年示範顯示 Blender 4.5 啟用 Vulkan 後可更流暢處理高面數雕刻；測試硬體為 RTX 4080 與 Ryzen 9 7950X，影片以兩倍速播放，表現仍未達 ZBrush。",
+      "quick_impact": "★★☆☆☆",
+      "source_url": "https://80.lv/articles/blender-4-5-s-vulkan-upgrade-lets-you-smoothly-sculpt-millions-of-polygons",
+      "category": "blender-dcc",
+      "subcategory": "blender",
+      "ranking_score": 60.86,
+      "base_ranking_score": 60.0,
+      "source_published_at": "2025-07-18",
+      "analysis_level": "BRIEF",
+      "brief_reason": "single-source-verified-production-tip",
+      "full_analysis": [
+        {
+          "label": "Vulkan 啟用技術流程",
+          "text": "Vulkan 在 Blender 4.5 並非預設後端，需到偏好設定的系統頁切換 Backend、儲存設定並重新啟動，才能使用示範中的新圖形後端。"
+        },
+        {
+          "label": "高面數雕刻製作影響",
+          "text": "來源將 Vulkan 的主要收益描述為高面數場景與雕刻互動改善，並以數百萬面模型操作為示範；相較一年前版本，Blender 可處理更重的雕刻工作。"
+        },
+        {
+          "label": "歷史硬體與比較限制",
+          "text": "示範使用 RTX 4080、Ryzen 9 7950X，畫面還以兩倍速呈現；作者明言仍不及 ZBrush，因此不能把影片觀感當成其他硬體的即時效能保證。"
+        }
+      ],
+      "rank_global": 20,
+      "homepage_tier": "category_only"
+    }
+  ],
+  "visual_evidence": {}
+}
