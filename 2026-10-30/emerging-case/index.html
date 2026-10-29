@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   新技術 / Case｜2026-10-30｜AI 3D Daily
+  </title>
+  <meta content="2026-10-30 新技術 / Case Production Intelligence：新技術 / Production Case，共 1 項可驗證情報。" name="description"/>
+  <link href="../../styles.css?v=20261030-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../../shared-components.css?v=20261030-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../../category.css?v=20261030-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+ </head>
+ <body class="category-page" data-category="emerging-case" data-report-date="2026-10-30">
+  <nav aria-label="Production Intelligence 分類" class="global-category-nav">
+   <div class="page global-category-nav-inner">
+    <div class="archive-nav-controls">
+     <a class="archive-nav-home" href="../../">
+      ← 首頁
+     </a>
+     <div class="archive-nav-date">
+      <a aria-label="前一日日報" class="archive-nav-arrow" href="../../2026-10-28/emerging-case/">
+       ←
+      </a>
+      <span>
+       2026-10-30
+      </span>
+     </div>
+    </div>
+    <span aria-hidden="true" class="archive-nav-divider">
+    </span>
+    <a class="global-category-link" href="../#top">
+     TOP5
+    </a>
+    <a class="global-category-link" data-category="ai-generation" href="../ai-generation/">
+     AI 生成
+    </a>
+    <a class="global-category-link" data-category="3d-production" href="../3d-production/">
+     3D 製作
+    </a>
+    <a class="global-category-link" data-category="3d-animation" href="../3d-animation/">
+     3D 動作
+    </a>
+    <a class="global-category-link" data-category="engine-art" href="../engine-art/">
+     遊戲引擎
+    </a>
+    <a class="global-category-link is-active" data-category="emerging-case" href="../emerging-case/">
+     新技術 / Case
+    </a>
+    <a class="global-category-link" data-category="blender-dcc" href="../blender-dcc/">
+     Blender / DCC
+    </a>
+    <a class="global-category-link global-history-link" data-global-view="history" href="../../history/">
+     歷史日報
+    </a>
+   </div>
+  </nav>
+  <main class="page category-main">
+   <article class="category-card" data-intel-id="80-level-breakdown-giant-robot-in-cathedral-ruins-made-in-3d" data-intel-role="card">
+    <div class="category-meta">
+     #05 · case-study
+    </div>
+    <h2>
+     UE5《Silent Ruins》場景拆解：Chaos 破壞、Nanite 資產與大教堂尺度規劃
+    </h2>
+    <p class="summary">
+     環境美術 Jueon Kim 以 Chartres Cathedral 圖面建立大教堂尺度，再用 UE5 Chaos 製作機器人撞毀結構，依資產類型選擇 ZBrush、3ds Max、RizomUV 與 Substance 流程。
+    </p>
+    <figure class="case-preview" data-intel-id="80-level-breakdown-giant-robot-in-cathedral-ruins-made-in-3d" data-intel-role="visual" data-visual-id="80-level-breakdown-giant-robot-in-cathedral-ruins-made-in-3d">
+     <a href="https://80.lv/articles/breakdown-giant-robot-in-cathedral-ruins-made-in-3d" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-10-30/80-level-breakdown-giant-robot-in-cathedral-ruins-made-in-3d.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">製作案例</b> ★★★★☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       場景破壞技術流程
+      </h4>
+      <p>
+       作者先依平面、立面與剖面圖，以十公分增量統一牆體與拱頂尺寸；機器人定位後，使用 Fracture、Anchor Field 與 Bomb Field 模擬破壞，再以 Chaos Cache 固定結果並轉為靜態網格。
+      </p>
+      <h4>
+       資產分級製作影響
+      </h4>
+      <p>
+       Nanite 讓高面數不必一律極端減面，但作者仍依硬表面、雕刻與有機資產採五套流程；常用做法是 ZBrush Decimation 後，再用 3ds Max ProOptimizer 控制場景複雜度。
+      </p>
+      <h4>
+       場景一致性限制與驗證
+      </h4>
+      <p>
+       破面磚塊來自 Fab 並調整底色後沿斷面配置，UV 則依不規則網格與 Trim Sheet 分別在 RizomUV、3ds Max 處理；這是作者首個環境專案，來源未提供目標硬體與幀率。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://80.lv/articles/breakdown-giant-robot-in-cathedral-ruins-made-in-3d" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <nav aria-label="相鄰分類" class="category-bottom-nav">
+    <a href="../engine-art/">
+     ← 遊戲引擎
+    </a>
+    <a href="../#top">
+     TOP5
+    </a>
+    <a href="../blender-dcc/">
+     Blender / DCC →
+    </a>
+   </nav>
+  </main>
+  <script defer="" src="../../archive-nav-state.js?v=20261030-r1-workspace-v10-history-current-workspace">
+  </script>
+ </body>
+</html>

@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   AI／3D／遊戲美術 Production Intelligence — 2026-10-30
+  </title>
+  <link href="../styles.css?v=20261030-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../shared-components.css?v=20261030-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../daily.css?v=20261030-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../shared-components.css?v=20261030-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <meta content="2026-10-30 Production Intelligence 日報：以可驗證來源整理 AI、3D 製作、動畫、遊戲引擎與 Blender／DCC 情報。" name="description"/>
+ </head>
+ <body class="archive-page" data-next="" data-previous="2026-10-28" data-report-date="2026-10-30">
+  <nav aria-label="Production Intelligence 分類" class="global-category-nav">
+   <div class="page global-category-nav-inner">
+    <div class="archive-nav-controls">
+     <a class="archive-nav-home" href="../">
+      ← 首頁
+     </a>
+     <div class="archive-nav-date">
+      <a aria-label="前一日日報" class="archive-nav-arrow" href="../2026-10-28/">
+       ←
+      </a>
+      <span>
+       2026-10-30
+      </span>
+     </div>
+    </div>
+    <span aria-hidden="true" class="archive-nav-divider">
+    </span>
+    <a class="global-category-link is-active" href="#top">
+     TOP5
+    </a>
+    <a class="global-category-link" data-category="ai-generation" href="ai-generation/">
+     AI 生成
+    </a>
+    <a class="global-category-link" data-category="3d-production" href="3d-production/">
+     3D 製作
+    </a>
+    <a class="global-category-link" data-category="3d-animation" href="3d-animation/">
+     3D 動作
+    </a>
+    <a class="global-category-link" data-category="engine-art" href="engine-art/">
+     遊戲引擎
+    </a>
+    <a class="global-category-link" data-category="emerging-case" href="emerging-case/">
+     新技術 / Case
+    </a>
+    <a class="global-category-link" data-category="blender-dcc" href="blender-dcc/">
+     Blender / DCC
+    </a>
+    <a class="global-category-link global-history-link" data-global-view="history" href="../history/">
+     歷史日報
+    </a>
+   </div>
+  </nav>
+  <main class="page daily-main">
+   <section class="block" id="top">
+    <div class="block-head">
+     <div>
+      <span>
+       2026-10-30
+      </span>
+      <h2>
+       TOP5
+      </h2>
+     </div>
+    </div>
+    <article class="news daily-card daily-card-top" data-intel-id="80-level-adobe-explains-how-it-rebuilt-substance-3d-painter-s-baking" data-intel-role="card">
+     <div class="news-rank">
+      01
+     </div>
+     <div class="news-main">
+      <div class="meta">
+       <span class="pill">
+        substance
+       </span>
+      </div>
+      <h3>
+       Substance 3D Painter 12.2：直接在模型上繪製 Cage 距離並即時重烘焙
+      </h3>
+      <p class="summary">
+       Adobe 說明 Painter 12.2 的烘焙重整：使用者可在模型上以繪製與多邊形填滿操作調整 Cage 投射距離，搭配 Skew 修正、自動重烘焙、材質組反白與透明排序改善。
+      </p>
+      <figure class="case-preview daily-visual" data-intel-id="80-level-adobe-explains-how-it-rebuilt-substance-3d-painter-s-baking" data-intel-role="visual" data-visual-id="80-level-adobe-explains-how-it-rebuilt-substance-3d-painter-s-baking">
+       <a href="https://80.lv/articles/adobe-explains-how-it-rebuilt-substance-3d-painter-s-baking-workflow" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-10-30/80-level-adobe-explains-how-it-rebuilt-substance-3d-painter-s-baking.jpg"/>
+       </a>
+       <figcaption>
+        <span>
+         SOURCE PREVIEW
+        </span>
+        · Local visual evidence · 點圖開啟原始來源
+       </figcaption>
+      </figure>
+      <div class="quick-impact daily-impact">
+       <span><b class="quick-impact-label">Substance</b> ★★★★★</span>
+      </div>
+      <details class="canonical-analysis canonical-analysis-brief daily-full-analysis" data-analysis-level="BRIEF">
+       <summary>
+        完整分析
+       </summary>
+       <div class="detail-body canonical-analysis-body brief-analysis-body daily-analysis-body">
+        <h4>
+         烘焙修正技術流程
+        </h4>
+        <p>
+         Skew 控制烘焙射線方向，Cage 則控制射線距離；兩者把 Painter 的繪製系統帶入烘焙模式，並以隱藏圖層堆疊保存修正資訊，再由自動重烘焙提供近即時預覽。
+        </p>
+        <h4>
+         資產迭代製作影響
+        </h4>
+        <p>
+         Cage 可利用重新設計的多邊形填滿工具，為個別物件加入相對偏移，不必離開 Painter 另做 Cage；材質組反白也能從清單或視窗反查複雜多材質網格。
+        </p>
+        <h4>
+         節點與透明限制待驗證
+        </h4>
+        <p>
+         Imager 以外的本次訪談重點仍是操作流程，沒有量化烘焙速度；透明排序只針對即時視窗改善，且團隊明言部分選項仍會在後續小版更新持續補足。
+        </p>
+        <p class="analysis-level-note">
+         BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+        </p>
+       </div>
+      </details>
+      <a class="source daily-source" href="https://80.lv/articles/adobe-explains-how-it-rebuilt-substance-3d-painter-s-baking-workflow" rel="noopener noreferrer" target="_blank">
+       來源
+      </a>
+     </div>
+    </article>
+    <article class="news daily-card daily-card-top" data-intel-id="80-level-new-blender-add-on-makes-character-posing-much-easier" data-intel-role="card">
+     <div class="news-rank">
+      02
+     </div>
+     <div class="news-main">
+      <div class="meta">
+       <span class="pill">
+        blender
+       </span>
+      </div>
+      <h3>
+       Marionette：拖曳手腳或髖部完成全身姿勢，並直接寫入既有 FK 關鍵幀
+      </h3>
+      <p class="summary">
+       Blender 外掛 Marionette 讓動畫師拖曳手、腳或髖部帶動全身，支援多種人形 Rig，直接在原骨架寫入標準 FK 關鍵幀，並提供 Motion Trail、平滑與滑步檢測。
+      </p>
+      <figure class="case-preview daily-visual" data-intel-id="80-level-new-blender-add-on-makes-character-posing-much-easier" data-intel-role="visual" data-visual-id="80-level-new-blender-add-on-makes-character-posing-much-easier">
+       <a href="https://80.lv/articles/new-blender-add-on-makes-character-posing-much-easier" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-10-30/80-level-new-blender-add-on-makes-character-posing-much-easier.jpg"/>
+       </a>
+       <figcaption>
+        <span>
+         SOURCE PREVIEW
+        </span>
+        · Local visual evidence · 點圖開啟原始來源
+       </figcaption>
+      </figure>
+      <div class="quick-impact daily-impact">
+       <span><b class="quick-impact-label">Blender</b> ★★★★☆</span>
+      </div>
+      <details class="canonical-analysis canonical-analysis-brief daily-full-analysis" data-analysis-level="BRIEF">
+       <summary>
+        完整分析
+       </summary>
+       <div class="detail-body canonical-analysis-body brief-analysis-body daily-analysis-body">
+        <h4>
+         全身姿勢技術流程
+        </h4>
+        <p>
+         Marionette 不替角色新增專用骨架，而是讀取既有人形 Rig，求解拖曳控制點帶動的全身動作，最後把結果寫成可復原的標準 FK 關鍵幀。
+        </p>
+        <h4>
+         動畫修整製作影響
+        </h4>
+        <p>
+         使用者可重塑 Motion Trail、用筆刷平滑軌跡，並偵測腳底滑動與關節跳動；工具也提供手指姿勢預設，適合由 Blocking 延伸到動作拋光。
+        </p>
+        <h4>
+         支援範圍與限制待驗證
+        </h4>
+        <p>
+         來源列出 Rigify、Auto-Rig Pro、Mixamo、Character Creator、UE5 Mannequin 與 3ds Max Biped 等骨架，且完全離線；但不支援臉部表情，並要求 Blender 5.0 以上。
+        </p>
+        <p class="analysis-level-note">
+         BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+        </p>
+       </div>
+      </details>
+      <a class="source daily-source" href="https://80.lv/articles/new-blender-add-on-makes-character-posing-much-easier" rel="noopener noreferrer" target="_blank">
+       來源
+      </a>
+     </div>
+    </article>
+    <article class="news daily-card daily-card-top" data-intel-id="80-level-blender-gets-handy-new-assistant-tool-for-sculpting" data-intel-role="card">
+     <div class="news-rank">
+      03
+     </div>
+     <div class="news-main">
+      <div class="meta">
+       <span class="pill">
+        blender
+       </span>
+      </div>
+      <h3>
+       CL Sculpt Assistant：Blender 雕刻捷徑、關節彎曲與指定區域皺褶工具
+      </h3>
+      <p class="summary">
+       CL Sculpt Assistant 把遮罩、顯示切換與筆刷集中到快捷鍵、圓餅選單和視窗面板，另提供關節彎曲、深度限制，以及沿手繪導引線生成局部皺褶的功能。
+      </p>
+      <figure class="case-preview daily-visual" data-intel-id="80-level-blender-gets-handy-new-assistant-tool-for-sculpting" data-intel-role="visual" data-visual-id="80-level-blender-gets-handy-new-assistant-tool-for-sculpting">
+       <a href="https://80.lv/articles/blender-gets-handy-new-assistant-tool-for-sculpting" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-10-30/80-level-blender-gets-handy-new-assistant-tool-for-sculpting.jpg"/>
+       </a>
+       <figcaption>
+        <span>
+         SOURCE PREVIEW
+        </span>
+        · Local visual evidence · 點圖開啟原始來源
+       </figcaption>
+      </figure>
+      <div class="quick-impact daily-impact">
+       <span><b class="quick-impact-label">Blender</b> ★★★★☆</span>
+      </div>
+      <details class="canonical-analysis canonical-analysis-brief daily-full-analysis" data-analysis-level="BRIEF">
+       <summary>
+        完整分析
+       </summary>
+       <div class="detail-body canonical-analysis-body brief-analysis-body daily-analysis-body">
+        <h4>
+         雕刻輔助技術流程
+        </h4>
+        <p>
+         外掛把常用遮罩、可見性與筆刷操作放進快捷鍵和圓餅選單；Base Point Bend 用於彎曲關節，Depth Limit 則限制增加或移除幾何的深度。
+        </p>
+        <h4>
+         局部皺褶製作影響
+        </h4>
+        <p>
+         使用者可先畫出導引線，再在指定位置生成乾淨皺褶；開發者將它定位為遊戲模型的快速局部造型，而不是取代 Marvelous Designer 的寫實布料模擬。
+        </p>
+        <h4>
+         版本與功能限制待驗證
+        </h4>
+        <p>
+         來源記載早期存取版已可購買並要求 Blender 4.5 以上，但沒有列出複雜模型的效能、拓樸要求或最終版時程，正式製作前仍需用實際網格測試。
+        </p>
+        <p class="analysis-level-note">
+         BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+        </p>
+       </div>
+      </details>
+      <a class="source daily-source" href="https://80.lv/articles/blender-gets-handy-new-assistant-tool-for-sculpting" rel="noopener noreferrer" target="_blank">
+       來源
+      </a>
+     </div>
+    </article>
+    <article class="news daily-card daily-card-top" data-intel-id="80-level-create-perfect-anime-faces-at-extreme-angles-with-this-blend" data-intel-role="card">
+     <div class="news-rank">
+      04
+     </div>
+     <div class="news-main">
+      <div class="meta">
+       <span class="pill">
+        blender
+       </span>
+      </div>
+      <h3>
+       Flattice：依相機壓平角色局部，降低動漫臉極端視角的透視變形
+      </h3>
+      <p class="summary">
+       DillonGoo Studios 的 Flattice 可為臉、胸口或全身建立 Lattice，依相機方向壓平幾何並自動建立權重、驅動與骨架父子關係，模擬較長焦段的正交觀感。
+      </p>
+      <figure class="case-preview daily-visual" data-intel-id="80-level-create-perfect-anime-faces-at-extreme-angles-with-this-blend" data-intel-role="visual" data-visual-id="80-level-create-perfect-anime-faces-at-extreme-angles-with-this-blend">
+       <a href="https://80.lv/articles/create-perfect-anime-faces-at-extreme-angles-with-this-blender-tool" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-10-30/80-level-create-perfect-anime-faces-at-extreme-angles-with-this-blend.jpg"/>
+       </a>
+       <figcaption>
+        <span>
+         SOURCE PREVIEW
+        </span>
+        · Local visual evidence · 點圖開啟原始來源
+       </figcaption>
+      </figure>
+      <div class="quick-impact daily-impact">
+       <span><b class="quick-impact-label">Blender</b> ★★★★☆</span>
+      </div>
+      <details class="canonical-analysis canonical-analysis-brief daily-full-analysis" data-analysis-level="BRIEF">
+       <summary>
+        完整分析
+       </summary>
+       <div class="detail-body canonical-analysis-body brief-analysis-body daily-analysis-body">
+        <h4>
+         相機變形技術流程
+        </h4>
+        <p>
+         使用者把三維游標放在目標區域並執行 Add Flattice，工具會建立 Lattice、依游標位置產生頂點群組權重、加入相機指向驅動，並自動掛接到角色 Rig。
+        </p>
+        <h4>
+         鏡頭造型製作影響
+        </h4>
+        <p>
+         生成後仍可調整參數，針對每顆鏡頭微調臉部或身體的壓平程度；它以相機相對變形減少極端角度的透視誇張，讓動漫角色輪廓更接近二維設計。
+        </p>
+        <h4>
+         實作替代與版本限制
+        </h4>
+        <p>
+         開發者指出相同效果現在也可用 Geometry Nodes 建立，Flattice 的價值在於預先封裝流程；來源列出 Blender 3.6–5.1 與 Goo Engine 3.6–4.4 相容。
+        </p>
+        <p class="analysis-level-note">
+         BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+        </p>
+       </div>
+      </details>
+      <a class="source daily-source" href="https://80.lv/articles/create-perfect-anime-faces-at-extreme-angles-with-this-blender-tool" rel="noopener noreferrer" target="_blank">
+       來源
+      </a>
+     </div>
+    </article>
+    <article class="news daily-card daily-card-top" data-intel-id="80-level-breakdown-giant-robot-in-cathedral-ruins-made-in-3d" data-intel-role="card">
+     <div class="news-rank">
+      05
+     </div>
+     <div class="news-main">
+      <div class="meta">
+       <span class="pill">
+        case-study
+       </span>
+      </div>
+      <h3>
+       UE5《Silent Ruins》場景拆解：Chaos 破壞、Nanite 資產與大教堂尺度規劃
+      </h3>
+      <p class="summary">
+       環境美術 Jueon Kim 以 Chartres Cathedral 圖面建立大教堂尺度，再用 UE5 Chaos 製作機器人撞毀結構，依資產類型選擇 ZBrush、3ds Max、RizomUV 與 Substance 流程。
+      </p>
+      <figure class="case-preview daily-visual" data-intel-id="80-level-breakdown-giant-robot-in-cathedral-ruins-made-in-3d" data-intel-role="visual" data-visual-id="80-level-breakdown-giant-robot-in-cathedral-ruins-made-in-3d">
+       <a href="https://80.lv/articles/breakdown-giant-robot-in-cathedral-ruins-made-in-3d" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-10-30/80-level-breakdown-giant-robot-in-cathedral-ruins-made-in-3d.jpg"/>
+       </a>
+       <figcaption>
+        <span>
+         SOURCE PREVIEW
+        </span>
+        · Local visual evidence · 點圖開啟原始來源
+       </figcaption>
+      </figure>
+      <div class="quick-impact daily-impact">
+       <span><b class="quick-impact-label">製作案例</b> ★★★★☆</span>
+      </div>
+      <details class="canonical-analysis canonical-analysis-brief daily-full-analysis" data-analysis-level="BRIEF">
+       <summary>
+        完整分析
+       </summary>
+       <div class="detail-body canonical-analysis-body brief-analysis-body daily-analysis-body">
+        <h4>
+         場景破壞技術流程
+        </h4>
+        <p>
+         作者先依平面、立面與剖面圖，以十公分增量統一牆體與拱頂尺寸；機器人定位後，使用 Fracture、Anchor Field 與 Bomb Field 模擬破壞，再以 Chaos Cache 固定結果並轉為靜態網格。
+        </p>
+        <h4>
+         資產分級製作影響
+        </h4>
+        <p>
+         Nanite 讓高面數不必一律極端減面，但作者仍依硬表面、雕刻與有機資產採五套流程；常用做法是 ZBrush Decimation 後，再用 3ds Max ProOptimizer 控制場景複雜度。
+        </p>
+        <h4>
+         場景一致性限制與驗證
+        </h4>
+        <p>
+         破面磚塊來自 Fab 並調整底色後沿斷面配置，UV 則依不規則網格與 Trim Sheet 分別在 RizomUV、3ds Max 處理；這是作者首個環境專案，來源未提供目標硬體與幀率。
+        </p>
+        <p class="analysis-level-note">
+         BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+        </p>
+       </div>
+      </details>
+      <a class="source daily-source" href="https://80.lv/articles/breakdown-giant-robot-in-cathedral-ruins-made-in-3d" rel="noopener noreferrer" target="_blank">
+       來源
+      </a>
+     </div>
+    </article>
+   </section>
+   <section class="block daily-more" id="more">
+    <div class="block-head">
+     <div>
+      <span>
+       2026-10-30
+      </span>
+      <h2>
+       當日其他資訊
+      </h2>
+     </div>
+    </div>
+    <article class="daily-card daily-card-more category-news" data-intel-id="cg-channel-metawrap-turns-your-3d-characters-into-metahumans-in-blender" data-intel-role="card">
+     <div class="meta">
+      <span class="pill">
+       blender
+      </span>
+     </div>
+     <h3>
+      MetaWrap：在 Blender 轉換雕刻、掃描與 AI 角色為完整 MetaHuman
+     </h3>
+     <p class="summary">
+      MetaWrap 套件可把頭部或全身模型包覆到 MetaHuman 拓樸、轉移皮膚貼圖，再以 MetaSculpt 修復細節與皺紋、MetaGroom 編修毛髮，最後送入 Unreal Engine。
+     </p>
+     <figure class="case-preview daily-visual" data-intel-id="cg-channel-metawrap-turns-your-3d-characters-into-metahumans-in-blender" data-intel-role="visual" data-visual-id="cg-channel-metawrap-turns-your-3d-characters-into-metahumans-in-blender">
+      <a href="https://www.cgchannel.com/2026/10/metawrap-turns-your-3d-characters-into-metahumans-in-blender" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+       <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-10-30/cg-channel-metawrap-turns-your-3d-characters-into-metahumans-in-blender.jpg"/>
+      </a>
+      <figcaption>
+       <span>
+        SOURCE PREVIEW
+       </span>
+       · Local visual evidence · 點圖開啟原始來源
+      </figcaption>
+     </figure>
+     <div class="quick-impact daily-impact">
+      <span><b class="quick-impact-label">Blender</b> ★★★★☆</span>
+     </div>
+     <details class="canonical-analysis canonical-analysis-brief daily-full-analysis" data-analysis-level="BRIEF">
+      <summary>
+       完整分析
+      </summary>
+      <div class="detail-body canonical-analysis-body brief-analysis-body daily-analysis-body">
+       <h4>
+        拓樸轉換技術流程
+       </h4>
+       <p>
+        工具可自動把雕刻、掃描或 AI 模型對應到標準 MetaHuman 拓樸，也能由使用者指定兩邊 Landmarks 引導；完成後把來源皮膚轉到 MetaHuman UV，並以 Smart Paint 清理小瑕疵。
+       </p>
+       <h4>
+        細節毛髮製作影響
+       </h4>
+       <p>
+        MetaSculpt 可從掃描恢復皮膚褶皺或雕刻表情皺紋圖；MetaGroom 則可在 Blender 與 Unreal Engine 間轉移 Groom，或混合既有毛髮再編輯。
+       </p>
+       <h4>
+        平台與相容限制
+       </h4>
+       <p>
+        來源列出的需求為 Blender 5.0 以上、Unreal Engine 5.6 以上且只支援 Windows；雖宣稱一鍵送入引擎，仍未提供大型角色或複雜 Groom 的效能測試。
+       </p>
+       <p class="analysis-level-note">
+        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+       </p>
+      </div>
+     </details>
+     <a class="source daily-source" href="https://www.cgchannel.com/2026/10/metawrap-turns-your-3d-characters-into-metahumans-in-blender" rel="noopener noreferrer" target="_blank">
+      來源
+     </a>
+    </article>
+    <article class="daily-card daily-card-more category-news" data-intel-id="cg-channel-autodesk-releases-arnold-7-5-4" data-intel-role="card">
+     <div class="meta">
+      <span class="pill">
+       other-dcc
+      </span>
+     </div>
+     <h3>
+      Arnold 7.5.4：互動式 Imager 後製、獨立 Rim Light 與跨 DCC 加速視窗
+     </h3>
+     <p class="summary">
+      Arnold 7.5.4 加入可用一般著色節點即時組合後製的 Imager、獨立 Rim Light 節點，並把加速視窗擴展到 3ds Max、Cinema 4D、Houdini、Katana 與 Maya。
+     </p>
+     <figure class="case-preview daily-visual" data-intel-id="cg-channel-autodesk-releases-arnold-7-5-4" data-intel-role="visual" data-visual-id="cg-channel-autodesk-releases-arnold-7-5-4">
+      <a href="https://www.cgchannel.com/2026/10/autodesk-releases-arnold-7-5-4" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+       <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-10-30/cg-channel-autodesk-releases-arnold-7-5-4.jpg"/>
+      </a>
+      <figcaption>
+       <span>
+        SOURCE PREVIEW
+       </span>
+       · Local visual evidence · 點圖開啟原始來源
+      </figcaption>
+     </figure>
+     <div class="quick-impact daily-impact">
+      <span><b class="quick-impact-label">其他 DCC</b> ★★★★☆</span>
+     </div>
+     <details class="canonical-analysis canonical-analysis-brief daily-full-analysis" data-analysis-level="BRIEF">
+      <summary>
+       完整分析
+      </summary>
+      <div class="detail-body canonical-analysis-body brief-analysis-body daily-analysis-body">
+       <h4>
+        算圖節點技術流程
+       </h4>
+       <p>
+        Imager 讀取著色網路並即時寫入 Beauty，可用標準 Arnold 與輸出數值的 OSL 節點做扭曲、色彩映射和拼貼；輸出 Closure 的 OpenPBR Surface 類節點不適用。
+       </p>
+       <h4>
+        跨軟體製作影響
+       </h4>
+       <p>
+        Rim Light 可把 Toon 的邊緣光拆成獨立可疊加元件；3ds Max 與 Cinema 4D 首次能直接在原生視窗以 CPU 或 GPU 算圖，Maya 互動視窗也加入動態模糊和快取播放支援。
+       </p>
+       <h4>
+        效能與平台限制
+       </h4>
+       <p>
+        官方稱十萬實例場景的互動延遲降到三分之一，但增加間接光樣本會提高計算時間；GPU 算圖只支援 Windows、Linux 並要求相容 NVIDIA 顯示卡。
+       </p>
+       <p class="analysis-level-note">
+        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+       </p>
+      </div>
+     </details>
+     <a class="source daily-source" href="https://www.cgchannel.com/2026/10/autodesk-releases-arnold-7-5-4" rel="noopener noreferrer" target="_blank">
+      來源
+     </a>
+    </article>
+    <article class="daily-card daily-card-more category-news" data-intel-id="80-level-reallusion-s-2026-3d-character-contest-meet-the-winners" data-intel-role="card">
+     <div class="meta">
+      <span class="pill">
+       character-production
+      </span>
+     </div>
+     <h3>
+      Reallusion 2026 角色賽得獎流程：CC5、ZBrush、Maya 與 iClone 的跨軟體實例
+     </h3>
+     <p class="summary">
+      Reallusion 公布 2026 角色競賽結果，得獎者案例涵蓋寫實與風格化角色、即時動畫及 AccuRIG；回饋具體提到 CC5 高解析 Morph、GoZ Plus、Maya Auto Setup 與 iClone 動作流程。
+     </p>
+     <figure class="case-preview daily-visual" data-intel-id="80-level-reallusion-s-2026-3d-character-contest-meet-the-winners" data-intel-role="visual" data-visual-id="80-level-reallusion-s-2026-3d-character-contest-meet-the-winners">
+      <a href="https://80.lv/articles/reallusion-s-2026-3d-character-contest-meet-the-winners" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+       <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-10-30/80-level-reallusion-s-2026-3d-character-contest-meet-the-winners.jpg"/>
+      </a>
+      <figcaption>
+       <span>
+        SOURCE PREVIEW
+       </span>
+       · Local visual evidence · 點圖開啟原始來源
+      </figcaption>
+     </figure>
+     <div class="quick-impact daily-impact">
+      <span><b class="quick-impact-label">角色製作</b> ★★★★☆</span>
+     </div>
+     <details class="canonical-analysis canonical-analysis-brief daily-full-analysis" data-analysis-level="BRIEF">
+      <summary>
+       完整分析
+      </summary>
+      <div class="detail-body canonical-analysis-body brief-analysis-body daily-analysis-body">
+       <h4>
+        角色往返技術流程
+       </h4>
+       <p>
+        得獎者以 Character Creator 建立可綁定基底，再往返 ZBrush 雕刻；GoZ Plus 保留細分幾何細節，Maya Auto Setup 則讓使用者能在 Maya 直接製作表情並完成算圖。
+       </p>
+       <h4>
+        迭代與動畫製作影響
+       </h4>
+       <p>
+        案例指出可快速調整主形、沿用全身骨架並測試姿勢；動畫組則使用 iClone 動作捕捉決定節奏與能量，或以 CC5、AccuRIG 和 iClone 即時完成角色與算圖。
+       </p>
+       <h4>
+        競賽證據限制與待驗證
+       </h4>
+       <p>
+        資料來自得獎者自述與主辦單位整理，能證明實際使用方式，但不是同條件軟體效能比較；部分案例也提到跨軟體同步時可能遺失資料，導入仍需版本測試。
+       </p>
+       <p class="analysis-level-note">
+        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+       </p>
+      </div>
+     </details>
+     <a class="source daily-source" href="https://80.lv/articles/reallusion-s-2026-3d-character-contest-meet-the-winners" rel="noopener noreferrer" target="_blank">
+      來源
+     </a>
+    </article>
+    <article class="daily-card daily-card-more category-news" data-intel-id="cg-channel-you-can-now-sell-metahumans-or-use-them-in-unity-or-godot" data-intel-role="card">
+     <div class="meta">
+      <span class="pill">
+       unity
+      </span>
+     </div>
+     <h3>
+      歷史參考｜2025 年 MetaHuman 退出早期測試並開放 Unity、Godot 與 DCC 使用
+     </h3>
+     <p class="summary">
+      2025 年 MetaHuman Creator、Mesh to MetaHuman 與 Animator 整合進 Unreal Engine 5.6；新授權允許角色用於其他引擎與商業專案，並新增 Maya、Houdini 免費外掛。
+     </p>
+     <figure class="case-preview daily-visual" data-intel-id="cg-channel-you-can-now-sell-metahumans-or-use-them-in-unity-or-godot" data-intel-role="visual" data-visual-id="cg-channel-you-can-now-sell-metahumans-or-use-them-in-unity-or-godot">
+      <a href="https://www.cgchannel.com/2025/06/you-can-now-sell-metahumans-or-use-them-in-unity-or-godot" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+       <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-10-30/cg-channel-you-can-now-sell-metahumans-or-use-them-in-unity-or-godot.jpg"/>
+      </a>
+      <figcaption>
+       <span>
+        SOURCE PREVIEW
+       </span>
+       · Local visual evidence · 點圖開啟原始來源
+      </figcaption>
+     </figure>
+     <div class="quick-impact daily-impact">
+      <span><b class="quick-impact-label">Unity</b> ★★★☆☆</span>
+     </div>
+     <details class="canonical-analysis canonical-analysis-brief daily-full-analysis" data-analysis-level="BRIEF">
+      <summary>
+       完整分析
+      </summary>
+      <div class="detail-body canonical-analysis-body brief-analysis-body daily-analysis-body">
+       <h4>
+        角色建立技術流程
+       </h4>
+       <p>
+        Creator 以參數調整臉與身體，Mesh to MetaHuman 對應掃描或外部臉模，Animator 從影片或音訊產生臉部動作；5.6 另以 Outfit Asset 讓衣服隨體型調整。
+       </p>
+       <h4>
+        跨引擎製作影響
+       </h4>
+       <p>
+        授權改為可把 MetaHuman 角色與服裝用於 Unity、Godot 或其他 DCC，Maya 外掛可直接雕刻網格與用 XGen 製作 Groom，Houdini 外掛則聚焦毛髮流程。
+       </p>
+       <h4>
+        雲端與授權限制
+       </h4>
+       <p>
+        工具仍以雲端服務提供自動綁定與貼圖合成，不能完全離線；AI 工作流可使用角色，但禁止拿 MetaHuman 訓練或強化模型，營收超過門檻另需座席授權。
+       </p>
+       <p class="analysis-level-note">
+        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+       </p>
+      </div>
+     </details>
+     <a class="source daily-source" href="https://www.cgchannel.com/2025/06/you-can-now-sell-metahumans-or-use-them-in-unity-or-godot" rel="noopener noreferrer" target="_blank">
+      來源
+     </a>
+    </article>
+    <article class="daily-card daily-card-more category-news" data-intel-id="cg-channel-reallusion-releases-iclone-8-6" data-intel-role="card">
+     <div class="meta">
+      <span class="pill">
+       character-production
+      </span>
+     </div>
+     <h3>
+      歷史參考｜2025 年 iClone 8.6 支援 CC5 HD 臉部與 MetaHuman 動作交換
+     </h3>
+     <p class="summary">
+      2025 年 iClone 8.6 支援 Character Creator 5 高解析角色與臉部 Profile，可接收 MetaHuman Animator 的 CSV 動作，並加入臉部區域強度控制和 UE5、Marmoset FBX 預設。
+     </p>
+     <figure class="case-preview daily-visual" data-intel-id="cg-channel-reallusion-releases-iclone-8-6" data-intel-role="visual" data-visual-id="cg-channel-reallusion-releases-iclone-8-6">
+      <a href="https://www.cgchannel.com/2025/08/reallusion-releases-iclone-8-6" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+       <img alt="SOURCE CARD preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-10-30/cg-channel-reallusion-releases-iclone-8-6.svg"/>
+      </a>
+      <figcaption>
+       <span>
+        SOURCE CARD
+       </span>
+       · Generated source card · 點圖開啟原始來源
+      </figcaption>
+     </figure>
+     <div class="quick-impact daily-impact">
+      <span><b class="quick-impact-label">角色製作</b> ★★★☆☆</span>
+     </div>
+     <details class="canonical-analysis canonical-analysis-brief daily-full-analysis" data-analysis-level="BRIEF">
+      <summary>
+       完整分析
+      </summary>
+      <div class="detail-body canonical-analysis-body brief-analysis-body daily-analysis-body">
+       <h4>
+        臉部資料技術流程
+       </h4>
+       <p>
+        CC5 HD 臉部 Profile 用於動捕驅動，高解析 Profile 也相容 MetaHuman 表情系統；MetaHuman Animator 的臉部資料可用 CSV 匯入 iClone，再以免費控制外掛細修。
+       </p>
+       <h4>
+        輸出與整合製作影響
+       </h4>
+       <p>
+        時間軸可分別調整臉部區域的表情強度，FBX 輸出新增 UE5 Skeleton 與 Marmoset 預設；Blender Pipeline 外掛也能轉送燈光和相機。
+       </p>
+       <h4>
+        歷史依賴與平台限制
+       </h4>
+       <p>
+        部分功能要求已安裝 Character Creator 5，Motion Live 的臉、身體與手部整合另屬付費項目；本文記錄的是 2025 年 Windows 10 以上版本狀態。
+       </p>
+       <p class="analysis-level-note">
+        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+       </p>
+      </div>
+     </details>
+     <a class="source daily-source" href="https://www.cgchannel.com/2025/08/reallusion-releases-iclone-8-6" rel="noopener noreferrer" target="_blank">
+      來源
+     </a>
+    </article>
+    <article class="daily-card daily-card-more category-news" data-intel-id="cgworld-jp-01-202610-c4d-mcp" data-intel-role="card">
+     <div class="meta">
+      <span class="pill">
+       other-dcc
+      </span>
+     </div>
+     <h3>
+      Cinema 4D 2026.4 內建 MCP：用 AI 指令串接建模、Rig、UV 與算圖佇列
+     </h3>
+     <p class="summary">
+      Cinema 4D 2026.4 內建 MCP Server，可讓 Claude、ChatGPT 或 Codex 以自然語言組合指令，操作建模、Rig、UV、場景管理與多通道算圖，結果保留為可編輯原生場景。
+     </p>
+     <figure class="case-preview daily-visual" data-intel-id="cgworld-jp-01-202610-c4d-mcp" data-intel-role="visual" data-visual-id="cgworld-jp-01-202610-c4d-mcp">
+      <a href="https://cgworld.jp/flashnews/01-202610-C4D-MCP.html" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+       <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-10-30/cgworld-jp-01-202610-c4d-mcp.jpg"/>
+      </a>
+      <figcaption>
+       <span>
+        SOURCE PREVIEW
+       </span>
+       · Local visual evidence · 點圖開啟原始來源
+      </figcaption>
+     </figure>
+     <div class="quick-impact daily-impact">
+      <span><b class="quick-impact-label">其他 DCC</b> ★★★☆☆</span>
+     </div>
+     <details class="canonical-analysis canonical-analysis-brief daily-full-analysis" data-analysis-level="BRIEF">
+      <summary>
+       完整分析
+      </summary>
+      <div class="detail-body canonical-analysis-body brief-analysis-body daily-analysis-body">
+       <h4>
+        AI 操作技術流程
+       </h4>
+       <p>
+        MCP Server 預設關閉，需在偏好設定啟用並更新指定客戶端後重啟；使用者還能分別授權工具群與 Python 執行權限，處理結果保留為 Cinema 4D 原生資料。
+       </p>
+       <h4>
+        批次與工具製作影響
+       </h4>
+       <p>
+        案例以 CSV 產生超過一百組三維文字 Take 並加入算圖佇列，也能把特定多邊形加工步驟整理成可套用其他模型的專用工具。
+       </p>
+       <h4>
+        自動化誤差與人工限制
+       </h4>
+       <p>
+        建築案例初次生成仍有細節錯誤，角色 Rig 的肩關節位置也需用圖片指示修正；VFX 案例中的車輛資產選擇與配置仍由美術手動完成。
+       </p>
+       <p class="analysis-level-note">
+        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+       </p>
+      </div>
+     </details>
+     <a class="source daily-source" href="https://cgworld.jp/flashnews/01-202610-C4D-MCP.html" rel="noopener noreferrer" target="_blank">
+      來源
+     </a>
+    </article>
+    <article class="daily-card daily-card-more category-news" data-intel-id="cgworld-jp-01-202610-cc4dtools" data-intel-role="card">
+     <div class="meta">
+      <span class="pill">
+       other-dcc
+      </span>
+     </div>
+     <h3>
+      CC4D 工具 1.1：雙向交換 Cinema 4D 角色、姿勢與臉部動畫
+     </h3>
+     <p class="summary">
+      CC4D Tools 1.1 新增 CC4D Link，可在 Cinema 4D 與 Character Creator 4／5、iClone 8 間傳送角色、姿勢、身體與臉部動畫、Morph 和網格修改。
+     </p>
+     <figure class="case-preview daily-visual" data-intel-id="cgworld-jp-01-202610-cc4dtools" data-intel-role="visual" data-visual-id="cgworld-jp-01-202610-cc4dtools">
+      <a href="https://cgworld.jp/flashnews/01-202610-CC4DTools.html" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+       <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-10-30/cgworld-jp-01-202610-cc4dtools.jpg"/>
+      </a>
+      <figcaption>
+       <span>
+        SOURCE PREVIEW
+       </span>
+       · Local visual evidence · 點圖開啟原始來源
+      </figcaption>
+     </figure>
+     <div class="quick-impact daily-impact">
+      <span><b class="quick-impact-label">其他 DCC</b> ★★★☆☆</span>
+     </div>
+     <details class="canonical-analysis canonical-analysis-brief daily-full-analysis" data-analysis-level="BRIEF">
+      <summary>
+       完整分析
+      </summary>
+      <div class="detail-body canonical-analysis-body brief-analysis-body daily-analysis-body">
+       <h4>
+        角色交換技術流程
+       </h4>
+       <p>
+        送出端與 Link Receiver 可免手動匯出交換角色與動作，傳入動畫可套用 Joint 或控制 Rig，再用 CC4D Bake 把結果烘焙到各控制器。
+       </p>
+       <h4>
+        Rig 與材質製作影響
+       </h4>
+       <p>
+        套件能匯入 FBX、整理 Morph、建立 FK／IK 控制與表情 Rig，也能依 FBX／JSON 設定 Redshift 材質和表情皺紋，並重新導向外部動作。
+       </p>
+       <h4>
+        骨架與版本限制
+       </h4>
+       <p>
+        從 Cascadeur 等外部來源匯入姿勢或動作時，來源與目標必須有一致的 Joint 階層與比例；本文列出的支援範圍是 Cinema 4D 2023 至 2026。
+       </p>
+       <p class="analysis-level-note">
+        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+       </p>
+      </div>
+     </details>
+     <a class="source daily-source" href="https://cgworld.jp/flashnews/01-202610-CC4DTools.html" rel="noopener noreferrer" target="_blank">
+      來源
+     </a>
+    </article>
+    <article class="daily-card daily-card-more category-news" data-intel-id="80-level-this-3d-character-is-actually-flat-it-s-crazy" data-intel-role="card">
+     <div class="meta">
+      <span class="pill">
+       character-production
+      </span>
+     </div>
+     <h3>
+      為廣角鏡頭壓扁角色頭部：Blender Lattice 強化二維輪廓
+     </h3>
+     <p class="summary">
+      《Dust of the Simulacrum》角色仍是三維模型，但頭部被刻意壓扁並隨相機角度調整，以抵銷廣角鏡頭下的造型偏差；Blender 可用 Lattice Modifier 實作相近變形。
+     </p>
+     <figure class="case-preview daily-visual" data-intel-id="80-level-this-3d-character-is-actually-flat-it-s-crazy" data-intel-role="visual" data-visual-id="80-level-this-3d-character-is-actually-flat-it-s-crazy">
+      <a href="https://80.lv/articles/this-3d-character-is-actually-flat-it-s-crazy" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+       <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-10-30/80-level-this-3d-character-is-actually-flat-it-s-crazy.jpg"/>
+      </a>
+      <figcaption>
+       <span>
+        SOURCE PREVIEW
+       </span>
+       · Local visual evidence · 點圖開啟原始來源
+      </figcaption>
+     </figure>
+     <div class="quick-impact daily-impact">
+      <span><b class="quick-impact-label">角色製作</b> ★★★☆☆</span>
+     </div>
+     <details class="canonical-analysis canonical-analysis-brief daily-full-analysis" data-analysis-level="BRIEF">
+      <summary>
+       完整分析
+      </summary>
+      <div class="detail-body canonical-analysis-body brief-analysis-body daily-analysis-body">
+       <h4>
+        鏡頭造型技術流程
+       </h4>
+       <p>
+        角色保留三維網格，但頭部沿特定觀看方向壓平並配合相機調整，使最終畫面更接近二維設計；來源指出可用 Blender Lattice Modifier 重現類似變形。
+       </p>
+       <h4>
+        鏡頭導向製作影響
+       </h4>
+       <p>
+        這種做法把最終鏡頭讀感置於模型全角度合理性之前，允許幕後網格出現誇張形變；對固定構圖或風格化動畫，可用局部變形維持角色輪廓。
+       </p>
+       <h4>
+        視角限制與待驗證
+       </h4>
+       <p>
+        正文沒有說明頭部變形是否自動跟隨鏡頭、如何切換多鏡位，或極端角度是否穿幫；導入多鏡頭場景前需逐鏡檢查輪廓與變形穩定性。
+       </p>
+       <p class="analysis-level-note">
+        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+       </p>
+      </div>
+     </details>
+     <a class="source daily-source" href="https://80.lv/articles/this-3d-character-is-actually-flat-it-s-crazy" rel="noopener noreferrer" target="_blank">
+      來源
+     </a>
+    </article>
+    <article class="daily-card daily-card-more category-news" data-intel-id="cg-channel-autodesk-releases-arnold-7-5-2-with-support-for-gaussian-spl" data-intel-role="card">
+     <div class="meta">
+      <span class="pill">
+       other-dcc
+      </span>
+     </div>
+     <h3>
+      Arnold 7.5.2：匯入與重打光 3D Gaussian Splat，新增八段 Toon 明暗
+     </h3>
+     <p class="summary">
+      Arnold 7.5.2 可從 PLY 或點陣列載入 3D Gaussian Splat，透過專用 Shader 以場景燈重打光；同版加入 Tone Zones、Shader to RGBA 與 USD 26.03 初步支援。
+     </p>
+     <figure class="case-preview daily-visual" data-intel-id="cg-channel-autodesk-releases-arnold-7-5-2-with-support-for-gaussian-spl" data-intel-role="visual" data-visual-id="cg-channel-autodesk-releases-arnold-7-5-2-with-support-for-gaussian-spl">
+      <a href="https://www.cgchannel.com/2026/06/autodesk-releases-arnold-7-5-2-with-support-for-gaussian-splatting" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+       <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-10-30/cg-channel-autodesk-releases-arnold-7-5-2-with-support-for-gaussian-spl.jpg"/>
+      </a>
+      <figcaption>
+       <span>
+        SOURCE PREVIEW
+       </span>
+       · Local visual evidence · 點圖開啟原始來源
+      </figcaption>
+     </figure>
+     <div class="quick-impact daily-impact">
+      <span><b class="quick-impact-label">其他 DCC</b> ★★★☆☆</span>
+     </div>
+     <details class="canonical-analysis canonical-analysis-brief daily-full-analysis" data-analysis-level="BRIEF">
+      <summary>
+       完整分析
+      </summary>
+      <div class="detail-body canonical-analysis-body brief-analysis-body daily-analysis-body">
+       <h4>
+        3DGS 算圖技術流程
+       </h4>
+       <p>
+        資料可由 Points 節點讀取 PLY，或直接以每點陣列匯入；Gaussian Splat Shader 能調整原資料光照，甚至完全改由 Arnold 場景燈重新照明。
+       </p>
+       <h4>
+        NPR 製作影響
+       </h4>
+       <p>
+        Tone Zones 把 RGB 光照切成最多八段，每段可獨立染色或輸出 AOV；Shader to RGBA 將表面光照轉為 RGBA，再送入 Ramp 建立卡通明暗。
+       </p>
+       <h4>
+        格式與平台限制
+       </h4>
+       <p>
+        USD Gaussian Splat 僅標示初步支援；官方稱 PLY 載入快約 1.2 至 1.4 倍，但 GPU 算圖仍只支援 Windows、Linux 且需要相容 NVIDIA 顯示卡。
+       </p>
+       <p class="analysis-level-note">
+        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+       </p>
+      </div>
+     </details>
+     <a class="source daily-source" href="https://www.cgchannel.com/2026/06/autodesk-releases-arnold-7-5-2-with-support-for-gaussian-splatting" rel="noopener noreferrer" target="_blank">
+      來源
+     </a>
+    </article>
+    <article class="daily-card daily-card-more category-news" data-intel-id="cg-channel-autodesk-releases-arnold-7-5-3" data-intel-role="card">
+     <div class="meta">
+      <span class="pill">
+       other-dcc
+      </span>
+     </div>
+     <h3>
+      Arnold 7.5.3：三種 BSDF 組合 Toon，GPU 首像素最高快四倍
+     </h3>
+     <p class="summary">
+      Arnold 7.5.3 新增 Diffuse、Fuzz、Specular BSDF，可接 Shader to RGBA 建立 NPR；同版改善 GPU 與互動算圖，並擴充 Flow Render 的轉台、貼圖烘焙和長任務。
+     </p>
+     <figure class="case-preview daily-visual" data-intel-id="cg-channel-autodesk-releases-arnold-7-5-3" data-intel-role="visual" data-visual-id="cg-channel-autodesk-releases-arnold-7-5-3">
+      <a href="https://www.cgchannel.com/2026/07/autodesk-releases-arnold-7-5-3" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+       <img alt="SOURCE CARD preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-10-30/cg-channel-autodesk-releases-arnold-7-5-3.svg"/>
+      </a>
+      <figcaption>
+       <span>
+        SOURCE CARD
+       </span>
+       · Generated source card · 點圖開啟原始來源
+      </figcaption>
+     </figure>
+     <div class="quick-impact daily-impact">
+      <span><b class="quick-impact-label">其他 DCC</b> ★★★☆☆</span>
+     </div>
+     <details class="canonical-analysis canonical-analysis-brief daily-full-analysis" data-analysis-level="BRIEF">
+      <summary>
+       完整分析
+      </summary>
+      <div class="detail-body canonical-analysis-body brief-analysis-body daily-analysis-body">
+       <h4>
+        NPR 節點技術流程
+       </h4>
+       <p>
+        Diffuse、Fuzz 與 Specular 三種 BSDF 可分別描述漫反射、絨毛與高光，再接入 Shader to RGBA，把光照結果轉成適合分段與著色的資料。
+       </p>
+       <h4>
+        互動算圖製作影響
+       </h4>
+       <p>
+        官方測試稱 GPU 首像素快一至四倍、整體快百分之一至二十；密集網格在互動編輯時改採增量更新，典型頂點與變形操作快二至二點五倍。
+       </p>
+       <h4>
+        雲端與測試限制
+       </h4>
+       <p>
+        Flow Render 可把多幀合為單一任務、最長執行二十四小時，並自動建立轉台或烘焙貼圖；效能數字來自特定測試場景，不能直接外推所有專案。
+       </p>
+       <p class="analysis-level-note">
+        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+       </p>
+      </div>
+     </details>
+     <a class="source daily-source" href="https://www.cgchannel.com/2026/07/autodesk-releases-arnold-7-5-3" rel="noopener noreferrer" target="_blank">
+      來源
+     </a>
+    </article>
+   </section>
+  </main>
+  <script src="../daily.js?v=20261030-r1-workspace-v10-history-current-workspace">
+  </script>
+  <script defer="" src="../archive-nav-state.js?v=20261030-r1-workspace-v10-history-current-workspace">
+  </script>
+ </body>
+</html>
