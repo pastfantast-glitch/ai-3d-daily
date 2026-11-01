@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   Blender / DCC｜2026-11-02｜AI 3D Daily
+  </title>
+  <meta content="2026-11-02 Blender / DCC Production Intelligence：Blender / DCC 工具與工作流 / Blender Tips，共 9 項可驗證情報。" name="description"/>
+  <link href="../../styles.css?v=20261102-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../../shared-components.css?v=20261102-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../../category.css?v=20261102-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+ </head>
+ <body class="category-page" data-category="blender-dcc" data-report-date="2026-11-02">
+  <nav aria-label="Production Intelligence 分類" class="global-category-nav">
+   <div class="page global-category-nav-inner">
+    <div class="archive-nav-controls">
+     <a class="archive-nav-home" href="../../">
+      ← 首頁
+     </a>
+     <div class="archive-nav-date">
+      <a aria-label="前一日日報" class="archive-nav-arrow" href="../../2026-10-30/blender-dcc/">
+       ←
+      </a>
+      <span>
+       2026-11-02
+      </span>
+     </div>
+    </div>
+    <span aria-hidden="true" class="archive-nav-divider">
+    </span>
+    <a class="global-category-link" href="../#top">
+     TOP5
+    </a>
+    <a class="global-category-link" data-category="ai-generation" href="../ai-generation/">
+     AI 生成
+    </a>
+    <a class="global-category-link" data-category="3d-production" href="../3d-production/">
+     3D 製作
+    </a>
+    <a class="global-category-link" data-category="3d-animation" href="../3d-animation/">
+     3D 動作
+    </a>
+    <a class="global-category-link" data-category="engine-art" href="../engine-art/">
+     遊戲引擎
+    </a>
+    <a class="global-category-link" data-category="emerging-case" href="../emerging-case/">
+     新技術 / Case
+    </a>
+    <a class="global-category-link is-active" data-category="blender-dcc" href="../blender-dcc/">
+     Blender / DCC
+    </a>
+    <a class="global-category-link global-history-link" data-global-view="history" href="../../history/">
+     歷史日報
+    </a>
+   </div>
+  </nav>
+  <main class="page category-main">
+   <article class="category-card" data-intel-id="80-level-sculpting-texturing-a-semi-realistic-lobo-bust-with-zbrush-s" data-intel-role="card">
+    <div class="category-meta">
+     #01 · substance
+    </div>
+    <h2>
+     Lobo 半寫實胸像：從 ZBrush 重拓撲、Painter 手繪破損到 Marmoset 四燈布光
+    </h2>
+    <p class="summary">
+     角色美術 Eric Liu 分享 Lobo 胸像流程：以 ZBrush 建形並整理 Edge Flow、Marmoset 烘焙多組貼圖、Substance 3D Painter 疊色與補畫衣物破損，最後在 Marmoset Toolbag 完成布光。
+    </p>
+    <figure class="case-preview" data-intel-id="80-level-sculpting-texturing-a-semi-realistic-lobo-bust-with-zbrush-s" data-intel-role="visual" data-visual-id="80-level-sculpting-texturing-a-semi-realistic-lobo-bust-with-zbrush-s">
+     <a href="https://80.lv/articles/sculpting-texturing-a-semi-realistic-lobo-bust-with-zbrush-substance-3d" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-11-02/80-level-sculpting-texturing-a-semi-realistic-lobo-bust-with-zbrush-s.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">Substance</b> ★★★★☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       雕刻與貼圖技術流程
+      </h4>
+      <p>
+       模型由球體起形，完成造型後多次 ZRemesh，再以 ZWrap 基礎網格投射頭部細節、ZModeler 整理服裝拓撲；UV 在 Maya 處理，烘焙 Curvature、Cavity、AO、Position、Normal 等貼圖後送入 Painter。
+      </p>
+      <h4>
+       材質與燈光製作影響
+      </h4>
+      <p>
+       臉部以灰階底層、AO Multiply、亮部 Overlay 再疊加局部紫、綠、黃膚色；衣物破損不足時以負 Height 與手繪陰影補出假深度。渲染以主光、補光及兩盞輪廓光建立體積與剪影。
+      </p>
+      <h4>
+       造型限制與待驗證
+      </h4>
+      <p>
+       作者指出缺少完整角色概念，必須依參考測試多種表情；衣物高模未先做足損傷，也把額外修補壓到 Painter。此為個人胸像流程，未提供遊戲引擎內材質與效能驗證。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://80.lv/articles/sculpting-texturing-a-semi-realistic-lobo-bust-with-zbrush-substance-3d" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="cg-channel-see-lux-aeternas-vfx-breakdown-for-brian-coxs-new-world-tour" data-intel-role="card">
+    <div class="category-meta">
+     #03 · houdini
+    </div>
+    <h2>
+     Lux Aeterna 為 Brian Cox 巡演重建雪中查理大橋：Lidar、攝影測量與 Houdini 粒子合成
+    </h2>
+    <p class="summary">
+     Lux Aeterna 為 Brian Cox 的 Emergence 巡演製作兩分鐘開場動畫，在大型 LED 螢幕重建 1610 年雪中的布拉格查理大橋，流程結合 Lidar、攝影測量、Houdini 粒子與 NASA 地球觀測資料。
+    </p>
+    <figure class="case-preview" data-intel-id="cg-channel-see-lux-aeternas-vfx-breakdown-for-brian-coxs-new-world-tour" data-intel-role="visual" data-visual-id="cg-channel-see-lux-aeternas-vfx-breakdown-for-brian-coxs-new-world-tour">
+     <a href="https://www.cgchannel.com/2026/10/see-lux-aeternas-vfx-breakdown-for-brian-coxs-new-world-tour" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-11-02/cg-channel-see-lux-aeternas-vfx-breakdown-for-brian-coxs-new-world-tour.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">Houdini</b> ★★★★☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       場景重建技術流程
+      </h4>
+      <p>
+       製作以 Lidar 與攝影測量建立橋梁和環境資料，再用 Houdini 粒子模擬雪景，並搭配數位 Matte Painting 與 NASA Earth Observation 資料完成畫面。
+      </p>
+      <h4>
+       大型顯示製作影響
+      </h4>
+      <p>
+       成品是巡演現場大型 LED 螢幕播放的兩分鐘動畫，不是一般電影鏡頭；歷史敘事把 Kepler 觀察六角雪花的情境直接轉成開場視覺。
+      </p>
+      <h4>
+       公開資料限制
+      </h4>
+      <p>
+       來源列出工作室與主要 VFX 人員，但技術資訊欄明確標為尚無其他資料，因此沒有解析度、渲染時間、Houdini 設定或 LED 色彩管理細節可供重現。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://www.cgchannel.com/2026/10/see-lux-aeternas-vfx-breakdown-for-brian-coxs-new-world-tour" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="blender-official-splatting-the-gaussians-into-blender" data-intel-role="card">
+    <div class="category-meta">
+     #06 · blender
+    </div>
+    <h2>
+     Blender 5.3 原生支援 Gaussian Splat：PLY／SPZ 匯入、Geometry Nodes 與全渲染器顯示
+    </h2>
+    <p class="summary">
+     Blender 5.3 首次原生支援三維高斯潑濺，可從 PLY、SPZ 或 USD 檔匯入，以點雲屬性和幾何節點編輯，並能交由內建的即時及路徑追蹤渲染器顯示。
+    </p>
+    <figure class="case-preview" data-intel-id="blender-official-splatting-the-gaussians-into-blender" data-intel-role="visual" data-visual-id="blender-official-splatting-the-gaussians-into-blender">
+     <a href="https://code.blender.org/2026/10/splatting-the-gaussians-into-blender" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-11-02/blender-official-splatting-the-gaussians-into-blender.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">Blender</b> ★★★★☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       資料表示技術流程
+      </h4>
+      <p>
+       高斯潑濺在 Blender 中以點雲類型表示，除位置外還包含三維縮放、四元數旋轉，以及用球諧係數保存的視角相關輻射資料；幾何節點可分別讀寫基礎與視角相關係數。
+      </p>
+      <h4>
+       渲染器製作影響
+      </h4>
+      <p>
+       EEVEE 將每個潑濺投影成面向相機的二維四邊形，再用抖動透明模式疊合；Cycles 則計算光線與潑濺最大不透明度的交點，以隨機機率決定是否接受，因而保留反射與間接光等路徑追蹤能力。
+      </p>
+      <h4>
+       初版限制與待驗證
+      </h4>
+      <p>
+       EEVEE 初版噪點較高，需提高 Sample；低效能裝置會受 Overdraw 影響，編輯工具仍沿用 Point Cloud 而顯笨重，Relighting 也只屬早期支援。Cycles 與 EEVEE 的投影方法不同，部分資料外觀會有差異。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://code.blender.org/2026/10/splatting-the-gaussians-into-blender" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="cg-channel-free-uv-packing-tool-packer-io-now-integrates-directly-in-bl" data-intel-role="card">
+    <div class="category-meta">
+     #08 · blender
+    </div>
+    <h2>
+     Packer-IO 1.5：UV 排列最高快 2 倍，透過 UnwrellaConnect 直接接入 Blender
+    </h2>
+    <p class="summary">
+     免費 UV 排列工具 Packer-IO 1.5 改善相似形狀 Island 的處理速度，官方稱最高快 2 倍；免費 UnwrellaConnect 則把 Packer-IO 工作流整合進 Blender 4.2+。
+    </p>
+    <figure class="case-preview" data-intel-id="cg-channel-free-uv-packing-tool-packer-io-now-integrates-directly-in-bl" data-intel-role="visual" data-visual-id="cg-channel-free-uv-packing-tool-packer-io-now-integrates-directly-in-bl">
+     <a href="https://www.cgchannel.com/2026/10/free-uv-packing-tool-packer-io-now-integrates-directly-in-blender" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-11-02/cg-channel-free-uv-packing-tool-packer-io-now-integrates-directly-in-bl.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">Blender</b> ★★★★☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       UV 排列技術流程
+      </h4>
+      <p>
+       Packer-IO 匯入已有 UV 的模型後自動排列 Island，支援 Tiled UV、場景尺度與 Texel Density；1.3 改善 Hole Filling，1.5 針對相似形狀序列提升排列效能。
+      </p>
+      <h4>
+       Blender 串接製作影響
+      </h4>
+      <p>
+       UnwrellaConnect 把 Packer-IO 放進 Blender UI，並可與商業 Unwrella-IO 解 UV 工具串接；Packer-IO 本體仍能接收其他 DCC 匯出的模型，適合跨軟體共用同一排列流程。
+      </p>
+      <h4>
+       效能宣稱與功能限制
+      </h4>
+      <p>
+       「最高 2 倍」是官方宣稱，正文沒有測試模型與硬體；工具只負責 Packing、不先做 Unwrap。Packer-IO 支援 Windows 10+／macOS 10.15+，連接器要求 Blender 4.2+。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://www.cgchannel.com/2026/10/free-uv-packing-tool-packer-io-now-integrates-directly-in-blender" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="80-level-free-blender-tool-for-dolly-zoom-camera-effect" data-intel-role="card">
+    <div class="category-meta">
+     #09 · blender
+    </div>
+    <h2>
+     免費 Dolly Zoom Blender 擴充：同步改變焦距與相機 Z 軸位置
+    </h2>
+    <p class="summary">
+     Surf-Ace 的免費 Blender 擴充以單一屬性同步調整焦距與相機前後位移，讓 3D 游標附近物件維持近似視覺尺寸；動畫仍須分別為焦距與位置設定關鍵幀。
+    </p>
+    <figure class="case-preview" data-intel-id="80-level-free-blender-tool-for-dolly-zoom-camera-effect" data-intel-role="visual" data-visual-id="80-level-free-blender-tool-for-dolly-zoom-camera-effect">
+     <a href="https://80.lv/articles/free-blender-tool-for-dolly-zoom-camera-effect" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-11-02/80-level-free-blender-tool-for-dolly-zoom-camera-effect.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">Blender</b> ★★★★☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       推拉變焦技術流程
+      </h4>
+      <p>
+       Dolly Zoom 屬性一邊改變焦距，一邊沿觀看方向的 Z 軸移動視窗或相機，使 3D 游標附近物件在畫面中的表觀尺寸維持不變。
+      </p>
+      <h4>
+       構圖調整製作影響
+      </h4>
+      <p>
+       同一控制項可在 3D 視窗與相機上預覽推拉變焦，讓使用者調整構圖時不必手動反覆配對焦距和距離；3D 游標同時提供維持主體視覺尺寸的空間參考。
+      </p>
+      <h4>
+       動畫與版本限制
+      </h4>
+      <p>
+       該 Dolly Zoom 屬性本身不能設定關鍵幀；要製作動畫仍須分別替焦距和相機位置打 Keyframe。擴充支援 Blender 4.2 LTS 以上。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://80.lv/articles/free-blender-tool-for-dolly-zoom-camera-effect" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="cg-channel-get-started-using-blender-for-environment-concept-art" data-intel-role="card">
+    <div class="category-meta">
+     #11 · blender
+    </div>
+    <h2>
+     歷史參考｜2022 年 Blender 環境概念流程：由 Photoshop 草圖進入 3D Blockout 與 Kitbash
+    </h2>
+    <p class="summary">
+     2022 年發布的 Gnomon 課程以 4.5 小時示範 Blender 與 Photoshop 環境概念流程：先畫鬆散 2D 草圖，再選案進入 3D Blockout，並建立可重用的 Kitbash 資產庫。
+    </p>
+    <figure class="case-preview" data-intel-id="cg-channel-get-started-using-blender-for-environment-concept-art" data-intel-role="visual" data-visual-id="cg-channel-get-started-using-blender-for-environment-concept-art">
+     <a href="https://www.cgchannel.com/2022/09/get-started-using-blender-for-environment-concept-art" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-11-02/cg-channel-get-started-using-blender-for-environment-concept-art.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">Blender</b> ★★★☆☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       概念設計技術流程
+      </h4>
+      <p>
+       流程由 Photoshop 多張草圖開始，選定方向後進 Blender Blockout；教學再涵蓋導覽、核心建模，以及 Hard Ops、Boxcutter 等外掛，最後整合 2D 與 3D 元素。
+      </p>
+      <h4>
+       資產重用製作影響
+      </h4>
+      <p>
+       建立 3D Kitbash Library 可讓環境細節反覆使用，課程並附 Blender 場景與 Photoshop 檔，便於對照完整製作結果。
+      </p>
+      <h4>
+       歷史與課程限制
+      </h4>
+      <p>
+       這是 2022 年的訂閱課程，Blender、外掛介面與訂閱價格可能已變動；課程定位由初階到中階概念美術，並非完整環境資產的遊戲引擎效能教學。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://www.cgchannel.com/2022/09/get-started-using-blender-for-environment-concept-art" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="3dnchu-blender-itou-cellbook" data-intel-role="card">
+    <div class="category-meta">
+     #16 · blender
+    </div>
+    <h2>
+     歷史參考｜2025 年 Blender 賽璐璐角色書：中階建模流程、模型資料與製作影片
+    </h2>
+    <p class="summary">
+     2025 年出版的 Blender 賽璐璐角色製作書，以 Blender 與 Pencil+ 製作動畫風女性角色，並提供模型資料和製作影片，定位為已有角色完成經驗的中階讀者。
+    </p>
+    <figure class="case-preview" data-intel-id="3dnchu-blender-itou-cellbook" data-intel-role="visual" data-visual-id="3dnchu-blender-itou-cellbook">
+     <a href="https://3dnchu.com/archives/blender-itou-cellbook" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-11-02/3dnchu-blender-itou-cellbook.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">Blender</b> ★★☆☆☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       賽璐璐角色技術流程
+      </h4>
+      <p>
+       書籍以插畫設計轉為 3D 賽璐璐角色為主軸，強調用較簡潔的工程重現手繪動畫觀感，並涵蓋可用於遊戲、動畫、影像和 VTuber 的角色製作流程。
+      </p>
+      <h4>
+       教材資產製作影響
+      </h4>
+      <p>
+       全書 384 頁，附模型與製作影片；推薦工具列出 Blender 3.3、Pencil+4、After Effects 2024 以上及多個輔助外掛，方便讀者對照完成品。
+      </p>
+      <h4>
+       歷史與受眾限制
+      </h4>
+      <p>
+       這是 2025 年 3 月出版資料，不是今日新版消息；書籍明確不是逐項介紹 Blender 的初學教程，而是跨 DCC 也能參考的中階角色流程，工具版本與外掛相容性需另行確認。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://3dnchu.com/archives/blender-itou-cellbook" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="3dnchu-blender-real-time-cg-character-creation-nanodes" data-intel-role="card">
+    <div class="category-meta">
+     #17 · blender
+    </div>
+    <h2>
+     歷史參考｜2023 年 Blender 角色書串接 Unity 與 VRChat 上架流程
+    </h2>
+    <p class="summary">
+     2023 年出版的 Blender 即時 CG 角色製作入門書，從角色設計、建模與蒙皮講到材質、表情，再經 FBX 送入 Unity，完成 VRChat 元件、測試與上傳。
+    </p>
+    <figure class="case-preview" data-intel-id="3dnchu-blender-real-time-cg-character-creation-nanodes" data-intel-role="visual" data-visual-id="3dnchu-blender-real-time-cg-character-creation-nanodes">
+     <a href="https://3dnchu.com/archives/blender-real-time-cg-character-creation-nanodes" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-11-02/3dnchu-blender-real-time-cg-character-creation-nanodes.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">Blender</b> ★★☆☆☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       角色建模與綁定流程
+      </h4>
+      <p>
+       章節由用途規劃、設計和 Blender 基礎開始，依序建立臉、頭髮與身體，再設定骨架、頂點權重及需要擺動的部位，並以 Unity 既有動畫測試。
+      </p>
+      <h4>
+       材質與表情製作
+      </h4>
+      <p>
+       後續由素體建立服裝並暫時 Skinning，接著處理材質、UV、貼圖、基本 Facial 與調整，另加入 VRChat 所需的 Shape Key。
+      </p>
+      <h4>
+       引擎交接與歷史限制
+      </h4>
+      <p>
+       書中說明 FBX 輸出、Unity 匯入、Toon Shader、VRChat 元件、測試上傳、FX Layer、擺動設定與 Prefab。這是 2023 年出版內容，相關軟體介面可能已變動。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://3dnchu.com/archives/blender-real-time-cg-character-creation-nanodes" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="3dnchu-sakura-tools" data-intel-role="card">
+    <div class="category-meta">
+     #18 · blender
+    </div>
+    <h2>
+     歷史參考｜2024 年 Sakura Tools：以「模型」為單位批次處理 Blender 角色資產
+    </h2>
+    <p class="summary">
+     2024 年發布的 Sakura Tools 面向需輸出到 Unity、VRChat 等外部環境的 NPR 角色，能把 Armature 與關聯 Mesh 視為同一模型，批次處理 Modifier、命名、權重、Rig 與場景資料。
+    </p>
+    <figure class="case-preview" data-intel-id="3dnchu-sakura-tools" data-intel-role="visual" data-visual-id="3dnchu-sakura-tools">
+     <a href="https://3dnchu.com/archives/sakura-tools" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-11-02/3dnchu-sakura-tools.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">Blender</b> ★★☆☆☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       批次處理技術流程
+      </h4>
+      <p>
+       外掛以 Armature 及受其 Modifier 影響的 Mesh 組成「模型」，可一次對整組物件套用 Modifier 等操作；複雜命令先顯示設定畫面，並可用 Re-run 重複前次設定。
+      </p>
+      <h4>
+       角色資產製作影響
+      </h4>
+      <p>
+       功能跨越批次命名、Modifier、Pose Bake、Shape Key、Weight Transfer、Rig、Constraint、影像檢查與變更偵測，目標是降低多物件角色反覆修改和輸出時的手動選取成本。
+      </p>
+      <h4>
+       歷史與導入限制
+      </h4>
+      <p>
+       這是 2024 年的產品資料，功能很多且來源也指出必須實際使用才容易判斷價值；價格與折扣屬當時資訊，導入前仍需以現行 Blender 版本、目標引擎與實際角色檔測試。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://3dnchu.com/archives/sakura-tools" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <nav aria-label="相鄰分類" class="category-bottom-nav">
+    <a href="../emerging-case/">
+     ← 新技術 / Case
+    </a>
+    <a href="../#top">
+     TOP5
+    </a>
+    <a href="../ai-generation/">
+     AI 生成 →
+    </a>
+   </nav>
+  </main>
+  <script defer="" src="../../archive-nav-state.js?v=20261102-r1-workspace-v10-history-current-workspace">
+  </script>
+ </body>
+</html>
