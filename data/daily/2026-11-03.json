@@ -1,0 +1,686 @@
+{
+  "date": "2026-11-03",
+  "schema_version": 3,
+  "metadata": {
+    "total_items": 12,
+    "collection_mode": "production-intelligence-preference-v1-hybrid",
+    "collection_contract_effective_date": "2026-09-04",
+    "preference_contract_effective_date": "2026-09-06",
+    "admission_policy_effective_date": "2026-09-15",
+    "collector_runtime": "autonomous-github-collector-v1",
+    "policy_recollect": false,
+    "discovery_windows": [
+      "24h",
+      "7d",
+      "30d",
+      "6m",
+      "evergreen"
+    ],
+    "analysis_level_counts": {
+      "FULL": 0,
+      "BRIEF": 12,
+      "REJECT": 0
+    },
+    "analysis_level_policy": "evidence-depth-tiered; FULL=3-5 source-supported blocks; BRIEF=3 readable source-grounded angles with explicit limits; REJECT=not-publishable",
+    "full_analysis_depth_contract": "v6-tiered-evidence-three-angle-reading",
+    "full_analysis_style_reference": "2026-09-12",
+    "full_analysis_heading_language": "zh-Hant",
+    "editorial": {
+      "contract": "source-grounded-editorial-v1",
+      "style_reference": "2026-09-25",
+      "selection_changed": null,
+      "factual_fallback_allowed": true,
+      "repair_mode": "automatic-source-factual-fallback"
+    },
+    "discovery_coverage": {
+      "fill_ladder_exhausted": true,
+      "backlog_checked": true,
+      "backlog_remaining_eligible": 0,
+      "targeted_refill_performed": true,
+      "quality_first_confirmed": true,
+      "windows": {
+        "24h": {
+          "status": "exhausted",
+          "candidates_found": 2
+        },
+        "7d": {
+          "status": "exhausted",
+          "candidates_found": 0
+        },
+        "30d": {
+          "status": "exhausted",
+          "candidates_found": 1
+        },
+        "6m": {
+          "status": "exhausted",
+          "candidates_found": 1
+        },
+        "evergreen": {
+          "status": "exhausted",
+          "candidates_found": 10
+        }
+      },
+      "category_candidates": {
+        "ai-generation": {
+          "candidates_considered": 0
+        },
+        "3d-production": {
+          "candidates_considered": 4
+        },
+        "3d-animation": {
+          "candidates_considered": 0
+        },
+        "engine-art": {
+          "candidates_considered": 4
+        },
+        "emerging-case": {
+          "candidates_considered": 3
+        },
+        "blender-dcc": {
+          "candidates_considered": 3
+        }
+      },
+      "registered_source_probe": {
+        "performed": true,
+        "initial_selected": [
+          "80-level",
+          "3dnchu",
+          "cgworld-jp",
+          "bilibili-mobile",
+          "cg-channel",
+          "blender-official",
+          "epic-developer-community",
+          "unity-official",
+          "sidefx-official"
+        ],
+        "refill_selected": [
+          "artstation",
+          "gumroad-discover",
+          "xiaohongshu",
+          "autodesk-area",
+          "adobe-substance-3d",
+          "game-developer"
+        ],
+        "refill_batches": 2,
+        "pre_refill_survivors": 12,
+        "post_refill_survivors": 12,
+        "sources": {
+          "80-level": {
+            "status": "checked",
+            "method": "latest-index",
+            "candidates_found": 0,
+            "candidate_ids": [],
+            "index_pages_checked": 2,
+            "feed_urls_checked": 0,
+            "refill_links_checked": 0,
+            "semantic_expansion_links_checked": 0,
+            "published_links_skipped": 8,
+            "selection_phase": "daily-plan"
+          },
+          "3dnchu": {
+            "status": "checked",
+            "method": "latest-index",
+            "candidates_found": 8,
+            "candidate_ids": [
+              "3dnchu-rtgi-3dgs-chenxiao-hu",
+              "3dnchu-character-interaction-ue4",
+              "3dnchu-3d-gaussian-splatting",
+              "3dnchu-parametric-cornell-box",
+              "3dnchu-r-k-v-a-ue5",
+              "3dnchu-triangle-splatting",
+              "3dnchu-quicksplat",
+              "3dnchu-sharp-apple"
+            ],
+            "index_pages_checked": 1,
+            "feed_urls_checked": 2,
+            "refill_links_checked": 16,
+            "semantic_expansion_links_checked": 1,
+            "published_links_skipped": 5,
+            "selection_phase": "daily-plan"
+          },
+          "cgworld-jp": {
+            "status": "checked",
+            "method": "latest-index",
+            "candidates_found": 0,
+            "candidate_ids": [],
+            "index_pages_checked": 2,
+            "feed_urls_checked": 0,
+            "refill_links_checked": 0,
+            "semantic_expansion_links_checked": 0,
+            "published_links_skipped": 1,
+            "selection_phase": "daily-plan"
+          },
+          "bilibili-mobile": {
+            "status": "checked",
+            "method": "latest-index",
+            "candidates_found": 0,
+            "candidate_ids": [],
+            "index_pages_checked": 1,
+            "feed_urls_checked": 0,
+            "refill_links_checked": 0,
+            "semantic_expansion_links_checked": 0,
+            "published_links_skipped": 0,
+            "selection_phase": "daily-plan"
+          },
+          "artstation": {
+            "status": "blocked",
+            "method": "latest-index",
+            "candidates_found": 0,
+            "candidate_ids": [],
+            "reason": "http-403",
+            "index_pages_checked": 0,
+            "feed_urls_checked": 0,
+            "refill_links_checked": 0,
+            "selection_phase": "targeted-refill"
+          },
+          "gumroad-discover": {
+            "status": "checked",
+            "method": "latest-index",
+            "candidates_found": 0,
+            "candidate_ids": [],
+            "index_pages_checked": 1,
+            "feed_urls_checked": 0,
+            "refill_links_checked": 0,
+            "semantic_expansion_links_checked": 0,
+            "published_links_skipped": 0,
+            "selection_phase": "targeted-refill"
+          },
+          "xiaohongshu": {
+            "status": "checked",
+            "method": "latest-index",
+            "candidates_found": 0,
+            "candidate_ids": [],
+            "index_pages_checked": 1,
+            "feed_urls_checked": 0,
+            "refill_links_checked": 0,
+            "semantic_expansion_links_checked": 0,
+            "published_links_skipped": 0,
+            "selection_phase": "targeted-refill"
+          },
+          "cg-channel": {
+            "status": "checked",
+            "method": "latest-index",
+            "candidates_found": 6,
+            "candidate_ids": [
+              "cg-channel-new-cg-software-you-may-have-missed-2-november-2026",
+              "cg-channel-watch-image-engines-vfx-breakdown-for-the-mandalorian-and-gr",
+              "cg-channel-pulldownit-6-5-for-maya-gets-new-non-destructive-workflow",
+              "cg-channel-reallusion-releases-headshot-3-0",
+              "cg-channel-reallusion-releases-character-creator-5",
+              "cg-channel-3d-io-releases-unwrella-io"
+            ],
+            "index_pages_checked": 4,
+            "feed_urls_checked": 2,
+            "refill_links_checked": 10,
+            "semantic_expansion_links_checked": 0,
+            "published_links_skipped": 41,
+            "selection_phase": "daily-plan"
+          },
+          "blender-official": {
+            "status": "checked",
+            "method": "latest-index",
+            "candidates_found": 0,
+            "candidate_ids": [],
+            "index_pages_checked": 5,
+            "feed_urls_checked": 1,
+            "refill_links_checked": 0,
+            "semantic_expansion_links_checked": 5,
+            "published_links_skipped": 12,
+            "selection_phase": "daily-plan"
+          },
+          "epic-developer-community": {
+            "status": "blocked",
+            "method": "latest-index",
+            "candidates_found": 0,
+            "candidate_ids": [],
+            "reason": "http-403",
+            "index_pages_checked": 0,
+            "feed_urls_checked": 0,
+            "refill_links_checked": 0,
+            "selection_phase": "daily-plan"
+          },
+          "unity-official": {
+            "status": "checked",
+            "method": "latest-index",
+            "candidates_found": 0,
+            "candidate_ids": [],
+            "index_pages_checked": 2,
+            "feed_urls_checked": 0,
+            "refill_links_checked": 0,
+            "semantic_expansion_links_checked": 0,
+            "published_links_skipped": 0,
+            "selection_phase": "daily-plan"
+          },
+          "sidefx-official": {
+            "status": "checked",
+            "method": "latest-index",
+            "candidates_found": 0,
+            "candidate_ids": [],
+            "index_pages_checked": 2,
+            "feed_urls_checked": 0,
+            "refill_links_checked": 0,
+            "semantic_expansion_links_checked": 0,
+            "published_links_skipped": 3,
+            "selection_phase": "daily-plan"
+          },
+          "autodesk-area": {
+            "status": "unavailable",
+            "method": "latest-index",
+            "candidates_found": 0,
+            "candidate_ids": [],
+            "reason": "http-503",
+            "index_pages_checked": 0,
+            "feed_urls_checked": 0,
+            "refill_links_checked": 0,
+            "selection_phase": "targeted-refill"
+          },
+          "adobe-substance-3d": {
+            "status": "checked",
+            "method": "latest-index",
+            "candidates_found": 0,
+            "candidate_ids": [],
+            "index_pages_checked": 1,
+            "feed_urls_checked": 0,
+            "refill_links_checked": 0,
+            "semantic_expansion_links_checked": 0,
+            "published_links_skipped": 0,
+            "selection_phase": "targeted-refill"
+          },
+          "game-developer": {
+            "status": "checked",
+            "method": "latest-index",
+            "candidates_found": 0,
+            "candidate_ids": [],
+            "index_pages_checked": 1,
+            "feed_urls_checked": 0,
+            "refill_links_checked": 0,
+            "semantic_expansion_links_checked": 0,
+            "published_links_skipped": 0,
+            "selection_phase": "targeted-refill"
+          }
+        }
+      },
+      "notes": "2026-11-03 autonomous GitHub Collector loaded the Published Registry snapshot before discovery, supplemented it from verified-DONE history when needed, checked rolling backlog, executed the current-main deterministic registered-source probe plan, crawled configured source indexes plus bounded same-source refill, then used the current-main deficit-aware deterministic registered-source refill only when the verified survivor count remained below the normal floor, and applied exact source/stable identity dedupe before ranking. Registered refill: pre=12 post=12 batches=2 selected=[\"artstation\", \"gumroad-discover\", \"xiaohongshu\", \"autodesk-area\", \"adobe-substance-3d\", \"game-developer\"]. Registry audit: {\"history_supplemented_items\": 0, \"latest_verified_done\": \"2026-11-02\", \"snapshot_generated_through\": \"2026-11-02\", \"snapshot_state\": \"DERIVED_FROM_VERIFIED_DONE\", \"source_identities\": 974, \"stable_ids\": 973}. Backlog entries rechecked=0. No source registration/domain supplied ranking bonus, quota or admission bypass."
+    },
+    "personalization": {
+      "contract": "supabase-semantic-feedback-v1",
+      "status": "applied",
+      "vote_count": 14,
+      "max_rank_multiplier": 0.2,
+      "max_query_expansion_fraction": 0.2,
+      "raw_profile_committed": false,
+      "bookmarks_used": false,
+      "domain_weights_used": false,
+      "admission_bypass": false,
+      "quality_gate_bypass": false,
+      "source_quota": false,
+      "ranking_adjusted_count": 11,
+      "semantic_expansion_candidates": 0,
+      "profile_fingerprint": "a9e63c85c69a6c6ba8a68aea16c9533938f4746f9807cbaf4f0581a8e748a761",
+      "reader": "github-actions-oidc-owner-v1"
+    }
+  },
+  "items": [
+    {
+      "id": "cg-channel-new-cg-software-you-may-have-missed-2-november-2026",
+      "title": "2026 年 11 月 CG 軟體更新：角色生成、虛擬製作、破碎與 UV 工具",
+      "summary": "CG Channel 彙整多項更新：Character Creator 5.2 新增參考圖生模與 CC Wrap；Nuke Stage 1.2 加入 DMX 燈控；Pulldownit 6.6、Unwrella-IO 1.5、Ucupaint 3.0 等也改善破碎、UV 與材質繪製流程。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://www.cgchannel.com/2026/11/new-cg-software-you-may-have-missed-2-november-2026",
+      "category": "blender-dcc",
+      "subcategory": "other-dcc",
+      "ranking_score": 89.51,
+      "base_ranking_score": 86.0,
+      "source_published_at": "2026-11-02",
+      "analysis_level": "BRIEF",
+      "brief_reason": "useful-tool-or-addon-limited-depth",
+      "full_analysis": [
+        {
+          "label": "角色與虛擬製作",
+          "text": "Character Creator 5.2 可用 1–4 張參考圖，透過 Tripo 或 Hunyuan 模型生成角色、服裝與配件，CC Wrap 再轉成 CC3+／CC5 HD 角色並自動綁定；Nuke Stage 1.2 則用 sACN 控制實體 DMX 燈具。"
+        },
+        {
+          "label": "破碎、UV 與繪製流程",
+          "text": "Pulldownit 6.6 新增 Eraser 與邊界碎裂模式，並聲稱重碎裂快 3 倍、復原快 4 倍；Unwrella-IO 1.5 加入手動畫縫工具且 UV packing 最快 2 倍；Ucupaint 3.0 加入調整圖層與獨立位移通道。"
+        },
+        {
+          "label": "限制與版本條件",
+          "text": "各項數字來自廠商或文章記載，不能視為跨專案實測。Nuke Stage 1.2 當時只支援 Windows 11，macOS 版預計 2027；Unwrella-IO 1.5 支援 Windows 10+ 與 macOS，永久授權為 199 歐元。"
+        }
+      ],
+      "rank_global": 1,
+      "homepage_tier": "top5"
+    },
+    {
+      "id": "3dnchu-rtgi-3dgs-chenxiao-hu",
+      "title": "3DGS 與網格混合場景：即時動態全域照明達平均 43 FPS",
+      "summary": "北京大學研究團隊提出混合機率式光線追蹤與硬體光柵化管線，讓 3D Gaussian Splatting 與多邊形網格共同接收動態間接光；RTX 3090 測試在約 157 萬個 Gaussian、1920×1088 解析度下平均達 43 FPS。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://3dnchu.com/archives/rtgi-3dgs-chenxiao-hu",
+      "category": "emerging-case",
+      "subcategory": "research",
+      "ranking_score": 80.0,
+      "base_ranking_score": 80.0,
+      "source_published_at": "2026-11-03",
+      "analysis_level": "BRIEF",
+      "brief_reason": "emerging-research-limited-production-evidence",
+      "full_analysis": [
+        {
+          "label": "技術流程",
+          "text": "管線以 3D Gaussian 的表面光傳播模型為基礎，結合機率式光線追蹤與硬體光柵器，可計算多次漫反射和一次光澤反射，並讓 3DGS 與網格互相影響照明。"
+        },
+        {
+          "label": "製作影響",
+          "text": "燈光、物件及材質可在執行時編輯，支援區域光、方向光與環境光，也能即時調整反照率和粗糙度；這使混合掃描場景不必先烘焙 GI 才能預覽變更。"
+        },
+        {
+          "label": "限制與待驗證",
+          "text": "公開版本只支援 Windows，且需要 NVIDIA RTX 30 系列以上 GPU。一般 3DGS 若缺少適合重新打光的 PBR 材質資訊，未必能得到良好結果，因此效能數字不能直接外推到所有掃描資料。"
+        }
+      ],
+      "rank_global": 2,
+      "homepage_tier": "top5"
+    },
+    {
+      "id": "cg-channel-pulldownit-6-5-for-maya-gets-new-non-destructive-workflow",
+      "title": "歷史參考｜Pulldownit 6.5 for Maya：模擬後仍可改幾何與碎裂圖樣",
+      "summary": "這篇 2026 年 1 月文章介紹 Pulldownit 6.5 for Maya：新的非破壞式流程允許在動力學模擬完成後修改來源幾何或碎裂圖樣，並讓模擬結果隨之更新。",
+      "quick_impact": "★★★☆☆",
+      "source_url": "https://www.cgchannel.com/2026/01/pulldownit-6-5-for-maya-gets-new-non-destructive-workflow",
+      "category": "blender-dcc",
+      "subcategory": "maya",
+      "ranking_score": 76.15,
+      "base_ranking_score": 73.0,
+      "source_published_at": "2026-01-22",
+      "analysis_level": "BRIEF",
+      "brief_reason": "practical-tutorial-limited-depth",
+      "full_analysis": [
+        {
+          "label": "技術流程",
+          "text": "使用者可先完成破碎與動力學計算，再改模型幾何或碎裂圖樣，結果會重新更新；也可把目前碎裂圖樣當作再次切割的起點，並調整 fracture cluster 尺寸。"
+        },
+        {
+          "label": "製作影響",
+          "text": "支援 referenced objects 後，資產可以留在外部檔案並從主場景引用，文章指出這有助於控制 Maya 場景檔大小；同一非破壞式碎裂流程也能套用於引用檔。"
+        },
+        {
+          "label": "限制與待驗證",
+          "text": "這是 2026 年 1 月的版本資訊：Maya 版支援 Maya 2022+ 的 Windows 與 macOS，採年租制；當時 3ds Max 版仍停在 6.0，因此不能把 Maya 6.5 功能直接視為 3ds Max 版已有。"
+        }
+      ],
+      "rank_global": 3,
+      "homepage_tier": "top5"
+    },
+    {
+      "id": "cg-channel-reallusion-releases-headshot-3-0",
+      "title": "Headshot 3.1：在 Character Creator 內分層繪製與修整臉部貼圖",
+      "summary": "Reallusion 的 Headshot 3.1 為 Character Creator 5 加入圖層式貼圖編輯，可直接在 3D 角色上繪製 diffuse map，並提供 Clone 與 Stencil 筆刷；3.0 的照片生頭部與身形流程也保留。",
+      "quick_impact": "★★★☆☆",
+      "source_url": "https://www.cgchannel.com/2026/07/reallusion-releases-headshot-3-0",
+      "category": "3d-production",
+      "subcategory": "character-production",
+      "ranking_score": 75.73,
+      "base_ranking_score": 72.0,
+      "source_published_at": "2026-07-07",
+      "analysis_level": "BRIEF",
+      "brief_reason": "useful-tool-or-addon-limited-depth",
+      "full_analysis": [
+        {
+          "label": "幾何與貼圖流程",
+          "text": "Headshot 3 的新模型從照片生成頭部後，可用導引曲線調整頭型與五官，另有 58 組臉部 morph；DeLight、膚色泛紅控制、normal map 大小細節與 Blend Mask 用於修整貼圖。"
+        },
+        {
+          "label": "3.1 製作改進",
+          "text": "3.1 把 diffuse map 編輯帶入 Character Creator 視窗，支援圖層與標準混合模式；Clone Brush 可移除小型皮膚瑕疵，Stencil Brush 可把照片紋理投射到角色，減少往返外部影像軟體。"
+        },
+        {
+          "label": "限制與費用",
+          "text": "本機頭部生成模型免費執行，但 Nano Banana 驅動的 AI Image Generator 需消耗線上點數；文章記載 2K 為 15 點、4K 為 30 點。Headshot 3.1 需 Character Creator 5，永久授權當時為 199 美元。"
+        }
+      ],
+      "rank_global": 4,
+      "homepage_tier": "top5"
+    },
+    {
+      "id": "3dnchu-character-interaction-ue4",
+      "title": "歷史參考｜Character Interaction Update 3：整合 UE4 角色、武器、載具與 AI",
+      "summary": "這篇 2018 年文章介紹 UE4 資產 Character Interaction Update 3，內容涵蓋角色移動、物件互動、拾取與庫存、槍械、近戰、載具及具聽覺與視覺的敵人 AI。",
+      "quick_impact": "★★★☆☆",
+      "source_url": "https://3dnchu.com/archives/character-interaction-ue4",
+      "category": "3d-production",
+      "subcategory": "character-production",
+      "ranking_score": 72.57,
+      "base_ranking_score": 69.0,
+      "source_published_at": "2018-08-20",
+      "analysis_level": "BRIEF",
+      "brief_reason": "single-source-verified-production-tip",
+      "full_analysis": [
+        {
+          "label": "技術流程",
+          "text": "資產以程序式混合配合少量動畫處理移動、跳躍、瞄準與換彈，並提供十種互動模板；拾取類別可依角色位置選擇動畫，庫存則區分任務物品、資源與彈藥。"
+        },
+        {
+          "label": "製作影響",
+          "text": "武器管理、敵人感知與追蹤、車輛模組和近戰系統已放在同一套範例內，另附 HUD、角色、音效與示範關卡；對原型製作而言，可直接觀察各系統如何串接，而非只取得單一功能。"
+        },
+        {
+          "label": "限制與待驗證",
+          "text": "這是 2018 年的歷史資料，文章記載當時更新後只支援 Unreal Engine 4.20，售價為 161.98 美元；這些版本與價格不能視為現況，也沒有提供現代 UE5 專案的相容性證據。"
+        }
+      ],
+      "rank_global": 5,
+      "homepage_tier": "top5"
+    },
+    {
+      "id": "cg-channel-reallusion-releases-character-creator-5",
+      "title": "歷史參考｜Character Creator 5：高解析角色、混合系統與引擎整合",
+      "summary": "這篇 2025 年文章介紹 Character Creator 5：HD 基底最高增加 16 倍網格細節、支援最高 8K 貼圖，ActorMixer 可非破壞混合最多六名角色，並更新 Unreal、Blender 與 ZBrush 整合。",
+      "quick_impact": "★★★☆☆",
+      "source_url": "https://www.cgchannel.com/2025/08/reallusion-releases-character-creator-5",
+      "category": "3d-production",
+      "subcategory": "character-production",
+      "ranking_score": 72.57,
+      "base_ranking_score": 69.0,
+      "source_published_at": "2025-08-28",
+      "analysis_level": "BRIEF",
+      "brief_reason": "useful-tool-or-addon-limited-depth",
+      "full_analysis": [
+        {
+          "label": "角色細節與混合",
+          "text": "HD 基底支援兩級細分，眼球、淚線與虹膜結構也重製；ActorMixer 能混合完整身體、頭部或單一五官。進階隨機化與自訂角色功能屬於另售的 ActorMixer Pro。"
+        },
+        {
+          "label": "動畫與引擎整合",
+          "text": "新的 Extended Plus 與 HD 臉部 profile 增加修正控制；CC5 角色可用對應 MetaHuman 的骨架與臉部控制，在 Unreal Sequencer 中互換而不重新定位動畫，MHA 資料也能以 CSV 回傳。"
+        },
+        {
+          "label": "限制與費用",
+          "text": "這是 2025 年資料。HD Ultimate Morphs 與 ActorMixer Pro 均需另購；Maya 整合當時只支援 Maya 2024／2025、Arnold 5.4.3+，不支援 Maya 2026，而且 Maya 與 Toolbag 插件僅限 Windows。"
+        }
+      ],
+      "rank_global": 6,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "cg-channel-3d-io-releases-unwrella-io",
+      "title": "歷史參考｜Unwrella-IO：把自動 UV 展開與 packing 做成獨立工具",
+      "summary": "這篇 2025 年文章介紹 Unwrella-IO 正式版：3d-io 將原本用於 3ds Max 與 Maya 外掛的 UV 展開、packing 技術改成獨立程式，讓 Blender、Unreal Engine 等其他 DCC 資產也能使用。",
+      "quick_impact": "★★★☆☆",
+      "source_url": "https://www.cgchannel.com/2025/03/3d-io-releases-unwrella-io",
+      "category": "blender-dcc",
+      "subcategory": "maya",
+      "ranking_score": 66.95,
+      "base_ranking_score": 66.0,
+      "source_published_at": "2025-03-04",
+      "analysis_level": "BRIEF",
+      "brief_reason": "useful-tool-or-addon-limited-depth",
+      "full_analysis": [
+        {
+          "label": "技術流程",
+          "text": "工具接受拖放模型，以半自動流程完成 UV 展開與 packing；提供硬表面、organic 模型及 3D 掃描 mosaic 模式，並可調整 UV seam 位置與允許的拉伸量。"
+        },
+        {
+          "label": "製作影響",
+          "text": "獨立版不再綁定 3ds Max 或 Maya 外掛，因此同一套展 UV 技術可處理來自 Blender、Unreal Engine 等不同來源的模型；這項跨 DCC 用途是文章明確列出的定位。"
+        },
+        {
+          "label": "限制與待驗證",
+          "text": "這是 2025 年 3 月的歷史資訊：當時支援 Windows 10+，macOS 仍標示即將推出；永久授權為 199 歐元，既有 3ds Max／Maya 外掛使用者可用 99 歐元升級。"
+        }
+      ],
+      "rank_global": 7,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "3dnchu-r-k-v-a-ue5",
+      "title": "歷史參考｜R.K.V.A：以樣條與模組化懸吊製作 UE5 車輛動畫",
+      "summary": "這篇 2024 年文章介紹 R.K.V.A 外掛：以 C++ 建立無需傳統綁定的運動學車輛系統，並向 Blueprint 開放，可沿樣條控制賽車、卡車、機車或巴士等輪式載具。",
+      "quick_impact": "★★★☆☆",
+      "source_url": "https://3dnchu.com/archives/r-k-v-a-ue5",
+      "category": "engine-art",
+      "subcategory": "unreal",
+      "ranking_score": 64.36,
+      "base_ranking_score": 63.0,
+      "source_published_at": "2024-08-08",
+      "analysis_level": "BRIEF",
+      "brief_reason": "single-source-verified-production-tip",
+      "full_analysis": [
+        {
+          "label": "技術流程",
+          "text": "外掛以自訂運動學系統驅動關鍵影格車輛，懸吊由模組化框架組裝；車輛固定追隨樣條，不會像物理解法一樣偏離路徑，並可在 Blueprint 延伸基礎模板。"
+        },
+        {
+          "label": "製作影響",
+          "text": "其定位是電影式車輛動畫，而不是來源已證實的完整駕駛模擬。對鏡頭製作可推論，樣條約束有利於維持預定走位，但這項推論不代表它能重現碰撞或跳躍物理。"
+        },
+        {
+          "label": "限制與待驗證",
+          "text": "文章宣稱從 UE5.0 起相容，並記載當時售價 99.99 美元；作者仍在詢問跳躍、Chaos Vehicle 與可駕駛行為，因此這些能力不應視為已確認。版本與價格也屬 2024 年歷史資訊。"
+        }
+      ],
+      "rank_global": 8,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "3dnchu-3d-gaussian-splatting",
+      "title": "歷史參考｜SIGGRAPH 2023 的 3D Gaussian Splatting 即時視點合成方法",
+      "summary": "這篇 2023 年文章整理 3D Gaussian Splatting 論文：方法從相機校正產生的稀疏點出發，以異向性 3D Gaussian、交錯最佳化與可見性導向渲染器，在 1080p 達到每秒至少 30 幀的新視點合成。",
+      "quick_impact": "★★★☆☆",
+      "source_url": "https://3dnchu.com/archives/3d-gaussian-splatting",
+      "category": "engine-art",
+      "subcategory": "rendering",
+      "ranking_score": 63.91,
+      "base_ranking_score": 63.0,
+      "source_published_at": "2023-09-05",
+      "analysis_level": "BRIEF",
+      "brief_reason": "emerging-research-limited-production-evidence",
+      "full_analysis": [
+        {
+          "label": "技術流程",
+          "text": "場景不用連續神經網路表示，而以 3D Gaussian 保存體積輻射場特性；訓練期間交錯執行參數最佳化與密度控制，並最佳化異向性共變異數以貼合場景。"
+        },
+        {
+          "label": "製作影響",
+          "text": "可見性感知的異向性 splatting 同時支援加速訓練與即時渲染。文章引用的個人案例顯示，75 張 DSLR 照片在 RTX 3090 上約處理 30 分鐘，但這是案例數字，不是論文對所有場景的保證。"
+        },
+        {
+          "label": "限制與待驗證",
+          "text": "文章列出需 CUDA Compute Capability 7.0 以上 GPU；論文評估品質的訓練需約 24 GB VRAM。降低訓練次數或另調設定可減少記憶體需求，但可能影響最終品質。"
+        }
+      ],
+      "rank_global": 9,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "3dnchu-parametric-cornell-box",
+      "title": "歷史參考｜UE5 參數化 Cornell Box：集中比較 Lumen、光追與路徑追蹤",
+      "summary": "這篇 2023 年文章介紹免費的 Parametric Cornell Box 藍圖資產，可在 UE5 內調整箱體、燈光、牆面材質與測試物件，以受控場景檢查色彩溢出、軟陰影及鏡面反射。",
+      "quick_impact": "★★★☆☆",
+      "source_url": "https://3dnchu.com/archives/parametric-cornell-box",
+      "category": "engine-art",
+      "subcategory": "unreal",
+      "ranking_score": 63.91,
+      "base_ranking_score": 63.0,
+      "source_published_at": "2023-09-06",
+      "analysis_level": "BRIEF",
+      "brief_reason": "single-source-verified-production-tip",
+      "full_analysis": [
+        {
+          "label": "技術流程",
+          "text": "將 BP_CornellBox 拖入場景後，可從 Details 面板修改尺寸、牆面、燈光、材質與內容；任一屬性更新時，建構腳本會自動重建整個箱體。"
+        },
+        {
+          "label": "製作影響",
+          "text": "同一個受控箱體可切換 Lumen、光線追蹤、路徑追蹤或靜態照明，方便把直接光、全域光、反射與牆面色彩溢出放在一致條件下比較。"
+        },
+        {
+          "label": "限制與待驗證",
+          "text": "資產沒有使用 Geometry Scripting；因文章指出動態網格當時未能完整支援 Lumen，實作改以基本靜態網格的實例化與縮放完成。這是 2023 年限制，不能直接代表新版 UE5 現況。"
+        }
+      ],
+      "rank_global": 10,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "3dnchu-triangle-splatting",
+      "title": "歷史參考｜Triangle Splatting：以可微分三角形重建即時輻射場",
+      "summary": "這篇 2025 年文章介紹 Triangle Splatting：研究團隊以端到端可微分渲染器直接最佳化三角形，並報告在部分資料集優於 2D／3D Gaussian Splatting 的畫質、收斂速度與渲染吞吐量。",
+      "quick_impact": "★★★☆☆",
+      "source_url": "https://3dnchu.com/archives/triangle-splatting",
+      "category": "engine-art",
+      "subcategory": "rendering",
+      "ranking_score": 63.91,
+      "base_ranking_score": 63.0,
+      "source_published_at": "2025-06-25",
+      "analysis_level": "BRIEF",
+      "brief_reason": "emerging-research-limited-production-evidence",
+      "full_analysis": [
+        {
+          "label": "技術流程",
+          "text": "每個三角形被當成可微分 splat，透過梯度直接調整；方法試圖同時保留三角形在 GPU 上的效率，以及獨立 primitive 可依場景調整密度的特性。"
+        },
+        {
+          "label": "製作影響",
+          "text": "三角形可沿用標準圖形堆疊與 GPU 硬體。論文在 Garden 場景以商用網格渲染器、1280×720 解析度報告每秒超過 2,400 幀，但這是特定場景與渲染條件的研究結果。"
+        },
+        {
+          "label": "限制與待驗證",
+          "text": "外部測試者指出當時尚無 Triangle Splatting 即時檢視器，而產業工具已多圍繞 3DGS 建立。文章對 Nanite 相容性只有作者猜測，沒有實驗證據，因此不列為可用功能。"
+        }
+      ],
+      "rank_global": 11,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "3dnchu-sharp-apple",
+      "title": "歷史參考｜Apple SHARP：單張照片不到一秒生成 3D Gaussian 場景",
+      "summary": "這篇 2025 年文章介紹 Apple SHARP：模型以一次前向傳遞，從單張照片回歸 3D Gaussian 參數，在標準 GPU 上不到一秒完成，並可即時渲染鄰近視角。",
+      "quick_impact": "★★☆☆☆",
+      "source_url": "https://3dnchu.com/archives/sharp-apple",
+      "category": "emerging-case",
+      "subcategory": "research",
+      "ranking_score": 60.0,
+      "base_ranking_score": 60.0,
+      "source_published_at": "2025-12-18",
+      "analysis_level": "BRIEF",
+      "brief_reason": "emerging-research-limited-production-evidence",
+      "full_analysis": [
+        {
+          "label": "技術流程",
+          "text": "SHARP 直接從一張輸入影像預測場景的 3D Gaussian 表示，不需逐場景反覆最佳化；輸出具有絕對公制尺度，並支援以公制單位移動虛擬相機。"
+        },
+        {
+          "label": "製作影響",
+          "text": "論文摘要報告標準 GPU 上生成時間少於一秒，鄰近視角渲染超過每秒 100 幀；相較先前最佳模型，LPIPS 降低 25–34%、DIST 降低 21–43%。"
+        },
+        {
+          "label": "限制與待驗證",
+          "text": "來源只承諾單張影像與鄰近視角的高解析度合成，沒有證明任意遠距離視角或完整遮蔽區域都能正確重建；跨資料集結果也應限於論文所測資料集理解。"
+        }
+      ],
+      "rank_global": 12,
+      "homepage_tier": "next10"
+    }
+  ],
+  "visual_evidence": {}
+}
