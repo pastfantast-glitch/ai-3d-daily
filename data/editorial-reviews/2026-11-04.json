@@ -1,0 +1,886 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-04",
+  "reviewer": "chatgpt-scheduled-task",
+  "source_run_id": 41741405745,
+  "source_head_sha": "8595d63f2d8a9b048cad46c5a1696a9be349f7e9",
+  "items": {
+    "80-level-complete-3d-hair-grooming-simulation-add-on-for-blender": {
+      "source_url": "https://80.lv/articles/complete-3d-hair-grooming-simulation-add-on-for-blender",
+      "source_published_at": "2026-11-03",
+      "reviewed_on": "2026-11-04",
+      "source_evidence_sha256": "ed99987ab3bfc8a80205fdc949c9d835a210f5bc29b90a7a428f00ba6123b437",
+      "title": "BGEN Hair：在 Blender 內完成髮型梳理、動態模擬與遊戲髮片輸出",
+      "summary": "BGEN Hair 把髮線分區、梳理、辮髮與 locs、重力模擬、烘焙及碰撞器整合成一套 Blender 流程，並可切換電影用髮絲、風格化管狀髮束或遊戲引擎用髮片。",
+      "evidence_refs": [
+        "p002",
+        "p003",
+        "p004"
+      ],
+      "full_analysis": [
+        {
+          "label": "造型流程",
+          "text": "使用者可直接在頭皮畫分線，再以 comb strokes 引導方向與輪廓；專用面板處理辮髮和 locs，也能在耳朵與頸部周圍建立 taper fade。",
+          "evidence_refs": [
+            "p002",
+            "p003"
+          ]
+        },
+        {
+          "label": "模擬與輸出",
+          "text": "重力系統只模擬較輕的 guide，完整髮絲會在 viewport 即時跟隨，最後可用烘焙和 collider 完成渲染；工具另附八組 2K 髮片貼圖供遊戲引擎使用。",
+          "evidence_refs": [
+            "p003",
+            "p004"
+          ]
+        },
+        {
+          "label": "版本與限制",
+          "text": "BGEN Hair 為一次性購買，支援 Blender 4.5 以上；它整合並取代 BGEN Groom、Flow 與 Card，但保留既有檔案相容性。來源沒有提供大型角色群或複雜碰撞場景的效能數據。",
+          "evidence_refs": [
+            "p005",
+            "p006"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p002",
+          "p003",
+          "p004",
+          "p005",
+          "p006"
+        ]
+      }
+    },
+    "80-level-free-blender-texture-painting-add-on-ucupaint-3-0-is-now-ava": {
+      "source_url": "https://80.lv/articles/free-blender-texture-painting-add-on-ucupaint-3-0-is-now-available",
+      "source_published_at": "2026-10-28",
+      "reviewed_on": "2026-11-04",
+      "source_evidence_sha256": "9881003d812f610dacfd93d4b9f9455aeff551ddca1b5008faa9a5d680cc013d",
+      "title": "Ucupaint 3.0：加入位移通道、調整圖層與統一預覽的 Blender 繪製外掛",
+      "summary": "Ucupaint 3.0 重整圖層導向介面，將高度與向量位移拆成獨立通道，並加入調整圖層、統一預覽、球形與圓柱 decal，以及可自訂的 bake target。",
+      "evidence_refs": [
+        "p001",
+        "p003",
+        "p004",
+        "p006",
+        "p007"
+      ],
+      "full_analysis": [
+        {
+          "label": "通道與預覽",
+          "text": "高度與 Vector Displacement 不再塞在 Normal 通道；Quick Displacement Setup 可重複細分網格以檢查面數是否足夠。原本分離的 channel 與 layer 預覽也合併成單一模式。",
+          "evidence_refs": [
+            "p004",
+            "p005"
+          ]
+        },
+        {
+          "label": "非破壞與烘焙",
+          "text": "Adjustment Layer 會讀取前一層資料並套用 modifier；每個 channel 必須指定 bake target，可獨立設定名稱與解析度，也能把 ORM map 或 color attribute 當成輸出目標。",
+          "evidence_refs": [
+            "p006",
+            "p007"
+          ]
+        },
+        {
+          "label": "版本與限制",
+          "text": "開發者表示 3.0 歷經一年開發，文章記載已測試 Blender 2.76 至 5.3。位移設定仍會實際細分網格，因此需要依資產面數與記憶體評估，而來源沒有提供量化效能測試。",
+          "evidence_refs": [
+            "p002",
+            "p004",
+            "p008"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p003",
+          "p004",
+          "p006",
+          "p007",
+          "p005",
+          "p002",
+          "p008"
+        ]
+      }
+    },
+    "80-level-how-to-combine-watercolor-painting-with-3d-texturing": {
+      "source_url": "https://80.lv/articles/how-to-combine-watercolor-painting-with-3d-texturing",
+      "source_published_at": "2026-11-03",
+      "reviewed_on": "2026-11-04",
+      "source_evidence_sha256": "ae47d48db675657ccae6b2f9fb36393ca80a33b6caa1867b0d29543f81d682be",
+      "title": "把水彩畫變成 3D 場景貼圖：從實體繪製到 trim、atlas 與無縫材質",
+      "summary": "Beno Raistrick 先依模型形狀繪製實體水彩，再於 Krita 調整階調與對比，整理成 trim sheet、atlas 或無縫貼圖；場景主要靠建模補足凹凸，而不是依賴 normal map。",
+      "evidence_refs": [
+        "p001",
+        "p008",
+        "p009",
+        "p010"
+      ],
+      "full_analysis": [
+        {
+          "label": "貼圖製作流程",
+          "text": "作者先完成建模以確認每個區域需要的貼圖形狀，再用水彩繪製；數位化後在 Krita 調整 levels 與 contrast，將素材擠進 atlas／trim sheet，或用 clone stamp 製作可平鋪版本。",
+          "evidence_refs": [
+            "p008",
+            "p009"
+          ]
+        },
+        {
+          "label": "模型與畫面整合",
+          "text": "繪製內容會配合物件本身的歪斜與比例，讓模型和筆觸對齊。因作者幾乎不用 normal map，磚牆等立體細節要另外建模；Unreal 內以低角度方向光與較大 source radius 製造柔和夕陽陰影。",
+          "evidence_refs": [
+            "p010",
+            "p011"
+          ]
+        },
+        {
+          "label": "限制與待驗證",
+          "text": "作者尚未從水彩穩定產生可用的 height／normal map，並明確把這部分留待後續研究。淺景深與 tilt-shift 只用於強化手作模型感，不能替代材質和幾何對齊。",
+          "evidence_refs": [
+            "p011",
+            "p012",
+            "p016"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p008",
+          "p009",
+          "p010",
+          "p011",
+          "p012",
+          "p016"
+        ]
+      }
+    },
+    "80-level-tutorial-stylized-fur-feathers-in-blender": {
+      "source_url": "https://80.lv/articles/tutorial-stylized-fur-feathers-in-blender",
+      "source_published_at": "2026-07-28",
+      "reviewed_on": "2026-11-04",
+      "source_evidence_sha256": "2f0da37fdb16b2e88505b13c4b34642aaee550108197532c5aaad919514d97dc",
+      "title": "Blender 風格化毛髮與羽毛：以 Geometry Nodes 降低幾何負擔",
+      "summary": "SouthernShotty 的教學以 Blender 5.2 LTS 建立輕量 Geometry Nodes 系統，目標是不使用數百萬個高成本多邊形，也能在 Eevee 製作風格化毛髮與羽毛。",
+      "evidence_refs": [
+        "p001",
+        "p002",
+        "p004"
+      ],
+      "full_analysis": [
+        {
+          "label": "節點流程",
+          "text": "教學使用 Geometry Nodes 生成毛髮或羽毛分布，並針對傳統散佈方式容易產生的硬陰影與視覺瑕疵調整，來源明確指出流程可在 Eevee 中運作。",
+          "evidence_refs": [
+            "p001",
+            "p002"
+          ]
+        },
+        {
+          "label": "外觀控制",
+          "text": "流程包含細微動畫、隨機色彩與自訂 shader，用途涵蓋風格化角色、生物、舒適場景與 game-ready 資產；這些控制共同負責避免所有毛束呈現完全相同的外觀。",
+          "evidence_refs": [
+            "p003"
+          ]
+        },
+        {
+          "label": "版本與限制",
+          "text": "教學使用新發布的 Blender 5.2 LTS，但來源沒有公開節點數量、角色面數、顯示幀率或匯出到遊戲引擎後的成本，因此只能確認教學方向，不能宣稱任何特定效能提升。",
+          "evidence_refs": [
+            "p002",
+            "p004"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p002",
+          "p004",
+          "p003"
+        ]
+      }
+    },
+    "80-level-this-blender-tool-lets-you-draw-hair-strands-along-guides": {
+      "source_url": "https://80.lv/articles/this-blender-tool-lets-you-draw-hair-strands-along-guides",
+      "source_published_at": "2026-07-25",
+      "reviewed_on": "2026-11-04",
+      "source_evidence_sha256": "69025210700b3f88ff2268e475c115dabc954df4c05c872f07f286a05f1be29c",
+      "title": "Draw-Hair：沿著頭部導引網格直接繪製 Blender 髮絲曲線",
+      "summary": "Draw-Hair 是仍在開發中的 Blender 外掛：設定並貼合 guide mesh 後，可直接在 viewport 畫線，髮絲曲線會自動吸附到導引表面，並能調整曲線解析度與簡化頂點。",
+      "evidence_refs": [
+        "p001",
+        "p002",
+        "p003"
+      ],
+      "full_analysis": [
+        {
+          "label": "操作流程",
+          "text": "先按 Set Guide，把 guide mesh 調整到頭部形狀並修改 bevel；再按 Edit Hair 進入繪製模式。使用者在 viewport 畫出的線會自動 snap 到導引網格。",
+          "evidence_refs": [
+            "p001",
+            "p002"
+          ]
+        },
+        {
+          "label": "拓樸控制",
+          "text": "外掛的 Topology 設定提供 curve resolution 與 vertex simplification，可在繪製後控制曲線密度。來源確認可用於個人及商業專案，並提供下載。",
+          "evidence_refs": [
+            "p002",
+            "p003"
+          ]
+        },
+        {
+          "label": "開發狀態與限制",
+          "text": "這是大學課程專案且仍屬 work in progress，開發者仍在收集回饋。來源沒有說明動畫變形、複雜髮型碰撞或大量曲線的效能，因此不能把它描述為完整的 groom 模擬方案。",
+          "evidence_refs": [
+            "p001",
+            "p003"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p002",
+          "p003"
+        ]
+      }
+    },
+    "80-level-this-free-blender-tool-procedurally-converts-hair-grooms-int": {
+      "source_url": "https://80.lv/articles/this-free-blender-tool-procedurally-converts-hair-grooms-into-feathers",
+      "source_published_at": "2026-08-13",
+      "reviewed_on": "2026-11-04",
+      "source_evidence_sha256": "544178d8f799874694c7362d3c70921f9fcce625cf64b068560a987ed2a6c3dc",
+      "title": "免費 Blender 節點工具：把毛髮曲線程序化轉成可動畫羽毛",
+      "summary": "Sherzod Kadirov 的免費工具以 Geometry Nodes 將 hair groom curves 轉為羽毛，支援自訂羽毛形狀、隨機或手繪分布、梳理控制與程序式著色，並以動畫角色為設計目標。",
+      "evidence_refs": [
+        "p003",
+        "p004",
+        "p005"
+      ],
+      "full_analysis": [
+        {
+          "label": "生成與分布",
+          "text": "工具直接在角色表面梳理羽毛，可使用自訂羽毛形狀，並以隨機值或 painted variation 控制不同形狀的分布，避免所有羽毛使用完全一致的樣式。",
+          "evidence_refs": [
+            "p003",
+            "p004"
+          ]
+        },
+        {
+          "label": "外觀控制",
+          "text": "使用者可調整羽毛長度、比例及與表面的對齊方式；程序式 shader 提供 base color、根部／末端 mask，並能為每片羽毛加入色彩變化。",
+          "evidence_refs": [
+            "p005"
+          ]
+        },
+        {
+          "label": "開發狀態與限制",
+          "text": "工具目前免費且目標是動畫角色，但開發者仍計畫增加控制項與功能。來源沒有說明碰撞、動力學、輸出格式或高密度羽毛的效能，因此這些能力不能視為已提供。",
+          "evidence_refs": [
+            "p003",
+            "p006"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p003",
+          "p004",
+          "p005",
+          "p006"
+        ]
+      }
+    },
+    "cg-channel-new-cg-software-you-may-have-missed-2-november-2026": {
+      "source_url": "https://www.cgchannel.com/2026/11/new-cg-software-you-may-have-missed-2-november-2026",
+      "source_published_at": "2026-11-02",
+      "reviewed_on": "2026-11-04",
+      "source_evidence_sha256": "08170f825e1b98a515b604ef695f466871ba25a2a64350f232d86f8b20d059bc",
+      "title": "2026 年 11 月 CG 軟體更新：角色生成、虛擬製作、破碎與 UV 工具",
+      "summary": "CG Channel 彙整多項更新：Character Creator 5.2 新增參考圖生模與 CC Wrap；Nuke Stage 1.2 加入 DMX 燈控；Pulldownit 6.6、Unwrella-IO 1.5、Ucupaint 3.0 等也改善破碎、UV 與材質繪製流程。",
+      "evidence_refs": [
+        "p008",
+        "p009",
+        "p031",
+        "p032",
+        "p051",
+        "p061",
+        "p067"
+      ],
+      "full_analysis": [
+        {
+          "label": "角色與虛擬製作",
+          "text": "Character Creator 5.2 可用 1–4 張參考圖，透過 Tripo 或 Hunyuan 模型生成角色、服裝與配件，CC Wrap 再轉成 CC3+／CC5 HD 角色並自動綁定；Nuke Stage 1.2 則用 sACN 控制實體 DMX 燈具。",
+          "evidence_refs": [
+            "p009",
+            "p010",
+            "p012",
+            "p013",
+            "p015",
+            "p016",
+            "p018",
+            "p031",
+            "p032",
+            "p035"
+          ]
+        },
+        {
+          "label": "破碎、UV 與繪製流程",
+          "text": "Pulldownit 6.6 新增 Eraser 與邊界碎裂模式，並聲稱重碎裂快 3 倍、復原快 4 倍；Unwrella-IO 1.5 加入手動畫縫工具且 UV packing 最快 2 倍；Ucupaint 3.0 加入調整圖層與獨立位移通道。",
+          "evidence_refs": [
+            "p051",
+            "p052",
+            "p054",
+            "p056",
+            "p057",
+            "p061",
+            "p062",
+            "p063",
+            "p067",
+            "p068",
+            "p070",
+            "p072"
+          ]
+        },
+        {
+          "label": "限制與版本條件",
+          "text": "各項數字來自廠商或文章記載，不能視為跨專案實測。Nuke Stage 1.2 當時只支援 Windows 11，macOS 版預計 2027；Unwrella-IO 1.5 支援 Windows 10+ 與 macOS，永久授權為 199 歐元。",
+          "evidence_refs": [
+            "p039",
+            "p040",
+            "p056",
+            "p057",
+            "p063",
+            "p065"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p008",
+          "p009",
+          "p031",
+          "p032",
+          "p051",
+          "p061",
+          "p067",
+          "p010",
+          "p012",
+          "p013",
+          "p015",
+          "p016",
+          "p018",
+          "p035",
+          "p052",
+          "p054",
+          "p056",
+          "p057",
+          "p062",
+          "p063",
+          "p068",
+          "p070",
+          "p072",
+          "p039",
+          "p040",
+          "p065"
+        ]
+      }
+    },
+    "cg-channel-pulldownit-6-5-for-maya-gets-new-non-destructive-workflow": {
+      "source_url": "https://www.cgchannel.com/2026/01/pulldownit-6-5-for-maya-gets-new-non-destructive-workflow",
+      "source_published_at": "2026-01-22",
+      "reviewed_on": "2026-11-04",
+      "source_evidence_sha256": "d268038be3f60a4ad01462b3e710fdc1c8e1d8ca8c2ea88ce5f705f8a5e63f2a",
+      "title": "歷史參考｜Pulldownit 6.5 for Maya：模擬後仍可改幾何與碎裂圖樣",
+      "summary": "這篇 2026 年 1 月文章介紹 Pulldownit 6.5 for Maya：新的非破壞式流程允許在動力學模擬完成後修改來源幾何或碎裂圖樣，並讓模擬結果隨之更新。",
+      "evidence_refs": [
+        "p001",
+        "p002",
+        "p006",
+        "p007"
+      ],
+      "full_analysis": [
+        {
+          "label": "技術流程",
+          "text": "使用者可先完成破碎與動力學計算，再改模型幾何或碎裂圖樣，結果會重新更新；也可把目前碎裂圖樣當作再次切割的起點，並調整 fracture cluster 尺寸。",
+          "evidence_refs": [
+            "p006",
+            "p007",
+            "p012",
+            "p013"
+          ]
+        },
+        {
+          "label": "製作影響",
+          "text": "支援 referenced objects 後，資產可以留在外部檔案並從主場景引用，文章指出這有助於控制 Maya 場景檔大小；同一非破壞式碎裂流程也能套用於引用檔。",
+          "evidence_refs": [
+            "p003",
+            "p009",
+            "p010",
+            "p011"
+          ]
+        },
+        {
+          "label": "限制與待驗證",
+          "text": "這是 2026 年 1 月的版本資訊：Maya 版支援 Maya 2022+ 的 Windows 與 macOS，採年租制；當時 3ds Max 版仍停在 6.0，因此不能把 Maya 6.5 功能直接視為 3ds Max 版已有。",
+          "evidence_refs": [
+            "p015",
+            "p016",
+            "p017"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p002",
+          "p006",
+          "p007",
+          "p012",
+          "p013",
+          "p003",
+          "p009",
+          "p010",
+          "p011",
+          "p015",
+          "p016",
+          "p017"
+        ]
+      }
+    },
+    "cg-channel-reallusion-releases-headshot-3-0": {
+      "source_url": "https://www.cgchannel.com/2026/07/reallusion-releases-headshot-3-0",
+      "source_published_at": "2026-07-07",
+      "reviewed_on": "2026-11-04",
+      "source_evidence_sha256": "7161f00bffb118886862610a0bbbc011bd71c24abecff2c023cf0773352fd7af",
+      "title": "Headshot 3.1：在 Character Creator 內分層繪製與修整臉部貼圖",
+      "summary": "Reallusion 的 Headshot 3.1 為 Character Creator 5 加入圖層式貼圖編輯，可直接在 3D 角色上繪製 diffuse map，並提供 Clone 與 Stencil 筆刷；3.0 的照片生頭部與身形流程也保留。",
+      "evidence_refs": [
+        "p026",
+        "p027",
+        "p028",
+        "p029",
+        "p030"
+      ],
+      "full_analysis": [
+        {
+          "label": "幾何與貼圖流程",
+          "text": "Headshot 3 的新模型從照片生成頭部後，可用導引曲線調整頭型與五官，另有 58 組臉部 morph；DeLight、膚色泛紅控制、normal map 大小細節與 Blend Mask 用於修整貼圖。",
+          "evidence_refs": [
+            "p009",
+            "p011",
+            "p012",
+            "p014",
+            "p015",
+            "p016",
+            "p017"
+          ]
+        },
+        {
+          "label": "3.1 製作改進",
+          "text": "3.1 把 diffuse map 編輯帶入 Character Creator 視窗，支援圖層與標準混合模式；Clone Brush 可移除小型皮膚瑕疵，Stencil Brush 可把照片紋理投射到角色，減少往返外部影像軟體。",
+          "evidence_refs": [
+            "p026",
+            "p027",
+            "p028",
+            "p029",
+            "p030"
+          ]
+        },
+        {
+          "label": "限制與費用",
+          "text": "本機頭部生成模型免費執行，但 Nano Banana 驅動的 AI Image Generator 需消耗線上點數；文章記載 2K 為 15 點、4K 為 30 點。Headshot 3.1 需 Character Creator 5，永久授權當時為 199 美元。",
+          "evidence_refs": [
+            "p023",
+            "p024",
+            "p031",
+            "p032",
+            "p033"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p026",
+          "p027",
+          "p028",
+          "p029",
+          "p030",
+          "p009",
+          "p011",
+          "p012",
+          "p014",
+          "p015",
+          "p016",
+          "p017",
+          "p023",
+          "p024",
+          "p031",
+          "p032",
+          "p033"
+        ]
+      }
+    },
+    "cg-channel-reallusion-releases-character-creator-5": {
+      "source_url": "https://www.cgchannel.com/2025/08/reallusion-releases-character-creator-5",
+      "source_published_at": "2025-08-28",
+      "reviewed_on": "2026-11-04",
+      "source_evidence_sha256": "f612a2042f75909829ed54e2a2832f6acf459cc5a55e7445cc806e1d47faebd4",
+      "title": "歷史參考｜Character Creator 5：高解析角色、混合系統與引擎整合",
+      "summary": "這篇 2025 年文章介紹 Character Creator 5：HD 基底最高增加 16 倍網格細節、支援最高 8K 貼圖，ActorMixer 可非破壞混合最多六名角色，並更新 Unreal、Blender 與 ZBrush 整合。",
+      "evidence_refs": [
+        "p001",
+        "p002",
+        "p003",
+        "p004",
+        "p011",
+        "p016"
+      ],
+      "full_analysis": [
+        {
+          "label": "角色細節與混合",
+          "text": "HD 基底支援兩級細分，眼球、淚線與虹膜結構也重製；ActorMixer 能混合完整身體、頭部或單一五官。進階隨機化與自訂角色功能屬於另售的 ActorMixer Pro。",
+          "evidence_refs": [
+            "p010",
+            "p011",
+            "p014",
+            "p015",
+            "p023",
+            "p024",
+            "p025",
+            "p026"
+          ]
+        },
+        {
+          "label": "動畫與引擎整合",
+          "text": "新的 Extended Plus 與 HD 臉部 profile 增加修正控制；CC5 角色可用對應 MetaHuman 的骨架與臉部控制，在 Unreal Sequencer 中互換而不重新定位動畫，MHA 資料也能以 CSV 回傳。",
+          "evidence_refs": [
+            "p019",
+            "p020",
+            "p021",
+            "p022",
+            "p029",
+            "p030",
+            "p031",
+            "p032"
+          ]
+        },
+        {
+          "label": "限制與費用",
+          "text": "這是 2025 年資料。HD Ultimate Morphs 與 ActorMixer Pro 均需另購；Maya 整合當時只支援 Maya 2024／2025、Arnold 5.4.3+，不支援 Maya 2026，而且 Maya 與 Toolbag 插件僅限 Windows。",
+          "evidence_refs": [
+            "p013",
+            "p025",
+            "p038",
+            "p039",
+            "p040",
+            "p041",
+            "p044",
+            "p045"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p002",
+          "p003",
+          "p004",
+          "p011",
+          "p016",
+          "p010",
+          "p014",
+          "p015",
+          "p023",
+          "p024",
+          "p025",
+          "p026",
+          "p019",
+          "p020",
+          "p021",
+          "p022",
+          "p029",
+          "p030",
+          "p031",
+          "p032",
+          "p013",
+          "p038",
+          "p039",
+          "p040",
+          "p041",
+          "p044",
+          "p045"
+        ]
+      }
+    },
+    "cg-channel-3d-io-releases-unwrella-io": {
+      "source_url": "https://www.cgchannel.com/2025/03/3d-io-releases-unwrella-io",
+      "source_published_at": "2025-03-04",
+      "reviewed_on": "2026-11-04",
+      "source_evidence_sha256": "b50ccfd900dcf2de71387a1106f94b7bcbfb6c1ed04c2ff9c0cac7fdeaf2e264",
+      "title": "歷史參考｜Unwrella-IO：把自動 UV 展開與 packing 做成獨立工具",
+      "summary": "這篇 2025 年文章介紹 Unwrella-IO 正式版：3d-io 將原本用於 3ds Max 與 Maya 外掛的 UV 展開、packing 技術改成獨立程式，讓 Blender、Unreal Engine 等其他 DCC 資產也能使用。",
+      "evidence_refs": [
+        "p001",
+        "p002",
+        "p004",
+        "p006",
+        "p007"
+      ],
+      "full_analysis": [
+        {
+          "label": "技術流程",
+          "text": "工具接受拖放模型，以半自動流程完成 UV 展開與 packing；提供硬表面、organic 模型及 3D 掃描 mosaic 模式，並可調整 UV seam 位置與允許的拉伸量。",
+          "evidence_refs": [
+            "p003",
+            "p008",
+            "p010",
+            "p011"
+          ]
+        },
+        {
+          "label": "製作影響",
+          "text": "獨立版不再綁定 3ds Max 或 Maya 外掛，因此同一套展 UV 技術可處理來自 Blender、Unreal Engine 等不同來源的模型；這項跨 DCC 用途是文章明確列出的定位。",
+          "evidence_refs": [
+            "p004",
+            "p006",
+            "p007"
+          ]
+        },
+        {
+          "label": "限制與待驗證",
+          "text": "這是 2025 年 3 月的歷史資訊：當時支援 Windows 10+，macOS 仍標示即將推出；永久授權為 199 歐元，既有 3ds Max／Maya 外掛使用者可用 99 歐元升級。",
+          "evidence_refs": [
+            "p012",
+            "p013"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p002",
+          "p004",
+          "p006",
+          "p007",
+          "p003",
+          "p008",
+          "p010",
+          "p011",
+          "p012",
+          "p013"
+        ]
+      }
+    },
+    "3dnchu-rtgi-3dgs-chenxiao-hu": {
+      "source_url": "https://3dnchu.com/archives/rtgi-3dgs-chenxiao-hu",
+      "source_published_at": "2026-11-03",
+      "reviewed_on": "2026-11-04",
+      "source_evidence_sha256": "088714cdf8694ebccb4795b359aa6a2fd3c5b476c44e24d59f01fca751e21d8f",
+      "title": "3DGS 與網格混合場景：即時動態全域照明達平均 43 FPS",
+      "summary": "北京大學研究團隊提出混合機率式光線追蹤與硬體光柵化管線，讓 3D Gaussian Splatting 與多邊形網格共同接收動態間接光；RTX 3090 測試在約 157 萬個 Gaussian、1920×1088 解析度下平均達 43 FPS。",
+      "evidence_refs": [
+        "p001",
+        "p002",
+        "p010"
+      ],
+      "full_analysis": [
+        {
+          "label": "技術流程",
+          "text": "管線以 3D Gaussian 的表面光傳播模型為基礎，結合機率式光線追蹤與硬體光柵器，可計算多次漫反射和一次光澤反射，並讓 3DGS 與網格互相影響照明。",
+          "evidence_refs": [
+            "p002",
+            "p003",
+            "p004",
+            "p005"
+          ]
+        },
+        {
+          "label": "製作影響",
+          "text": "燈光、物件及材質可在執行時編輯，支援區域光、方向光與環境光，也能即時調整反照率和粗糙度；這使混合掃描場景不必先烘焙 GI 才能預覽變更。",
+          "evidence_refs": [
+            "p006",
+            "p007",
+            "p008",
+            "p009"
+          ]
+        },
+        {
+          "label": "限制與待驗證",
+          "text": "公開版本只支援 Windows，且需要 NVIDIA RTX 30 系列以上 GPU。一般 3DGS 若缺少適合重新打光的 PBR 材質資訊，未必能得到良好結果，因此效能數字不能直接外推到所有掃描資料。",
+          "evidence_refs": [
+            "p010",
+            "p011",
+            "p012"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p002",
+          "p010",
+          "p003",
+          "p004",
+          "p005",
+          "p006",
+          "p007",
+          "p008",
+          "p009",
+          "p011",
+          "p012"
+        ]
+      }
+    }
+  }
+}
