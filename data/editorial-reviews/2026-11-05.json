@@ -1,0 +1,858 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-05",
+  "reviewer": "chatgpt-scheduled-task",
+  "source_run_id": 41935377651,
+  "source_head_sha": "a68039bbe878902d07b09ec5c563be4ee4e60590",
+  "items": {
+    "80-level-give-your-blender-renders-authentic-film-photography-look": {
+      "source_url": "https://80.lv/articles/give-your-blender-renders-authentic-film-photography-look",
+      "source_published_at": "2026-11-04",
+      "reviewed_on": "2026-11-05",
+      "source_evidence_sha256": "923596c5e16f502b051c46fde85a46c64c47d2156132f63eb12004058a150976",
+      "title": "Filmic Plus：以單一 Blender 節點組合模擬底片顆粒、光暈與鏡頭效果",
+      "summary": "Filmic Plus 將 Fujifilm 風格預設、程序式顆粒、halation、bloom、耀光與暗角等底片後期效果整合進單一 Blender 節點組合，並提供逐項開關與微調控制。",
+      "evidence_refs": [
+        "p002",
+        "p003",
+        "p004",
+        "p005"
+      ],
+      "full_analysis": [
+        {
+          "label": "DCC 工作流",
+          "text": "工具不是一包 LUT 或多個分散外掛，而是把底片模擬與鏡頭後期集中在單一節點組合；使用者可套用預設，再逐項開關及調整 bloom、halation、顆粒、暗角與耀光。",
+          "evidence_refs": [
+            "p002",
+            "p004",
+            "p005"
+          ]
+        },
+        {
+          "label": "製作影響",
+          "text": "程序式顆粒會在陰影較明顯、亮部逐漸淡出，並補上渲染器常忽略的反射、鬼影、色散與徑向光條；這讓外觀開發可在 Blender 合成階段集中完成，不必把每種效果拆到不同工具。",
+          "evidence_refs": [
+            "p004",
+            "p005"
+          ]
+        },
+        {
+          "label": "導入限制與驗證",
+          "text": "目前是 Early Access，來源只轉述開發者以 Fujifilm X-T5 比對後得到相當準確的結果，沒有公開量測方法或跨鏡頭測試；導入時仍應以團隊自己的參考照片核對色彩與光學效果。",
+          "evidence_refs": [
+            "p003",
+            "p004"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p002",
+          "p003",
+          "p004",
+          "p005"
+        ]
+      }
+    },
+    "80-level-get-this-blender-add-on-for-realistic-real-time-procedural-s": {
+      "source_url": "https://80.lv/articles/get-this-blender-add-on-for-realistic-real-time-procedural-sky",
+      "source_published_at": "2026-11-04",
+      "reviewed_on": "2026-11-05",
+      "source_evidence_sha256": "ac6133ea95bb37443f97a8cca0439cab41f0bd86176a4071d74f2c74ed8e204a",
+      "title": "Physical Atmosphere²：在 Blender 視窗即時調整四層程序雲與天空光照",
+      "summary": "Physical Atmosphere² 以四層可調程序體積雲建立日景、夕陽與星空，天空、光照和雲層會在 Blender 視窗同步更新；進階模式另開放散射、臭氧與霧等物理參數。",
+      "evidence_refs": [
+        "p001",
+        "p002",
+        "p003",
+        "p004",
+        "p005"
+      ],
+      "full_analysis": [
+        {
+          "label": "渲染工作流",
+          "text": "藝術家可分別調整四個程序體積雲層，拖動參數時即時看到雲、天空與照明變化；日期、時間及地點輸入則用來定位太陽與月亮，涵蓋白天、夕陽及夜空。",
+          "evidence_refs": [
+            "p003",
+            "p004"
+          ]
+        },
+        {
+          "label": "場景製作影響",
+          "text": "雲與大氣不是平面背景，而會與場景物件產生遮擋和陰影；因此天空外觀與物件受光可在同一視窗中一起判讀，進階使用者也能直接控制散射、臭氧與霧。",
+          "evidence_refs": [
+            "p004",
+            "p005"
+          ]
+        },
+        {
+          "label": "導入限制與驗證",
+          "text": "來源聲稱效果依據大氣科學並可即時渲染，但沒有列出 Blender 版本、硬體、解析度或幀率數據；正式場景仍需用目標 GPU、雲層設定及鏡頭距離實測效能與陰影品質。",
+          "evidence_refs": [
+            "p003",
+            "p004",
+            "p006"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p002",
+          "p003",
+          "p004",
+          "p005",
+          "p006"
+        ]
+      }
+    },
+    "80-level-have-a-look-at-this-zzz-shader-for-blender-that-comes-with-a": {
+      "source_url": "https://80.lv/articles/have-a-look-at-this-zzz-shader-for-blender-that-comes-with-auto-apply-add-on",
+      "source_published_at": "2026-11-04",
+      "reviewed_on": "2026-11-05",
+      "source_evidence_sha256": "3425b2db556ba4f22963fb23cc705f43cb4e8272f2764d3e0ff9d9f8c41d9e14",
+      "title": "Kythera ZZZ Shader 2.0：自動連接角色貼圖並以專用光源驅動面部陰影",
+      "summary": "Kythera 為 Blender 5.0 以上推出 Zenless Zone Zero 角色 shader 2.0，拆分身體與臉部著色，配套外掛可自動套用材質、連接貼圖、設定色彩空間及建立臉部陰影方向節點。",
+      "evidence_refs": [
+        "p001",
+        "p002",
+        "p003",
+        "p004"
+      ],
+      "full_analysis": [
+        {
+          "label": "角色著色工作流",
+          "text": "版本 2.0 以分開的身體與臉部 shader 處理 toon shading，臉部陰影會跟隨 Kythera Sun 光源；配套外掛則負責把 shader 自動套到模型。",
+          "evidence_refs": [
+            "p002",
+            "p003"
+          ]
+        },
+        {
+          "label": "製作影響",
+          "text": "外掛會連接貼圖、設定各貼圖的色彩空間，並新增控制臉部陰影方向的 empty；這些自動步驟可減少匯入 ZZZ 角色模型後重複整理材質節點與朝向控制的工作。",
+          "evidence_refs": [
+            "p003"
+          ]
+        },
+        {
+          "label": "相容性限制與驗證",
+          "text": "shader 與外掛明確要求 Blender 5.0 以上，來源沒有列出支援的角色模型範圍、渲染器或匯出能力；導入前應先用目標模型核對貼圖命名、臉部朝向及光源反應。",
+          "evidence_refs": [
+            "p002",
+            "p003",
+            "p004"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p002",
+          "p003",
+          "p004"
+        ]
+      }
+    },
+    "80-level-creating-a-stylized-barcelona-environment-using-a-modular-ar": {
+      "source_url": "https://80.lv/articles/creating-a-stylized-barcelona-environment-using-a-modular-architecture-kit",
+      "source_published_at": "2026-11-04",
+      "reviewed_on": "2026-11-05",
+      "source_evidence_sha256": "bcf4c37b79e5b9be6e4eb380aa5b19f7bb07550a8837742647092de0faeb5a74",
+      "title": "風格化巴塞隆納街景：用模組建築、平鋪材質與表面變化建立 UE5 場景",
+      "summary": "作者先把牆、窗、拱門與門拆成可重用建築模組，再製作平鋪材質與飾條貼圖；進入 Unreal Engine 5 後，以頂點繪製、色彩遮罩、貼花及覆蓋遮罩增加表面變化。",
+      "evidence_refs": [
+        "p011",
+        "p014",
+        "p018",
+        "p019",
+        "p023",
+        "p024",
+        "p028"
+      ],
+      "full_analysis": [
+        {
+          "label": "場景製作工作流",
+          "text": "建築不以每棟獨立資產處理，而拆成牆、窗、拱門與門等可重用模組；完成後可重新組合立面並調整構圖，不必每次重建整棟建築。",
+          "evidence_refs": [
+            "p009",
+            "p011",
+            "p014",
+            "p016"
+          ]
+        },
+        {
+          "label": "材質製作影響",
+          "text": "平鋪材質與 trim sheet 先建立可重用基底，再由頂點繪製、RGB mask、decal 和 overlay mask 打破大面積重複；高度遮罩還能控制材質混合邊界的柔硬程度。",
+          "evidence_refs": [
+            "p018",
+            "p019",
+            "p023",
+            "p028",
+            "p030",
+            "p031"
+          ]
+        },
+        {
+          "label": "導入限制與驗證",
+          "text": "作者花六個月並行完成專案，重點是個人作品的結構化流程；來源沒有提供模組數量、材質指令成本或目標硬體效能，因此大型場景導入仍要實測 draw call、材質複雜度與記憶體。",
+          "evidence_refs": [
+            "p043",
+            "p044",
+            "p045"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p009",
+          "p011",
+          "p014",
+          "p016",
+          "p018",
+          "p019",
+          "p023",
+          "p028",
+          "p030",
+          "p031",
+          "p043",
+          "p044",
+          "p045"
+        ]
+      }
+    },
+    "80-level-faking-a-spherical-planet-with-a-tileable-texture-in-ue5": {
+      "source_url": "https://80.lv/articles/faking-a-spherical-planet-with-a-tileable-texture-in-ue5",
+      "source_published_at": "2026-11-04",
+      "reviewed_on": "2026-11-05",
+      "source_evidence_sha256": "109fc42f8f89f12e1e94338261e991f282fb737b1c137ac38b447288668121f8",
+      "title": "UE5 偽球體材質：用平面卡片、立體投影與累積 UV 變換模擬行星",
+      "summary": "Alina Ledeneva 以面向攝影機的平面卡片取代球體幾何，材質用立體投影扭曲一般平鋪貼圖；Blueprint 累積相機路徑造成的位移與旋轉，使視角跨越赤道與極區時仍能延續表面運動。",
+      "evidence_refs": [
+        "p001",
+        "p002",
+        "p004",
+        "p005",
+        "p015",
+        "p016",
+        "p017"
+      ],
+      "full_analysis": [
+        {
+          "label": "引擎技術工作流",
+          "text": "World Position Offset 只負責讓平面卡片朝向攝影機，材質則把卡片 UV 重建為半球位置後做立體投影；越靠邊緣扭曲越強，形成貼圖包覆凸面的視覺錯覺。",
+          "evidence_refs": [
+            "p004",
+            "p005",
+            "p006"
+          ]
+        },
+        {
+          "label": "製作影響",
+          "text": "表面可直接使用一般平鋪貼圖或程序圖樣，不必先轉成等距柱狀球面圖；完整版本可讓攝影機自由環繞並處理極區旋轉，適合需要持續表面運動的行星效果。",
+          "evidence_refs": [
+            "p043",
+            "p044",
+            "p045",
+            "p046"
+          ]
+        },
+        {
+          "label": "限制與驗證",
+          "text": "這是依相機移動歷史累積的二維模擬，不是真正球體旋轉；不同路徑即使停在同一視角也可能看到不同貼圖區域。只需有限視角時可改用純材質簡化版，但跨越極區就不適合。",
+          "evidence_refs": [
+            "p014",
+            "p041",
+            "p042",
+            "p047"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p002",
+          "p004",
+          "p005",
+          "p006",
+          "p014",
+          "p015",
+          "p016",
+          "p017",
+          "p041",
+          "p042",
+          "p043",
+          "p044",
+          "p045",
+          "p046",
+          "p047"
+        ]
+      }
+    },
+    "80-level-3d-modeling-cad-software-plasticity-2026-2-has-been-released": {
+      "source_url": "https://80.lv/articles/3d-modeling-cad-software-plasticity-2026-2-has-been-released",
+      "source_published_at": "2026-10-20",
+      "reviewed_on": "2026-11-05",
+      "source_evidence_sha256": "aa9679db6a80aee545b01ba2f24c2aea43e31d5f6e442d87b296b00df06e4754",
+      "title": "Plasticity 2026.2：新增資產重用、曲率分析與 Class A 曲面對齊控制",
+      "summary": "Plasticity 2026.2 新增可匯出與拖放重用零件的 Assets 系統、三種模式的曲率分析 shader，以及 Edge Align 的 Collinear 與 Skew 選項；Studio 版另有 Constraint System 和 Project Align。",
+      "evidence_refs": [
+        "p001",
+        "p002",
+        "p003",
+        "p004",
+        "p005"
+      ],
+      "full_analysis": [
+        {
+          "label": "CAD 工作流",
+          "text": "Outliner 的 Assets 分頁可標記、匯出與分享螺栓等重用零件，再直接拖入 viewport；PolySpline 也能在 Point Selection Mode 編輯控制頂點，並新增網格吸附視覺提示。",
+          "evidence_refs": [
+            "p003",
+            "p005"
+          ]
+        },
+        {
+          "label": "曲面製作影響",
+          "text": "曲率分析提供 Gaussian、Mean 與 Max 模式；Edge Align 的 Collinear solver 可用對稱或非對稱方式控制兩曲面對齊，Skew 邊界選項則調整邊界傾斜程度，直接服務 Class A 曲面檢查與修整。",
+          "evidence_refs": [
+            "p004"
+          ]
+        },
+        {
+          "label": "版本限制與驗證",
+          "text": "Constraint System 與 Project Align 僅限 Studio 版，而且約束目前不會隨檔案保存；團隊導入前應先確認授權版本，並驗證重新開檔後的約束與曲面對齊交接方式。",
+          "evidence_refs": [
+            "p002",
+            "p003"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p002",
+          "p003",
+          "p004",
+          "p005"
+        ]
+      }
+    },
+    "80-level-blender-tutorial-create-vibrant-comic-style-shader-with-outl": {
+      "source_url": "https://80.lv/articles/blender-tutorial-create-vibrant-comic-style-shader-with-outlines",
+      "source_published_at": "2026-10-28",
+      "reviewed_on": "2026-11-05",
+      "source_evidence_sha256": "ba8c8642dc1dc23d882545da1319623fcde2355136da7879f9ea0d744f53b7e9",
+      "title": "Blender 漫畫 shader 教學：整合賽璐璐明暗、網點、排線與輪廓線",
+      "summary": "XippoArt 的逐步教學在 Blender 內組合 cel shading、screen tones、hatch shader 與 outlines，並使用內建 Node Wrangler 加快節點操作；另有獨立影片比較三種輪廓線方法。",
+      "evidence_refs": [
+        "p001",
+        "p002",
+        "p003"
+      ],
+      "full_analysis": [
+        {
+          "label": "著色工作流",
+          "text": "教學不是只示範單一描邊，而是依序把賽璐璐明暗、漫畫網點、排線 shader 與輪廓線組合成一致外觀；節點操作需要啟用 Blender 內建的 Node Wrangler。",
+          "evidence_refs": [
+            "p002"
+          ]
+        },
+        {
+          "label": "視覺製作影響",
+          "text": "把色塊明暗、印刷網點與排線放進同一材質方向，可讓漫畫感不只依賴外框；獨立的輪廓線比較影片還說明三種方法的運作、優點與限制，便於依鏡頭需求選擇。",
+          "evidence_refs": [
+            "p002",
+            "p003"
+          ]
+        },
+        {
+          "label": "導入限制與驗證",
+          "text": "來源屬教學介紹，沒有列出 Blender 版本、渲染器、動畫穩定性或效能資料；正式採用前仍應以目標鏡頭檢查網點縮放、排線閃爍與輪廓線在遮擋處的表現。",
+          "evidence_refs": [
+            "p001",
+            "p002",
+            "p003"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p002",
+          "p003"
+        ]
+      }
+    },
+    "cg-channel-sparseal-releases-cozyblanket-pro": {
+      "source_url": "https://www.cgchannel.com/2026/11/sparseal-releases-cozyblanket-pro",
+      "source_published_at": "2026-11-03",
+      "reviewed_on": "2026-11-05",
+      "source_evidence_sha256": "1099abd32cbb405a64a4783df22a13c1a99242f162db176c42f725fd1d0a0f81",
+      "title": "CozyBlanket Pro 3.05：以本機 AI 輔助重拓樸、UV 展開與貼圖烘焙",
+      "summary": "CozyBlanket Pro 3.05 已登上 iPadOS、Windows 與 macOS；使用者先在高模表面畫拓樸或 UV 引導線，再由本機 AI 補齊結果，並可手動編修、GPU 打包 UV、烘焙及輸出低模。",
+      "evidence_refs": [
+        "p002",
+        "p012",
+        "p013",
+        "p014",
+        "p018",
+        "p021",
+        "p022",
+        "p025"
+      ],
+      "full_analysis": [
+        {
+          "label": "角色製作工作流",
+          "text": "重拓樸由藝術家先用 Pencil 工具在模型表面畫出 patch 邊界，AI 再補齊拓樸；結果可透過新增引導線、改變視角，或直接增刪與移動頂點、邊及面繼續修整。",
+          "evidence_refs": [
+            "p013",
+            "p014",
+            "p015",
+            "p016"
+          ]
+        },
+        {
+          "label": "製作影響",
+          "text": "UV 流程同樣先畫接縫再自動補齊，二維 layout 可即時顯示在模型表面；後段可烘焙 vertex color、tangent-space 或 AO，支援 UDIM，低模輸出 OBJ 或 glTF、貼圖輸出 PNG、JPG、TIFF 或 EXR。",
+          "evidence_refs": [
+            "p018",
+            "p019",
+            "p020",
+            "p022",
+            "p023",
+            "p024"
+          ]
+        },
+        {
+          "label": "成熟度與限制",
+          "text": "AI 模型由 Sparseal 自建、只用合成資料訓練並在本機執行，但來源指出早期示範的臉部拓樸可能不尋常，品質取決於引導線。原版 CozyBlanket 也沒有升級路徑，新版採不同架構與檔案格式。",
+          "evidence_refs": [
+            "p008",
+            "p009",
+            "p012",
+            "p017"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p002",
+          "p008",
+          "p009",
+          "p012",
+          "p013",
+          "p014",
+          "p015",
+          "p016",
+          "p017",
+          "p018",
+          "p019",
+          "p020",
+          "p022",
+          "p023",
+          "p024",
+          "p025"
+        ]
+      }
+    },
+    "cg-channel-pulldownit-6-5-for-maya-gets-new-non-destructive-workflow": {
+      "source_url": "https://www.cgchannel.com/2026/01/pulldownit-6-5-for-maya-gets-new-non-destructive-workflow",
+      "source_published_at": "2026-01-22",
+      "reviewed_on": "2026-11-05",
+      "source_evidence_sha256": "d268038be3f60a4ad01462b3e710fdc1c8e1d8ca8c2ea88ce5f705f8a5e63f2a",
+      "title": "歷史參考｜Pulldownit 6.5 for Maya：模擬後仍可改幾何與碎裂圖樣",
+      "summary": "這篇 2026 年 1 月文章介紹 Pulldownit 6.5 for Maya：新的非破壞式流程允許在動力學模擬完成後修改來源幾何或碎裂圖樣，並讓模擬結果隨之更新。",
+      "evidence_refs": [
+        "p001",
+        "p002",
+        "p006",
+        "p007"
+      ],
+      "full_analysis": [
+        {
+          "label": "技術流程",
+          "text": "使用者可先完成破碎與動力學計算，再改模型幾何或碎裂圖樣，結果會重新更新；也可把目前碎裂圖樣當作再次切割的起點，並調整 fracture cluster 尺寸。",
+          "evidence_refs": [
+            "p006",
+            "p007",
+            "p012",
+            "p013"
+          ]
+        },
+        {
+          "label": "製作影響",
+          "text": "支援 referenced objects 後，資產可以留在外部檔案並從主場景引用，文章指出這有助於控制 Maya 場景檔大小；同一非破壞式碎裂流程也能套用於引用檔。",
+          "evidence_refs": [
+            "p003",
+            "p009",
+            "p010",
+            "p011"
+          ]
+        },
+        {
+          "label": "限制與待驗證",
+          "text": "這是 2026 年 1 月的版本資訊：Maya 版支援 Maya 2022+ 的 Windows 與 macOS，採年租制；當時 3ds Max 版仍停在 6.0，因此不能把 Maya 6.5 功能直接視為 3ds Max 版已有。",
+          "evidence_refs": [
+            "p015",
+            "p016",
+            "p017"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p002",
+          "p006",
+          "p007",
+          "p012",
+          "p013",
+          "p003",
+          "p009",
+          "p010",
+          "p011",
+          "p015",
+          "p016",
+          "p017"
+        ]
+      }
+    },
+    "cg-channel-3d-io-releases-unwrella-io": {
+      "source_url": "https://www.cgchannel.com/2025/03/3d-io-releases-unwrella-io",
+      "source_published_at": "2025-03-04",
+      "reviewed_on": "2026-11-05",
+      "source_evidence_sha256": "b50ccfd900dcf2de71387a1106f94b7bcbfb6c1ed04c2ff9c0cac7fdeaf2e264",
+      "title": "歷史參考｜Unwrella-IO：把自動 UV 展開與 packing 做成獨立工具",
+      "summary": "這篇 2025 年文章介紹 Unwrella-IO 正式版：3d-io 將原本用於 3ds Max 與 Maya 外掛的 UV 展開、packing 技術改成獨立程式，讓 Blender、Unreal Engine 等其他 DCC 資產也能使用。",
+      "evidence_refs": [
+        "p001",
+        "p002",
+        "p004",
+        "p006",
+        "p007"
+      ],
+      "full_analysis": [
+        {
+          "label": "技術流程",
+          "text": "工具接受拖放模型，以半自動流程完成 UV 展開與 packing；提供硬表面、organic 模型及 3D 掃描 mosaic 模式，並可調整 UV seam 位置與允許的拉伸量。",
+          "evidence_refs": [
+            "p003",
+            "p008",
+            "p010",
+            "p011"
+          ]
+        },
+        {
+          "label": "製作影響",
+          "text": "獨立版不再綁定 3ds Max 或 Maya 外掛，因此同一套展 UV 技術可處理來自 Blender、Unreal Engine 等不同來源的模型；這項跨 DCC 用途是文章明確列出的定位。",
+          "evidence_refs": [
+            "p004",
+            "p006",
+            "p007"
+          ]
+        },
+        {
+          "label": "限制與待驗證",
+          "text": "這是 2025 年 3 月的歷史資訊：當時支援 Windows 10+，macOS 仍標示即將推出；永久授權為 199 歐元，既有 3ds Max／Maya 外掛使用者可用 99 歐元升級。",
+          "evidence_refs": [
+            "p012",
+            "p013"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p002",
+          "p004",
+          "p006",
+          "p007",
+          "p003",
+          "p008",
+          "p010",
+          "p011",
+          "p012",
+          "p013"
+        ]
+      }
+    },
+    "3dnchu-rtgi-3dgs-chenxiao-hu": {
+      "source_url": "https://3dnchu.com/archives/rtgi-3dgs-chenxiao-hu",
+      "source_published_at": "2026-11-03",
+      "reviewed_on": "2026-11-05",
+      "source_evidence_sha256": "088714cdf8694ebccb4795b359aa6a2fd3c5b476c44e24d59f01fca751e21d8f",
+      "title": "3DGS 與網格混合場景：即時動態全域照明達平均 43 FPS",
+      "summary": "北京大學研究團隊提出混合機率式光線追蹤與硬體光柵化管線，讓 3D Gaussian Splatting 與多邊形網格共同接收動態間接光；RTX 3090 測試在約 157 萬個 Gaussian、1920×1088 解析度下平均達 43 FPS。",
+      "evidence_refs": [
+        "p001",
+        "p002",
+        "p010"
+      ],
+      "full_analysis": [
+        {
+          "label": "技術流程",
+          "text": "管線以 3D Gaussian 的表面光傳播模型為基礎，結合機率式光線追蹤與硬體光柵器，可計算多次漫反射和一次光澤反射，並讓 3DGS 與網格互相影響照明。",
+          "evidence_refs": [
+            "p002",
+            "p003",
+            "p004",
+            "p005"
+          ]
+        },
+        {
+          "label": "製作影響",
+          "text": "燈光、物件及材質可在執行時編輯，支援區域光、方向光與環境光，也能即時調整反照率和粗糙度；這使混合掃描場景不必先烘焙 GI 才能預覽變更。",
+          "evidence_refs": [
+            "p006",
+            "p007",
+            "p008",
+            "p009"
+          ]
+        },
+        {
+          "label": "限制與待驗證",
+          "text": "公開版本只支援 Windows，且需要 NVIDIA RTX 30 系列以上 GPU。一般 3DGS 若缺少適合重新打光的 PBR 材質資訊，未必能得到良好結果，因此效能數字不能直接外推到所有掃描資料。",
+          "evidence_refs": [
+            "p010",
+            "p011",
+            "p012"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p002",
+          "p010",
+          "p003",
+          "p004",
+          "p005",
+          "p006",
+          "p007",
+          "p008",
+          "p009",
+          "p011",
+          "p012"
+        ]
+      }
+    },
+    "cg-channel-reallusion-releases-headshot-3-0": {
+      "source_url": "https://www.cgchannel.com/2026/07/reallusion-releases-headshot-3-0",
+      "source_published_at": "2026-07-07",
+      "reviewed_on": "2026-11-05",
+      "source_evidence_sha256": "7161f00bffb118886862610a0bbbc011bd71c24abecff2c023cf0773352fd7af",
+      "title": "Headshot 3.1：在 Character Creator 內分層繪製與修整臉部貼圖",
+      "summary": "Reallusion 的 Headshot 3.1 為 Character Creator 5 加入圖層式貼圖編輯，可直接在 3D 角色上繪製 diffuse map，並提供 Clone 與 Stencil 筆刷；3.0 的照片生頭部與身形流程也保留。",
+      "evidence_refs": [
+        "p026",
+        "p027",
+        "p028",
+        "p029",
+        "p030"
+      ],
+      "full_analysis": [
+        {
+          "label": "幾何與貼圖流程",
+          "text": "Headshot 3 的新模型從照片生成頭部後，可用導引曲線調整頭型與五官，另有 58 組臉部 morph；DeLight、膚色泛紅控制、normal map 大小細節與 Blend Mask 用於修整貼圖。",
+          "evidence_refs": [
+            "p009",
+            "p011",
+            "p012",
+            "p014",
+            "p015",
+            "p016",
+            "p017"
+          ]
+        },
+        {
+          "label": "3.1 製作改進",
+          "text": "3.1 把 diffuse map 編輯帶入 Character Creator 視窗，支援圖層與標準混合模式；Clone Brush 可移除小型皮膚瑕疵，Stencil Brush 可把照片紋理投射到角色，減少往返外部影像軟體。",
+          "evidence_refs": [
+            "p026",
+            "p027",
+            "p028",
+            "p029",
+            "p030"
+          ]
+        },
+        {
+          "label": "限制與費用",
+          "text": "本機頭部生成模型免費執行，但 Nano Banana 驅動的 AI Image Generator 需消耗線上點數；文章記載 2K 為 15 點、4K 為 30 點。Headshot 3.1 需 Character Creator 5，永久授權當時為 199 美元。",
+          "evidence_refs": [
+            "p023",
+            "p024",
+            "p031",
+            "p032",
+            "p033"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p026",
+          "p027",
+          "p028",
+          "p029",
+          "p030",
+          "p009",
+          "p011",
+          "p012",
+          "p014",
+          "p015",
+          "p016",
+          "p017",
+          "p023",
+          "p024",
+          "p031",
+          "p032",
+          "p033"
+        ]
+      }
+    }
+  }
+}
