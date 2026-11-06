@@ -1,0 +1,993 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-07",
+  "reviewer": "chatgpt-scheduled-task",
+  "source_run_id": 42313387766,
+  "source_head_sha": "f583423caa6fd6af6da14fd1ee68dc1de5b6e65f",
+  "items": {
+    "80-level-have-a-look-at-this-zzz-shader-for-blender-that-comes-with-a": {
+      "source_url": "https://80.lv/articles/have-a-look-at-this-zzz-shader-for-blender-that-comes-with-auto-apply-add-on",
+      "source_published_at": "2026-11-04",
+      "reviewed_on": "2026-11-07",
+      "source_evidence_sha256": "3425b2db556ba4f22963fb23cc705f43cb4e8272f2764d3e0ff9d9f8c41d9e14",
+      "title": "Kythera ZZZ Shader 2.0：自動連接角色貼圖並以專用光源驅動面部陰影",
+      "summary": "Kythera 為 Blender 5.0 以上推出 Zenless Zone Zero 角色 shader 2.0，拆分身體與臉部著色，配套外掛可自動套用材質、連接貼圖、設定色彩空間及建立臉部陰影方向節點。",
+      "evidence_refs": [
+        "p001",
+        "p002",
+        "p003",
+        "p004"
+      ],
+      "full_analysis": [
+        {
+          "label": "角色著色工作流",
+          "text": "版本 2.0 以分開的身體與臉部 shader 處理 toon shading，臉部陰影會跟隨 Kythera Sun 光源；配套外掛則負責把 shader 自動套到模型。",
+          "evidence_refs": [
+            "p002",
+            "p003"
+          ]
+        },
+        {
+          "label": "製作影響",
+          "text": "外掛會連接貼圖、設定各貼圖的色彩空間，並新增控制臉部陰影方向的 empty；這些自動步驟可減少匯入 ZZZ 角色模型後重複整理材質節點與朝向控制的工作。",
+          "evidence_refs": [
+            "p003"
+          ]
+        },
+        {
+          "label": "相容性限制與驗證",
+          "text": "shader 與外掛明確要求 Blender 5.0 以上，來源沒有列出支援的角色模型範圍、渲染器或匯出能力；導入前應先用目標模型核對貼圖命名、臉部朝向及光源反應。",
+          "evidence_refs": [
+            "p002",
+            "p003",
+            "p004"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p002",
+          "p003",
+          "p004"
+        ]
+      }
+    },
+    "80-level-3d-modeling-cad-software-plasticity-2026-2-has-been-released": {
+      "source_url": "https://80.lv/articles/3d-modeling-cad-software-plasticity-2026-2-has-been-released",
+      "source_published_at": "2026-10-20",
+      "reviewed_on": "2026-11-07",
+      "source_evidence_sha256": "aa9679db6a80aee545b01ba2f24c2aea43e31d5f6e442d87b296b00df06e4754",
+      "title": "Plasticity 2026.2：新增資產重用、曲率分析與 Class A 曲面對齊控制",
+      "summary": "Plasticity 2026.2 新增可匯出與拖放重用零件的 Assets 系統、三種模式的曲率分析 shader，以及 Edge Align 的 Collinear 與 Skew 選項；Studio 版另有 Constraint System 和 Project Align。",
+      "evidence_refs": [
+        "p001",
+        "p002",
+        "p003",
+        "p004",
+        "p005"
+      ],
+      "full_analysis": [
+        {
+          "label": "CAD 工作流",
+          "text": "Outliner 的 Assets 分頁可標記、匯出與分享螺栓等重用零件，再直接拖入 viewport；PolySpline 也能在 Point Selection Mode 編輯控制頂點，並新增網格吸附視覺提示。",
+          "evidence_refs": [
+            "p003",
+            "p005"
+          ]
+        },
+        {
+          "label": "曲面製作影響",
+          "text": "曲率分析提供 Gaussian、Mean 與 Max 模式；Edge Align 的 Collinear solver 可用對稱或非對稱方式控制兩曲面對齊，Skew 邊界選項則調整邊界傾斜程度，直接服務 Class A 曲面檢查與修整。",
+          "evidence_refs": [
+            "p004"
+          ]
+        },
+        {
+          "label": "版本限制與驗證",
+          "text": "Constraint System 與 Project Align 僅限 Studio 版，而且約束目前不會隨檔案保存；團隊導入前應先確認授權版本，並驗證重新開檔後的約束與曲面對齊交接方式。",
+          "evidence_refs": [
+            "p002",
+            "p003"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p002",
+          "p003",
+          "p004",
+          "p005"
+        ]
+      }
+    },
+    "cg-channel-sparseal-releases-cozyblanket-pro": {
+      "source_url": "https://www.cgchannel.com/2026/11/sparseal-releases-cozyblanket-pro",
+      "source_published_at": "2026-11-03",
+      "reviewed_on": "2026-11-07",
+      "source_evidence_sha256": "1099abd32cbb405a64a4783df22a13c1a99242f162db176c42f725fd1d0a0f81",
+      "title": "CozyBlanket Pro 3.05：以本機 AI 輔助重拓樸、UV 展開與貼圖烘焙",
+      "summary": "CozyBlanket Pro 3.05 已登上 iPadOS、Windows 與 macOS；使用者先在高模表面畫拓樸或 UV 引導線，再由本機 AI 補齊結果，並可手動編修、GPU 打包 UV、烘焙及輸出低模。",
+      "evidence_refs": [
+        "p002",
+        "p012",
+        "p013",
+        "p014",
+        "p018",
+        "p021",
+        "p022",
+        "p025"
+      ],
+      "full_analysis": [
+        {
+          "label": "角色製作工作流",
+          "text": "重拓樸由藝術家先用 Pencil 工具在模型表面畫出 patch 邊界，AI 再補齊拓樸；結果可透過新增引導線、改變視角，或直接增刪與移動頂點、邊及面繼續修整。",
+          "evidence_refs": [
+            "p013",
+            "p014",
+            "p015",
+            "p016"
+          ]
+        },
+        {
+          "label": "製作影響",
+          "text": "UV 流程同樣先畫接縫再自動補齊，二維 layout 可即時顯示在模型表面；後段可烘焙 vertex color、tangent-space 或 AO，支援 UDIM，低模輸出 OBJ 或 glTF、貼圖輸出 PNG、JPG、TIFF 或 EXR。",
+          "evidence_refs": [
+            "p018",
+            "p019",
+            "p020",
+            "p022",
+            "p023",
+            "p024"
+          ]
+        },
+        {
+          "label": "成熟度與限制",
+          "text": "AI 模型由 Sparseal 自建、只用合成資料訓練並在本機執行，但來源指出早期示範的臉部拓樸可能不尋常，品質取決於引導線。原版 CozyBlanket 也沒有升級路徑，新版採不同架構與檔案格式。",
+          "evidence_refs": [
+            "p008",
+            "p009",
+            "p012",
+            "p017"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p002",
+          "p008",
+          "p009",
+          "p012",
+          "p013",
+          "p014",
+          "p015",
+          "p016",
+          "p017",
+          "p018",
+          "p019",
+          "p020",
+          "p022",
+          "p023",
+          "p024",
+          "p025"
+        ]
+      }
+    },
+    "cg-channel-pulldownit-6-5-for-maya-gets-new-non-destructive-workflow": {
+      "source_url": "https://www.cgchannel.com/2026/01/pulldownit-6-5-for-maya-gets-new-non-destructive-workflow",
+      "source_published_at": "2026-01-22",
+      "reviewed_on": "2026-11-07",
+      "source_evidence_sha256": "d268038be3f60a4ad01462b3e710fdc1c8e1d8ca8c2ea88ce5f705f8a5e63f2a",
+      "title": "歷史參考｜Pulldownit 6.5 for Maya：模擬後仍可改幾何與碎裂圖樣",
+      "summary": "這篇 2026 年 1 月文章介紹 Pulldownit 6.5 for Maya：新的非破壞式流程允許在動力學模擬完成後修改來源幾何或碎裂圖樣，並讓模擬結果隨之更新。",
+      "evidence_refs": [
+        "p001",
+        "p002",
+        "p006",
+        "p007"
+      ],
+      "full_analysis": [
+        {
+          "label": "技術流程",
+          "text": "使用者可先完成破碎與動力學計算，再改模型幾何或碎裂圖樣，結果會重新更新；也可把目前碎裂圖樣當作再次切割的起點，並調整 fracture cluster 尺寸。",
+          "evidence_refs": [
+            "p006",
+            "p007",
+            "p012",
+            "p013"
+          ]
+        },
+        {
+          "label": "製作影響",
+          "text": "支援 referenced objects 後，資產可以留在外部檔案並從主場景引用，文章指出這有助於控制 Maya 場景檔大小；同一非破壞式碎裂流程也能套用於引用檔。",
+          "evidence_refs": [
+            "p003",
+            "p009",
+            "p010",
+            "p011"
+          ]
+        },
+        {
+          "label": "限制與待驗證",
+          "text": "這是 2026 年 1 月的版本資訊：Maya 版支援 Maya 2022+ 的 Windows 與 macOS，採年租制；當時 3ds Max 版仍停在 6.0，因此不能把 Maya 6.5 功能直接視為 3ds Max 版已有。",
+          "evidence_refs": [
+            "p015",
+            "p016",
+            "p017"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p002",
+          "p006",
+          "p007",
+          "p012",
+          "p013",
+          "p003",
+          "p009",
+          "p010",
+          "p011",
+          "p015",
+          "p016",
+          "p017"
+        ]
+      }
+    },
+    "cg-channel-reallusion-releases-headshot-3-0": {
+      "source_url": "https://www.cgchannel.com/2026/07/reallusion-releases-headshot-3-0",
+      "source_published_at": "2026-07-07",
+      "reviewed_on": "2026-11-07",
+      "source_evidence_sha256": "7161f00bffb118886862610a0bbbc011bd71c24abecff2c023cf0773352fd7af",
+      "title": "Headshot 3.1：在 Character Creator 內分層繪製與修整臉部貼圖",
+      "summary": "Reallusion 的 Headshot 3.1 為 Character Creator 5 加入圖層式貼圖編輯，可直接在 3D 角色上繪製 diffuse map，並提供 Clone 與 Stencil 筆刷；3.0 的照片生頭部與身形流程也保留。",
+      "evidence_refs": [
+        "p026",
+        "p027",
+        "p028",
+        "p029",
+        "p030"
+      ],
+      "full_analysis": [
+        {
+          "label": "幾何與貼圖流程",
+          "text": "Headshot 3 的新模型從照片生成頭部後，可用導引曲線調整頭型與五官，另有 58 組臉部 morph；DeLight、膚色泛紅控制、normal map 大小細節與 Blend Mask 用於修整貼圖。",
+          "evidence_refs": [
+            "p009",
+            "p011",
+            "p012",
+            "p014",
+            "p015",
+            "p016",
+            "p017"
+          ]
+        },
+        {
+          "label": "3.1 製作改進",
+          "text": "3.1 把 diffuse map 編輯帶入 Character Creator 視窗，支援圖層與標準混合模式；Clone Brush 可移除小型皮膚瑕疵，Stencil Brush 可把照片紋理投射到角色，減少往返外部影像軟體。",
+          "evidence_refs": [
+            "p026",
+            "p027",
+            "p028",
+            "p029",
+            "p030"
+          ]
+        },
+        {
+          "label": "限制與費用",
+          "text": "本機頭部生成模型免費執行，但 Nano Banana 驅動的 AI Image Generator 需消耗線上點數；文章記載 2K 為 15 點、4K 為 30 點。Headshot 3.1 需 Character Creator 5，永久授權當時為 199 美元。",
+          "evidence_refs": [
+            "p023",
+            "p024",
+            "p031",
+            "p032",
+            "p033"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p026",
+          "p027",
+          "p028",
+          "p029",
+          "p030",
+          "p009",
+          "p011",
+          "p012",
+          "p014",
+          "p015",
+          "p016",
+          "p017",
+          "p023",
+          "p024",
+          "p031",
+          "p032",
+          "p033"
+        ]
+      }
+    },
+    "cg-channel-3d-io-releases-unwrella-io": {
+      "source_url": "https://www.cgchannel.com/2025/03/3d-io-releases-unwrella-io",
+      "source_published_at": "2025-03-04",
+      "reviewed_on": "2026-11-07",
+      "source_evidence_sha256": "b50ccfd900dcf2de71387a1106f94b7bcbfb6c1ed04c2ff9c0cac7fdeaf2e264",
+      "title": "歷史參考｜Unwrella-IO：把自動 UV 展開與 packing 做成獨立工具",
+      "summary": "這篇 2025 年文章介紹 Unwrella-IO 正式版：3d-io 將原本用於 3ds Max 與 Maya 外掛的 UV 展開、packing 技術改成獨立程式，讓 Blender、Unreal Engine 等其他 DCC 資產也能使用。",
+      "evidence_refs": [
+        "p001",
+        "p002",
+        "p004",
+        "p006",
+        "p007"
+      ],
+      "full_analysis": [
+        {
+          "label": "技術流程",
+          "text": "工具接受拖放模型，以半自動流程完成 UV 展開與 packing；提供硬表面、organic 模型及 3D 掃描 mosaic 模式，並可調整 UV seam 位置與允許的拉伸量。",
+          "evidence_refs": [
+            "p003",
+            "p008",
+            "p010",
+            "p011"
+          ]
+        },
+        {
+          "label": "製作影響",
+          "text": "獨立版不再綁定 3ds Max 或 Maya 外掛，因此同一套展 UV 技術可處理來自 Blender、Unreal Engine 等不同來源的模型；這項跨 DCC 用途是文章明確列出的定位。",
+          "evidence_refs": [
+            "p004",
+            "p006",
+            "p007"
+          ]
+        },
+        {
+          "label": "限制與待驗證",
+          "text": "這是 2025 年 3 月的歷史資訊：當時支援 Windows 10+，macOS 仍標示即將推出；永久授權為 199 歐元，既有 3ds Max／Maya 外掛使用者可用 99 歐元升級。",
+          "evidence_refs": [
+            "p012",
+            "p013"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p002",
+          "p004",
+          "p006",
+          "p007",
+          "p003",
+          "p008",
+          "p010",
+          "p011",
+          "p012",
+          "p013"
+        ]
+      }
+    },
+    "3dnchu-cg-painter-alpha-0-4": {
+      "source_url": "https://3dnchu.com/archives/cg-painter-alpha-0-4",
+      "source_published_at": "2026-11-05",
+      "source_evidence_sha256": "bf9234c69320f6c7fec39d2157372acd362dcd955e1d32f799c21d58c9cba1ab",
+      "reviewed_on": "2026-11-07",
+      "title": "CG Painter Alpha 0.4：免費分層 3D 繪製、遮罩烘焙與 Blender 同步",
+      "summary": "CG Painter Alpha 0.4 提供跨 UV 接縫繪製、繪製與填色圖層、程序遮罩及網格貼圖烘焙，支援最高 4K 的多貼圖組，並附遊戲引擎輸出預設與 Blender Live Link。",
+      "evidence_refs": [
+        "p002",
+        "p003",
+        "p004",
+        "p005"
+      ],
+      "full_analysis": [
+        {
+          "label": "貼圖製作流程",
+          "text": "使用者可疊加繪製與填色圖層，再以曲率磨損、AO 凹槽、傾斜或位置產生遮罩；遮罩可套用階調、HSL、模糊與銳化濾鏡，將手繪細節和依形狀生成的表面變化組合。",
+          "evidence_refs": [
+            "p002",
+            "p003"
+          ]
+        },
+        {
+          "label": "製作交接與輸出",
+          "text": "烘焙支援 AO、厚度、曲率與切線空間法線，多貼圖組可分別設定解析度、最高達 4K；輸出預設涵蓋 UE5 ORM、Unity URP／HDRP 與 glTF，也能以 Live Link 同步 Blender 製作資料。",
+          "evidence_refs": [
+            "p003"
+          ]
+        },
+        {
+          "label": "導入限制",
+          "text": "這仍是初期 Alpha，來源明確提醒有錯誤與操作不成熟處。版本支援 Windows 10／11 與 64 位元 Linux，需要 OpenGL 4.5 GPU，建議至少 4GB 顯存及 8GB 記憶體，不能把免費視為已達正式管線穩定度。",
+          "evidence_refs": [
+            "p004",
+            "p005"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p002",
+          "p003",
+          "p004",
+          "p005"
+        ]
+      }
+    },
+    "3dnchu-inkit-1-0": {
+      "source_url": "https://3dnchu.com/archives/inkit-1-0",
+      "source_published_at": "2026-11-05",
+      "source_evidence_sha256": "43e9a461bd932dc58c63d06866b280e285905a7d0125c1086a4342f83d938c15",
+      "reviewed_on": "2026-11-07",
+      "title": "INKit 1.0：用 iPad 或 Android 手寫筆直接替 Blender 視圖做批註",
+      "summary": "MACHIN3 的 INKit 1.0 讓主動式手寫筆平板直接在 Blender 三維視圖上畫二維批註；畫布保存視角與著色狀態，支援文字、多裝置連線，平板不需安裝專用 App。",
+      "evidence_refs": [
+        "p002",
+        "p004",
+        "p005",
+        "p006",
+        "p007",
+        "p009",
+        "p008",
+        "p010"
+      ],
+      "full_analysis": [
+        {
+          "label": "設計審閱工作流",
+          "text": "藝術家可一邊看模型一邊補畫造型或留下修改指示，批註保存在 Blender 內，不必先截圖再傳檔；每張畫布保留當時視角和著色設定，模型改動後仍能保留批註的觀看脈絡。",
+          "evidence_refs": [
+            "p002",
+            "p004"
+          ]
+        },
+        {
+          "label": "製作溝通控制",
+          "text": "Hyper Pencil 可選擇、建立、複製與刪除畫布，系統依目前畫布顯示對應批註；另支援平板鍵盤文字和取色，多台平板或一般瀏覽器可同時連線，適合集中展示同一份設計審閱內容。",
+          "evidence_refs": [
+            "p005",
+            "p006",
+            "p007",
+            "p009"
+          ]
+        },
+        {
+          "label": "裝置與導入限制",
+          "text": "Blender 與平板必須在同一 Wi-Fi，繪圖需 Apple Pencil 或 Samsung S Pen 等主動式手寫筆，不支援模擬手指的電容筆。Blender 內繪圖板支援當時只列為 1.1 計畫，不能當成 1.0 已有功能。",
+          "evidence_refs": [
+            "p008",
+            "p010"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p002",
+          "p004",
+          "p005",
+          "p006",
+          "p007",
+          "p009",
+          "p008",
+          "p010"
+        ]
+      }
+    },
+    "3dnchu-rtgi-3dgs-chenxiao-hu": {
+      "source_url": "https://3dnchu.com/archives/rtgi-3dgs-chenxiao-hu",
+      "source_published_at": "2026-11-03",
+      "reviewed_on": "2026-11-07",
+      "source_evidence_sha256": "088714cdf8694ebccb4795b359aa6a2fd3c5b476c44e24d59f01fca751e21d8f",
+      "title": "3DGS 與網格混合場景：即時動態全域照明達平均 43 FPS",
+      "summary": "北京大學研究團隊提出混合機率式光線追蹤與硬體光柵化管線，讓 3D Gaussian Splatting 與多邊形網格共同接收動態間接光；RTX 3090 測試在約 157 萬個 Gaussian、1920×1088 解析度下平均達 43 FPS。",
+      "evidence_refs": [
+        "p001",
+        "p002",
+        "p010"
+      ],
+      "full_analysis": [
+        {
+          "label": "技術流程",
+          "text": "管線以 3D Gaussian 的表面光傳播模型為基礎，結合機率式光線追蹤與硬體光柵器，可計算多次漫反射和一次光澤反射，並讓 3DGS 與網格互相影響照明。",
+          "evidence_refs": [
+            "p002",
+            "p003",
+            "p004",
+            "p005"
+          ]
+        },
+        {
+          "label": "製作影響",
+          "text": "燈光、物件及材質可在執行時編輯，支援區域光、方向光與環境光，也能即時調整反照率和粗糙度；這使混合掃描場景不必先烘焙 GI 才能預覽變更。",
+          "evidence_refs": [
+            "p006",
+            "p007",
+            "p008",
+            "p009"
+          ]
+        },
+        {
+          "label": "限制與待驗證",
+          "text": "公開版本只支援 Windows，且需要 NVIDIA RTX 30 系列以上 GPU。一般 3DGS 若缺少適合重新打光的 PBR 材質資訊，未必能得到良好結果，因此效能數字不能直接外推到所有掃描資料。",
+          "evidence_refs": [
+            "p010",
+            "p011",
+            "p012"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p002",
+          "p010",
+          "p003",
+          "p004",
+          "p005",
+          "p006",
+          "p007",
+          "p008",
+          "p009",
+          "p011",
+          "p012"
+        ]
+      }
+    },
+    "80-level-blender-tutorial-create-vibrant-comic-style-shader-with-outl": {
+      "source_url": "https://80.lv/articles/blender-tutorial-create-vibrant-comic-style-shader-with-outlines",
+      "source_published_at": "2026-10-28",
+      "reviewed_on": "2026-11-07",
+      "source_evidence_sha256": "42c6e60ccca0ad100beca4a63b2c8558b42dc54e55f69e9e7217333e7639cc9a",
+      "title": "Blender 漫畫 shader 教學：整合賽璐璐明暗、網點、排線與輪廓線",
+      "summary": "XippoArt 的逐步教學在 Blender 內組合 cel shading、screen tones、hatch shader 與 outlines，並使用內建 Node Wrangler 加快節點操作；另有獨立影片比較三種輪廓線方法。",
+      "evidence_refs": [
+        "p001",
+        "p002",
+        "p003"
+      ],
+      "full_analysis": [
+        {
+          "label": "著色工作流",
+          "text": "教學不是只示範單一描邊，而是依序把賽璐璐明暗、漫畫網點、排線 shader 與輪廓線組合成一致外觀；節點操作需要啟用 Blender 內建的 Node Wrangler。",
+          "evidence_refs": [
+            "p002"
+          ]
+        },
+        {
+          "label": "視覺製作影響",
+          "text": "把色塊明暗、印刷網點與排線放進同一材質方向，可讓漫畫感不只依賴外框；獨立的輪廓線比較影片還說明三種方法的運作、優點與限制，便於依鏡頭需求選擇。",
+          "evidence_refs": [
+            "p002",
+            "p003"
+          ]
+        },
+        {
+          "label": "導入限制與驗證",
+          "text": "來源屬教學介紹，沒有列出 Blender 版本、渲染器、動畫穩定性或效能資料；正式採用前仍應以目標鏡頭檢查網點縮放、排線閃爍與輪廓線在遮擋處的表現。",
+          "evidence_refs": [
+            "p001",
+            "p002",
+            "p003"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p002",
+          "p003"
+        ]
+      }
+    },
+    "80-level-free-blender-texture-painting-add-on-ucupaint-3-0-is-now-ava": {
+      "source_url": "https://80.lv/articles/free-blender-texture-painting-add-on-ucupaint-3-0-is-now-available",
+      "source_published_at": "2026-10-28",
+      "source_evidence_sha256": "9881003d812f610dacfd93d4b9f9455aeff551ddca1b5008faa9a5d680cc013d",
+      "reviewed_on": "2026-11-07",
+      "title": "Ucupaint 3.0：分離位移通道，整合圖層預覽與烘焙目標",
+      "summary": "Ucupaint 3.0 把高度與向量位移從法線通道獨立出來，統一圖層及通道預覽，新增調整圖層與球形、圓柱貼花；每個通道可各自設定烘焙目標、名稱及解析度。",
+      "evidence_refs": [
+        "p003",
+        "p004",
+        "p005",
+        "p006",
+        "p007",
+        "p008"
+      ],
+      "full_analysis": [
+        {
+          "label": "貼圖工作流",
+          "text": "介面以圖層列表為中心，新增時自動建立可調整各通道基礎值的 Base Layer；高度和向量位移改用獨立通道，統一預覽則能查看通道、圖層透明度、遮罩或自訂資料。",
+          "evidence_refs": [
+            "p003",
+            "p004",
+            "p005"
+          ]
+        },
+        {
+          "label": "製作與輸出控制",
+          "text": "調整圖層會取得前一層資料並套用修改器；烘焙前需指定目標，新通道可依節點設定自動建立，並可獨立指定名稱和解析度，也能輸出 ORM 貼圖或色彩屬性。",
+          "evidence_refs": [
+            "p006",
+            "p007"
+          ]
+        },
+        {
+          "label": "位移與相容性限制",
+          "text": "Quick Displacement Setup 會啟用位移並細分網格，可重複執行以檢查面數是否足夠；來源列出測試範圍為 Blender 2.76 至 5.3，但沒有細分後的記憶體或渲染耗時數據，不能推定所有模型負載相同。",
+          "evidence_refs": [
+            "p004",
+            "p008"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p003",
+          "p004",
+          "p005",
+          "p006",
+          "p007",
+          "p008"
+        ]
+      }
+    },
+    "cg-channel-3d-io-releases-uv-packing-tool-uv-packer-3-for-free": {
+      "source_url": "https://www.cgchannel.com/2020/08/3d-io-releases-uv-packing-tool-uv-packer-3-for-free",
+      "source_published_at": "2020-08-27",
+      "source_evidence_sha256": "c84038389d0bb9899ba83d52509cd7b807f6345b52135782ed922ce113e2a2fc",
+      "reviewed_on": "2026-11-07",
+      "title": "歷史參考｜UV-Packer 3：免費 3ds Max UV 島排列與多物件 packing",
+      "summary": "2020 年 3d-io 將 UV-Packer 3 改為免費，替 3ds Max 自動安排 UV 島，支援多物件與平鋪 UV；這是排列既有 UV 的外掛，商用 SDK 仍另行收費。",
+      "evidence_refs": [
+        "p004",
+        "p005",
+        "p006",
+        "p013",
+        "p016",
+        "p017",
+        "p007",
+        "p003",
+        "p020",
+        "p021",
+        "p022",
+        "p023"
+      ],
+      "full_analysis": [
+        {
+          "label": "UV 排列流程",
+          "text": "UV-Packer 自動重排模型的 UV 島，目標是降低浪費的紋理空間；它支援平鋪 UV、多物件 packing，以及間距控制，排列計算時間不隨貼圖解析度改變。",
+          "evidence_refs": [
+            "p004",
+            "p005",
+            "p006",
+            "p013",
+            "p016",
+            "p017"
+          ]
+        },
+        {
+          "label": "製作效能證據",
+          "text": "文章引用產品網站的單一建築案例：8 萬面、8,000 個 UV cluster，排列耗時 3 秒、空間使用率 48%，對比 Max 原生工具 110 秒及 35%；這是供應商示範，不是所有資產都可達到的固定收益。",
+          "evidence_refs": [
+            "p007"
+          ]
+        },
+        {
+          "label": "歷史版本與授權限制",
+          "text": "這是 2020 年版本紀錄，當時免費外掛支援 3ds Max 2015 以上，Blender 版仍在開發；商用 SDK 與 Unwrella 等姊妹產品並未一起免費，因此不能把此公告套用到整個工具家族或今天版本。",
+          "evidence_refs": [
+            "p003",
+            "p020",
+            "p021",
+            "p022",
+            "p023"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p004",
+          "p005",
+          "p006",
+          "p013",
+          "p016",
+          "p017",
+          "p007",
+          "p003",
+          "p020",
+          "p021",
+          "p022",
+          "p023"
+        ]
+      }
+    },
+    "cg-channel-free-tool-p4houdini-builds-version-control-into-houdini": {
+      "source_url": "https://www.cgchannel.com/2024/07/free-tool-p4houdini-builds-version-control-into-houdini",
+      "source_published_at": "2024-07-25",
+      "source_evidence_sha256": "06d76a14ece5b5862c9b5c0b470e4cd39b675c69155b9c0c2d98b1ed84db78a4",
+      "reviewed_on": "2026-11-07",
+      "title": "歷史參考｜P4Houdini：在 Houdini 內提交 Perforce 變更並追蹤相依檔",
+      "summary": "2024 年 SideFX 將 P4Houdini 改為免費，透過 SideFX Labs 把 Helix Core 檔案簽入／簽出、加入檔案與提交變更清單帶進 Houdini，並可掃描 hip 相依檔及還原 hip、hda 舊版。",
+      "evidence_refs": [
+        "p002",
+        "p004",
+        "p005",
+        "p007",
+        "p006",
+        "p003",
+        "p009",
+        "p010"
+      ],
+      "full_analysis": [
+        {
+          "label": "版本管理工作流",
+          "text": "使用者不必切換到 Helix Core 圖形介面，即可在 Houdini 簽入、簽出檔案、新增檔案與提交 changelist；工具另附 Python API，可為團隊所需動作加入腳本化操作。",
+          "evidence_refs": [
+            "p002",
+            "p004",
+            "p005",
+            "p007"
+          ]
+        },
+        {
+          "label": "製作交接價值",
+          "text": "外掛可掃描 hip 檔的相依關係，並將 hip 或 hda 還原到先前版本；這讓程序場景與數位資產的版本操作能留在同一 DCC 環境內，但來源沒有宣稱它能自動解決多人編輯衝突。",
+          "evidence_refs": [
+            "p006"
+          ]
+        },
+        {
+          "label": "歷史版本與導入限制",
+          "text": "文章是 2024 年資訊，免費外掛當時隨可選的 SideFX Labs 工具提供，需 Houdini 20.5.304 以上；Helix Core 本身另有授權規則，當時僅五人以下團隊可免費，不能把外掛免費等同整套系統無成本。",
+          "evidence_refs": [
+            "p003",
+            "p009",
+            "p010"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p002",
+          "p004",
+          "p005",
+          "p007",
+          "p006",
+          "p003",
+          "p009",
+          "p010"
+        ]
+      }
+    },
+    "3dnchu-hair-tool-3-5": {
+      "source_url": "https://3dnchu.com/archives/hair-tool-3-5",
+      "source_published_at": "2023-12-25",
+      "source_evidence_sha256": "8bb43b9242e8801b46db1013ab6f8f5643bf27fafa0390305a6cf62b2850113a",
+      "reviewed_on": "2026-11-07",
+      "title": "歷史參考｜Hair Tool 3.5：髮片 UV 控制、色彩區域與 IK 碰撞更新",
+      "summary": "2023 年的 Hair Tool 3.5 更新針對 Blender 毛髮建模：新增 U 向 UV 翻轉、髮片寬度連動髮絲半徑、UV 區域色彩屬性與 IK 鏈碰撞支援，並修正短髮及曲線輪廓問題。",
+      "evidence_refs": [
+        "p002",
+        "p005",
+        "p007",
+        "p003",
+        "p006",
+        "p014",
+        "p015",
+        "p001",
+        "p019"
+      ],
+      "full_analysis": [
+        {
+          "label": "毛髮與 UV 工作流",
+          "text": "Set UV Regions 可手動沿 U 方向翻轉 UV，平面 profile 的 UV 寬度可連動髮絲半徑；UV 區域亦可指定顏色並由毛髮材質讀取，讓髮片映射與束群外觀能分別控制。",
+          "evidence_refs": [
+            "p002",
+            "p005",
+            "p007"
+          ]
+        },
+        {
+          "label": "製作穩定性改進",
+          "text": "短髮長度倍率被零權重頂點群組遮罩時的爆開問題得到修正，目標物件沒有 UV 時無法畫髮也列入修正；此外 IK 鏈模式新增碰撞支援，曲線雕刻模式可使用 Hair Modeling 工作區工具。",
+          "evidence_refs": [
+            "p003",
+            "p006",
+            "p014",
+            "p015"
+          ]
+        },
+        {
+          "label": "歷史版本限制",
+          "text": "這是 2023 年 12 月的 3.5 版紀錄，文章沒有列出支援的 Blender 版本或匯出遊戲引擎的條件；新版相容性須另查，不能把當年的功能更新視為今天仍適用的完整支援聲明。",
+          "evidence_refs": [
+            "p001",
+            "p019"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p002",
+          "p005",
+          "p007",
+          "p003",
+          "p006",
+          "p014",
+          "p015",
+          "p001",
+          "p019"
+        ]
+      }
+    }
+  }
+}
