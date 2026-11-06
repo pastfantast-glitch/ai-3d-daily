@@ -4,14 +4,14 @@
   <meta charset="utf-8"/>
   <meta content="width=device-width,initial-scale=1" name="viewport"/>
   <title>
-   AI／3D／遊戲美術 Production Intelligence｜2026-11-02
+   AI／3D／遊戲美術 Production Intelligence｜2026-11-07
   </title>
   <link href="styles.css?v=20260903-r2" rel="stylesheet"/>
-  <link href="shared-components.css?v=20261102-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
-  <link href="home.css?v=20261102-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
-  <link href="home-content.css?v=20261102-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
-  <link href="home-components.css?v=20261102-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
-  <meta content="2026-11-02 AI／3D／遊戲美術 Production Intelligence：精選 18 項可驗證的製作工具、流程、動畫、引擎與 DCC 情報。" name="description"/>
+  <link href="shared-components.css?v=20261107-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="home.css?v=20261107-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="home-content.css?v=20261107-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="home-components.css?v=20261107-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <meta content="2026-11-07 AI／3D／遊戲美術 Production Intelligence：精選 13 項可驗證的製作工具、流程、動畫、引擎與 DCC 情報。" name="description"/>
  </head>
  <body class="home-page">
   <header class="home-hero">
@@ -23,7 +23,7 @@
      Production Intelligence
     </h1>
     <p class="week-asof">
-     2026-11-02
+     2026-11-07
     </p>
    </div>
   </header>
@@ -68,20 +68,20 @@
      </div>
     </div>
     <div class="top-list">
-     <article class="home-card top-item" data-intel-id="80-level-sculpting-texturing-a-semi-realistic-lobo-bust-with-zbrush-s" data-intel-role="card">
+     <article class="home-card top-item" data-intel-id="80-level-have-a-look-at-this-zzz-shader-for-blender-that-comes-with-a" data-intel-role="card">
       <div class="top-no">
        01
       </div>
       <div class="top-main">
        <h2>
-        Lobo 半寫實胸像：從 ZBrush 重拓撲、Painter 手繪破損到 Marmoset 四燈布光
+        Kythera ZZZ Shader 2.0：自動連接角色貼圖並以專用光源驅動面部陰影
        </h2>
        <p class="summary">
-        角色美術 Eric Liu 分享 Lobo 胸像流程：以 ZBrush 建形並整理 Edge Flow、Marmoset 烘焙多組貼圖、Substance 3D Painter 疊色與補畫衣物破損，最後在 Marmoset Toolbag 完成布光。
+        Kythera 為 Blender 5.0 以上推出 Zenless Zone Zero 角色 shader 2.0，拆分身體與臉部著色，配套外掛可自動套用材質、連接貼圖、設定色彩空間及建立臉部陰影方向節點。
        </p>
-       <figure class="case-preview" data-intel-id="80-level-sculpting-texturing-a-semi-realistic-lobo-bust-with-zbrush-s" data-intel-role="visual" data-visual-id="80-level-sculpting-texturing-a-semi-realistic-lobo-bust-with-zbrush-s">
-        <a href="https://80.lv/articles/sculpting-texturing-a-semi-realistic-lobo-bust-with-zbrush-substance-3d" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
-         <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-11-02/80-level-sculpting-texturing-a-semi-realistic-lobo-bust-with-zbrush-s.jpg"/>
+       <figure class="case-preview" data-intel-id="80-level-have-a-look-at-this-zzz-shader-for-blender-that-comes-with-a" data-intel-role="visual" data-visual-id="80-level-have-a-look-at-this-zzz-shader-for-blender-that-comes-with-a">
+        <a href="https://80.lv/articles/have-a-look-at-this-zzz-shader-for-blender-that-comes-with-auto-apply-add-on" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+         <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-11-07/80-level-have-a-look-at-this-zzz-shader-for-blender-that-comes-with-a.jpg"/>
         </a>
         <figcaption>
          <span>
@@ -91,7 +91,7 @@
         </figcaption>
        </figure>
        <div class="quick-impact">
-        <span><b class="quick-impact-label">Substance</b> ★★★★☆</span>
+        <span><b class="quick-impact-label">Blender</b> ★★★★☆</span>
        </div>
        <details class="canonical-analysis canonical-analysis-brief home-full-analysis" data-analysis-level="BRIEF">
         <summary>
@@ -99,47 +99,47 @@
         </summary>
         <div class="detail-body canonical-analysis-body brief-analysis-body home-analysis-body">
          <h4>
-          雕刻與貼圖技術流程
+          角色著色工作流
          </h4>
          <p>
-          模型由球體起形，完成造型後多次 ZRemesh，再以 ZWrap 基礎網格投射頭部細節、ZModeler 整理服裝拓撲；UV 在 Maya 處理，烘焙 Curvature、Cavity、AO、Position、Normal 等貼圖後送入 Painter。
+          版本 2.0 以分開的身體與臉部 shader 處理 toon shading，臉部陰影會跟隨 Kythera Sun 光源；配套外掛則負責把 shader 自動套到模型。
          </p>
          <h4>
-          材質與燈光製作影響
+          製作影響
          </h4>
          <p>
-          臉部以灰階底層、AO Multiply、亮部 Overlay 再疊加局部紫、綠、黃膚色；衣物破損不足時以負 Height 與手繪陰影補出假深度。渲染以主光、補光及兩盞輪廓光建立體積與剪影。
+          外掛會連接貼圖、設定各貼圖的色彩空間，並新增控制臉部陰影方向的 empty；這些自動步驟可減少匯入 ZZZ 角色模型後重複整理材質節點與朝向控制的工作。
          </p>
          <h4>
-          造型限制與待驗證
+          相容性限制與驗證
          </h4>
          <p>
-          作者指出缺少完整角色概念，必須依參考測試多種表情；衣物高模未先做足損傷，也把額外修補壓到 Painter。此為個人胸像流程，未提供遊戲引擎內材質與效能驗證。
+          shader 與外掛明確要求 Blender 5.0 以上，來源沒有列出支援的角色模型範圍、渲染器或匯出能力；導入前應先用目標模型核對貼圖命名、臉部朝向及光源反應。
          </p>
          <p class="analysis-level-note">
           BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
          </p>
         </div>
        </details>
-       <a class="source" href="https://80.lv/articles/sculpting-texturing-a-semi-realistic-lobo-bust-with-zbrush-substance-3d" rel="noopener noreferrer" target="_blank">
+       <a class="source" href="https://80.lv/articles/have-a-look-at-this-zzz-shader-for-blender-that-comes-with-auto-apply-add-on" rel="noopener noreferrer" target="_blank">
         來源
        </a>
       </div>
      </article>
-     <article class="home-card top-item" data-intel-id="80-level-new-halloween-game-put-original-michael-myers-actor-in-a-moc" data-intel-role="card">
+     <article class="home-card top-item" data-intel-id="3dnchu-cg-painter-alpha-0-4" data-intel-role="card">
       <div class="top-no">
        02
       </div>
       <div class="top-main">
        <h2>
-        《Halloween: The Game》以 UE5 動態光照與原版演員動作捕捉重建 1978 年恐怖片氛圍
+        CG Painter Alpha 0.4：免費分層 3D 繪製、遮罩烘焙與 Blender 同步
        </h2>
        <p class="summary">
-        IllFonic 說明如何把 1978 年電影的鏡頭、服裝與郊區美術轉成可玩的 Haddonfield，並以 UE5 動態光照、Nick Castle 動作捕捉及可互動 NPC 支撐單人與 1 對 4 遊戲。
+        CG Painter Alpha 0.4 提供跨 UV 接縫繪製、繪製與填色圖層、程序遮罩及網格貼圖烘焙，支援最高 4K 的多貼圖組，並附遊戲引擎輸出預設與 Blender Live Link。
        </p>
-       <figure class="case-preview" data-intel-id="80-level-new-halloween-game-put-original-michael-myers-actor-in-a-moc" data-intel-role="visual" data-visual-id="80-level-new-halloween-game-put-original-michael-myers-actor-in-a-moc">
-        <a href="https://80.lv/articles/new-halloween-game-put-original-michael-myers-actor-in-a-mocap-suit" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
-         <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-11-02/80-level-new-halloween-game-put-original-michael-myers-actor-in-a-moc.jpg"/>
+       <figure class="case-preview" data-intel-id="3dnchu-cg-painter-alpha-0-4" data-intel-role="visual" data-visual-id="3dnchu-cg-painter-alpha-0-4">
+        <a href="https://3dnchu.com/archives/cg-painter-alpha-0-4" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+         <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-11-07/3dnchu-cg-painter-alpha-0-4.jpg"/>
         </a>
         <figcaption>
          <span>
@@ -149,7 +149,7 @@
         </figcaption>
        </figure>
        <div class="quick-impact">
-        <span><b class="quick-impact-label">動作捕捉</b> ★★★★☆</span>
+        <span><b class="quick-impact-label">Blender</b> ★★★★☆</span>
        </div>
        <details class="canonical-analysis canonical-analysis-brief home-full-analysis" data-analysis-level="BRIEF">
         <summary>
@@ -157,47 +157,47 @@
         </summary>
         <div class="detail-body canonical-analysis-body brief-analysis-body home-analysis-body">
          <h4>
-          場景與角色技術流程
+          貼圖製作流程
          </h4>
          <p>
-          團隊先從電影的鏡頭、Steadicam 運動、服裝與髮型建立年代參考；角色則依序經概念核准、3D 模型、貼圖與頭髮製作，Michael Myers 的動作另由原版演員 Nick Castle 進行動作捕捉。
+          使用者可疊加繪製與填色圖層，再以曲率磨損、AO 凹槽、傾斜或位置產生遮罩；遮罩可套用階調、HSL、模糊與銳化濾鏡，將手繪細節和依形狀生成的表面變化組合。
          </p>
          <h4>
-          動態系統製作影響
+          製作交接與輸出
          </h4>
          <p>
-          UE5 動態光照取代過去無法在對戰中改變的烘焙光照，讓電箱可影響大範圍照明；NPC、警察與玩家救援居民的設計，也使地圖不只是空的競技場。
+          烘焙支援 AO、厚度、曲率與切線空間法線，多貼圖組可分別設定解析度、最高達 4K；輸出預設涵蓋 UE5 ORM、Unity URP／HDRP 與 glTF，也能以 Live Link 同步 Blender 製作資料。
          </p>
          <h4>
-          測試限制與待驗證
+          導入限制
          </h4>
          <p>
-          來源只描述持續 Playtest、回饋與資料蒐集，沒有提供效能預算或 NPC 規模；動態光照、多人可讀性及 AI 穩定度仍需在實際平台與完整對戰中驗證。
+          這仍是初期 Alpha，來源明確提醒有錯誤與操作不成熟處。版本支援 Windows 10／11 與 64 位元 Linux，需要 OpenGL 4.5 GPU，建議至少 4GB 顯存及 8GB 記憶體，不能把免費視為已達正式管線穩定度。
          </p>
          <p class="analysis-level-note">
           BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
          </p>
         </div>
        </details>
-       <a class="source" href="https://80.lv/articles/new-halloween-game-put-original-michael-myers-actor-in-a-mocap-suit" rel="noopener noreferrer" target="_blank">
+       <a class="source" href="https://3dnchu.com/archives/cg-painter-alpha-0-4" rel="noopener noreferrer" target="_blank">
         來源
        </a>
       </div>
      </article>
-     <article class="home-card top-item" data-intel-id="cg-channel-see-lux-aeternas-vfx-breakdown-for-brian-coxs-new-world-tour" data-intel-role="card">
+     <article class="home-card top-item" data-intel-id="80-level-free-blender-texture-painting-add-on-ucupaint-3-0-is-now-ava" data-intel-role="card">
       <div class="top-no">
        03
       </div>
       <div class="top-main">
        <h2>
-        Lux Aeterna 為 Brian Cox 巡演重建雪中查理大橋：Lidar、攝影測量與 Houdini 粒子合成
+        Ucupaint 3.0：分離位移通道，整合圖層預覽與烘焙目標
        </h2>
        <p class="summary">
-        Lux Aeterna 為 Brian Cox 的 Emergence 巡演製作兩分鐘開場動畫，在大型 LED 螢幕重建 1610 年雪中的布拉格查理大橋，流程結合 Lidar、攝影測量、Houdini 粒子與 NASA 地球觀測資料。
+        Ucupaint 3.0 把高度與向量位移從法線通道獨立出來，統一圖層及通道預覽，新增調整圖層與球形、圓柱貼花；每個通道可各自設定烘焙目標、名稱及解析度。
        </p>
-       <figure class="case-preview" data-intel-id="cg-channel-see-lux-aeternas-vfx-breakdown-for-brian-coxs-new-world-tour" data-intel-role="visual" data-visual-id="cg-channel-see-lux-aeternas-vfx-breakdown-for-brian-coxs-new-world-tour">
-        <a href="https://www.cgchannel.com/2026/10/see-lux-aeternas-vfx-breakdown-for-brian-coxs-new-world-tour" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
-         <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-11-02/cg-channel-see-lux-aeternas-vfx-breakdown-for-brian-coxs-new-world-tour.jpg"/>
+       <figure class="case-preview" data-intel-id="80-level-free-blender-texture-painting-add-on-ucupaint-3-0-is-now-ava" data-intel-role="visual" data-visual-id="80-level-free-blender-texture-painting-add-on-ucupaint-3-0-is-now-ava">
+        <a href="https://80.lv/articles/free-blender-texture-painting-add-on-ucupaint-3-0-is-now-available" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+         <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-11-07/80-level-free-blender-texture-painting-add-on-ucupaint-3-0-is-now-ava.jpg"/>
         </a>
         <figcaption>
          <span>
@@ -207,7 +207,7 @@
         </figcaption>
        </figure>
        <div class="quick-impact">
-        <span><b class="quick-impact-label">Houdini</b> ★★★★☆</span>
+        <span><b class="quick-impact-label">Blender</b> ★★★★☆</span>
        </div>
        <details class="canonical-analysis canonical-analysis-brief home-full-analysis" data-analysis-level="BRIEF">
         <summary>
@@ -215,47 +215,47 @@
         </summary>
         <div class="detail-body canonical-analysis-body brief-analysis-body home-analysis-body">
          <h4>
-          場景重建技術流程
+          貼圖工作流
          </h4>
          <p>
-          製作以 Lidar 與攝影測量建立橋梁和環境資料，再用 Houdini 粒子模擬雪景，並搭配數位 Matte Painting 與 NASA Earth Observation 資料完成畫面。
+          介面以圖層列表為中心，新增時自動建立可調整各通道基礎值的 Base Layer；高度和向量位移改用獨立通道，統一預覽則能查看通道、圖層透明度、遮罩或自訂資料。
          </p>
          <h4>
-          大型顯示製作影響
+          製作與輸出控制
          </h4>
          <p>
-          成品是巡演現場大型 LED 螢幕播放的兩分鐘動畫，不是一般電影鏡頭；歷史敘事把 Kepler 觀察六角雪花的情境直接轉成開場視覺。
+          調整圖層會取得前一層資料並套用修改器；烘焙前需指定目標，新通道可依節點設定自動建立，並可獨立指定名稱和解析度，也能輸出 ORM 貼圖或色彩屬性。
          </p>
          <h4>
-          公開資料限制
+          位移與相容性限制
          </h4>
          <p>
-          來源列出工作室與主要 VFX 人員，但技術資訊欄明確標為尚無其他資料，因此沒有解析度、渲染時間、Houdini 設定或 LED 色彩管理細節可供重現。
+          Quick Displacement Setup 會啟用位移並細分網格，可重複執行以檢查面數是否足夠；來源列出測試範圍為 Blender 2.76 至 5.3，但沒有細分後的記憶體或渲染耗時數據，不能推定所有模型負載相同。
          </p>
          <p class="analysis-level-note">
           BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
          </p>
         </div>
        </details>
-       <a class="source" href="https://www.cgchannel.com/2026/10/see-lux-aeternas-vfx-breakdown-for-brian-coxs-new-world-tour" rel="noopener noreferrer" target="_blank">
+       <a class="source" href="https://80.lv/articles/free-blender-texture-painting-add-on-ucupaint-3-0-is-now-available" rel="noopener noreferrer" target="_blank">
         來源
        </a>
       </div>
      </article>
-     <article class="home-card top-item" data-intel-id="cg-channel-trimble-releases-sketchup-2027-0" data-intel-role="card">
+     <article class="home-card top-item" data-intel-id="80-level-3d-modeling-cad-software-plasticity-2026-2-has-been-released" data-intel-role="card">
       <div class="top-no">
        04
       </div>
       <div class="top-main">
        <h2>
-        SketchUp 2027：程序元件、USDZ 匯入與 LayOut 1:1 無紙畫布
+        Plasticity 2026.2：新增資產重用、曲率分析與 Class A 曲面對齊控制
        </h2>
        <p class="summary">
-        SketchUp 2027.0 新增可非破壞編輯的程序元件與 Copy Along，支援 USDZ、DWG／DXF 匯入控制；LayOut 加入 1:1 無紙畫布和視窗內圖片調整。
+        Plasticity 2026.2 新增可匯出與拖放重用零件的 Assets 系統、三種模式的曲率分析 shader，以及 Edge Align 的 Collinear 與 Skew 選項；Studio 版另有 Constraint System 和 Project Align。
        </p>
-       <figure class="case-preview" data-intel-id="cg-channel-trimble-releases-sketchup-2027-0" data-intel-role="visual" data-visual-id="cg-channel-trimble-releases-sketchup-2027-0">
-        <a href="https://www.cgchannel.com/2026/10/trimble-releases-sketchup-2027-0" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
-         <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-11-02/cg-channel-trimble-releases-sketchup-2027-0.jpg"/>
+       <figure class="case-preview" data-intel-id="80-level-3d-modeling-cad-software-plasticity-2026-2-has-been-released" data-intel-role="visual" data-visual-id="80-level-3d-modeling-cad-software-plasticity-2026-2-has-been-released">
+        <a href="https://80.lv/articles/3d-modeling-cad-software-plasticity-2026-2-has-been-released" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+         <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-11-07/80-level-3d-modeling-cad-software-plasticity-2026-2-has-been-released.jpg"/>
         </a>
         <figcaption>
          <span>
@@ -265,7 +265,7 @@
         </figcaption>
        </figure>
        <div class="quick-impact">
-        <span><b class="quick-impact-label">程序化</b> ★★★★☆</span>
+        <span><b class="quick-impact-label">Shader</b> ★★★★☆</span>
        </div>
        <details class="canonical-analysis canonical-analysis-brief home-full-analysis" data-analysis-level="BRIEF">
         <summary>
@@ -273,57 +273,57 @@
         </summary>
         <div class="detail-body canonical-analysis-body brief-analysis-body home-analysis-body">
          <h4>
-          程序建模技術流程
+          CAD 工作流
          </h4>
          <p>
-          SketchUp Procedures 產生可非破壞編輯的程序元件；Copy Along 可沿路徑分布物件，Follow Me 與部分 Solid 布林工具也能輸出程序元件。
+          Outliner 的 Assets 分頁可標記、匯出與分享螺栓等重用零件，再直接拖入 viewport；PolySpline 也能在 Point Selection Mode 編輯控制頂點，並新增網格吸附視覺提示。
          </p>
          <h4>
-          文件與交換製作影響
+          曲面製作影響
          </h4>
          <p>
-          LayOut 可在 1:1 無紙畫布作圖，並直接調整視窗圖片的透明度、色相飽和度及明暗對比；SketchUp 與 LayOut 統一 Windows／macOS 介面，並新增 USDZ 與 DWG／DXF Tessellation、註記、Metadata 選項。
+          曲率分析提供 Gaussian、Mean 與 Max 模式；Edge Align 的 Collinear solver 可用對稱或非對稱方式控制兩曲面對齊，Skew 邊界選項則調整邊界傾斜程度，直接服務 Class A 曲面檢查與修整。
          </p>
          <h4>
-          效能與版本限制
+          版本限制與驗證
          </h4>
          <p>
-          隱藏線向量輸出宣稱改善複雜模型效能，但 Trimble 未提供加速數字；來源系統需求段仍寫 SketchUp 2026.0，因此 2027.0 的精確相容性需再以官方版本頁核對。
+          Constraint System 與 Project Align 僅限 Studio 版，而且約束目前不會隨檔案保存；團隊導入前應先確認授權版本，並驗證重新開檔後的約束與曲面對齊交接方式。
          </p>
          <p class="analysis-level-note">
           BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
          </p>
         </div>
        </details>
-       <a class="source" href="https://www.cgchannel.com/2026/10/trimble-releases-sketchup-2027-0" rel="noopener noreferrer" target="_blank">
+       <a class="source" href="https://80.lv/articles/3d-modeling-cad-software-plasticity-2026-2-has-been-released" rel="noopener noreferrer" target="_blank">
         來源
        </a>
       </div>
      </article>
-     <article class="home-card top-item" data-intel-id="cg-channel-borisfx-releases-continuum-2027" data-intel-role="card">
+     <article class="home-card top-item" data-intel-id="cg-channel-pulldownit-6-5-for-maya-gets-new-non-destructive-workflow" data-intel-role="card">
       <div class="top-no">
        05
       </div>
       <div class="top-main">
        <h2>
-        Continuum 2027：向量文字、3D Noise、時間位移與更精細的 ML 遮罩
+        歷史參考｜Pulldownit 6.5 for Maya：模擬後仍可改幾何與碎裂圖樣
        </h2>
        <p class="summary">
-        Boris FX 發布 Continuum 2027.0，新增向量式二維文字、三維程序雜訊與五種扭曲效果，並更新遮罩強度控制、臉部和邊緣細節的機器學習遮罩，以及粒子系統。
+        這篇 2026 年 1 月文章介紹 Pulldownit 6.5 for Maya：新的非破壞式流程允許在動力學模擬完成後修改來源幾何或碎裂圖樣，並讓模擬結果隨之更新。
        </p>
-       <figure class="case-preview" data-intel-id="cg-channel-borisfx-releases-continuum-2027" data-intel-role="visual" data-visual-id="cg-channel-borisfx-releases-continuum-2027">
-        <a href="https://www.cgchannel.com/2026/10/borisfx-releases-continuum-2027" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
-         <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-11-02/cg-channel-borisfx-releases-continuum-2027.jpg"/>
+       <figure class="case-preview" data-intel-id="cg-channel-pulldownit-6-5-for-maya-gets-new-non-destructive-workflow" data-intel-role="visual" data-visual-id="cg-channel-pulldownit-6-5-for-maya-gets-new-non-destructive-workflow">
+        <a href="https://www.cgchannel.com/2026/01/pulldownit-6-5-for-maya-gets-new-non-destructive-workflow" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+         <img alt="SOURCE CARD preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-11-07/cg-channel-pulldownit-6-5-for-maya-gets-new-non-destructive-workflow.svg"/>
         </a>
         <figcaption>
          <span>
-          SOURCE PREVIEW
+          SOURCE CARD
          </span>
-         · Local visual evidence · 點圖開啟原始來源
+         · Generated source card · 點圖開啟原始來源
         </figcaption>
        </figure>
        <div class="quick-impact">
-        <span><b class="quick-impact-label">製作案例</b> ★★★★☆</span>
+        <span><b class="quick-impact-label">Maya</b> ★★★☆☆</span>
        </div>
        <details class="canonical-analysis canonical-analysis-brief home-full-analysis" data-analysis-level="BRIEF">
         <summary>
@@ -331,29 +331,29 @@
         </summary>
         <div class="detail-body canonical-analysis-body brief-analysis-body home-analysis-body">
          <h4>
-          文字與扭曲技術流程
+          技術流程
          </h4>
          <p>
-          BCC Text 可把文字放入 3D 空間、逐字元動畫並產生計數器、Timecode 與日期；Noise Map Studio 可合成多層 3D Noise。Time Displacement 以時間而非空間位移像素，另有 Curl、Waves、Bulge 與 Vector Blur。
+          使用者可先完成破碎與動力學計算，再改模型幾何或碎裂圖樣，結果會重新更新；也可把目前碎裂圖樣當作再次切割的起點，並調整 fracture cluster 尺寸。
          </p>
          <h4>
-          遮罩與粒子製作影響
+          製作影響
          </h4>
          <p>
-          PixelChooser 的 Drive Effect 可調整遮罩區域內效果強度；Face ML 擴大到完整臉形與耳朵，Matte Refine ML 改善髮絲細節，Witness Protection ML 改用精確遮罩。Particle Illusion 也加入快取與 STL 匯入。
+          支援 referenced objects 後，資產可以留在外部檔案並從主場景引用，文章指出這有助於控制 Maya 場景檔大小；同一非破壞式碎裂流程也能套用於引用檔。
          </p>
          <h4>
-          相容性與成本限制
+          限制與待驗證
          </h4>
          <p>
-          Continuum 2027.0 支援 After Effects、DaVinci Resolve、Nuke 等宿主，系統需求為 Windows 10+ 或 macOS 12.0+；價格依宿主與永久／訂閱方案差異很大，導入前需核對實際宿主版本與授權。
+          這是 2026 年 1 月的版本資訊：Maya 版支援 Maya 2022+ 的 Windows 與 macOS，採年租制；當時 3ds Max 版仍停在 6.0，因此不能把 Maya 6.5 功能直接視為 3ds Max 版已有。
          </p>
          <p class="analysis-level-note">
           BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
          </p>
         </div>
        </details>
-       <a class="source" href="https://www.cgchannel.com/2026/10/borisfx-releases-continuum-2027" rel="noopener noreferrer" target="_blank">
+       <a class="source" href="https://www.cgchannel.com/2026/01/pulldownit-6-5-for-maya-gets-new-non-destructive-workflow" rel="noopener noreferrer" target="_blank">
         來源
        </a>
       </div>
@@ -372,16 +372,16 @@
      </div>
     </div>
     <div class="more-grid">
-     <article class="home-card more-card" data-intel-id="blender-official-splatting-the-gaussians-into-blender" data-intel-role="card">
+     <article class="home-card more-card" data-intel-id="80-level-blender-tutorial-create-vibrant-comic-style-shader-with-outl" data-intel-role="card">
       <h4>
-       Blender 5.3 原生支援 Gaussian Splat：PLY／SPZ 匯入、Geometry Nodes 與全渲染器顯示
+       Blender 漫畫 shader 教學：整合賽璐璐明暗、網點、排線與輪廓線
       </h4>
       <p class="summary">
-       Blender 5.3 首次原生支援三維高斯潑濺，可從 PLY、SPZ 或 USD 檔匯入，以點雲屬性和幾何節點編輯，並能交由內建的即時及路徑追蹤渲染器顯示。
+       XippoArt 的逐步教學在 Blender 內組合 cel shading、screen tones、hatch shader 與 outlines，並使用內建 Node Wrangler 加快節點操作；另有獨立影片比較三種輪廓線方法。
       </p>
-      <figure class="case-preview" data-intel-id="blender-official-splatting-the-gaussians-into-blender" data-intel-role="visual" data-visual-id="blender-official-splatting-the-gaussians-into-blender">
-       <a href="https://code.blender.org/2026/10/splatting-the-gaussians-into-blender" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
-        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-11-02/blender-official-splatting-the-gaussians-into-blender.jpg"/>
+      <figure class="case-preview" data-intel-id="80-level-blender-tutorial-create-vibrant-comic-style-shader-with-outl" data-intel-role="visual" data-visual-id="80-level-blender-tutorial-create-vibrant-comic-style-shader-with-outl">
+       <a href="https://80.lv/articles/blender-tutorial-create-vibrant-comic-style-shader-with-outlines" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-11-07/80-level-blender-tutorial-create-vibrant-comic-style-shader-with-outl.jpg"/>
        </a>
        <figcaption>
         <span>
@@ -399,413 +399,42 @@
        </summary>
        <div class="detail-body canonical-analysis-body brief-analysis-body home-analysis-body">
         <h4>
-         資料表示技術流程
+         著色工作流
         </h4>
         <p>
-         高斯潑濺在 Blender 中以點雲類型表示，除位置外還包含三維縮放、四元數旋轉，以及用球諧係數保存的視角相關輻射資料；幾何節點可分別讀寫基礎與視角相關係數。
+         教學不是只示範單一描邊，而是依序把賽璐璐明暗、漫畫網點、排線 shader 與輪廓線組合成一致外觀；節點操作需要啟用 Blender 內建的 Node Wrangler。
         </p>
         <h4>
-         渲染器製作影響
+         視覺製作影響
         </h4>
         <p>
-         EEVEE 將每個潑濺投影成面向相機的二維四邊形，再用抖動透明模式疊合；Cycles 則計算光線與潑濺最大不透明度的交點，以隨機機率決定是否接受，因而保留反射與間接光等路徑追蹤能力。
+         把色塊明暗、印刷網點與排線放進同一材質方向，可讓漫畫感不只依賴外框；獨立的輪廓線比較影片還說明三種方法的運作、優點與限制，便於依鏡頭需求選擇。
         </p>
         <h4>
-         初版限制與待驗證
+         導入限制與驗證
         </h4>
         <p>
-         EEVEE 初版噪點較高，需提高 Sample；低效能裝置會受 Overdraw 影響，編輯工具仍沿用 Point Cloud 而顯笨重，Relighting 也只屬早期支援。Cycles 與 EEVEE 的投影方法不同，部分資料外觀會有差異。
+         來源屬教學介紹，沒有列出 Blender 版本、渲染器、動畫穩定性或效能資料；正式採用前仍應以目標鏡頭檢查網點縮放、排線閃爍與輪廓線在遮擋處的表現。
         </p>
         <p class="analysis-level-note">
          BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
         </p>
        </div>
       </details>
-      <a class="source" href="https://code.blender.org/2026/10/splatting-the-gaussians-into-blender" rel="noopener noreferrer" target="_blank">
+      <a class="source" href="https://80.lv/articles/blender-tutorial-create-vibrant-comic-style-shader-with-outlines" rel="noopener noreferrer" target="_blank">
        來源
       </a>
      </article>
-     <article class="home-card more-card" data-intel-id="cg-channel-master-creature-animation-for-games" data-intel-role="card">
+     <article class="home-card more-card" data-intel-id="cg-channel-reallusion-releases-headshot-3-0" data-intel-role="card">
       <h4>
-       遊戲生物動畫課程：從動作捕捉重定向到大型遊戲 Boss 動作組
+       Headshot 3.1：在 Character Creator 內分層繪製與修整臉部貼圖
       </h4>
       <p class="summary">
-       Gnomon 的兩部曲課程由 Treyarch 資深 Gameplay Animator Ali Pournassari 示範，以 Maya 把原始動作捕捉資料整理成 NPC Boss 的待機、轉向、移動與攻擊前威嚇動作。
+       Reallusion 的 Headshot 3.1 為 Character Creator 5 加入圖層式貼圖編輯，可直接在 3D 角色上繪製 diffuse map，並提供 Clone 與 Stencil 筆刷；3.0 的照片生頭部與身形流程也保留。
       </p>
-      <figure class="case-preview" data-intel-id="cg-channel-master-creature-animation-for-games" data-intel-role="visual" data-visual-id="cg-channel-master-creature-animation-for-games">
-       <a href="https://www.cgchannel.com/2026/10/master-creature-animation-for-games" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
-        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-11-02/cg-channel-master-creature-animation-for-games.jpg"/>
-       </a>
-       <figcaption>
-        <span>
-         SOURCE PREVIEW
-        </span>
-        · Local visual evidence · 點圖開啟原始來源
-       </figcaption>
-      </figure>
-      <div class="quick-impact">
-       <span><b class="quick-impact-label">動畫</b> ★★★★☆</span>
-      </div>
-      <details class="canonical-analysis canonical-analysis-brief home-full-analysis" data-analysis-level="BRIEF">
-       <summary>
-        完整分析
-       </summary>
-       <div class="detail-body canonical-analysis-body brief-analysis-body home-analysis-body">
-        <h4>
-         動作資料技術流程
-        </h4>
-        <p>
-         課程涵蓋原始動作捕捉、重定向、清理與細修，並以 Maya 曲線編輯器整理曲線、調整動作權重和時間；基礎動作組包含待機、轉向與移動。
-        </p>
-        <h4>
-         遊戲動畫製作影響
-        </h4>
-        <p>
-         第一集用三小時以上建立攻擊前威嚇動作，除操作外也解釋造型決策與玩家即時觀看方式；第二集預計擴展為完整 Boss 戰鬥動作組。
-        </p>
-        <h4>
-         課程範圍與限制
-        </h4>
-        <p>
-         內容定位為中階訓練，取得方式為 Gnomon 訂閱；目前來源只確認第一集已上架，第二集仍為 upcoming，且 CG Channel 與 Gnomon 有所有權關係。
-        </p>
-        <p class="analysis-level-note">
-         BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
-        </p>
-       </div>
-      </details>
-      <a class="source" href="https://www.cgchannel.com/2026/10/master-creature-animation-for-games" rel="noopener noreferrer" target="_blank">
-       來源
-      </a>
-     </article>
-     <article class="home-card more-card" data-intel-id="cg-channel-free-uv-packing-tool-packer-io-now-integrates-directly-in-bl" data-intel-role="card">
-      <h4>
-       Packer-IO 1.5：UV 排列最高快 2 倍，透過 UnwrellaConnect 直接接入 Blender
-      </h4>
-      <p class="summary">
-       免費 UV 排列工具 Packer-IO 1.5 改善相似形狀 Island 的處理速度，官方稱最高快 2 倍；免費 UnwrellaConnect 則把 Packer-IO 工作流整合進 Blender 4.2+。
-      </p>
-      <figure class="case-preview" data-intel-id="cg-channel-free-uv-packing-tool-packer-io-now-integrates-directly-in-bl" data-intel-role="visual" data-visual-id="cg-channel-free-uv-packing-tool-packer-io-now-integrates-directly-in-bl">
-       <a href="https://www.cgchannel.com/2026/10/free-uv-packing-tool-packer-io-now-integrates-directly-in-blender" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
-        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-11-02/cg-channel-free-uv-packing-tool-packer-io-now-integrates-directly-in-bl.jpg"/>
-       </a>
-       <figcaption>
-        <span>
-         SOURCE PREVIEW
-        </span>
-        · Local visual evidence · 點圖開啟原始來源
-       </figcaption>
-      </figure>
-      <div class="quick-impact">
-       <span><b class="quick-impact-label">Blender</b> ★★★★☆</span>
-      </div>
-      <details class="canonical-analysis canonical-analysis-brief home-full-analysis" data-analysis-level="BRIEF">
-       <summary>
-        完整分析
-       </summary>
-       <div class="detail-body canonical-analysis-body brief-analysis-body home-analysis-body">
-        <h4>
-         UV 排列技術流程
-        </h4>
-        <p>
-         Packer-IO 匯入已有 UV 的模型後自動排列 Island，支援 Tiled UV、場景尺度與 Texel Density；1.3 改善 Hole Filling，1.5 針對相似形狀序列提升排列效能。
-        </p>
-        <h4>
-         Blender 串接製作影響
-        </h4>
-        <p>
-         UnwrellaConnect 把 Packer-IO 放進 Blender UI，並可與商業 Unwrella-IO 解 UV 工具串接；Packer-IO 本體仍能接收其他 DCC 匯出的模型，適合跨軟體共用同一排列流程。
-        </p>
-        <h4>
-         效能宣稱與功能限制
-        </h4>
-        <p>
-         「最高 2 倍」是官方宣稱，正文沒有測試模型與硬體；工具只負責 Packing、不先做 Unwrap。Packer-IO 支援 Windows 10+／macOS 10.15+，連接器要求 Blender 4.2+。
-        </p>
-        <p class="analysis-level-note">
-         BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
-        </p>
-       </div>
-      </details>
-      <a class="source" href="https://www.cgchannel.com/2026/10/free-uv-packing-tool-packer-io-now-integrates-directly-in-blender" rel="noopener noreferrer" target="_blank">
-       來源
-      </a>
-     </article>
-     <article class="home-card more-card" data-intel-id="80-level-free-blender-tool-for-dolly-zoom-camera-effect" data-intel-role="card">
-      <h4>
-       免費 Dolly Zoom Blender 擴充：同步改變焦距與相機 Z 軸位置
-      </h4>
-      <p class="summary">
-       Surf-Ace 的免費 Blender 擴充以單一屬性同步調整焦距與相機前後位移，讓 3D 游標附近物件維持近似視覺尺寸；動畫仍須分別為焦距與位置設定關鍵幀。
-      </p>
-      <figure class="case-preview" data-intel-id="80-level-free-blender-tool-for-dolly-zoom-camera-effect" data-intel-role="visual" data-visual-id="80-level-free-blender-tool-for-dolly-zoom-camera-effect">
-       <a href="https://80.lv/articles/free-blender-tool-for-dolly-zoom-camera-effect" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
-        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-11-02/80-level-free-blender-tool-for-dolly-zoom-camera-effect.jpg"/>
-       </a>
-       <figcaption>
-        <span>
-         SOURCE PREVIEW
-        </span>
-        · Local visual evidence · 點圖開啟原始來源
-       </figcaption>
-      </figure>
-      <div class="quick-impact">
-       <span><b class="quick-impact-label">Blender</b> ★★★★☆</span>
-      </div>
-      <details class="canonical-analysis canonical-analysis-brief home-full-analysis" data-analysis-level="BRIEF">
-       <summary>
-        完整分析
-       </summary>
-       <div class="detail-body canonical-analysis-body brief-analysis-body home-analysis-body">
-        <h4>
-         推拉變焦技術流程
-        </h4>
-        <p>
-         Dolly Zoom 屬性一邊改變焦距，一邊沿觀看方向的 Z 軸移動視窗或相機，使 3D 游標附近物件在畫面中的表觀尺寸維持不變。
-        </p>
-        <h4>
-         構圖調整製作影響
-        </h4>
-        <p>
-         同一控制項可在 3D 視窗與相機上預覽推拉變焦，讓使用者調整構圖時不必手動反覆配對焦距和距離；3D 游標同時提供維持主體視覺尺寸的空間參考。
-        </p>
-        <h4>
-         動畫與版本限制
-        </h4>
-        <p>
-         該 Dolly Zoom 屬性本身不能設定關鍵幀；要製作動畫仍須分別替焦距和相機位置打 Keyframe。擴充支援 Blender 4.2 LTS 以上。
-        </p>
-        <p class="analysis-level-note">
-         BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
-        </p>
-       </div>
-      </details>
-      <a class="source" href="https://80.lv/articles/free-blender-tool-for-dolly-zoom-camera-effect" rel="noopener noreferrer" target="_blank">
-       來源
-      </a>
-     </article>
-     <article class="home-card more-card" data-intel-id="80-level-epic-games-tells-devs-no-more-hand-written-code-to-adopt-an" data-intel-role="card">
-      <h4>
-       報導稱 Epic 推動「AI-first」製作：程式與美術導入代理工具，但維護與控制仍待驗證
-      </h4>
-      <p class="summary">
-       80 Level 引述 Bloomberg 報導，Epic 延後一款未公布的 Marvel／Star Wars 射擊遊戲，並要求團隊採 AI-first 流程；Epic 則表示創意仍由開發者主導，AI 用於加速產出。
-      </p>
-      <figure class="case-preview" data-intel-id="80-level-epic-games-tells-devs-no-more-hand-written-code-to-adopt-an" data-intel-role="visual" data-visual-id="80-level-epic-games-tells-devs-no-more-hand-written-code-to-adopt-an">
-       <a href="https://80.lv/articles/epic-games-tells-devs-no-more-hand-written-code-to-adopt-an-ai-first-production-model" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
-        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-11-02/80-level-epic-games-tells-devs-no-more-hand-written-code-to-adopt-an.jpg"/>
-       </a>
-       <figcaption>
-        <span>
-         SOURCE PREVIEW
-        </span>
-        · Local visual evidence · 點圖開啟原始來源
-       </figcaption>
-      </figure>
-      <div class="quick-impact">
-       <span><b class="quick-impact-label">製作流程</b> ★★★☆☆</span>
-      </div>
-      <details class="canonical-analysis canonical-analysis-brief home-full-analysis" data-analysis-level="BRIEF">
-       <summary>
-        完整分析
-       </summary>
-       <div class="detail-body canonical-analysis-body brief-analysis-body home-analysis-body">
-        <h4>
-         AI 製作流程變更
-        </h4>
-        <p>
-         報導稱團隊被要求以 Claude 等工具重建製作模式，開發者改為編輯與引導 AI Agent；Epic 公開說法是把人員重新配置到 AI 加速方向，並讓現有團隊提高產量。
-        </p>
-        <h4>
-         引擎與團隊製作影響
-        </h4>
-        <p>
-         UE5.8 已加入實驗性 MCP 整合，使大型語言模型能接入編輯器流程；Epic 也把 AI 輔助開發列為 UE6 路線的一部分。來源同時區分特定任務自動化與整個專案全面 AI 化的差異。
-        </p>
-        <h4>
-         治理限制與待驗證
-        </h4>
-        <p>
-         來源明列可維護性、作者權、訓練資料、一致性及開發者能否理解與控制生成系統等問題。裁員與 AI 轉型時間接近，但 Epic 表示裁員不是由 AI 造成，因此不能據此斷言兩者有直接因果。
-        </p>
-        <p class="analysis-level-note">
-         BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
-        </p>
-       </div>
-      </details>
-      <a class="source" href="https://80.lv/articles/epic-games-tells-devs-no-more-hand-written-code-to-adopt-an-ai-first-production-model" rel="noopener noreferrer" target="_blank">
-       來源
-      </a>
-     </article>
-     <article class="home-card more-card" data-intel-id="cg-channel-get-started-using-blender-for-environment-concept-art" data-intel-role="card">
-      <h4>
-       歷史參考｜2022 年 Blender 環境概念流程：由 Photoshop 草圖進入 3D Blockout 與 Kitbash
-      </h4>
-      <p class="summary">
-       2022 年發布的 Gnomon 課程以 4.5 小時示範 Blender 與 Photoshop 環境概念流程：先畫鬆散 2D 草圖，再選案進入 3D Blockout，並建立可重用的 Kitbash 資產庫。
-      </p>
-      <figure class="case-preview" data-intel-id="cg-channel-get-started-using-blender-for-environment-concept-art" data-intel-role="visual" data-visual-id="cg-channel-get-started-using-blender-for-environment-concept-art">
-       <a href="https://www.cgchannel.com/2022/09/get-started-using-blender-for-environment-concept-art" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
-        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-11-02/cg-channel-get-started-using-blender-for-environment-concept-art.jpg"/>
-       </a>
-       <figcaption>
-        <span>
-         SOURCE PREVIEW
-        </span>
-        · Local visual evidence · 點圖開啟原始來源
-       </figcaption>
-      </figure>
-      <div class="quick-impact">
-       <span><b class="quick-impact-label">Blender</b> ★★★☆☆</span>
-      </div>
-      <details class="canonical-analysis canonical-analysis-brief home-full-analysis" data-analysis-level="BRIEF">
-       <summary>
-        完整分析
-       </summary>
-       <div class="detail-body canonical-analysis-body brief-analysis-body home-analysis-body">
-        <h4>
-         概念設計技術流程
-        </h4>
-        <p>
-         流程由 Photoshop 多張草圖開始，選定方向後進 Blender Blockout；教學再涵蓋導覽、核心建模，以及 Hard Ops、Boxcutter 等外掛，最後整合 2D 與 3D 元素。
-        </p>
-        <h4>
-         資產重用製作影響
-        </h4>
-        <p>
-         建立 3D Kitbash Library 可讓環境細節反覆使用，課程並附 Blender 場景與 Photoshop 檔，便於對照完整製作結果。
-        </p>
-        <h4>
-         歷史與課程限制
-        </h4>
-        <p>
-         這是 2022 年的訂閱課程，Blender、外掛介面與訂閱價格可能已變動；課程定位由初階到中階概念美術，並非完整環境資產的遊戲引擎效能教學。
-        </p>
-        <p class="analysis-level-note">
-         BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
-        </p>
-       </div>
-      </details>
-      <a class="source" href="https://www.cgchannel.com/2022/09/get-started-using-blender-for-environment-concept-art" rel="noopener noreferrer" target="_blank">
-       來源
-      </a>
-     </article>
-     <article class="home-card more-card" data-intel-id="cg-channel-download-new-free-standalone-uv-packing-tool-packer-io" data-intel-role="card">
-      <h4>
-       歷史參考｜2024 年 Packer-IO 1.0：跨 DCC 的免費獨立 UV Packing 工具
-      </h4>
-      <p class="summary">
-       2024 年推出的 Packer-IO 把 3d-io 的 UV-Packer 技術做成免費獨立程式，可匯入 OBJ、FBX、glTF 等格式，自動排列有機與硬表面模型的 UV Island，再匯出結果。
-      </p>
-      <figure class="case-preview" data-intel-id="cg-channel-download-new-free-standalone-uv-packing-tool-packer-io" data-intel-role="visual" data-visual-id="cg-channel-download-new-free-standalone-uv-packing-tool-packer-io">
-       <a href="https://www.cgchannel.com/2024/05/download-new-free-standalone-uv-packing-tool-packer-io" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
-        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-11-02/cg-channel-download-new-free-standalone-uv-packing-tool-packer-io.jpg"/>
-       </a>
-       <figcaption>
-        <span>
-         SOURCE PREVIEW
-        </span>
-        · Local visual evidence · 點圖開啟原始來源
-       </figcaption>
-      </figure>
-      <div class="quick-impact">
-       <span><b class="quick-impact-label">製作流程</b> ★★★☆☆</span>
-      </div>
-      <details class="canonical-analysis canonical-analysis-brief home-full-analysis" data-analysis-level="BRIEF">
-       <summary>
-        完整分析
-       </summary>
-       <div class="detail-body canonical-analysis-body brief-analysis-body home-analysis-body">
-        <h4>
-         UV 排列技術流程
-        </h4>
-        <p>
-         工具匯入 OBJ、FBX、glTF、DAE、PLY 或 STL，在 Viewport 檢視模型並套用 Checker、Normal 或 MatCap，再自動 Packing；結果仍可用 Drag-and-drop Channel 管理與選項微調。
-        </p>
-        <h4>
-         跨軟體製作影響
-        </h4>
-        <p>
-         獨立程式不綁特定 DCC，可配合 Cinema 4D、Maya、Unity 等管線；演算法會減少 UV 空間浪費，並支援 Tiled UV 與高數量 Chart。
-        </p>
-        <h4>
-         歷史與功能限制
-        </h4>
-        <p>
-         這是 2024 年 1.0 時期資訊；當時 Packer-IO 不會先做 UV Unwrap，僅處理既有 UV。後續版本功能已演進，因此此文只適合作為初版歷史參考。
-        </p>
-        <p class="analysis-level-note">
-         BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
-        </p>
-       </div>
-      </details>
-      <a class="source" href="https://www.cgchannel.com/2024/05/download-new-free-standalone-uv-packing-tool-packer-io" rel="noopener noreferrer" target="_blank">
-       來源
-      </a>
-     </article>
-     <article class="home-card more-card" data-intel-id="cg-channel-download-three-free-smoke-and-explosion-vdbs-from-actionvfx" data-intel-role="card">
-      <h4>
-       歷史參考｜2023 年 ActionVFX 免費 VDB：爆炸、煙柱與流星的靜態體積素材
-      </h4>
-      <p class="summary">
-       2023 年 ActionVFX 釋出三個免費單幀 VDB，內容為瓦斯爆炸、煙柱和流星尾跡，另附 Blender 4.0 可用的煙火 Shader；素材可商用，但不是動畫序列。
-      </p>
-      <figure class="case-preview" data-intel-id="cg-channel-download-three-free-smoke-and-explosion-vdbs-from-actionvfx" data-intel-role="visual" data-visual-id="cg-channel-download-three-free-smoke-and-explosion-vdbs-from-actionvfx">
-       <a href="https://www.cgchannel.com/2023/11/download-three-free-smoke-and-explosion-vdbs-from-actionvfx" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
-        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-11-02/cg-channel-download-three-free-smoke-and-explosion-vdbs-from-actionvfx.jpg"/>
-       </a>
-       <figcaption>
-        <span>
-         SOURCE PREVIEW
-        </span>
-        · Local visual evidence · 點圖開啟原始來源
-       </figcaption>
-      </figure>
-      <div class="quick-impact">
-       <span><b class="quick-impact-label">Shader</b> ★★★☆☆</span>
-      </div>
-      <details class="canonical-analysis canonical-analysis-brief home-full-analysis" data-analysis-level="BRIEF">
-       <summary>
-        完整分析
-       </summary>
-       <div class="detail-body canonical-analysis-body brief-analysis-body home-analysis-body">
-        <h4>
-         體積素材技術流程
-        </h4>
-        <p>
-         VDB 可匯入支援此格式的現代 DCC，Blender 使用者能套用現成 Shader，並把同一節點設定替換到其他煙霧或火焰 VDB。
-        </p>
-        <h4>
-         快速預覽製作影響
-        </h4>
-        <p>
-         免費樣本可用於靜態爆炸、煙柱和流星畫面，並附三種彈藥模型；商用授權讓它們可先作 Look Development 或單張合成測試。
-        </p>
-        <h4>
-         歷史與動畫限制
-        </h4>
-        <p>
-         這是 2023 年資料，三個 VDB 都是單一 Frame 而非 Sequence，因此不能直接提供體積運動；雖可動畫化材質，仍不等同流體形狀隨時間演化。
-        </p>
-        <p class="analysis-level-note">
-         BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
-        </p>
-       </div>
-      </details>
-      <a class="source" href="https://www.cgchannel.com/2023/11/download-three-free-smoke-and-explosion-vdbs-from-actionvfx" rel="noopener noreferrer" target="_blank">
-       來源
-      </a>
-     </article>
-     <article class="home-card more-card" data-intel-id="3dnchu-ct2hair" data-intel-role="card">
-      <h4>
-       歷史參考｜SIGGRAPH 2023 CT2Hair：從 CT 密度體積自動重建高密度髮絲
-      </h4>
-      <p class="summary">
-       2023 年 CT2Hair 研究以真實假髮的 CT 掃描建立密度體積，先估算 3D 方向場與 Guide Strand，再用神經插值生成密集髮絲，最後對齊原始體積供後續圖形應用。
-      </p>
-      <figure class="case-preview" data-intel-id="3dnchu-ct2hair" data-intel-role="visual" data-visual-id="3dnchu-ct2hair">
-       <a href="https://3dnchu.com/archives/ct2hair" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
-        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-11-02/3dnchu-ct2hair.jpg"/>
+      <figure class="case-preview" data-intel-id="cg-channel-reallusion-releases-headshot-3-0" data-intel-role="visual" data-visual-id="cg-channel-reallusion-releases-headshot-3-0">
+       <a href="https://www.cgchannel.com/2026/07/reallusion-releases-headshot-3-0" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-11-07/cg-channel-reallusion-releases-headshot-3-0.jpg"/>
        </a>
        <figcaption>
         <span>
@@ -823,42 +452,42 @@
        </summary>
        <div class="detail-body canonical-analysis-body brief-analysis-body home-analysis-body">
         <h4>
-         髮絲重建技術流程
+         幾何與貼圖流程
         </h4>
         <p>
-         管線先由 CT Density Volume 計算三維 Orientation Field，生成 Guide Strand；第二階段把 Guide 均勻插值到頭皮，再以原始密度體積為目標最佳化密集 Strand。
+         Headshot 3 的新模型從照片生成頭部後，可用導引曲線調整頭型與五官，另有 58 組臉部 morph；DeLight、膚色泛紅控制、normal map 大小細節與 Blend Mask 用於修整貼圖。
         </p>
         <h4>
-         內部髮束製作影響
+         3.1 製作改進
         </h4>
         <p>
-         CT 能穿透外層頭髮，不像一般影像方法只重建可見表面，因此可處理更完整的髮束結構；論文以真實與合成資料評估多種髮型，並公開程式碼。
+         3.1 把 diffuse map 編輯帶入 Character Creator 視窗，支援圖層與標準混合模式；Clone Brush 可移除小型皮膚瑕疵，Stencil Brush 可把照片紋理投射到角色，減少往返外部影像軟體。
         </p>
         <h4>
-         歷史與設備限制
+         限制與費用
         </h4>
         <p>
-         這是 SIGGRAPH 2023 研究，輸入需要 CT 掃描，來源明言個人難以輕易使用；密度體積仍受雜訊與解析度限制，所以研究採由粗到細的復原方法。
+         本機頭部生成模型免費執行，但 Nano Banana 驅動的 AI Image Generator 需消耗線上點數；文章記載 2K 為 15 點、4K 為 30 點。Headshot 3.1 需 Character Creator 5，永久授權當時為 199 美元。
         </p>
         <p class="analysis-level-note">
          BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
         </p>
        </div>
       </details>
-      <a class="source" href="https://3dnchu.com/archives/ct2hair" rel="noopener noreferrer" target="_blank">
+      <a class="source" href="https://www.cgchannel.com/2026/07/reallusion-releases-headshot-3-0" rel="noopener noreferrer" target="_blank">
        來源
       </a>
      </article>
-     <article class="home-card more-card" data-intel-id="3dnchu-3d-gaussians-plugin-ue" data-intel-role="card">
+     <article class="home-card more-card" data-intel-id="3dnchu-inkit-1-0" data-intel-role="card">
       <h4>
-       歷史參考｜2023 年 UE5 Gaussian Splat 外掛：以 Niagara 與 Material 即時繪製
+       INKit 1.0：用 iPad 或 Android 手寫筆直接替 Blender 視圖做批註
       </h4>
       <p class="summary">
-       2023 年的 3D Gaussians Plugin 可把官方 3D Gaussian Splatting 訓練結果匯入 UE5，並以 Niagara 與 Material 完成顯示；來源以 RTX 3070 測得約 30～100 FPS，但會依資料而變。
+       MACHIN3 的 INKit 1.0 讓主動式手寫筆平板直接在 Blender 三維視圖上畫二維批註；畫布保存視角與著色狀態，支援文字、多裝置連線，平板不需安裝專用 App。
       </p>
-      <figure class="case-preview" data-intel-id="3dnchu-3d-gaussians-plugin-ue" data-intel-role="visual" data-visual-id="3dnchu-3d-gaussians-plugin-ue">
-       <a href="https://3dnchu.com/archives/3d-gaussians-plugin-ue" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
-        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-11-02/3dnchu-3d-gaussians-plugin-ue.jpg"/>
+      <figure class="case-preview" data-intel-id="3dnchu-inkit-1-0" data-intel-role="visual" data-visual-id="3dnchu-inkit-1-0">
+       <a href="https://3dnchu.com/archives/inkit-1-0" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-11-07/3dnchu-inkit-1-0.jpg"/>
        </a>
        <figcaption>
         <span>
@@ -868,7 +497,7 @@
        </figcaption>
       </figure>
       <div class="quick-impact">
-       <span><b class="quick-impact-label">Unreal</b> ★★★☆☆</span>
+       <span><b class="quick-impact-label">Blender</b> ★★★★☆</span>
       </div>
       <details class="canonical-analysis canonical-analysis-brief home-full-analysis" data-analysis-level="BRIEF">
        <summary>
@@ -876,29 +505,294 @@
        </summary>
        <div class="detail-body canonical-analysis-body brief-analysis-body home-analysis-body">
         <h4>
-         資料匯入技術流程
+         設計審閱工作流
         </h4>
         <p>
-         使用者先由官方實作建立 Gaussian Splatting 資料，再透過外掛以數次點擊匯入 UE；顯示端不依賴 Python 或 CUDA，而是由 Niagara 與 Material 實作。
+         藝術家可一邊看模型一邊補畫造型或留下修改指示，批註保存在 Blender 內，不必先截圖再傳檔；每張畫布保留當時視角和著色設定，模型改動後仍能保留批註的觀看脈絡。
         </p>
         <h4>
-         即時場景製作影響
+         製作溝通控制
         </h4>
         <p>
-         把照片重建資料直接放進 UE5，可讓捕捉場景以即時方式顯示，省去先轉成傳統 Mesh 的步驟；來源並提出未來以這類資料構成遊戲場景的可能性，但這只是作者推測。
+         Hyper Pencil 可選擇、建立、複製與刪除畫布，系統依目前畫布顯示對應批註；另支援平板鍵盤文字和取色，多台平板或一般瀏覽器可同時連線，適合集中展示同一份設計審閱內容。
         </p>
         <h4>
-         歷史與效能限制
+         裝置與導入限制
         </h4>
         <p>
-         這是 2023 年外掛資訊；30～100 FPS 僅標示 RTX 3070 且依資料而變，未列解析度與 Splat 數量。來源也提醒需求規格偏高，應先以 EXE Demo 驗證。
+         Blender 與平板必須在同一 Wi-Fi，繪圖需 Apple Pencil 或 Samsung S Pen 等主動式手寫筆，不支援模擬手指的電容筆。Blender 內繪圖板支援當時只列為 1.1 計畫，不能當成 1.0 已有功能。
         </p>
         <p class="analysis-level-note">
          BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
         </p>
        </div>
       </details>
-      <a class="source" href="https://3dnchu.com/archives/3d-gaussians-plugin-ue" rel="noopener noreferrer" target="_blank">
+      <a class="source" href="https://3dnchu.com/archives/inkit-1-0" rel="noopener noreferrer" target="_blank">
+       來源
+      </a>
+     </article>
+     <article class="home-card more-card" data-intel-id="3dnchu-rtgi-3dgs-chenxiao-hu" data-intel-role="card">
+      <h4>
+       3DGS 與網格混合場景：即時動態全域照明達平均 43 FPS
+      </h4>
+      <p class="summary">
+       北京大學研究團隊提出混合機率式光線追蹤與硬體光柵化管線，讓 3D Gaussian Splatting 與多邊形網格共同接收動態間接光；RTX 3090 測試在約 157 萬個 Gaussian、1920×1088 解析度下平均達 43 FPS。
+      </p>
+      <figure class="case-preview" data-intel-id="3dnchu-rtgi-3dgs-chenxiao-hu" data-intel-role="visual" data-visual-id="3dnchu-rtgi-3dgs-chenxiao-hu">
+       <a href="https://3dnchu.com/archives/rtgi-3dgs-chenxiao-hu" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-11-07/3dnchu-rtgi-3dgs-chenxiao-hu.jpg"/>
+       </a>
+       <figcaption>
+        <span>
+         SOURCE PREVIEW
+        </span>
+        · Local visual evidence · 點圖開啟原始來源
+       </figcaption>
+      </figure>
+      <div class="quick-impact">
+       <span><b class="quick-impact-label">研究</b> ★★★★☆</span>
+      </div>
+      <details class="canonical-analysis canonical-analysis-brief home-full-analysis" data-analysis-level="BRIEF">
+       <summary>
+        完整分析
+       </summary>
+       <div class="detail-body canonical-analysis-body brief-analysis-body home-analysis-body">
+        <h4>
+         技術流程
+        </h4>
+        <p>
+         管線以 3D Gaussian 的表面光傳播模型為基礎，結合機率式光線追蹤與硬體光柵器，可計算多次漫反射和一次光澤反射，並讓 3DGS 與網格互相影響照明。
+        </p>
+        <h4>
+         製作影響
+        </h4>
+        <p>
+         燈光、物件及材質可在執行時編輯，支援區域光、方向光與環境光，也能即時調整反照率和粗糙度；這使混合掃描場景不必先烘焙 GI 才能預覽變更。
+        </p>
+        <h4>
+         限制與待驗證
+        </h4>
+        <p>
+         公開版本只支援 Windows，且需要 NVIDIA RTX 30 系列以上 GPU。一般 3DGS 若缺少適合重新打光的 PBR 材質資訊，未必能得到良好結果，因此效能數字不能直接外推到所有掃描資料。
+        </p>
+        <p class="analysis-level-note">
+         BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+        </p>
+       </div>
+      </details>
+      <a class="source" href="https://3dnchu.com/archives/rtgi-3dgs-chenxiao-hu" rel="noopener noreferrer" target="_blank">
+       來源
+      </a>
+     </article>
+     <article class="home-card more-card" data-intel-id="cg-channel-3d-io-releases-uv-packing-tool-uv-packer-3-for-free" data-intel-role="card">
+      <h4>
+       歷史參考｜UV-Packer 3：免費 3ds Max UV 島排列與多物件 packing
+      </h4>
+      <p class="summary">
+       2020 年 3d-io 將 UV-Packer 3 改為免費，替 3ds Max 自動安排 UV 島，支援多物件與平鋪 UV；這是排列既有 UV 的外掛，商用 SDK 仍另行收費。
+      </p>
+      <figure class="case-preview" data-intel-id="cg-channel-3d-io-releases-uv-packing-tool-uv-packer-3-for-free" data-intel-role="visual" data-visual-id="cg-channel-3d-io-releases-uv-packing-tool-uv-packer-3-for-free">
+       <a href="https://www.cgchannel.com/2020/08/3d-io-releases-uv-packing-tool-uv-packer-3-for-free" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-11-07/cg-channel-3d-io-releases-uv-packing-tool-uv-packer-3-for-free.jpg"/>
+       </a>
+       <figcaption>
+        <span>
+         SOURCE PREVIEW
+        </span>
+        · Local visual evidence · 點圖開啟原始來源
+       </figcaption>
+      </figure>
+      <div class="quick-impact">
+       <span><b class="quick-impact-label">其他 DCC</b> ★★★☆☆</span>
+      </div>
+      <details class="canonical-analysis canonical-analysis-brief home-full-analysis" data-analysis-level="BRIEF">
+       <summary>
+        完整分析
+       </summary>
+       <div class="detail-body canonical-analysis-body brief-analysis-body home-analysis-body">
+        <h4>
+         UV 排列流程
+        </h4>
+        <p>
+         UV-Packer 自動重排模型的 UV 島，目標是降低浪費的紋理空間；它支援平鋪 UV、多物件 packing，以及間距控制，排列計算時間不隨貼圖解析度改變。
+        </p>
+        <h4>
+         製作效能證據
+        </h4>
+        <p>
+         文章引用產品網站的單一建築案例：8 萬面、8,000 個 UV cluster，排列耗時 3 秒、空間使用率 48%，對比 Max 原生工具 110 秒及 35%；這是供應商示範，不是所有資產都可達到的固定收益。
+        </p>
+        <h4>
+         歷史版本與授權限制
+        </h4>
+        <p>
+         這是 2020 年版本紀錄，當時免費外掛支援 3ds Max 2015 以上，Blender 版仍在開發；商用 SDK 與 Unwrella 等姊妹產品並未一起免費，因此不能把此公告套用到整個工具家族或今天版本。
+        </p>
+        <p class="analysis-level-note">
+         BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+        </p>
+       </div>
+      </details>
+      <a class="source" href="https://www.cgchannel.com/2020/08/3d-io-releases-uv-packing-tool-uv-packer-3-for-free" rel="noopener noreferrer" target="_blank">
+       來源
+      </a>
+     </article>
+     <article class="home-card more-card" data-intel-id="cg-channel-3d-io-releases-unwrella-io" data-intel-role="card">
+      <h4>
+       歷史參考｜Unwrella-IO：把自動 UV 展開與 packing 做成獨立工具
+      </h4>
+      <p class="summary">
+       這篇 2025 年文章介紹 Unwrella-IO 正式版：3d-io 將原本用於 3ds Max 與 Maya 外掛的 UV 展開、packing 技術改成獨立程式，讓 Blender、Unreal Engine 等其他 DCC 資產也能使用。
+      </p>
+      <figure class="case-preview" data-intel-id="cg-channel-3d-io-releases-unwrella-io" data-intel-role="visual" data-visual-id="cg-channel-3d-io-releases-unwrella-io">
+       <a href="https://www.cgchannel.com/2025/03/3d-io-releases-unwrella-io" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-11-07/cg-channel-3d-io-releases-unwrella-io.jpg"/>
+       </a>
+       <figcaption>
+        <span>
+         SOURCE PREVIEW
+        </span>
+        · Local visual evidence · 點圖開啟原始來源
+       </figcaption>
+      </figure>
+      <div class="quick-impact">
+       <span><b class="quick-impact-label">Maya</b> ★★★☆☆</span>
+      </div>
+      <details class="canonical-analysis canonical-analysis-brief home-full-analysis" data-analysis-level="BRIEF">
+       <summary>
+        完整分析
+       </summary>
+       <div class="detail-body canonical-analysis-body brief-analysis-body home-analysis-body">
+        <h4>
+         技術流程
+        </h4>
+        <p>
+         工具接受拖放模型，以半自動流程完成 UV 展開與 packing；提供硬表面、organic 模型及 3D 掃描 mosaic 模式，並可調整 UV seam 位置與允許的拉伸量。
+        </p>
+        <h4>
+         製作影響
+        </h4>
+        <p>
+         獨立版不再綁定 3ds Max 或 Maya 外掛，因此同一套展 UV 技術可處理來自 Blender、Unreal Engine 等不同來源的模型；這項跨 DCC 用途是文章明確列出的定位。
+        </p>
+        <h4>
+         限制與待驗證
+        </h4>
+        <p>
+         這是 2025 年 3 月的歷史資訊：當時支援 Windows 10+，macOS 仍標示即將推出；永久授權為 199 歐元，既有 3ds Max／Maya 外掛使用者可用 99 歐元升級。
+        </p>
+        <p class="analysis-level-note">
+         BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+        </p>
+       </div>
+      </details>
+      <a class="source" href="https://www.cgchannel.com/2025/03/3d-io-releases-unwrella-io" rel="noopener noreferrer" target="_blank">
+       來源
+      </a>
+     </article>
+     <article class="home-card more-card" data-intel-id="cg-channel-free-tool-p4houdini-builds-version-control-into-houdini" data-intel-role="card">
+      <h4>
+       歷史參考｜P4Houdini：在 Houdini 內提交 Perforce 變更並追蹤相依檔
+      </h4>
+      <p class="summary">
+       2024 年 SideFX 將 P4Houdini 改為免費，透過 SideFX Labs 把 Helix Core 檔案簽入／簽出、加入檔案與提交變更清單帶進 Houdini，並可掃描 hip 相依檔及還原 hip、hda 舊版。
+      </p>
+      <figure class="case-preview" data-intel-id="cg-channel-free-tool-p4houdini-builds-version-control-into-houdini" data-intel-role="visual" data-visual-id="cg-channel-free-tool-p4houdini-builds-version-control-into-houdini">
+       <a href="https://www.cgchannel.com/2024/07/free-tool-p4houdini-builds-version-control-into-houdini" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-11-07/cg-channel-free-tool-p4houdini-builds-version-control-into-houdini.jpg"/>
+       </a>
+       <figcaption>
+        <span>
+         SOURCE PREVIEW
+        </span>
+        · Local visual evidence · 點圖開啟原始來源
+       </figcaption>
+      </figure>
+      <div class="quick-impact">
+       <span><b class="quick-impact-label">Houdini</b> ★★★☆☆</span>
+      </div>
+      <details class="canonical-analysis canonical-analysis-brief home-full-analysis" data-analysis-level="BRIEF">
+       <summary>
+        完整分析
+       </summary>
+       <div class="detail-body canonical-analysis-body brief-analysis-body home-analysis-body">
+        <h4>
+         版本管理工作流
+        </h4>
+        <p>
+         使用者不必切換到 Helix Core 圖形介面，即可在 Houdini 簽入、簽出檔案、新增檔案與提交 changelist；工具另附 Python API，可為團隊所需動作加入腳本化操作。
+        </p>
+        <h4>
+         製作交接價值
+        </h4>
+        <p>
+         外掛可掃描 hip 檔的相依關係，並將 hip 或 hda 還原到先前版本；這讓程序場景與數位資產的版本操作能留在同一 DCC 環境內，但來源沒有宣稱它能自動解決多人編輯衝突。
+        </p>
+        <h4>
+         歷史版本與導入限制
+        </h4>
+        <p>
+         文章是 2024 年資訊，免費外掛當時隨可選的 SideFX Labs 工具提供，需 Houdini 20.5.304 以上；Helix Core 本身另有授權規則，當時僅五人以下團隊可免費，不能把外掛免費等同整套系統無成本。
+        </p>
+        <p class="analysis-level-note">
+         BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+        </p>
+       </div>
+      </details>
+      <a class="source" href="https://www.cgchannel.com/2024/07/free-tool-p4houdini-builds-version-control-into-houdini" rel="noopener noreferrer" target="_blank">
+       來源
+      </a>
+     </article>
+     <article class="home-card more-card" data-intel-id="3dnchu-hair-tool-3-5" data-intel-role="card">
+      <h4>
+       歷史參考｜Hair Tool 3.5：髮片 UV 控制、色彩區域與 IK 碰撞更新
+      </h4>
+      <p class="summary">
+       2023 年的 Hair Tool 3.5 更新針對 Blender 毛髮建模：新增 U 向 UV 翻轉、髮片寬度連動髮絲半徑、UV 區域色彩屬性與 IK 鏈碰撞支援，並修正短髮及曲線輪廓問題。
+      </p>
+      <figure class="case-preview" data-intel-id="3dnchu-hair-tool-3-5" data-intel-role="visual" data-visual-id="3dnchu-hair-tool-3-5">
+       <a href="https://3dnchu.com/archives/hair-tool-3-5" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="assets/visual/2026-11-07/3dnchu-hair-tool-3-5.jpg"/>
+       </a>
+       <figcaption>
+        <span>
+         SOURCE PREVIEW
+        </span>
+        · Local visual evidence · 點圖開啟原始來源
+       </figcaption>
+      </figure>
+      <div class="quick-impact">
+       <span><b class="quick-impact-label">Blender</b> ★★☆☆☆</span>
+      </div>
+      <details class="canonical-analysis canonical-analysis-brief home-full-analysis" data-analysis-level="BRIEF">
+       <summary>
+        完整分析
+       </summary>
+       <div class="detail-body canonical-analysis-body brief-analysis-body home-analysis-body">
+        <h4>
+         毛髮與 UV 工作流
+        </h4>
+        <p>
+         Set UV Regions 可手動沿 U 方向翻轉 UV，平面 profile 的 UV 寬度可連動髮絲半徑；UV 區域亦可指定顏色並由毛髮材質讀取，讓髮片映射與束群外觀能分別控制。
+        </p>
+        <h4>
+         製作穩定性改進
+        </h4>
+        <p>
+         短髮長度倍率被零權重頂點群組遮罩時的爆開問題得到修正，目標物件沒有 UV 時無法畫髮也列入修正；此外 IK 鏈模式新增碰撞支援，曲線雕刻模式可使用 Hair Modeling 工作區工具。
+        </p>
+        <h4>
+         歷史版本限制
+        </h4>
+        <p>
+         這是 2023 年 12 月的 3.5 版紀錄，文章沒有列出支援的 Blender 版本或匯出遊戲引擎的條件；新版相容性須另查，不能把當年的功能更新視為今天仍適用的完整支援聲明。
+        </p>
+        <p class="analysis-level-note">
+         BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+        </p>
+       </div>
+      </details>
+      <a class="source" href="https://3dnchu.com/archives/hair-tool-3-5" rel="noopener noreferrer" target="_blank">
        來源
       </a>
      </article>
@@ -962,7 +856,7 @@
     </div>
    </section>
   </main>
-  <script src="home.js?v=20261102-r1-workspace-v10-history-current-workspace">
+  <script src="home.js?v=20261107-r1-workspace-v10-history-current-workspace">
   </script>
  </body>
 </html>
