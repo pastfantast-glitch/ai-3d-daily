@@ -1,0 +1,1099 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-08",
+  "reviewer": "chatgpt-scheduled-task",
+  "source_run_id": 42426386550,
+  "source_head_sha": "887bf65251bd659b9f297f789584c5defa21fe95",
+  "items": {
+    "cg-channel-sparseal-releases-cozyblanket-pro": {
+      "source_url": "https://www.cgchannel.com/2026/11/sparseal-releases-cozyblanket-pro",
+      "source_published_at": "2026-11-03",
+      "reviewed_on": "2026-11-08",
+      "source_evidence_sha256": "1099abd32cbb405a64a4783df22a13c1a99242f162db176c42f725fd1d0a0f81",
+      "title": "CozyBlanket Pro 3.05：以本機 AI 輔助重拓樸、UV 展開與貼圖烘焙",
+      "summary": "CozyBlanket Pro 3.05 已登上 iPadOS、Windows 與 macOS；使用者先在高模表面畫拓樸或 UV 引導線，再由本機 AI 補齊結果，並可手動編修、GPU 打包 UV、烘焙及輸出低模。",
+      "evidence_refs": [
+        "p002",
+        "p012",
+        "p013",
+        "p014",
+        "p018",
+        "p021",
+        "p022",
+        "p025"
+      ],
+      "full_analysis": [
+        {
+          "label": "角色製作工作流",
+          "text": "重拓樸由藝術家先用 Pencil 工具在模型表面畫出 patch 邊界，AI 再補齊拓樸；結果可透過新增引導線、改變視角，或直接增刪與移動頂點、邊及面繼續修整。",
+          "evidence_refs": [
+            "p013",
+            "p014",
+            "p015",
+            "p016"
+          ]
+        },
+        {
+          "label": "製作影響",
+          "text": "UV 流程同樣先畫接縫再自動補齊，二維 layout 可即時顯示在模型表面；後段可烘焙 vertex color、tangent-space 或 AO，支援 UDIM，低模輸出 OBJ 或 glTF、貼圖輸出 PNG、JPG、TIFF 或 EXR。",
+          "evidence_refs": [
+            "p018",
+            "p019",
+            "p020",
+            "p022",
+            "p023",
+            "p024"
+          ]
+        },
+        {
+          "label": "成熟度與限制",
+          "text": "AI 模型由 Sparseal 自建、只用合成資料訓練並在本機執行，但來源指出早期示範的臉部拓樸可能不尋常，品質取決於引導線。原版 CozyBlanket 也沒有升級路徑，新版採不同架構與檔案格式。",
+          "evidence_refs": [
+            "p008",
+            "p009",
+            "p012",
+            "p017"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p002",
+          "p008",
+          "p009",
+          "p012",
+          "p013",
+          "p014",
+          "p015",
+          "p016",
+          "p017",
+          "p018",
+          "p019",
+          "p020",
+          "p022",
+          "p023",
+          "p024",
+          "p025",
+          "p021"
+        ]
+      }
+    },
+    "80-level-recreating-vintage-dynamite-blasting-machine-in-3d": {
+      "source_url": "https://80.lv/articles/recreating-vintage-dynamite-blasting-machine-in-3d",
+      "source_published_at": "2026-11-05",
+      "source_evidence_sha256": "cf2498f9fcd3f04937dab6cddea97bba96e7f1ffe1b1930b878b5207e87f6c74",
+      "reviewed_on": "2026-11-08",
+      "title": "復古道具製作拆解：Plasticity 建形、木材雕刻與分層材質",
+      "summary": "Kyryl Zlotnyk 分享復古手搖裝置的遊戲道具流程：由實物尺寸參考建立 CAD 草模，經 ZBrush 雕刻、Blender 低模修整、RizomUV 展 UV，再於 Marmoset 烘焙及 Painter 製作木、金屬與皮革材質。",
+      "evidence_refs": [
+        "p008",
+        "p013",
+        "p015",
+        "p018",
+        "p021",
+        "p022",
+        "p023",
+        "p029",
+        "p032",
+        "p034",
+        "p010",
+        "p025",
+        "p026",
+        "p027",
+        "p024",
+        "p040"
+      ],
+      "full_analysis": [
+        {
+          "label": "道具製作流程",
+          "text": "作者先依拍賣網站的尺寸在 Plasticity 建立草模，線纜和皮帶另用 Blender 曲線製作；木板經 ZBrush 改形後重新拓樸，木柄孔洞的著色則從無孔副本轉移法線修正。",
+          "evidence_refs": [
+            "p008",
+            "p013",
+            "p015",
+            "p018",
+            "p021",
+            "p022"
+          ]
+        },
+        {
+          "label": "貼圖製作控制",
+          "text": "線纜用重複圓柱段與 trim sheet 節省紋理空間，木板烘焙 Object ID 方便分區遮罩；Painter 以掃描木材、HSL、Anchor Point、磨損與底部受潮變色建立差異，而非讓每片木板完全相同。",
+          "evidence_refs": [
+            "p023",
+            "p029",
+            "p032",
+            "p034"
+          ]
+        },
+        {
+          "label": "資產規格與限制",
+          "text": "主體用單張 4K 貼圖組，另一組為 4K×2K，貼花與透明細節另用 1K；這是約六個月個人作品的規格，來源未提供遊戲引擎幀率或效能預算，不能把其展示品質直接等同所有平台可用。",
+          "evidence_refs": [
+            "p010",
+            "p025",
+            "p026",
+            "p027"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p008",
+          "p013",
+          "p015",
+          "p018",
+          "p021",
+          "p022",
+          "p023",
+          "p029",
+          "p032",
+          "p034",
+          "p010",
+          "p025",
+          "p026",
+          "p027",
+          "p024",
+          "p040"
+        ]
+      }
+    },
+    "cg-channel-master-creature-animation-for-games": {
+      "source_url": "https://www.cgchannel.com/2026/11/master-creature-animation-for-games",
+      "source_published_at": "2026-11-05",
+      "source_evidence_sha256": "0b885f712bc9eace53fc1de3b2244be30388117c6dbd36088ab6d1ead9287384",
+      "reviewed_on": "2026-11-08",
+      "title": "遊戲生物動畫課程：從動捕清理到 Maya／Unity 的 Boss 戰鬥動作組",
+      "summary": "Ali Pournassari 的兩部曲課程從原始動捕重定向、清理與潤飾開始，製作 NPC Boss 的待機、轉向、移動、攻擊前威嚇、攻擊、受傷及死亡動作，最後匯入 Unity 檢視遊戲中的呈現。",
+      "evidence_refs": [
+        "p005",
+        "p006",
+        "p007",
+        "p008",
+        "p009",
+        "p011",
+        "p013",
+        "p014",
+        "p015",
+        "p002",
+        "p003",
+        "p004",
+        "p016"
+      ],
+      "full_analysis": [
+        {
+          "label": "動作製作流程",
+          "text": "課程以 Maya 建立基礎待機、轉向與移動，再完成攻擊前威嚇；Graph Editor 用於清理曲線、調整重量感和時間節奏，第二部接續兩個攻擊、受傷與死亡動作。",
+          "evidence_refs": [
+            "p005",
+            "p006",
+            "p007",
+            "p008",
+            "p009",
+            "p011"
+          ]
+        },
+        {
+          "label": "遊戲製作影響",
+          "text": "受傷反應用來讓玩家知道攻擊奏效，死亡動作提供戰鬥結束回饋；完成 Maya 段落後把動作帶進 Unity，以三維遊戲空間檢視角色行為，而不只看孤立的動畫鏡頭。",
+          "evidence_refs": [
+            "p013",
+            "p014",
+            "p015"
+          ]
+        },
+        {
+          "label": "學習與導入限制",
+          "text": "課程面向中階美術，使用 Kiel Figgins 的商用 Dinozilla rig；第一部超過三小時、第二部不足五小時，來源沒有列出 rig 是否隨課附贈或完整戰鬥控制器實作，不能將課程當成可直接部署的遊戲系統。",
+          "evidence_refs": [
+            "p002",
+            "p003",
+            "p004",
+            "p016"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p005",
+          "p006",
+          "p007",
+          "p008",
+          "p009",
+          "p011",
+          "p013",
+          "p014",
+          "p015",
+          "p002",
+          "p003",
+          "p004",
+          "p016"
+        ]
+      }
+    },
+    "cg-channel-new-cg-software-you-may-have-missed-2-november-2026": {
+      "source_url": "https://www.cgchannel.com/2026/11/new-cg-software-you-may-have-missed-2-november-2026",
+      "source_published_at": "2026-11-02",
+      "source_evidence_sha256": "0d62c03cb7061b40c847a10c127ef202ba59a0272ea473fcded548ba8eab540a",
+      "reviewed_on": "2026-11-08",
+      "title": "CG 軟體更新整理：聚焦 Character Creator 5.2 的圖生模型與 CC Wrap",
+      "summary": "這篇 11 月 2 日更新整理介紹 Character Creator 5.2：可由一至四張參考圖產生模型，使用 Tripo 與混元模型，另以 CC Wrap 將自製或 AI 人形網格轉成 CC3+／CC5 HD，並在 wrapping 後自動綁定。",
+      "evidence_refs": [
+        "p009",
+        "p010",
+        "p011",
+        "p015",
+        "p016",
+        "p017",
+        "p012",
+        "p013",
+        "p018",
+        "p019",
+        "p020",
+        "p021",
+        "p014",
+        "p023",
+        "p024"
+      ],
+      "full_analysis": [
+        {
+          "label": "角色生成工作流",
+          "text": "圖生模型模組支援角色、服裝、髮型與配件；來源列出 Tripo P2.0 處理低模拓樸，Tripo H3.1 與 Hunyuan V3.1 處理高模細節，另有概念圖生成和四邊形重建功能。",
+          "evidence_refs": [
+            "p009",
+            "p010",
+            "p011",
+            "p015",
+            "p016",
+            "p017"
+          ]
+        },
+        {
+          "label": "角色製作交接",
+          "text": "CC Wrap 可把其他 DCC 雕刻或 AI 生成的人形角色轉成 CC3+ 與 CC5 HD 格式，並在 wrapping 完成後自動綁定；同次更新也增加服裝貼合、蒙皮權重控制與 GLB 匯入。",
+          "evidence_refs": [
+            "p012",
+            "p013",
+            "p018",
+            "p019",
+            "p020",
+            "p021"
+          ]
+        },
+        {
+          "label": "導入限制",
+          "text": "CC Wrap 雖支援全身和臉部，來源仍轉述 Reallusion 建議臉部工作使用另購 Headshot；文章沒有提供跨造型角色的包覆成功率或變形測試，因此不能把自動綁定視為所有角色均免修整。",
+          "evidence_refs": [
+            "p014",
+            "p023",
+            "p024"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p009",
+          "p010",
+          "p011",
+          "p015",
+          "p016",
+          "p017",
+          "p012",
+          "p013",
+          "p018",
+          "p019",
+          "p020",
+          "p021",
+          "p014",
+          "p023",
+          "p024"
+        ]
+      }
+    },
+    "cg-channel-epic-has-made-megascans-free-again-for-good-this-time": {
+      "source_url": "https://www.cgchannel.com/2026/11/epic-has-made-megascans-free-again-for-good-this-time",
+      "source_published_at": "2026-11-06",
+      "source_evidence_sha256": "70c174db52b3d0b1518a6a77c352c90283c2a0a5a5ec407e340d835fa6b49271",
+      "reviewed_on": "2026-11-08",
+      "title": "Megascans 再次免費：Fab 將分批調整資產價格，預計 11 月 12 日完成",
+      "summary": "CG Channel 11 月 6 日報導，Epic 正把超過 23,000 項 Megascans 掃描資產改為免費，Fab 列表預計至 11 月 12 日完成調整；Quixel 公告亦稱更新條款，允許 Megascans 與 Megaplants 用於 AI 訓練。",
+      "evidence_refs": [
+        "p001",
+        "p005",
+        "p006",
+        "p013",
+        "p008",
+        "p009",
+        "p014",
+        "p002",
+        "p007",
+        "p016",
+        "p017"
+      ],
+      "full_analysis": [
+        {
+          "label": "資產取得流程",
+          "text": "這次資產透過 Fab 供應，來源寫明大多數項目已免費，其餘預計 11 月 12 日前完成調價；因此個別資產仍顯示價格時，不能據此認定整個公告失效，也不能宣稱今天全部都已免費。",
+          "evidence_refs": [
+            "p001",
+            "p005",
+            "p006",
+            "p013"
+          ]
+        },
+        {
+          "label": "製作素材價值",
+          "text": "資料庫涵蓋植物、建築、道具等超過 8,000 項實物掃描，以及約 11,000 項材質與貼圖，供遊戲、建築視覺化與特效使用；報導另稱 2025 年起購買的商用資產將退至 Epic 帳戶餘額，並非現金退款。",
+          "evidence_refs": [
+            "p008",
+            "p009",
+            "p014"
+          ]
+        },
+        {
+          "label": "授權與判斷限制",
+          "text": "Quixel 公告稱允許 AI 訓練，報導觀察到 Fab 列表的 AI 使用標示已更新，但也指出標準授權文字似乎未變。這是報導與公告的描述，實際用途仍須核對下載當下條款，不能推論所有第三方 Fab 資產都適用。",
+          "evidence_refs": [
+            "p002",
+            "p007",
+            "p016",
+            "p017"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p005",
+          "p006",
+          "p013",
+          "p008",
+          "p009",
+          "p014",
+          "p002",
+          "p007",
+          "p016",
+          "p017"
+        ]
+      }
+    },
+    "cg-channel-tutorial-creating-efficient-digital-doubles-for-vfx": {
+      "source_url": "https://www.cgchannel.com/2024/09/tutorial-creating-efficient-digital-doubles-for-vfx",
+      "source_published_at": "2024-09-16",
+      "source_evidence_sha256": "048c1b164f25d2458ff77996585ef40cd15c596cb6cdadaa1020722b9c712105",
+      "reviewed_on": "2026-11-08",
+      "title": "歷史參考｜數位替身課程：掃描整理、Wrap 對位與服裝重建",
+      "summary": "2024 年 Pat Imrie 的三小時課程示範以 Maya、ZBrush 與 Wrap 製作視效數位替身：整理掃描資料、對齊基礎網格、重建服裝，再建立簡單 rig 並投射及測試貼圖供部門交接。",
+      "evidence_refs": [
+        "p002",
+        "p004",
+        "p005",
+        "p006",
+        "p007",
+        "p001",
+        "p003"
+      ],
+      "full_analysis": [
+        {
+          "label": "角色資產工作流",
+          "text": "課程從 Clear Angle Studios 的掃描資料開始，先整理成能用於多個細節層級的資產，再用 Wrap 把基礎網格貼合掃描，接著以 Maya 和 ZBrush 重建服裝。",
+          "evidence_refs": [
+            "p002",
+            "p004",
+            "p005"
+          ]
+        },
+        {
+          "label": "製作交接價值",
+          "text": "作者示範基本 rig 以便重擺替身姿勢，並投射、測試貼圖，確認交給後續部門前的資產狀態；課程另提供所用基礎拓樸的 OBJ 與 FBX，方便對照拓樸處理。",
+          "evidence_refs": [
+            "p006",
+            "p007"
+          ]
+        },
+        {
+          "label": "歷史教材限制",
+          "text": "這是 2024 年教材，適合未做過數位替身的美術；來源沒有列出特定軟體版本，也沒有承諾提供原始掃描或完整動畫綁定。三小時製程介紹不應視為所有掃描都能自動達到可交付品質。",
+          "evidence_refs": [
+            "p001",
+            "p002",
+            "p003",
+            "p007"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p002",
+          "p004",
+          "p005",
+          "p006",
+          "p007",
+          "p001",
+          "p003"
+        ]
+      }
+    },
+    "cg-channel-lightwave-digital-releases-lightwave-2024": {
+      "source_url": "https://www.cgchannel.com/2024/09/lightwave-digital-releases-lightwave-2024",
+      "source_published_at": "2024-09-19",
+      "source_evidence_sha256": "caf99fe252ec56ac77588afb2a87811800994520845971832dc65f498038c3d4",
+      "reviewed_on": "2026-11-08",
+      "title": "歷史參考｜LightWave 2024.1：模組化角色綁定、動畫拷貝與景深控制",
+      "summary": "這篇 2024 年 LightWave 更新報導介紹整合 RHiggit 角色綁定、Layout 內權重繪製及小型液體模擬；2024.1 進一步加入角色間動作拷貝、選定動畫通道貼上，以及 Octane 視窗景深控制。",
+      "evidence_refs": [
+        "p015",
+        "p016",
+        "p017",
+        "p018",
+        "p019",
+        "p036",
+        "p037",
+        "p038",
+        "p029",
+        "p030",
+        "p031",
+        "p032",
+        "p039",
+        "p040",
+        "p024",
+        "p033",
+        "p041",
+        "p020",
+        "p021",
+        "p022",
+        "p023"
+      ],
+      "full_analysis": [
+        {
+          "label": "角色動畫工作流",
+          "text": "RHiggit 提供半自動模組化角色／生物 rig，WeightBrush 則讓角色權重直接在 Layout 繪製；2024.1 的 Motion Paste Advanced 可只取代指定通道，多物件動作也可儲存後套到新選取物件。",
+          "evidence_refs": [
+            "p015",
+            "p016",
+            "p017",
+            "p018",
+            "p019",
+            "p036",
+            "p037",
+            "p038"
+          ]
+        },
+        {
+          "label": "製作整合價值",
+          "text": "Kit Surfacer 用於把線上資產包半自動轉換成 LightWave 材質，OpenVDB 更新支援從 Turbulence 輸出體積資料；Octane DOF Range 讓藝術家在視窗移動控制器調整焦點位置與清晰範圍。",
+          "evidence_refs": [
+            "p029",
+            "p030",
+            "p031",
+            "p032",
+            "p039",
+            "p040"
+          ]
+        },
+        {
+          "label": "歷史版本限制",
+          "text": "2024.1 當時支援 Windows 10 以上及指定 macOS 版本，但 Flow 基於 Newton Dynamics 與 NVIDIA FleX，只能用於 Windows；Unreal Bridge 當時列出的支援為 UE5.4，不能把這份舊版說明當成今日所有平台相容性。",
+          "evidence_refs": [
+            "p024",
+            "p033",
+            "p041"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p015",
+          "p016",
+          "p017",
+          "p018",
+          "p019",
+          "p036",
+          "p037",
+          "p038",
+          "p029",
+          "p030",
+          "p031",
+          "p032",
+          "p039",
+          "p040",
+          "p024",
+          "p033",
+          "p041",
+          "p020",
+          "p021",
+          "p022",
+          "p023"
+        ]
+      }
+    },
+    "cg-channel-reallusion-releases-character-creator-5": {
+      "source_url": "https://www.cgchannel.com/2025/08/reallusion-releases-character-creator-5",
+      "source_published_at": "2025-08-28",
+      "source_evidence_sha256": "f612a2042f75909829ed54e2a2832f6acf459cc5a55e7445cc806e1d47faebd4",
+      "reviewed_on": "2026-11-08",
+      "title": "歷史參考｜Character Creator 5：HD 基礎角色、ActorMixer 與 MetaHuman 交接",
+      "summary": "2025 年 Character Creator 5 加入支援兩級細分的 HD 基礎角色、最高 8K 貼圖與位移細節，ActorMixer 可非破壞混合最多六個角色，並擴充 MetaHuman 相容的骨架及臉部動畫交接。",
+      "evidence_refs": [
+        "p011",
+        "p012",
+        "p016",
+        "p017",
+        "p018",
+        "p023",
+        "p024",
+        "p025",
+        "p019",
+        "p020",
+        "p021",
+        "p022",
+        "p030",
+        "p031",
+        "p032",
+        "p033",
+        "p013",
+        "p039",
+        "p040",
+        "p041",
+        "p045"
+      ],
+      "full_analysis": [
+        {
+          "label": "角色製作工作流",
+          "text": "HD 基礎角色提供兩級細分，morph 系統同步支援；皮膚可用位移而非法線表現立體細節。ActorMixer 可混合整體身形、頭部或單一五官，但進階功能屬另購 Pro 外掛。",
+          "evidence_refs": [
+            "p011",
+            "p012",
+            "p016",
+            "p017",
+            "p018",
+            "p023",
+            "p024",
+            "p025"
+          ]
+        },
+        {
+          "label": "動畫製作影響",
+          "text": "HD 臉部 profile 與 MetaHuman 表情系統相容，UE 匯出可用最佳化骨架及綁定姿勢；來源示範 Sequencer 中交換角色不用重定向動畫，MetaHuman Animator 臉部資料亦可透過 CSV 回到 CC5 修整。",
+          "evidence_refs": [
+            "p019",
+            "p020",
+            "p021",
+            "p022",
+            "p030",
+            "p031",
+            "p032",
+            "p033"
+          ]
+        },
+        {
+          "label": "歷史版本與成本限制",
+          "text": "這是 2025 年版本報導，HD Ultimate Morphs 和 ActorMixer Pro 均需另購；當時 Maya 整合只支援 2024／2025、未支援 2026，且 Maya 與 Marmoset 新外掛僅限 Windows，不能由核心功能推定所有 DCC 都完整相容。",
+          "evidence_refs": [
+            "p013",
+            "p025",
+            "p039",
+            "p040",
+            "p041",
+            "p045"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p011",
+          "p012",
+          "p016",
+          "p017",
+          "p018",
+          "p023",
+          "p024",
+          "p025",
+          "p019",
+          "p020",
+          "p021",
+          "p022",
+          "p030",
+          "p031",
+          "p032",
+          "p033",
+          "p013",
+          "p039",
+          "p040",
+          "p041",
+          "p045"
+        ]
+      }
+    },
+    "cg-channel-epic-games-has-made-megascans-free-to-all-but-only-until-the": {
+      "source_url": "https://www.cgchannel.com/2024/10/epic-games-has-made-megascans-free-to-all-but-only-until-the-end-of-2024",
+      "source_published_at": "2024-10-22",
+      "source_evidence_sha256": "9537d2bc75c7dd0f547e3beb3ed925dd3500f8bd171148093cb976a2711a2876",
+      "reviewed_on": "2026-11-08",
+      "title": "歷史參考｜2024 年 Megascans 免費窗口與 Bridge／Fab 授權差異",
+      "summary": "這篇 2024 年報導記錄 Fab 上線時的 Megascans 免費窗口：當時開放至年底、可用於各引擎；由 Bridge 取得的舊授權與在 Fab 加入素材庫的授權不同，不能只看是否已下載檔案。",
+      "evidence_refs": [
+        "p028",
+        "p029",
+        "p030",
+        "p012",
+        "p013",
+        "p027",
+        "p001",
+        "p004",
+        "p014",
+        "p019",
+        "p020",
+        "p022"
+      ],
+      "full_analysis": [
+        {
+          "label": "歷史資產取得流程",
+          "text": "報導指出 Fab 的標準授權需先把素材加入 Fab library，單純下載檔案不夠；當時資產需逐個加入，Epic 表示正在開發一次取得整庫的方式，這不是今日功能狀態聲明。",
+          "evidence_refs": [
+            "p028",
+            "p029",
+            "p030"
+          ]
+        },
+        {
+          "label": "製作交接影響",
+          "text": "2024 年 Fab 取得的素材可依標準授權用於各引擎與工具，包括商業專案；Bridge 取得的素材仍按舊 Epic Content License，只允許免費用於 Unreal Engine，因此同一份掃描的取得管道會影響使用範圍。",
+          "evidence_refs": [
+            "p012",
+            "p013",
+            "p027"
+          ]
+        },
+        {
+          "label": "歷史時效限制",
+          "text": "文中的免費期限為 2024 年底、2025 年起收費，是當年政策紀錄，不是今天的價格判斷；此文也混有 11 月 Bridge 恢復下載的後續更新，採用時必須區分取得日期、管道與當時適用授權。",
+          "evidence_refs": [
+            "p001",
+            "p004",
+            "p014",
+            "p019",
+            "p020",
+            "p022"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p028",
+          "p029",
+          "p030",
+          "p012",
+          "p013",
+          "p027",
+          "p001",
+          "p004",
+          "p014",
+          "p019",
+          "p020",
+          "p022"
+        ]
+      }
+    },
+    "3dnchu-auto-car-animator-blender": {
+      "source_url": "https://3dnchu.com/archives/auto-car-animator-blender",
+      "source_published_at": "2023-09-02",
+      "source_evidence_sha256": "1ab08db0a5c04cedc65a5624a09400f97fe2fe2ab10e5f9a1e8e18ec67689594",
+      "reviewed_on": "2026-11-08",
+      "title": "歷史參考｜Auto Car Animator：用 Geometry Nodes 控制車輛走向與漂移",
+      "summary": "2023 年 Auto Car Animator 以 Blender Geometry Nodes 建立車輛動畫，提供輪位與車身調整、最大漂移旋轉及滑移量控制，並以箭頭介面顯示前進和轉彎方向；當時支援 Blender 3.6x。",
+      "evidence_refs": [
+        "p001",
+        "p002",
+        "p003",
+        "p004",
+        "p005",
+        "p007",
+        "p006"
+      ],
+      "full_analysis": [
+        {
+          "label": "車輛動畫工作流",
+          "text": "系統將車輛 rig 與動畫控制包成 Geometry Nodes，來源表示可用簡單設定讓車輛動起來；輪位可自訂，車身會依輪位調整，不必先手動搭建傳統車輛綁定。",
+          "evidence_refs": [
+            "p001",
+            "p002",
+            "p003"
+          ]
+        },
+        {
+          "label": "製作控制價值",
+          "text": "藝術家可設定最大漂移旋轉與滑移量，取得所需漂移表現；箭頭式介面則標示行進和轉向方向，適合把操控重點放在走向及風格化行車鏡頭，而非複雜車輛力學。",
+          "evidence_refs": [
+            "p004",
+            "p005",
+            "p007"
+          ]
+        },
+        {
+          "label": "歷史版本限制",
+          "text": "來源明確評價車輛行為較簡單，不建議追求寫實者使用；這是 2023 年、Blender 3.6x 的外掛介紹，當時售價為 7 美元，不能推定後續 Blender 版本相容或具有物理精確模擬。",
+          "evidence_refs": [
+            "p006",
+            "p007"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p002",
+          "p003",
+          "p004",
+          "p005",
+          "p007",
+          "p006"
+        ]
+      }
+    },
+    "3dnchu-blender-4-5-lts": {
+      "source_url": "https://3dnchu.com/archives/blender-4-5-lts",
+      "source_published_at": "2025-07-16",
+      "source_evidence_sha256": "0c0f24b587c64766af44ddbf4df5369c3fc60483e86240a6d7f4d54676c696b7",
+      "reviewed_on": "2026-11-08",
+      "title": "歷史參考｜Blender 4.5 LTS：Vulkan、UV 顯示與 Grease Pencil 合成更新",
+      "summary": "2025 年 Blender 4.5 LTS 提供兩年錯誤修復支援，擴充 Vulkan、幾何節點資料匯入與自訂法線，讓各模式都能顯示 UV，並改善 Grease Pencil 分層合成及動畫 SVG 輸出。",
+      "evidence_refs": [
+        "p007",
+        "p008",
+        "p009",
+        "p029",
+        "p030",
+        "p014",
+        "p018",
+        "p024",
+        "p025",
+        "p026",
+        "p001",
+        "p002",
+        "p003",
+        "p005",
+        "p006"
+      ],
+      "full_analysis": [
+        {
+          "label": "幾何與貼圖工作流",
+          "text": "幾何節點新增 CSV、PLY、OpenVDB、STL、OBJ 和文字匯入，以及 Set Mesh Normal 自訂法線；UV 可在各模式查看，透明度與可見性由 overlay 控制，不再只限編輯模式。",
+          "evidence_refs": [
+            "p007",
+            "p008",
+            "p009",
+            "p029",
+            "p030"
+          ]
+        },
+        {
+          "label": "製作整合影響",
+          "text": "Grease Pencil 可把描邊與填色分層交給合成器，支援 SSAA 和動畫 SVG 輸出；合成器亦可使用程序貼圖節點，Denoise 節點支援 GPU，讓二維筆觸與三維場景的後期整合有更多控制。",
+          "evidence_refs": [
+            "p014",
+            "p018",
+            "p024",
+            "p025",
+            "p026"
+          ]
+        },
+        {
+          "label": "歷史版本與導入限制",
+          "text": "這是 2025 年 7 月 LTS 發布紀錄，兩年支援代表持續修復錯誤，不是保證每個外掛都相容；Vulkan 當時未預設開啟，來源要求查看支援平台、驅動與限制，因此升級前仍需按目標硬體驗證。",
+          "evidence_refs": [
+            "p001",
+            "p002",
+            "p003",
+            "p005",
+            "p006"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p007",
+          "p008",
+          "p009",
+          "p029",
+          "p030",
+          "p014",
+          "p018",
+          "p024",
+          "p025",
+          "p026",
+          "p001",
+          "p002",
+          "p003",
+          "p005",
+          "p006"
+        ]
+      }
+    },
+    "3dnchu-mutan-vtuber-making-book": {
+      "source_url": "https://3dnchu.com/archives/mutan-vtuber-making-book",
+      "source_published_at": "2023-08-13",
+      "source_evidence_sha256": "5fff8f58ba9d36848b03f14246ed165855c9dc04252d0fbeb4b5ce873349e6e7",
+      "reviewed_on": "2026-11-08",
+      "title": "歷史參考｜MUTAN VTuber 製作書：設計、模型到 HumanIK 與 Unity Toon",
+      "summary": "2023 年出版的 MUTAN VTuber 製作書以書中 VTuber 角色為案例，涵蓋設計溝通、建模貼圖、Maya HumanIK 綁定與蒙皮，以及 Unity Humanoid 結構和 Unity Chan Toon Shader 2.0 外觀設定。",
+      "evidence_refs": [
+        "p008",
+        "p009",
+        "p001",
+        "p003",
+        "p004"
+      ],
+      "full_analysis": [
+        {
+          "label": "角色製作流程",
+          "text": "章節從角色設定與設計師 NOCO 的往返溝通開始，接續臉部、全身、服裝及配件建模，解說 UV 展開與貼圖繪製，也記錄在有限工期內提升模型品質的回饋和調整。",
+          "evidence_refs": [
+            "p008",
+            "p009"
+          ]
+        },
+        {
+          "label": "引擎製作交接",
+          "text": "綁定以 Maya 內建 HumanIK 為基礎，結構符合 Unity Humanoid，目標包含讓 VRChat 易於使用；shader 章節則從 Unity 資料準備一路到 Unity Chan Toon Shader 2.0 的最終外觀。",
+          "evidence_refs": [
+            "p009"
+          ]
+        },
+        {
+          "label": "歷史教材限制",
+          "text": "這是 2023 年 8 月 31 日出版、440 頁的紙本教材，不是新版軟體功能公告；來源沒有說明今日 Unity、VRChat 或 shader 版本相容性，也沒有列出可下載的完整角色資產，不能將目錄當成現成管線交付物。",
+          "evidence_refs": [
+            "p001",
+            "p003",
+            "p004",
+            "p008",
+            "p009"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p008",
+          "p009",
+          "p001",
+          "p003",
+          "p004"
+        ]
+      }
+    },
+    "3dnchu-sato-strips-as-tokens": {
+      "source_url": "https://3dnchu.com/archives/sato-strips-as-tokens",
+      "source_published_at": "2026-04-15",
+      "source_evidence_sha256": "d5fe94e31abd48adbd58522df849d7b87b6de9a589c022036837a35ecb9aaf38",
+      "reviewed_on": "2026-11-08",
+      "title": "歷史參考｜SATO：以面鏈序列共同生成網格拓樸與 UV 分區",
+      "summary": "2026 年 4 月介紹的 SATO 研究以受三角帶啟發的 token 排序，把 UV 邊界編碼進連續面鏈，讓同一序列可解碼成三角形或四邊形網格，目標是同時保留邊流、結構規律與 UV 分區。",
+      "evidence_refs": [
+        "p002",
+        "p003",
+        "p004",
+        "p005",
+        "p001",
+        "p006",
+        "p007"
+      ],
+      "full_analysis": [
+        {
+          "label": "生成技術流程",
+          "text": "SATO 不只按座標排序或切成獨立 patch，而以顯式編碼 UV 邊界的相連面鏈構成序列；同一表示能解碼三角形或四邊形，因此可以聯合訓練不同型態的網格資料。",
+          "evidence_refs": [
+            "p002",
+            "p003",
+            "p004",
+            "p005"
+          ]
+        },
+        {
+          "label": "角色資產製作潛力",
+          "text": "研究認為大量三角形資料提供基礎結構先驗，高品質四邊形資料補強規律性，並報告幾何、結構和 UV 分區表現較佳；製作上的潛力是減少生成後另做拓樸與 UV 的割裂，但這不等於每個模型均可直接綁定。",
+          "evidence_refs": [
+            "p001",
+            "p002",
+            "p005"
+          ]
+        },
+        {
+          "label": "研究成熟度限制",
+          "text": "這是 2026 年 4 月的歷史介紹，來源當時觀察到程式碼未公開，且沒有列出可重現的硬體、速度或動畫變形測試；不能把 SIGGRAPH 論文及規劃中的服務整合，當成已確認的今日可用產品。",
+          "evidence_refs": [
+            "p006",
+            "p007"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p002",
+          "p003",
+          "p004",
+          "p005",
+          "p001",
+          "p006",
+          "p007"
+        ]
+      }
+    }
+  }
+}
