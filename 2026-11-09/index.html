@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   AI／3D／遊戲美術 Production Intelligence — 2026-11-09
+  </title>
+  <link href="../styles.css?v=20261109-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../shared-components.css?v=20261109-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../daily.css?v=20261109-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="../shared-components.css?v=20261109-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <meta content="2026-11-09 Production Intelligence 日報：以可驗證來源整理 AI、3D 製作、動畫、遊戲引擎與 Blender／DCC 情報。" name="description"/>
+ </head>
+ <body class="archive-page" data-next="" data-previous="2026-11-07" data-report-date="2026-11-09">
+  <nav aria-label="Production Intelligence 分類" class="global-category-nav">
+   <div class="page global-category-nav-inner">
+    <div class="archive-nav-controls">
+     <a class="archive-nav-home" href="../">
+      ← 首頁
+     </a>
+     <div class="archive-nav-date">
+      <a aria-label="前一日日報" class="archive-nav-arrow" href="../2026-11-07/">
+       ←
+      </a>
+      <span>
+       2026-11-09
+      </span>
+     </div>
+    </div>
+    <span aria-hidden="true" class="archive-nav-divider">
+    </span>
+    <a class="global-category-link is-active" href="#top">
+     TOP5
+    </a>
+    <a class="global-category-link" data-category="ai-generation" href="ai-generation/">
+     AI 生成
+    </a>
+    <a class="global-category-link" data-category="3d-production" href="3d-production/">
+     3D 製作
+    </a>
+    <a class="global-category-link" data-category="3d-animation" href="3d-animation/">
+     3D 動作
+    </a>
+    <a class="global-category-link" data-category="engine-art" href="engine-art/">
+     遊戲引擎
+    </a>
+    <a class="global-category-link" data-category="emerging-case" href="emerging-case/">
+     新技術 / Case
+    </a>
+    <a class="global-category-link" data-category="blender-dcc" href="blender-dcc/">
+     Blender / DCC
+    </a>
+    <a class="global-category-link global-history-link" data-global-view="history" href="../history/">
+     歷史日報
+    </a>
+   </div>
+  </nav>
+  <main class="page daily-main">
+   <section class="block" id="top">
+    <div class="block-head">
+     <div>
+      <span>
+       2026-11-09
+      </span>
+      <h2>
+       TOP5
+      </h2>
+     </div>
+    </div>
+    <article class="news daily-card daily-card-top" data-intel-id="cg-channel-new-cg-software-you-may-have-missed-2-november-2026" data-intel-role="card">
+     <div class="news-rank">
+      01
+     </div>
+     <div class="news-main">
+      <div class="meta">
+       <span class="pill">
+        other-dcc
+       </span>
+      </div>
+      <h3>
+       CG 軟體更新整理：聚焦 Character Creator 5.2 的圖生模型與 CC Wrap
+      </h3>
+      <p class="summary">
+       這篇 11 月 2 日更新整理介紹 Character Creator 5.2：可由一至四張參考圖產生模型，使用 Tripo 與混元模型，另以 CC Wrap 將自製或 AI 人形網格轉成 CC3+／CC5 HD，並在 wrapping 後自動綁定。
+      </p>
+      <figure class="case-preview daily-visual" data-intel-id="cg-channel-new-cg-software-you-may-have-missed-2-november-2026" data-intel-role="visual" data-visual-id="cg-channel-new-cg-software-you-may-have-missed-2-november-2026">
+       <a href="https://www.cgchannel.com/2026/11/new-cg-software-you-may-have-missed-2-november-2026" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-11-09/cg-channel-new-cg-software-you-may-have-missed-2-november-2026.jpg"/>
+       </a>
+       <figcaption>
+        <span>
+         SOURCE PREVIEW
+        </span>
+        · Local visual evidence · 點圖開啟原始來源
+       </figcaption>
+      </figure>
+      <div class="quick-impact daily-impact">
+       <span><b class="quick-impact-label">其他 DCC</b> ★★★★☆</span>
+      </div>
+      <details class="canonical-analysis canonical-analysis-brief daily-full-analysis" data-analysis-level="BRIEF">
+       <summary>
+        完整分析
+       </summary>
+       <div class="detail-body canonical-analysis-body brief-analysis-body daily-analysis-body">
+        <h4>
+         角色生成工作流
+        </h4>
+        <p>
+         圖生模型模組支援角色、服裝、髮型與配件；來源列出 Tripo P2.0 處理低模拓樸，Tripo H3.1 與 Hunyuan V3.1 處理高模細節，另有概念圖生成和四邊形重建功能。
+        </p>
+        <h4>
+         角色製作交接
+        </h4>
+        <p>
+         CC Wrap 可把其他 DCC 雕刻或 AI 生成的人形角色轉成 CC3+ 與 CC5 HD 格式，並在 wrapping 完成後自動綁定；同次更新也增加服裝貼合、蒙皮權重控制與 GLB 匯入。
+        </p>
+        <h4>
+         導入限制
+        </h4>
+        <p>
+         CC Wrap 雖支援全身和臉部，來源仍轉述 Reallusion 建議臉部工作使用另購 Headshot；文章沒有提供跨造型角色的包覆成功率或變形測試，因此不能把自動綁定視為所有角色均免修整。
+        </p>
+        <p class="analysis-level-note">
+         BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+        </p>
+       </div>
+      </details>
+      <a class="source daily-source" href="https://www.cgchannel.com/2026/11/new-cg-software-you-may-have-missed-2-november-2026" rel="noopener noreferrer" target="_blank">
+       來源
+      </a>
+     </div>
+    </article>
+    <article class="news daily-card daily-card-top" data-intel-id="cg-channel-epic-has-made-megascans-free-again-for-good-this-time" data-intel-role="card">
+     <div class="news-rank">
+      02
+     </div>
+     <div class="news-main">
+      <div class="meta">
+       <span class="pill">
+        environment-production
+       </span>
+      </div>
+      <h3>
+       Megascans 再次免費：Fab 將分批調整資產價格，預計 11 月 12 日完成
+      </h3>
+      <p class="summary">
+       CG Channel 11 月 6 日報導，Epic 正把超過 23,000 項 Megascans 掃描資產改為免費，Fab 列表預計至 11 月 12 日完成調整；Quixel 公告亦稱更新條款，允許 Megascans 與 Megaplants 用於 AI 訓練。
+      </p>
+      <figure class="case-preview daily-visual" data-intel-id="cg-channel-epic-has-made-megascans-free-again-for-good-this-time" data-intel-role="visual" data-visual-id="cg-channel-epic-has-made-megascans-free-again-for-good-this-time">
+       <a href="https://www.cgchannel.com/2026/11/epic-has-made-megascans-free-again-for-good-this-time" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+        <img alt="SOURCE CARD preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-11-09/cg-channel-epic-has-made-megascans-free-again-for-good-this-time.svg"/>
+       </a>
+       <figcaption>
+        <span>
+         SOURCE CARD
+        </span>
+        · Generated source card · 點圖開啟原始來源
+       </figcaption>
+      </figure>
+      <div class="quick-impact daily-impact">
+       <span><b class="quick-impact-label">場景製作</b> ★★★★☆</span>
+      </div>
+      <details class="canonical-analysis canonical-analysis-brief daily-full-analysis" data-analysis-level="BRIEF">
+       <summary>
+        完整分析
+       </summary>
+       <div class="detail-body canonical-analysis-body brief-analysis-body daily-analysis-body">
+        <h4>
+         資產取得流程
+        </h4>
+        <p>
+         這次資產透過 Fab 供應，來源寫明大多數項目已免費，其餘預計 11 月 12 日前完成調價；因此個別資產仍顯示價格時，不能據此認定整個公告失效，也不能宣稱今天全部都已免費。
+        </p>
+        <h4>
+         製作素材價值
+        </h4>
+        <p>
+         資料庫涵蓋植物、建築、道具等超過 8,000 項實物掃描，以及約 11,000 項材質與貼圖，供遊戲、建築視覺化與特效使用；報導另稱 2025 年起購買的商用資產將退至 Epic 帳戶餘額，並非現金退款。
+        </p>
+        <h4>
+         授權與判斷限制
+        </h4>
+        <p>
+         Quixel 公告稱允許 AI 訓練，報導觀察到 Fab 列表的 AI 使用標示已更新，但也指出標準授權文字似乎未變。這是報導與公告的描述，實際用途仍須核對下載當下條款，不能推論所有第三方 Fab 資產都適用。
+        </p>
+        <p class="analysis-level-note">
+         BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+        </p>
+       </div>
+      </details>
+      <a class="source daily-source" href="https://www.cgchannel.com/2026/11/epic-has-made-megascans-free-again-for-good-this-time" rel="noopener noreferrer" target="_blank">
+       來源
+      </a>
+     </div>
+    </article>
+    <article class="news daily-card daily-card-top" data-intel-id="80-level-recreating-vintage-dynamite-blasting-machine-in-3d" data-intel-role="card">
+     <div class="news-rank">
+      03
+     </div>
+     <div class="news-main">
+      <div class="meta">
+       <span class="pill">
+        rendering
+       </span>
+      </div>
+      <h3>
+       復古道具製作拆解：Plasticity 建形、木材雕刻與分層材質
+      </h3>
+      <p class="summary">
+       Kyryl Zlotnyk 分享復古裝置的遊戲道具流程：由實物尺寸參考建立 CAD 草模，經 ZBrush 雕刻、Blender 低模修整、RizomUV 展 UV，再於 Marmoset 烘焙及 Painter 製作木、金屬與皮革材質。
+      </p>
+      <figure class="case-preview daily-visual" data-intel-id="80-level-recreating-vintage-dynamite-blasting-machine-in-3d" data-intel-role="visual" data-visual-id="80-level-recreating-vintage-dynamite-blasting-machine-in-3d">
+       <a href="https://80.lv/articles/recreating-vintage-dynamite-blasting-machine-in-3d" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-11-09/80-level-recreating-vintage-dynamite-blasting-machine-in-3d.jpg"/>
+       </a>
+       <figcaption>
+        <span>
+         SOURCE PREVIEW
+        </span>
+        · Local visual evidence · 點圖開啟原始來源
+       </figcaption>
+      </figure>
+      <div class="quick-impact daily-impact">
+       <span><b class="quick-impact-label">渲染</b> ★★★★☆</span>
+      </div>
+      <details class="canonical-analysis canonical-analysis-brief daily-full-analysis" data-analysis-level="BRIEF">
+       <summary>
+        完整分析
+       </summary>
+       <div class="detail-body canonical-analysis-body brief-analysis-body daily-analysis-body">
+        <h4>
+         道具製作流程
+        </h4>
+        <p>
+         作者先依拍賣網站的尺寸在 Plasticity 建立草模，線纜和皮帶另用 Blender 曲線製作；木板經 ZBrush 改形後重新拓樸，木柄孔洞的著色則從無孔副本轉移法線修正。
+        </p>
+        <h4>
+         貼圖製作控制
+        </h4>
+        <p>
+         線纜用重複圓柱段與 trim sheet 節省紋理空間，木板烘焙 Object ID 方便分區遮罩；Painter 以掃描木材、HSL、Anchor Point、磨損與底部受潮變色建立差異，而非讓每片木板完全相同。
+        </p>
+        <h4>
+         資產規格與限制
+        </h4>
+        <p>
+         主體用單張 4K 貼圖組，另一組為 4K×2K，貼花與透明細節另用 1K；這是約六個月個人作品的規格，來源未提供遊戲引擎幀率或效能預算，不能把其展示品質直接等同所有平台可用。
+        </p>
+        <p class="analysis-level-note">
+         BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+        </p>
+       </div>
+      </details>
+      <a class="source daily-source" href="https://80.lv/articles/recreating-vintage-dynamite-blasting-machine-in-3d" rel="noopener noreferrer" target="_blank">
+       來源
+      </a>
+     </div>
+    </article>
+    <article class="news daily-card daily-card-top" data-intel-id="cg-channel-tutorial-creating-efficient-digital-doubles-for-vfx" data-intel-role="card">
+     <div class="news-rank">
+      04
+     </div>
+     <div class="news-main">
+      <div class="meta">
+       <span class="pill">
+        production-workflow
+       </span>
+      </div>
+      <h3>
+       歷史參考｜數位替身課程：掃描整理、Wrap 對位與服裝重建
+      </h3>
+      <p class="summary">
+       2024 年 Pat Imrie 的三小時課程示範以 Maya、ZBrush 與 Wrap 製作視效數位替身：整理掃描資料、對齊基礎網格、重建服裝，再建立簡單 rig 並投射及測試貼圖供部門交接。
+      </p>
+      <figure class="case-preview daily-visual" data-intel-id="cg-channel-tutorial-creating-efficient-digital-doubles-for-vfx" data-intel-role="visual" data-visual-id="cg-channel-tutorial-creating-efficient-digital-doubles-for-vfx">
+       <a href="https://www.cgchannel.com/2024/09/tutorial-creating-efficient-digital-doubles-for-vfx" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-11-09/cg-channel-tutorial-creating-efficient-digital-doubles-for-vfx.jpg"/>
+       </a>
+       <figcaption>
+        <span>
+         SOURCE PREVIEW
+        </span>
+        · Local visual evidence · 點圖開啟原始來源
+       </figcaption>
+      </figure>
+      <div class="quick-impact daily-impact">
+       <span><b class="quick-impact-label">製作流程</b> ★★★☆☆</span>
+      </div>
+      <details class="canonical-analysis canonical-analysis-brief daily-full-analysis" data-analysis-level="BRIEF">
+       <summary>
+        完整分析
+       </summary>
+       <div class="detail-body canonical-analysis-body brief-analysis-body daily-analysis-body">
+        <h4>
+         角色資產工作流
+        </h4>
+        <p>
+         課程從 Clear Angle Studios 的掃描資料開始，先整理成能用於多個細節層級的資產，再用 Wrap 把基礎網格貼合掃描，接著以 Maya 和 ZBrush 重建服裝。
+        </p>
+        <h4>
+         製作交接價值
+        </h4>
+        <p>
+         作者示範基本 rig 以便重擺替身姿勢，並投射、測試貼圖，確認交給後續部門前的資產狀態；課程另提供所用基礎拓樸的 OBJ 與 FBX，方便對照拓樸處理。
+        </p>
+        <h4>
+         歷史教材限制
+        </h4>
+        <p>
+         這是 2024 年教材，適合未做過數位替身的美術；來源沒有列出特定軟體版本，也沒有承諾提供原始掃描或完整動畫綁定。三小時製程介紹不應視為所有掃描都能自動達到可交付品質。
+        </p>
+        <p class="analysis-level-note">
+         BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+        </p>
+       </div>
+      </details>
+      <a class="source daily-source" href="https://www.cgchannel.com/2024/09/tutorial-creating-efficient-digital-doubles-for-vfx" rel="noopener noreferrer" target="_blank">
+       來源
+      </a>
+     </div>
+    </article>
+    <article class="news daily-card daily-card-top" data-intel-id="cg-channel-reallusion-releases-character-creator-5" data-intel-role="card">
+     <div class="news-rank">
+      05
+     </div>
+     <div class="news-main">
+      <div class="meta">
+       <span class="pill">
+        character-production
+       </span>
+      </div>
+      <h3>
+       歷史參考｜Character Creator 5：HD 基礎角色、ActorMixer 與 MetaHuman 交接
+      </h3>
+      <p class="summary">
+       2025 年 Character Creator 5 加入支援兩級細分的 HD 基礎角色、最高 8K 貼圖與位移細節，ActorMixer 可非破壞混合最多六個角色，並擴充 MetaHuman 相容的骨架及臉部動畫交接。
+      </p>
+      <figure class="case-preview daily-visual" data-intel-id="cg-channel-reallusion-releases-character-creator-5" data-intel-role="visual" data-visual-id="cg-channel-reallusion-releases-character-creator-5">
+       <a href="https://www.cgchannel.com/2025/08/reallusion-releases-character-creator-5" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-11-09/cg-channel-reallusion-releases-character-creator-5.jpg"/>
+       </a>
+       <figcaption>
+        <span>
+         SOURCE PREVIEW
+        </span>
+        · Local visual evidence · 點圖開啟原始來源
+       </figcaption>
+      </figure>
+      <div class="quick-impact daily-impact">
+       <span><b class="quick-impact-label">角色製作</b> ★★★☆☆</span>
+      </div>
+      <details class="canonical-analysis canonical-analysis-brief daily-full-analysis" data-analysis-level="BRIEF">
+       <summary>
+        完整分析
+       </summary>
+       <div class="detail-body canonical-analysis-body brief-analysis-body daily-analysis-body">
+        <h4>
+         角色製作工作流
+        </h4>
+        <p>
+         HD 基礎角色提供兩級細分，morph 系統同步支援；皮膚可用位移而非法線表現立體細節。ActorMixer 可混合整體身形、頭部或單一五官，但進階功能屬另購 Pro 外掛。
+        </p>
+        <h4>
+         動畫製作影響
+        </h4>
+        <p>
+         HD 臉部 profile 與 MetaHuman 表情系統相容，UE 匯出可用最佳化骨架及綁定姿勢；來源示範 Sequencer 中交換角色不用重定向動畫，MetaHuman Animator 臉部資料亦可透過 CSV 回到 CC5 修整。
+        </p>
+        <h4>
+         歷史版本與成本限制
+        </h4>
+        <p>
+         這是 2025 年版本報導，HD Ultimate Morphs 和 ActorMixer Pro 均需另購；當時 Maya 整合只支援 2024／2025、未支援 2026，且 Maya 與 Marmoset 新外掛僅限 Windows，不能由核心功能推定所有 DCC 都完整相容。
+        </p>
+        <p class="analysis-level-note">
+         BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+        </p>
+       </div>
+      </details>
+      <a class="source daily-source" href="https://www.cgchannel.com/2025/08/reallusion-releases-character-creator-5" rel="noopener noreferrer" target="_blank">
+       來源
+      </a>
+     </div>
+    </article>
+   </section>
+   <section class="block daily-more" id="more">
+    <div class="block-head">
+     <div>
+      <span>
+       2026-11-09
+      </span>
+      <h2>
+       當日其他資訊
+      </h2>
+     </div>
+    </div>
+    <article class="daily-card daily-card-more category-news" data-intel-id="cg-channel-lightwave-digital-releases-lightwave-2024" data-intel-role="card">
+     <div class="meta">
+      <span class="pill">
+       animation
+      </span>
+     </div>
+     <h3>
+      歷史參考｜LightWave 2024.1：模組化角色綁定、動畫拷貝與景深控制
+     </h3>
+     <p class="summary">
+      這篇 2024 年 LightWave 更新報導介紹整合 RHiggit 角色綁定、Layout 內權重繪製及小型液體模擬；2024.1 進一步加入角色間動作拷貝、選定動畫通道貼上，以及 Octane 視窗景深控制。
+     </p>
+     <figure class="case-preview daily-visual" data-intel-id="cg-channel-lightwave-digital-releases-lightwave-2024" data-intel-role="visual" data-visual-id="cg-channel-lightwave-digital-releases-lightwave-2024">
+      <a href="https://www.cgchannel.com/2024/09/lightwave-digital-releases-lightwave-2024" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+       <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-11-09/cg-channel-lightwave-digital-releases-lightwave-2024.jpg"/>
+      </a>
+      <figcaption>
+       <span>
+        SOURCE PREVIEW
+       </span>
+       · Local visual evidence · 點圖開啟原始來源
+      </figcaption>
+     </figure>
+     <div class="quick-impact daily-impact">
+      <span><b class="quick-impact-label">動畫</b> ★★★☆☆</span>
+     </div>
+     <details class="canonical-analysis canonical-analysis-brief daily-full-analysis" data-analysis-level="BRIEF">
+      <summary>
+       完整分析
+      </summary>
+      <div class="detail-body canonical-analysis-body brief-analysis-body daily-analysis-body">
+       <h4>
+        角色動畫工作流
+       </h4>
+       <p>
+        RHiggit 提供半自動模組化角色／生物 rig，WeightBrush 則讓角色權重直接在 Layout 繪製；2024.1 的 Motion Paste Advanced 可只取代指定通道，多物件動作也可儲存後套到新選取物件。
+       </p>
+       <h4>
+        製作整合價值
+       </h4>
+       <p>
+        Kit Surfacer 用於把線上資產包半自動轉換成 LightWave 材質，OpenVDB 更新支援從 Turbulence 輸出體積資料；Octane DOF Range 讓藝術家在視窗移動控制器調整焦點位置與清晰範圍。
+       </p>
+       <h4>
+        歷史版本限制
+       </h4>
+       <p>
+        2024.1 當時支援 Windows 10 以上及指定 macOS 版本，但 Flow 基於 Newton Dynamics 與 NVIDIA FleX，只能用於 Windows；Unreal Bridge 當時列出的支援為 UE5.4，不能把這份舊版說明當成今日所有平台相容性。
+       </p>
+       <p class="analysis-level-note">
+        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+       </p>
+      </div>
+     </details>
+     <a class="source daily-source" href="https://www.cgchannel.com/2024/09/lightwave-digital-releases-lightwave-2024" rel="noopener noreferrer" target="_blank">
+      來源
+     </a>
+    </article>
+    <article class="daily-card daily-card-more category-news" data-intel-id="cg-channel-epic-games-has-made-megascans-free-to-all-but-only-until-the" data-intel-role="card">
+     <div class="meta">
+      <span class="pill">
+       production-workflow
+      </span>
+     </div>
+     <h3>
+      歷史參考｜2024 年 Megascans 免費窗口與 Bridge／Fab 授權差異
+     </h3>
+     <p class="summary">
+      這篇 2024 年報導記錄 Fab 上線時的 Megascans 免費窗口：當時開放至年底、可用於各引擎；由 Bridge 取得的舊授權與在 Fab 加入素材庫的授權不同，不能只看是否已下載檔案。
+     </p>
+     <figure class="case-preview daily-visual" data-intel-id="cg-channel-epic-games-has-made-megascans-free-to-all-but-only-until-the" data-intel-role="visual" data-visual-id="cg-channel-epic-games-has-made-megascans-free-to-all-but-only-until-the">
+      <a href="https://www.cgchannel.com/2024/10/epic-games-has-made-megascans-free-to-all-but-only-until-the-end-of-2024" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+       <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-11-09/cg-channel-epic-games-has-made-megascans-free-to-all-but-only-until-the.jpg"/>
+      </a>
+      <figcaption>
+       <span>
+        SOURCE PREVIEW
+       </span>
+       · Local visual evidence · 點圖開啟原始來源
+      </figcaption>
+     </figure>
+     <div class="quick-impact daily-impact">
+      <span><b class="quick-impact-label">製作流程</b> ★★★☆☆</span>
+     </div>
+     <details class="canonical-analysis canonical-analysis-brief daily-full-analysis" data-analysis-level="BRIEF">
+      <summary>
+       完整分析
+      </summary>
+      <div class="detail-body canonical-analysis-body brief-analysis-body daily-analysis-body">
+       <h4>
+        歷史資產取得流程
+       </h4>
+       <p>
+        報導指出 Fab 的標準授權需先把素材加入 Fab library，單純下載檔案不夠；當時資產需逐個加入，Epic 表示正在開發一次取得整庫的方式，這不是今日功能狀態聲明。
+       </p>
+       <h4>
+        製作交接影響
+       </h4>
+       <p>
+        2024 年 Fab 取得的素材可依標準授權用於各引擎與工具，包括商業專案；Bridge 取得的素材仍按舊 Epic Content License，只允許免費用於 Unreal Engine，因此同一份掃描的取得管道會影響使用範圍。
+       </p>
+       <h4>
+        歷史時效限制
+       </h4>
+       <p>
+        文中的免費期限為 2024 年底、2025 年起收費，是當年政策紀錄，不是今天的價格判斷；此文也混有 11 月 Bridge 恢復下載的後續更新，採用時必須區分取得日期、管道與當時適用授權。
+       </p>
+       <p class="analysis-level-note">
+        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+       </p>
+      </div>
+     </details>
+     <a class="source daily-source" href="https://www.cgchannel.com/2024/10/epic-games-has-made-megascans-free-to-all-but-only-until-the-end-of-2024" rel="noopener noreferrer" target="_blank">
+      來源
+     </a>
+    </article>
+    <article class="daily-card daily-card-more category-news" data-intel-id="3dnchu-character-creator-3-review" data-intel-role="card">
+     <div class="meta">
+      <span class="pill">
+       character-production
+      </span>
+     </div>
+     <h3>
+      歷史參考｜Character Creator 3 實測：角色預設混合、照片頭部與 FBX 交接
+     </h3>
+     <p class="summary">
+      2021 年這篇 CC3 實測以預設與形態滑桿建立角色，再試用 Headshot 從正面照片產生頭部；作者記錄輪廓和貼圖需修整，以及 FBX 匯入 Blender 後部分材質需調整的實際結果。
+     </p>
+     <figure class="case-preview daily-visual" data-intel-id="3dnchu-character-creator-3-review" data-intel-role="visual" data-visual-id="3dnchu-character-creator-3-review">
+      <a href="https://3dnchu.com/archives/character-creator-3-review" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+       <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-11-09/3dnchu-character-creator-3-review.jpg"/>
+      </a>
+      <figcaption>
+       <span>
+        SOURCE PREVIEW
+       </span>
+       · Local visual evidence · 點圖開啟原始來源
+      </figcaption>
+     </figure>
+     <div class="quick-impact daily-impact">
+      <span><b class="quick-impact-label">角色製作</b> ★★★☆☆</span>
+     </div>
+     <details class="canonical-analysis canonical-analysis-brief daily-full-analysis" data-analysis-level="BRIEF">
+      <summary>
+       完整分析
+      </summary>
+      <div class="detail-body canonical-analysis-body brief-analysis-body daily-analysis-body">
+       <h4>
+        角色製作流程
+       </h4>
+       <p>
+        CC3+ 基礎角色改善拓樸、皮膚綁定與高細節貼圖用 UV，作者以預設混合體型並套用皮膚和妝容套件；Headshot 可從單張照片建立頭部，還能投射原圖輔助修正輪廓。
+       </p>
+       <h4>
+        製作交接觀察
+       </h4>
+       <p>
+        FBX 匯出提供 Maya、Blender、UE4 和 Unity 預設，作者實際匯入 Blender 後骨架大致正常，但部分材質設定需要修改；因此這是具體交接案例，不是所有場景都能無損轉移的保證。
+       </p>
+       <h4>
+        歷史實測限制
+       </h4>
+       <p>
+        本文是 2021 年個人測試，作者認為照片生成仍需輪廓與 Photoshop 貼圖修正，初始髮型和服飾也不足，需另購或自製；這些是作者的經驗與當年內容包狀態，不能概括為今日版本表現。
+       </p>
+       <p class="analysis-level-note">
+        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+       </p>
+      </div>
+     </details>
+     <a class="source daily-source" href="https://3dnchu.com/archives/character-creator-3-review" rel="noopener noreferrer" target="_blank">
+      來源
+     </a>
+    </article>
+    <article class="daily-card daily-card-more category-news" data-intel-id="3dnchu-character-creator-4-iclone8" data-intel-role="card">
+     <div class="meta">
+      <span class="pill">
+       character-production
+      </span>
+     </div>
+     <h3>
+      歷史參考｜CC4 與 iClone 8：角色最佳化、即時導演與 USD 連接
+     </h3>
+     <p class="summary">
+      2022 年發布的 Character Creator 4 與 iClone 8，分別更新角色綁定、表情 blendshape、InstaLOD 最佳化，以及 Motion Director 即時角色控制、視覺效果與 NVIDIA Omniverse／USD 連接。
+     </p>
+     <figure class="case-preview daily-visual" data-intel-id="3dnchu-character-creator-4-iclone8" data-intel-role="visual" data-visual-id="3dnchu-character-creator-4-iclone8">
+      <a href="https://3dnchu.com/archives/character-creator-4-iclone8" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+       <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-11-09/3dnchu-character-creator-4-iclone8.jpg"/>
+      </a>
+      <figcaption>
+       <span>
+        SOURCE PREVIEW
+       </span>
+       · Local visual evidence · 點圖開啟原始來源
+      </figcaption>
+     </figure>
+     <div class="quick-impact daily-impact">
+      <span><b class="quick-impact-label">角色製作</b> ★★★☆☆</span>
+     </div>
+     <details class="canonical-analysis canonical-analysis-brief daily-full-analysis" data-analysis-level="BRIEF">
+      <summary>
+       完整分析
+      </summary>
+      <div class="detail-body canonical-analysis-body brief-analysis-body daily-analysis-body">
+       <h4>
+        角色資產工作流
+       </h4>
+       <p>
+        CC4 把角色產生、匯入和客製化集中處理，更新主要 rig 相容性、動畫預覽及自訂表情 blendshape；InstaLOD 用於資產匯入、道具編輯和最佳化，並非只處理人物外觀。
+       </p>
+       <h4>
+        動畫製作方式
+       </h4>
+       <p>
+        iClone 8 的 Motion Director 可在即時場景操控角色、觸發動作並搭配動態攝影機；來源另列出手腳接觸目標鎖定，以及遊戲手把、三維滑鼠與快捷鍵等互動控制方式。
+       </p>
+       <h4>
+        歷史整合與限制
+       </h4>
+       <p>
+        報導列出連接 Omniverse 的 RTX GPU 路徑追蹤及 USD 資料架構，但當時軟體只支援 Windows；文中的 CC4 單售與組合價格是 2022 年紀錄，不表示今日授權或所有輸出格式的相容性。
+       </p>
+       <p class="analysis-level-note">
+        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+       </p>
+      </div>
+     </details>
+     <a class="source daily-source" href="https://3dnchu.com/archives/character-creator-4-iclone8" rel="noopener noreferrer" target="_blank">
+      來源
+     </a>
+    </article>
+    <article class="daily-card daily-card-more category-news" data-intel-id="3dnchu-headshot-2" data-intel-role="card">
+     <div class="meta">
+      <span class="pill">
+       character-production
+      </span>
+     </div>
+     <h3>
+      歷史參考｜Headshot 2：由照片或掃描網格建立可綁定頭部
+     </h3>
+     <p class="summary">
+      2023 年 Headshot 2 是 Character Creator 的 AI 外掛，可從照片、行動掃描或雕刻網格建立角色，補足不完整掃描區域，並支援高模法線烘焙、頂點色轉貼圖和 UV 重映射。
+     </p>
+     <figure class="case-preview daily-visual" data-intel-id="3dnchu-headshot-2" data-intel-role="visual" data-visual-id="3dnchu-headshot-2">
+      <a href="https://3dnchu.com/archives/headshot-2" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+       <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-11-09/3dnchu-headshot-2.jpg"/>
+      </a>
+      <figcaption>
+       <span>
+        SOURCE PREVIEW
+       </span>
+       · Local visual evidence · 點圖開啟原始來源
+      </figcaption>
+     </figure>
+     <div class="quick-impact daily-impact">
+      <span><b class="quick-impact-label">角色製作</b> ★★★☆☆</span>
+     </div>
+     <details class="canonical-analysis canonical-analysis-brief daily-full-analysis" data-analysis-level="BRIEF">
+      <summary>
+       完整分析
+      </summary>
+      <div class="detail-body canonical-analysis-body brief-analysis-body daily-analysis-body">
+       <h4>
+        頭部生成流程
+       </h4>
+       <p>
+        來源介紹以照片或三維網格為輸入，經五步流程將靜態模型轉為完整綁定角色；遇到不完整掃描時，工具會保留臉與耳等優先區域，並以 AI 補足缺少的部分。
+       </p>
+       <h4>
+        角色製作影響
+       </h4>
+       <p>
+        高模法線烘焙、頂點色轉貼圖和 UV 重映射把掃描或雕刻資料轉入角色貼圖流程。推論上，這些功能能減少手動搬移表面資訊的工作，但來源沒有提供節省工時的實測數字。
+       </p>
+       <h4>
+        歷史產品限制
+       </h4>
+       <p>
+        本文發布於 2023 年，Headshot 2 需要以 Character Creator 外掛形式使用；文中的單售 199 美元、三十天試用與六月三十日前升級優惠均屬當年資訊，也不能把宣傳的簡單操作等同所有掃描都免修整。
+       </p>
+       <p class="analysis-level-note">
+        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+       </p>
+      </div>
+     </details>
+     <a class="source daily-source" href="https://3dnchu.com/archives/headshot-2" rel="noopener noreferrer" target="_blank">
+      來源
+     </a>
+    </article>
+    <article class="daily-card daily-card-more category-news" data-intel-id="3dnchu-smart-hair-cc3" data-intel-role="card">
+     <div class="meta">
+      <span class="pill">
+       character-production
+      </span>
+     </div>
+     <h3>
+      歷史參考｜Smart Hair：CC3.4 的髮片組裝、漸層與臉部毛髮
+     </h3>
+     <p class="summary">
+      2021 年 CC3.4 導入 Smart Hair，以卡片式網格製作頭髮、眉毛與鬍鬚，提供漸層色、鏡面變化及組件搭配；作者實際更新後發現，展示的髮型資產仍以額外內容包販售。
+     </p>
+     <figure class="case-preview daily-visual" data-intel-id="3dnchu-smart-hair-cc3" data-intel-role="visual" data-visual-id="3dnchu-smart-hair-cc3">
+      <a href="https://3dnchu.com/archives/smart-hair-cc3" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+       <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-11-09/3dnchu-smart-hair-cc3.jpg"/>
+      </a>
+      <figcaption>
+       <span>
+        SOURCE PREVIEW
+       </span>
+       · Local visual evidence · 點圖開啟原始來源
+      </figcaption>
+     </figure>
+     <div class="quick-impact daily-impact">
+      <span><b class="quick-impact-label">角色製作</b> ★★★☆☆</span>
+     </div>
+     <details class="canonical-analysis canonical-analysis-brief daily-full-analysis" data-analysis-level="BRIEF">
+      <summary>
+       完整分析
+      </summary>
+      <div class="detail-body canonical-analysis-body brief-analysis-body daily-analysis-body">
+       <h4>
+        髮型製作流程
+       </h4>
+       <p>
+        Smart Hair 採卡片式頭髮網格，讓使用者組合不同頭髮與鬍鬚元件形成造型；專用 shader 提供漸層染色和鏡面變化，眉毛與鬍鬚則可隨臉部動作動態適應。
+       </p>
+       <h4>
+        即時製作取向
+       </h4>
+       <p>
+        來源把小型網格與較經濟的貼圖解析度，列為這套髮片方案適合即時繪製的理由，目標包含遊戲和電影數位人；這是設計取向說明，文章沒有列出具體面數、記憶體或每秒幀數測試。
+       </p>
+       <h4>
+        歷史內容與成本限制
+       </h4>
+       <p>
+        這是 2021 年 CC3.4 更新介紹，作者原本期待更新即能使用展示髮型，之後確認它們需另購內容包；所以軟體具備 Smart Hair 功能，不等於示範素材全數包含，文內舊系統需求也不是今日規格。
+       </p>
+       <p class="analysis-level-note">
+        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+       </p>
+      </div>
+     </details>
+     <a class="source daily-source" href="https://3dnchu.com/archives/smart-hair-cc3" rel="noopener noreferrer" target="_blank">
+      來源
+     </a>
+    </article>
+    <article class="daily-card daily-card-more category-news" data-intel-id="3dnchu-ue5-lut-for-sp-alexandrealves" data-intel-role="card">
+     <div class="meta">
+      <span class="pill">
+       substance
+      </span>
+     </div>
+     <h3>
+      歷史參考｜UE5／Painter 色彩對照：LUT、OCIO 與三維色卡
+     </h3>
+     <p class="summary">
+      2023 年 Alexandre Alves 分享讓 UE5 與 Substance 3D Painter 色彩更接近的 LUT、三維 ColorChecker 色卡和製作解說；文章列出 EXR 匯入及 Color Profile 設定，也區分 sRGB 加 LUT 與 ACES sRGB 的比較。
+     </p>
+     <figure class="case-preview daily-visual" data-intel-id="3dnchu-ue5-lut-for-sp-alexandrealves" data-intel-role="visual" data-visual-id="3dnchu-ue5-lut-for-sp-alexandrealves">
+      <a href="https://3dnchu.com/archives/ue5-lut-for-sp-alexandrealves" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+       <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-11-09/3dnchu-ue5-lut-for-sp-alexandrealves.jpg"/>
+      </a>
+      <figcaption>
+       <span>
+        SOURCE PREVIEW
+       </span>
+       · Local visual evidence · 點圖開啟原始來源
+      </figcaption>
+     </figure>
+     <div class="quick-impact daily-impact">
+      <span><b class="quick-impact-label">Substance</b> ★★☆☆☆</span>
+     </div>
+     <details class="canonical-analysis canonical-analysis-brief daily-full-analysis" data-analysis-level="BRIEF">
+      <summary>
+       完整分析
+      </summary>
+      <div class="detail-body canonical-analysis-body brief-analysis-body daily-analysis-body">
+       <h4>
+        貼圖預覽工作流
+       </h4>
+       <p>
+        先把 EXR 拖入專案，匯入類型設為 colorlut，再從資產庫拖至 Viewport Settings 的 Color Profile；來源說明不需要啟用對數色調映射，並列出可選的 OpenColorIO 色彩管理設定。
+       </p>
+       <h4>
+        跨引擎製作對照
+       </h4>
+       <p>
+        作者以三維 ColorChecker／Macbeth 色卡檢查不同引擎的色彩，另解說自製 LUT 的方法；在他當時的測試中，sRGB 配合 LUT 比單用 ACES sRGB 更接近目標，這不是對所有場景的精準匹配承諾。
+       </p>
+       <h4>
+        歷史流程限制
+       </h4>
+       <p>
+        此文是 2023 年分享，作者當時仍在製作 UE5 外觀用 OCIO 設定，且沒有確定完成時間；已分享的 LUT 與色卡不能被寫成完整 OCIO 組態已交付，文章也未列出新版本軟體相容測試。
+       </p>
+       <p class="analysis-level-note">
+        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+       </p>
+      </div>
+     </details>
+     <a class="source daily-source" href="https://3dnchu.com/archives/ue5-lut-for-sp-alexandrealves" rel="noopener noreferrer" target="_blank">
+      來源
+     </a>
+    </article>
+   </section>
+  </main>
+  <script src="../daily.js?v=20261109-r1-workspace-v10-history-current-workspace">
+  </script>
+  <script defer="" src="../archive-nav-state.js?v=20261109-r1-workspace-v10-history-current-workspace">
+  </script>
+ </body>
+</html>
