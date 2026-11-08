@@ -1,0 +1,692 @@
+{
+  "date": "2026-11-09",
+  "schema_version": 3,
+  "metadata": {
+    "total_items": 12,
+    "collection_mode": "production-intelligence-preference-v1-hybrid",
+    "collection_contract_effective_date": "2026-09-04",
+    "preference_contract_effective_date": "2026-09-06",
+    "admission_policy_effective_date": "2026-09-15",
+    "collector_runtime": "autonomous-github-collector-v1",
+    "policy_recollect": false,
+    "discovery_windows": [
+      "24h",
+      "7d",
+      "30d",
+      "6m",
+      "evergreen"
+    ],
+    "analysis_level_counts": {
+      "FULL": 0,
+      "BRIEF": 12,
+      "REJECT": 0
+    },
+    "analysis_level_policy": "evidence-depth-tiered; FULL=3-5 source-supported blocks; BRIEF=3 readable source-grounded angles with explicit limits; REJECT=not-publishable",
+    "full_analysis_depth_contract": "v6-tiered-evidence-three-angle-reading",
+    "full_analysis_style_reference": "2026-09-12",
+    "full_analysis_heading_language": "zh-Hant",
+    "editorial": {
+      "contract": "source-grounded-editorial-v1",
+      "style_reference": "2026-09-25",
+      "selection_changed": null,
+      "factual_fallback_allowed": true,
+      "repair_mode": "automatic-source-factual-fallback"
+    },
+    "discovery_coverage": {
+      "fill_ladder_exhausted": true,
+      "backlog_checked": true,
+      "backlog_remaining_eligible": 0,
+      "targeted_refill_performed": true,
+      "quality_first_confirmed": true,
+      "windows": {
+        "24h": {
+          "status": "exhausted",
+          "candidates_found": 0
+        },
+        "7d": {
+          "status": "exhausted",
+          "candidates_found": 5
+        },
+        "30d": {
+          "status": "exhausted",
+          "candidates_found": 1
+        },
+        "6m": {
+          "status": "exhausted",
+          "candidates_found": 0
+        },
+        "evergreen": {
+          "status": "exhausted",
+          "candidates_found": 12
+        }
+      },
+      "category_candidates": {
+        "ai-generation": {
+          "candidates_considered": 0
+        },
+        "3d-production": {
+          "candidates_considered": 9
+        },
+        "3d-animation": {
+          "candidates_considered": 1
+        },
+        "engine-art": {
+          "candidates_considered": 1
+        },
+        "emerging-case": {
+          "candidates_considered": 0
+        },
+        "blender-dcc": {
+          "candidates_considered": 5
+        }
+      },
+      "registered_source_probe": {
+        "performed": true,
+        "initial_selected": [
+          "80-level",
+          "3dnchu",
+          "cgworld-jp",
+          "bilibili-mobile",
+          "cg-channel",
+          "blender-official",
+          "epic-developer-community",
+          "unity-official",
+          "sidefx-official"
+        ],
+        "refill_selected": [
+          "artstation",
+          "gumroad-discover",
+          "xiaohongshu",
+          "autodesk-area",
+          "adobe-substance-3d",
+          "game-developer"
+        ],
+        "refill_batches": 2,
+        "pre_refill_survivors": 12,
+        "post_refill_survivors": 12,
+        "sources": {
+          "80-level": {
+            "status": "checked",
+            "method": "latest-index",
+            "candidates_found": 1,
+            "candidate_ids": [
+              "80-level-recreating-vintage-dynamite-blasting-machine-in-3d"
+            ],
+            "index_pages_checked": 2,
+            "feed_urls_checked": 0,
+            "refill_links_checked": 6,
+            "semantic_expansion_links_checked": 0,
+            "published_links_skipped": 7,
+            "selection_phase": "daily-plan"
+          },
+          "3dnchu": {
+            "status": "checked",
+            "method": "latest-index",
+            "candidates_found": 6,
+            "candidate_ids": [
+              "3dnchu-character-creator-3-review",
+              "3dnchu-character-creator-4-iclone8",
+              "3dnchu-headshot-2",
+              "3dnchu-smart-hair-cc3",
+              "3dnchu-ue5-lut-for-sp-alexandrealves",
+              "3dnchu-uvfactory-for-blender"
+            ],
+            "index_pages_checked": 1,
+            "feed_urls_checked": 2,
+            "refill_links_checked": 14,
+            "semantic_expansion_links_checked": 0,
+            "published_links_skipped": 9,
+            "selection_phase": "daily-plan"
+          },
+          "cgworld-jp": {
+            "status": "checked",
+            "method": "latest-index",
+            "candidates_found": 0,
+            "candidate_ids": [],
+            "index_pages_checked": 2,
+            "feed_urls_checked": 0,
+            "refill_links_checked": 0,
+            "semantic_expansion_links_checked": 0,
+            "published_links_skipped": 1,
+            "selection_phase": "daily-plan"
+          },
+          "bilibili-mobile": {
+            "status": "checked",
+            "method": "latest-index",
+            "candidates_found": 0,
+            "candidate_ids": [],
+            "index_pages_checked": 1,
+            "feed_urls_checked": 0,
+            "refill_links_checked": 0,
+            "semantic_expansion_links_checked": 0,
+            "published_links_skipped": 0,
+            "selection_phase": "daily-plan"
+          },
+          "artstation": {
+            "status": "blocked",
+            "method": "latest-index",
+            "candidates_found": 0,
+            "candidate_ids": [],
+            "reason": "http-403",
+            "index_pages_checked": 0,
+            "feed_urls_checked": 0,
+            "refill_links_checked": 0,
+            "selection_phase": "targeted-refill"
+          },
+          "gumroad-discover": {
+            "status": "checked",
+            "method": "latest-index",
+            "candidates_found": 0,
+            "candidate_ids": [],
+            "index_pages_checked": 1,
+            "feed_urls_checked": 0,
+            "refill_links_checked": 0,
+            "semantic_expansion_links_checked": 0,
+            "published_links_skipped": 0,
+            "selection_phase": "targeted-refill"
+          },
+          "xiaohongshu": {
+            "status": "checked",
+            "method": "latest-index",
+            "candidates_found": 0,
+            "candidate_ids": [],
+            "index_pages_checked": 1,
+            "feed_urls_checked": 0,
+            "refill_links_checked": 0,
+            "semantic_expansion_links_checked": 0,
+            "published_links_skipped": 0,
+            "selection_phase": "targeted-refill"
+          },
+          "cg-channel": {
+            "status": "checked",
+            "method": "latest-index",
+            "candidates_found": 9,
+            "candidate_ids": [
+              "cg-channel-master-creature-animation-for-games",
+              "cg-channel-sparseal-releases-cozyblanket-pro",
+              "cg-channel-new-cg-software-you-may-have-missed-2-november-2026",
+              "cg-channel-watch-image-engines-vfx-breakdown-for-the-mandalorian-and-gr",
+              "cg-channel-epic-has-made-megascans-free-again-for-good-this-time",
+              "cg-channel-tutorial-creating-efficient-digital-doubles-for-vfx",
+              "cg-channel-lightwave-digital-releases-lightwave-2024",
+              "cg-channel-reallusion-releases-character-creator-5",
+              "cg-channel-epic-games-has-made-megascans-free-to-all-but-only-until-the"
+            ],
+            "index_pages_checked": 4,
+            "feed_urls_checked": 2,
+            "refill_links_checked": 16,
+            "semantic_expansion_links_checked": 0,
+            "published_links_skipped": 42,
+            "selection_phase": "daily-plan"
+          },
+          "blender-official": {
+            "status": "checked",
+            "method": "latest-index",
+            "candidates_found": 2,
+            "candidate_ids": [
+              "blender-official-new-in-rigging-fundamentals-training",
+              "blender-official-rigging-fundamentals"
+            ],
+            "index_pages_checked": 5,
+            "feed_urls_checked": 1,
+            "refill_links_checked": 16,
+            "semantic_expansion_links_checked": 5,
+            "published_links_skipped": 15,
+            "selection_phase": "daily-plan"
+          },
+          "epic-developer-community": {
+            "status": "blocked",
+            "method": "latest-index",
+            "candidates_found": 0,
+            "candidate_ids": [],
+            "reason": "http-403",
+            "index_pages_checked": 0,
+            "feed_urls_checked": 0,
+            "refill_links_checked": 0,
+            "selection_phase": "daily-plan"
+          },
+          "unity-official": {
+            "status": "checked",
+            "method": "latest-index",
+            "candidates_found": 0,
+            "candidate_ids": [],
+            "index_pages_checked": 2,
+            "feed_urls_checked": 0,
+            "refill_links_checked": 0,
+            "semantic_expansion_links_checked": 0,
+            "published_links_skipped": 0,
+            "selection_phase": "daily-plan"
+          },
+          "sidefx-official": {
+            "status": "checked",
+            "method": "latest-index",
+            "candidates_found": 0,
+            "candidate_ids": [],
+            "index_pages_checked": 2,
+            "feed_urls_checked": 0,
+            "refill_links_checked": 0,
+            "semantic_expansion_links_checked": 0,
+            "published_links_skipped": 3,
+            "selection_phase": "daily-plan"
+          },
+          "autodesk-area": {
+            "status": "unavailable",
+            "method": "latest-index",
+            "candidates_found": 0,
+            "candidate_ids": [],
+            "reason": "http-503",
+            "index_pages_checked": 0,
+            "feed_urls_checked": 0,
+            "refill_links_checked": 0,
+            "selection_phase": "targeted-refill"
+          },
+          "adobe-substance-3d": {
+            "status": "checked",
+            "method": "latest-index",
+            "candidates_found": 0,
+            "candidate_ids": [],
+            "index_pages_checked": 1,
+            "feed_urls_checked": 0,
+            "refill_links_checked": 0,
+            "semantic_expansion_links_checked": 0,
+            "published_links_skipped": 0,
+            "selection_phase": "targeted-refill"
+          },
+          "game-developer": {
+            "status": "checked",
+            "method": "latest-index",
+            "candidates_found": 0,
+            "candidate_ids": [],
+            "index_pages_checked": 1,
+            "feed_urls_checked": 0,
+            "refill_links_checked": 0,
+            "semantic_expansion_links_checked": 1,
+            "published_links_skipped": 0,
+            "selection_phase": "targeted-refill"
+          }
+        }
+      },
+      "notes": "2026-11-09 autonomous GitHub Collector loaded the Published Registry snapshot before discovery, supplemented it from verified-DONE history when needed, checked rolling backlog, executed the current-main deterministic registered-source probe plan, crawled configured source indexes plus bounded same-source refill, then used the current-main deficit-aware deterministic registered-source refill only when the verified survivor count remained below the normal floor, and applied exact source/stable identity dedupe before ranking. Registered refill: pre=12 post=12 batches=2 selected=[\"artstation\", \"gumroad-discover\", \"xiaohongshu\", \"autodesk-area\", \"adobe-substance-3d\", \"game-developer\"]. Registry audit: {\"history_supplemented_items\": 0, \"latest_verified_done\": \"2026-11-07\", \"snapshot_generated_through\": \"2026-11-07\", \"snapshot_state\": \"DERIVED_FROM_VERIFIED_DONE\", \"source_identities\": 987, \"stable_ids\": 986}. Backlog entries rechecked=0. No source registration/domain supplied ranking bonus, quota or admission bypass."
+    },
+    "personalization": {
+      "contract": "supabase-semantic-feedback-v1",
+      "status": "applied",
+      "vote_count": 14,
+      "max_rank_multiplier": 0.2,
+      "max_query_expansion_fraction": 0.2,
+      "raw_profile_committed": false,
+      "bookmarks_used": false,
+      "domain_weights_used": false,
+      "admission_bypass": false,
+      "quality_gate_bypass": false,
+      "source_quota": false,
+      "ranking_adjusted_count": 16,
+      "semantic_expansion_candidates": 0,
+      "profile_fingerprint": "a9e63c85c69a6c6ba8a68aea16c9533938f4746f9807cbaf4f0581a8e748a761",
+      "reader": "github-actions-oidc-owner-v1"
+    }
+  },
+  "items": [
+    {
+      "id": "cg-channel-new-cg-software-you-may-have-missed-2-november-2026",
+      "title": "CG 軟體更新整理：聚焦 Character Creator 5.2 的圖生模型與 CC Wrap",
+      "summary": "這篇 11 月 2 日更新整理介紹 Character Creator 5.2：可由一至四張參考圖產生模型，使用 Tripo 與混元模型，另以 CC Wrap 將自製或 AI 人形網格轉成 CC3+／CC5 HD，並在 wrapping 後自動綁定。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://www.cgchannel.com/2026/11/new-cg-software-you-may-have-missed-2-november-2026",
+      "category": "blender-dcc",
+      "subcategory": "other-dcc",
+      "ranking_score": 83.26,
+      "base_ranking_score": 80.0,
+      "source_published_at": "2026-11-02",
+      "analysis_level": "BRIEF",
+      "brief_reason": "useful-tool-or-addon-limited-depth",
+      "full_analysis": [
+        {
+          "label": "角色生成工作流",
+          "text": "圖生模型模組支援角色、服裝、髮型與配件；來源列出 Tripo P2.0 處理低模拓樸，Tripo H3.1 與 Hunyuan V3.1 處理高模細節，另有概念圖生成和四邊形重建功能。"
+        },
+        {
+          "label": "角色製作交接",
+          "text": "CC Wrap 可把其他 DCC 雕刻或 AI 生成的人形角色轉成 CC3+ 與 CC5 HD 格式，並在 wrapping 完成後自動綁定；同次更新也增加服裝貼合、蒙皮權重控制與 GLB 匯入。"
+        },
+        {
+          "label": "導入限制",
+          "text": "CC Wrap 雖支援全身和臉部，來源仍轉述 Reallusion 建議臉部工作使用另購 Headshot；文章沒有提供跨造型角色的包覆成功率或變形測試，因此不能把自動綁定視為所有角色均免修整。"
+        }
+      ],
+      "rank_global": 1,
+      "homepage_tier": "top5"
+    },
+    {
+      "id": "cg-channel-epic-has-made-megascans-free-again-for-good-this-time",
+      "title": "Megascans 再次免費：Fab 將分批調整資產價格，預計 11 月 12 日完成",
+      "summary": "CG Channel 11 月 6 日報導，Epic 正把超過 23,000 項 Megascans 掃描資產改為免費，Fab 列表預計至 11 月 12 日完成調整；Quixel 公告亦稱更新條款，允許 Megascans 與 Megaplants 用於 AI 訓練。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://www.cgchannel.com/2026/11/epic-has-made-megascans-free-again-for-good-this-time",
+      "category": "3d-production",
+      "subcategory": "environment-production",
+      "ranking_score": 78.03,
+      "base_ranking_score": 77.0,
+      "source_published_at": "2026-11-06",
+      "analysis_level": "BRIEF",
+      "brief_reason": "single-source-verified-production-tip",
+      "full_analysis": [
+        {
+          "label": "資產取得流程",
+          "text": "這次資產透過 Fab 供應，來源寫明大多數項目已免費，其餘預計 11 月 12 日前完成調價；因此個別資產仍顯示價格時，不能據此認定整個公告失效，也不能宣稱今天全部都已免費。"
+        },
+        {
+          "label": "製作素材價值",
+          "text": "資料庫涵蓋植物、建築、道具等超過 8,000 項實物掃描，以及約 11,000 項材質與貼圖，供遊戲、建築視覺化與特效使用；報導另稱 2025 年起購買的商用資產將退至 Epic 帳戶餘額，並非現金退款。"
+        },
+        {
+          "label": "授權與判斷限制",
+          "text": "Quixel 公告稱允許 AI 訓練，報導觀察到 Fab 列表的 AI 使用標示已更新，但也指出標準授權文字似乎未變。這是報導與公告的描述，實際用途仍須核對下載當下條款，不能推論所有第三方 Fab 資產都適用。"
+        }
+      ],
+      "rank_global": 2,
+      "homepage_tier": "top5"
+    },
+    {
+      "id": "80-level-recreating-vintage-dynamite-blasting-machine-in-3d",
+      "title": "復古道具製作拆解：Plasticity 建形、木材雕刻與分層材質",
+      "summary": "Kyryl Zlotnyk 分享復古裝置的遊戲道具流程：由實物尺寸參考建立 CAD 草模，經 ZBrush 雕刻、Blender 低模修整、RizomUV 展 UV，再於 Marmoset 烘焙及 Painter 製作木、金屬與皮革材質。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://80.lv/articles/recreating-vintage-dynamite-blasting-machine-in-3d",
+      "category": "engine-art",
+      "subcategory": "rendering",
+      "ranking_score": 77.92,
+      "base_ranking_score": 77.0,
+      "source_published_at": "2026-11-05",
+      "analysis_level": "BRIEF",
+      "brief_reason": "practical-tutorial-limited-depth",
+      "full_analysis": [
+        {
+          "label": "道具製作流程",
+          "text": "作者先依拍賣網站的尺寸在 Plasticity 建立草模，線纜和皮帶另用 Blender 曲線製作；木板經 ZBrush 改形後重新拓樸，木柄孔洞的著色則從無孔副本轉移法線修正。"
+        },
+        {
+          "label": "貼圖製作控制",
+          "text": "線纜用重複圓柱段與 trim sheet 節省紋理空間，木板烘焙 Object ID 方便分區遮罩；Painter 以掃描木材、HSL、Anchor Point、磨損與底部受潮變色建立差異，而非讓每片木板完全相同。"
+        },
+        {
+          "label": "資產規格與限制",
+          "text": "主體用單張 4K 貼圖組，另一組為 4K×2K，貼花與透明細節另用 1K；這是約六個月個人作品的規格，來源未提供遊戲引擎幀率或效能預算，不能把其展示品質直接等同所有平台可用。"
+        }
+      ],
+      "rank_global": 3,
+      "homepage_tier": "top5"
+    },
+    {
+      "id": "cg-channel-tutorial-creating-efficient-digital-doubles-for-vfx",
+      "title": "歷史參考｜數位替身課程：掃描整理、Wrap 對位與服裝重建",
+      "summary": "2024 年 Pat Imrie 的三小時課程示範以 Maya、ZBrush 與 Wrap 製作視效數位替身：整理掃描資料、對齊基礎網格、重建服裝，再建立簡單 rig 並投射及測試貼圖供部門交接。",
+      "quick_impact": "★★★☆☆",
+      "source_url": "https://www.cgchannel.com/2024/09/tutorial-creating-efficient-digital-doubles-for-vfx",
+      "category": "3d-production",
+      "subcategory": "production-workflow",
+      "ranking_score": 73.96,
+      "base_ranking_score": 70.0,
+      "source_published_at": "2024-09-16",
+      "analysis_level": "BRIEF",
+      "brief_reason": "practical-tutorial-limited-depth",
+      "full_analysis": [
+        {
+          "label": "角色資產工作流",
+          "text": "課程從 Clear Angle Studios 的掃描資料開始，先整理成能用於多個細節層級的資產，再用 Wrap 把基礎網格貼合掃描，接著以 Maya 和 ZBrush 重建服裝。"
+        },
+        {
+          "label": "製作交接價值",
+          "text": "作者示範基本 rig 以便重擺替身姿勢，並投射、測試貼圖，確認交給後續部門前的資產狀態；課程另提供所用基礎拓樸的 OBJ 與 FBX，方便對照拓樸處理。"
+        },
+        {
+          "label": "歷史教材限制",
+          "text": "這是 2024 年教材，適合未做過數位替身的美術；來源沒有列出特定軟體版本，也沒有承諾提供原始掃描或完整動畫綁定。三小時製程介紹不應視為所有掃描都能自動達到可交付品質。"
+        }
+      ],
+      "rank_global": 4,
+      "homepage_tier": "top5"
+    },
+    {
+      "id": "cg-channel-reallusion-releases-character-creator-5",
+      "title": "歷史參考｜Character Creator 5：HD 基礎角色、ActorMixer 與 MetaHuman 交接",
+      "summary": "2025 年 Character Creator 5 加入支援兩級細分的 HD 基礎角色、最高 8K 貼圖與位移細節，ActorMixer 可非破壞混合最多六個角色，並擴充 MetaHuman 相容的骨架及臉部動畫交接。",
+      "quick_impact": "★★★☆☆",
+      "source_url": "https://www.cgchannel.com/2025/08/reallusion-releases-character-creator-5",
+      "category": "3d-production",
+      "subcategory": "character-production",
+      "ranking_score": 72.57,
+      "base_ranking_score": 69.0,
+      "source_published_at": "2025-08-28",
+      "analysis_level": "BRIEF",
+      "brief_reason": "useful-tool-or-addon-limited-depth",
+      "full_analysis": [
+        {
+          "label": "角色製作工作流",
+          "text": "HD 基礎角色提供兩級細分，morph 系統同步支援；皮膚可用位移而非法線表現立體細節。ActorMixer 可混合整體身形、頭部或單一五官，但進階功能屬另購 Pro 外掛。"
+        },
+        {
+          "label": "動畫製作影響",
+          "text": "HD 臉部 profile 與 MetaHuman 表情系統相容，UE 匯出可用最佳化骨架及綁定姿勢；來源示範 Sequencer 中交換角色不用重定向動畫，MetaHuman Animator 臉部資料亦可透過 CSV 回到 CC5 修整。"
+        },
+        {
+          "label": "歷史版本與成本限制",
+          "text": "這是 2025 年版本報導，HD Ultimate Morphs 和 ActorMixer Pro 均需另購；當時 Maya 整合只支援 2024／2025、未支援 2026，且 Maya 與 Marmoset 新外掛僅限 Windows，不能由核心功能推定所有 DCC 都完整相容。"
+        }
+      ],
+      "rank_global": 5,
+      "homepage_tier": "top5"
+    },
+    {
+      "id": "cg-channel-lightwave-digital-releases-lightwave-2024",
+      "title": "歷史參考｜LightWave 2024.1：模組化角色綁定、動畫拷貝與景深控制",
+      "summary": "這篇 2024 年 LightWave 更新報導介紹整合 RHiggit 角色綁定、Layout 內權重繪製及小型液體模擬；2024.1 進一步加入角色間動作拷貝、選定動畫通道貼上，以及 Octane 視窗景深控制。",
+      "quick_impact": "★★★☆☆",
+      "source_url": "https://www.cgchannel.com/2024/09/lightwave-digital-releases-lightwave-2024",
+      "category": "3d-animation",
+      "subcategory": "animation",
+      "ranking_score": 69.83,
+      "base_ranking_score": 69.0,
+      "source_published_at": "2024-09-19",
+      "analysis_level": "BRIEF",
+      "brief_reason": "useful-tool-or-addon-limited-depth",
+      "full_analysis": [
+        {
+          "label": "角色動畫工作流",
+          "text": "RHiggit 提供半自動模組化角色／生物 rig，WeightBrush 則讓角色權重直接在 Layout 繪製；2024.1 的 Motion Paste Advanced 可只取代指定通道，多物件動作也可儲存後套到新選取物件。"
+        },
+        {
+          "label": "製作整合價值",
+          "text": "Kit Surfacer 用於把線上資產包半自動轉換成 LightWave 材質，OpenVDB 更新支援從 Turbulence 輸出體積資料；Octane DOF Range 讓藝術家在視窗移動控制器調整焦點位置與清晰範圍。"
+        },
+        {
+          "label": "歷史版本限制",
+          "text": "2024.1 當時支援 Windows 10 以上及指定 macOS 版本，但 Flow 基於 Newton Dynamics 與 NVIDIA FleX，只能用於 Windows；Unreal Bridge 當時列出的支援為 UE5.4，不能把這份舊版說明當成今日所有平台相容性。"
+        }
+      ],
+      "rank_global": 6,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "cg-channel-epic-games-has-made-megascans-free-to-all-but-only-until-the",
+      "title": "歷史參考｜2024 年 Megascans 免費窗口與 Bridge／Fab 授權差異",
+      "summary": "這篇 2024 年報導記錄 Fab 上線時的 Megascans 免費窗口：當時開放至年底、可用於各引擎；由 Bridge 取得的舊授權與在 Fab 加入素材庫的授權不同，不能只看是否已下載檔案。",
+      "quick_impact": "★★★☆☆",
+      "source_url": "https://www.cgchannel.com/2024/10/epic-games-has-made-megascans-free-to-all-but-only-until-the-end-of-2024",
+      "category": "3d-production",
+      "subcategory": "production-workflow",
+      "ranking_score": 66.56,
+      "base_ranking_score": 63.0,
+      "source_published_at": "2024-10-22",
+      "analysis_level": "BRIEF",
+      "brief_reason": "single-source-verified-production-tip",
+      "full_analysis": [
+        {
+          "label": "歷史資產取得流程",
+          "text": "報導指出 Fab 的標準授權需先把素材加入 Fab library，單純下載檔案不夠；當時資產需逐個加入，Epic 表示正在開發一次取得整庫的方式，這不是今日功能狀態聲明。"
+        },
+        {
+          "label": "製作交接影響",
+          "text": "2024 年 Fab 取得的素材可依標準授權用於各引擎與工具，包括商業專案；Bridge 取得的素材仍按舊 Epic Content License，只允許免費用於 Unreal Engine，因此同一份掃描的取得管道會影響使用範圍。"
+        },
+        {
+          "label": "歷史時效限制",
+          "text": "文中的免費期限為 2024 年底、2025 年起收費，是當年政策紀錄，不是今天的價格判斷；此文也混有 11 月 Bridge 恢復下載的後續更新，採用時必須區分取得日期、管道與當時適用授權。"
+        }
+      ],
+      "rank_global": 7,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "3dnchu-character-creator-3-review",
+      "title": "歷史參考｜Character Creator 3 實測：角色預設混合、照片頭部與 FBX 交接",
+      "summary": "2021 年這篇 CC3 實測以預設與形態滑桿建立角色，再試用 Headshot 從正面照片產生頭部；作者記錄輪廓和貼圖需修整，以及 FBX 匯入 Blender 後部分材質需調整的實際結果。",
+      "quick_impact": "★★★☆☆",
+      "source_url": "https://3dnchu.com/archives/character-creator-3-review",
+      "category": "3d-production",
+      "subcategory": "character-production",
+      "ranking_score": 66.26,
+      "base_ranking_score": 63.0,
+      "source_published_at": "2021-03-01",
+      "analysis_level": "BRIEF",
+      "brief_reason": "single-source-verified-production-tip",
+      "full_analysis": [
+        {
+          "label": "角色製作流程",
+          "text": "CC3+ 基礎角色改善拓樸、皮膚綁定與高細節貼圖用 UV，作者以預設混合體型並套用皮膚和妝容套件；Headshot 可從單張照片建立頭部，還能投射原圖輔助修正輪廓。"
+        },
+        {
+          "label": "製作交接觀察",
+          "text": "FBX 匯出提供 Maya、Blender、UE4 和 Unity 預設，作者實際匯入 Blender 後骨架大致正常，但部分材質設定需要修改；因此這是具體交接案例，不是所有場景都能無損轉移的保證。"
+        },
+        {
+          "label": "歷史實測限制",
+          "text": "本文是 2021 年個人測試，作者認為照片生成仍需輪廓與 Photoshop 貼圖修正，初始髮型和服飾也不足，需另購或自製；這些是作者的經驗與當年內容包狀態，不能概括為今日版本表現。"
+        }
+      ],
+      "rank_global": 8,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "3dnchu-character-creator-4-iclone8",
+      "title": "歷史參考｜CC4 與 iClone 8：角色最佳化、即時導演與 USD 連接",
+      "summary": "2022 年發布的 Character Creator 4 與 iClone 8，分別更新角色綁定、表情 blendshape、InstaLOD 最佳化，以及 Motion Director 即時角色控制、視覺效果與 NVIDIA Omniverse／USD 連接。",
+      "quick_impact": "★★★☆☆",
+      "source_url": "https://3dnchu.com/archives/character-creator-4-iclone8",
+      "category": "3d-production",
+      "subcategory": "character-production",
+      "ranking_score": 66.26,
+      "base_ranking_score": 63.0,
+      "source_published_at": "2022-06-10",
+      "analysis_level": "BRIEF",
+      "brief_reason": "single-source-verified-production-tip",
+      "full_analysis": [
+        {
+          "label": "角色資產工作流",
+          "text": "CC4 把角色產生、匯入和客製化集中處理，更新主要 rig 相容性、動畫預覽及自訂表情 blendshape；InstaLOD 用於資產匯入、道具編輯和最佳化，並非只處理人物外觀。"
+        },
+        {
+          "label": "動畫製作方式",
+          "text": "iClone 8 的 Motion Director 可在即時場景操控角色、觸發動作並搭配動態攝影機；來源另列出手腳接觸目標鎖定，以及遊戲手把、三維滑鼠與快捷鍵等互動控制方式。"
+        },
+        {
+          "label": "歷史整合與限制",
+          "text": "報導列出連接 Omniverse 的 RTX GPU 路徑追蹤及 USD 資料架構，但當時軟體只支援 Windows；文中的 CC4 單售與組合價格是 2022 年紀錄，不表示今日授權或所有輸出格式的相容性。"
+        }
+      ],
+      "rank_global": 9,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "3dnchu-headshot-2",
+      "title": "歷史參考｜Headshot 2：由照片或掃描網格建立可綁定頭部",
+      "summary": "2023 年 Headshot 2 是 Character Creator 的 AI 外掛，可從照片、行動掃描或雕刻網格建立角色，補足不完整掃描區域，並支援高模法線烘焙、頂點色轉貼圖和 UV 重映射。",
+      "quick_impact": "★★★☆☆",
+      "source_url": "https://3dnchu.com/archives/headshot-2",
+      "category": "3d-production",
+      "subcategory": "character-production",
+      "ranking_score": 66.26,
+      "base_ranking_score": 63.0,
+      "source_published_at": "2023-06-20",
+      "analysis_level": "BRIEF",
+      "brief_reason": "single-source-verified-production-tip",
+      "full_analysis": [
+        {
+          "label": "頭部生成流程",
+          "text": "來源介紹以照片或三維網格為輸入，經五步流程將靜態模型轉為完整綁定角色；遇到不完整掃描時，工具會保留臉與耳等優先區域，並以 AI 補足缺少的部分。"
+        },
+        {
+          "label": "角色製作影響",
+          "text": "高模法線烘焙、頂點色轉貼圖和 UV 重映射把掃描或雕刻資料轉入角色貼圖流程。推論上，這些功能能減少手動搬移表面資訊的工作，但來源沒有提供節省工時的實測數字。"
+        },
+        {
+          "label": "歷史產品限制",
+          "text": "本文發布於 2023 年，Headshot 2 需要以 Character Creator 外掛形式使用；文中的單售 199 美元、三十天試用與六月三十日前升級優惠均屬當年資訊，也不能把宣傳的簡單操作等同所有掃描都免修整。"
+        }
+      ],
+      "rank_global": 10,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "3dnchu-smart-hair-cc3",
+      "title": "歷史參考｜Smart Hair：CC3.4 的髮片組裝、漸層與臉部毛髮",
+      "summary": "2021 年 CC3.4 導入 Smart Hair，以卡片式網格製作頭髮、眉毛與鬍鬚，提供漸層色、鏡面變化及組件搭配；作者實際更新後發現，展示的髮型資產仍以額外內容包販售。",
+      "quick_impact": "★★★☆☆",
+      "source_url": "https://3dnchu.com/archives/smart-hair-cc3",
+      "category": "3d-production",
+      "subcategory": "character-production",
+      "ranking_score": 66.26,
+      "base_ranking_score": 63.0,
+      "source_published_at": "2021-03-24",
+      "analysis_level": "BRIEF",
+      "brief_reason": "single-source-verified-production-tip",
+      "full_analysis": [
+        {
+          "label": "髮型製作流程",
+          "text": "Smart Hair 採卡片式頭髮網格，讓使用者組合不同頭髮與鬍鬚元件形成造型；專用 shader 提供漸層染色和鏡面變化，眉毛與鬍鬚則可隨臉部動作動態適應。"
+        },
+        {
+          "label": "即時製作取向",
+          "text": "來源把小型網格與較經濟的貼圖解析度，列為這套髮片方案適合即時繪製的理由，目標包含遊戲和電影數位人；這是設計取向說明，文章沒有列出具體面數、記憶體或每秒幀數測試。"
+        },
+        {
+          "label": "歷史內容與成本限制",
+          "text": "這是 2021 年 CC3.4 更新介紹，作者原本期待更新即能使用展示髮型，之後確認它們需另購內容包；所以軟體具備 Smart Hair 功能，不等於示範素材全數包含，文內舊系統需求也不是今日規格。"
+        }
+      ],
+      "rank_global": 11,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "3dnchu-ue5-lut-for-sp-alexandrealves",
+      "title": "歷史參考｜UE5／Painter 色彩對照：LUT、OCIO 與三維色卡",
+      "summary": "2023 年 Alexandre Alves 分享讓 UE5 與 Substance 3D Painter 色彩更接近的 LUT、三維 ColorChecker 色卡和製作解說；文章列出 EXR 匯入及 Color Profile 設定，也區分 sRGB 加 LUT 與 ACES sRGB 的比較。",
+      "quick_impact": "★★☆☆☆",
+      "source_url": "https://3dnchu.com/archives/ue5-lut-for-sp-alexandrealves",
+      "category": "blender-dcc",
+      "subcategory": "substance",
+      "ranking_score": 60.86,
+      "base_ranking_score": 60.0,
+      "source_published_at": "2023-08-30",
+      "analysis_level": "BRIEF",
+      "brief_reason": "single-source-verified-production-tip",
+      "full_analysis": [
+        {
+          "label": "貼圖預覽工作流",
+          "text": "先把 EXR 拖入專案，匯入類型設為 colorlut，再從資產庫拖至 Viewport Settings 的 Color Profile；來源說明不需要啟用對數色調映射，並列出可選的 OpenColorIO 色彩管理設定。"
+        },
+        {
+          "label": "跨引擎製作對照",
+          "text": "作者以三維 ColorChecker／Macbeth 色卡檢查不同引擎的色彩，另解說自製 LUT 的方法；在他當時的測試中，sRGB 配合 LUT 比單用 ACES sRGB 更接近目標，這不是對所有場景的精準匹配承諾。"
+        },
+        {
+          "label": "歷史流程限制",
+          "text": "此文是 2023 年分享，作者當時仍在製作 UE5 外觀用 OCIO 設定，且沒有確定完成時間；已分享的 LUT 與色卡不能被寫成完整 OCIO 組態已交付，文章也未列出新版本軟體相容測試。"
+        }
+      ],
+      "rank_global": 12,
+      "homepage_tier": "next10"
+    }
+  ],
+  "visual_evidence": {}
+}
