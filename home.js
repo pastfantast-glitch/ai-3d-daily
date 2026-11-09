@@ -167,6 +167,14 @@ document.addEventListener('DOMContentLoaded',()=>{
       category?showCategory(category,{push:true}):showTop({push:true});
       return;
     }
+    if(event.target.closest('.edition-links a[href="#all-intelligence"]')){
+      event.preventDefault();
+      const target=new URL(rootUrl.href);target.hash='all-intelligence';
+      history.pushState({currentWorkspace:true,view:'top5'},'',target.href);
+      showTop({push:false});
+      document.querySelector('#all-intelligence')?.scrollIntoView({block:'start'});
+      return;
+    }
     const card=event.target.closest('a.category-nav-card[href]');
     if(card){const category=categoryFromLink(card);if(category){event.preventDefault();showCategory(category,{push:true});}}
   });
@@ -174,6 +182,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   window.addEventListener('popstate',()=>{
     const view=new URL(location.href).searchParams.get('view')||'top5';
     view==='top5'?showTop({push:false}):showCategory(view,{push:false});
+    if(view==='top5'&&location.hash==='#all-intelligence')document.querySelector('#all-intelligence')?.scrollIntoView({block:'start'});
   });
 
   const initialView=new URL(location.href).searchParams.get('view');
