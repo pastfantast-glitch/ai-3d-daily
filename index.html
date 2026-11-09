@@ -7,24 +7,38 @@
    AI／3D／遊戲美術 Production Intelligence｜2026-11-09
   </title>
   <link href="styles.css?v=20260903-r2" rel="stylesheet"/>
-  <link href="shared-components.css?v=20261109-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
-  <link href="home.css?v=20261109-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
-  <link href="home-content.css?v=20261109-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
-  <link href="home-components.css?v=20261109-r1-workspace-v10-history-current-workspace" rel="stylesheet"/>
+  <link href="shared-components.css?v=20261109-r1-workspace-v11-content-library" rel="stylesheet"/>
+  <link href="home.css?v=20261109-r1-workspace-v11-content-library" rel="stylesheet"/>
+  <link href="home-content.css?v=20261109-r1-workspace-v11-content-library" rel="stylesheet"/>
+  <link href="home-components.css?v=20261109-r1-workspace-v11-content-library" rel="stylesheet"/>
   <meta content="2026-11-09 AI／3D／遊戲美術 Production Intelligence：精選 12 項可驗證的製作工具、流程、動畫、引擎與 DCC 情報。" name="description"/>
  </head>
- <body class="home-page">
+ <body class="home-page" data-report-date="2026-11-09">
   <header class="home-hero">
    <div class="page">
     <p class="eyebrow">
      AI / 3D / GAME ART
     </p>
     <h1>
-     Production Intelligence
+     每日製作情報
     </h1>
     <p class="week-asof">
      2026-11-09
     </p>
+    <p class="edition-summary">
+     今日收錄 12 篇 · 近期更新、製作教學與歷史精選，來源日期逐篇標示。
+    </p>
+    <div class="edition-links">
+     <a href="#all-intelligence">
+      瀏覽全部情報
+     </a>
+     <a href="history/">
+      搜尋歷史文章
+     </a>
+     <a href="saved/">
+      我的收藏
+     </a>
+    </div>
    </div>
   </header>
   <nav aria-label="Production Intelligence 分類" class="global-category-nav">
@@ -76,6 +90,9 @@
        <h2>
         CG 軟體更新整理：聚焦 Character Creator 5.2 的圖生模型與 CC Wrap
        </h2>
+       <p class="article-date">
+        來源日期 2026-11-02
+       </p>
        <p class="summary">
         這篇 11 月 2 日更新整理介紹 Character Creator 5.2：可由一至四張參考圖產生模型，使用 Tripo 與混元模型，另以 CC Wrap 將自製或 AI 人形網格轉成 CC3+／CC5 HD，並在 wrapping 後自動綁定。
        </p>
@@ -134,6 +151,9 @@
        <h2>
         Megascans 再次免費：Fab 將分批調整資產價格，預計 11 月 12 日完成
        </h2>
+       <p class="article-date">
+        來源日期 2026-11-06
+       </p>
        <p class="summary">
         CG Channel 11 月 6 日報導，Epic 正把超過 23,000 項 Megascans 掃描資產改為免費，Fab 列表預計至 11 月 12 日完成調整；Quixel 公告亦稱更新條款，允許 Megascans 與 Megaplants 用於 AI 訓練。
        </p>
@@ -192,6 +212,9 @@
        <h2>
         復古道具製作拆解：Plasticity 建形、木材雕刻與分層材質
        </h2>
+       <p class="article-date">
+        來源日期 2026-11-05
+       </p>
        <p class="summary">
         Kyryl Zlotnyk 分享復古裝置的遊戲道具流程：由實物尺寸參考建立 CAD 草模，經 ZBrush 雕刻、Blender 低模修整、RizomUV 展 UV，再於 Marmoset 烘焙及 Painter 製作木、金屬與皮革材質。
        </p>
@@ -250,6 +273,9 @@
        <h2>
         歷史參考｜數位替身課程：掃描整理、Wrap 對位與服裝重建
        </h2>
+       <p class="article-date">
+        來源日期 2024-09-16
+       </p>
        <p class="summary">
         2024 年 Pat Imrie 的三小時課程示範以 Maya、ZBrush 與 Wrap 製作視效數位替身：整理掃描資料、對齊基礎網格、重建服裝，再建立簡單 rig 並投射及測試貼圖供部門交接。
        </p>
@@ -308,6 +334,9 @@
        <h2>
         歷史參考｜Character Creator 5：HD 基礎角色、ActorMixer 與 MetaHuman 交接
        </h2>
+       <p class="article-date">
+        來源日期 2025-08-28
+       </p>
        <p class="summary">
         2025 年 Character Creator 5 加入支援兩級細分的 HD 基礎角色、最高 8K 貼圖與位移細節，ActorMixer 可非破壞混合最多六個角色，並擴充 MetaHuman 相容的骨架及臉部動畫交接。
        </p>
@@ -360,6 +389,191 @@
      </article>
     </div>
    </section>
+   <section aria-label="今日全部情報" class="today-library" id="all-intelligence">
+    <h2>
+     今日全部情報
+    </h2>
+    <p>
+     依重要性排序；點選標題閱讀完整內容。
+    </p>
+    <div class="library-controls">
+     <input aria-label="搜尋今日全部情報" id="today-search" placeholder="搜尋工具、技術或製作方法…" type="search"/>
+     <select aria-label="篩選情報分類" id="today-category">
+      <option value="all">
+       全部分類
+      </option>
+      <option value="ai-generation">
+       AI 生成
+      </option>
+      <option value="3d-production">
+       3D 製作
+      </option>
+      <option value="3d-animation">
+       3D 動作
+      </option>
+      <option value="engine-art">
+       遊戲引擎
+      </option>
+      <option value="emerging-case">
+       新技術 / Case
+      </option>
+      <option value="blender-dcc">
+       Blender / DCC
+      </option>
+     </select>
+     <select aria-label="篩選來源日期" id="today-freshness">
+      <option value="all">
+       全部來源日期
+      </option>
+      <option value="recent">
+       近 7 天
+      </option>
+      <option value="reference">
+       歷史參考（超過 180 天）
+      </option>
+     </select>
+    </div>
+    <p id="today-result-count" role="status">
+     共 12 篇
+    </p>
+    <div class="library-list">
+     <article class="library-row" data-category="blender-dcc" data-freshness="recent" data-library-id="cg-channel-new-cg-software-you-may-have-missed-2-november-2026">
+      <a class="library-link" href="2026-11-09/blender-dcc/#intel-cg-channel-new-cg-software-you-may-have-missed-2-november-2026">
+       CG 軟體更新整理：聚焦 Character Creator 5.2 的圖生模型與 CC Wrap
+      </a>
+      <p class="library-meta">
+       Blender / DCC · 來源 2026-11-02
+      </p>
+      <p class="library-summary">
+       這篇 11 月 2 日更新整理介紹 Character Creator 5.2：可由一至四張參考圖產生模型，使用 Tripo 與混元模型，另以 CC Wrap 將自製或 AI 人形網格轉成 CC3+／CC5 HD，並在 wrapping 後自動綁定。
+      </p>
+     </article>
+     <article class="library-row" data-category="3d-production" data-freshness="recent" data-library-id="cg-channel-epic-has-made-megascans-free-again-for-good-this-time">
+      <a class="library-link" href="2026-11-09/3d-production/#intel-cg-channel-epic-has-made-megascans-free-again-for-good-this-time">
+       Megascans 再次免費：Fab 將分批調整資產價格，預計 11 月 12 日完成
+      </a>
+      <p class="library-meta">
+       3D 製作 · 來源 2026-11-06
+      </p>
+      <p class="library-summary">
+       CG Channel 11 月 6 日報導，Epic 正把超過 23,000 項 Megascans 掃描資產改為免費，Fab 列表預計至 11 月 12 日完成調整；Quixel 公告亦稱更新條款，允許 Megascans 與 Megaplants 用於 AI 訓練。
+      </p>
+     </article>
+     <article class="library-row" data-category="engine-art" data-freshness="recent" data-library-id="80-level-recreating-vintage-dynamite-blasting-machine-in-3d">
+      <a class="library-link" href="2026-11-09/engine-art/#intel-80-level-recreating-vintage-dynamite-blasting-machine-in-3d">
+       復古道具製作拆解：Plasticity 建形、木材雕刻與分層材質
+      </a>
+      <p class="library-meta">
+       遊戲引擎 · 來源 2026-11-05
+      </p>
+      <p class="library-summary">
+       Kyryl Zlotnyk 分享復古裝置的遊戲道具流程：由實物尺寸參考建立 CAD 草模，經 ZBrush 雕刻、Blender 低模修整、RizomUV 展 UV，再於 Marmoset 烘焙及 Painter 製作木、金屬與皮革材質。
+      </p>
+     </article>
+     <article class="library-row" data-category="3d-production" data-freshness="reference" data-library-id="cg-channel-tutorial-creating-efficient-digital-doubles-for-vfx">
+      <a class="library-link" href="2026-11-09/3d-production/#intel-cg-channel-tutorial-creating-efficient-digital-doubles-for-vfx">
+       歷史參考｜數位替身課程：掃描整理、Wrap 對位與服裝重建
+      </a>
+      <p class="library-meta">
+       3D 製作 · 來源 2024-09-16 · 歷史參考
+      </p>
+      <p class="library-summary">
+       2024 年 Pat Imrie 的三小時課程示範以 Maya、ZBrush 與 Wrap 製作視效數位替身：整理掃描資料、對齊基礎網格、重建服裝，再建立簡單 rig 並投射及測試貼圖供部門交接。
+      </p>
+     </article>
+     <article class="library-row" data-category="3d-production" data-freshness="reference" data-library-id="cg-channel-reallusion-releases-character-creator-5">
+      <a class="library-link" href="2026-11-09/3d-production/#intel-cg-channel-reallusion-releases-character-creator-5">
+       歷史參考｜Character Creator 5：HD 基礎角色、ActorMixer 與 MetaHuman 交接
+      </a>
+      <p class="library-meta">
+       3D 製作 · 來源 2025-08-28 · 歷史參考
+      </p>
+      <p class="library-summary">
+       2025 年 Character Creator 5 加入支援兩級細分的 HD 基礎角色、最高 8K 貼圖與位移細節，ActorMixer 可非破壞混合最多六個角色，並擴充 MetaHuman 相容的骨架及臉部動畫交接。
+      </p>
+     </article>
+     <article class="library-row" data-category="3d-animation" data-freshness="reference" data-library-id="cg-channel-lightwave-digital-releases-lightwave-2024">
+      <a class="library-link" href="2026-11-09/3d-animation/#intel-cg-channel-lightwave-digital-releases-lightwave-2024">
+       歷史參考｜LightWave 2024.1：模組化角色綁定、動畫拷貝與景深控制
+      </a>
+      <p class="library-meta">
+       3D 動作 · 來源 2024-09-19 · 歷史參考
+      </p>
+      <p class="library-summary">
+       這篇 2024 年 LightWave 更新報導介紹整合 RHiggit 角色綁定、Layout 內權重繪製及小型液體模擬；2024.1 進一步加入角色間動作拷貝、選定動畫通道貼上，以及 Octane 視窗景深控制。
+      </p>
+     </article>
+     <article class="library-row" data-category="3d-production" data-freshness="reference" data-library-id="cg-channel-epic-games-has-made-megascans-free-to-all-but-only-until-the">
+      <a class="library-link" href="2026-11-09/3d-production/#intel-cg-channel-epic-games-has-made-megascans-free-to-all-but-only-until-the">
+       歷史參考｜2024 年 Megascans 免費窗口與 Bridge／Fab 授權差異
+      </a>
+      <p class="library-meta">
+       3D 製作 · 來源 2024-10-22 · 歷史參考
+      </p>
+      <p class="library-summary">
+       這篇 2024 年報導記錄 Fab 上線時的 Megascans 免費窗口：當時開放至年底、可用於各引擎；由 Bridge 取得的舊授權與在 Fab 加入素材庫的授權不同，不能只看是否已下載檔案。
+      </p>
+     </article>
+     <article class="library-row" data-category="3d-production" data-freshness="reference" data-library-id="3dnchu-character-creator-3-review">
+      <a class="library-link" href="2026-11-09/3d-production/#intel-3dnchu-character-creator-3-review">
+       歷史參考｜Character Creator 3 實測：角色預設混合、照片頭部與 FBX 交接
+      </a>
+      <p class="library-meta">
+       3D 製作 · 來源 2021-03-01 · 歷史參考
+      </p>
+      <p class="library-summary">
+       2021 年這篇 CC3 實測以預設與形態滑桿建立角色，再試用 Headshot 從正面照片產生頭部；作者記錄輪廓和貼圖需修整，以及 FBX 匯入 Blender 後部分材質需調整的實際結果。
+      </p>
+     </article>
+     <article class="library-row" data-category="3d-production" data-freshness="reference" data-library-id="3dnchu-character-creator-4-iclone8">
+      <a class="library-link" href="2026-11-09/3d-production/#intel-3dnchu-character-creator-4-iclone8">
+       歷史參考｜CC4 與 iClone 8：角色最佳化、即時導演與 USD 連接
+      </a>
+      <p class="library-meta">
+       3D 製作 · 來源 2022-06-10 · 歷史參考
+      </p>
+      <p class="library-summary">
+       2022 年發布的 Character Creator 4 與 iClone 8，分別更新角色綁定、表情 blendshape、InstaLOD 最佳化，以及 Motion Director 即時角色控制、視覺效果與 NVIDIA Omniverse／USD 連接。
+      </p>
+     </article>
+     <article class="library-row" data-category="3d-production" data-freshness="reference" data-library-id="3dnchu-headshot-2">
+      <a class="library-link" href="2026-11-09/3d-production/#intel-3dnchu-headshot-2">
+       歷史參考｜Headshot 2：由照片或掃描網格建立可綁定頭部
+      </a>
+      <p class="library-meta">
+       3D 製作 · 來源 2023-06-20 · 歷史參考
+      </p>
+      <p class="library-summary">
+       2023 年 Headshot 2 是 Character Creator 的 AI 外掛，可從照片、行動掃描或雕刻網格建立角色，補足不完整掃描區域，並支援高模法線烘焙、頂點色轉貼圖和 UV 重映射。
+      </p>
+     </article>
+     <article class="library-row" data-category="3d-production" data-freshness="reference" data-library-id="3dnchu-smart-hair-cc3">
+      <a class="library-link" href="2026-11-09/3d-production/#intel-3dnchu-smart-hair-cc3">
+       歷史參考｜Smart Hair：CC3.4 的髮片組裝、漸層與臉部毛髮
+      </a>
+      <p class="library-meta">
+       3D 製作 · 來源 2021-03-24 · 歷史參考
+      </p>
+      <p class="library-summary">
+       2021 年 CC3.4 導入 Smart Hair，以卡片式網格製作頭髮、眉毛與鬍鬚，提供漸層色、鏡面變化及組件搭配；作者實際更新後發現，展示的髮型資產仍以額外內容包販售。
+      </p>
+     </article>
+     <article class="library-row" data-category="blender-dcc" data-freshness="reference" data-library-id="3dnchu-ue5-lut-for-sp-alexandrealves">
+      <a class="library-link" href="2026-11-09/blender-dcc/#intel-3dnchu-ue5-lut-for-sp-alexandrealves">
+       歷史參考｜UE5／Painter 色彩對照：LUT、OCIO 與三維色卡
+      </a>
+      <p class="library-meta">
+       Blender / DCC · 來源 2023-08-30 · 歷史參考
+      </p>
+      <p class="library-summary">
+       2023 年 Alexandre Alves 分享讓 UE5 與 Substance 3D Painter 色彩更接近的 LUT、三維 ColorChecker 色卡和製作解說；文章列出 EXR 匯入及 Color Profile 設定，也區分 sRGB 加 LUT 與 ACES sRGB 的比較。
+      </p>
+     </article>
+    </div>
+    <p hidden="" id="today-empty">
+     沒有符合的情報，請調整搜尋或篩選條件。
+    </p>
+   </section>
    <section class="home-section more-section" id="more">
     <div class="block-head">
      <div>
@@ -376,6 +590,9 @@
       <h4>
        歷史參考｜LightWave 2024.1：模組化角色綁定、動畫拷貝與景深控制
       </h4>
+      <p class="article-date">
+       來源日期 2024-09-19
+      </p>
       <p class="summary">
        這篇 2024 年 LightWave 更新報導介紹整合 RHiggit 角色綁定、Layout 內權重繪製及小型液體模擬；2024.1 進一步加入角色間動作拷貝、選定動畫通道貼上，以及 Octane 視窗景深控制。
       </p>
@@ -429,6 +646,9 @@
       <h4>
        歷史參考｜2024 年 Megascans 免費窗口與 Bridge／Fab 授權差異
       </h4>
+      <p class="article-date">
+       來源日期 2024-10-22
+      </p>
       <p class="summary">
        這篇 2024 年報導記錄 Fab 上線時的 Megascans 免費窗口：當時開放至年底、可用於各引擎；由 Bridge 取得的舊授權與在 Fab 加入素材庫的授權不同，不能只看是否已下載檔案。
       </p>
@@ -482,6 +702,9 @@
       <h4>
        歷史參考｜Character Creator 3 實測：角色預設混合、照片頭部與 FBX 交接
       </h4>
+      <p class="article-date">
+       來源日期 2021-03-01
+      </p>
       <p class="summary">
        2021 年這篇 CC3 實測以預設與形態滑桿建立角色，再試用 Headshot 從正面照片產生頭部；作者記錄輪廓和貼圖需修整，以及 FBX 匯入 Blender 後部分材質需調整的實際結果。
       </p>
@@ -535,6 +758,9 @@
       <h4>
        歷史參考｜CC4 與 iClone 8：角色最佳化、即時導演與 USD 連接
       </h4>
+      <p class="article-date">
+       來源日期 2022-06-10
+      </p>
       <p class="summary">
        2022 年發布的 Character Creator 4 與 iClone 8，分別更新角色綁定、表情 blendshape、InstaLOD 最佳化，以及 Motion Director 即時角色控制、視覺效果與 NVIDIA Omniverse／USD 連接。
       </p>
@@ -588,6 +814,9 @@
       <h4>
        歷史參考｜Headshot 2：由照片或掃描網格建立可綁定頭部
       </h4>
+      <p class="article-date">
+       來源日期 2023-06-20
+      </p>
       <p class="summary">
        2023 年 Headshot 2 是 Character Creator 的 AI 外掛，可從照片、行動掃描或雕刻網格建立角色，補足不完整掃描區域，並支援高模法線烘焙、頂點色轉貼圖和 UV 重映射。
       </p>
@@ -641,6 +870,9 @@
       <h4>
        歷史參考｜Smart Hair：CC3.4 的髮片組裝、漸層與臉部毛髮
       </h4>
+      <p class="article-date">
+       來源日期 2021-03-24
+      </p>
       <p class="summary">
        2021 年 CC3.4 導入 Smart Hair，以卡片式網格製作頭髮、眉毛與鬍鬚，提供漸層色、鏡面變化及組件搭配；作者實際更新後發現，展示的髮型資產仍以額外內容包販售。
       </p>
@@ -694,6 +926,9 @@
       <h4>
        歷史參考｜UE5／Painter 色彩對照：LUT、OCIO 與三維色卡
       </h4>
+      <p class="article-date">
+       來源日期 2023-08-30
+      </p>
       <p class="summary">
        2023 年 Alexandre Alves 分享讓 UE5 與 Substance 3D Painter 色彩更接近的 LUT、三維 ColorChecker 色卡和製作解說；文章列出 EXR 匯入及 Color Profile 設定，也區分 sRGB 加 LUT 與 ACES sRGB 的比較。
       </p>
@@ -752,7 +987,7 @@
      </h2>
     </div>
     <div class="category-nav-grid">
-     <a class="category-nav-card" href="?view=ai-generation" data-category="ai-generation">
+     <a class="category-nav-card" data-category="ai-generation" href="?view=ai-generation">
       <strong>
        AI 生成
       </strong>
@@ -760,7 +995,7 @@
        AI 3D 生成 / AI 2D 生成 / AI 動作生成
       </span>
      </a>
-     <a class="category-nav-card" href="?view=3d-production" data-category="3d-production">
+     <a class="category-nav-card" data-category="3d-production" href="?view=3d-production">
       <strong>
        3D 製作
       </strong>
@@ -768,7 +1003,7 @@
        3D 角色製作 / 3D 物件製作 / 3D 場景製作 / 製作流程
       </span>
      </a>
-     <a class="category-nav-card" href="?view=3d-animation" data-category="3d-animation">
+     <a class="category-nav-card" data-category="3d-animation" href="?view=3d-animation">
       <strong>
        3D 動作
       </strong>
@@ -776,7 +1011,7 @@
        3D 動作 / 3D 動作製作流程
       </span>
      </a>
-     <a class="category-nav-card" href="?view=engine-art" data-category="engine-art">
+     <a class="category-nav-card" data-category="engine-art" href="?view=engine-art">
       <strong>
        遊戲引擎
       </strong>
@@ -784,7 +1019,7 @@
        遊戲引擎 / 引擎端美術內容
       </span>
      </a>
-     <a class="category-nav-card" href="?view=emerging-case" data-category="emerging-case">
+     <a class="category-nav-card" data-category="emerging-case" href="?view=emerging-case">
       <strong>
        新技術 / Case
       </strong>
@@ -792,7 +1027,7 @@
        新技術 / Production Case
       </span>
      </a>
-     <a class="category-nav-card" href="?view=blender-dcc" data-category="blender-dcc">
+     <a class="category-nav-card" data-category="blender-dcc" href="?view=blender-dcc">
       <strong>
        Blender / DCC
       </strong>
@@ -803,7 +1038,7 @@
     </div>
    </section>
   </main>
-  <script src="home.js?v=20261109-r1-workspace-v10-history-current-workspace">
+  <script src="home.js?v=20261109-r1-workspace-v11-content-library">
   </script>
  </body>
 </html>

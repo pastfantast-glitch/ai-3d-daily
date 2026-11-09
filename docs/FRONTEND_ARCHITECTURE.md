@@ -206,3 +206,50 @@ and main contains:
 `Publish canonical intelligence YYYY-MM-DD`
 
 If any contract fails, fix the canonical/source state or owning renderer and rerun. Do not publish first and repair later.
+
+## Daily content library and supply resilience (2026-11-09)
+
+The homepage retains its contracted TOP5 and next10 analysis cards. A separate
+`today-library` renders **every** item in the current canonical dataset, including
+items beyond those 15 cards. Search, category and source-date filters operate on
+that complete list. Source dates are distinct from the report date; sources over
+180 days old are visibly marked as historical references. Compact reading hides
+visual previews without removing analysis or source links.
+
+The History portal embeds a public article index (title, summary, category, report
+and source dates, stable-ID deep link). Results are rendered in batches of 50.
+Legacy schemas resolve missing reader titles from their existing dated snapshot
+by stable ID. Article anchors are also assigned on legacy pages at load time.
+Empty categories explain the lack of admitted articles and link to History.
+Category loading retains the current view on failure, offers retry, and ignores
+stale requests after navigation.
+
+Collector discovery follows bounded, publisher-declared topic indexes in addition
+to existing pagination and feed discovery; feed article links receive priority.
+The runtime exploration targets are 80 candidates and 20 additional readable
+survivors per pass, with a reserve goal of 80. These are exploration goals, not
+promises of article counts or admission requirements. The existing two refill
+batches, source evidence rules, deduplication, 30-item daily maximum and 12/20-item
+release floors remain authoritative. Qualified overflow enters the existing
+rolling backlog; temporarily unavailable prior reserve entries survive for a
+later check, while their original discovery date and expiry remain intact. No
+article body, HTML or personal preference data is stored in reserve entries.
+
+Automatic handoff uses two run-scoped artifacts: Collector records its actual
+preflight date in `collector-target-RUN_ID`; the gate publishes
+`collector-handoff-route-RUN_ID` only after persisting a marker. The Publisher
+checks the exact upstream run, marker hash, committed marker and commit ancestry.
+A successful gate with no artifact is a no-op and cannot replay another date's
+marker. API errors and malformed/ambiguous receipts fail closed. Manual historical
+handoff continues to require an explicit date. These artifacts contain routing
+metadata only and do not create an additional canonical writer.
+
+A bot-generated `Collector correction required DATE` commit can inherit prior
+historical CI evidence only when it removes that date's Collector marker and
+optionally normalizes that same date's canonical/ledger files. Any source change,
+other-date change or different identity still needs its own CI evidence.
+
+GitHub primary/fallback schedules are unchanged. The owner's former ChatGPT
+Watchdog/editorial tasks were stopped outside this repository; no replacement
+schedule is created by this change. Future source-evidence editorial rejection
+still requires the existing review handoff rather than an automatic quality bypass.

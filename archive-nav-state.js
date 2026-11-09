@@ -238,3 +238,11 @@
   preferenceUrl.searchParams.set('v','20260915-cloudsync-r6');
   import(preferenceUrl.href).catch(err=>console.warn('Preference feedback unavailable',err));
 })();
+// Stable article deep links work on older snapshots without rewriting their content.
+function focusArticleAnchor(){
+  document.querySelectorAll('[data-intel-role="card"][data-intel-id]').forEach(card=>{card.id='intel-'+card.dataset.intelId;});
+  let id='';try{id=decodeURIComponent(location.hash.slice(1));}catch(_){}
+  if(id.startsWith('intel-'))document.getElementById(id)?.scrollIntoView({block:'start'});
+}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',focusArticleAnchor);else focusArticleAnchor();
+window.addEventListener('hashchange',focusArticleAnchor);

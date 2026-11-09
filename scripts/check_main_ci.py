@@ -92,7 +92,18 @@ def writer_generated_commit(sha):
     if len(parts) != 4 or parts[0] != sha:
         raise ValueError(f"cannot inspect commit identity for historical CI: {sha}")
     _commit, parents, committer_email, subject = parts
-    trusted = (committer_email == GITHUB_ACTIONS_BOT_EMAIL
+    correction = re.fullmatch(r'Collector correction required (20\d{2}-\d{2}-\d{2})', subject)
+    if committer_email == GITHUB_ACTIONS_BOT_EMAIL and correction:
+        date = correction.group(1)
+        changes = git('diff-tree', '--no-commit-id', '--name-status', '-r', sha).splitlines()
+        allowed = {f'data/daily/{date}.json', f'data/candidates/decision-ledger/{date}.json'}
+        removed = f'D\tdata/publish/{date}.collector'
+        # A correction may only remove its marker and normalize its own private data.
+        trusted = removed in changes and all(
+            line == removed or (line.startswith('M\t') and line[2:] in allowed)
+            for line in changes)
+    else:
+        trusted = (committer_email == GITHUB_ACTIONS_BOT_EMAIL
                and any(pattern.fullmatch(subject) for pattern in WRITER_COMMIT_PATTERNS))
     if not trusted:
         return False, None, subject

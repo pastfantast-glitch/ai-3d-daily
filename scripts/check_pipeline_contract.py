@@ -48,6 +48,10 @@ else:
     if "- 'data/publish/**'" in main: fail('receipt metadata must not retrigger canonical workflow')
     if "- 'data/daily/**'" in main: fail('canonical workflow must not trigger on data/daily/** before request/ready')
     if 'contents: write' not in main: fail('canonical publisher requires contents: write')
+    if 'collector-handoff-route-$UPSTREAM_RUN_ID' not in main or 'verify_route' not in main:
+        fail('workflow_run publisher must bind to the exact upstream handoff artifact')
+    if 'find data/publish' in main:
+        fail('workflow_run must not scan unrelated persisted markers')
     if 'message="$(git log -1 --format=%s origin/main)"' in main:
         fail('workflow_run Collector routing must resolve persisted markers, not race on latest main commit message')
     if re.search(r'^\s{2}issues:\s*$', main, re.M) or 'rerun-canonical:' in main:

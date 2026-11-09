@@ -124,7 +124,7 @@ class FeedbackTests(unittest.TestCase):
                   'candidate_ids':[c['candidate_id'] for c in candidates], 'refill_links_checked':1}
         outputs = {}
         def capture(path, value):
-            key = 'data/candidates/rolling-backlog.json' if path == collector.BACKLOG_PATH else str(path.relative_to(collector.ROOT))
+            key = 'data/candidates/rolling-backlog.json' if path == collector.BACKLOG_PATH else path.relative_to(collector.ROOT).as_posix()
             outputs[key] = value
         original_load = collector.load_json
         def fixture_load(path):

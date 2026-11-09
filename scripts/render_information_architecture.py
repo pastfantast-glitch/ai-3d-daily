@@ -7,6 +7,7 @@ data remains untouched for backwards compatibility.
 """
 from pathlib import Path
 import json, sys
+from datetime import date as date_cls
 from bs4 import BeautifulSoup
 from intelligence_v2 import load_config, is_v2_dataset, validate_v2_dataset, homepage_groups, category_items
 
@@ -101,7 +102,7 @@ def global_nav(soup, date, cfg, active='top5', context='home'):
 
     for cat in cfg['categories']:
         if context == 'home':
-            href = f'{date}/{cat["id"]}/'
+            href = f'?view={cat["id"]}'
         elif context == 'archive':
             href = f'{cat["id"]}/'
         elif context == 'history':
@@ -137,6 +138,9 @@ def home_card(soup, item, top=False, rank=None):
     content.append(analysis_shell(soup, home=True))
     source = soup.new_tag('a', attrs={'class': 'source', 'href': item['source_url'], 'target': '_blank', 'rel': 'noopener noreferrer'})
     source.string = '來源'; content.append(source)
+    stamp = soup.new_tag('p', attrs={'class':'article-date'})
+    stamp.string = f'來源日期 {item.get("source_published_at") or "待核對"}'
+    title.insert_after(stamp)
     return card
 
 
@@ -173,7 +177,7 @@ def ensure_category_section(soup, date, cfg):
     h2 = soup.new_tag('h2'); h2.string = '探索今天全部情報'; head.append(h2); section.append(head)
     grid = soup.new_tag('div', attrs={'class': 'category-nav-grid'})
     for cat in cfg['categories']:
-        a = soup.new_tag('a', attrs={'class': 'category-nav-card', 'href': f'{date}/{cat["id"]}/'})
+        a = soup.new_tag('a', attrs={'class': 'category-nav-card', 'data-category': cat['id'], 'href': f'?view={cat["id"]}'})
         strong = soup.new_tag('strong'); strong.string = cat['label']; a.append(strong)
         span = soup.new_tag('span'); span.string = cat['description']; a.append(span)
         grid.append(a)
@@ -201,6 +205,53 @@ def ensure_page_metadata(soup, title_text, description_text):
     desc['content'] = description_text
 
 
+def ensure_today_library(soup, date, data, cfg):
+    for node in soup.select('.today-library'):
+        node.decompose()
+    soup.body['data-report-date'] = date
+    hero = soup.select_one('.home-hero .page')
+    if hero:
+        hero.clear()
+        eyebrow = soup.new_tag('p', attrs={'class':'eyebrow'}); eyebrow.string = 'AI / 3D / GAME ART'; hero.append(eyebrow)
+        title = soup.new_tag('h1'); title.string = '每日製作情報'; hero.append(title)
+        stamp = soup.new_tag('p', attrs={'class':'week-asof'}); stamp.string = date; hero.append(stamp)
+        intro = soup.new_tag('p', attrs={'class':'edition-summary'})
+        intro.string = f'今日收錄 {len(data["items"])} 篇 · 近期更新、製作教學與歷史精選，來源日期逐篇標示。'
+        hero.append(intro)
+        links = soup.new_tag('div', attrs={'class':'edition-links'})
+        for href, label in [('#all-intelligence', '瀏覽全部情報'), ('history/', '搜尋歷史文章'), ('saved/', '我的收藏')]:
+            a = soup.new_tag('a', href=href); a.string = label; links.append(a)
+        hero.append(links)
+    section = soup.new_tag('section', attrs={'class':'today-library', 'id':'all-intelligence', 'aria-label':'今日全部情報'})
+    h2 = soup.new_tag('h2'); h2.string = '今日全部情報'; section.append(h2)
+    note = soup.new_tag('p'); note.string = '依重要性排序；點選標題閱讀完整內容。'; section.append(note)
+    controls = soup.new_tag('div', attrs={'class':'library-controls'})
+    search = soup.new_tag('input', attrs={'type':'search','id':'today-search','aria-label':'搜尋今日全部情報','placeholder':'搜尋工具、技術或製作方法…'}); controls.append(search)
+    for field, label, options in [('today-category','篩選情報分類',[('all','全部分類')]+[(c['id'],c['label']) for c in cfg['categories']]),('today-freshness','篩選來源日期',[('all','全部來源日期'),('recent','近 7 天'),('reference','歷史參考（超過 180 天）')])]:
+        select = soup.new_tag('select', attrs={'id':field,'aria-label':label})
+        for value, text in options:
+            option = soup.new_tag('option', value=value); option.string=text; select.append(option)
+        controls.append(select)
+    section.append(controls)
+    count = soup.new_tag('p', attrs={'id':'today-result-count','role':'status'}); count.string=f'共 {len(data["items"])} 篇'; section.append(count)
+    listing = soup.new_tag('div', attrs={'class':'library-list'})
+    labels = {c['id']:c['label'] for c in cfg['categories']}
+    for item in sorted(data['items'], key=lambda x:int(x['rank_global'])):
+        published = item.get('source_published_at') or ''
+        try: age = (date_cls.fromisoformat(date)-date_cls.fromisoformat(published[:10])).days
+        except ValueError: age = -1
+        freshness = 'recent' if 0<=age<=7 else 'reference' if age>180 else 'older'
+        row = soup.new_tag('article', attrs={'class':'library-row','data-category':item['category'],'data-freshness':freshness,'data-library-id':item['id']})
+        a = soup.new_tag('a', attrs={'class':'library-link','href':f'{date}/{item["category"]}/#intel-{item["id"]}'})
+        a.string=item['title']; row.append(a)
+        meta = soup.new_tag('p', attrs={'class':'library-meta'}); meta.string=f'{labels.get(item["category"],item["category"])} · 來源 {published or "日期待核對"}' + (' · 歷史參考' if freshness=='reference' else ''); row.append(meta)
+        summary = soup.new_tag('p', attrs={'class':'library-summary'}); summary.string=item['summary']; row.append(summary)
+        listing.append(row)
+    section.append(listing)
+    empty = soup.new_tag('p', attrs={'id':'today-empty','hidden':''}); empty.string='沒有符合的情報，請調整搜尋或篩選條件。'; section.append(empty)
+    soup.select_one('#today').insert_after(section)
+
+
 def render_home(date, data, cfg):
     path = ROOT / 'index.html'
     soup = BeautifulSoup(path.read_text('utf-8'), 'html.parser')
@@ -210,6 +261,7 @@ def render_home(date, data, cfg):
         f'{date} AI／3D／遊戲美術 Production Intelligence：精選 {len(data.get("items") or [])} 項可驗證的製作工具、流程、動畫、引擎與 DCC 情報。',
     )
     ensure_shared_stylesheet(soup, 'shared-components.css')
+    ensure_today_library(soup, date, data, cfg)
     top, next10 = homepage_groups(data)
     top_box = soup.select_one('#today .top-list')
     more_box = soup.select_one('#more .more-grid')
@@ -293,8 +345,13 @@ def category_page(date, category, items, cfg):
     body = soup.body; body['class'] = ['category-page']; body['data-report-date'] = date; body['data-category'] = category['id']
     body.append(global_nav(soup, date, cfg, active=category['id'], context='category'))
     main = soup.new_tag('main', attrs={'class': 'page category-main'})
+    if not items:
+        empty = soup.new_tag('div', attrs={'class':'category-empty','role':'status'})
+        title = soup.new_tag('h1'); title.string = category['label']; empty.append(title)
+        note = soup.new_tag('p'); note.string = f'{date} 暫無符合品質標準的新情報。可以查看其他分類，或搜尋歷史文章。'; empty.append(note)
+        link = soup.new_tag('a', href='../../history/'); link.string = '搜尋歷史文章 →'; empty.append(link); main.append(empty)
     for item in items:
-        card = soup.new_tag('article', attrs={'class': 'category-card', 'data-intel-role': 'card', 'data-intel-id': item['id']}); meta = soup.new_tag('div', attrs={'class': 'category-meta'}); meta.string = f'#{int(item["rank_global"]):02d} · {item["subcategory"]}'; card.append(meta)
+        card = soup.new_tag('article', attrs={'class': 'category-card', 'id': 'intel-' + item['id'], 'data-intel-role': 'card', 'data-intel-id': item['id']}); meta = soup.new_tag('div', attrs={'class': 'category-meta'}); meta.string = f'#{int(item["rank_global"]):02d} · {item["subcategory"]}'; card.append(meta)
         h2 = soup.new_tag('h2'); h2.string = item['title']; card.append(h2); summary = soup.new_tag('p', attrs={'class': 'summary'}); summary.string = item['summary']; card.append(summary); card.append(impact_node(soup, item['quick_impact'])); card.append(analysis_shell(soup, home=False))
         source = soup.new_tag('a', attrs={'class': 'source', 'href': item['source_url'], 'target': '_blank', 'rel': 'noopener noreferrer'}); source.string = '來源 ↗'; card.append(source); main.append(card)
     main.append(category_footer_nav(soup, category, cfg)); body.append(main)

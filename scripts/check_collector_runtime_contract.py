@@ -169,8 +169,9 @@ if HANDOFF.exists():
         "workflow_run:",
         "workflows: ['Autonomous daily Collector']",
         "WORKFLOW_RUN_CONCLUSION",
-        "Collect production intelligence ",
-        "Recollect production intelligence ",
+        "collector-target-$UPSTREAM_RUN_ID",
+        "collector_target",
+        "pending_session",
         "--allow-done-policy-republish",
         "proceed=true",
     ):
