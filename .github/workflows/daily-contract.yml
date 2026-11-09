@@ -10,6 +10,7 @@ on:
       - 'daily.css'
       - 'daily.js'
       - 'home.js'
+      - 'history.js'
       - 'canonical-client.js'
       - 'archive-nav-state.js'
       - 'preference.js'
@@ -78,6 +79,11 @@ on:
       - 'scripts/create_collector_trigger.py'
       - 'scripts/check_main_ci.py'
       - 'scripts/test_main_ci.py'
+      - 'scripts/handoff_route.py'
+      - 'scripts/content_supply.py'
+      - 'scripts/test_content_supply.py'
+      - 'scripts/test_handoff_route.py'
+      - 'scripts/test_today_library.py'
       - 'scripts/check_pipeline_health_contract.py'
       - 'scripts/check_collection_contract.py'
       - 'scripts/check_stability_contract.py'
@@ -147,6 +153,9 @@ jobs:
         run: pip install -r requirements-pipeline.txt
       - name: Validate release architecture, source topology, hybrid discovery, personalization and stability contracts
         run: |
+          node --check home.js
+          node --check history.js
+          node --check archive-nav-state.js
           node --check preference.js
           node --check cloud-sync-owner.js
           python scripts/check_release_architecture.py
@@ -163,6 +172,9 @@ jobs:
           python scripts/check_editorial_quality.py
           python scripts/check_source_qa_coverage.py
           python scripts/test_main_ci.py
+          python scripts/test_content_supply.py
+          python scripts/test_handoff_route.py
+          python scripts/test_today_library.py
           python scripts/check_policy_resolver_contract.py
           python scripts/check_tier_assignment_contract.py
           python scripts/check_analysis_reading_contract.py

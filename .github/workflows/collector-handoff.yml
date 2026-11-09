@@ -50,6 +50,8 @@ jobs:
           AFTER_SHA: ${{ github.sha }}
           REQUESTED_DATE: ${{ github.event.inputs.date }}
           WORKFLOW_RUN_CONCLUSION: ${{ github.event.workflow_run.conclusion }}
+          GH_TOKEN: ${{ github.token }}
+          UPSTREAM_RUN_ID: ${{ github.event.workflow_run.id }}
         run: |
           set -euo pipefail
           proceed=true
@@ -63,27 +65,30 @@ jobs:
               echo "Autonomous Collector did not succeed; no handoff marker will be created."
               proceed=false
             else
-              git fetch origin main
-              while IFS= read -r message; do
-                if [[ "$message" == "Collect production intelligence "* || "$message" == "Recollect production intelligence "* ]]; then
-                  candidate="$(printf '%s\n' "$message" | grep -oE '20[0-9]{2}-[0-9]{2}-[0-9]{2}' | head -1 || true)"
-                  is_policy=false
-                  if [[ "$message" == "Recollect production intelligence "* ]]; then is_policy=true; fi
-                  if [ -n "$candidate" ] \
-                    && [ -f "data/candidates/collection-session/$candidate.json" ] \
-                    && { [ "$is_policy" = "true" ] || [ ! -f "data/publish/$candidate.done.json" ]; } \
-                    && [ ! -f "data/publish/$candidate.collector" ] \
-                    && [ ! -f "data/publish/$candidate.request" ] \
-                    && { [ "$is_policy" = "true" ] || [ ! -f "data/publish/$candidate.ready" ]; }; then
-                    date="$candidate"
-                    policy_republish="$is_policy"
-                    break
-                  fi
-                fi
-              done < <(git log -40 --format=%s origin/main)
-              if [ -z "$date" ]; then
-                echo "No pending persisted autonomous Collector session requires handoff."
+              route_dir="$RUNNER_TEMP/collector-target-$UPSTREAM_RUN_ID"
+              mkdir -p "$route_dir"
+              count="$(gh api "repos/$GITHUB_REPOSITORY/actions/runs/$UPSTREAM_RUN_ID/artifacts" --jq '[.artifacts[] | select(.name == "collector-target-'"$UPSTREAM_RUN_ID"'")] | length')"
+              test "$count" -le 1 || { echo "Ambiguous Collector target artifacts"; exit 1; }
+              if [ "$count" -eq 0 ]; then
+                echo "No target artifact from this Collector run; no unrelated session will be selected."
                 proceed=false
+              else
+                gh run download "$UPSTREAM_RUN_ID" --repo "$GITHUB_REPOSITORY" --name "collector-target-$UPSTREAM_RUN_ID" --dir "$route_dir"
+                export COLLECTOR_TARGET_PATH="$route_dir/collector-target.json"
+                resolved="$(python - <<'PYCODE'
+          import json, os, shlex, sys
+          from pathlib import Path
+          sys.path.insert(0, 'scripts')
+          from handoff_route import collector_target, pending_session
+          event = json.loads(Path(os.environ['GITHUB_EVENT_PATH']).read_text())
+          target = json.loads(Path(os.environ['COLLECTOR_TARGET_PATH']).read_text())
+          date, policy = collector_target(event['workflow_run'], target)
+          print('date=' + shlex.quote(date))
+          print('policy_republish=' + str(policy).lower())
+          print('proceed=' + str(pending_session(Path('.'), date, policy)).lower())
+          PYCODE
+                )"
+                eval "$resolved"
               fi
             fi
           else
@@ -201,6 +206,31 @@ jobs:
 
           git commit -m "Collector handoff $DATE"
           git push origin HEAD:main
+
+      - name: Bind downstream route to this handoff
+        if: success() && steps.date.outputs.proceed == 'true'
+        env:
+          DATE: ${{ steps.date.outputs.value }}
+        run: |
+          python - <<'PYCODE'
+          import json, os, subprocess, sys
+          from pathlib import Path
+          sys.path.insert(0, 'scripts')
+          from handoff_route import route_receipt
+          commit = subprocess.check_output(['git', 'rev-parse', 'HEAD'], text=True).strip()
+          receipt = route_receipt(Path('.'), os.environ['DATE'], commit, os.environ['GITHUB_RUN_ID'])
+          Path(os.environ['RUNNER_TEMP'], 'collector-handoff-route.json').write_text(json.dumps(receipt))
+          PYCODE
+
+      - name: Preserve exact handoff route
+        if: success() && steps.date.outputs.proceed == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: collector-handoff-route-${{ github.run_id }}
+          path: ${{ runner.temp }}/collector-handoff-route.json
+          retention-days: 7
+          overwrite: true
+          if-no-files-found: error
 
       - name: Handoff summary
         if: success() && steps.date.outputs.proceed == 'true'

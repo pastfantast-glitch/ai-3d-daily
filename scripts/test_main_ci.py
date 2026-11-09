@@ -44,6 +44,18 @@ class MainCITests(unittest.TestCase):
                 git("commit", "-m", "Trigger Collector after source QA")
                 self.assertEqual(ci.source_evidence_sha(git("rev-parse", "HEAD"), [watched]), (merge_sha, []))
 
+    def test_correction_inherits_ci_only_for_exact_private_bookkeeping(self):
+        allowed = 'D\tdata/publish/2026-11-04.collector\nM\tdata/daily/2026-11-04.json'
+        for changes, trusted in ((allowed, True), (allowed+'\nM\tscripts/source.py', False),
+                                 ('M\tdata/daily/2026-11-04.json', False),
+                                 (allowed+'\nM\tdata/daily/2026-11-03.json', False)):
+            def fake_git(*args):
+                if args[0] == 'diff-tree': return changes
+                return self.commit_line('current', 'parent', ci.GITHUB_ACTIONS_BOT_EMAIL,
+                                        'Collector correction required 2026-11-04')
+            with self.subTest(changes=changes), patch.object(ci, 'git', side_effect=fake_git):
+                self.assertEqual(ci.writer_generated_commit('current')[0], trusted)
+
     def test_push_run_is_accepted(self):
         self.assertEqual(require_success([run_record()], SOURCE_WORKFLOW, "abc")["run_id"], 100)
 

@@ -155,6 +155,40 @@ def render_history_page(current, dates, cfg):
     note=tag(soup,'p',attrs={'class':'history-note'}); note.string='搜尋與回顧往期 Production Intelligence；首頁只保留今天的重要情報。'; section.append(note)
     append_controls(soup,section,cfg)
     history_dates=append_history_list(soup,section,current,dates)
+    article_index=[]
+    for date in history_dates:
+        path=ROOT/'data'/'daily'/f'{date}.json'
+        if not path.exists(): continue
+        data=json.loads(path.read_text('utf-8'))
+        # Early schemas store reader titles in the dated snapshot, keyed by stable ID.
+        legacy={}
+        if any(not item.get('title') for item in data.get('items',[])):
+            snapshot=ROOT/date/'index.html'
+            if snapshot.exists():
+                page=BeautifulSoup(snapshot.read_text('utf-8'),'html.parser')
+                legacy={card.get('data-intel-id'):card for card in page.select('[data-intel-role="card"][data-intel-id]')}
+        for item in data.get('items',[]):
+            title=item.get('title',''); summary=item.get('summary','')
+            if not title:
+                card=legacy.get(item.get('id'))
+                heading=card.select_one('h2,h3') if card else None
+                paragraph=card.select_one('.summary') if card else None
+                title=heading.get_text(' ',strip=True) if heading else ''
+                summary=paragraph.get_text(' ',strip=True) if paragraph else ''
+            if not title: continue
+            category=item.get('category','')
+            target=f'../{date}/{category}/' if category and (ROOT/date/category/'index.html').exists() else f'../{date}/'
+            article_index.append({'id':item['id'],'title':title,'summary':summary,
+                'category':category,'date':date,'sourceDate':item.get('source_published_at',''),
+                'url':target+'#intel-'+item['id']})
+    payload=tag(soup,'script',attrs={'type':'application/json','id':'history-article-index'})
+    payload.string=json.dumps(article_index,ensure_ascii=False).replace('<', '\\u003c')
+    section.append(payload)
+    results=tag(soup,'div',attrs={'class':'history-article-results','hidden':''})
+    status=tag(soup,'p',attrs={'class':'history-result-count','role':'status'});results.append(status)
+    listing=tag(soup,'div',attrs={'class':'library-list'});results.append(listing)
+    more=tag(soup,'button',attrs={'type':'button','class':'history-load-more'});more.string='顯示更多文章';results.append(more)
+    section.append(results)
     main.append(section); body.append(main)
     body.append(tag(soup,'script',src='../history.js'))
     body.append(tag(soup,'script',src='../preference.js',attrs={'type':'module'}))

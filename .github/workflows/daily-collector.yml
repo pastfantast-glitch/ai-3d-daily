@@ -237,6 +237,7 @@ jobs:
           path: ${{ runner.temp }}/collector-review.json
           if-no-files-found: ignore
           retention-days: 7
+          overwrite: true
 
       - name: Validate Collector session and canonical/private boundary
         if: steps.preflight.outputs.skip != 'true'
@@ -319,6 +320,32 @@ jobs:
           fi
           git commit -m "$commit_subject"
           git push origin HEAD:main
+
+      - name: Preserve resolved Collector target
+        if: success() && steps.preflight.outputs.date != ''
+        env:
+          DATE: ${{ steps.preflight.outputs.date }}
+          POLICY_REPUBLISH: ${{ steps.preflight.outputs.policy_recollect }}
+        run: |
+          python - <<'PYCODE'
+          import json, os
+          from pathlib import Path
+          target = {'schema_version': 1, 'date': os.environ['DATE'],
+                    'source_run_id': int(os.environ['GITHUB_RUN_ID']),
+                    'head_sha': os.environ['GITHUB_SHA'],
+                    'policy_republish': os.environ['POLICY_REPUBLISH'] == 'true'}
+          Path(os.environ['RUNNER_TEMP'], 'collector-target.json').write_text(json.dumps(target))
+          PYCODE
+
+      - name: Upload resolved Collector target
+        if: success() && steps.preflight.outputs.date != ''
+        uses: actions/upload-artifact@v4
+        with:
+          name: collector-target-${{ github.run_id }}
+          path: ${{ runner.temp }}/collector-target.json
+          retention-days: 7
+          overwrite: true
+          if-no-files-found: error
 
       - name: Collector summary
         if: success()

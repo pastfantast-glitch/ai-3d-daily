@@ -13,12 +13,16 @@
     "user_agent": "ai3d-daily-collector/1.0 (+https://github.com/pastfantast-glitch/ai-3d-daily)"
   },
   "discovery": {
-    "max_links_per_endpoint": 60,
-    "max_pages_per_source": 28,
-    "refill_pages_per_source": 16,
+    "max_links_per_endpoint": 100,
+    "max_pages_per_source": 40,
+    "refill_pages_per_source": 20,
     "exhaustion_semantics": "A window is exhausted when the configured selected-source index crawl, bounded pagination and feed autodiscovery, bounded article-page budget, rolling backlog check and one source-grounded related-page refill traversal have all completed or returned an explicit unavailable/blocked outcome. This is a bounded Collector-work audit, not a claim that the entire public web was exhausted.",
-    "index_pages_per_source": 3,
-    "feed_urls_per_source": 2
+    "index_pages_per_source": 5,
+    "feed_urls_per_source": 3,
+    "category_indexes_per_source": 4,
+    "candidate_target": 80,
+    "quality_surplus_target": 20,
+    "reserve_target": 80
   },
   "source_endpoints": {
     "80-level": [

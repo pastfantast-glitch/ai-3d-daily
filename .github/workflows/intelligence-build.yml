@@ -49,6 +49,8 @@ jobs:
           BEFORE_SHA: ${{ github.event.before }}
           AFTER_SHA: ${{ github.sha }}
           REQUESTED_DATE: ${{ github.event.inputs.date }}
+          GH_TOKEN: ${{ github.token }}
+          UPSTREAM_RUN_ID: ${{ github.event.workflow_run.id }}
           RECOVERY_SHA: ${{ github.event.inputs.recovery_sha }}
           WORKFLOW_RUN_CONCLUSION: ${{ github.event.workflow_run.conclusion }}
         run: |
@@ -74,12 +76,22 @@ jobs:
             fi
           elif [ "${EVENT_NAME:-}" = "workflow_run" ] && [ "${WORKFLOW_RUN_CONCLUSION:-}" = "success" ]; then
             git fetch origin main
-            # Resolve the persisted Collector marker from current main. Do not infer
-            # the date from the latest commit message: CI/policy commits can land
-            # after Collector handoff and before this workflow_run starts.
-            while IFS= read -r trigger; do
-              candidate="$(extract_date "$trigger")"
-              [ -n "$candidate" ] || continue
+            # A successful no-op gate has no route artifact and cannot replay old markers.
+            route_dir="$RUNNER_TEMP/handoff-route-$UPSTREAM_RUN_ID"
+            mkdir -p "$route_dir"
+            artifact_count="$(gh api "repos/$GITHUB_REPOSITORY/actions/runs/$UPSTREAM_RUN_ID/artifacts" --jq '[.artifacts[] | select(.name == "collector-handoff-route-'"$UPSTREAM_RUN_ID"'")] | length')"
+            test "$artifact_count" -le 1 || { echo "Ambiguous handoff route artifacts"; exit 1; }
+            if [ "$artifact_count" -eq 1 ]; then
+              gh run download "$UPSTREAM_RUN_ID" --repo "$GITHUB_REPOSITORY" --name "collector-handoff-route-$UPSTREAM_RUN_ID" --dir "$route_dir"
+              candidate="$(python - "$route_dir/collector-handoff-route.json" "$UPSTREAM_RUN_ID" <<'PYROUTE'
+          import json, sys
+          from pathlib import Path
+          sys.path.insert(0, 'scripts')
+          from handoff_route import verify_route
+          print(verify_route(Path('.'), json.loads(Path(sys.argv[1]).read_text()), sys.argv[2]))
+          PYROUTE
+              )"
+              trigger="data/publish/$candidate.collector"
               if python - "$trigger" "$candidate" <<'PY'
           import hashlib
           import json
@@ -136,9 +148,10 @@ jobs:
               then
                 mode="collector_handoff"
                 date="$candidate"
-                break
               fi
-            done < <(find data/publish -maxdepth 1 -name '20??-??-??.collector' -print | sort -r)
+            else
+              echo "No route artifact from upstream gate; skip without scanning unrelated markers."
+            fi
           fi
           echo "mode=$mode" >> "$GITHUB_OUTPUT"
           echo "date=$date" >> "$GITHUB_OUTPUT"

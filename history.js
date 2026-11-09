@@ -21,8 +21,33 @@ document.addEventListener('DOMContentLoaded',()=>{
   const daysBetween=(newest,date)=>Math.floor((new Date(newest+'T00:00:00')-new Date(date+'T00:00:00'))/86400000);
   const newest=entries.map(x=>x.dataset.historyDate).sort().at(-1)||'';
 
+  let articles=[];try{articles=JSON.parse(document.querySelector('#history-article-index')?.textContent||'[]');}catch(_){}
+  const results=document.querySelector('.history-article-results');
+  let matched=[],limit=50;
+  function renderArticles(){
+    if(!results)return;
+    const list=results.querySelector('.library-list');list.replaceChildren();
+    matched.slice(0,limit).forEach(item=>{
+      const row=document.createElement('article');row.className='library-row';
+      const link=document.createElement('a');link.className='library-link';link.href=item.url;link.textContent=item.title;
+      const meta=document.createElement('p');meta.className='library-meta';meta.textContent=`收錄 ${item.date} · 來源 ${item.sourceDate||'日期待核對'}`;
+      const summary=document.createElement('p');summary.className='library-summary';summary.textContent=item.summary;
+      row.append(link,meta,summary);list.append(row);
+    });
+    results.querySelector('.history-result-count').textContent=matched.length?`找到 ${matched.length} 篇，顯示 ${Math.min(limit,matched.length)} 篇`:'找不到符合條件的文章，請調整搜尋或篩選條件。';
+    results.querySelector('.history-load-more').hidden=matched.length<=limit;
+  }
+  results?.querySelector('.history-load-more').addEventListener('click',()=>{limit+=50;renderArticles();});
   const applyHistory=()=>{
     const query=historySearch.value.trim().toLowerCase();
+    const articleMode=Boolean(query||category!=='all');
+    if(results){
+      results.hidden=!articleMode;archive.hidden=articleMode;
+      matched=articles.filter(item=>(category==='all'||item.category===category)&&
+        (range==='all'||daysBetween(newest,item.date)<Number(range))&&
+        (!query||`${item.title} ${item.summary} ${item.date} ${item.sourceDate}`.toLowerCase().includes(query)));
+      limit=50;renderArticles();
+    }
     let visible=0;
     entries.forEach(a=>{
       const cats=(a.dataset.historyCategories||'').split(/\s+/).filter(Boolean);

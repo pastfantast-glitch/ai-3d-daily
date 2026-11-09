@@ -35,6 +35,7 @@ from content_quality import admission as content_admission, classify_content, no
 from check_editorial_quality import editorial_errors
 from article_evidence import extract_article_evidence, review_record, loss_summary
 from editorial_review import candidate_copy
+from content_supply import section_links, retained_entries, reserve_output
 from collector_personalization import load_owner_preferences, apply_candidate_personalization, positive_expansion_terms, expand_source_links
 
 INTEL_PATH = ROOT / "config" / "intelligence-v2.json"
@@ -758,6 +759,20 @@ def source_probe(
             if candidate_page not in index_seen and candidate_page not in pagination_queue:
                 pagination_queue.append(candidate_page)
 
+    # Topic indexes are publisher-declared links, with a separate bounded budget.
+    section_budget = int(disc_cfg.get('category_indexes_per_source', 0))
+    sections_checked = 0
+    for index in list(successes):
+        for section_url in section_links(index['html'], index['final_url'],
+                lambda url: same_registered_domain(url, domain), section_budget):
+            if section_url in index_seen or sections_checked >= section_budget:
+                continue
+            index_seen.add(section_url)
+            result = fetch(session, section_url, timeout)
+            sections_checked += 1
+            if result.get('html'):
+                successes.append(result)
+
     feed_urls: list[str] = []
     seen_feed_urls: set[str] = set()
     for result in successes:
@@ -781,6 +796,7 @@ def source_probe(
                 links.append((url, title))
 
     feeds_checked = 0
+    feed_links = []
     for feed_url in feed_urls[:feed_urls_limit]:
         feed_result = fetch(session, feed_url, timeout, allow_feed=True)
         feeds_checked += 1
@@ -789,9 +805,14 @@ def source_probe(
         for url, title in extract_feed_article_links(
             feed_result["html"], feed_result["final_url"], domain, max_links
         ):
+            feed_links.append((url, title))
             if url not in seen_links:
                 seen_links.add(url)
                 links.append((url, title))
+
+    # Feed entries get article-fetch budget before older links buried in indexes.
+    feed_ids = {url for url, _ in feed_links}
+    links = list(dict(feed_links).items()) + [(url, title) for url, title in links if url not in feed_ids]
 
     # Known published URLs never consume the bounded article fetch budget.
     links = [(url, title) for url, title in links if unpublished_link(url)]
@@ -868,6 +889,9 @@ def source_probe(
         "candidate_ids": [x["candidate_id"] for x in candidates],
         "index_pages_checked": len(successes),
         "feed_urls_checked": feeds_checked,
+        "category_indexes_checked": sections_checked,
+        "article_pages_checked": len(links) + len(refill_links),
+        "evidence_extracted": sum(m.get("article_evidence", {}).get("status") == "extracted" for m in metas),
         "refill_links_checked": len(refill_links),
         "semantic_expansion_links_checked": len(expanded_urls),
         "published_links_skipped": len(skipped_published),
@@ -1313,12 +1337,18 @@ def main() -> int:
         discovered.extend(candidates)
 
     backlog_checked = 0
-    for entry in backlog.get("items") or []:
+    prior_reserve = retained_entries(backlog.get('items') or [], report_date, published_sources,
+        int((hybrid.get('rolling_backlog') or {}).get('max_age_days', 180)))
+    retry_reserve = []
+    for entry in prior_reserve:
         source_url = canonicalize_url(str(entry.get("source_url") or ""))
         if not source_url.startswith("https://") or source_url in published_sources:
             continue
         backlog_checked += 1
         result = fetch(session, source_url, int(runtime["http"]["timeout_seconds"]))
+        if not result.get('html') and (int(result.get('status', 0)) in (0, 401, 403, 408, 429) or int(result.get('status', 0)) >= 500):
+            retry_reserve.append(entry)
+            continue
         meta = page_metadata(result, str(entry.get("title") or ""))
         if not meta or not relevant(meta):
             continue
@@ -1349,6 +1379,10 @@ def main() -> int:
     refill_goal = normal_floor
     if refill_cfg.get("registered_source_refill_goal") == "daily-target":
         refill_goal = max(normal_floor, int(intel["collection"]["daily_target_items"]))
+    reserve_target = int(runtime['discovery'].get('quality_surplus_target', 0))
+    # A surplus is an exploration target, never a lower release/admission threshold.
+    refill_goal += min(int(runtime['discovery'].get('reserve_target', 80)), len(prior_reserve) + reserve_target)
+    candidate_target = int(runtime['discovery'].get('candidate_target', 0))
     max_refill_batches = int(refill_cfg.get("registered_source_refill_max_batches", 0) or 0)
 
     pre_refill_survivors = unpublished_survivor_count(
@@ -1359,22 +1393,22 @@ def main() -> int:
     refill_batches = 0
 
     # Deficit-aware registered-source refill is an authoritative extension of the
-    # daily deterministic probe plan. It is activated only below the normal floor,
-    # proceeds in bounded batches, and never gives source/ranking/admission credit.
+    # daily deterministic probe plan. Daily supply and reserve goals share the same
+    # bounded batches; neither goal gives source/ranking/admission credit.
     if (
         refill_cfg.get("enabled") is True
         and refill_cfg.get("trigger_total_survivors_below_normal_floor") is True
-        and post_refill_survivors < refill_goal
+        and (post_refill_survivors < refill_goal or len(discovered) < candidate_target)
     ):
-        while post_refill_survivors < refill_goal and refill_batches < max_refill_batches:
-            deficit = refill_goal - post_refill_survivors
+        while (post_refill_survivors < refill_goal or len(discovered) < candidate_target) and refill_batches < max_refill_batches:
+            deficit = max(refill_goal - post_refill_survivors, candidate_target - len(discovered), 0)
             refill_plan = registered_source_refill_plan(
                 report_date,
                 selected + refill_selected,
                 deficit,
                 hybrid,
             )
-            batch = list(refill_plan.get("selected") or [])
+            batch = [sid for sid in refill_plan.get("selected", []) if sid not in selected + refill_selected]
             if not batch:
                 break
             for source_id in batch:
@@ -1397,7 +1431,7 @@ def main() -> int:
             )
             if (
                 refill_cfg.get("stop_when_normal_floor_met") is True
-                and post_refill_survivors >= refill_goal
+                and post_refill_survivors >= refill_goal and len(discovered) >= candidate_target
             ):
                 break
 
@@ -1530,6 +1564,8 @@ def main() -> int:
         "backlog": len(overflow),
         "editorial_rejected": len(editorial_rejections),
         "refill_goal": refill_goal,
+        "candidate_target": candidate_target,
+        "reserve_recheck_unavailable": len(retry_reserve),
         "sources": {source_id: {key: record.get(key) for key in ("status", "candidates_found", "published_links_skipped", "reason")} for source_id, record in probe_records.items()},
         "rejection_examples": [{"id": candidate["candidate_id"], "source_url": candidate["source_url"], "source_title": candidate["meta"].get("title"), "errors": errors} for candidate, errors in editorial_rejections[:20]],
     }, ensure_ascii=False), flush=True)
@@ -1685,18 +1721,7 @@ def main() -> int:
     }
 
     max_backlog = int((hybrid.get("rolling_backlog") or {}).get("max_items", 240))
-    backlog_items = []
-    for candidate in overflow[:max_backlog]:
-        backlog_items.append({
-            "id": candidate["candidate_id"],
-            "source_id": candidate["source_id"],
-            "title": clean(candidate["title"], 220),
-            "source_url": candidate["source_url"],
-            "category": candidate["category"],
-            "subcategory": candidate["subcategory"],
-            "ranking_score": candidate["ranking_score"],
-            "discovered_for": report_date,
-        })
+    backlog_items = reserve_output(overflow, retry_reserve, prior_reserve, report_date, max_backlog)
     backlog_out = {
         "schema_version": 1,
         "updated_for": report_date,
