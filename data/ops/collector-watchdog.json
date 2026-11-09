@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "date": "2026-11-09",
+  "date": "2026-11-10",
   "state": "WATCHDOG_TRIGGER",
   "trigger": "chatgpt-0740-watchdog",
-  "reason": "At 2026-11-09 07:41 Asia/Taipei, current main had no valid DONE receipt, no queued or in-progress Canonical Publisher or Collector run, no genuine Autonomous daily Collector schedule/push run created today, and no persisted collection-session for 2026-11-09; trigger the existing idempotent Collector pipeline.",
+  "reason": "At 2026-11-10T07:47:09+08:00, current main b258642faec5cd955e4b52a446cd6643aa3afa4a had no daily DONE/canonical/collection-session for 2026-11-10, no queued or in-progress Collector or Canonical Publisher, and no genuine main Collector run created today. latest-success remains 2026-11-09. Rechecked before update; trigger only the existing Collector concurrency group.",
   "writer_idle_confirmed_externally": true
 }
