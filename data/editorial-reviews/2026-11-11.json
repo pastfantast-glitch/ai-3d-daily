@@ -1,0 +1,2034 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-11",
+  "reviewer": "chatgpt-scheduled-task",
+  "source_run_id": 42925542307,
+  "source_head_sha": "1331f3294730ddc5f3ee5c67e6939ef71ac23b95",
+  "items": {
+    "80-level-unreal-engine-5-9-preview-is-out-it-was-built-with-ai": {
+      "source_url": "https://80.lv/articles/unreal-engine-5-9-preview-is-out-it-was-built-with-ai",
+      "source_published_at": "2026-11-10",
+      "source_evidence_sha256": "6d885cab339df9b148f9f2b0f07975c8db055d3638f1a2dd6437f78948be2a2c",
+      "reviewed_on": "2026-11-11",
+      "title": "Unreal Engine 5.9 預覽版：以代理工作流程移植 AI 工具並恢復網頁平台支援",
+      "summary": "80 Level 報導 Unreal Engine 5.9 MegaJam 預覽版加入 Python 與 AI 輔助工具，並以 WebAssembly、WebGPU 支援瀏覽器執行；這次版本的 QA 時間短於平常，部分網頁渲染程式仍是原型。",
+      "full_analysis": [
+        {
+          "label": "技術流程：移植工具與網頁平台",
+          "text": "報導引述 Epic 說明，少數工程師指揮代理移植 UE6 分支的 AI 工具，並以 UE4 已退役的 HTML5 平台為起點撰寫網頁平台程式；工程師仍負責指導、審查與測試。",
+          "evidence_refs": [
+            "p003",
+            "p004"
+          ]
+        },
+        {
+          "label": "製作影響：編輯與輸出選項",
+          "text": "預覽版包含 Unreal MCP、Unreal Assistant 與內容製作工具 Unreal Canvas，也加入 Lumen World Cache 和 Nanite 剔除改進。網頁輸出則使用 WebAssembly 與 WebGPU，讓專案多一個瀏覽器執行目標。",
+          "evidence_refs": [
+            "p007"
+          ]
+        },
+        {
+          "label": "成熟度限制：縮短的驗證期",
+          "text": "這次預覽約用一週組裝，QA 期間較短；Epic 表示仍在清理代理撰寫的程式，部分網頁渲染器將於正式版前重構。原文建議以專案副本測試，不能把此預覽當成已完成穩定性驗證的正式版本。",
+          "evidence_refs": [
+            "p006",
+            "p008"
+          ]
+        }
+      ],
+      "evidence_refs": [
+        "p003",
+        "p004",
+        "p006",
+        "p007",
+        "p008"
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p003",
+          "p004",
+          "p006",
+          "p007",
+          "p008"
+        ]
+      }
+    },
+    "80-level-this-cosmic-horror-action-roguelite-combines-melee-ranged-co": {
+      "source_url": "https://80.lv/articles/this-cosmic-horror-action-roguelite-combines-melee-ranged-combat",
+      "source_published_at": "2026-11-10",
+      "source_evidence_sha256": "1a1534b9fbf7436771cd3c2516a10cb008e873bb50e04d6d7fa903ba5f429719",
+      "reviewed_on": "2026-11-11",
+      "title": "Sole Salvation：以末日義大利城鎮呈現近遠戰切換的恐怖動作遊戲",
+      "summary": "Sole Salvation 使用 Unreal Engine，讓玩家同時持有近戰與遠程武器，在受污染的義大利城鎮中戰鬥。2026 年 11 月報導介紹了免費試玩版，以及預計同月推出的更新。",
+      "full_analysis": [
+        {
+          "label": "場景設計：記憶破碎的城鎮",
+          "text": "作品以災變後的義大利城鎮為背景，把破碎地景、扭曲建築與受污染街道結合到主角尋找親友的故事；這些具體環境元素構成報導描述的宇宙恐怖視覺方向。",
+          "evidence_refs": [
+            "p003",
+            "p004"
+          ]
+        },
+        {
+          "label": "製作參考：武器與進程的連結",
+          "text": "遊戲允許依戰況切換近戰與遠程攻擊，各武器有不同戰鬥風格和連段，取得能力後可進一步強化；死亡後仍能回收記憶碎片以恢復主角過往並提升屬性。",
+          "evidence_refs": [
+            "p002",
+            "p005"
+          ]
+        },
+        {
+          "label": "證據限制：展示不等於製程拆解",
+          "text": "本文提供遊戲設定、預告與試玩資訊，沒有拆解扭曲建築的建模方法或環境渲染成本；因此這裡將它列為場景與戰鬥設計參考，尚不能推導出可重製的美術技術流程。",
+          "evidence_refs": [
+            "p001",
+            "p002",
+            "p003",
+            "p004",
+            "p005",
+            "p006"
+          ]
+        }
+      ],
+      "evidence_refs": [
+        "p001",
+        "p002",
+        "p003",
+        "p004",
+        "p005",
+        "p006"
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p002",
+          "p003",
+          "p004",
+          "p005",
+          "p006"
+        ]
+      }
+    },
+    "80-level-this-blender-made-mediterranean-street-looks-straight-out-of": {
+      "source_url": "https://80.lv/articles/this-blender-made-mediterranean-street-looks-straight-out-of-ghibli-movie",
+      "source_published_at": "2026-11-10",
+      "source_evidence_sha256": "5d27bb821c41efe968769cdba0f8dbdaa0eb542679207d8016f1047bbc2cf683",
+      "reviewed_on": "2026-11-11",
+      "title": "Blender 地中海街景：用 Line Art、幾何刮痕與頂點色做出手繪外觀",
+      "summary": "Andrew Dimov 以 Blender 製作地中海風格街景，使用 Line Art 輪廓、手動放置的幾何細節與 EEVEE 渲染。作者表示約耗時 20 至 25 小時，主要時間花在建模和合成。",
+      "full_analysis": [
+        {
+          "label": "技術流程：幾何與色階構成筆觸",
+          "text": "輪廓由 Line Art 修改器產生，刮痕及細節則是手動擺放的幾何；作者以 Diffuse BSDF 配合 Color Ramp 控制陰影，再與基礎色相乘，並用頂點色變化磚牆與販賣機外觀。",
+          "evidence_refs": [
+            "p003",
+            "p004",
+            "p006"
+          ]
+        },
+        {
+          "label": "製作控制：先決定明暗分區",
+          "text": "作者在粗模階段就安排光照，讓前方建築受光、後方建築落入陰影，再調整屋頂投影角度。推論：本案的卡通層次與場景構圖一同建立，不能只靠最後替換材質重現。",
+          "evidence_refs": [
+            "p005",
+            "p006"
+          ]
+        },
+        {
+          "label": "方法限制：手繪外觀仍需人工配置",
+          "text": "這個案例沒有使用 Grease Pencil 或手繪貼圖來完成所述街景，卻需要逐一放置表面細節。20 至 25 小時是作者這次作品的估計，不是套用節點後製作任意街景的時間保證。",
+          "evidence_refs": [
+            "p003",
+            "p004"
+          ]
+        }
+      ],
+      "evidence_refs": [
+        "p001",
+        "p002",
+        "p003",
+        "p004",
+        "p005",
+        "p006"
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p002",
+          "p003",
+          "p004",
+          "p005",
+          "p006"
+        ]
+      }
+    },
+    "80-level-free-blender-tool-for-creating-stylized-anime-hair": {
+      "source_url": "https://80.lv/articles/free-blender-tool-for-creating-stylized-anime-hair",
+      "source_published_at": "2026-11-10",
+      "source_evidence_sha256": "cb2381ea50a3c52a04f8b615a28fd511efcb4b2bc8261ba01ffcedd0471c337f",
+      "reviewed_on": "2026-11-11",
+      "title": "HairMesh 免費外掛：在 Blender 頭部畫曲線，轉成四邊面髮束",
+      "summary": "riel 將 CataRackta 的獨立 HairMesh 工具移植為 Blender 外掛，支援沿頭部畫曲線、建立髮束並轉換成四邊面網格；外掛需要 Blender 5.1 或更新版本。",
+      "full_analysis": [
+        {
+          "label": "工具流程：曲線連成髮束",
+          "text": "使用者可以逐點或徒手畫曲線，再由牆面系統連接鄰近曲線形成髮束；切換 Live 與 Baked 視圖，可分別處理曲線與牆面，或預覽轉換後的幾何。",
+          "evidence_refs": [
+            "p002",
+            "p003"
+          ]
+        },
+        {
+          "label": "製作控制：形狀與排列工具",
+          "text": "外掛提供對稱、複製、引導線及接合等工具，並含厚度、扭轉、雜訊、捲曲與密度等修改功能。推論：這組控制適合在髮束形狀調整時保留曲線編輯步驟，再檢查網格結果。",
+          "evidence_refs": [
+            "p003"
+          ]
+        },
+        {
+          "label": "導入限制：版本與分支方向",
+          "text": "報導明確要求 Blender 5.1 以上，並指出後續開發將以 Blender 專屬改進為主；因此不能假設它會與原本的獨立工具保持完全相同的功能進度，既有 .hairmesh 資料則有匯入支援。",
+          "evidence_refs": [
+            "p003",
+            "p004"
+          ]
+        }
+      ],
+      "evidence_refs": [
+        "p002",
+        "p003",
+        "p004"
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p002",
+          "p003",
+          "p004"
+        ]
+      }
+    },
+    "80-level-real-world-jet-engine-recreated-with-intricate-blender-rig": {
+      "source_url": "https://80.lv/articles/real-world-jet-engine-recreated-with-intricate-blender-rig",
+      "source_published_at": "2026-11-10",
+      "source_evidence_sha256": "f37d586f8886469564533221a378d93d72083eb179ffd74b227833e354e86b99",
+      "reviewed_on": "2026-11-11",
+      "title": "Blender 噴射引擎機構：以單根骨骼驅動噴嘴，用簡單幾何呈現推力",
+      "summary": "DemNikoArt 以 EJ200 引擎為基礎製作機械綁定，用一根骨骼控制噴嘴活動零件，間歇製作約兩至三週。首次渲染測試主要以圓錐、圓柱上的貼圖搭配鏡頭效果呈現噴射衝擊。",
+      "full_analysis": [
+        {
+          "label": "技術流程：單一驅動的噴嘴",
+          "text": "噴嘴的細部活動零件由一根骨骼控制，模型參考 EJ200 引擎，但作者自行設計了後部結構。這提供了複雜機械外觀搭配簡單操作入口的綁定案例。",
+          "evidence_refs": [
+            "p003"
+          ]
+        },
+        {
+          "label": "製作影響：幾何貼圖承擔特效",
+          "text": "噴射與推力效果主要來自圓錐和圓柱上的貼圖，配合僅數幀的動畫、鏡頭震動、動態模糊和燈光。推論：這種做法將表現重點放在短促衝擊鏡頭，而非建立完整流體模擬。",
+          "evidence_refs": [
+            "p004",
+            "p005"
+          ]
+        },
+        {
+          "label": "驗證限制：首輪測試的範圍",
+          "text": "作者說明展示影格來自初始爆發、用來強調衝擊；後段引擎又是自行設計，因此不能把視覺效果視為真實引擎結構或持續推力的物理驗證。本文也沒有提供渲染效能基準。",
+          "evidence_refs": [
+            "p003",
+            "p004",
+            "p005"
+          ]
+        }
+      ],
+      "evidence_refs": [
+        "p001",
+        "p002",
+        "p003",
+        "p004",
+        "p005"
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p002",
+          "p003",
+          "p004",
+          "p005"
+        ]
+      }
+    },
+    "80-level-blender-5-1-now-available": {
+      "source_url": "https://80.lv/articles/blender-5-1-now-available",
+      "source_published_at": "2026-03-18",
+      "source_evidence_sha256": "62dfad24406b1620ea65a50dcaabcd5ce58ab477b7b7420c6fdbec7a5081d6d2",
+      "reviewed_on": "2026-11-11",
+      "title": "歷史參考｜Blender 5.1：著色器光線投射與非破壞曲線平滑",
+      "summary": "2026 年 3 月的 Blender 5.1 報導介紹著色器 Raycast 節點、動畫播放改善及 Gaussian 曲線平滑；這是舊版本功能回顧，其中 EEVEE 的光線投射仍限於螢幕空間。",
+      "full_analysis": [
+        {
+          "label": "技術變更：著色器中的光線投射",
+          "text": "Raycast 節點將對場景幾何投射光線的能力帶入 Cycles 與 EEVEE 著色器，原文以非寫實渲染效果說明其用途；它不是僅存在於幾何節點中的操作。",
+          "evidence_refs": [
+            "p003",
+            "p004"
+          ]
+        },
+        {
+          "label": "動畫製作：曲線調整保留可逆性",
+          "text": "更新改善高面數網格的形狀鍵求值與大量關鍵骨骼的動作播放；新增 Gaussian 平滑修改器可降低曲線雜訊與細節，與直接平滑操作相比，採用非破壞方式。",
+          "evidence_refs": [
+            "p005"
+          ]
+        },
+        {
+          "label": "版本限制：兩個渲染器並非等效",
+          "text": "報導明確指出 EEVEE 的 Raycast 當時只做螢幕空間追蹤；將該節點用在非寫實材質時，不能把 Cycles 與 EEVEE 視為完全相同的實作。此處記錄的是 5.1 發布時的能力。",
+          "evidence_refs": [
+            "p004"
+          ]
+        }
+      ],
+      "evidence_refs": [
+        "p003",
+        "p004",
+        "p005"
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p003",
+          "p004",
+          "p005"
+        ]
+      }
+    },
+    "80-level-developing-original-3d-chimera-character": {
+      "source_url": "https://80.lv/articles/developing-original-3d-chimera-character",
+      "source_published_at": "2026-06-12",
+      "source_evidence_sha256": "4f0507c6848d2f29ebbce481a72006988883af4c59703779ec96f809aee03a78",
+      "reviewed_on": "2026-11-11",
+      "title": "Chimera 角色製作：手繪毛皮、關節式臉部綁定與 ARKit 曲線事件",
+      "summary": "CataRackta 在 2026 年版 Chimera 中結合手繪貼圖與 Unreal Engine 5，使用關節和姿勢資產處理 ARKit 臉部曲線，並把情緒曲線門檻連到額外表情或握拳事件。",
+      "full_analysis": [
+        {
+          "label": "貼圖流程：先烘焙體積再繪色",
+          "text": "作者混合世界空間法線的色彩通道與環境遮蔽，整理出接近中性灰的底圖，再疊加顏色；毛皮另以漸層映射、遮罩和手繪髮絲增加變化，主要在模型表面或透過投影繪製。",
+          "evidence_refs": [
+            "p008",
+            "p009",
+            "p010",
+            "p011",
+            "p012",
+            "p013",
+            "p014",
+            "p018",
+            "p019"
+          ]
+        },
+        {
+          "label": "製作控制：骨骼串接表情與事件",
+          "text": "臉部變形採用關節式綁定與姿勢資產，而非傳統形狀鍵變形。作者能調整最終姿勢、排除特定關節或覆寫動畫層，並用 ARKit 曲線門檻觸發生悶氣表情或握拳等行為。",
+          "evidence_refs": [
+            "p023",
+            "p024",
+            "p025",
+            "p026",
+            "p027",
+            "p028",
+            "p029"
+          ]
+        },
+        {
+          "label": "導入限制：相容性與追蹤硬體",
+          "text": "作者曾遇到引擎與所需外掛的相容問題，最後購買 iPad 取得 ARKit 追蹤；Control Rig 環境互動與本機語言模型仍是後續規劃或研究，不能當作此版本已完成的功能。",
+          "evidence_refs": [
+            "p030",
+            "p034"
+          ]
+        }
+      ],
+      "evidence_refs": [
+        "p001",
+        "p005",
+        "p006",
+        "p008",
+        "p009",
+        "p010",
+        "p011",
+        "p012",
+        "p013",
+        "p014",
+        "p018",
+        "p019",
+        "p023",
+        "p024",
+        "p025",
+        "p026",
+        "p027",
+        "p028",
+        "p029",
+        "p030",
+        "p031",
+        "p034"
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p005",
+          "p006",
+          "p008",
+          "p009",
+          "p010",
+          "p011",
+          "p012",
+          "p013",
+          "p014",
+          "p018",
+          "p019",
+          "p023",
+          "p024",
+          "p025",
+          "p026",
+          "p027",
+          "p028",
+          "p029",
+          "p030",
+          "p031",
+          "p034"
+        ]
+      }
+    },
+    "80-level-check-out-how-this-stylized-animated-short-film-was-created": {
+      "source_url": "https://80.lv/articles/check-out-how-this-stylized-animated-short-film-was-created-in-blender",
+      "source_published_at": "2026-08-04",
+      "source_evidence_sha256": "6583b5eac75a5be55e18153b3e0455e0409c48d3f7ba217e55c27d2978f1e96e",
+      "reviewed_on": "2026-11-11",
+      "title": "NOXIOUS 短片解析：在 Blender 結合投影貼圖、手繪紋理與線條",
+      "summary": "Kay Hilman 於 2026 年介紹畢業短片 NOXIOUS 的 Blender 製作過程，包含投影貼圖、自訂 Grease Pencil 流程、線條處理與製作範圍調整；作品本身是耗時兩年完成的 2024 年畢業專案。",
+      "full_analysis": [
+        {
+          "label": "技術流程：投影與表面線條",
+          "text": "解析涵蓋投影貼圖與自訂 Grease Pencil 工作方式；視覺部分還結合手繪紋理、文中所稱的 Outline 修改器，以及讓線條貼附表面的幾何節點技巧。",
+          "evidence_refs": [
+            "p003",
+            "p005"
+          ]
+        },
+        {
+          "label": "製作影響：視覺與聲音一起拆解",
+          "text": "這支解析不只談畫面，也討論重新界定製作範圍及趕工；作曲者 Mikael Umarov 另有聲景與配樂段落。推論：它適合用來理解個人短片如何同時安排畫面技術與聲音合作。",
+          "evidence_refs": [
+            "p003",
+            "p004"
+          ]
+        },
+        {
+          "label": "日期與證據限制：作品早於解析",
+          "text": "短片是 2024 年畢業作品，而本文是後來的製作解析介紹；不能把它寫成 2026 年才完成的作品。正文列出了技術組合，卻沒有完整節點參數，本文也不宣稱已重製其效果。",
+          "evidence_refs": [
+            "p002",
+            "p003",
+            "p004",
+            "p005"
+          ]
+        }
+      ],
+      "evidence_refs": [
+        "p002",
+        "p003",
+        "p004",
+        "p005"
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p002",
+          "p003",
+          "p004",
+          "p005"
+        ]
+      }
+    },
+    "80-level-tutorial-how-to-model-rig-umbrella-in-blender": {
+      "source_url": "https://80.lv/articles/tutorial-how-to-model-rig-umbrella-in-blender",
+      "source_published_at": "2026-10-06",
+      "source_evidence_sha256": "b03af05b352a0f5870d0faab837c6ea0628cc19a3ccf111ae906cb73430f5632",
+      "reviewed_on": "2026-11-11",
+      "title": "Blender 摺疊傘教學：串接建模、骨架綁定與布料控制",
+      "summary": "PIXXO 3D 的初學者教學以 Blender 5.2 LTS 製作可完全收合的雨傘，逐步涵蓋建模、綁定和布料設定；文章也指出布料附著與動畫方法可延伸到披風和旗幟。",
+      "full_analysis": [
+        {
+          "label": "技術流程：由傘架到布料設定",
+          "text": "教學把建模、骨架綁定與布料設定放進同一個可摺疊雨傘專案，目標是完成可收合的道具；這比只展示傘面外觀多了機構與布料協作的學習主題。",
+          "evidence_refs": [
+            "p001",
+            "p002"
+          ]
+        },
+        {
+          "label": "製作應用：附著物與柔性表面",
+          "text": "原文舉出超級英雄披風及固定在旗桿上的旗幟，說明內容也涉及如何附著、控制和動畫化布料。這些是文中列出的延伸用途，不代表已提供各用途的完整專案。",
+          "evidence_refs": [
+            "p003"
+          ]
+        },
+        {
+          "label": "導入限制：限定已知教學環境",
+          "text": "文章明確說明使用 Blender 5.2 LTS，但沒有列出布料參數、傘骨約束或碰撞設定；目前可確認的是教學範圍與版本，實作細節仍要依原教學，不宜自行補成既定解法。",
+          "evidence_refs": [
+            "p001",
+            "p002",
+            "p003"
+          ]
+        }
+      ],
+      "evidence_refs": [
+        "p001",
+        "p002",
+        "p003"
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p002",
+          "p003"
+        ]
+      }
+    },
+    "80-level-this-blender-tool-lets-you-draw-hair-strands-along-guides": {
+      "source_url": "https://80.lv/articles/this-blender-tool-lets-you-draw-hair-strands-along-guides",
+      "source_published_at": "2026-07-25",
+      "source_evidence_sha256": "69025210700b3f88ff2268e475c115dabc954df4c05c872f07f286a05f1be29c",
+      "reviewed_on": "2026-11-11",
+      "title": "Draw-Hair：沿引導網格在 Blender 視窗繪製髮絲曲線",
+      "summary": "Draw-Hair 是持續開發中的 Blender 外掛，可在視窗畫出自動貼附引導網格的髮絲曲線；先指定並調整引導面，再進入繪製模式，還能修改曲線截面與拓樸設定。",
+      "full_analysis": [
+        {
+          "label": "工具流程：先設引導再畫髮絲",
+          "text": "使用時先按 Set Guide，調整引導網格貼合頭部及曲線截面，再按 Edit Hair 進入繪製模式；畫出的曲線會自動貼附引導面，避免完全憑空放置線條。",
+          "evidence_refs": [
+            "p001",
+            "p002"
+          ]
+        },
+        {
+          "label": "製作控制：曲線解析度可調",
+          "text": "Topology 設定可控制曲線解析度與簡化頂點。推論：頭髮輪廓繪好後，仍有整理曲線取樣密度的空間；本文沒有把這項功能延伸解讀成自動生成角色骨架或毛髮物理。",
+          "evidence_refs": [
+            "p002"
+          ]
+        },
+        {
+          "label": "成熟度限制：仍在持續開發",
+          "text": "外掛源於大學課程專案，作者仍在改善使用便利性並徵求回饋。原文允許個人與商業專案使用，但沒有提供支援版本清單或大型髮型的效能測試，不能據此保證所有製作環境適用。",
+          "evidence_refs": [
+            "p001",
+            "p002",
+            "p003"
+          ]
+        }
+      ],
+      "evidence_refs": [
+        "p001",
+        "p002",
+        "p003"
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p002",
+          "p003"
+        ]
+      }
+    },
+    "80-level-3d-artist-presented-a-thorough-course-on-mechanical-rigging": {
+      "source_url": "https://80.lv/articles/3d-artist-presented-a-thorough-course-on-mechanical-rigging-in-blender-on-gumroad",
+      "source_published_at": "2025-10-06",
+      "source_evidence_sha256": "10b9c9d8203e55d06408d0053028faf0811a60631e8eca330d5a9477044c34a8",
+      "reviewed_on": "2026-11-11",
+      "title": "歷史參考｜Blender 機械綁定課程：從 IK、齒輪到單控制器夾爪",
+      "summary": "2025 年 10 月報導介紹 DemNikoArt 的七部分 Blender 機械綁定課程，內容從 IK 入門延伸到機械腿、活塞、齒輪、機械手臂、纜線與夾爪；此處保留當時的課綱範圍。",
+      "full_analysis": [
+        {
+          "label": "技術流程：循序拆解機械元件",
+          "text": "課程先介紹 IK，再處理機械腿與活塞；齒輪段落涵蓋簡單齒輪如何配合並引入驅動器，機械手臂段落則說明多組 IK 綁定如何共同運作。",
+          "evidence_refs": [
+            "p002",
+            "p003",
+            "p004",
+            "p005",
+            "p006",
+            "p007",
+            "p008"
+          ]
+        },
+        {
+          "label": "製作控制：纜線與夾爪",
+          "text": "纜線章節以不需要模擬或烘焙的方式處理機構，夾爪章節展示由單一控制器操作的複雜外觀。推論：課綱的共同方向是把機械活動整理成動畫師可操作的控制入口。",
+          "evidence_refs": [
+            "p009",
+            "p010"
+          ]
+        },
+        {
+          "label": "版本限制：歷史課綱不是現況保證",
+          "text": "這份 2025 年介紹列出七部分內容，卻沒有提供 Blender 相容版本或完整約束配置；不能用這篇舊課綱保證現行課程章數、下載內容或跨版本運作情況。",
+          "evidence_refs": [
+            "p002",
+            "p003",
+            "p004",
+            "p005",
+            "p006",
+            "p007",
+            "p008",
+            "p009",
+            "p010",
+            "p011",
+            "p012"
+          ]
+        }
+      ],
+      "evidence_refs": [
+        "p002",
+        "p003",
+        "p004",
+        "p005",
+        "p006",
+        "p007",
+        "p008",
+        "p009",
+        "p010",
+        "p011",
+        "p012"
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p002",
+          "p003",
+          "p004",
+          "p005",
+          "p006",
+          "p007",
+          "p008",
+          "p009",
+          "p010",
+          "p011",
+          "p012"
+        ]
+      }
+    },
+    "80-level-free-blender-tool-capable-of-auto-rigging-virtually-any-tire": {
+      "source_url": "https://80.lv/articles/free-blender-tool-capable-of-auto-rigging-virtually-any-tire",
+      "source_published_at": "2026-04-23",
+      "source_evidence_sha256": "056914ecba43d6ac91f26f38bed3c3abf6fa2fc750f4ad6f076e338b17e59300",
+      "reviewed_on": "2026-11-11",
+      "title": "歷史參考｜Blender 輪胎自動綁定：以變形網格與地面建立受壓效果",
+      "summary": "2026 年 4 月報導介紹 Raffael Kloten 的 Tire Rig Generator，可輸入輪胎、低面數變形網格與地面網格，自動建立綁定及蒙皮；文中影片展示了三個輪胎測試案例。",
+      "full_analysis": [
+        {
+          "label": "工具流程：以三種網格建立綁定",
+          "text": "外掛利用 Blender Python API 自動建立輪胎綁定並蒙皮，使用者要提供輪胎本體、低面數變形網格及地面網格，讓系統據此生成對應的控制結構。",
+          "evidence_refs": [
+            "p002",
+            "p003"
+          ]
+        },
+        {
+          "label": "製作影響：輪胎接地的形變",
+          "text": "工具針對壓力及表面變形，報導把受載時的輪胎形變連到車輛真實感；推論：它的製作用途在於補足接地壓縮，而不是只讓輪胎沿車軸旋轉。",
+          "evidence_refs": [
+            "p002",
+            "p003"
+          ]
+        },
+        {
+          "label": "驗證限制：三個範例不能涵蓋所有輪胎",
+          "text": "文章雖轉述可處理幾乎任何輪胎的說法，實際提到的展示只有三個測試輪胎，操作細節另放在下載文件中；本稿不把宣稱擴大成已驗證全部胎型，也不推定物理精確度。",
+          "evidence_refs": [
+            "p002",
+            "p004"
+          ]
+        }
+      ],
+      "evidence_refs": [
+        "p002",
+        "p003",
+        "p004"
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p002",
+          "p003",
+          "p004"
+        ]
+      }
+    },
+    "80-level-stylized-blender-shader-that-looks-like-book-illustrations": {
+      "source_url": "https://80.lv/articles/stylized-blender-shader-that-looks-like-book-illustrations",
+      "source_published_at": "2026-05-11",
+      "source_evidence_sha256": "b53c52d8ed8df9a8c3db3b25ff0cf0b35c680db1f9e4b5ef99d2795b58959e1b",
+      "reviewed_on": "2026-11-11",
+      "title": "歷史參考｜Blender 插畫著色器：隨光向與強度變化，保留材質配色",
+      "summary": "2026 年 5 月，Iro Ikyu 展示可產生手繪插畫外觀的 Blender 著色器，並提供以 Blender 5.1 重建效果的逐步說明；材質會回應光線方向與強度，但不反映燈光顏色。",
+      "full_analysis": [
+        {
+          "label": "著色技術：區分光照與色彩",
+          "text": "這個著色器會隨光源方向和強度動態變化，卻不反映光源顏色。兩種光照屬性被分開處理，是本文可明確確認的風格化設計特點。",
+          "evidence_refs": [
+            "p002",
+            "p003"
+          ]
+        },
+        {
+          "label": "製作影響：插畫感與動態受光",
+          "text": "作者將材質用在角色上，並分享逐步重建方式。推論：若目標是維持插畫配色，同時讓形體明暗跟隨燈光，這種對光色不敏感的設計具有具體參考意義。",
+          "evidence_refs": [
+            "p002",
+            "p003",
+            "p004"
+          ]
+        },
+        {
+          "label": "導入限制：不適合照搬彩色照明需求",
+          "text": "來源教學基於 Blender 5.1，且明示材質不反映燈光顏色；推論：需要霓虹燈染色或多彩燈光敘事的鏡頭，不能期待直接套用便獲得一般材質的色光反應。",
+          "evidence_refs": [
+            "p003"
+          ]
+        }
+      ],
+      "evidence_refs": [
+        "p002",
+        "p003",
+        "p004"
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p002",
+          "p003",
+          "p004"
+        ]
+      }
+    },
+    "cg-channel-see-wefxs-visceral-vfx-breakdown-for-crime-drama-neagley": {
+      "source_url": "https://www.cgchannel.com/2026/11/see-wefxs-visceral-vfx-breakdown-for-crime-drama-neagley",
+      "source_published_at": "2026-11-09",
+      "source_evidence_sha256": "be41ef9a0c125895218cc00255ba801d6fd91de0d7c333bf1e82da2ca6cab918",
+      "reviewed_on": "2026-11-11",
+      "title": "WeFX《Neagley》特效解析：數位街景、列車與替身共同完成關鍵鏡頭",
+      "summary": "WeFX 為犯罪動作影集《Neagley》完成超過 250 個特效鏡頭。其解析以列車事件為重點，除列車本身，也重建芝加哥街道、車站和軌道，並在部分鏡頭使用角色數位替身。",
+      "full_analysis": [
+        {
+          "label": "場景流程：列車以外也需重建",
+          "text": "開場列車事件的特效不僅是加入列車，還包含周圍芝加哥街道、車站和鐵軌；角色 Tommy 的數位替身則用於部分鏡頭，構成環境與角色共同製作的案例。",
+          "evidence_refs": [
+            "p003",
+            "p005"
+          ]
+        },
+        {
+          "label": "製作範圍：環境與動作鏡頭並行",
+          "text": "工作室交付的超過 250 個鏡頭橫跨電腦生成環境及近身戰鬥段落。推論：這次解析可用來觀察同一部影集如何整合場景重建與動作替身需求，而非只看單一特效物件。",
+          "evidence_refs": [
+            "p002",
+            "p005"
+          ]
+        },
+        {
+          "label": "證據限制：鏡頭數不是技術配置",
+          "text": "本文提供交付規模與重建對象，沒有交代使用的 DCC、渲染器或替身切換方法；250 多個鏡頭也不能換算成特定部門工時。更深入的技術內容另指向外部文章，本稿不補寫未取得的細節。",
+          "evidence_refs": [
+            "p001",
+            "p002",
+            "p003",
+            "p004",
+            "p005",
+            "p006",
+            "p007"
+          ]
+        }
+      ],
+      "evidence_refs": [
+        "p001",
+        "p002",
+        "p003",
+        "p004",
+        "p005",
+        "p006",
+        "p007"
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p002",
+          "p003",
+          "p004",
+          "p005",
+          "p006",
+          "p007"
+        ]
+      }
+    },
+    "cg-channel-chaos-releases-corona-16-for-3ds-max-and-cinema-4d": {
+      "source_url": "https://www.cgchannel.com/2026/11/chaos-releases-corona-16-for-3ds-max-and-cinema-4d",
+      "source_published_at": "2026-11-09",
+      "source_evidence_sha256": "ec8d85df263275bf96fd5c48ae49d4add1db95c432ff7f09d1a31a85534492d8",
+      "reviewed_on": "2026-11-11",
+      "title": "Corona 16：高斯潑濺可重新打光，視差室內減少建築內部建模",
+      "summary": "Corona 16 加入 3D 高斯潑濺重新打光、裁切遮罩與 SPZ 支援，並以視差材質呈現建築室內深度；Vantage 連線也擴充材質支援及多攝影機輸出。",
+      "full_analysis": [
+        {
+          "label": "渲染技術：讓掃描表現融入燈光",
+          "text": "場景燈光現在可照亮高斯潑濺，另有裁切遮罩與壓縮 SPZ 格式支援；3ds Max 使用者還可渲染其原生高斯潑濺。這些是原文列出的掃描內容整合改進。",
+          "evidence_refs": [
+            "p004",
+            "p005",
+            "p006"
+          ]
+        },
+        {
+          "label": "製作影響：室內深度不靠完整幾何",
+          "text": "視差室內材質可貼在外牆窗戶上，營造後方有立體空間的錯覺，無須建立真正的室內幾何；Corona Physical 材質另有視差位移選項，原文稱其記憶體需求低於傳統幾何位移。",
+          "evidence_refs": [
+            "p007",
+            "p008",
+            "p009",
+            "p010"
+          ]
+        },
+        {
+          "label": "輸出限制：低位元深度並非全面套用",
+          "text": "Cinema 4D 版本可用 16 位元圖層儲存 CXR 以減少檔案大小，但 Cryptomatte 等需要 32 位元資料的圖層仍保留高精度；不能把這項縮檔能力理解成所有圖層一律降為 16 位元。",
+          "evidence_refs": [
+            "p019",
+            "p020"
+          ]
+        }
+      ],
+      "evidence_refs": [
+        "p004",
+        "p005",
+        "p006",
+        "p007",
+        "p008",
+        "p009",
+        "p010",
+        "p016",
+        "p017",
+        "p018",
+        "p019",
+        "p020"
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p004",
+          "p005",
+          "p006",
+          "p007",
+          "p008",
+          "p009",
+          "p010",
+          "p016",
+          "p017",
+          "p018",
+          "p019",
+          "p020"
+        ]
+      }
+    },
+    "cg-channel-armorpaint-0-9-ships": {
+      "source_url": "https://www.cgchannel.com/2023/09/armorpaint-0-9-ships",
+      "source_published_at": "2023-09-08",
+      "source_evidence_sha256": "ea83240773ee6040a07d3846661971783a41a2480acb50b453636b7c19f47e73",
+      "reviewed_on": "2026-11-11",
+      "title": "歷史參考｜ArmorPaint 0.9：塗抹工具、圖層群組遮罩與 UV 操作改進",
+      "summary": "2023 年的 ArmorPaint 0.9 更新加入塗抹工具、圖層群組遮罩與 UV 展開對話框，並改寫 OBJ 解析器；當時仍屬搶先體驗版本，本文只回顧該版貼圖製作流程。",
+      "full_analysis": [
+        {
+          "label": "貼圖流程：材質塗抹與群組遮罩",
+          "text": "0.9 的塗抹工具可推抹模型表面的材質，圖層群組也能使用遮罩；另外加入 UV 展開對話框，以及高度和不透明度取樣等操作改進。",
+          "evidence_refs": [
+            "p010",
+            "p011",
+            "p012",
+            "p013"
+          ]
+        },
+        {
+          "label": "製作影響：匯入與輸出銜接",
+          "text": "新版 OBJ 解析器據報導約快 40%、少用 20% 記憶體；軟體能匯出 PNG、JPEG、EXR 貼圖，並烘焙環境遮蔽、厚度及法線等資料。效能數字是原文所報，不是本次重測結果。",
+          "evidence_refs": [
+            "p008",
+            "p014"
+          ]
+        },
+        {
+          "label": "相容性限制：以當年版本為準",
+          "text": "當時整合外掛列出的版本為 Blender 3.6、Unity 2023.3 與 Unreal Engine 5.2，行動版仍是實驗版本；不能用這份 2023 年清單保證目前 DCC 或行動平台的相容性。",
+          "evidence_refs": [
+            "p015"
+          ]
+        }
+      ],
+      "evidence_refs": [
+        "p008",
+        "p010",
+        "p011",
+        "p012",
+        "p013",
+        "p014",
+        "p015"
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p008",
+          "p010",
+          "p011",
+          "p012",
+          "p013",
+          "p014",
+          "p015"
+        ]
+      }
+    },
+    "cg-channel-10-subtle-mistakes-to-avoid-in-character-animation": {
+      "source_url": "https://www.cgchannel.com/2022/03/10-subtle-mistakes-to-avoid-in-character-animation",
+      "source_published_at": "2022-03-01",
+      "source_evidence_sha256": "8fc109843f701ad99e7f31d94ab9b80b7e78d696b697d6bfe5c154aa21e7d2d9",
+      "reviewed_on": "2026-11-11",
+      "title": "歷史參考｜角色動畫修整：自然握持、眨眼與避免口型閃動",
+      "summary": "2022 年 Eddy Okba 的動畫教學整理常被忽略的細節，包含手腳姿勢、肩膀參與動作、眨眼方向與口型振幅。示範使用 Maya 的 Malcolm 2.0 綁定，但作者指出原則可用於其他動畫軟體。",
+      "full_analysis": [
+        {
+          "label": "動作技術：姿勢要連到身體結構",
+          "text": "作者建議繞看角色以檢查手腕與腳踝是否不自然，握物時讓掌心和手指環繞物件，而非直接套用握拳；抬手時也應帶動肩膀，必要時一起調整頭、頸和胸。",
+          "evidence_refs": [
+            "p004",
+            "p005",
+            "p006",
+            "p010",
+            "p011"
+          ]
+        },
+        {
+          "label": "表演控制：減少快速對白的抖動",
+          "text": "快速說話若每個音節都把嘴寬與下巴推到不同極端，會產生閃動感；教學示範縮小變化幅度、配合微笑表情維持口型區間，並透過自己念台詞感受下巴開合。",
+          "evidence_refs": [
+            "p019",
+            "p020",
+            "p021",
+            "p022",
+            "p023",
+            "p024",
+            "p025"
+          ]
+        },
+        {
+          "label": "判斷限制：日常眨眼不是所有表演",
+          "text": "作者反對日常眨眼時無故把視線往下帶，但也說眨眼可以掩護視線轉向；疼痛或動漫式笑眼另有例外。這些是依情境判斷的表演原則，不能變成所有角色都必須相同的固定曲線。",
+          "evidence_refs": [
+            "p014",
+            "p015",
+            "p016",
+            "p017",
+            "p018"
+          ]
+        }
+      ],
+      "evidence_refs": [
+        "p001",
+        "p003",
+        "p004",
+        "p005",
+        "p006",
+        "p010",
+        "p011",
+        "p014",
+        "p015",
+        "p016",
+        "p017",
+        "p018",
+        "p019",
+        "p020",
+        "p021",
+        "p022",
+        "p023",
+        "p024",
+        "p025"
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p003",
+          "p004",
+          "p005",
+          "p006",
+          "p010",
+          "p011",
+          "p014",
+          "p015",
+          "p016",
+          "p017",
+          "p018",
+          "p019",
+          "p020",
+          "p021",
+          "p022",
+          "p023",
+          "p024",
+          "p025"
+        ]
+      }
+    },
+    "cg-channel-5-expert-tips-to-bring-appeal-to-your-facial-animation": {
+      "source_url": "https://www.cgchannel.com/2023/04/5-expert-tips-to-bring-appeal-to-your-facial-animation",
+      "source_published_at": "2023-04-24",
+      "source_evidence_sha256": "9030b1249b31183a2c2fc50a5c6c04f9e8bf2b10df4488390a93c04f4c27a2b1",
+      "reviewed_on": "2026-11-11",
+      "title": "歷史參考｜臉部動畫姿勢：用非對稱、嘴唇體積與眼瞼調整提升表情",
+      "summary": "2023 年 Chatrasal Singh 的臉部動畫教學，示範如何選擇頭部角度、打破表情對稱，並調整眼瞼與虹膜的視覺平衡；範例使用 Maya 角色，但重點是姿勢設計原則。",
+      "full_analysis": [
+        {
+          "label": "角色設計：讓表情線條有方向",
+          "text": "教學以眉毛、眼睛、鼻孔和嘴巴四條假想線說明非對稱：讓它們形成朝向視線或情緒方向打開的錐形，而非四條互相平行的線，藉此強化面部姿勢。",
+          "evidence_refs": [
+            "p010",
+            "p011",
+            "p012",
+            "p013",
+            "p014"
+          ]
+        },
+        {
+          "label": "製作控制：維持嘴部與眼睛體積",
+          "text": "三分之四視角可遮住遠側嘴角，讓嘴唇有包覆牙齒的立體感；眼部則以個別眼瞼及虹膜縮放控制調整眼白平衡，不是只旋轉或平移整顆眼球。",
+          "evidence_refs": [
+            "p015",
+            "p016",
+            "p017",
+            "p019",
+            "p020",
+            "p021"
+          ]
+        },
+        {
+          "label": "驗證限制：角度與角色風格決定幅度",
+          "text": "作者明確指出嘴形推到多誇張取決於作品風格，眼瞼高點的位置也依角色設計而異；極端角度下要留意遠眼瞳孔被眼瞼遮住，因此不宜將單一示範姿勢直接套給所有角色。",
+          "evidence_refs": [
+            "p018",
+            "p022",
+            "p023",
+            "p024"
+          ]
+        }
+      ],
+      "evidence_refs": [
+        "p001",
+        "p004",
+        "p005",
+        "p006",
+        "p007",
+        "p008",
+        "p009",
+        "p010",
+        "p011",
+        "p012",
+        "p013",
+        "p014",
+        "p015",
+        "p016",
+        "p017",
+        "p018",
+        "p019",
+        "p020",
+        "p021",
+        "p022",
+        "p023",
+        "p024"
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p004",
+          "p005",
+          "p006",
+          "p007",
+          "p008",
+          "p009",
+          "p010",
+          "p011",
+          "p012",
+          "p013",
+          "p014",
+          "p015",
+          "p016",
+          "p017",
+          "p018",
+          "p019",
+          "p020",
+          "p021",
+          "p022",
+          "p023",
+          "p024"
+        ]
+      }
+    },
+    "blender-official-blender-5-3-release": {
+      "source_url": "https://www.blender.org/press/blender-5-3-release",
+      "source_published_at": "2026-11-10",
+      "source_evidence_sha256": "5cb7e6b3605f0b910b16189640756c1dc09c1c3dd462f76046e6a2919c708a27",
+      "reviewed_on": "2026-11-11",
+      "title": "Blender 5.3：原生高斯潑濺、材質光照節點與專案層級功能",
+      "summary": "Blender 官方於 2026 年 11 月 10 日介紹 5.3，加入 PLY／SPZ 高斯潑濺匯入、幾何節點編輯與重新打光，並更新 EEVEE 材質光照控制、合成效果堆疊及動畫操作。",
+      "full_analysis": [
+        {
+          "label": "技術流程：高斯潑濺進入編輯環境",
+          "text": "高斯潑濺可由 PLY 或 SPZ 匯入為點雲，用幾何節點編輯處理，再於 Workbench、EEVEE 或 Cycles 打光與渲染；資產庫也能以擴充套件分享，官方平台接受包含 CC0 資產的資產庫。",
+          "evidence_refs": [
+            "p007"
+          ]
+        },
+        {
+          "label": "製作控制：材質與合成可分層調整",
+          "text": "EEVEE 的材質光照節點可控制材質如何回應燈光；合成器新增依序傳遞輸出的節點群組效果堆疊。動畫另可複製貼上世界空間動作、轉換旋轉模式，並提供可選的專案層級系統。",
+          "evidence_refs": [
+            "p009",
+            "p010",
+            "p012"
+          ]
+        },
+        {
+          "label": "導入限制：硬體與功能階段有條件",
+          "text": "視窗 DLSS 去雜訊限定 NVIDIA GPU；Windows 的 Vulkan 預設後端不含 ARM。官方也把體積網格節點稱為自訂流體模擬的起始元件，不能將其寫成已完成所有需求的流體模擬系統。",
+          "evidence_refs": [
+            "p008",
+            "p010"
+          ]
+        }
+      ],
+      "evidence_refs": [
+        "p005",
+        "p007",
+        "p008",
+        "p009",
+        "p010",
+        "p012",
+        "p016"
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p005",
+          "p007",
+          "p008",
+          "p009",
+          "p010",
+          "p012",
+          "p016"
+        ]
+      }
+    },
+    "3dnchu-easy-print": {
+      "source_url": "https://3dnchu.com/archives/easy-print",
+      "source_published_at": "2026-09-15",
+      "source_evidence_sha256": "d099c0136888999a5a7ecc678b3b7dc40bf7200f7f5788b8321334ee7ef5e6ed",
+      "reviewed_on": "2026-11-11",
+      "title": "Easy-Print：在 Blender 畫切割線，同時生成列印組裝接頭",
+      "summary": "Easy-Print 可沿線分割 Blender 模型，並生成矩形榫槽、圓柱插銷或燕尾滑軌接頭；免費版本具備核心切分功能，另有切割線與接頭選項較多的付費 V2。",
+      "full_analysis": [
+        {
+          "label": "工具流程：切面連同接頭生成",
+          "text": "使用者在模型上畫線指定分割位置，工具將模型切成兩件，並在切面生成公母接頭；可選矩形榫槽、圓柱銷孔或滑入式燕尾結構，並依切面大小自動調整。",
+          "evidence_refs": [
+            "p001",
+            "p002",
+            "p003",
+            "p004",
+            "p005",
+            "p006",
+            "p007",
+            "p011",
+            "p012",
+            "p013"
+          ]
+        },
+        {
+          "label": "製作控制：配合列印公差調尺寸",
+          "text": "外掛提供 FDM 與 SLA 列印的間隙設定，生成後可用滑鼠滾輪調整接頭深度，配合 Shift 改變尺寸。推論：這讓切分與組裝間隙能在同一流程調整，但不等於已替各種材料完成校正。",
+          "evidence_refs": [
+            "p008",
+            "p009",
+            "p010"
+          ]
+        },
+        {
+          "label": "版本限制：免費核心與完整版本不同",
+          "text": "文章指出第一版原本是測試核心功能的基本示範；V2 才提供更靈活的切割線、更多接頭及磁鐵孔選項。免費版與付費 V2 的功能不可混寫，也不能把 V2 的全部能力歸給免費下載。",
+          "evidence_refs": [
+            "p014",
+            "p015"
+          ]
+        }
+      ],
+      "evidence_refs": [
+        "p001",
+        "p002",
+        "p003",
+        "p004",
+        "p005",
+        "p006",
+        "p007",
+        "p008",
+        "p009",
+        "p010",
+        "p011",
+        "p012",
+        "p013",
+        "p014",
+        "p015"
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p002",
+          "p003",
+          "p004",
+          "p005",
+          "p006",
+          "p007",
+          "p008",
+          "p009",
+          "p010",
+          "p011",
+          "p012",
+          "p013",
+          "p014",
+          "p015"
+        ]
+      }
+    },
+    "3dnchu-reface-2-0": {
+      "source_url": "https://3dnchu.com/archives/reface-2-0",
+      "source_published_at": "2026-09-15",
+      "source_evidence_sha256": "8852a39d1cec31ef53c36ce243902a018b919555b2f4b3536b193d95411ed160",
+      "reviewed_on": "2026-11-11",
+      "title": "ReFace 2.0：整合精密編輯、網格修補與四角邊界重拓樸",
+      "summary": "ReFace 2.0 將 Blender 的量測、網格清理與重拓樸工具整合在一起；文章另介紹 2.0.5 的繪製區塊模式，可在目標表面放置四個角，直接定義要重建的區域。",
+      "full_analysis": [
+        {
+          "label": "技術流程：量測與硬表面修補",
+          "text": "工具可即時顯示邊長、角度、半徑、面積和法線，並透過拖曳把手調整尺寸；另外提供布林後清理、圓環重建與圓環對齊等功能，集中處理精密模型的常見修改。",
+          "evidence_refs": [
+            "p002",
+            "p003",
+            "p004",
+            "p005",
+            "p006",
+            "p007"
+          ]
+        },
+        {
+          "label": "製作控制：直接界定重拓樸區塊",
+          "text": "2.0.5 更新的 Drawn Patch Mode 不必先選既有面，而是在目標網格上放置四個角來建立區塊邊界。推論：面對掃描或生成模型時，可先指定局部重建範圍，逐區整理可編輯拓樸。",
+          "evidence_refs": [
+            "p001",
+            "p014"
+          ]
+        },
+        {
+          "label": "方法限制：仍有人工定義的步驟",
+          "text": "四角邊界模式明確需要使用者放置角點，與一鍵完成整個角色的自動重拓樸不同；本文描述的是區域修補與工具整合，沒有證據顯示能自動產出符合動畫變形需求的全身邊流。",
+          "evidence_refs": [
+            "p001",
+            "p008",
+            "p014",
+            "p015"
+          ]
+        }
+      ],
+      "evidence_refs": [
+        "p001",
+        "p002",
+        "p003",
+        "p004",
+        "p005",
+        "p006",
+        "p007",
+        "p008",
+        "p014",
+        "p015"
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p002",
+          "p003",
+          "p004",
+          "p005",
+          "p006",
+          "p007",
+          "p008",
+          "p014",
+          "p015"
+        ]
+      }
+    },
+    "3dnchu-animated-texture-brush": {
+      "source_url": "https://3dnchu.com/archives/animated-texture-brush",
+      "source_published_at": "2026-04-06",
+      "source_evidence_sha256": "c46aa86041913ba7122718d87714e42fa3217781384eb11ac2935b791021a6ef",
+      "reviewed_on": "2026-11-11",
+      "title": "歷史參考｜Blender 動態紋理筆刷：用影像序列改變每筆圖樣",
+      "summary": "2026 年 4 月介紹的 Animated Texture Brush，可在 Blender 貼圖、頂點繪製與雕刻筆刷中切換影像序列影格；作者也提供免費筆刷包，方便加入自然變化與手繪質感。",
+      "full_analysis": [
+        {
+          "label": "貼圖技術：兩種影格更新模式",
+          "text": "外掛替影像序列筆刷增加隨機影格切換：連續模式在繪製時即時更新，另一種模式則只在每次筆畫開始時更新一次，讓使用者選擇圖樣變化的頻率。",
+          "evidence_refs": [
+            "p001",
+            "p002",
+            "p003",
+            "p004"
+          ]
+        },
+        {
+          "label": "製作影響：有機表面的筆觸變化",
+          "text": "原文把這種變化用於土壤、草木、岩石和風格化貼圖，藉微小隨機差異打破固定筆刷的單調外觀；推論：價值在同一筆刷內變換印記，而非自動生成完整材質。",
+          "evidence_refs": [
+            "p005",
+            "p006"
+          ]
+        },
+        {
+          "label": "導入條件：序列需放入正確槽位",
+          "text": "筆刷須以影像序列設定紋理或遮罩紋理，原文建議至少四個影格以取得較佳效果，並需在 Blender 設定中啟用外掛；單張靜態筆刷不等同於已備妥該工作流程。",
+          "evidence_refs": [
+            "p007",
+            "p008",
+            "p009"
+          ]
+        }
+      ],
+      "evidence_refs": [
+        "p001",
+        "p002",
+        "p003",
+        "p004",
+        "p005",
+        "p006",
+        "p007",
+        "p008",
+        "p009"
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p002",
+          "p003",
+          "p004",
+          "p005",
+          "p006",
+          "p007",
+          "p008",
+          "p009"
+        ]
+      }
+    },
+    "3dnchu-quad-maker-v1-0": {
+      "source_url": "https://3dnchu.com/archives/quad-maker-v1-0",
+      "source_published_at": "2024-10-24",
+      "source_evidence_sha256": "57670e050fd1166c463501c08457da0fe94135b1885e106cf57158c8f88b7c69",
+      "reviewed_on": "2026-11-11",
+      "title": "歷史參考｜Quad Maker 1.0：以畫四邊面帶與邊界延伸輔助重拓樸",
+      "summary": "2024 年推出的 Quad Maker 1.0 面向 Blender 4.2，將加點、補四邊面、邊界延伸和曲面四邊面帶等操作整合成快捷鍵工具；設計重點是手動重拓樸的簡潔流程。",
+      "full_analysis": [
+        {
+          "label": "工具流程：逐步建立四邊面",
+          "text": "工具可以快速加點、以四邊面填補周圍幾何，並將邊界以單邊、迴圈或邊環方式擠出；也能在目標表面畫四邊面帶，搭配快速環切與頂點平滑整理形狀。",
+          "evidence_refs": [
+            "p003",
+            "p004",
+            "p005",
+            "p006",
+            "p007",
+            "p008"
+          ]
+        },
+        {
+          "label": "製作控制：整合既有網格編輯",
+          "text": "Quad Maker 受 Maya Quad Draw 啟發，將主要重拓樸操作放入統一快捷鍵工作區，同時維持與 Blender 原生網格編輯的整合。推論：它偏向減少操作切換，並非替使用者決定全部拓樸。",
+          "evidence_refs": [
+            "p002",
+            "p010"
+          ]
+        },
+        {
+          "label": "效能限制：高面數來源與直接編輯不同",
+          "text": "原文區分以高面數物件為參考做重拓樸，以及直接編輯高面數網格：後者並非強項，物件很多的場景也可能變慢。這些是 1.0 時期的限制，不應忽略後便宣稱任何場景都能加速。",
+          "evidence_refs": [
+            "p011"
+          ]
+        }
+      ],
+      "evidence_refs": [
+        "p001",
+        "p002",
+        "p003",
+        "p004",
+        "p005",
+        "p006",
+        "p007",
+        "p008",
+        "p010",
+        "p011"
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p002",
+          "p003",
+          "p004",
+          "p005",
+          "p006",
+          "p007",
+          "p008",
+          "p010",
+          "p011"
+        ]
+      }
+    },
+    "3dnchu-rig-creator": {
+      "source_url": "https://3dnchu.com/archives/rig-creator",
+      "source_published_at": "2025-02-03",
+      "source_evidence_sha256": "b1f46823e497d6c9586b6f76cc49da39743c90dd8be03a96b3f4aff862b8e3cd",
+      "reviewed_on": "2026-11-11",
+      "title": "歷史參考｜Rig Creator：人體與臉部綁定、骨骼關係管理工具",
+      "summary": "2025 年的 Rig Creator 介紹展示了免費 Blender 綁定外掛，包含臉部綁定、更新的骨骼生成器與關係管理工具；示範影片長約 40 分鐘，介紹由零開始設定角色的流程。",
+      "full_analysis": [
+        {
+          "label": "角色技術：重寫綁定與表情支援",
+          "text": "文中列出的更新包括重寫綁定系統、加入臉部綁定、調整約束面板以及更新骨骼生成器；它們分別對應角色控制、表情動畫和骨架建立的工作。",
+          "evidence_refs": [
+            "p003",
+            "p004",
+            "p005",
+            "p006"
+          ]
+        },
+        {
+          "label": "製作控制：骨骼關係與命名",
+          "text": "新增的關係工具用來管理骨骼連結，文件增加英文版，骨骼名稱和基礎集合也改為英文。推論：這些變化讓設定檢查與閱讀教學時更容易對照同一套名稱。",
+          "evidence_refs": [
+            "p007",
+            "p008",
+            "p009"
+          ]
+        },
+        {
+          "label": "驗證限制：片長不代表所有角色工時",
+          "text": "40 分鐘是介紹從零綁定角色的影片長度，不能當成任何角色都能於相同時間完成的保證；文章沒有提供不同體型的蒙皮品質比較，本稿不據此宣稱自動綁定可免除變形檢查。",
+          "evidence_refs": [
+            "p002",
+            "p003",
+            "p004",
+            "p005",
+            "p006",
+            "p007",
+            "p008",
+            "p009",
+            "p010",
+            "p011",
+            "p012"
+          ]
+        }
+      ],
+      "evidence_refs": [
+        "p002",
+        "p003",
+        "p004",
+        "p005",
+        "p006",
+        "p007",
+        "p008",
+        "p009",
+        "p010",
+        "p011",
+        "p012"
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p002",
+          "p003",
+          "p004",
+          "p005",
+          "p006",
+          "p007",
+          "p008",
+          "p009",
+          "p010",
+          "p011",
+          "p012"
+        ]
+      }
+    },
+    "3dnchu-uv-packer-1-01": {
+      "source_url": "https://3dnchu.com/archives/uv-packer-1-01",
+      "source_published_at": "2021-11-02",
+      "source_evidence_sha256": "d677eb4cfc5dd27174291830172703aceb51d589fae870df7ccce46a4bdbb363",
+      "reviewed_on": "2026-11-11",
+      "title": "歷史參考｜UV-Packer 1.01：鎖定 UV 島位置，再填補排列空隙",
+      "summary": "2021 年介紹的 UV-Packer 1.01 更新加入 UV 島鎖定、改善孔洞偵測與多圖塊排列效能；原文說明該版更新於 9 月 30 日發布，並要求搭配外部程式使用。",
+      "full_analysis": [
+        {
+          "label": "貼圖流程：固定既有島再排列",
+          "text": "使用者可固定 UV 頂點或面，使對應 UV 島在排列時保持位置；工具也改善先前被忽略的孔洞偵測，讓剩餘空間能納入排版考量。",
+          "evidence_refs": [
+            "p002",
+            "p003"
+          ]
+        },
+        {
+          "label": "製作影響：保留配置與補空隙",
+          "text": "鎖定既有 UV 島後，排列過程不會移動它們；推論：需要維持已決定的 UV 區域時，可把固定區與仍能重排的部分分開管理，搭配該版多圖塊效能改善處理其餘配置。",
+          "evidence_refs": [
+            "p002",
+            "p004"
+          ]
+        },
+        {
+          "label": "安裝限制：當時需要 Windows 外部程式",
+          "text": "文章明確提醒除外掛外，還要把外部執行檔手動放進外掛展開位置，而且當時外部程式僅支援 Windows。這是 2021 年版本的安裝條件，不是對今日平台支援的查核結論。",
+          "evidence_refs": [
+            "p005",
+            "p006"
+          ]
+        }
+      ],
+      "evidence_refs": [
+        "p001",
+        "p002",
+        "p003",
+        "p004",
+        "p005",
+        "p006"
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p002",
+          "p003",
+          "p004",
+          "p005",
+          "p006"
+        ]
+      }
+    },
+    "3dnchu-uvpackmaster-3": {
+      "source_url": "https://3dnchu.com/archives/uvpackmaster-3",
+      "source_published_at": "2022-01-13",
+      "source_evidence_sha256": "6ff36381e4f1ff21c3a5c34a809f2f8c3653ce749a3f66a6417ba7df0ba1d864",
+      "reviewed_on": "2026-11-11",
+      "title": "歷史參考｜UVPackmaster 3：命名群組、鎖定相對位置與 UDIM 排列",
+      "summary": "2022 年的 UVPackmaster 3 介紹包含命名 UV 群組、排列優先權、群組鎖定和可腳本化架構，並擴充 UDIM 工作流程；本文回顧當時功能，不將舊價格或限時優惠當成現況。",
+      "full_analysis": [
+        {
+          "label": "貼圖技術：分組與位置約束",
+          "text": "UV 島可劃入命名群組，對低優先權的 UV 島設定縮放限制；鎖定群組則會保留島與島之間的相對位置，還能在既有排列中加入新島，並指定 UV 區域內的方框作為目標。",
+          "evidence_refs": [
+            "p003",
+            "p004",
+            "p006",
+            "p007",
+            "p009"
+          ]
+        },
+        {
+          "label": "製作控制：多圖塊與腳本整合",
+          "text": "Groups To Tiles 模式擴充 UDIM 配置彈性，手動分組以名稱取代編號；內建 Python 與可腳本化架構允許調整操作邏輯。推論：這可把材質群組的配置規則納入較一致的整理流程。",
+          "evidence_refs": [
+            "p010",
+            "p011",
+            "p012",
+            "p013",
+            "p020"
+          ]
+        },
+        {
+          "label": "相容性限制：歷史支援清單有邊界",
+          "text": "本文當時列出的環境是 Windows 10／11 的 64 位元版本，以及 Blender 2.8x、2.9x 和 3.x，Linux 與 macOS 仍列為後續計畫；不能把這份舊清單當成今日相容性或效能保證。",
+          "evidence_refs": [
+            "p021"
+          ]
+        }
+      ],
+      "evidence_refs": [
+        "p003",
+        "p004",
+        "p006",
+        "p007",
+        "p009",
+        "p010",
+        "p011",
+        "p012",
+        "p013",
+        "p020",
+        "p021"
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p003",
+          "p004",
+          "p006",
+          "p007",
+          "p009",
+          "p010",
+          "p011",
+          "p012",
+          "p013",
+          "p020",
+          "p021"
+        ]
+      }
+    },
+    "cgworld-jp-01-202606-sp-spiritvessel": {
+      "source_url": "https://cgworld.jp/flashnews/01-202606-SP-SpiritVessel.html",
+      "source_published_at": "2026-06-02",
+      "source_evidence_sha256": "4bed9677faf6c98e09d61b735e530189f860cdf04b1f679f6917d47dd6a7083a",
+      "reviewed_on": "2026-11-11",
+      "title": "Spirit Vessel 道具拆解：用磨損成因安排貼圖，量化毛髮卡片成本",
+      "summary": "Abdelhamid Ahmed 以 Substance 3D Painter 製作葫蘆道具 Spirit Vessel，將腐敗、潮濕與摩擦納入貼圖設計；案例也比較加入毛髮卡片前後的面數，呈現寫實細節與遊戲資產預算的取捨。",
+      "full_analysis": [
+        {
+          "label": "貼圖流程：劣化有具體成因",
+          "text": "解析將木材真菌腐敗、毛髮滯留濕氣、珠子摩擦和乾燥不足造成的黴變，轉成材質劣化的依據；作者強調基礎色中的微小色差與污漬，不能只靠粗糙度追求寫實。",
+          "evidence_refs": [
+            "p006",
+            "p007",
+            "p008"
+          ]
+        },
+        {
+          "label": "製作成本：毛髮卡片增加面數",
+          "text": "基礎模型不含毛髮卡片時為 48,500 個三角面，加入卡片後增加至 91,000。這是此資產的具體取捨，能用來理解外觀細節如何改變幾何預算，而不是通用的遊戲面數標準。",
+          "evidence_refs": [
+            "p003",
+            "p004"
+          ]
+        },
+        {
+          "label": "驗證限制：檔案拆解不等於效能實測",
+          "text": "販售資料含 Painter 專案、不同精度的 FBX 模型及貼圖，可檢查錨點、圖層混合與生成器設定；但正文沒有提供目標平台幀率，不能僅憑面數或「遊戲可用」定位推定實際執行效能。",
+          "evidence_refs": [
+            "p003",
+            "p004",
+            "p009"
+          ]
+        }
+      ],
+      "evidence_refs": [
+        "p001",
+        "p002",
+        "p003",
+        "p004",
+        "p006",
+        "p007",
+        "p008",
+        "p009"
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p002",
+          "p003",
+          "p004",
+          "p006",
+          "p007",
+          "p008",
+          "p009"
+        ]
+      }
+    },
+    "cgworld-jp-01-202607-substance-doom": {
+      "source_url": "https://cgworld.jp/flashnews/01-202607-Substance-DOOM.html",
+      "source_published_at": "2026-07-01",
+      "source_evidence_sha256": "571b07137e5b506437f775655eaefb5eae9a2991fe9ea5639512c2a594e45d62",
+      "reviewed_on": "2026-11-11",
+      "title": "《DOOM: The Dark Ages》材質解析：模組化損傷與共用圖層遮罩",
+      "summary": "id Software 的講座介紹如何用 Substance 3D Designer 建立模組化損傷濾鏡，並以巨觀法線和 RGBA 遮罩組合材質，減少大型場景為每件資產製作獨立貼圖的負擔。",
+      "full_analysis": [
+        {
+          "label": "技術流程：損傷材質做成濾鏡",
+          "text": "Damage Reveal 依虛擬標記的包圍範圍，以高度圖混合損傷材質；為避免所有平鋪材質都各做一份損壞版，團隊將石材裂痕、木材碎裂等特性模組化成 Designer 濾鏡。",
+          "evidence_refs": [
+            "p001",
+            "p002"
+          ]
+        },
+        {
+          "label": "製作成本：以遮罩重用材質",
+          "text": "複合材質採用烘焙巨觀法線與 RGBA 圖層混合遮罩；各通道分別管理基礎質感、色彩變化、凹處污漬與凸處磨損，搭配自動紋素密度處理大型資產的縮放。",
+          "evidence_refs": [
+            "p005",
+            "p006"
+          ]
+        },
+        {
+          "label": "方法限制：巨大場景仍會暴露重複",
+          "text": "文章指出機甲與騎龍視角會放大平鋪重複問題，因此另以 Hotspot Vista 結合飾條貼圖和圖集思路，為中模雕刻可平鋪細節再套複合材質；共用遮罩本身不能直接消除所有重複感。",
+          "evidence_refs": [
+            "p007"
+          ]
+        }
+      ],
+      "evidence_refs": [
+        "p001",
+        "p002",
+        "p005",
+        "p006",
+        "p007"
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p002",
+          "p005",
+          "p006",
+          "p007"
+        ]
+      }
+    }
+  }
+}
