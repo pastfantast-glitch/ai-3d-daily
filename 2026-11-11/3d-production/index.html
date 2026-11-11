@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   3D 製作｜2026-11-11｜AI 3D Daily
+  </title>
+  <meta content="2026-11-11 3D 製作 Production Intelligence：3D 角色製作 / 3D 物件製作 / 3D 場景製作 / 製作流程，共 2 項可驗證情報。" name="description"/>
+  <link href="../../styles.css?v=20261111-r1-workspace-v11-content-library-nav" rel="stylesheet"/>
+  <link href="../../shared-components.css?v=20261111-r1-workspace-v11-content-library-nav" rel="stylesheet"/>
+  <link href="../../category.css?v=20261111-r1-workspace-v11-content-library-nav" rel="stylesheet"/>
+ </head>
+ <body class="category-page" data-category="3d-production" data-report-date="2026-11-11">
+  <nav aria-label="Production Intelligence 分類" class="global-category-nav">
+   <div class="page global-category-nav-inner">
+    <div class="archive-nav-controls">
+     <a class="archive-nav-home" href="../../">
+      ← 首頁
+     </a>
+     <div class="archive-nav-date">
+      <a aria-label="前一日日報" class="archive-nav-arrow" href="../../2026-11-09/3d-production/">
+       ←
+      </a>
+      <span>
+       2026-11-11
+      </span>
+     </div>
+    </div>
+    <span aria-hidden="true" class="archive-nav-divider">
+    </span>
+    <a class="global-category-link" href="../#top">
+     TOP5
+    </a>
+    <a class="global-category-link" data-category="ai-generation" href="../ai-generation/">
+     AI 生成
+    </a>
+    <a class="global-category-link is-active" data-category="3d-production" href="../3d-production/">
+     3D 製作
+    </a>
+    <a class="global-category-link" data-category="3d-animation" href="../3d-animation/">
+     3D 動作
+    </a>
+    <a class="global-category-link" data-category="engine-art" href="../engine-art/">
+     遊戲引擎
+    </a>
+    <a class="global-category-link" data-category="emerging-case" href="../emerging-case/">
+     新技術 / Case
+    </a>
+    <a class="global-category-link" data-category="blender-dcc" href="../blender-dcc/">
+     Blender / DCC
+    </a>
+    <a class="global-category-link global-history-link" data-global-view="history" href="../../history/">
+     歷史日報
+    </a>
+   </div>
+  </nav>
+  <main class="page category-main">
+   <article class="category-card" data-intel-id="80-level-developing-original-3d-chimera-character" data-intel-role="card" id="intel-80-level-developing-original-3d-chimera-character">
+    <div class="category-meta">
+     #10 · character-production
+    </div>
+    <h2>
+     Chimera 角色製作：手繪毛皮、關節式臉部綁定與 ARKit 曲線事件
+    </h2>
+    <p class="summary">
+     CataRackta 在 2026 年版 Chimera 中結合手繪貼圖與 Unreal Engine 5，使用關節和姿勢資產處理 ARKit 臉部曲線，並把情緒曲線門檻連到額外表情或握拳事件。
+    </p>
+    <figure class="case-preview" data-intel-id="80-level-developing-original-3d-chimera-character" data-intel-role="visual" data-visual-id="80-level-developing-original-3d-chimera-character">
+     <a href="https://80.lv/articles/developing-original-3d-chimera-character" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-11-11/80-level-developing-original-3d-chimera-character.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">角色製作</b> ★★★☆☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       貼圖流程：先烘焙體積再繪色
+      </h4>
+      <p>
+       作者混合世界空間法線的色彩通道與環境遮蔽，整理出接近中性灰的底圖，再疊加顏色；毛皮另以漸層映射、遮罩和手繪髮絲增加變化，主要在模型表面或透過投影繪製。
+      </p>
+      <h4>
+       製作控制：骨骼串接表情與事件
+      </h4>
+      <p>
+       臉部變形採用關節式綁定與姿勢資產，而非傳統形狀鍵變形。作者能調整最終姿勢、排除特定關節或覆寫動畫層，並用 ARKit 曲線門檻觸發生悶氣表情或握拳等行為。
+      </p>
+      <h4>
+       導入限制：相容性與追蹤硬體
+      </h4>
+      <p>
+       作者曾遇到引擎與所需外掛的相容問題，最後購買 iPad 取得 ARKit 追蹤；Control Rig 環境互動與本機語言模型仍是後續規劃或研究，不能當作此版本已完成的功能。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://80.lv/articles/developing-original-3d-chimera-character" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="cg-channel-armorpaint-0-9-ships" data-intel-role="card" id="intel-cg-channel-armorpaint-0-9-ships">
+    <div class="category-meta">
+     #11 · production-workflow
+    </div>
+    <h2>
+     歷史參考｜ArmorPaint 0.9：塗抹工具、圖層群組遮罩與 UV 操作改進
+    </h2>
+    <p class="summary">
+     2023 年的 ArmorPaint 0.9 更新加入塗抹工具、圖層群組遮罩與 UV 展開對話框，並改寫 OBJ 解析器；當時仍屬搶先體驗版本，本文只回顧該版貼圖製作流程。
+    </p>
+    <figure class="case-preview" data-intel-id="cg-channel-armorpaint-0-9-ships" data-intel-role="visual" data-visual-id="cg-channel-armorpaint-0-9-ships">
+     <a href="https://www.cgchannel.com/2023/09/armorpaint-0-9-ships" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-11-11/cg-channel-armorpaint-0-9-ships.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">製作流程</b> ★★★☆☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       貼圖流程：材質塗抹與群組遮罩
+      </h4>
+      <p>
+       0.9 的塗抹工具可推抹模型表面的材質，圖層群組也能使用遮罩；另外加入 UV 展開對話框，以及高度和不透明度取樣等操作改進。
+      </p>
+      <h4>
+       製作影響：匯入與輸出銜接
+      </h4>
+      <p>
+       新版 OBJ 解析器據報導約快 40%、少用 20% 記憶體；軟體能匯出 PNG、JPEG、EXR 貼圖，並烘焙環境遮蔽、厚度及法線等資料。效能數字是原文所報，不是本次重測結果。
+      </p>
+      <h4>
+       相容性限制：以當年版本為準
+      </h4>
+      <p>
+       當時整合外掛列出的版本為 Blender 3.6、Unity 2023.3 與 Unreal Engine 5.2，行動版仍是實驗版本；不能用這份 2023 年清單保證目前 DCC 或行動平台的相容性。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://www.cgchannel.com/2023/09/armorpaint-0-9-ships" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <nav aria-label="相鄰分類" class="category-bottom-nav">
+    <a href="../ai-generation/">
+     ← AI 生成
+    </a>
+    <a href="../#top">
+     TOP5
+    </a>
+    <a href="../3d-animation/">
+     3D 動作 →
+    </a>
+   </nav>
+  </main>
+  <script defer="" src="../../archive-nav-state.js?v=20261111-r1-workspace-v11-content-library-nav">
+  </script>
+ </body>
+</html>
