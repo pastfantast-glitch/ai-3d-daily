@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   3D 製作｜2026-11-12｜AI 3D Daily
+  </title>
+  <meta content="2026-11-12 3D 製作 Production Intelligence：3D 角色製作 / 3D 物件製作 / 3D 場景製作 / 製作流程，共 2 項可驗證情報。" name="description"/>
+  <link href="../../styles.css?v=20261112-r1-workspace-v11-content-library-nav" rel="stylesheet"/>
+  <link href="../../shared-components.css?v=20261112-r1-workspace-v11-content-library-nav" rel="stylesheet"/>
+  <link href="../../category.css?v=20261112-r1-workspace-v11-content-library-nav" rel="stylesheet"/>
+ </head>
+ <body class="category-page" data-category="3d-production" data-report-date="2026-11-12">
+  <nav aria-label="Production Intelligence 分類" class="global-category-nav">
+   <div class="page global-category-nav-inner">
+    <div class="archive-nav-controls">
+     <a class="archive-nav-home" href="../../">
+      ← 首頁
+     </a>
+     <div class="archive-nav-date">
+      <a aria-label="前一日日報" class="archive-nav-arrow" href="../../2026-11-11/3d-production/">
+       ←
+      </a>
+      <span>
+       2026-11-12
+      </span>
+     </div>
+    </div>
+    <span aria-hidden="true" class="archive-nav-divider">
+    </span>
+    <a class="global-category-link" href="../#top">
+     TOP5
+    </a>
+    <a class="global-category-link" data-category="ai-generation" href="../ai-generation/">
+     AI 生成
+    </a>
+    <a class="global-category-link is-active" data-category="3d-production" href="../3d-production/">
+     3D 製作
+    </a>
+    <a class="global-category-link" data-category="3d-animation" href="../3d-animation/">
+     3D 動作
+    </a>
+    <a class="global-category-link" data-category="engine-art" href="../engine-art/">
+     遊戲引擎
+    </a>
+    <a class="global-category-link" data-category="emerging-case" href="../emerging-case/">
+     新技術 / Case
+    </a>
+    <a class="global-category-link" data-category="blender-dcc" href="../blender-dcc/">
+     Blender / DCC
+    </a>
+    <a class="global-category-link global-history-link" data-global-view="history" href="../../history/">
+     歷史日報
+    </a>
+   </div>
+  </nav>
+  <main class="page category-main">
+   <article class="category-card" data-intel-id="cg-channel-turn-a-zbrush-model-into-a-game-ready-character-with-charact" data-intel-role="card" id="intel-cg-channel-turn-a-zbrush-model-into-a-game-ready-character-with-charact">
+    <div class="category-meta">
+     #09 · character-production
+    </div>
+    <h2>
+     歷史參考｜ZBrush 角色接入 CC4：拓樸轉移、服裝權重與模擬輸出
+    </h2>
+    <p class="summary">
+     2025 年 Francis Lamoureux 的贊助製作案例，以 Headshot、GoZ 與 Character Creator 4 將自訂雕刻接入角色系統，再修整服裝權重；最終在 Marmoset Toolbag 渲染，模擬部分另以 Alembic 輸出。
+    </p>
+    <figure class="case-preview" data-intel-id="cg-channel-turn-a-zbrush-model-into-a-game-ready-character-with-charact" data-intel-role="visual" data-visual-id="cg-channel-turn-a-zbrush-model-into-a-game-ready-character-with-charact">
+     <a href="https://www.cgchannel.com/2025/08/turn-a-zbrush-model-into-a-game-ready-character-with-character-creator" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-11-12/cg-channel-turn-a-zbrush-model-into-a-game-ready-character-with-charact.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">角色製作</b> ★★★☆☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       角色流程：先接上共同拓樸
+      </h4>
+      <p>
+       自訂頭部雕刻透過額外的 Headshot 2.0 外掛包覆為 CC4 拓樸，再以 GoZ 回到 ZBrush 處理身體與細節投射；若一開始直接使用 CC4 基礎網格，這個轉換步驟可以省略。
+      </p>
+      <h4>
+       製作控制：服裝自動轉權重後再修整
+      </h4>
+      <p>
+       GoZ 的 Create Cloth 會把低模服裝建立為新資產並轉移角色蒙皮權重；案例中的背包和劍鞘仍需手修，背包受影響的頂點改由髖部骨骼完整控制，劍鞘附近再平滑過渡。
+      </p>
+      <h4>
+       輸出限制：模擬與骨架採不同格式
+      </h4>
+      <p>
+       作者把一般角色部分以 FBX 匯出，模擬部分用 Alembic 保留物理動作後送到 Toolbag；這是該案例的渲染交付方式，不能推定相同模擬會自動成為遊戲引擎中的即時布料功能。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://www.cgchannel.com/2025/08/turn-a-zbrush-model-into-a-game-ready-character-with-character-creator" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="3dnchu-gaussian-haircut-eccv2024" data-intel-role="card" id="intel-3dnchu-gaussian-haircut-eccv2024">
+    <div class="category-meta">
+     #11 · character-production
+    </div>
+    <h2>
+     歷史參考｜Gaussian Haircut：結合髮絲與高斯表示重建髮型
+    </h2>
+    <p class="summary">
+     2024 年 Gaussian Haircut 研究介紹以多視角資料重建髮絲，結合三維折線與沿髮絲排列的高斯表示；報導當時已有論文，但指出原始碼尚未公開。
+    </p>
+    <figure class="case-preview" data-intel-id="3dnchu-gaussian-haircut-eccv2024" data-intel-role="visual" data-visual-id="3dnchu-gaussian-haircut-eccv2024">
+     <a href="https://3dnchu.com/archives/gaussian-haircut-eccv2024" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-11-12/3dnchu-gaussian-haircut-eccv2024.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">角色製作</b> ★★★☆☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       重建技術：雙重表示約束髮絲
+      </h4>
+      <p>
+       方法先利用非結構化高斯產生多視角監督資料，再擬合三維折線髮絲；髮型以沿髮絲排列的高斯表示，將髮絲先驗與可微分高斯渲染結合。
+      </p>
+      <h4>
+       製作影響：輸出仍具有髮絲結構
+      </h4>
+      <p>
+       研究以髮絲折線而非純非結構化高斯作為重建核心，作者因此主張結果可接入既有編輯、渲染與模擬引擎。這裡保留為研究方法的製作方向，不延伸成所有 DCC 已有直接匯入支援。
+      </p>
+      <h4>
+       成熟度限制：公開程度以當年為準
+      </h4>
+      <p>
+       2024 年報導表示原始碼尚未公開；文字雖提到合成與真實場景評估，沒有列出可供本稿比較的數值。不能將其當成今日可下載工具，也不自行補寫重建速度或精度排名。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://3dnchu.com/archives/gaussian-haircut-eccv2024" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <nav aria-label="相鄰分類" class="category-bottom-nav">
+    <a href="../ai-generation/">
+     ← AI 生成
+    </a>
+    <a href="../#top">
+     TOP5
+    </a>
+    <a href="../3d-animation/">
+     3D 動作 →
+    </a>
+   </nav>
+  </main>
+  <script defer="" src="../../archive-nav-state.js?v=20261112-r1-workspace-v11-content-library-nav">
+  </script>
+ </body>
+</html>

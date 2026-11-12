@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   3D 動作｜2026-11-12｜AI 3D Daily
+  </title>
+  <meta content="2026-11-12 3D 動作 Production Intelligence：3D 動作 / 3D 動作製作流程，共 3 項可驗證情報。" name="description"/>
+  <link href="../../styles.css?v=20261112-r1-workspace-v11-content-library-nav" rel="stylesheet"/>
+  <link href="../../shared-components.css?v=20261112-r1-workspace-v11-content-library-nav" rel="stylesheet"/>
+  <link href="../../category.css?v=20261112-r1-workspace-v11-content-library-nav" rel="stylesheet"/>
+ </head>
+ <body class="category-page" data-category="3d-animation" data-report-date="2026-11-12">
+  <nav aria-label="Production Intelligence 分類" class="global-category-nav">
+   <div class="page global-category-nav-inner">
+    <div class="archive-nav-controls">
+     <a class="archive-nav-home" href="../../">
+      ← 首頁
+     </a>
+     <div class="archive-nav-date">
+      <a aria-label="前一日日報" class="archive-nav-arrow" href="../../2026-11-11/3d-animation/">
+       ←
+      </a>
+      <span>
+       2026-11-12
+      </span>
+     </div>
+    </div>
+    <span aria-hidden="true" class="archive-nav-divider">
+    </span>
+    <a class="global-category-link" href="../#top">
+     TOP5
+    </a>
+    <a class="global-category-link" data-category="ai-generation" href="../ai-generation/">
+     AI 生成
+    </a>
+    <a class="global-category-link" data-category="3d-production" href="../3d-production/">
+     3D 製作
+    </a>
+    <a class="global-category-link is-active" data-category="3d-animation" href="../3d-animation/">
+     3D 動作
+    </a>
+    <a class="global-category-link" data-category="engine-art" href="../engine-art/">
+     遊戲引擎
+    </a>
+    <a class="global-category-link" data-category="emerging-case" href="../emerging-case/">
+     新技術 / Case
+    </a>
+    <a class="global-category-link" data-category="blender-dcc" href="../blender-dcc/">
+     Blender / DCC
+    </a>
+    <a class="global-category-link global-history-link" data-global-view="history" href="../../history/">
+     歷史日報
+    </a>
+   </div>
+  </nav>
+  <main class="page category-main">
+   <article class="category-card" data-intel-id="blender-official-layered-actions-workshop-september-2026" data-intel-role="card" id="intel-blender-official-layered-actions-workshop-september-2026">
+    <div class="category-meta">
+     #04 · rigging
+    </div>
+    <h2>
+     Blender Layered Actions 設計紀錄：讓動畫編輯器依動作組織資料
+    </h2>
+    <p class="summary">
+     Blender 於 2026 年 11 月公布 Layered Actions 工作坊結論，提議以 Action 為通道階層起點，減少共享資料重複顯示，並將 Action／Slot 管理放進動畫編輯器側欄；內容屬逐步實作的設計。
+    </p>
+    <figure class="case-preview" data-intel-id="blender-official-layered-actions-workshop-september-2026" data-intel-role="visual" data-visual-id="blender-official-layered-actions-workshop-september-2026">
+     <a href="https://code.blender.org/2026/11/layered-actions-workshop-september-2026" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE CARD preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-11-12/blender-official-layered-actions-workshop-september-2026.svg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE CARD
+      </span>
+      · Generated source card · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">綁定</b> ★★★★☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       技術設計：資料蒐集與階層分開
+      </h4>
+      <p>
+       新的動畫過濾系統先蒐集曲線及圖層等通道並附上 Action、骨骼等中繼資料，再據此建立階層；提案以 Action 組織物件、材質等資料，避免相同共享資料在多個物件下重複。
+      </p>
+      <h4>
+       製作影響：在動畫脈絡管理指派
+      </h4>
+      <p>
+       工作坊希望在 Dope Sheet 與 Graph Editor 側欄直接管理 Action／Slot，並讓共用同一 Action 的多個資料區塊一起切換；另討論固定通道與自訂分組，協助動畫師集中處理相關控制器。
+      </p>
+      <h4>
+       成熟度限制：設計不等於已交付
+      </h4>
+      <p>
+       官方說明目前先替換動畫過濾系統，其他功能將逐步實作；顯示多層累積結果或世界空間的有效曲線，更明言尚不確定是否及何時完成。不能把工作坊列出的構想都當成現行功能。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://code.blender.org/2026/11/layered-actions-workshop-september-2026" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="cg-channel-10-killer-tips-for-better-character-animation" data-intel-role="card" id="intel-cg-channel-10-killer-tips-for-better-character-animation">
+    <div class="category-meta">
+     #15 · animation
+    </div>
+    <h2>
+     歷史參考｜角色動畫工作法：同角度參考、分段轉曲線與動作弧線檢查
+    </h2>
+    <p class="summary">
+     2015 年 Sébastien Wojda 分享由影片參考到最終修整的角色動畫方法，包含匹配鏡頭角度、階梯式關鍵姿勢、先處理身體重量，再以洋蔥皮檢查弧線和間距。
+    </p>
+    <figure class="case-preview" data-intel-id="cg-channel-10-killer-tips-for-better-character-animation" data-intel-role="visual" data-visual-id="cg-channel-10-killer-tips-for-better-character-animation">
+     <a href="https://www.cgchannel.com/2015/09/10-killer-tips-for-better-character-animation" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE CARD preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-11-12/cg-channel-10-killer-tips-for-better-character-animation.svg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE CARD
+      </span>
+      · Generated source card · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">動畫</b> ★★★☆☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       動畫流程：參考與鏡頭一致
+      </h4>
+      <p>
+       先以相同攝影機角度錄下多種表演，再挑選並重錄較清楚的版本，匯入鏡頭與音訊同步；主要姿勢以階梯插值建立，避免太早依賴自動補間判斷表演。
+      </p>
+      <h4>
+       製作控制：先重量再四肢
+      </h4>
+      <p>
+       從階梯切到曲線插值時，作者先處理身體上下位移，再完成其餘位移與旋轉，接著調整頭、手臂和腿；保留原階梯版影片作比較，檢查曲線化後是否失去原來的動作能量。
+      </p>
+      <h4>
+       驗證方法：參考需要詮釋
+      </h4>
+      <p>
+       作者提醒關鍵姿勢常要誇張，不能只照抄錄影；最後用洋蔥皮檢查弧線和間距。這是個人製作工作法，文章也假設讀者熟悉基本動畫流程，不應把順序或影格安排寫成所有風格的硬性規則。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://www.cgchannel.com/2015/09/10-killer-tips-for-better-character-animation" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="cg-channel-10-subtle-tricks-to-improve-your-character-animation" data-intel-role="card" id="intel-cg-channel-10-subtle-tricks-to-improve-your-character-animation">
+    <div class="category-meta">
+     #16 · animation
+    </div>
+    <h2>
+     歷史參考｜角色動畫細修：重心、曲線錯位與接觸變形
+    </h2>
+    <p class="summary">
+     2024 年 Adrien Liv 的動畫教學，以重心位置、旋轉曲線錯位和接觸變形改善角色重量感；文章同時說明臉部延遲動作的例外，避免機械式套用固定節奏。
+    </p>
+    <figure class="case-preview" data-intel-id="cg-channel-10-subtle-tricks-to-improve-your-character-animation" data-intel-role="visual" data-visual-id="cg-channel-10-subtle-tricks-to-improve-your-character-animation">
+     <a href="https://www.cgchannel.com/2024/10/10-subtle-tricks-to-improve-your-character-animation" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE CARD preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-11-12/cg-channel-10-subtle-tricks-to-improve-your-character-animation.svg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE CARD
+      </span>
+      · Generated source card · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">動畫</b> ★★★☆☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       動作技術：曲線錯位改變弧線
+      </h4>
+      <p>
+       示例在 24 幀循環中調整手臂兩個旋轉通道：對齊時手部沿斜線移動，錯開三幀成為橢圓，六幀成為圓；作者藉此連結曲線編輯與畫面中實際經過的軌跡。
+      </p>
+      <h4>
+       製作影響：接觸形變建立重量感
+      </h4>
+      <p>
+       坐下時可讓身體壓向椅面，再以變形器推回幾何表現接觸，而非為避免穿插把角色架空；臉頰受手指擠壓也可將變形器約束到手部，讓接觸關係更清楚。
+      </p>
+      <h4>
+       判斷限制：比例與發音會改變做法
+      </h4>
+      <p>
+       重心位置會隨頭、手腳比例與重量而變；嘴角延遲一兩幀的建議也不適用所有發音，文中指出 U、O 嘴形需要停留才能讀清楚。這些都要求依角色和表演情境調整。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://www.cgchannel.com/2024/10/10-subtle-tricks-to-improve-your-character-animation" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <nav aria-label="相鄰分類" class="category-bottom-nav">
+    <a href="../3d-production/">
+     ← 3D 製作
+    </a>
+    <a href="../#top">
+     TOP5
+    </a>
+    <a href="../engine-art/">
+     遊戲引擎 →
+    </a>
+   </nav>
+  </main>
+  <script defer="" src="../../archive-nav-state.js?v=20261112-r1-workspace-v11-content-library-nav">
+  </script>
+ </body>
+</html>
