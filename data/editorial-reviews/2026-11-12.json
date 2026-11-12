@@ -1,0 +1,1875 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-12",
+  "reviewer": "chatgpt-scheduled-task",
+  "source_run_id": 43121411320,
+  "source_head_sha": "c60b7b427b929e8326347a8d51aae9d101f175ea",
+  "items": {
+    "80-level-creators-developed-playable-worlds-vr-games-digital-pets-for": {
+      "source_url": "https://80.lv/articles/creators-developed-playable-worlds-vr-games-digital-pets-for-tripo-ai-s-first-3d-world-hackathon",
+      "source_published_at": "2026-11-11",
+      "source_evidence_sha256": "f8db62b53a75398816335819acc47edf4077366a0c873cbca2ab8d342c999991",
+      "reviewed_on": "2026-11-12",
+      "title": "Tripo 黑客松案例：對話生成尋寶物件，AI 模型銜接實體設計",
+      "summary": "Tripothon S1 的參賽案例把 3D 生成接進遊戲與實體產品：Halls of History 依玩家對話生成尋寶物件，Gemtronic 則先生成戒指外殼候選，再送往 CAD 細修。",
+      "full_analysis": [
+        {
+          "label": "技術流程：生成融入互動規則",
+          "text": "Halls of History 以 World Labs 的 Marble 建立高斯潑濺房間，再放入 Tripo 物件；Tripo API 依對話產生不同尋寶道具，玩家組合物件解謎並開啟下一個房間。",
+          "evidence_refs": [
+            "p022",
+            "p023"
+          ]
+        },
+        {
+          "label": "製作影響：快速比較外殼方案",
+          "text": "Gemtronic 將數位寵物放入智慧戒指，電子零件維持一致、外殼可替換。作者先用 Tripo 比較外形，再把選定方案送入 CAD 精修與實體製作，生成物因此扮演設計候選的角色。",
+          "evidence_refs": [
+            "p024",
+            "p025",
+            "p026"
+          ]
+        },
+        {
+          "label": "成熟度限制：案例不等於量產驗證",
+          "text": "報導明確指出生成戒指模型不是直接完成的製造資產；對世界模型的主流製作應用，也仍須解決控制、一致性、可靠輸出、最佳化及可修改性，不能將黑客松成果視為完整量產流程。",
+          "evidence_refs": [
+            "p026",
+            "p029"
+          ]
+        }
+      ],
+      "evidence_refs": [
+        "p001",
+        "p004",
+        "p005",
+        "p022",
+        "p023",
+        "p024",
+        "p025",
+        "p026",
+        "p029"
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p004",
+          "p005",
+          "p022",
+          "p023",
+          "p024",
+          "p025",
+          "p026",
+          "p029"
+        ]
+      }
+    },
+    "80-level-edit-your-blender-animations-just-like-editing-mesh-with-thi": {
+      "source_url": "https://80.lv/articles/edit-your-blender-animations-just-like-editing-mesh-with-this-free-tool",
+      "source_published_at": "2026-11-11",
+      "source_evidence_sha256": "d9b573d10f7446c2570ddb576987caa48ae8fb70f622152b97eb009fefa479b3",
+      "reviewed_on": "2026-11-12",
+      "title": "Editable Motion Paths：在 Blender 視窗直接塑形動畫軌跡與節奏",
+      "summary": "Editable Motion Paths 將骨骼或物件動畫顯示為可編輯曲線，關鍵影格成為點、切線成為貝茲把手，修改後即時更新 F 曲線；工具支援 Blender 4.4 以上。",
+      "full_analysis": [
+        {
+          "label": "動畫技術：沿可見路徑直接編輯",
+          "text": "外掛把關鍵影格與貝茲把手放在動畫路徑上，可用吸附、擠出、切割及倒角等熟悉操作改變動作；底層 F 曲線會即時更新，也支援多骨骼與世界、局部或攝影機空間。",
+          "evidence_refs": [
+            "p002",
+            "p005",
+            "p010"
+          ]
+        },
+        {
+          "label": "製作控制：形狀與時間分開調整",
+          "text": "每幀圓點呈現間距，速度圖與時間圖可拖曳，雕刻筆刷則分別調整路徑形狀或快慢；角色洋蔥皮、速度色彩與重心顯示提供觀察動作的輔助資訊。",
+          "evidence_refs": [
+            "p006",
+            "p007",
+            "p008"
+          ]
+        },
+        {
+          "label": "驗證限制：相容宣稱有範圍",
+          "text": "報導說工具已在 Blender Studio 的 Rain 綁定測試，並轉述開發者的可投入製作與非破壞宣稱；這不等於所有自訂約束和驅動器都經過驗證。已列出的相容基線是 Blender 4.4 以上。",
+          "evidence_refs": [
+            "p003",
+            "p011"
+          ]
+        }
+      ],
+      "evidence_refs": [
+        "p002",
+        "p003",
+        "p005",
+        "p006",
+        "p007",
+        "p008",
+        "p010",
+        "p011"
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p002",
+          "p003",
+          "p005",
+          "p006",
+          "p007",
+          "p008",
+          "p010",
+          "p011"
+        ]
+      }
+    },
+    "80-level-boost-your-animation-workflow-with-maya-s-smart-layer-script": {
+      "source_url": "https://80.lv/articles/boost-your-animation-workflow-with-maya-s-smart-layer-script-latest-update",
+      "source_published_at": "2024-12-23",
+      "source_evidence_sha256": "8f3348308fd16aa4c3d0ed571a9cf2fd452e7c74eab36cffd8ad7172dc17a8e5",
+      "reviewed_on": "2026-11-12",
+      "title": "歷史參考｜Maya Smart Layer 0.9：分層修正路徑、骨盆與四足動作",
+      "summary": "2024 年的 Smart Layer 0.9 更新介紹以動畫圖層比例套用修正，並支援四足角色、沿曲線行走與骨盆校正；此處回顧當時工具能力，不把作者的效率宣稱當成實測結果。",
+      "full_analysis": [
+        {
+          "label": "技術流程：修正轉成新圖層",
+          "text": "先把動畫控制器加入圖層、為需要的修正設定關鍵影格，再執行腳本計算新動畫圖層並按比例套用；Flexible 模式支援四足角色沿圓形或曲線路徑行走。",
+          "evidence_refs": [
+            "p002",
+            "p004"
+          ]
+        },
+        {
+          "label": "製作影響：保留銜接姿勢",
+          "text": "0.9 可保留起點和終點姿勢不被彎曲，原文將其連到遊戲動作混合品質；路徑距離改變時另有自動骨盆修正，處理腿部過度伸展，並可選擇是否沿曲線保留垂直旋轉。",
+          "evidence_refs": [
+            "p004",
+            "p007"
+          ]
+        },
+        {
+          "label": "判斷限制：效率數字出自作者",
+          "text": "原文把覆蓋動畫師大部分需求的說法歸於作者，沒有提供跨綁定的對照測試；曲線行走、牆面行走及旋轉濾波應視為文中展示的功能，不能推定任意角色均能免除修整。",
+          "evidence_refs": [
+            "p005",
+            "p006",
+            "p007",
+            "p008"
+          ]
+        }
+      ],
+      "evidence_refs": [
+        "p002",
+        "p004",
+        "p005",
+        "p006",
+        "p007",
+        "p008"
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p002",
+          "p004",
+          "p005",
+          "p006",
+          "p007",
+          "p008"
+        ]
+      }
+    },
+    "80-level-breakdown-saying-goodbye-to-hololive-s-gawr-gura-in-short-bl": {
+      "source_url": "https://80.lv/articles/breakdown-saying-goodbye-to-hololive-s-gawr-gura-in-short-blender-movie",
+      "source_published_at": "2025-06-19",
+      "source_evidence_sha256": "27950ec243bca5be7bbc675880fd6d07d32dbcea31202609c0877e3961fcc4c7",
+      "reviewed_on": "2026-11-12",
+      "title": "歷史參考｜《Graduation》短片：混合兩種 Blender 渲染，再手繪整合背景",
+      "summary": "2025 年 Myxo Mycota 分享《Graduation》的製作：將 EEVEE 與 Cycles 通道合成，再以畫筆修邊、調色並逐鏡整合角色；作者表示整支短片約一週完成。",
+      "full_analysis": [
+        {
+          "label": "渲染流程：合成後重新作畫",
+          "text": "作者混合較銳利的 EEVEE 輸出與較高品質的 Cycles 通道，再對最終畫面塗繪，模糊邊緣、加入筆觸與調色；角色材質本身也是手繪，以圖形塊面與繪畫筆觸建立風格。",
+          "evidence_refs": [
+            "p012",
+            "p016"
+          ]
+        },
+        {
+          "label": "製作取捨：依鏡頭整理拼裝場景",
+          "text": "期限緊迫讓團隊無法完整搭建場景，改以拼裝道具配合逐張背景覆畫；動畫保持簡約，部分段落採用綁定 PNG 在三維空間輕晃，讓畫面朝插畫式構圖集中。",
+          "evidence_refs": [
+            "p014",
+            "p015",
+            "p020",
+            "p021"
+          ]
+        },
+        {
+          "label": "流程限制：背景覆畫會改變整合條件",
+          "text": "背景重畫後色調變化很大，原始角色渲染看起來像貼紙，作者因此逐鏡手動調整；原先希望重畫每張角色影格的想法也因時間不足未完成，不能將其寫成實際採用的完整流程。",
+          "evidence_refs": [
+            "p015",
+            "p018",
+            "p022"
+          ]
+        }
+      ],
+      "evidence_refs": [
+        "p001",
+        "p012",
+        "p014",
+        "p015",
+        "p016",
+        "p018",
+        "p020",
+        "p021",
+        "p022"
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p012",
+          "p014",
+          "p015",
+          "p016",
+          "p018",
+          "p020",
+          "p021",
+          "p022"
+        ]
+      }
+    },
+    "80-level-this-lightweight-maya-tool-makes-animation-path-editing-fast": {
+      "source_url": "https://80.lv/articles/this-lightweight-maya-tool-makes-animation-path-editing-fast-easy",
+      "source_published_at": "2025-07-09",
+      "source_evidence_sha256": "1056508a7fafdf6eb5b3789180f1a9d6228f31cb21b5b09d4fb6125425311286",
+      "reviewed_on": "2026-11-12",
+      "title": "歷史參考｜Maya RePather：協同調整角色路徑與鏈狀控制器",
+      "summary": "2025 年 RePather 展示四足模式與原地循環模式：前者可一起調整多個角色的行進路徑，後者把控制器鏈接到動畫圖層堆疊，面向蜿蜒物件的動作編輯。",
+      "full_analysis": [
+        {
+          "label": "動畫流程：多角色共同改路徑",
+          "text": "報導的四足模式示範可同時處理多個角色，並以近身戰鬥說明保持空間關係的需求；這裡可確認的是協同路徑操作，並沒有證據顯示它會自行生成戰鬥表演。",
+          "evidence_refs": [
+            "p002",
+            "p003"
+          ]
+        },
+        {
+          "label": "製作控制：鏈狀物件沿路徑運動",
+          "text": "原地循環模式可快速接上具有動畫圖層堆疊的控制器鏈，文中列舉龍、魚、蛇、車輛與火車等用途。推論：其參考價值在於把鏈狀控制和既有動畫一起調整。",
+          "evidence_refs": [
+            "p004"
+          ]
+        },
+        {
+          "label": "驗證限制：介紹沒有完整測試條件",
+          "text": "文章雖稱工具經製作測試，卻未列 Maya 相容版本、角色規模或路徑誤差量測；已公開的文字主要介紹兩個模式，因此不能把宣傳形容轉成可量化的效能保證。",
+          "evidence_refs": [
+            "p001",
+            "p002",
+            "p003",
+            "p004",
+            "p005",
+            "p006"
+          ]
+        }
+      ],
+      "evidence_refs": [
+        "p001",
+        "p002",
+        "p003",
+        "p004",
+        "p005",
+        "p006"
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p002",
+          "p003",
+          "p004",
+          "p005",
+          "p006"
+        ]
+      }
+    },
+    "80-level-blender-studio-released-high-quality-character-rig-for-blend": {
+      "source_url": "https://80.lv/articles/blender-studio-released-high-quality-character-rig-for-blender-5-0",
+      "source_published_at": "2025-11-21",
+      "source_evidence_sha256": "66cb0f839313cefb613477a974b3ae6f1bf8eaa4991d553138cad1739de5e8a4",
+      "reviewed_on": "2026-11-12",
+      "title": "歷史參考｜Blender Storm 角色綁定：CloudRig 身體與多種臉部變形技術",
+      "summary": "2025 年 Blender Studio 的 Storm 角色介紹，說明身體採 CloudRig，臉部結合形狀鍵、帶狀引導與晶格變形；下載包另含臉部、手部與全身姿勢庫。",
+      "full_analysis": [
+        {
+          "label": "角色技術：身體與臉部分工",
+          "text": "身體綁定使用 Blender Studio 的 CloudRig，臉部則由 Rik Schutte 結合形狀鍵、帶狀引導與晶格變形建構；這份介紹呈現不同變形方式在同一角色上的組合。",
+          "evidence_refs": [
+            "p003"
+          ]
+        },
+        {
+          "label": "製作控制：從姿勢庫開始調整",
+          "text": "資產包包含臉部、手部與全身姿勢，可從三維視窗的 Asset Shelf 存取。推論：動畫師能先套用可讀的姿態，再逐步修改表情與肢體，減少每次由中性姿勢重新設定的步驟。",
+          "evidence_refs": [
+            "p004"
+          ]
+        },
+        {
+          "label": "取得限制：訂閱資產與版本範圍",
+          "text": "原文說明下載對象為 Blender Studio 訂閱者，並非無條件公開免費資產；標題面向 Blender 5.0，而正文未提供跨版本或遊戲引擎輸出驗證，不能據此保證任意環境直接使用。",
+          "evidence_refs": [
+            "p002",
+            "p003",
+            "p004"
+          ]
+        }
+      ],
+      "evidence_refs": [
+        "p002",
+        "p003",
+        "p004"
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p002",
+          "p003",
+          "p004"
+        ]
+      }
+    },
+    "80-level-free-maya-tool-to-simplify-animation-repathing": {
+      "source_url": "https://80.lv/articles/free-maya-tool-to-simplify-animation-repathing",
+      "source_published_at": "2025-10-22",
+      "source_evidence_sha256": "31721024283c48be07aebb7aad9c53cb212fe7226179d4e3d15fcc9d5fbabb25",
+      "reviewed_on": "2026-11-12",
+      "title": "歷史參考｜Maya Vectorify：以暫時控制器修改角色地面行進路徑",
+      "summary": "2025 年 Ehsan Bayat 推出的 Vectorify，可為雙足與四足角色改變動畫路徑，貼合斜坡或不平地面，並在完成調整後烘焙；工具也支援非循環動畫。",
+      "full_analysis": [
+        {
+          "label": "技術流程：暫時控制與烘焙",
+          "text": "Vectorify 以暫時控制器重新安排角色動畫路徑，既可處理循環，也可修改其他動畫；使用者滿意後再烘焙結果，將路徑調整與後續細修分成不同步驟。",
+          "evidence_refs": [
+            "p002",
+            "p003"
+          ]
+        },
+        {
+          "label": "製作控制：地形與方向可調",
+          "text": "功能包含貼地、把彎曲路徑拉直、反轉動畫方向及對齊另一條路徑；曲線支點可修改，主控制器也能選擇跟隨角色或保持獨立，適合調整行進方向與整體位置。",
+          "evidence_refs": [
+            "p003"
+          ]
+        },
+        {
+          "label": "用途限制：聚焦地面移動",
+          "text": "作者明確將工具定位為地面上的角色改路徑；文中近乎全數成功的說法沒有附測試資料，不能當作實測通過率，也不能推定同樣適合飛行或其他三維運動方式。",
+          "evidence_refs": [
+            "p004"
+          ]
+        }
+      ],
+      "evidence_refs": [
+        "p002",
+        "p003",
+        "p004"
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p002",
+          "p003",
+          "p004"
+        ]
+      }
+    },
+    "80-level-how-a-team-designed-and-created-a-boursobank-ad-using-blende": {
+      "source_url": "https://80.lv/articles/how-a-team-designed-and-created-a-boursobank-ad-using-blender",
+      "source_published_at": "2026-01-22",
+      "source_evidence_sha256": "1d152ee5da0f85d966e24cb297806add1abe15b41da03d5be3b9267a3ceaa3e2",
+      "reviewed_on": "2026-11-12",
+      "title": "歷史參考｜BoursoBank 廣告：幾何節點建彩帶，再交給布料修改器模擬",
+      "summary": "2026 年 DOT4 的製作訪談介紹 30 秒 BoursoBank 新年廣告：團隊以 Blender 幾何節點建立彩帶、儲存固定群組，再集中交給布料模擬，整體專案約六週完成。",
+      "full_analysis": [
+        {
+          "label": "技術流程：生成與模擬拆開",
+          "text": "彩帶工具會依使用者輸入儲存動態固定群組屬性，再由另一個幾何節點物件收集所有彩帶，於其修改器堆疊執行布料模擬；彩帶可以先編輯或動畫化，準備好後才模擬。",
+          "evidence_refs": [
+            "p016",
+            "p017",
+            "p018"
+          ]
+        },
+        {
+          "label": "製作影響：把時間留給鏡頭表現",
+          "text": "團隊先以分鏡和動態分鏡確定鏡頭節奏，並購買或下載部分手機、筆電資產，把製作時間留給燈光與動畫；牆面和部分桌面元素則自行建模，依畫面需求分配工作。",
+          "evidence_refs": [
+            "p008",
+            "p009",
+            "p010",
+            "p021",
+            "p022"
+          ]
+        },
+        {
+          "label": "方法限制：當時仍依賴內建布料系統",
+          "text": "作者希望未來完全在幾何節點內完成布料，但本案實際使用內建布料修改器。訪談提出的期望不能當成已實現功能；六週也是該專案工期，不代表其他廣告可直接複製相同時程。",
+          "evidence_refs": [
+            "p017",
+            "p019",
+            "p020",
+            "p025"
+          ]
+        }
+      ],
+      "evidence_refs": [
+        "p001",
+        "p005",
+        "p006",
+        "p008",
+        "p009",
+        "p010",
+        "p016",
+        "p017",
+        "p018",
+        "p019",
+        "p020",
+        "p021",
+        "p022",
+        "p025"
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p005",
+          "p006",
+          "p008",
+          "p009",
+          "p010",
+          "p016",
+          "p017",
+          "p018",
+          "p019",
+          "p020",
+          "p021",
+          "p022",
+          "p025"
+        ]
+      }
+    },
+    "3dnchu-control-rig-modules-for-vehicles-ue5": {
+      "source_url": "https://3dnchu.com/archives/control-rig-modules-for-vehicles-ue5",
+      "source_published_at": "2026-02-03",
+      "source_evidence_sha256": "095514adedd3088983b22a651ec788f710e2524f6933214e633aa6f22ddb0b61",
+      "reviewed_on": "2026-11-12",
+      "title": "歷史參考｜Unreal 車輛 Control Rig 模組：組合車架與程序式駕駛控制",
+      "summary": "2026 年介紹的 Control Rig Modules For Vehicles，提供 Unreal Engine 模組化綁定與配套藍圖，面向機車、汽車與多軸卡車，可用於 Sequencer 動畫或互動式駕駛表現。",
+      "full_analysis": [
+        {
+          "label": "工具流程：以模組組裝車輛綁定",
+          "text": "產品介紹描述以拖放模組組裝程序式綁定，並聲稱可適應不同骨架結構與比例，另支援多種骨骼階層和命名規則；這些是來源列出的工具設計方向。",
+          "evidence_refs": [
+            "p002",
+            "p003",
+            "p006"
+          ]
+        },
+        {
+          "label": "製作應用：鏡頭動畫與互動控制",
+          "text": "文中分別列出 Sequencer 的車輛鏡頭動畫、遊戲內過場，以及互動式程序駕駛動畫；另有地面與空中模式切換，讓不同運動情境共用車輛控制框架。",
+          "evidence_refs": [
+            "p004",
+            "p005",
+            "p007"
+          ]
+        },
+        {
+          "label": "驗證限制：未提供跨車型結果",
+          "text": "來源屬資產介紹，雖宣稱可適應不同車架，卻沒有逐車型的變形、接地或效能測試；因此不能把支援範圍解讀成所有自訂車輛都已驗證，也不據此宣稱具備真實車輛物理精度。",
+          "evidence_refs": [
+            "p001",
+            "p002",
+            "p003",
+            "p004",
+            "p005",
+            "p006",
+            "p007",
+            "p008"
+          ]
+        }
+      ],
+      "evidence_refs": [
+        "p001",
+        "p002",
+        "p003",
+        "p004",
+        "p005",
+        "p006",
+        "p007",
+        "p008"
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p002",
+          "p003",
+          "p004",
+          "p005",
+          "p006",
+          "p007",
+          "p008"
+        ]
+      }
+    },
+    "3dnchu-gaussian-haircut-eccv2024": {
+      "source_url": "https://3dnchu.com/archives/gaussian-haircut-eccv2024",
+      "source_published_at": "2024-09-28",
+      "source_evidence_sha256": "6f73b9fc6165b0163d28ec61381e3597156e464c76360601a1950373ba512fe6",
+      "reviewed_on": "2026-11-12",
+      "title": "歷史參考｜Gaussian Haircut：結合髮絲與高斯表示重建髮型",
+      "summary": "2024 年 Gaussian Haircut 研究介紹以多視角資料重建髮絲，結合三維折線與沿髮絲排列的高斯表示；報導當時已有論文，但指出原始碼尚未公開。",
+      "full_analysis": [
+        {
+          "label": "重建技術：雙重表示約束髮絲",
+          "text": "方法先利用非結構化高斯產生多視角監督資料，再擬合三維折線髮絲；髮型以沿髮絲排列的高斯表示，將髮絲先驗與可微分高斯渲染結合。",
+          "evidence_refs": [
+            "p002"
+          ]
+        },
+        {
+          "label": "製作影響：輸出仍具有髮絲結構",
+          "text": "研究以髮絲折線而非純非結構化高斯作為重建核心，作者因此主張結果可接入既有編輯、渲染與模擬引擎。這裡保留為研究方法的製作方向，不延伸成所有 DCC 已有直接匯入支援。",
+          "evidence_refs": [
+            "p002"
+          ]
+        },
+        {
+          "label": "成熟度限制：公開程度以當年為準",
+          "text": "2024 年報導表示原始碼尚未公開；文字雖提到合成與真實場景評估，沒有列出可供本稿比較的數值。不能將其當成今日可下載工具，也不自行補寫重建速度或精度排名。",
+          "evidence_refs": [
+            "p001",
+            "p002",
+            "p003"
+          ]
+        }
+      ],
+      "evidence_refs": [
+        "p001",
+        "p002",
+        "p003"
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p002",
+          "p003"
+        ]
+      }
+    },
+    "3dnchu-blender-geonode-procedural-3d-book-jp": {
+      "source_url": "https://3dnchu.com/archives/blender-geonode-procedural-3d-book-jp",
+      "source_published_at": "2023-12-21",
+      "source_evidence_sha256": "137acd65eadc9fd44072daf12135067b14842ce727557c425f17d8ba8ed466c3",
+      "reviewed_on": "2026-11-12",
+      "title": "歷史參考｜Blender 幾何節點教材：從曲線編輯到植物與 LED 生成器",
+      "summary": "2023 年的幾何節點教材介紹，以基礎節點、曲線與網格操作逐步銜接植物、蜘蛛網和 LED 面板製作；文章標示對應 Blender 4.0，本文回顧其學習架構。",
+      "full_analysis": [
+        {
+          "label": "技術流程：由資料觀察走向生成",
+          "text": "課綱先介紹基本節點、實例放置和試算表，再進入文字、曲線及網格編輯；後段才組合成植物、蜘蛛網與 LED 面板生成器，讓資料操作與具體製作任務逐步連接。",
+          "evidence_refs": [
+            "p010",
+            "p011",
+            "p012",
+            "p013",
+            "p014",
+            "p015",
+            "p016"
+          ]
+        },
+        {
+          "label": "製作價值：可變化資產與節點整理",
+          "text": "介紹中特別以植物練習程序化細節和變化，再透過蜘蛛網生成器整理節點樹。推論：這種安排能把單次建模練習延伸為可調參數的資產思考，同時練習維護較複雜的節點配置。",
+          "evidence_refs": [
+            "p009",
+            "p011"
+          ]
+        },
+        {
+          "label": "版本限制：舊教材不代表新版本完整功能",
+          "text": "文章標示教材對應 Blender 4.0，並列出除錯章節；這是 2023 年的課程內容介紹，不能當成已涵蓋後來幾何節點模擬、體積網格或其他新增功能的完整指南。",
+          "evidence_refs": [
+            "p003",
+            "p017",
+            "p019"
+          ]
+        }
+      ],
+      "evidence_refs": [
+        "p001",
+        "p003",
+        "p009",
+        "p010",
+        "p011",
+        "p012",
+        "p013",
+        "p014",
+        "p015",
+        "p016",
+        "p017",
+        "p019"
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p003",
+          "p009",
+          "p010",
+          "p011",
+          "p012",
+          "p013",
+          "p014",
+          "p015",
+          "p016",
+          "p017",
+          "p019"
+        ]
+      }
+    },
+    "3dnchu-easy-custom-normals-v2-0": {
+      "source_url": "https://3dnchu.com/archives/easy-custom-normals-v2-0",
+      "source_published_at": "2025-07-12",
+      "source_evidence_sha256": "b49183d6748e72c9ee3fc02527c00aef1aeb1c5d08817326839e6ba1c8bba5ca",
+      "reviewed_on": "2026-11-12",
+      "title": "歷史參考｜Easy Custom Normals 2.0：以可綁定曲線控制角色臉部法線",
+      "summary": "2025 年 Easy Custom Normals 2.0 加入臉部代理法線流程，透過綁定曲線與幾何節點將法線轉移到臉部，並可配合表情調整；臉部代理功能屬 Pro 版本。",
+      "full_analysis": [
+        {
+          "label": "角色技術：曲線決定法線形狀",
+          "text": "臉部代理系統由綁定貝茲曲線、法線轉移修改器及代理綁定組成，可從綁定資料建立曲線，並用骨骼調整法線；另外有臉部邊界遮罩和偵錯視覺化工具。",
+          "evidence_refs": [
+            "p004",
+            "p005",
+            "p006",
+            "p007",
+            "p009",
+            "p010",
+            "p013"
+          ]
+        },
+        {
+          "label": "製作控制：表情與陰影輪廓一起調整",
+          "text": "代理可接到角色綁定，依不同姿勢調整明暗形狀，或把姿勢保存為形狀鍵；幾何節點流程提供即時預覽，不需先手動重接材質或烘焙才看到結果。",
+          "evidence_refs": [
+            "p003",
+            "p008",
+            "p013",
+            "p014"
+          ]
+        },
+        {
+          "label": "版本限制：免費平滑與付費代理不同",
+          "text": "文章特別更正免費功能描述：一般法線平滑與 Pro 臉部代理是不同層級，不能將全部臉部控制能力寫成免費。本文也沒有提供把這套動態法線控制輸出到遊戲引擎的驗證。",
+          "evidence_refs": [
+            "p002",
+            "p012",
+            "p013",
+            "p014",
+            "p015"
+          ]
+        }
+      ],
+      "evidence_refs": [
+        "p002",
+        "p003",
+        "p004",
+        "p005",
+        "p006",
+        "p007",
+        "p008",
+        "p009",
+        "p010",
+        "p012",
+        "p013",
+        "p014",
+        "p015"
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p002",
+          "p003",
+          "p004",
+          "p005",
+          "p006",
+          "p007",
+          "p008",
+          "p009",
+          "p010",
+          "p012",
+          "p013",
+          "p014",
+          "p015"
+        ]
+      }
+    },
+    "3dnchu-mouse-look-navigation": {
+      "source_url": "https://3dnchu.com/archives/mouse-look-navigation",
+      "source_published_at": "2021-12-17",
+      "source_evidence_sha256": "5612d43e803c0f38d572ef1ddc21f5e1e25c3d3db9aa183613615afc91069ffd",
+      "reviewed_on": "2026-11-12",
+      "title": "歷史參考｜Mouse-look Navigation：單獨調整 Blender 視窗操作方式",
+      "summary": "2021 年的 Mouse-look Navigation 介紹，面向 Blender 2.9 至 3.0 的視窗導覽自訂；可採用類似 Maya 或 ZBrush 的相機操作，同時保留其他 Blender 預設快捷鍵。",
+      "full_analysis": [
+        {
+          "label": "工具流程：繪製與導覽共用按鍵",
+          "text": "ZBrush 模式依點到幾何或背景決定繪製、雕刻或視窗導覽，因此可共用同一滑鼠按鍵；外掛也支援不結束操作便切換導覽模式，並在不同模式中使用類似第一人稱移動。",
+          "evidence_refs": [
+            "p002",
+            "p003",
+            "p004",
+            "p006"
+          ]
+        },
+        {
+          "label": "製作影響：相機操作與整套鍵位分離",
+          "text": "文章作者曾因 Industry Compatible 鍵位與其他外掛操作不合而改用這個工具；內附相近的導覽預設，讓相機操作採熟悉方式，其他快捷鍵仍遵循 Blender 標準。",
+          "evidence_refs": [
+            "p010"
+          ]
+        },
+        {
+          "label": "相容性限制：只保留歷史支援資訊",
+          "text": "介紹列出的相容範圍為 Blender 2.9x 至 3.0x，個人授權當時免費；不能由這份 2021 年紀錄推定今日版本仍相容，也不能把單一作者的鍵位經驗視為所有外掛衝突的解法。",
+          "evidence_refs": [
+            "p002",
+            "p010",
+            "p011"
+          ]
+        }
+      ],
+      "evidence_refs": [
+        "p002",
+        "p003",
+        "p004",
+        "p006",
+        "p010",
+        "p011"
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p002",
+          "p003",
+          "p004",
+          "p006",
+          "p010",
+          "p011"
+        ]
+      }
+    },
+    "cgworld-jp-2505-jaakko-substance": {
+      "source_url": "https://cgworld.jp/special-feature/2505-Jaakko-Substance.html",
+      "source_published_at": "2025-05-02",
+      "source_evidence_sha256": "c33421758b8c0110480ce48b80ed4135b65757dc416cfc0ddcf6d4aa648fe1d0",
+      "reviewed_on": "2026-11-12",
+      "title": "歷史參考｜Substance 木地板材質：拆分木紋、節疤與板片變化",
+      "summary": "2025 年 Jaakko Saari 的材質教學，把木地板分成條紋、節疤與板片三個程序化部分，再將貼圖帶入 Unreal Engine；另展示 Firefly 影像轉入 Sampler 的材質流程。",
+      "full_analysis": [
+        {
+          "label": "貼圖技術：三種結構分開建立",
+          "text": "條紋以漸層、方向性雜訊與扭曲形成波動，節疤則由拉長的形狀、平鋪及漸層映射建立；兩者混合後，再用板片遮罩改變各塊木板的紋理，避免整張地板只有同一個圖樣。",
+          "evidence_refs": [
+            "p007",
+            "p009",
+            "p011",
+            "p013",
+            "p015",
+            "p017",
+            "p018",
+            "p020",
+            "p022",
+            "p024",
+            "p026",
+            "p028"
+          ]
+        },
+        {
+          "label": "製作控制：板片參數與引擎材質",
+          "text": "作者展示公開板片數量參數，也示範把基礎色、法線與粗糙度 TGA 匯入 Unreal Engine，重新接成材質並調整平鋪與尺度；程序式生成與引擎內材質組裝是兩個明確步驟。",
+          "evidence_refs": [
+            "p030",
+            "p032",
+            "p034"
+          ]
+        },
+        {
+          "label": "方法限制：影像生成是另一條流程",
+          "text": "另一示範先以 Firefly 生成木紋，再在 Sampler 選木材分類轉成材質，加入油漆與剝落效果；它不同於前段完全以節點構成的木紋，不能把兩種來源混寫成同一套純程序流程。",
+          "evidence_refs": [
+            "p007",
+            "p036",
+            "p037",
+            "p039",
+            "p041"
+          ]
+        }
+      ],
+      "evidence_refs": [
+        "p002",
+        "p003",
+        "p005",
+        "p007",
+        "p009",
+        "p011",
+        "p013",
+        "p015",
+        "p017",
+        "p018",
+        "p020",
+        "p022",
+        "p024",
+        "p026",
+        "p028",
+        "p030",
+        "p032",
+        "p034",
+        "p036",
+        "p037",
+        "p039",
+        "p041"
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p002",
+          "p003",
+          "p005",
+          "p007",
+          "p009",
+          "p011",
+          "p013",
+          "p015",
+          "p017",
+          "p018",
+          "p020",
+          "p022",
+          "p024",
+          "p026",
+          "p028",
+          "p030",
+          "p032",
+          "p034",
+          "p036",
+          "p037",
+          "p039",
+          "p041"
+        ]
+      }
+    },
+    "cg-channel-foundry-releases-nuke-17-0-nukex-17-0-nuke-studio-17-0": {
+      "source_url": "https://www.cgchannel.com/2026/02/foundry-releases-nuke-17-0-nukex-17-0-nuke-studio-17-0",
+      "source_published_at": "2026-02-27",
+      "source_evidence_sha256": "b8158ca6fdc9fe54e60d74b4ff71235321d968a9cd0eb8fffe661608313436ca",
+      "reviewed_on": "2026-11-12",
+      "title": "歷史參考｜Nuke 17.0：高斯潑濺合成、USD 編輯與大型訓練資料",
+      "summary": "2026 年 Nuke 17.0 正式版介紹加入高斯潑濺匯入渲染及 USD 編輯改進；NukeX 和 Nuke Studio 另有面向大型資料集的 BigCat。文章起於 2025 年測試版，這裡回顧更新後的正式版內容。",
+      "full_analysis": [
+        {
+          "label": "合成技術：局部處理高斯潑濺",
+          "text": "3D 系統可讀取 PLY 或 SPLAT，利用 Fields 節點隔離元素、校色或非破壞刪除，再透過 SplatRender 輸出含動態模糊與深度的影像，面向場景延伸等合成工作。",
+          "evidence_refs": [
+            "p003",
+            "p009",
+            "p010",
+            "p011",
+            "p012"
+          ]
+        },
+        {
+          "label": "製作影響：更多資料留在合成階段",
+          "text": "相機與燈光節點可接收即時 USD 屬性，GeoEditCamera 可直接編輯匯入相機；初步 MaterialX 支援則讓 Standard Surface 材質進入預覽與渲染，減少往返其他階段的需求。",
+          "evidence_refs": [
+            "p021",
+            "p022",
+            "p025",
+            "p026",
+            "p027"
+          ]
+        },
+        {
+          "label": "版本限制：大型 AI 訓練不是全系列共用",
+          "text": "BigCat 是 NukeX 與 Nuke Studio 的功能，將既有 CopyCat 工作方式延伸到數百或數千張影像，新增資料變化與輸出驗證選項；不能把它歸為一般 Nuke 授權必含的功能，也不保證任意資料皆可泛化。",
+          "evidence_refs": [
+            "p005",
+            "p028",
+            "p029",
+            "p030",
+            "p031"
+          ]
+        }
+      ],
+      "evidence_refs": [
+        "p001",
+        "p002",
+        "p003",
+        "p005",
+        "p009",
+        "p010",
+        "p011",
+        "p012",
+        "p021",
+        "p022",
+        "p025",
+        "p026",
+        "p027",
+        "p028",
+        "p029",
+        "p030",
+        "p031"
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p002",
+          "p003",
+          "p005",
+          "p009",
+          "p010",
+          "p011",
+          "p012",
+          "p021",
+          "p022",
+          "p025",
+          "p026",
+          "p027",
+          "p028",
+          "p029",
+          "p030",
+          "p031"
+        ]
+      }
+    },
+    "cg-channel-10-killer-tips-for-better-character-animation": {
+      "source_url": "https://www.cgchannel.com/2015/09/10-killer-tips-for-better-character-animation",
+      "source_published_at": "2015-09-07",
+      "source_evidence_sha256": "6f242f1e9d7cba3f41fb12e795887f5eea661eecd6b620d8a651413aeb0cc4a0",
+      "reviewed_on": "2026-11-12",
+      "title": "歷史參考｜角色動畫工作法：同角度參考、分段轉曲線與動作弧線檢查",
+      "summary": "2015 年 Sébastien Wojda 分享由影片參考到最終修整的角色動畫方法，包含匹配鏡頭角度、階梯式關鍵姿勢、先處理身體重量，再以洋蔥皮檢查弧線和間距。",
+      "full_analysis": [
+        {
+          "label": "動畫流程：參考與鏡頭一致",
+          "text": "先以相同攝影機角度錄下多種表演，再挑選並重錄較清楚的版本，匯入鏡頭與音訊同步；主要姿勢以階梯插值建立，避免太早依賴自動補間判斷表演。",
+          "evidence_refs": [
+            "p006",
+            "p007",
+            "p008",
+            "p014"
+          ]
+        },
+        {
+          "label": "製作控制：先重量再四肢",
+          "text": "從階梯切到曲線插值時，作者先處理身體上下位移，再完成其餘位移與旋轉，接著調整頭、手臂和腿；保留原階梯版影片作比較，檢查曲線化後是否失去原來的動作能量。",
+          "evidence_refs": [
+            "p020",
+            "p021",
+            "p022",
+            "p023"
+          ]
+        },
+        {
+          "label": "驗證方法：參考需要詮釋",
+          "text": "作者提醒關鍵姿勢常要誇張，不能只照抄錄影；最後用洋蔥皮檢查弧線和間距。這是個人製作工作法，文章也假設讀者熟悉基本動畫流程，不應把順序或影格安排寫成所有風格的硬性規則。",
+          "evidence_refs": [
+            "p004",
+            "p016",
+            "p017",
+            "p039",
+            "p040"
+          ]
+        }
+      ],
+      "evidence_refs": [
+        "p001",
+        "p002",
+        "p003",
+        "p004",
+        "p006",
+        "p007",
+        "p008",
+        "p014",
+        "p016",
+        "p017",
+        "p020",
+        "p021",
+        "p022",
+        "p023",
+        "p039",
+        "p040"
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p002",
+          "p003",
+          "p004",
+          "p006",
+          "p007",
+          "p008",
+          "p014",
+          "p016",
+          "p017",
+          "p020",
+          "p021",
+          "p022",
+          "p023",
+          "p039",
+          "p040"
+        ]
+      }
+    },
+    "cg-channel-turn-your-desktop-into-a-ue5-platformer-with-3d-scanning": {
+      "source_url": "https://www.cgchannel.com/2022/09/turn-your-desktop-into-a-ue5-platformer-with-3d-scanning",
+      "source_published_at": "2022-09-27",
+      "source_evidence_sha256": "69a12503eaf37f0f46dfd5e5e9d57ebb99729467eb963088f36b7813707afce8",
+      "reviewed_on": "2026-11-12",
+      "title": "歷史參考｜手機掃描桌上物件，組成 Unreal Engine 5 小型平台關卡",
+      "summary": "2022 年 KIRI Innovations 的贊助案例，介紹以手機攝影測量掃描桌上物件，清理後匯出 OBJ，再放入 Unreal Engine 5 的平台關卡；作者為 KIRI Engine 所屬公司的負責人。",
+      "full_analysis": [
+        {
+          "label": "場景流程：拍攝、清理再匯入",
+          "text": "作者逐件多角度拍攝物品，選擇 OBJ 輸出以便處理貼圖，再用 Meshmixer 平面切除一併掃到的桌面；清理完成的資產才逐一匯入 Unreal Engine 5。",
+          "evidence_refs": [
+            "p004",
+            "p006",
+            "p007",
+            "p008",
+            "p012",
+            "p013",
+            "p018",
+            "p019"
+          ]
+        },
+        {
+          "label": "製作影響：以掃描物件替換關卡障礙",
+          "text": "先在引擎中排好簡單障礙與角色活動範圍，再用對應掃描件替換位置；最後加入鍵盤踩踏聲等聲音與燈光，使熟悉的桌面物件成為可互動的跑跳環境。",
+          "evidence_refs": [
+            "p014",
+            "p016",
+            "p021",
+            "p022",
+            "p023"
+          ]
+        },
+        {
+          "label": "驗證限制：材質與來源立場需分辨",
+          "text": "深色光滑滑鼠比色彩和細節豐富的裝飾品難掃，案例需額外處理表面才能取得辨識特徵；文中耗時與結果出自供應商自己的贊助示範，不是獨立比較，也不代表所有物件都同樣容易。",
+          "evidence_refs": [
+            "p001",
+            "p007",
+            "p009",
+            "p010",
+            "p011",
+            "p012",
+            "p026"
+          ]
+        }
+      ],
+      "evidence_refs": [
+        "p001",
+        "p004",
+        "p006",
+        "p007",
+        "p008",
+        "p009",
+        "p010",
+        "p011",
+        "p012",
+        "p013",
+        "p014",
+        "p016",
+        "p018",
+        "p019",
+        "p021",
+        "p022",
+        "p023",
+        "p026"
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p004",
+          "p006",
+          "p007",
+          "p008",
+          "p009",
+          "p010",
+          "p011",
+          "p012",
+          "p013",
+          "p014",
+          "p016",
+          "p018",
+          "p019",
+          "p021",
+          "p022",
+          "p023",
+          "p026"
+        ]
+      }
+    },
+    "cg-channel-10-subtle-tricks-to-improve-your-character-animation": {
+      "source_url": "https://www.cgchannel.com/2024/10/10-subtle-tricks-to-improve-your-character-animation",
+      "source_published_at": "2024-10-29",
+      "source_evidence_sha256": "0b9b6241d0c8634381f24b1de70d9568b6397be4b5ee05fbd46c1774d96aa38b",
+      "reviewed_on": "2026-11-12",
+      "title": "歷史參考｜角色動畫細修：重心、曲線錯位與接觸變形",
+      "summary": "2024 年 Adrien Liv 的動畫教學，以重心位置、旋轉曲線錯位和接觸變形改善角色重量感；文章同時說明臉部延遲動作的例外，避免機械式套用固定節奏。",
+      "full_analysis": [
+        {
+          "label": "動作技術：曲線錯位改變弧線",
+          "text": "示例在 24 幀循環中調整手臂兩個旋轉通道：對齊時手部沿斜線移動，錯開三幀成為橢圓，六幀成為圓；作者藉此連結曲線編輯與畫面中實際經過的軌跡。",
+          "evidence_refs": [
+            "p010",
+            "p011",
+            "p012",
+            "p013",
+            "p014"
+          ]
+        },
+        {
+          "label": "製作影響：接觸形變建立重量感",
+          "text": "坐下時可讓身體壓向椅面，再以變形器推回幾何表現接觸，而非為避免穿插把角色架空；臉頰受手指擠壓也可將變形器約束到手部，讓接觸關係更清楚。",
+          "evidence_refs": [
+            "p015",
+            "p016",
+            "p017"
+          ]
+        },
+        {
+          "label": "判斷限制：比例與發音會改變做法",
+          "text": "重心位置會隨頭、手腳比例與重量而變；嘴角延遲一兩幀的建議也不適用所有發音，文中指出 U、O 嘴形需要停留才能讀清楚。這些都要求依角色和表演情境調整。",
+          "evidence_refs": [
+            "p005",
+            "p031"
+          ]
+        }
+      ],
+      "evidence_refs": [
+        "p001",
+        "p002",
+        "p004",
+        "p005",
+        "p010",
+        "p011",
+        "p012",
+        "p013",
+        "p014",
+        "p015",
+        "p016",
+        "p017",
+        "p031"
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p002",
+          "p004",
+          "p005",
+          "p010",
+          "p011",
+          "p012",
+          "p013",
+          "p014",
+          "p015",
+          "p016",
+          "p017",
+          "p031"
+        ]
+      }
+    },
+    "cg-channel-turn-a-zbrush-model-into-a-game-ready-character-with-charact": {
+      "source_url": "https://www.cgchannel.com/2025/08/turn-a-zbrush-model-into-a-game-ready-character-with-character-creator",
+      "source_published_at": "2025-08-06",
+      "source_evidence_sha256": "e9d215cb7f93f293d5bf5603a9b541ff3958201b0bd5fab80862bd4b3011c480",
+      "reviewed_on": "2026-11-12",
+      "title": "歷史參考｜ZBrush 角色接入 CC4：拓樸轉移、服裝權重與模擬輸出",
+      "summary": "2025 年 Francis Lamoureux 的贊助製作案例，以 Headshot、GoZ 與 Character Creator 4 將自訂雕刻接入角色系統，再修整服裝權重；最終在 Marmoset Toolbag 渲染，模擬部分另以 Alembic 輸出。",
+      "full_analysis": [
+        {
+          "label": "角色流程：先接上共同拓樸",
+          "text": "自訂頭部雕刻透過額外的 Headshot 2.0 外掛包覆為 CC4 拓樸，再以 GoZ 回到 ZBrush 處理身體與細節投射；若一開始直接使用 CC4 基礎網格，這個轉換步驟可以省略。",
+          "evidence_refs": [
+            "p010",
+            "p011",
+            "p012",
+            "p013"
+          ]
+        },
+        {
+          "label": "製作控制：服裝自動轉權重後再修整",
+          "text": "GoZ 的 Create Cloth 會把低模服裝建立為新資產並轉移角色蒙皮權重；案例中的背包和劍鞘仍需手修，背包受影響的頂點改由髖部骨骼完整控制，劍鞘附近再平滑過渡。",
+          "evidence_refs": [
+            "p016",
+            "p017",
+            "p022",
+            "p023",
+            "p024",
+            "p025",
+            "p026"
+          ]
+        },
+        {
+          "label": "輸出限制：模擬與骨架採不同格式",
+          "text": "作者把一般角色部分以 FBX 匯出，模擬部分用 Alembic 保留物理動作後送到 Toolbag；這是該案例的渲染交付方式，不能推定相同模擬會自動成為遊戲引擎中的即時布料功能。",
+          "evidence_refs": [
+            "p001",
+            "p043"
+          ]
+        }
+      ],
+      "evidence_refs": [
+        "p001",
+        "p010",
+        "p011",
+        "p012",
+        "p013",
+        "p016",
+        "p017",
+        "p022",
+        "p023",
+        "p024",
+        "p025",
+        "p026",
+        "p043"
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p010",
+          "p011",
+          "p012",
+          "p013",
+          "p016",
+          "p017",
+          "p022",
+          "p023",
+          "p024",
+          "p025",
+          "p026",
+          "p043"
+        ]
+      }
+    },
+    "cg-channel-3dgs-render-5-0-lets-you-animate-gaussian-splats-inside-blen": {
+      "source_url": "https://www.cgchannel.com/2026/06/3dgs-render-5-0-lets-you-animate-gaussian-splats-inside-blender",
+      "source_published_at": "2026-06-09",
+      "source_evidence_sha256": "038824072c2e50f83151a37a5f5df1a4eeb0d8c1fb3669aeb0d801f69525379c",
+      "reviewed_on": "2026-11-12",
+      "title": "3DGS Render 5.0：用代理網格動畫驅動 Blender 高斯潑濺",
+      "summary": "2026 年 6 月的 3DGS Render 5.0 更新，可把綁定代理網格的變形轉移到高斯潑濺，並烘焙成 PLY 序列輸出；報導明確指出這項動畫功能仍屬實驗性。",
+      "full_analysis": [
+        {
+          "label": "動畫技術：骨架先驅動代理網格",
+          "text": "先以一般骨架方式動畫化代理角色網格，再將其變形傳給 3DGS 物件；因此高斯潑濺可以借用既有角色動畫流程，而非只套用簡單的整體動畫效果。",
+          "evidence_refs": [
+            "p002",
+            "p010",
+            "p011",
+            "p012"
+          ]
+        },
+        {
+          "label": "製作輸出：動畫與光照可烘焙",
+          "text": "動畫結果可烘焙為連續 PLY 檔，交給其他支援軟體；代理網格的光照資訊也能烘焙到 3DGS 物件。推論：交付時需要同時考慮序列資料與接收端能否處理該表現方式。",
+          "evidence_refs": [
+            "p013",
+            "p014"
+          ]
+        },
+        {
+          "label": "成熟度限制：示範仍有效能問題",
+          "text": "文中示範把 Mixamo 動作轉到掃描角色，但說明此功能仍在實驗階段、效能尚不理想；5.0 列出的相容版本是 Blender 5.1，不能僅由示範成功推定適用任意角色或較新版本。",
+          "evidence_refs": [
+            "p015",
+            "p016"
+          ]
+        }
+      ],
+      "evidence_refs": [
+        "p001",
+        "p002",
+        "p010",
+        "p011",
+        "p012",
+        "p013",
+        "p014",
+        "p015",
+        "p016"
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p002",
+          "p010",
+          "p011",
+          "p012",
+          "p013",
+          "p014",
+          "p015",
+          "p016"
+        ]
+      }
+    },
+    "blender-official-layered-actions-workshop-september-2026": {
+      "source_url": "https://code.blender.org/2026/11/layered-actions-workshop-september-2026",
+      "source_published_at": "2026-11-03",
+      "source_evidence_sha256": "7916f5c2d9f3b1bdde70db878f2e8bcc86cd56adcb47e5064100bd9bb1689167",
+      "reviewed_on": "2026-11-12",
+      "title": "Blender Layered Actions 設計紀錄：讓動畫編輯器依動作組織資料",
+      "summary": "Blender 於 2026 年 11 月公布 Layered Actions 工作坊結論，提議以 Action 為通道階層起點，減少共享資料重複顯示，並將 Action／Slot 管理放進動畫編輯器側欄；內容屬逐步實作的設計。",
+      "full_analysis": [
+        {
+          "label": "技術設計：資料蒐集與階層分開",
+          "text": "新的動畫過濾系統先蒐集曲線及圖層等通道並附上 Action、骨骼等中繼資料，再據此建立階層；提案以 Action 組織物件、材質等資料，避免相同共享資料在多個物件下重複。",
+          "evidence_refs": [
+            "p006",
+            "p017",
+            "p018",
+            "p019",
+            "p021",
+            "p026",
+            "p027",
+            "p028",
+            "p034",
+            "p035",
+            "p036"
+          ]
+        },
+        {
+          "label": "製作影響：在動畫脈絡管理指派",
+          "text": "工作坊希望在 Dope Sheet 與 Graph Editor 側欄直接管理 Action／Slot，並讓共用同一 Action 的多個資料區塊一起切換；另討論固定通道與自訂分組，協助動畫師集中處理相關控制器。",
+          "evidence_refs": [
+            "p048",
+            "p049",
+            "p050",
+            "p053",
+            "p056",
+            "p058",
+            "p060",
+            "p061"
+          ]
+        },
+        {
+          "label": "成熟度限制：設計不等於已交付",
+          "text": "官方說明目前先替換動畫過濾系統，其他功能將逐步實作；顯示多層累積結果或世界空間的有效曲線，更明言尚不確定是否及何時完成。不能把工作坊列出的構想都當成現行功能。",
+          "evidence_refs": [
+            "p033",
+            "p047",
+            "p067",
+            "p073"
+          ]
+        }
+      ],
+      "evidence_refs": [
+        "p001",
+        "p006",
+        "p017",
+        "p018",
+        "p019",
+        "p021",
+        "p026",
+        "p027",
+        "p028",
+        "p033",
+        "p034",
+        "p035",
+        "p036",
+        "p047",
+        "p048",
+        "p049",
+        "p050",
+        "p053",
+        "p056",
+        "p058",
+        "p060",
+        "p061",
+        "p067",
+        "p073"
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p006",
+          "p017",
+          "p018",
+          "p019",
+          "p021",
+          "p026",
+          "p027",
+          "p028",
+          "p033",
+          "p034",
+          "p035",
+          "p036",
+          "p047",
+          "p048",
+          "p049",
+          "p050",
+          "p053",
+          "p056",
+          "p058",
+          "p060",
+          "p061",
+          "p067",
+          "p073"
+        ]
+      }
+    },
+    "blender-official-geometry-nodes-workshop-september-2026": {
+      "source_url": "https://code.blender.org/2026/10/geometry-nodes-workshop-september-2026",
+      "source_published_at": "2026-10-05",
+      "source_evidence_sha256": "214bc2ff0806424bc154e2dd798e8bb2dc52f9230471536ea3ec8353860d2df7",
+      "reviewed_on": "2026-11-12",
+      "title": "Blender 幾何節點工作坊：模態工具、烘焙介面與模擬限制",
+      "summary": "2026 年幾何節點工作坊紀錄討論持續接收操作輸入的模態工具，以及把烘焙、匯出按鈕移到群組和修改器介面；官方也明確列出布料模擬仍缺自碰撞等限制。",
+      "full_analysis": [
+        {
+          "label": "工具設計：持續讀取操作狀態",
+          "text": "模態節點工具仍有進行中的實作，工作坊提議除了按鍵事件，也直接提供按鈕目前狀態和筆壓；如此不必由每個節點工具自行追蹤所有輸入狀態，面向筆刷等互動工具。",
+          "evidence_refs": [
+            "p024",
+            "p025",
+            "p026"
+          ]
+        },
+        {
+          "label": "製作控制：把烘焙放到資產介面",
+          "text": "高階布料與毛髮資產的烘焙按鈕目前藏在深層節點；提案允許群組公開前處理、模擬或後處理的烘焙按鈕，匯出也採明確按鈕觸發，不預設每次重新求值就寫檔。",
+          "evidence_refs": [
+            "p028",
+            "p029",
+            "p031",
+            "p032",
+            "p034"
+          ]
+        },
+        {
+          "label": "模擬限制：仍有實驗功能待補齊",
+          "text": "官方列出布料缺少自碰撞、彎曲約束偏弱，認為必須先改善才能脫離實驗階段；GPU 求值也仍需架構工作，且反覆在 CPU 和 GPU 間搬資料可能變慢，不能宣稱所有節點都會全面加速。",
+          "evidence_refs": [
+            "p123",
+            "p129",
+            "p138",
+            "p139",
+            "p140",
+            "p144",
+            "p145",
+            "p146"
+          ]
+        }
+      ],
+      "evidence_refs": [
+        "p001",
+        "p024",
+        "p025",
+        "p026",
+        "p028",
+        "p029",
+        "p031",
+        "p032",
+        "p034",
+        "p123",
+        "p129",
+        "p138",
+        "p139",
+        "p140",
+        "p144",
+        "p145",
+        "p146"
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p024",
+          "p025",
+          "p026",
+          "p028",
+          "p029",
+          "p031",
+          "p032",
+          "p034",
+          "p123",
+          "p129",
+          "p138",
+          "p139",
+          "p140",
+          "p144",
+          "p145",
+          "p146"
+        ]
+      }
+    },
+    "blender-official-volume-grids-in-geometry-nodes": {
+      "source_url": "https://code.blender.org/2025/10/volume-grids-in-geometry-nodes",
+      "source_published_at": "2025-10-07",
+      "source_evidence_sha256": "4a13943924c71776b97cbc2232e86550d134d1f80ed03547b6eabe2732cb3874",
+      "reviewed_on": "2026-11-12",
+      "title": "歷史參考｜Blender 5.0 體積網格：以 OpenVDB 資料進行節點運算",
+      "summary": "2025 年官方文章解釋 Blender 5.0 的體積網格資料型別，讓密度、向量與距離場能在幾何節點中運算；資料依 OpenVDB 儲存，並提供網格取樣、平流與距離場處理等操作。",
+      "full_analysis": [
+        {
+          "label": "技術結構：網格有型別與空間變換",
+          "text": "體積網格可存浮點數或向量等資料，透過專用插槽和一般數學節點運算；每個網格具有索引空間到物件空間的變換，因此兩個網格逐體素相加時需要相同變換。",
+          "evidence_refs": [
+            "p004",
+            "p006",
+            "p011",
+            "p012"
+          ]
+        },
+        {
+          "label": "製作控制：欄位計算與網格取樣分開",
+          "text": "官方區分可在任意位置求值的欄位和儲存資料的網格：Field to Grid 將欄位結果存入體素，Sample Grid 則依位置插值讀取；距離場網格還可用於平滑過渡的布林與濾波。",
+          "evidence_refs": [
+            "p021",
+            "p022",
+            "p024",
+            "p027",
+            "p029",
+            "p030",
+            "p032"
+          ]
+        },
+        {
+          "label": "效能限制：體素數與稀疏結構重要",
+          "text": "100×100×100 的網格已有一百萬體素，OpenVDB 以圖塊和啟用狀態節省儲存，多數操作忽略未啟用體素；文章也指出細緻形狀的距離場通常比多邊形網格不經濟，不能把體積表示視為任何資產的替代品。",
+          "evidence_refs": [
+            "p010",
+            "p014",
+            "p015",
+            "p016",
+            "p018",
+            "p030"
+          ]
+        }
+      ],
+      "evidence_refs": [
+        "p001",
+        "p002",
+        "p004",
+        "p006",
+        "p010",
+        "p011",
+        "p012",
+        "p014",
+        "p015",
+        "p016",
+        "p018",
+        "p021",
+        "p022",
+        "p024",
+        "p027",
+        "p029",
+        "p030",
+        "p032",
+        "p035"
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p002",
+          "p004",
+          "p006",
+          "p010",
+          "p011",
+          "p012",
+          "p014",
+          "p015",
+          "p016",
+          "p018",
+          "p021",
+          "p022",
+          "p024",
+          "p027",
+          "p029",
+          "p030",
+          "p032",
+          "p035"
+        ]
+      }
+    }
+  }
+}
