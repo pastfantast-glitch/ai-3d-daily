@@ -182,7 +182,17 @@ def render_history_page(current, dates, cfg):
                 'category':category,'date':date,'sourceDate':item.get('source_published_at',''),
                 'url':target+'#intel-'+item['id']})
     payload=tag(soup,'script',attrs={'type':'application/json','id':'history-article-index'})
-    payload.string=json.dumps(article_index,ensure_ascii=False).replace('<', '\\u003c')
+    months={}
+    for item in article_index:
+        months.setdefault(item['date'][:7],[]).append(item)
+    index_dir=HISTORY_DIR/'indexes'
+    index_dir.mkdir(parents=True,exist_ok=True)
+    manifest=[]
+    for month,items in sorted(months.items(),reverse=True):
+        filename=f'{month}.json'
+        (index_dir/filename).write_text(json.dumps(items,ensure_ascii=False,separators=(',',':'))+'\n','utf-8')
+        manifest.append({'month':month,'url':f'indexes/{filename}','count':len(items)})
+    payload.string=json.dumps({'schema_version':2,'months':manifest},ensure_ascii=False).replace('<', '\\u003c')
     section.append(payload)
     results=tag(soup,'div',attrs={'class':'history-article-results','hidden':''})
     status=tag(soup,'p',attrs={'class':'history-result-count','role':'status'});results.append(status)

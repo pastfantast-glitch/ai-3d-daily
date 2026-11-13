@@ -79,3 +79,20 @@ python scripts/prepare_editorial_review.py collector-review.json review-drafts.j
 以目標日期再次蒐集與品質檢查，確認日期、去重、來源專屬內容、歷史標示及發布門檻皆通過，才由原有唯一發布管線交接。短快訊可以維持 BRIEF，長篇解析的深度仍須按既有 FULL 規則判斷。
 
 這份 10/14 診斷未調低篇數門檻，也沒有修復所有來源的文章發現能力。10/15 起改由上述 ChatGPT 排程交接審稿；單次程式測試與 artifact 可讀取不代表每日發布已穩定。
+
+## 2026-11-13：發布前檢查與備稿接續
+
+- `reader_quality.py` 共用文字、日期／歷史標示、重複及分析深度檢查；審稿包、Collector 和交接使用相同實作。Publisher 的深度驗證沿用同一組函式。
+- 新草稿每段帶 `angle`：`workflow_or_technical_change`、`production_impact`、`test_risk_or_limit`。小標題可依來源自由命名；不能以填入 angle 取代來源核對。既有稿件沒有 angle 時保留舊語意檢查，避免修改歷史資料。
+- PR CI 實際讀取本次唯一審稿檔，用唯讀 GitHub Actions API 取得綁定的 failed main run 與未過期原 artifact，只讀 ZIP 內指定 JSON。低於既有未發布篇數門檻會擋合併；請保留草稿 PR。不得以不需 artifact 的歷史測試代替本次審稿驗證。
+- 沒有核准文案的完整正文標為 `awaiting-review`，不再自動用通用建議填滿三段。正文不足與待審稿分開統計。
+- 未發布的已核准審稿檔形成備稿索引，不另存正文。既有 Collector 會從註冊來源重新擷取，僅正文雜湊、日期與 URL 相同才沿用，保留原 run/head_sha/reviewed_on；使用日的品質、歷史標示及去重仍全部執行。最長沿用 180 日；來源改變即回待審。備稿數不能當作今天已發布數。
+- artifact 與成功收集的 metadata 帶 `content_supply`：正文可讀、已記錄核准、待審、去重且品質通過、入選與備稿數。實際發布數在 DONE 前為 null，由 `daily_release_status.py` 核對有效收據後填入；舊日資料缺項不能補零冒充量測。Registry 去重實際先於最終文案 QA，數字不是可任意相減的漏斗。
+- 交接退件寫入 `data/ops/handoff/YYYY-MM-DD.json`，保存 stage、reason、失敗輸出、run URL 與輸入指紋。狀態為 `HANDOFF_FAILED`。先透過 PR 修正來源支持的內容或契約，再手動 dispatch **既有 Collector handoff gate** 的同一日期。輸入／契約未變不能重送；初次失敗後最多兩次修正接續。這不是重啟 Collector，也不改審稿 run 最多合併一次的規則。
+- 不自動改稿、不盲目 retry、不新增 writer／排程。備稿目標約兩天份需要逐日審稿累積；建立機制不代表庫存已達標。
+
+可離線預先判定的文案阻塞在合併前檢查。來源之後變動、即時 Registry／coverage、current-main CI、並行 writer、網路、部署與 Pages QA 仍需執行時重新驗證，不能宣稱 PR 綠燈保證發布成功。
+
+審稿記錄可明確填 `analysis_level: FULL` 與 `content_kind: news|practice|historical`；FULL 仍須原有深度門檻及來源核對，不依文章長度自動升級。未填維持 BRIEF。首頁優先使用核准分類，舊稿以來源日期與標題更新訊號保守分類；超過 180 日一律歷史精選，新消息不冒充當日事件。
+
+歷史頁生成器改為小型月份清單及 `history/indexes/YYYY-MM.json`，由唯一 Publisher 一起提交。前台需要搜尋時才載入月份、最多三個並行請求，支援舊版內嵌索引；載入失敗顯示重試提示，不顯示不完整結果作為完整搜尋。既有日報的重建仍交給 Publisher，下次發布會產生月份檔案。

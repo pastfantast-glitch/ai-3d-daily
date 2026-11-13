@@ -44,7 +44,9 @@ class TodayLibraryTests(unittest.TestCase):
             with patch.object(history, 'ROOT', root), patch.object(history, 'HISTORY_DIR', root/'history'), patch.object(history, 'HISTORY_INDEX', root/'history/index.html'):
                 history.render_history_page('2026-11-09', ['2026-11-09','2026-11-08'], ia.load_config())
             soup = BeautifulSoup((root/'history/index.html').read_text('utf-8'), 'html.parser')
-            data = json.loads(soup.select_one('#history-article-index').string)
+            manifest = json.loads(soup.select_one('#history-article-index').string)
+            self.assertEqual(manifest['schema_version'],2)
+            data = json.loads((root/'history'/manifest['months'][0]['url']).read_text('utf-8'))
             self.assertEqual(data[0]['title'], title)
             self.assertEqual(data[0]['url'], '../2026-11-08/blender-dcc/#intel-x')
             self.assertEqual(len(soup.select('script:not([src])')), 1)

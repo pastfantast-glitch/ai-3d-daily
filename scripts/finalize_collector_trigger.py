@@ -112,10 +112,10 @@ def canonical_paths(date: str) -> set[str]:
 
 
 def assert_only_expected_changes(date: str, trigger: Path, *, allow_request: bool) -> None:
-    allowed = canonical_paths(date) | {trigger.relative_to(ROOT).as_posix()}
+    allowed = canonical_paths(date) | {trigger.relative_to(ROOT).as_posix(), f"data/ops/handoff/{date}.json"}
     if allow_request:
         allowed.add(f"data/publish/{date}.request")
-    proc = run("git", "status", "--porcelain", check=True, capture=True)
+    proc = run("git", "status", "--porcelain", "--untracked-files=all", check=True, capture=True)
     unexpected = []
     for line in (proc.stdout or "").splitlines():
         path = line[3:].strip()
@@ -141,10 +141,13 @@ def stage_canonical_private(date: str) -> None:
         run("git", "add", ledger.relative_to(ROOT).as_posix())
 
 
-def persist_followup(date: str, trigger: Path, *, outcome: str, message: str) -> None:
+def persist_followup(date: str, trigger: Path, *, outcome: str, message: str, reason: str = '', details: str = '') -> None:
+    from handoff_diagnostics import save_failure
+    diagnostic = save_failure(ROOT, date, 'pre-request', reason or outcome, details, os.environ.get('GITHUB_RUN_ID', ''))
     assert_only_expected_changes(date, trigger, allow_request=False)
     configure_git()
     stage_canonical_private(date)
+    run("git", "add", diagnostic.relative_to(ROOT).as_posix())
     run("git", "rm", "-f", trigger.relative_to(ROOT).as_posix())
     run("git", "commit", "-m", message)
     run("git", "push", "origin", "HEAD:main")
@@ -164,6 +167,13 @@ def persist_request(date: str, trigger: Path) -> None:
     request = ROOT / "data" / "publish" / f"{date}.request"
     if not request.is_file():
         raise SystemExit("COLLECTOR BRIDGE FAILED: finalizer did not create request")
+    from handoff_diagnostics import diagnostic_path
+    diagnostic = diagnostic_path(ROOT, date)
+    if diagnostic.exists():
+        report = json.loads(diagnostic.read_text('utf-8'))
+        report['state'] = 'RESUMED'
+        diagnostic.write_text(json.dumps(report, ensure_ascii=False, indent=2) + '\n', 'utf-8')
+        run('git', 'add', diagnostic.relative_to(ROOT).as_posix())
     assert_only_expected_changes(date, trigger, allow_request=True)
     configure_git()
     stage_canonical_private(date)
@@ -265,7 +275,7 @@ def main() -> int:
                 date,
                 trigger,
                 outcome="fix_required",
-                message=f"Collector correction required {date}",
+                message=f"Collector correction required {date}", reason=reason, details=validation_output,
             )
             write_output(date, "fix_required", reason)
             return 0
@@ -276,13 +286,13 @@ def main() -> int:
     # Run the exact authoritative Registry/tier/release-gate implementation before
     # .request. A clean identity deficit is controlled refill, not publisher failure.
     registry = authoritative_registry_preflight(date)
-    print_proc(registry)
+    registry_output = print_proc(registry)
     if registry.returncode == 2:
         persist_followup(
             date,
             trigger,
             outcome="refill_required",
-            message=f"Collector refill required {date}",
+            message=f"Collector refill required {date}", reason="registry-refill", details=registry_output,
         )
         write_output(date, "refill_required", "registry-refill")
         return 0
@@ -301,7 +311,7 @@ def main() -> int:
                 date,
                 trigger,
                 outcome="fix_required",
-                message=f"Collector correction required {date}",
+                message=f"Collector correction required {date}", reason="analysis-depth-invalid", details=evidence_output,
             )
             write_output(date, "fix_required", "analysis-depth-invalid")
             return 0

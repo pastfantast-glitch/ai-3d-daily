@@ -32,9 +32,9 @@ if str(SCRIPTS) not in sys.path:
 from discovery_hybrid import load_hybrid_config, registered_source_probe_plan, registered_source_refill_plan
 from url_identity import canonicalize_url
 from content_quality import admission as content_admission, classify_content, normalize_title, production_summary, editorial_title, editorial_analysis, reviewed_reader_copy
-from check_editorial_quality import editorial_errors
 from article_evidence import extract_article_evidence, review_record, loss_summary
 from editorial_review import candidate_copy
+from reader_quality import reader_errors
 from content_supply import section_links, retained_entries, reserve_output
 from collector_personalization import load_owner_preferences, apply_candidate_personalization, positive_expansion_terms, expand_source_links
 
@@ -904,11 +904,16 @@ def readable_candidates(candidates: list[dict], report_date: str) -> tuple[list[
     Source-specific facts remain required. Ambiguous or repeated copy is rejected
     with evidence instead of weakening QA or padding the batch with article names.
     """
-    cfg = load_json(EDITORIAL_CONFIG_PATH)
-    metadata = {"editorial": {"contract": cfg.get("contract"), "style_reference": cfg.get("style_reference"), "factual_fallback_allowed": True}}
     accepted, rejected, copies = [], [], []
     for candidate in candidates:
-        reader = candidate.get("reader_copy")
+        reviewed, review_errors = candidate_copy(candidate, report_date, ROOT)
+        reader = reviewed or candidate.get("reader_copy")
+        if reader is None and not reviewed_reader_copy(candidate['meta']):
+            evidence = candidate['meta'].get('article_evidence') or {}
+            readable = evidence.get('status') == 'extracted' and evidence.get('truncated') is False
+            candidate['scheduled_review'] = {'status': 'awaiting-review' if readable else 'evidence-insufficient'}
+            rejected.append((candidate, review_errors or ['awaiting-editorial-review' if readable else 'complete-source-evidence-required']))
+            continue
         if reader is None:
             meta = candidate["meta"]
             reader = {
@@ -924,11 +929,10 @@ def readable_candidates(candidates: list[dict], report_date: str) -> tuple[list[
         reader = {**reader, "source_url": candidate["source_url"],
                   "source_published_at": candidate["meta"].get("published")}
         candidate["reader_copy"] = reader
-        reviewed, review_errors = candidate_copy(candidate, report_date, ROOT)
         if reviewed is not None:
             reader = reviewed
             candidate["reader_copy"] = reader
-        errors = editorial_errors({"items": copies + [reader], "metadata": metadata}, report_date)
+        errors = reader_errors(copies + [reader], report_date)
         if review_errors:
             errors += review_errors
         if errors:
@@ -1337,10 +1341,16 @@ def main() -> int:
         discovered.extend(candidates)
 
     backlog_checked = 0
-    prior_reserve = retained_entries(backlog.get('items') or [], report_date, published_sources,
+    from editorial_reserve import reserve_seeds
+    seeds = reserve_seeds(ROOT, report_date, (hybrid.get('discovery_source_pool') or {}).get('sources') or [])
+    prior_reserve = retained_entries((backlog.get('items') or []) + seeds, report_date, published_sources,
         int((hybrid.get('rolling_backlog') or {}).get('max_age_days', 180)))
+    prior_reserve = list({entry['source_url']: entry for entry in prior_reserve}.values())[:int((hybrid.get('rolling_backlog') or {}).get('max_items', 240))]
+    already_discovered = {c['source_url'] for c in discovered}
     retry_reserve = []
     for entry in prior_reserve:
+        if entry['source_url'] in already_discovered:
+            continue
         source_url = canonicalize_url(str(entry.get("source_url") or ""))
         if not source_url.startswith("https://") or source_url in published_sources:
             continue
@@ -1540,6 +1550,16 @@ def main() -> int:
     # Preserve bounded public-source diagnostics in the runner log even when a
     # failed attempt cannot commit its private artifacts. Never log owner data.
     evidence_audit = loss_summary(discovered, editorial_rejections)
+    supply = {
+        'schema_version': 1, 'date': report_date,
+        'body_readable': sum(1 for c in discovered if (c['meta'].get('article_evidence') or {}).get('status') == 'extracted' and (c['meta'].get('article_evidence') or {}).get('truncated') is False),
+        'review_approved': sum(1 for c in discovered if (c.get('scheduled_review') or {}).get('status') == 'approved' or reviewed_reader_copy(c['meta'])),
+        'awaiting_review': sum(1 for c, _ in editorial_rejections if (c.get('scheduled_review') or {}).get('status') == 'awaiting-review'),
+        'quality_pass_unpublished': len(survivors), 'selected': len(selected_items),
+        'published': None, 'approved_reserve': len(overflow),
+        'note': 'Registry dedupe precedes prose QA; review_approved counts recorded approvals, quality_pass_unpublished counts final unique survivors; selected is not published.'
+    }
+    evidence_audit['content_supply'] = supply
     print("COLLECTOR ARTICLE EVIDENCE AUDIT: " + json.dumps(evidence_audit, ensure_ascii=False), flush=True)
     # Evidence packets are temporary review artifacts, never public reader copy.
     # Explicit field allowlists exclude HTML, credentials and owner preferences.
@@ -1598,7 +1618,8 @@ def main() -> int:
             "ranking_score": candidate["ranking_score"],
             "base_ranking_score": candidate["base_ranking_score"],
             "source_published_at": candidate["meta"].get("published"),
-            "analysis_level": "BRIEF",
+            "analysis_level": reader.get("analysis_level", "BRIEF"),
+            **({"content_kind": reader["content_kind"]} if reader.get("content_kind") else {}),
             "brief_reason": candidate["brief_reason"],
             "full_analysis": reader["full_analysis"],
             "rank_global": rank,
@@ -1668,6 +1689,7 @@ def main() -> int:
 
 
     metadata = {
+        "content_supply": supply,
         "total_items": len(canonical_items),
         "collection_mode": "production-intelligence-preference-v1-hybrid",
         "collection_contract_effective_date": intel["collection_contract_effective_date"],
@@ -1677,8 +1699,8 @@ def main() -> int:
         "policy_recollect": replace_done,
         "discovery_windows": list(intel["collection"]["discovery_windows"]),
         "analysis_level_counts": {
-            "FULL": 0,
-            "BRIEF": len(canonical_items),
+            "FULL": sum(i["analysis_level"] == "FULL" for i in canonical_items),
+            "BRIEF": sum(i["analysis_level"] == "BRIEF" for i in canonical_items),
             "REJECT": 0,
         },
         "analysis_level_policy": (

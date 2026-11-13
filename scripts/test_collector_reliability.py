@@ -103,6 +103,12 @@ class ReliabilityTests(unittest.TestCase):
         cases.append(candidate(4, "Blender：角色肩膀製作教學", "這篇教學說明角色肩膀的建模與關節處理，提供操作範例供美術以自己的資產測試與比較。"))
         # Preserve the old summary-collision regression separately from the
         # stricter source-evidence policy covered by test_source_quality.py.
+        # Fixture copy is supplied explicitly; production no longer invents unreviewed prose.
+        for c in cases:
+            c['reader_copy'] = {'id':c['candidate_id'],
+                'title':collector.editorial_title(c['meta'],c['category'],c['subcategory']),
+                'summary':collector.production_summary(c['meta'],c['category'],c['subcategory']),
+                'full_analysis':collector.editorial_analysis(c['meta'],c['category'],c['subcategory'])}
         accepted, rejected = collector.readable_candidates(cases, "2026-10-11")
         self.assertTrue(rejected)
         self.assertIn("fixture-4", [x["candidate_id"] for x in accepted])
