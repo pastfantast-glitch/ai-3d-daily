@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   遊戲引擎｜2026-11-13｜AI 3D Daily
+  </title>
+  <meta content="2026-11-13 遊戲引擎 Production Intelligence：遊戲引擎 / 引擎端美術內容，共 2 項可驗證情報。" name="description"/>
+  <link href="../../styles.css?v=20261113-r1-workspace-v11-content-library-nav" rel="stylesheet"/>
+  <link href="../../shared-components.css?v=20261113-r1-workspace-v11-content-library-nav" rel="stylesheet"/>
+  <link href="../../category.css?v=20261113-r1-workspace-v11-content-library-nav" rel="stylesheet"/>
+ </head>
+ <body class="category-page" data-category="engine-art" data-report-date="2026-11-13">
+  <nav aria-label="Production Intelligence 分類" class="global-category-nav">
+   <div class="page global-category-nav-inner">
+    <div class="archive-nav-controls">
+     <a class="archive-nav-home" href="../../">
+      ← 首頁
+     </a>
+     <div class="archive-nav-date">
+      <a aria-label="前一日日報" class="archive-nav-arrow" href="../../2026-11-12/engine-art/">
+       ←
+      </a>
+      <span>
+       2026-11-13
+      </span>
+     </div>
+    </div>
+    <span aria-hidden="true" class="archive-nav-divider">
+    </span>
+    <a class="global-category-link" href="../#top">
+     TOP5
+    </a>
+    <a class="global-category-link" data-category="ai-generation" href="../ai-generation/">
+     AI 生成
+    </a>
+    <a class="global-category-link" data-category="3d-production" href="../3d-production/">
+     3D 製作
+    </a>
+    <a class="global-category-link" data-category="3d-animation" href="../3d-animation/">
+     3D 動作
+    </a>
+    <a class="global-category-link is-active" data-category="engine-art" href="../engine-art/">
+     遊戲引擎
+    </a>
+    <a class="global-category-link" data-category="emerging-case" href="../emerging-case/">
+     新技術 / Case
+    </a>
+    <a class="global-category-link" data-category="blender-dcc" href="../blender-dcc/">
+     Blender / DCC
+    </a>
+    <a class="global-category-link global-history-link" data-global-view="history" href="../../history/">
+     歷史日報
+    </a>
+   </div>
+  </nav>
+  <main class="page category-main">
+   <article class="category-card" data-intel-id="80-level-recreating-cleopatra-s-temple-from-assassin-s-creed-origins" data-intel-role="card" id="intel-80-level-recreating-cleopatra-s-temple-from-assassin-s-creed-origins">
+    <div class="category-meta">
+     #01 · unreal
+    </div>
+    <h2>
+     重建克麗奧佩脫拉神殿：模組建築、馬賽克材質與三種時段照明
+    </h2>
+    <p class="summary">
+     Sungeun Moon 以《刺客教條：起源》的神殿為參考，拆分可重用建築、在 Substance 3D Designer 製作馬賽克，再於 Unreal Engine 調整日間、夕陽與夜景。
+    </p>
+    <figure class="case-preview" data-intel-id="80-level-recreating-cleopatra-s-temple-from-assassin-s-creed-origins" data-intel-role="visual" data-visual-id="80-level-recreating-cleopatra-s-temple-from-assassin-s-creed-origins">
+     <a href="https://80.lv/articles/recreating-cleopatra-s-temple-from-assassin-s-creed-origins-in-unreal-engine" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-11-13/80-level-recreating-cleopatra-s-temple-from-assassin-s-creed-origins.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">Unreal</b> ★★★★★</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       場景流程：先拆模組再安排紋理
+      </h4>
+      <p>
+       作者先用方塊與圓柱建立空間，放入預設角色確認比例，再從遊戲截圖規劃柱體分件、可平鋪牆地面與飾條貼圖；常春藤也拆成可重用片段，配合建築形狀重新擺放。
+      </p>
+      <h4>
+       製作控制：先驗證貼圖空間分配
+      </h4>
+      <p>
+       飾條貼圖先用照片排出粗略配置，套到模型檢查裝飾細節是否清楚，再調整各區解析度；馬賽克以基本形狀搭配 SVG 建立圖案，Gradient Map 依灰階分配顏色。
+      </p>
+      <h4>
+       驗證方法：分開比較直射光與陰影
+      </h4>
+      <p>
+       作者在 Photoshop 取樣參考色彩，分別調整 Directional Light 與 Sky Light，並以大氣散射處理不同時段天空；後製主要統整色彩。作品歷時約六個月且在下班後製作，不能把工期當作全職製作基準。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://80.lv/articles/recreating-cleopatra-s-temple-from-assassin-s-creed-origins-in-unreal-engine" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="3dnchu-kawaii-physics-v119" data-intel-role="card" id="intel-3dnchu-kawaii-physics-v119">
+    <div class="category-meta">
+     #16 · unreal
+    </div>
+    <h2>
+     歷史參考｜Kawaii Physics 1.19 系列：模擬座標、風向雜訊與位移控制
+    </h2>
+    <p class="summary">
+     2025 年 Kawaii Physics 更新介紹包含 Unreal Engine 5.6 支援、重製範例及物理擺動控制；頁面標題為 1.19，內文開發者貼文則稱 1.19.1。
+    </p>
+    <figure class="case-preview" data-intel-id="3dnchu-kawaii-physics-v119" data-intel-role="visual" data-visual-id="3dnchu-kawaii-physics-v119">
+     <a href="https://3dnchu.com/archives/kawaii-physics-v119" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-11-13/3dnchu-kawaii-physics-v119.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">Unreal</b> ★★★☆☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       模擬技術：選擇不同計算座標
+      </h4>
+      <p>
+       Simulation Space 可改用世界或參考骨骼座標，預設仍保留原本的 Component 座標；此外加入風向雜訊，讓髮絲與衣物等次要動作多一項風力方向控制。
+      </p>
+      <h4>
+       製作控制：調整元件移動的影響
+      </h4>
+      <p>
+       Skeletal Component Move Scale 可調整骨架網格元件位移反映到模擬的程度；新版範例另附角色與已設定的 Animation Blueprint，供使用者觀察完整配置。
+      </p>
+      <h4>
+       版本限制：分清系列名稱與補丁版本
+      </h4>
+      <p>
+       來源同時出現 1.19 系列標題與 1.19.1 開發者貼文，本文保留此區別；Fab 版在當時與 GitHub 版內容相同、作為付費支持管道，不能把它解讀成整個外掛已全面改為付費。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://3dnchu.com/archives/kawaii-physics-v119" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <nav aria-label="相鄰分類" class="category-bottom-nav">
+    <a href="../3d-animation/">
+     ← 3D 動作
+    </a>
+    <a href="../#top">
+     TOP5
+    </a>
+    <a href="../emerging-case/">
+     新技術 / Case →
+    </a>
+   </nav>
+  </main>
+  <script defer="" src="../../archive-nav-state.js?v=20261113-r1-workspace-v11-content-library-nav">
+  </script>
+ </body>
+</html>
