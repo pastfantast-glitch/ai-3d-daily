@@ -108,7 +108,7 @@ def done_is_verified(path: Path, policy_republish=False) -> bool:
         receipt = read_json(path)
         date = path.name[:10]
         original = committed_dataset(ROOT, receipt.get('publish_commit_sha'), date)
-        errors = receipt_errors(date, ROOT, receipt, original or {}, read(ROOT / 'data/publish/latest-success.json'))
+        errors = receipt_errors(date, ROOT, receipt, original or {}, read(ROOT / 'data/publish/latest-success.json'), allow_newer_latest=True)
         if errors:
             fail('existing receipt is invalid: ' + '; '.join(errors))
         return True

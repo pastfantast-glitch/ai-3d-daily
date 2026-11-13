@@ -39,7 +39,7 @@ def committed_dataset(root, sha, date):
         return None
 
 
-def receipt_errors(date, root, receipt, canonical, latest):
+def receipt_errors(date, root, receipt, canonical, latest, *, allow_newer_latest=False):
     errors = []
     ids = [x.get('id') for x in canonical.get('items') or []]
     if receipt.get('state') != 'DONE' or receipt.get('date') != date or canonical.get('date') != date:
@@ -55,8 +55,8 @@ def receipt_errors(date, root, receipt, canonical, latest):
     sha = receipt.get('publish_commit_sha')
     if committed_dataset(root, sha, date) != canonical:
         errors.append('publish commit does not contain the current canonical dataset')
-    if str(latest.get('date') or '') < date:
-        errors.append('latest-success is missing or older than this edition')
+    if latest.get('date') != date and not (allow_newer_latest and str(latest.get('date') or '') > date):
+        errors.append('latest-success edition mismatch')
     elif latest.get('date') == date:
         health = latest.get('health') or {}
         if (latest.get('publish_commit_sha') != sha or latest.get('site_url') != SITE_URL

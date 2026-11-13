@@ -110,6 +110,7 @@ class SupplyTests(unittest.TestCase):
             self.assertEqual(status.receipt_errors(DATE,Path('.'),receipt,data,latest),[])
             self.assertTrue(status.receipt_errors(DATE,Path('.'),{**receipt,'site_url':'https://wrong.invalid/'},data,latest))
             self.assertTrue(status.receipt_errors(DATE,Path('.'),receipt,data,{**latest,'date':'2026-10-14'}))
+            self.assertTrue(status.receipt_errors(DATE,Path('.'),receipt,data,{**latest,'date':'2026-10-16'}))
         with patch.object(status,'committed_dataset',return_value={'items':[]}):
             self.assertTrue(status.receipt_errors(DATE,Path('.'),receipt,data,latest))
 
