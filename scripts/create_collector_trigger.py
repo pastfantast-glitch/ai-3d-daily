@@ -136,6 +136,10 @@ def main() -> None:
     if git_status_paths():
         fail("working tree must be clean before persisted-artifact validation")
 
+    from handoff_diagnostics import recovery_error
+    recovery_blocker = recovery_error(ROOT, date)
+    if recovery_blocker:
+        fail(recovery_blocker)
     require_persisted_consistency(date)
 
     # Delegate Collector-side semantic validation to current-main code. The

@@ -60,6 +60,11 @@ on:
       - 'scripts/content_quality.py'
       - 'scripts/source_quality.py'
       - 'scripts/article_evidence.py'
+      - 'scripts/reader_quality.py'
+      - 'scripts/editorial_reserve.py'
+      - 'scripts/check_editorial_submission.py'
+      - 'scripts/test_supply_pipeline.py'
+      - 'scripts/handoff_diagnostics.py'
       - 'scripts/editorial_review.py'
       - 'scripts/test_editorial_review.py'
       - 'data/editorial-reviews/**'
@@ -137,6 +142,7 @@ on:
 
 permissions:
   contents: read
+  actions: read
 
 jobs:
   contract:
@@ -151,6 +157,11 @@ jobs:
           python-version: '3.12'
       - name: Install locked pipeline dependencies
         run: pip install -r requirements-pipeline.txt
+      - name: Validate changed editorial submission against original evidence
+        if: github.event_name == 'pull_request'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python scripts/check_editorial_submission.py
       - name: Validate release architecture, source topology, hybrid discovery, personalization and stability contracts
         run: |
           node --check home.js
@@ -164,6 +175,7 @@ jobs:
           python scripts/test_source_quality.py
           python scripts/test_article_evidence.py
           python scripts/test_editorial_review.py
+          python scripts/test_supply_pipeline.py
           python scripts/test_collector_reliability.py
           python scripts/test_visual_budget.py
           python scripts/test_daily_release_status.py

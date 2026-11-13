@@ -120,6 +120,12 @@ class FeedbackTests(unittest.TestCase):
                 'category':'blender-dcc', 'subcategory':'houdini' if i == 13 else 'maya', 'ranking_score':75,
                 'brief_reason':'single-source-verified-production-tip',
                 'meta':{'title':title,'description':f'這篇教學說明角色{subjects[i]}的製作流程，提供操作範例供美術在自己的資產上測試與比較。','url':url}})
+        # Fixture copy is supplied explicitly; production no longer invents unreviewed prose.
+        for c in candidates:
+            c['reader_copy'] = {'id':c['candidate_id'],
+                'title':collector.editorial_title(c['meta'],c['category'],c['subcategory']),
+                'summary':collector.production_summary(c['meta'],c['category'],c['subcategory']),
+                'full_analysis':collector.editorial_analysis(c['meta'],c['category'],c['subcategory'])}
         record = {'status':'checked','method':'latest-index','candidates_found':14,
                   'candidate_ids':[c['candidate_id'] for c in candidates], 'refill_links_checked':1}
         outputs = {}

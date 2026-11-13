@@ -21,7 +21,26 @@ document.addEventListener('DOMContentLoaded',()=>{
   const daysBetween=(newest,date)=>Math.floor((new Date(newest+'T00:00:00')-new Date(date+'T00:00:00'))/86400000);
   const newest=entries.map(x=>x.dataset.historyDate).sort().at(-1)||'';
 
-  let articles=[];try{articles=JSON.parse(document.querySelector('#history-article-index')?.textContent||'[]');}catch(_){}
+  let index=[];try{index=JSON.parse(document.querySelector('#history-article-index')?.textContent||'[]');}catch(_){}
+  const normalize=items=>items.map(item=>({...item,searchText:`${item.title} ${item.summary} ${item.date} ${item.sourceDate}`.toLowerCase()}));
+  let articles=Array.isArray(index)?normalize(index):[];
+  const monthly=Array.isArray(index)?[]:(index.schema_version===2?index.months:[])||[];
+  const loaded=new Map();
+  async function loadMonths(){
+    const required=monthly.filter(m=>range==='all'||daysBetween(newest,`${m.month}-01`)<=Number(range)+31);
+    // Bounded concurrency and cached immutable month indexes; no fetch for archive browsing.
+    const queue=required.filter(m=>!loaded.has(m.month));
+    await Promise.all(Array.from({length:Math.min(3,queue.length)},async()=>{
+      while(queue.length){const entry=queue.shift();
+        const url=new URL(entry.url,location.href);
+        if(url.origin!==location.origin||!/^indexes\/20\d{2}-\d{2}\.json$/.test(entry.url))throw new Error('invalid index URL');
+        const response=await fetch(url);if(!response.ok)throw new Error(`index HTTP ${response.status}`);
+        const rows=await response.json();if(!Array.isArray(rows)||rows.length!==entry.count)throw new Error('index count mismatch');
+        loaded.set(entry.month,normalize(rows));
+      }
+    }));
+    articles=required.flatMap(m=>loaded.get(m.month)||[]);
+  }
   const results=document.querySelector('.history-article-results');
   let matched=[],limit=50;
   function renderArticles(){
@@ -38,14 +57,26 @@ document.addEventListener('DOMContentLoaded',()=>{
     results.querySelector('.history-load-more').hidden=matched.length<=limit;
   }
   results?.querySelector('.history-load-more').addEventListener('click',()=>{limit+=50;renderArticles();});
-  const applyHistory=()=>{
+  let requestId=0;
+  const applyHistory=async()=>{
+    const request=++requestId;
     const query=historySearch.value.trim().toLowerCase();
     const articleMode=Boolean(query||category!=='all');
     if(results){
       results.hidden=!articleMode;archive.hidden=articleMode;
+      if(articleMode&&monthly.length){
+        results.querySelector('.history-result-count').textContent='載入月份索引…';
+        results.querySelector('.library-list').replaceChildren();
+        results.querySelector('.history-load-more').hidden=true;
+        try{await loadMonths();}catch(error){
+          if(request===requestId)results.querySelector('.history-result-count').textContent='月份索引載入失敗，請重新輸入或切換篩選重試；也可清空搜尋瀏覽日期。';
+          return;
+        }
+        if(request!==requestId)return;
+      }
       matched=articles.filter(item=>(category==='all'||item.category===category)&&
         (range==='all'||daysBetween(newest,item.date)<Number(range))&&
-        (!query||`${item.title} ${item.summary} ${item.date} ${item.sourceDate}`.toLowerCase().includes(query)));
+        (!query||item.searchText.includes(query)));
       limit=50;renderArticles();
     }
     let visible=0;
@@ -71,7 +102,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     if(empty)empty.hidden=visible!==0;
   };
 
-  historySearch.addEventListener('input',applyHistory);
+  let searchTimer;historySearch.addEventListener('input',()=>{clearTimeout(searchTimer);searchTimer=setTimeout(applyHistory,150);});
   document.querySelectorAll('[data-history-category]').forEach(btn=>btn.addEventListener('click',()=>{
     category=btn.dataset.historyCategory;
     document.querySelectorAll('[data-history-category]').forEach(x=>x.classList.toggle('is-active',x===btn));

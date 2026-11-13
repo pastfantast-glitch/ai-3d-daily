@@ -99,11 +99,23 @@ def run(script: str, *args: str) -> None:
         raise SystemExit(proc.returncode)
 
 
-def done_is_verified(path: Path) -> bool:
+def done_is_verified(path: Path, policy_republish=False) -> bool:
     if not path.exists():
         return False
-    receipt = read_json(path)
-    return str((receipt or {}).get("state", "")).strip().upper() == "DONE"
+    from daily_release_status import release_status
+    if policy_republish:
+        from daily_release_status import receipt_errors, committed_dataset, read
+        receipt = read_json(path)
+        date = path.name[:10]
+        original = committed_dataset(ROOT, receipt.get('publish_commit_sha'), date)
+        errors = receipt_errors(date, ROOT, receipt, original or {}, read(ROOT / 'data/publish/latest-success.json'))
+        if errors:
+            fail('existing receipt is invalid: ' + '; '.join(errors))
+        return True
+    status = release_status(path.name[:10], ROOT)
+    if status['state'] != 'DONE':
+        fail('existing receipt is invalid: ' + str(status.get('first_blocker')))
+    return True
 
 
 def parse_args(argv):
@@ -122,7 +134,9 @@ def parse_args(argv):
 
 def collector_data_errors(data):
     """Validate only collector-owned invariants; never require rendered public HTML."""
-    errors = list(validate_v2_dataset(data, strict_pool=True))
+    from reader_quality import reader_errors
+    errors = reader_errors(data.get("items") or [], data["date"])
+    errors += list(validate_v2_dataset(data, strict_pool=True))
     cfg = load_intelligence_config()
     category_ids = [str(x.get("id", "")).strip() for x in (cfg.get("categories") or [])]
     for error in coverage_audit_errors(data, category_ids):
@@ -141,9 +155,9 @@ def main() -> None:
     done_path = ROOT / "data" / "publish" / f"{date}.done.json"
 
     policy_republish = "--policy-republish" in flags
-    if done_is_verified(done_path) and not policy_republish:
+    if done_is_verified(done_path, policy_republish) and not policy_republish:
         fail(f"{date} already has state=DONE")
-    if policy_republish and not done_is_verified(done_path):
+    if policy_republish and not done_is_verified(done_path, policy_republish):
         fail("--policy-republish requires an existing verified DONE receipt")
     if ready_path.exists():
         if not policy_republish:

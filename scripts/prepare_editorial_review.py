@@ -18,8 +18,8 @@ def review_drafts(packet):
             'source_evidence_sha256': evidence.get('sha256'),
             'evidence_refs': [],
             'title': '', 'summary': '',
-            'full_analysis': [{'label': label, 'text': ''} for label in (
-                '技術／流程變更', 'Production 影響', '導入測試與限制')],
+            'full_analysis': [{'angle': angle, 'label': label, 'text': '', 'evidence_refs': []} for angle, label in (
+                ('workflow_or_technical_change', '技術／流程變更'), ('production_impact', 'Production 影響'), ('test_risk_or_limit', '導入測試與限制'))],
         }
     return {'edition_date': packet.get('date'), 'drafts': drafts}
 

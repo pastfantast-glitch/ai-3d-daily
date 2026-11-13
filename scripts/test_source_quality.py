@@ -93,11 +93,11 @@ class SourceQualityTests(unittest.TestCase):
     def test_cached_copy_still_passes_source_evidence_to_gate(self):
         c = {"candidate_id": "old", "source_url": "https://example.com/2016/05/krita",
              "meta": {"published": "2016-05-31"}, "reader_copy": {"id": "old"}}
-        with patch.object(collector, "editorial_errors", return_value=["old source"]) as gate:
+        with patch.object(collector, "reader_errors", return_value=["old source"]) as gate:
             accepted, rejected = collector.readable_candidates([c], "2026-10-13")
         self.assertFalse(accepted)
         self.assertTrue(rejected)
-        self.assertEqual(gate.call_args.args[0]["items"][0]["source_published_at"], "2016-05-31")
+        self.assertEqual(gate.call_args.args[0][0]["source_published_at"], "2016-05-31")
 
 
 if __name__ == "__main__":

@@ -36,7 +36,7 @@ def read_review(date, root=ROOT):
                  and data.get('reviewer') == 'chatgpt-scheduled-task'
                  and type(data.get('source_run_id')) is int and data['source_run_id'] > 0
                  and re.fullmatch(r'[0-9a-f]{40}', data.get('source_head_sha', ''))
-                 and isinstance(data.get('items'), dict) and 0 < len(data['items']) <= 60)
+                 and isinstance(data.get('items'), dict) and 0 < len(data['items']) <= 40)
         if not valid:
             raise ReviewError('editorial review schema/date/provenance invalid')
         return data
@@ -74,23 +74,34 @@ def validate_record(record, article, date):
             raise ReviewError('three source-supported analysis angles required')
     except (KeyError, TypeError, AttributeError) as error:
         raise ReviewError('invalid editorial record/evidence structure') from error
-    return {'id': article['id'], 'source_url': article['source_url'],
+    level = record.get('analysis_level', 'BRIEF')
+    kind = record.get('content_kind')
+    if level not in ('BRIEF', 'FULL') or kind not in (None, 'news', 'practice', 'historical'):
+        raise ReviewError('invalid reviewed analysis level or content kind')
+    return {'analysis_level': level, **({'content_kind': kind} if kind else {}), 'id': article['id'], 'source_url': article['source_url'],
             'source_published_at': article.get('source_published_at'),
             'title': record['title'], 'summary': record['summary'],
-            'full_analysis': [{'label': b['label'], 'text': b['text']} for b in analysis]}
+            'full_analysis': [{k: b[k] for k in ('label', 'text', 'angle') if k in b} for b in analysis]}
 
 
 def candidate_copy(candidate, date, root=ROOT):
     data = read_review(date, root)
-    if data is None or candidate['candidate_id'] not in data['items']:
-        return None, []
+    record = (data or {}).get('items', {}).get(candidate['candidate_id'])
+    if record is None:
+        from editorial_reserve import approved_reserve
+        entry = approved_reserve(root, date).get(candidate['source_url'])
+        if entry is None:
+            return None, []
+        data, record = entry
+    reviewed_on = data['date']
     article = {'id': candidate['candidate_id'], 'source_url': candidate['source_url'],
                'source_published_at': candidate['meta'].get('published'),
                'evidence': candidate['meta'].get('article_evidence') or {}}
     try:
-        reader = validate_record(data['items'][article['id']], article, date)
+        reader = validate_record(record, article, reviewed_on)
         candidate['scheduled_review'] = {'status': 'approved', 'source_run_id': data['source_run_id'],
-            'source_evidence_sha256': article['evidence']['sha256'], 'reviewed_on': date,
+            'source_evidence_sha256': article['evidence']['sha256'], 'reviewed_on': reviewed_on,
+            'source_head_sha': data['source_head_sha'], 'revalidated_on': date,
             'method': 'second-pass-source-check'}
         return reader, []
     except ReviewError as error:
@@ -111,11 +122,8 @@ def validate_packet(data, packet, date):
         if cid not in articles:
             raise ReviewError('reviewed ID absent from Collector artifact')
         copies.append(validate_record(record, articles[cid], date))
-    from check_editorial_quality import editorial_errors, load_editorial_config
-    cfg = load_editorial_config()
-    errors = editorial_errors({'items': copies, 'metadata': {'editorial': {
-        'contract': cfg.get('contract'), 'style_reference': cfg.get('style_reference'),
-        'factual_fallback_allowed': True}}}, date)
+    from reader_quality import reader_errors
+    errors = reader_errors(copies, date)
     if errors:
         raise ReviewError('; '.join(errors))
     return copies

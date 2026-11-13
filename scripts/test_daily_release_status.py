@@ -31,10 +31,14 @@ class StatusTests(unittest.TestCase):
             (root / 'data/publish').mkdir(parents=True)
             (root / 'data/daily').mkdir(parents=True)
             (root / 'data/daily/2026-10-13.json').write_text(json.dumps({'date':'2026-10-13','items':[{'id':'article-a'}]}))
-            receipt = {'date':'2026-10-13','state':'DONE','canonical':{'ids':['article-a'],'item_count':1},'qa':{'pages':'pass'},'site_url':'https://example.invalid/','daily_url':'https://example.invalid/2026-10-13/','publish_commit_sha':'a'*40}
+            receipt = {'date':'2026-10-13','state':'DONE','canonical':{'ids':['article-a'],'item_count':1},'qa':{'pages':'pass'},'site_url':status.SITE_URL,'daily_url':status.SITE_URL+'2026-10-13/','publish_commit_sha':'a'*40}
             path = root / 'data/publish/2026-10-13.done.json'
             path.write_text(json.dumps(receipt))
-            with patch.object(status, 'commit_exists', return_value=True):
+            latest = {'date':'2026-10-13','publish_commit_sha':'a'*40,'receipt':'data/publish/2026-10-13.done.json','site_url':status.SITE_URL,
+                      'health':{'date':'2026-10-13','publish_commit_sha':'a'*40,'state':'HEALTHY','checks':{'pages':'pass'}}}
+            (root/'data/publish/latest-success.json').write_text(json.dumps(latest))
+            canonical = json.loads((root/'data/daily/2026-10-13.json').read_text())
+            with patch.object(status, 'committed_dataset', return_value=canonical):
                 self.assertEqual(status.release_status('2026-10-13', root)['state'], 'DONE')
                 receipt['canonical']['ids'] = ['other']
                 path.write_text(json.dumps(receipt))

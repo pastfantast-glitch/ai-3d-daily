@@ -216,14 +216,14 @@ def ensure_today_library(soup, date, data, cfg):
         title = soup.new_tag('h1'); title.string = '每日製作情報'; hero.append(title)
         stamp = soup.new_tag('p', attrs={'class':'week-asof'}); stamp.string = date; hero.append(stamp)
         intro = soup.new_tag('p', attrs={'class':'edition-summary'})
-        intro.string = f'今日收錄 {len(data["items"])} 篇 · 近期更新、製作教學與歷史精選，來源日期逐篇標示。'
+        intro.string = f'本期新增收錄 {len(data["items"])} 篇 · 近期更新、製作教學與歷史精選，來源日期逐篇標示。'
         hero.append(intro)
         links = soup.new_tag('div', attrs={'class':'edition-links'})
         for href, label in [('#all-intelligence', '瀏覽全部情報'), ('history/', '搜尋歷史文章'), ('saved/', '我的收藏')]:
             a = soup.new_tag('a', href=href); a.string = label; links.append(a)
         hero.append(links)
     section = soup.new_tag('section', attrs={'class':'today-library', 'id':'all-intelligence', 'aria-label':'今日全部情報'})
-    h2 = soup.new_tag('h2'); h2.string = '今日全部情報'; section.append(h2)
+    h2 = soup.new_tag('h2'); h2.string = '本期新增收錄'; section.append(h2)
     note = soup.new_tag('p'); note.string = '依重要性排序；點選標題閱讀完整內容。'; section.append(note)
     controls = soup.new_tag('div', attrs={'class':'library-controls'})
     search = soup.new_tag('input', attrs={'type':'search','id':'today-search','aria-label':'搜尋今日全部情報','placeholder':'搜尋工具、技術或製作方法…'}); controls.append(search)
