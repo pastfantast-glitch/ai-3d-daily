@@ -2,7 +2,7 @@
 from pathlib import Path
 import json, re, subprocess, sys
 from bs4 import BeautifulSoup
-from intelligence_v2 import is_v2_dataset, homepage_groups
+from intelligence_v2 import is_v2_dataset, homepage_cards, homepage_groups
 
 ROOT=Path(__file__).resolve().parents[1]
 INDEX=ROOT/'index.html'; HISTORY=ROOT/'history'/'index.html'
@@ -46,7 +46,8 @@ else:
     if v2:
         canonical_top, canonical_next = homepage_groups(current_data)
         if len(top)!=len(canonical_top): fail(f'V2 homepage TOP card count must match available canonical TOP5, got {len(top)} != {len(canonical_top)}')
-        if len(more)!=len(canonical_next): fail(f'V2 homepage next10 card count must match available canonical ranks 6-15, got {len(more)} != {len(canonical_next)}')
+        expected_more = homepage_cards(current_data, expanded=True)[len(canonical_top):] if soup.select_one('#more[data-card-library="all"]') else canonical_next
+        if len(more)!=len(expected_more): fail(f'V2 homepage additional card count must match canonical surface selection, got {len(more)} != {len(expected_more)}')
         if len(soup.select('.category-nav-grid .category-nav-card[href]'))!=6: fail('V2 homepage must expose exactly six category navigation cards')
         if soup.select('.week-counts,.week-summary,.week-topic'): fail('V2 homepage must not contain weekly overview UI')
     else:

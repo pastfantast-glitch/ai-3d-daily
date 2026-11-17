@@ -10,22 +10,37 @@ import render_home_archive_links as history
 
 
 class TodayLibraryTests(unittest.TestCase):
-    def test_all_thirty_items_have_safe_dated_deep_links_and_source_dates(self):
+    def test_merged_cards_are_unique_paged_and_preserve_dates(self):
         cfg = ia.load_config()
         category = cfg['categories'][0]['id']
         items = [dict(id=f'fixture-{n}', title='<script>literal title</script>',
-                      summary='來源支持的摘要', category=category, rank_global=n,
+                      summary='來源支持的摘要', category=category, rank_global=n+1,
+                      source_url=f'https://example.com/{n}', quick_impact='★★★☆☆',
+                      homepage_tier='top5' if n<5 else 'next10' if n<15 else 'category_only',
                       source_published_at='2021-01-01' if n == 0 else '2026-11-08') for n in range(30)]
-        soup = BeautifulSoup('<html><body><header class="home-hero"><div class="page"></div></header><main><section id="today"></section></main></body></html>', 'html.parser')
-        ia.ensure_today_library(soup, '2026-11-09', {'items':items}, cfg)
-        ia.ensure_today_library(soup, '2026-11-09', {'items':items}, cfg)
-        self.assertEqual(len(soup.select('.today-library')), 1)
-        self.assertEqual(len(soup.select('.library-row')), 30)
-        self.assertEqual(len(soup.select('.library-row[data-freshness="reference"]')), 1)
-        self.assertEqual(len(soup.select('.library-row[data-freshness="recent"]')), 29)
-        self.assertFalse(soup.select('script'))
-        self.assertTrue(soup.select('.library-link')[-1]['href'].endswith('#intel-fixture-29'))
-        self.assertIn('2021-01-01', soup.select_one('.library-meta').text)
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            (root/'index.html').write_text((ia.ROOT/'index.html').read_text('utf-8'),'utf-8')
+            with patch.object(ia,'ROOT',root):
+                ia.render_home('2026-11-09', {'items':items}, cfg)
+                ia.render_home('2026-11-09', {'items':items}, cfg)
+            soup = BeautifulSoup((root/'index.html').read_text('utf-8'),'html.parser')
+        cards = soup.select('[data-library-id]')
+        self.assertEqual(len(cards),30)
+        self.assertEqual(len({c['data-library-id'] for c in cards}),30)
+        self.assertEqual(len(soup.select('#today .top-item')),5)
+        self.assertEqual(len(soup.select('#more .more-card')),25)
+        self.assertEqual(len(soup.select('#more .more-card:not([hidden])')),10)
+        self.assertEqual(len(soup.select('.today-library')),1)
+        self.assertFalse(soup.select('.library-row'))
+        self.assertEqual(soup.select_one('#more h2').get_text(strip=True),'今天還有什麼')
+        self.assertIn('2026-11-09',soup.select_one('.edition-stamp').text)
+        self.assertIn('30 篇',soup.select_one('.edition-stamp').text)
+        self.assertEqual(len(soup.select('[data-freshness="reference"]')),1)
+        self.assertIn('2021-01-01',soup.select_one('.library-meta').text)
+        self.assertEqual(len(soup.select('#today-search')),1)
+        self.assertFalse(soup.select('[data-library-id] script'))
+        self.assertEqual(len(soup.select('[data-library-id] details.home-full-analysis')),30)
 
     def test_empty_category_is_explained_with_history_link(self):
         cfg = ia.load_config()

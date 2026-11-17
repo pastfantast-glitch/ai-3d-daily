@@ -321,5 +321,14 @@ def homepage_groups(data):
     )
 
 
+def homepage_cards(data, expanded=False):
+    """Surface selection only; canonical ranking and archive tiers stay unchanged."""
+    top, next10 = homepage_groups(data)
+    if not expanded:
+        return top + next10
+    top_ids = {x['id'] for x in top}
+    return top + [x for x in sorted_items(data) if x['id'] not in top_ids]
+
+
 def category_items(data, category_id):
     return [x for x in sorted_items(data) if x.get('category') == category_id]

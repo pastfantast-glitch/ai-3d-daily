@@ -91,8 +91,9 @@ def main():
             item=records.get(intel_id)
             if not item: continue
             assert_preview(errors,f'category:{item["category"]}',ROOT/date/item['category']/'index.html','../../',intel_id,rec)
-            if intel_id in selected:
+            if intel_id in selected or 'data-card-library="all"' in (ROOT/'index.html').read_text('utf-8'):
                 assert_preview(errors,'home',ROOT/'index.html','',intel_id,rec)
+            if intel_id in selected:
                 assert_preview(errors,'daily',ROOT/date/'index.html','../',intel_id,rec)
     else:
         for intel_id,rec in renderable.items():
