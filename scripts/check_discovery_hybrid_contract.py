@@ -8,6 +8,7 @@ from discovery_hybrid import (
     coverage_audit_errors,
     discovery_sources,
     load_hybrid_config,
+    low_volume_release_allowed,
     positive_samples,
     registered_source_probe_errors,
     registered_source_probe_plan,
@@ -195,6 +196,32 @@ def main():
     errors = coverage_audit_errors(fixture, expected_categories, hybrid)
     if errors:
         raise SystemExit(f'HYBRID CONTRACT FAILED: source-neutral Coverage Audit fixture should pass: {errors}')
+
+    # A full edition with verified reserve must pass the same coverage gate used
+    # by the finalizer and Publisher; low-volume releases must still exhaust it.
+    maximum = int(low['maximum'])
+    full = json.loads(json.dumps(fixture))
+    full['items'] = [{'id': f'reserve-fixture-{i}'} for i in range(maximum)]
+    full['metadata']['discovery_coverage']['backlog_remaining_eligible'] = 2
+    if coverage_audit_errors(full, expected_categories, hybrid):
+        raise SystemExit('HYBRID CONTRACT FAILED: full edition must allow eligible reserve')
+    for count in (int(low['fallback_floor']), int(low['normal_floor']), maximum - 1, maximum + 1):
+        partial = json.loads(json.dumps(full))
+        partial['items'] = [{'id': f'reserve-fixture-{i}'} for i in range(count)]
+        if not any('backlog_remaining_eligible' in e for e in coverage_audit_errors(partial, expected_categories, hybrid)):
+            raise SystemExit(f'HYBRID CONTRACT FAILED: {count} items must not bypass reserve exhaustion')
+        if count < int(low['normal_floor']) and low_volume_release_allowed(partial, expected_categories, hybrid):
+            raise SystemExit('HYBRID CONTRACT FAILED: low-volume release cannot leave eligible reserve')
+    for invalid in (None, -1, True, '2', 1.5):
+        bad = json.loads(json.dumps(full))
+        bad['metadata']['discovery_coverage']['backlog_remaining_eligible'] = invalid
+        if not any('backlog_remaining_eligible' in e for e in coverage_audit_errors(bad, expected_categories, hybrid)):
+            raise SystemExit('HYBRID CONTRACT FAILED: invalid reserve count accepted')
+    for required in ('backlog_checked', 'quality_first_confirmed', 'targeted_refill_performed', 'fill_ladder_exhausted'):
+        bad = json.loads(json.dumps(full))
+        bad['metadata']['discovery_coverage'][required] = False
+        if not any(required in e for e in coverage_audit_errors(bad, expected_categories, hybrid)):
+            raise SystemExit(f'HYBRID CONTRACT FAILED: full edition bypassed {required}')
 
     feature_date = max(
         str(probe_cfg.get('effective_date')),

@@ -540,8 +540,14 @@ def coverage_audit_errors(data, category_ids, cfg=None):
         errors.append('discovery coverage: targeted_refill_performed must be true')
     if audit.get('quality_first_confirmed') is not True:
         errors.append('discovery coverage: quality_first_confirmed must be true')
-    if int(audit.get('backlog_remaining_eligible', -1)) != 0:
-        errors.append('discovery coverage: backlog_remaining_eligible must be 0')
+    remaining = audit.get('backlog_remaining_eligible')
+    maximum = int(cfg['low_volume_release']['maximum'])
+    # A full edition cannot consume more eligible reserve without exceeding the
+    # publication cap. Keep the truthful count; below the cap, exhaust it first.
+    if type(remaining) is not int or remaining < 0:
+        errors.append('discovery coverage: backlog_remaining_eligible must be integer >=0')
+    elif remaining and len(data.get('items') or []) != maximum:
+        errors.append('discovery coverage: backlog_remaining_eligible must be 0 unless daily maximum is reached')
 
     windows = audit.get('windows') or {}
     for window in required_windows:
