@@ -1,5 +1,5 @@
 """Topics share canonical identity, source-age and reader gates, never homepage quotas."""
-from collection_settings import PRIMARY, all_items, validate_settings
+from collection_settings import PRIMARY, all_items, validate_settings, within_topic_window
 from source_quality import source_window_errors
 from reader_quality import reader_errors
 from urllib.parse import urlsplit
@@ -56,7 +56,10 @@ def topic_errors(data):
         if item in extras:
             if item.get('homepage_tier') != 'category_only' or not set(bindings) - {PRIMARY}:
                 errors.append(f'{rid}: topic-only item requires a separate topic')
-            errors.extend(f'{rid}: {e}' for e in source_window_errors(item, data['date']))
+        errors.extend(f'{rid}: {e}' for e in source_window_errors(item, data['date']))
+        for tid in bindings if isinstance(bindings,list) else []:
+            if tid in topics and not within_topic_window(item.get('source_published_at'),data['date'],topics[tid]['max_age_months']):
+                errors.append(f'{rid}: exceeds configured source window for {tid}')
     for tid, topic in topics.items():
         if tid != PRIMARY and sum(tid in i.get('topic_ids', []) for i in all_items(data)) > topic['target_items']:
             errors.append(f'{tid}: per-edition topic limit exceeded')

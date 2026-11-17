@@ -77,6 +77,8 @@ class Tests(unittest.TestCase):
             visual={'id':item['id'],'status':'ok','asset_path':f'assets/visual/{DATE}/fixture.webp','page_url':item['source_url']}
             (root/f'assets/visual/{DATE}/manifest.json').write_text(json.dumps({'entries':[visual]}),'utf-8')
             shutil.copyfile(ROOT/'topics/template.html',root/'topics/template.html')
+            # A concurrent settings restore must not remove the in-flight topic surface.
+            (root/'config/collection-admin.json').write_text(json.dumps(load_settings()),'utf-8')
             build(root,DATE)
             soup=BeautifulSoup((root/'topics/cloth/index.html').read_text('utf-8'),'html.parser')
             self.assertEqual(len(soup.select('.home-card')),1)
@@ -141,6 +143,13 @@ class Tests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as td:
             errors=readiness_errors(copies,DATE,Path(td))
         self.assertTrue(any('below fallback floor' in error for error in errors))
+
+    def test_handoff_rejects_topic_window_drift_before_rendering(self):
+        settings=configured();settings['topics'][1]['max_age_months']=1
+        a=article();item=validate_record(record(a),a,DATE)
+        item.update(topic_ids=['cloth'],homepage_tier='category_only',source_published_at='2026-07-15')
+        data={'date':DATE,'items':[],'topic_items':[item],'metadata':{'collection_settings':settings}}
+        self.assertTrue(any('exceeds configured source window' in e for e in topic_errors(data)))
 
     def test_public_fetch_rejects_private_dns_without_opening_connection(self):
         with patch('socket.getaddrinfo',return_value=[(2,1,6,'',('127.0.0.1',443))]), patch('socket.create_connection') as connect:

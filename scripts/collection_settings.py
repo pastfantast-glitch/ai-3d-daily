@@ -96,9 +96,19 @@ def snapshot_hybrid(data, cfg):
     return effective_hybrid(cfg, settings) if settings else cfg
 
 
-def topic_matches(meta, source, settings, primary_match=False, reference_date=None):
+def within_topic_window(published, reference_date, months):
     from datetime import date
     import calendar
+    try:
+        today=date.fromisoformat(reference_date); source=date.fromisoformat(published)
+        ym=today.year*12+today.month-1-months;year,month=divmod(ym,12);month+=1
+        cutoff=date(year,month,min(today.day,calendar.monthrange(year,month)[1]))
+        return cutoff <= source <= today
+    except (ValueError,TypeError):
+        return False
+
+
+def topic_matches(meta, source, settings, primary_match=False, reference_date=None):
     text = ' '.join(str(meta.get(k) or '') for k in ('title','description','article_excerpt')).casefold()
     result = []
     for topic in (settings or {}).get('topics', []):
@@ -106,16 +116,11 @@ def topic_matches(meta, source, settings, primary_match=False, reference_date=No
             continue
         if any(term.casefold() in text for term in topic['exclude_terms']):
             continue
-        if reference_date:
-            try:
-                today=date.fromisoformat(reference_date); published=date.fromisoformat(meta.get('published'))
-                ym=today.year*12+today.month-1-topic['max_age_months'];y,m=divmod(ym,12);m+=1
-                cutoff=date(y,m,min(today.day,calendar.monthrange(y,m)[1]))
-                if not cutoff<=published<=today: continue
-            except (ValueError,TypeError):
-                continue
+        if reference_date and not within_topic_window(meta.get('published'),reference_date,topic['max_age_months']):
+            continue
         if topic['id'] == PRIMARY:
-            if primary_match: result.append(PRIMARY)
+            if primary_match and (not topic['include_terms'] or any(term.casefold() in text for term in topic['include_terms'])):
+                result.append(PRIMARY)
             continue
         if any(term.casefold() in text for term in topic['include_terms']):
             result.append(topic['id'])

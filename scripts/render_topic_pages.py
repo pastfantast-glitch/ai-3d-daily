@@ -14,7 +14,8 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 def build(root, date):
-    settings = load_settings(root)
+    candidate = json.loads((root/'data/daily'/f'{date}.json').read_text('utf-8'))
+    settings = (candidate.get('metadata') or {}).get('collection_settings') or load_settings(root)
     if not settings:
         return
     editions = []

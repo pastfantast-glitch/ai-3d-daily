@@ -310,7 +310,8 @@ def verify_once(base_url: str, date: str, data: dict, timeout: int) -> list[str]
     if (ROOT / 'config/collection-admin.json').exists():
         from collection_settings import load_settings
         from bs4 import BeautifulSoup
-        for topic in load_settings(ROOT)['topics']:
+        settings = (data.get('metadata') or {}).get('collection_settings') or load_settings(ROOT)
+        for topic in settings['topics']:
             if topic['id'] == 'ai-3d': continue
             try:
                 page = get(base_url + 'topics/' + topic['id'] + '/', timeout)
