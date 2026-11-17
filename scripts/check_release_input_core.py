@@ -97,12 +97,15 @@ def main():
     home_top=card_ids(home,'.top-item','homepage TOP'); home_more=card_ids(home,'.more-card','homepage Supplemental')
     daily_top=card_ids(daily,'#top .news','daily TOP'); daily_more=card_ids(daily,'.daily-card-more','daily Supplemental')
     if home_top!=top: fail(f'homepage TOP order/IDs differ from canonical: {home_top} != {top}')
-    if home_more!=more: fail(f'homepage Supplemental order/IDs differ from canonical: {home_more} != {more}')
+    from intelligence_v2 import homepage_cards
+    expanded = bool(home.select_one('#more[data-card-library="all"]'))
+    expected_more = [x['id'] for x in homepage_cards(data, True) if x['id'] not in set(top)] if expanded else more
+    if home_more!=expected_more: fail(f'homepage Supplemental order/IDs differ from canonical: {home_more} != {expected_more}')
     if daily_top!=top: fail(f'daily TOP order/IDs differ from canonical: {daily_top} != {top}')
     if daily_more!=more: fail(f'daily Supplemental order/IDs differ from canonical: {daily_more} != {more}')
-    expected_home=set(top+more)
+    expected_home=set(top+expected_more)
     if set(home_top+home_more)!=expected_home: fail('homepage selected ID set mismatch')
-    if set(daily_top+daily_more)!=expected_home: fail('daily selected ID set mismatch')
+    if set(daily_top+daily_more)!=set(top+more): fail('daily selected ID set mismatch')
 
     home_sources=source_map(home,'.top-item,.more-card','homepage'); daily_sources=source_map(daily,'#top .news,.daily-card-more','daily')
     records={x['id']:x for x in items}

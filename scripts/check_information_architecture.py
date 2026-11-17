@@ -3,7 +3,7 @@
 from pathlib import Path
 import json, sys
 from bs4 import BeautifulSoup
-from intelligence_v2 import load_config, is_v2_dataset, validate_v2_dataset, homepage_groups, category_items, target_fill_applies
+from intelligence_v2 import load_config, homepage_cards, is_v2_dataset, validate_v2_dataset, homepage_groups, category_items, target_fill_applies
 
 ROOT = Path(__file__).resolve().parents[1]
 errors = []
@@ -120,7 +120,8 @@ def main():
     home_top = [x.get('data-intel-id') for x in home.select('#today .top-item[data-intel-role="card"]')]
     home_next = [x.get('data-intel-id') for x in home.select('#more .more-card[data-intel-role="card"]')]
     if home_top != [x['id'] for x in top]: fail('homepage TOP IDs/order differ from canonical available ranks 1-5')
-    if home_next != [x['id'] for x in next10]: fail('homepage next10 IDs/order differ from canonical available ranks 6-15')
+    expected_more = homepage_cards(data, expanded=True)[len(top):] if home.select_one('#more[data-card-library="all"]') else next10
+    if home_next != [x['id'] for x in expected_more]: fail('homepage additional IDs/order differ from canonical surface selection')
     grid_links = home.select('.category-nav-grid .category-nav-card[href]')
     links = {a.get('href') for a in grid_links}
     expected_links = {f'?view={c["id"]}' for c in cfg['categories']}

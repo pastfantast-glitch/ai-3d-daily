@@ -164,6 +164,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     if(tab){
       event.preventDefault();
       const category=tab.dataset.category||'';
+      if(!category)document.dispatchEvent(new Event('home-library-reset'));
       category?showCategory(category,{push:true}):showTop({push:true});
       return;
     }
@@ -191,26 +192,53 @@ document.addEventListener('DOMContentLoaded',()=>{
 
 document.addEventListener('DOMContentLoaded',()=>{
   const library=document.querySelector('.today-library');
-  if(!library)return;
-  const rows=[...library.querySelectorAll('.library-row')];
+  if(!library||!library.matches('#more[data-card-library="all"]'))return;
+  const topSection=document.querySelector('#today');
+  const topList=topSection.querySelector('.top-list');
+  const grid=library.querySelector('.more-grid');
+  const featured=[...topList.querySelectorAll('[data-library-id]')];
+  const rows=[...featured,...grid.querySelectorAll('[data-library-id]')].sort((a,b)=>Number(a.dataset.rank)-Number(b.dataset.rank));
+  const featuredSet=new Set(featured);
   const searchable=new Map(rows.map(row=>[row,row.textContent.toLocaleLowerCase()]));
   const search=library.querySelector('#today-search');
   const category=library.querySelector('#today-category');
   const freshness=library.querySelector('#today-freshness');
+  const more=library.querySelector('#today-load-more');
+  let limit=10;
   function filter(){
-    const query=search.value.trim().toLocaleLowerCase();let count=0;
-    rows.forEach(row=>{
-      row.hidden=!(searchable.get(row).includes(query)&&
-        (category.value==='all'||row.dataset.category===category.value)&&
-        (freshness.value==='all'||row.dataset.freshness===freshness.value)&&
-        (!library.querySelector('#today-kind')||library.querySelector('#today-kind').value==='all'||row.dataset.contentKind===library.querySelector('#today-kind').value));
-      if(!row.hidden)count++;
+    const query=search.value.trim().toLocaleLowerCase();
+    const kind=library.querySelector('#today-kind')?.value||'all';
+    const active=Boolean(query||category.value!=='all'||freshness.value!=='all'||kind!=='all');
+    topSection.hidden=active;
+    featured.forEach(card=>{
+      card.classList.toggle('top-item',!active);card.classList.toggle('more-card',active);
+      if(!active){card.hidden=false;topList.append(card);}
     });
-    library.querySelector('#today-result-count').textContent=`顯示 ${count} / ${rows.length} 篇`;
-    library.querySelector('#today-empty').hidden=count!==0;
+    const candidates=rows.filter(row=>active||!featuredSet.has(row));
+    candidates.forEach(row=>grid.append(row));
+    const matches=candidates.filter(row=>searchable.get(row).includes(query)&&
+      (category.value==='all'||row.dataset.category===category.value)&&
+      (freshness.value==='all'||row.dataset.freshness===freshness.value)&&
+      (kind==='all'||row.dataset.contentKind===kind));
+    const visible=new Set(matches.slice(0,limit));
+    candidates.forEach(row=>{row.hidden=!visible.has(row);});
+    library.querySelector('#today-result-count').textContent=active?
+      `符合 ${matches.length} 篇，已顯示 ${visible.size} 篇（搜尋本期全部 ${rows.length} 篇）`:
+      `精選之外共 ${matches.length} 篇，已顯示 ${visible.size} 篇`;
+    library.querySelector('#today-empty').hidden=matches.length!==0;
+    more.hidden=limit>=matches.length;
+    more.textContent=`顯示更多（還有 ${Math.max(0,matches.length-limit)} 篇）`;
   }
-  let searchTimer;search.addEventListener('input',()=>{clearTimeout(searchTimer);searchTimer=setTimeout(filter,120);});
-  library.addEventListener('change',event=>{if(event.target.id==='today-kind')filter();});category.addEventListener('change',filter);freshness.addEventListener('change',filter);
+  const reset=()=>{limit=10;filter();};
+  let searchTimer;search.addEventListener('input',()=>{clearTimeout(searchTimer);searchTimer=setTimeout(reset,120);});
+  library.addEventListener('change',event=>{if(event.target.matches('select'))reset();});
+  document.addEventListener('home-library-reset',()=>{
+    clearTimeout(searchTimer);search.value='';
+    library.querySelectorAll('select').forEach(select=>{select.value='all';});
+    reset();
+  });
+  library.addEventListener('content-kind-ready',filter);
+  more.addEventListener('click',()=>{limit+=10;filter();});
   const toggle=document.createElement('button');toggle.type='button';toggle.className='reading-mode';
   let compact=false;try{compact=localStorage.getItem('ai3d-reading-mode')==='compact';}catch(_){}
   function paint(){document.body.classList.toggle('is-compact',compact);toggle.setAttribute('aria-pressed',String(compact));toggle.textContent=compact?'顯示文章圖片':'精簡閱讀';}
@@ -226,8 +254,8 @@ document.addEventListener('DOMContentLoaded',async()=>{
   if(!date||!library)return;
   const intro=document.querySelector('.edition-summary');
   const heading=library.querySelector('h2');
-  if(heading)heading.textContent='本期新增收錄';
-  if(intro)intro.textContent=`最新已發布：${date}。收錄日期與來源發布日期分別標示。`;
+  if(heading)heading.textContent='今天還有什麼';
+  if(intro)intro.textContent='收錄日期與來源發布日期分別標示。';
   try{
     const response=await fetch(new URL(`data/daily/${date}.json`,location.href));
     if(!response.ok)throw new Error('canonical unavailable');
@@ -244,7 +272,7 @@ document.addEventListener('DOMContentLoaded',async()=>{
       const news=/發布|更新|推出|發表|新研究|release|launch|announc/i.test(item.title||'');
       const kind=!Number.isFinite(age)||age<0?'unknown':age>180?'historical':item.content_kind==='historical'?'historical':age<=7&&(item.content_kind==='news'||(!item.content_kind&&news))?'news':'practice';
       counts[kind]++;if(source===date)sameDay++;
-      const row=library.querySelector(`[data-library-id="${CSS.escape(item.id)}"]`);
+      const row=document.querySelector(`[data-library-id="${CSS.escape(item.id)}"]`);
       if(row){row.dataset.contentKind=kind;const tag=document.createElement('span');tag.className='content-kind';tag.textContent=` · ${labels[kind]}`;row.querySelector('.library-meta')?.append(tag);}
     });
     const mix=document.createElement('p');mix.className='content-mix';mix.setAttribute('role','status');
@@ -253,7 +281,8 @@ document.addEventListener('DOMContentLoaded',async()=>{
     const select=document.createElement('select');select.id='today-kind';select.setAttribute('aria-label','篩選內容類型');
     for(const [value,label] of [['all','全部內容類型'],...Object.entries(labels)]){const option=document.createElement('option');option.value=value;option.textContent=label;select.append(option);}
     library.querySelector('.library-controls').append(select);
-    if(intro)intro.textContent=`最新已發布：${date} · 本期新增收錄 ${data.items.length} 篇，其中 ${sameDay} 篇來源發布於同日。收錄不代表事件發生於當日。`;
+    if(intro)intro.textContent=`本期有 ${sameDay} 篇來源發布於同日。收錄不代表事件發生於當日。`;
+    library.dispatchEvent(new Event('content-kind-ready'));
     const explanation=document.createElement('p');explanation.className='library-meta';
     explanation.textContent='新消息依近 7 日來源日期及標題更新訊號分類；其他近 180 日內容列為實作／參考。超過 180 日列為歷史精選，請留意原始年份與版本。';
     mix.after(explanation);

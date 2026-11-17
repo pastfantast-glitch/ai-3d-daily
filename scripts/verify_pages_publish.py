@@ -18,7 +18,7 @@ from urllib.parse import urljoin
 
 import requests
 from bs4 import BeautifulSoup, Tag
-from intelligence_v2 import is_v2_dataset, load_config, homepage_groups, category_items
+from intelligence_v2 import is_v2_dataset, homepage_cards, load_config, homepage_groups, category_items
 
 ROOT = Path(__file__).resolve().parents[1]
 STABILITY = ROOT / 'config' / 'stability-contract.json'
@@ -290,6 +290,8 @@ def verify_once(base_url: str, date: str, data: dict, timeout: int) -> list[str]
         try:
             html = get(url, timeout).text
             surface = 'category' if name.startswith('category:') else name
+            if name == 'home' and v2:
+                expected = homepage_cards(data, 'data-card-library="all"' in html)
             errors.extend(
                 f'{name}: {e}'
                 for e in structural_errors(

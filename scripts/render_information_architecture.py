@@ -206,7 +206,7 @@ def ensure_page_metadata(soup, title_text, description_text):
 
 
 def ensure_today_library(soup, date, data, cfg):
-    for node in soup.select('.today-library'):
+    for node in soup.select('.today-library:not(#more)'):
         node.decompose()
     soup.body['data-report-date'] = date
     hero = soup.select_one('.home-hero .page')
@@ -214,42 +214,61 @@ def ensure_today_library(soup, date, data, cfg):
         hero.clear()
         eyebrow = soup.new_tag('p', attrs={'class':'eyebrow'}); eyebrow.string = 'AI / 3D / GAME ART'; hero.append(eyebrow)
         title = soup.new_tag('h1'); title.string = '每日製作情報'; hero.append(title)
-        stamp = soup.new_tag('p', attrs={'class':'week-asof'}); stamp.string = date; hero.append(stamp)
+        stamp = soup.new_tag('p', attrs={'class':'edition-stamp'}); stamp.append('最新發布：')
+        time = soup.new_tag('span', attrs={'class':'week-asof'}); time.string = date; stamp.append(time)
+        stamp.append(f'・本期收錄 {len(data["items"])} 篇'); hero.append(stamp)
         intro = soup.new_tag('p', attrs={'class':'edition-summary'})
-        intro.string = f'本期新增收錄 {len(data["items"])} 篇 · 近期更新、製作教學與歷史精選，來源日期逐篇標示。'
+        intro.string = '近期更新、製作教學與歷史精選，來源日期逐篇標示。'
         hero.append(intro)
         links = soup.new_tag('div', attrs={'class':'edition-links'})
         for href, label in [('#all-intelligence', '瀏覽全部情報'), ('history/', '搜尋歷史文章'), ('saved/', '我的收藏')]:
             a = soup.new_tag('a', href=href); a.string = label; links.append(a)
         hero.append(links)
-    section = soup.new_tag('section', attrs={'class':'today-library', 'id':'all-intelligence', 'aria-label':'今日全部情報'})
-    h2 = soup.new_tag('h2'); h2.string = '本期新增收錄'; section.append(h2)
-    note = soup.new_tag('p'); note.string = '依重要性排序；點選標題閱讀完整內容。'; section.append(note)
+    section = soup.select_one('#more')
+    if not section:
+        raise ValueError('homepage more section missing')
+    section['class'] = ['home-section', 'more-section', 'today-library']
+    section['data-card-library'] = 'all'
+    for old in section.select('.library-controls, #today-result-count, #today-empty, #today-load-more, .library-note, noscript'):
+        old.decompose()
+    heading = section.select_one('h2')
+    heading['id'] = 'all-intelligence'
+    heading.string = '今天還有什麼'
+    grid = section.select_one('.more-grid')
+    note = soup.new_tag('p', attrs={'class': 'library-note'})
+    note.string = '以下接續精選內容；搜尋與篩選涵蓋本期全部文章。'
+    grid.insert_before(note)
     controls = soup.new_tag('div', attrs={'class':'library-controls'})
-    search = soup.new_tag('input', attrs={'type':'search','id':'today-search','aria-label':'搜尋今日全部情報','placeholder':'搜尋工具、技術或製作方法…'}); controls.append(search)
+    controls.append(soup.new_tag('input', attrs={'type':'search','id':'today-search','aria-label':'搜尋本期全部情報','placeholder':'搜尋工具、技術或製作方法…'}))
     for field, label, options in [('today-category','篩選情報分類',[('all','全部分類')]+[(c['id'],c['label']) for c in cfg['categories']]),('today-freshness','篩選來源日期',[('all','全部來源日期'),('recent','近 7 天'),('reference','歷史參考（超過 180 天）')])]:
         select = soup.new_tag('select', attrs={'id':field,'aria-label':label})
         for value, text in options:
             option = soup.new_tag('option', value=value); option.string=text; select.append(option)
         controls.append(select)
-    section.append(controls)
-    count = soup.new_tag('p', attrs={'id':'today-result-count','role':'status'}); count.string=f'共 {len(data["items"])} 篇'; section.append(count)
-    listing = soup.new_tag('div', attrs={'class':'library-list'})
+    grid.insert_before(controls)
+    count = soup.new_tag('p', attrs={'id':'today-result-count','role':'status','aria-live':'polite'})
+    count.string = f'本期共 {len(data["items"])} 篇'
+    grid.insert_before(count)
+    empty = soup.new_tag('p', attrs={'id':'today-empty','hidden':''}); empty.string='沒有符合的情報，請調整搜尋或篩選條件。'; section.append(empty)
+    button = soup.new_tag('button', attrs={'type':'button','id':'today-load-more','class':'history-load-more','hidden':''})
+    button.string = '顯示更多'; section.append(button)
+    fallback = soup.new_tag('noscript')
+    style = soup.new_tag('style'); style.string = '#more .more-card[hidden]{display:flex!important}'
+    fallback.append(style); section.append(fallback)
     labels = {c['id']:c['label'] for c in cfg['categories']}
-    for item in sorted(data['items'], key=lambda x:int(x['rank_global'])):
+    by_id = {item['id']:item for item in data['items']}
+    for card in soup.select('#today [data-intel-role="card"], #more [data-intel-role="card"]'):
+        item = by_id[card['data-intel-id']]
         published = item.get('source_published_at') or ''
         try: age = (date_cls.fromisoformat(date)-date_cls.fromisoformat(published[:10])).days
         except ValueError: age = -1
         freshness = 'recent' if 0<=age<=7 else 'reference' if age>180 else 'older'
-        row = soup.new_tag('article', attrs={'class':'library-row','data-category':item['category'],'data-freshness':freshness,'data-library-id':item['id']})
-        a = soup.new_tag('a', attrs={'class':'library-link','href':f'{date}/{item["category"]}/#intel-{item["id"]}'})
-        a.string=item['title']; row.append(a)
-        meta = soup.new_tag('p', attrs={'class':'library-meta'}); meta.string=f'{labels.get(item["category"],item["category"])} · 來源 {published or "日期待核對"}' + (' · 歷史參考' if freshness=='reference' else ''); row.append(meta)
-        summary = soup.new_tag('p', attrs={'class':'library-summary'}); summary.string=item['summary']; row.append(summary)
-        listing.append(row)
-    section.append(listing)
-    empty = soup.new_tag('p', attrs={'id':'today-empty','hidden':''}); empty.string='沒有符合的情報，請調整搜尋或篩選條件。'; section.append(empty)
-    soup.select_one('#today').insert_after(section)
+        card['data-library-id'] = item['id']
+        card['data-rank'] = str(item['rank_global'])
+        card['data-category'] = item['category']; card['data-freshness'] = freshness
+        stamp = card.select_one('.article-date'); stamp['class'] = ['article-date','library-meta']
+        stamp.string = f'{labels.get(item["category"],item["category"])} · 來源 {published or "日期待核對"}' + (' · 歷史參考' if freshness=='reference' else '')
+
 
 
 def render_home(date, data, cfg):
@@ -261,7 +280,6 @@ def render_home(date, data, cfg):
         f'{date} AI／3D／遊戲美術 Production Intelligence：精選 {len(data.get("items") or [])} 項可驗證的製作工具、流程、動畫、引擎與 DCC 情報。',
     )
     ensure_shared_stylesheet(soup, 'shared-components.css')
-    ensure_today_library(soup, date, data, cfg)
     top, next10 = homepage_groups(data)
     top_box = soup.select_one('#today .top-list')
     more_box = soup.select_one('#more .more-grid')
@@ -270,8 +288,13 @@ def render_home(date, data, cfg):
     top_box.clear(); more_box.clear()
     for rank, item in enumerate(top, 1):
         top_box.append(home_card(soup, item, top=True, rank=rank))
-    for item in next10:
-        more_box.append(home_card(soup, item, top=False))
+    top_ids = {item['id'] for item in top}
+    remaining = [item for item in sorted(data['items'], key=lambda x: int(x['rank_global'])) if item['id'] not in top_ids]
+    for index, item in enumerate(remaining):
+        card = home_card(soup, item, top=False)
+        if index >= 10: card['hidden'] = ''
+        more_box.append(card)
+    ensure_today_library(soup, date, data, cfg)
     more_heading = soup.select_one('#more h2')
     if more_heading: more_heading.string = '今天還有什麼'
     ensure_category_section(soup, date, cfg)
@@ -282,7 +305,7 @@ def render_home(date, data, cfg):
     main = soup.select_one('main.home-main')
     main.insert_before(global_nav(soup, date, cfg, active='top5', context='home'))
     path.write_text(soup.prettify(), 'utf-8')
-    print(f'V2 homepage rendered: {len(top)} TOP + {len(next10)} next + shared sticky nav ({date})')
+    print(f'V2 homepage rendered: {len(top)} TOP + {len(remaining)} more + shared sticky nav ({date})')
 
 
 def render_daily(date, data, cfg):

@@ -19,7 +19,7 @@ SCRIPTS = ROOT / 'scripts'
 if str(SCRIPTS) not in sys.path:
     sys.path.insert(0, str(SCRIPTS))
 
-from intelligence_v2 import is_v2_dataset, load_config, homepage_groups, category_items
+from intelligence_v2 import is_v2_dataset, homepage_cards, load_config, homepage_groups, category_items
 from verify_pages_publish import structural_errors, load_depth
 
 
@@ -224,12 +224,13 @@ def main():
     legacy_min = int((cfg or {}).get('full_analysis', {}).get('min_blocks', 3))
     top, next10 = homepage_groups(data)
     public_items = top + next10
+    home_items = homepage_cards(data, 'data-card-library="all"' in (ROOT/'index.html').read_text('utf-8'))
 
     pending_republish = policy_recollect_pending(date, data)
     pending_historical_restore = pending_verified_historical_editorial_restore(date, data)
     errors = []
     if not pending_republish and not pending_historical_restore:
-        errors += [f'home: {e}' for e in check_surface(ROOT / 'index.html', date, public_items, 'home', depth, legacy_min)]
+        errors += [f'home: {e}' for e in check_surface(ROOT / 'index.html', date, home_items, 'home', depth, legacy_min)]
         errors += [f'daily: {e}' for e in check_surface(ROOT / date / 'index.html', date, public_items, 'daily', depth, legacy_min)]
 
         for category in cfg.get('categories') or []:

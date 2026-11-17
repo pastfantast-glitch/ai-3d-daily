@@ -2,7 +2,7 @@
 from pathlib import Path
 import json,re,sys
 from bs4 import BeautifulSoup
-from intelligence_v2 import is_v2_dataset, homepage_groups, category_items, load_config
+from intelligence_v2 import is_v2_dataset, homepage_cards, homepage_groups, category_items, load_config
 
 ROOT=Path(__file__).resolve().parents[1]
 DEPTH_PATH=ROOT/'config'/'full-analysis-depth.json'
@@ -137,7 +137,9 @@ def main():
             top,next10=homepage_groups(data); selected=[x['id'] for x in top+next10]
             daily=inspect_cards(date,'daily',ROOT/date/'index.html','#top .news[data-intel-role="card"][data-intel-id], #more .daily-card-more[data-intel-role="card"][data-intel-id], .category-news[data-intel-role="card"][data-intel-id]',recs,selected)
             if date==current:
-                home=inspect_cards(date,'home',ROOT/'index.html','.top-item[data-intel-role="card"][data-intel-id], .more-card[data-intel-role="card"][data-intel-id]',recs,selected)
+                expanded = 'data-card-library="all"' in (ROOT/'index.html').read_text('utf-8')
+                home_ids = [x['id'] for x in homepage_cards(data, expanded)]
+                home=inspect_cards(date,'home',ROOT/'index.html','.top-item[data-intel-role="card"][data-intel-id], .more-card[data-intel-role="card"][data-intel-id]',recs,home_ids)
                 for rid in selected:
                     if home.get(rid)!=daily.get(rid): errors.append(f'{date}: home/daily analysis drift for {rid}')
             for cat in cfg['categories']:
