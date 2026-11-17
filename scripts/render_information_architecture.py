@@ -280,6 +280,12 @@ def render_home(date, data, cfg):
         f'{date} AI／3D／遊戲美術 Production Intelligence：精選 {len(data.get("items") or [])} 項可驗證的製作工具、流程、動畫、引擎與 DCC 情報。',
     )
     ensure_shared_stylesheet(soup, 'shared-components.css')
+    footer = soup.select_one('footer')
+    if footer and not footer.select_one('[data-collection-links]'):
+        nav = soup.new_tag('nav', attrs={'data-collection-links':'true','aria-label':'收集主題與管理'})
+        for href, label in [('topics/','探索其他主題'),('admin/','收集管理')]:
+            link = soup.new_tag('a', href=href); link.string=label; nav.append(link); nav.append('　')
+        footer.append(nav)
     top, next10 = homepage_groups(data)
     top_box = soup.select_one('#today .top-list')
     more_box = soup.select_one('#more .more-grid')

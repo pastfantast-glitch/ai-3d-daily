@@ -75,10 +75,10 @@ def readiness_errors(copies, date, root=ROOT):
     for receipt in (root / 'data/publish').glob('*.done.json'):
         path = root / 'data/daily' / (receipt.name[:10] + '.json')
         if path.exists():
-            for item in json.loads(path.read_text('utf-8')).get('items', []):
+            for item in __import__('collection_settings').all_items(json.loads(path.read_text('utf-8'))):
                 published_ids.add(item['id'])
                 published_urls.add(canonicalize_url(item.get('source_url', '')))
-    eligible = [c for c in copies if c['id'] not in published_ids and canonicalize_url(c['source_url']) not in published_urls]
+    eligible = [c for c in copies if 'ai-3d' in c.get('topic_ids', ['ai-3d']) and c['id'] not in published_ids and canonicalize_url(c['source_url']) not in published_urls]
     cfg = json.loads((ROOT / 'config/discovery-hybrid.json').read_text('utf-8'))
     floor = cfg['low_volume_release']['fallback_floor']
     errors = []

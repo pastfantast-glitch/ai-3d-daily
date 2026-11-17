@@ -11,6 +11,7 @@ a non-empty delta. Reusing the same canonical source URL under a new ID is ident
 drift and fails publication.
 """
 from pathlib import Path
+from collection_settings import all_items
 import json
 import re
 import sys
@@ -71,7 +72,7 @@ def main():
                 if a:
                     source_by_id[card.get('data-intel-id')] = norm_url(a.get('href'))
 
-        for item in data.get('items', []):
+        for item in all_items(data):
             rid = str(item.get('id', '')).strip()
             if not rid:
                 continue

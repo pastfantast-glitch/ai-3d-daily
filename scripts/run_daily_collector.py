@@ -35,6 +35,7 @@ from content_quality import admission as content_admission, classify_content, no
 from article_evidence import extract_article_evidence, review_record, loss_summary
 from editorial_review import candidate_copy
 from reader_quality import reader_errors
+from collection_settings import load_settings, effective_hybrid, topic_matches, all_items, PRIMARY
 from source_quality import source_window_errors
 from content_supply import section_links, retained_entries, reserve_output
 from collector_personalization import load_owner_preferences, apply_candidate_personalization, positive_expansion_terms, expand_source_links
@@ -132,7 +133,11 @@ def article_like_url(url: str) -> bool:
 def fetch(session: requests.Session, url: str, timeout: int, *, allow_feed: bool = False) -> dict:
     started = time.monotonic()
     try:
-        response = session.get(url, timeout=timeout, allow_redirects=True)
+        if getattr(session, 'managed_sources', False) is True:
+            from public_source_http import get
+            response = get(url, timeout, session.headers)
+        else:
+            response = session.get(url, timeout=timeout, allow_redirects=True)
         status = int(response.status_code)
         content_type = response.headers.get("content-type", "")
         sample = response.text[:500].lower()
@@ -387,16 +392,23 @@ def extract_feed_article_links(feed_text: str, base_url: str, domain: str, limit
     """Extract article identities from RSS/Atom while preserving the article page as verification evidence."""
     if not feed_text or limit <= 0:
         return []
-    soup = BeautifulSoup(feed_text, "html.parser")
+    import xml.etree.ElementTree as ET
+    if '<!DOCTYPE' in feed_text.upper() or '<!ENTITY' in feed_text.upper():
+        return []
+    try:
+        tree = ET.fromstring(feed_text)
+    except ET.ParseError:
+        return []
     out: list[tuple[str, str]] = []
     seen: set[str] = set()
-    for entry in soup.find_all(["item", "entry"]):
-        title_node = entry.find("title")
-        title = clean(title_node.get_text(" ", strip=True) if title_node else "", 220)
-        link_node = entry.find("link")
-        href = ""
-        if link_node is not None:
-            href = clean(link_node.get("href") or link_node.get_text(" ", strip=True))
+    local = lambda node: node.tag.rsplit('}', 1)[-1]
+    for entry in tree.iter():
+        if local(entry) not in ('item', 'entry'):
+            continue
+        title_node = next((n for n in entry if local(n) == 'title'), None)
+        title = clean(''.join(title_node.itertext()) if title_node is not None else '', 220)
+        link_node = next((n for n in entry if local(n) == 'link' and n.get('rel','alternate') == 'alternate'), None)
+        href = clean(link_node.get('href') or link_node.text or '') if link_node is not None else ''
         if not href:
             continue
         absolute = canonicalize_url(urljoin(base_url, href))
@@ -657,7 +669,7 @@ def load_registry(
                 data = load_json(daily)
             except Exception:
                 continue
-            for item in data.get("items") or []:
+            for item in all_items(data):
                 source = canonicalize_url(str(item.get("source_url") or ""))
                 rid = str(item.get("id") or "").strip()
                 if source:
@@ -687,6 +699,7 @@ def source_probe(
     expansion_terms: list[str] | None = None,
     personal_cfg: dict | None = None,
     published_sources: set[str] | None = None,
+    collection_settings: dict | None = None,
 ) -> tuple[list[dict], dict]:
     http_cfg = runtime["http"]
     disc_cfg = runtime["discovery"]
@@ -708,7 +721,7 @@ def source_probe(
             return False
         return True
 
-    index_results = [fetch(session, url, timeout) for url in endpoints]
+    index_results = [fetch(session, url, timeout, allow_feed=True) for url in endpoints]
     successes = [x for x in index_results if x.get("html")]
     if not successes:
         statuses = [int(x.get("status", 0)) for x in index_results]
@@ -791,7 +804,7 @@ def source_probe(
     links: list[tuple[str, str]] = []
     seen_links: set[str] = set()
     for result in successes:
-        for url, title in extract_links(result["html"], result["final_url"], domain, max_links):
+        for url, title in (extract_feed_article_links(result["html"], result["final_url"], domain, max_links) + extract_links(result["html"], result["final_url"], domain, max_links)):
             if url not in seen_links:
                 seen_links.add(url)
                 links.append((url, title))
@@ -826,6 +839,9 @@ def source_probe(
         url, fallback = pair
         result = fetch(session, url, timeout)
         meta = page_metadata(result, fallback)
+        if meta:
+            meta['topic_ids'] = topic_matches(meta, source, collection_settings,
+                primary_match=relevant(meta), reference_date=report_date) if collection_settings else ([PRIMARY] if relevant(meta) else [])
         return url, meta
 
     metas: list[dict] = []
@@ -833,7 +849,7 @@ def source_probe(
         futures = [pool.submit(get_page, pair) for pair in links]
         for future in as_completed(futures):
             _, meta = future.result()
-            if meta and same_registered_domain(meta["url"], domain) and relevant(meta):
+            if meta and same_registered_domain(meta["url"], domain) and meta.get('topic_ids'):
                 metas.append(meta)
 
     # One bounded same-source related-page traversal is the targeted refill pass.
@@ -855,7 +871,7 @@ def source_probe(
             futures = [pool.submit(get_page, pair) for pair in refill_links]
             for future in as_completed(futures):
                 _, meta = future.result()
-                if meta and same_registered_domain(meta["url"], domain) and relevant(meta):
+                if meta and same_registered_domain(meta["url"], domain) and meta.get('topic_ids'):
                     metas.append(meta)
 
     unique: dict[str, dict] = {}
@@ -880,6 +896,7 @@ def source_probe(
             "ranking_score": score_candidate(meta, category, source_id, report_date),
             "brief_reason": brief_reason(text, source_id),
             "meta": meta,
+            "topic_ids": meta.get("topic_ids", [PRIMARY]),
             "from_semantic_expansion": meta["url"] in expanded_urls,
         })
     candidates.sort(key=lambda x: (-x["ranking_score"], x["source_url"]))
@@ -971,7 +988,7 @@ def unpublished_survivor_count(
         eligible.append(candidate)
     if report_date:
         eligible, _ = readable_candidates(sorted(eligible, key=lambda x: (-x["ranking_score"], x["source_url"])), report_date)
-    return len(eligible)
+    return sum(PRIMARY in c.get("topic_ids", [PRIMARY]) for c in eligible)
 
 
 def selection_fingerprint(items: list[dict]) -> str:
@@ -1270,7 +1287,8 @@ def main() -> int:
     intel = load_json(INTEL_PATH)
     depth = load_json(DEPTH_PATH)
     personal_cfg = load_json(PERSONAL_PATH)
-    hybrid = load_hybrid_config()
+    settings = load_settings(ROOT)
+    hybrid = effective_hybrid(load_hybrid_config(), settings)
     report_date = current_date(runtime)
     replace_done = "--replace-done" in set(sys.argv[2:])
 
@@ -1309,8 +1327,9 @@ def main() -> int:
         if x.get("enabled") is True
     }
     selected = list(plan["selected"])
-    configured_endpoints = runtime.get("source_endpoints") or {}
+    configured_endpoints = {s["id"]:s["endpoints"] for s in settings["sources"]} if settings else (runtime.get("source_endpoints") or {})
     session = requests.Session()
+    session.managed_sources = bool(settings)
     session.headers.update({
         "User-Agent": runtime["http"]["user_agent"],
         "Accept": "text/html,application/xhtml+xml",
@@ -1341,7 +1360,7 @@ def main() -> int:
         candidates, record = source_probe(
             source, endpoints, runtime, session, report_date, used_ids,
             expansion_terms=expansion_terms, personal_cfg=personal_cfg,
-            published_sources=published_sources,
+            published_sources=published_sources, collection_settings=settings,
         )
         record["selection_phase"] = "daily-plan"
         probe_records[source_id] = record
@@ -1367,9 +1386,13 @@ def main() -> int:
             retry_reserve.append(entry)
             continue
         meta = page_metadata(result, str(entry.get("title") or ""))
-        if not meta or not relevant(meta):
-            continue
         source_id = str(entry.get("source_id") or "backlog")
+        if source_id not in source_map or not meta:
+            continue
+        meta['topic_ids'] = topic_matches(meta, source_map[source_id], settings,
+            primary_match=relevant(meta), reference_date=report_date) if settings else ([PRIMARY] if relevant(meta) else [])
+        if not meta['topic_ids']:
+            continue
         cid = stable_id(source_id, meta["url"], meta["title"], used_ids)
         text = f"{meta['title']} {meta.get('description', '')}"
         category, subcategory = classify_content(meta["title"], meta.get("description", ""))
@@ -1386,6 +1409,7 @@ def main() -> int:
             "ranking_score": score_candidate(meta, category, source_id, report_date),
             "brief_reason": brief_reason(text, source_id),
             "meta": meta,
+            "topic_ids": meta.get("topic_ids", [PRIMARY]),
             "from_backlog": True,
         })
 
@@ -1434,7 +1458,7 @@ def main() -> int:
                 candidates, record = source_probe(
                     source, endpoints, runtime, session, report_date, used_ids,
                     expansion_terms=expansion_terms, personal_cfg=personal_cfg,
-                    published_sources=published_sources,
+                    published_sources=published_sources, collection_settings=settings,
                 )
                 record["selection_phase"] = "targeted-refill"
                 probe_records[source_id] = record
@@ -1534,10 +1558,10 @@ def main() -> int:
             "editorial_errors": errors,
         })
     maximum = int(intel["collection"]["daily_max_items"])
-    selected_items = survivors[:maximum]
-    overflow = survivors[maximum:]
+    from topic_contract import select_topics
+    selected_items, topic_selected, overflow = select_topics(survivors, settings, maximum)
 
-    for candidate in selected_items:
+    for candidate in selected_items + topic_selected:
         decisions.append({
             "candidate_id": candidate["candidate_id"],
             "source_url": candidate["source_url"],
@@ -1563,6 +1587,7 @@ def main() -> int:
         'review_approved': sum(1 for c in discovered if (c.get('scheduled_review') or {}).get('status') == 'approved' or reviewed_reader_copy(c['meta'])),
         'awaiting_review': sum(1 for c, _ in editorial_rejections if (c.get('scheduled_review') or {}).get('status') == 'awaiting-review'),
         'quality_pass_unpublished': len(survivors), 'selected': len(selected_items),
+        'topic_selected': len(topic_selected),
         'published': None, 'approved_reserve': len(overflow),
         'note': 'Registry dedupe precedes prose QA; review_approved counts recorded approvals, quality_pass_unpublished counts final unique survivors; selected is not published.'
     }
@@ -1605,7 +1630,7 @@ def main() -> int:
 
     homepage = intel["homepage"]
     canonical_items = []
-    for rank, candidate in enumerate(selected_items, 1):
+    for rank, candidate in enumerate(selected_items + topic_selected, 1):
         reader = candidate["reader_copy"]
         reader_title = reader["title"]
         if not re.search(r"[\u3400-\u9fff]", reader_title):
@@ -1616,6 +1641,7 @@ def main() -> int:
             )
         canonical_items.append({
             "id": candidate["candidate_id"],
+            "topic_ids": candidate.get("topic_ids", [PRIMARY]),
             "title": reader_title,
             "summary": reader["summary"],
             "quick_impact": stars(candidate["base_ranking_score"]),
@@ -1638,6 +1664,10 @@ def main() -> int:
             ),
         })
 
+    topic_items = canonical_items[len(selected_items):]
+    canonical_items = canonical_items[:len(selected_items)]
+    for item in topic_items:
+        item['homepage_tier'] = 'category_only'
     attempted_source_ids = list(dict.fromkeys(selected + refill_selected))
     targeted_refill_stage_complete = bool(attempted_source_ids) and all(
         isinstance(probe_records.get(source_id), dict)
@@ -1696,6 +1726,7 @@ def main() -> int:
 
 
     metadata = {
+        **({"collection_settings": settings} if settings else {}),
         "content_supply": supply,
         "total_items": len(canonical_items),
         "collection_mode": "production-intelligence-preference-v1-hybrid",
@@ -1734,6 +1765,7 @@ def main() -> int:
         "schema_version": int(intel["schema_version"]),
         "metadata": metadata,
         "items": canonical_items,
+        "topic_items": topic_items,
         "visual_evidence": {},
     }
     session_data = {

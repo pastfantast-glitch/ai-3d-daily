@@ -128,7 +128,9 @@ def validate_packet(data, packet, date):
     for cid, record in data['items'].items():
         if cid not in articles:
             raise ReviewError('reviewed ID absent from Collector artifact')
-        copies.append(validate_record(record, articles[cid], date))
+        copy = validate_record(record, articles[cid], date)
+        copy['topic_ids'] = articles[cid].get('topic_ids', ['ai-3d'])
+        copies.append(copy)
     from reader_quality import reader_errors
     errors = reader_errors(copies, date)
     if errors:

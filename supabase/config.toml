@@ -1,3 +1,7 @@
 [functions.ai3d-personalization]
 # GitHub OIDC is verified by the function; Supabase user JWTs are not accepted.
 verify_jwt = false
+
+[functions.collection-admin]
+# Handler verifies the signed user session via Supabase Auth and exact app_owner.
+verify_jwt = false

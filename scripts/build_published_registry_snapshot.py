@@ -9,6 +9,7 @@ authoritative and revalidates every candidate before .ready.
 from __future__ import annotations
 
 from pathlib import Path
+from collection_settings import all_items
 import argparse
 import json
 import sys
@@ -36,7 +37,7 @@ def build(through: str | None = None) -> dict:
         done_dates.append(date)
         data = json.loads(path.read_text("utf-8"))
         published_surface = registry.published_source_by_id(date)
-        for item in data.get("items") or []:
+        for item in all_items(data):
             stable_id = str(item.get("id") or "").strip()
             if not stable_id:
                 continue

@@ -48,6 +48,10 @@ def receipt_errors(date, root, receipt, canonical, latest, *, allow_newer_latest
         errors.append('canonical IDs missing or duplicated')
     if (receipt.get('canonical') or {}).get('ids') != ids or (receipt.get('canonical') or {}).get('item_count') != len(ids):
         errors.append('receipt canonical IDs/count mismatch')
+    if canonical.get('topic_items'):
+        from topic_contract import topic_receipt
+        if receipt.get('topics') != topic_receipt(canonical):
+            errors.append('receipt topic IDs/count mismatch')
     if (receipt.get('qa') or {}).get('pages') != 'pass':
         errors.append('Pages QA is not pass')
     if receipt.get('site_url') != SITE_URL or receipt.get('daily_url') != SITE_URL + date + '/':

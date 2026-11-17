@@ -1,0 +1,3 @@
+const cards=[...document.querySelectorAll('#topic-cards .home-card')],search=document.querySelector('#topic-search'),more=document.querySelector('#topic-more');let limit=10;
+function render(){const query=search.value.trim().toLocaleLowerCase();const matches=cards.filter(card=>card.dataset.search.includes(query));cards.forEach(card=>card.hidden=true);matches.slice(0,limit).forEach(card=>card.hidden=false);more.hidden=matches.length<=limit;document.querySelector('#empty').hidden=matches.length>0;document.querySelector('#topic-count').textContent=`顯示 ${Math.min(limit,matches.length)}／${matches.length} 篇`;}
+search.addEventListener('input',()=>{limit=10;render();});more.addEventListener('click',()=>{limit+=10;render();});render();

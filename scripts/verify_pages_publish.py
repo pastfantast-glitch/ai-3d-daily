@@ -307,6 +307,24 @@ def verify_once(base_url: str, date: str, data: dict, timeout: int) -> list[str]
             errors.append(f'{name} request failed: {exc}')
 
     errors.extend(visual_errors(base_url, date, timeout))
+    if (ROOT / 'config/collection-admin.json').exists():
+        from collection_settings import load_settings
+        from bs4 import BeautifulSoup
+        for topic in load_settings(ROOT)['topics']:
+            if topic['id'] == 'ai-3d': continue
+            try:
+                page = get(base_url + 'topics/' + topic['id'] + '/', timeout)
+                soup = BeautifulSoup(page.text, 'html.parser')
+                if not soup.body or soup.body.get('data-release-date') != date or soup.body.get('data-topic-id') != topic['id']:
+                    errors.append('topic page version mismatch: ' + topic['id'])
+                expected = {i['id'] for i in data.get('items', []) + data.get('topic_items', []) if topic['id'] in i.get('topic_ids', [])}
+                actual = {c.get('data-intel-id') for c in soup.select('[data-intel-role="card"]')}
+                if not expected <= actual: errors.append('topic page missing canonical articles: ' + topic['id'])
+                for card in soup.select('[data-intel-role="card"]'):
+                    if not card.select_one('figure img') or not card.select_one('details.canonical-analysis'):
+                        errors.append('topic card missing image/analysis: ' + str(card.get('data-intel-id')))
+            except Exception as exc:
+                errors.append('topic page unavailable: ' + topic['id'] + ': ' + str(exc))
     return errors
 
 

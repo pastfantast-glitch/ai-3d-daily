@@ -91,7 +91,7 @@ def load_entries(date):
 
     # Canonical source fallback: every canonical item remains a visual attempt even
     # when upstream omitted explicit visual_evidence.
-    for item in data.get('items') or []:
+    for item in (data.get('items', []) + data.get('topic_items', [])):
         intel_id = item.get('id')
         page_url = item.get('source_url')
         if not intel_id or not page_url or intel_id in seen:

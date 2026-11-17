@@ -90,6 +90,7 @@ def review_record(candidate: dict, errors: list[str]) -> dict:
     evidence = meta.get('article_evidence') or {}
     return {'id': candidate.get('candidate_id'), 'source_url': candidate.get('source_url'),
             'source_title': meta.get('title'), 'source_published_at': meta.get('published'),
+            'topic_ids': candidate.get('topic_ids', ['ai-3d']),
             'description': meta.get('description'), 'evidence': evidence,
             'review_status': (candidate.get('scheduled_review') or {}).get('status', 'needs-human-review'),
             'scheduled_review': candidate.get('scheduled_review') or {},

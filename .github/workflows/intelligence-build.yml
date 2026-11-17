@@ -372,6 +372,8 @@ jobs:
         run: python scripts/extract_visual_assets.py "${{ steps.date.outputs.value }}"
       - name: Inject local previews by stable intelligence ID
         run: python scripts/inject_visual_previews.py "${{ steps.date.outputs.value }}"
+      - name: Render managed topic cards and source metrics
+        run: python scripts/render_topic_pages.py "${{ steps.date.outputs.value }}"
       - name: Apply deterministic release cache bust
         run: python scripts/apply_cache_bust.py "${{ steps.date.outputs.value }}"
       - name: Full publish contract QA
@@ -407,7 +409,7 @@ jobs:
           git add "data/daily/${{ steps.date.outputs.value }}.json" assets/visual index.html
           find . -maxdepth 2 -mindepth 2 -path './20??-??-??/index.html' -print0 | xargs -0 -r git add --
           find "${{ steps.date.outputs.value }}" -mindepth 2 -maxdepth 2 -name index.html -print0 | xargs -0 -r git add --
-          git add history/
+          git add history/ topics/ data/ops/source-metrics.json
           git add -u
           echo 'Atomic publish worktree status:'
           git status --short

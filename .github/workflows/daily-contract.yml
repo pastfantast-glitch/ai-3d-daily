@@ -33,6 +33,17 @@ on:
       - 'config/stability-contract.json'
       - 'config/personalization-feedback.json'
       - 'config/collector-runtime.json'
+      - 'config/collection-admin.json'
+      - 'admin/**'
+      - 'admin.js'
+      - 'admin.css'
+      - 'topics/**'
+      - 'supabase/functions/collection-admin/**'
+      - 'scripts/collection_settings.py'
+      - 'scripts/public_source_http.py'
+      - 'scripts/topic_contract.py'
+      - 'scripts/render_topic_pages.py'
+      - 'scripts/test_collection_admin.py'
       - 'config/editorial-quality.json'
       - 'config/visual-runtime.json'
       - 'data/editorial-overrides/**'
@@ -155,6 +166,9 @@ jobs:
       - uses: actions/setup-python@v6
         with:
           python-version: '3.12'
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
       - name: Install locked pipeline dependencies
         run: pip install -r requirements-pipeline.txt
       - name: Validate changed editorial submission against original evidence
@@ -165,6 +179,11 @@ jobs:
       - name: Validate release architecture, source topology, hybrid discovery, personalization and stability contracts
         run: |
           node --check home.js
+          node --check admin.js
+          node --check topics/catalog.js
+          node --check topics/topic.js
+          node --test supabase/functions/collection-admin/policy.test.mjs
+          npx --yes deno@2.5.6 check supabase/functions/collection-admin/index.ts
           node --check history.js
           node --check archive-nav-state.js
           node --check preference.js
@@ -183,6 +202,7 @@ jobs:
           node --test supabase/functions/ai3d-personalization/policy.test.mjs
           python scripts/check_editorial_quality.py
           python scripts/check_source_qa_coverage.py
+          python scripts/test_collection_admin.py
           python scripts/test_main_ci.py
           python scripts/test_content_supply.py
           python scripts/test_handoff_route.py
