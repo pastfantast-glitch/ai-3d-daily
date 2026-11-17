@@ -123,6 +123,7 @@ class ReliabilityTests(unittest.TestCase):
         # stricter source-evidence policy covered by test_source_quality.py.
         # Fixture copy is supplied explicitly; production no longer invents unreviewed prose.
         for c in cases:
+            c['meta']['published'] = '2026-10-10'
             c['reader_copy'] = {'id':c['candidate_id'],
                 'title':collector.editorial_title(c['meta'],c['category'],c['subcategory']),
                 'summary':collector.production_summary(c['meta'],c['category'],c['subcategory']),

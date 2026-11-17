@@ -35,6 +35,7 @@ from content_quality import admission as content_admission, classify_content, no
 from article_evidence import extract_article_evidence, review_record, loss_summary
 from editorial_review import candidate_copy
 from reader_quality import reader_errors
+from source_quality import source_window_errors
 from content_supply import section_links, retained_entries, reserve_output
 from collector_personalization import load_owner_preferences, apply_candidate_personalization, positive_expansion_terms, expand_source_links
 
@@ -906,6 +907,12 @@ def readable_candidates(candidates: list[dict], report_date: str) -> tuple[list[
     """
     accepted, rejected, copies = [], [], []
     for candidate in candidates:
+        age_errors = source_window_errors({'source_url': candidate['source_url'],
+            'source_published_at': candidate['meta'].get('published')}, report_date)
+        if age_errors:
+            candidate['scheduled_review'] = {'status': 'source-date-ineligible', 'reason': '; '.join(age_errors)}
+            rejected.append((candidate, age_errors))
+            continue
         reviewed, review_errors = candidate_copy(candidate, report_date, ROOT)
         reader = reviewed or candidate.get("reader_copy")
         if reader is None and not reviewed_reader_copy(candidate['meta']):
@@ -1523,7 +1530,7 @@ def main() -> int:
             "source_url": candidate["source_url"],
             "discovery_channels": decision_channels(candidate),
             "decision": "rejected",
-            "reason_code": "editorial-quality-rejected",
+            "reason_code": "source-date-ineligible" if (candidate.get('scheduled_review') or {}).get('status') == 'source-date-ineligible' else "editorial-quality-rejected",
             "editorial_errors": errors,
         })
     maximum = int(intel["collection"]["daily_max_items"])

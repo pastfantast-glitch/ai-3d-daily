@@ -8,6 +8,7 @@ import json
 from pathlib import Path
 import re
 from zoneinfo import ZoneInfo
+from source_quality import source_window_errors
 
 ROOT = Path(__file__).resolve().parents[1]
 CHECKS = ('faithful_to_source', 'dates_and_versions_correct', 'traditional_chinese_clear',
@@ -45,6 +46,9 @@ def read_review(date, root=ROOT):
 
 
 def validate_record(record, article, date):
+    age_errors = source_window_errors(article, date)
+    if age_errors:
+        raise ReviewError('; '.join(age_errors))
     evidence = article.get('evidence') or {}
     try:
         ids = {b['id'] for b in evidence['blocks']}
@@ -98,6 +102,9 @@ def candidate_copy(candidate, date, root=ROOT):
                'source_published_at': candidate['meta'].get('published'),
                'evidence': candidate['meta'].get('article_evidence') or {}}
     try:
+        age_errors = source_window_errors(article, date)
+        if age_errors:
+            raise ReviewError('; '.join(age_errors))
         reader = validate_record(record, article, reviewed_on)
         candidate['scheduled_review'] = {'status': 'approved', 'source_run_id': data['source_run_id'],
             'source_evidence_sha256': article['evidence']['sha256'], 'reviewed_on': reviewed_on,

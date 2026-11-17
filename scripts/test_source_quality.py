@@ -7,12 +7,41 @@ from pathlib import Path
 from types import SimpleNamespace
 from unittest.mock import patch
 
-from source_quality import source_quality_errors, dated_url_upper_bound
+from source_quality import source_quality_errors, dated_url_upper_bound, source_window_errors, source_window_start
 from content_quality import admission, source_content_kind, editorial_title, production_summary
 import run_daily_collector as collector
 
 
 class SourceQualityTests(unittest.TestCase):
+    def test_twelve_calendar_month_boundary_and_leap_day(self):
+        self.assertEqual(str(source_window_start('2026-11-17')), '2025-11-17')
+        self.assertEqual(str(source_window_start('2024-02-29')), '2023-02-28')
+        self.assertEqual(str(source_window_start('2025-02-28')), '2024-02-28')
+        for value, allowed in [('2025-11-17', True), ('2025-11-16', False),
+                               ('2026-11-17', True), ('2026-11-18', False), (None, False), ('bad', False)]:
+            self.assertEqual(not source_window_errors({'source_published_at': value}, '2026-11-17'), allowed)
+
+    def test_historical_label_or_recent_metadata_cannot_override_age(self):
+        item = {'source_url': 'https://example.com/2024/01/tutorial', 'source_published_at': '2026-11-17',
+                'title': '歷史參考｜教學', 'summary': '2024 年的教學'}
+        self.assertTrue(source_window_errors(item, '2026-11-17'))
+
+    def test_publication_gate_preserves_existing_editions_only(self):
+        item = {'source_url': 'https://example.com/old', 'source_published_at': '2024-01-01',
+                'title': '歷史參考｜教學', 'summary': '2024 年的教學'}
+        self.assertEqual(source_quality_errors(item, '2026-11-17'), [])
+        self.assertTrue(source_quality_errors(item, '2026-11-18'))
+
+    def test_expired_candidate_never_consumes_editorial_review(self):
+        c = {'candidate_id': 'old', 'source_url': 'https://example.com/old',
+             'meta': {'published': '2025-11-16'}}
+        with patch.object(collector, 'candidate_copy') as review:
+            accepted, rejected = collector.readable_candidates([c], '2026-11-17')
+        review.assert_not_called()
+        self.assertFalse(accepted)
+        self.assertIn('12 calendar months', rejected[0][1][0])
+        self.assertEqual(c['scheduled_review']['status'], 'source-date-ineligible')
+
     def test_pre_handoff_parity_deferral_requires_valid_evidence_and_stops_at_ready(self):
         import check_pages_tier_contract as pages
         date = '2026-10-13'
@@ -91,13 +120,13 @@ class SourceQualityTests(unittest.TestCase):
         self.assertEqual(result["published"], "2016-05-31")
 
     def test_cached_copy_still_passes_source_evidence_to_gate(self):
-        c = {"candidate_id": "old", "source_url": "https://example.com/2016/05/krita",
-             "meta": {"published": "2016-05-31"}, "reader_copy": {"id": "old"}}
+        c = {"candidate_id": "old", "source_url": "https://example.com/2026/05/krita",
+             "meta": {"published": "2026-05-31"}, "reader_copy": {"id": "old"}}
         with patch.object(collector, "reader_errors", return_value=["old source"]) as gate:
             accepted, rejected = collector.readable_candidates([c], "2026-10-13")
         self.assertFalse(accepted)
         self.assertTrue(rejected)
-        self.assertEqual(gate.call_args.args[0][0]["source_published_at"], "2016-05-31")
+        self.assertEqual(gate.call_args.args[0][0]["source_published_at"], "2026-05-31")
 
 
 if __name__ == "__main__":

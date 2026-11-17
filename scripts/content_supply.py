@@ -3,6 +3,7 @@ from datetime import date
 from urllib.parse import urljoin, urlparse
 from bs4 import BeautifulSoup
 from url_identity import canonicalize_url
+from source_quality import source_window_errors
 
 
 def section_links(html, base, same_domain, limit):
@@ -37,6 +38,8 @@ def retained_entries(entries, report_date, published, max_age_days):
         except (ValueError, KeyError, TypeError):
             continue
         if url.startswith('https://') and url not in published and 0 <= age <= max_age_days:
+            if entry.get('source_published_at') and source_window_errors(entry, report_date):
+                continue
             kept.append({**entry, 'source_url': url})
     return kept
 
@@ -47,16 +50,21 @@ def reserve_output(overflow, retry_entries, previous, report_date, maximum):
     out = {}
     for candidate in overflow:
         url = canonicalize_url(candidate['source_url'])
+        published = (candidate.get('meta') or {}).get('published') or candidate.get('source_published_at')
+        if source_window_errors({'source_url': url, 'source_published_at': published}, report_date):
+            continue
         out[url] = {key: candidate[key] for key in
                     ('source_id', 'title', 'category', 'subcategory', 'ranking_score')}
         out[url].update(id=candidate['candidate_id'], source_url=url,
                         discovered_for=original.get(url, {}).get('discovered_for', report_date),
-                        last_checked=report_date, refresh_status='verified')
+                        last_checked=report_date, refresh_status='verified', source_published_at=published)
     for entry in retry_entries:
         url = entry['source_url']
+        if source_window_errors(entry, report_date):
+            continue
         # Fixed allowlist: never persist evidence, HTML, credentials or reader drafts.
         out.setdefault(url, {**{k: entry[k] for k in (
             'id', 'source_id', 'title', 'source_url', 'category', 'subcategory',
-            'ranking_score', 'discovered_for') if k in entry},
+            'ranking_score', 'discovered_for', 'source_published_at') if k in entry},
             'last_checked': report_date, 'refresh_status': 'temporarily-unavailable'})
     return list(out.values())[:maximum]

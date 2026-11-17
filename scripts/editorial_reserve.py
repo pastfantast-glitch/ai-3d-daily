@@ -6,6 +6,7 @@ fetched evidence and the Collector applies today's reader and registry gates.
 from datetime import date as date_cls
 from functools import lru_cache
 import json
+from source_quality import source_window_errors
 
 
 @lru_cache(maxsize=8)
@@ -25,7 +26,8 @@ def approved_reserve(root, date):
         data = read_review(path.stem, root)
         for record in data['items'].values():
             url = record.get('source_url')
-            if url and url not in published and record.get('review', {}).get('approved') is True:
+            if (url and url not in published and record.get('review', {}).get('approved') is True
+                    and not source_window_errors(record, date)):
                 result.setdefault(url, (data, record))
     return result
 
@@ -38,5 +40,5 @@ def reserve_seeds(root, date, sources):
         source = next((s for s in sources if s.get('enabled', True) and urlparse(s.get('base_url', '')).hostname == urlparse(url).hostname), None)
         if source:
             entries.append({'source_url': url, 'source_id': source['id'], 'title': record['title'],
-                'discovered_for': data['date']})
+                'discovered_for': data['date'], 'source_published_at': record.get('source_published_at')})
     return entries

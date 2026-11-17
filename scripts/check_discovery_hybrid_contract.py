@@ -26,6 +26,11 @@ def main():
     coverage = hybrid.get('coverage_audit') or {}
     low = hybrid.get('low_volume_release') or {}
     backlog = hybrid.get('rolling_backlog') or {}
+    age_policy = hybrid.get('source_age_policy') or {}
+    if (age_policy.get('max_calendar_months') != 12 or age_policy.get('timezone') != 'Asia/Taipei'
+            or age_policy.get('publication_effective_date') != '2026-11-18'
+            or age_policy.get('preserve_published_through') != '2026-11-17'):
+        raise SystemExit('HYBRID CONTRACT FAILED: 12-calendar-month source admission / archive preservation policy drift')
 
     expected_windows = list(col.get('discovery_windows') or [])
     if list(coverage.get('required_windows') or []) != expected_windows:

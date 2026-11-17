@@ -122,6 +122,7 @@ class FeedbackTests(unittest.TestCase):
                 'meta':{'title':title,'description':f'這篇教學說明角色{subjects[i]}的製作流程，提供操作範例供美術在自己的資產上測試與比較。','url':url}})
         # Fixture copy is supplied explicitly; production no longer invents unreviewed prose.
         for c in candidates:
+            c['meta']['published'] = c['published']
             c['reader_copy'] = {'id':c['candidate_id'],
                 'title':collector.editorial_title(c['meta'],c['category'],c['subcategory']),
                 'summary':collector.production_summary(c['meta'],c['category'],c['subcategory']),

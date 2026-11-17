@@ -25,6 +25,7 @@ class ContentSupplyTests(unittest.TestCase):
 
     def test_temporary_failure_survives_without_bodies_and_ttl_is_not_reset(self):
         previous = dict(id='a', source_id='s', title='A', source_url='https://publisher.test/a',
+                        source_published_at='2026-10-01',
                         category='blender-dcc', subcategory='blender', ranking_score=80,
                         discovered_for='2026-11-01', html='private', article_evidence={'raw':'private'})
         candidate = {**previous, 'candidate_id':'a'}
@@ -37,6 +38,15 @@ class ContentSupplyTests(unittest.TestCase):
             self.assertNotIn('html', result)
             self.assertNotIn('article_evidence', result)
         self.assertEqual(reserve_output([candidate], [], [], '2026-11-09', 0), [])
+
+    def test_reserve_expires_by_source_date_not_recent_discovery(self):
+        old = dict(id='a', candidate_id='a', source_id='s', title='A', source_url='https://publisher.test/a',
+                   category='blender-dcc', subcategory='blender', ranking_score=80,
+                   discovered_for='2026-11-17', source_published_at='2025-11-16')
+        self.assertEqual(retained_entries([old], '2026-11-17', set(), 180), [])
+        self.assertEqual(reserve_output([old], [old], [], '2026-11-17', 80), [])
+        fresh = {**old, 'source_published_at': '2025-11-17'}
+        self.assertEqual(len(reserve_output([fresh], [], [], '2026-11-17', 80)), 1)
 
 
 if __name__ == '__main__':

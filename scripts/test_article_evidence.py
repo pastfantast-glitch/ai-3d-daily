@@ -88,6 +88,11 @@ class ArticleEvidenceTests(unittest.TestCase):
         self.assertEqual(summary['rejection_classes'], {'generic-analysis': 1, 'historical-label-missing': 1})
         self.assertTrue(summary['reason_counts_overlap'])
 
+    def test_source_age_rejection_is_not_a_copy_editing_failure(self):
+        c = {'meta': {}}
+        summary = loss_summary([c], [(c, ['source-window: source is older than 12 calendar months'])])
+        self.assertEqual(summary['rejection_classes'], {'source-date-ineligible': 1})
+
 
 if __name__ == '__main__':
     unittest.main()
