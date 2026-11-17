@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   3D 製作｜2026-11-17｜AI 3D Daily
+  </title>
+  <meta content="2026-11-17 3D 製作 Production Intelligence：3D 角色製作 / 3D 物件製作 / 3D 場景製作 / 製作流程，共 2 項可驗證情報。" name="description"/>
+  <link href="../../styles.css?v=20261117-r1-workspace-v11-content-library-nav" rel="stylesheet"/>
+  <link href="../../shared-components.css?v=20261117-r1-workspace-v11-content-library-nav" rel="stylesheet"/>
+  <link href="../../category.css?v=20261117-r1-workspace-v11-content-library-nav" rel="stylesheet"/>
+ </head>
+ <body class="category-page" data-category="3d-production" data-report-date="2026-11-17">
+  <nav aria-label="Production Intelligence 分類" class="global-category-nav">
+   <div class="page global-category-nav-inner">
+    <div class="archive-nav-controls">
+     <a class="archive-nav-home" href="../../">
+      ← 首頁
+     </a>
+     <div class="archive-nav-date">
+      <a aria-label="前一日日報" class="archive-nav-arrow" href="../../2026-11-13/3d-production/">
+       ←
+      </a>
+      <span>
+       2026-11-17
+      </span>
+     </div>
+    </div>
+    <span aria-hidden="true" class="archive-nav-divider">
+    </span>
+    <a class="global-category-link" href="../#top">
+     TOP5
+    </a>
+    <a class="global-category-link" data-category="ai-generation" href="../ai-generation/">
+     AI 生成
+    </a>
+    <a class="global-category-link is-active" data-category="3d-production" href="../3d-production/">
+     3D 製作
+    </a>
+    <a class="global-category-link" data-category="3d-animation" href="../3d-animation/">
+     3D 動作
+    </a>
+    <a class="global-category-link" data-category="engine-art" href="../engine-art/">
+     遊戲引擎
+    </a>
+    <a class="global-category-link" data-category="emerging-case" href="../emerging-case/">
+     新技術 / Case
+    </a>
+    <a class="global-category-link" data-category="blender-dcc" href="../blender-dcc/">
+     Blender / DCC
+    </a>
+    <a class="global-category-link global-history-link" data-global-view="history" href="../../history/">
+     歷史日報
+    </a>
+   </div>
+  </nav>
+  <main class="page category-main">
+   <article class="category-card" data-intel-id="80-level-creating-a-stylized-barcelona-environment-using-a-modular-ar" data-intel-role="card" id="intel-80-level-creating-a-stylized-barcelona-environment-using-a-modular-ar">
+    <div class="category-meta">
+     #05 · environment-production
+    </div>
+    <h2>
+     風格化巴塞隆納街景：用模組建築、平鋪材質與表面變化建立 UE5 場景
+    </h2>
+    <p class="summary">
+     作者先把牆、窗、拱門與門拆成可重用建築模組，再製作平鋪材質與飾條貼圖；進入 Unreal Engine 5 後，以頂點繪製、色彩遮罩、貼花及覆蓋遮罩增加表面變化。
+    </p>
+    <figure class="case-preview" data-intel-id="80-level-creating-a-stylized-barcelona-environment-using-a-modular-ar" data-intel-role="visual" data-visual-id="80-level-creating-a-stylized-barcelona-environment-using-a-modular-ar">
+     <a href="https://80.lv/articles/creating-a-stylized-barcelona-environment-using-a-modular-architecture-kit" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-11-17/80-level-creating-a-stylized-barcelona-environment-using-a-modular-ar.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">場景製作</b> ★★★☆☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       場景製作工作流
+      </h4>
+      <p>
+       建築不以每棟獨立資產處理，而拆成牆、窗、拱門與門等可重用模組；完成後可重新組合立面並調整構圖，不必每次重建整棟建築。
+      </p>
+      <h4>
+       材質製作影響
+      </h4>
+      <p>
+       平鋪材質與 trim sheet 先建立可重用基底，再由頂點繪製、RGB mask、decal 和 overlay mask 打破大面積重複；高度遮罩還能控制材質混合邊界的柔硬程度。
+      </p>
+      <h4>
+       導入限制與驗證
+      </h4>
+      <p>
+       作者花六個月並行完成專案，重點是個人作品的結構化流程；來源沒有提供模組數量、材質指令成本或目標硬體效能，因此大型場景導入仍要實測 draw call、材質複雜度與記憶體。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://80.lv/articles/creating-a-stylized-barcelona-environment-using-a-modular-architecture-kit" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="3dnchu-character-interaction-ue4" data-intel-role="card" id="intel-3dnchu-character-interaction-ue4">
+    <div class="category-meta">
+     #06 · character-production
+    </div>
+    <h2>
+     歷史參考｜Character Interaction Update 3：整合 UE4 角色、武器、載具與 AI
+    </h2>
+    <p class="summary">
+     這篇 2018 年文章介紹 UE4 資產 Character Interaction Update 3，內容涵蓋角色移動、物件互動、拾取與庫存、槍械、近戰、載具及具聽覺與視覺的敵人 AI。
+    </p>
+    <figure class="case-preview" data-intel-id="3dnchu-character-interaction-ue4" data-intel-role="visual" data-visual-id="3dnchu-character-interaction-ue4">
+     <a href="https://3dnchu.com/archives/character-interaction-ue4" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-11-17/3dnchu-character-interaction-ue4.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">角色製作</b> ★★★☆☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       技術流程
+      </h4>
+      <p>
+       資產以程序式混合配合少量動畫處理移動、跳躍、瞄準與換彈，並提供十種互動模板；拾取類別可依角色位置選擇動畫，庫存則區分任務物品、資源與彈藥。
+      </p>
+      <h4>
+       製作影響
+      </h4>
+      <p>
+       武器管理、敵人感知與追蹤、車輛模組和近戰系統已放在同一套範例內，另附 HUD、角色、音效與示範關卡；對原型製作而言，可直接觀察各系統如何串接，而非只取得單一功能。
+      </p>
+      <h4>
+       限制與待驗證
+      </h4>
+      <p>
+       這是 2018 年的歷史資料，文章記載當時更新後只支援 Unreal Engine 4.20，售價為 161.98 美元；這些版本與價格不能視為現況，也沒有提供現代 UE5 專案的相容性證據。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://3dnchu.com/archives/character-interaction-ue4" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <nav aria-label="相鄰分類" class="category-bottom-nav">
+    <a href="../ai-generation/">
+     ← AI 生成
+    </a>
+    <a href="../#top">
+     TOP5
+    </a>
+    <a href="../3d-animation/">
+     3D 動作 →
+    </a>
+   </nav>
+  </main>
+  <script defer="" src="../../archive-nav-state.js?v=20261117-r1-workspace-v11-content-library-nav">
+  </script>
+ </body>
+</html>

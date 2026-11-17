@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   新技術 / Case｜2026-11-17｜AI 3D Daily
+  </title>
+  <meta content="2026-11-17 新技術 / Case Production Intelligence：新技術 / Production Case，共 2 項可驗證情報。" name="description"/>
+  <link href="../../styles.css?v=20261117-r1-workspace-v11-content-library-nav" rel="stylesheet"/>
+  <link href="../../shared-components.css?v=20261117-r1-workspace-v11-content-library-nav" rel="stylesheet"/>
+  <link href="../../category.css?v=20261117-r1-workspace-v11-content-library-nav" rel="stylesheet"/>
+ </head>
+ <body class="category-page" data-category="emerging-case" data-report-date="2026-11-17">
+  <nav aria-label="Production Intelligence 分類" class="global-category-nav">
+   <div class="page global-category-nav-inner">
+    <div class="archive-nav-controls">
+     <a class="archive-nav-home" href="../../">
+      ← 首頁
+     </a>
+     <div class="archive-nav-date">
+      <a aria-label="前一日日報" class="archive-nav-arrow" href="../../2026-11-13/emerging-case/">
+       ←
+      </a>
+      <span>
+       2026-11-17
+      </span>
+     </div>
+    </div>
+    <span aria-hidden="true" class="archive-nav-divider">
+    </span>
+    <a class="global-category-link" href="../#top">
+     TOP5
+    </a>
+    <a class="global-category-link" data-category="ai-generation" href="../ai-generation/">
+     AI 生成
+    </a>
+    <a class="global-category-link" data-category="3d-production" href="../3d-production/">
+     3D 製作
+    </a>
+    <a class="global-category-link" data-category="3d-animation" href="../3d-animation/">
+     3D 動作
+    </a>
+    <a class="global-category-link" data-category="engine-art" href="../engine-art/">
+     遊戲引擎
+    </a>
+    <a class="global-category-link is-active" data-category="emerging-case" href="../emerging-case/">
+     新技術 / Case
+    </a>
+    <a class="global-category-link" data-category="blender-dcc" href="../blender-dcc/">
+     Blender / DCC
+    </a>
+    <a class="global-category-link global-history-link" data-global-view="history" href="../../history/">
+     歷史日報
+    </a>
+   </div>
+  </nav>
+  <main class="page category-main">
+   <article class="category-card" data-intel-id="80-level-how-to-combine-watercolor-painting-with-3d-texturing" data-intel-role="card" id="intel-80-level-how-to-combine-watercolor-painting-with-3d-texturing">
+    <div class="category-meta">
+     #10 · case-study
+    </div>
+    <h2>
+     把水彩畫變成 3D 場景貼圖：從實體繪製到 trim、atlas 與無縫材質
+    </h2>
+    <p class="summary">
+     Beno Raistrick 先依模型形狀繪製實體水彩，再於 Krita 調整階調與對比，整理成 trim sheet、atlas 或無縫貼圖；場景主要靠建模補足凹凸，而不是依賴 normal map。
+    </p>
+    <figure class="case-preview" data-intel-id="80-level-how-to-combine-watercolor-painting-with-3d-texturing" data-intel-role="visual" data-visual-id="80-level-how-to-combine-watercolor-painting-with-3d-texturing">
+     <a href="https://80.lv/articles/how-to-combine-watercolor-painting-with-3d-texturing" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-11-17/80-level-how-to-combine-watercolor-painting-with-3d-texturing.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">製作案例</b> ★★★☆☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       貼圖製作流程
+      </h4>
+      <p>
+       作者先完成建模以確認每個區域需要的貼圖形狀，再用水彩繪製；數位化後在 Krita 調整 levels 與 contrast，將素材擠進 atlas／trim sheet，或用 clone stamp 製作可平鋪版本。
+      </p>
+      <h4>
+       模型與畫面整合
+      </h4>
+      <p>
+       繪製內容會配合物件本身的歪斜與比例，讓模型和筆觸對齊。因作者幾乎不用 normal map，磚牆等立體細節要另外建模；Unreal 內以低角度方向光與較大 source radius 製造柔和夕陽陰影。
+      </p>
+      <h4>
+       限制與待驗證
+      </h4>
+      <p>
+       作者尚未從水彩穩定產生可用的 height／normal map，並明確把這部分留待後續研究。淺景深與 tilt-shift 只用於強化手作模型感，不能替代材質和幾何對齊。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://80.lv/articles/how-to-combine-watercolor-painting-with-3d-texturing" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="3dnchu-splat2mesh" data-intel-role="card" id="intel-3dnchu-splat2mesh">
+    <div class="category-meta">
+     #22 · research
+    </div>
+    <h2>
+     Splat2Mesh：本機將 3DGS 的 PLY 轉為 OBJ 或 GLB 網格
+    </h2>
+    <p class="summary">
+     Arcana 製作所的 Splat2Mesh 可在本機讀取 PLY 高斯潑濺資料，調整網格生成條件後輸出 OBJ 或 GLB，供一般三維編輯、列印及遊戲用途；個人非商用免費，商業使用須另取得授權。
+    </p>
+    <figure class="case-preview" data-intel-id="3dnchu-splat2mesh" data-intel-role="visual" data-visual-id="3dnchu-splat2mesh">
+     <a href="https://3dnchu.com/archives/splat2mesh" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-11-17/3dnchu-splat2mesh.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">研究</b> ★★★☆☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       資料轉換流程
+      </h4>
+      <p>
+       工具接收 PLY 格式的 3D Gaussian Splatting 資料，讓使用者設定網格生成條件，再把結果另存為 OBJ 或 GLB；整個轉換在本機執行，無須把原始 3DGS 傳到外部伺服器。
+      </p>
+      <h4>
+       製作交接影響
+      </h4>
+      <p>
+       3DGS 以高斯集合表示場景，本身沒有一般模型的多邊形表面；轉成網格後，便能進入 Blender 等軟體編輯，或銜接三維列印與遊戲、模擬流程，但來源未保證所有輸入都能產生合用拓樸。
+      </p>
+      <h4>
+       商用與驗證限制
+      </h4>
+      <p>
+       免費範圍包含個人非營利、教育及研究，公司可做有限導入評估；轉換資料若用於商業或業務目的仍需商用授權。文章沒有提供精度、面數與轉換時間數據，無法據此承諾遊戲即用或列印水密性。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://3dnchu.com/archives/splat2mesh" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <nav aria-label="相鄰分類" class="category-bottom-nav">
+    <a href="../engine-art/">
+     ← 遊戲引擎
+    </a>
+    <a href="../#top">
+     TOP5
+    </a>
+    <a href="../blender-dcc/">
+     Blender / DCC →
+    </a>
+   </nav>
+  </main>
+  <script defer="" src="../../archive-nav-state.js?v=20261117-r1-workspace-v11-content-library-nav">
+  </script>
+ </body>
+</html>

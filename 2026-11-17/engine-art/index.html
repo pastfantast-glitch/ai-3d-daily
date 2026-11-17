@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   遊戲引擎｜2026-11-17｜AI 3D Daily
+  </title>
+  <meta content="2026-11-17 遊戲引擎 Production Intelligence：遊戲引擎 / 引擎端美術內容，共 6 項可驗證情報。" name="description"/>
+  <link href="../../styles.css?v=20261117-r1-workspace-v11-content-library-nav" rel="stylesheet"/>
+  <link href="../../shared-components.css?v=20261117-r1-workspace-v11-content-library-nav" rel="stylesheet"/>
+  <link href="../../category.css?v=20261117-r1-workspace-v11-content-library-nav" rel="stylesheet"/>
+ </head>
+ <body class="category-page" data-category="engine-art" data-report-date="2026-11-17">
+  <nav aria-label="Production Intelligence 分類" class="global-category-nav">
+   <div class="page global-category-nav-inner">
+    <div class="archive-nav-controls">
+     <a class="archive-nav-home" href="../../">
+      ← 首頁
+     </a>
+     <div class="archive-nav-date">
+      <a aria-label="前一日日報" class="archive-nav-arrow" href="../../2026-11-13/engine-art/">
+       ←
+      </a>
+      <span>
+       2026-11-17
+      </span>
+     </div>
+    </div>
+    <span aria-hidden="true" class="archive-nav-divider">
+    </span>
+    <a class="global-category-link" href="../#top">
+     TOP5
+    </a>
+    <a class="global-category-link" data-category="ai-generation" href="../ai-generation/">
+     AI 生成
+    </a>
+    <a class="global-category-link" data-category="3d-production" href="../3d-production/">
+     3D 製作
+    </a>
+    <a class="global-category-link" data-category="3d-animation" href="../3d-animation/">
+     3D 動作
+    </a>
+    <a class="global-category-link is-active" data-category="engine-art" href="../engine-art/">
+     遊戲引擎
+    </a>
+    <a class="global-category-link" data-category="emerging-case" href="../emerging-case/">
+     新技術 / Case
+    </a>
+    <a class="global-category-link" data-category="blender-dcc" href="../blender-dcc/">
+     Blender / DCC
+    </a>
+    <a class="global-category-link global-history-link" data-global-view="history" href="../../history/">
+     歷史日報
+    </a>
+   </div>
+  </nav>
+  <main class="page category-main">
+   <article class="category-card" data-intel-id="80-level-faking-a-spherical-planet-with-a-tileable-texture-in-ue5" data-intel-role="card" id="intel-80-level-faking-a-spherical-planet-with-a-tileable-texture-in-ue5">
+    <div class="category-meta">
+     #04 · unreal
+    </div>
+    <h2>
+     UE5 偽球體材質：用平面卡片、立體投影與累積 UV 變換模擬行星
+    </h2>
+    <p class="summary">
+     Alina Ledeneva 以面向攝影機的平面卡片取代球體幾何，材質用立體投影扭曲一般平鋪貼圖；Blueprint 累積相機路徑造成的位移與旋轉，使視角跨越赤道與極區時仍能延續表面運動。
+    </p>
+    <figure class="case-preview" data-intel-id="80-level-faking-a-spherical-planet-with-a-tileable-texture-in-ue5" data-intel-role="visual" data-visual-id="80-level-faking-a-spherical-planet-with-a-tileable-texture-in-ue5">
+     <a href="https://80.lv/articles/faking-a-spherical-planet-with-a-tileable-texture-in-ue5" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-11-17/80-level-faking-a-spherical-planet-with-a-tileable-texture-in-ue5.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">Unreal</b> ★★★☆☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       引擎技術工作流
+      </h4>
+      <p>
+       World Position Offset 只負責讓平面卡片朝向攝影機，材質則把卡片 UV 重建為半球位置後做立體投影；越靠邊緣扭曲越強，形成貼圖包覆凸面的視覺錯覺。
+      </p>
+      <h4>
+       製作影響
+      </h4>
+      <p>
+       表面可直接使用一般平鋪貼圖或程序圖樣，不必先轉成等距柱狀球面圖；完整版本可讓攝影機自由環繞並處理極區旋轉，適合需要持續表面運動的行星效果。
+      </p>
+      <h4>
+       限制與驗證
+      </h4>
+      <p>
+       這是依相機移動歷史累積的二維模擬，不是真正球體旋轉；不同路徑即使停在同一視角也可能看到不同貼圖區域。只需有限視角時可改用純材質簡化版，但跨越極區就不適合。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://80.lv/articles/faking-a-spherical-planet-with-a-tileable-texture-in-ue5" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="3dnchu-r-k-v-a-ue5" data-intel-role="card" id="intel-3dnchu-r-k-v-a-ue5">
+    <div class="category-meta">
+     #15 · unreal
+    </div>
+    <h2>
+     歷史參考｜R.K.V.A：以樣條與模組化懸吊製作 UE5 車輛動畫
+    </h2>
+    <p class="summary">
+     這篇 2024 年文章介紹 R.K.V.A 外掛：以 C++ 建立無需傳統綁定的運動學車輛系統，並向 Blueprint 開放，可沿樣條控制賽車、卡車、機車或巴士等輪式載具。
+    </p>
+    <figure class="case-preview" data-intel-id="3dnchu-r-k-v-a-ue5" data-intel-role="visual" data-visual-id="3dnchu-r-k-v-a-ue5">
+     <a href="https://3dnchu.com/archives/r-k-v-a-ue5" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-11-17/3dnchu-r-k-v-a-ue5.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">Unreal</b> ★★★☆☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       技術流程
+      </h4>
+      <p>
+       外掛以自訂運動學系統驅動關鍵影格車輛，懸吊由模組化框架組裝；車輛固定追隨樣條，不會像物理解法一樣偏離路徑，並可在 Blueprint 延伸基礎模板。
+      </p>
+      <h4>
+       製作影響
+      </h4>
+      <p>
+       其定位是電影式車輛動畫，而不是來源已證實的完整駕駛模擬。對鏡頭製作可推論，樣條約束有利於維持預定走位，但這項推論不代表它能重現碰撞或跳躍物理。
+      </p>
+      <h4>
+       限制與待驗證
+      </h4>
+      <p>
+       文章宣稱從 UE5.0 起相容，並記載當時售價 99.99 美元；作者仍在詢問跳躍、Chaos Vehicle 與可駕駛行為，因此這些能力不應視為已確認。版本與價格也屬 2024 年歷史資訊。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://3dnchu.com/archives/r-k-v-a-ue5" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="3dnchu-3d-gaussian-splatting" data-intel-role="card" id="intel-3dnchu-3d-gaussian-splatting">
+    <div class="category-meta">
+     #17 · rendering
+    </div>
+    <h2>
+     歷史參考｜SIGGRAPH 2023 的 3D Gaussian Splatting 即時視點合成方法
+    </h2>
+    <p class="summary">
+     這篇 2023 年文章整理 3D Gaussian Splatting 論文：方法從相機校正產生的稀疏點出發，以異向性 3D Gaussian、交錯最佳化與可見性導向渲染器，在 1080p 達到每秒至少 30 幀的新視點合成。
+    </p>
+    <figure class="case-preview" data-intel-id="3dnchu-3d-gaussian-splatting" data-intel-role="visual" data-visual-id="3dnchu-3d-gaussian-splatting">
+     <a href="https://3dnchu.com/archives/3d-gaussian-splatting" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-11-17/3dnchu-3d-gaussian-splatting.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">渲染</b> ★★★☆☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       技術流程
+      </h4>
+      <p>
+       場景不用連續神經網路表示，而以 3D Gaussian 保存體積輻射場特性；訓練期間交錯執行參數最佳化與密度控制，並最佳化異向性共變異數以貼合場景。
+      </p>
+      <h4>
+       製作影響
+      </h4>
+      <p>
+       可見性感知的異向性 splatting 同時支援加速訓練與即時渲染。文章引用的個人案例顯示，75 張 DSLR 照片在 RTX 3090 上約處理 30 分鐘，但這是案例數字，不是論文對所有場景的保證。
+      </p>
+      <h4>
+       限制與待驗證
+      </h4>
+      <p>
+       文章列出需 CUDA Compute Capability 7.0 以上 GPU；論文評估品質的訓練需約 24 GB VRAM。降低訓練次數或另調設定可減少記憶體需求，但可能影響最終品質。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://3dnchu.com/archives/3d-gaussian-splatting" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="3dnchu-parametric-cornell-box" data-intel-role="card" id="intel-3dnchu-parametric-cornell-box">
+    <div class="category-meta">
+     #18 · unreal
+    </div>
+    <h2>
+     歷史參考｜UE5 參數化 Cornell Box：集中比較 Lumen、光追與路徑追蹤
+    </h2>
+    <p class="summary">
+     這篇 2023 年文章介紹免費的 Parametric Cornell Box 藍圖資產，可在 UE5 內調整箱體、燈光、牆面材質與測試物件，以受控場景檢查色彩溢出、軟陰影及鏡面反射。
+    </p>
+    <figure class="case-preview" data-intel-id="3dnchu-parametric-cornell-box" data-intel-role="visual" data-visual-id="3dnchu-parametric-cornell-box">
+     <a href="https://3dnchu.com/archives/parametric-cornell-box" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-11-17/3dnchu-parametric-cornell-box.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">Unreal</b> ★★★☆☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       技術流程
+      </h4>
+      <p>
+       將 BP_CornellBox 拖入場景後，可從 Details 面板修改尺寸、牆面、燈光、材質與內容；任一屬性更新時，建構腳本會自動重建整個箱體。
+      </p>
+      <h4>
+       製作影響
+      </h4>
+      <p>
+       同一個受控箱體可切換 Lumen、光線追蹤、路徑追蹤或靜態照明，方便把直接光、全域光、反射與牆面色彩溢出放在一致條件下比較。
+      </p>
+      <h4>
+       限制與待驗證
+      </h4>
+      <p>
+       資產沒有使用 Geometry Scripting；因文章指出動態網格當時未能完整支援 Lumen，實作改以基本靜態網格的實例化與縮放完成。這是 2023 年限制，不能直接代表新版 UE5 現況。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://3dnchu.com/archives/parametric-cornell-box" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="3dnchu-triangle-splatting" data-intel-role="card" id="intel-3dnchu-triangle-splatting">
+    <div class="category-meta">
+     #19 · rendering
+    </div>
+    <h2>
+     歷史參考｜Triangle Splatting：以可微分三角形重建即時輻射場
+    </h2>
+    <p class="summary">
+     這篇 2025 年文章介紹 Triangle Splatting：研究團隊以端到端可微分渲染器直接最佳化三角形，並報告在部分資料集優於 2D／3D Gaussian Splatting 的畫質、收斂速度與渲染吞吐量。
+    </p>
+    <figure class="case-preview" data-intel-id="3dnchu-triangle-splatting" data-intel-role="visual" data-visual-id="3dnchu-triangle-splatting">
+     <a href="https://3dnchu.com/archives/triangle-splatting" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-11-17/3dnchu-triangle-splatting.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">渲染</b> ★★★☆☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       技術流程
+      </h4>
+      <p>
+       每個三角形被當成可微分 splat，透過梯度直接調整；方法試圖同時保留三角形在 GPU 上的效率，以及獨立 primitive 可依場景調整密度的特性。
+      </p>
+      <h4>
+       製作影響
+      </h4>
+      <p>
+       三角形可沿用標準圖形堆疊與 GPU 硬體。論文在 Garden 場景以商用網格渲染器、1280×720 解析度報告每秒超過 2,400 幀，但這是特定場景與渲染條件的研究結果。
+      </p>
+      <h4>
+       限制與待驗證
+      </h4>
+      <p>
+       外部測試者指出當時尚無 Triangle Splatting 即時檢視器，而產業工具已多圍繞 3DGS 建立。文章對 Nanite 相容性只有作者猜測，沒有實驗證據，因此不列為可用功能。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://3dnchu.com/archives/triangle-splatting" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="80-level-unity-cancels-ziva-software" data-intel-role="card" id="intel-80-level-unity-cancels-ziva-software">
+    <div class="category-meta">
+     #21 · unity
+    </div>
+    <h2>
+     歷史參考｜2024 年 Unity 停售 Ziva 工具，DNEG 取得獨家永久授權
+    </h2>
+    <p class="summary">
+     2024 年 Unity 宣布停售 Ziva VFX、Ziva Real-Time、Ziva Face Trainer 等工具並停止技術支援；既有訂閱者當時可轉換五年期授權，Ziva IP 則獨家永久授權給 DNEG。
+    </p>
+    <figure class="case-preview" data-intel-id="80-level-unity-cancels-ziva-software" data-intel-role="visual" data-visual-id="80-level-unity-cancels-ziva-software">
+     <a href="https://80.lv/articles/unity-cancels-ziva-software" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-11-17/80-level-unity-cancels-ziva-software.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">Unity</b> ★★★☆☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       停產決策與技術範圍
+      </h4>
+      <p>
+       Unity 自 2024 年 4 月 2 日停止銷售及支援 Ziva VFX、Ziva Real-Time、Ziva Face Trainer 和相關產品，理由是公司重整後聚焦 Unity Editor、Runtime 與變現方案。
+      </p>
+      <h4>
+       既有授權處理影響
+      </h4>
+      <p>
+       當時的既有訂閱者可透過 Ziva 客戶入口把授權轉成五年期；Unity 保留從 Ziva Dynamics 收購的技術所有權，同時把 Ziva IP 獨家永久授權給 DNEG。
+      </p>
+      <h4>
+       歷史後續與資訊限制
+      </h4>
+      <p>
+       DNEG 表示該工具會支援其生物角色管線與 IXP 部門的即時數位人、遊戲、虛擬演唱會及沉浸式專案；這是 2024 年公告，不能由本文推定目前對外產品狀態。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://80.lv/articles/unity-cancels-ziva-software" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <nav aria-label="相鄰分類" class="category-bottom-nav">
+    <a href="../3d-animation/">
+     ← 3D 動作
+    </a>
+    <a href="../#top">
+     TOP5
+    </a>
+    <a href="../emerging-case/">
+     新技術 / Case →
+    </a>
+   </nav>
+  </main>
+  <script defer="" src="../../archive-nav-state.js?v=20261117-r1-workspace-v11-content-library-nav">
+  </script>
+ </body>
+</html>
