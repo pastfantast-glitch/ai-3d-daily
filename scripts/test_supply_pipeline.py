@@ -17,6 +17,18 @@ import daily_release_status as status
 
 
 class SupplyTests(unittest.TestCase):
+    def test_old_source_cannot_be_reviewed_or_reused_as_reserve(self):
+        a=article();a['source_published_at']='2025-10-14';data=envelope(a)
+        with self.assertRaisesRegex(review.ReviewError,'12 calendar months'):
+            review.validate_packet(data,{'date':DATE,'articles':[a]},DATE)
+        # Initially eligible at review time, then expires before reserve use.
+        a['source_published_at']='2025-10-15';data=envelope(a)
+        review.validate_record(data['items']['fixture'],a,DATE)
+        with tempfile.TemporaryDirectory() as td:
+            root=Path(td);path=root/'data/editorial-reviews'/f'{DATE}.json';path.parent.mkdir(parents=True)
+            path.write_text(json.dumps(data),encoding='utf-8')
+            self.assertEqual(approved_reserve(root,'2026-10-16'),{})
+
     def test_explicit_angles_allow_specific_headings_but_not_missing_angle(self):
         a=article(); data=envelope(a)
         groups=['workflow_or_technical_change','production_impact','test_risk_or_limit']

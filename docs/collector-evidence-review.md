@@ -82,6 +82,12 @@ python scripts/prepare_editorial_review.py collector-review.json review-drafts.j
 
 ## 2026-11-13：發布前檢查與備稿接續
 
+### 2026-11-17 收錄期限更新
+
+後續收集、審稿及備稿取用，只接受以 Asia/Taipei 收集日往前 12 個日曆月內的來源（含起始日及當日）。例如 2026-11-17 收集時最早為 2025-11-17；閏日回推採前一年該月最後一日。必須有已驗證的來源發布日期，未確認日期、未來日期或超期文章不能靠歷史標示、近期發現／審稿日期、刷新網頁 metadata 取得資格。`evergreen` 仍是 discovery 稽核欄位名稱，合格內容同樣受 12 個月上限約束；超過 180 日而未超過上限仍需標示歷史參考與來源年份。
+
+依使用者要求，所有已發布內容保持原樣。`config/discovery-hybrid.json` 記錄保留至 2026-11-17 的既有發布政策；新收錄入口立即使用 `source_window_errors`，2026-11-18 起的發布品質檢查也套用相同上限。既有備稿在取用當日重新核對，超期不再列為可用備稿；不調低發布篇數或文案品質門檻，也不為此重啟今天的 Collector。
+
 - `reader_quality.py` 共用文字、日期／歷史標示、重複及分析深度檢查；審稿包、Collector 和交接使用相同實作。Publisher 的深度驗證沿用同一組函式。
 - 新草稿每段帶 `angle`：`workflow_or_technical_change`、`production_impact`、`test_risk_or_limit`。小標題可依來源自由命名；不能以填入 angle 取代來源核對。既有稿件沒有 angle 時保留舊語意檢查，避免修改歷史資料。
 - PR CI 實際讀取本次唯一審稿檔，用唯讀 GitHub Actions API 取得綁定的 failed main run 與未過期原 artifact，只讀 ZIP 內指定 JSON。低於既有未發布篇數門檻會擋合併；請保留草稿 PR。不得以不需 artifact 的歷史測試代替本次審稿驗證。

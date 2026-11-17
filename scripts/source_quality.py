@@ -1,10 +1,13 @@
 """Source identity and freshness checks shared by selection and publication."""
 from datetime import date
 import calendar
+import json
+from pathlib import Path
 import re
 from urllib.parse import urlparse
 
 EFFECTIVE_DATE = "2026-10-12"
+SOURCE_AGE_POLICY = json.loads((Path(__file__).resolve().parents[1] / 'config/discovery-hybrid.json').read_text('utf-8'))['source_age_policy']
 HISTORICAL = re.compile(r"歷史(?:參考|版本)|舊文回顧")
 GENERIC_ANALYSIS = (
     "可挑與目前作品相近的鏡頭或素材做小型比較",
@@ -27,10 +30,37 @@ def dated_url_upper_bound(url):
         return None
 
 
+def source_window_start(reference_date):
+    today = date.fromisoformat(reference_date)
+    months = today.year * 12 + today.month - 1 - SOURCE_AGE_POLICY['max_calendar_months']
+    year, month = divmod(months, 12)
+    month += 1
+    return date(year, month, min(today.day, calendar.monthrange(year, month)[1]))
+
+
+def source_window_errors(item, reference_date):
+    """New admission always rechecks source age, never discovery/review age."""
+    try:
+        published = date.fromisoformat(item.get('source_published_at'))
+    except (TypeError, ValueError):
+        return ['source-window: verified publication date required']
+    today = date.fromisoformat(reference_date)
+    cutoff = source_window_start(reference_date)
+    url_date = dated_url_upper_bound(str(item.get('source_url') or ''))
+    if published > today or (url_date and url_date.replace(day=1) > today):
+        return ['source-window: source postdates the collection date']
+    if published < cutoff or (url_date and url_date < cutoff):
+        return [f'source-window: source is older than 12 calendar months (earliest {cutoff})']
+    return []
+
+
 def source_quality_errors(item, report_date):
     if report_date < EFFECTIVE_DATE:
         return []
     errors = []
+    # Frozen published archives keep their original admission policy.
+    if report_date >= SOURCE_AGE_POLICY['publication_effective_date']:
+        errors.extend(source_window_errors(item, report_date))
     url = str(item.get("source_url") or "")
     path = urlparse(url).path.rstrip("/").lower()
     industry_index = path.startswith("/industries/") and len(path.strip("/").split("/")) == 2

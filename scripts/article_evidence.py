@@ -102,7 +102,9 @@ def loss_summary(candidates, rejections):
         # Reasons overlap; count each class at most once per rejected article.
         reasons = set()
         for error in errors:
-            if 'awaiting-editorial-review' in error:
+            if 'source-window:' in error:
+                reasons.add('source-date-ineligible')
+            elif 'awaiting-editorial-review' in error:
                 reasons.add('awaiting-review')
             elif 'generic analysis padding' in error:
                 reasons.add('generic-analysis')

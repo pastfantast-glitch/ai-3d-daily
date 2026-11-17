@@ -1,6 +1,13 @@
 {
   "version": 12,
   "effective_date": "2026-09-09",
+  "source_age_policy": {
+    "max_calendar_months": 12,
+    "timezone": "Asia/Taipei",
+    "publication_effective_date": "2026-11-18",
+    "preserve_published_through": "2026-11-17",
+    "purpose": "All new collection, review and reserve use require a verified source date within the preceding 12 calendar months, inclusive. Preserve already published editions through 2026-11-17; apply the shared publication gate to subsequent editions. The evergreen discovery bucket does not waive this limit."
+  },
   "coverage_audit": {
     "required_windows": ["24h", "7d", "30d", "6m", "evergreen"],
     "required_categories": ["ai-generation", "3d-production", "3d-animation", "engine-art", "emerging-case", "blender-dcc"],
@@ -125,7 +132,7 @@
       "rigging_topics": ["skeleton hierarchy and joint placement", "FK and IK fundamentals", "constraints and controller design", "skin weighting and deformation", "twist joints and corrective deformation", "facial rig fundamentals", "game-ready character rigs", "Maya rigging", "Blender rigging", "Unreal Control Rig", "rig export and engine compatibility"],
       "source_preferences": ["official DCC or engine documentation and training", "experienced animator or rigging educator tutorials", "studio or professional production breakdowns", "GDC, SIGGRAPH or reputable training material"],
       "tutorial_policy": "High-quality foundational tutorials are valid production intelligence even when evergreen or beginner-accessible. Favor reproducible teaching, strong visual explanation and direct production transfer; do not require a new product announcement.",
-      "freshness_policy": "Fresh material wins when quality is comparable, but strong 1-6 month and evergreen keypose, body-mechanics and rigging tutorials remain eligible.",
+      "freshness_policy": "Fresh material wins when quality is comparable. Strong keypose, body-mechanics and rigging tutorials remain eligible only within source_age_policy.max_calendar_months; the evergreen discovery bucket cannot waive the verified source-date limit.",
       "diversity_guard": "Tutorials enrich discovery and ranking but never create a per-topic quota. Avoid allowing one DCC, one educator, one publisher or one tutorial theme to dominate the category."
     }
   },
