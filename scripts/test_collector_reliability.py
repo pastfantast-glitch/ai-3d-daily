@@ -7,6 +7,7 @@ from pathlib import Path
 from unittest.mock import patch
 
 import run_daily_collector as collector
+from discovery_hybrid import coverage_audit_errors, load_hybrid_config
 from content_quality import editorial_title, production_summary, reader_language_ok, production_details
 from check_editorial_quality import copy_signature
 
@@ -42,6 +43,9 @@ class ReliabilityTests(unittest.TestCase):
             c = candidate(i, f'Blender：{topic}製作教學', f'這篇教學說明{topic}的製作流程，提供操作範例供美術使用自己的資產測試與比較。')
             c.update(source_id='80-level' if i < 20 else 'cg-channel', title=c['meta']['title'], description=c['meta']['description'], published='2026-10-13',window='24h',brief_reason='single-source-verified-production-tip')
             c['meta']['published'] = '2026-10-13'
+            # Reproduce the production blocker: eligible reserve survives after
+            # the edition reaches its cap and must retain its real audit count.
+            c['from_backlog'] = True
             # This test covers refill/overflow routing. Supply reviewed fixture
             # copy so it does not depend on the unreviewed prose fallback.
             c['reader_copy'] = {
@@ -68,7 +72,7 @@ class ReliabilityTests(unittest.TestCase):
              patch.object(collector.sys, 'argv', ['collector','2026-10-13']), \
              patch.object(collector, 'load_json', side_effect=load), \
              patch.object(collector, 'registered_source_probe_plan', return_value={'selected':['80-level']}), \
-             patch.object(collector, 'registered_source_refill_plan', return_value={'selected':['cg-channel']}), \
+             patch.object(collector, 'registered_source_refill_plan', side_effect=lambda date, visited, *args: {'selected': [] if 'cg-channel' in visited else ['cg-channel']}), \
              patch.object(collector, 'source_probe', side_effect=probe) as mocked, \
              patch.object(collector, 'write_json', side_effect=capture), \
              patch('builtins.print'):
@@ -77,6 +81,20 @@ class ReliabilityTests(unittest.TestCase):
         self.assertEqual(len(outputs['backlog']['items']), 4)
         self.assertEqual(len({x['source_url'] for x in outputs['backlog']['items']}), 4)
         self.assertEqual(len(outputs['data/daily/2026-10-13.json']['items']), 30)
+        daily = outputs['data/daily/2026-10-13.json']
+        self.assertEqual(daily['metadata']['discovery_coverage']['backlog_remaining_eligible'], 4)
+        reserve_ids = {x['id'] for x in outputs['backlog']['items']}
+        self.assertEqual(len(reserve_ids), 4)
+        self.assertFalse(reserve_ids & {x['id'] for x in daily['items']})
+        decisions = outputs['data/candidates/decision-ledger/2026-10-13.json']['items']
+        self.assertEqual({x['candidate_id'] for x in decisions if x['decision'] == 'backlog'}, reserve_ids)
+        # This fixture intentionally uses a two-source probe plan. Probe/ledger
+        # validation has independent contract fixtures; exercise real coverage
+        # validation on the Collector output without substituting its counters.
+        cfg = load_hybrid_config()
+        cfg['coverage_audit']['require_registered_source_probe_when_effective'] = False
+        cfg['coverage_audit']['require_candidate_decision_ledger_when_effective'] = False
+        self.assertEqual(coverage_audit_errors(daily, cfg['coverage_audit']['required_categories'], cfg), [])
 
     def test_blender_headline_after_translation_passes_the_actual_language_rule(self):
         for title in ["Blender 4.2 LTS Is Finally Here", "Blender 4.5 LTS Is Out: Check Out Its Features"]:

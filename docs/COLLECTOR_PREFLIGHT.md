@@ -43,4 +43,11 @@ DONE. This change does not itself collect or publish the missing September 17
 report. Existing ChatGPT Collector task prompts are external to this repository;
 they should invoke this gate rather than stop on an empty PR-only helper result.
 
+When the edition reaches the configured daily maximum, eligible overflow may
+remain in the Collector's rolling backlog. The coverage audit keeps the actual
+`backlog_remaining_eligible` count instead of rewriting it to zero. Editions below
+the maximum, including low-volume releases, must still consume eligible backlog
+before handoff. Source coverage, decision-ledger traceability, deduplication and
+editorial quality remain required; reserve is revalidated before later use.
+
 Regression tests: `python scripts/test_main_ci.py`.
