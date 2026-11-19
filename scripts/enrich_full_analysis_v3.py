@@ -131,21 +131,22 @@ def text_depth_issues(item, min_block_chars, min_total_chars):
     return issues
 
 
-def semantic_issues(item, required_groups):
+def semantic_issues(item, required_groups, depth_cfg=None):
+    depth_cfg = DEPTH if depth_cfg is None else depth_cfg
     issues = []
     labels = ' '.join(clean(b.get('label')) for b in item.get('full_analysis') or [] if isinstance(b, dict))
     blocks = item.get('full_analysis') or []
     if any(isinstance(b, dict) and 'angle' in b for b in blocks):
         angles = [b.get('angle') for b in blocks if isinstance(b, dict)]
-        allowed = set(DEPTH.get('required_semantic_groups') or {})
-        if any(a not in allowed for a in angles):
+        allowed = set(depth_cfg.get('required_semantic_groups') or {})
+        if any(not isinstance(a, str) or a not in allowed for a in angles):
             issues.append('invalid-analysis-angle')
         for group in required_groups or []:
             if group not in angles:
                 issues.append(f'missing-semantic={group}')
         return issues
     # Compatibility for immutable historical datasets and existing reviews.
-    semantic = DEPTH.get('required_semantic_groups') or {}
+    semantic = depth_cfg.get('required_semantic_groups') or {}
     for group in required_groups or []:
         keywords = semantic.get(group) or []
         if not any(str(k) in labels for k in keywords):

@@ -3,6 +3,7 @@ from pathlib import Path
 import json,re,sys
 from bs4 import BeautifulSoup
 from intelligence_v2 import is_v2_dataset, homepage_cards, homepage_groups, category_items, load_config
+from enrich_full_analysis_v3 import semantic_issues
 
 ROOT=Path(__file__).resolve().parents[1]
 DEPTH_PATH=ROOT/'config'/'full-analysis-depth.json'
@@ -68,11 +69,8 @@ def validate_blocks(date,rid,record,min_blocks,max_blocks,min_block_chars,min_to
     summary=norm(record.get('summary')).casefold()
     for i,text in enumerate(texts,1):
         if text and text==summary: errors.append(f'{date}: {rid} block {i} merely repeats summary')
-    joined=' '.join(norm(b.get('label')) for b in blocks if isinstance(b,dict))
-    semantic=depth_cfg.get('required_semantic_groups') or {}
-    for group in require_semantics:
-        if not any(str(k) in joined for k in semantic.get(group,[])):
-            errors.append(f'{date}: {rid} {level_name} analysis missing semantic angle: {group}')
+    for issue in semantic_issues(record, require_semantics, depth_cfg):
+        errors.append(f'{date}: {rid} {level_name} analysis {issue}')
 
 def brief_policy_for_date(date,depth_cfg):
     effective=str(depth_cfg.get('brief_reading_contract_effective_date','9999-12-31'))

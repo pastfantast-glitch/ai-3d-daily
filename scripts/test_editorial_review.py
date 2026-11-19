@@ -48,6 +48,34 @@ def candidate(a):
 
 
 class Tests(unittest.TestCase):
+    def test_reviewed_explicit_angles_pass_publisher_with_editorial_headings(self):
+        import check_intelligence_contract as publish
+        a = article()
+        data = envelope(a)
+        labels = ('畫出衣褶', '對照修改前後', '僅示範單件衣物')
+        angles = ('workflow_or_technical_change', 'production_impact', 'test_risk_or_limit')
+        for block, label, angle in zip(data['items'][a['id']]['full_analysis'], labels, angles):
+            block.update(label=label, angle=angle)
+        packet = {'date': DATE, 'source_run_id': 123, 'source_head_sha': SHA, 'articles': [a]}
+        reader = review.validate_packet(data, packet, DATE)[0]
+        reader['brief_reason'] = 'practical-tutorial-limited-depth'
+        depth = json.loads(publish.DEPTH_PATH.read_text('utf-8'))
+        with patch.object(publish, 'errors', []):
+            publish.validate_depth(DATE, a['id'], reader, {}, depth)
+            self.assertEqual(publish.errors, [])
+        for bad in (None, [], 'unknown', 'workflow_or_technical_change'):
+            changed = copy.deepcopy(reader)
+            changed['full_analysis'][2]['angle'] = bad
+            with patch.object(publish, 'errors', []):
+                publish.validate_depth(DATE, a['id'], changed, {}, depth)
+                self.assertTrue(publish.errors, bad)
+        # Existing archived headings without explicit fields remain compatible.
+        legacy = review.validate_record(record(a), a, DATE)
+        legacy['brief_reason'] = reader['brief_reason']
+        with patch.object(publish, 'errors', []):
+            publish.validate_depth(DATE, a['id'], legacy, {}, depth)
+            self.assertEqual(publish.errors, [])
+
     def test_scheduled_helper_keeps_drafts_unapproved(self):
         from prepare_editorial_review import scheduled_drafts
         a = article()

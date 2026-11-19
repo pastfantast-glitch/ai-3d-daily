@@ -38,6 +38,12 @@ The `collection-admin` function was deployed to the existing project from commit
 
 Official references: [Supabase deployment](https://supabase.com/docs/guides/functions/deploy), [Edge Function secrets](https://supabase.com/docs/guides/functions/secrets).
 
+### Deployment checkpoint: 2026-11-19
+
+The owner authorized a dedicated fine-grained credential restricted to this repository (Contents read/write and required Metadata read-only), expiring 2026-12-18. It was created and stored as `COLLECTION_GITHUB_TOKEN` in the existing project's encrypted Edge Function secrets. No credential is stored in the repository or frontend. Authenticated owner verification and production read/write remain required before this deployment is complete.
+
+The 2026-11-19 Publisher exposed an additional validation mismatch: its intelligence contract checked heading keywords even when reviewed blocks supplied explicit `angle` fields. The Publisher now calls the same semantic validator as reader review, including fail-closed checks for invalid or missing angles and compatibility for archived blocks without explicit fields. Regression coverage passes reviewed copy through both review and publication depth checks; the actual 15 candidate articles pass both checks without changing their text.
+
 ## Verification
 
 `python scripts/test_collection_admin.py` covers settings validity, source/topic pausing, keyword/date exclusions, calendar boundaries, RSS-only custom topics, combined main/topic/reserve persistence, source evidence review, image-card rendering and private-address rejection. `node --test supabase/functions/collection-admin/policy.test.mjs` exercises the actual handler with mocked external services: owner checks, fixed-path writes, file-SHA conflict handling and rejected dispatches.
