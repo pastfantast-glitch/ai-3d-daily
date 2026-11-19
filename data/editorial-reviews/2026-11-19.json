@@ -1,0 +1,1065 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-19",
+  "reviewer": "chatgpt-scheduled-task",
+  "source_run_id": 44422737804,
+  "source_head_sha": "373ca97e2dbb6a7e36b88f79ac0f4146396c8c5b",
+  "items": {
+    "80-level-full-circle-building-terminal-escape-from-tarkov-s-final-loc": {
+      "source_url": "https://80.lv/articles/full-circle-building-terminal-escape-from-tarkov-s-final-location",
+      "source_published_at": "2026-11-16",
+      "source_evidence_sha256": "8d40c88228bd12a6bc114dd0fdd585d218859594e35ccd11188e680d55669731",
+      "reviewed_on": "2026-11-19",
+      "title": "《逃離塔科夫》終章港口：以夜間照明與可見性剔除系統支撐過場演出",
+      "summary": "團隊分享終章地圖 Terminal 的製作：先用港口參考與灰盒測試行進節奏，再針對永久夜景、鏡頭跳接及角色近景改造燈光與可見性系統。",
+      "analysis_level": "BRIEF",
+      "content_kind": "practice",
+      "evidence_refs": [
+        "p008",
+        "p009",
+        "p010",
+        "p011",
+        "p012",
+        "p021",
+        "p024",
+        "p025",
+        "p040",
+        "p041",
+        "p028",
+        "p029",
+        "p030",
+        "p031",
+        "p001"
+      ],
+      "full_analysis": [
+        {
+          "label": "先以灰盒確認港口節奏",
+          "text": "團隊把參考照片投到簡單灰盒建築上，先判斷尺度與氣氛，並將港口劃成約二十區。主美早期親自計時走完整張地圖，之後才依區域難度分派製作。",
+          "angle": "workflow_or_technical_change",
+          "evidence_refs": [
+            "p008",
+            "p009",
+            "p010",
+            "p011",
+            "p012"
+          ]
+        },
+        {
+          "label": "照明與過場共同調整",
+          "text": "永久夜景採用多盞大型、以無陰影為主的燈光照亮主要路線；角色過場另外使用專用燈組。動畫先在 Maya 製作，再於 Unity Timeline 手動調整剪輯、節奏與鏡頭。",
+          "angle": "production_impact",
+          "evidence_refs": [
+            "p021",
+            "p024",
+            "p025",
+            "p040",
+            "p041"
+          ]
+        },
+        {
+          "label": "鏡頭跳接暴露預載限制",
+          "text": "原有可見性格網能配合步行預載，卻跟不上過場鏡頭一次跳過多個格子，因而出現物件突然顯示。團隊擴充大格子支援並重烘開場區域，修正鏡頭跳接造成的可見性問題。",
+          "angle": "test_risk_or_limit",
+          "evidence_refs": [
+            "p028",
+            "p029",
+            "p030",
+            "p031"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p008",
+          "p009",
+          "p010",
+          "p011",
+          "p012",
+          "p021",
+          "p024",
+          "p025",
+          "p040",
+          "p041",
+          "p028",
+          "p029",
+          "p030",
+          "p031",
+          "p001"
+        ]
+      }
+    },
+    "80-level-revopoint-s-miraco-2-combines-portable-3d-scanning-with-auto": {
+      "source_url": "https://80.lv/articles/revopoint-s-miraco-2-combines-portable-3d-scanning-with-automated-scan-to-cad",
+      "source_published_at": "2026-11-18",
+      "source_evidence_sha256": "2f619b6280a1779d3afd5202a903b750a73c40486684696f59ba07c8ef49eaa6",
+      "reviewed_on": "2026-11-19",
+      "title": "MIRACO 2 發表：手持掃描結合等比例 3DGS 與規劃中的 CAD 自動處理",
+      "summary": "Revopoint 介紹 MIRACO 2 的六種掃描模式與機上處理，並列出 11 月 18 日的募資計畫。連接電腦可輸出具有實際尺度的 3D Gaussian Splatting；Revo Agents 的掃描轉 CAD 與檢測則屬規劃中的流程。",
+      "analysis_level": "BRIEF",
+      "content_kind": "news",
+      "evidence_refs": [
+        "p004",
+        "p005",
+        "p006",
+        "p007",
+        "p008",
+        "p014",
+        "p015",
+        "p018",
+        "p012",
+        "p013",
+        "p016",
+        "p003",
+        "p011",
+        "p021"
+      ],
+      "full_analysis": [
+        {
+          "label": "掃描與資料處理配置",
+          "text": "裝置可獨立掃描、預覽及編修，也可透過無線或有線方式連接電腦。六種模式分別涵蓋大面積、精細細節與狹縫；文中的最高精度數字是廠商宣稱，並非獨立實測。",
+          "angle": "workflow_or_technical_change",
+          "evidence_refs": [
+            "p004",
+            "p005",
+            "p006",
+            "p007",
+            "p008"
+          ]
+        },
+        {
+          "label": "保留空間的實際尺度",
+          "text": "連接電腦後可輸出一比一尺度的 .splat，保留真實尺寸，供空間記錄、數位分身與 XR 展示使用。雙 RGB 相機則分別對應近距離物體與較大物體、環境的彩色擷取。",
+          "angle": "production_impact",
+          "evidence_refs": [
+            "p014",
+            "p015",
+            "p018"
+          ]
+        },
+        {
+          "label": "展示資料與可編輯模型的差別",
+          "text": "原文明確區分 3DGS 與傳統多邊形網格：許多編修、動畫及模擬工作仍需要網格。規劃中的 CAD 轉換與公差分析也仍須人工核對，不能把自動處理視為已驗證的工程結果。",
+          "angle": "test_risk_or_limit",
+          "evidence_refs": [
+            "p012",
+            "p013",
+            "p016"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p004",
+          "p005",
+          "p006",
+          "p007",
+          "p008",
+          "p014",
+          "p015",
+          "p018",
+          "p012",
+          "p013",
+          "p016",
+          "p003",
+          "p011",
+          "p021"
+        ]
+      }
+    },
+    "80-level-blender-studio-announces-ambitious-feature-film-project": {
+      "source_url": "https://80.lv/articles/blender-studio-announces-ambitious-feature-film-project",
+      "source_published_at": "2026-07-08",
+      "source_evidence_sha256": "ed055e1871f70916c67a774baf3feb5e8c94ee551a560ef9881bc5a6458a30bc",
+      "reviewed_on": "2026-11-19",
+      "title": "Blender Studio 的《Overgrown》計畫：以長片製作累積開源流程文件",
+      "summary": "這篇 2026 年 7 月的報導介紹 Blender Studio 的長片計畫《Overgrown》：團隊希望把工具與文件整理成可供小型團隊參考的製作手冊，當時仍在尋求訂閱支持與後續發行機會。",
+      "analysis_level": "BRIEF",
+      "content_kind": "practice",
+      "evidence_refs": [
+        "p001",
+        "p003",
+        "p006",
+        "p005",
+        "p007",
+        "p008"
+      ],
+      "full_analysis": [
+        {
+          "label": "以長片驗證工具組合",
+          "text": "計畫的目標是把開源工具與完整文件組成長片製作流程。團隊強調本地端、以創作者為中心的製作目標，希望不依賴雲端服務或生成式 AI，讓獨立製作者能研究並延伸這套工具。",
+          "angle": "workflow_or_technical_change",
+          "evidence_refs": [
+            "p001",
+            "p003",
+            "p006"
+          ]
+        },
+        {
+          "label": "小團隊可參考的製作手冊",
+          "text": "報導將工具、文件與製作中的內容視為可研究及延伸的資源，並表示工作進度會放在 Studio 部落格。對獨立團隊而言，這提供了觀察長片流程如何建立的入口。",
+          "angle": "production_impact",
+          "evidence_refs": [
+            "p005",
+            "p006",
+            "p007"
+          ]
+        },
+        {
+          "label": "募資目標不代表已達成",
+          "text": "文章當時提出九月初達到七千名訂閱者的目標，以取得尋找買家與發行商所需的最低支持。這是七月報導中的計畫條件，正文沒有提供目標完成或長片交付的後續證據。",
+          "angle": "test_risk_or_limit",
+          "evidence_refs": [
+            "p008"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p003",
+          "p006",
+          "p005",
+          "p007",
+          "p008"
+        ]
+      }
+    },
+    "cg-channel-nevercenter-releases-silo-2027": {
+      "source_url": "https://www.cgchannel.com/2026/11/nevercenter-releases-silo-2027",
+      "source_published_at": "2026-11-17",
+      "source_evidence_sha256": "a01905b5838d82800cf442dfd919b05118ef53681729122c543fb5effd8af876",
+      "reviewed_on": "2026-11-19",
+      "title": "Silo 2027.0 加入腳本編輯器與 MCP，開放以 JavaScript 自動化建模",
+      "summary": "Nevercenter 的 Silo 2027.0 新增 JavaScript 腳本 API、內建編輯器與 MCP 伺服器，可建立自訂工具或連接外部 AI 工具；此次也改善橋接操作、glTF 材質及部分檔案往返。",
+      "analysis_level": "BRIEF",
+      "content_kind": "news",
+      "evidence_refs": [
+        "p007",
+        "p008",
+        "p009",
+        "p010",
+        "p011",
+        "p012",
+        "p014",
+        "p015",
+        "p016",
+        "p017",
+        "p013"
+      ],
+      "full_analysis": [
+        {
+          "label": "腳本可帶自己的操作介面",
+          "text": "新的 API 包含超過一百個函式，涵蓋網格、選取、材質、UV 與攝影機。腳本可由內建或外部編輯器撰寫，完成後從選單執行，或使用帶數值欄位與核取方塊的獨立視窗。",
+          "angle": "workflow_or_technical_change",
+          "evidence_refs": [
+            "p007",
+            "p008",
+            "p009",
+            "p010",
+            "p011"
+          ]
+        },
+        {
+          "label": "自動化與資產交換一同改善",
+          "text": "MCP 伺服器讓外部 AI 工具透過這套 JavaScript API 控制 Silo；glTF 匯出則改善 PBR 材質並保留摺痕與內嵌貼圖。這些變更分別對應操作自動化與跨工具資產傳遞。",
+          "angle": "production_impact",
+          "evidence_refs": [
+            "p012",
+            "p014",
+            "p015"
+          ]
+        },
+        {
+          "label": "效能與配套版本須分開理解",
+          "text": "報導提到大型模型操作和法線重算加快，但沒有量化速度提升；配套渲染器 Milo 當時仍為 2026.0。不能把 Silo 的版本更新解讀為整套工具同步更新或固定倍數加速。",
+          "angle": "test_risk_or_limit",
+          "evidence_refs": [
+            "p016",
+            "p017"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p007",
+          "p008",
+          "p009",
+          "p010",
+          "p011",
+          "p012",
+          "p014",
+          "p015",
+          "p016",
+          "p017",
+          "p013"
+        ]
+      }
+    },
+    "cg-channel-see-how-framestore-created-odin-the-cg-dog-for-heart-of-the": {
+      "source_url": "https://www.cgchannel.com/2026/11/see-how-framestore-created-odin-the-cg-dog-for-heart-of-the-beast",
+      "source_published_at": "2026-11-13",
+      "source_evidence_sha256": "405f7ff1493c4bbb79fe64fcdb218e21296e2a6366f37d3f60b157a70549c7a3",
+      "reviewed_on": "2026-11-19",
+      "title": "Framestore 拆解《Heart of the Beast》：數位動物與整體軟組織模擬",
+      "summary": "Framestore 分享《Heart of the Beast》的動物視效：德國牧羊犬 Odin 在約 110 個鏡頭中為完整 CG，狼與熊則使用把肌肉、脂肪及皮膚一起計算的 Fat Solver。",
+      "analysis_level": "BRIEF",
+      "content_kind": "practice",
+      "evidence_refs": [
+        "p007",
+        "p008",
+        "p003",
+        "p004",
+        "p005",
+        "p002"
+      ],
+      "full_analysis": [
+        {
+          "label": "軟組織不再分開求解",
+          "text": "狼與熊使用工作室自有的 Fat Solver，把肌肉、脂肪及皮膚視為互相連結的單一體積計算。製作人員表示，這種方式能在快速動作中維持整體慣性與軟組織的一致性。",
+          "angle": "workflow_or_technical_change",
+          "evidence_refs": [
+            "p007",
+            "p008"
+          ]
+        },
+        {
+          "label": "依鏡頭混合實拍與數位角色",
+          "text": "Odin 約七成出場時間使用實拍，有時替換嘴鼻部，另外約一百一十個鏡頭使用完整 CG。狼群段落也從實拍狗隻與機械道具，轉向以 CG 資產呈現激烈動作。",
+          "angle": "production_impact",
+          "evidence_refs": [
+            "p003",
+            "p004",
+            "p005"
+          ]
+        },
+        {
+          "label": "技術歸屬不能混用",
+          "text": "報導把 Fat Solver 的使用對象明確寫為狼與熊，沒有同樣說明 Odin 使用這套求解器。因此可參考各動物的鏡頭分工，但不能將工作室某項技術推定為所有角色的共同做法。",
+          "angle": "test_risk_or_limit",
+          "evidence_refs": [
+            "p003",
+            "p007",
+            "p008"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p007",
+          "p008",
+          "p003",
+          "p004",
+          "p005",
+          "p002"
+        ]
+      }
+    },
+    "cg-channel-see-untold-studios-brilliant-vfx-breakdown-for-hyundai-littl": {
+      "source_url": "https://www.cgchannel.com/2026/11/see-untold-studios-brilliant-vfx-breakdown-for-hyundai-little-warrior",
+      "source_published_at": "2026-11-16",
+      "source_evidence_sha256": "ee95ab5275110f8fae27516dcf9b877acaf7e1b8d0b60185f7728b78f18cfcc6",
+      "reviewed_on": "2026-11-19",
+      "title": "《Little Warrior》廣告拆解：怪獸角色、唾液模擬與競技場群眾",
+      "summary": "Untold Studios 公開《Little Warrior》六十秒廣告的視效拆解，從怪獸概念、外觀開發與動畫一路展示到口中唾液模擬，也呈現競技場資產及個別群眾角色。",
+      "analysis_level": "BRIEF",
+      "content_kind": "practice",
+      "evidence_refs": [
+        "p004",
+        "p003",
+        "p005",
+        "p006"
+      ],
+      "full_analysis": [
+        {
+          "label": "怪獸從概念走到最終畫面",
+          "text": "拆解影片沿著概念設計、外觀開發、角色綁定與動畫呈現怪獸製作，還展示口中拉絲唾液的模擬。這提供了同一角色在不同製作階段的對照，而非只有完成渲染。",
+          "angle": "workflow_or_technical_change",
+          "evidence_refs": [
+            "p004"
+          ]
+        },
+        {
+          "label": "場景與群眾一起閱讀",
+          "text": "競技場部分同時展示場景 CG 資產、群眾模擬與個別觀眾角色。推論：讀者可藉此對照大場面和單體資產的關係，理解廣告中的戰鬥畫面由哪些元素組成。",
+          "angle": "production_impact",
+          "evidence_refs": [
+            "p003",
+            "p005"
+          ]
+        },
+        {
+          "label": "拆解尚未交代工具細節",
+          "text": "文章列出角色與群眾的製作階段，但技術資訊欄明確表示尚無其他資料；未提供使用軟體、求解參數或製作耗時。因此本篇定位為視效拆解參考，不視為可直接重建的操作教學。",
+          "angle": "test_risk_or_limit",
+          "evidence_refs": [
+            "p004",
+            "p005",
+            "p006"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p004",
+          "p003",
+          "p005",
+          "p006"
+        ]
+      }
+    },
+    "cg-channel-watch-image-engines-vfx-breakdown-for-the-mandalorian-and-gr": {
+      "source_url": "https://www.cgchannel.com/2026/10/watch-image-engines-vfx-breakdown-for-the-mandalorian-and-grogu",
+      "source_published_at": "2026-10-26",
+      "source_evidence_sha256": "1ea5d3359c8c1a5ee4cbbeced6a91368b45f349cb8126816be639bb6fb89868d",
+      "reviewed_on": "2026-11-19",
+      "title": "Image Engine 公開《曼達洛人與古古》視效拆解，呈現角色與場景鏡頭",
+      "summary": "Image Engine 分享《The Mandalorian and Grogu》的視效成果，報導列出 154 個角色、環境與動作鏡頭，並點名爬蟲類漁夫 Gatori 及吞吐古古的巨型外星蛙。",
+      "analysis_level": "BRIEF",
+      "content_kind": "practice",
+      "evidence_refs": [
+        "p001",
+        "p002",
+        "p003",
+        "p004"
+      ],
+      "full_analysis": [
+        {
+          "label": "延續影集的視效製作",
+          "text": "工作室在《曼達洛人》影集的製作基礎上，為這部真人電影交付一百五十四個視效鏡頭，範圍包含角色、環境與動作段落；這個數字指鏡頭數，不是模型或角色數量。",
+          "angle": "workflow_or_technical_change",
+          "evidence_refs": [
+            "p001",
+            "p002"
+          ]
+        },
+        {
+          "label": "角色表演的觀察切入點",
+          "text": "報導特別列出漁夫 Gatori，以及吞下再吐出古古的巨型外星蛙。推論：這兩個角色可作為觀看拆解時比較角色外型與動作敘事的切入點，但正文沒有提供綁定製作細節。",
+          "angle": "production_impact",
+          "evidence_refs": [
+            "p003",
+            "p004"
+          ]
+        },
+        {
+          "label": "沒有公開可重現的技術流程",
+          "text": "這是一則拆解影片介紹，技術資訊欄標示尚無其他資料，並未列出軟體、模擬方法或資產規格。因此只能確認工作範圍與展示角色，不能據此宣稱特定工具或效能成果。",
+          "angle": "test_risk_or_limit",
+          "evidence_refs": [
+            "p002",
+            "p003",
+            "p004"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p002",
+          "p003",
+          "p004"
+        ]
+      }
+    },
+    "cg-channel-tutorial-snow-simulation-workflows-in-houdini": {
+      "source_url": "https://www.cgchannel.com/2026/06/tutorial-snow-simulation-workflows-in-houdini",
+      "source_published_at": "2026-06-13",
+      "source_evidence_sha256": "74e6583bc5eeae6024df3ed0ee5410325a33d0af3f421cd5c9736167f080fb23",
+      "reviewed_on": "2026-11-19",
+      "title": "Houdini 積雪教學：結合 Vellum 主模擬與 Pyro、POP 次級效果",
+      "summary": "Gnomon Workshop 的中階課程以角色穿越深雪為例，介紹可反覆調整的 Vellum 積雪流程，並加入 Pyro、POP 次級效果及 Solaris、Karma 渲染概念，附可下載的專案檔。",
+      "analysis_level": "BRIEF",
+      "content_kind": "practice",
+      "evidence_refs": [
+        "p001",
+        "p003",
+        "p004",
+        "p005",
+        "p006",
+        "p002",
+        "p009",
+        "p010"
+      ],
+      "full_analysis": [
+        {
+          "label": "先建立可調整的主模擬",
+          "text": "課程使用 Houdini 的 Vellum 工具處理角色涉過深雪的互動，強調反覆迭代與藝術控制，並涵蓋設定最佳化及問題排查。報導也指出這種思路可延伸到沙與泥的模擬。",
+          "angle": "workflow_or_technical_change",
+          "evidence_refs": [
+            "p001",
+            "p003",
+            "p004"
+          ]
+        },
+        {
+          "label": "次級效果與專案檔連在一起",
+          "text": "主積雪之外，教學加入 Pyro 和 POP 技術處理次級效果，並觸及 Solaris 與 Karma 的雪景渲染。除免費 HDR 燈光探針外，資產均在 Houdini 建立，完整專案檔隨課程提供。",
+          "angle": "production_impact",
+          "evidence_refs": [
+            "p005",
+            "p006"
+          ]
+        },
+        {
+          "label": "課程層級與取得方式",
+          "text": "報導將課程定位為中階、影片超過六小時，透過 Gnomon Workshop 訂閱取得。這篇文章是課程介紹，不能把完整專案檔的提供解讀成無須訂閱即可自由取得全部教學。",
+          "angle": "test_risk_or_limit",
+          "evidence_refs": [
+            "p002",
+            "p006",
+            "p009",
+            "p010"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p003",
+          "p004",
+          "p005",
+          "p006",
+          "p002",
+          "p009",
+          "p010"
+        ]
+      }
+    },
+    "blender-official-tablet-path-to-release": {
+      "source_url": "https://code.blender.org/2026/11/tablet-path-to-release",
+      "source_published_at": "2026-11-18",
+      "source_evidence_sha256": "10cc8facfc2c2ae01e4a69e96adfe6758a6ea2205ffdf4adf10f0a026bc717a7",
+      "reviewed_on": "2026-11-19",
+      "title": "Blender 公布平板版推出路線：先完成基礎平台，再逐步改善觸控工作流",
+      "summary": "Blender 團隊整理 2026 年十月工作坊的平板開發計畫，先處理平台建置、每日版本與商店測試，再調整觸控介面及跨裝置檔案流程；這是開發路線，並非完整平板版已正式推出。",
+      "analysis_level": "BRIEF",
+      "content_kind": "news",
+      "evidence_refs": [
+        "p010",
+        "p011",
+        "p012",
+        "p014",
+        "p016",
+        "p018",
+        "p019",
+        "p033",
+        "p034",
+        "p038",
+        "p042",
+        "p043",
+        "p044",
+        "p013",
+        "p020",
+        "p021",
+        "p023",
+        "p087",
+        "p088",
+        "p001",
+        "p002",
+        "p003"
+      ],
+      "full_analysis": [
+        {
+          "label": "先接上既有建置流程",
+          "text": "計畫先簡化平板版本建置，再整合既有持續建置基礎設施、每日版本及裝置測試。初期要完整使用仍需外接鍵盤、滑鼠或觸控板，完整觸控與手勢支援會在後續推進。",
+          "angle": "workflow_or_technical_change",
+          "evidence_refs": [
+            "p010",
+            "p011",
+            "p012",
+            "p014",
+            "p016",
+            "p018",
+            "p019"
+          ]
+        },
+        {
+          "label": "處理桌面與平板的檔案交接",
+          "text": "團隊以桌面建模、平板雕刻與貼圖、再回桌面重拓撲及渲染作為使用情境，規劃傳送整份檔案或含依賴的部分資料。這些是希望實作的操作，不是已可直接使用的同步功能。",
+          "angle": "production_impact",
+          "evidence_refs": [
+            "p033",
+            "p034",
+            "p038",
+            "p042",
+            "p043",
+            "p044"
+          ]
+        },
+        {
+          "label": "硬體與發行仍有階段限制",
+          "text": "初期資源聚焦高階 Android 平板及近期 iOS 裝置，其他硬體可能有顯示或效能問題。透過商店發布仍須先通過核准，所有工作區也不會一開始就完成平板最佳化。",
+          "angle": "test_risk_or_limit",
+          "evidence_refs": [
+            "p013",
+            "p020",
+            "p021",
+            "p023",
+            "p087",
+            "p088"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p010",
+          "p011",
+          "p012",
+          "p014",
+          "p016",
+          "p018",
+          "p019",
+          "p033",
+          "p034",
+          "p038",
+          "p042",
+          "p043",
+          "p044",
+          "p013",
+          "p020",
+          "p021",
+          "p023",
+          "p087",
+          "p088",
+          "p001",
+          "p002",
+          "p003"
+        ]
+      }
+    },
+    "3dnchu-hairdeck": {
+      "source_url": "https://3dnchu.com/archives/hairdeck",
+      "source_published_at": "2026-11-16",
+      "source_evidence_sha256": "7f1b89937c62dd724155d40bcf40965f968a95f672c21a18485dfa3e7bce8067",
+      "reviewed_on": "2026-11-19",
+      "title": "HairDeck 從單張圖片生成髮片，並建立彈簧骨骼與蒙皮",
+      "summary": "HairDeck 研究把每張髮片表示為一個 token，由擴散 Transformer 生成髮型，再用另一模型產生彈簧骨骼並綁定髮片；可輸出 GLB、附帶角色的 VRM 與擺動預覽。",
+      "analysis_level": "BRIEF",
+      "content_kind": "news",
+      "evidence_refs": [
+        "p003",
+        "p004",
+        "p007",
+        "p005",
+        "p006",
+        "p009",
+        "p010",
+        "p011",
+        "p012",
+        "p013"
+      ],
+      "full_analysis": [
+        {
+          "label": "髮片與骨骼分開生成",
+          "text": "輸出保留個別帶 UV 的髮片，而非把整個髮型合成單一網格；另一生成模型建立彈簧骨骼鏈並將髮片綁定。這讓研究同時處理髮型形狀與後續擺動所需的設定。",
+          "angle": "workflow_or_technical_change",
+          "evidence_refs": [
+            "p003",
+            "p004",
+            "p007"
+          ]
+        },
+        {
+          "label": "顏色與擺動可一同檢視",
+          "text": "系統依輸入圖片預測沿髮片的顏色，支援雙色髮型，並可從一張圖片產生一至四個候選。輸出除了 GLB 與附帶角色的 VRM，也包含轉動頭部檢視髮絲擺動的影片。",
+          "angle": "production_impact",
+          "evidence_refs": [
+            "p005",
+            "p006"
+          ]
+        },
+        {
+          "label": "本體授權不涵蓋所有依賴",
+          "text": "原文說明本體程式與模型採 Apache-2.0，但外部模型、程式及資料集各有授權；本地安裝還需同意 SAM 3 與 DINOv3 的條件。不能只看本體免費公開就忽略依賴條款。",
+          "angle": "test_risk_or_limit",
+          "evidence_refs": [
+            "p009",
+            "p010",
+            "p011",
+            "p012",
+            "p013"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p003",
+          "p004",
+          "p007",
+          "p005",
+          "p006",
+          "p009",
+          "p010",
+          "p011",
+          "p012",
+          "p013"
+        ]
+      }
+    },
+    "3dnchu-hairharpy-v2-0": {
+      "source_url": "https://3dnchu.com/archives/hairharpy-v2-0",
+      "source_published_at": "2026-11-16",
+      "source_evidence_sha256": "be46ea53fea75f6a706934f4c7b275f7272e01350961d906dff6a85050967225",
+      "reviewed_on": "2026-11-19",
+      "title": "HairHarpy 2.0 改為桌面程式，以曲線製作髮束並加入重拓撲空間",
+      "summary": "HairHarpy 2.0.0 從瀏覽器工具改為 Windows、Linux 桌面程式，以曲線與 NURBS 曲面構造髮束，加入獨立重拓撲工作區，並支援多種網格格式及 Blender、Maya 橋接。",
+      "analysis_level": "BRIEF",
+      "content_kind": "news",
+      "evidence_refs": [
+        "p002",
+        "p003",
+        "p004",
+        "p005",
+        "p006",
+        "p008",
+        "p012",
+        "p013",
+        "p001"
+      ],
+      "full_analysis": [
+        {
+          "label": "以曲線關係控制髮束",
+          "text": "工具可調整網格密度與邊線，並以 Weld 合併控制點、Zip 組成共用主幹，以及沿其他曲線路徑貼合的方式，安排髮束合流、分岔與排列，再轉成網格。",
+          "angle": "workflow_or_technical_change",
+          "evidence_refs": [
+            "p002",
+            "p003",
+            "p004"
+          ]
+        },
+        {
+          "label": "髮型製作與網格整理銜接",
+          "text": "Hair Room 與 Topology Room 分別處理髮型及重拓撲，後者提供高模表面重拓撲、吸附、群組與頂點法線編修。完成後可輸出多種網格格式，或透過橋接送到 Blender、Maya。",
+          "angle": "production_impact",
+          "evidence_refs": [
+            "p005",
+            "p006",
+            "p008"
+          ]
+        },
+        {
+          "label": "區分正式功能與測試項目",
+          "text": "UV 編輯器仍在測試階段；文末提到的 ZBrush 髮型自動重拓撲則是 2.0.1 的測試項目，不能當成 2.0.0 已交付功能。桌面版另需支援 Vulkan 1.1 的 GPU 驅動程式。",
+          "angle": "test_risk_or_limit",
+          "evidence_refs": [
+            "p005",
+            "p012",
+            "p013"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p002",
+          "p003",
+          "p004",
+          "p005",
+          "p006",
+          "p008",
+          "p012",
+          "p013",
+          "p001"
+        ]
+      }
+    },
+    "3dnchu-blender-5-3": {
+      "source_url": "https://3dnchu.com/archives/blender-5-3",
+      "source_published_at": "2026-11-17",
+      "source_evidence_sha256": "0b2621743a51699eb5c4553a40416daa11f1eeb983f0b39af563e5ad7fda42f7",
+      "reviewed_on": "2026-11-19",
+      "title": "Blender 5.3 加入原生 3DGS 處理與可控制燈光反應的新節點",
+      "summary": "3D人報導 Blender 5.3 於 11 月 10 日推出，新增 3D Gaussian Splatting 匯入、編輯與渲染，並改善 EEVEE 材質燈光控制、Cycles 視窗去噪及專案設定管理。",
+      "analysis_level": "BRIEF",
+      "content_kind": "news",
+      "evidence_refs": [
+        "p003",
+        "p004",
+        "p005",
+        "p006",
+        "p007",
+        "p008",
+        "p009",
+        "p010",
+        "p017",
+        "p018",
+        "p012",
+        "p013",
+        "p014",
+        "p001",
+        "p002"
+      ],
+      "full_analysis": [
+        {
+          "label": "點群進入既有節點與渲染流程",
+          "text": "3DGS 可從 PLY、SPZ 載入為點群，使用 Geometry Nodes 處理，並在 EEVEE、Cycles 渲染，也可在 Workbench 實體模式查看。這將重建資料帶入 Blender 既有編輯環境。",
+          "angle": "workflow_or_technical_change",
+          "evidence_refs": [
+            "p003",
+            "p004",
+            "p005",
+            "p006",
+            "p007"
+          ]
+        },
+        {
+          "label": "燈光反應與專案設定可細分",
+          "text": "EEVEE 的 Material Lighting 節點提供燈光顏色、強度、方向與陰影資訊，供卡通等材質反應設計；另有選用的專案管理，可按根目錄管理路徑變數、資產庫與色彩設定。",
+          "angle": "production_impact",
+          "evidence_refs": [
+            "p008",
+            "p009",
+            "p010",
+            "p017",
+            "p018"
+          ]
+        },
+        {
+          "label": "匯入支援不等於完整往返",
+          "text": "原文指出 3DGS 尚不能匯出，效能仍在最佳化，色彩空間差異可能影響顯示。Cycles 的 DLSS 視窗去噪另需相容 NVIDIA GPU 與 620 以上驅動，不能將新功能視為所有硬體皆可用。",
+          "angle": "test_risk_or_limit",
+          "evidence_refs": [
+            "p007",
+            "p012",
+            "p013",
+            "p014"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p003",
+          "p004",
+          "p005",
+          "p006",
+          "p007",
+          "p008",
+          "p009",
+          "p010",
+          "p017",
+          "p018",
+          "p012",
+          "p013",
+          "p014",
+          "p001",
+          "p002"
+        ]
+      }
+    },
+    "3dnchu-floaters-blenderbros-josh": {
+      "source_url": "https://3dnchu.com/archives/floaters-blenderbros-josh",
+      "source_published_at": "2026-11-14",
+      "source_evidence_sha256": "206b5325f906871d657b847bd4266521ba98f3441a89b1061162593692a701f3",
+      "reviewed_on": "2026-11-19",
+      "title": "Blender 浮動細節教學：以 Shrinkwrap 與法線轉移貼合獨立零件",
+      "summary": "Blender Bros 的 Josh 示範把細節做成獨立浮動零件，以面吸附、頂點群組和 Shrinkwrap 調整接觸，再透過 Data Transfer 與共用材質處理邊界外觀。",
+      "analysis_level": "BRIEF",
+      "content_kind": "practice",
+      "evidence_refs": [
+        "p003",
+        "p004",
+        "p005",
+        "p002",
+        "p006",
+        "p007",
+        "p001"
+      ],
+      "full_analysis": [
+        {
+          "label": "獨立零件貼合本體表面",
+          "text": "教學先建立浮動零件並用面吸附放置，再透過頂點群組與 Shrinkwrap 調整接觸部分，最後以 Data Transfer 轉移自訂法線，搭配共用材質使邊界看起來連貫。",
+          "angle": "workflow_or_technical_change",
+          "evidence_refs": [
+            "p003",
+            "p004",
+            "p005"
+          ]
+        },
+        {
+          "label": "保留細節的移動與複用空間",
+          "text": "浮動細節與本體是分開的物件，無須直接把細節刻進本體網格，放置後仍能移動或複製。推論：這對反覆調整裝飾位置或重複使用同一零件的建模流程有參考價值。",
+          "angle": "production_impact",
+          "evidence_refs": [
+            "p002"
+          ]
+        },
+        {
+          "label": "標準功能與額外素材分開看",
+          "text": "正文說明浮動零件可使用 Blender 標準功能建立，但影片後半段的面板和裝飾則採用 MaterialWorks 貼花。兩段方法的依賴不同，不能把後半段素材也視為 Blender 內建內容。",
+          "angle": "test_risk_or_limit",
+          "evidence_refs": [
+            "p002",
+            "p006",
+            "p007"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p003",
+          "p004",
+          "p005",
+          "p002",
+          "p006",
+          "p007",
+          "p001"
+        ]
+      }
+    }
+  }
+}
