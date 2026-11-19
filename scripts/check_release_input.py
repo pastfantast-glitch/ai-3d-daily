@@ -147,6 +147,8 @@ def validate_with_hybrid(data, strict_pool=True):
         errors = [e for e in errors if not _is_legacy_tier_error(e)]
         errors.extend(_tier_aware_errors(data, depth))
 
+    from topic_contract import topic_errors
+    errors.extend(topic_errors(data))
     if not strict_pool:
         return errors
 

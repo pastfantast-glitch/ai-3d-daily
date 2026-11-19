@@ -32,6 +32,7 @@ Exit codes:
 """
 from collections import Counter
 from pathlib import Path
+from collection_settings import all_items
 import json
 import re
 import sys
@@ -172,7 +173,7 @@ def prior_registry(target_date):
             continue
         data = json.loads(p.read_text('utf-8'))
         source_by_id = published_source_by_id(p.stem)
-        for item in data.get('items', []):
+        for item in all_items(data):
             rid = str(item.get('id', '')).strip()
             src = source_by_id.get(rid) or norm_url(item.get('source_url'))
             if rid:

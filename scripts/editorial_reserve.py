@@ -6,6 +6,7 @@ fetched evidence and the Collector applies today's reader and registry gates.
 from datetime import date as date_cls
 from functools import lru_cache
 import json
+from collection_settings import all_items
 from source_quality import source_window_errors
 
 
@@ -17,7 +18,7 @@ def approved_reserve(root, date):
         edition = path.name[:10]
         data_path = root / 'data/daily' / f'{edition}.json'
         if data_path.exists():
-            published.update(i.get('source_url') for i in json.loads(data_path.read_text('utf-8')).get('items', []))
+            published.update(i.get('source_url') for i in all_items(json.loads(data_path.read_text('utf-8'))))
     result = {}
     for path in sorted((root / 'data/editorial-reviews').glob('20??-??-??.json'), reverse=True):
         age = (date_cls.fromisoformat(date) - date_cls.fromisoformat(path.stem)).days

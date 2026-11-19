@@ -2,6 +2,7 @@
 from pathlib import Path
 import datetime as dt
 import json
+from collection_settings import snapshot_hybrid, all_items
 import re
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -355,7 +356,7 @@ def _category_count(value):
 
 
 def registered_source_probe_errors(data, cfg=None):
-    cfg = cfg or load_hybrid_config()
+    cfg = snapshot_hybrid(data, cfg or load_hybrid_config())
     if not registered_source_probe_applies(data, cfg):
         return []
     probe_cfg = cfg.get('registered_source_coverage_probe') or {}
@@ -441,7 +442,7 @@ def registered_source_probe_errors(data, cfg=None):
 
 
 def candidate_decision_ledger_errors(data, cfg=None, ledger_data=None):
-    cfg = cfg or load_hybrid_config()
+    cfg = snapshot_hybrid(data, cfg or load_hybrid_config())
     if not candidate_decision_ledger_applies(data, cfg):
         return []
     ledger_cfg = cfg.get('candidate_decision_ledger') or {}
@@ -468,7 +469,7 @@ def candidate_decision_ledger_errors(data, cfg=None, ledger_data=None):
     terminal = set(ledger_cfg.get('terminal_decisions') or [])
     seen = set()
     by_id = {}
-    canonical_ids = {str(x.get('id', '')).strip() for x in data.get('items') or [] if str(x.get('id', '')).strip()}
+    canonical_ids = {str(x.get('id', '')).strip() for x in all_items(data) if str(x.get('id', '')).strip()}
     published_canonical = set()
     for index, item in enumerate(items, 1):
         if not isinstance(item, dict):
@@ -521,7 +522,7 @@ def candidate_decision_ledger_errors(data, cfg=None, ledger_data=None):
 
 
 def coverage_audit_errors(data, category_ids, cfg=None):
-    cfg = cfg or load_hybrid_config()
+    cfg = snapshot_hybrid(data, cfg or load_hybrid_config())
     if not hybrid_applies(data, cfg):
         return []
     meta = data.get('metadata') or {}

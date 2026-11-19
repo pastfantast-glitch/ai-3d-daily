@@ -80,7 +80,8 @@ def sync_candidate_decision_ledger(target, canonical_items=None):
     if not isinstance(ledger, dict) or not isinstance(ledger.get('items'), list):
         return
 
-    canonical_items = [x for x in canonical_items if isinstance(x, dict)]
+    extras = json.loads(data_path.read_text('utf-8')).get('topic_items', []) if data_path.exists() else []
+    canonical_items = list({x['id']:x for x in list(canonical_items) + extras if isinstance(x,dict)}.values())
     canonical_ids = {
         str(x.get('id', '')).strip()
         for x in canonical_items

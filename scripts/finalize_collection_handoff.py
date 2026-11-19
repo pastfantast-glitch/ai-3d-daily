@@ -135,7 +135,9 @@ def parse_args(argv):
 def collector_data_errors(data):
     """Validate only collector-owned invariants; never require rendered public HTML."""
     from reader_quality import reader_errors
-    errors = reader_errors(data.get("items") or [], data["date"])
+    from collection_settings import all_items
+    from topic_contract import topic_errors
+    errors = reader_errors(all_items(data), data["date"]) + topic_errors(data)
     errors += list(validate_v2_dataset(data, strict_pool=True))
     cfg = load_intelligence_config()
     category_ids = [str(x.get("id", "")).strip() for x in (cfg.get("categories") or [])]

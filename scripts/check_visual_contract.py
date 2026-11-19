@@ -29,7 +29,7 @@ def visual_candidates(data):
         source=cfg.get('source_url')
         if source:
             candidates[intel_id]={'source_url':source,'explicit':True}
-    for item in data.get('items') or []:
+    for item in (data.get('items', []) + data.get('topic_items', [])):
         intel_id=item.get('id'); source=item.get('source_url')
         if not intel_id or not source or intel_id in disabled or intel_id in candidates:
             continue
@@ -99,6 +99,12 @@ def main():
         for intel_id,rec in renderable.items():
             assert_preview(errors,'home',ROOT/'index.html','',intel_id,rec)
             assert_preview(errors,'daily',ROOT/date/'index.html','../',intel_id,rec)
+    for item in data.get('topic_items', []):
+        rec = renderable.get(item['id'])
+        if rec:
+            for tid in item.get('topic_ids', []):
+                if tid != 'ai-3d':
+                    assert_preview(errors, 'topic:' + tid, ROOT/'topics'/tid/'index.html', '../../', item['id'], rec)
     attempted=len(enabled); success=len(ok); fallback_count=len(fallback); rendered=len(renderable)
     if contract_version>=2 and rendered!=attempted: errors.append(f'renderable visual coverage must be complete: {rendered}/{attempted}')
     print(f'VISUAL COVERAGE {date}: contract=v{contract_version} extracted={success} fallback={fallback_count} rendered={rendered}/{attempted} canonical candidates')

@@ -101,6 +101,7 @@ def main() -> None:
             "ids": [x.get("id") for x in canonical.get("items") or []],
             "render_revision": canonical.get("render_revision"),
         },
+        "topics": __import__("topic_contract").topic_receipt(canonical),
         "visual": visual_summary(args.date),
     }
 
