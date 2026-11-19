@@ -7,6 +7,24 @@ import re
 from urllib.parse import urlsplit
 
 
+def workflow_mutation_errors(content):
+    parts = content.split('      - name: Persist bounded Collector monitoring metadata', 1)
+    if len(parts) != 2 or parts[0].count('git commit ') != 1 or parts[0].count('git push ') != 1:
+        return ['Collector must have one canonical/private artifact commit path']
+    monitor = parts[1]
+    required = (
+        'git add data/ops/collection-monitor.json',
+        'test "$(git diff --cached --name-only)" = "data/ops/collection-monitor.json"',
+        'git diff --cached --quiet ||',
+        'test "$(git rev-parse HEAD)" = "$(git rev-parse origin/main)"',
+        'git commit -m "Record Collector monitor $DATE"',
+    )
+    if (any(monitor.count(command) != 1 for command in ('git add ', 'git commit ', 'git push '))
+            or any(token not in monitor for token in required)):
+        return ['Collector monitoring must only commit its fixed metadata path with a current-main guard']
+    return []
+
+
 def summarize(packet, conclusion):
     date = packet.get('date', '')
     run = packet.get('source_run_id')

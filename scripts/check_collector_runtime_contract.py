@@ -161,15 +161,9 @@ if WORKFLOW.exists():
             fail(f"daily-collector.yml missing restricted-writer token: {token}")
     if "index.html" in content or "assets/visual" in content or ".request" in content or ".ready" in content:
         fail("daily-collector.yml must not stage public surfaces/request/ready")
-    operational = content.split('      - name: Persist bounded Collector monitoring metadata', 1)
-    if len(operational) != 2 or operational[0].count('git commit ') != 1 or operational[0].count('git push ') != 1:
-        fail('daily-collector.yml must have one canonical/private artifact commit path')
-    elif (operational[1].count('git commit ') != 1 or operational[1].count('git push ') != 1
-          or 'git add data/ops/collection-monitor.json' not in operational[1]
-          or 'test "$(git diff --cached --name-only)" = "data/ops/collection-monitor.json"' not in operational[1]
-          or 'git diff --cached --quiet ||' not in operational[1]
-          or 'test "$(git rev-parse HEAD)" = "$(git rev-parse origin/main)"' not in operational[1]):
-        fail('Collector monitoring must only commit its fixed metadata path with a current-main guard')
+    from collection_monitor import workflow_mutation_errors
+    for issue in workflow_mutation_errors(content):
+        fail(issue)
 
 if HANDOFF.exists():
     content = HANDOFF.read_text("utf-8")

@@ -9,6 +9,13 @@ class AdminOperations(unittest.TestCase):
   packet={'date':'2026-11-19','source_run_id':123,'source_head_sha':'a'*40,'secret':'NEVER','summary':{'content_supply':{'selected':15,'private':'NEVER'}},'articles':[{'id':'one','source_url':'https://example.com/a','source_title':'Title','evidence':{'status':'extracted','truncated':False,'paragraphs':['NEVER']},'html':'NEVER','editorial_errors':['awaiting-editorial-review']}], 'sources':{'example':{'status':'ok','private':'NEVER'}}}
   r=summarize(packet,'failure');self.assertNotIn('NEVER',json.dumps(r));self.assertTrue(r['articles'][0]['body_readable']);self.assertEqual(r['counts'],{'selected':15})
   with self.assertRaises(ValueError):summarize({**packet,'source_run_id':None},'failure')
+ def test_monitor_workflow_scope_is_shared_and_fail_closed(self):
+  from collection_monitor import workflow_mutation_errors
+  workflow=(Path(__file__).resolve().parents[1]/'.github/workflows/daily-collector.yml').read_text('utf-8')
+  self.assertEqual(workflow_mutation_errors(workflow),[])
+  for token in ['git add data/ops/collection-monitor.json','git diff --cached --quiet ||','test "$(git rev-parse HEAD)" = "$(git rev-parse origin/main)"']:
+   self.assertTrue(workflow_mutation_errors(workflow.replace(token,'unsafe')))
+  self.assertTrue(workflow_mutation_errors(workflow+'\n          git add scripts/evil.py\n'))
  def test_holds_strict_and_optional(self):
   with tempfile.TemporaryDirectory() as tmp:
    root=Path(tmp);self.assertEqual(held_urls(root),set());(root/'config').mkdir();p=root/'config/editorial-selection.json';p.write_text(json.dumps({'schema_version':1,'held_urls':['https://example.com/a']}));self.assertEqual(held_urls(root),{'https://example.com/a'});p.write_text('{"schema_version":1,"held_urls":[],"approved":true}')

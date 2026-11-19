@@ -118,8 +118,9 @@ else:
     ):
         if token not in autonomous:
             fail(f'autonomous Collector missing restricted-writer token: {token}')
-    if autonomous.count('git commit ') != 1 or autonomous.count('git push ') != 1:
-        fail('autonomous Collector must have exactly one artifact commit/push path')
+    from collection_monitor import workflow_mutation_errors
+    for issue in workflow_mutation_errors(autonomous):
+        fail(issue)
     for forbidden in ('index.html', 'assets/visual', '.request', '.ready', 'write_publish_receipt.py', 'prepare_release_candidate.py'):
         if forbidden in autonomous:
             fail(f'autonomous Collector crossed canonical/public boundary: {forbidden}')
