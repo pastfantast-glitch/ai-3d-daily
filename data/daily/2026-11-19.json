@@ -1,0 +1,931 @@
+{
+  "date": "2026-11-19",
+  "schema_version": 3,
+  "metadata": {
+    "content_supply": {
+      "schema_version": 1,
+      "date": "2026-11-19",
+      "body_readable": 57,
+      "review_approved": 25,
+      "awaiting_review": 5,
+      "quality_pass_unpublished": 15,
+      "selected": 15,
+      "published": null,
+      "approved_reserve": 0,
+      "note": "Registry dedupe precedes prose QA; review_approved counts recorded approvals, quality_pass_unpublished counts final unique survivors; selected is not published."
+    },
+    "total_items": 15,
+    "collection_mode": "production-intelligence-preference-v1-hybrid",
+    "collection_contract_effective_date": "2026-09-04",
+    "preference_contract_effective_date": "2026-09-06",
+    "admission_policy_effective_date": "2026-09-15",
+    "collector_runtime": "autonomous-github-collector-v1",
+    "policy_recollect": false,
+    "discovery_windows": [
+      "24h",
+      "7d",
+      "30d",
+      "6m",
+      "evergreen"
+    ],
+    "analysis_level_counts": {
+      "FULL": 0,
+      "BRIEF": 15,
+      "REJECT": 0
+    },
+    "analysis_level_policy": "evidence-depth-tiered; FULL=3-5 source-supported blocks; BRIEF=3 readable source-grounded angles with explicit limits; REJECT=not-publishable",
+    "full_analysis_depth_contract": "v6-tiered-evidence-three-angle-reading",
+    "full_analysis_style_reference": "2026-09-12",
+    "full_analysis_heading_language": "zh-Hant",
+    "editorial": {
+      "contract": "source-grounded-editorial-v1",
+      "style_reference": "2026-09-25",
+      "selection_changed": null,
+      "factual_fallback_allowed": true,
+      "repair_mode": "automatic-source-factual-fallback"
+    },
+    "discovery_coverage": {
+      "fill_ladder_exhausted": true,
+      "backlog_checked": true,
+      "backlog_remaining_eligible": 0,
+      "targeted_refill_performed": true,
+      "quality_first_confirmed": true,
+      "windows": {
+        "24h": {
+          "status": "exhausted",
+          "candidates_found": 2
+        },
+        "7d": {
+          "status": "exhausted",
+          "candidates_found": 13
+        },
+        "30d": {
+          "status": "exhausted",
+          "candidates_found": 15
+        },
+        "6m": {
+          "status": "exhausted",
+          "candidates_found": 6
+        },
+        "evergreen": {
+          "status": "exhausted",
+          "candidates_found": 42
+        }
+      },
+      "category_candidates": {
+        "ai-generation": {
+          "candidates_considered": 2
+        },
+        "3d-production": {
+          "candidates_considered": 8
+        },
+        "3d-animation": {
+          "candidates_considered": 7
+        },
+        "engine-art": {
+          "candidates_considered": 15
+        },
+        "emerging-case": {
+          "candidates_considered": 6
+        },
+        "blender-dcc": {
+          "candidates_considered": 38
+        }
+      },
+      "registered_source_probe": {
+        "performed": true,
+        "initial_selected": [
+          "80-level",
+          "artstation",
+          "gumroad-discover",
+          "xiaohongshu",
+          "cg-channel",
+          "blender-official",
+          "epic-developer-community",
+          "unity-official",
+          "sidefx-official"
+        ],
+        "refill_selected": [
+          "autodesk-area",
+          "adobe-substance-3d",
+          "game-developer",
+          "3dnchu",
+          "cgworld-jp",
+          "bilibili-mobile"
+        ],
+        "refill_batches": 2,
+        "pre_refill_survivors": 11,
+        "post_refill_survivors": 15,
+        "sources": {
+          "80-level": {
+            "status": "checked",
+            "method": "latest-index",
+            "candidates_found": 8,
+            "candidate_ids": [
+              "80-level-full-circle-building-terminal-escape-from-tarkov-s-final-loc",
+              "80-level-revopoint-s-miraco-2-combines-portable-3d-scanning-with-auto",
+              "80-level-blender-guru-showcased-blender-s-new-dlss-upscaling-denoisin",
+              "80-level-blender-to-add-native-texture-layer-system",
+              "80-level-blender-5-3-has-finally-arrived",
+              "80-level-creating-a-ghibli-inspired-island-in-blender-ue5-substance-3",
+              "80-level-creating-a-stylized-medieval-town-in-3ds-max-substance-unrea",
+              "80-level-blender-studio-announces-ambitious-feature-film-project"
+            ],
+            "index_pages_checked": 2,
+            "feed_urls_checked": 0,
+            "category_indexes_checked": 0,
+            "article_pages_checked": 51,
+            "evidence_extracted": 8,
+            "refill_links_checked": 20,
+            "semantic_expansion_links_checked": 0,
+            "published_links_skipped": 9,
+            "selection_phase": "daily-plan"
+          },
+          "3dnchu": {
+            "status": "checked",
+            "method": "latest-index",
+            "candidates_found": 17,
+            "candidate_ids": [
+              "3dnchu-hairdeck",
+              "3dnchu-hairharpy-v2-0",
+              "3dnchu-blender-5-3",
+              "3dnchu-floaters-blenderbros-josh",
+              "3dnchu-chord-ubisoft",
+              "3dnchu-game-animation-sample-project",
+              "3dnchu-make-your-animations-dynamic-using-control-rig-ue5",
+              "3dnchu-blender-mcp",
+              "3dnchu-blender-metahuman-groom-startarkit",
+              "3dnchu-blenderboi-free-addons",
+              "3dnchu-ktt-for-houdini",
+              "3dnchu-maya-rigging-3rd-edition",
+              "3dnchu-mecha-transformation-animation-masterclass-wingfox",
+              "3dnchu-mnpr-for-maya",
+              "3dnchu-mpp-v0-5",
+              "3dnchu-uvfactory-for-blender",
+              "3dnchu-zibravdb-openvdb"
+            ],
+            "index_pages_checked": 5,
+            "feed_urls_checked": 3,
+            "category_indexes_checked": 4,
+            "article_pages_checked": 66,
+            "evidence_extracted": 17,
+            "refill_links_checked": 20,
+            "semantic_expansion_links_checked": 6,
+            "published_links_skipped": 20,
+            "selection_phase": "targeted-refill"
+          },
+          "cgworld-jp": {
+            "status": "checked",
+            "method": "latest-index",
+            "candidates_found": 4,
+            "candidate_ids": [
+              "cgworld-jp-substance-3d-designer",
+              "cgworld-jp-01-202504-zorah-substance",
+              "cgworld-jp-02-2505-jaakko-saari-substance",
+              "cgworld-jp-02-2507-substance-3d7"
+            ],
+            "index_pages_checked": 2,
+            "feed_urls_checked": 0,
+            "category_indexes_checked": 0,
+            "article_pages_checked": 45,
+            "evidence_extracted": 3,
+            "refill_links_checked": 5,
+            "semantic_expansion_links_checked": 0,
+            "published_links_skipped": 7,
+            "selection_phase": "targeted-refill"
+          },
+          "bilibili-mobile": {
+            "status": "checked",
+            "method": "latest-index",
+            "candidates_found": 0,
+            "candidate_ids": [],
+            "index_pages_checked": 1,
+            "feed_urls_checked": 0,
+            "category_indexes_checked": 0,
+            "article_pages_checked": 0,
+            "evidence_extracted": 0,
+            "refill_links_checked": 0,
+            "semantic_expansion_links_checked": 0,
+            "published_links_skipped": 0,
+            "selection_phase": "targeted-refill"
+          },
+          "artstation": {
+            "status": "blocked",
+            "method": "latest-index",
+            "candidates_found": 0,
+            "candidate_ids": [],
+            "reason": "http-403",
+            "index_pages_checked": 0,
+            "feed_urls_checked": 0,
+            "refill_links_checked": 0,
+            "selection_phase": "daily-plan"
+          },
+          "gumroad-discover": {
+            "status": "checked",
+            "method": "latest-index",
+            "candidates_found": 0,
+            "candidate_ids": [],
+            "index_pages_checked": 1,
+            "feed_urls_checked": 0,
+            "category_indexes_checked": 0,
+            "article_pages_checked": 17,
+            "evidence_extracted": 0,
+            "refill_links_checked": 0,
+            "semantic_expansion_links_checked": 0,
+            "published_links_skipped": 0,
+            "selection_phase": "daily-plan"
+          },
+          "xiaohongshu": {
+            "status": "checked",
+            "method": "latest-index",
+            "candidates_found": 0,
+            "candidate_ids": [],
+            "index_pages_checked": 1,
+            "feed_urls_checked": 0,
+            "category_indexes_checked": 0,
+            "article_pages_checked": 0,
+            "evidence_extracted": 0,
+            "refill_links_checked": 0,
+            "semantic_expansion_links_checked": 0,
+            "published_links_skipped": 0,
+            "selection_phase": "daily-plan"
+          },
+          "cg-channel": {
+            "status": "checked",
+            "method": "latest-index",
+            "candidates_found": 12,
+            "candidate_ids": [
+              "cg-channel-nevercenter-releases-silo-2027",
+              "cg-channel-see-how-framestore-created-odin-the-cg-dog-for-heart-of-the",
+              "cg-channel-see-untold-studios-brilliant-vfx-breakdown-for-hyundai-littl",
+              "cg-channel-watch-image-engines-vfx-breakdown-for-the-mandalorian-and-gr",
+              "cg-channel-houdini-11-released",
+              "cg-channel-tutorial-snow-simulation-workflows-in-houdini",
+              "cg-channel-isotropix-ships-clarisse-3-6",
+              "cg-channel-golaem-ships-golaem-7-0",
+              "cg-channel-blender-5-3-is-here-discover-its-5-key-features",
+              "cg-channel-chaos-releases-phoenix-4-40-for-3ds-max-and-maya",
+              "cg-channel-unigine-2-20-adds-support-for-3d-gaussian-splatting",
+              "cg-channel-posing-3d-prints-with-zbrush-and-character-creator-4"
+            ],
+            "index_pages_checked": 7,
+            "feed_urls_checked": 3,
+            "category_indexes_checked": 1,
+            "article_pages_checked": 39,
+            "evidence_extracted": 12,
+            "refill_links_checked": 15,
+            "semantic_expansion_links_checked": 0,
+            "published_links_skipped": 56,
+            "selection_phase": "daily-plan"
+          },
+          "blender-official": {
+            "status": "checked",
+            "method": "latest-index",
+            "candidates_found": 15,
+            "candidate_ids": [
+              "blender-official-tablet-path-to-release",
+              "blender-official-9-november-2026",
+              "blender-official-2026-11-10-sculpt-paint-texture-module-mee",
+              "blender-official-2026-11-11-user-interface-module-meeting",
+              "blender-official-23-november-2026-upcoming",
+              "blender-official-26-october-2026",
+              "blender-official-16-november-2026",
+              "blender-official-2-november-2026",
+              "blender-official-2026-11-17-animation-rigging-module-meetin",
+              "blender-official-2026-11-17-nodes-physics-module-meeting",
+              "blender-official-2026-10-20-animation-rigging-module-meetin",
+              "blender-official-2026-10-22-core-module-meeting",
+              "blender-official-blender-release-cycle-update",
+              "blender-official-blender-4-2-lts-beta",
+              "blender-official-films"
+            ],
+            "index_pages_checked": 7,
+            "feed_urls_checked": 0,
+            "category_indexes_checked": 3,
+            "article_pages_checked": 68,
+            "evidence_extracted": 3,
+            "refill_links_checked": 20,
+            "semantic_expansion_links_checked": 8,
+            "published_links_skipped": 16,
+            "selection_phase": "daily-plan"
+          },
+          "epic-developer-community": {
+            "status": "blocked",
+            "method": "latest-index",
+            "candidates_found": 0,
+            "candidate_ids": [],
+            "reason": "http-403",
+            "index_pages_checked": 0,
+            "feed_urls_checked": 0,
+            "refill_links_checked": 0,
+            "selection_phase": "daily-plan"
+          },
+          "unity-official": {
+            "status": "checked",
+            "method": "latest-index",
+            "candidates_found": 6,
+            "candidate_ids": [
+              "unity-official-atrio-3d-stylized-sample-project-426254",
+              "unity-official-unity-essentials",
+              "unity-official-fantasy-kingdom",
+              "unity-official-industry-fundamentals-in-editor-tutorial-real-time-3d",
+              "unity-official-unity-asset-store",
+              "unity-official-demos"
+            ],
+            "index_pages_checked": 3,
+            "feed_urls_checked": 0,
+            "category_indexes_checked": 1,
+            "article_pages_checked": 60,
+            "evidence_extracted": 0,
+            "refill_links_checked": 20,
+            "semantic_expansion_links_checked": 0,
+            "published_links_skipped": 0,
+            "selection_phase": "daily-plan"
+          },
+          "sidefx-official": {
+            "status": "checked",
+            "method": "latest-index",
+            "candidates_found": 0,
+            "candidate_ids": [],
+            "index_pages_checked": 3,
+            "feed_urls_checked": 0,
+            "category_indexes_checked": 1,
+            "article_pages_checked": 40,
+            "evidence_extracted": 0,
+            "refill_links_checked": 0,
+            "semantic_expansion_links_checked": 0,
+            "published_links_skipped": 3,
+            "selection_phase": "daily-plan"
+          },
+          "autodesk-area": {
+            "status": "unavailable",
+            "method": "latest-index",
+            "candidates_found": 0,
+            "candidate_ids": [],
+            "reason": "ConnectionError",
+            "index_pages_checked": 0,
+            "feed_urls_checked": 0,
+            "refill_links_checked": 0,
+            "selection_phase": "targeted-refill"
+          },
+          "adobe-substance-3d": {
+            "status": "checked",
+            "method": "latest-index",
+            "candidates_found": 2,
+            "candidate_ids": [
+              "adobe-substance-3d-assets",
+              "adobe-substance-3d-substance-3d"
+            ],
+            "index_pages_checked": 1,
+            "feed_urls_checked": 0,
+            "category_indexes_checked": 0,
+            "article_pages_checked": 37,
+            "evidence_extracted": 0,
+            "refill_links_checked": 0,
+            "semantic_expansion_links_checked": 0,
+            "published_links_skipped": 0,
+            "selection_phase": "targeted-refill"
+          },
+          "game-developer": {
+            "status": "checked",
+            "method": "latest-index",
+            "candidates_found": 0,
+            "candidate_ids": [],
+            "index_pages_checked": 1,
+            "feed_urls_checked": 0,
+            "category_indexes_checked": 0,
+            "article_pages_checked": 40,
+            "evidence_extracted": 0,
+            "refill_links_checked": 0,
+            "semantic_expansion_links_checked": 0,
+            "published_links_skipped": 0,
+            "selection_phase": "targeted-refill"
+          }
+        }
+      },
+      "notes": "2026-11-19 autonomous GitHub Collector loaded the Published Registry snapshot before discovery, supplemented it from verified-DONE history when needed, checked rolling backlog, executed the current-main deterministic registered-source probe plan, crawled configured source indexes plus bounded same-source refill, then used the current-main deficit-aware deterministic registered-source refill only when the verified survivor count remained below the normal floor, and applied exact source/stable identity dedupe before ranking. Registered refill: pre=11 post=15 batches=2 selected=[\"autodesk-area\", \"adobe-substance-3d\", \"game-developer\", \"3dnchu\", \"cgworld-jp\", \"bilibili-mobile\"]. Registry audit: {\"history_supplemented_items\": 0, \"latest_verified_done\": \"2026-11-17\", \"snapshot_generated_through\": \"2026-11-17\", \"snapshot_state\": \"DERIVED_FROM_VERIFIED_DONE\", \"source_identities\": 1097, \"stable_ids\": 1096}. Backlog entries rechecked=14. No source registration/domain supplied ranking bonus, quota or admission bypass."
+    },
+    "personalization": {
+      "contract": "supabase-semantic-feedback-v1",
+      "status": "applied",
+      "vote_count": 14,
+      "max_rank_multiplier": 0.2,
+      "max_query_expansion_fraction": 0.2,
+      "raw_profile_committed": false,
+      "bookmarks_used": false,
+      "domain_weights_used": false,
+      "admission_bypass": false,
+      "quality_gate_bypass": false,
+      "source_quota": false,
+      "ranking_adjusted_count": 70,
+      "semantic_expansion_candidates": 6,
+      "profile_fingerprint": "a9e63c85c69a6c6ba8a68aea16c9533938f4746f9807cbaf4f0581a8e748a761",
+      "reader": "github-actions-oidc-owner-v1"
+    }
+  },
+  "items": [
+    {
+      "id": "blender-official-tablet-path-to-release",
+      "title": "Blender 公布平板版推出路線：先完成基礎平台，再逐步改善觸控工作流",
+      "summary": "Blender 團隊整理 2026 年十月工作坊的平板開發計畫，先處理平台建置、每日版本與商店測試，再調整觸控介面及跨裝置檔案流程；這是開發路線，並非完整平板版已正式推出。",
+      "quick_impact": "★★★★★",
+      "source_url": "https://code.blender.org/2026/11/tablet-path-to-release",
+      "category": "blender-dcc",
+      "subcategory": "blender",
+      "ranking_score": 90.28,
+      "base_ranking_score": 89.0,
+      "source_published_at": "2026-11-18",
+      "analysis_level": "BRIEF",
+      "content_kind": "news",
+      "brief_reason": "short-official-announcement",
+      "full_analysis": [
+        {
+          "label": "先接上既有建置流程",
+          "text": "計畫先簡化平板版本建置，再整合既有持續建置基礎設施、每日版本及裝置測試。初期要完整使用仍需外接鍵盤、滑鼠或觸控板，完整觸控與手勢支援會在後續推進。",
+          "angle": "workflow_or_technical_change"
+        },
+        {
+          "label": "處理桌面與平板的檔案交接",
+          "text": "團隊以桌面建模、平板雕刻與貼圖、再回桌面重拓撲及渲染作為使用情境，規劃傳送整份檔案或含依賴的部分資料。這些是希望實作的操作，不是已可直接使用的同步功能。",
+          "angle": "production_impact"
+        },
+        {
+          "label": "硬體與發行仍有階段限制",
+          "text": "初期資源聚焦高階 Android 平板及近期 iOS 裝置，其他硬體可能有顯示或效能問題。透過商店發布仍須先通過核准，所有工作區也不會一開始就完成平板最佳化。",
+          "angle": "test_risk_or_limit"
+        }
+      ],
+      "rank_global": 1,
+      "homepage_tier": "top5"
+    },
+    {
+      "id": "cg-channel-nevercenter-releases-silo-2027",
+      "title": "Silo 2027.0 加入腳本編輯器與 MCP，開放以 JavaScript 自動化建模",
+      "summary": "Nevercenter 的 Silo 2027.0 新增 JavaScript 腳本 API、內建編輯器與 MCP 伺服器，可建立自訂工具或連接外部 AI 工具；此次也改善橋接操作、glTF 材質及部分檔案往返。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://www.cgchannel.com/2026/11/nevercenter-releases-silo-2027",
+      "category": "3d-production",
+      "subcategory": "production-workflow",
+      "ranking_score": 87.69,
+      "base_ranking_score": 83.0,
+      "source_published_at": "2026-11-17",
+      "analysis_level": "BRIEF",
+      "content_kind": "news",
+      "brief_reason": "useful-tool-or-addon-limited-depth",
+      "full_analysis": [
+        {
+          "label": "腳本可帶自己的操作介面",
+          "text": "新的 API 包含超過一百個函式，涵蓋網格、選取、材質、UV 與攝影機。腳本可由內建或外部編輯器撰寫，完成後從選單執行，或使用帶數值欄位與核取方塊的獨立視窗。",
+          "angle": "workflow_or_technical_change"
+        },
+        {
+          "label": "自動化與資產交換一同改善",
+          "text": "MCP 伺服器讓外部 AI 工具透過這套 JavaScript API 控制 Silo；glTF 匯出則改善 PBR 材質並保留摺痕與內嵌貼圖。這些變更分別對應操作自動化與跨工具資產傳遞。",
+          "angle": "production_impact"
+        },
+        {
+          "label": "效能與配套版本須分開理解",
+          "text": "報導提到大型模型操作和法線重算加快，但沒有量化速度提升；配套渲染器 Milo 當時仍為 2026.0。不能把 Silo 的版本更新解讀為整套工具同步更新或固定倍數加速。",
+          "angle": "test_risk_or_limit"
+        }
+      ],
+      "rank_global": 2,
+      "homepage_tier": "top5"
+    },
+    {
+      "id": "80-level-full-circle-building-terminal-escape-from-tarkov-s-final-loc",
+      "title": "《逃離塔科夫》終章港口：以夜間照明與可見性剔除系統支撐過場演出",
+      "summary": "團隊分享終章地圖 Terminal 的製作：先用港口參考與灰盒測試行進節奏，再針對永久夜景、鏡頭跳接及角色近景改造燈光與可見性系統。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://80.lv/articles/full-circle-building-terminal-escape-from-tarkov-s-final-location",
+      "category": "3d-production",
+      "subcategory": "character-production",
+      "ranking_score": 86.1,
+      "base_ranking_score": 83.0,
+      "source_published_at": "2026-11-16",
+      "analysis_level": "BRIEF",
+      "content_kind": "practice",
+      "brief_reason": "single-source-verified-production-tip",
+      "full_analysis": [
+        {
+          "label": "先以灰盒確認港口節奏",
+          "text": "團隊把參考照片投到簡單灰盒建築上，先判斷尺度與氣氛，並將港口劃成約二十區。主美早期親自計時走完整張地圖，之後才依區域難度分派製作。",
+          "angle": "workflow_or_technical_change"
+        },
+        {
+          "label": "照明與過場共同調整",
+          "text": "永久夜景採用多盞大型、以無陰影為主的燈光照亮主要路線；角色過場另外使用專用燈組。動畫先在 Maya 製作，再於 Unity Timeline 手動調整剪輯、節奏與鏡頭。",
+          "angle": "production_impact"
+        },
+        {
+          "label": "鏡頭跳接暴露預載限制",
+          "text": "原有可見性格網能配合步行預載，卻跟不上過場鏡頭一次跳過多個格子，因而出現物件突然顯示。團隊擴充大格子支援並重烘開場區域，修正鏡頭跳接造成的可見性問題。",
+          "angle": "test_risk_or_limit"
+        }
+      ],
+      "rank_global": 3,
+      "homepage_tier": "top5"
+    },
+    {
+      "id": "cg-channel-see-untold-studios-brilliant-vfx-breakdown-for-hyundai-littl",
+      "title": "《Little Warrior》廣告拆解：怪獸角色、唾液模擬與競技場群眾",
+      "summary": "Untold Studios 公開《Little Warrior》六十秒廣告的視效拆解，從怪獸概念、外觀開發與動畫一路展示到口中唾液模擬，也呈現競技場資產及個別群眾角色。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://www.cgchannel.com/2026/11/see-untold-studios-brilliant-vfx-breakdown-for-hyundai-little-warrior",
+      "category": "emerging-case",
+      "subcategory": "research",
+      "ranking_score": 82.17,
+      "base_ranking_score": 81.0,
+      "source_published_at": "2026-11-16",
+      "analysis_level": "BRIEF",
+      "content_kind": "practice",
+      "brief_reason": "emerging-research-limited-production-evidence",
+      "full_analysis": [
+        {
+          "label": "怪獸從概念走到最終畫面",
+          "text": "拆解影片沿著概念設計、外觀開發、角色綁定與動畫呈現怪獸製作，還展示口中拉絲唾液的模擬。這提供了同一角色在不同製作階段的對照，而非只有完成渲染。",
+          "angle": "workflow_or_technical_change"
+        },
+        {
+          "label": "場景與群眾一起閱讀",
+          "text": "競技場部分同時展示場景 CG 資產、群眾模擬與個別觀眾角色。推論：讀者可藉此對照大場面和單體資產的關係，理解廣告中的戰鬥畫面由哪些元素組成。",
+          "angle": "production_impact"
+        },
+        {
+          "label": "拆解尚未交代工具細節",
+          "text": "文章列出角色與群眾的製作階段，但技術資訊欄明確表示尚無其他資料；未提供使用軟體、求解參數或製作耗時。因此本篇定位為視效拆解參考，不視為可直接重建的操作教學。",
+          "angle": "test_risk_or_limit"
+        }
+      ],
+      "rank_global": 4,
+      "homepage_tier": "top5"
+    },
+    {
+      "id": "cg-channel-watch-image-engines-vfx-breakdown-for-the-mandalorian-and-gr",
+      "title": "Image Engine 公開《曼達洛人與古古》視效拆解，呈現角色與場景鏡頭",
+      "summary": "Image Engine 分享《The Mandalorian and Grogu》的視效成果，報導列出 154 個角色、環境與動作鏡頭，並點名爬蟲類漁夫 Gatori 及吞吐古古的巨型外星蛙。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://www.cgchannel.com/2026/10/watch-image-engines-vfx-breakdown-for-the-mandalorian-and-grogu",
+      "category": "3d-production",
+      "subcategory": "character-production",
+      "ranking_score": 82.04,
+      "base_ranking_score": 78.0,
+      "source_published_at": "2026-10-26",
+      "analysis_level": "BRIEF",
+      "content_kind": "practice",
+      "brief_reason": "production-reference-limited-depth",
+      "full_analysis": [
+        {
+          "label": "延續影集的視效製作",
+          "text": "工作室在《曼達洛人》影集的製作基礎上，為這部真人電影交付一百五十四個視效鏡頭，範圍包含角色、環境與動作段落；這個數字指鏡頭數，不是模型或角色數量。",
+          "angle": "workflow_or_technical_change"
+        },
+        {
+          "label": "角色表演的觀察切入點",
+          "text": "報導特別列出漁夫 Gatori，以及吞下再吐出古古的巨型外星蛙。推論：這兩個角色可作為觀看拆解時比較角色外型與動作敘事的切入點，但正文沒有提供綁定製作細節。",
+          "angle": "production_impact"
+        },
+        {
+          "label": "沒有公開可重現的技術流程",
+          "text": "這是一則拆解影片介紹，技術資訊欄標示尚無其他資料，並未列出軟體、模擬方法或資產規格。因此只能確認工作範圍與展示角色，不能據此宣稱特定工具或效能成果。",
+          "angle": "test_risk_or_limit"
+        }
+      ],
+      "rank_global": 5,
+      "homepage_tier": "top5"
+    },
+    {
+      "id": "cg-channel-see-how-framestore-created-odin-the-cg-dog-for-heart-of-the",
+      "title": "Framestore 拆解《Heart of the Beast》：數位動物與整體軟組織模擬",
+      "summary": "Framestore 分享《Heart of the Beast》的動物視效：德國牧羊犬 Odin 在約 110 個鏡頭中為完整 CG，狼與熊則使用把肌肉、脂肪及皮膚一起計算的 Fat Solver。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://www.cgchannel.com/2026/11/see-how-framestore-created-odin-the-cg-dog-for-heart-of-the-beast",
+      "category": "emerging-case",
+      "subcategory": "case-study",
+      "ranking_score": 81.0,
+      "base_ranking_score": 81.0,
+      "source_published_at": "2026-11-13",
+      "analysis_level": "BRIEF",
+      "content_kind": "practice",
+      "brief_reason": "production-reference-limited-depth",
+      "full_analysis": [
+        {
+          "label": "軟組織不再分開求解",
+          "text": "狼與熊使用工作室自有的 Fat Solver，把肌肉、脂肪及皮膚視為互相連結的單一體積計算。製作人員表示，這種方式能在快速動作中維持整體慣性與軟組織的一致性。",
+          "angle": "workflow_or_technical_change"
+        },
+        {
+          "label": "依鏡頭混合實拍與數位角色",
+          "text": "Odin 約七成出場時間使用實拍，有時替換嘴鼻部，另外約一百一十個鏡頭使用完整 CG。狼群段落也從實拍狗隻與機械道具，轉向以 CG 資產呈現激烈動作。",
+          "angle": "production_impact"
+        },
+        {
+          "label": "技術歸屬不能混用",
+          "text": "報導把 Fat Solver 的使用對象明確寫為狼與熊，沒有同樣說明 Odin 使用這套求解器。因此可參考各動物的鏡頭分工，但不能將工作室某項技術推定為所有角色的共同做法。",
+          "angle": "test_risk_or_limit"
+        }
+      ],
+      "rank_global": 6,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "3dnchu-hairharpy-v2-0",
+      "title": "HairHarpy 2.0 改為桌面程式，以曲線製作髮束並加入重拓撲空間",
+      "summary": "HairHarpy 2.0.0 從瀏覽器工具改為 Windows、Linux 桌面程式，以曲線與 NURBS 曲面構造髮束，加入獨立重拓撲工作區，並支援多種網格格式及 Blender、Maya 橋接。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://3dnchu.com/archives/hairharpy-v2-0",
+      "category": "3d-production",
+      "subcategory": "character-production",
+      "ranking_score": 80.98,
+      "base_ranking_score": 77.0,
+      "source_published_at": "2026-11-16",
+      "analysis_level": "BRIEF",
+      "content_kind": "news",
+      "brief_reason": "single-source-verified-production-tip",
+      "full_analysis": [
+        {
+          "label": "以曲線關係控制髮束",
+          "text": "工具可調整網格密度與邊線，並以 Weld 合併控制點、Zip 組成共用主幹，以及沿其他曲線路徑貼合的方式，安排髮束合流、分岔與排列，再轉成網格。",
+          "angle": "workflow_or_technical_change"
+        },
+        {
+          "label": "髮型製作與網格整理銜接",
+          "text": "Hair Room 與 Topology Room 分別處理髮型及重拓撲，後者提供高模表面重拓撲、吸附、群組與頂點法線編修。完成後可輸出多種網格格式，或透過橋接送到 Blender、Maya。",
+          "angle": "production_impact"
+        },
+        {
+          "label": "區分正式功能與測試項目",
+          "text": "UV 編輯器仍在測試階段；文末提到的 ZBrush 髮型自動重拓撲則是 2.0.1 的測試項目，不能當成 2.0.0 已交付功能。桌面版另需支援 Vulkan 1.1 的 GPU 驅動程式。",
+          "angle": "test_risk_or_limit"
+        }
+      ],
+      "rank_global": 7,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "80-level-revopoint-s-miraco-2-combines-portable-3d-scanning-with-auto",
+      "title": "MIRACO 2 發表：手持掃描結合等比例 3DGS 與規劃中的 CAD 自動處理",
+      "summary": "Revopoint 介紹 MIRACO 2 的六種掃描模式與機上處理，並列出 11 月 18 日的募資計畫。連接電腦可輸出具有實際尺度的 3D Gaussian Splatting；Revo Agents 的掃描轉 CAD 與檢測則屬規劃中的流程。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://80.lv/articles/revopoint-s-miraco-2-combines-portable-3d-scanning-with-automated-scan-to-cad",
+      "category": "emerging-case",
+      "subcategory": "research",
+      "ranking_score": 80.0,
+      "base_ranking_score": 80.0,
+      "source_published_at": "2026-11-18",
+      "analysis_level": "BRIEF",
+      "content_kind": "news",
+      "brief_reason": "useful-tool-or-addon-limited-depth",
+      "full_analysis": [
+        {
+          "label": "掃描與資料處理配置",
+          "text": "裝置可獨立掃描、預覽及編修，也可透過無線或有線方式連接電腦。六種模式分別涵蓋大面積、精細細節與狹縫；文中的最高精度數字是廠商宣稱，並非獨立實測。",
+          "angle": "workflow_or_technical_change"
+        },
+        {
+          "label": "保留空間的實際尺度",
+          "text": "連接電腦後可輸出一比一尺度的 .splat，保留真實尺寸，供空間記錄、數位分身與 XR 展示使用。雙 RGB 相機則分別對應近距離物體與較大物體、環境的彩色擷取。",
+          "angle": "production_impact"
+        },
+        {
+          "label": "展示資料與可編輯模型的差別",
+          "text": "原文明確區分 3DGS 與傳統多邊形網格：許多編修、動畫及模擬工作仍需要網格。規劃中的 CAD 轉換與公差分析也仍須人工核對，不能把自動處理視為已驗證的工程結果。",
+          "angle": "test_risk_or_limit"
+        }
+      ],
+      "rank_global": 8,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "3dnchu-hairdeck",
+      "title": "HairDeck 從單張圖片生成髮片，並建立彈簧骨骼與蒙皮",
+      "summary": "HairDeck 研究把每張髮片表示為一個 token，由擴散 Transformer 生成髮型，再用另一模型產生彈簧骨骼並綁定髮片；可輸出 GLB、附帶角色的 VRM 與擺動預覽。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://3dnchu.com/archives/hairdeck",
+      "category": "3d-animation",
+      "subcategory": "animation",
+      "ranking_score": 77.74,
+      "base_ranking_score": 77.0,
+      "source_published_at": "2026-11-16",
+      "analysis_level": "BRIEF",
+      "content_kind": "news",
+      "brief_reason": "single-source-verified-production-tip",
+      "full_analysis": [
+        {
+          "label": "髮片與骨骼分開生成",
+          "text": "輸出保留個別帶 UV 的髮片，而非把整個髮型合成單一網格；另一生成模型建立彈簧骨骼鏈並將髮片綁定。這讓研究同時處理髮型形狀與後續擺動所需的設定。",
+          "angle": "workflow_or_technical_change"
+        },
+        {
+          "label": "顏色與擺動可一同檢視",
+          "text": "系統依輸入圖片預測沿髮片的顏色，支援雙色髮型，並可從一張圖片產生一至四個候選。輸出除了 GLB 與附帶角色的 VRM，也包含轉動頭部檢視髮絲擺動的影片。",
+          "angle": "production_impact"
+        },
+        {
+          "label": "本體授權不涵蓋所有依賴",
+          "text": "原文說明本體程式與模型採 Apache-2.0，但外部模型、程式及資料集各有授權；本地安裝還需同意 SAM 3 與 DINOv3 的條件。不能只看本體免費公開就忽略依賴條款。",
+          "angle": "test_risk_or_limit"
+        }
+      ],
+      "rank_global": 9,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "3dnchu-blender-5-3",
+      "title": "Blender 5.3 加入原生 3DGS 處理與可控制燈光反應的新節點",
+      "summary": "3D人報導 Blender 5.3 於 11 月 10 日推出，新增 3D Gaussian Splatting 匯入、編輯與渲染，並改善 EEVEE 材質燈光控制、Cycles 視窗去噪及專案設定管理。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://3dnchu.com/archives/blender-5-3",
+      "category": "blender-dcc",
+      "subcategory": "blender",
+      "ranking_score": 76.13,
+      "base_ranking_score": 74.0,
+      "source_published_at": "2026-11-17",
+      "analysis_level": "BRIEF",
+      "content_kind": "news",
+      "brief_reason": "emerging-research-limited-production-evidence",
+      "full_analysis": [
+        {
+          "label": "點群進入既有節點與渲染流程",
+          "text": "3DGS 可從 PLY、SPZ 載入為點群，使用 Geometry Nodes 處理，並在 EEVEE、Cycles 渲染，也可在 Workbench 實體模式查看。這將重建資料帶入 Blender 既有編輯環境。",
+          "angle": "workflow_or_technical_change"
+        },
+        {
+          "label": "燈光反應與專案設定可細分",
+          "text": "EEVEE 的 Material Lighting 節點提供燈光顏色、強度、方向與陰影資訊，供卡通等材質反應設計；另有選用的專案管理，可按根目錄管理路徑變數、資產庫與色彩設定。",
+          "angle": "production_impact"
+        },
+        {
+          "label": "匯入支援不等於完整往返",
+          "text": "原文指出 3DGS 尚不能匯出，效能仍在最佳化，色彩空間差異可能影響顯示。Cycles 的 DLSS 視窗去噪另需相容 NVIDIA GPU 與 620 以上驅動，不能將新功能視為所有硬體皆可用。",
+          "angle": "test_risk_or_limit"
+        }
+      ],
+      "rank_global": 10,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "3dnchu-floaters-blenderbros-josh",
+      "title": "Blender 浮動細節教學：以 Shrinkwrap 與法線轉移貼合獨立零件",
+      "summary": "Blender Bros 的 Josh 示範把細節做成獨立浮動零件，以面吸附、頂點群組和 Shrinkwrap 調整接觸，再透過 Data Transfer 與共用材質處理邊界外觀。",
+      "quick_impact": "★★★★☆",
+      "source_url": "https://3dnchu.com/archives/floaters-blenderbros-josh",
+      "category": "blender-dcc",
+      "subcategory": "blender",
+      "ranking_score": 75.07,
+      "base_ranking_score": 74.0,
+      "source_published_at": "2026-11-14",
+      "analysis_level": "BRIEF",
+      "content_kind": "practice",
+      "brief_reason": "single-source-verified-production-tip",
+      "full_analysis": [
+        {
+          "label": "獨立零件貼合本體表面",
+          "text": "教學先建立浮動零件並用面吸附放置，再透過頂點群組與 Shrinkwrap 調整接觸部分，最後以 Data Transfer 轉移自訂法線，搭配共用材質使邊界看起來連貫。",
+          "angle": "workflow_or_technical_change"
+        },
+        {
+          "label": "保留細節的移動與複用空間",
+          "text": "浮動細節與本體是分開的物件，無須直接把細節刻進本體網格，放置後仍能移動或複製。推論：這對反覆調整裝飾位置或重複使用同一零件的建模流程有參考價值。",
+          "angle": "production_impact"
+        },
+        {
+          "label": "標準功能與額外素材分開看",
+          "text": "正文說明浮動零件可使用 Blender 標準功能建立，但影片後半段的面板和裝飾則採用 MaterialWorks 貼花。兩段方法的依賴不同，不能把後半段素材也視為 Blender 內建內容。",
+          "angle": "test_risk_or_limit"
+        }
+      ],
+      "rank_global": 11,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "cg-channel-tutorial-snow-simulation-workflows-in-houdini",
+      "title": "Houdini 積雪教學：結合 Vellum 主模擬與 Pyro、POP 次級效果",
+      "summary": "Gnomon Workshop 的中階課程以角色穿越深雪為例，介紹可反覆調整的 Vellum 積雪流程，並加入 Pyro、POP 次級效果及 Solaris、Karma 渲染概念，附可下載的專案檔。",
+      "quick_impact": "★★★☆☆",
+      "source_url": "https://www.cgchannel.com/2026/06/tutorial-snow-simulation-workflows-in-houdini",
+      "category": "blender-dcc",
+      "subcategory": "houdini",
+      "ranking_score": 73.02,
+      "base_ranking_score": 70.0,
+      "source_published_at": "2026-06-13",
+      "analysis_level": "BRIEF",
+      "content_kind": "practice",
+      "brief_reason": "practical-tutorial-limited-depth",
+      "full_analysis": [
+        {
+          "label": "先建立可調整的主模擬",
+          "text": "課程使用 Houdini 的 Vellum 工具處理角色涉過深雪的互動，強調反覆迭代與藝術控制，並涵蓋設定最佳化及問題排查。報導也指出這種思路可延伸到沙與泥的模擬。",
+          "angle": "workflow_or_technical_change"
+        },
+        {
+          "label": "次級效果與專案檔連在一起",
+          "text": "主積雪之外，教學加入 Pyro 和 POP 技術處理次級效果，並觸及 Solaris 與 Karma 的雪景渲染。除免費 HDR 燈光探針外，資產均在 Houdini 建立，完整專案檔隨課程提供。",
+          "angle": "production_impact"
+        },
+        {
+          "label": "課程層級與取得方式",
+          "text": "報導將課程定位為中階、影片超過六小時，透過 Gnomon Workshop 訂閱取得。這篇文章是課程介紹，不能把完整專案檔的提供解讀成無須訂閱即可自由取得全部教學。",
+          "angle": "test_risk_or_limit"
+        }
+      ],
+      "rank_global": 12,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "80-level-blender-studio-announces-ambitious-feature-film-project",
+      "title": "Blender Studio 的《Overgrown》計畫：以長片製作累積開源流程文件",
+      "summary": "這篇 2026 年 7 月的報導介紹 Blender Studio 的長片計畫《Overgrown》：團隊希望把工具與文件整理成可供小型團隊參考的製作手冊，當時仍在尋求訂閱支持與後續發行機會。",
+      "quick_impact": "★★★☆☆",
+      "source_url": "https://80.lv/articles/blender-studio-announces-ambitious-feature-film-project",
+      "category": "blender-dcc",
+      "subcategory": "blender",
+      "ranking_score": 63.91,
+      "base_ranking_score": 63.0,
+      "source_published_at": "2026-07-08",
+      "analysis_level": "BRIEF",
+      "content_kind": "practice",
+      "brief_reason": "practical-tutorial-limited-depth",
+      "full_analysis": [
+        {
+          "label": "以長片驗證工具組合",
+          "text": "計畫的目標是把開源工具與完整文件組成長片製作流程。團隊強調本地端、以創作者為中心的製作目標，希望不依賴雲端服務或生成式 AI，讓獨立製作者能研究並延伸這套工具。",
+          "angle": "workflow_or_technical_change"
+        },
+        {
+          "label": "小團隊可參考的製作手冊",
+          "text": "報導將工具、文件與製作中的內容視為可研究及延伸的資源，並表示工作進度會放在 Studio 部落格。對獨立團隊而言，這提供了觀察長片流程如何建立的入口。",
+          "angle": "production_impact"
+        },
+        {
+          "label": "募資目標不代表已達成",
+          "text": "文章當時提出九月初達到七千名訂閱者的目標，以取得尋找買家與發行商所需的最低支持。這是七月報導中的計畫條件，正文沒有提供目標完成或長片交付的後續證據。",
+          "angle": "test_risk_or_limit"
+        }
+      ],
+      "rank_global": 13,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "3dnchu-sato-strips-as-tokens",
+      "title": "歷史參考｜SATO：以面鏈序列共同生成網格拓樸與 UV 分區",
+      "summary": "2026 年 4 月介紹的 SATO 研究以受三角帶啟發的 token 排序，把 UV 邊界編碼進連續面鏈，讓同一序列可解碼成三角形或四邊形網格，目標是同時保留邊流、結構規律與 UV 分區。",
+      "quick_impact": "★★☆☆☆",
+      "source_url": "https://3dnchu.com/archives/sato-strips-as-tokens",
+      "category": "emerging-case",
+      "subcategory": "research",
+      "ranking_score": 60.58,
+      "base_ranking_score": 60.0,
+      "source_published_at": "2026-04-15",
+      "analysis_level": "BRIEF",
+      "brief_reason": "single-source-verified-production-tip",
+      "full_analysis": [
+        {
+          "label": "生成技術流程",
+          "text": "SATO 不只按座標排序或切成獨立 patch，而以顯式編碼 UV 邊界的相連面鏈構成序列；同一表示能解碼三角形或四邊形，因此可以聯合訓練不同型態的網格資料。"
+        },
+        {
+          "label": "角色資產製作潛力",
+          "text": "研究認為大量三角形資料提供基礎結構先驗，高品質四邊形資料補強規律性，並報告幾何、結構和 UV 分區表現較佳；製作上的潛力是減少生成後另做拓樸與 UV 的割裂，但這不等於每個模型均可直接綁定。"
+        },
+        {
+          "label": "研究成熟度限制",
+          "text": "這是 2026 年 4 月的歷史介紹，來源當時觀察到程式碼未公開，且沒有列出可重現的硬體、速度或動畫變形測試；不能把 SIGGRAPH 論文及規劃中的服務整合，當成已確認的今日可用產品。"
+        }
+      ],
+      "rank_global": 14,
+      "homepage_tier": "next10"
+    },
+    {
+      "id": "3dnchu-sharp-apple",
+      "title": "歷史參考｜Apple SHARP：單張照片不到一秒生成 3D Gaussian 場景",
+      "summary": "這篇 2025 年文章介紹 Apple SHARP：模型以一次前向傳遞，從單張照片回歸 3D Gaussian 參數，在標準 GPU 上不到一秒完成，並可即時渲染鄰近視角。",
+      "quick_impact": "★★☆☆☆",
+      "source_url": "https://3dnchu.com/archives/sharp-apple",
+      "category": "emerging-case",
+      "subcategory": "research",
+      "ranking_score": 60.0,
+      "base_ranking_score": 60.0,
+      "source_published_at": "2025-12-18",
+      "analysis_level": "BRIEF",
+      "brief_reason": "emerging-research-limited-production-evidence",
+      "full_analysis": [
+        {
+          "label": "技術流程",
+          "text": "SHARP 直接從一張輸入影像預測場景的 3D Gaussian 表示，不需逐場景反覆最佳化；輸出具有絕對公制尺度，並支援以公制單位移動虛擬相機。"
+        },
+        {
+          "label": "製作影響",
+          "text": "論文摘要報告標準 GPU 上生成時間少於一秒，鄰近視角渲染超過每秒 100 幀；相較先前最佳模型，LPIPS 降低 25–34%、DIST 降低 21–43%。"
+        },
+        {
+          "label": "限制與待驗證",
+          "text": "來源只承諾單張影像與鄰近視角的高解析度合成，沒有證明任意遠距離視角或完整遮蔽區域都能正確重建；跨資料集結果也應限於論文所測資料集理解。"
+        }
+      ],
+      "rank_global": 15,
+      "homepage_tier": "next10"
+    }
+  ],
+  "visual_evidence": {}
+}
