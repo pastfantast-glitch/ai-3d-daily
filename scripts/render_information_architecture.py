@@ -119,6 +119,9 @@ def global_nav(soup, date, cfg, active='top5', context='home'):
     history.string = '歷史日報'; inner.append(history)
 
     nav.append(inner)
+    admin_href = {'home':'admin/', 'archive':'../admin/', 'category':'../../admin/', 'history':'../admin/'}[context]
+    admin = soup.new_tag('a', attrs={'href':admin_href, 'class':'global-admin-link'})
+    admin.string = '管理後臺'; inner.append(admin)
     return nav
 
 

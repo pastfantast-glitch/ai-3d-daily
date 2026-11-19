@@ -102,6 +102,9 @@ def writer_generated_commit(sha):
         trusted = removed in changes and all(
             line == removed or (line.startswith('M\t') and line[2:] in allowed)
             for line in changes)
+    elif committer_email == GITHUB_ACTIONS_BOT_EMAIL and re.fullmatch(r'Record Collector monitor 20\d{2}-\d{2}-\d{2}', subject):
+        changes = git('diff-tree', '--no-commit-id', '--name-status', '-r', sha).splitlines()
+        trusted = len(changes) == 1 and changes[0] in ('A\tdata/ops/collection-monitor.json', 'M\tdata/ops/collection-monitor.json')
     else:
         trusted = (committer_email == GITHUB_ACTIONS_BOT_EMAIL
                and any(pattern.fullmatch(subject) for pattern in WRITER_COMMIT_PATTERNS))

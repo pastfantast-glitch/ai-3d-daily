@@ -44,7 +44,7 @@ def retained_entries(entries, report_date, published, max_age_days):
     return kept
 
 
-def reserve_output(overflow, retry_entries, previous, report_date, maximum):
+def reserve_output(overflow, retry_entries, previous, report_date, maximum, held=()):
     """Keep verified overflow and temporarily unavailable prior reserves without raw bodies."""
     original = {canonicalize_url(x['source_url']): x for x in previous}
     out = {}
@@ -67,4 +67,11 @@ def reserve_output(overflow, retry_entries, previous, report_date, maximum):
             'id', 'source_id', 'title', 'source_url', 'category', 'subcategory',
             'ranking_score', 'discovered_for', 'source_published_at') if k in entry},
             'last_checked': report_date, 'refresh_status': 'temporarily-unavailable'})
+    for entry in previous:
+        url = entry['source_url']
+        if url in held and not source_window_errors(entry, report_date):
+            out.setdefault(url, {**{k: entry[k] for k in (
+                'id', 'source_id', 'title', 'source_url', 'category', 'subcategory',
+                'ranking_score', 'discovered_for', 'source_published_at') if k in entry},
+                'refresh_status': 'owner-held'})
     return list(out.values())[:maximum]

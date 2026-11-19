@@ -26,6 +26,8 @@ test('owner authorization, version conflicts and fixed-path writes are enforced 
     assert.equal((await call({op:'save'},'https://evil.example')).status,403);
     assert.equal((await call({op:'save'},ORIGIN,false)).status,403);
     assert.equal((await call({op:'save'})).status,403);assert.equal(writes.length,0);
+    assert.equal((await call({op:'selection'})).status,403);
+    assert.equal((await call({op:'operations'})).status,403);
     isOwner=true;
     assert.equal((await call({op:'save',settings})).status,400);assert.equal(writes.length,0);
     const response=await call({op:'save',sha:'a'.repeat(40),settings,path:'data/publish/fake.done.json'});
@@ -35,6 +37,15 @@ test('owner authorization, version conflicts and fixed-path writes are enforced 
     assert.deepEqual(JSON.parse(Buffer.from(writes[0].body.content,'base64')),settings);
     conflict=true;assert.equal((await call({op:'save',sha:'a'.repeat(40),settings})).status,409);
     assert.equal(writes.length,2); // Exactly one attempted write per request; no retries or alternative writer.
+    const controls={schema_version:1,held_urls:['https://example.com/article']};
+    assert.equal((await call({op:'selection',sha:'a'.repeat(40),controls})).status,409);
+    conflict=false;
+    assert.equal((await call({op:'selection',sha:'a'.repeat(40),controls,path:'data/publish/fake.done.json'})).status,200);
+    assert.ok(writes.at(-1).url.endsWith('/contents/config/editorial-selection.json'));
+    assert.deepEqual(JSON.parse(Buffer.from(writes.at(-1).body.content,'base64')),controls);
+    const before=writes.length;
+    assert.equal((await call({op:'selection',sha:'a'.repeat(40),controls:{...controls,held_urls:['https://127.0.0.1/a']}})).status,400);
+    assert.equal(writes.length,before);
     assert.equal((await call({op:'dispatch'})).status,400);
     assert.equal((await call({op:'probe',url:'http://127.0.0.1'})).status,503);
   }finally{globalThis.fetch=original;globalThis.Deno=deno;}

@@ -37,7 +37,11 @@ def reserve_seeds(root, date, sources):
     """Seed only registered publishers; actual fetching remains Collector-owned."""
     from urllib.parse import urlparse
     entries = []
+    from editorial_controls import held_urls
+    held = held_urls(root)
     for url, (data, record) in approved_reserve(root, date).items():
+        if url in held:
+            continue
         source = next((s for s in sources if s.get('enabled', True) and urlparse(s.get('base_url', '')).hostname == urlparse(url).hostname), None)
         if source:
             entries.append({'source_url': url, 'source_id': source['id'], 'title': record['title'],

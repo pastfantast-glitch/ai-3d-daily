@@ -103,7 +103,8 @@ if (!window.__ai3dOwnerSync) {
 
   function injectNav(){
     document.querySelectorAll('.global-category-nav-inner').forEach(inner=>{
-      inner.querySelectorAll('.cloud-sync-control').forEach(n=>n.remove());
+      if(!inner.querySelector('.global-admin-link')){const a=document.createElement('a');a.className='global-admin-link cloud-sync-control';a.href=new URL('admin/',import.meta.url).href;a.textContent='管理後臺';inner.append(a);}
+      inner.querySelectorAll('button.cloud-sync-control').forEach(n=>n.remove());
       const b=document.createElement('button');b.type='button';b.className='cloud-sync-control';b.dataset.cloudSync='owner';b.innerHTML='<span aria-hidden="true">☁</span><span class="cloud-sync-text">登入</span>';b.addEventListener('click',openAccount);inner.append(b);
     });paint();
   }
@@ -141,6 +142,7 @@ if (!window.__ai3dOwnerSync) {
   function signedOutDialog(){
     const canBootstrap=!!legacyCredentials();
     const d=showDialog('主人帳號登入','所有裝置登入同一帳號後，共用同一份收藏與 👍/👎。登入狀態會保留在這台裝置。','<label>Email<input name="email" type="email" autocomplete="username"></label><label>密碼<input name="password" type="password" autocomplete="current-password" minlength="10"></label>',`<button class="primary" type="button" data-login>登入</button>${canBootstrap?'<button type="button" data-bootstrap>第一次建立主人帳號</button>':''}<button type="button" data-close>取消</button>`,canBootstrap?'第一次建立會把目前 9 份舊同步資料與這台本機收藏合併成唯一雲端資料。密碼至少 10 個字元。':'主人帳號建立後，新裝置只需要登入，不需要同步碼。');
+    const recovery=document.createElement('a');recovery.href=new URL('reset-password/',import.meta.url).href;recovery.textContent='忘記密碼？';recovery.style.display='inline-block';recovery.style.marginTop='12px';d.querySelector('.owner-sync-box').append(recovery);
     d.querySelector('[data-close]')?.addEventListener('click',closeDialog);
     d.querySelector('[data-login]')?.addEventListener('click',async()=>{const email=field(d,'email'),password=field(d,'password');if(!email||!password)return alert('請輸入 Email 與密碼。');try{await signIn(email,password);closeDialog();}catch(err){console.warn(err);session=null;setStatus('未登入');alert('登入失敗，請確認 Email / 密碼。');}});
     d.querySelector('[data-bootstrap]')?.addEventListener('click',async()=>{const email=field(d,'email'),password=field(d,'password');if(!/^\S+@\S+\.\S+$/.test(email)||password.length<10)return alert('請輸入有效 Email，密碼至少 10 個字元。');if(!confirm('這組 Email / 密碼會成為所有裝置共用的主人登入。確定建立嗎？'))return;try{setStatus('建立帳號…');await bootstrap(email,password);closeDialog();alert('主人帳號已建立，舊收藏已合併。之後其他裝置只要登入同一帳號即可。');}catch(err){console.warn(err);setStatus('未登入');alert(err?.message||'建立主人帳號失敗');}});

@@ -1,0 +1,4 @@
+import test from 'node:test';import assert from 'node:assert/strict';
+import {recoveryKind,passwordIssue,REDIRECT} from './policy.mjs';
+test('recovery requires explicit recovery tokens, never a normal login or query redirect',()=>{assert.equal(recoveryKind('#access_token=x&refresh_token=y&type=recovery'),'recovery');for(const h of ['','#access_token=x&type=recovery','#access_token=x&refresh_token=y&type=signup'])assert.equal(recoveryKind(h),'request');assert.equal(recoveryKind('#error_code=otp_expired'),'expired');assert.equal(recoveryKind('','?error=access_denied'),'expired');assert.equal(REDIRECT,'https://pastfantast-glitch.github.io/ai-3d-daily/reset-password/');});
+test('password confirmation rejects mismatch and short values',()=>{assert.ok(passwordIssue('short','short'));assert.ok(passwordIssue('long-enough-value','different'));assert.equal(passwordIssue('long-enough-value','long-enough-value'),'');});
