@@ -66,6 +66,7 @@ if RUNTIME.exists() and HYBRID.exists():
             "data/candidates/collection-session/{date}.json",
             "data/candidates/decision-ledger/{date}.json",
             "data/candidates/rolling-backlog.json",
+            "data/ops/collection-monitor.json",
         }
         if set(security.get("allowed_repo_mutations") or []) != expected_mutations:
             fail("collector allowed_repo_mutations drifted from canonical/private Collector boundary")
@@ -160,8 +161,9 @@ if WORKFLOW.exists():
             fail(f"daily-collector.yml missing restricted-writer token: {token}")
     if "index.html" in content or "assets/visual" in content or ".request" in content or ".ready" in content:
         fail("daily-collector.yml must not stage public surfaces/request/ready")
-    if content.count("git commit ") != 1 or content.count("git push ") != 1:
-        fail("daily-collector.yml must have exactly one Collector artifact commit/push path")
+    from collection_monitor import workflow_mutation_errors
+    for issue in workflow_mutation_errors(content):
+        fail(issue)
 
 if HANDOFF.exists():
     content = HANDOFF.read_text("utf-8")

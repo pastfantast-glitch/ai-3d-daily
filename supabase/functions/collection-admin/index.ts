@@ -1,4 +1,5 @@
 import { REPO, SETTINGS, ORIGIN, validateSettings, publicURL, publicIP } from './policy.mjs';
+import { operations, CONTROL_PATH, validateControls, taipeiDate } from './operations.mjs';
 
 const MAX_BODY=100000, MAX_REMOTE=2000000;
 function reply(status:number, body:unknown, origin:string){return new Response(JSON.stringify(body),{status,headers:{
@@ -58,6 +59,25 @@ export async function handle(req:Request){
   try{
     if(!await owner(req))return reply(403,{error:'owner_required'},origin);
     const body=JSON.parse(await limited(new Response(req.body),MAX_BODY));
+    if(body.op==='operations'){
+      const runs=async(date:string)=>{
+        const from=new Date(date+'T00:00:00+08:00').toISOString();
+        // Public run metadata does not require expanding the Contents-only credential.
+        const r=await fetch(`https://api.github.com/repos/${REPO}/actions/runs?branch=main&created=${encodeURIComponent('>='+from)}&per_page=100`,{headers:{Accept:'application/vnd.github+json'},signal:AbortSignal.timeout(15000)});
+        if(!r.ok)throw new Error('actions_unavailable');const data=JSON.parse(await limited(r,1500000));
+        if(data.total_count>100||!Array.isArray(data.workflow_runs))throw new Error('incomplete_actions');
+        return data.workflow_runs.filter((x:any)=>x.head_branch==='main'&&taipeiDate(new Date(x.created_at))===date);
+      };
+      return reply(200,await operations(github,runs),origin);
+    }
+    if(body.op==='selection'){
+      if(!/^[a-f0-9]{40}$/.test(body.sha))return reply(400,{error:'missing_version'},origin);
+      const controls=validateControls(body.controls);
+      if(!controls.held_urls.every(publicURL))return reply(400,{error:'invalid_editorial_controls'},origin);
+      const bytes=new TextEncoder().encode(JSON.stringify(controls,null,2)+'\n');let binary='';for(const b of bytes)binary+=String.fromCharCode(b);
+      const result=await github(`/contents/${CONTROL_PATH}`,'PUT',{branch:'main',sha:body.sha,content:btoa(binary),message:'Update editorial holds [editorial-selection]'});
+      return reply(200,{sha:result.content.sha,commit_url:result.commit.html_url},origin);
+    }
     if(body.op==='load'){
       const file=await github(`/contents/${SETTINGS}?ref=main`);
       const settings=JSON.parse(new TextDecoder().decode(Uint8Array.from(atob(file.content.replace(/\s/g,'')),c=>c.charCodeAt(0))));

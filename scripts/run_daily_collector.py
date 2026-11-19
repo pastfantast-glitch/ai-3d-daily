@@ -923,7 +923,13 @@ def readable_candidates(candidates: list[dict], report_date: str) -> tuple[list[
     with evidence instead of weakening QA or padding the batch with article names.
     """
     accepted, rejected, copies = [], [], []
+    from editorial_controls import held_urls
+    held = held_urls(ROOT)
     for candidate in candidates:
+        if candidate['source_url'] in held:
+            candidate['scheduled_review'] = {'status': 'held'}
+            rejected.append((candidate, ['owner-held-for-later']))
+            continue
         age_errors = source_window_errors({'source_url': candidate['source_url'],
             'source_published_at': candidate['meta'].get('published')}, report_date)
         if age_errors:
@@ -1374,7 +1380,11 @@ def main() -> int:
     prior_reserve = list({entry['source_url']: entry for entry in prior_reserve}.values())[:int((hybrid.get('rolling_backlog') or {}).get('max_items', 240))]
     already_discovered = {c['source_url'] for c in discovered}
     retry_reserve = []
+    from editorial_controls import held_urls
+    held_reserve_urls = held_urls(ROOT)
     for entry in prior_reserve:
+        if entry['source_url'] in held_reserve_urls:
+            continue
         if entry['source_url'] in already_discovered:
             continue
         source_url = canonicalize_url(str(entry.get("source_url") or ""))
@@ -1782,7 +1792,7 @@ def main() -> int:
     }
 
     max_backlog = int((hybrid.get("rolling_backlog") or {}).get("max_items", 240))
-    backlog_items = reserve_output(overflow, retry_reserve, prior_reserve, report_date, max_backlog)
+    backlog_items = reserve_output(overflow, retry_reserve, prior_reserve, report_date, max_backlog, held=held_reserve_urls)
     backlog_out = {
         "schema_version": 1,
         "updated_for": report_date,

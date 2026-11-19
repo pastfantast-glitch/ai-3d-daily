@@ -355,3 +355,28 @@ jobs:
           echo "- Skip: ${{ steps.preflight.outputs.skip }}" >> "$GITHUB_STEP_SUMMARY"
           echo "- Public surfaces were not committed." >> "$GITHUB_STEP_SUMMARY"
           echo "- Collector handoff is delegated to collector-handoff.yml via workflow_run; this path is exercised by collector-test commits." >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Persist bounded Collector monitoring metadata
+        if: always() && steps.preflight.outputs.skip != 'true' && steps.preflight.outputs.date != ''
+        continue-on-error: true
+        env:
+          DATE: ${{ steps.preflight.outputs.date }}
+          COLLECTOR_CONCLUSION: ${{ job.status }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f "$RUNNER_TEMP/collector-review.json" || exit 0
+          git fetch origin main
+          test "$(git rev-parse HEAD)" = "$(git rev-parse origin/main)" || {
+            echo "::warning::Monitor not persisted: current main moved; no overwrite."
+            exit 0
+          }
+          python scripts/collection_monitor.py --packet "$RUNNER_TEMP/collector-review.json" --conclusion "$COLLECTOR_CONCLUSION"
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git diff --cached --quiet || { echo "Unexpected staged files"; exit 1; }
+          git add data/ops/collection-monitor.json
+          git diff --cached --quiet && exit 0
+          test "$(git diff --cached --name-only)" = "data/ops/collection-monitor.json"
+          git commit -m "Record Collector monitor $DATE"
+          git push origin HEAD:main

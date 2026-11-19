@@ -1,3 +1,4 @@
+import {mountOperations} from './admin-operations.js';
 import {createClient} from 'https://esm.sh/@supabase/supabase-js@2.116.0?bundle';
 import {validateSettings} from './supabase/functions/collection-admin/policy.mjs';
 const base='https://epumcdxfkcujulqrcjrw.supabase.co',key='sb_publishable_KPadXg3RKth3SGsAuXzebA_OylGgtpf';
@@ -11,9 +12,10 @@ async function api(op,body={}){
   let response;try{response=await fetch(`${base}/functions/v1/collection-admin`,{method:'POST',headers:{apikey:key,Authorization:`Bearer ${session.access_token}`,'Content-Type':'application/json'},body:JSON.stringify({op,...body}),signal:AbortSignal.timeout(op==='probe'?45000:25000)});}catch{throw new Error('無法連線管理服務，請稍後重試；尚未確認儲存成功。');}
   const data=await response.json();if(!response.ok)throw new Error(messages[data.error]||data.message||`操作未完成（${data.error||response.status}）`);return data;
 }
+const operationsView=mountOperations(api,notify);
 async function load(){
   const data=await api('load');settings=data.settings;sha=data.sha;metrics=data.metrics;
-  $('#workspace').hidden=false;$('#login-panel').hidden=true;$('#logout').hidden=false;$('#account-state').textContent='站主管理';render();
+  $('#workspace').hidden=false;$('#login-panel').hidden=true;$('#logout').hidden=false;$('#account-state').textContent='站主管理';render();await operationsView.refresh();
 }
 function button(text,action){const b=el('button',text);b.type='button';b.onclick=()=>action().catch(e=>notify(e.message,true));return b;}
 async function save(next){validateSettings(next);const result=await api('save',{sha,settings:next});settings=next;sha=result.sha;render();notify(result.message);return result;}
@@ -56,7 +58,7 @@ for(const id of ['close-editor','cancel-editor'])$('#'+id).onclick=()=>$('#edito
 $('#add-source').onclick=()=>openEditor('source');$('#add-topic').onclick=()=>openEditor('topic');
 $('#source-search').oninput=render;$('#source-status').onchange=render;
 $('#reload').onclick=()=>load().then(()=>notify('已載入最新設定。')).catch(e=>notify(e.message,true));
-document.querySelectorAll('[data-view]').forEach(b=>b.onclick=async()=>{document.querySelectorAll('[data-view]').forEach(x=>x.removeAttribute('aria-current'));b.setAttribute('aria-current','page');const view=b.dataset.view;$('#view-title').textContent={sources:'來源管理',topics:'收集主題',history:'修改紀錄'}[view];for(const name of ['sources','topics','history'])$('#'+name+'-view').hidden=name!==view;
+document.querySelectorAll('[data-view]').forEach(b=>b.onclick=async()=>{document.querySelectorAll('[data-view]').forEach(x=>x.removeAttribute('aria-current'));b.setAttribute('aria-current','page');const view=b.dataset.view;$('#view-title').textContent={overview:'發布概況',queue:'待審稿',reserve:'備稿管理',sources:'來源管理',topics:'收集主題',history:'修改紀錄'}[view];for(const name of ['overview','queue','reserve','sources','topics','history'])$('#'+name+'-view').hidden=name!==view;
   if(view==='history'&&settings)try{const r=await api('history');$('#history-list').replaceChildren();for(const entry of r.history){const row=el('article',undefined,'history-row'),left=el('div',entry.message);left.append(el('small',new Date(entry.date).toLocaleString('zh-TW',{timeZone:'Asia/Taipei'})));const restore=button('還原此設定',async()=>{if(!confirm('將來源與主題設定還原至此版本？已發布文章不會變動。'))return;const old=await api('version',{commit:entry.sha});await save(old.settings);});row.append(left,restore);$('#history-list').append(row);}}catch(e){notify(e.message,true);}
 });
 $('#login-form').onsubmit=async e=>{e.preventDefault();const f=new FormData(e.target),button=e.submitter;button.disabled=true;try{const r=await auth.auth.signInWithPassword({email:String(f.get('email')),password:String(f.get('password'))});e.target.password.value='';if(r.error)throw new Error('登入失敗，請確認帳號與密碼。');await load();notify('已登入站主後臺。');}catch(e){notify(e.message,true);}finally{button.disabled=false;}};

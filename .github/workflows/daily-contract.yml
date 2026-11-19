@@ -36,6 +36,12 @@ on:
       - 'config/collection-admin.json'
       - 'admin/**'
       - 'admin.js'
+      - 'admin-operations.js'
+      - 'reset-password/**'
+      - 'config/editorial-selection.json'
+      - 'scripts/editorial_controls.py'
+      - 'scripts/collection_monitor.py'
+      - 'scripts/test_admin_operations.py'
       - 'admin.css'
       - 'topics/**'
       - 'supabase/functions/collection-admin/**'
@@ -180,6 +186,9 @@ jobs:
         run: |
           node --check home.js
           node --check admin.js
+          node --check admin-operations.js
+          node --check reset-password/reset.js
+          node --test reset-password/policy.test.mjs supabase/functions/collection-admin/operations.test.mjs
           node --check topics/catalog.js
           node --check topics/topic.js
           node --test supabase/functions/collection-admin/policy.test.mjs
@@ -203,6 +212,7 @@ jobs:
           python scripts/check_editorial_quality.py
           python scripts/check_source_qa_coverage.py
           python scripts/test_collection_admin.py
+          python scripts/test_admin_operations.py
           python scripts/test_main_ci.py
           python scripts/test_content_supply.py
           python scripts/test_handoff_route.py
