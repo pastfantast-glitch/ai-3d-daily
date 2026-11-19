@@ -104,13 +104,14 @@ if (!window.__ai3dOwnerSync) {
   function injectNav(){
     document.querySelectorAll('.global-category-nav-inner').forEach(inner=>{
       if(!inner.querySelector('.global-admin-link')){const a=document.createElement('a');a.className='global-admin-link cloud-sync-control';a.href=new URL('admin/',import.meta.url).href;a.textContent='管理後臺';inner.append(a);}
+      inner.querySelector('.global-admin-link')?.classList.add('cloud-sync-control');
       inner.querySelectorAll('button.cloud-sync-control').forEach(n=>n.remove());
       const b=document.createElement('button');b.type='button';b.className='cloud-sync-control';b.dataset.cloudSync='owner';b.innerHTML='<span aria-hidden="true">☁</span><span class="cloud-sync-text">登入</span>';b.addEventListener('click',openAccount);inner.append(b);
     });paint();
   }
 
   function paint(){
-    document.querySelectorAll('.cloud-sync-control').forEach(b=>{
+    document.querySelectorAll('button.cloud-sync-control').forEach(b=>{
       const logged=!!session?.user;const warn=logged&&(status!=='已同步');
       b.classList.toggle('is-on',logged&&!warn);b.classList.toggle('is-warn',warn);
       const text=b.querySelector('.cloud-sync-text');const next=logged?status:'登入';if(text&&text.textContent!==next)text.textContent=next;
