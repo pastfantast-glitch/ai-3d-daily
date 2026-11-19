@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   3D 動作｜2026-11-19｜AI 3D Daily
+  </title>
+  <meta content="2026-11-19 3D 動作 Production Intelligence：3D 動作 / 3D 動作製作流程，共 1 項可驗證情報。" name="description"/>
+  <link href="../../styles.css?v=20261119-r1-workspace-v17-home-card-library" rel="stylesheet"/>
+  <link href="../../shared-components.css?v=20261119-r1-workspace-v17-home-card-library" rel="stylesheet"/>
+  <link href="../../category.css?v=20261119-r1-workspace-v17-home-card-library" rel="stylesheet"/>
+ </head>
+ <body class="category-page" data-category="3d-animation" data-report-date="2026-11-19">
+  <nav aria-label="Production Intelligence 分類" class="global-category-nav">
+   <div class="page global-category-nav-inner">
+    <div class="archive-nav-controls">
+     <a class="archive-nav-home" href="../../">
+      ← 首頁
+     </a>
+     <div class="archive-nav-date">
+      <a aria-label="前一日日報" class="archive-nav-arrow" href="../../2026-11-17/3d-animation/">
+       ←
+      </a>
+      <span>
+       2026-11-19
+      </span>
+     </div>
+    </div>
+    <span aria-hidden="true" class="archive-nav-divider">
+    </span>
+    <a class="global-category-link" href="../#top">
+     TOP5
+    </a>
+    <a class="global-category-link" data-category="ai-generation" href="../ai-generation/">
+     AI 生成
+    </a>
+    <a class="global-category-link" data-category="3d-production" href="../3d-production/">
+     3D 製作
+    </a>
+    <a class="global-category-link is-active" data-category="3d-animation" href="../3d-animation/">
+     3D 動作
+    </a>
+    <a class="global-category-link" data-category="engine-art" href="../engine-art/">
+     遊戲引擎
+    </a>
+    <a class="global-category-link" data-category="emerging-case" href="../emerging-case/">
+     新技術 / Case
+    </a>
+    <a class="global-category-link" data-category="blender-dcc" href="../blender-dcc/">
+     Blender / DCC
+    </a>
+    <a class="global-category-link global-history-link" data-global-view="history" href="../../history/">
+     歷史日報
+    </a>
+   </div>
+  </nav>
+  <main class="page category-main">
+   <article class="category-card" data-intel-id="3dnchu-hairdeck" data-intel-role="card" id="intel-3dnchu-hairdeck">
+    <div class="category-meta">
+     #09 · animation
+    </div>
+    <h2>
+     HairDeck 從單張圖片生成髮片，並建立彈簧骨骼與蒙皮
+    </h2>
+    <p class="summary">
+     HairDeck 研究把每張髮片表示為一個 token，由擴散 Transformer 生成髮型，再用另一模型產生彈簧骨骼並綁定髮片；可輸出 GLB、附帶角色的 VRM 與擺動預覽。
+    </p>
+    <figure class="case-preview" data-intel-id="3dnchu-hairdeck" data-intel-role="visual" data-visual-id="3dnchu-hairdeck">
+     <a href="https://3dnchu.com/archives/hairdeck" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-11-19/3dnchu-hairdeck.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">動畫</b> ★★★★☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       髮片與骨骼分開生成
+      </h4>
+      <p>
+       輸出保留個別帶 UV 的髮片，而非把整個髮型合成單一網格；另一生成模型建立彈簧骨骼鏈並將髮片綁定。這讓研究同時處理髮型形狀與後續擺動所需的設定。
+      </p>
+      <h4>
+       顏色與擺動可一同檢視
+      </h4>
+      <p>
+       系統依輸入圖片預測沿髮片的顏色，支援雙色髮型，並可從一張圖片產生一至四個候選。輸出除了 GLB 與附帶角色的 VRM，也包含轉動頭部檢視髮絲擺動的影片。
+      </p>
+      <h4>
+       本體授權不涵蓋所有依賴
+      </h4>
+      <p>
+       原文說明本體程式與模型採 Apache-2.0，但外部模型、程式及資料集各有授權；本地安裝還需同意 SAM 3 與 DINOv3 的條件。不能只看本體免費公開就忽略依賴條款。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://3dnchu.com/archives/hairdeck" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <nav aria-label="相鄰分類" class="category-bottom-nav">
+    <a href="../3d-production/">
+     ← 3D 製作
+    </a>
+    <a href="../#top">
+     TOP5
+    </a>
+    <a href="../engine-art/">
+     遊戲引擎 →
+    </a>
+   </nav>
+  </main>
+  <script defer="" src="../../archive-nav-state.js?v=20261119-r1-workspace-v17-home-card-library">
+  </script>
+ </body>
+</html>
