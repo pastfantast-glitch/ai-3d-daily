@@ -95,6 +95,8 @@ def main() -> None:
     parser.add_argument("date")
     parser.add_argument("--writer-idle-confirmed", action="store_true")
     parser.add_argument("--allow-done-policy-republish", action="store_true")
+    parser.add_argument('--resume-existing', action='store_true',
+                        help='Explicit bounded recovery after correcting inputs/contracts')
     args = parser.parse_args()
 
     date = str(args.date)
@@ -118,9 +120,17 @@ def main() -> None:
             fail(f"unexpected non-DONE receipt exists: {done_path.relative_to(ROOT)}")
     elif args.allow_done_policy_republish:
         fail("--allow-done-policy-republish requires an existing verified DONE receipt")
-    for path in (request_path, trigger_path):
-        if path.exists():
-            fail(f"refusing duplicate handoff while {path.relative_to(ROOT)} exists")
+    if request_path.exists():
+        fail(f"refusing duplicate handoff while {request_path.relative_to(ROOT)} exists")
+    resume = None
+    if trigger_path.exists():
+        if not args.resume_existing:
+            fail(f'refusing duplicate handoff while {trigger_path.relative_to(ROOT)} exists')
+        from handoff_diagnostics import resumed_marker
+        try:
+            resume = resumed_marker(ROOT, date, read_json(trigger_path))
+        except ValueError as error:
+            fail(str(error))
     if ready_path.exists():
         if not args.allow_done_policy_republish:
             fail(f"refusing duplicate handoff while {ready_path.relative_to(ROOT)} exists")
@@ -167,6 +177,8 @@ def main() -> None:
         "public_surfaces_committed": False,
         "intent": "policy-republish" if args.allow_done_policy_republish else "canonical-publish",
     }
+    from handoff_diagnostics import fingerprint
+    trigger = resume or {**trigger, 'resume_attempts': 0, 'input_fingerprint': fingerprint(ROOT, date)}
     trigger_path.write_text(
         json.dumps(trigger, ensure_ascii=False, indent=2) + "\n",
         "utf-8",

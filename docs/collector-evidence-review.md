@@ -102,3 +102,13 @@ python scripts/prepare_editorial_review.py collector-review.json review-drafts.j
 審稿記錄可明確填 `analysis_level: FULL` 與 `content_kind: news|practice|historical`；FULL 仍須原有深度門檻及來源核對，不依文章長度自動升級。未填維持 BRIEF。首頁優先使用核准分類，舊稿以來源日期與標題更新訊號保守分類；超過 180 日一律歷史精選，新消息不冒充當日事件。
 
 歷史頁生成器改為小型月份清單及 `history/indexes/YYYY-MM.json`，由唯一 Publisher 一起提交。前台需要搜尋時才載入月份、最多三個並行請求，支援舊版內嵌索引；載入失敗顯示重試提示，不顯示不完整結果作為完整搜尋。既有日報的重建仍交給 Publisher，下次發布會產生月份檔案。
+
+
+## 2026-11-20：一致的排序與受限交接恢復
+
+- Collector、Registry 正規化、V2 驗證及 release-input 共用 `assign_homepage_tiers`；FULL 優先，BRIEF 僅補不足五篇的空位。排序不改變證據深度。
+- 已持久化、尚未發布的舊 session，在交接前以記憶體內的正規化分區檢查其內容。此步不改原始稿件或已發布頁面；實際分區正規化仍由唯一 Publisher 在建立 request 前執行，最後驗證要求資料完全符合分區規則。
+- 新候選 ID 由既有 canonical URL 規則與固定雜湊產生，不再使用發現順序決定碰撞後綴。舊審稿可由唯一、完全相同的來源網址找回；原始 source_run_id、head_sha、來源日期、正文雜湊和段落引用仍須全部吻合。多筆同網址核准視為模糊資料並拒絕。
+- 最後一次 request 驗證的內容退件也保存至 `data/ops/handoff/YYYY-MM-DD.json`，讓後臺能顯示原因。不得以後續 workflow success 或 publish skipped 代替有效 DONE。
+- 修正 PR 合併且 current-main CI 通過後，確認 Collector 與 Publisher 無 active run，才可手動執行既有 **Collector handoff gate**，明確指定原 session 日期。它可接續失敗後留下的 `.collector`，不重啟 Collector，也不手工寫 marker。
+- 接續仍須通過原 session、稿件品質、Registry、來源追溯及單一 writer 檢查。殘留 marker 最多接續兩次，每次必須有輸入或相關驗證程式／設定變更；舊 marker 的基準從 Git 中建立它的 commit 推導。已有 request、ready 或 DONE 時拒絕這條接續路徑。既有診斷檔的「初次＋兩次修正」上限持續有效。

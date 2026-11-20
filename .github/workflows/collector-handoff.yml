@@ -166,7 +166,11 @@ jobs:
           if [ "${{ steps.date.outputs.policy_republish }}" = "true" ]; then
             python scripts/create_collector_trigger.py "$DATE" --writer-idle-confirmed --allow-done-policy-republish
           else
-            python scripts/create_collector_trigger.py "$DATE" --writer-idle-confirmed
+            if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+              python scripts/create_collector_trigger.py "$DATE" --writer-idle-confirmed --resume-existing
+            else
+              python scripts/create_collector_trigger.py "$DATE" --writer-idle-confirmed
+            fi
           fi
 
       - name: Reconfirm main has not moved

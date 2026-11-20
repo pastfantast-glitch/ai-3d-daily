@@ -244,7 +244,7 @@ def evidence_depth_preflight(date: str):
     )
 
 
-def write_request(date: str, policy_republish: bool = False) -> None:
+def write_request(date: str, policy_republish: bool = False):
     args = [
         sys.executable,
         str(ROOT / "scripts" / "finalize_collection_handoff.py"),
@@ -254,7 +254,7 @@ def write_request(date: str, policy_republish: bool = False) -> None:
     ]
     if policy_republish:
         args.append("--policy-republish")
-    run(*args)
+    return run(*args, check=False, capture=True)
 
 
 def main() -> int:
@@ -321,7 +321,16 @@ def main() -> int:
 
     # Re-run finalizer on normalized/enriched canonical state; only this invocation
     # may create the repo-owned request marker.
-    write_request(date, policy_republish)
+    request = write_request(date, policy_republish)
+    request_output = print_proc(request)
+    if request.returncode:
+        reason = controlled_collector_validation_failure(request_output)
+        if reason:
+            persist_followup(date, trigger, outcome='fix_required',
+                message=f'Collector correction required {date}', reason=reason, details=request_output)
+            write_output(date, 'fix_required', reason)
+            return 0
+        raise SystemExit(f'COLLECTOR BRIDGE FAILED: request validation exited {request.returncode}')
     persist_request(date, trigger)
     write_output(date, "request", "")
     print(f"COLLECTOR BRIDGE PASS: {date} request persisted; canonical run continues")

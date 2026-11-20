@@ -97,37 +97,11 @@ def _is_legacy_tier_error(error):
 
 
 def _tier_aware_errors(data, depth):
-    """Validate tiers with the exact Registry normalizer implementation."""
-    items = sorted(data.get('items') or [], key=lambda x: int(x.get('rank_global', 10**9)))
-    cfg = core.load_config()
-    top_limit = int((cfg.get('homepage') or {}).get('top5', 5))
-    next_limit = int((cfg.get('homepage') or {}).get('next10', 10))
-    policy = depth.get('top5_policy') or {}
-
-    expected_items = [dict(item) for item in items]
-    try:
-        assign_homepage_tiers(expected_items, top_limit, next_limit, policy)
-    except ValueError as exc:
-        return [f'top5 policy rejected by Registry tier assignment: {exc}']
-
-    expected_top = [x for x in expected_items if x.get('homepage_tier') == 'top5']
-    expected_next = [x for x in expected_items if x.get('homepage_tier') == 'next10']
-    expected_category = [x for x in expected_items if x.get('homepage_tier') == 'category_only']
-
-    actual_top = [x for x in items if x.get('homepage_tier') == 'top5']
-    actual_next = [x for x in items if x.get('homepage_tier') == 'next10']
-    actual_category = [x for x in items if x.get('homepage_tier') == 'category_only']
-
-    errors = []
-    if [x.get('id') for x in actual_top] != [x.get('id') for x in expected_top]:
-        errors.append('tier-aware top5 must match normalize_registry_identity.assign_homepage_tiers')
-    if [x.get('id') for x in actual_next] != [x.get('id') for x in expected_next]:
-        errors.append('tier-aware next10 must match normalize_registry_identity.assign_homepage_tiers')
-    if [x.get('id') for x in actual_category] != [x.get('id') for x in expected_category]:
-        errors.append('tier-aware category_only must match normalize_registry_identity.assign_homepage_tiers')
-    if any(_level(x) == 'REJECT' for x in actual_top):
-        errors.append('tier-aware TOP5 contains REJECT item')
-    return errors
+    from normalize_registry_identity import homepage_tier_errors
+    homepage = core.load_config().get('homepage') or {}
+    return homepage_tier_errors(data.get('items') or [],
+        int(homepage.get('top5', 5)), int(homepage.get('next10', 10)),
+        depth.get('top5_policy') or {})
 
 
 def validate_with_hybrid(data, strict_pool=True):
@@ -164,4 +138,5 @@ def validate_with_hybrid(data, strict_pool=True):
 
 core.validate_analysis = validate_analysis_tiered
 core.validate_v2_dataset = validate_with_hybrid
-core.main()
+if __name__ == '__main__':
+    core.main()

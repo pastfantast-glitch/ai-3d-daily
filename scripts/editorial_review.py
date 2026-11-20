@@ -90,7 +90,14 @@ def validate_record(record, article, date):
 
 def candidate_copy(candidate, date, root=ROOT):
     data = read_review(date, root)
-    record = (data or {}).get('items', {}).get(candidate['candidate_id'])
+    # A legacy ID can collide or change when discovery order changes. Match the
+    # exact source URL first; validate_record still binds date and evidence hash.
+    matches = [record for record in (data or {}).get('items', {}).values()
+               if record.get('source_url') == candidate['source_url']]
+    if len(matches) > 1:
+        candidate['scheduled_review'] = {'status': 'rejected', 'reason': 'ambiguous review source URL'}
+        return None, ['ambiguous review source URL']
+    record = matches[0] if matches else None
     if record is None:
         from editorial_reserve import approved_reserve
         entry = approved_reserve(root, date).get(candidate['source_url'])

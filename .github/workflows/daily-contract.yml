@@ -58,6 +58,7 @@ on:
       - 'data/candidates/rolling-backlog.json'
       - 'scripts/policy_resolver.py'
       - 'scripts/intelligence_v2.py'
+      - 'scripts/intelligence_v2/**'
       - 'scripts/url_identity.py'
       - 'scripts/discovery_hybrid.py'
       - 'scripts/collector_personalization.py'
@@ -84,6 +85,7 @@ on:
       - 'scripts/handoff_diagnostics.py'
       - 'scripts/editorial_review.py'
       - 'scripts/test_editorial_review.py'
+      - 'scripts/test_handoff_consistency.py'
       - 'data/editorial-reviews/**'
       - 'scripts/prepare_editorial_review.py'
       - 'scripts/test_article_evidence.py'
@@ -203,6 +205,7 @@ jobs:
           python scripts/test_source_quality.py
           python scripts/test_article_evidence.py
           python scripts/test_editorial_review.py
+          python scripts/test_handoff_consistency.py
           python scripts/test_supply_pipeline.py
           python scripts/test_collector_reliability.py
           python scripts/test_visual_budget.py
