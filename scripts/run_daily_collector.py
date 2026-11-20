@@ -429,18 +429,15 @@ def relevant(meta: dict) -> bool:
 
 
 def stable_id(source_id: str, url: str, title: str, used: set[str]) -> str:
-    path = urlparse(url).path.strip("/")
-    raw = path.split("/")[-1] if path else ""
-    raw = re.sub(r"\.(html?|php)$", "", raw, flags=re.I)
-    raw = re.sub(r"[^a-zA-Z0-9]+", "-", raw).strip("-").lower()
-    if not raw or raw.isdigit() or len(raw) < 5:
-        raw = re.sub(r"[^a-zA-Z0-9]+", "-", title).strip("-").lower()[:42]
-    raw = raw[:60].strip("-") or "candidate"
-    candidate = f"{source_id}-{raw}"
-    if len(candidate) > 84:
-        candidate = candidate[:74].rstrip("-")
-    if candidate in used:
-        candidate = f"{candidate[:72]}-{hashlib.sha1(url.encode()).hexdigest()[:8]}"
+    # URL identity, not arrival order or mutable headlines, owns new candidate IDs.
+    identity = canonicalize_url(url)
+    parts = [p for p in urlparse(identity).path.strip('/').split('/')
+             if p and not re.fullmatch(r'comment-page-\d+', p, re.I)]
+    raw = parts[-1] if parts else 'candidate'
+    raw = re.sub(r'\.(html?|php)$', '', raw, flags=re.I)
+    raw = re.sub(r'[^a-zA-Z0-9]+', '-', raw).strip('-').lower() or 'candidate'
+    stem = f'{source_id}-{raw}'[:67].rstrip('-')
+    candidate = f'{stem}-{hashlib.sha256(identity.encode()).hexdigest()[:16]}'
     used.add(candidate)
     return candidate
 
@@ -1678,6 +1675,9 @@ def main() -> int:
     canonical_items = canonical_items[:len(selected_items)]
     for item in topic_items:
         item['homepage_tier'] = 'category_only'
+    from normalize_registry_identity import assign_homepage_tiers, load_depth_config
+    assign_homepage_tiers(canonical_items, int(homepage['top5']), int(homepage['next10']),
+                          load_depth_config().get('top5_policy') or {})
     attempted_source_ids = list(dict.fromkeys(selected + refill_selected))
     targeted_refill_stage_complete = bool(attempted_source_ids) and all(
         isinstance(probe_records.get(source_id), dict)

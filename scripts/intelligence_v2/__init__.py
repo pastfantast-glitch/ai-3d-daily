@@ -56,38 +56,11 @@ def _is_legacy_homepage_error(error):
 
 
 def _tier_aware_homepage_errors(data, depth):
-    items = sorted(data.get('items') or [], key=lambda x: int(x.get('rank_global', 10**9)))
-    cfg = load_config()
-    homepage = cfg.get('homepage') or {}
-    top_limit = int(homepage.get('top5', 5))
-    next_limit = int(homepage.get('next10', 10))
-    allow_brief = bool((depth.get('top5_policy') or {}).get('allow_brief', False))
-
-    if allow_brief:
-        expected_top = items[:top_limit]
-    else:
-        expected_top = [x for x in items if _analysis_level(x) == 'FULL'][:top_limit]
-
-    top_ids = {str(x.get('id') or '') for x in expected_top}
-    remaining = [x for x in items if str(x.get('id') or '') not in top_ids]
-    expected_next = remaining[:next_limit]
-    next_ids = {str(x.get('id') or '') for x in expected_next}
-    expected_category = [x for x in remaining if str(x.get('id') or '') not in next_ids]
-
-    actual_top = [x for x in items if x.get('homepage_tier') == 'top5']
-    actual_next = [x for x in items if x.get('homepage_tier') == 'next10']
-    actual_category = [x for x in items if x.get('homepage_tier') == 'category_only']
-
-    errors = []
-    if [x.get('id') for x in actual_top] != [x.get('id') for x in expected_top]:
-        errors.append('tier-aware top5 must equal highest-ranked FULL items allowed by Full Analysis contract')
-    if [x.get('id') for x in actual_next] != [x.get('id') for x in expected_next]:
-        errors.append('tier-aware next10 must equal highest-ranked remaining items after FULL-only TOP5 selection')
-    if [x.get('id') for x in actual_category] != [x.get('id') for x in expected_category]:
-        errors.append('tier-aware category_only must contain all remaining canonical items after TOP5+next10')
-    if not allow_brief and any(_analysis_level(x) != 'FULL' for x in actual_top):
-        errors.append('tier-aware TOP5 contains BRIEF item while config/full-analysis-depth.json forbids it')
-    return errors
+    from normalize_registry_identity import homepage_tier_errors
+    homepage = load_config().get('homepage') or {}
+    return homepage_tier_errors(data.get('items') or [],
+        int(homepage.get('top5', 5)), int(homepage.get('next10', 10)),
+        depth.get('top5_policy') or {})
 
 
 def validate_v2_dataset(data, strict_pool=True):

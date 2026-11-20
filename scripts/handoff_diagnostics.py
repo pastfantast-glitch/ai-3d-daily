@@ -1,17 +1,27 @@
 """Persist bounded handoff diagnostics without collecting or publishing content."""
 import hashlib
 import json
+import subprocess
 from pathlib import Path
 
 
-def fingerprint(root, date):
+def fingerprint(root, date, revision=None):
     paths = [f'data/daily/{date}.json', f'data/candidates/collection-session/{date}.json']
     paths += ['scripts/' + name + '.py' for name in ('reader_quality', 'editorial_review', 'enrich_full_analysis_v3', 'source_quality', 'finalize_collection_handoff')]
+    paths += ['scripts/normalize_registry_identity.py', 'scripts/intelligence_v2/__init__.py',
+              'scripts/check_release_input.py', 'scripts/finalize_collector_trigger.py',
+              'scripts/create_collector_trigger.py', 'scripts/handoff_diagnostics.py',
+              'config/full-analysis-depth.json', 'config/intelligence-v2.json']
     h = hashlib.sha256()
     for name in paths:
         path = root / name
         h.update(name.encode())
-        h.update(path.read_bytes().replace(b'\r\n', b'\n') if path.exists() else b'missing')
+        if revision:
+            proc = subprocess.run(['git', 'show', f'{revision}:{name}'], cwd=root, capture_output=True)
+            content = proc.stdout if proc.returncode == 0 else b'missing'
+        else:
+            content = path.read_bytes() if path.exists() else b'missing'
+        h.update(content.replace(b'\r\n', b'\n'))
     return h.hexdigest()
 
 
@@ -43,3 +53,28 @@ def save_failure(root, date, stage, reason, output, run_id):
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + '\n', 'utf-8')
     return path
+
+
+def resumed_marker(root, date, marker):
+    """Bound explicit recovery of a marker left behind by a failed writer."""
+    if (marker.get('date') != date or marker.get('state') != 'COLLECTOR_PERSISTED'
+            or marker.get('writer_idle_confirmed_externally') is not True
+            or marker.get('generated_by') != 'scripts/create_collector_trigger.py'
+            or marker.get('intent') != 'canonical-publish'):
+        raise ValueError('existing Collector marker is not resumable')
+    attempts = marker.get('resume_attempts', 0)
+    if type(attempts) is not int or attempts < 0 or attempts >= 2:
+        raise ValueError('existing marker recovery limit reached (two corrected attempts)')
+    previous = marker.get('input_fingerprint')
+    if not previous:
+        # Migration for a legacy marker: derive its actual original input/contracts
+        # from Git, never invent a receipt or treat elapsed time as a correction.
+        commit = subprocess.check_output(['git', 'log', '-1', '--format=%H', '--',
+            f'data/publish/{date}.collector'], cwd=root, text=True).strip()
+        if not commit:
+            raise ValueError('existing marker commit is missing')
+        previous = fingerprint(root, date, revision=commit)
+    current = fingerprint(root, date)
+    if previous == current:
+        raise ValueError('handoff input/contracts unchanged; correct the blocker before resuming')
+    return {**marker, 'resume_attempts': attempts + 1, 'input_fingerprint': current}

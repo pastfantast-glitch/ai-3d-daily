@@ -129,6 +129,26 @@ def assign_homepage_tiers(items, top5, next10, policy):
     }
 
 
+
+def homepage_tier_errors(items, top5, next10, policy):
+    """Read-only comparison against the same FULL-first assignment used to publish."""
+    ordered = sorted(items, key=lambda item: int(item.get('rank_global', 10**9)))
+    expected = [dict(item) for item in ordered]
+    try:
+        assign_homepage_tiers(expected, top5, next10, policy)
+    except ValueError as error:
+        return [f'top5 policy rejected by Registry tier assignment: {error}']
+    errors = []
+    for tier in ('top5', 'next10', 'category_only'):
+        actual_ids = [item.get('id') for item in ordered if item.get('homepage_tier') == tier]
+        expected_ids = [item.get('id') for item in expected if item.get('homepage_tier') == tier]
+        if actual_ids != expected_ids:
+            errors.append(f'tier-aware {tier} must match normalize_registry_identity.assign_homepage_tiers')
+    if any(analysis_level(item) == 'REJECT' for item in ordered):
+        errors.append('tier-aware REJECT item cannot be published')
+    return errors
+
+
 def is_verified_published(date):
     receipt_path = ROOT / 'data' / 'publish' / f'{date}.done.json'
     if not receipt_path.exists():

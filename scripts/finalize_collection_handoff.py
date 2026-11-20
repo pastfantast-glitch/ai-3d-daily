@@ -132,11 +132,20 @@ def parse_args(argv):
     return date, flags
 
 
-def collector_data_errors(data):
+def collector_data_errors(data, *, before_normalization=False):
     """Validate only collector-owned invariants; never require rendered public HTML."""
     from reader_quality import reader_errors
     from collection_settings import all_items
     from topic_contract import topic_errors
+    if before_normalization:
+        # Existing sessions may predate FULL-first selection. Validate a derived
+        # tier view without changing persisted inputs; only the writer normalizes.
+        import copy
+        from normalize_registry_identity import assign_homepage_tiers, load_depth_config
+        data = copy.deepcopy(data)
+        homepage = load_intelligence_config()['homepage']
+        assign_homepage_tiers(data['items'], int(homepage['top5']), int(homepage['next10']),
+                              load_depth_config().get('top5_policy') or {})
     errors = reader_errors(all_items(data), data["date"]) + topic_errors(data)
     errors += list(validate_v2_dataset(data, strict_pool=True))
     cfg = load_intelligence_config()
@@ -224,7 +233,7 @@ def main() -> None:
     run("check_personalization_feedback_contract.py", date)
     run("check_quick_impact_contract.py", date)
     run("check_editorial_quality.py", date)
-    errors = collector_data_errors(data)
+    errors = collector_data_errors(data, before_normalization="--write-request" not in flags)
     if errors:
         fail("collector canonical validation failed: " + "; ".join(errors))
 
