@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   3D 製作｜2026-11-20｜AI 3D Daily
+  </title>
+  <meta content="2026-11-20 3D 製作 Production Intelligence：3D 角色製作 / 3D 物件製作 / 3D 場景製作 / 製作流程，共 2 項可驗證情報。" name="description"/>
+  <link href="../../styles.css?v=20261120-r1-workspace-v17-home-card-library" rel="stylesheet"/>
+  <link href="../../shared-components.css?v=20261120-r1-workspace-v17-home-card-library" rel="stylesheet"/>
+  <link href="../../category.css?v=20261120-r1-workspace-v17-home-card-library" rel="stylesheet"/>
+ </head>
+ <body class="category-page" data-category="3d-production" data-report-date="2026-11-20">
+  <nav aria-label="Production Intelligence 分類" class="global-category-nav">
+   <div class="page global-category-nav-inner">
+    <div class="archive-nav-controls">
+     <a class="archive-nav-home" href="../../">
+      ← 首頁
+     </a>
+     <div class="archive-nav-date">
+      <a aria-label="前一日日報" class="archive-nav-arrow" href="../../2026-11-19/3d-production/">
+       ←
+      </a>
+      <span>
+       2026-11-20
+      </span>
+     </div>
+    </div>
+    <span aria-hidden="true" class="archive-nav-divider">
+    </span>
+    <a class="global-category-link" href="../#top">
+     TOP5
+    </a>
+    <a class="global-category-link" data-category="ai-generation" href="../ai-generation/">
+     AI 生成
+    </a>
+    <a class="global-category-link is-active" data-category="3d-production" href="../3d-production/">
+     3D 製作
+    </a>
+    <a class="global-category-link" data-category="3d-animation" href="../3d-animation/">
+     3D 動作
+    </a>
+    <a class="global-category-link" data-category="engine-art" href="../engine-art/">
+     遊戲引擎
+    </a>
+    <a class="global-category-link" data-category="emerging-case" href="../emerging-case/">
+     新技術 / Case
+    </a>
+    <a class="global-category-link" data-category="blender-dcc" href="../blender-dcc/">
+     Blender / DCC
+    </a>
+    <a class="global-category-link global-history-link" data-global-view="history" href="../../history/">
+     歷史日報
+    </a>
+    <a class="global-admin-link" href="../../admin/">
+     管理後臺
+    </a>
+   </div>
+  </nav>
+  <main class="page category-main">
+   <article class="category-card" data-intel-id="80-level-clever-weight-painting-tool-for-better-character-deformation" data-intel-role="card" id="intel-80-level-clever-weight-painting-tool-for-better-character-deformation">
+    <div class="category-meta">
+     #02 · character-production
+    </div>
+    <h2>
+     跨網格平滑權重：Blender 角色肩膀的調整示範
+    </h2>
+    <p class="summary">
+     角色作者 Flat 示範以 Smooth Weights 的體積平滑模式，處理肩膀與腋下的權重過渡。這個模式依空間距離混合權重，可跨越未連接的網格；作者也使用編輯模式內的權重繪製工具。
+    </p>
+    <figure class="case-preview" data-intel-id="80-level-clever-weight-painting-tool-for-better-character-deformation" data-intel-role="visual" data-visual-id="80-level-clever-weight-painting-tool-for-better-character-deformation">
+     <a href="https://80.lv/articles/clever-weight-painting-tool-for-better-character-deformations" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-11-20/80-level-clever-weight-painting-tool-for-better-character-deformation.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">角色製作</b> ★★★★☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       以距離處理斷開網格
+      </h4>
+      <p>
+       體積平滑依據幾何之間的距離，而非拓撲連接關係，因此能在有間隙或互相重疊的部分混合權重。示範將這種方式用在角色肩膀與腋下的變形過渡。
+      </p>
+      <h4>
+       在編輯模式微調多根骨骼
+      </h4>
+      <p>
+       Flat 另外使用 cvELD Edit Paint，在不離開編輯模式的情況下繪製與微調多根骨骼的權重。文中也提到同系列工具可協助修正身體與衣物之間的穿插及空隙。
+      </p>
+      <h4>
+       示範範圍仍是單一角色
+      </h4>
+      <p>
+       本文提供的是作者角色製作中的局部示範，沒有列出平滑半徑、耗時或不同骨架的比較。推論：可把跨網格權重平滑視為處理分離零件的選項，但不能由此保證所有肩部變形都能自動修好。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://80.lv/articles/clever-weight-painting-tool-for-better-character-deformations" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="80-level-have-a-look-at-this-3d-character-s-chest-anatomy-showcase" data-intel-role="card" id="intel-80-level-have-a-look-at-this-3d-character-s-chest-anatomy-showcase">
+    <div class="category-meta">
+     #06 · character-production
+    </div>
+    <h2>
+     不加輔助骨骼的肩背變形：VRChat 角色權重案例
+    </h2>
+    <p class="summary">
+     Fuyumidori 在男性 VRChat 角色的製作紀錄中，展示肩部權重與背闊肌變形的調整，並表示沒有使用輔助骨骼。作者分享動畫與權重近照，供讀者觀察這段動作的變形方式。
+    </p>
+    <figure class="case-preview" data-intel-id="80-level-have-a-look-at-this-3d-character-s-chest-anatomy-showcase" data-intel-role="visual" data-visual-id="80-level-have-a-look-at-this-3d-character-s-chest-anatomy-showcase">
+     <a href="https://80.lv/articles/have-a-look-at-this-3d-character-s-chest-anatomy-showcase" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-11-20/80-level-have-a-look-at-this-3d-character-s-chest-anatomy-showcase.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">角色製作</b> ★★★☆☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       從肩部權重觀察背闊肌
+      </h4>
+      <p>
+       這次展示聚焦於角色綁定階段的肩膀與背闊肌變形，而非重新建立肌肉模擬系統。作者表示沒有加入輔助骨骼，因此本文的技術重點是既有骨架下的權重調整成果。
+      </p>
+      <h4>
+       動畫與權重可一起比對
+      </h4>
+      <p>
+       作者提供動畫檔案與權重的近距離畫面。推論：讀者可把動作姿勢和權重分布放在一起觀察，理解肩背區域如何隨動作變形，而不必只從單張完成圖猜測處理方式。
+      </p>
+      <h4>
+       保留原始發布時點
+      </h4>
+      <p>
+       這是 2026 年 7 月的製作紀錄；原文當時稱角色預計於該月推出，沒有提供後續發售確認。本文保留其權重展示價值，不把當時的計畫寫成今天已完成的發布結果。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://80.lv/articles/have-a-look-at-this-3d-character-s-chest-anatomy-showcase" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <nav aria-label="相鄰分類" class="category-bottom-nav">
+    <a href="../ai-generation/">
+     ← AI 生成
+    </a>
+    <a href="../#top">
+     TOP5
+    </a>
+    <a href="../3d-animation/">
+     3D 動作 →
+    </a>
+   </nav>
+  </main>
+  <script defer="" src="../../archive-nav-state.js?v=20261120-r1-workspace-v17-home-card-library">
+  </script>
+ </body>
+</html>

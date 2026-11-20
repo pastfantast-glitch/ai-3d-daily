@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   AI／3D／遊戲美術 Production Intelligence — 2026-11-20
+  </title>
+  <link href="../styles.css?v=20261120-r1-workspace-v17-home-card-library" rel="stylesheet"/>
+  <link href="../shared-components.css?v=20261120-r1-workspace-v17-home-card-library" rel="stylesheet"/>
+  <link href="../daily.css?v=20261120-r1-workspace-v17-home-card-library" rel="stylesheet"/>
+  <link href="../shared-components.css?v=20261120-r1-workspace-v17-home-card-library" rel="stylesheet"/>
+  <meta content="2026-11-20 Production Intelligence 日報：以可驗證來源整理 AI、3D 製作、動畫、遊戲引擎與 Blender／DCC 情報。" name="description"/>
+ </head>
+ <body class="archive-page" data-next="" data-previous="2026-11-19" data-report-date="2026-11-20">
+  <nav aria-label="Production Intelligence 分類" class="global-category-nav">
+   <div class="page global-category-nav-inner">
+    <div class="archive-nav-controls">
+     <a class="archive-nav-home" href="../">
+      ← 首頁
+     </a>
+     <div class="archive-nav-date">
+      <a aria-label="前一日日報" class="archive-nav-arrow" href="../2026-11-19/">
+       ←
+      </a>
+      <span>
+       2026-11-20
+      </span>
+     </div>
+    </div>
+    <span aria-hidden="true" class="archive-nav-divider">
+    </span>
+    <a class="global-category-link is-active" href="#top">
+     TOP5
+    </a>
+    <a class="global-category-link" data-category="ai-generation" href="ai-generation/">
+     AI 生成
+    </a>
+    <a class="global-category-link" data-category="3d-production" href="3d-production/">
+     3D 製作
+    </a>
+    <a class="global-category-link" data-category="3d-animation" href="3d-animation/">
+     3D 動作
+    </a>
+    <a class="global-category-link" data-category="engine-art" href="engine-art/">
+     遊戲引擎
+    </a>
+    <a class="global-category-link" data-category="emerging-case" href="emerging-case/">
+     新技術 / Case
+    </a>
+    <a class="global-category-link" data-category="blender-dcc" href="blender-dcc/">
+     Blender / DCC
+    </a>
+    <a class="global-category-link global-history-link" data-global-view="history" href="../history/">
+     歷史日報
+    </a>
+    <a class="global-admin-link" href="../admin/">
+     管理後臺
+    </a>
+   </div>
+  </nav>
+  <main class="page daily-main">
+   <section class="block" id="top">
+    <div class="block-head">
+     <div>
+      <span>
+       2026-11-20
+      </span>
+      <h2>
+       TOP5
+      </h2>
+     </div>
+    </div>
+    <article class="news daily-card daily-card-top" data-intel-id="cg-channel-autodesk-releases-3ds-max-2027-3" data-intel-role="card">
+     <div class="news-rank">
+      01
+     </div>
+     <div class="news-main">
+      <div class="meta">
+       <span class="pill">
+        other-dcc
+       </span>
+      </div>
+      <h3>
+       3ds Max 2027.3 加入 AI 場景操作與 Arnold 視窗預覽
+      </h3>
+      <p class="summary">
+       3ds Max 2027.3 擴充 AI 助理與 MCP 連線，讓文字指令可經腳本修改場景；同時把 Arnold 互動渲染帶入工作視窗，並加入動態高斯潑濺資料、點編輯及匯出功能。
+      </p>
+      <figure class="case-preview daily-visual" data-intel-id="cg-channel-autodesk-releases-3ds-max-2027-3" data-intel-role="visual" data-visual-id="cg-channel-autodesk-releases-3ds-max-2027-3">
+       <a href="https://www.cgchannel.com/2026/11/autodesk-releases-3ds-max-2027-3" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+        <img alt="SOURCE CARD preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-11-20/cg-channel-autodesk-releases-3ds-max-2027-3.svg"/>
+       </a>
+       <figcaption>
+        <span>
+         SOURCE CARD
+        </span>
+        · Generated source card · 點圖開啟原始來源
+       </figcaption>
+      </figure>
+      <div class="quick-impact daily-impact">
+       <span><b class="quick-impact-label">其他 DCC</b> ★★★★★</span>
+      </div>
+      <details class="canonical-analysis canonical-analysis-full daily-full-analysis" data-analysis-level="FULL">
+       <summary>
+        完整分析
+       </summary>
+       <div class="detail-body canonical-analysis-body daily-analysis-body">
+        <h4>
+         從檢查場景進一步執行腳本
+        </h4>
+        <p>
+         AI 助理新增的第三層能力可執行 MAXScript 修改場景，仍屬技術預覽。使用者須先預覽並核准腳本，預設安全模式會阻擋場景外操作，每次助理動作也對應一個復原步驟。
+        </p>
+        <h4>
+         把材質預覽留在工作視窗
+        </h4>
+        <p>
+         Arnold 可直接在作用中的工作視窗互動渲染，同時保留操控器、格線與線框疊加。它以 NVIDIA DLSS 升頻與去雜訊改善互動性，沒有 NVIDIA 顯示卡時則提供 CPU 備援。
+        </p>
+        <h4>
+         動態潑濺有指定輸入形式
+        </h4>
+        <p>
+         動態高斯潑濺的輸入方式是載入 PLZ 或 SPZ 檔案序列，再由時間軸播放；點資料可用新增的修改器非破壞編輯，並匯出 PLY。這些格式能力不等於任意動態掃描檔都能直接載入。
+        </p>
+       </div>
+      </details>
+      <a class="source daily-source" href="https://www.cgchannel.com/2026/11/autodesk-releases-3ds-max-2027-3" rel="noopener noreferrer" target="_blank">
+       來源
+      </a>
+     </div>
+    </article>
+    <article class="news daily-card daily-card-top" data-intel-id="3dnchu-comment-page-1-027598ca" data-intel-role="card">
+     <div class="news-rank">
+      02
+     </div>
+     <div class="news-main">
+      <div class="meta">
+       <span class="pill">
+        case-study
+       </span>
+      </div>
+      <h3>
+       SculptForge 整合雕刻與資產整理，AI 功能可另行關閉
+      </h3>
+      <p class="summary">
+       SculptForge 是免費開源的獨立雕刻工具，整合重拓撲、UV、貼圖與烘焙，並提供 Blender、Maya 與 Unreal Engine 的交接功能。程式仍在早期釋出階段，AI 生成服務與一般離線雕刻有不同使用條件。
+      </p>
+      <figure class="case-preview daily-visual" data-intel-id="3dnchu-comment-page-1-027598ca" data-intel-role="visual" data-visual-id="3dnchu-comment-page-1-027598ca">
+       <a href="https://3dnchu.com/archives/sculptforge/comment-page-1" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-11-20/3dnchu-comment-page-1-027598ca.jpg"/>
+       </a>
+       <figcaption>
+        <span>
+         SOURCE PREVIEW
+        </span>
+        · Local visual evidence · 點圖開啟原始來源
+       </figcaption>
+      </figure>
+      <div class="quick-impact daily-impact">
+       <span><b class="quick-impact-label">製作案例</b> ★★★☆☆</span>
+      </div>
+      <details class="canonical-analysis canonical-analysis-full daily-full-analysis" data-analysis-level="FULL">
+       <summary>
+        完整分析
+       </summary>
+       <div class="detail-body canonical-analysis-body daily-analysis-body">
+        <h4>
+         雕刻細節可接續重拓撲與烘焙
+        </h4>
+        <p>
+         程式提供多層細分和動態拓撲，Quad Remesh 產生以四邊形為主的網格，再用 Project Detail 投射原始細節。UV 接縫、UDIM 打包及多種貼圖烘焙也在同一套工具內。
+        </p>
+        <h4>
+         交接功能保留既有製作環境
+        </h4>
+        <p>
+         透過專用附加元件或工具架可與 Blender、Maya 交換模型；Blender 更新既有物件時保留變換、材質與修改器。另有 LOD 生成與直接傳送 Unreal Editor 的功能，供資產整理後繼續使用。
+        </p>
+        <h4>
+         開源本體與外部 AI 條件分開
+        </h4>
+        <p>
+         本體採 GPL v3.0 或更新版，普通雕刻可離線且不需帳號；AI 功能可關閉，生成內容的使用條件取決於所接模型或服務。直接傳送 Unreal 另須啟用 Python 編輯器外掛及遠端執行設定。
+        </p>
+       </div>
+      </details>
+      <a class="source daily-source" href="https://3dnchu.com/archives/sculptforge/comment-page-1" rel="noopener noreferrer" target="_blank">
+       來源
+      </a>
+     </div>
+    </article>
+    <article class="news daily-card daily-card-top" data-intel-id="80-level-how-to-make-hand-painted-base-generator-in-substance-3d-desi" data-intel-role="card">
+     <div class="news-rank">
+      03
+     </div>
+     <div class="news-main">
+      <div class="meta">
+       <span class="pill">
+        substance
+       </span>
+      </div>
+      <h3>
+       手繪貼圖生成器拆解：用漸層、斑點與薄片統一道具風格
+      </h3>
+      <p class="summary">
+       Theresa Schlag 在 Substance 3D Designer 製作四種色彩與細節相關的基底生成器，包含雙色漸層、漸層遮罩、斑點和薄片。案例說明如何在 Painter 重用圖層組合，以及用位元深度和模糊節點改善漸層條帶。
+      </p>
+      <figure class="case-preview daily-visual" data-intel-id="80-level-how-to-make-hand-painted-base-generator-in-substance-3d-desi" data-intel-role="visual" data-visual-id="80-level-how-to-make-hand-painted-base-generator-in-substance-3d-desi">
+       <a href="https://80.lv/articles/how-to-make-hand-painted-base-generator-in-substance-3d-designer" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-11-20/80-level-how-to-make-hand-painted-base-generator-in-substance-3d-desi.jpg"/>
+       </a>
+       <figcaption>
+        <span>
+         SOURCE PREVIEW
+        </span>
+        · Local visual evidence · 點圖開啟原始來源
+       </figcaption>
+      </figure>
+      <div class="quick-impact daily-impact">
+       <span><b class="quick-impact-label">Substance</b> ★★★☆☆</span>
+      </div>
+      <details class="canonical-analysis canonical-analysis-full daily-full-analysis" data-analysis-level="FULL">
+       <summary>
+        完整分析
+       </summary>
+       <div class="detail-body canonical-analysis-body daily-analysis-body">
+        <h4>
+         把重複圖層改成可重用生成器
+        </h4>
+        <p>
+         雙色漸層以烘焙的世界空間法線驅動 Light 節點，再以自訂浮點變數控制兩個光照角度。作者加入 HSL 調色並公開必要參數，將反覆堆疊的漸層和表面細節整理成單一工具。
+        </p>
+        <h4>
+         控制參數數量以維持風格
+        </h4>
+        <p>
+         斑點圖沿用漸層遮罩區段，薄片則由斑點接上斜率模糊鏈形成。作者刻意限制公開參數，並建議實際製作使用中性預設，以便不同道具維持一致的手繪細節密度。
+        </p>
+        <h4>
+         解析度之外還要處理位元深度
+        </h4>
+        <p>
+         提高位置貼圖解析度仍未完全解決條帶，因此作者把上游節點輸出改為每通道 16 位元，並在直方圖掃描前加入低強度灰階模糊。這是該漸層遮罩的修正過程，並非所有貼圖都需同樣設定。
+        </p>
+       </div>
+      </details>
+      <a class="source daily-source" href="https://80.lv/articles/how-to-make-hand-painted-base-generator-in-substance-3d-designer" rel="noopener noreferrer" target="_blank">
+       來源
+      </a>
+     </div>
+    </article>
+    <article class="news daily-card daily-card-top" data-intel-id="cg-channel-chaos-releases-v-ray-7-update-3-for-3ds-max" data-intel-role="card">
+     <div class="news-rank">
+      04
+     </div>
+     <div class="news-main">
+      <div class="meta">
+       <span class="pill">
+        other-dcc
+       </span>
+      </div>
+      <h3>
+       歷史參考｜V-Ray 7.3 的視差室內、快速焦散與 AMD 支援
+      </h3>
+      <p class="summary">
+       2026 年 4 月的 V-Ray 7 Update 3 紀錄整理了 3ds Max 渲染流程更新：以視差貼圖模擬建築室內、快速產生水面下焦散，並讓高斯潑濺接受場景燈光。GPU 渲染也透過 HIP 加入 AMD 支援。
+      </p>
+      <figure class="case-preview daily-visual" data-intel-id="cg-channel-chaos-releases-v-ray-7-update-3-for-3ds-max" data-intel-role="visual" data-visual-id="cg-channel-chaos-releases-v-ray-7-update-3-for-3ds-max">
+       <a href="https://www.cgchannel.com/2026/04/chaos-releases-v-ray-7-update-3-for-3ds-max" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+        <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-11-20/cg-channel-chaos-releases-v-ray-7-update-3-for-3ds-max.jpg"/>
+       </a>
+       <figcaption>
+        <span>
+         SOURCE PREVIEW
+        </span>
+        · Local visual evidence · 點圖開啟原始來源
+       </figcaption>
+      </figure>
+      <div class="quick-impact daily-impact">
+       <span><b class="quick-impact-label">其他 DCC</b> ★★★☆☆</span>
+      </div>
+      <details class="canonical-analysis canonical-analysis-full daily-full-analysis" data-analysis-level="FULL">
+       <summary>
+        完整分析
+       </summary>
+       <div class="detail-body canonical-analysis-body daily-analysis-body">
+        <h4>
+         以貼圖呈現窗後室內深度
+        </h4>
+        <p>
+         新的視差室內貼圖可放在建築外牆窗戶上，產生窗後三維空間的視覺效果，無須建立真正的室內幾何。原文指出這讓流程不必另行使用第三方 OSL 視差著色器。
+        </p>
+        <h4>
+         掃描內容可與場景燈光結合
+        </h4>
+        <p>
+         高斯潑濺物件可接受場景光源照明，載入器也加入動態潑濺支援。GPU 渲染的 AMD 支援則改由 HIP 實作，與過去使用的 OpenCL 路線不同。
+        </p>
+        <h4>
+         快速焦散有渲染裝置限制
+        </h4>
+        <p>
+         Quick Sun Caustics 可在不建立完整光子設定的情況下產生水面下焦散，但該版只支援 CPU 渲染。文中 AMD 與 NVIDIA 的速度比較來自 Chaos 內部測試，不能視為所有場景的普遍排名。
+        </p>
+       </div>
+      </details>
+      <a class="source daily-source" href="https://www.cgchannel.com/2026/04/chaos-releases-v-ray-7-update-3-for-3ds-max" rel="noopener noreferrer" target="_blank">
+       來源
+      </a>
+     </div>
+    </article>
+    <article class="news daily-card daily-card-top" data-intel-id="cg-channel-autodesk-releases-3ds-max-2027" data-intel-role="card">
+     <div class="news-rank">
+      05
+     </div>
+     <div class="news-main">
+      <div class="meta">
+       <span class="pill">
+        other-dcc
+       </span>
+      </div>
+      <h3>
+       歷史參考｜3ds Max 2027 的倒角、噪波與體積選取工具
+      </h3>
+      <p class="summary">
+       這篇 2026 年 3 月的版本紀錄介紹 3ds Max 2027：Smart Bevel 處理布林網格倒角，Noise Plus 產生可動畫化噪波，Field Helper 則把體積場用於選取與動畫控制。本文對應該次初始版本。
+      </p>
+      <figure class="case-preview daily-visual" data-intel-id="cg-channel-autodesk-releases-3ds-max-2027" data-intel-role="visual" data-visual-id="cg-channel-autodesk-releases-3ds-max-2027">
+       <a href="https://www.cgchannel.com/2026/03/autodesk-releases-3ds-max-2027" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+        <img alt="SOURCE CARD preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-11-20/cg-channel-autodesk-releases-3ds-max-2027.svg"/>
+       </a>
+       <figcaption>
+        <span>
+         SOURCE CARD
+        </span>
+        · Generated source card · 點圖開啟原始來源
+       </figcaption>
+      </figure>
+      <div class="quick-impact daily-impact">
+       <span><b class="quick-impact-label">其他 DCC</b> ★★★☆☆</span>
+      </div>
+      <details class="canonical-analysis canonical-analysis-full daily-full-analysis" data-analysis-level="FULL">
+       <summary>
+        完整分析
+       </summary>
+       <div class="detail-body canonical-analysis-body daily-analysis-body">
+        <h4>
+         布林建模後的倒角處理
+        </h4>
+        <p>
+         Smart Bevel 不限於相鄰多邊形，原文以布林運算產生的網格說明其較乾淨的倒角結果。此外，擠出修改器新增方向操控器，不再只能沿局部 Z 軸擠出樣條線。
+        </p>
+        <h4>
+         用場與噪波控制動態效果
+        </h4>
+        <p>
+         Noise Plus 以單純形噪波為基礎，可結合碎形噪波，部分類型提供相位動畫。Field Helper 可由程序形狀或封閉物件建立體積場，搭配選取修改器及動畫控制器製作動態圖像效果。
+        </p>
+        <h4>
+         初始 AI 助理僅提供技術問答
+        </h4>
+        <p>
+         原文中的 Autodesk Assistant 是早期技術預覽，初始用途為搜尋官方文件並回答操作問題。它把自然語言控制場景列為後續目標，不能把後來版本的執行能力套回這篇三月紀錄。
+        </p>
+       </div>
+      </details>
+      <a class="source daily-source" href="https://www.cgchannel.com/2026/03/autodesk-releases-3ds-max-2027" rel="noopener noreferrer" target="_blank">
+       來源
+      </a>
+     </div>
+    </article>
+   </section>
+   <section class="block daily-more" id="more">
+    <div class="block-head">
+     <div>
+      <span>
+       2026-11-20
+      </span>
+      <h2>
+       當日其他資訊
+      </h2>
+     </div>
+    </div>
+    <article class="daily-card daily-card-more category-news" data-intel-id="80-level-clever-weight-painting-tool-for-better-character-deformation" data-intel-role="card">
+     <div class="meta">
+      <span class="pill">
+       character-production
+      </span>
+     </div>
+     <h3>
+      跨網格平滑權重：Blender 角色肩膀的調整示範
+     </h3>
+     <p class="summary">
+      角色作者 Flat 示範以 Smooth Weights 的體積平滑模式，處理肩膀與腋下的權重過渡。這個模式依空間距離混合權重，可跨越未連接的網格；作者也使用編輯模式內的權重繪製工具。
+     </p>
+     <figure class="case-preview daily-visual" data-intel-id="80-level-clever-weight-painting-tool-for-better-character-deformation" data-intel-role="visual" data-visual-id="80-level-clever-weight-painting-tool-for-better-character-deformation">
+      <a href="https://80.lv/articles/clever-weight-painting-tool-for-better-character-deformations" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+       <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-11-20/80-level-clever-weight-painting-tool-for-better-character-deformation.jpg"/>
+      </a>
+      <figcaption>
+       <span>
+        SOURCE PREVIEW
+       </span>
+       · Local visual evidence · 點圖開啟原始來源
+      </figcaption>
+     </figure>
+     <div class="quick-impact daily-impact">
+      <span><b class="quick-impact-label">角色製作</b> ★★★★☆</span>
+     </div>
+     <details class="canonical-analysis canonical-analysis-brief daily-full-analysis" data-analysis-level="BRIEF">
+      <summary>
+       完整分析
+      </summary>
+      <div class="detail-body canonical-analysis-body brief-analysis-body daily-analysis-body">
+       <h4>
+        以距離處理斷開網格
+       </h4>
+       <p>
+        體積平滑依據幾何之間的距離，而非拓撲連接關係，因此能在有間隙或互相重疊的部分混合權重。示範將這種方式用在角色肩膀與腋下的變形過渡。
+       </p>
+       <h4>
+        在編輯模式微調多根骨骼
+       </h4>
+       <p>
+        Flat 另外使用 cvELD Edit Paint，在不離開編輯模式的情況下繪製與微調多根骨骼的權重。文中也提到同系列工具可協助修正身體與衣物之間的穿插及空隙。
+       </p>
+       <h4>
+        示範範圍仍是單一角色
+       </h4>
+       <p>
+        本文提供的是作者角色製作中的局部示範，沒有列出平滑半徑、耗時或不同骨架的比較。推論：可把跨網格權重平滑視為處理分離零件的選項，但不能由此保證所有肩部變形都能自動修好。
+       </p>
+       <p class="analysis-level-note">
+        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+       </p>
+      </div>
+     </details>
+     <a class="source daily-source" href="https://80.lv/articles/clever-weight-painting-tool-for-better-character-deformations" rel="noopener noreferrer" target="_blank">
+      來源
+     </a>
+    </article>
+    <article class="daily-card daily-card-more category-news" data-intel-id="80-level-learn-to-sculpt-heads-in-blender-with-this-beginner-course" data-intel-role="card">
+     <div class="meta">
+      <span class="pill">
+       blender
+      </span>
+     </div>
+     <h3>
+      Blender 頭部雕刻課程：從男女臉部結構到貼圖與打光
+     </h3>
+     <p class="summary">
+      Ryan King 的 Blender 頭部雕刻課程以六章帶領學員理解頭部解剖、參考圖與基本工具，再分別雕刻男性與女性頭像，最後進行皮膚繪製、照明、渲染與合成。教材包含不同製作階段的模型。
+     </p>
+     <figure class="case-preview daily-visual" data-intel-id="80-level-learn-to-sculpt-heads-in-blender-with-this-beginner-course" data-intel-role="visual" data-visual-id="80-level-learn-to-sculpt-heads-in-blender-with-this-beginner-course">
+      <a href="https://80.lv/articles/learn-to-sculpt-heads-in-blender-with-this-beginner-course" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+       <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-11-20/80-level-learn-to-sculpt-heads-in-blender-with-this-beginner-course.jpg"/>
+      </a>
+      <figcaption>
+       <span>
+        SOURCE PREVIEW
+       </span>
+       · Local visual evidence · 點圖開啟原始來源
+      </figcaption>
+     </figure>
+     <div class="quick-impact daily-impact">
+      <span><b class="quick-impact-label">Blender</b> ★★★★☆</span>
+     </div>
+     <details class="canonical-analysis canonical-analysis-brief daily-full-analysis" data-analysis-level="BRIEF">
+      <summary>
+       完整分析
+      </summary>
+      <div class="detail-body canonical-analysis-body brief-analysis-body daily-analysis-body">
+       <h4>
+        先解剖與工具，再雕刻頭像
+       </h4>
+       <p>
+        前兩章拆解頸部、耳朵、眼睛與鼻子等結構，並介紹參考圖和雕刻工具。接著以男性、女性頭像練習骨骼差異與比例，再細化五官，而不是只展示完成模型。
+       </p>
+       <h4>
+        階段檔案支援過程對照
+       </h4>
+       <p>
+        教材提供男女頭像的雕刻過程、黏土版與上色版檔案，也包含五官雕刻、頭骨模型和參考基礎網格。推論：這些中間成果能協助學員比對形體建立與上色後的差異。
+       </p>
+       <h4>
+        授權敘述限於教材列出的資產
+       </h4>
+       <p>
+        原文表示教材中的模型、貼圖、渲染圖與參考影像可用於個人及商業專案，並列出超過十二小時的影片。它沒有說教學影片本身可以重新散布，也未宣稱課程涵蓋完整角色綁定。
+       </p>
+       <p class="analysis-level-note">
+        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+       </p>
+      </div>
+     </details>
+     <a class="source daily-source" href="https://80.lv/articles/learn-to-sculpt-heads-in-blender-with-this-beginner-course" rel="noopener noreferrer" target="_blank">
+      來源
+     </a>
+    </article>
+    <article class="daily-card daily-card-more category-news" data-intel-id="80-level-have-a-look-at-this-3d-character-s-chest-anatomy-showcase" data-intel-role="card">
+     <div class="meta">
+      <span class="pill">
+       character-production
+      </span>
+     </div>
+     <h3>
+      不加輔助骨骼的肩背變形：VRChat 角色權重案例
+     </h3>
+     <p class="summary">
+      Fuyumidori 在男性 VRChat 角色的製作紀錄中，展示肩部權重與背闊肌變形的調整，並表示沒有使用輔助骨骼。作者分享動畫與權重近照，供讀者觀察這段動作的變形方式。
+     </p>
+     <figure class="case-preview daily-visual" data-intel-id="80-level-have-a-look-at-this-3d-character-s-chest-anatomy-showcase" data-intel-role="visual" data-visual-id="80-level-have-a-look-at-this-3d-character-s-chest-anatomy-showcase">
+      <a href="https://80.lv/articles/have-a-look-at-this-3d-character-s-chest-anatomy-showcase" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+       <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-11-20/80-level-have-a-look-at-this-3d-character-s-chest-anatomy-showcase.jpg"/>
+      </a>
+      <figcaption>
+       <span>
+        SOURCE PREVIEW
+       </span>
+       · Local visual evidence · 點圖開啟原始來源
+      </figcaption>
+     </figure>
+     <div class="quick-impact daily-impact">
+      <span><b class="quick-impact-label">角色製作</b> ★★★☆☆</span>
+     </div>
+     <details class="canonical-analysis canonical-analysis-brief daily-full-analysis" data-analysis-level="BRIEF">
+      <summary>
+       完整分析
+      </summary>
+      <div class="detail-body canonical-analysis-body brief-analysis-body daily-analysis-body">
+       <h4>
+        從肩部權重觀察背闊肌
+       </h4>
+       <p>
+        這次展示聚焦於角色綁定階段的肩膀與背闊肌變形，而非重新建立肌肉模擬系統。作者表示沒有加入輔助骨骼，因此本文的技術重點是既有骨架下的權重調整成果。
+       </p>
+       <h4>
+        動畫與權重可一起比對
+       </h4>
+       <p>
+        作者提供動畫檔案與權重的近距離畫面。推論：讀者可把動作姿勢和權重分布放在一起觀察，理解肩背區域如何隨動作變形，而不必只從單張完成圖猜測處理方式。
+       </p>
+       <h4>
+        保留原始發布時點
+       </h4>
+       <p>
+        這是 2026 年 7 月的製作紀錄；原文當時稱角色預計於該月推出，沒有提供後續發售確認。本文保留其權重展示價值，不把當時的計畫寫成今天已完成的發布結果。
+       </p>
+       <p class="analysis-level-note">
+        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+       </p>
+      </div>
+     </details>
+     <a class="source daily-source" href="https://80.lv/articles/have-a-look-at-this-3d-character-s-chest-anatomy-showcase" rel="noopener noreferrer" target="_blank">
+      來源
+     </a>
+    </article>
+    <article class="daily-card daily-card-more category-news" data-intel-id="3dnchu-comment-page-1" data-intel-role="card">
+     <div class="meta">
+      <span class="pill">
+       blender
+      </span>
+     </div>
+     <h3>
+      在 Blender 重建熟悉操作：3ds Max 風格介面開發案例
+     </h3>
+     <p class="summary">
+      Jake Denham 以 Blender 為基礎，透過 AI 輔助開發建立類似 3ds Max 的操作環境，展示四向選單、命令面板與修改器堆疊。這是開發中的個人專案；報導當時未提供下載或銷售。
+     </p>
+     <figure class="case-preview daily-visual" data-intel-id="3dnchu-comment-page-1" data-intel-role="visual" data-visual-id="3dnchu-comment-page-1">
+      <a href="https://3dnchu.com/archives/blender-3ds-max-interface-ai/comment-page-1" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+       <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-11-20/3dnchu-comment-page-1.jpg"/>
+      </a>
+      <figcaption>
+       <span>
+        SOURCE PREVIEW
+       </span>
+       · Local visual evidence · 點圖開啟原始來源
+      </figcaption>
+     </figure>
+     <div class="quick-impact daily-impact">
+      <span><b class="quick-impact-label">Blender</b> ★★★☆☆</span>
+     </div>
+     <details class="canonical-analysis canonical-analysis-brief daily-full-analysis" data-analysis-level="BRIEF">
+      <summary>
+       完整分析
+      </summary>
+      <div class="detail-body canonical-analysis-body brief-analysis-body daily-analysis-body">
+       <h4>
+        沿用 Blender 核心重建操作層
+       </h4>
+       <p>
+        作者以約一週的 AI 輔助開發重現熟悉介面，底層視窗、幾何處理與渲染仍使用 Blender。修改器部分透過幾何節點重建，目標是接近原先習慣的操作方式。
+       </p>
+       <h4>
+        把多場景與資源入口放在一起
+       </h4>
+       <p>
+        示範可在多個場景分頁間切換及複製貼上物件，也把 Poly Haven 的環境貼圖、材質和模型放進製作介面。推論：這些設計的用途是集中常用資源與場景操作，並非證明兩套軟體完全等價。
+       </p>
+       <h4>
+        下載與外掛支援尚未落實
+       </h4>
+       <p>
+        影片公開時專案仍在開發，沒有可下載版本，也尚未命名；第三方外掛支援和 Mac 版僅列為後續方向。文中提到的 .max 匯入是作者展示與說明，沒有附上各種場景的相容性測試。
+       </p>
+       <p class="analysis-level-note">
+        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+       </p>
+      </div>
+     </details>
+     <a class="source daily-source" href="https://3dnchu.com/archives/blender-3ds-max-interface-ai/comment-page-1" rel="noopener noreferrer" target="_blank">
+      來源
+     </a>
+    </article>
+    <article class="daily-card daily-card-more category-news" data-intel-id="80-level-unity-destruction-prototype-with-fully-procedural-runtime-fr" data-intel-role="card">
+     <div class="meta">
+      <span class="pill">
+       unity
+      </span>
+     </div>
+     <h3>
+      Unity 破壞案例：Open Plan 在執行時即時計算碎裂
+     </h3>
+     <p class="summary">
+      Luke Mitchell 展示 Open Plan 的房屋破壞原型，表示物件沒有預先切碎，而是在執行時生成破裂。網格的破壞材質定義碎裂形態、聲音與質量，並搭配 PhysX 和多項運算管理措施。
+     </p>
+     <figure class="case-preview daily-visual" data-intel-id="80-level-unity-destruction-prototype-with-fully-procedural-runtime-fr" data-intel-role="visual" data-visual-id="80-level-unity-destruction-prototype-with-fully-procedural-runtime-fr">
+      <a href="https://80.lv/articles/unity-destruction-prototype-with-fully-procedural-runtime-fracturing" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+       <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-11-20/80-level-unity-destruction-prototype-with-fully-procedural-runtime-fr.jpg"/>
+      </a>
+      <figcaption>
+       <span>
+        SOURCE PREVIEW
+       </span>
+       · Local visual evidence · 點圖開啟原始來源
+      </figcaption>
+     </figure>
+     <div class="quick-impact daily-impact">
+      <span><b class="quick-impact-label">Unity</b> ★★★☆☆</span>
+     </div>
+     <details class="canonical-analysis canonical-analysis-brief daily-full-analysis" data-analysis-level="BRIEF">
+      <summary>
+       完整分析
+      </summary>
+      <div class="detail-body canonical-analysis-body brief-analysis-body daily-analysis-body">
+       <h4>
+        破壞材質連結網格與物理
+       </h4>
+       <p>
+        每個網格指定破壞材質，記錄碎裂模式、聲音、質量及其他屬性。開發者說每次破裂都在執行時動態計算，主要物理工作交由 PhysX，並非播放事先準備好的碎裂形狀。
+       </p>
+       <h4>
+        切割與吸引碎片形成玩法
+       </h4>
+       <p>
+        示範後續加入可切割物件的雷射，以及把碎片吸進漩渦的黑洞手榴彈。推論：破壞系統在這個案例裡同時承擔玩家互動與物件反應，而不只是場景中的固定視覺演出。
+       </p>
+       <h4>
+        即時碎裂仍須分配計算成本
+       </h4>
+       <p>
+        作者列出記憶體配置、進階網格 API、減少物理關節，以及場景繁忙時把昂貴計算分散到多個影格等措施。這是開發中的遊戲展示，沒有提供裝置規格或可通用的幀率保證。
+       </p>
+       <p class="analysis-level-note">
+        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+       </p>
+      </div>
+     </details>
+     <a class="source daily-source" href="https://80.lv/articles/unity-destruction-prototype-with-fully-procedural-runtime-fracturing" rel="noopener noreferrer" target="_blank">
+      來源
+     </a>
+    </article>
+    <article class="daily-card daily-card-more category-news" data-intel-id="3dnchu-comment-page-1-ee0db482" data-intel-role="card">
+     <div class="meta">
+      <span class="pill">
+       blender
+      </span>
+     </div>
+     <h3>
+      Mixar 整合 AI 場景操作與分層貼圖，支援多場景並行工作
+     </h3>
+     <p class="summary">
+      以 Blender 5.2 為基礎的 Mixar 整合 AI 助理、分層貼圖與鏡頭工具。報導介紹 4.1 系列的多場景分頁，可讓各場景使用獨立助理並行製作；桌面程式免費，但生成服務與外部模型可能另外計費。
+     </p>
+     <figure class="case-preview daily-visual" data-intel-id="3dnchu-comment-page-1-ee0db482" data-intel-role="visual" data-visual-id="3dnchu-comment-page-1-ee0db482">
+      <a href="https://3dnchu.com/archives/mixar-4-1/comment-page-1" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+       <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-11-20/3dnchu-comment-page-1-ee0db482.jpg"/>
+      </a>
+      <figcaption>
+       <span>
+        SOURCE PREVIEW
+       </span>
+       · Local visual evidence · 點圖開啟原始來源
+      </figcaption>
+     </figure>
+     <div class="quick-impact daily-impact">
+      <span><b class="quick-impact-label">Blender</b> ★★★☆☆</span>
+     </div>
+     <details class="canonical-analysis canonical-analysis-full daily-full-analysis" data-analysis-level="FULL">
+      <summary>
+       完整分析
+      </summary>
+      <div class="detail-body canonical-analysis-body daily-analysis-body">
+       <h4>
+        在既有三維工具上加入助理
+       </h4>
+       <p>
+        Mixar 保留 Blender 的建模、動畫與渲染，另提供接近傳統操作的模式，以及偏向 AI 操作的簡化模式。助理可依自然語言進行建模、UV、材質、綁定與場景操作。
+       </p>
+       <h4>
+        場景分頁讓工作分開進行
+       </h4>
+       <p>
+        4.1 系列的多場景分頁允許不同場景各自執行 AI 助理。原文以一個場景製作背景、另一個處理角色或道具為例，說明如何把多項製作工作並行安排，而不只是開多個視窗。
+       </p>
+       <h4>
+        免費桌面程式不含無限生成
+       </h4>
+       <p>
+        基本三維編輯與分層貼圖免費，影像、模型與影片生成則有點數制方案。助理也可接自己的 API 金鑰或外部服務，費用依模型和契約而定，不能把開源下載解讀為所有 AI 功能無限制免費。
+       </p>
+      </div>
+     </details>
+     <a class="source daily-source" href="https://3dnchu.com/archives/mixar-4-1/comment-page-1" rel="noopener noreferrer" target="_blank">
+      來源
+     </a>
+    </article>
+    <article class="daily-card daily-card-more category-news" data-intel-id="3dnchu-ue5-kurie-vfx-shader-v1-0" data-intel-role="card">
+     <div class="meta">
+      <span class="pill">
+       unreal
+      </span>
+     </div>
+     <h3>
+      歷史參考｜Kurie 的 UE5 特效主材質包與使用文件
+     </h3>
+     <p class="summary">
+      2026 年 5 月介紹的 Kurie VFX Shader v1.0，將 Unreal Engine 5 特效常用功能整理為可重用主材質包。資源可從 GitHub 取得，採 MIT 授權，並提供日文設定與使用說明。
+     </p>
+     <figure class="case-preview daily-visual" data-intel-id="3dnchu-ue5-kurie-vfx-shader-v1-0" data-intel-role="visual" data-visual-id="3dnchu-ue5-kurie-vfx-shader-v1-0">
+      <a href="https://3dnchu.com/archives/ue5-kurie-vfx-shader-v1-0" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+       <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-11-20/3dnchu-ue5-kurie-vfx-shader-v1-0.jpg"/>
+      </a>
+      <figcaption>
+       <span>
+        SOURCE PREVIEW
+       </span>
+       · Local visual evidence · 點圖開啟原始來源
+      </figcaption>
+     </figure>
+     <div class="quick-impact daily-impact">
+      <span><b class="quick-impact-label">Unreal</b> ★★★☆☆</span>
+     </div>
+     <details class="canonical-analysis canonical-analysis-brief daily-full-analysis" data-analysis-level="BRIEF">
+      <summary>
+       完整分析
+      </summary>
+      <div class="detail-body canonical-analysis-body brief-analysis-body daily-analysis-body">
+       <h4>
+        把常用特效功能集中在主材質
+       </h4>
+       <p>
+        Kurie 將製作特效時經常使用的功能整理為 UE5 通用主材質包，強調可以重用與調整。導入方式是下載 ZIP 後加入專案，本文沒有列出每個材質節點的內部算法。
+       </p>
+       <h4>
+        授權與文件支援專案導入
+       </h4>
+       <p>
+        原文明確標示 MIT 授權，個人與商業用途皆可使用，另有 GitHub 下載入口與 Zenn 日文手冊。推論：讀者可先依現成說明理解設定方式，再決定是否把材質納入自己的特效流程。
+       </p>
+       <h4>
+        區分現有文件與預告內容
+       </h4>
+       <p>
+        當時附上的作者公告表示英文版本說明仍在準備中，因此不能把它當成已提供的教材。原文也沒有列出指定 UE5 小版本、硬體測速或完整功能矩陣，這篇保留為材質資源索引。
+       </p>
+       <p class="analysis-level-note">
+        BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+       </p>
+      </div>
+     </details>
+     <a class="source daily-source" href="https://3dnchu.com/archives/ue5-kurie-vfx-shader-v1-0" rel="noopener noreferrer" target="_blank">
+      來源
+     </a>
+    </article>
+    <article class="daily-card daily-card-more category-news" data-intel-id="80-level-try-this-surface-wrapping-blender-tool-for-free" data-intel-role="card">
+     <div class="meta">
+      <span class="pill">
+       blender
+      </span>
+     </div>
+     <h3>
+      歷史參考｜WrapKit 沿曲面行走，建立物件包覆效果
+     </h3>
+     <p class="summary">
+      2026 年 3 月介紹的 WrapKit 以 Blender 幾何節點建立程序式包覆：先在目標表面定位，再沿切線方向延伸曲線，形成曲面和 UV。作者用這個方法減少直接投射到曲面時的變形與漏投問題。
+     </p>
+     <figure class="case-preview daily-visual" data-intel-id="80-level-try-this-surface-wrapping-blender-tool-for-free" data-intel-role="visual" data-visual-id="80-level-try-this-surface-wrapping-blender-tool-for-free">
+      <a href="https://80.lv/articles/try-this-surface-wrapping-blender-tool-for-free" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+       <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../assets/visual/2026-11-20/80-level-try-this-surface-wrapping-blender-tool-for-free.jpg"/>
+      </a>
+      <figcaption>
+       <span>
+        SOURCE PREVIEW
+       </span>
+       · Local visual evidence · 點圖開啟原始來源
+      </figcaption>
+     </figure>
+     <div class="quick-impact daily-impact">
+      <span><b class="quick-impact-label">Blender</b> ★★☆☆☆</span>
+     </div>
+     <details class="canonical-analysis canonical-analysis-full daily-full-analysis" data-analysis-level="FULL">
+      <summary>
+       完整分析
+      </summary>
+      <div class="detail-body canonical-analysis-body daily-analysis-body">
+       <h4>
+        由單點投射改成曲面行走
+       </h4>
+       <p>
+        演算法先投射一個點；未命中時把點移到最近表面，再沿正反切線方向延伸直到覆蓋所需長度。接著在垂直於曲線切線的方向展開寬度，將曲線組成曲面並生成 UV。
+       </p>
+       <h4>
+        維持曲面接觸的程序工具
+       </h4>
+       <p>
+        開發者把它定位為可處理複雜曲面和急彎的非破壞工具，與單純把整片幾何投射到另一物件的方式不同。推論：對需要沿曲面鋪設的零件，其價值在於保留可調整的包覆流程。
+       </p>
+       <h4>
+        免費釋出仍處於早期階段
+       </h4>
+       <p>
+        該篇紀錄中的 WrapKit 是免費 alpha 版，作者仍在徵求回饋，搭配的教學影片也只是預定推出。對曲面接觸和減少變形的描述來自開發者，文中沒有提供批次效能測試。
+       </p>
+      </div>
+     </details>
+     <a class="source daily-source" href="https://80.lv/articles/try-this-surface-wrapping-blender-tool-for-free" rel="noopener noreferrer" target="_blank">
+      來源
+     </a>
+    </article>
+   </section>
+  </main>
+  <script src="../daily.js?v=20261120-r1-workspace-v17-home-card-library">
+  </script>
+  <script defer="" src="../archive-nav-state.js?v=20261120-r1-workspace-v17-home-card-library">
+  </script>
+ </body>
+</html>
