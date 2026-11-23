@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   Blender / DCC｜2026-11-23｜AI 3D Daily
+  </title>
+  <meta content="2026-11-23 Blender / DCC Production Intelligence：Blender / DCC 工具與工作流 / Blender Tips，共 3 項可驗證情報。" name="description"/>
+  <link href="../../styles.css?v=20261123-r1-workspace-v17-home-card-library" rel="stylesheet"/>
+  <link href="../../shared-components.css?v=20261123-r1-workspace-v17-home-card-library" rel="stylesheet"/>
+  <link href="../../category.css?v=20261123-r1-workspace-v17-home-card-library" rel="stylesheet"/>
+ </head>
+ <body class="category-page" data-category="blender-dcc" data-report-date="2026-11-23">
+  <nav aria-label="Production Intelligence 分類" class="global-category-nav">
+   <div class="page global-category-nav-inner">
+    <div class="archive-nav-controls">
+     <a class="archive-nav-home" href="../../">
+      ← 首頁
+     </a>
+     <div class="archive-nav-date">
+      <a aria-label="前一日日報" class="archive-nav-arrow" href="../../2026-11-20/blender-dcc/">
+       ←
+      </a>
+      <span>
+       2026-11-23
+      </span>
+     </div>
+    </div>
+    <span aria-hidden="true" class="archive-nav-divider">
+    </span>
+    <a class="global-category-link" href="../#top">
+     TOP5
+    </a>
+    <a class="global-category-link" data-category="ai-generation" href="../ai-generation/">
+     AI 生成
+    </a>
+    <a class="global-category-link" data-category="3d-production" href="../3d-production/">
+     3D 製作
+    </a>
+    <a class="global-category-link" data-category="3d-animation" href="../3d-animation/">
+     3D 動作
+    </a>
+    <a class="global-category-link" data-category="engine-art" href="../engine-art/">
+     遊戲引擎
+    </a>
+    <a class="global-category-link" data-category="emerging-case" href="../emerging-case/">
+     新技術 / Case
+    </a>
+    <a class="global-category-link is-active" data-category="blender-dcc" href="../blender-dcc/">
+     Blender / DCC
+    </a>
+    <a class="global-category-link global-history-link" data-global-view="history" href="../../history/">
+     歷史日報
+    </a>
+    <a class="global-admin-link" href="../../admin/">
+     管理後臺
+    </a>
+   </div>
+  </nav>
+  <main class="page category-main">
+   <article class="category-card" data-intel-id="cg-channel-autodesk-releases-maya-2027-3-with-new-agentic-ai-featur-6d0233bbf8c49bdb" data-intel-role="card" id="intel-cg-channel-autodesk-releases-maya-2027-3-with-new-agentic-ai-featur-6d0233bbf8c49bdb">
+    <div class="category-meta">
+     #04 · maya
+    </div>
+    <h2>
+     Maya 2027.3：AI 助理可執行場景修改，MCP 連接外部工具
+    </h2>
+    <p class="summary">
+     Maya 2027.3 更新加入可執行 MEL 或 Python 場景修改的助理技術預覽，以及連接外部 AI 工具的 MCP 伺服器；Arnold 加速視窗則改善燈光與材質開發的互動預覽。
+    </p>
+    <figure class="case-preview" data-intel-id="cg-channel-autodesk-releases-maya-2027-3-with-new-agentic-ai-featur-6d0233bbf8c49bdb" data-intel-role="visual" data-visual-id="cg-channel-autodesk-releases-maya-2027-3-with-new-agentic-ai-featur-6d0233bbf8c49bdb">
+     <a href="https://www.cgchannel.com/2026/11/autodesk-releases-maya-2027-3-with-new-agentic-ai-features" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE CARD preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-11-23/cg-channel-autodesk-releases-maya-2027-3-with-new-agentic-ai-featur-6d0233bbf8c49bdb.svg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE CARD
+      </span>
+      · Generated source card · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">Maya</b> ★★★★☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       由查詢場景走向執行腳本
+      </h4>
+      <p>
+       助理原有的技術問答與場景分析之外，新增執行 MEL 或 Python 的技術預覽，可處理關節改名與失效貼圖修復。腳本必須先由使用者預覽核准，預設安全模式也會阻擋超出場景範圍的腳本。
+      </p>
+      <h4>
+       材質與燈光預覽的互動性
+      </h4>
+      <p>
+       Arnold 加速視窗先以較低解析度渲染，再使用 NVIDIA DLSS 放大與去噪，服務燈光和材質開發；新版隨附對應的 Arnold 外掛。這項改善是預覽流程的變化，來源沒有提供統一的加速倍數測試。
+      </p>
+      <h4>
+       預覽功能的使用邊界
+      </h4>
+      <p>
+       MCP 伺服器仍是技術預覽，只能用於互動工作階段，不支援批次或無介面模式；它可預覽腳本、使用沙箱或完全關閉寫入。原生助理每個動作是一個復原步驟，提示及回應資料會在線上保存四十五天。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://www.cgchannel.com/2026/11/autodesk-releases-maya-2027-3-with-new-agentic-ai-features" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="3dnchu-msculpt-2ae23e43a7db6df4" data-intel-role="card" id="intel-3dnchu-msculpt-2ae23e43a7db6df4">
+    <div class="category-meta">
+     #09 · blender
+    </div>
+    <h2>
+     mSculpt：在 Blender 選區雕刻高密度細節，輸出 EXR 位移貼圖
+    </h2>
+    <p class="summary">
+     Mattias Lind 發布 mSculpt，讓 Blender 使用者選取局部 HD 區域雕刻，並透過 Multiresolution 烘焙位移；輸出支援 32 位元 EXR 與 UDIM。
+    </p>
+    <figure class="case-preview" data-intel-id="3dnchu-msculpt-2ae23e43a7db6df4" data-intel-role="visual" data-visual-id="3dnchu-msculpt-2ae23e43a7db6df4">
+     <a href="https://3dnchu.com/archives/msculpt" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-11-23/3dnchu-msculpt-2ae23e43a7db6df4.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">Blender</b> ★★★★☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       局部雕刻與位移烘焙
+      </h4>
+      <p>
+       將游標移至模型並按 Y 可選擇 HD 作業區域；外掛提供位移中間值與解析度設定，也能把多個物件烘焙到同一張貼圖。HD 與一般位移的烘焙都經由 Multiresolution 處理。
+      </p>
+      <h4>
+       細節資料與材質強度分開管理
+      </h4>
+      <p>
+       開發者表示 HD 資料會另存於模型檔旁，可獨立做版本管理；HD 結果與一般位移分別輸出，在著色器中組合，因此細節強度可獨立調整，無須把兩種資訊合成單一輸出。
+      </p>
+      <h4>
+       無損說法仍屬開發者描述
+      </h4>
+      <p>
+       來源將反覆切換區域不損失細節的說法明確歸於開發者，並說明外掛起因是高解析模型造成電腦負荷；本文未列出相容的 Blender 版本或效能測試數據，不能據此保證所有高密度模型都能順暢操作。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://3dnchu.com/archives/msculpt" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="cg-channel-blender-5-3-is-here-discover-its-5-key-features-4d1780d89709c085" data-intel-role="card" id="intel-cg-channel-blender-5-3-is-here-discover-its-5-key-features-4d1780d89709c085">
+    <div class="category-meta">
+     #11 · blender
+    </div>
+    <h2>
+     Blender 5.3：原生高斯潑濺、Eevee 材質光照與分層合成
+    </h2>
+    <p class="summary">
+     Blender 5.3 支援匯入及渲染三維高斯潑濺，Eevee 新增材質光照節點，Cycles 提供 DLSS 視窗去噪，合成器則可透過效果堆疊調整畫面。
+    </p>
+    <figure class="case-preview" data-intel-id="cg-channel-blender-5-3-is-here-discover-its-5-key-features-4d1780d89709c085" data-intel-role="visual" data-visual-id="cg-channel-blender-5-3-is-here-discover-its-5-key-features-4d1780d89709c085">
+     <a href="https://www.cgchannel.com/2026/11/blender-5-3-is-here-discover-its-5-key-features" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-11-23/cg-channel-blender-5-3-is-here-discover-its-5-key-features-4d1780d89709c085.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">Blender</b> ★★★☆☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       點雲資料與效果堆疊
+      </h4>
+      <p>
+       更新可匯入 PLY、SPZ、glTF 和 USD 格式的高斯潑濺，以幾何節點操作並交給 Cycles 或 Eevee 渲染；合成器的效果層逐層處理下方輸出，也能以節點群組建立自訂效果。
+      </p>
+      <h4>
+       風格化材質與互動預覽
+      </h4>
+      <p>
+       Eevee 的材質光照節點提供新的受光控制，Blender Studio 已用於動畫 Cowboi；Cycles 的 DLSS 去噪則將去噪與放大結合，目標是改善視窗反應與動畫播放時的閃爍，並非文中獨立測得的固定加速比例。
+      </p>
+      <h4>
+       硬體需求與潑濺編輯仍有限制
+      </h4>
+      <p>
+       DLSS 去噪需要 NVIDIA RTX 20 系列或更新的顯示卡及 620 以上驅動；高斯潑濺沿用點雲編輯工具，來源指出操作仍顯笨重，重新打光支援也尚初步，不能當成完整取代一般網格編輯的流程。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://www.cgchannel.com/2026/11/blender-5-3-is-here-discover-its-5-key-features" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <nav aria-label="相鄰分類" class="category-bottom-nav">
+    <a href="../emerging-case/">
+     ← 新技術 / Case
+    </a>
+    <a href="../#top">
+     TOP5
+    </a>
+    <a href="../ai-generation/">
+     AI 生成 →
+    </a>
+   </nav>
+  </main>
+  <script defer="" src="../../archive-nav-state.js?v=20261123-r1-workspace-v17-home-card-library">
+  </script>
+ </body>
+</html>
