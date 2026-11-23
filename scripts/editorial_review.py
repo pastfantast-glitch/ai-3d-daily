@@ -35,6 +35,7 @@ def read_review(date, root=ROOT):
         data = json.loads(path.read_text('utf-8'))
         valid = (data.get('schema_version') == 1 and data.get('date') == date
                  and data.get('reviewer') == 'chatgpt-scheduled-task'
+                 and data.get('purpose', 'release') in ('release', 'reserve')
                  and type(data.get('source_run_id')) is int and data['source_run_id'] > 0
                  and re.fullmatch(r'[0-9a-f]{40}', data.get('source_head_sha', ''))
                  and isinstance(data.get('items'), dict) and 0 < len(data['items']) <= 40)
@@ -151,9 +152,10 @@ def validate_run(data, run, date):
         valid = (run['id'] == data['source_run_id'] and run['head_sha'] == data['source_head_sha']
                  and run['head_branch'] == 'main' and local.date().isoformat() == date
                  and run['name'] == 'Autonomous daily Collector'
-                 and run['status'] == 'completed' and run['conclusion'] == 'failure')
+                 and run['status'] == 'completed'
+                 and run['conclusion'] in (('success', 'failure') if data.get('purpose') == 'reserve' else ('failure',)))
         if not valid:
-            raise ReviewError('review must reference a failed main Collector for this edition')
+            raise ReviewError('review must reference a genuine completed main Collector for this edition (release requires failure)')
     except (KeyError, TypeError, ValueError) as error:
         raise ReviewError('review source run invalid') from error
 

@@ -5,6 +5,9 @@ on:
     branches: [main]
     paths:
       - 'data/candidates/collection-session/*.json'
+      - 'scripts/**'
+      - 'config/**'
+      - '.github/workflows/**'
   workflow_run:
     workflows: ['Autonomous daily Collector']
     types: [completed]
@@ -57,9 +60,11 @@ jobs:
           proceed=true
           date=""
           policy_republish=false
+          resume_existing=false
 
           if [ "$EVENT_NAME" = "workflow_dispatch" ]; then
             date="${REQUESTED_DATE:-}"
+            resume_existing=true
           elif [ "$EVENT_NAME" = "workflow_run" ]; then
             if [ "${WORKFLOW_RUN_CONCLUSION:-}" != "success" ]; then
               echo "Autonomous Collector did not succeed; no handoff marker will be created."
@@ -97,14 +102,19 @@ jobs:
               printf '%s\n' "$files" \
                 | grep -E '^data/candidates/collection-session/20[0-9]{2}-[0-9]{2}-[0-9]{2}\.json$' \
                 | sed -E 's#^.*/(20[0-9]{2}-[0-9]{2}-[0-9]{2})\.json$#\1#' \
-                | sort -u
+                | sort -u || true
             )"
             count="$(printf '%s\n' "$dates" | sed '/^$/d' | wc -l | tr -d ' ')"
-            test "$count" -eq 1 || {
-              echo "Expected exactly one persisted collection-session date in this push; got $count"
+            if [ "$count" -eq 0 ]; then
+              date="$(python -c 'from pathlib import Path; import sys; sys.path.insert(0,"scripts"); from handoff_route import corrected_pending_session; print(corrected_pending_session(Path(".")))')"
+              resume_existing=true
+              [ -n "$date" ] || proceed=false
+            elif [ "$count" -eq 1 ]; then
+              date="$dates"
+            else
+              echo "Ambiguous persisted sessions; no automatic handoff."
               exit 1
-            }
-            date="$dates"
+            fi
             head_message="$(git log -1 --format=%s "$AFTER_SHA")"
             if [[ "$head_message" == "Recollect production intelligence "* ]]; then
               policy_republish=true
@@ -121,6 +131,7 @@ jobs:
           echo "value=$date" >> "$GITHUB_OUTPUT"
           echo "proceed=$proceed" >> "$GITHUB_OUTPUT"
           echo "policy_republish=$policy_republish" >> "$GITHUB_OUTPUT"
+          echo "resume_existing=$resume_existing" >> "$GITHUB_OUTPUT"
 
       - name: Confirm checkout is still current main
         if: steps.date.outputs.proceed == 'true'
@@ -156,6 +167,10 @@ jobs:
             echo "No .collector trigger will be created; existing canonical writer remains authoritative."
             exit 1
           fi
+          for state in queued in_progress waiting pending requested; do
+            collectors="$(gh api "repos/${GITHUB_REPOSITORY}/actions/workflows/daily-collector.yml/runs?branch=main&status=$state&per_page=100" --jq '.total_count')"
+            test "$collectors" -eq 0 || { echo "Collector active; leave the existing workflow authoritative."; exit 1; }
+          done
           echo "Canonical writer idle confirmed."
 
       - name: Validate persisted Collector artifacts and create trigger
@@ -166,7 +181,7 @@ jobs:
           if [ "${{ steps.date.outputs.policy_republish }}" = "true" ]; then
             python scripts/create_collector_trigger.py "$DATE" --writer-idle-confirmed --allow-done-policy-republish
           else
-            if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            if [ "${{ steps.date.outputs.resume_existing }}" = "true" ]; then
               python scripts/create_collector_trigger.py "$DATE" --writer-idle-confirmed --resume-existing
             else
               python scripts/create_collector_trigger.py "$DATE" --writer-idle-confirmed

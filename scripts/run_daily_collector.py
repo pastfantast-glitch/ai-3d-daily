@@ -260,12 +260,17 @@ def page_metadata(result: dict, fallback_title: str = "") -> dict | None:
             description = clean(obj.get("description") or description)
             published = clean(obj.get("datePublished") or published)
             break
-    if not published:
+    # Discourse replies carry datePublished too; bind to the original post.
+    is_blender_forum = urlparse(result.get('final_url') or result.get('url') or '').hostname in {'forum.blender.org', 'devtalk.blender.org'}
+    if is_blender_forum:
+        first_time = soup.select_one('#post_1 time[datetime]')
+        published = first_time.get('datetime') if first_time else ''
+    if not published and not is_blender_forum:
         node = next((node for node in soup.find_all("time")
                      if not node.find_parent(["aside", "nav", "footer"])), None)
         if node:
             published = clean(node.get("datetime") or node.get_text(" ", strip=True))
-    if not published:
+    if not published and not is_blender_forum:
         # CG Channel's publication header precedes its h1. Do not consume dates
         # from the sidebar's latest-news list or a page-wide first-date search.
         heading = soup.find("h1")
@@ -1587,6 +1592,12 @@ def main() -> int:
 
     # Preserve bounded public-source diagnostics in the runner log even when a
     # failed attempt cannot commit its private artifacts. Never log owner data.
+    for source_id, record in probe_records.items():
+        source_candidates = [c for c in discovered if c['source_id'] == source_id]
+        record['evidence_extracted'] = sum((c['meta'].get('article_evidence') or {}).get('status') == 'extracted'
+            and (c['meta'].get('article_evidence') or {}).get('truncated') is False for c in source_candidates)
+        record['awaiting_review'] = sum((c.get('scheduled_review') or {}).get('status') == 'awaiting-review' for c in source_candidates)
+        record['review_approved'] = sum((c.get('scheduled_review') or {}).get('status') == 'approved' for c in source_candidates)
     evidence_audit = loss_summary(discovered, editorial_rejections)
     supply = {
         'schema_version': 1, 'date': report_date,
@@ -1612,6 +1623,7 @@ def main() -> int:
             'sources': {sid: {key: record.get(key) for key in (
                 'status', 'candidates_found', 'published_links_skipped', 'reason',
                 'index_pages_checked', 'feed_urls_checked', 'refill_links_checked',
+                'article_pages_checked', 'evidence_extracted', 'awaiting_review', 'review_approved',
             )} for sid, record in probe_records.items()},
             'articles': [review_record(c, error_map.get(c['candidate_id'], [])) for c in discovered],
         })

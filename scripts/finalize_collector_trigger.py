@@ -261,7 +261,14 @@ def main() -> int:
     date = event_date()
     trigger = read_trigger(date)
     policy_republish = trigger_policy_republish(trigger)
-    wait_for_main_ci()
+    try:
+        wait_for_main_ci()
+    except SystemExit as error:
+        persist_followup(date, trigger, outcome='fix_required',
+            message=f'Collector correction required {date}', reason='current-main-ci-failed',
+            details=str(error))
+        write_output(date, 'fix_required', 'current-main-ci-failed')
+        raise
 
     # Session/schema/category/canonical defects are Collector-content problems.
     # Preserve fail-closed publication semantics, but route them back to Collector

@@ -23,14 +23,52 @@ def collector_target(run, receipt):
     return receipt['date'], policy
 
 
+def superseded_by(root, date):
+    """Old pending sessions stay auditable but cannot replace a newer edition."""
+    dates = [p.stem for p in (Path(root) / 'data/candidates/collection-session').glob('20??-??-??.json')
+             if p.stem > date and (Path(root) / f'data/daily/{p.stem}.json').is_file()]
+    dates += [p.name[:10] for p in (Path(root) / 'data/publish').glob('20??-??-??.done.json')
+              if p.name[:10] > date]
+    return max(dates, default='')
+
+
 def pending_session(root, date, policy=False):
     if not re.fullmatch(r'20\d{2}-\d{2}-\d{2}', date):
+        return False
+    if not policy and superseded_by(root, date):
         return False
     pub = Path(root) / 'data/publish'
     return ((Path(root) / f'data/candidates/collection-session/{date}.json').is_file()
             and (policy or not (pub / f'{date}.done.json').exists())
             and not any((pub / f'{date}.{suffix}').exists() for suffix in ('collector', 'request'))
             and (policy or not (pub / f'{date}.ready').exists()))
+
+
+def corrected_pending_session(root):
+    """Select one newest failed handoff only when its inputs/contracts changed."""
+    from handoff_diagnostics import resumed_marker, recovery_error, diagnostic_path
+    root = Path(root)
+    for path in sorted((root / 'data/candidates/collection-session').glob('20??-??-??.json'), reverse=True):
+        date = path.stem
+        if superseded_by(root, date):
+            continue
+        pub = root / 'data/publish'
+        if any((pub / f'{date}.{suffix}').exists() for suffix in ('done.json', 'request', 'ready')):
+            continue
+        if not (root / f'data/daily/{date}.json').exists():
+            continue
+        marker = pub / f'{date}.collector'
+        try:
+            if marker.exists():
+                resumed_marker(root, date, json.loads(marker.read_text('utf-8')))
+            elif not diagnostic_path(root, date).exists():
+                continue
+            if recovery_error(root, date):
+                continue
+        except (ValueError, OSError):
+            continue
+        return date
+    return ''
 
 
 def route_receipt(root, date, commit, run_id):

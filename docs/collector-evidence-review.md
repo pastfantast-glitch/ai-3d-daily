@@ -2,18 +2,22 @@
 
 現有「AI 3D 每日發布」ChatGPT 任務負責讀取 Collector artifact、編修與第二輪來源核對，再以 PR 提交審稿結果。GitHub 不呼叫模型 API，不需要 OpenAI API key 或模型變數；原有 Collector、handoff gate、唯一 Publisher 與品質門檻繼續負責正式資料和部署。
 
-## 排程審稿交接
+## 排程審稿交接（2026-11-23 更新）
 
-1. 讀 current main 與當日 DONE、canonical、session、Actions。DONE 完整有效即停止。有 queued/in_progress Collector 或 Publisher 先追蹤，禁止同時提交審稿結果或啟動第二流程。已存在 session 交由既有 handoff 處理。
-2. 針對今日已完成且 failure 的 main Collector，從實際日誌確認文案退件。用 GitHub `fetch_workflow_run_artifacts` 及 `download_workflow_artifact` 下載未過期的 `collector-review-日期-run_id`。ZIP 中只讀 `collector-review.json`，不得不加驗證地 extractall。不能取得 artifact、來源不足或正文截斷就回報原因，不另行 Discovery、不改門檻。
-3. 逐篇閱讀正文證據，以繁體中文寫清楚「這是什麼、具體做了什麼、對美術製作有何用途」，提供標題、摘要、三個不同分析角度及各自 evidence_refs。每項數字、功能、版本、限制必須有來源依據；推論明確標示。超過 180 天的來源標題加「歷史參考」，摘要標明年份，URL 年月較舊也須處理。不要填泛用測試建議。
-4. 完成草稿後，重新逐段閱讀來源並做第二輪核對，檢查忠於原文、日期版本、繁體中文、來源專屬性、推論標示、證據充分；全部通過才 approved=true。這是 ChatGPT 的第二次審閱，不宣稱另一個獨立模型或人工核准。每篇最多兩輪修改，仍不合格就排除並保留原因。
-5. 只把核准子集寫入 `data/editorial-reviews/YYYY-MM-DD.json`，不得寫 canonical/private/public、人工 reviewed_reader_copy 規則庫或任何發布 marker。來源正文、HTML、偏好資料、憑證都不提交。結果須綁定 source_run_id、source_head_sha、來源網址、原日期、正文 sha256、引用段落和第二輪檢查。已存在相同來源 run 的結果或待合併 PR 時只追蹤，不重複提交。
-6. 先用下載的原始 run JSON 與 artifact 執行本節驗證；若未達現有發布最低篇數，誠實保留未完成狀態，不盲目觸發 Collector。驗證與 PR CI 通過後，重新確認沒有 active writer、今日 DONE/session，再合併僅含該審稿檔的 PR。squash commit 標題使用 `Review collected articles YYYY-MM-DD [editorial-review]`。
-7. 該 commit 只會進入原有 Collector（同一 concurrency group、不取消既有 run）。Collector 先從 GitHub 下載原始 artifact 驗證來源 run、日期、正文與審稿檔，再走原有 Discovery／去重與選稿；新擷取正文 hash 或來源日期不同時拒用舊審稿。審稿結果不能改 ID、來源、分類或排名，仍須通過整批文案品質與重複檢查。
-8. 只追蹤原有 handoff／Publisher，只有當日 DONE 日期、IDs/數量、publish commit、Pages QA、site/daily URL 全部正確才能回報完成。每日任務、守門與 Watchdog 保持 enabled。單日失敗不能停用任務。
+1. 讀 current main、今日 DONE/canonical/latest-success/session/Actions。完整 DONE 才代表發布成功，但發布完成後仍可審閱尚未核准的候選，補充備稿。有 active Collector/Publisher 先追蹤，不同時啟動第二 writer；既有 session 由既有 handoff 處理。
+2. 從今日 main 的 genuine completed Collector（success 或 failure）取得未過期的 `collector-review-日期-run_id` 與官方 run.json。核對日期、main、head_sha、status/conclusion。ZIP 只讀 collector-review.json，不執行內容、不 extractall。正文缺失、截斷、證據不完整不得核准。
+3. 先找同日期及來源 run 的審稿檔/PR；同一 run 最多合併一次，不建立重複 PR，不覆寫已合併的審稿。每次最多 40 篇、每篇最多兩輪編修。逐篇編修繁體中文標題、摘要及三個有段落依據的角度，再次逐段對照來源；填滿六項 checks、issues、unsupported_claims、evidence_refs，核對通過才 approved=true。推論必須標示；來源日期限制為收錄當日往前 12 個日曆月，既有已發布內容保留。
+4. 只提交 `data/editorial-reviews/YYYY-MM-DD.json` 的核准子集。原始 run/head、URL、來源日期、正文 SHA256 與段落引用不可變更。不提交正文/HTML/偏好/憑證，不修改人工核准庫、canonical/public 或發布 marker。
+5. **release 用途**（purpose 省略或 `release`）：只接受 failed Collector，且沒有今日 DONE/session；核准未發布數須達既有最低門檻。通過原 artifact/run 驗證及全部 PR 必要檢查後，重新核對 main/PR head 與 writer idle，以 `Review collected articles YYYY-MM-DD [editorial-review]` squash 合併，進入既有 Collector concurrency group。
+6. **reserve 用途**（明填 `purpose: reserve`）：success/failure Collector 均可；當日已發布或已有 session 仍可入庫。即使只有 1 篇合格未發布文章，也可在相同來源、文案品質與 PR CI 驗證通過後合併。標題 `Store reviewed reserve YYYY-MM-DD [editorial-reserve]`，不含 `[editorial-review]`，不啟動新 Collector、不重開當日日報。未滿發布門檻的 release 草稿可以在合併前改為 reserve；不可合併後再將同一 run 提交第二次。
+7. Collector 下次執行從核准審稿檔產生來源 seed，重新擷取完整正文，比對原 SHA256/來源日期並套用當日 12 個月期限、去重、品質與發布門檻；來源變更或暫時不可讀時不發布。今日已審備稿亦可供同日正常 Collector 使用，但 reserve merge 本身永不觸發收集。已審未發布稿與未審候選不可混稱為可發布庫存。
+8. 只有有效當日 DONE 才回報發布完成；備稿合併只代表審稿入庫。每日審稿、Watchdog 與 GitHub 排程保持 enabled，更新現有每日審稿提示詞即可，不新增任務。
 
-每次任務最多處理 40 篇、每篇最多兩輪編修；每個來源 Collector run 最多提交一次核准結果。額度、工具或權限不足就保存已完成進度於審稿 PR 並回報，不捏造完成、不改用隱藏 API。只有核准數量達當日既有最低門檻、PR CI 通過且單一 writer 檢查正常才可合併觸發；部分結果保留為草稿 PR，不自動合併。
+## 失敗接續與跨日處理
+
+發布排序由 `intelligence_v2.homepage_groups/homepage_cards` 統一：先精選、再其餘，各組內保持 global rank。歷史回歸驗證卡片完整順序，不忽略未知或重複 ID。`test_daily_supply_recovery.py` 實際渲染當日頁，再增加隔日日報並執行歷史分支，亦驗證缺漏、外來、重複和錯序會失敗。
+
+程式/契約修正合併後，既有 Collector handoff gate 僅接續最新待發布 session；必須 input/contract fingerprint 已變、沒有 request/ready/DONE、沒有 active Collector/Publisher，且上次嘗試未達兩次修正上限。未修改輸入不重試；舊日重複 session 保留稽核，不能覆蓋較新的日報。亦保留同一 gate 的明確日期手動接續。所有階段仍重新檢查 current main CI、正文與 canonical 契約，只有唯一 Publisher 寫 request/ready/public/DONE。CI 阻塞會記錄到 handoff 診斷，不留下只有「待交接」的假象。
 
 ## 產生與驗證結果
 
@@ -29,7 +33,7 @@ python scripts/prepare_editorial_review.py collector-review.json review-drafts.j
 python scripts/editorial_review.py YYYY-MM-DD --packet collector-review.json --run-json run.json
 ```
 
-驗證會拒絕錯日期、錯 run/commit、非 main／非失敗 Collector、偽造或缺漏段落、正文雜湊不同、未通過第二輪核對、泛用填充與批次重複。程式驗證不能保證自然語言主張全部正確，仍需抽查。審稿包 artifact 保留七天；原始 artifact 過期後不得用手寫正文繞過來源核對。
+驗證會拒絕錯日期、錯 run/commit、非 main／用途不符的 Collector、偽造或缺漏段落、正文雜湊不同、未通過第二輪核對、泛用填充與批次重複。程式驗證不能保證自然語言主張全部正確，仍需抽查。審稿包 artifact 保留七天；原始 artifact 過期後不得用手寫正文繞過來源核對。
 
 此流程不需要新增 ChatGPT 任務：更新現有每日發布任務即可；Watchdog 與唯讀發布守門保持原職責。若 07:45 執行時 Collector 還在進行，該任務應在可用執行時間內等候完成後繼續審稿；無法等到則如實回報，不能保證延遲排程一定能在當天補完。
 

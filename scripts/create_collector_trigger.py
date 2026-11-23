@@ -150,6 +150,10 @@ def main() -> None:
     recovery_blocker = recovery_error(ROOT, date)
     if recovery_blocker:
         fail(recovery_blocker)
+    from handoff_route import superseded_by
+    newer = superseded_by(ROOT, date)
+    if newer and not args.allow_done_policy_republish:
+        fail(f'{date} is superseded by {newer}; recover the newest persisted edition, not an old duplicate session')
     require_persisted_consistency(date)
 
     # Delegate Collector-side semantic validation to current-main code. The

@@ -26,10 +26,9 @@ def add_class(tag, *names):
     tag['class']=classes
 
 def selected(data):
-    items=sorted(data.get('items') or [], key=lambda x:int(x.get('rank_global',999999)))
-    top=[x for x in items if x.get('homepage_tier')=='top5']
-    more=[x for x in items if x.get('homepage_tier')=='next10']
-    return top,more
+    from intelligence_v2 import homepage_groups
+    return homepage_groups(data)
+
 
 def analysis_details(soup,item,home=False):
     details=soup.new_tag('details')

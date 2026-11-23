@@ -27,7 +27,10 @@ def clean(text):
 def extract_article_evidence(html: str, url: str) -> dict:
     soup = BeautifulSoup(html or '', 'html.parser')
     selector, body = '', None
-    for candidate in BODY_SELECTORS:
+    selectors = BODY_SELECTORS
+    if urlparse(url).hostname in {'forum.blender.org', 'devtalk.blender.org'}:
+        selectors = ('#post_1 .post[itemprop="text"]',) + selectors
+    for candidate in selectors:
         node = soup.select_one(candidate)
         if node is not None:
             selector, body = candidate, node
