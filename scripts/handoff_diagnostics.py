@@ -7,11 +7,11 @@ from pathlib import Path
 
 def fingerprint(root, date, revision=None):
     paths = [f'data/daily/{date}.json', f'data/candidates/collection-session/{date}.json']
-    paths += ['scripts/' + name + '.py' for name in ('reader_quality', 'editorial_review', 'enrich_full_analysis_v3', 'source_quality', 'finalize_collection_handoff')]
-    paths += ['scripts/normalize_registry_identity.py', 'scripts/intelligence_v2/__init__.py',
-              'scripts/check_release_input.py', 'scripts/finalize_collector_trigger.py',
-              'scripts/create_collector_trigger.py', 'scripts/handoff_diagnostics.py',
-              'config/full-analysis-depth.json', 'config/intelligence-v2.json']
+    # Any publication gate can block a release (including historical regression).
+    # Bind recovery to the complete contract implementation, not a short allowlist.
+    paths += sorted(p.relative_to(root).as_posix() for folder, pattern in
+                    [('scripts', '*.py'), ('config', '*.json'), ('.github/workflows', '*.yml')]
+                    for p in (root / folder).rglob(pattern))
     h = hashlib.sha256()
     for name in paths:
         path = root / name

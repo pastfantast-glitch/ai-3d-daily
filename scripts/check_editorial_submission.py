@@ -70,7 +70,7 @@ def original_packet(data):
     return validate_packet(data, packet_from_zip(blob), data['date'])
 
 
-def readiness_errors(copies, date, root=ROOT):
+def readiness_errors(copies, date, root=ROOT, purpose="release"):
     published_ids, published_urls = set(), set()
     for receipt in (root / 'data/publish').glob('*.done.json'):
         path = root / 'data/daily' / (receipt.name[:10] + '.json')
@@ -82,6 +82,10 @@ def readiness_errors(copies, date, root=ROOT):
     cfg = json.loads((ROOT / 'config/discovery-hybrid.json').read_text('utf-8'))
     floor = cfg['low_volume_release']['fallback_floor']
     errors = []
+    if purpose == 'reserve':
+        # Reserve PRs never trigger collection/publication or change a persisted session.
+        unpublished = [c for c in copies if c['id'] not in published_ids and canonicalize_url(c['source_url']) not in published_urls]
+        return [] if unpublished else ['reserve review contains no unpublished articles']
     if len(eligible) < floor:
         errors.append(f'unpublished reviewed articles={len(eligible)} below fallback floor={floor}; keep PR draft')
     if (root / 'data/publish' / f'{date}.done.json').exists():
@@ -112,7 +116,7 @@ def main():
     if not data:
         raise ReviewError('review file missing/deleted')
     copies = original_packet(data)
-    errors = readiness_errors(copies, date)
+    errors = readiness_errors(copies, date, purpose=data.get('purpose', 'release'))
     if errors:
         raise ReviewError('; '.join(errors))
     print(f'EDITORIAL SUBMISSION PASS: {date} approved={len(copies)}; live source/CI/writer gates remain required at handoff')

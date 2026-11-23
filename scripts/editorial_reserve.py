@@ -8,6 +8,7 @@ from functools import lru_cache
 import json
 from collection_settings import all_items
 from source_quality import source_window_errors
+from url_identity import canonicalize_url
 
 
 @lru_cache(maxsize=8)
@@ -18,15 +19,15 @@ def approved_reserve(root, date):
         edition = path.name[:10]
         data_path = root / 'data/daily' / f'{edition}.json'
         if data_path.exists():
-            published.update(i.get('source_url') for i in all_items(json.loads(data_path.read_text('utf-8'))))
+            published.update(canonicalize_url(i.get('source_url', '')) for i in all_items(json.loads(data_path.read_text('utf-8'))))
     result = {}
     for path in sorted((root / 'data/editorial-reviews').glob('20??-??-??.json'), reverse=True):
         age = (date_cls.fromisoformat(date) - date_cls.fromisoformat(path.stem)).days
-        if not 1 <= age <= 180:
+        if not 0 <= age <= 180:
             continue
         data = read_review(path.stem, root)
         for record in data['items'].values():
-            url = record.get('source_url')
+            url = canonicalize_url(record.get('source_url', ''))
             if (url and url not in published and record.get('review', {}).get('approved') is True
                     and not source_window_errors(record, date)):
                 result.setdefault(url, (data, record))

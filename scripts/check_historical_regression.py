@@ -169,8 +169,8 @@ def validate_history_portal(all_dirs,root=ROOT):
 
 def selected_ids(data):
     if int(data.get('schema_version',0))>=3:
-        ordered=sorted(data.get('items',[]),key=lambda x:int(x.get('rank_global',10**9)))
-        return [x['id'] for x in ordered if x.get('homepage_tier') in {'top5','next10'}]
+        from intelligence_v2 import homepage_cards
+        return [x['id'] for x in homepage_cards(data)]
     return [x['id'] for x in data.get('items',[])]
 
 def validate_canonical_archive_parity(date):
@@ -178,7 +178,7 @@ def validate_canonical_archive_parity(date):
     if not canonical.exists() or not archive.exists(): return
     data=json.loads(canonical.read_text('utf-8')); expected=selected_ids(data); soup=BeautifulSoup(archive.read_text('utf-8'),'html.parser')
     cards=soup.select('#top [data-intel-role="card"][data-intel-id], #more [data-intel-role="card"][data-intel-id]')
-    actual=[c.get('data-intel-id') for c in cards if c.get('data-intel-id') in expected]
+    actual=[c.get('data-intel-id') for c in cards]
     if actual!=expected: fail(date,f'archive/canonical selected ID order mismatch: expected {expected}, got {actual}'); rows.append((date,'canonical-parity','FAIL')); return
     rows.append((date,'canonical-parity','PASS'))
 

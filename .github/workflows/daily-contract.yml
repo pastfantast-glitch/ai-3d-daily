@@ -86,6 +86,7 @@ on:
       - 'scripts/editorial_review.py'
       - 'scripts/test_editorial_review.py'
       - 'scripts/test_handoff_consistency.py'
+      - 'scripts/test_daily_supply_recovery.py'
       - 'data/editorial-reviews/**'
       - 'scripts/prepare_editorial_review.py'
       - 'scripts/test_article_evidence.py'
@@ -206,6 +207,7 @@ jobs:
           python scripts/test_article_evidence.py
           python scripts/test_editorial_review.py
           python scripts/test_handoff_consistency.py
+          python scripts/test_daily_supply_recovery.py
           python scripts/test_supply_pipeline.py
           python scripts/test_collector_reliability.py
           python scripts/test_visual_budget.py
