@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-23",
+  "reviewer": "chatgpt-scheduled-task",
+  "purpose": "reserve",
+  "source_run_id": 45084342664,
+  "source_head_sha": "5ec56eba1df177f0956b6407a497e8a1831ec56c",
+  "items": {
+    "3dnchu-one-cookie-ue5-environment-peyton-varney-50d1d364e8f9ec95": {
+      "source_url": "https://3dnchu.com/archives/one-cookie-ue5-environment-peyton-varney",
+      "source_published_at": "2026-03-05",
+      "source_evidence_sha256": "a568203a1665a9df8031ef694941c2f6783003f85c464f4b56d7e8bda014d2ec",
+      "reviewed_on": "2026-11-23",
+      "analysis_level": "BRIEF",
+      "content_kind": "historical",
+      "title": "歷史參考｜用一個餅乾模型搭建 UE5 環境的素材限制挑戰",
+      "summary": "2026 年 3 月的文章介紹 Peyton Varney 的環境製作挑戰：只使用 Quixel Megascans 的一個巧克力豆餅乾素材，在 Unreal Engine 建立場景。影片聚焦單一素材能如何構成環境，是既有創作案例的回顧。",
+      "evidence_refs": [
+        "p001",
+        "p002",
+        "p004",
+        "p005"
+      ],
+      "full_analysis": [
+        {
+          "label": "單一素材的挑戰設定",
+          "angle": "workflow_or_technical_change",
+          "text": "挑戰指定 Quixel Megascans 的一枚巧克力豆餅乾作為唯一素材，作者以此製作環境，目的是探索單一資產限制下能完成什麼；文章將這段創作定位為一次有趣的素材限制挑戰。",
+          "evidence_refs": [
+            "p001",
+            "p002"
+          ]
+        },
+        {
+          "label": "重複使用模型的製作意義",
+          "angle": "production_impact",
+          "text": "報導把重複使用同一模型與模組化素材的基本用法相連，並提到記憶體節省；這是文章的說明，沒有附上節省幅度或場景測試數據。",
+          "evidence_refs": [
+            "p004"
+          ]
+        },
+        {
+          "label": "文字說明的證據範圍",
+          "angle": "test_risk_or_limit",
+          "text": "原文以影片展示受單一素材限制的環境製作挑戰，文字只交代素材來源與挑戰目的，沒有列出逐步操作、場景規模或效能測試。",
+          "evidence_refs": [
+            "p001",
+            "p002",
+            "p004"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p002",
+          "p004",
+          "p005"
+        ]
+      }
+    }
+  }
+}
