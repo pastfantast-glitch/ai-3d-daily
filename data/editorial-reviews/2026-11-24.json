@@ -1,0 +1,1016 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-24",
+  "reviewer": "chatgpt-scheduled-task",
+  "purpose": "release",
+  "source_run_id": 45338488122,
+  "source_head_sha": "a679e20ab456c7caa74abaee6464c849b3a23283",
+  "items": {
+    "80-level-procedural-unity-tool-creates-venom-like-tendrils-that-wra-8f5befbd75b02d51": {
+      "source_url": "https://80.lv/articles/procedural-unity-tool-creates-venom-like-tendrils-that-wrap-around-any-object",
+      "source_published_at": "2026-11-23",
+      "source_evidence_sha256": "f08c338738436e41ff3300b87a20cff71845a19b274e5d453ec92fbc4cae2dda",
+      "reviewed_on": "2026-11-24",
+      "analysis_level": "BRIEF",
+      "content_kind": "news",
+      "title": "Unity 程序觸鬚工具：沿表面纏繞模型，提供五種外觀",
+      "summary": "David Bin 展示開發中的 Tendril Wrap：在 Unity 讓程序觸鬚沿地面與障礙物前進並包覆模型，可選共生體、鋼纜、藤蔓、電路與墨水五種外觀。原文表示工具將登上 Asset Store，尚未提供正式上架日期。",
+      "evidence_refs": [
+        "p002",
+        "p003",
+        "p005",
+        "p006",
+        "p007"
+      ],
+      "full_analysis": [
+        {
+          "label": "預先規劃表面路徑",
+          "text": "加入元件、指定外觀與目標後，工具讀取目標形狀並預先規劃路徑，讓觸鬚沿地面及障礙物攀爬。開發者表示路徑可在編輯器烘焙，以縮短啟動時間；時間、密度、色彩與表面細節可在 Inspector 調整。",
+          "angle": "workflow_or_technical_change",
+          "evidence_refs": [
+            "p002",
+            "p005",
+            "p006"
+          ]
+        },
+        {
+          "label": "同一系統對應不同效果",
+          "text": "五種外觀包含黑色共生體、鋼纜、攀爬藤蔓、發光電路與流動墨水，其中共生體示例可附著動畫角色。從製作角度推論，這讓同一套沿表面生長的設定可服務不同美術表現，但文章未比較各風格的設定成本。",
+          "angle": "production_impact",
+          "evidence_refs": [
+            "p003",
+            "p005"
+          ]
+        },
+        {
+          "label": "效能數據的測試條件",
+          "text": "開發者在把 CPU 限速至約智慧手機等級的條件下，回報每影格約 3–8 毫秒，依外觀而變。這不是各款手機的實機保證；原文明列 Unity 6 的 URP 與 Built-in 支援，也仍將商店發布描述為即將推出。",
+          "angle": "test_risk_or_limit",
+          "evidence_refs": [
+            "p005",
+            "p006",
+            "p007"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p002",
+          "p003",
+          "p005",
+          "p006",
+          "p007"
+        ]
+      }
+    },
+    "80-level-this-vrchat-shader-turns-body-parts-into-beautiful-galaxie-0187d41ae91609e7": {
+      "source_url": "https://80.lv/articles/this-vrchat-shader-turns-body-parts-into-beautiful-galaxies",
+      "source_published_at": "2026-11-23",
+      "source_evidence_sha256": "3f7bf56cc576738c30b873e5c340cc81090d2eb0742e1bc298dcb530eb97fdd9",
+      "reviewed_on": "2026-11-24",
+      "analysis_level": "BRIEF",
+      "content_kind": "news",
+      "title": "VRChat 開發中的星系著色器：將角色局部變成宇宙視窗",
+      "summary": "Akitonko_Chu 正在製作 VRChat 星系著色器，可把角色的手、腳或配件呈現為宇宙視窗或內含星空的玻璃物體，並放入行星或黑洞。作者計畫完成後在 Booth 發布，目前仍屬開發展示。",
+      "evidence_refs": [
+        "p002",
+        "p003",
+        "p004",
+        "p005"
+      ],
+      "full_analysis": [
+        {
+          "label": "兩種星空呈現方式",
+          "text": "開發者描述兩種外觀：網格像是通往外太空的視窗，或讓手等物體具有玻璃質感、內部包含宇宙。這些效果套用於角色的局部外觀，原文示例包含手、腳、帽子與披風，並未說明新的角色建模流程。",
+          "angle": "workflow_or_technical_change",
+          "evidence_refs": [
+            "p002",
+            "p003"
+          ]
+        },
+        {
+          "label": "邊緣光與法線塑造體積",
+          "text": "作者加入邊緣光控制與法線貼圖，讓星星保持可見的同時增加立體感，亦保留不使用這種立體效果的版本；另外能在星空內放置行星或黑洞。原文以開發者的機器翻譯引言說明這些控制。",
+          "angle": "production_impact",
+          "evidence_refs": [
+            "p004"
+          ]
+        },
+        {
+          "label": "仍需等待正式發布",
+          "text": "文章明確寫出著色器持續開發中，完成後才計畫上架作者的 Booth 商店。因此目前可確認的是展示中的兩種外觀與新增控制，原文未提供售價、正式推出時間或裝置效能測試，不能據此宣稱已可購買。",
+          "angle": "test_risk_or_limit",
+          "evidence_refs": [
+            "p003",
+            "p004",
+            "p005"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p002",
+          "p003",
+          "p004",
+          "p005"
+        ]
+      }
+    },
+    "80-level-this-fighting-animation-made-with-maya-is-inspired-by-arca-0538b60d469dc543": {
+      "source_url": "https://80.lv/articles/this-fighting-animation-made-with-maya-is-inspired-by-arcane",
+      "source_published_at": "2026-11-23",
+      "source_evidence_sha256": "bfe20cfb2f665ebac82c54ce6af1fefa5cb5b071a76690a750dd1d4d646f73f6",
+      "reviewed_on": "2026-11-24",
+      "analysis_level": "BRIEF",
+      "content_kind": "practice",
+      "title": "以 Maya 重現《Arcane》打鬥節奏：鏡位與動作練習案例",
+      "summary": "Ahmad Firdaus 以 Vi 與 Sevika 的打鬥編排為靈感，在 Maya 製作個人動畫，使用 Pilot Rig 與 Cyborg Soldier Rig。作者每天投入約一至兩小時，花約一個半月完成，重點包括誇張鏡位、衝擊動作與慢動作停頓。",
+      "evidence_refs": [
+        "p001",
+        "p002",
+        "p003",
+        "p004",
+        "p005"
+      ],
+      "full_analysis": [
+        {
+          "label": "現成角色綁定支撐動作練習",
+          "text": "這段個人作品在 Maya 完成，角色使用 Said Vazquez 的 Pilot Rig 與 N3ÜRØ 的 Cyborg Soldier Rig。報導描述拳擊衝擊、飛行與受擊翻滾，並沒有提供物理模擬或程序求解的步驟，應視為動畫表現的說明。",
+          "angle": "workflow_or_technical_change",
+          "evidence_refs": [
+            "p001",
+            "p002"
+          ]
+        },
+        {
+          "label": "鏡頭節奏參考多部動畫",
+          "text": "作品運用動態攝影機、誇張角度與慢動作停頓；作者表示鏡位與攝影機設定參考不同動漫作品。可推論此案例的研究範圍同時包含角色動作及攝影機編排，而非僅複製某一個出拳姿勢。",
+          "angle": "production_impact",
+          "evidence_refs": [
+            "p003"
+          ]
+        },
+        {
+          "label": "個人投入時間不是團隊估工",
+          "text": "作者任職初級動畫師，利用空閒時間每天製作約一至兩小時，約一個半月完成；他也表示過去較少挑戰打鬥鏡頭。這是單一創作者的練習時程，文章未提供鏡頭拆分、修改輪次或可直接套用的製作排程。",
+          "angle": "test_risk_or_limit",
+          "evidence_refs": [
+            "p003",
+            "p004",
+            "p005"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p002",
+          "p003",
+          "p004",
+          "p005"
+        ]
+      }
+    },
+    "3dnchu-idol-3d627ff323486231": {
+      "source_url": "https://3dnchu.com/archives/idol",
+      "source_published_at": "2026-11-24",
+      "source_evidence_sha256": "2a0d23fa52be2575a85d8aecfed099eae9ed9ad4719fd28a8b1fcf53912d2d76",
+      "reviewed_on": "2026-11-24",
+      "analysis_level": "BRIEF",
+      "content_kind": "news",
+      "title": "Idol 單圖生成 3DGS：ComfyUI 輸出與網格轉換限制",
+      "summary": "11 月 24 日的介紹整理 Speridlabs 於 2026 年 10 月公開的 Idol：由單張照片或渲染圖推估物體側面與背面，生成 3D Gaussian Splatting。原 SDK 可存 PLY，ComfyUI 模板另提供 SPZ、預覽影片及轉換後的 GLB。",
+      "evidence_refs": [
+        "p001",
+        "p002",
+        "p003",
+        "p004",
+        "p005",
+        "p006",
+        "p007",
+        "p008",
+        "p009"
+      ],
+      "full_analysis": [
+        {
+          "label": "前處理與 Gaussian 數量",
+          "text": "Idol 自動移除背景，照片用 real 模式、渲染或生成圖用 synthetic 模式，兩者裁切留白不同。Gaussian 數可設為 32,768 至 1,048,576，預設 262,144；SDK 命令列還會輸出前處理圖片及推估的輸入相機資訊。",
+          "angle": "workflow_or_technical_change",
+          "evidence_refs": [
+            "p001",
+            "p002",
+            "p003",
+            "p004"
+          ]
+        },
+        {
+          "label": "ComfyUI 與 Blender 的銜接",
+          "text": "Comfy-Org 的模板沿用 TripoSplat 節點結構並換用 Idol checkpoint，可輸出環繞預覽、SPZ 與轉網格 GLB。文章另指出 Blender 5.3 能匯入 PLY、SPZ 的 splats，以點雲交由 Geometry Nodes 處理及 EEVEE、Cycles 渲染。",
+          "angle": "production_impact",
+          "evidence_refs": [
+            "p005",
+            "p007"
+          ]
+        },
+        {
+          "label": "轉網格與運算需求須分開看",
+          "text": "模板說明指出預設 GLB 可能達數百萬三角形，細繩、欄杆或毛髮可能變細或殘留背景色。SDK 需 Python 3.10、PyTorch 2.5 以上，標準設定還須取得 DINOv3 與 FLUX.2 [dev] 存取權；模型公開不代表所有依賴都免申請。",
+          "angle": "test_risk_or_limit",
+          "evidence_refs": [
+            "p006",
+            "p008",
+            "p009"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p002",
+          "p003",
+          "p004",
+          "p005",
+          "p006",
+          "p007",
+          "p008",
+          "p009"
+        ]
+      }
+    },
+    "3dnchu-hob-1-0-62fff3c0b50ed3d0": {
+      "source_url": "https://3dnchu.com/archives/hob-1-0",
+      "source_published_at": "2026-11-24",
+      "source_evidence_sha256": "39acff64c9f9a9d2e8fa9945d108fe020dbe7bb020f9fdbfaf4458693f42908c",
+      "reviewed_on": "2026-11-24",
+      "analysis_level": "BRIEF",
+      "content_kind": "news",
+      "title": "HoB 1.0：在 Blender 操作 Houdini 節點與計算結果",
+      "summary": "HoB（Houdini on Blender）是免費開源外掛，使用電腦上另裝的 Houdini 作為計算引擎，將程序模型與模擬結果送入 Blender，也可把 Blender 網格或動畫傳入 Houdini。文章列出 Windows 10／11 與 Houdini 22.x 的環境條件。",
+      "evidence_refs": [
+        "p001",
+        "p002",
+        "p004",
+        "p005",
+        "p006",
+        "p007",
+        "p008",
+        "p009",
+        "p010",
+        "p011"
+      ],
+      "full_analysis": [
+        {
+          "label": "以 Houdini 引擎計算並回傳",
+          "text": "HoB 可在 Houdini 原生節點編輯器或 Blender 內的專用編輯器組織節點，再由 Blender 側欄調整參數與檢視結果。計算仍由另外安裝的 Houdini 負責，外掛提供的是兩套軟體之間的操作與資料連接。",
+          "angle": "workflow_or_technical_change",
+          "evidence_refs": [
+            "p001",
+            "p002",
+            "p009"
+          ]
+        },
+        {
+          "label": "模型、動畫與既有資產流通",
+          "text": "文章列出把 Houdini 模型與模擬結果帶入 Blender 場景渲染、把 Blender 網格及動畫送去計算，以及在 Blender 動畫化 Houdini APEX 角色。既有 .hip 場景和 HDA 也可載入編輯，可推論有助沿用既有程序資產。",
+          "angle": "production_impact",
+          "evidence_refs": [
+            "p004",
+            "p005",
+            "p006",
+            "p007"
+          ]
+        },
+        {
+          "label": "免費外掛仍有執行環境限制",
+          "text": "本文的條件是 64 位元 Windows 10／11 並另裝 Houdini 22.x；外掛採 GPL-3.0-or-later。README 說明 Apprentice 無償版只能受限運作，文章沒有逐項列出限制，因此不能將免費外掛理解成所有 Houdini 功能均無條件可用。",
+          "angle": "test_risk_or_limit",
+          "evidence_refs": [
+            "p008",
+            "p009",
+            "p010",
+            "p011"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p002",
+          "p004",
+          "p005",
+          "p006",
+          "p007",
+          "p008",
+          "p009",
+          "p010",
+          "p011"
+        ]
+      }
+    },
+    "3dnchu-idol-max-e417f3ba92b44bf3": {
+      "source_url": "https://3dnchu.com/archives/idol-max",
+      "source_published_at": "2026-11-24",
+      "source_evidence_sha256": "b4068229dfa3b070c22cd82fc51bf0d7b4d32abe4d72f4d21214d41ef296947e",
+      "reviewed_on": "2026-11-24",
+      "analysis_level": "BRIEF",
+      "content_kind": "news",
+      "title": "Idol Max 與 Turbo：單圖產生附 UV、貼圖與可選綁定的 GLB",
+      "summary": "fal 公開以 Idol 為基礎的 Idol Max 與 Turbo，輸出約三萬三角形、含 UV 與 2K 貼圖的 GLB，並提供選用的骨架與循環動畫。兩者採按次計費；Max 重繪基礎色，Turbo 從中間 splats 投影顏色以縮短處理。",
+      "evidence_refs": [
+        "p002",
+        "p003",
+        "p004",
+        "p005",
+        "p007",
+        "p008",
+        "p009",
+        "p010",
+        "p011"
+      ],
+      "full_analysis": [
+        {
+          "label": "網格與材質輸出內容",
+          "text": "輸出 GLB 約三萬三角形，附 UV、2K base color 及 normal map，另有帶頂點色的高解析網格。金屬度與粗糙度貼圖屬於預設關閉的 PBR 選項；這與原 Idol 直接輸出 3D splats 的結果型態不同。",
+          "angle": "workflow_or_technical_change",
+          "evidence_refs": [
+            "p002",
+            "p003",
+            "p004"
+          ]
+        },
+        {
+          "label": "綁定與動畫是額外選項",
+          "text": "角色或生物可選擇自動骨架及蒙皮權重，再依骨架輸出待機、走路、跑步與跳躍的循環 GLB。Max 依輸入圖重繪基礎色，Turbo 改以中間 splats 投色；fal 給出的 Turbo 約二十秒是服務方的生成時間估計。",
+          "angle": "production_impact",
+          "evidence_refs": [
+            "p005",
+            "p007"
+          ]
+        },
+        {
+          "label": "費用與商用範圍有條件",
+          "text": "原文列 Max 每資產 0.20 美元，含綁定動畫為 0.25；Turbo 分別是 0.10 與 0.125 美元。服務可由 Playground 或 API 使用，fal 對 API 生成資產提供商用說明，但仍須依服務條款，不能把按次付費等同無限制授權。",
+          "angle": "test_risk_or_limit",
+          "evidence_refs": [
+            "p008",
+            "p009",
+            "p010",
+            "p011"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p002",
+          "p003",
+          "p004",
+          "p005",
+          "p007",
+          "p008",
+          "p009",
+          "p010",
+          "p011"
+        ]
+      }
+    },
+    "3dnchu-3dgs-mesh-converter-e5ebf2f7261f8d29": {
+      "source_url": "https://3dnchu.com/archives/3dgs-mesh-converter",
+      "source_published_at": "2026-08-24",
+      "source_evidence_sha256": "50e406becb56206561b2086b0665d292f80ff4e1a03a31562126c75181804fe6",
+      "reviewed_on": "2026-11-24",
+      "analysis_level": "BRIEF",
+      "content_kind": "practice",
+      "title": "3DGS Mesh Converter：以兩種轉換路徑處理 PLY 掃描",
+      "summary": "回看 2026 年 8 月介紹的 3DGS Mesh Converter β：把 3DGS PLY 上傳至瀏覽器，由伺服器轉成網格。文章比較幾何計算與四視角 AI 補形兩種方式，前者仍有精度問題，後者可能改變原始形狀。",
+      "evidence_refs": [
+        "p001",
+        "p002",
+        "p003",
+        "p004",
+        "p005",
+        "p006",
+        "p007",
+        "p008",
+        "p009"
+      ],
+      "full_analysis": [
+        {
+          "label": "瀏覽器上傳與伺服器轉換",
+          "text": "服務接受最大 500 MB 的 3DGS PLY，使用者拖入檔案並選擇轉換方式，運算由伺服器處理，無須本機安裝軟體或 GPU。完成後可用瀏覽器 3D 檢視器確認結果，也能從歷史紀錄重新下載先前轉換。",
+          "angle": "workflow_or_technical_change",
+          "evidence_refs": [
+            "p001",
+            "p002",
+            "p003",
+            "p004",
+            "p005"
+          ]
+        },
+        {
+          "label": "幾何計算與 AI 補形的取捨",
+          "text": "計算轉換從 splats 點分布生成幾何，目標偏向尺寸量測、紀錄與現況掌握；AI 模式則先渲染四個方向，交給模型補細節，偏向提案視覺與展示。這是原文對用途的定位，並非兩種結果皆具有量測精度的保證。",
+          "angle": "production_impact",
+          "evidence_refs": [
+            "p006",
+            "p007"
+          ]
+        },
+        {
+          "label": "β 精度與原始形狀的限制",
+          "text": "原文稱計算轉換約數秒至十多秒，但當時能漂亮轉換的資料仍有限；AI 模式約二至四分鐘，補形可能使形狀偏離輸入。文章亦註明部分資訊引自 2026 年 9 月官網，這些是該次介紹中的條件，不是今日重新量測結果。",
+          "angle": "test_risk_or_limit",
+          "evidence_refs": [
+            "p006",
+            "p007",
+            "p008",
+            "p009"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p002",
+          "p003",
+          "p004",
+          "p005",
+          "p006",
+          "p007",
+          "p008",
+          "p009"
+        ]
+      }
+    },
+    "3dnchu-blender-to-substance-painter-live-link-b4e88340eb20df29": {
+      "source_url": "https://3dnchu.com/archives/blender-to-substance-painter-live-link",
+      "source_published_at": "2026-02-09",
+      "source_evidence_sha256": "f465ccd155d7ffe8b26a6451d136e41125bd9f309ac94687c177be71647343f8",
+      "reviewed_on": "2026-11-24",
+      "analysis_level": "BRIEF",
+      "content_kind": "historical",
+      "title": "歷史參考｜Blender 與 Substance Painter Live Link 的雙向材質同步",
+      "summary": "2026 年 2 月文章介紹 Milad Kambari 的 Blender To Substance Painter Live Link Plugin，當時以 Blender 5.0 與 Substance Painter 11.0 為目標，提供模型更新、PBR 材質往返及手動或自動同步。這是既有外掛介紹，並非今日版本相容性認證。",
+      "evidence_refs": [
+        "p002",
+        "p003",
+        "p004",
+        "p005",
+        "p006",
+        "p007",
+        "p009"
+      ],
+      "full_analysis": [
+        {
+          "label": "模型與材質的往返操作",
+          "text": "來源介紹 Blender 網格變更或模型替換可傳入 Painter，並宣稱能維持專案及圖層同步；PBR 材質可由 Blender 傳至 Painter，再將紋理送回 Blender。這些是文章轉述的產品功能，而非本次實測的資料保真結果。",
+          "angle": "workflow_or_technical_change",
+          "evidence_refs": [
+            "p002",
+            "p003",
+            "p004",
+            "p007"
+          ]
+        },
+        {
+          "label": "手動與延遲自動同步",
+          "text": "外掛提供手動同步及自動同步，後者使用計時器偵測操作結束，等待數秒再推送變更。可推論這種設計把同步時機與連續編輯操作分開；原文沒有提供等待秒數的完整設定範圍，不能進一步假設同步頻率。",
+          "angle": "production_impact",
+          "evidence_refs": [
+            "p006"
+          ]
+        },
+        {
+          "label": "版本與宣傳主張的界線",
+          "text": "本文介紹的是 Blender 5.0 與 Painter 11.0 的橋接，當時列價 12 美元；宣傳文字還聲稱兩端視覺完全一致。原文沒有附測試場景或跨版本驗證，因此這些敘述不能當成所有材質、渲染器及新版軟體均一致的保證。",
+          "angle": "test_risk_or_limit",
+          "evidence_refs": [
+            "p002",
+            "p005",
+            "p009"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p002",
+          "p003",
+          "p004",
+          "p005",
+          "p006",
+          "p007",
+          "p009"
+        ]
+      }
+    },
+    "cg-channel-escape-motions-releases-rebelle-8-5d49c212ed9ef763": {
+      "source_url": "https://www.cgchannel.com/2026/11/escape-motions-releases-rebelle-8",
+      "source_published_at": "2026-11-23",
+      "source_evidence_sha256": "730e1c8c85c68fde8ffa0f78ffde7635a8dbe20448ff0b072c782bcca533a74f",
+      "reviewed_on": "2026-11-24",
+      "analysis_level": "BRIEF",
+      "content_kind": "news",
+      "title": "Rebelle 8.4 更新筆刷角度控制與 WebSocket 存取事件",
+      "summary": "CG Channel 於 2026 年 11 月 23 日更新 Rebelle 8 系列報導，8.4 新增筆刷 Rotation、初始角度鎖定及結構不透明度設定，WebSocket 也支援 Save、Load。文章前段的 8.1 至 8.3 功能屬歷次更新，不能全部算作 8.4 新增。",
+      "evidence_refs": [
+        "p010",
+        "p011",
+        "p014",
+        "p015",
+        "p018",
+        "p027",
+        "p028",
+        "p029",
+        "p049",
+        "p050",
+        "p051",
+        "p056",
+        "p057",
+        "p058"
+      ],
+      "full_analysis": [
+        {
+          "label": "8.4 的筆刷控制變更",
+          "text": "此次更新新增控制筆刷角度的 Rotation，Texture 與 Bristle 筆刷可用 Lock Initial Angle，並加入 structures 的 Opacity 設定。原文把 8.4 定位為效能及工作流程更新，沒有將先前的粒子筆刷引擎重新列為這次首發。",
+          "angle": "workflow_or_technical_change",
+          "evidence_refs": [
+            "p010",
+            "p011",
+            "p056",
+            "p057"
+          ]
+        },
+        {
+          "label": "遠端控制擴及儲存與載入",
+          "text": "8.4 的 WebSocket 連線新增 Save 與 Load 事件，並改善介面、啟動及選取筆刷預設的操作效能。系列文章說明 WebSocket 可供遠端控制；可推論新增事件擴充這類整合能操作的範圍，但並無實際演出部署成果。",
+          "angle": "production_impact",
+          "evidence_refs": [
+            "p027",
+            "p028",
+            "p029",
+            "p058"
+          ]
+        },
+        {
+          "label": "系列文章須分辨版本歸屬",
+          "text": "高度圖輸出 16 位元 EXR 是文章 2026 年 8 月的 8.3 更新，RealShader 與油彩柔和陰影則在更早的 Pro 介紹。閱讀這篇持續更新報導時，應以 11 月 23 日的 8.4 段落判斷本次變更，避免把舊功能當成新發布。",
+          "angle": "test_risk_or_limit",
+          "evidence_refs": [
+            "p014",
+            "p015",
+            "p018",
+            "p049",
+            "p050",
+            "p051",
+            "p056",
+            "p057",
+            "p058"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p010",
+          "p011",
+          "p014",
+          "p015",
+          "p018",
+          "p027",
+          "p028",
+          "p029",
+          "p049",
+          "p050",
+          "p051",
+          "p056",
+          "p057",
+          "p058"
+        ]
+      }
+    },
+    "blender-official-46383-718b5c12a7af3c4a": {
+      "source_url": "https://forum.blender.org/t/23-november-2026/46383",
+      "source_published_at": "2026-11-16",
+      "source_evidence_sha256": "1817fa157767ca40469c509541ecb98010786264d81a3292581c93a4c52bbb67",
+      "reviewed_on": "2026-11-24",
+      "analysis_level": "BRIEF",
+      "content_kind": "practice",
+      "title": "Blender 11/23 開發週報：筆刷控制、匯出器與資料屬性進展",
+      "summary": "回顧 Blender 標示 11 月 23 日的開發週報：列出筆刷 Alpha、紋理顏色、隨機色與自動遮罩，STL／PLY 匯出器調整，以及 IDProperties 的曲線與色帶支援。來源頁於 11 月 16 日建立，內容是持續整理的開發摘要，非新版發布公告。",
+      "evidence_refs": [
+        "p010",
+        "p011",
+        "p012",
+        "p013",
+        "p014",
+        "p016",
+        "p019",
+        "p026",
+        "p036",
+        "p037"
+      ],
+      "full_analysis": [
+        {
+          "label": "筆刷與動畫編輯功能清單",
+          "text": "週報列出 Affect Alpha、以紋理色彩繪畫、Draw 筆刷色彩隨機化及 Auto-masking；動畫項目還包括大量移除 constraints 的函式。這些是帶有 commit 連結的開發項目清單，沒有逐步教學或完整工具介面示範。",
+          "angle": "workflow_or_technical_change",
+          "evidence_refs": [
+            "p011",
+            "p012",
+            "p013",
+            "p014",
+            "p016"
+          ]
+        },
+        {
+          "label": "匯出與自訂資料的進展",
+          "text": "其中一項提交針對使用 viewport 設定時加快 STL、PLY 匯出器，另一項為 IDProperties 支援 curve mapping、profile 與 color ramp。可推論這些變更分別影響輸出作業與自訂屬性表達，原文沒有提供量化改善幅度。",
+          "angle": "production_impact",
+          "evidence_refs": [
+            "p019",
+            "p026"
+          ]
+        },
+        {
+          "label": "提交摘要不等於正式版承諾",
+          "text": "來源自述只選列過去一週的部分變更，完整修正與程式變動需另查專案紀錄；清單還包含在 AMD 官方驅動停用 HWRT 及不支援特定 storage usage 時改用 SDR swapchain。不能據週報概括所有平台皆有同等支援。",
+          "angle": "test_risk_or_limit",
+          "evidence_refs": [
+            "p010",
+            "p036",
+            "p037"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p010",
+          "p011",
+          "p012",
+          "p013",
+          "p014",
+          "p016",
+          "p019",
+          "p026",
+          "p036",
+          "p037"
+        ]
+      }
+    },
+    "blender-official-46224-b05dfa591988f6c8": {
+      "source_url": "https://forum.blender.org/t/9-november-2026/46224",
+      "source_published_at": "2026-11-02",
+      "source_evidence_sha256": "b3e767fc22343d6b5c54050a7815ddf84e9fe5c359f5d8f740dce2a900632425",
+      "reviewed_on": "2026-11-24",
+      "analysis_level": "BRIEF",
+      "content_kind": "practice",
+      "title": "Blender 11/9 開發週報：Bézier 變形與視窗顯示調整",
+      "summary": "回顧標示 11 月 9 日的 Blender 開發週報，來源頁建立於 11 月 2 日。清單涵蓋 Bézier 曲線的 Armature Modifier、Menu Switch 多行說明，以及 Rendered／Solid 檢視的 view transform 調整；這些屬近期開發紀錄，不代表今日發布。",
+      "evidence_refs": [
+        "p011",
+        "p016",
+        "p017",
+        "p018",
+        "p019",
+        "p020",
+        "p023",
+        "p026",
+        "p028",
+        "p029"
+      ],
+      "full_analysis": [
+        {
+          "label": "Bézier 曲線與繪圖編輯",
+          "text": "週報列出對 Bézier 曲線加入 Armature Modifier 支援，並在 Curve Attribute 面板新增 Stroke Type；另有 Edit Mode 預設選取工具改為 Lasso 的提交。文字提供的是變更摘要，未展示角色變形或筆畫編輯的完整操作流程。",
+          "angle": "workflow_or_technical_change",
+          "evidence_refs": [
+            "p016",
+            "p017",
+            "p018"
+          ]
+        },
+        {
+          "label": "節點說明與視窗呈現",
+          "text": "Menu Switch 項目說明改用多行文字框，bundle 與 closure 節點移至專用子選單，Rendered 與 Solid shading 使用相同 view transform。從使用角度推論，這些調整涉及節點資訊閱讀與檢視設定的一致性，非新增渲染品質指標。",
+          "angle": "production_impact",
+          "evidence_refs": [
+            "p026",
+            "p028",
+            "p029"
+          ]
+        },
+        {
+          "label": "功能停用也屬本週變更",
+          "text": "清單同時包含停用 duration 與 end frame 功能，以及從 Insert Blank Frame 操作隱藏 Duration 參數。來源只稱這是部分一週變更摘要，沒有在此逐項標明對應穩定版，因此不能把每項提交都當作現行正式版可用功能。",
+          "angle": "test_risk_or_limit",
+          "evidence_refs": [
+            "p011",
+            "p019",
+            "p020",
+            "p023"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p011",
+          "p016",
+          "p017",
+          "p018",
+          "p019",
+          "p020",
+          "p023",
+          "p026",
+          "p028",
+          "p029"
+        ]
+      }
+    },
+    "blender-official-46307-ccad4581dc50ccd8": {
+      "source_url": "https://forum.blender.org/t/16-november-2026/46307",
+      "source_published_at": "2026-11-09",
+      "source_evidence_sha256": "998dfe77c36914628bcac7bce9a30f30f0bb4bf7af70a4bb46427444ddfa61f8",
+      "reviewed_on": "2026-11-24",
+      "analysis_level": "BRIEF",
+      "content_kind": "practice",
+      "title": "Blender 11/16 開發週報：Grease Pencil 紋理與 FBX 集合匯入",
+      "summary": "標示 11 月 16 日、於 11 月 9 日建立的 Blender 週報，記錄 Grease Pencil 紋理、FBX 集合匯入及多項編輯器調整。頁內另記載 Blender 5.3 於 11 月 10 日發布；週報的開發提交不應全部視為該正式版功能。",
+      "evidence_refs": [
+        "p002",
+        "p009",
+        "p028",
+        "p029",
+        "p030",
+        "p032",
+        "p033",
+        "p041",
+        "p043"
+      ],
+      "full_analysis": [
+        {
+          "label": "筆畫紋理與節點資料",
+          "text": "週報列出 Grease Pencil Material Info 節點，以及 Stroke／Fill 紋理支援影片與色彩空間，另有混合 complex list types 的變更。這些條目提供開發方向與 commit 索引，沒有說明所有功能已在同一正式版本交付。",
+          "angle": "workflow_or_technical_change",
+          "evidence_refs": [
+            "p028",
+            "p029",
+            "p030"
+          ]
+        },
+        {
+          "label": "資產匯入與編輯操作",
+          "text": "FBX 納入 collection import，材質 Randomize 面板新增 seed，ColorRamp 色標能按 Ctrl 吸附。可推論這組變更分別改善外部資產接入與可控的介面操作，但週報沒有量測它們可節省多少製作時間。",
+          "angle": "production_impact",
+          "evidence_refs": [
+            "p032",
+            "p033",
+            "p041"
+          ]
+        },
+        {
+          "label": "平台限制與版本應分開核對",
+          "text": "頁面指出 Blender 5.3 已在 11 月 10 日發布，同時列出開發分支對 Windows／Intel 停用 local read 等調整。因來源自述只是每週提交精選，不能從發布日期推論清單全部屬 5.3，也不能將單一平台變更擴及其他 GPU。",
+          "angle": "test_risk_or_limit",
+          "evidence_refs": [
+            "p002",
+            "p009",
+            "p043"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p002",
+          "p009",
+          "p028",
+          "p029",
+          "p030",
+          "p032",
+          "p033",
+          "p041",
+          "p043"
+        ]
+      }
+    },
+    "blender-official-46139-8ac03ec078a3a5fd": {
+      "source_url": "https://forum.blender.org/t/2-november-2026/46139",
+      "source_published_at": "2026-10-26",
+      "source_evidence_sha256": "ec8aebf9d9df6436709761e7bb823c083aff0e415ffed40c4cf6b7e05ac4c171",
+      "reviewed_on": "2026-11-24",
+      "analysis_level": "BRIEF",
+      "content_kind": "practice",
+      "title": "Blender 11/2 開發週報：全景動態模糊與遠端資產庫進展",
+      "summary": "回顧標示 11 月 2 日、於 10 月 26 日建立的 Blender 開發週報：選列全景相機動態模糊、Delaunay Triangulation 節點、遠端資產庫與 New Project 對話框等提交。它是近期開發進度索引，並非今日新功能發布清單。",
+      "evidence_refs": [
+        "p008",
+        "p016",
+        "p017",
+        "p022",
+        "p024",
+        "p025",
+        "p031",
+        "p033",
+        "p043"
+      ],
+      "full_analysis": [
+        {
+          "label": "渲染與幾何工具的提交",
+          "text": "週報列出全景相機的 Motion Blur 支援，以及新增 Delaunay Triangulation 節點；還有透過自動向量化優化 white／Perlin noise texture 的項目。原文僅提供提交摘要，沒有相機設定示範或三角化演算法的品質比較。",
+          "angle": "workflow_or_technical_change",
+          "evidence_refs": [
+            "p022",
+            "p024",
+            "p025"
+          ]
+        },
+        {
+          "label": "資產與專案入口的改動",
+          "text": "來源列出 remote asset library 支援、New Project 對話框及最近檔案提示中的專案名稱。可推論這些工作涉及資產存取與專案辨識，但清單沒有附部署方式、遠端服務設定或下載可靠性數據，無法據此承諾具體管理流程。",
+          "angle": "production_impact",
+          "evidence_refs": [
+            "p031",
+            "p033",
+            "p043"
+          ]
+        },
+        {
+          "label": "裝置篩選顯示適用條件",
+          "text": "同份週報包含 oneAPI 過濾不支援 bindless images 的裝置，以及回退 CUDA／HIP／oneAPI 的 concurrent state 增加。這表明清單也有相容性處理與撤回，不能單以出現新功能條目就推定所有裝置或正式版本均可使用。",
+          "angle": "test_risk_or_limit",
+          "evidence_refs": [
+            "p008",
+            "p016",
+            "p017"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p008",
+          "p016",
+          "p017",
+          "p022",
+          "p024",
+          "p025",
+          "p031",
+          "p033",
+          "p043"
+        ]
+      }
+    }
+  }
+}
