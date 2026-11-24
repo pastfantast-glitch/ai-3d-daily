@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   3D 製作｜2026-11-24｜AI 3D Daily
+  </title>
+  <meta content="2026-11-24 3D 製作 Production Intelligence：3D 角色製作 / 3D 物件製作 / 3D 場景製作 / 製作流程，共 2 項可驗證情報。" name="description"/>
+  <link href="../../styles.css?v=20261124-r1-workspace-v17-home-card-library" rel="stylesheet"/>
+  <link href="../../shared-components.css?v=20261124-r1-workspace-v17-home-card-library" rel="stylesheet"/>
+  <link href="../../category.css?v=20261124-r1-workspace-v17-home-card-library" rel="stylesheet"/>
+ </head>
+ <body class="category-page" data-category="3d-production" data-report-date="2026-11-24">
+  <nav aria-label="Production Intelligence 分類" class="global-category-nav">
+   <div class="page global-category-nav-inner">
+    <div class="archive-nav-controls">
+     <a class="archive-nav-home" href="../../">
+      ← 首頁
+     </a>
+     <div class="archive-nav-date">
+      <a aria-label="前一日日報" class="archive-nav-arrow" href="../../2026-11-23/3d-production/">
+       ←
+      </a>
+      <span>
+       2026-11-24
+      </span>
+     </div>
+    </div>
+    <span aria-hidden="true" class="archive-nav-divider">
+    </span>
+    <a class="global-category-link" href="../#top">
+     TOP5
+    </a>
+    <a class="global-category-link" data-category="ai-generation" href="../ai-generation/">
+     AI 生成
+    </a>
+    <a class="global-category-link is-active" data-category="3d-production" href="../3d-production/">
+     3D 製作
+    </a>
+    <a class="global-category-link" data-category="3d-animation" href="../3d-animation/">
+     3D 動作
+    </a>
+    <a class="global-category-link" data-category="engine-art" href="../engine-art/">
+     遊戲引擎
+    </a>
+    <a class="global-category-link" data-category="emerging-case" href="../emerging-case/">
+     新技術 / Case
+    </a>
+    <a class="global-category-link" data-category="blender-dcc" href="../blender-dcc/">
+     Blender / DCC
+    </a>
+    <a class="global-category-link global-history-link" data-global-view="history" href="../../history/">
+     歷史日報
+    </a>
+    <a class="global-admin-link" href="../../admin/">
+     管理後臺
+    </a>
+   </div>
+  </nav>
+  <main class="page category-main">
+   <article class="category-card" data-intel-id="cg-channel-escape-motions-releases-rebelle-8-5d49c212ed9ef763" data-intel-role="card" id="intel-cg-channel-escape-motions-releases-rebelle-8-5d49c212ed9ef763">
+    <div class="category-meta">
+     #01 · production-workflow
+    </div>
+    <h2>
+     Rebelle 8.4 更新筆刷角度控制與 WebSocket 存取事件
+    </h2>
+    <p class="summary">
+     CG Channel 於 2026 年 11 月 23 日更新 Rebelle 8 系列報導，8.4 新增筆刷 Rotation、初始角度鎖定及結構不透明度設定，WebSocket 也支援 Save、Load。文章前段的 8.1 至 8.3 功能屬歷次更新，不能全部算作 8.4 新增。
+    </p>
+    <figure class="case-preview" data-intel-id="cg-channel-escape-motions-releases-rebelle-8-5d49c212ed9ef763" data-intel-role="visual" data-visual-id="cg-channel-escape-motions-releases-rebelle-8-5d49c212ed9ef763">
+     <a href="https://www.cgchannel.com/2026/11/escape-motions-releases-rebelle-8" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-11-24/cg-channel-escape-motions-releases-rebelle-8-5d49c212ed9ef763.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">製作流程</b> ★★★★★</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       8.4 的筆刷控制變更
+      </h4>
+      <p>
+       此次更新新增控制筆刷角度的 Rotation，Texture 與 Bristle 筆刷可用 Lock Initial Angle，並加入 structures 的 Opacity 設定。原文把 8.4 定位為效能及工作流程更新，沒有將先前的粒子筆刷引擎重新列為這次首發。
+      </p>
+      <h4>
+       遠端控制擴及儲存與載入
+      </h4>
+      <p>
+       8.4 的 WebSocket 連線新增 Save 與 Load 事件，並改善介面、啟動及選取筆刷預設的操作效能。系列文章說明 WebSocket 可供遠端控制；可推論新增事件擴充這類整合能操作的範圍，但並無實際演出部署成果。
+      </p>
+      <h4>
+       系列文章須分辨版本歸屬
+      </h4>
+      <p>
+       高度圖輸出 16 位元 EXR 是文章 2026 年 8 月的 8.3 更新，RealShader 與油彩柔和陰影則在更早的 Pro 介紹。閱讀這篇持續更新報導時，應以 11 月 23 日的 8.4 段落判斷本次變更，避免把舊功能當成新發布。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://www.cgchannel.com/2026/11/escape-motions-releases-rebelle-8" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="3dnchu-one-cookie-ue5-environment-peyton-varney-50d1d364e8f9ec95" data-intel-role="card" id="intel-3dnchu-one-cookie-ue5-environment-peyton-varney-50d1d364e8f9ec95">
+    <div class="category-meta">
+     #11 · environment-production
+    </div>
+    <h2>
+     歷史參考｜用一個餅乾模型搭建 UE5 環境的素材限制挑戰
+    </h2>
+    <p class="summary">
+     2026 年 3 月的文章介紹 Peyton Varney 的環境製作挑戰：只使用 Quixel Megascans 的一個巧克力豆餅乾素材，在 Unreal Engine 建立場景。影片聚焦單一素材能如何構成環境，是既有創作案例的回顧。
+    </p>
+    <figure class="case-preview" data-intel-id="3dnchu-one-cookie-ue5-environment-peyton-varney-50d1d364e8f9ec95" data-intel-role="visual" data-visual-id="3dnchu-one-cookie-ue5-environment-peyton-varney-50d1d364e8f9ec95">
+     <a href="https://3dnchu.com/archives/one-cookie-ue5-environment-peyton-varney" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-11-24/3dnchu-one-cookie-ue5-environment-peyton-varney-50d1d364e8f9ec95.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">場景製作</b> ★★★☆☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       單一素材的挑戰設定
+      </h4>
+      <p>
+       挑戰指定 Quixel Megascans 的一枚巧克力豆餅乾作為唯一素材，作者以此製作環境，目的是探索單一資產限制下能完成什麼；文章將這段創作定位為一次有趣的素材限制挑戰。
+      </p>
+      <h4>
+       重複使用模型的製作意義
+      </h4>
+      <p>
+       報導把重複使用同一模型與模組化素材的基本用法相連，並提到記憶體節省；這是文章的說明，沒有附上節省幅度或場景測試數據。
+      </p>
+      <h4>
+       文字說明的證據範圍
+      </h4>
+      <p>
+       原文以影片展示受單一素材限制的環境製作挑戰，文字只交代素材來源與挑戰目的，沒有列出逐步操作、場景規模或效能測試。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://3dnchu.com/archives/one-cookie-ue5-environment-peyton-varney" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <nav aria-label="相鄰分類" class="category-bottom-nav">
+    <a href="../ai-generation/">
+     ← AI 生成
+    </a>
+    <a href="../#top">
+     TOP5
+    </a>
+    <a href="../3d-animation/">
+     3D 動作 →
+    </a>
+   </nav>
+  </main>
+  <script defer="" src="../../archive-nav-state.js?v=20261124-r1-workspace-v17-home-card-library">
+  </script>
+ </body>
+</html>

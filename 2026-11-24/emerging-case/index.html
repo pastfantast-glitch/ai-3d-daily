@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   新技術 / Case｜2026-11-24｜AI 3D Daily
+  </title>
+  <meta content="2026-11-24 新技術 / Case Production Intelligence：新技術 / Production Case，共 2 項可驗證情報。" name="description"/>
+  <link href="../../styles.css?v=20261124-r1-workspace-v17-home-card-library" rel="stylesheet"/>
+  <link href="../../shared-components.css?v=20261124-r1-workspace-v17-home-card-library" rel="stylesheet"/>
+  <link href="../../category.css?v=20261124-r1-workspace-v17-home-card-library" rel="stylesheet"/>
+ </head>
+ <body class="category-page" data-category="emerging-case" data-report-date="2026-11-24">
+  <nav aria-label="Production Intelligence 分類" class="global-category-nav">
+   <div class="page global-category-nav-inner">
+    <div class="archive-nav-controls">
+     <a class="archive-nav-home" href="../../">
+      ← 首頁
+     </a>
+     <div class="archive-nav-date">
+      <a aria-label="前一日日報" class="archive-nav-arrow" href="../../2026-11-23/emerging-case/">
+       ←
+      </a>
+      <span>
+       2026-11-24
+      </span>
+     </div>
+    </div>
+    <span aria-hidden="true" class="archive-nav-divider">
+    </span>
+    <a class="global-category-link" href="../#top">
+     TOP5
+    </a>
+    <a class="global-category-link" data-category="ai-generation" href="../ai-generation/">
+     AI 生成
+    </a>
+    <a class="global-category-link" data-category="3d-production" href="../3d-production/">
+     3D 製作
+    </a>
+    <a class="global-category-link" data-category="3d-animation" href="../3d-animation/">
+     3D 動作
+    </a>
+    <a class="global-category-link" data-category="engine-art" href="../engine-art/">
+     遊戲引擎
+    </a>
+    <a class="global-category-link is-active" data-category="emerging-case" href="../emerging-case/">
+     新技術 / Case
+    </a>
+    <a class="global-category-link" data-category="blender-dcc" href="../blender-dcc/">
+     Blender / DCC
+    </a>
+    <a class="global-category-link global-history-link" data-global-view="history" href="../../history/">
+     歷史日報
+    </a>
+    <a class="global-admin-link" href="../../admin/">
+     管理後臺
+    </a>
+   </div>
+  </nav>
+  <main class="page category-main">
+   <article class="category-card" data-intel-id="3dnchu-idol-max-e417f3ba92b44bf3" data-intel-role="card" id="intel-3dnchu-idol-max-e417f3ba92b44bf3">
+    <div class="category-meta">
+     #10 · research
+    </div>
+    <h2>
+     Idol Max 與 Turbo：單圖產生附 UV、貼圖與可選綁定的 GLB
+    </h2>
+    <p class="summary">
+     fal 公開以 Idol 為基礎的 Idol Max 與 Turbo，輸出約三萬三角形、含 UV 與 2K 貼圖的 GLB，並提供選用的骨架與循環動畫。兩者採按次計費；Max 重繪基礎色，Turbo 從中間 splats 投影顏色以縮短處理。
+    </p>
+    <figure class="case-preview" data-intel-id="3dnchu-idol-max-e417f3ba92b44bf3" data-intel-role="visual" data-visual-id="3dnchu-idol-max-e417f3ba92b44bf3">
+     <a href="https://3dnchu.com/archives/idol-max" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-11-24/3dnchu-idol-max-e417f3ba92b44bf3.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">研究</b> ★★★★☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       網格與材質輸出內容
+      </h4>
+      <p>
+       輸出 GLB 約三萬三角形，附 UV、2K base color 及 normal map，另有帶頂點色的高解析網格。金屬度與粗糙度貼圖屬於預設關閉的 PBR 選項；這與原 Idol 直接輸出 3D splats 的結果型態不同。
+      </p>
+      <h4>
+       綁定與動畫是額外選項
+      </h4>
+      <p>
+       角色或生物可選擇自動骨架及蒙皮權重，再依骨架輸出待機、走路、跑步與跳躍的循環 GLB。Max 依輸入圖重繪基礎色，Turbo 改以中間 splats 投色；fal 給出的 Turbo 約二十秒是服務方的生成時間估計。
+      </p>
+      <h4>
+       費用與商用範圍有條件
+      </h4>
+      <p>
+       原文列 Max 每資產 0.20 美元，含綁定動畫為 0.25；Turbo 分別是 0.10 與 0.125 美元。服務可由 Playground 或 API 使用，fal 對 API 生成資產提供商用說明，但仍須依服務條款，不能把按次付費等同無限制授權。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://3dnchu.com/archives/idol-max" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="3dnchu-3dgs-mesh-converter-e5ebf2f7261f8d29" data-intel-role="card" id="intel-3dnchu-3dgs-mesh-converter-e5ebf2f7261f8d29">
+    <div class="category-meta">
+     #12 · research
+    </div>
+    <h2>
+     3DGS Mesh Converter：以兩種轉換路徑處理 PLY 掃描
+    </h2>
+    <p class="summary">
+     回看 2026 年 8 月介紹的 3DGS Mesh Converter β：把 3DGS PLY 上傳至瀏覽器，由伺服器轉成網格。文章比較幾何計算與四視角 AI 補形兩種方式，前者仍有精度問題，後者可能改變原始形狀。
+    </p>
+    <figure class="case-preview" data-intel-id="3dnchu-3dgs-mesh-converter-e5ebf2f7261f8d29" data-intel-role="visual" data-visual-id="3dnchu-3dgs-mesh-converter-e5ebf2f7261f8d29">
+     <a href="https://3dnchu.com/archives/3dgs-mesh-converter" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-11-24/3dnchu-3dgs-mesh-converter-e5ebf2f7261f8d29.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">研究</b> ★★★☆☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       瀏覽器上傳與伺服器轉換
+      </h4>
+      <p>
+       服務接受最大 500 MB 的 3DGS PLY，使用者拖入檔案並選擇轉換方式，運算由伺服器處理，無須本機安裝軟體或 GPU。完成後可用瀏覽器 3D 檢視器確認結果，也能從歷史紀錄重新下載先前轉換。
+      </p>
+      <h4>
+       幾何計算與 AI 補形的取捨
+      </h4>
+      <p>
+       計算轉換從 splats 點分布生成幾何，目標偏向尺寸量測、紀錄與現況掌握；AI 模式則先渲染四個方向，交給模型補細節，偏向提案視覺與展示。這是原文對用途的定位，並非兩種結果皆具有量測精度的保證。
+      </p>
+      <h4>
+       β 精度與原始形狀的限制
+      </h4>
+      <p>
+       原文稱計算轉換約數秒至十多秒，但當時能漂亮轉換的資料仍有限；AI 模式約二至四分鐘，補形可能使形狀偏離輸入。文章亦註明部分資訊引自 2026 年 9 月官網，這些是該次介紹中的條件，不是今日重新量測結果。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://3dnchu.com/archives/3dgs-mesh-converter" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <nav aria-label="相鄰分類" class="category-bottom-nav">
+    <a href="../engine-art/">
+     ← 遊戲引擎
+    </a>
+    <a href="../#top">
+     TOP5
+    </a>
+    <a href="../blender-dcc/">
+     Blender / DCC →
+    </a>
+   </nav>
+  </main>
+  <script defer="" src="../../archive-nav-state.js?v=20261124-r1-workspace-v17-home-card-library">
+  </script>
+ </body>
+</html>

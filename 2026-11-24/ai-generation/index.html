@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   AI 生成｜2026-11-24｜AI 3D Daily
+  </title>
+  <meta content="2026-11-24 AI 生成 Production Intelligence：AI 3D 生成 / AI 2D 生成 / AI 動作生成，共 1 項可驗證情報。" name="description"/>
+  <link href="../../styles.css?v=20261124-r1-workspace-v17-home-card-library" rel="stylesheet"/>
+  <link href="../../shared-components.css?v=20261124-r1-workspace-v17-home-card-library" rel="stylesheet"/>
+  <link href="../../category.css?v=20261124-r1-workspace-v17-home-card-library" rel="stylesheet"/>
+ </head>
+ <body class="category-page" data-category="ai-generation" data-report-date="2026-11-24">
+  <nav aria-label="Production Intelligence 分類" class="global-category-nav">
+   <div class="page global-category-nav-inner">
+    <div class="archive-nav-controls">
+     <a class="archive-nav-home" href="../../">
+      ← 首頁
+     </a>
+     <div class="archive-nav-date">
+      <a aria-label="前一日日報" class="archive-nav-arrow" href="../../2026-11-23/ai-generation/">
+       ←
+      </a>
+      <span>
+       2026-11-24
+      </span>
+     </div>
+    </div>
+    <span aria-hidden="true" class="archive-nav-divider">
+    </span>
+    <a class="global-category-link" href="../#top">
+     TOP5
+    </a>
+    <a class="global-category-link is-active" data-category="ai-generation" href="../ai-generation/">
+     AI 生成
+    </a>
+    <a class="global-category-link" data-category="3d-production" href="../3d-production/">
+     3D 製作
+    </a>
+    <a class="global-category-link" data-category="3d-animation" href="../3d-animation/">
+     3D 動作
+    </a>
+    <a class="global-category-link" data-category="engine-art" href="../engine-art/">
+     遊戲引擎
+    </a>
+    <a class="global-category-link" data-category="emerging-case" href="../emerging-case/">
+     新技術 / Case
+    </a>
+    <a class="global-category-link" data-category="blender-dcc" href="../blender-dcc/">
+     Blender / DCC
+    </a>
+    <a class="global-category-link global-history-link" data-global-view="history" href="../../history/">
+     歷史日報
+    </a>
+    <a class="global-admin-link" href="../../admin/">
+     管理後臺
+    </a>
+   </div>
+  </nav>
+  <main class="page category-main">
+   <article class="category-card" data-intel-id="3dnchu-idol-3d627ff323486231" data-intel-role="card" id="intel-3dnchu-idol-3d627ff323486231">
+    <div class="category-meta">
+     #07 · ai-2d
+    </div>
+    <h2>
+     Idol 單圖生成 3DGS：ComfyUI 輸出與網格轉換限制
+    </h2>
+    <p class="summary">
+     11 月 24 日的介紹整理 Speridlabs 於 2026 年 10 月公開的 Idol：由單張照片或渲染圖推估物體側面與背面，生成 3D Gaussian Splatting。原 SDK 可存 PLY，ComfyUI 模板另提供 SPZ、預覽影片及轉換後的 GLB。
+    </p>
+    <figure class="case-preview" data-intel-id="3dnchu-idol-3d627ff323486231" data-intel-role="visual" data-visual-id="3dnchu-idol-3d627ff323486231">
+     <a href="https://3dnchu.com/archives/idol" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-11-24/3dnchu-idol-3d627ff323486231.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">AI 2D</b> ★★★★☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       前處理與 Gaussian 數量
+      </h4>
+      <p>
+       Idol 自動移除背景，照片用 real 模式、渲染或生成圖用 synthetic 模式，兩者裁切留白不同。Gaussian 數可設為 32,768 至 1,048,576，預設 262,144；SDK 命令列還會輸出前處理圖片及推估的輸入相機資訊。
+      </p>
+      <h4>
+       ComfyUI 與 Blender 的銜接
+      </h4>
+      <p>
+       Comfy-Org 的模板沿用 TripoSplat 節點結構並換用 Idol checkpoint，可輸出環繞預覽、SPZ 與轉網格 GLB。文章另指出 Blender 5.3 能匯入 PLY、SPZ 的 splats，以點雲交由 Geometry Nodes 處理及 EEVEE、Cycles 渲染。
+      </p>
+      <h4>
+       轉網格與運算需求須分開看
+      </h4>
+      <p>
+       模板說明指出預設 GLB 可能達數百萬三角形，細繩、欄杆或毛髮可能變細或殘留背景色。SDK 需 Python 3.10、PyTorch 2.5 以上，標準設定還須取得 DINOv3 與 FLUX.2 [dev] 存取權；模型公開不代表所有依賴都免申請。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://3dnchu.com/archives/idol" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <nav aria-label="相鄰分類" class="category-bottom-nav">
+    <a href="../blender-dcc/">
+     ← Blender / DCC
+    </a>
+    <a href="../#top">
+     TOP5
+    </a>
+    <a href="../3d-production/">
+     3D 製作 →
+    </a>
+   </nav>
+  </main>
+  <script defer="" src="../../archive-nav-state.js?v=20261124-r1-workspace-v17-home-card-library">
+  </script>
+ </body>
+</html>
