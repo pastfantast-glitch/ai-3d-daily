@@ -116,3 +116,11 @@ python scripts/prepare_editorial_review.py collector-review.json review-drafts.j
 - 最後一次 request 驗證的內容退件也保存至 `data/ops/handoff/YYYY-MM-DD.json`，讓後臺能顯示原因。不得以後續 workflow success 或 publish skipped 代替有效 DONE。
 - 修正 PR 合併且 current-main CI 通過後，確認 Collector 與 Publisher 無 active run，才可手動執行既有 **Collector handoff gate**，明確指定原 session 日期。它可接續失敗後留下的 `.collector`，不重啟 Collector，也不手工寫 marker。
 - 接續仍須通過原 session、稿件品質、Registry、來源追溯及單一 writer 檢查。殘留 marker 最多接續兩次，每次必須有輸入或相關驗證程式／設定變更；舊 marker 的基準從 Git 中建立它的 commit 推導。已有 request、ready 或 DONE 時拒絕這條接續路徑。既有診斷檔的「初次＋兩次修正」上限持續有效。
+
+## 2026-11-24 Watchdog 寫入與排程診斷
+
+Watchdog 使用 current main 的 `scripts/collector_watchdog.py`。預設唯讀；確認當日未啟動才加 `--apply`。使用既有 Git credential helper，憑證只在記憶體，不接受或列印明文金鑰。REST 讀取固定限制為本 repository，GraphQL 僅送固定的 `createCommitOnBranch`，寫入唯一路徑 `data/ops/collector-watchdog.json`，以 `expectedHeadOid` 原子比較 current main。不可把 `/graphql` 傳給只接受 `/repos/...` 的舊臨時 REST 包裝器。
+
+程式在寫入前重新讀取兩次日期範圍內 Actions、全日期 active Collector／handoff／Publisher、DONE、canonical、session 與同日 Watchdog 記錄。任何查詢失敗、覆蓋不完整、main 改變或既有觸發均不寫入；mutation 失敗後只確認 main，不重試、不換途徑。存在收據只回報 RECEIPT_PRESENT，不能冒稱有效 DONE；仍由每日任務完整核對 receipt 與線上 Pages。成功寫入回報 WATCHDOG_TRIGGERED 後，任務必須追蹤該 commit 的既有 Collector，直到發布驗證完成或明確失敗。
+
+11/24 調查：Actions 與 Collector 為 active；main 有原 05:30／06:30 cron。11/23 定時 run 實際建立在台灣時間 09:53:35、10:55:01，11/22 為 09:28:50、10:23:45。這些紀錄證明近期定時事件有延遲到上午，不能據 07:40 尚無 run 推斷停用；GitHub API 不揭露每次排程延遲的內部原因。GitHub 官方亦說明 schedule 可能延遲或丟棄（https://docs.github.com/en/actions/how-tos/troubleshoot-workflows）。維持原排程、單一 Collector concurrency 與 Watchdog 補啟動，不以重複 dispatch 或新增排程補救。
