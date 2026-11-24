@@ -1,0 +1,603 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-24",
+  "discovery_coverage": {
+    "fill_ladder_exhausted": true,
+    "backlog_checked": true,
+    "backlog_remaining_eligible": 0,
+    "targeted_refill_performed": true,
+    "quality_first_confirmed": true,
+    "windows": {
+      "24h": {
+        "status": "exhausted",
+        "candidates_found": 9
+      },
+      "7d": {
+        "status": "exhausted",
+        "candidates_found": 1
+      },
+      "30d": {
+        "status": "exhausted",
+        "candidates_found": 5
+      },
+      "6m": {
+        "status": "exhausted",
+        "candidates_found": 2
+      },
+      "evergreen": {
+        "status": "exhausted",
+        "candidates_found": 3
+      }
+    },
+    "category_candidates": {
+      "ai-generation": {
+        "candidates_considered": 1
+      },
+      "3d-production": {
+        "candidates_considered": 2
+      },
+      "3d-animation": {
+        "candidates_considered": 4
+      },
+      "engine-art": {
+        "candidates_considered": 5
+      },
+      "emerging-case": {
+        "candidates_considered": 2
+      },
+      "blender-dcc": {
+        "candidates_considered": 6
+      }
+    },
+    "registered_source_probe": {
+      "performed": true,
+      "initial_selected": [
+        "80-level",
+        "3dnchu",
+        "cgworld-jp",
+        "bilibili-mobile",
+        "cg-channel",
+        "blender-official",
+        "epic-developer-community",
+        "unity-official",
+        "sidefx-official"
+      ],
+      "refill_selected": [
+        "artstation",
+        "gumroad-discover",
+        "xiaohongshu",
+        "autodesk-area",
+        "adobe-substance-3d",
+        "game-developer"
+      ],
+      "refill_batches": 2,
+      "pre_refill_survivors": 13,
+      "post_refill_survivors": 13,
+      "sources": {
+        "80-level": {
+          "status": "checked",
+          "method": "latest-index",
+          "candidates_found": 0,
+          "candidate_ids": [],
+          "index_pages_checked": 2,
+          "feed_urls_checked": 0,
+          "category_indexes_checked": 0,
+          "article_pages_checked": 28,
+          "evidence_extracted": 3,
+          "refill_links_checked": 0,
+          "semantic_expansion_links_checked": 0,
+          "published_links_skipped": 4,
+          "selection_phase": "daily-plan",
+          "awaiting_review": 0,
+          "review_approved": 3
+        },
+        "3dnchu": {
+          "status": "checked",
+          "method": "latest-index",
+          "candidates_found": 3,
+          "candidate_ids": [
+            "3dnchu-idol-3d627ff323486231",
+            "3dnchu-hob-1-0-62fff3c0b50ed3d0",
+            "3dnchu-idol-max-e417f3ba92b44bf3"
+          ],
+          "index_pages_checked": 5,
+          "feed_urls_checked": 3,
+          "category_indexes_checked": 4,
+          "article_pages_checked": 63,
+          "evidence_extracted": 6,
+          "refill_links_checked": 20,
+          "semantic_expansion_links_checked": 3,
+          "published_links_skipped": 31,
+          "selection_phase": "daily-plan",
+          "awaiting_review": 1,
+          "review_approved": 5
+        },
+        "cgworld-jp": {
+          "status": "checked",
+          "method": "latest-index",
+          "candidates_found": 1,
+          "candidate_ids": [
+            "cgworld-jp-substance-3d-designer-83433dcaf579d1df"
+          ],
+          "index_pages_checked": 2,
+          "feed_urls_checked": 0,
+          "category_indexes_checked": 0,
+          "article_pages_checked": 45,
+          "evidence_extracted": 0,
+          "refill_links_checked": 5,
+          "semantic_expansion_links_checked": 0,
+          "published_links_skipped": 7,
+          "selection_phase": "daily-plan",
+          "awaiting_review": 0,
+          "review_approved": 0
+        },
+        "bilibili-mobile": {
+          "status": "checked",
+          "method": "latest-index",
+          "candidates_found": 0,
+          "candidate_ids": [],
+          "index_pages_checked": 1,
+          "feed_urls_checked": 0,
+          "category_indexes_checked": 0,
+          "article_pages_checked": 0,
+          "evidence_extracted": 0,
+          "refill_links_checked": 0,
+          "semantic_expansion_links_checked": 0,
+          "published_links_skipped": 0,
+          "selection_phase": "daily-plan",
+          "awaiting_review": 0,
+          "review_approved": 0
+        },
+        "artstation": {
+          "status": "blocked",
+          "method": "latest-index",
+          "candidates_found": 0,
+          "candidate_ids": [],
+          "reason": "http-403",
+          "index_pages_checked": 0,
+          "feed_urls_checked": 0,
+          "refill_links_checked": 0,
+          "selection_phase": "targeted-refill",
+          "evidence_extracted": 0,
+          "awaiting_review": 0,
+          "review_approved": 0
+        },
+        "gumroad-discover": {
+          "status": "checked",
+          "method": "latest-index",
+          "candidates_found": 0,
+          "candidate_ids": [],
+          "index_pages_checked": 1,
+          "feed_urls_checked": 0,
+          "category_indexes_checked": 0,
+          "article_pages_checked": 17,
+          "evidence_extracted": 0,
+          "refill_links_checked": 0,
+          "semantic_expansion_links_checked": 0,
+          "published_links_skipped": 0,
+          "selection_phase": "targeted-refill",
+          "awaiting_review": 0,
+          "review_approved": 0
+        },
+        "xiaohongshu": {
+          "status": "checked",
+          "method": "latest-index",
+          "candidates_found": 0,
+          "candidate_ids": [],
+          "index_pages_checked": 1,
+          "feed_urls_checked": 0,
+          "category_indexes_checked": 0,
+          "article_pages_checked": 0,
+          "evidence_extracted": 0,
+          "refill_links_checked": 0,
+          "semantic_expansion_links_checked": 0,
+          "published_links_skipped": 0,
+          "selection_phase": "targeted-refill",
+          "awaiting_review": 0,
+          "review_approved": 0
+        },
+        "cg-channel": {
+          "status": "checked",
+          "method": "latest-index",
+          "candidates_found": 1,
+          "candidate_ids": [
+            "cg-channel-escape-motions-releases-rebelle-8-5d49c212ed9ef763"
+          ],
+          "index_pages_checked": 7,
+          "feed_urls_checked": 3,
+          "category_indexes_checked": 1,
+          "article_pages_checked": 27,
+          "evidence_extracted": 1,
+          "refill_links_checked": 8,
+          "semantic_expansion_links_checked": 0,
+          "published_links_skipped": 49,
+          "selection_phase": "daily-plan",
+          "awaiting_review": 0,
+          "review_approved": 1
+        },
+        "blender-official": {
+          "status": "checked",
+          "method": "latest-index",
+          "candidates_found": 6,
+          "candidate_ids": [
+            "blender-official-46430-790d2e5a17c6385f",
+            "blender-official-46383-718b5c12a7af3c4a",
+            "blender-official-46224-b05dfa591988f6c8",
+            "blender-official-46307-ccad4581dc50ccd8",
+            "blender-official-46139-8ac03ec078a3a5fd",
+            "blender-official-46403-0f55c54477a357bd"
+          ],
+          "index_pages_checked": 7,
+          "feed_urls_checked": 0,
+          "category_indexes_checked": 3,
+          "article_pages_checked": 68,
+          "evidence_extracted": 6,
+          "refill_links_checked": 20,
+          "semantic_expansion_links_checked": 8,
+          "published_links_skipped": 17,
+          "selection_phase": "daily-plan",
+          "awaiting_review": 2,
+          "review_approved": 4
+        },
+        "epic-developer-community": {
+          "status": "blocked",
+          "method": "latest-index",
+          "candidates_found": 0,
+          "candidate_ids": [],
+          "reason": "http-403",
+          "index_pages_checked": 0,
+          "feed_urls_checked": 0,
+          "refill_links_checked": 0,
+          "selection_phase": "daily-plan",
+          "evidence_extracted": 0,
+          "awaiting_review": 0,
+          "review_approved": 0
+        },
+        "unity-official": {
+          "status": "checked",
+          "method": "latest-index",
+          "candidates_found": 0,
+          "candidate_ids": [],
+          "index_pages_checked": 3,
+          "feed_urls_checked": 0,
+          "category_indexes_checked": 1,
+          "article_pages_checked": 40,
+          "evidence_extracted": 0,
+          "refill_links_checked": 0,
+          "semantic_expansion_links_checked": 0,
+          "published_links_skipped": 0,
+          "selection_phase": "daily-plan",
+          "awaiting_review": 0,
+          "review_approved": 0
+        },
+        "sidefx-official": {
+          "status": "checked",
+          "method": "latest-index",
+          "candidates_found": 0,
+          "candidate_ids": [],
+          "index_pages_checked": 3,
+          "feed_urls_checked": 0,
+          "category_indexes_checked": 1,
+          "article_pages_checked": 40,
+          "evidence_extracted": 0,
+          "refill_links_checked": 0,
+          "semantic_expansion_links_checked": 0,
+          "published_links_skipped": 3,
+          "selection_phase": "daily-plan",
+          "awaiting_review": 0,
+          "review_approved": 0
+        },
+        "autodesk-area": {
+          "status": "unavailable",
+          "method": "latest-index",
+          "candidates_found": 0,
+          "candidate_ids": [],
+          "reason": "RequestException",
+          "index_pages_checked": 0,
+          "feed_urls_checked": 0,
+          "refill_links_checked": 0,
+          "selection_phase": "targeted-refill",
+          "evidence_extracted": 0,
+          "awaiting_review": 0,
+          "review_approved": 0
+        },
+        "adobe-substance-3d": {
+          "status": "checked",
+          "method": "latest-index",
+          "candidates_found": 0,
+          "candidate_ids": [],
+          "index_pages_checked": 1,
+          "feed_urls_checked": 0,
+          "category_indexes_checked": 0,
+          "article_pages_checked": 37,
+          "evidence_extracted": 0,
+          "refill_links_checked": 0,
+          "semantic_expansion_links_checked": 0,
+          "published_links_skipped": 0,
+          "selection_phase": "targeted-refill",
+          "awaiting_review": 0,
+          "review_approved": 0
+        },
+        "game-developer": {
+          "status": "checked",
+          "method": "latest-index",
+          "candidates_found": 3,
+          "candidate_ids": [
+            "game-developer-unreal-engine-6-to-remove-blueprints-and-actor-gamep-a73661731a877341",
+            "game-developer-unreal-engine-6-will-merge-ue5-and-uefn-into-a-singl-f4b51fc2d179a34c",
+            "game-developer-clair-obscur-expedition-33-was-built-95-percent-with-f19ad1464cfdb3a9"
+          ],
+          "index_pages_checked": 1,
+          "feed_urls_checked": 0,
+          "category_indexes_checked": 0,
+          "article_pages_checked": 50,
+          "evidence_extracted": 0,
+          "refill_links_checked": 10,
+          "semantic_expansion_links_checked": 0,
+          "published_links_skipped": 0,
+          "selection_phase": "targeted-refill",
+          "awaiting_review": 0,
+          "review_approved": 0
+        }
+      }
+    },
+    "notes": "2026-11-24 autonomous GitHub Collector loaded the Published Registry snapshot before discovery, supplemented it from verified-DONE history when needed, checked rolling backlog, executed the current-main deterministic registered-source probe plan, crawled configured source indexes plus bounded same-source refill, then used the current-main deficit-aware deterministic registered-source refill only when the verified survivor count remained below the normal floor, and applied exact source/stable identity dedupe before ranking. Registered refill: pre=13 post=13 batches=2 selected=[\"artstation\", \"gumroad-discover\", \"xiaohongshu\", \"autodesk-area\", \"adobe-substance-3d\", \"game-developer\"]. Registry audit: {\"history_supplemented_items\": 0, \"latest_verified_done\": \"2026-11-23\", \"snapshot_generated_through\": \"2026-11-23\", \"snapshot_state\": \"DERIVED_FROM_VERIFIED_DONE\", \"source_identities\": 1138, \"stable_ids\": 1137}. Backlog entries rechecked=6. No source registration/domain supplied ranking bonus, quota or admission bypass."
+  },
+  "candidate_decisions": [
+    {
+      "candidate_id": "blender-official-46430-790d2e5a17c6385f",
+      "source_url": "https://forum.blender.org/t/30-november-2026-upcoming/46430",
+      "discovery_channels": [
+        "registered-source-crawl",
+        "registered-source-probe:blender-official",
+        "published-registry-snapshot"
+      ],
+      "decision": "rejected",
+      "reason_code": "editorial-quality-rejected",
+      "editorial_errors": [
+        "awaiting-editorial-review"
+      ]
+    },
+    {
+      "candidate_id": "game-developer-unreal-engine-6-to-remove-blueprints-and-actor-gamep-a73661731a877341",
+      "source_url": "https://www.gamedeveloper.com/programming/unreal-engine-6-to-remove-blueprints-and-actor-gameplay-framework-from-the-beginning",
+      "discovery_channels": [
+        "registered-source-crawl",
+        "registered-source-probe:game-developer",
+        "registered-source-targeted-refill",
+        "published-registry-snapshot"
+      ],
+      "decision": "rejected",
+      "reason_code": "editorial-quality-rejected",
+      "editorial_errors": [
+        "complete-source-evidence-required"
+      ]
+    },
+    {
+      "candidate_id": "3dnchu-hob-1-0-62fff3c0b50ed3d0",
+      "source_url": "https://3dnchu.com/archives/hob-1-0",
+      "discovery_channels": [
+        "registered-source-crawl",
+        "registered-source-probe:3dnchu",
+        "published-registry-snapshot"
+      ],
+      "decision": "rejected",
+      "reason_code": "editorial-quality-rejected",
+      "editorial_errors": [
+        "review source identity/date/evidence mismatch"
+      ]
+    },
+    {
+      "candidate_id": "blender-official-46403-0f55c54477a357bd",
+      "source_url": "https://forum.blender.org/t/2026-11-19-core-module-meeting/46403",
+      "discovery_channels": [
+        "registered-source-crawl",
+        "registered-source-probe:blender-official",
+        "published-registry-snapshot"
+      ],
+      "decision": "rejected",
+      "reason_code": "editorial-quality-rejected",
+      "editorial_errors": [
+        "awaiting-editorial-review"
+      ]
+    },
+    {
+      "candidate_id": "game-developer-unreal-engine-6-will-merge-ue5-and-uefn-into-a-singl-f4b51fc2d179a34c",
+      "source_url": "https://www.gamedeveloper.com/programming/unreal-engine-6-will-merge-ue5-and-uefn-into-a-single-unified-engine-",
+      "discovery_channels": [
+        "registered-source-crawl",
+        "registered-source-probe:game-developer",
+        "registered-source-targeted-refill",
+        "published-registry-snapshot"
+      ],
+      "decision": "rejected",
+      "reason_code": "editorial-quality-rejected",
+      "editorial_errors": [
+        "complete-source-evidence-required"
+      ]
+    },
+    {
+      "candidate_id": "game-developer-clair-obscur-expedition-33-was-built-95-percent-with-f19ad1464cfdb3a9",
+      "source_url": "https://www.gamedeveloper.com/programming/clair-obscur-expedition-33-was-built-95-percent-with-unreal-blueprints",
+      "discovery_channels": [
+        "registered-source-crawl",
+        "registered-source-probe:game-developer",
+        "registered-source-targeted-refill",
+        "published-registry-snapshot"
+      ],
+      "decision": "rejected",
+      "reason_code": "editorial-quality-rejected",
+      "editorial_errors": [
+        "complete-source-evidence-required"
+      ]
+    },
+    {
+      "candidate_id": "cgworld-jp-substance-3d-designer-83433dcaf579d1df",
+      "source_url": "https://cgworld.jp/substance-3d-designer",
+      "discovery_channels": [
+        "registered-source-crawl",
+        "registered-source-probe:cgworld-jp",
+        "published-registry-snapshot"
+      ],
+      "decision": "rejected",
+      "reason_code": "editorial-quality-rejected",
+      "editorial_errors": [
+        "complete-source-evidence-required"
+      ]
+    },
+    {
+      "candidate_id": "cg-channel-escape-motions-releases-rebelle-8-5d49c212ed9ef763",
+      "source_url": "https://www.cgchannel.com/2026/11/escape-motions-releases-rebelle-8",
+      "discovery_channels": [
+        "registered-source-crawl",
+        "registered-source-probe:cg-channel",
+        "published-registry-snapshot"
+      ],
+      "decision": "published",
+      "canonical_id": "cg-channel-escape-motions-releases-rebelle-8-5d49c212ed9ef763"
+    },
+    {
+      "candidate_id": "blender-official-46224-b05dfa591988f6c8",
+      "source_url": "https://forum.blender.org/t/9-november-2026/46224",
+      "discovery_channels": [
+        "registered-source-crawl",
+        "registered-source-probe:blender-official",
+        "published-registry-snapshot"
+      ],
+      "decision": "published",
+      "canonical_id": "blender-official-46224-b05dfa591988f6c8"
+    },
+    {
+      "candidate_id": "blender-official-46383-718b5c12a7af3c4a",
+      "source_url": "https://forum.blender.org/t/23-november-2026/46383",
+      "discovery_channels": [
+        "registered-source-crawl",
+        "registered-source-probe:blender-official",
+        "published-registry-snapshot"
+      ],
+      "decision": "published",
+      "canonical_id": "blender-official-46383-718b5c12a7af3c4a"
+    },
+    {
+      "candidate_id": "80-level-procedural-unity-tool-creates-venom-like-tendrils-that-wra-8f5befbd75b02d51",
+      "source_url": "https://80.lv/articles/procedural-unity-tool-creates-venom-like-tendrils-that-wrap-around-any-object",
+      "discovery_channels": [
+        "rolling-backlog",
+        "published-registry-snapshot"
+      ],
+      "decision": "published",
+      "canonical_id": "80-level-procedural-unity-tool-creates-venom-like-tendrils-that-wra-8f5befbd75b02d51"
+    },
+    {
+      "candidate_id": "blender-official-46307-ccad4581dc50ccd8",
+      "source_url": "https://forum.blender.org/t/16-november-2026/46307",
+      "discovery_channels": [
+        "registered-source-crawl",
+        "registered-source-probe:blender-official",
+        "published-registry-snapshot"
+      ],
+      "decision": "published",
+      "canonical_id": "blender-official-46307-ccad4581dc50ccd8"
+    },
+    {
+      "candidate_id": "blender-official-46139-8ac03ec078a3a5fd",
+      "source_url": "https://forum.blender.org/t/2-november-2026/46139",
+      "discovery_channels": [
+        "registered-source-crawl",
+        "registered-source-probe:blender-official",
+        "published-registry-snapshot"
+      ],
+      "decision": "published",
+      "canonical_id": "blender-official-46139-8ac03ec078a3a5fd"
+    },
+    {
+      "candidate_id": "3dnchu-idol-3d627ff323486231",
+      "source_url": "https://3dnchu.com/archives/idol",
+      "discovery_channels": [
+        "registered-source-crawl",
+        "registered-source-probe:3dnchu",
+        "published-registry-snapshot"
+      ],
+      "decision": "published",
+      "canonical_id": "3dnchu-idol-3d627ff323486231"
+    },
+    {
+      "candidate_id": "80-level-this-vrchat-shader-turns-body-parts-into-beautiful-galaxie-0187d41ae91609e7",
+      "source_url": "https://80.lv/articles/this-vrchat-shader-turns-body-parts-into-beautiful-galaxies",
+      "discovery_channels": [
+        "rolling-backlog",
+        "published-registry-snapshot"
+      ],
+      "decision": "published",
+      "canonical_id": "80-level-this-vrchat-shader-turns-body-parts-into-beautiful-galaxie-0187d41ae91609e7"
+    },
+    {
+      "candidate_id": "80-level-this-fighting-animation-made-with-maya-is-inspired-by-arca-0538b60d469dc543",
+      "source_url": "https://80.lv/articles/this-fighting-animation-made-with-maya-is-inspired-by-arcane",
+      "discovery_channels": [
+        "rolling-backlog",
+        "published-registry-snapshot"
+      ],
+      "decision": "published",
+      "canonical_id": "80-level-this-fighting-animation-made-with-maya-is-inspired-by-arca-0538b60d469dc543"
+    },
+    {
+      "candidate_id": "3dnchu-idol-max-e417f3ba92b44bf3",
+      "source_url": "https://3dnchu.com/archives/idol-max",
+      "discovery_channels": [
+        "registered-source-crawl",
+        "registered-source-probe:3dnchu",
+        "published-registry-snapshot"
+      ],
+      "decision": "published",
+      "canonical_id": "3dnchu-idol-max-e417f3ba92b44bf3"
+    },
+    {
+      "candidate_id": "3dnchu-one-cookie-ue5-environment-peyton-varney-50d1d364e8f9ec95",
+      "source_url": "https://3dnchu.com/archives/one-cookie-ue5-environment-peyton-varney",
+      "discovery_channels": [
+        "rolling-backlog",
+        "published-registry-snapshot"
+      ],
+      "decision": "published",
+      "canonical_id": "3dnchu-one-cookie-ue5-environment-peyton-varney-50d1d364e8f9ec95"
+    },
+    {
+      "candidate_id": "3dnchu-3dgs-mesh-converter-e5ebf2f7261f8d29",
+      "source_url": "https://3dnchu.com/archives/3dgs-mesh-converter",
+      "discovery_channels": [
+        "rolling-backlog",
+        "published-registry-snapshot"
+      ],
+      "decision": "published",
+      "canonical_id": "3dnchu-3dgs-mesh-converter-e5ebf2f7261f8d29"
+    },
+    {
+      "candidate_id": "3dnchu-blender-to-substance-painter-live-link-b4e88340eb20df29",
+      "source_url": "https://3dnchu.com/archives/blender-to-substance-painter-live-link",
+      "discovery_channels": [
+        "rolling-backlog",
+        "published-registry-snapshot"
+      ],
+      "decision": "published",
+      "canonical_id": "3dnchu-blender-to-substance-painter-live-link-b4e88340eb20df29"
+    }
+  ],
+  "personalization": {
+    "contract": "supabase-semantic-feedback-v1",
+    "status": "applied",
+    "vote_count": 15,
+    "max_rank_multiplier": 0.2,
+    "max_query_expansion_fraction": 0.2,
+    "raw_profile_committed": false,
+    "bookmarks_used": false,
+    "domain_weights_used": false,
+    "admission_bypass": false,
+    "quality_gate_bypass": false,
+    "source_quota": false,
+    "ranking_adjusted_count": 17,
+    "semantic_expansion_candidates": 0,
+    "profile_fingerprint": "6dd839174a11190b80edcda0fe4865ddcfbffd850207cb0f5e9e426eba8afc70",
+    "reader": "github-actions-oidc-owner-v1"
+  }
+}
