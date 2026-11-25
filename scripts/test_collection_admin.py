@@ -151,6 +151,24 @@ class Tests(unittest.TestCase):
         data={'date':DATE,'items':[],'topic_items':[item],'metadata':{'collection_settings':settings}}
         self.assertTrue(any('exceeds configured source window' in e for e in topic_errors(data)))
 
+    def test_source_metrics_include_subdomains_and_count_canonical_publications(self):
+        from render_topic_pages import source_metrics, source_for_url
+        settings=configured()
+        self.assertEqual(source_for_url(settings['sources'],'https://forum.blender.org/t/example')['id'],'blender-official')
+        self.assertIsNone(source_for_url(settings['sources'],'https://evilblender.org/t/example'))
+        specific=settings['sources']+[{'id':'blender-forum','base_url':'https://forum.blender.org/'}]
+        self.assertEqual(source_for_url(specific,'https://forum.blender.org/t/example')['id'],'blender-forum')
+        with tempfile.TemporaryDirectory() as td:
+            root=Path(td);folder=root/'data/candidates/decision-ledger';folder.mkdir(parents=True)
+            (folder/'2026-11-25.json').write_text(json.dumps({'items':[
+                {'source_url':'https://forum.blender.org/t/published','decision':'published'},
+                {'source_url':'https://forum.blender.org/t/selected-but-not-published','decision':'published'},
+                {'source_url':'https://forum.blender.org/t/rejected','decision':'rejected'}]}),'utf-8')
+            editions=[({'date':'2026-11-25','items':[{'source_url':'https://forum.blender.org/t/published'}],'topic_items':[]}, {})]
+            row=source_metrics(root,editions,settings,'2026-11-25')['sources']['blender-official']
+            self.assertEqual(row['published'],1)
+            self.assertEqual(row['rejected'],1)
+
     def test_public_fetch_rejects_private_dns_without_opening_connection(self):
         with patch('socket.getaddrinfo',return_value=[(2,1,6,'',('127.0.0.1',443))]), patch('socket.create_connection') as connect:
             with self.assertRaises(requests.RequestException):get('https://example.com/',3)
