@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {validateSettings,publicURL,publicIP,ORIGIN} from './policy.mjs';
+import {encode} from './settings-flow.mjs';
 import {handle} from './index.ts';
 const settings=JSON.parse(fs.readFileSync(new URL('../../../config/collection-admin.json',import.meta.url)));
 test('production config valid; secrets, private URLs and removal of primary rejected',()=>{
@@ -18,6 +19,9 @@ test('owner authorization, version conflicts and fixed-path writes are enforced 
   globalThis.fetch=async(url,opts={})=>{
     if(url.endsWith('/auth/v1/user'))return Response.json({id:'test-user'});
     if(url.includes('/app_owner?'))return Response.json([{user_id:isOwner?'test-user':'other-user'}]);
+    if(url.endsWith('/git/ref/heads/main'))return Response.json({object:{sha:'c'.repeat(40)}});
+    if(url.includes('/contents/config/collection-admin.json?'))return Response.json({sha:'a'.repeat(40),content:encode(settings)});
+    if(url.includes('/contents/config/collection-pending.json?'))return Response.json({}, {status:404});
     if(opts.method==='PUT'){writes.push({url,body:JSON.parse(opts.body),headers:opts.headers});return conflict?Response.json({}, {status:409}):Response.json({content:{sha:'b'.repeat(40)},commit:{html_url:'https://github.com/fixture/commit'}});}
     throw new Error('Unexpected request: '+url);
   };
@@ -32,9 +36,9 @@ test('owner authorization, version conflicts and fixed-path writes are enforced 
     assert.equal((await call({op:'save',settings})).status,400);assert.equal(writes.length,0);
     const response=await call({op:'save',sha:'a'.repeat(40),settings,path:'data/publish/fake.done.json'});
     assert.equal(response.status,200);assert.equal(writes.length,1);
-    assert.ok(writes[0].url.endsWith('/contents/config/collection-admin.json'));
-    assert.equal(writes[0].body.sha,'a'.repeat(40));assert.equal(writes[0].body.branch,'main');
-    assert.deepEqual(JSON.parse(Buffer.from(writes[0].body.content,'base64')),settings);
+    assert.ok(writes[0].url.endsWith('/contents/config/collection-pending.json'));
+    assert.equal(writes[0].body.sha,undefined);assert.equal(writes[0].body.branch,'main');
+    assert.deepEqual(JSON.parse(Buffer.from(writes[0].body.content,'base64')),{schema_version:1,base_sha:'a'.repeat(40),settings});
     conflict=true;assert.equal((await call({op:'save',sha:'a'.repeat(40),settings})).status,409);
     assert.equal(writes.length,2); // Exactly one attempted write per request; no retries or alternative writer.
     const controls={schema_version:1,held_urls:['https://example.com/article']};

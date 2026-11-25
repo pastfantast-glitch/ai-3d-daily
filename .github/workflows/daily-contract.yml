@@ -34,6 +34,10 @@ on:
       - 'config/personalization-feedback.json'
       - 'config/collector-runtime.json'
       - 'config/collection-admin.json'
+      - 'config/collection-pending.json'
+      - 'scripts/check_collection_pending.py'
+      - 'scripts/test_collection_pending.py'
+      - 'scripts/fixtures/**'
       - 'admin/**'
       - 'admin.js'
       - 'admin-operations.js'
@@ -156,6 +160,7 @@ on:
       - '.github/workflows/collector-handoff.yml'
       - '.github/workflows/intelligence-build.yml'
       - '.github/workflows/daily-contract.yml'
+      - '.github/workflows/collection-settings-check.yml'
       - '.github/workflows/historical-regression.yml'
   pull_request:
     branches:
@@ -196,7 +201,7 @@ jobs:
           node --test reset-password/policy.test.mjs supabase/functions/collection-admin/operations.test.mjs
           node --check topics/catalog.js
           node --check topics/topic.js
-          node --test supabase/functions/collection-admin/policy.test.mjs
+          node --test supabase/functions/collection-admin/policy.test.mjs supabase/functions/collection-admin/settings-flow.test.mjs
           npx --yes deno@2.5.6 check supabase/functions/collection-admin/index.ts
           node --check history.js
           node --check archive-nav-state.js
@@ -220,6 +225,7 @@ jobs:
           python scripts/check_editorial_quality.py
           python scripts/check_source_qa_coverage.py
           python scripts/test_collection_admin.py
+          python scripts/test_collection_pending.py
           python scripts/test_admin_operations.py
           python scripts/test_main_ci.py
           python scripts/test_content_supply.py
