@@ -13,6 +13,36 @@ from inject_visual_previews import make_preview
 ROOT = Path(__file__).resolve().parents[1]
 
 
+def source_for_url(sources, url):
+    from urllib.parse import urlsplit
+    host = (urlsplit(url).hostname or '').removeprefix('www.')
+    matches = [s for s in sources if host == urlsplit(s['base_url']).hostname.removeprefix('www.')
+               or host.endswith('.' + urlsplit(s['base_url']).hostname.removeprefix('www.'))]
+    return max(matches, key=lambda s: len(urlsplit(s['base_url']).hostname), default=None)
+
+
+def source_metrics(root, editions, settings, date):
+    cutoff = (date_type.fromisoformat(date)-timedelta(days=29)).isoformat()
+    metrics = {s['id']:{'checked':0,'candidates':0,'published':0,'rejected':0,'reserve':0} for s in settings['sources']}
+    for data, _ in editions:
+        if data['date'] < cutoff: continue
+        probe = ((data.get('metadata') or {}).get('discovery_coverage') or {}).get('registered_source_probe') or {}
+        for sid, record in (probe.get('sources') or {}).items():
+            if sid in metrics:
+                metrics[sid]['checked'] += int(record.get('status') != 'not-scheduled')
+                metrics[sid]['candidates'] += int(record.get('candidates_found') or 0)
+        for item in all_items(data):
+            source = source_for_url(settings['sources'], item.get('source_url', ''))
+            if source: metrics[source['id']]['published'] += 1
+        ledger = root/'data/candidates/decision-ledger'/f"{data['date']}.json"
+        if ledger.exists():
+            for row in json.loads(ledger.read_text('utf-8')).get('items', []):
+                source = source_for_url(settings['sources'], row.get('source_url', ''))
+                key = {'rejected':'rejected','backlog':'reserve'}.get(row.get('decision'))
+                if source and key: metrics[source['id']][key] += 1
+    return {'date':date,'from':cutoff,'scope':'verified editions only; failed runs excluded','sources':metrics}
+
+
 def build(root, date):
     candidate = json.loads((root/'data/daily'/f'{date}.json').read_text('utf-8'))
     settings = (candidate.get('metadata') or {}).get('collection_settings') or load_settings(root)
@@ -64,26 +94,10 @@ def build(root, date):
         out.write_text(str(soup), 'utf-8')
         catalog.append({'id':topic['id'], 'name':topic['name'], 'description':topic['description'], 'enabled':topic['enabled'], 'count':len(records), 'url':f'{topic["id"]}/'})
     (root/'topics/catalog.json').write_text(json.dumps({'date':date, 'topics':catalog}, ensure_ascii=False, indent=2)+'\n', 'utf-8')
-    cutoff = (date_type.fromisoformat(date)-timedelta(days=29)).isoformat()
-    metrics = {s['id']:{'checked':0,'candidates':0,'published':0,'rejected':0,'reserve':0} for s in settings['sources']}
-    for data, _ in editions:
-        if data['date'] < cutoff: continue
-        probe = ((data.get('metadata') or {}).get('discovery_coverage') or {}).get('registered_source_probe') or {}
-        for sid, record in (probe.get('sources') or {}).items():
-            if sid in metrics:
-                metrics[sid]['checked'] += int(record.get('status') != 'not-scheduled')
-                metrics[sid]['candidates'] += int(record.get('candidates_found') or 0)
-        ledger = root/'data/candidates/decision-ledger'/f"{data['date']}.json"
-        if ledger.exists():
-            for row in json.loads(ledger.read_text('utf-8')).get('items', []):
-                from urllib.parse import urlsplit
-                host = (urlsplit(row.get('source_url', '')).hostname or '').removeprefix('www.')
-                source = next((s for s in settings['sources'] if urlsplit(s['base_url']).hostname.removeprefix('www.') == host), None)
-                key = {'published':'published','rejected':'rejected','backlog':'reserve'}.get(row.get('decision'))
-                if source and key: metrics[source['id']][key] += 1
+    report = source_metrics(root, editions, settings, date)
     out = root/'data/ops/source-metrics.json'
     out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text(json.dumps({'date':date,'from':cutoff,'scope':'verified editions only; failed runs excluded','sources':metrics}, ensure_ascii=False, indent=2)+'\n','utf-8')
+    out.write_text(json.dumps(report, ensure_ascii=False, indent=2)+'\n','utf-8')
 
 
 if __name__ == '__main__':
