@@ -20,7 +20,7 @@ ROOT=Path(__file__).resolve().parents[1]
 
 
 def configured():
-    data=copy.deepcopy(load_settings())
+    data=json.loads((ROOT/'scripts/fixtures/collection-admin.json').read_text('utf-8'))
     data['topics'].append({'id':'cloth','name':'衣物設計','description':'布料與衣褶製作', 'enabled':True,
         'include_terms':['cloth'],'exclude_terms':['sponsored'],'target_items':2,'max_age_months':12})
     data['sources'].append({'id':'example','name':'Example','base_url':'https://example.com/',

@@ -10,7 +10,7 @@ The AI/3D homepage keeps its existing publication contract. `/admin/` manages pu
 - Review the last ten settings commits and restore a previous version. Restore creates a new commit using the current file SHA. Concurrent edits fail with a reload instruction; the service never retries a conflicting write.
 - Pausing does not delete any published article. Changes affect the next existing Collector run and do not launch a run from the browser.
 
-`config/collection-admin.json` is public and contains no credentials, preferences or source bodies. The service can write only this file. Its source and topic policy is also enforced in Python before collection. The legacy hybrid policy still controls bounded crawling, ranking, dedupe and release minimums. The selected configuration is copied into the canonical edition as an immutable validation snapshot, so subsequent source edits cannot invalidate an in-flight handoff or an old archive.
+`config/collection-admin.json` is public and contains no credentials, preferences or source bodies. Settings changes are staged in `config/collection-pending.json`; only validated activation writes `config/collection-admin.json`. Editorial holds retain their separate fixed path. Its source and topic policy is also enforced in Python before collection. The legacy hybrid policy still controls bounded crawling, ranking, dedupe and release minimums. The selected configuration is copied into the canonical edition as an immutable validation snapshot, so subsequent source edits cannot invalidate an in-flight handoff or an old archive.
 
 ## Collection and publication
 
@@ -63,3 +63,18 @@ The existing source contract CI runs those checks along with the existing public
 - The currently provisioned repository token expires 2026-12-18. Update the displayed expiry when rotating the existing server credential.
 
 Verification: owner/nonowner authorization and fixed-path/conflict tests; strict DONE and unknown-state tests; twelve-month bounds; hold retention/admission; monitor allowlist and CI trust scope; recovery parameter and password confirmation tests; full historical rebuild/regression and browser QA. Actual email delivery and changing the owner's password require the owner's participation.
+
+
+## 2026-11-25: validate settings before activation
+
+Saving and restoring now stage a version in `config/collection-pending.json`, bound to the active settings blob SHA. They do not change the Collector configuration. Concurrent pending edits are rejected by blob SHA. The UI labels the draft separately from active source/topic counts.
+
+The existing daily contract CI validates code and active settings. A separate, read-only `collection-settings-check.yml` CI validates the proposal and samples new/enabled/changed source endpoints with the Collector's existing public HTTP, publication-date and body extractors. It reads at most five configured indexes and three article samples per changed source; it does not discover a daily edition, approve copy, write canonical/private/public data, or dispatch Collector/Publisher. A failing proposal never makes the active contract CI fail. No schedule is added.
+
+Activation requires successful latest main runs of **both** workflows on the exact current main SHA. Pending, failed, missing, API-unknown and stale results cannot activate. The owner selects “套用已驗證設定”; the server rechecks source/pending versions and checks, then uses one fixed-path GraphQL commit with `expectedHeadOid`. A race is rejected without retry. If other work has moved main before validation/activation, reload and re-save the proposal to validate against the new main. Existing settings remain usable meanwhile. Restores use the same gate.
+
+The new source test must find at least one untruncated readable sample with a verified publication date within twelve calendar months. A blocked/undated site can be saved paused while its endpoint is corrected. This checks read capability, not editorial approval or guaranteed daily supply. Browser preview also follows up to three sample links and shows their dates/body excerpts; CI is authoritative and uses the actual Collector extractor.
+
+Source cards display the latest Collector monitor's discovered candidates, extracted bodies, recorded approvals, awaiting-review count and status/reason, including failed runs. That snapshot is dated and kept distinct from the 30-day **published editions only** aggregate and reserve admissions. Missing measurements display an em dash. Collector already persists this metadata; this UI does not invent counts or run collection.
+
+Regression fixtures are independent of owner-managed live source configuration. An additional test validates current settings plus a newly added source against the actual probe plan. Deploy `index.ts`, `settings-flow.mjs`, `policy.mjs` and `operations.mjs` together before the new UI is used. Preserve owner authorization, existing credential scope, schedules and the sole canonical writer.

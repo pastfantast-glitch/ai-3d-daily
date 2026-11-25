@@ -1,0 +1,28 @@
+name: Proposed collection settings validation
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'config/collection-pending.json'
+      - 'config/collection-admin.json'
+      - 'scripts/check_collection_pending.py'
+      - 'scripts/collection_settings.py'
+      - 'scripts/run_daily_collector.py'
+      - 'scripts/article_evidence.py'
+      - '.github/workflows/collection-settings-check.yml'
+  pull_request:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  candidate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - run: pip install -r requirements-pipeline.txt
+      - run: python scripts/test_collection_pending.py
+      - run: python scripts/check_collection_pending.py
