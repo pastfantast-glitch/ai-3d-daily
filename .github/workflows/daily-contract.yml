@@ -40,6 +40,7 @@ on:
       - 'scripts/fixtures/**'
       - 'admin/**'
       - 'admin.js'
+      - 'admin-graph*'
       - 'admin-operations.js'
       - 'reset-password/**'
       - 'config/editorial-selection.json'
@@ -196,6 +197,8 @@ jobs:
         run: |
           node --check home.js
           node --check admin.js
+          node --check admin-graph.js
+          node --test admin-graph.test.mjs
           node --check admin-operations.js
           node --check reset-password/reset.js
           node --test reset-password/policy.test.mjs supabase/functions/collection-admin/operations.test.mjs
