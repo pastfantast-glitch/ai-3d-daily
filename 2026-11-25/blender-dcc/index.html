@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   Blender / DCC｜2026-11-25｜AI 3D Daily
+  </title>
+  <meta content="2026-11-25 Blender / DCC Production Intelligence：Blender / DCC 工具與工作流 / Blender Tips，共 6 項可驗證情報。" name="description"/>
+  <link href="../../styles.css?v=20261125-r1-workspace-v17-home-card-library" rel="stylesheet"/>
+  <link href="../../shared-components.css?v=20261125-r1-workspace-v17-home-card-library" rel="stylesheet"/>
+  <link href="../../category.css?v=20261125-r1-workspace-v17-home-card-library" rel="stylesheet"/>
+ </head>
+ <body class="category-page" data-category="blender-dcc" data-report-date="2026-11-25">
+  <nav aria-label="Production Intelligence 分類" class="global-category-nav">
+   <div class="page global-category-nav-inner">
+    <div class="archive-nav-controls">
+     <a class="archive-nav-home" href="../../">
+      ← 首頁
+     </a>
+     <div class="archive-nav-date">
+      <a aria-label="前一日日報" class="archive-nav-arrow" href="../../2026-11-24/blender-dcc/">
+       ←
+      </a>
+      <span>
+       2026-11-25
+      </span>
+     </div>
+    </div>
+    <span aria-hidden="true" class="archive-nav-divider">
+    </span>
+    <a class="global-category-link" href="../#top">
+     TOP5
+    </a>
+    <a class="global-category-link" data-category="ai-generation" href="../ai-generation/">
+     AI 生成
+    </a>
+    <a class="global-category-link" data-category="3d-production" href="../3d-production/">
+     3D 製作
+    </a>
+    <a class="global-category-link" data-category="3d-animation" href="../3d-animation/">
+     3D 動作
+    </a>
+    <a class="global-category-link" data-category="engine-art" href="../engine-art/">
+     遊戲引擎
+    </a>
+    <a class="global-category-link" data-category="emerging-case" href="../emerging-case/">
+     新技術 / Case
+    </a>
+    <a class="global-category-link is-active" data-category="blender-dcc" href="../blender-dcc/">
+     Blender / DCC
+    </a>
+    <a class="global-category-link global-history-link" data-global-view="history" href="../../history/">
+     歷史日報
+    </a>
+    <a class="global-admin-link" href="../../admin/">
+     管理後臺
+    </a>
+   </div>
+  </nav>
+  <main class="page category-main">
+   <article class="category-card" data-intel-id="80-level-how-to-model-texture-ps1-style-character-in-blender-bb2079ab5835542a" data-intel-role="card" id="intel-80-level-how-to-model-texture-ps1-style-character-in-blender-bb2079ab5835542a">
+    <div class="category-meta">
+     #04 · blender
+    </div>
+    <h2>
+     Blender PS1 風格角色案例：參考圖、草模、UV 與貼圖取捨
+    </h2>
+    <p class="summary">
+     TomGrave3D 以影片說明一個 Blender PS1 風格角色的設計思考，涵蓋參考圖設定、角色草模、UV 與貼圖。作者明說影片不是嚴格逐步教學，而是分享這類角色的製作思路；完成模型與專案檔另放在 Patreon。
+    </p>
+    <figure class="case-preview" data-intel-id="80-level-how-to-model-texture-ps1-style-character-in-blender-bb2079ab5835542a" data-intel-role="visual" data-visual-id="80-level-how-to-model-texture-ps1-style-character-in-blender-bb2079ab5835542a">
+     <a href="https://80.lv/articles/how-to-model-texture-ps1-style-character-in-blender" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-11-25/80-level-how-to-model-texture-ps1-style-character-in-blender-bb2079ab5835542a.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">Blender</b> ★★★★☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       用角色案例串起基本流程
+      </h4>
+      <p>
+       原文列出的製作階段是設定參考圖片、角色 blockout、UV 展開與貼圖。這些步驟可作為理解案例如何從造型走到表面表現的索引，但文字沒有提供網格拓撲、材質節點或貼圖解析度等可直接重建的設定。
+      </p>
+      <h4>
+       風格選擇是影片討論重點
+      </h4>
+      <p>
+       影片分享設計選擇、思考過程與整體工作方式，而不只是軟體按鍵。可推論它較適合用來比較復古角色的美術決策；原文雖提到 PS1 風格仍受喜愛，卻沒有宣稱這個模型遵循原主機的所有硬體限制。
+      </p>
+      <h4>
+       教學深度與檔案取得範圍
+      </h4>
+      <p>
+       作者明確區分案例思路分享與嚴格逐步教學，最終模型和專案檔連到 Patreon。本文未附完整操作內容，也沒有保證檔案免費；不能把文章內其他復古工具的推薦，當成這個角色實際使用的製作方法。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://80.lv/articles/how-to-model-texture-ps1-style-character-in-blender" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="cg-channel-discover-bot-vfxs-hybrid-ai-vfx-pipeline-for-young-washi-2b5accfc5ab89d1b" data-intel-role="card" id="intel-cg-channel-discover-bot-vfxs-hybrid-ai-vfx-pipeline-for-young-washi-2b5accfc5ab89d1b">
+    <div class="category-meta">
+     #05 · maya
+    </div>
+    <h2>
+     BOT VFX 混合 AI 與傳統特效：局部修補與 4K 交付經驗
+    </h2>
+    <p class="summary">
+     BOT VFX 為《Young Washington》在 17 週交付 300 個鏡頭，結合 ComfyUI 管理的 AI 流程、Maya 與 Nuke。團隊以局部 inpainting 修補背景人物臉部，並處理時間不一致、升頻細節與位元深度限制；AI 素材仍須傳統特效整合。
+    </p>
+    <figure class="case-preview" data-intel-id="cg-channel-discover-bot-vfxs-hybrid-ai-vfx-pipeline-for-young-washi-2b5accfc5ab89d1b" data-intel-role="visual" data-visual-id="cg-channel-discover-bot-vfxs-hybrid-ai-vfx-pipeline-for-young-washi-2b5accfc5ab89d1b">
+     <a href="https://www.cgchannel.com/2026/11/discover-bot-vfxs-hybrid-ai-vfx-pipeline-for-young-washington" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE CARD preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-11-25/cg-channel-discover-bot-vfxs-hybrid-ai-vfx-pipeline-for-young-washi-2b5accfc5ab89d1b.svg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE CARD
+      </span>
+      · Generated source card · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">Maya</b> ★★★★☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-full" data-analysis-level="FULL">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body">
+      <h4>
+       以局部修補保留鏡頭其餘內容
+      </h4>
+      <p>
+       團隊內部工具以 ComfyUI 組織節點流程，使用 FLUX.2 Klein 進行補畫、編輯與局部細修，也探索 Wan 2.1 影片生成。當背景人物臉部扭曲或模糊時，團隊隔離問題區域用 FLUX inpainting 重建，保留周圍影像，而非重生整個鏡頭。
+      </p>
+      <h4>
+       傳統管線負責整合與控制
+      </h4>
+      <p>
+       Maya 負責 CG、Nuke 負責合成，並結合數位繪景、追蹤、roto 與 paint。團隊同時使用 Topaz、Magnific 升頻，但缺失細節有時由 FLUX 重建更合適；這是該案的工具取捨，不能解讀成某一模型在所有任務都勝出。
+      </p>
+      <h4>
+       時間穩定與交付規格帶來額外工作
+      </h4>
+      <p>
+       原始 AI 素材可能出現細節變動或不必要運動，需要清理與合成；HD 提升至 4K 也可能放大瑕疵，部分素材較低位元深度會限制合成彈性。團隊指出攝影機運動、角色辨識與動作一致性各有模型取捨，300 鏡頭與 17 週是整案成果，不能單獨歸為 AI 的效率增益。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://www.cgchannel.com/2026/11/discover-bot-vfxs-hybrid-ai-vfx-pipeline-for-young-washington" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="blender-official-46439-c02c6d4c038a155d" data-intel-role="card" id="intel-blender-official-46439-c02c6d4c038a155d">
+    <div class="category-meta">
+     #06 · blender
+    </div>
+    <h2>
+     Cycles 會議：OpenPBR 跨平台測試、Houdini 整合與 MetalFX 限制
+    </h2>
+    <p class="summary">
+     11 月 24 日 Render &amp; Cycles 會議表示 OpenPBR PR 接近完成，但仍要讓各平台測試通過；hdCycles 的 Houdini 專用工作暫留獨立儲存庫。MetalFX 進入修整階段，仍有 depth pass 與效能問題待查。
+    </p>
+    <figure class="case-preview" data-intel-id="blender-official-46439-c02c6d4c038a155d" data-intel-role="visual" data-visual-id="blender-official-46439-c02c6d4c038a155d">
+     <a href="https://forum.blender.org/t/2026-11-24-render-cycles-meeting/46439" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-11-25/blender-official-46439-c02c6d4c038a155d.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">Blender</b> ★★★★☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       OpenPBR 與 Hydra 整合進度
+      </h4>
+      <p>
+       OpenPBR PR 的主要挑戰是跨平台測試。hdCycles 的 Houdini 專用功能目前留在自己的儲存庫，通用 Hydra 或較小的 Houdini 需求再回饋 Cycles，包括 shader registry 與 USD render settings schemas；這是開發分工，並非已全面內建的公告。
+      </p>
+      <h4>
+       MetalFX 反射改善仍有未解項目
+      </h4>
+      <p>
+       紀錄說 MetalFX 大致功能完整、正在修整，反射品質近期改善，但 depth pass 看來仍無法運作。清零 render buffers 似乎帶來明顯負擔，團隊尚不清楚確切瓶頸，因此不能從功能接近完成推論目前已解決效能問題。
+      </p>
+      <h4>
+       測試計畫與發布日期不能混用
+      </h4>
+      <p>
+       Intel／oneAPI 的更新提到 Blender 5.4 相關程式庫，計畫在十二月升級與測試；會議本身是雙週的渲染開發規劃討論。文章沒有給出上述功能的正式發布日期，原文的測試計畫不能改寫成下個版本一定交付的承諾。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://forum.blender.org/t/2026-11-24-render-cycles-meeting/46439" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="blender-official-46436-668b812f565d2174" data-intel-role="card" id="intel-blender-official-46436-668b812f565d2174">
+    <div class="category-meta">
+     #07 · blender
+    </div>
+    <h2>
+     Blender 建模會議：Shape Keys 工具與 UV 提案待審
+    </h2>
+    <p class="summary">
+     11 月 24 日 Blender 建模模組會議討論合併與複製 Shape Keys、UV texel density 與只沿接縫撕開的提案，也列出精準建模與三角形重網格研究方向。多項工作仍待設計、審查或調查，不能視為已發布功能。
+    </p>
+    <figure class="case-preview" data-intel-id="blender-official-46436-668b812f565d2174" data-intel-role="visual" data-visual-id="blender-official-46436-668b812f565d2174">
+     <a href="https://forum.blender.org/t/2026-11-24-modeling-module-meeting/46436" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-11-25/blender-official-46436-668b812f565d2174.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">Blender</b> ★★★★☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       Shape Keys 與 UV 工作項目
+      </h4>
+      <p>
+       會議正在建立實用工具的設計任務，包括合併選取的 Shape Keys、多個 Shape Keys 複製，以及複製後翻轉並重新命名 .L／.R。UV Texel Density PR 與只沿 seam 撕開的選項則被列為需要審查的提案。
+      </p>
+      <h4>
+       插值與預設值牽涉相鄰功能
+      </h4>
+      <p>
+       頂點插值調查對 Knife 工具有用，但會改變 Boolean modifier 行為；討論認為布林差異可接受，必要時個別處理。另有調整 Subdivision、Multires 預設 UV smoothing 的提案，會議認為方向可行，但本文未宣布對應版本已交付。
+      </p>
+      <h4>
+       2027 方向尚需具體設計
+      </h4>
+      <p>
+       Isotropic Triangle Remeshing 被列為需要調查，持續 snapping 與 precision modeling 工作需要具體任務，Edit Mode Mirroring 則仍需設計及研究。這些狀態是原文的結論，因此不能把會議上的一般同意解讀為確定推出日期或已完成實作。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://forum.blender.org/t/2026-11-24-modeling-module-meeting/46436" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="blender-official-46437-b2962227d3803e80" data-intel-role="card" id="intel-blender-official-46437-b2962227d3803e80">
+    <div class="category-meta">
+     #08 · blender
+    </div>
+    <h2>
+     Grease Pencil 會議：程序填色限制與 2D 範本調整提案
+    </h2>
+    <p class="summary">
+     11 月 23 日的 Grease Pencil 模組會議紀錄於 11 月 24 日刊登，討論 2027 規劃、程序填色與 2D 動畫範本。程序填色目前投影到預定平面，隱藏圖層會影響結果；部分介面與筆刷設定仍在徵求回饋，並非正式版功能承諾。
+    </p>
+    <figure class="case-preview" data-intel-id="blender-official-46437-b2962227d3803e80" data-intel-role="visual" data-visual-id="blender-official-46437-b2962227d3803e80">
+     <a href="https://forum.blender.org/t/2026-11-23-grease-pencil-module-meeting-notes/46437" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-11-25/blender-official-46437-b2962227d3803e80.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">Blender</b> ★★★★☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-full" data-analysis-level="FULL">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body">
+      <h4>
+       程序填色仍有平面與圖層限制
+      </h4>
+      <p>
+       Casey 說明正在做程序填色，目前總是投影到預先定義的平面；圖層隱藏時，在 modifier context 中會消失並改變填色。Antonio 希望也能有畫出提示後直接產生結果的 operator 版本，Falk 則要求先把節點配置補到 PR，再請 Geometry Nodes 團隊回饋。
+      </p>
+      <h4>
+       2D 動畫範本討論資訊分組
+      </h4>
+      <p>
+       會議提出讓屬性編輯器顯示物件資料、折疊圖層以外的面板並開啟縮窄的 N-panel；第二份 PR 則討論依材質或頂點色模式分別呈現設定。這些是會議中的介面安排提案，可推論目的在於讓繪畫時常用資訊更集中，尚不是完整定稿。
+      </p>
+      <h4>
+       自動合併與填色變更仍需驗證
+      </h4>
+      <p>
+       Dave 擔心每筆刷設定可能造成大量配置不同的資產，Falk 建議用打包版本與討論串取得更多使用者回饋。另一段討論指出周圍筆畫變動可能讓填色重新著色到更大區域，顯示這些功能仍需交互行為驗證；2027 規劃也只是準備後續提案。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://forum.blender.org/t/2026-11-23-grease-pencil-module-meeting-notes/46437" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="3dnchu-hob-1-0-62fff3c0b50ed3d0" data-intel-role="card" id="intel-3dnchu-hob-1-0-62fff3c0b50ed3d0">
+    <div class="category-meta">
+     #09 · blender
+    </div>
+    <h2>
+     HoB 1.0：在 Blender 操作 Houdini 節點與計算結果
+    </h2>
+    <p class="summary">
+     HoB（Houdini on Blender）是免費開源外掛，使用電腦上另裝的 Houdini 作為計算引擎，將程序模型與模擬結果送入 Blender，也可把 Blender 網格或動畫傳入 Houdini。文章列出 Windows 10／11 與 Houdini 22.x 的環境條件。
+    </p>
+    <figure class="case-preview" data-intel-id="3dnchu-hob-1-0-62fff3c0b50ed3d0" data-intel-role="visual" data-visual-id="3dnchu-hob-1-0-62fff3c0b50ed3d0">
+     <a href="https://3dnchu.com/archives/hob-1-0" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-11-25/3dnchu-hob-1-0-62fff3c0b50ed3d0.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">Blender</b> ★★★★☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       以 Houdini 引擎計算並回傳
+      </h4>
+      <p>
+       HoB 可在 Houdini 原生節點編輯器或 Blender 內的專用編輯器組織節點，再由 Blender 側欄調整參數與檢視結果。計算仍由另外安裝的 Houdini 負責，外掛提供的是兩套軟體之間的操作與資料連接。
+      </p>
+      <h4>
+       模型、動畫與既有資產流通
+      </h4>
+      <p>
+       文章列出把 Houdini 模型與模擬結果帶入 Blender 場景渲染、把 Blender 網格及動畫送去計算，以及在 Blender 動畫化 Houdini APEX 角色。既有 .hip 場景和 HDA 也可載入編輯，可推論有助沿用既有程序資產。
+      </p>
+      <h4>
+       免費外掛仍有執行環境限制
+      </h4>
+      <p>
+       本文的條件是 64 位元 Windows 10／11 並另裝 Houdini 22.x；外掛採 GPL-3.0-or-later。README 說明 Apprentice 無償版只能受限運作，文章沒有逐項列出限制，因此不能將免費外掛理解成所有 Houdini 功能均無條件可用。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://3dnchu.com/archives/hob-1-0" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <nav aria-label="相鄰分類" class="category-bottom-nav">
+    <a href="../emerging-case/">
+     ← 新技術 / Case
+    </a>
+    <a href="../#top">
+     TOP5
+    </a>
+    <a href="../ai-generation/">
+     AI 生成 →
+    </a>
+   </nav>
+  </main>
+  <script defer="" src="../../archive-nav-state.js?v=20261125-r1-workspace-v17-home-card-library">
+  </script>
+ </body>
+</html>
