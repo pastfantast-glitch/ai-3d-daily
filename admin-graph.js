@@ -1,7 +1,7 @@
 import {connectTopic,connectionState,stageData} from './admin-graph-model.mjs';
 const el=(tag,text,cls)=>{const e=document.createElement(tag);if(text!==undefined)e.textContent=text;if(cls)e.className=cls;return e;};
 const svgEl=tag=>document.createElementNS('http://www.w3.org/2000/svg',tag);
-export function mountGraph({onChange,onEdit,onAdd,onSave,onDiscard,onView,notify}) {
+export function mountGraph({onChange,onEdit,onAdd,onSave,onDiscard,onView,onValidation,notify}) {
   const root=document.querySelector('#graph-view'),viewport=root.querySelector('.graph-viewport'),space=root.querySelector('.graph-space'),world=root.querySelector('.graph-world'),edges=root.querySelector('.graph-edges'),nodes=root.querySelector('.graph-nodes'),inspector=root.querySelector('.graph-inspector-body');
   let data=null,selected=null,armed=null,zoom=1,positions=new Map(),visible=[],stageNodes=[],gesture=null,clickBlocked=false;
   const $=s=>root.querySelector(s),label=$('#graph-local-state');
@@ -35,7 +35,7 @@ export function mountGraph({onChange,onEdit,onAdd,onSave,onDiscard,onView,notify
     const layouts={filter:[790,55],evidence:[1100,55],review:[1100,245],reserve:[790,460],publish:[1410,390]};
     for(const s of stageData(data.operations,data.monitor)){const key='stage:'+s.id,[x,y]=layouts[s.id],n={key,...pos(key,{x,y}),width:230,height:140};stageNodes.push(n);node(n,s.name,s.value,'唯讀 · 不可繞過','stage');}
     $('#graph-data-date').textContent=`來源紀錄：${data.monitor?.date||'尚未取得'} · 發布查核：${data.operations?.date||'狀態未知'}（台北時間）`;
-    $('#graph-empty').hidden=!!sources.length;label.textContent=data.dirty?'有未儲存草稿；現行設定未改變':data.validation?.draft?'顯示待驗證設定；現行設定尚未改變':'顯示現行設定';$('#graph-save').disabled=!data.dirty||data.busy;$('#graph-discard').disabled=!data.dirty||data.busy;
+    $('#graph-empty').hidden=!!sources.length;const validationText={PASSED:'驗證通過，可查看結果並套用',FAILED:'驗證失敗；現行設定保持不變',VALIDATING:'驗證中；現行設定保持不變',SAVED:'草稿已儲存，等待驗證',STALE:'設定版本已更新，需重新驗證',UNKNOWN:'驗證狀態未知；現行設定保持不變'};label.textContent=data.dirty?'有未儲存草稿；現行設定未改變':data.validation?.draft?(validationText[data.validation.state]||'顯示待驗證設定；現行設定尚未改變'):'顯示現行設定';$('#graph-validation').hidden=data.dirty||!data.validation?.draft;$('#graph-save').disabled=!data.dirty||data.busy;$('#graph-discard').disabled=!data.dirty||data.busy;
     bounds();paintEdges();renderInspector();renderHint();
   }
   function renderInspector(){if($('#graph-inline-editor').contains(document.querySelector('#editor-form')))return;inspector.replaceChildren();if(!selected){inspector.append(el('span','NODE DETAILS','eyebrow'),el('h3','選取一個節點'),el('p','來源連到主題，決定收錄範圍。固定流程呈現實際狀態，不會因為拉線就開始收集或批准稿件。'),el('p','紫色實線：既有連線；金色虛線：新增連線；紅色虛線：待移除連線。'),el('p','配置位置只影響畫面；重新整理會回到預設排列。','help'));return;}
@@ -58,6 +58,7 @@ export function mountGraph({onChange,onEdit,onAdd,onSave,onDiscard,onView,notify
   root.addEventListener('pointerup',finish);root.addEventListener('pointercancel',finish);root.addEventListener('keydown',e=>{if(e.key==='Escape'){armed=null;gesture=null;paintEdges();renderHint();}});
   function scale(value){const old=zoom;zoom=Math.min(1.5,Math.max(.4,value));const x=(viewport.scrollLeft+viewport.clientWidth/2)/old,y=(viewport.scrollTop+viewport.clientHeight/2)/old;bounds();viewport.scrollLeft=x*zoom-viewport.clientWidth/2;viewport.scrollTop=y*zoom-viewport.clientHeight/2;}
   $('#graph-zoom-in').onclick=()=>scale(zoom+.1);$('#graph-zoom-out').onclick=()=>scale(zoom-.1);$('#graph-arrange').onclick=()=>{positions.clear();zoom=1;viewport.scrollLeft=0;viewport.scrollTop=0;render();};
+  $('#graph-validation').onclick=()=>{root.classList.remove('graph-focus');$('#graph-focus').textContent='展開畫布';onValidation();};
   $('#graph-focus').onclick=()=>{root.classList.toggle('graph-focus');$('#graph-focus').textContent=root.classList.contains('graph-focus')?'收合畫布':'展開畫布';};
   $('#graph-search').oninput=()=>{for(const s of data?.settings.sources||[])positions.delete('source:'+s.id);viewport.scrollLeft=0;viewport.scrollTop=0;render();};$('#graph-save').onclick=()=>onSave();$('#graph-discard').onclick=()=>onDiscard();$('#graph-add-source').onclick=()=>onAdd('source');$('#graph-add-topic').onclick=()=>onAdd('topic');
   return{update(next){data=next;render();},select,refreshInspector:renderInspector};

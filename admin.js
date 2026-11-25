@@ -20,6 +20,7 @@ const graphView=mountGraph({
   onEdit:(kind,id)=>openEditor(kind,id),onAdd:kind=>openEditor(kind),
   onSave:async()=>{if(busy||!graphDirty)return;busy=true;updateGraph();try{await save(settings);}catch(e){notify(e.message,true);}finally{busy=false;updateGraph();}},
   onDiscard:()=>{if(!confirm('捨棄尚未儲存的畫布變更？已儲存的待驗證版本不受影響。'))return;settings=structuredClone(savedSettings);graphDirty=false;closeEditor();render();notify('已捨棄本機變更。');},
+  onValidation:()=>$('#settings-validation').scrollIntoView({block:'center',behavior:'smooth'}),
   onView:view=>document.querySelector(`[data-view="${view}"]`).click(),notify
 });
 function updateGraph(){if(settings)graphView.update({settings,activeSettings,validation,metrics,monitor,operations:operationsData,dirty:graphDirty,busy});}
