@@ -20,9 +20,35 @@ jobs:
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
       - uses: actions/setup-python@v6
         with:
           python-version: '3.12'
       - run: pip install -r requirements-pipeline.txt
       - run: python scripts/test_collection_pending.py
-      - run: python scripts/check_collection_pending.py
+      - name: Scope live proposal check to settings or collector changes
+        id: scope
+        shell: bash
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          PR_BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: |
+          set -euo pipefail
+          validate=true
+          if [ "$EVENT_NAME" = "pull_request" ]; then
+            validate=false
+            while IFS= read -r path; do
+              case "$path" in
+                config/*|requirements-pipeline.txt|scripts/*.py|supabase/functions/collection-admin/policy.mjs|supabase/functions/collection-admin/settings-flow.mjs)
+                  validate=true ;;
+              esac
+            done < <(git diff --name-only "$PR_BASE_SHA"...HEAD)
+          fi
+          echo "validate=$validate" >> "$GITHUB_OUTPUT"
+          if [ "$validate" = false ]; then
+            echo 'UI/docs PR: pending owner settings are unchanged; live validation remains required on main before activation.'
+          fi
+      - name: Validate proposed sources with the real Collector extractor
+        if: steps.scope.outputs.validate == 'true'
+        run: python scripts/check_collection_pending.py

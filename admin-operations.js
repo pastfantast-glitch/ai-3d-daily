@@ -2,7 +2,7 @@ const $=s=>document.querySelector(s),el=(tag,text,cls)=>{const e=document.create
 const states={DONE:'今日已發布',UNKNOWN:'狀態未知',INVALID_RECEIPT:'發布證據不完整',NOT_STARTED:'今日尚未開始',COLLECTING:'收集中',PUBLISHING:'發布中',HANDOFF_FAILED:'交接失敗',PUBLISH_FAILED:'發布失敗',COLLECTOR_FAILED:'收集未完成',AWAITING_HANDOFF:'等待交接',NOT_PUBLISHED:'尚未確認發布'};
 const rowStates={held:'已暫緩',awaiting_review:'待審稿',rejected:'待修正',recheck_required:'等待再次核對',date_ineligible:'日期不符'};
 function link(label,url){const a=el('a',label);try{const u=new URL(url);if(u.protocol!=='https:')return el('span',label);a.href=u.href;a.target='_blank';a.rel='noopener noreferrer';}catch{return el('span',label);}return a;}
-export function mountOperations(api,notify){
+export function mountOperations(api,notify,onUpdate=()=>{}){
  let data=null,busy=false,limit={queue:10,reserve:10};
  function renderList(kind){const box=$('#'+kind+'-list');box.replaceChildren();if(!data){box.append(el('p','尚未取得資料。'));return;}
   const q=$('#'+kind+'-search').value.toLowerCase(),filter=$('#'+kind+'-filter').value;
@@ -21,7 +21,7 @@ export function mountOperations(api,notify){
   detail.append(el('p',`後臺寫入金鑰到期日：${data.credential_expires_on}。到期前需更新伺服器設定。`,'muted'));
   $('#queue-note').textContent=`紀錄日期：${data.queue_date||'尚未取得'} · ${data.queue.length} 篇。`+(data.queue_complete?'':'目前使用決策紀錄，可能沒有完整標題或正文退件細節；下次 Collector 完成後更新。');$('#reserve-note').textContent=`已入庫 ${data.reserve.length} 篇；其中 ${data.reserve_count} 篇日期符合，可等待再次核對。`;renderLists();
  }
- async function refresh(){const b=$('#refresh-operations');b.disabled=true;try{data=await api('operations');render();}catch(e){data=null;$('#operations-status').replaceChildren(el('h2','狀態未知'),el('p',e.message));$('#supply-metrics').replaceChildren();$('#operations-detail').replaceChildren();for(const k of ['queue','reserve']){$('#'+k+'-note').textContent='資料取得失敗，無法確認庫存。';$('#'+k+'-more').hidden=true;}renderLists();notify(e.message,true);}finally{b.disabled=false;}}
+ async function refresh(){const b=$('#refresh-operations');b.disabled=true;try{data=await api('operations');render();}catch(e){data=null;$('#operations-status').replaceChildren(el('h2','狀態未知'),el('p',e.message));$('#supply-metrics').replaceChildren();$('#operations-detail').replaceChildren();for(const k of ['queue','reserve']){$('#'+k+'-note').textContent='資料取得失敗，無法確認庫存。';$('#'+k+'-more').hidden=true;}renderLists();notify(e.message,true);}finally{b.disabled=false;onUpdate(data);}}
  $('#refresh-operations').onclick=refresh;
  for(const k of ['queue','reserve']){for(const suffix of ['search','filter'])$('#'+k+'-'+suffix).addEventListener(suffix==='search'?'input':'change',()=>{limit[k]=10;renderList(k);});$('#'+k+'-more').onclick=()=>{limit[k]+=10;renderList(k);};}return{refresh};
 }
