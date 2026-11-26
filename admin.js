@@ -2,6 +2,7 @@ import {mountGraph} from './admin-graph.js?v=20261126-scope1';
 import {mountOperations} from './admin-operations.js?v=20261126-scope1';
 import {createClient} from 'https://esm.sh/@supabase/supabase-js@2.116.0?bundle';
 import {validateSettings} from './supabase/functions/collection-admin/policy.mjs';
+import {sourceInventory} from './admin-source-state.mjs';
 const base='https://epumcdxfkcujulqrcjrw.supabase.co',key='sb_publishable_KPadXg3RKth3SGsAuXzebA_OylGgtpf';
 const auth=createClient(base,key,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:false}});
 const $=s=>document.querySelector(s),el=(tag,text,cls)=>{const e=document.createElement(tag);if(text!==undefined)e.textContent=text;if(cls)e.className=cls;return e;};
@@ -17,7 +18,7 @@ async function api(op,body={}){
   const data=await response.json();if(!response.ok)throw new Error(messages[data.error]||data.message||`操作未完成（${data.error||response.status}）`);return data;
 }
 let graphDirty=false,savedSettings=null,currentView='overview',operationsData=null;
-const operationsView=mountOperations(api,notify,data=>{operationsData=data;updateGraph();});
+const operationsView=mountOperations(api,notify,data=>{operationsData=data;if(settings)render();else updateGraph();});
 const graphView=mountGraph({
   onChange:next=>{if(busy){notify('正在儲存，請稍候再修改。');return;}try{validateSettings(next);settings=next;graphDirty=JSON.stringify(settings)!==JSON.stringify(savedSettings);render();}catch(e){notify(e.message,true);updateGraph();}},
   onEdit:(kind,id)=>openEditor(kind,id),onAdd:kind=>openEditor(kind),
@@ -57,10 +58,12 @@ function render(){
   $('#source-empty').hidden=!!list.length;
   for(const s of list){const card=el('article',undefined,'source-card'),main=el('div'),actions=el('div',undefined,'source-actions');main.append(el('h3',s.name),el('div',s.base_url,'address'));
     const tags=el('div',undefined,'tags');tags.append(el('span',s.enabled?'啟用中':'已暫停',`pill${s.enabled?'':' off'}`));for(const id of s.topic_ids)tags.append(el('span',settings.topics.find(t=>t.id===id)?.name||id,'tag'));main.append(tags);
-    const latest=monitor?.sources?.[s.id];const recent=el('div',undefined,'source-stats');for(const [label,k] of [['本批候選','candidates_found'],['正文成功','evidence_extracted'],['審稿通過','review_approved'],['待審稿','awaiting_review']]){const x=el('span',label);x.append(el('strong',latest?.[k]??'—'));recent.append(x);}main.append(recent);
+    const latest=monitor?.sources?.[s.id];const recent=el('div',undefined,'source-stats');for(const [label,k] of [['收集時候選','candidates_found'],['收集時正文成功','evidence_extracted'],['收集時核准','review_approved'],['收集時待審','awaiting_review']]){const x=el('span',label);x.append(el('strong',latest?.[k]??'—'));recent.append(x);}main.append(recent);
     const states={checked:'已檢查',blocked:'網站拒絕連線',unavailable:'暫時無法讀取','not-scheduled':'本批未排入'};main.append(el('p',latest?`${monitor.mode==='source-trial'?'試收 · ':''}${states[latest.status]||latest.status} ${latest.reason||''}`:'尚無此來源的收集紀錄；不代表沒有文章。','help'));
+    const live=sourceInventory(operationsData,s.id),liveStats=el('div',undefined,'source-stats');liveStats.dataset.liveInventory=s.id;
+    for(const [label,k] of [['目前庫存稿件','total'],['可供下次複核','pending'],['來源暫時無法讀取','unavailable']]){const x=el('span',label);x.append(el('strong',live?.[k]??'—'));liveStats.append(x);}main.append(liveStats,el('p',live?`即時庫存查核：${new Date(live.checkedAt).toLocaleString('zh-TW',{timeZone:'Asia/Taipei'})}；與備稿管理使用同一份資料，使用前仍須重新核對。`:'尚未取得此來源的完整即時庫存；— 不代表零篇。','help'));
     const yieldRow=monitor?.yield_inventory?.[s.id];
-    if(yieldRow){const stats=el('div',undefined,'source-stats');for(const [label,k] of [['30 日唯一核准','approved_30d'],['核准稿已發布','published_from_approvals_30d'],['庫存待複核','reserve_pending_recheck']]){const x=el('span',label);x.append(el('strong',yieldRow[k]??'—'));stats.append(x);}main.append(stats,el('p',`庫存快照：${monitor.date}；審稿合併後的即時數量請看備稿管理。待複核不等於可立即發布。`,'help'));}
+    if(yieldRow){const stats=el('div',undefined,'source-stats');for(const [label,k] of [['收集時 30 日唯一核准','approved_30d'],['收集時核准稿已發布','published_from_approvals_30d'],['收集時備稿快照','reserve_pending_recheck']]){const x=el('span',label);x.append(el('strong',yieldRow[k]??'—'));stats.append(x);}main.append(stats,el('p',`歷史快照：${monitor.date}，保留該次收集完成時的數量；後續審稿合併反映在上方即時庫存。`,'help'));}
     const observations=(monitor?.yield_history||[]).filter(x=>x.sources?.[s.id]&&x.sources[s.id].status!=='not-scheduled').slice(-7);
     if(observations.length){const trend=el('details');trend.append(el('summary',`最近 ${observations.length} 次供稿觀測（批次可能重疊，不相加）`));for(const x of observations){const r=x.sources[s.id];trend.append(el('p',`${x.date} · ${x.mode==='source-trial'?'試收':'日常'} · 正文 ${r.evidence_extracted??'—'}／待審 ${r.awaiting_review??'—'}／核准 ${r.review_approved??'—'}／入選 ${r.selected??'—'}／剩餘合格 ${r.approved_reserve??'—'}`));}main.append(trend);}
     const row=metrics?.sources?.[s.id],stats=el('div',undefined,'source-stats');for(const [label,k] of [['累計候選','candidates'],['累計退件','rejected'],['累計入備稿','reserve'],['累計發布','published']]){const x=el('span',label);x.append(el('strong',row?.[k]??'—'));stats.append(x);}main.append(stats);
