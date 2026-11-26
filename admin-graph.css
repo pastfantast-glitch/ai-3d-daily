@@ -9,3 +9,6 @@ body:has(#graph-view.graph-focus:not([hidden])){overflow:hidden}.graph-node-titl
 
 .graph-selection-box{position:absolute;border:1px solid #b9a1ff;background:#aa88ff22;pointer-events:none;z-index:5}
 @media(min-width:1151px){#graph-view.graph-focus{display:flex;flex-direction:column;height:100dvh;box-sizing:border-box;overflow:hidden}.graph-focus .graph-layout{flex:1;min-height:0}.graph-focus .graph-layout>div:first-child{display:flex;flex-direction:column;min-height:0}.graph-focus .graph-viewport{flex:1;height:auto;min-height:100px}.graph-focus .graph-inspector{max-height:100%;min-height:0}}
+
+/* Camera transforms replace finite browser scroll bounds. */
+.graph-viewport{overflow:hidden;overflow:clip}.graph-space{width:100%;height:100%;pointer-events:none}.graph-world{width:1px;height:1px;overflow:visible}.graph-node{pointer-events:auto}.graph-wire-hit{fill:none;stroke:transparent;stroke-width:16px;vector-effect:non-scaling-stroke;pointer-events:stroke;cursor:pointer}.graph-wire-hit:focus-visible{outline:none;stroke:#ffffff66;stroke-width:7px}.graph-wire.wire-selected{stroke:#fff;opacity:1;stroke-width:4}.connecting .graph-port.input{box-shadow:0 0 0 5px #77d7c733}.connecting .graph-port.input.drop-target{background:#77d7c7;color:#102f2a;box-shadow:0 0 0 8px #77d7c766}.graph-remove-wire{border-color:#f28d98;color:#ffd8dc}

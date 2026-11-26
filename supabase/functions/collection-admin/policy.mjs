@@ -9,7 +9,7 @@ export function publicURL(value){
     !/(\.(local|internal|localhost|test|invalid)|\.)$/i.test(u.hostname);
   }catch{return false;}
 }
-export function validateSettings(data){
+export function validateSettings(data,{draft=false}={}){
   const need=(ok,message)=>{if(!ok)throw new Error(message);};
   const fields=(x,keys)=>x&&typeof x==='object'&&!Array.isArray(x)&&Object.keys(x).sort().join()===keys.split(',').sort().join();
   const text=(v,n,empty=false)=>typeof v==='string'&&v.length<=n&&(empty||v.trim())&&!/[\x00-\x1f]/.test(v);
@@ -33,10 +33,11 @@ export function validateSettings(data){
     need(typeof s.id==='string'&&slug.test(s.id)&&!sources.has(s.id),'來源代號需唯一');sources.add(s.id);
     need(text(s.name,100)&&publicURL(s.base_url)&&typeof s.enabled==='boolean','請填寫有效名稱及公開 HTTPS 網址');
     const host=new URL(s.base_url).hostname.replace(/^www\./,'');need(!hosts.has(host),'同一網站請編輯既有來源並增加主題');hosts.add(host);
-    need(Array.isArray(s.topic_ids)&&s.topic_ids.length>=1&&s.topic_ids.length<=20&&s.topic_ids.every(id=>ids.has(id)),'請選擇有效主題');
+    need(Array.isArray(s.topic_ids)&&s.topic_ids.length<=20&&new Set(s.topic_ids).size===s.topic_ids.length&&s.topic_ids.every(id=>ids.has(id)),'請選擇有效主題');
+    need(!s.enabled||s.topic_ids.length>0,'未連接主題的來源必須停用；請先接線再啟用。');
     need(Array.isArray(s.endpoints)&&s.endpoints.length>=1&&s.endpoints.length<=5&&s.endpoints.every(u=>publicURL(u)&&(new URL(u).hostname.replace(/^www\./,'')===host||new URL(u).hostname.endsWith('.'+host))),'文章列表／RSS 最多 5 個，且須與來源同網域');
   }
-  need(data.sources.some(s=>s.enabled&&s.topic_ids.includes('ai-3d')),'AI／3D 至少需保留一個啟用來源');
+  if(!draft)need(data.sources.some(s=>s.enabled&&s.topic_ids.includes('ai-3d')),'AI／3D 至少需保留一個啟用來源，才能儲存並驗證。');
   return data;
 }
 

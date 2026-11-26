@@ -1,7 +1,8 @@
-import {mountGraph} from './admin-graph.js?v=20261126-scope1';
+import {mountGraph} from './admin-graph.js?v=20261126-wiring1';
+import {validateGraphDraft} from './admin-graph-model.mjs?v=20261126-wiring1';
 import {mountOperations} from './admin-operations.js?v=20261126-scope1';
 import {createClient} from 'https://esm.sh/@supabase/supabase-js@2.116.0?bundle';
-import {validateSettings} from './supabase/functions/collection-admin/policy.mjs';
+import {validateSettings} from './supabase/functions/collection-admin/policy.mjs?v=20261126-wiring1';
 import {sourceInventory} from './admin-source-state.mjs';
 const base='https://epumcdxfkcujulqrcjrw.supabase.co',key='sb_publishable_KPadXg3RKth3SGsAuXzebA_OylGgtpf';
 const auth=createClient(base,key,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:false}});
@@ -20,7 +21,7 @@ async function api(op,body={}){
 let graphDirty=false,savedSettings=null,currentView='overview',operationsData=null;
 const operationsView=mountOperations(api,notify,data=>{operationsData=data;if(settings)render();else updateGraph();});
 const graphView=mountGraph({
-  onChange:next=>{if(busy){notify('正在儲存，請稍候再修改。');return;}try{validateSettings(next);settings=next;graphDirty=JSON.stringify(settings)!==JSON.stringify(savedSettings);render();}catch(e){notify(e.message,true);updateGraph();}},
+  onChange:next=>{if(busy){notify('正在儲存，請稍候再修改。');return;}try{validateGraphDraft(next);settings=next;graphDirty=JSON.stringify(settings)!==JSON.stringify(savedSettings);render();}catch(e){notify(e.message,true);updateGraph();}},
   onEdit:(kind,id)=>openEditor(kind,id),onAdd:kind=>openEditor(kind),
   onSave:async()=>{if(busy||!graphDirty)return;busy=true;updateGraph();try{await save(settings);}catch(e){notify(e.message,true);}finally{busy=false;updateGraph();}},
   onDiscard:()=>{if(!confirm('捨棄尚未儲存的畫布變更？已儲存的待驗證版本不受影響。'))return;settings=structuredClone(savedSettings);graphDirty=false;closeEditor();render();notify('已捨棄本機變更。');},
@@ -91,7 +92,7 @@ $('#editor-form').onsubmit=async e=>{e.preventDefault();if(busy)return;busy=true
   if(editing.kind==='source')Object.assign(item,{base_url:String(f.get('base_url')).trim(),endpoints:lines('endpoints'),topic_ids:f.getAll('topic_ids')});
   else Object.assign(item,{description:String(f.get('description')||'').trim(),include_terms:lines('include_terms'),exclude_terms:lines('exclude_terms'),target_items:editing.id==='ai-3d'?30:Number(f.get('target_items')),max_age_months:Number(f.get('max_age_months'))});
   const next=structuredClone(settings),list=editing.kind==='source'?next.sources:next.topics,index=list.findIndex(x=>x.id===editing.id);if(index<0)list.push(item);else list[index]=item;
-  if(currentView==='graph'){validateSettings(next);settings=next;graphDirty=JSON.stringify(settings)!==JSON.stringify(savedSettings);closeEditor();render();notify('節點設定已加入草稿；請按「儲存畫布並驗證」。');}else{await save(next);closeEditor();}
+  if(currentView==='graph'){validateGraphDraft(next);settings=next;graphDirty=JSON.stringify(settings)!==JSON.stringify(savedSettings);closeEditor();render();notify('節點設定已加入草稿；請按「儲存畫布並驗證」。');}else{await save(next);closeEditor();}
 }catch(error){$('#editor-error').textContent=error.message;}finally{busy=false;submit.disabled=false;updateGraph();}};
 $('#probe-source').onclick=async()=>{const b=$('#probe-source');b.disabled=true;$('#editor-error').textContent='';try{const url=$('#editor-form [name=endpoints]').value.split(/\r?\n/).find(x=>x.trim())||$('#editor-form [name=base_url]').value;const r=await api('probe',{url:url.trim()});const p=$('#probe-result');p.replaceChildren(el('h3',r.title||'來源預覽'),el('p',`來源日期：${r.source_date||'列表中未確認'} · 正文長度：${r.body_characters} 字元`),el('p',r.body_preview),el('p',r.note));for(const href of r.article_links){const a=el('a',href);a.href=href;a.target='_blank';a.rel='noopener noreferrer';p.append(a);}for(const sample of r.samples||[]){const card=el('div');card.append(el('strong',sample.title||sample.url),el('p',sample.error?`試讀失敗：${sample.error}`:`日期：${sample.source_date||'未確認'} · ${sample.body_characters} 字元 · ${sample.date_eligible?'期限內':'日期待確認或超期'}`));if(sample.body_preview)card.append(el('p',sample.body_preview));p.append(card);}p.hidden=false;}catch(e){$('#editor-error').textContent=e.message;}finally{b.disabled=false;}};
 for(const id of ['close-editor','cancel-editor'])$('#'+id).onclick=closeEditor;
