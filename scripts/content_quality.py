@@ -77,6 +77,7 @@ PROMOTION_NOISE = (
 GOVERNANCE_NOISE = (
     "annual report", "development fund", "support for blender projects",
     "fundraising", "governance", "policy announcement", "policies",
+    "platinum sponsor", "sponsorship", "welcomes sponsor",
 )
 TECHNICAL_ANCHORS = (
     "3d", "blender", "maya", "houdini", "substance", "zbrush", "3ds max",
@@ -86,6 +87,7 @@ TECHNICAL_ANCHORS = (
     "vfx", "procedural", "geometry", "photogrammetry", "retopo", "uv",
     "metahuman", "nanite", "lumen", "pcg", "kinefx", "gaussian", "nerf",
     "image-to-3d", "text-to-3d", "meshy", "tripo", "hunyuan", "comfyui",
+    "godot", "vulkan", "gltf", "openxr",
 )
 PRODUCTION_SIGNALS = (
     "workflow", "pipeline", "breakdown", "tutorial", "release", "update",
@@ -379,6 +381,12 @@ def admission(meta: dict) -> tuple[bool, str]:
     title = normalize_title(meta.get("title"))
     desc = clean(meta.get("description"), 800)
     text = f"{title} {desc}".casefold()
+    # Brief feed/social descriptions can omit the actual rendering workflow.
+    # Only the bounded, complete article body may contribute topic evidence.
+    evidence = meta.get('article_evidence') or {}
+    if evidence.get('status') == 'extracted' and evidence.get('truncated') is False:
+        body = ' '.join(str(b.get('text') or '') for b in evidence.get('blocks', []))
+        text += ' ' + body[:48000].casefold()
     technical = sum(1 for term in TECHNICAL_ANCHORS if has_term(text, term))
     production = sum(1 for term in PRODUCTION_SIGNALS if has_term(text, term))
     title_text = title.casefold()
@@ -435,6 +443,8 @@ def classify_content(title: object, description: object = "") -> tuple[str, str]
         return "engine-art", "unreal"
     if re.search(r"\bunity\b", t):
         return "engine-art", "unity"
+    if re.search(r"\bgodot\b", t):
+        return "engine-art", "tools"
 
     if any(k in t for k in ("mocap", "motion capture")):
         return "3d-animation", "mocap"

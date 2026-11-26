@@ -13,6 +13,20 @@ from publisher_feeds import feed_endpoint
 
 
 class SourceTrialTests(unittest.TestCase):
+    def test_new_graphics_sources_use_complete_body_but_funding_still_fails(self):
+        from content_quality import admission, classify_content
+        def meta(title,body):
+            return {'url':'https://example.com/article/graphics', 'title':title,'description':'Technical progress.',
+                    'article_evidence':{'status':'extracted','truncated':False,'blocks':[{'text':body}]}}
+        godot=meta('Dev snapshot: Godot 4.8 beta 5','This release fixes rendering and shader issues in the 3D engine.')
+        khronos=meta('From portability to conformance','Vulkan rendering uses a layered implementation with conformance tests for this release.')
+        self.assertTrue(admission(godot)[0]);self.assertTrue(admission(khronos)[0])
+        self.assertEqual(classify_content(godot['title']),('engine-art','tools'))
+        self.assertFalse(admission(meta('Godot Foundation welcomes a Platinum Sponsor','The sponsorship funds shader rendering tools.'))[0])
+        self.assertFalse(admission(meta('Quarterly accounts','Revenue growth and customer retention.'))[0])
+        khronos['article_evidence']['truncated']=True
+        self.assertFalse(admission(khronos)[0])
+
     def test_public_dns_connection_fallback_never_accepts_private_or_invalid_tls(self):
         import public_source_http as http
         import ssl

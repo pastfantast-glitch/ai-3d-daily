@@ -862,12 +862,20 @@ def source_probe(
         return url, meta
 
     metas: list[dict] = []
+    readable_before_topic, topic_rejected = set(), set()
+    def record_page(url, meta):
+        if meta and same_registered_domain(meta['url'], domain):
+            evidence = meta.get('article_evidence') or {}
+            if evidence.get('status') == 'extracted' and evidence.get('truncated') is False:
+                readable_before_topic.add(meta['url'])
+            if meta.get('topic_ids'):
+                metas.append(meta)
+            else:
+                topic_rejected.add(meta['url'])
     with ThreadPoolExecutor(max_workers=int(http_cfg["max_workers"])) as pool:
         futures = [pool.submit(get_page, pair) for pair in links]
         for future in as_completed(futures):
-            _, meta = future.result()
-            if meta and same_registered_domain(meta["url"], domain) and meta.get('topic_ids'):
-                metas.append(meta)
+            record_page(*future.result())
 
     # One bounded same-source related-page traversal is the targeted refill pass.
     # It is performed for every selected source and remains independent of source
@@ -887,9 +895,7 @@ def source_probe(
         with ThreadPoolExecutor(max_workers=int(http_cfg["max_workers"])) as pool:
             futures = [pool.submit(get_page, pair) for pair in refill_links]
             for future in as_completed(futures):
-                _, meta = future.result()
-                if meta and same_registered_domain(meta["url"], domain) and meta.get('topic_ids'):
-                    metas.append(meta)
+                record_page(*future.result())
 
     unique: dict[str, dict] = {}
     for meta in metas:
@@ -927,6 +933,8 @@ def source_probe(
         "category_indexes_checked": sections_checked,
         "article_pages_checked": len(links) + len(refill_links),
         "evidence_extracted": sum(m.get("article_evidence", {}).get("status") == "extracted" for m in metas),
+        "body_readable_before_topic": len(readable_before_topic),
+        "topic_rejected": len(topic_rejected),
         "refill_links_checked": len(refill_links),
         "semantic_expansion_links_checked": len(expanded_urls),
         "published_links_skipped": len(skipped_published),
@@ -1633,7 +1641,7 @@ def main() -> int:
             'sources': {sid: {key: record.get(key) for key in (
                 'status', 'candidates_found', 'published_links_skipped', 'reason',
                 'index_pages_checked', 'feed_urls_checked', 'refill_links_checked',
-                'article_pages_checked', 'evidence_extracted', 'awaiting_review', 'review_approved',
+                'article_pages_checked', 'evidence_extracted', 'body_readable_before_topic', 'topic_rejected', 'awaiting_review', 'review_approved',
                 'quality_pass_unpublished', 'selected', 'approved_reserve',
             )} for sid, record in probe_records.items()},
             'articles': [review_record(c, error_map.get(c['candidate_id'], [])) for c in discovered],
