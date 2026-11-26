@@ -35,3 +35,12 @@ test('save never changes active settings; activation is guarded and conflict is 
  assert.equal(commits.length,1);assert.equal(commits[0].head,h);assert.deepEqual(JSON.parse(Buffer.from(commits[0].content,'base64')),draft);
  let calls=0;await assert.rejects(activate(github,async()=>({total_count:1,workflow_runs:[run,{...run,path:'.github/workflows/collection-settings-check.yml'}]}),async()=>{calls++;throw Error('version_conflict')},body));assert.equal(calls,1);
 });
+
+test('save permits a paused unconnected source but never accepts draft validation bypass',async()=>{
+ const paused=structuredClone(active);paused.sources[0].enabled=false;paused.sources[0].topic_ids=[];
+ let writes=0;
+ const github=async(path,method)=>{if(method==='PUT'){writes++;return {content:{sha:b},commit:{html_url:'https://example.com'}};}if(path==='/git/ref/heads/main')return {object:{sha:h}};if(path.includes('collection-pending'))return snapshot.pending;if(path.includes('collection-admin'))return snapshot.active;throw Error(path);};
+ await savePending(github,{sha:a,pending_sha:b,settings:paused});assert.equal(writes,1);
+ paused.sources.forEach(s=>s.enabled=false);
+ await assert.rejects(savePending(github,{sha:a,pending_sha:b,settings:paused,draft:true}),/AI／3D/);assert.equal(writes,1);
+});

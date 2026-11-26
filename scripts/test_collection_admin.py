@@ -29,6 +29,18 @@ def configured():
 
 
 class Tests(unittest.TestCase):
+    def test_disconnected_sources_are_preserved_but_never_probed(self):
+        settings=configured();source=settings['sources'][0]
+        source.update(topic_ids=[],enabled=False)
+        validate_settings(settings)
+        cfg=effective_hybrid(load_hybrid_config(),settings)
+        self.assertNotIn(source['id'],registered_source_probe_plan(DATE,cfg)['selected'])
+        source['enabled']=True
+        with self.assertRaises(ValueError):validate_settings(settings)
+        source['enabled']=False
+        for item in settings['sources']:item['enabled']=False
+        with self.assertRaises(ValueError):validate_settings(settings)
+
     def test_settings_change_actual_probe_plan_and_keep_frozen_history(self):
         settings=configured();validate_settings(settings)
         settings['sources'][0]['enabled']=False

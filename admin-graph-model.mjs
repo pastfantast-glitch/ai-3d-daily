@@ -1,4 +1,6 @@
-import {validateSettings} from './supabase/functions/collection-admin/policy.mjs';
+import {validateSettings} from './supabase/functions/collection-admin/policy.mjs?v=20261126-wiring1';
+
+export const validateGraphDraft=settings=>validateSettings(settings,{draft:true});
 
 // The graph edits the existing settings contract; it never defines executable routes.
 export function connectTopic(settings, sourceId, topicId, connected=true) {
@@ -6,14 +8,21 @@ export function connectTopic(settings, sourceId, topicId, connected=true) {
   if(!source||!next.topics.some(t=>t.id===topicId))throw new Error('只能連接既有來源與收集主題。');
   const ids=new Set(source.topic_ids);
   if(connected)ids.add(topicId);else ids.delete(topicId);
-  if(!ids.size)throw new Error('來源至少需要一個主題；停止收集請暫停來源。');
   source.topic_ids=[...ids];
-  validateSettings(next);
+  if(!ids.size)source.enabled=false;
+  validateGraphDraft(next);
   return next;
 }
 
 export function connectionState(active, sourceId, topicId) {
   return active?.sources.some(s=>s.id===sourceId&&s.topic_ids.includes(topicId))?'active':'draft';
+}
+
+export function moveConnection(settings,source,from,to=null){
+  if(!settings.sources.some(s=>s.id===source&&s.topic_ids.includes(from)))throw new Error('連線已變更，請重新選取。');
+  if(to===from)return structuredClone(settings);
+  // Add first so moving the only edge does not inadvertently pause an enabled source.
+  return connectTopic(to?connectTopic(settings,source,to):settings,source,from,false);
 }
 
 export function stageData(operations,monitor) {
