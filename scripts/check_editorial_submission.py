@@ -9,7 +9,7 @@ import re
 import subprocess
 import zipfile
 import requests
-from editorial_review import ROOT, ReviewError, read_review, validate_packet, validate_run
+from editorial_review import ROOT, ReviewError, read_review_file, validate_packet, validate_run
 from url_identity import canonicalize_url
 
 REPO = 'pastfantast-glitch/ai-3d-daily'
@@ -95,6 +95,14 @@ def readiness_errors(copies, date, root=ROOT, purpose="release"):
     return errors
 
 
+def immutable_submission(path, data, prior, read_previous):
+    if path in prior:
+        raise ReviewError('merged editorial review is immutable')
+    for old in prior:
+        if old.endswith('.json') and read_previous(old).get('source_run_id') == data['source_run_id']:
+            raise ReviewError('source Collector run already submitted')
+
+
 def main():
     event = json.loads(Path(os.environ['GITHUB_EVENT_PATH']).read_text('utf-8'))
     if 'pull_request' not in event:
@@ -105,16 +113,22 @@ def main():
     if not all(re.fullmatch('[0-9a-f]{40}', s) for s in (base, head)):
         raise ReviewError('invalid PR commit identity')
     files = subprocess.check_output(['git', 'diff', '--name-only', base + '...' + head], encoding='utf-8').splitlines()
-    reviews = [f for f in files if re.fullmatch(r'data/editorial-reviews/20[0-9]{2}-[0-9]{2}-[0-9]{2}\.json', f)]
+    reviews = [f for f in files if f.startswith('data/editorial-reviews/')]
     if not reviews:
         print('EDITORIAL SUBMISSION: no changed review files')
         return
     if len(reviews) != 1 or files != reviews:
         raise ReviewError('review PR must contain exactly one edition review file')
-    date = Path(reviews[0]).stem
-    data = read_review(date)
+    path = Path(reviews[0])
+    date = path.name[:10]
+    data = read_review_file(ROOT / path)
     if not data:
         raise ReviewError('review file missing/deleted')
+    # A second genuine Collector can add reserve on the same date, but neither
+    # the original merged decision nor the same run may be submitted again.
+    prior = subprocess.check_output(['git', 'ls-tree', '-r', '--name-only', base, '--', 'data/editorial-reviews'], encoding='utf-8').splitlines()
+    immutable_submission(reviews[0], data, prior, lambda old: json.loads(
+        subprocess.check_output(['git', 'show', base + ':' + old], encoding='utf-8')))
     copies = original_packet(data)
     errors = readiness_errors(copies, date, purpose=data.get('purpose', 'release'))
     if errors:

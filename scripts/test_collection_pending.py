@@ -34,4 +34,14 @@ class Tests(unittest.TestCase):
         result=preview({'id':'x','base_url':'https://example.com','endpoints':['https://example.com']},'2026-11-25',lambda *a,**k:{'status':403})
         self.assertFalse(result['passed']);self.assertIn('403',result['errors'][0])
 
+    def test_admission_uses_collector_identity_and_reports_challenge(self):
+        from run_daily_collector import collector_http_headers
+        runtime=json.loads((Path(__file__).parents[1]/'config/collector-runtime.json').read_text('utf-8'))
+        def blocked(session,url,timeout,**kw):
+            self.assertTrue(session.managed_sources)
+            for k,v in collector_http_headers(runtime).items():self.assertEqual(session.headers[k],v)
+            return {'status':403,'error':'source-challenge-required'}
+        result=preview({'id':'x','base_url':'https://example.com','endpoints':['https://example.com']},'2026-11-26',blocked)
+        self.assertFalse(result['passed']);self.assertIn('source-challenge-required',result['errors'][0])
+
 if __name__=='__main__':unittest.main()

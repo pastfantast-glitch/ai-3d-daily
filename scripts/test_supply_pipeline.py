@@ -17,6 +17,37 @@ import daily_release_status as status
 
 
 class SupplyTests(unittest.TestCase):
+    def test_supplemental_reserve_keeps_release_and_revalidates_next_day(self):
+        from check_editorial_submission import immutable_submission
+        with tempfile.TemporaryDirectory() as td:
+            root=Path(td);folder=root/'data/editorial-reviews';folder.mkdir(parents=True)
+            a=article();release=envelope(a)
+            (folder/f'{DATE}.json').write_text(json.dumps(release),encoding='utf-8')
+            extra=copy.deepcopy(a);extra.update(id='extra',source_url='https://example.com/extra')
+            reserve=envelope(extra);reserve.update(purpose='reserve',source_run_id=456)
+            path=folder/f'{DATE}-456.json';path.write_text(json.dumps(reserve),encoding='utf-8')
+            self.assertEqual(review.read_review(DATE,root),release)
+            self.assertEqual(review.read_review_file(path),reserve)
+            c=candidate(extra);reader,errors=review.candidate_copy(c,'2026-10-16',root)
+            self.assertFalse(errors);self.assertIsNotNone(reader)
+            self.assertEqual(c['scheduled_review']['source_run_id'],456)
+            self.assertEqual(c['scheduled_review']['source_head_sha'],reserve['source_head_sha'])
+            self.assertEqual(len(reserve_seeds(root,'2026-10-16',[{'id':'example','base_url':'https://example.com'}])),2)
+            c['meta']['article_evidence']['blocks'][0]['text']='changed'
+            self.assertTrue(review.candidate_copy(c,'2026-10-16',root)[1])
+            reserve['purpose']='release';path.write_text(json.dumps(reserve),encoding='utf-8')
+            with self.assertRaisesRegex(review.ReviewError,'supplemental'):
+                review.read_review_file(path)
+            reserve.update(purpose='reserve',source_run_id=999);path.write_text(json.dumps(reserve),encoding='utf-8')
+            with self.assertRaisesRegex(review.ReviewError,'filename run'):
+                review.read_review_file(path)
+        prior=['data/editorial-reviews/'+DATE+'.json']
+        with self.assertRaisesRegex(review.ReviewError,'immutable'):
+            immutable_submission(prior[0],release,prior,lambda _:release)
+        with self.assertRaisesRegex(review.ReviewError,'already submitted'):
+            immutable_submission('new.json',release,prior,lambda _:release)
+        immutable_submission('new.json',{'source_run_id':456},prior,lambda _:release)
+
     def test_old_source_cannot_be_reviewed_or_reused_as_reserve(self):
         a=article();a['source_published_at']='2025-10-14';data=envelope(a)
         with self.assertRaisesRegex(review.ReviewError,'12 calendar months'):

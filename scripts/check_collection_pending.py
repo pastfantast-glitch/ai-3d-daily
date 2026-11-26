@@ -8,7 +8,7 @@ from zoneinfo import ZoneInfo
 import requests
 from collection_settings import validate_settings, effective_hybrid, within_topic_window
 from discovery_hybrid import load_hybrid_config, registered_source_probe_plan
-from run_daily_collector import fetch, page_metadata, extract_links, extract_feed_article_links
+from run_daily_collector import fetch, page_metadata, extract_links, extract_feed_article_links, collector_http_headers
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -24,6 +24,7 @@ def changed_sources(active, proposed):
 def preview(source, date, fetcher=fetch):
     """Use the actual Collector metadata/body extractor; do not return body text."""
     session = requests.Session(); session.managed_sources = True
+    session.headers.update(collector_http_headers(json.loads((ROOT/'config/collector-runtime.json').read_text('utf-8'))))
     domain = urlsplit(source['base_url']).hostname.removeprefix('www.')
     samples, errors, seen, links = [], [], set(), []
     def inspect(result):
@@ -36,7 +37,7 @@ def preview(source, date, fetcher=fetch):
     for url in source['endpoints']:
         result = fetcher(session, url, 8, allow_feed=True)
         if result.get('status') != 200:
-            errors.append(f"{url}: HTTP {result.get('status') or 'unavailable'}");continue
+            errors.append(f"{url}: HTTP {result.get('status') or 'unavailable'} ({result.get('error') or 'unavailable'})");continue
         inspect(result); text=result.get('html',''); final=result.get('final_url') or url
         links += extract_feed_article_links(text,final,domain,5) or extract_links(text,final,domain,5)
     for url,_ in links:
