@@ -1,0 +1,1589 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-26",
+  "reviewer": "chatgpt-scheduled-task",
+  "purpose": "release",
+  "source_run_id": 45723760802,
+  "source_head_sha": "7a5fa6323b20b1f5362d1b722646f613064ba065",
+  "items": {
+    "80-level-learn-how-to-create-this-colorful-cel-shader-in-blender-5-9cd0cce5d34f6c66": {
+      "source_url": "https://80.lv/articles/learn-how-to-create-this-colorful-cel-shader-in-blender-5-3",
+      "source_published_at": "2026-11-25",
+      "source_evidence_sha256": "eb697ecab406fd544289f6e52f5e2698271690c8cdaf5e6bdb37d70e0c2c4cb9",
+      "reviewed_on": "2026-11-26",
+      "title": "Blender 5.3 卡通著色教學：用燈光累積節點控制材質受光",
+      "summary": "CG DASH 分享 Blender 5.3 的卡通著色示範，以 Light Accumulation 節點探索 Eevee 材質受光，並提供完整教學影片與免費專案檔。",
+      "evidence_refs": [
+        "p001",
+        "p002",
+        "p003"
+      ],
+      "analysis_level": "BRIEF",
+      "content_kind": "practice",
+      "full_analysis": [
+        {
+          "label": "以節點調整受光",
+          "text": "這個案例使用 Blender 5.3 的 Light Accumulation 節點；報導將它放在 Material Lighting 節點的脈絡中，說明如何控制 Eevee 材質對光源的反應。",
+          "evidence_refs": [
+            "p001",
+            "p002"
+          ],
+          "angle": "workflow_or_technical_change"
+        },
+        {
+          "label": "從專案拆解色階效果",
+          "text": "作者錄製了建立卡通著色外觀的完整教學，並免費提供專案檔。讀者能對照成品與實際設定，理解這個彩色風格的材質配置。",
+          "evidence_refs": [
+            "p003"
+          ],
+          "angle": "production_impact"
+        },
+        {
+          "label": "示範環境與證據範圍",
+          "text": "文章聚焦 Blender 5.3 與 Eevee 的節點示範，沒有列出其他渲染器的移植方式或效能測試；不能據此認定相同設定可直接用於其他引擎。",
+          "evidence_refs": [
+            "p002",
+            "p003"
+          ],
+          "angle": "test_risk_or_limit"
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p002",
+          "p003"
+        ]
+      }
+    },
+    "80-level-building-a-cozy-sunny-medieval-town-scene-using-custom-mod-62948e580537949f": {
+      "source_url": "https://80.lv/articles/building-a-cozy-sunny-medieval-town-scene-using-custom-modular-assets",
+      "source_published_at": "2026-11-25",
+      "source_evidence_sha256": "5e659f34cabc37d86d72b5697093653a258440f374cf777f400f0848d310a407",
+      "reviewed_on": "2026-11-26",
+      "title": "中世紀小鎮場景拆解：模組建築、置換材質與 UE5 午後光線",
+      "summary": "Wang Yifan 分享約五個月的 UE5 小鎮場景製作：重複建築採模組與共用材質，重點道具走高低模流程，再以頂點繪製、貼花和燈光整合畫面。",
+      "evidence_refs": [
+        "p013",
+        "p014",
+        "p015",
+        "p016",
+        "p029",
+        "p031",
+        "p018",
+        "p037"
+      ],
+      "analysis_level": "FULL",
+      "content_kind": "practice",
+      "full_analysis": [
+        {
+          "label": "按資產用途分配製法",
+          "text": "牆面與木樑在 3ds Max 製作低模，搭配 Designer 的飾條與平鋪材質，再透過 UE5 藍圖組裝；木車與鐘等重點物件則使用雕刻、烘焙與 Painter 貼圖流程。",
+          "evidence_refs": [
+            "p013",
+            "p014"
+          ],
+          "angle": "workflow_or_technical_change"
+        },
+        {
+          "label": "重用模組也保留變化",
+          "text": "模組建築方便調整結構與排列；作者以完整及破損牆面、頂點繪製和貼花減少規律感。屋瓦與石板路主要採材質置換，簷口才使用能表現輪廓的實體瓦片。",
+          "evidence_refs": [
+            "p015",
+            "p016",
+            "p029",
+            "p031"
+          ],
+          "angle": "production_impact"
+        },
+        {
+          "label": "完成案例的成本與邊界",
+          "text": "作者表示整個專案約花五個月，是首次完成 UE5 全場景；選擇製法時會考量重複率、視覺重要性與效能成本。文中沒有提供幀率數據，因此不能把這套場景直接當作效能基準。",
+          "evidence_refs": [
+            "p018",
+            "p037"
+          ],
+          "angle": "test_risk_or_limit"
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p013",
+          "p014",
+          "p015",
+          "p016",
+          "p029",
+          "p031",
+          "p018",
+          "p037"
+        ]
+      }
+    },
+    "80-level-see-this-deadlock-like-stylized-animation-of-a-mermaid-in-28dd369c64066948": {
+      "source_url": "https://80.lv/articles/see-this-deadlock-like-stylized-animation-of-a-mermaid-in-a-water-pumping-suit",
+      "source_published_at": "2026-11-25",
+      "source_evidence_sha256": "321c4f084e0152cc6cba93a67a532dec1415f15be894787741b0245babc2d114",
+      "reviewed_on": "2026-11-26",
+      "title": "Blender 人魚水箱裝動畫：漂浮頭髮與透明容器光暈的做法",
+      "summary": "Max Hudetz 的風格化動畫把人魚放進充水機械裝，利用曲線驅動小魚、零重力晃動骨骼表現髮絲，另以額外渲染處理透明容器的合成遮罩。",
+      "evidence_refs": [
+        "p003",
+        "p004",
+        "p002",
+        "p007",
+        "p008"
+      ],
+      "analysis_level": "FULL",
+      "content_kind": "practice",
+      "full_analysis": [
+        {
+          "label": "小魚與髮絲分開驅動",
+          "text": "水瓶與管線中的小魚沿連到主綁定的曲線移動；頭髮則以重力設為零的晃動骨骼製作動態，再加入 Noise Texture 幾何節點，形成緩慢的髮束擺動。",
+          "evidence_refs": [
+            "p003",
+            "p004"
+          ],
+          "angle": "workflow_or_technical_change"
+        },
+        {
+          "label": "用合成強化裝備讀形",
+          "text": "作者使用合成器的 Rim Light 節點，讓充水的容器區域呈現透光與發亮效果。這個處理與充水機械裝的角色設定配合，讓容器內部的視覺特徵更清楚。",
+          "evidence_refs": [
+            "p002",
+            "p007",
+            "p008"
+          ],
+          "angle": "production_impact"
+        },
+        {
+          "label": "透明材質需要額外遮罩",
+          "text": "作者發現透明管線與水瓶沒有出現在 Cryptomatte 中，因此另外渲染只顯示這些物件的通道，並以材質覆寫取得遮罩；案例並非只接上一個輪廓光節點就完成。",
+          "evidence_refs": [
+            "p007",
+            "p008"
+          ],
+          "angle": "test_risk_or_limit"
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p003",
+          "p004",
+          "p002",
+          "p007",
+          "p008"
+        ]
+      }
+    },
+    "80-level-the-making-of-become-from-aaa-games-to-a-microscopic-platf-b6004dd926c1f57d": {
+      "source_url": "https://80.lv/articles/the-making-of-become-from-aaa-games-to-a-microscopic-platformer",
+      "source_published_at": "2026-11-25",
+      "source_evidence_sha256": "cd68f94f26fb4d1098a1ddae03efbe01a3905bfca1265827cad8fd1726e0f409",
+      "reviewed_on": "2026-11-26",
+      "title": "《Become》微觀場景製作：Niagara 群集與大範圍次表面散射",
+      "summary": "ProtoSeed Games 分享《Become》的 UE5.4 製作方式：以網格粒子和頂點著色器動畫控制細胞群，利用組織厚度與次表面散射塑造微觀關卡。",
+      "evidence_refs": [
+        "p011",
+        "p012",
+        "p017",
+        "p018",
+        "p032",
+        "p033"
+      ],
+      "analysis_level": "FULL",
+      "content_kind": "practice",
+      "full_analysis": [
+        {
+          "label": "可引導的網格粒子群",
+          "text": "開發者先試過粒子生命與二維群聚模擬，後改用 Niagara 網格粒子搭配頂點著色器動畫，再以自訂力與曲線引導群集。他表示數量可達五十萬，但文章未列測試硬體。",
+          "evidence_refs": [
+            "p011",
+            "p012"
+          ],
+          "angle": "workflow_or_technical_change"
+        },
+        {
+          "label": "讓幾何厚度參與照明",
+          "text": "場景大量使用次表面散射，幾何厚度會影響穿透光，因此建模與燈光需要一起安排。作者減少貼圖、幾乎不用法線貼圖，改由形體、組織厚度、照明及體積效果塑造外觀。",
+          "evidence_refs": [
+            "p017",
+            "p018"
+          ],
+          "angle": "production_impact"
+        },
+        {
+          "label": "引擎選項依動態需求取捨",
+          "text": "團隊使用 UE5.4，主要邏輯由藍圖與自訂數學處理，沒有使用 Nanite 或虛擬陰影貼圖；作者將此取捨連結到場景持續運動與頂點位移動畫的需求，不能泛化為所有專案的選擇。",
+          "evidence_refs": [
+            "p032",
+            "p033"
+          ],
+          "angle": "test_risk_or_limit"
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p011",
+          "p012",
+          "p017",
+          "p018",
+          "p032",
+          "p033"
+        ]
+      }
+    },
+    "80-level-this-blender-shader-turns-any-3d-object-into-woodcut-illus-46afa2445ec3dc3c": {
+      "source_url": "https://80.lv/articles/this-blender-shader-turns-any-3d-object-into-woodcut-illustration",
+      "source_published_at": "2026-11-25",
+      "source_evidence_sha256": "bb7d9c171c1bf0dafa02b299033852cfd7e864aa233b487fa88bb84f222fc28e",
+      "reviewed_on": "2026-11-26",
+      "title": "Blender 木刻材質拆解：以受光分區與物件座標生成刻線",
+      "summary": "Tamás Rolfesz 的 Woodcut Shader 在 Eevee 中以單一材質建立木刻外觀，不要求 UV 或貼圖；訪談拆解亮度分區、固定刻線方向與 Voronoi 刻痕區塊。",
+      "evidence_refs": [
+        "p005",
+        "p006",
+        "p007",
+        "p008",
+        "p009",
+        "p003",
+        "p011"
+      ],
+      "analysis_level": "FULL",
+      "content_kind": "practice",
+      "full_analysis": [
+        {
+          "label": "將受光轉成刻線密度",
+          "text": "材質透過 Shader to RGB 讀取受光結果，再分成紙面、排線與墨色區域；暗部轉成黑底白刻痕。刻線方向依表面朝向選擇有限的固定方向，並用 Voronoi 切成不規則區塊。",
+          "evidence_refs": [
+            "p005",
+            "p006",
+            "p007"
+          ],
+          "angle": "workflow_or_technical_change"
+        },
+        {
+          "label": "保持動畫中的表面圖樣",
+          "text": "刻線以物件座標計算，作者表示已用城堡場景的二百四十格推進鏡頭檢查前景視差，圖樣仍貼附表面。材質另提供一般、圓形物件與樹冠三種模式，以對應不同形狀。",
+          "evidence_refs": [
+            "p008",
+            "p009"
+          ],
+          "angle": "production_impact"
+        },
+        {
+          "label": "相容版本與測試範圍",
+          "text": "來源標示支援 Blender 5.1 以上並附示範場景與文件，主要操作環境為 Eevee。文中的穩定性證據是作者的鏡頭測試，並未列出骨架變形或其他渲染器的測試結果。",
+          "evidence_refs": [
+            "p003",
+            "p008",
+            "p011"
+          ],
+          "angle": "test_risk_or_limit"
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p005",
+          "p006",
+          "p007",
+          "p008",
+          "p009",
+          "p003",
+          "p011"
+        ]
+      }
+    },
+    "80-level-artist-recreates-vampire-hunter-d-style-shader-in-blender-aebc96d45327d2a9": {
+      "source_url": "https://80.lv/articles/artist-recreates-vampire-hunter-d-style-shader-in-blender",
+      "source_published_at": "2026-06-16",
+      "source_evidence_sha256": "4fe99fa0862f8aca2caacca52a73fbee1a40fd97ce7bbee5f8f8dc719819a759",
+      "reviewed_on": "2026-11-26",
+      "title": "歷史參考（2026）：Blender《吸血鬼獵人 D》風格角色著色實驗",
+      "summary": "這篇 2026 年 6 月的作品介紹展示 Jörm 以《吸血鬼獵人 D：妖殺行》角色為參考的 Blender 著色實驗，重點是唇鼻光影；作品當時仍未完成。",
+      "evidence_refs": [
+        "p002",
+        "p003"
+      ],
+      "analysis_level": "BRIEF",
+      "content_kind": "historical",
+      "full_analysis": [
+        {
+          "label": "以動畫角色建立風格目標",
+          "text": "Jörm 的 Blender 材質以《吸血鬼獵人 D》動畫電影，尤其《妖殺行》的 Leila Marcus 為視覺參考；文章展示的是角色著色進行中的成果。",
+          "evidence_refs": [
+            "p002"
+          ],
+          "angle": "workflow_or_technical_change"
+        },
+        {
+          "label": "唇鼻光影作為觀察重點",
+          "text": "報導特別指出嘴唇與鼻子周圍的陰影、高光及互動效果，呈現傳統賽璐璐動畫的外觀。這份案例提供的是局部臉部風格參考，未拆解節點實作。",
+          "evidence_refs": [
+            "p003"
+          ],
+          "angle": "production_impact"
+        },
+        {
+          "label": "未完成角色的使用邊界",
+          "text": "來源明確說明身體其餘部分尚未完成，耳朵也還沒定案。因此它適合作為開發中作品的觀察，不能當成已完成的角色套件或可直接套用的材質教學。",
+          "evidence_refs": [
+            "p002"
+          ],
+          "angle": "test_risk_or_limit"
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p002",
+          "p003"
+        ]
+      }
+    },
+    "tripo3d-reference-image-to-3d-print-figurine-h3-5-23269acdc2516922": {
+      "source_url": "https://www.tripo3d.ai/zh/tutorials/reference-image-to-3d-print-figurine-h3-5?returnTo=%2Fzh%2Ftutorials%23tutorial-library",
+      "source_published_at": "2026-11-25",
+      "source_evidence_sha256": "aaaa6ad43ff2a00f3bd35555dcaa4c349d2703833bd4fe61f3a405e0631d596b",
+      "reviewed_on": "2026-11-26",
+      "title": "Tripo H3.5 手辦列印教學：先清理參考圖，再分件檢查薄壁",
+      "summary": "Tripo 以天使手辦示範 H3.5 的圖片轉模型流程：移除懸空元素、生成高細節網格、分件封口，再依實際尺寸檢查可列印性並交給切片軟體。",
+      "evidence_refs": [
+        "p017",
+        "p019",
+        "p021",
+        "p023",
+        "p032",
+        "p033",
+        "p034",
+        "p040",
+        "p036",
+        "p038",
+        "p039"
+      ],
+      "analysis_level": "FULL",
+      "content_kind": "practice",
+      "full_analysis": [
+        {
+          "label": "參考圖先排除懸空零件",
+          "text": "範例先從天使圖片移除懸空的鳥與光環，避免模型把不適合直接放上列印平台的部分一併重建；生成時可調整網格品質與面數，但 H3.5 僅提供三角面拓樸。",
+          "evidence_refs": [
+            "p017",
+            "p019",
+            "p021",
+            "p023"
+          ],
+          "angle": "workflow_or_technical_change"
+        },
+        {
+          "label": "分件後封口再輸出",
+          "text": "教學將模型拆成四件，並以 Fill Parts 的 Quick Cap 或 AI Completion 封閉分割面；完成尺寸檢查後可輸出 STL、3MF，或送往切片軟體，保留設定尺寸。",
+          "evidence_refs": [
+            "p032",
+            "p033",
+            "p034",
+            "p040"
+          ],
+          "angle": "production_impact"
+        },
+        {
+          "label": "自動修復不會補厚薄壁",
+          "text": "來源指出 Auto Fix 修復孔洞及非流形邊，但不加厚薄壁。範例在一百五十毫米高度仍有薄壁問題，放大到二百毫米才通過工具檢查，這不等於所有模型都適用同一尺寸。",
+          "evidence_refs": [
+            "p036",
+            "p038",
+            "p039"
+          ],
+          "angle": "test_risk_or_limit"
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p017",
+          "p019",
+          "p021",
+          "p023",
+          "p032",
+          "p033",
+          "p034",
+          "p040",
+          "p036",
+          "p038",
+          "p039"
+        ]
+      }
+    },
+    "tripo3d-3d-print-thanksgiving-turkey-card-holder-61d35f0fe11dd7b1": {
+      "source_url": "https://www.tripo3d.ai/zh/tutorials/3d-print-thanksgiving-turkey-card-holder?returnTo=%2Fzh%2Ftutorials%23tutorial-library",
+      "source_published_at": "2026-11-09",
+      "source_evidence_sha256": "fdfc17ccfbcd5a93974ac3906daac8985c5338a0a12e29b0e0527ba4a3709d77",
+      "reviewed_on": "2026-11-26",
+      "title": "火雞卡片夾實作：從 Tripo 分件模型到列印、打磨與組裝",
+      "summary": "這份 Tripo 教學以木雕風格火雞為例，使用 H3.1 生成模型，再整理成五個部件、匯入 Bambu Studio 切片，最後處理支撐痕與上色並黏上卡片夾。",
+      "evidence_refs": [
+        "p008",
+        "p009",
+        "p011",
+        "p012",
+        "p013",
+        "p014",
+        "p015",
+        "p018",
+        "p019",
+        "p020",
+        "p028",
+        "p029",
+        "p040",
+        "p022",
+        "p030",
+        "p031"
+      ],
+      "analysis_level": "FULL",
+      "content_kind": "practice",
+      "full_analysis": [
+        {
+          "label": "生成後重新整理分件",
+          "text": "作者以多視圖參考配合 H3.1、分件生成與 Ultra Mesh Quality 建模，再於 Segment 合併過多的零件，整理成五件以便打磨及上色，並透過 Fill Parts 補齊接合處孔洞。",
+          "evidence_refs": [
+            "p008",
+            "p009",
+            "p011",
+            "p012",
+            "p013",
+            "p014"
+          ],
+          "angle": "workflow_or_technical_change"
+        },
+        {
+          "label": "統一尺寸再安排列印",
+          "text": "教學輸出 3MF，在 Bambu Studio 先當作多部件物件載入、統一縮放為十公分高，再拆成獨立物件排列。列印後處理支撐痕與層紋，組裝時把小夾子黏在尾羽上。",
+          "evidence_refs": [
+            "p015",
+            "p018",
+            "p019",
+            "p020",
+            "p028",
+            "p029",
+            "p040"
+          ],
+          "angle": "production_impact"
+        },
+        {
+          "label": "範例參數不代表免調整",
+          "text": "來源明示列印設定僅供參考，不同印表機、噴嘴及耗材需各自調整；實作也出現翅膀錯層與影響頸部貼合的支撐痕，顯示生成模型之後仍有後處理工作。",
+          "evidence_refs": [
+            "p022",
+            "p030",
+            "p031"
+          ],
+          "angle": "test_risk_or_limit"
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p008",
+          "p009",
+          "p011",
+          "p012",
+          "p013",
+          "p014",
+          "p015",
+          "p018",
+          "p019",
+          "p020",
+          "p028",
+          "p029",
+          "p040",
+          "p022",
+          "p030",
+          "p031"
+        ]
+      }
+    },
+    "tripo3d-agentic-canvas-game-scene-4afd15ee534739da": {
+      "source_url": "https://www.tripo3d.ai/zh/tutorials/agentic-canvas-game-scene",
+      "source_published_at": "2026-10-29",
+      "source_evidence_sha256": "23c3d13107a9d8c2ef352669789018a341ef01db5fb3578f4f2cd1c903c07c6f",
+      "reviewed_on": "2026-11-26",
+      "title": "Tripo 節點畫布場景教學：分開生成建築與道具，再匯入 UE5",
+      "summary": "官方以賽博龐克場景示範 Agentic Canvas：建築使用 H3.1、小型道具使用 P2.0，經 AI 3D Lab 組裝與調光後輸出專案及 UE5 匯入腳本。",
+      "evidence_refs": [
+        "p008",
+        "p014",
+        "p017",
+        "p020",
+        "p015",
+        "p022"
+      ],
+      "analysis_level": "FULL",
+      "content_kind": "practice",
+      "full_analysis": [
+        {
+          "label": "按資產需求選擇生成模型",
+          "text": "教學把主要建築與標誌牌、垃圾桶等道具分開：主場景使用 H3.1 保留幾何細節，小物件使用 P2.0 的 Smart Mesh 控制面數，生成步驟以相連節點保留在畫布。",
+          "evidence_refs": [
+            "p008",
+            "p014"
+          ],
+          "angle": "workflow_or_technical_change"
+        },
+        {
+          "label": "組裝結果交回引擎編修",
+          "text": "AI 3D Lab 依參考圖安排模型、布局與燈光，輸出專案檔和 UE5 匯入腳本；在教學案例中，腳本會匯入模型及燈光，使用者仍能進入 UE5 繼續調整或渲染。",
+          "evidence_refs": [
+            "p017",
+            "p020"
+          ],
+          "angle": "production_impact"
+        },
+        {
+          "label": "自動執行仍需要場景檢查",
+          "text": "Control 模式會在關鍵步驟暫停，Auto 的確認較少；來源要求輸出前檢查建築位置、道具比例與燈光。約二十分鐘是這個示範的描述，不能視為任意場景的交付保證。",
+          "evidence_refs": [
+            "p015",
+            "p017",
+            "p022"
+          ],
+          "angle": "test_risk_or_limit"
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p008",
+          "p014",
+          "p017",
+          "p020",
+          "p015",
+          "p022"
+        ]
+      }
+    },
+    "tripo3d-agentic-canvas-sketch-to-3d-print-798001bfcc96bf97": {
+      "source_url": "https://www.tripo3d.ai/zh/tutorials/agentic-canvas-sketch-to-3d-print",
+      "source_published_at": "2026-10-29",
+      "source_evidence_sha256": "b94a27733d6776bd828c4ec6862ef395b84e2aa360b2255595bd2185422d3f55",
+      "reviewed_on": "2026-11-26",
+      "title": "草圖變列印模型：Tripo 畫布串接重拓樸與網格檢查",
+      "summary": "Tripo 以泰迪熊草圖示範列印工作流，在 Control 模式逐步確認概念圖與模型，再將兩百萬面模型重建為十五萬面，交由 AI 3D Lab 檢查並輸出。",
+      "evidence_refs": [
+        "p020",
+        "p021",
+        "p022",
+        "p026",
+        "p027",
+        "p028",
+        "p036",
+        "p037",
+        "p039",
+        "p044",
+        "p056",
+        "p049",
+        "p050",
+        "p055"
+      ],
+      "analysis_level": "FULL",
+      "content_kind": "practice",
+      "full_analysis": [
+        {
+          "label": "列印用途決定流程設定",
+          "text": "教學要求提示詞明確說明用於三維列印，讓規劃目標朝向實體網格；範例使用 Control 在關鍵步驟停下，並選擇直接精修草圖後建模，沒有額外生成多視角參考。",
+          "evidence_refs": [
+            "p020",
+            "p021",
+            "p022",
+            "p026",
+            "p027",
+            "p028"
+          ],
+          "angle": "workflow_or_technical_change"
+        },
+        {
+          "label": "降低面數並保留可重用流程",
+          "text": "完成模型約有兩百萬面，範例接上 Retopology，設定十五萬面並關閉 Smart Low Poly 與 Smart UV。輸出後仍可保存整張流程為範本，供下個任務調整與重用。",
+          "evidence_refs": [
+            "p036",
+            "p037",
+            "p039",
+            "p044",
+            "p056"
+          ],
+          "angle": "production_impact"
+        },
+        {
+          "label": "檢查結果限於示範模型",
+          "text": "AI 3D Lab 的請求列出水密性、壁厚、孔洞與非流形邊等檢查。官方表示這個模型通過 Blender 列印檢查、錯誤數為零並完成切片；這是個案結果，不是所有生成物的保證。",
+          "evidence_refs": [
+            "p049",
+            "p050",
+            "p055"
+          ],
+          "angle": "test_risk_or_limit"
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p020",
+          "p021",
+          "p022",
+          "p026",
+          "p027",
+          "p028",
+          "p036",
+          "p037",
+          "p039",
+          "p044",
+          "p056",
+          "p049",
+          "p050",
+          "p055"
+        ]
+      }
+    },
+    "tripo3d-agentic-canvas-warm-interior-scene-8db3e80dfbc90e27": {
+      "source_url": "https://www.tripo3d.ai/zh/tutorials/agentic-canvas-warm-interior-scene",
+      "source_published_at": "2026-11-02",
+      "source_evidence_sha256": "b21738906d4ac5484db769000f2a1815378dc1c7114ecd307679edb951770c0c",
+      "reviewed_on": "2026-11-26",
+      "title": "室內參考圖轉 Blender 場景：拆出家具、分支修整與分集合交付",
+      "summary": "Tripo 的室內場景案例先提取八件家具，以 H3.1 生成資產，再於 AI 3D Lab 組裝及布光；輸出的 Blender 專案把家具、建築、燈光與相機分開管理。",
+      "evidence_refs": [
+        "p010",
+        "p012",
+        "p013",
+        "p014",
+        "p021",
+        "p025",
+        "p016",
+        "p017",
+        "p020"
+      ],
+      "analysis_level": "FULL",
+      "content_kind": "practice",
+      "full_analysis": [
+        {
+          "label": "家具資產與房間結構分開",
+          "text": "工作流把 Upload 接到 Element Extraction，從室內圖提取家具參考，再用 H3.1 生成模型；首批八件資產包含沙發、茶几、座椅與燈具，規則牆面和地板可在組裝時建立。",
+          "evidence_refs": [
+            "p010",
+            "p012",
+            "p013",
+            "p014"
+          ],
+          "angle": "workflow_or_technical_change"
+        },
+        {
+          "label": "只重做需要調整的分支",
+          "text": "若椅子不理想，可回到該分支修改並重跑受影響的下游步驟，保留已合格資產。匯出的 Blender 專案將家具、建築結構、光源及相機分集合，方便替換模型與檢查場景。",
+          "evidence_refs": [
+            "p021",
+            "p025"
+          ],
+          "angle": "production_impact"
+        },
+        {
+          "label": "多視圖與減面仍要核對",
+          "text": "教學提醒不同視角可能出現桌腿數量或厚度不一致，應先修參考圖；重拓樸又會改變網格及 UV，因此後接新貼圖生成，並檢查植物細枝是否因減面消失。",
+          "evidence_refs": [
+            "p016",
+            "p017",
+            "p020"
+          ],
+          "angle": "test_risk_or_limit"
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p010",
+          "p012",
+          "p013",
+          "p014",
+          "p021",
+          "p025",
+          "p016",
+          "p017",
+          "p020"
+        ]
+      }
+    },
+    "tripo3d-lunar-mech-shooter-agentic-canvas-ee9512b27a59b672": {
+      "source_url": "https://www.tripo3d.ai/zh/tutorials/lunar-mech-shooter-agentic-canvas",
+      "source_published_at": "2026-11-11",
+      "source_evidence_sha256": "615f8576a3730e2c30c79b48fdd99930a6e2cf3809f16135d149f640cb30c104",
+      "reviewed_on": "2026-11-26",
+      "title": "月球機甲原型教學：統一 UE5 骨架、拆分武器與選擇性破壞",
+      "summary": "Tripo 的月球機甲案例把玩家、敵人及前哨站分成獨立資產，角色採 UE5 Mannequin 骨架，再於 Unreal 建立操控、戰鬥與局部建築破壞。",
+      "evidence_refs": [
+        "p016",
+        "p017",
+        "p019",
+        "p021",
+        "p024",
+        "p035",
+        "p051",
+        "p043",
+        "p044",
+        "p045",
+        "p046"
+      ],
+      "analysis_level": "FULL",
+      "content_kind": "practice",
+      "full_analysis": [
+        {
+          "label": "角色與裝備先分離",
+          "text": "教學要求機甲提取時不含步槍，避免武器與手部一起蒙皮；角色經 T-pose、多視圖與 P2.0 生成後，使用 Humanoid 和 UE5 Mannequin 預設綁定，保留一致的骨骼命名。",
+          "evidence_refs": [
+            "p016",
+            "p017",
+            "p019",
+            "p021"
+          ],
+          "angle": "workflow_or_technical_change"
+        },
+        {
+          "label": "共用骨架支援原型替換",
+          "text": "來源說明相同骨架可讓新角色沿用藍圖、骨骼掛接與動畫邏輯；機甲、武器和建築各自管理，也能只修正有問題的角色分支，重新執行該分支的綁定與動畫。",
+          "evidence_refs": [
+            "p024",
+            "p035",
+            "p051"
+          ],
+          "angle": "production_impact"
+        },
+        {
+          "label": "重型建築不直接加入破碎",
+          "text": "案例只讓部分輕量、可接近建築參與 Chaos 破壞，約一百九十萬三角面的通信塔保持靜態。碎片數、傷害值與模擬開銷都屬專案設定，來源要求在自己的關卡中重新測試。",
+          "evidence_refs": [
+            "p043",
+            "p044",
+            "p045",
+            "p046"
+          ],
+          "angle": "test_risk_or_limit"
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p016",
+          "p017",
+          "p019",
+          "p021",
+          "p024",
+          "p035",
+          "p051",
+          "p043",
+          "p044",
+          "p045",
+          "p046"
+        ]
+      }
+    },
+    "tripo3d-quick-agentic-canvas-sketch-3d-assets-8c734bb5c96bd9ff": {
+      "source_url": "https://www.tripo3d.ai/zh/tutorials/quick-agentic-canvas-sketch-3d-assets?returnTo=%2Fzh%2Ftutorials%23tutorial-library",
+      "source_published_at": "2026-11-10",
+      "source_evidence_sha256": "66ca037aff75b95347ac44fc1d58686a02fdb8661cd129f1fad271b114773775",
+      "reviewed_on": "2026-11-26",
+      "title": "草圖轉資產入門：克隆 Tripo 七節點範本並保留上游結果",
+      "summary": "Tripo 以耳機草圖示範 Draft to Assets 範本，串接草圖清理、網格、UV、貼圖及 PBR；使用者克隆後替換圖片，預覽模型，再選擇輸出格式與貼圖解析度。",
+      "evidence_refs": [
+        "p008",
+        "p009",
+        "p019",
+        "p021",
+        "p010",
+        "p012",
+        "p018"
+      ],
+      "analysis_level": "BRIEF",
+      "content_kind": "practice",
+      "full_analysis": [
+        {
+          "label": "七個節點串接生成步驟",
+          "text": "Draft to Assets 範本包含 Upload、兩道草圖清理，以及 Smart Mesh、Smart UV、Texture Generation 和 PBR；教學以耳機草圖展示這條由左至右的生成流程。",
+          "evidence_refs": [
+            "p008",
+            "p009"
+          ],
+          "angle": "workflow_or_technical_change"
+        },
+        {
+          "label": "局部重跑保留已完成工作",
+          "text": "來源說明出錯時可找到對應節點，修改後重跑，前面完成的步驟會保留。最後可選擇格式與貼圖解析度輸出，也提供 Blender、Mixamo 和 3ds Max 預設。",
+          "evidence_refs": [
+            "p019",
+            "p021"
+          ],
+          "angle": "production_impact"
+        },
+        {
+          "label": "先克隆才有編輯權限",
+          "text": "範本預覽只能查看，必須 Clone 成可編輯副本才能替換輸入；生成後的查看器可檢視拓樸、面數與頂點數，不能把開啟範本直接視為已完成模型檢查。",
+          "evidence_refs": [
+            "p010",
+            "p012",
+            "p018"
+          ],
+          "angle": "test_risk_or_limit"
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p008",
+          "p009",
+          "p019",
+          "p021",
+          "p010",
+          "p012",
+          "p018"
+        ]
+      }
+    },
+    "tripo3d-roblox-mcp-f70db31bb73d3320": {
+      "source_url": "https://www.tripo3d.ai/zh/tutorials/roblox-mcp?returnTo=%2Fzh%2Ftutorials%23tutorial-library",
+      "source_published_at": "2026-11-17",
+      "source_evidence_sha256": "f161e9834d6265c8185191ad4b4dce2d47e950622476b131c25e73f3714acc2b",
+      "reviewed_on": "2026-11-26",
+      "title": "Roblox 原型製作案例：MCP 編修場景、Tripo 道具與行動版待測項目",
+      "summary": "Tripo 的 Your Turn 案例介紹 AI 客戶端透過 Roblox Studio MCP 建構與測試遊戲，再以生成道具替換占位模型；文章也列出手機效能與持久化存檔尚待確認。",
+      "evidence_refs": [
+        "p003",
+        "p010",
+        "p040",
+        "p051",
+        "p042",
+        "p043",
+        "p064",
+        "p080"
+      ],
+      "analysis_level": "FULL",
+      "content_kind": "practice",
+      "full_analysis": [
+        {
+          "label": "先驗證規則再替換模型",
+          "text": "工作流先用基礎部件搭建場景與道具占位物，為模型、攝影機及物品位置命名附著點，再導入 Tripo 生成的 GLB。這讓美術替換能沿用已建立的遊戲邏輯。",
+          "evidence_refs": [
+            "p003",
+            "p010",
+            "p040",
+            "p051"
+          ],
+          "angle": "workflow_or_technical_change"
+        },
+        {
+          "label": "測試分開處理伺服器與介面",
+          "text": "案例把比賽狀態、私密序列、AI 決策及客戶端介面分開，私密序列只留在伺服器；文中記錄四百場伺服器模擬後，再進入 Play 模式以畫面和控制台檢查勝敗流程。",
+          "evidence_refs": [
+            "p042",
+            "p043"
+          ],
+          "angle": "production_impact"
+        },
+        {
+          "label": "原型完成仍有裝置負載問題",
+          "text": "房間道具合計約五十萬三角形，並使用多盞投射陰影的燈光，來源承認負載較高。手機橫向介面雖已調整，Studio 預覽仍只保存當次進度，持久化存檔與手機效能尚待檢查。",
+          "evidence_refs": [
+            "p064",
+            "p080"
+          ],
+          "angle": "test_risk_or_limit"
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p003",
+          "p010",
+          "p040",
+          "p051",
+          "p042",
+          "p043",
+          "p064",
+          "p080"
+        ]
+      }
+    },
+    "tripo3d-the-red-scarf-claude-code-tripo-godot-60c31da153c9bc91": {
+      "source_url": "https://www.tripo3d.ai/zh/tutorials/the-red-scarf-claude-code-tripo-godot?returnTo=%2Fzh%2Ftutorials%23tutorial-library",
+      "source_published_at": "2026-11-17",
+      "source_evidence_sha256": "a19eb0bb8366c33fbf4ec510affae36bdcad9f1417cd046bcf706422beb253a9",
+      "reviewed_on": "2026-11-26",
+      "title": "《The Red Scarf》Godot 案例：共用布局資料、生成資產與完整關卡測試",
+      "summary": "這份 Boss 戰製作紀錄結合 Claude Code、Tripo 與 Godot，讓概念圖、灰盒和正式模型共用小鎮布局資料，並以資產檢查及從選單到結局的測試修正問題。",
+      "evidence_refs": [
+        "p023",
+        "p024",
+        "p047",
+        "p048",
+        "p029",
+        "p033",
+        "p034",
+        "p035",
+        "p036",
+        "p037",
+        "p043",
+        "p065",
+        "p066"
+      ],
+      "analysis_level": "FULL",
+      "content_kind": "practice",
+      "full_analysis": [
+        {
+          "label": "一份布局同時服務灰盒與美術",
+          "text": "案例用 Node 腳本產生小鎮平面 SVG，同時輸出供 Godot 使用的 JSON；工具再從相同資料建立灰盒，並將方塊替換成相同位置的 Tripo 模型，避免兩版布局分別維護。",
+          "evidence_refs": [
+            "p023",
+            "p024",
+            "p047",
+            "p048"
+          ],
+          "angle": "workflow_or_technical_change"
+        },
+        {
+          "label": "以代表資產決定生成方案",
+          "text": "作者先用同一張超市圖片比較模型系列與面數限制，再讓建築、車輛及道具採 P1，有機形體採 H v3.1，角色採 P2。來源明確將此定位為該遊戲的選擇，而非通用排名。",
+          "evidence_refs": [
+            "p029",
+            "p033",
+            "p034",
+            "p035",
+            "p036",
+            "p037"
+          ],
+          "angle": "production_impact"
+        },
+        {
+          "label": "自動化流程仍暴露實際缺陷",
+          "text": "角色重定向超過五段動畫曾失敗，因此拆成較小任務；完整關卡測試又找到朝向、特效及檢查點重置問題。案例顯示模型生成與程式完成後，仍需在遊戲內驗證整段流程。",
+          "evidence_refs": [
+            "p043",
+            "p065",
+            "p066"
+          ],
+          "angle": "test_risk_or_limit"
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p023",
+          "p024",
+          "p047",
+          "p048",
+          "p029",
+          "p033",
+          "p034",
+          "p035",
+          "p036",
+          "p037",
+          "p043",
+          "p065",
+          "p066"
+        ]
+      }
+    },
+    "tripo3d-3d-printing-bambu-studio-edf7b87e5b91a0ff": {
+      "source_url": "https://www.tripo3d.ai/zh/tutorials/3d-printing-bambu-studio",
+      "source_published_at": "2026-09-28",
+      "source_evidence_sha256": "41295cf15a95959d86e8c7ee89901aebdbf4a7b76b0dfbf73893b602e07e41fc",
+      "reviewed_on": "2026-11-26",
+      "title": "Tripo 模型轉模組容器：Bambu Studio 分件、配色與接合間隙",
+      "summary": "這份 2026 年 9 月教學把 AI 生成模型輸出為 3MF，再於 Bambu Studio 修復、切割及建立接合結構，將貼圖配色轉為實際列印部件與耗材設定。",
+      "evidence_refs": [
+        "p005",
+        "p006",
+        "p007",
+        "p009",
+        "p010",
+        "p008",
+        "p012"
+      ],
+      "analysis_level": "BRIEF",
+      "content_kind": "practice",
+      "full_analysis": [
+        {
+          "label": "模型生成與分件加工分開",
+          "text": "教學先以 HD Model、Ultra Mesh Quality 及 AI Complete 產生網格，目標設定兩百萬面，輸出 3MF 後再於 Bambu Studio 修復非流形邊、調整尺寸及切割。",
+          "evidence_refs": [
+            "p005",
+            "p006",
+            "p007"
+          ],
+          "angle": "workflow_or_technical_change"
+        },
+        {
+          "label": "貼圖顏色需轉成耗材配置",
+          "text": "來源區分 AI 模型的 UV 貼圖與 FDM 耗材顏色，要求為切割部件指定主要耗材，再用 Color Painting 處理局部色塊；不是把彩色貼圖直接當作列印材料。",
+          "evidence_refs": [
+            "p009",
+            "p010"
+          ],
+          "angle": "production_impact"
+        },
+        {
+          "label": "接合公差需依成品調整",
+          "text": "範例為螺紋及定位銷分別設定間隙，並指出擠出過量可能讓螺紋卡住；其修正方式是增加螺紋間隙。這些數值屬該容器的示範設定，不代表不同尺寸都能直接沿用。",
+          "evidence_refs": [
+            "p007",
+            "p008",
+            "p012"
+          ],
+          "angle": "test_risk_or_limit"
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p005",
+          "p006",
+          "p007",
+          "p009",
+          "p010",
+          "p008",
+          "p012"
+        ]
+      }
+    },
+    "tripo3d-from-sketch-to-game-ready-character-346a430852edc91c": {
+      "source_url": "https://www.tripo3d.ai/zh/tutorials/from-sketch-to-game-ready-character",
+      "source_published_at": "2026-09-21",
+      "source_evidence_sha256": "f37b509c9d95652eafff49921f04cc8176803b0c30b1ecb4f87f565262d96257",
+      "reviewed_on": "2026-11-26",
+      "title": "草圖到 UE5 角色：Tripo 拓樸檢查、局部貼圖修整與面部材質修正",
+      "summary": "這份 2026 年 9 月教學把角色草圖整理成 T 姿勢參考，再以 P2.0 生成網格、製作 PBR 貼圖與人形綁定；引擎內檢查則找出面部不當金屬反光。",
+      "evidence_refs": [
+        "p009",
+        "p012",
+        "p014",
+        "p015",
+        "p016",
+        "p017",
+        "p018",
+        "p022",
+        "p024",
+        "p025",
+        "p026",
+        "p027",
+        "p028",
+        "p029",
+        "p030"
+      ],
+      "analysis_level": "FULL",
+      "content_kind": "practice",
+      "full_analysis": [
+        {
+          "label": "生成後檢查布線與服裝結構",
+          "text": "教學以 T 姿勢保留角色設計，並採 Smart Mesh、四邊形拓樸及 P2.0 生成；線框檢查聚焦整體布線、服裝形體、臉部結構與網格連續性，再進入材質和綁定。",
+          "evidence_refs": [
+            "p009",
+            "p012",
+            "p014",
+            "p015",
+            "p016",
+            "p017",
+            "p018"
+          ],
+          "angle": "workflow_or_technical_change"
+        },
+        {
+          "label": "局部編修後預覽角色動作",
+          "text": "貼圖工具可用文字或筆刷修正特定區域，不必重做整套貼圖；人形自動綁定後，先利用預設動畫觀察動態，再透過一般匯出或 DCC Bridge 送入 Unreal。",
+          "evidence_refs": [
+            "p022",
+            "p024",
+            "p025",
+            "p026",
+            "p027"
+          ],
+          "angle": "production_impact"
+        },
+        {
+          "label": "引擎光照揭露材質錯誤",
+          "text": "案例角色進入引擎後，臉部出現不應有的金屬反光；作者透過停用金屬度貼圖資訊修正。這是該素材的問題處理，並非所有角色都應移除金屬度資料。",
+          "evidence_refs": [
+            "p028",
+            "p029",
+            "p030"
+          ],
+          "angle": "test_risk_or_limit"
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p009",
+          "p012",
+          "p014",
+          "p015",
+          "p016",
+          "p017",
+          "p018",
+          "p022",
+          "p024",
+          "p025",
+          "p026",
+          "p027",
+          "p028",
+          "p029",
+          "p030"
+        ]
+      }
+    },
+    "tripo3d-workflow-3d-printing-photo-to-figure-80f2a4fc6af5097f": {
+      "source_url": "https://www.tripo3d.ai/zh/tutorials/workflow-3d-printing-photo-to-figure",
+      "source_published_at": "2026-09-18",
+      "source_evidence_sha256": "d15c4f1a3dca758c9c9143db7bd55de6cb701d36db79f173bcd38fe7d2dc6543",
+      "reviewed_on": "2026-11-26",
+      "title": "照片轉列印人偶：先確認背面參考，再檢查水密網格與細部厚度",
+      "summary": "這份 2026 年 9 月教學串起照片選擇、Tripo 模型生成、網格清理、切片與支撐；特別提醒單張照片未呈現的背面是推斷結果，生成後仍需檢查可列印性。",
+      "evidence_refs": [
+        "p007",
+        "p008",
+        "p009",
+        "p014",
+        "p016",
+        "p010",
+        "p019",
+        "p020",
+        "p021",
+        "p022",
+        "p023",
+        "p017",
+        "p018",
+        "p025"
+      ],
+      "analysis_level": "FULL",
+      "content_kind": "practice",
+      "full_analysis": [
+        {
+          "label": "參考圖決定可觀察的形體",
+          "text": "教學建議使用輪廓清楚、光線柔和且背景簡單的參考圖，也可提供正面、左右與背面視圖；單圖補出的未見區域屬推斷，若背面造型重要，應另拍背面作為輸入。",
+          "evidence_refs": [
+            "p007",
+            "p008",
+            "p009",
+            "p014",
+            "p016"
+          ],
+          "angle": "workflow_or_technical_change"
+        },
+        {
+          "label": "生成後接續網格與切片處理",
+          "text": "作者以 HD Model 作為列印路徑，並介紹以雕刻模式平滑表面、Mesh Bisect 切平底部，再依切片器支援匯出 STL 或 OBJ；這些步驟把生成模型接到實體輸出的準備工作。",
+          "evidence_refs": [
+            "p010",
+            "p019",
+            "p020",
+            "p021",
+            "p022",
+            "p023"
+          ],
+          "angle": "production_impact"
+        },
+        {
+          "label": "封閉表面不等於細節足夠堅固",
+          "text": "來源要求檢查孔洞與非流形邊，也提醒手指、觸角等突出部位可能過薄而折斷；進入切片階段仍需檢查自動支撐，不能以畫面看似完整代替壁厚與支撐檢查。",
+          "evidence_refs": [
+            "p017",
+            "p018",
+            "p025"
+          ],
+          "angle": "test_risk_or_limit"
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p007",
+          "p008",
+          "p009",
+          "p014",
+          "p016",
+          "p010",
+          "p019",
+          "p020",
+          "p021",
+          "p022",
+          "p023",
+          "p017",
+          "p018",
+          "p025"
+        ]
+      }
+    },
+    "tripo3d-workflow-demo-tripo-quick-start-guide-879f0bbb5448e083": {
+      "source_url": "https://www.tripo3d.ai/zh/tutorials/workflow-demo-tripo-quick-start-guide",
+      "source_published_at": "2026-09-28",
+      "source_evidence_sha256": "d816ade1c1653f58493b3e96cd71cbb8fc0d3120f196e1bc86c76efb4c855275",
+      "reviewed_on": "2026-11-26",
+      "title": "Tripo 工作區導覽：檢查網格、拆分部件，再接到 DCC",
+      "summary": "這份 2026 年 9 月指南依操作順序介紹 Tripo 工作區：從圖片或文字生成，經貼圖修整、重拓樸、部件拆分與綁定，再使用專用外掛連接 DCC。",
+      "evidence_refs": [
+        "p005",
+        "p011",
+        "p012",
+        "p013",
+        "p015",
+        "p017",
+        "p018",
+        "p019",
+        "p020",
+        "p014"
+      ],
+      "analysis_level": "BRIEF",
+      "content_kind": "practice",
+      "full_analysis": [
+        {
+          "label": "從參考與預覽開始",
+          "text": "來源介紹文字、單圖與最多四個角度的多視圖輸入；網格生成後，先看法線、顏色與 HDR 光照反應，再處理貼圖瑕疵。",
+          "evidence_refs": [
+            "p005",
+            "p011",
+            "p012",
+            "p013",
+            "p015"
+          ],
+          "angle": "workflow_or_technical_change"
+        },
+        {
+          "label": "部件拆分銜接材質與動畫",
+          "text": "拆分工具可分離翅膀、四肢或材質區域；綁定時選擇人形或四足類型，預覽內建動作後，再以 DCC Bridge 專用外掛傳送資產。",
+          "evidence_refs": [
+            "p017",
+            "p018",
+            "p019",
+            "p020"
+          ],
+          "angle": "production_impact"
+        },
+        {
+          "label": "保留回退與重新合併的步驟",
+          "text": "指南提醒部件拆得過多時可重新合併，後續修改出問題則用歷史記錄回退；這些是工作區的修整手段，不能取代對實際生成結果的檢查。",
+          "evidence_refs": [
+            "p011",
+            "p014",
+            "p018"
+          ],
+          "angle": "test_risk_or_limit"
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p005",
+          "p011",
+          "p012",
+          "p013",
+          "p015",
+          "p017",
+          "p018",
+          "p019",
+          "p020",
+          "p014"
+        ]
+      }
+    },
+    "3dnchu-hardcuts-6f14b54dc82115b8": {
+      "source_url": "https://3dnchu.com/archives/hardcuts",
+      "source_published_at": "2026-11-25",
+      "source_evidence_sha256": "aee3fa37ac85eac93e2241b034cf5971c3f2c5b43b37ec50b547fb60ccecfb9e",
+      "reviewed_on": "2026-11-26",
+      "title": "HardCuts 與 Render：從體素布林建模延伸到 UV、烘焙與 PBR 繪製",
+      "summary": "3D人於 2026 年 11 月 25 日介紹 JayAnAm 的 HardCuts 系列：建模工具以體素與 SDF 處理硬表面，Render 則提供分層 PBR 繪製與渲染；兩者仍處開發版本。",
+      "evidence_refs": [
+        "p001",
+        "p002",
+        "p003",
+        "p004",
+        "p006",
+        "p007",
+        "p008",
+        "p009",
+        "p010",
+        "p011",
+        "p012"
+      ],
+      "analysis_level": "FULL",
+      "content_kind": "news",
+      "full_analysis": [
+        {
+          "label": "布林切割搭配表面雕刻",
+          "text": "HardCuts 以體素與 SDF 建立形體，可用基本幾何、二維形狀及曲線作布林切刀，再以筆刷補細節；來源另介紹尺寸草圖擠出、掃掠與旋轉成形等操作。",
+          "evidence_refs": [
+            "p001",
+            "p002",
+            "p003",
+            "p004"
+          ],
+          "angle": "workflow_or_technical_change"
+        },
+        {
+          "label": "低模整理接到貼圖製作",
+          "text": "來源列出手動與自動重拓樸、低模 UV 展開及排列，並可把高模細節烘焙為法線與 AO；免費 Blender Bridge 支援往返編修，Render 可接續網格與烘焙貼圖。",
+          "evidence_refs": [
+            "p006",
+            "p007",
+            "p008"
+          ],
+          "angle": "production_impact"
+        },
+        {
+          "label": "開發版需先驗證實際適用性",
+          "text": "報導標示 HardCuts 0.9.82 為 Beta、Render 0.5.4 為 Alpha，並提供含儲存與匯出的十四日試用；作者對精確硬表面資料的適配仍有疑問，未提供此類製程的驗證結果。",
+          "evidence_refs": [
+            "p009",
+            "p010",
+            "p011",
+            "p012"
+          ],
+          "angle": "test_risk_or_limit"
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p002",
+          "p003",
+          "p004",
+          "p006",
+          "p007",
+          "p008",
+          "p009",
+          "p010",
+          "p011",
+          "p012"
+        ]
+      }
+    }
+  }
+}
