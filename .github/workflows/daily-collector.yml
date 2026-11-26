@@ -397,7 +397,7 @@ jobs:
 
       - name: Persist bounded Collector monitoring metadata
         if: always() && steps.preflight.outputs.skip != 'true' && steps.preflight.outputs.date != ''
-        continue-on-error: true
+        continue-on-error: ${{ steps.preflight.outputs.source_trial != 'true' }}
         env:
           DATE: ${{ steps.preflight.outputs.date }}
           COLLECTOR_CONCLUSION: ${{ job.status }}

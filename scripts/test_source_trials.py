@@ -97,6 +97,9 @@ class SourceTrialTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as td:
             fixture=Path(td);(fixture/'config').mkdir()
             (fixture/'config/collection-admin.json').write_bytes((root/'config/collection-admin.json').read_bytes())
+            (fixture/'data/daily').mkdir(parents=True);(fixture/'data/publish').mkdir()
+            (fixture/'data/daily/2026-08-23.json').write_text(json.dumps({'items':[{'id':'legacy-no-source'}]}))
+            (fixture/'data/publish/2026-08-23.done.json').write_text('{}')
             one=with_yield_history(summarize(packet,'failure'),{},fixture)
             two=with_yield_history(summarize(packet,'failure'),one,fixture)
             self.assertEqual(len(two['yield_history']),1)

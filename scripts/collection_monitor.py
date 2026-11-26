@@ -85,11 +85,11 @@ in the live reserve view immediately and in this trend at the next observation.
             receipt = json.loads(p.read_text('utf-8'))
             data = json.loads(data_path.read_text('utf-8'))
             from collection_settings import all_items
-            if not any(canonicalize_url(x['source_url']) in unique for x in all_items(data)):
+            if not any(canonicalize_url(x.get('source_url','')) in unique for x in all_items(data)):
                 continue
             from daily_release_status import receipt_errors, read
             if not receipt_errors(p.name[:10],root,receipt,data,read(root/'data/publish/latest-success.json'),allow_newer_latest=True):
-                published.update(canonicalize_url(x['source_url']) for x in all_items(data))
+                published.update(canonicalize_url(x.get('source_url','')) for x in all_items(data) if x.get('source_url'))
     seeds = reserve_seeds(root, date, settings['sources'])
     def source_for(url):
         host = (urlsplit(url).hostname or '').removeprefix('www.')
