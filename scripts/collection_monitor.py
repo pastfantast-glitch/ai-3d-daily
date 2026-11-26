@@ -50,7 +50,7 @@ def summarize(packet, conclusion):
     counts = {k: supply[k] for k in ('body_readable', 'review_approved', 'awaiting_review',
               'quality_pass_unpublished', 'selected', 'approved_reserve') if type(supply.get(k)) is int}
     sources = {str(k)[:80]: {field: value[:300] if isinstance(value, str) else value for field, value in v.items()
-               if field in ('status', 'candidates_found', 'published_links_skipped', 'reason', 'article_pages_checked', 'evidence_extracted', 'awaiting_review', 'review_approved')
+               if field in ('status', 'candidates_found', 'published_links_skipped', 'reason', 'article_pages_checked', 'evidence_extracted', 'awaiting_review', 'review_approved', 'quality_pass_unpublished', 'selected', 'approved_reserve')
                and isinstance(value, (str, int, bool))} for k, v in list((packet.get('sources') or {}).items())[:100] if isinstance(v, dict)}
     return {'schema_version': 1, 'date': date, 'source_run_id': run, 'source_head_sha': head,
             'collector_conclusion': conclusion, 'observed_at': datetime.now(timezone.utc).isoformat(),

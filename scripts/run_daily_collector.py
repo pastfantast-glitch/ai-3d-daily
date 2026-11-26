@@ -1598,6 +1598,9 @@ def main() -> int:
             and (c['meta'].get('article_evidence') or {}).get('truncated') is False for c in source_candidates)
         record['awaiting_review'] = sum((c.get('scheduled_review') or {}).get('status') == 'awaiting-review' for c in source_candidates)
         record['review_approved'] = sum((c.get('scheduled_review') or {}).get('status') == 'approved' for c in source_candidates)
+        record['quality_pass_unpublished'] = sum(c['source_id'] == source_id for c in survivors)
+        record['selected'] = sum(c['source_id'] == source_id for c in selected_items + topic_selected)
+        record['approved_reserve'] = sum(c['source_id'] == source_id for c in overflow)
     evidence_audit = loss_summary(discovered, editorial_rejections)
     supply = {
         'schema_version': 1, 'date': report_date,
@@ -1624,6 +1627,7 @@ def main() -> int:
                 'status', 'candidates_found', 'published_links_skipped', 'reason',
                 'index_pages_checked', 'feed_urls_checked', 'refill_links_checked',
                 'article_pages_checked', 'evidence_extracted', 'awaiting_review', 'review_approved',
+                'quality_pass_unpublished', 'selected', 'approved_reserve',
             )} for sid, record in probe_records.items()},
             'articles': [review_record(c, error_map.get(c['candidate_id'], [])) for c in discovered],
         })

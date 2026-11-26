@@ -118,6 +118,7 @@ on:
       - 'scripts/test_content_supply.py'
       - 'scripts/test_handoff_route.py'
       - 'scripts/test_today_library.py'
+      - 'scripts/check_release_preflight.py'
       - 'scripts/check_pipeline_health_contract.py'
       - 'scripts/check_collection_contract.py'
       - 'scripts/check_stability_contract.py'
@@ -253,3 +254,5 @@ jobs:
           python scripts/check_visual_extractor_contract.py
       - name: Rebuild stable sentinels and latest reports in isolation
         run: python scripts/check_historical_regression.py --days 4
+      - name: Replay the latest real release through prepare and render in isolation
+        run: python scripts/check_release_preflight.py
