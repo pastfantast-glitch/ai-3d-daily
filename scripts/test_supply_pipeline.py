@@ -58,6 +58,8 @@ class SupplyTests(unittest.TestCase):
             self.assertEqual(c['scheduled_review']['revalidated_on'],'2026-10-16')
             self.assertEqual(c['scheduled_review']['source_run_id'],123)
             self.assertEqual(len(reserve_seeds(root,'2026-10-16',[{'id':'example','base_url':'https://example.com/'}])),1)
+            self.assertEqual(len(reserve_seeds(root,'2026-10-16',[{'id':'example','base_url':'https://www.example.com/'}])),1)
+            self.assertEqual(reserve_seeds(root,'2026-10-16',[{'id':'example','base_url':'https://evil-example.com/'}]),[])
             c['meta']['article_evidence']['blocks'][0]['text']='source changed'
             self.assertTrue(review.candidate_copy(c,'2026-10-16',root)[1])
             self.assertEqual(approved_reserve(root,'2027-10-16'),{})

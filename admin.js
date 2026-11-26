@@ -1,5 +1,5 @@
-import {mountGraph} from './admin-graph.js?v=20261125-graph1';
-import {mountOperations} from './admin-operations.js?v=20261125-graph1';
+import {mountGraph} from './admin-graph.js?v=20261126-workspace2';
+import {mountOperations} from './admin-operations.js?v=20261126-workspace2';
 import {createClient} from 'https://esm.sh/@supabase/supabase-js@2.116.0?bundle';
 import {validateSettings} from './supabase/functions/collection-admin/policy.mjs';
 const base='https://epumcdxfkcujulqrcjrw.supabase.co',key='sb_publishable_KPadXg3RKth3SGsAuXzebA_OylGgtpf';
@@ -23,7 +23,7 @@ const graphView=mountGraph({
   onValidation:()=>$('#settings-validation').scrollIntoView({block:'center',behavior:'smooth'}),
   onView:view=>document.querySelector(`[data-view="${view}"]`).click(),notify
 });
-function updateGraph(){if(settings)graphView.update({settings,activeSettings,validation,metrics,monitor,operations:operationsData,dirty:graphDirty,busy});}
+function updateGraph(){if(settings)graphView.update({settings,activeSettings,validation,metrics,monitor,operations:operationsData,dirty:graphDirty,busy,version:sha+":"+pendingSha,storageKey:"ai3d.graph.v1:"+(session?.user?.id||"owner")});}
 window.addEventListener('beforeunload',e=>{if(graphDirty){e.preventDefault();e.returnValue='';}});
 function closeEditor(){if($('#graph-inline-editor').contains($('#editor-form')))$('#editor').append($('#editor-form'));$('#editor').close();graphView.refreshInspector();}
 

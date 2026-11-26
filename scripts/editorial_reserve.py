@@ -43,7 +43,11 @@ def reserve_seeds(root, date, sources):
     for url, (data, record) in approved_reserve(root, date).items():
         if url in held:
             continue
-        source = next((s for s in sources if s.get('enabled', True) and urlparse(s.get('base_url', '')).hostname == urlparse(url).hostname), None)
+        # Publishers commonly redirect their www host. Match exact normalized
+        # hosts only; never accept arbitrary suffix/subdomain lookalikes.
+        host = (urlparse(url).hostname or '').removeprefix('www.')
+        source = next((s for s in sources if s.get('enabled', True)
+            and (urlparse(s.get('base_url', '')).hostname or '').removeprefix('www.') == host), None)
         if source:
             entries.append({'source_url': url, 'source_id': source['id'], 'title': record['title'],
                 'discovered_for': data['date'], 'source_published_at': record.get('source_published_at')})
