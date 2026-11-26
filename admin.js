@@ -9,6 +9,9 @@ let settings=null,activeSettings=null,sha='',head='',pendingSha=null,validation=
 const messages={validation_required:'設定尚未通過驗證，現行版本保持不變。',owner_required:'這個帳號沒有站主權限。',admin_not_configured:'管理服務尚未完成部署設定。',version_conflict:'設定已被其他操作更新。請重新整理後再修改；本次沒有覆蓋新設定。',origin_not_allowed:'請從正式網站開啟後臺。',unsafe_source_url:'請使用公開網站的 HTTPS 網址。',unsafe_source_address:'這個網址不是可收集的公開網路位址。'};
 function notify(text,error=false){$('#notice').textContent=text;$('#notice').classList.toggle('error',error);}
 async function api(op,body={}){
+  // Same two publisher-declared feed aliases as the Collector. The server
+  // still validates HTTPS/public DNS; this preview never approves an article.
+  if(op==='probe')body={...body,url:({'https://www.cgchannel.com/feed/':'https://feeds2.feedburner.com/cgchannel/nHpU','https://www.blendernation.com/feed/':'https://feeds.feedburner.com/Blendernation'})[body.url]||body.url};
   const current=await auth.auth.getSession();session=current.data.session;if(!session)throw new Error('請先登入站主帳號。');
   let response;try{response=await fetch(`${base}/functions/v1/collection-admin`,{method:'POST',headers:{apikey:key,Authorization:`Bearer ${session.access_token}`,'Content-Type':'application/json'},body:JSON.stringify({op,...body}),signal:AbortSignal.timeout(op==='probe'?90000:45000)});}catch{throw new Error('無法連線管理服務，請稍後重試；尚未確認儲存成功。');}
   const data=await response.json();if(!response.ok)throw new Error(messages[data.error]||data.message||`操作未完成（${data.error||response.status}）`);return data;
