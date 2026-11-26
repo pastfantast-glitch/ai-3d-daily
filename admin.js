@@ -103,8 +103,8 @@ $('#probe-source').onclick=async()=>{const b=$('#probe-source');b.disabled=true;
 for(const id of ['close-editor','cancel-editor'])$('#'+id).onclick=()=>{if(studio.canLeaveEditor())closeEditor();};
 $('#add-source').onclick=()=>openEditor('source');$('#add-topic').onclick=()=>openEditor('topic');
 $('#source-search').oninput=render;$('#source-status').onchange=render;
-$('#reload').onclick=()=>load().then(()=>notify('已載入最新設定。')).catch(e=>notify(e.message,true));
+$('#reload').onclick=()=>{if(!studio.canLeaveEditor())return;closeEditor();load().catch(e=>notify(e.message,true));};
 document.querySelectorAll('[data-view]').forEach(b=>b.onclick=()=>{if(!studio.canLeaveEditor())return;closeEditor();document.querySelectorAll('[data-view]').forEach(x=>x.removeAttribute('aria-current'));b.setAttribute('aria-current','page');$('#view-title').textContent='圖形工作區';$('#graph-view').hidden=false;if(b.dataset.view==='graph')studio.hide();else studio.open(b.dataset.view);});
 $('#login-form').onsubmit=async e=>{e.preventDefault();const f=new FormData(e.target),button=e.submitter;button.disabled=true;try{const r=await auth.auth.signInWithPassword({email:String(f.get('email')),password:String(f.get('password'))});e.target.password.value='';if(r.error)throw new Error('登入失敗，請確認帳號與密碼。');await load();notify('已登入站主後臺。');}catch(e){notify(e.message,true);}finally{button.disabled=false;}};
-$('#logout').onclick=async()=>{if(graphDirty&&!confirm('登出將捨棄未儲存的畫布變更，是否繼續？'))return;graphDirty=false;await auth.auth.signOut();location.reload();};
+$('#logout').onclick=async()=>{if(!studio.canLeaveEditor())return;if(graphDirty&&!confirm('登出將捨棄未儲存的畫布變更，是否繼續？'))return;graphDirty=false;closeEditor();await auth.auth.signOut();location.reload();};
 try{const r=await auth.auth.getSession();if(r.data.session)await load();}catch(e){notify(e.message,true);}
