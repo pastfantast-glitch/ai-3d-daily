@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   3D 動作｜2026-11-26｜AI 3D Daily
+  </title>
+  <meta content="2026-11-26 3D 動作 Production Intelligence：3D 動作 / 3D 動作製作流程，共 1 項可驗證情報。" name="description"/>
+  <link href="../../styles.css?v=20261126-r1-workspace-v17-home-card-library" rel="stylesheet"/>
+  <link href="../../shared-components.css?v=20261126-r1-workspace-v17-home-card-library" rel="stylesheet"/>
+  <link href="../../category.css?v=20261126-r1-workspace-v17-home-card-library" rel="stylesheet"/>
+ </head>
+ <body class="category-page" data-category="3d-animation" data-report-date="2026-11-26">
+  <nav aria-label="Production Intelligence 分類" class="global-category-nav">
+   <div class="page global-category-nav-inner">
+    <div class="archive-nav-controls">
+     <a class="archive-nav-home" href="../../">
+      ← 首頁
+     </a>
+     <div class="archive-nav-date">
+      <a aria-label="前一日日報" class="archive-nav-arrow" href="../../2026-11-25/3d-animation/">
+       ←
+      </a>
+      <span>
+       2026-11-26
+      </span>
+     </div>
+    </div>
+    <span aria-hidden="true" class="archive-nav-divider">
+    </span>
+    <a class="global-category-link" href="../#top">
+     TOP5
+    </a>
+    <a class="global-category-link" data-category="ai-generation" href="../ai-generation/">
+     AI 生成
+    </a>
+    <a class="global-category-link" data-category="3d-production" href="../3d-production/">
+     3D 製作
+    </a>
+    <a class="global-category-link is-active" data-category="3d-animation" href="../3d-animation/">
+     3D 動作
+    </a>
+    <a class="global-category-link" data-category="engine-art" href="../engine-art/">
+     遊戲引擎
+    </a>
+    <a class="global-category-link" data-category="emerging-case" href="../emerging-case/">
+     新技術 / Case
+    </a>
+    <a class="global-category-link" data-category="blender-dcc" href="../blender-dcc/">
+     Blender / DCC
+    </a>
+    <a class="global-category-link global-history-link" data-global-view="history" href="../../history/">
+     歷史日報
+    </a>
+    <a class="global-admin-link" href="../../admin/">
+     管理後臺
+    </a>
+   </div>
+  </nav>
+  <main class="page category-main">
+   <article class="category-card" data-intel-id="80-level-see-this-deadlock-like-stylized-animation-of-a-mermaid-in-28dd369c64066948" data-intel-role="card" id="intel-80-level-see-this-deadlock-like-stylized-animation-of-a-mermaid-in-28dd369c64066948">
+    <div class="category-meta">
+     #03 · animation
+    </div>
+    <h2>
+     Blender 人魚水箱裝動畫：漂浮頭髮與透明容器光暈的做法
+    </h2>
+    <p class="summary">
+     Max Hudetz 的風格化動畫把人魚放進充水機械裝，利用曲線驅動小魚、零重力晃動骨骼表現髮絲，另以額外渲染處理透明容器的合成遮罩。
+    </p>
+    <figure class="case-preview" data-intel-id="80-level-see-this-deadlock-like-stylized-animation-of-a-mermaid-in-28dd369c64066948" data-intel-role="visual" data-visual-id="80-level-see-this-deadlock-like-stylized-animation-of-a-mermaid-in-28dd369c64066948">
+     <a href="https://80.lv/articles/see-this-deadlock-like-stylized-animation-of-a-mermaid-in-a-water-pumping-suit" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-11-26/80-level-see-this-deadlock-like-stylized-animation-of-a-mermaid-in-28dd369c64066948.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">動畫</b> ★★★★☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-full" data-analysis-level="FULL">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body">
+      <h4>
+       小魚與髮絲分開驅動
+      </h4>
+      <p>
+       水瓶與管線中的小魚沿連到主綁定的曲線移動；頭髮則以重力設為零的晃動骨骼製作動態，再加入 Noise Texture 幾何節點，形成緩慢的髮束擺動。
+      </p>
+      <h4>
+       用合成強化裝備讀形
+      </h4>
+      <p>
+       作者使用合成器的 Rim Light 節點，讓充水的容器區域呈現透光與發亮效果。這個處理與充水機械裝的角色設定配合，讓容器內部的視覺特徵更清楚。
+      </p>
+      <h4>
+       透明材質需要額外遮罩
+      </h4>
+      <p>
+       作者發現透明管線與水瓶沒有出現在 Cryptomatte 中，因此另外渲染只顯示這些物件的通道，並以材質覆寫取得遮罩；案例並非只接上一個輪廓光節點就完成。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://80.lv/articles/see-this-deadlock-like-stylized-animation-of-a-mermaid-in-a-water-pumping-suit" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <nav aria-label="相鄰分類" class="category-bottom-nav">
+    <a href="../3d-production/">
+     ← 3D 製作
+    </a>
+    <a href="../#top">
+     TOP5
+    </a>
+    <a href="../engine-art/">
+     遊戲引擎 →
+    </a>
+   </nav>
+  </main>
+  <script defer="" src="../../archive-nav-state.js?v=20261126-r1-workspace-v17-home-card-library">
+  </script>
+ </body>
+</html>

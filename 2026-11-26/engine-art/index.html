@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   遊戲引擎｜2026-11-26｜AI 3D Daily
+  </title>
+  <meta content="2026-11-26 遊戲引擎 Production Intelligence：遊戲引擎 / 引擎端美術內容，共 1 項可驗證情報。" name="description"/>
+  <link href="../../styles.css?v=20261126-r1-workspace-v17-home-card-library" rel="stylesheet"/>
+  <link href="../../shared-components.css?v=20261126-r1-workspace-v17-home-card-library" rel="stylesheet"/>
+  <link href="../../category.css?v=20261126-r1-workspace-v17-home-card-library" rel="stylesheet"/>
+ </head>
+ <body class="category-page" data-category="engine-art" data-report-date="2026-11-26">
+  <nav aria-label="Production Intelligence 分類" class="global-category-nav">
+   <div class="page global-category-nav-inner">
+    <div class="archive-nav-controls">
+     <a class="archive-nav-home" href="../../">
+      ← 首頁
+     </a>
+     <div class="archive-nav-date">
+      <a aria-label="前一日日報" class="archive-nav-arrow" href="../../2026-11-25/engine-art/">
+       ←
+      </a>
+      <span>
+       2026-11-26
+      </span>
+     </div>
+    </div>
+    <span aria-hidden="true" class="archive-nav-divider">
+    </span>
+    <a class="global-category-link" href="../#top">
+     TOP5
+    </a>
+    <a class="global-category-link" data-category="ai-generation" href="../ai-generation/">
+     AI 生成
+    </a>
+    <a class="global-category-link" data-category="3d-production" href="../3d-production/">
+     3D 製作
+    </a>
+    <a class="global-category-link" data-category="3d-animation" href="../3d-animation/">
+     3D 動作
+    </a>
+    <a class="global-category-link is-active" data-category="engine-art" href="../engine-art/">
+     遊戲引擎
+    </a>
+    <a class="global-category-link" data-category="emerging-case" href="../emerging-case/">
+     新技術 / Case
+    </a>
+    <a class="global-category-link" data-category="blender-dcc" href="../blender-dcc/">
+     Blender / DCC
+    </a>
+    <a class="global-category-link global-history-link" data-global-view="history" href="../../history/">
+     歷史日報
+    </a>
+    <a class="global-admin-link" href="../../admin/">
+     管理後臺
+    </a>
+   </div>
+  </nav>
+  <main class="page category-main">
+   <article class="category-card" data-intel-id="80-level-the-making-of-become-from-aaa-games-to-a-microscopic-platf-b6004dd926c1f57d" data-intel-role="card" id="intel-80-level-the-making-of-become-from-aaa-games-to-a-microscopic-platf-b6004dd926c1f57d">
+    <div class="category-meta">
+     #05 · shader
+    </div>
+    <h2>
+     《Become》微觀場景製作：Niagara 群集與大範圍次表面散射
+    </h2>
+    <p class="summary">
+     ProtoSeed Games 分享《Become》的 UE5.4 製作方式：以網格粒子和頂點著色器動畫控制細胞群，利用組織厚度與次表面散射塑造微觀關卡。
+    </p>
+    <figure class="case-preview" data-intel-id="80-level-the-making-of-become-from-aaa-games-to-a-microscopic-platf-b6004dd926c1f57d" data-intel-role="visual" data-visual-id="80-level-the-making-of-become-from-aaa-games-to-a-microscopic-platf-b6004dd926c1f57d">
+     <a href="https://80.lv/articles/the-making-of-become-from-aaa-games-to-a-microscopic-platformer" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-11-26/80-level-the-making-of-become-from-aaa-games-to-a-microscopic-platf-b6004dd926c1f57d.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">Shader</b> ★★★★☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-full" data-analysis-level="FULL">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body">
+      <h4>
+       可引導的網格粒子群
+      </h4>
+      <p>
+       開發者先試過粒子生命與二維群聚模擬，後改用 Niagara 網格粒子搭配頂點著色器動畫，再以自訂力與曲線引導群集。他表示數量可達五十萬，但文章未列測試硬體。
+      </p>
+      <h4>
+       讓幾何厚度參與照明
+      </h4>
+      <p>
+       場景大量使用次表面散射，幾何厚度會影響穿透光，因此建模與燈光需要一起安排。作者減少貼圖、幾乎不用法線貼圖，改由形體、組織厚度、照明及體積效果塑造外觀。
+      </p>
+      <h4>
+       引擎選項依動態需求取捨
+      </h4>
+      <p>
+       團隊使用 UE5.4，主要邏輯由藍圖與自訂數學處理，沒有使用 Nanite 或虛擬陰影貼圖；作者將此取捨連結到場景持續運動與頂點位移動畫的需求，不能泛化為所有專案的選擇。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://80.lv/articles/the-making-of-become-from-aaa-games-to-a-microscopic-platformer" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <nav aria-label="相鄰分類" class="category-bottom-nav">
+    <a href="../3d-animation/">
+     ← 3D 動作
+    </a>
+    <a href="../#top">
+     TOP5
+    </a>
+    <a href="../emerging-case/">
+     新技術 / Case →
+    </a>
+   </nav>
+  </main>
+  <script defer="" src="../../archive-nav-state.js?v=20261126-r1-workspace-v17-home-card-library">
+  </script>
+ </body>
+</html>
