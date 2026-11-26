@@ -50,7 +50,7 @@ def summarize(packet, conclusion):
     counts = {k: supply[k] for k in ('body_readable', 'review_approved', 'awaiting_review',
               'quality_pass_unpublished', 'selected', 'approved_reserve') if type(supply.get(k)) is int}
     sources = {str(k)[:80]: {field: value[:300] if isinstance(value, str) else value for field, value in v.items()
-               if field in ('status', 'candidates_found', 'published_links_skipped', 'reason', 'article_pages_checked', 'evidence_extracted', 'awaiting_review', 'review_approved', 'quality_pass_unpublished', 'selected', 'approved_reserve')
+               if field in ('status', 'candidates_found', 'published_links_skipped', 'reason', 'article_pages_checked', 'evidence_extracted', 'body_readable_before_topic', 'topic_rejected', 'awaiting_review', 'review_approved', 'quality_pass_unpublished', 'selected', 'approved_reserve')
                and isinstance(value, (str, int, bool))} for k, v in list((packet.get('sources') or {}).items())[:100] if isinstance(v, dict)}
     return {'schema_version': 1, 'date': date, 'source_run_id': run, 'source_head_sha': head,
             'mode': 'source-trial' if packet.get('mode') == 'source-trial' else 'daily',
@@ -85,11 +85,11 @@ in the live reserve view immediately and in this trend at the next observation.
             receipt = json.loads(p.read_text('utf-8'))
             data = json.loads(data_path.read_text('utf-8'))
             from collection_settings import all_items
-            if not any(canonicalize_url(x['source_url']) in unique for x in all_items(data)):
+            if not any(canonicalize_url(x.get('source_url','')) in unique for x in all_items(data)):
                 continue
             from daily_release_status import receipt_errors, read
             if not receipt_errors(p.name[:10],root,receipt,data,read(root/'data/publish/latest-success.json'),allow_newer_latest=True):
-                published.update(canonicalize_url(x['source_url']) for x in all_items(data))
+                published.update(canonicalize_url(x.get('source_url','')) for x in all_items(data) if x.get('source_url'))
     seeds = reserve_seeds(root, date, settings['sources'])
     def source_for(url):
         host = (urlsplit(url).hostname or '').removeprefix('www.')
