@@ -42,6 +42,7 @@ on:
       - 'admin.js'
       - 'admin-source-state*'
       - 'admin-graph*'
+      - 'admin-studio*'
       - 'admin-operations.js'
       - 'reset-password/**'
       - 'config/editorial-selection.json'
@@ -206,6 +207,7 @@ jobs:
           node --check admin.js
           node --check admin-graph.js
           node --test admin-graph.test.mjs
+          node --test admin-studio.test.mjs
           node --test admin-source-state.test.mjs
           node --check admin-operations.js
           node --check reset-password/reset.js

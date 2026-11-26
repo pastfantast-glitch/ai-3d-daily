@@ -108,7 +108,7 @@ export async function handle(req:Request){
     if(body.op==='activate')return reply(200,await activate(github,settingsRuns,commitSettings,body),origin);
     if(body.op==='history'){
       const rows=await github(`/commits?path=${SETTINGS}&sha=main&per_page=10`);
-      return reply(200,{history:rows.map((r:any)=>({sha:r.sha,message:r.commit.message.split('\n')[0],date:r.commit.committer.date,url:r.html_url}))},origin);
+      return reply(200,{history:rows.map((r:any)=>({sha:r.sha,message:r.commit.message.split('\n')[0],date:r.commit.committer.date,actor:r.author?.login||r.commit.author?.name||null,url:r.html_url}))},origin);
     }
     if(body.op==='version'){
       if(!/^[a-f0-9]{40}$/.test(body.commit))throw new Error('invalid_version');
