@@ -15,6 +15,25 @@
 
 ## 失敗接續與跨日處理
 
+### 2026-11-26：審稿中斷接續（本機進度，不是發布收據）
+
+每日審稿任務在開始、上下文壓縮後、回答插入的狀態問題後，必須先讀本節及固定的本機進度目錄，再決定下一步。既有來源、品質、唯一 writer、最多 40 篇／兩輪修改、同 run 一次合併等規則不變。下載證據、檢查 Actions、驗證網站介面都不是完成審稿。除非使用者明確暫停、取消或替換工作，狀態詢問不取代未完成的審稿。
+
+使用 `tools/editorial_progress.py`，固定工作目錄為原專案工作區的 `.editorial-work/`（本專案桌面位置 `E:/AI_Mesh_測試/資訊收集網站/.editorial-work/`），不要放在臨時 Git worktree 裡。該目錄必須被 Git 忽略；先用 `git check-ignore` 確認，舊工作樹若尚未取得新 `.gitignore`，在共享 `.git/info/exclude` 加入 `.editorial-work/`。不得把本機證據、草稿或 checkpoint 加入 PR。
+
+1. `python tools/editorial_progress.py list --workdir <固定目錄>`：列出舊進度，先對照當日既有 review 檔、PR、Actions、DONE/session。已合併的來源 run 只追蹤；不要因本機仍顯示未完成就再提交。跨日進度只做診斷，不冒用今天的日期；原 artifact 過期不能用本機副本繞過。
+2. 官方 API 確認 artifact 未過期、run 身分有效後，下載 ZIP、只讀指定 JSON。`python tools/editorial_progress.py init --workdir <固定目錄> --packet <原始 JSON> --run-json <官方 run.json>` 會建立以日期及 run ID 分隔的進度。重複執行會保留已存草稿；同路徑的不同證據拒絕覆寫。每次恢復都必須重新查官方 artifact 是否仍有效，本機 hash 僅證明副本未變，不證明遠端有效。
+3. `status <session>` 回傳 `revision`、各狀態數量、下一篇及下一步。逐篇完成初稿後立刻執行 `draft <session> --revision N --id ID --record <單篇 JSON>`；草稿的 `review.approved` 必須為 false。第二輪重新讀來源、核對同一份文案後，再用 `approve` 儲存完整核准 record。它會執行既有 `validate_packet` 與 reader-quality；不會自動生成或核准文案。若第二輪改稿，先重新 `draft`，每篇最多兩次草稿保存；超過上限以 `exclude --reason` 保留理由。每個 session 最多處理 40 篇，其餘清楚列為未處理。
+4. 碰到權限、證據、工具或執行預算阻塞，立刻 `block <session> --revision N --reason "具體原因；下一步"`，保留已完成文章。修復後先核對遠端身分及 PR 再 `resume`；不能直接把所有待審改成已核准。狀態 `REVIEW_INCOMPLETE`、`BLOCKED`、`REVIEWED_UNSUBMITTED`、`SUBMITTED_UNVERIFIED` 都不是完成發布。
+5. `export <session> --purpose release|reserve` 只輸出通過既有驗證的核准子集。不能匯出零核准或尚有未解除阻塞的 session。仍須用原 artifact/run 執行 `scripts/editorial_review.py`、既有 PR readiness/CI、原 artifact 有效期及合併前 live checks。滿發布最低門檻按 release 提交；未滿但有合格稿按既有 reserve 規則處理，不因此丟棄全部進度。PR 只包含當日審稿檔，不包含進度工具或其他檔案。
+6. 建立／找到既有 PR 後，`submission <session> --revision N --url <同一 PR URL>` 記錄交接點。此欄只是接續線索，程式不查遠端，也不宣稱已合併或發布；下一次先查該 PR。若 API 寫入結果不明，先查既有分支／PR，不重建。發布是否完成仍只由當日嚴格 DONE 驗證判定。
+
+進度寫入採暫存檔加原子替換、排他鎖與 revision 檢查，避免一半 JSON 或舊工作覆蓋新草稿。若程序被強制終止留下鎖，必須確認沒有其他審稿程序，再保留紀錄並人工移除鎖；不得自動搶鎖或覆寫未完成 session。任何被跳過、被阻擋或無法載入的進度都需明示。
+
+結束每次審稿執行前，重新查 GitHub 並報告「正文數／實際核對數／核准數／排除數／剩餘數、第一個 blocker、run/PR URL、下一步」。有可處理證據卻核准零篇，不能僅回報 COLLECTOR_FAILED 或轉做後臺驗證；應繼續審稿，除非有具體阻塞。若存在尚可執行的審稿步驟，不能以一般狀態摘要代替完成工作。排程仍是原每日任務；checkpoint 本身不會喚醒關閉的應用程式、不新增排程或 writer，也不能保證電腦離線期間完成工作。
+
+回歸測試：`python tools/test_editorial_progress.py` 驗證中斷後接續、零核准不能匯出、兩輪上限、來源變動、原子寫入失敗、並行鎖／revision、核准子集與 PR 不等於發布成功。既有 daily contract CI 執行此測試。
+
 發布排序由 `intelligence_v2.homepage_groups/homepage_cards` 統一：先精選、再其餘，各組內保持 global rank。歷史回歸驗證卡片完整順序，不忽略未知或重複 ID。`test_daily_supply_recovery.py` 實際渲染當日頁，再增加隔日日報並執行歷史分支，亦驗證缺漏、外來、重複和錯序會失敗。
 
 程式/契約修正合併後，既有 Collector handoff gate 僅接續最新待發布 session；必須 input/contract fingerprint 已變、沒有 request/ready/DONE、沒有 active Collector/Publisher，且上次嘗試未達兩次修正上限。未修改輸入不重試；舊日重複 session 保留稽核，不能覆蓋較新的日報。亦保留同一 gate 的明確日期手動接續。所有階段仍重新檢查 current main CI、正文與 canonical 契約，只有唯一 Publisher 寫 request/ready/public/DONE。CI 阻塞會記錄到 handoff 診斷，不留下只有「待交接」的假象。

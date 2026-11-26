@@ -90,6 +90,8 @@ on:
       - 'scripts/handoff_diagnostics.py'
       - 'scripts/editorial_review.py'
       - 'scripts/test_editorial_review.py'
+      - 'tools/editorial_progress.py'
+      - 'tools/test_editorial_progress.py'
       - 'scripts/test_handoff_consistency.py'
       - 'scripts/test_daily_supply_recovery.py'
       - 'scripts/collector_watchdog.py'
@@ -216,6 +218,7 @@ jobs:
           python scripts/test_source_quality.py
           python scripts/test_article_evidence.py
           python scripts/test_editorial_review.py
+          python tools/test_editorial_progress.py
           python scripts/test_handoff_consistency.py
           python scripts/test_daily_supply_recovery.py
           python scripts/test_collector_watchdog.py
