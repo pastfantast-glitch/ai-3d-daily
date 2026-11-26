@@ -37,7 +37,7 @@ def preview(source, date, fetcher=fetch):
     for url in source['endpoints']:
         result = fetcher(session, url, 8, allow_feed=True)
         if result.get('status') != 200:
-            errors.append(f"{url}: HTTP {result.get('status') or 'unavailable'} ({result.get('error') or 'unavailable'})");continue
+            errors.append(f"{url}: HTTP {result.get('status') or 'unavailable'} ({result.get('error') or 'unavailable'}; {result.get('error_detail','')})");continue
         inspect(result); text=result.get('html',''); final=result.get('final_url') or url
         links += extract_feed_article_links(text,final,domain,5) or extract_links(text,final,domain,5)
     for url,_ in links:
@@ -45,7 +45,7 @@ def preview(source, date, fetcher=fetch):
         seen.add(url)
         result=fetcher(session,url,8)
         if result.get('status')==200:inspect(result)
-        else:errors.append(f"{url}: HTTP {result.get('status') or 'unavailable'}")
+        else:errors.append(f"{url}: HTTP {result.get('status') or 'unavailable'} ({result.get('error_detail') or result.get('error') or 'unknown'})")
     ok=any(s['readable'] and s['date_eligible'] for s in samples)
     return {'source_id':source['id'],'passed':ok,'samples':samples,'errors':errors,
             'note':'Bounded source preview only; no editorial approval or formal collection.'}

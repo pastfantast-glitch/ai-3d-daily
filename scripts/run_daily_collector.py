@@ -52,7 +52,7 @@ EDITORIAL_OVERRIDE_DIR = ROOT / "data" / "editorial-overrides"
 TRACKING_SOURCE = "autonomous-github-collector-v1"
 DATE_RE = re.compile(r"^20\d{2}-\d{2}-\d{2}$")
 WS_RE = re.compile(r"\s+")
-DATE_TEXT_RE = re.compile(r"(20\d{2})[-/.](0?[1-9]|1[0-2])[-/.](0?[1-9]|[12]\d|3[01])")
+DATE_TEXT_RE = re.compile(r"(?<!\d)(20\d{2})[-/.](1[0-2]|0?[1-9])[-/.](3[01]|[12]\d|0?[1-9])(?!\d)")
 ARTICLE_TYPES = {"article", "newsarticle", "blogposting", "techarticle", "report"}
 BAD_PATH_PARTS = (
     "/tag/", "/tags/", "/category/", "/categories/", "/author/", "/authors/",
@@ -139,11 +139,13 @@ def collector_http_headers(runtime):
 def fetch(session: requests.Session, url: str, timeout: int, *, allow_feed: bool = False) -> dict:
     started = time.monotonic()
     try:
+        from publisher_feeds import feed_endpoint
+        request_url = feed_endpoint(url) if allow_feed else url
         if getattr(session, 'managed_sources', False) is True:
             from public_source_http import get
-            response = get(url, timeout, session.headers)
+            response = get(request_url, timeout, session.headers)
         else:
-            response = session.get(url, timeout=timeout, allow_redirects=True)
+            response = session.get(request_url, timeout=timeout, allow_redirects=True)
         status = int(response.status_code)
         content_type = response.headers.get("content-type", "")
         sample = response.text[:500].lower()
@@ -169,7 +171,7 @@ def fetch(session: requests.Session, url: str, timeout: int, *, allow_feed: bool
     except requests.RequestException as exc:
         return {
             "url": url, "final_url": url, "status": 0, "html": "",
-            "error": type(exc).__name__, "elapsed": time.monotonic() - started,
+            "error": type(exc).__name__, "error_detail": str(exc)[:180], "elapsed": time.monotonic() - started,
         }
 
 
@@ -271,6 +273,12 @@ def page_metadata(result: dict, fallback_title: str = "") -> dict | None:
     if is_blender_forum:
         first_time = soup.select_one('#post_1 time[datetime]')
         published = first_time.get('datetime') if first_time else ''
+    page_url = urlparse(result.get('final_url') or result.get('url') or '')
+    if not published and page_url.hostname == 'godotengine.org' and page_url.path.startswith('/article/'):
+        # The publisher's original article date, not RSS update time or sidebar.
+        dates = soup.select('span.date[data-post-date]')
+        if len(dates) == 1:
+            published = dates[0].get('data-post-date')
     if not published and not is_blender_forum:
         node = next((node for node in soup.find_all("time")
                      if not node.find_parent(["aside", "nav", "footer"])), None)
@@ -404,6 +412,7 @@ def extract_feed_article_links(feed_text: str, base_url: str, domain: str, limit
     if not feed_text or limit <= 0:
         return []
     import xml.etree.ElementTree as ET
+    from html import unescape
     if '<!DOCTYPE' in feed_text.upper() or '<!ENTITY' in feed_text.upper():
         return []
     try:
@@ -422,7 +431,7 @@ def extract_feed_article_links(feed_text: str, base_url: str, domain: str, limit
         href = clean(link_node.get('href') or link_node.text or '') if link_node is not None else ''
         if not href:
             continue
-        absolute = canonicalize_url(urljoin(base_url, href))
+        absolute = canonicalize_url(urljoin(base_url, unescape(href)))
         if not absolute.startswith("https://") or not same_registered_domain(absolute, domain) or not article_like_url(absolute):
             continue
         if absolute in seen:
