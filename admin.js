@@ -1,5 +1,5 @@
-import {mountGraph} from './admin-graph.js?v=20261126-workspace2';
-import {mountOperations} from './admin-operations.js?v=20261126-workspace2';
+import {mountGraph} from './admin-graph.js?v=20261126-scope1';
+import {mountOperations} from './admin-operations.js?v=20261126-scope1';
 import {createClient} from 'https://esm.sh/@supabase/supabase-js@2.116.0?bundle';
 import {validateSettings} from './supabase/functions/collection-admin/policy.mjs';
 const base='https://epumcdxfkcujulqrcjrw.supabase.co',key='sb_publishable_KPadXg3RKth3SGsAuXzebA_OylGgtpf';

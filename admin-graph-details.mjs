@@ -7,7 +7,7 @@ export function sourceFor(row,settings){
 }
 export function scopedArticles(key,data){
   const [kind,id]=key.split(':'),ops=data.operations;
-  const rows=id==='reserve'&&kind==='stage'?ops?.reserve||[]:id==='review'&&kind==='stage'?ops?.queue||[]:[...(ops?.queue||[]),...(ops?.reserve||[]),...(ops?.published_items||[])];
+  const rows=id==='publish'&&kind==='stage'?ops?.published_items||[]:id==='reserve'&&kind==='stage'?ops?.reserve||[]:id==='review'&&kind==='stage'?ops?.queue||[]:[...(ops?.queue||[]),...(ops?.reserve||[]),...(ops?.published_items||[])];
   return rows.filter(row=>kind==='source'?sourceFor(row,data.settings)?.id===id:kind==='topic'?(row.topic_ids||sourceFor(row,data.settings)?.topic_ids||[]).includes(id):true);
 }
 export function createGraphDetails(){

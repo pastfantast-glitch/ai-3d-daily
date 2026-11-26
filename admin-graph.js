@@ -1,6 +1,6 @@
 import {connectTopic,connectionState,stageData} from './admin-graph-model.mjs';
 import {zoomAt,fitNodes,workspaceState,editHistory,changeSummary} from './admin-graph-workspace.mjs';
-import {createGraphDetails} from './admin-graph-details.mjs';
+import {createGraphDetails} from './admin-graph-details.mjs?v=20261126-scope1';
 const el=(tag,text,cls)=>{const e=document.createElement(tag);if(text!==undefined)e.textContent=text;if(cls)e.className=cls;return e;};
 const svgEl=tag=>document.createElementNS('http://www.w3.org/2000/svg',tag);
 export function mountGraph({onChange,onEdit,onAdd,onSave,onDiscard,onView,onValidation,notify}) {
