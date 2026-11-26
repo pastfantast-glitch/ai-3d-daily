@@ -3,6 +3,7 @@ import http.client
 import ipaddress
 import socket
 import ssl
+import time
 from urllib.parse import urlsplit, urljoin
 import requests
 from collection_settings import public_url
@@ -19,8 +20,28 @@ def get(url, timeout, headers=None):
                 raise ValueError('unsafe-source-address')
             class PinnedTLS(http.client.HTTPSConnection):
                 def connect(self):
-                    self.sock = ssl.create_default_context().wrap_socket(
-                        socket.create_connection((addresses[0],443),timeout), server_hostname=parts.hostname)
+                    # Some runners lack IPv6 routing. Try only the already
+                    # validated public answers within one bounded connect budget.
+                    deadline = time.monotonic() + timeout
+                    ordered = sorted(addresses, key=lambda a: ipaddress.ip_address(a).version)
+                    last_error = OSError('source-connect-timeout')
+                    for address in ordered[:4]:
+                        remaining = deadline - time.monotonic()
+                        if remaining <= 0:
+                            break
+                        raw = None
+                        try:
+                            raw = socket.create_connection((address,443),min(5,remaining))
+                            self.sock = ssl.create_default_context().wrap_socket(raw, server_hostname=parts.hostname)
+                            self.sock.settimeout(timeout)
+                            return
+                        except ssl.SSLCertVerificationError:
+                            if raw: raw.close()
+                            raise
+                        except OSError as exc:
+                            if raw: raw.close()
+                            last_error = exc
+                    raise last_error
             connection = PinnedTLS(parts.hostname, timeout=timeout)
             try:
                 safe_headers = {k:v for k,v in (headers or {}).items() if k.lower() in ('user-agent','accept','accept-language')}

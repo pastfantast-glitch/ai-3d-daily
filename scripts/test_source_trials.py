@@ -4,6 +4,7 @@ from pathlib import Path
 import tempfile
 import unittest
 from unittest.mock import patch
+from unittest.mock import Mock
 import requests
 import run_daily_collector as collector
 from collection_monitor import summarize, with_yield_history
@@ -12,6 +13,24 @@ from publisher_feeds import feed_endpoint
 
 
 class SourceTrialTests(unittest.TestCase):
+    def test_public_dns_connection_fallback_never_accepts_private_or_invalid_tls(self):
+        import public_source_http as http
+        import ssl
+        answers=[(None,None,None,None,('8.8.8.8',443)),(None,None,None,None,('1.1.1.1',443))]
+        response=Mock(status=200);response.getheaders.return_value=[];response.read.return_value=b'public'
+        sock=Mock();ctx=Mock();ctx.wrap_socket.return_value=sock
+        with patch.object(http.socket,'getaddrinfo',return_value=answers), patch.object(http.socket,'create_connection',side_effect=[OSError('route unavailable'),sock]) as connect, patch.object(http.ssl,'create_default_context',return_value=ctx), patch.object(http.http.client.HTTPSConnection,'request',lambda self,*a,**k:self.connect()), patch.object(http.http.client.HTTPSConnection,'getresponse',return_value=response):
+            self.assertEqual(http.get('https://example.com/',8).status_code,200)
+            self.assertEqual([x.args[0] for x in connect.call_args_list],[('8.8.8.8',443),('1.1.1.1',443)])
+            self.assertEqual(ctx.wrap_socket.call_args.kwargs['server_hostname'],'example.com')
+        with patch.object(http.socket,'getaddrinfo',return_value=answers+[(None,None,None,None,('127.0.0.1',443))]), patch.object(http.socket,'create_connection') as connect:
+            with self.assertRaises(requests.RequestException):http.get('https://example.com/',8)
+            connect.assert_not_called()
+        ctx.wrap_socket.side_effect=ssl.SSLCertVerificationError('invalid certificate')
+        with patch.object(http.socket,'getaddrinfo',return_value=answers), patch.object(http.socket,'create_connection',return_value=sock) as connect, patch.object(http.ssl,'create_default_context',return_value=ctx), patch.object(http.http.client.HTTPSConnection,'request',lambda self,*a,**k:self.connect()):
+            with self.assertRaises(requests.RequestException):http.get('https://example.com/',8)
+            self.assertEqual(connect.call_count,1)
+
     def test_only_declared_feed_is_resolved_and_article_domain_stays_bound(self):
         source = 'https://www.cgchannel.com/feed/'
         destination = 'https://feeds2.feedburner.com/cgchannel/nHpU'

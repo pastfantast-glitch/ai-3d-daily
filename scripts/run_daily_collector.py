@@ -171,7 +171,7 @@ def fetch(session: requests.Session, url: str, timeout: int, *, allow_feed: bool
     except requests.RequestException as exc:
         return {
             "url": url, "final_url": url, "status": 0, "html": "",
-            "error": type(exc).__name__, "elapsed": time.monotonic() - started,
+            "error": type(exc).__name__, "error_detail": str(exc)[:180], "elapsed": time.monotonic() - started,
         }
 
 
