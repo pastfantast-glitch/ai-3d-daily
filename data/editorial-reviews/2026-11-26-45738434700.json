@@ -1,0 +1,97 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-26",
+  "reviewer": "chatgpt-scheduled-task",
+  "purpose": "reserve",
+  "source_run_id": 45738434700,
+  "source_head_sha": "a7467bc0119f86e9ef0ff848f0c4f4b52723b83d",
+  "items": {
+    "tripo3d-workflow-image-to-3d-mid-autumn-24ec472cfdb57afa": {
+      "source_url": "https://www.tripo3d.ai/zh/tutorials/workflow-image-to-3d-mid-autumn",
+      "source_published_at": "2026-09-22",
+      "source_evidence_sha256": "22fd47600cb2281cd41d031ec1bfa60bed632d6ca2e0bac26df8a831fdac4f3d",
+      "reviewed_on": "2026-11-26",
+      "analysis_level": "BRIEF",
+      "content_kind": "practice",
+      "title": "中秋宮燈資產實作：Tripo 生成靜態模型，Blender 分離紙面材質",
+      "summary": "這份 2026 年 9 月教學以宮燈示範圖片轉 3D：先依靜態用途選擇 H 系列，再匯入 Blender 手動選取燈籠紙面，調整次表面與透明度；側面細節仍有推斷成分。",
+      "evidence_refs": [
+        "p002",
+        "p008",
+        "p011",
+        "p014",
+        "p015",
+        "p016",
+        "p020"
+      ],
+      "full_analysis": [
+        {
+          "angle": "workflow_or_technical_change",
+          "label": "先按資產用途選模型",
+          "text": "教學中的宮燈是靜態道具，不需要綁定或模擬，因此選用 Tripo 3.1／H 系列，優先考量幾何細節。生成後先檢查輪廓、比例、裝飾幾何與貼圖一致性，再以 FBX 匯入 Blender；文中也列出 OBJ 作為其他管線的選項。",
+          "evidence_refs": [
+            "p006",
+            "p008",
+            "p013",
+            "p014"
+          ]
+        },
+        {
+          "angle": "production_impact",
+          "label": "紙面材質交給 Blender 控制",
+          "text": "宮燈的半透明紙面需要獨立材質控制。作者認為這類特定形狀難以透過 Tripo 分割穩定分離，因此在 Blender 編輯模式手動選面；本例從 Subsurface Weight 約 1、Alpha 約 0.7 至 0.8 開始，再於最終光照下微調，並非所有資產的固定設定。",
+          "evidence_refs": [
+            "p015",
+            "p016",
+            "p017",
+            "p018",
+            "p019",
+            "p020"
+          ]
+        },
+        {
+          "angle": "test_risk_or_limit",
+          "label": "未提供的側面仍靠推斷",
+          "text": "本例利用宮燈大致對稱的特性，將同一張圖用於正面與背面，左右視圖則交給 Tripo 推斷，以免加入不準確的 AI 側面參考。這項做法依賴物體對稱性；教學指出，單張圖無法可靠表達側面或背面時，多視圖才更有價值。",
+          "evidence_refs": [
+            "p009",
+            "p010",
+            "p011",
+            "p012"
+          ]
+        }
+      ],
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p002",
+          "p008",
+          "p011",
+          "p014",
+          "p015",
+          "p016",
+          "p020",
+          "p006",
+          "p013",
+          "p017",
+          "p018",
+          "p019",
+          "p009",
+          "p010",
+          "p012"
+        ]
+      }
+    }
+  }
+}
