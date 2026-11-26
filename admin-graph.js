@@ -11,13 +11,14 @@ export function mountGraph({onChange,onEdit,onAdd,onSave,onDiscard,onView,onVali
   const $=s=>root.querySelector(s),label=$('#graph-local-state');
   const camera=()=>({zoom,x:cameraX,y:cameraY});
   function setCamera(c){zoom=c.zoom;cameraX=c.x;cameraY=c.y;bounds();}
+  function applyDraft(next){onChange(next);viewport.focus({preventScroll:true});}
   const frame=()=>({settings:data.settings,positions:[...positions]});
   function persist(){if(!storageKey||!viewport.clientWidth||pendingCamera)return;try{localStorage.setItem(storageKey,JSON.stringify({schema:2,positions:[...positions],camera:camera(),mode,selected}));}catch{}}
   const editing=()=>$('#graph-inline-editor').contains(document.querySelector('#editor-form'));
   function historyButtons(){$('#graph-undo').disabled=!history.canUndo||data?.busy||editing();$('#graph-redo').disabled=!history.canRedo||data?.busy||editing();}
   function travel(back){if(data?.busy||editing())return;restoreFrame(back?history.undo():history.redo());}
   function remember(){if(!restoring&&data)history.push(frame());historyButtons();persist();}
-  function restoreFrame(value){if(!value||data.busy||$('#graph-inline-editor').contains(document.querySelector('#editor-form')))return;restoring=true;positions=new Map(value.positions);onChange(value.settings);restoring=false;render();persist();}
+  function restoreFrame(value){if(!value||data.busy||$('#graph-inline-editor').contains(document.querySelector('#editor-form')))return;restoring=true;positions=new Map(value.positions);applyDraft(value.settings);restoring=false;render();persist();}
   function fit(all=false){const targets=[...visible,...stageNodes].filter(n=>all||selection.has(n.key)||n.key===selected);const c=fitNodes(targets,viewport.clientWidth,viewport.clientHeight);if(c){setCamera(c);persist();}}
   function emphasize(){const related=new Set(selection);if(selected)related.add(selected);
     for(const s of data.settings.sources)for(const id of s.topic_ids)if(selected==='source:'+s.id||selected==='topic:'+id){related.add('source:'+s.id);related.add('topic:'+id);}
@@ -51,7 +52,7 @@ export function mountGraph({onChange,onEdit,onAdd,onSave,onDiscard,onView,onVali
     if(['connect','rewire'].includes(gesture?.kind)){const n=lookup.get('source:'+gesture.source);if(n)path({x:n.x+n.width,y:n.y+65},gesture.to,'graph-wire draft highlight');}
   }
   function select(key){if($('#graph-inline-editor').contains(document.querySelector('#editor-form'))){notify('請先完成或取消右側節點編輯。');return;}selectedWire=null;selected=key;selection=new Set([key]);emphasize();paintEdges();renderInspector();persist();}
-  function connect(source,topic,connected=true){if(data.busy)return;if($('#graph-inline-editor').contains(document.querySelector('#editor-form'))){notify('請先完成或取消右側節點編輯。');return;}try{const next=connectTopic(data.settings,source,topic,connected);armed=null;selectedWire=null;onChange(next);notify(connected?'連線已加入草稿，儲存並驗證後才能套用。':'連線已移出草稿，現行設定保持不變。');}catch(e){notify(e.message,true);renderInspector();}renderHint();}
+  function connect(source,topic,connected=true){if(data.busy)return;if($('#graph-inline-editor').contains(document.querySelector('#editor-form'))){notify('請先完成或取消右側節點編輯。');return;}try{const next=connectTopic(data.settings,source,topic,connected);armed=null;selectedWire=null;applyDraft(next);notify(connected?'連線已加入草稿，儲存並驗證後才能套用。':'連線已移出草稿，現行設定保持不變。');}catch(e){notify(e.message,true);renderInspector();}renderHint();}
   function renderHint(){$('#graph-hint').textContent=selectedWire?'已選取連線：拖曳主題端接點改接，放到空白處可斷線；也可按 Delete 或右側「移除連線」。只修改草稿，可復原。':armed?`已選取「${data.settings.sources.find(s=>s.id===armed)?.name}」；點主題的輸入接點完成連線，Esc 取消。`:'滾輪以游標為中心縮放；空白處或中鍵拖曳平移。Shift＋拖曳空白處框選，按「聚焦選取」。拖曳節點標題移動；拖曳來源接點到主題接線。點選連線後按 Delete 移除。';}
   function node(n,title,subtitle,status,kind){const box=el('article',undefined,'graph-node '+kind);box.dataset.key=n.key;box.style.left=n.x+'px';box.style.top=n.y+'px';box.style.width=n.width+'px';
     const heading=action(title,()=>{if(!clickBlocked)select(n.key);},'graph-node-title');heading.setAttribute('aria-label','選取'+title);heading.onpointerdown=e=>{if(e.button!==0||data.busy||editing())return;gesture={kind:'node',capture:heading,id:e.pointerId,n,startX:e.clientX,startY:e.clientY,x:n.x,y:n.y};heading.setPointerCapture(e.pointerId);};
@@ -83,7 +84,7 @@ export function mountGraph({onChange,onEdit,onAdd,onSave,onDiscard,onView,onVali
       inspector.append(el('p','勾選可加入連線；取消勾選可移除。移除最後一條連線會停用來源；重新接線後可在此啟用。','help'));
     }else{inspector.append(el('p',item.description),el('p',`來源期限：近 ${item.max_age_months} 個月 · 目標 ${item.target_items} 篇`),el('p','收錄關鍵字：'+(item.include_terms.join('、')||'沿用 AI／3D 相關性檢查')),el('p','排除關鍵字：'+(item.exclude_terms.join('、')||'無')),el('p',`連接來源 ${data.settings.sources.filter(s=>s.topic_ids.includes(id)).length} 個；是否啟用仍按來源與主題設定。`));}
     inspector.append(action('編輯'+(kind==='source'?'來源':'主題')+'設定',()=>onEdit(kind,id),'primary'));
-    if(id!=='ai-3d')inspector.append(action(item.enabled?'暫停此'+(kind==='source'?'來源':'主題'):'啟用此'+(kind==='source'?'來源':'主題'),()=>{const next=structuredClone(data.settings);(kind==='source'?next.sources:next.topics).find(x=>x.id===id).enabled=!item.enabled;onChange(next);}));
+    if(id!=='ai-3d')inspector.append(action(item.enabled?'暫停此'+(kind==='source'?'來源':'主題'):'啟用此'+(kind==='source'?'來源':'主題'),()=>{const next=structuredClone(data.settings);(kind==='source'?next.sources:next.topics).find(x=>x.id===id).enabled=!item.enabled;applyDraft(next);}));
     details(inspector,selected,data);
   }
   viewport.addEventListener('pointerdown',e=>{if(e.button!==1&&(e.button!==0||e.target.closest('button,input,article,.graph-wire-hit')))return;e.preventDefault();e.stopPropagation();selectedWire=null;viewport.focus({preventScroll:true});const r=world.getBoundingClientRect();gesture={kind:e.shiftKey&&e.button===0?'select':'pan',capture:viewport,id:e.pointerId,startX:e.clientX,startY:e.clientY,x:cameraX,y:cameraY,origin:{x:(e.clientX-r.left)/zoom,y:(e.clientY-r.top)/zoom}};viewport.setPointerCapture(e.pointerId);paintEdges();renderInspector();renderHint();},true);
@@ -99,7 +100,7 @@ export function mountGraph({onChange,onEdit,onAdd,onSave,onDiscard,onView,onVali
   const finish=e=>{if(!gesture||e.pointerId!==gesture.id)return;if(e.type==='pointercancel'){cancelGesture();return;}const g=gesture;gesture=null;release(g);
     if(g.kind==='connect'&&clickBlocked){const target=document.elementFromPoint(e.clientX,e.clientY)?.closest('[data-topic-input]');if(target)connect(g.source,target.dataset.topicInput);else notify('請把來源接點連到主題的輸入接點。固定流程不可修改。',true);}
     if(g.kind==='rewire'&&clickBlocked){const hit=document.elementFromPoint(e.clientX,e.clientY),target=hit?.closest('[data-topic-input]');
-      if(target||hit?.closest('.graph-viewport')&&!hit.closest('article,.graph-wire-hit')){try{const next=moveConnection(data.settings,g.source,g.topic,target?.dataset.topicInput||null);selectedWire=null;armed=null;onChange(next);notify(target?'連線已改接至草稿，可復原。':'連線已移出草稿，現行設定保持不變。');}catch(error){notify(error.message,true);}}
+      if(target||hit?.closest('.graph-viewport')&&!hit.closest('article,.graph-wire-hit')){try{const next=moveConnection(data.settings,g.source,g.topic,target?.dataset.topicInput||null);selectedWire=null;armed=null;applyDraft(next);notify(target?'連線已改接至草稿，可復原。':'連線已移出草稿，現行設定保持不變。');}catch(error){notify(error.message,true);}}
       else notify('請放到主題輸入接點，或畫布空白處；本次未修改連線。',true);
     }
     if(g.kind==='node')remember();else persist();paintEdges();setTimeout(()=>{clickBlocked=false;},0);
