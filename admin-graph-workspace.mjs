@@ -1,5 +1,5 @@
 // Presentation state only. Never persist settings, credentials or article evidence here.
-export const clampZoom=value=>Math.min(2,Math.max(.25,value));
+export const clampZoom=value=>Math.min(2,Math.max(.02,value));
 export function zoomAt(camera,value,point){
   const zoom=clampZoom(value),ratio=zoom/camera.zoom;
   return {zoom,x:Math.max(0,(camera.x+point.x)*ratio-point.x),y:Math.max(0,(camera.y+point.y)*ratio-point.y)};

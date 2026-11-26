@@ -8,8 +8,9 @@ const fixture=()=>{const s=JSON.parse(readFileSync(new URL('./scripts/fixtures/c
 test('wheel zoom anchors the pointer and fit covers selected bounds',()=>{
  const c={zoom:1,x:500,y:400},p={x:120,y:80},n=zoomAt(c,1.4,p);
  assert.ok(Math.abs((c.x+p.x)/c.zoom-(n.x+p.x)/n.zoom)<1e-9);assert.ok(Math.abs((c.y+p.y)/c.zoom-(n.y+p.y)/n.zoom)<1e-9);
- assert.equal(zoomAt(c,100,p).zoom,2);assert.equal(zoomAt(c,.01,p).zoom,.25);
+ assert.equal(zoomAt(c,100,p).zoom,2);assert.equal(zoomAt(c,.01,p).zoom,.02);
  const f=fitNodes([{x:500,y:400,width:255,height:140}],800,600);assert.ok(f.zoom>0);assert.equal(fitNodes([],800,600),null);
+ const many=fitNodes([{x:30,y:35,width:255,height:2600}],800,600);assert.ok(2600*many.zoom<=600-80);
 });
 test('persisted workspace tolerates corruption and stores only presentation fields',()=>{
  const s=workspaceState({schema:1,positions:[null,42,['source:example',{x:20,y:30}],['bad',{x:3,y:4}]],camera:{zoom:NaN},mode:'operations',token:'SECRET',settings:{}});
