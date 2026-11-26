@@ -25,6 +25,8 @@ test('node details stay scoped by source/topic and include published cards',()=>
  const settings=fixture(),source=settings.sources[0],row={id:'a',source_id:source.id,source_url:source.base_url,state:'published'};
  const data={settings,operations:{queue:[],reserve:[],published_items:[row]}};
  assert.deepEqual(scopedArticles('source:'+source.id,data),[row]);assert.deepEqual(scopedArticles('topic:photography',data),[]);assert.deepEqual(scopedArticles('stage:reserve',data),[]);
+ data.operations.queue=[{...row,id:'q',state:'awaiting_review'}];data.operations.reserve=[{...row,id:'r',state:'date_ineligible'}];
+ assert.deepEqual(scopedArticles('stage:publish',data),[row]);assert.deepEqual(scopedArticles('stage:review',data),data.operations.queue);assert.deepEqual(scopedArticles('stage:reserve',data),data.operations.reserve);
 });
 test('graph changes only source topic membership and does not mutate the active version',()=>{
  const s=fixture(),id=s.sources[0].id,before=structuredClone(s),next=connectTopic(s,id,'photography');
