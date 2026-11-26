@@ -53,8 +53,64 @@ def summarize(packet, conclusion):
                if field in ('status', 'candidates_found', 'published_links_skipped', 'reason', 'article_pages_checked', 'evidence_extracted', 'awaiting_review', 'review_approved', 'quality_pass_unpublished', 'selected', 'approved_reserve')
                and isinstance(value, (str, int, bool))} for k, v in list((packet.get('sources') or {}).items())[:100] if isinstance(v, dict)}
     return {'schema_version': 1, 'date': date, 'source_run_id': run, 'source_head_sha': head,
+            'mode': 'source-trial' if packet.get('mode') == 'source-trial' else 'daily',
             'collector_conclusion': conclusion, 'observed_at': datetime.now(timezone.utc).isoformat(),
             'counts': counts, 'articles': rows, 'sources': sources}
+
+
+def with_yield_history(current, previous, root):
+    """Bounded run observations, not sums of overlapping retries or approvals.
+
+Review inventory is sampled at Collector completion; later review merges appear
+in the live reserve view immediately and in this trend at the next observation.
+"""
+    from editorial_reserve import reserve_seeds
+    from collection_settings import load_settings
+    from editorial_review import read_review_file
+    from url_identity import canonicalize_url
+    from datetime import date as day, timedelta
+    settings = load_settings(root)
+    date = current['date']
+    cutoff = (day.fromisoformat(date) - timedelta(days=29)).isoformat()
+    records = []
+    for p in sorted((root/'data/editorial-reviews').glob('20*.json')):
+        if cutoff <= p.name[:10] <= date:
+            data = read_review_file(p)
+            records.extend(r for r in data['items'].values() if r.get('review', {}).get('approved') is True)
+    unique = {canonicalize_url(r['source_url']): r for r in records}
+    published = set()
+    for p in (root/'data/publish').glob('*.done.json'):
+        data_path = root/'data/daily'/f'{p.name[:10]}.json'
+        if data_path.exists():
+            receipt = json.loads(p.read_text('utf-8'))
+            data = json.loads(data_path.read_text('utf-8'))
+            from collection_settings import all_items
+            if not any(canonicalize_url(x['source_url']) in unique for x in all_items(data)):
+                continue
+            from daily_release_status import receipt_errors, read
+            if not receipt_errors(p.name[:10],root,receipt,data,read(root/'data/publish/latest-success.json'),allow_newer_latest=True):
+                published.update(canonicalize_url(x['source_url']) for x in all_items(data))
+    seeds = reserve_seeds(root, date, settings['sources'])
+    def source_for(url):
+        host = (urlsplit(url).hostname or '').removeprefix('www.')
+        return next((s['id'] for s in settings['sources'] if host == (urlsplit(s['base_url']).hostname or '').removeprefix('www.')), None)
+    supply = {}
+    for s in settings['sources']:
+        sid = s['id']
+        urls = {u for u in unique if source_for(u) == sid}
+        supply[sid] = {'approved_30d':len(urls), 'published_from_approvals_30d':len(urls & published),
+                       'reserve_pending_recheck':sum(x['source_id'] == sid for x in seeds)}
+    observation = {k:current[k] for k in ('date','source_run_id','source_head_sha','mode','counts','sources')}
+    observation.update(observed_at=current['observed_at'], inventory=supply)
+    history = [x for x in previous.get('yield_history', []) if isinstance(x,dict)
+               and cutoff <= str(x.get('date','')) <= date and x.get('source_run_id') != current['source_run_id']]
+    # Keep only our fixed metadata projection, never old arbitrary payload fields.
+    history = [{k:x[k] for k in ('date','source_run_id','source_head_sha','mode','counts','sources','observed_at','inventory') if k in x} for x in history]
+    current['yield_history'] = (history + [observation])[-60:]
+    current['yield_inventory'] = supply
+    current['yield_window_start'] = cutoff
+    current['yield_note'] = 'Run observations overlap; never sum candidate counts across retries. Inventory excludes published, held and expired reviews; pending recheck is not ready to publish.'
+    return current
 
 
 if __name__ == '__main__':
@@ -63,6 +119,7 @@ if __name__ == '__main__':
     parser.add_argument('--conclusion', required=True, choices=['success', 'failure', 'cancelled'])
     args = parser.parse_args()
     output = Path(__file__).resolve().parents[1] / 'data/ops/collection-monitor.json'
-    data = summarize(json.loads(args.packet.read_text('utf-8')), args.conclusion)
+    previous = json.loads(output.read_text('utf-8')) if output.exists() else {}
+    data = with_yield_history(summarize(json.loads(args.packet.read_text('utf-8')), args.conclusion), previous, output.parents[2])
     output.parent.mkdir(parents=True, exist_ok=True)
     output.write_text(json.dumps(data, ensure_ascii=False, indent=2) + '\n', 'utf-8')
