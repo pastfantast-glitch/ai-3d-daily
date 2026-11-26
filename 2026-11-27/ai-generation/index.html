@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   AI 生成｜2026-11-27｜AI 3D Daily
+  </title>
+  <meta content="2026-11-27 AI 生成 Production Intelligence：AI 3D 生成 / AI 2D 生成 / AI 動作生成，共 1 項可驗證情報。" name="description"/>
+  <link href="../../styles.css?v=20261127-r1-workspace-v17-home-card-library" rel="stylesheet"/>
+  <link href="../../shared-components.css?v=20261127-r1-workspace-v17-home-card-library" rel="stylesheet"/>
+  <link href="../../category.css?v=20261127-r1-workspace-v17-home-card-library" rel="stylesheet"/>
+ </head>
+ <body class="category-page" data-category="ai-generation" data-report-date="2026-11-27">
+  <nav aria-label="Production Intelligence 分類" class="global-category-nav">
+   <div class="page global-category-nav-inner">
+    <div class="archive-nav-controls">
+     <a class="archive-nav-home" href="../../">
+      ← 首頁
+     </a>
+     <div class="archive-nav-date">
+      <a aria-label="前一日日報" class="archive-nav-arrow" href="../../2026-11-26/ai-generation/">
+       ←
+      </a>
+      <span>
+       2026-11-27
+      </span>
+     </div>
+    </div>
+    <span aria-hidden="true" class="archive-nav-divider">
+    </span>
+    <a class="global-category-link" href="../#top">
+     TOP5
+    </a>
+    <a class="global-category-link is-active" data-category="ai-generation" href="../ai-generation/">
+     AI 生成
+    </a>
+    <a class="global-category-link" data-category="3d-production" href="../3d-production/">
+     3D 製作
+    </a>
+    <a class="global-category-link" data-category="3d-animation" href="../3d-animation/">
+     3D 動作
+    </a>
+    <a class="global-category-link" data-category="engine-art" href="../engine-art/">
+     遊戲引擎
+    </a>
+    <a class="global-category-link" data-category="emerging-case" href="../emerging-case/">
+     新技術 / Case
+    </a>
+    <a class="global-category-link" data-category="blender-dcc" href="../blender-dcc/">
+     Blender / DCC
+    </a>
+    <a class="global-category-link global-history-link" data-global-view="history" href="../../history/">
+     歷史日報
+    </a>
+    <a class="global-admin-link" href="../../admin/">
+     管理後臺
+    </a>
+   </div>
+  </nav>
+  <main class="page category-main">
+   <article class="category-card" data-intel-id="tripo3d-workflow-image-to-3d-mid-autumn-24ec472cfdb57afa" data-intel-role="card" id="intel-tripo3d-workflow-image-to-3d-mid-autumn-24ec472cfdb57afa">
+    <div class="category-meta">
+     #12 · ai-3d
+    </div>
+    <h2>
+     中秋宮燈資產實作：Tripo 生成靜態模型，Blender 分離紙面材質
+    </h2>
+    <p class="summary">
+     這份 2026 年 9 月教學以宮燈示範圖片轉 3D：先依靜態用途選擇 H 系列，再匯入 Blender 手動選取燈籠紙面，調整次表面與透明度；側面細節仍有推斷成分。
+    </p>
+    <figure class="case-preview" data-intel-id="tripo3d-workflow-image-to-3d-mid-autumn-24ec472cfdb57afa" data-intel-role="visual" data-visual-id="tripo3d-workflow-image-to-3d-mid-autumn-24ec472cfdb57afa">
+     <a href="https://www.tripo3d.ai/zh/tutorials/workflow-image-to-3d-mid-autumn" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-11-27/tripo3d-workflow-image-to-3d-mid-autumn-24ec472cfdb57afa.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">AI 3D</b> ★★★☆☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       先按資產用途選模型
+      </h4>
+      <p>
+       教學中的宮燈是靜態道具，不需要綁定或模擬，因此選用 Tripo 3.1／H 系列，優先考量幾何細節。生成後先檢查輪廓、比例、裝飾幾何與貼圖一致性，再以 FBX 匯入 Blender；文中也列出 OBJ 作為其他管線的選項。
+      </p>
+      <h4>
+       紙面材質交給 Blender 控制
+      </h4>
+      <p>
+       宮燈的半透明紙面需要獨立材質控制。作者認為這類特定形狀難以透過 Tripo 分割穩定分離，因此在 Blender 編輯模式手動選面；本例從 Subsurface Weight 約 1、Alpha 約 0.7 至 0.8 開始，再於最終光照下微調，並非所有資產的固定設定。
+      </p>
+      <h4>
+       未提供的側面仍靠推斷
+      </h4>
+      <p>
+       本例利用宮燈大致對稱的特性，將同一張圖用於正面與背面，左右視圖則交給 Tripo 推斷，以免加入不準確的 AI 側面參考。這項做法依賴物體對稱性；教學指出，單張圖無法可靠表達側面或背面時，多視圖才更有價值。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://www.tripo3d.ai/zh/tutorials/workflow-image-to-3d-mid-autumn" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <nav aria-label="相鄰分類" class="category-bottom-nav">
+    <a href="../blender-dcc/">
+     ← Blender / DCC
+    </a>
+    <a href="../#top">
+     TOP5
+    </a>
+    <a href="../3d-production/">
+     3D 製作 →
+    </a>
+   </nav>
+  </main>
+  <script defer="" src="../../archive-nav-state.js?v=20261127-r1-workspace-v17-home-card-library">
+  </script>
+ </body>
+</html>

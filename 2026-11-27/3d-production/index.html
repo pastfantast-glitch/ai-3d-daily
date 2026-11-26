@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   3D 製作｜2026-11-27｜AI 3D Daily
+  </title>
+  <meta content="2026-11-27 3D 製作 Production Intelligence：3D 角色製作 / 3D 物件製作 / 3D 場景製作 / 製作流程，共 2 項可驗證情報。" name="description"/>
+  <link href="../../styles.css?v=20261127-r1-workspace-v17-home-card-library" rel="stylesheet"/>
+  <link href="../../shared-components.css?v=20261127-r1-workspace-v17-home-card-library" rel="stylesheet"/>
+  <link href="../../category.css?v=20261127-r1-workspace-v17-home-card-library" rel="stylesheet"/>
+ </head>
+ <body class="category-page" data-category="3d-production" data-report-date="2026-11-27">
+  <nav aria-label="Production Intelligence 分類" class="global-category-nav">
+   <div class="page global-category-nav-inner">
+    <div class="archive-nav-controls">
+     <a class="archive-nav-home" href="../../">
+      ← 首頁
+     </a>
+     <div class="archive-nav-date">
+      <a aria-label="前一日日報" class="archive-nav-arrow" href="../../2026-11-26/3d-production/">
+       ←
+      </a>
+      <span>
+       2026-11-27
+      </span>
+     </div>
+    </div>
+    <span aria-hidden="true" class="archive-nav-divider">
+    </span>
+    <a class="global-category-link" href="../#top">
+     TOP5
+    </a>
+    <a class="global-category-link" data-category="ai-generation" href="../ai-generation/">
+     AI 生成
+    </a>
+    <a class="global-category-link is-active" data-category="3d-production" href="../3d-production/">
+     3D 製作
+    </a>
+    <a class="global-category-link" data-category="3d-animation" href="../3d-animation/">
+     3D 動作
+    </a>
+    <a class="global-category-link" data-category="engine-art" href="../engine-art/">
+     遊戲引擎
+    </a>
+    <a class="global-category-link" data-category="emerging-case" href="../emerging-case/">
+     新技術 / Case
+    </a>
+    <a class="global-category-link" data-category="blender-dcc" href="../blender-dcc/">
+     Blender / DCC
+    </a>
+    <a class="global-category-link global-history-link" data-global-view="history" href="../../history/">
+     歷史日報
+    </a>
+    <a class="global-admin-link" href="../../admin/">
+     管理後臺
+    </a>
+   </div>
+  </nav>
+  <main class="page category-main">
+   <article class="category-card" data-intel-id="blendernation-outfit-refit-2-0-and-drapefix-fit-outfits-to-any-avat-8fdcdd0207106ead" data-intel-role="card" id="intel-blendernation-outfit-refit-2-0-and-drapefix-fit-outfits-to-any-avat-8fdcdd0207106ead">
+    <div class="category-meta">
+     #01 · character-production
+    </div>
+    <h2>
+     Outfit Refit 2.0 與 DrapeFix：分開處理服裝轉移與布料垂墜
+    </h2>
+    <p class="summary">
+     Meshwright 的兩款 Blender 外掛面向 VRChat 頭像製作：Outfit Refit 2.0 將服裝適配到其他身體，DrapeFix 再使用 Blender 布料解算器處理垂墜並保留形狀鍵。
+    </p>
+    <figure class="case-preview" data-intel-id="blendernation-outfit-refit-2-0-and-drapefix-fit-outfits-to-any-avat-8fdcdd0207106ead" data-intel-role="visual" data-visual-id="blendernation-outfit-refit-2-0-and-drapefix-fit-outfits-to-any-avat-8fdcdd0207106ead">
+     <a href="https://www.blendernation.com/2026/11/25/outfit-refit-2-0-and-drapefix-fit-outfits-to-any-avatar-then-give-them-a-real-cloth-drape" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-11-27/blendernation-outfit-refit-2-0-and-drapefix-fit-outfits-to-any-avat-8fdcdd0207106ead.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">角色製作</b> ★★★★☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       服裝轉移先產生各自的副本
+      </h4>
+      <p>
+       Outfit Refit 選取來源身體、目標頭像與服裝後，為每個頭像產生已適配和加權的副本，保留形狀鍵並處理靜止狀態穿插；不需要原始頭像的模式屬於 Pro 版。
+      </p>
+      <h4>
+       解算後形狀成為新的基礎形態
+      </h4>
+      <p>
+       DrapeFix 以 Blender 布料解算器讓裙裝落在身體上，再將結果設為新的 Basis；原文說形狀鍵隨布料調整，而權重、UV 與頂點群組保持不變，承接前一步的服裝適配。
+      </p>
+      <h4>
+       單一示範不能代表所有動作
+      </h4>
+      <p>
+       報導中的 VRoid 示範保留三個形狀鍵、裙襬下降 32.5 毫米，屬於該示範結果，不能推定每套服裝或動畫都不穿插；外掛標示支援 Blender 4.2 至 5.2。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://www.blendernation.com/2026/11/25/outfit-refit-2-0-and-drapefix-fit-outfits-to-any-avatar-then-give-them-a-real-cloth-drape" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="cg-channel-watch-vfx-breakdowns-for-backrooms-in-one-place-a732bffe81de8e41" data-intel-role="card" id="intel-cg-channel-watch-vfx-breakdowns-for-backrooms-in-one-place-a732bffe81de8e41">
+    <div class="category-meta">
+     #03 · environment-production
+    </div>
+    <h2>
+     《後室》視效拆解補充：Mr Wolf 的穿牆效果與 CoSA 的場景重建
+    </h2>
+    <p class="summary">
+     CG Channel 彙整《後室》多家視效公司的拆解：除了 Roxel 的空間製作，還介紹 Mr Wolf 的布景延伸與穿牆效果，以及 CoSA 依原始 Blender 場景重建的 Threshold Chamber。
+    </p>
+    <figure class="case-preview" data-intel-id="cg-channel-watch-vfx-breakdowns-for-backrooms-in-one-place-a732bffe81de8e41" data-intel-role="visual" data-visual-id="cg-channel-watch-vfx-breakdowns-for-backrooms-in-one-place-a732bffe81de8e41">
+     <a href="https://www.cgchannel.com/2026/11/watch-vfx-breakdowns-for-backrooms-in-one-place" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-11-27/cg-channel-watch-vfx-breakdowns-for-backrooms-in-one-place-a732bffe81de8e41.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">場景製作</b> ★★★★☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       由原始場景延伸到電影鏡頭
+      </h4>
+      <p>
+       CoSA 的 Threshold Chamber 以 Kane Parsons 原有的 Blender 場景為基礎，目標是把數位環境融入實拍和實體布景；原文也指出這是從網路系列沿用到電影的場景。
+      </p>
+      <h4>
+       不同工作室承接不同鏡頭需求
+      </h4>
+      <p>
+       Mr Wolf 的工作包括布景延伸、角色穿過牆面的效果，以及主角的 CG 義肢；這些拆解補足 Roxel 環境片段以外的製作內容，可分別觀察場景和角色效果的分工。
+      </p>
+      <h4>
+       軟體資訊不能跨工作室套用
+      </h4>
+      <p>
+       報導明確提到 Roxel 使用 Blender 與 box mapping，但對 Mr Wolf 只描述鏡頭效果，對 CoSA 則說明原始場景來源；不能因此推定三家公司採用相同的完整工具流程。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://www.cgchannel.com/2026/11/watch-vfx-breakdowns-for-backrooms-in-one-place" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <nav aria-label="相鄰分類" class="category-bottom-nav">
+    <a href="../ai-generation/">
+     ← AI 生成
+    </a>
+    <a href="../#top">
+     TOP5
+    </a>
+    <a href="../3d-animation/">
+     3D 動作 →
+    </a>
+   </nav>
+  </main>
+  <script defer="" src="../../archive-nav-state.js?v=20261127-r1-workspace-v17-home-card-library">
+  </script>
+ </body>
+</html>

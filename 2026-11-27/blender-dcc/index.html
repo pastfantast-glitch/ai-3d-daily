@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   Blender / DCC｜2026-11-27｜AI 3D Daily
+  </title>
+  <meta content="2026-11-27 Blender / DCC Production Intelligence：Blender / DCC 工具與工作流 / Blender Tips，共 2 項可驗證情報。" name="description"/>
+  <link href="../../styles.css?v=20261127-r1-workspace-v17-home-card-library" rel="stylesheet"/>
+  <link href="../../shared-components.css?v=20261127-r1-workspace-v17-home-card-library" rel="stylesheet"/>
+  <link href="../../category.css?v=20261127-r1-workspace-v17-home-card-library" rel="stylesheet"/>
+ </head>
+ <body class="category-page" data-category="blender-dcc" data-report-date="2026-11-27">
+  <nav aria-label="Production Intelligence 分類" class="global-category-nav">
+   <div class="page global-category-nav-inner">
+    <div class="archive-nav-controls">
+     <a class="archive-nav-home" href="../../">
+      ← 首頁
+     </a>
+     <div class="archive-nav-date">
+      <a aria-label="前一日日報" class="archive-nav-arrow" href="../../2026-11-26/blender-dcc/">
+       ←
+      </a>
+      <span>
+       2026-11-27
+      </span>
+     </div>
+    </div>
+    <span aria-hidden="true" class="archive-nav-divider">
+    </span>
+    <a class="global-category-link" href="../#top">
+     TOP5
+    </a>
+    <a class="global-category-link" data-category="ai-generation" href="../ai-generation/">
+     AI 生成
+    </a>
+    <a class="global-category-link" data-category="3d-production" href="../3d-production/">
+     3D 製作
+    </a>
+    <a class="global-category-link" data-category="3d-animation" href="../3d-animation/">
+     3D 動作
+    </a>
+    <a class="global-category-link" data-category="engine-art" href="../engine-art/">
+     遊戲引擎
+    </a>
+    <a class="global-category-link" data-category="emerging-case" href="../emerging-case/">
+     新技術 / Case
+    </a>
+    <a class="global-category-link is-active" data-category="blender-dcc" href="../blender-dcc/">
+     Blender / DCC
+    </a>
+    <a class="global-category-link global-history-link" data-global-view="history" href="../../history/">
+     歷史日報
+    </a>
+    <a class="global-admin-link" href="../../admin/">
+     管理後臺
+    </a>
+   </div>
+  </nav>
+  <main class="page category-main">
+   <article class="category-card" data-intel-id="blendernation-enso-engine-1-1-a-free-blender-build-for-anime-and-np-ecd0c8b7d1fb40f0" data-intel-role="card" id="intel-blendernation-enso-engine-1-1-a-free-blender-build-for-anime-and-np-ecd0c8b7d1fb40f0">
+    <div class="category-meta">
+     #02 · blender
+    </div>
+    <h2>
+     Ensō Engine 1.1 將動漫與非寫實節點整合進 Blender 分支
+    </h2>
+    <p class="summary">
+     Mix 3D Design 推出 Windows 版 Ensō Engine 1.1，整合 EEVEE 卡通著色、臉部陰影、髮絲高光與合成輪廓節點；這是可與一般 Blender 並存的 GPL 開源分支。
+    </p>
+    <figure class="case-preview" data-intel-id="blendernation-enso-engine-1-1-a-free-blender-build-for-anime-and-np-ecd0c8b7d1fb40f0" data-intel-role="visual" data-visual-id="blendernation-enso-engine-1-1-a-free-blender-build-for-anime-and-np-ecd0c8b7d1fb40f0">
+     <a href="https://www.blendernation.com/2026/11/26/enso-engine-1-1-a-free-blender-build-for-anime-and-npr" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-11-27/blendernation-enso-engine-1-1-a-free-blender-build-for-anime-and-np-ecd0c8b7d1fb40f0.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">Blender</b> ★★★★☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       角色著色與線條有專用節點
+      </h4>
+      <p>
+       EEVEE 卡通著色提供燈光選擇、逐燈控制與陰影遮罩，另有臉部陰影、眼睛視差及髮絲高光節點；曲率工具包含不需烘焙的螢幕空間曲率，並非所有曲率都共用一種方法。
+      </p>
+      <h4>
+       遮罩與合成接續同一套選單
+      </h4>
+      <p>
+       作者希望預先整理常用風格化節點，減少每個檔案重建組合；額外渲染通道和自訂標籤可提供合成遮罩，合成器亦加入輪廓與風格化收尾節點，搭配整理後的 NPR 選單。
+      </p>
+      <h4>
+       作業系統與分支定位需保留
+      </h4>
+      <p>
+       公告明確提供 Windows 版 1.1，未列出其他平台組建；程式採 GPL 且不取代原本 Blender 安裝。作者也說明它是小型專案並徵求錯誤回報，不能當作上游 Blender 已內建的功能。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://www.blendernation.com/2026/11/26/enso-engine-1-1-a-free-blender-build-for-anime-and-npr" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="cg-channel-new-cg-software-you-may-have-missed-15-november-2026-92b22d02f22c0bd1" data-intel-role="card" id="intel-cg-channel-new-cg-software-you-may-have-missed-15-november-2026-92b22d02f22c0bd1">
+    <div class="category-meta">
+     #09 · other-dcc
+    </div>
+    <h2>
+     十一月軟體更新摘錄：Sisir 增加髮片與 Blender、Maya 整合
+    </h2>
+    <p class="summary">
+     CG Channel 的 11 月 15 日更新彙整介紹 Sisir 新增 Cards 與 Texture 模組，以及 3ds Max、Blender、Maya 整合外掛；本則聚焦毛髮資料交換與即時髮片工作。
+    </p>
+    <figure class="case-preview" data-intel-id="cg-channel-new-cg-software-you-may-have-missed-15-november-2026-92b22d02f22c0bd1" data-intel-role="visual" data-visual-id="cg-channel-new-cg-software-you-may-have-missed-15-november-2026-92b22d02f22c0bd1">
+     <a href="https://www.cgchannel.com/2026/11/new-cg-software-you-may-have-missed-15-november-2026" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-11-27/cg-channel-new-cg-software-you-may-have-missed-15-november-2026-92b22d02f22c0bd1.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">其他 DCC</b> ★★★★☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       從髮絲延伸到髮片與紋理
+      </h4>
+      <p>
+       Sisir 的 Cards 模組可建立供遊戲和即時場景使用的髮片；Texture 模組提供每個圖塊的毛髮圖層、顏色與環境遮蔽烘焙，並能從參考紋理自動追蹤髮絲。
+      </p>
+      <h4>
+       場景匯入與導引線回傳分工
+      </h4>
+      <p>
+       新增整合外掛可將 Sisir 場景直接匯入宿主 DCC，也可把毛髮導引線送回 Sisir；外掛採 MIT 授權開源，涵蓋 Blender、Maya 與 3ds Max 的資料交換。
+      </p>
+      <h4>
+       支援版本與授權範圍有限定
+      </h4>
+      <p>
+       這篇更新列出的最低版本分別是 Blender 4.2、3ds Max 2022 與 Maya 2022；MIT 授權的說明指向整合外掛，不能由此推定整個 Sisir 應用程式也採相同授權。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://www.cgchannel.com/2026/11/new-cg-software-you-may-have-missed-15-november-2026" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <nav aria-label="相鄰分類" class="category-bottom-nav">
+    <a href="../emerging-case/">
+     ← 新技術 / Case
+    </a>
+    <a href="../#top">
+     TOP5
+    </a>
+    <a href="../ai-generation/">
+     AI 生成 →
+    </a>
+   </nav>
+  </main>
+  <script defer="" src="../../archive-nav-state.js?v=20261127-r1-workspace-v17-home-card-library">
+  </script>
+ </body>
+</html>

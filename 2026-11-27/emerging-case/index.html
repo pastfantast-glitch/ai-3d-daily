@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   新技術 / Case｜2026-11-27｜AI 3D Daily
+  </title>
+  <meta content="2026-11-27 新技術 / Case Production Intelligence：新技術 / Production Case，共 5 項可驗證情報。" name="description"/>
+  <link href="../../styles.css?v=20261127-r1-workspace-v17-home-card-library" rel="stylesheet"/>
+  <link href="../../shared-components.css?v=20261127-r1-workspace-v17-home-card-library" rel="stylesheet"/>
+  <link href="../../category.css?v=20261127-r1-workspace-v17-home-card-library" rel="stylesheet"/>
+ </head>
+ <body class="category-page" data-category="emerging-case" data-report-date="2026-11-27">
+  <nav aria-label="Production Intelligence 分類" class="global-category-nav">
+   <div class="page global-category-nav-inner">
+    <div class="archive-nav-controls">
+     <a class="archive-nav-home" href="../../">
+      ← 首頁
+     </a>
+     <div class="archive-nav-date">
+      <a aria-label="前一日日報" class="archive-nav-arrow" href="../../2026-11-26/emerging-case/">
+       ←
+      </a>
+      <span>
+       2026-11-27
+      </span>
+     </div>
+    </div>
+    <span aria-hidden="true" class="archive-nav-divider">
+    </span>
+    <a class="global-category-link" href="../#top">
+     TOP5
+    </a>
+    <a class="global-category-link" data-category="ai-generation" href="../ai-generation/">
+     AI 生成
+    </a>
+    <a class="global-category-link" data-category="3d-production" href="../3d-production/">
+     3D 製作
+    </a>
+    <a class="global-category-link" data-category="3d-animation" href="../3d-animation/">
+     3D 動作
+    </a>
+    <a class="global-category-link" data-category="engine-art" href="../engine-art/">
+     遊戲引擎
+    </a>
+    <a class="global-category-link is-active" data-category="emerging-case" href="../emerging-case/">
+     新技術 / Case
+    </a>
+    <a class="global-category-link" data-category="blender-dcc" href="../blender-dcc/">
+     Blender / DCC
+    </a>
+    <a class="global-category-link global-history-link" data-global-view="history" href="../../history/">
+     歷史日報
+    </a>
+    <a class="global-admin-link" href="../../admin/">
+     管理後臺
+    </a>
+   </div>
+  </nav>
+  <main class="page category-main">
+   <article class="category-card" data-intel-id="cg-channel-boris-fx-releases-silhouette-2027-1f38be8b761c0821" data-intel-role="card" id="intel-cg-channel-boris-fx-releases-silhouette-2027-1f38be8b761c0821">
+    <div class="category-meta">
+     #05 · case-study
+    </div>
+    <h2>
+     Silhouette 2027 加入可編修的 AI 轉描形狀與本機影片修補
+    </h2>
+    <p class="summary">
+     Silhouette 2027 將 AI 遮罩與手動轉描銜接：Body ML 產生身體部位形狀，Roto ML 貼合遮罩並保留關鍵影格修正，另加入本機 Video Inpaint ML 與相機投影節點。
+    </p>
+    <figure class="case-preview" data-intel-id="cg-channel-boris-fx-releases-silhouette-2027-1f38be8b761c0821" data-intel-role="visual" data-visual-id="cg-channel-boris-fx-releases-silhouette-2027-1f38be8b761c0821">
+     <a href="https://www.cgchannel.com/2026/11/boris-fx-releases-silhouette-2027" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-11-27/cg-channel-boris-fx-releases-silhouette-2027-1f38be8b761c0821.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">製作案例</b> ★★★★☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       AI 結果可回到形狀編修
+      </h4>
+      <p>
+       Body ML 先產生頭部、軀幹和四肢的粗略可編修形狀並追蹤動作；Roto ML 再把這些形狀或手動畫出的形狀貼合 AI 遮罩，修正過程可設定關鍵影格。
+      </p>
+      <h4>
+       修補影像可接入三維投影
+      </h4>
+      <p>
+       Video Inpaint ML 根據輸入 alpha 指定的區域生成替代影像，使用 Boris FX 自有模型在本機背景運作；3D Projection 則能把修補或替代影像透過相機投射到場景幾何。
+      </p>
+      <h4>
+       本機修補與外部生成應分開理解
+      </h4>
+      <p>
+       本機執行的描述針對 Video Inpaint ML；同版另外加入連接 Runway 的文字、參考圖與影片生成節點。不能把其中一個節點的本機特性推廣成所有生成工作都離線。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://www.cgchannel.com/2026/11/boris-fx-releases-silhouette-2027" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="khronos-official-from-portability-to-conformance-a-new-chapter-for-e42bee270527a927" data-intel-role="card" id="intel-khronos-official-from-portability-to-conformance-a-new-chapter-for-e42bee270527a927">
+    <div class="category-meta">
+     #06 · case-study
+    </div>
+    <h2>
+     Khronos 調整 Apple 上的 Vulkan 路線，推薦符合規範的 KosmicKrisp
+    </h2>
+    <p class="summary">
+     Khronos 說明 KosmicKrisp 已在 Apple silicon 通過 Vulkan 1.4 一致性測試，並規劃移除 portability subset 暫定擴充；既有 MoltenVK 應用仍可運作，重編譯和平台涵蓋範圍需分別處理。
+    </p>
+    <figure class="case-preview" data-intel-id="khronos-official-from-portability-to-conformance-a-new-chapter-for-e42bee270527a927" data-intel-role="visual" data-visual-id="khronos-official-from-portability-to-conformance-a-new-chapter-for-e42bee270527a927">
+     <a href="https://www.khronos.org/blog/from-portability-to-conformance-a-new-chapter-for-layered-vulkan-on-apple" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE CARD preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-11-27/khronos-official-from-portability-to-conformance-a-new-chapter-for-e42bee270527a927.svg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE CARD
+      </span>
+      · Generated source card · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">製作案例</b> ★★★★☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       著色器編譯路徑與工具支援改變
+      </h4>
+      <p>
+       MoltenVK 先將著色器中介碼轉成 Metal 著色語言文字；新驅動改採 Mesa 的 NIR 編譯流程。原文指出這個路徑可支援由圖形處理器協助的驗證和除錯列印，讓分層實作也能使用這些開發工具。
+      </p>
+      <h4>
+       重編譯須處理擴充移除
+      </h4>
+      <p>
+       計畫於十二月中旬 SDK 推出的變更會移除暫定的可攜性子集擴充；仍使用該擴充的程式，更新標頭後需要調整。已出貨的應用不會因此立即停止運作，保留原有標頭和修改程式使用新標頭是不同選項。
+      </p>
+      <h4>
+       建議路線有硬體與系統邊界
+      </h4>
+      <p>
+       新驅動的建議範圍是 macOS 26 以上的蘋果自有晶片電腦；採用 Intel 晶片、較舊系統與尚無支援的行動裝置，仍由社群維護的 MoltenVK 承接。報導提及的外部擷取除錯工具支援仍屬未來預期。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://www.khronos.org/blog/from-portability-to-conformance-a-new-chapter-for-layered-vulkan-on-apple" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="blendernation-lepoly-a-3d-asset-manager-from-the-founders-of-sketch-7942b5c97c236d62" data-intel-role="card" id="intel-blendernation-lepoly-a-3d-asset-manager-from-the-founders-of-sketch-7942b5c97c236d62">
+    <div class="category-meta">
+     #07 · case-study
+    </div>
+    <h2>
+     lepoly 推出瀏覽器 3D 資產庫，整合版本比較與外觀搜尋
+    </h2>
+    <p class="summary">
+     Sketchfab 共同創辦人推出 lepoly，以瀏覽器管理多格式 3D 資產，提供互動預覽、版本視覺差異和外觀搜尋；Blender 整合、API 與 MCP 在報導時仍是後續計畫。
+    </p>
+    <figure class="case-preview" data-intel-id="blendernation-lepoly-a-3d-asset-manager-from-the-founders-of-sketch-7942b5c97c236d62" data-intel-role="visual" data-visual-id="blendernation-lepoly-a-3d-asset-manager-from-the-founders-of-sketch-7942b5c97c236d62">
+     <a href="https://www.blendernation.com/2026/11/25/lepoly-a-3d-asset-manager-from-the-founders-of-sketchfab" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-11-27/blendernation-lepoly-a-3d-asset-manager-from-the-founders-of-sketch-7942b5c97c236d62.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">製作案例</b> ★★★★☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       檔案預覽與版本搜尋合在資產庫
+      </h4>
+      <p>
+       lepoly 可讀取 glTF、GLB、FBX、OBJ、USDZ、BLEND 等格式，並整理成可搜尋的資料庫與集合；每個資產有互動檢視器，版本差異和依外觀的 AI 搜尋提供另外的查找方式。
+      </p>
+      <h4>
+       批次設定與分享權限支援團隊
+      </h4>
+      <p>
+       批次上傳可套用場景預設，統一一批檔案的燈光和設定；分享連結或嵌入時可分別設定檢視、留言、編輯與下載權限，讓資產檢閱和檔案交付有不同控制。
+      </p>
+      <h4>
+       已支援上傳不等於已完成整合
+      </h4>
+      <p>
+       原文已確認可上傳 .blend，但 Blender 整合、API 和 MCP 仍是計畫；免費方案限 500 MB 儲存與單檔 100 MB，不能把其他段落提及的 2 GB 檔案上限套用到免費方案。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://www.blendernation.com/2026/11/25/lepoly-a-3d-asset-manager-from-the-founders-of-sketchfab" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="cg-channel-boris-fx-releases-sapphire-2027-28b42f79af07238a" data-intel-role="card" id="intel-cg-channel-boris-fx-releases-sapphire-2027-28b42f79af07238a">
+    <div class="category-meta">
+     #08 · case-study
+    </div>
+    <h2>
+     Sapphire 2027 增加膠片暈光、八色映射與泡狀雜訊
+    </h2>
+    <p class="summary">
+     Sapphire 2027.0 的 S_Halation 模擬膠片強光邊緣暈光，S_MultiTone 可按亮度在八個指定顏色間漸變；TextureCells 也新增 Bubbles 模式。GPU 效能數字來自廠商測試。
+    </p>
+    <figure class="case-preview" data-intel-id="cg-channel-boris-fx-releases-sapphire-2027-28b42f79af07238a" data-intel-role="visual" data-visual-id="cg-channel-boris-fx-releases-sapphire-2027-28b42f79af07238a">
+     <a href="https://www.cgchannel.com/2026/11/boris-fx-releases-sapphire-2027" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-11-27/cg-channel-boris-fx-releases-sapphire-2027-28b42f79af07238a.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">製作案例</b> ★★★★☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       亮度映射與暈光有獨立效果
+      </h4>
+      <p>
+       S_Halation 模擬類比膠片強光邊緣的柔和紅色暈光；S_MultiTone 依來源片段亮度建立最多八色的漸變，相較既有 QuadTone 的四色提供更多顏色控制點。
+      </p>
+      <h4>
+       程序紋理與節點控制一起更新
+      </h4>
+      <p>
+       TextureCells 的 Bubbles 模式產生柔軟圓頂狀圖案，原文列出墨點與螢火蟲等效果用途；Builder 同時增加跨節點啟閉全部參數的選項，並擴充 Noise 工具顏色。
+      </p>
+      <h4>
+       效能增幅有宿主與效果條件
+      </h4>
+      <p>
+       報導引用 Boris FX 的最高 77% GPU 效能提升，最大增益出現在 Premiere Pro；另述特定重度 GPU 效果在其他宿主的測試，不能解讀成每個效果都固定快 77%。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://www.cgchannel.com/2026/11/boris-fx-releases-sapphire-2027" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="khronos-official-vulkan-video-acceleration-comes-to-browsers-2a81e31501fa5abb" data-intel-role="card" id="intel-khronos-official-vulkan-video-acceleration-comes-to-browsers-2a81e31501fa5abb">
+    <div class="category-meta">
+     #11 · case-study
+    </div>
+    <h2>
+     Vulkan Video 推進瀏覽器加速：Firefox 解碼與 Chromium 編碼分階段導入
+    </h2>
+    <p class="summary">
+     Khronos 介紹 Vulkan Video 在瀏覽器的整合：Firefox 透過 FFmpeg 與 DMA-buf 傳送 GPU 影格；Chromium 編碼器正在上游提交，解碼後端仍在開發，不能視為全面完成部署。
+    </p>
+    <figure class="case-preview" data-intel-id="khronos-official-vulkan-video-acceleration-comes-to-browsers-2a81e31501fa5abb" data-intel-role="visual" data-visual-id="khronos-official-vulkan-video-acceleration-comes-to-browsers-2a81e31501fa5abb">
+     <a href="https://www.khronos.org/blog/vulkan-video-acceleration-comes-to-browsers" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE CARD preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-11-27/khronos-official-vulkan-video-acceleration-comes-to-browsers-2a81e31501fa5abb.svg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE CARD
+      </span>
+      · Generated source card · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">製作案例</b> ★★★☆☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       跨程序共享影格而非複製像素
+      </h4>
+      <p>
+       FFmpeg 的解碼器匯出可跨程序共享的 GPU 記憶體控制代碼，連同格式布局和同步資訊交給瀏覽器；圖形處理程序匯入後直接送往合成器，使解碼到顯示的像素可留在 GPU 記憶體，而非搬回系統記憶體。
+      </p>
+      <h4>
+       同一編碼後端承接多種使用情境
+      </h4>
+      <p>
+       Chromium 的新編碼器以官方視訊範例程式庫為基礎，設計上承接網頁即時通話、螢幕分享、網頁編解碼介面、媒體錄製與投放；擷取影格透過 GPU 共享影像傳入，這是同一後端的不同服務對象。
+      </p>
+      <h4>
+       Firefox 與 Chromium 進度不同
+      </h4>
+      <p>
+       原文說 Firefox 的解碼器與沙箱調整已進入第 153 版；另一瀏覽器引擎的編碼器才開始提交上游，解碼後端仍開發中。實際可用性還依賴驅動與各層整合，不能宣稱所有瀏覽器預設啟用。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://www.khronos.org/blog/vulkan-video-acceleration-comes-to-browsers" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <nav aria-label="相鄰分類" class="category-bottom-nav">
+    <a href="../engine-art/">
+     ← 遊戲引擎
+    </a>
+    <a href="../#top">
+     TOP5
+    </a>
+    <a href="../blender-dcc/">
+     Blender / DCC →
+    </a>
+   </nav>
+  </main>
+  <script defer="" src="../../archive-nav-state.js?v=20261127-r1-workspace-v17-home-card-library">
+  </script>
+ </body>
+</html>

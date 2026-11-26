@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   遊戲引擎｜2026-11-27｜AI 3D Daily
+  </title>
+  <meta content="2026-11-27 遊戲引擎 Production Intelligence：遊戲引擎 / 引擎端美術內容，共 2 項可驗證情報。" name="description"/>
+  <link href="../../styles.css?v=20261127-r1-workspace-v17-home-card-library" rel="stylesheet"/>
+  <link href="../../shared-components.css?v=20261127-r1-workspace-v17-home-card-library" rel="stylesheet"/>
+  <link href="../../category.css?v=20261127-r1-workspace-v17-home-card-library" rel="stylesheet"/>
+ </head>
+ <body class="category-page" data-category="engine-art" data-report-date="2026-11-27">
+  <nav aria-label="Production Intelligence 分類" class="global-category-nav">
+   <div class="page global-category-nav-inner">
+    <div class="archive-nav-controls">
+     <a class="archive-nav-home" href="../../">
+      ← 首頁
+     </a>
+     <div class="archive-nav-date">
+      <a aria-label="前一日日報" class="archive-nav-arrow" href="../../2026-11-26/engine-art/">
+       ←
+      </a>
+      <span>
+       2026-11-27
+      </span>
+     </div>
+    </div>
+    <span aria-hidden="true" class="archive-nav-divider">
+    </span>
+    <a class="global-category-link" href="../#top">
+     TOP5
+    </a>
+    <a class="global-category-link" data-category="ai-generation" href="../ai-generation/">
+     AI 生成
+    </a>
+    <a class="global-category-link" data-category="3d-production" href="../3d-production/">
+     3D 製作
+    </a>
+    <a class="global-category-link" data-category="3d-animation" href="../3d-animation/">
+     3D 動作
+    </a>
+    <a class="global-category-link is-active" data-category="engine-art" href="../engine-art/">
+     遊戲引擎
+    </a>
+    <a class="global-category-link" data-category="emerging-case" href="../emerging-case/">
+     新技術 / Case
+    </a>
+    <a class="global-category-link" data-category="blender-dcc" href="../blender-dcc/">
+     Blender / DCC
+    </a>
+    <a class="global-category-link global-history-link" data-global-view="history" href="../../history/">
+     歷史日報
+    </a>
+    <a class="global-admin-link" href="../../admin/">
+     管理後臺
+    </a>
+   </div>
+  </nav>
+  <main class="page category-main">
+   <article class="category-card" data-intel-id="godot-official-dev-snapshot-godot-4-8-beta-5-6f06f2fb0ff434fe" data-intel-role="card" id="intel-godot-official-dev-snapshot-godot-4-8-beta-5-6f06f2fb0ff434fe">
+    <div class="category-meta">
+     #04 · tools
+    </div>
+    <h2>
+     Godot 4.8 beta 5 修正 MetalFX 升頻與 Trail3D 更新問題
+    </h2>
+    <p class="summary">
+     Godot 4.8 beta 5 以回歸修正為主，處理 MetalFX 時域升頻的抖動偏移及 Trail3D 更新問題；官方仍將它定位為預發布版本，.NET 組建最低需求改為 .NET 10。
+    </p>
+    <figure class="case-preview" data-intel-id="godot-official-dev-snapshot-godot-4-8-beta-5-6f06f2fb0ff434fe" data-intel-role="visual" data-visual-id="godot-official-dev-snapshot-godot-4-8-beta-5-6f06f2fb0ff434fe">
+     <a href="https://godotengine.org/article/dev-snapshot-godot-4-8-beta-5" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-11-27/godot-official-dev-snapshot-godot-4-8-beta-5-6f06f2fb0ff434fe.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">引擎工具</b> ★★★★☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       升頻與軌跡更新列入修正
+      </h4>
+      <p>
+       變更表列出 MetalFX 時域升頻抖動偏移的單位與正負號修正，以及停用 process 時 Trail3D 的更新修正；這些是 beta 4 到 beta 5 的差異，並非整個 4.8 功能清單。
+      </p>
+      <h4>
+       編輯器與 C# 專案也受影響
+      </h4>
+      <p>
+       Find in Files 複製篩選器、繼續執行時顯示 Game dock 都有修正；C# 翻譯外掛改以標準方式註冊，避免覆蓋使用者外掛，與純渲染修正分屬不同工作環節。
+      </p>
+      <h4>
+       預發布狀態與執行環境需區分
+      </h4>
+      <p>
+       官方提醒此版仍是預發布軟體，已知問題清單也會繼續更新；.NET 組建需要 .NET 10 或更新版本，不能沿用先前最低 .NET 8 的假設，標準組建則提供 GDScript 和 GDExtension。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://godotengine.org/article/dev-snapshot-godot-4-8-beta-5" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <article class="category-card" data-intel-id="godot-official-godot-showcase-sovereign-tower-694927f14f79b671" data-intel-role="card" id="intel-godot-official-godot-showcase-sovereign-tower-694927f14f79b671">
+    <div class="category-meta">
+     #10 · tools
+    </div>
+    <h2>
+     Sovereign Tower 製作案例：時間回溯存檔與 Godot 資產整合
+    </h2>
+    <p class="summary">
+     Wild Wits Games 分享 Sovereign Tower 的製作經驗：時間回溯不能只還原普通存檔，團隊拆分敘事狀態；美術則透過 Godot 場景系統更新肖像，複雜 UI 交由技術成員處理。
+    </p>
+    <figure class="case-preview" data-intel-id="godot-official-godot-showcase-sovereign-tower-694927f14f79b671" data-intel-role="visual" data-visual-id="godot-official-godot-showcase-sovereign-tower-694927f14f79b671">
+     <a href="https://godotengine.org/article/godot-showcase-sovereign-tower" rel="noopener noreferrer" target="_blank" title="開啟原始案例">
+      <img alt="SOURCE PREVIEW preview" decoding="async" loading="lazy" onerror="this.closest('.case-preview').style.display='none'" src="../../assets/visual/2026-11-27/godot-official-godot-showcase-sovereign-tower-694927f14f79b671.jpg"/>
+     </a>
+     <figcaption>
+      <span>
+       SOURCE PREVIEW
+      </span>
+      · Local visual evidence · 點圖開啟原始來源
+     </figcaption>
+    </figure>
+    <div class="quick-impact">
+     <span><b class="quick-impact-label">引擎工具</b> ★★★☆☆</span>
+    </div>
+    <details class="canonical-analysis canonical-analysis-brief" data-analysis-level="BRIEF">
+     <summary>
+      完整分析
+     </summary>
+     <div class="detail-body canonical-analysis-body brief-analysis-body">
+      <h4>
+       回溯狀態要保留玩家已知資訊
+      </h4>
+      <p>
+       每個遊玩循環需要上午與下午兩份存檔，且必須記住先前循環資訊；主角回溯後仍保留所知內容，因此團隊把需保存的資料細分，而非直接恢復一份完整舊狀態。
+      </p>
+      <h4>
+       場景系統支援美術直接迭代
+      </h4>
+      <p>
+       肖像等簡單資產由美術負責人放入儲存庫並在 Godot 更新，較複雜的 UI 由程式或技術美術整合；團隊表示場景系統讓美術可自行調整畫面，減少每次微調都經過程式人員。
+      </p>
+      <h4>
+       分支規模與測試仍有成本
+      </h4>
+      <p>
+       大量敘事變數和角色讓回溯存檔難以完整測試，上市後仍有問題要修；敘事設計也受字數與在地化預算約束，團隊刪減部分變體，不能將這套方法視為沒有測試和製作成本的方案。
+      </p>
+      <p class="analysis-level-note">
+       BRIEF｜來源已驗證；證據深度較有限，完整分析會明確區分已知資訊與待驗證事項。
+      </p>
+     </div>
+    </details>
+    <a class="source" href="https://godotengine.org/article/godot-showcase-sovereign-tower" rel="noopener noreferrer" target="_blank">
+     來源 ↗
+    </a>
+   </article>
+   <nav aria-label="相鄰分類" class="category-bottom-nav">
+    <a href="../3d-animation/">
+     ← 3D 動作
+    </a>
+    <a href="../#top">
+     TOP5
+    </a>
+    <a href="../emerging-case/">
+     新技術 / Case →
+    </a>
+   </nav>
+  </main>
+  <script defer="" src="../../archive-nav-state.js?v=20261127-r1-workspace-v17-home-card-library">
+  </script>
+ </body>
+</html>
