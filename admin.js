@@ -1,8 +1,8 @@
-import {mountGraph} from './admin-graph.js?v=20261126-wiring1';
-import {validateGraphDraft} from './admin-graph-model.mjs?v=20261126-wiring1';
+import {mountGraph} from './admin-graph.js?v=20261126-wiring2';
+import {validateGraphDraft} from './admin-graph-model.mjs?v=20261126-wiring2';
 import {mountOperations} from './admin-operations.js?v=20261126-scope1';
 import {createClient} from 'https://esm.sh/@supabase/supabase-js@2.116.0?bundle';
-import {validateSettings} from './supabase/functions/collection-admin/policy.mjs?v=20261126-wiring1';
+import {validateSettings} from './supabase/functions/collection-admin/policy.mjs?v=20261126-wiring2';
 import {sourceInventory} from './admin-source-state.mjs';
 const base='https://epumcdxfkcujulqrcjrw.supabase.co',key='sb_publishable_KPadXg3RKth3SGsAuXzebA_OylGgtpf';
 const auth=createClient(base,key,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:false}});
