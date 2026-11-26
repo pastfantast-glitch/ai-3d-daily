@@ -130,6 +130,12 @@ def article_like_url(url: str) -> bool:
     return len(leaf) >= 4
 
 
+def collector_http_headers(runtime):
+    return {'User-Agent': runtime['http']['user_agent'],
+            'Accept': 'text/html,application/xhtml+xml',
+            'Accept-Language': 'en-US,en;q=0.8,zh-TW;q=0.5,ja;q=0.4'}
+
+
 def fetch(session: requests.Session, url: str, timeout: int, *, allow_feed: bool = False) -> dict:
     started = time.monotonic()
     try:
@@ -149,7 +155,7 @@ def fetch(session: requests.Session, url: str, timeout: int, *, allow_feed: bool
         if status >= 400:
             return {
                 "url": url, "final_url": response.url, "status": status, "html": "",
-                "error": f"http-{status}", "elapsed": time.monotonic() - started,
+                "error": ('source-challenge-required' if response.headers.get('cf-mitigated') == 'challenge' else f"http-{status}"), "elapsed": time.monotonic() - started,
             }
         if not is_html and not is_feed:
             return {
@@ -1153,11 +1159,7 @@ def run_editorial_repair(report_date: str, runtime: dict, override_path: Path) -
 
     before_fingerprint = selection_fingerprint(items)
     source_session = requests.Session()
-    source_session.headers.update({
-        "User-Agent": runtime["http"]["user_agent"],
-        "Accept": "text/html,application/xhtml+xml",
-        "Accept-Language": "en-US,en;q=0.8,zh-TW;q=0.5,ja;q=0.4",
-    })
+    source_session.headers.update(collector_http_headers(runtime))
     timeout = int(runtime["http"]["timeout_seconds"])
     direct_reverified = 0
     verified_done_fallback = 0
@@ -1338,11 +1340,7 @@ def main() -> int:
     configured_endpoints = {s["id"]:s["endpoints"] for s in settings["sources"]} if settings else (runtime.get("source_endpoints") or {})
     session = requests.Session()
     session.managed_sources = bool(settings)
-    session.headers.update({
-        "User-Agent": runtime["http"]["user_agent"],
-        "Accept": "text/html,application/xhtml+xml",
-        "Accept-Language": "en-US,en;q=0.8,zh-TW;q=0.5,ja;q=0.4",
-    })
+    session.headers.update(collector_http_headers(runtime))
 
     used_ids: set[str] = set()
     discovered: list[dict] = []

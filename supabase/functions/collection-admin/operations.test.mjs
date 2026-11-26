@@ -21,6 +21,17 @@ const date='2026-11-19',done=read(`data/publish/${date}.done.json`),canonical=re
 test('strict DONE matches real receipt and refuses date, URL, commit data and latest drift',()=>{assert.deepEqual(receiptIssues(date,done,canonical,latest,canonical),[]);for(const patch of [{daily_url:'https://wrong.invalid/'},{date:'2026-11-18'},{canonical:{ids:[],item_count:0}},{qa:{pages:'fail'}}])assert.ok(receiptIssues(date,{...done,...patch},canonical,latest,canonical).length);assert.ok(receiptIssues(date,done,canonical,{...latest,date:'2026-11-18'},canonical).length);assert.ok(receiptIssues(date,done,canonical,latest,{...canonical,items:[]}).length);});
 test('controls cannot approve or write arbitrary data; twelve calendar months enforced',()=>{assert.throws(()=>validateControls({schema_version:1,held_urls:[],approved:true}));assert.throws(()=>validateControls({schema_version:1,held_urls:['https://a.test','https://a.test']}));assert.throws(()=>validateControls({schema_version:1,held_urls:['http://a.test']}));assert.equal(recentSource('2025-11-19',date),true);assert.equal(recentSource('2025-11-18',date),false);assert.equal(recentSource('2026-02-30',date),false);assert.equal(recentSource('2026-11-20',date),false);assert.equal(taipeiDate(new Date('2026-11-18T23:50:00Z')),date);});
 function repo(files){return async p=>{if(p==='/git/ref/heads/main')return{object:{sha:'a'.repeat(40)}};const key=p.split('?')[0].replace('/contents/','');if(!(key in files))throw new Error('repository_404');return{sha:'b'.repeat(40),content:Buffer.from(JSON.stringify(files[key])).toString('base64')};};}
+
+test('same-day reserve batch is loaded alongside immutable release and removed from review queue',async()=>{
+ const row={source_url:'https://example.com/reserve',source_published_at:date,title:'Reserve',review:{approved:true}};
+ const files={'config/collection-admin.json':{topics:[{id:'ai-3d',enabled:true,target_items:30}],sources:[{id:'example',base_url:'https://example.com/',enabled:true,topic_ids:['ai-3d']}]},
+  [`data/editorial-reviews/${date}.json`]:{date,source_run_id:123,items:{a:{...row,source_url:'https://example.com/a'}}},
+  [`data/editorial-reviews/${date}-456.json`]:{date,purpose:'reserve',source_run_id:456,items:{b:row}},
+  'data/ops/collection-monitor.json':{date,source_run_id:456,articles:[{id:'b',source_url:row.source_url,errors:['awaiting-editorial-review']}]}};
+ const base=repo(files),github=async p=>p.startsWith('/contents/data/editorial-reviews?')?[{type:'file',name:date+'.json'},{type:'file',name:date+'-456.json'}]:base(p);
+ const r=await operations(github,async()=>[],new Date(date+'T00:00:00Z'));
+ assert.equal(r.reserve_count,2);assert.equal(r.queue.length,0);assert.equal(r.review_progress.merged_approved,2);assert.equal(r.review_progress.source_run_id,456);
+});
 test('failed review inventory is unknown, not zero available reserve',async()=>{
  const base=repo({}),github=async p=>{if(p.startsWith('/contents/data/editorial-reviews?'))throw Error('repository_403');return base(p);};
  const r=await operations(github,async()=>[],new Date('2026-11-19T00:00:00Z'));

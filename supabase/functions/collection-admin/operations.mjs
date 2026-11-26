@@ -44,8 +44,8 @@ export async function operations(github,publicRuns,now=new Date()){
  try{
   const directory=await github(`/contents/data/editorial-reviews?ref=${head}`);
   const cutoff=new Date(date+'T00:00:00Z');cutoff.setUTCDate(cutoff.getUTCDate()-180);
-  const paths=directory.filter(x=>x.type==='file'&&/^20\d{2}-\d{2}-\d{2}\.json$/.test(x.name)&&x.name.slice(0,10)<=date&&x.name.slice(0,10)>=cutoff.toISOString().slice(0,10)).map(x=>'data/editorial-reviews/'+x.name);
-  if(paths.length>181)throw Error('review_inventory_limit');
+  const paths=directory.filter(x=>x.type==='file'&&/^20\d{2}-\d{2}-\d{2}(?:-[1-9]\d*)?\.json$/.test(x.name)&&x.name.slice(0,10)<=date&&x.name.slice(0,10)>=cutoff.toISOString().slice(0,10)).map(x=>'data/editorial-reviews/'+x.name);
+  if(paths.length>500)throw Error('review_inventory_limit');
   for(let i=0;i<paths.length;i+=6)reviewFiles.push(...(await Promise.all(paths.slice(i,i+6).map(p=>file(p)))).map(x=>x.data).filter(Boolean));
  }catch(e){if(e.message!=='repository_404'){reviewComplete=false;issues.push('審稿備稿索引讀取不完整；庫存數量暫不可確認。');}}
  const usableMonitor=monitor?.date===date?monitor:null;
@@ -58,8 +58,8 @@ export async function operations(github,publicRuns,now=new Date()){
  for(const url of held)if(!queue.some(x=>x.source_url===url)&&!reserve.some(x=>x.source_url===url))queue.push({id:url,title:url,source_url:url,source_date:'',errors:['owner-held-for-later'],held:true,state:'held'});
  const eligible=reviewComplete?reserve.filter(x=>x.state==='recheck_required').length:null;
  const target=settings.topics.find(x=>x.id==='ai-3d')?.target_items||30;
- const reviewed=reviewFiles.find(x=>x.date===date);
- const review_progress={date,source_run_id:reviewed?.source_run_id||usableMonitor?.source_run_id||null,merged_approved:reviewed?Object.values(reviewed.items||{}).filter(x=>x.review?.approved===true).length:0,awaiting:queue.filter(x=>x.state==='awaiting_review').length,local_progress:'unknown',note:'只列已合併核准與 Collector 紀錄；本機草稿及未合併 PR 進度未取得。'};
+ const reviewed=reviewFiles.filter(x=>x.date===date);
+ const review_progress={date,source_run_id:usableMonitor?.source_run_id||reviewed[0]?.source_run_id||null,merged_approved:new Set(reviewed.flatMap(x=>Object.values(x.items||{}).filter(r=>r.review?.approved===true).map(r=>urlKey(r.source_url)))).size,awaiting:queue.filter(x=>x.state==='awaiting_review').length,local_progress:'unknown',note:'只列已合併核准與 Collector 紀錄；本機草稿及未合併 PR 進度未取得。'};
  const diagnostic=(await file(`data/ops/handoff/${date}.json`)).data;
  const recovery=recoveryAdvice(state,runs,diagnostic);
  if(state==='HANDOFF_FAILED'&&diagnostic?.reason)issues.unshift(diagnostic.reason);

@@ -4,6 +4,12 @@
 
 ## 排程審稿交接（2026-11-23 更新）
 
+### 同日發布後的獨立備稿批次（2026-11-26）
+
+若 `YYYY-MM-DD.json` 已合併，不得覆寫。來自另一個 genuine completed Collector run 的備稿使用 `data/editorial-reviews/YYYY-MM-DD-RUN_ID.json`，必須 `purpose: reserve`，檔名 run 必須等於來源 run。每個來源 run 仍只能合併一次；不能把同一 run 拆成多份來突破限制。CI 拒絕修改已合併檔案或重複 run，仍下載未過期原 artifact，核對正文、段落、日期與品質。PR 仍只含一份審稿結果，程式修正須先分開合併。
+
+以 `scripts/editorial_review.py YYYY-MM-DD --review-file data/editorial-reviews/YYYY-MM-DD-RUN_ID.json --packet 原始證據 --run-json 官方紀錄` 驗證。Collector 與後臺會一併讀取獨立備稿批次；release 入口仍只讀原每日檔。備稿合併標題使用 `[editorial-reserve]`，不重啟當日 Collector。跨日取用仍須完整來源可讀、原雜湊吻合、12 個月內、去重與品質通過；403 或 challenge 不能以本機 artifact 代替即時擷取。
+
 1. 讀 current main、今日 DONE/canonical/latest-success/session/Actions。完整 DONE 才代表發布成功，但發布完成後仍可審閱尚未核准的候選，補充備稿。有 active Collector/Publisher 先追蹤，不同時啟動第二 writer；既有 session 由既有 handoff 處理。
 2. 從今日 main 的 genuine completed Collector（success 或 failure）取得未過期的 `collector-review-日期-run_id` 與官方 run.json。核對日期、main、head_sha、status/conclusion。ZIP 只讀 collector-review.json，不執行內容、不 extractall。正文缺失、截斷、證據不完整不得核准。
 3. 先找同日期及來源 run 的審稿檔/PR；同一 run 最多合併一次，不建立重複 PR，不覆寫已合併的審稿。每次最多 40 篇、每篇最多兩輪編修。逐篇編修繁體中文標題、摘要及三個有段落依據的角度，再次逐段對照來源；填滿六項 checks、issues、unsupported_claims、evidence_refs，核對通過才 approved=true。推論必須標示；來源日期限制為收錄當日往前 12 個日曆月，既有已發布內容保留。

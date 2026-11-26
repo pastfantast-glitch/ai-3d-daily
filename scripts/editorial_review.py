@@ -29,6 +29,16 @@ def valid_refs(refs, ids):
 
 def read_review(date, root=ROOT):
     path = root / 'data' / 'editorial-reviews' / f'{date}.json'
+    return read_review_file(path, date)
+
+
+def read_review_file(path, date=None):
+    """Immutable daily release or a separate reserve batch bound to its run."""
+    path = Path(path)
+    match = re.fullmatch(r'(20\d{2}-\d{2}-\d{2})(?:-([1-9][0-9]*))?\.json', path.name)
+    if not match or (date is not None and date != match[1]):
+        raise ReviewError('invalid editorial review filename/date')
+    date = match[1]
     if not path.exists():
         return None
     try:
@@ -41,7 +51,11 @@ def read_review(date, root=ROOT):
                  and isinstance(data.get('items'), dict) and 0 < len(data['items']) <= 40)
         if not valid:
             raise ReviewError('editorial review schema/date/provenance invalid')
+        if match[2] and (data.get('purpose') != 'reserve' or data['source_run_id'] != int(match[2])):
+            raise ReviewError('supplemental file must be reserve bound to filename run')
         return data
+    except ReviewError:
+        raise
     except (ValueError, TypeError, AttributeError) as error:
         raise ReviewError('editorial review unreadable or invalid') from error
 
@@ -166,11 +180,12 @@ def main():
     parser.add_argument('--packet', type=Path)
     parser.add_argument('--run-json', type=Path)
     parser.add_argument('--run-id-only', action='store_true')
+    parser.add_argument('--review-file', type=Path)
     args = parser.parse_args()
     if not re.fullmatch(r'20\d{2}-\d{2}-\d{2}', args.date):
         parser.error('date must be YYYY-MM-DD')
     try:
-        data = read_review(args.date)
+        data = read_review_file(args.review_file, args.date) if args.review_file else read_review(args.date)
         if data is None:
             raise ReviewError('editorial review file missing')
         if args.run_id_only:
