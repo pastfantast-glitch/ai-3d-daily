@@ -1,5 +1,7 @@
 """All admitted articles remain discoverable beyond the TOP5 + next10 selection."""
 import json
+import io
+from contextlib import redirect_stdout
 import tempfile
 import unittest
 from pathlib import Path
@@ -7,9 +9,64 @@ from unittest.mock import patch
 from bs4 import BeautifulSoup
 import render_information_architecture as ia
 import render_home_archive_links as history
+import normalize_release_seed as seed
 
 
 class TodayLibraryTests(unittest.TestCase):
+    def test_release_seed_retains_all_expanded_cards_and_legacy_tiers(self):
+        for count in (12, 20, 30):
+            for expanded in (False, True):
+                with self.subTest(count=count, expanded=expanded), tempfile.TemporaryDirectory() as td:
+                    root = Path(td)
+                    items = [dict(id=f'item-{n}', title=f'Title {n}', summary='Source summary',
+                                  source_url=f'https://example.com/{n}', rank_global=n,
+                                  homepage_tier='top5' if n < 5 else 'next10' if n < 15 else 'category_only')
+                             for n in range(count)]
+                    # Deliberately unsorted input catches accidental dataset-order rendering.
+                    data = {'items': list(reversed(items))}
+                    marker = ' data-card-library="all"' if expanded else ''
+                    (root / 'index.html').write_text('<html><body><main><section id="today"></section>'
+                        f'<section id="more"{marker}></section></main></body></html>', 'utf-8')
+                    with patch.object(seed, 'ROOT', root):
+                        seed.normalize_home('2026-11-26', data)
+                        seed.normalize_home('2026-11-26', data)
+                    soup = BeautifulSoup((root / 'index.html').read_text('utf-8'), 'html.parser')
+                    ids = [c['data-intel-id'] for c in soup.select('[data-intel-role="card"]')]
+                    self.assertEqual(ids, [f'item-{n}' for n in range(count if expanded else min(count, 15))])
+                    self.assertEqual(len(soup.select('#today .top-item')), 5)
+                    self.assertEqual(len(ids), len(set(ids)))
+
+    def test_twenty_article_seed_passes_real_release_gate_and_rejects_card_corruption(self):
+        import sys
+        import check_release_input as gate
+        date = '2026-11-26'
+        data = json.loads((ia.ROOT / f'data/daily/{date}.json').read_text('utf-8'))
+        self.assertEqual(len(data['items']), 20)
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            (root / 'data/daily').mkdir(parents=True)
+            (root / f'data/daily/{date}.json').write_text(json.dumps(data), 'utf-8')
+            (root / '2026-11-25').mkdir()
+            (root / '2026-11-25/index.html').write_bytes((ia.ROOT / '2026-11-25/index.html').read_bytes())
+            (root / 'index.html').write_bytes((ia.ROOT / 'index.html').read_bytes())
+            with patch.object(seed, 'ROOT', root):
+                seed.normalize_home(date, data)
+                seed.normalize_daily(date, data)
+            original = (root / 'index.html').read_text('utf-8')
+            with patch.object(gate.core, 'ROOT', root), patch.object(sys, 'argv', ['check_release_input.py', date]):
+                with patch.object(gate.core, 'errors', []):
+                    gate.core.main()
+                for defect in ('missing', 'duplicate', 'wrong-order'):
+                    with self.subTest(defect=defect), patch.object(gate.core, 'errors', []):
+                        soup = BeautifulSoup(original, 'html.parser')
+                        cards = soup.select('#more .more-card')
+                        if defect == 'missing': cards[-1].decompose()
+                        elif defect == 'duplicate': cards[-1]['data-intel-id'] = cards[0]['data-intel-id']
+                        else: cards[0].insert_before(cards[-1].extract())
+                        (root / 'index.html').write_text(str(soup), 'utf-8')
+                        with redirect_stdout(io.StringIO()), self.assertRaises(SystemExit): gate.core.main()
+                        self.assertTrue(any('homepage' in e for e in gate.core.errors))
+
     def test_merged_cards_are_unique_paged_and_preserve_dates(self):
         cfg = ia.load_config()
         category = cfg['categories'][0]['id']

@@ -40,6 +40,10 @@ jobs:
             validate=false
             while IFS= read -r path; do
               case "$path" in
+                scripts/normalize_release_seed.py|scripts/test_today_library.py)
+                  # Presentation-only changes cannot activate or change source proposals.
+                  # Their release/card regressions run in the required contract job.
+                  ;;
                 config/*|requirements-pipeline.txt|scripts/*.py|supabase/functions/collection-admin/policy.mjs|supabase/functions/collection-admin/settings-flow.mjs)
                   validate=true ;;
               esac

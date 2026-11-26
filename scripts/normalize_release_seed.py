@@ -136,6 +136,12 @@ def normalize_home(date,data):
     for rank,item in enumerate(top,1): container.append(home_top_card(soup,item,rank))
 
     more_sec=ensure_section(soup,'more',today); add_class(more_sec,'home-section','more-section')
+    # The merged card library includes every admitted article, not only next10.
+    # Match the release-input gate while preserving legacy and daily seed tiers.
+    if more_sec.get('data-card-library') == 'all':
+        from intelligence_v2 import homepage_cards
+        top_ids = {item['id'] for item in top}
+        more = [item for item in homepage_cards(data, expanded=True) if item['id'] not in top_ids]
     grid=more_sec.select_one('.more-grid')
     if not grid:
         grid=soup.new_tag('div'); add_class(grid,'more-grid'); more_sec.append(grid)
@@ -145,6 +151,7 @@ def normalize_home(date,data):
     for sid,role in [('test','test-section'),('history','history-section')]:
         add_class(soup.select_one(f'#{sid}'),'home-section',role)
     path.write_text(soup.prettify()+'\n','utf-8')
+    return len(more)
 
 def latest_prior_daily(date):
     candidates=[]
@@ -199,8 +206,8 @@ def main():
     if len(sys.argv)<2: raise SystemExit('usage: normalize_release_seed.py YYYY-MM-DD')
     date=sys.argv[1]
     data=json.loads((ROOT/'data'/'daily'/f'{date}.json').read_text('utf-8'))
-    normalize_home(date,data); normalize_daily(date,data)
+    home_more_count=normalize_home(date,data); normalize_daily(date,data)
     top,more=selected(data)
-    print(f'RELEASE SEED SYNCHRONIZED: {date} / TOP={len(top)} / NEXT={len(more)} / canonical IDs+order+copy')
+    print(f'RELEASE SEED SYNCHRONIZED: {date} / TOP={len(top)} / HOME_MORE={home_more_count} / DAILY_NEXT={len(more)} / canonical IDs+order+copy')
 
 if __name__=='__main__': main()
