@@ -72,7 +72,7 @@ begin
   if p_expected_revision is null or p_expected_revision < 0 or p_layout is null or octet_length(p_layout::text) > 200000 or public.validate_admin_graph_layout(p_layout) is not true then raise exception 'invalid_layout' using errcode = '22023'; end if;
   -- Serializes initial inserts as well as updates, scoped to this user's layout.
   perform pg_advisory_xact_lock(hashtextextended('admin_graph_layout:' || auth.uid()::text,0));
-  if coalesce((select revision from public.admin_graph_layout where user_id=auth.uid()),0) <> p_expected_revision then raise exception 'layout_version_conflict' using errcode = '40001'; end if;
+  if coalesce((select revision from public.admin_graph_layout where user_id=auth.uid()),0) <> p_expected_revision then raise exception 'layout_version_conflict' using errcode = 'P0001'; end if;
   insert into public.admin_graph_layout(user_id,layout,revision) values(auth.uid(),p_layout,p_expected_revision+1)
   on conflict(user_id) do update set layout=excluded.layout,revision=excluded.revision,updated_at=now();
   return public.get_admin_graph_layout();

@@ -1,11 +1,11 @@
-import {mountLayoutStorage} from './admin-graph-storage.mjs?v=20261127-layout1';
-import {mountStudio} from './admin-studio.mjs?v=20261127-layout1';
-import {mountGraph} from './admin-graph.js?v=20261127-layout1';
-import {validateGraphDraft} from './admin-graph-model.mjs?v=20261127-layout1';
-import {mountOperations} from './admin-operations.js?v=20261127-layout1';
+import {mountLayoutStorage} from './admin-graph-storage.mjs?v=20261127-layout2';
+import {mountStudio} from './admin-studio.mjs?v=20261127-layout2';
+import {mountGraph} from './admin-graph.js?v=20261127-layout2';
+import {validateGraphDraft} from './admin-graph-model.mjs?v=20261127-layout2';
+import {mountOperations} from './admin-operations.js?v=20261127-layout2';
 import {createClient} from 'https://esm.sh/@supabase/supabase-js@2.116.0?bundle';
-import {validateGraphSettings as validateSettings} from './admin-graph-model.mjs?v=20261127-layout1';
-import {projectSettings,unprojectSettings,categoryItems,BUILTINS} from './category-model.mjs?v=20261127-layout1';
+import {validateGraphSettings as validateSettings} from './admin-graph-model.mjs?v=20261127-layout2';
+import {projectSettings,unprojectSettings,categoryItems,BUILTINS} from './category-model.mjs?v=20261127-layout2';
 import {sourceInventory} from './admin-source-state.mjs';
 const base='https://epumcdxfkcujulqrcjrw.supabase.co',key='sb_publishable_KPadXg3RKth3SGsAuXzebA_OylGgtpf';
 const auth=createClient(base,key,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:false}});
@@ -104,7 +104,7 @@ $('#editor-form').onsubmit=async e=>{e.preventDefault();if(busy)return;busy=true
   if(editing.kind==='source')Object.assign(item,{base_url:String(f.get('base_url')).trim(),endpoints:lines('endpoints'),topic_ids:f.getAll('topic_ids')});
   else Object.assign(item,{description:String(f.get('description')||'').trim(),include_terms:lines('include_terms'),exclude_terms:lines('exclude_terms'),target_items:30,max_age_months:12,visible:f.has('visible'),hide_empty:f.has('hide_empty'),order:Number(f.get('order')),manual_urls:lines('manual_urls'),excluded_urls:lines('excluded_urls'),source_ids:settings.sources.filter(s=>s.topic_ids.includes(editing.id)).map(s=>s.id)});
   const next=structuredClone(settings),list=editing.kind==='source'?next.sources:next.topics,index=list.findIndex(x=>x.id===editing.id);if(index<0)list.push(item);else list[index]=item;
-  if(currentView==='graph'){validateGraphDraft(next);settings=next;graphDirty=JSON.stringify(settings)!==JSON.stringify(savedSettings);closeEditor();render();notify('節點設定已加入草稿；請按「儲存畫布並驗證」。');}else{await save(next);closeEditor();}
+  if(currentView==='graph'){validateGraphDraft(next);settings=next;graphDirty=JSON.stringify(settings)!==JSON.stringify(savedSettings);closeEditor();render();notify('節點設定已加入草稿；請按「儲存收集設定並驗證」。');}else{await save(next);closeEditor();}
 }catch(error){$('#editor-error').textContent=error.message;}finally{busy=false;submit.disabled=false;updateGraph();}};
 $('#probe-source').onclick=async()=>{const b=$('#probe-source');b.disabled=true;$('#editor-error').textContent='';try{const url=$('#editor-form [name=endpoints]').value.split(/\r?\n/).find(x=>x.trim())||$('#editor-form [name=base_url]').value;const r=await api('probe',{url:url.trim()});const p=$('#probe-result');p.replaceChildren(el('h3',r.title||'來源預覽'),el('p',`來源日期：${r.source_date||'列表中未確認'} · 正文長度：${r.body_characters} 字元`),el('p',r.body_preview),el('p',r.note));for(const href of r.article_links){const a=el('a',href);a.href=href;a.target='_blank';a.rel='noopener noreferrer';p.append(a);}for(const sample of r.samples||[]){const card=el('div');card.append(el('strong',sample.title||sample.url),el('p',sample.error?`試讀失敗：${sample.error}`:`日期：${sample.source_date||'未確認'} · ${sample.body_characters} 字元 · ${sample.date_eligible?'期限內':'日期待確認或超期'}`));if(sample.body_preview)card.append(el('p',sample.body_preview));p.append(card);}p.hidden=false;}catch(e){$('#editor-error').textContent=e.message;}finally{b.disabled=false;}};
 for(const id of ['close-editor','cancel-editor'])$('#'+id).onclick=()=>{if(studio.canLeaveEditor())closeEditor();};

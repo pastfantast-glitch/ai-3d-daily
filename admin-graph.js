@@ -1,8 +1,8 @@
-import {layoutDocument,movedNodes,alignedNodes,arrangedNodes} from './admin-graph-layout.mjs?v=20261127-layout1';
-import {mountGraphTools} from './admin-graph-tools.mjs?v=20261127-layout1';
-import {connectTopic,moveConnection,connectionState,stageData} from './admin-graph-model.mjs?v=20261127-layout1';
-import {zoomAt,fitNodes,workspaceState,editHistory,changeSummary} from './admin-graph-workspace.mjs?v=20261127-layout1';
-import {createGraphDetails} from './admin-graph-details.mjs?v=20261127-layout1';
+import {layoutDocument,movedNodes,alignedNodes,arrangedNodes} from './admin-graph-layout.mjs?v=20261127-layout2';
+import {mountGraphTools} from './admin-graph-tools.mjs?v=20261127-layout2';
+import {connectTopic,moveConnection,connectionState,stageData} from './admin-graph-model.mjs?v=20261127-layout2';
+import {zoomAt,fitNodes,workspaceState,editHistory,changeSummary} from './admin-graph-workspace.mjs?v=20261127-layout2';
+import {createGraphDetails} from './admin-graph-details.mjs?v=20261127-layout2';
 const el=(tag,text,cls)=>{const e=document.createElement(tag);if(text!==undefined)e.textContent=text;if(cls)e.className=cls;return e;};
 const svgEl=tag=>document.createElementNS('http://www.w3.org/2000/svg',tag);
 export function mountGraph({onChange,onEdit,onAdd,onSave,onDiscard,onView,onValidation,onLayoutChange,notify}) {
