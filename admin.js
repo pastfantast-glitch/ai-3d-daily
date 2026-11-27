@@ -1,12 +1,12 @@
-import {categoryStatus,newCategoryVisibility} from './admin-category-state.mjs?v=20261127-delete1';
-import {mountLayoutStorage} from './admin-graph-storage.mjs?v=20261127-delete1';
-import {mountStudio} from './admin-studio.mjs?v=20261127-delete1';
-import {mountGraph} from './admin-graph.js?v=20261127-delete1';
-import {validateGraphDraft,removeCustomCategory} from './admin-graph-model.mjs?v=20261127-delete1';
-import {mountOperations} from './admin-operations.js?v=20261127-delete1';
+import {categoryStatus,newCategoryVisibility} from './admin-category-state.mjs?v=20261127-select1';
+import {mountLayoutStorage} from './admin-graph-storage.mjs?v=20261127-select1';
+import {mountStudio} from './admin-studio.mjs?v=20261127-select1';
+import {mountGraph} from './admin-graph.js?v=20261127-select1';
+import {validateGraphDraft,removeCustomCategory} from './admin-graph-model.mjs?v=20261127-select1';
+import {mountOperations} from './admin-operations.js?v=20261127-select1';
 import {createClient} from 'https://esm.sh/@supabase/supabase-js@2.116.0?bundle';
-import {validateGraphSettings as validateSettings} from './admin-graph-model.mjs?v=20261127-delete1';
-import {projectSettings,unprojectSettings,categoryItems,BUILTINS} from './category-model.mjs?v=20261127-delete1';
+import {validateGraphSettings as validateSettings} from './admin-graph-model.mjs?v=20261127-select1';
+import {projectSettings,unprojectSettings,categoryItems,BUILTINS} from './category-model.mjs?v=20261127-select1';
 import {sourceInventory} from './admin-source-state.mjs';
 const base='https://epumcdxfkcujulqrcjrw.supabase.co',key='sb_publishable_KPadXg3RKth3SGsAuXzebA_OylGgtpf';
 const auth=createClient(base,key,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:false}});
@@ -31,6 +31,7 @@ const graphView=mountGraph({
   onSave:async()=>{if(busy||!graphDirty)return;busy=true;updateGraph();try{await save(settings);}catch(e){notify(e.message,true);}finally{busy=false;updateGraph();}},
   onDiscard:()=>{if(!confirm('捨棄尚未儲存的畫布變更？已儲存的待驗證版本不受影響。'))return;settings=structuredClone(savedSettings);graphDirty=false;closeEditor();render();notify('已捨棄本機變更。');},
   onValidation:()=>studio.open('validation'),
+  onLeaveEditor:()=>{if(!studio.canLeaveEditor())return false;closeEditor();return true;},
   onLayoutChange:()=>layoutView?.changed(),onView:view=>studio.open(view),notify
 });
 layoutView=mountLayoutStorage({auth,graph:graphView,notify});
