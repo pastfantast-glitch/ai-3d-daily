@@ -49,8 +49,9 @@ def merge_queue(current, previous, root):
     date = current['date']
     published = {canonicalize_url(x.get('source_url', '')) for x in read(root/'data/candidates/published-registry-snapshot.json').get('published_sources', [])}
     receipt = read(root/f'data/publish/{date}.done.json')
-    if receipt.get('state') == 'DONE':
-        data = read(root/f'data/daily/{date}.json')
+    from daily_release_status import receipt_errors
+    data = read(root/f'data/daily/{date}.json')
+    if receipt and not receipt_errors(date,root,receipt,data,read(root/'data/publish/latest-success.json'),allow_newer_latest=True):
         published.update(canonicalize_url(x.get('source_url','')) for x in data.get('items', []) + data.get('topic_items', []))
     allowed = ('id','source_url','title','source_date','source_id','state','errors','first_seen','last_attempt_on','source_run_id','source_head_sha','evidence_date','body_readable')
     rows = {}
