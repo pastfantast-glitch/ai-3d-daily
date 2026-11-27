@@ -1,11 +1,11 @@
-import {mountLayoutStorage} from './admin-graph-storage.mjs?v=20261127-layout2';
-import {mountStudio} from './admin-studio.mjs?v=20261127-layout2';
-import {mountGraph} from './admin-graph.js?v=20261127-layout2';
-import {validateGraphDraft} from './admin-graph-model.mjs?v=20261127-layout2';
-import {mountOperations} from './admin-operations.js?v=20261127-layout2';
+import {mountLayoutStorage} from './admin-graph-storage.mjs?v=20261127-toolbar1';
+import {mountStudio} from './admin-studio.mjs?v=20261127-toolbar1';
+import {mountGraph} from './admin-graph.js?v=20261127-toolbar1';
+import {validateGraphDraft} from './admin-graph-model.mjs?v=20261127-toolbar1';
+import {mountOperations} from './admin-operations.js?v=20261127-toolbar1';
 import {createClient} from 'https://esm.sh/@supabase/supabase-js@2.116.0?bundle';
-import {validateGraphSettings as validateSettings} from './admin-graph-model.mjs?v=20261127-layout2';
-import {projectSettings,unprojectSettings,categoryItems,BUILTINS} from './category-model.mjs?v=20261127-layout2';
+import {validateGraphSettings as validateSettings} from './admin-graph-model.mjs?v=20261127-toolbar1';
+import {projectSettings,unprojectSettings,categoryItems,BUILTINS} from './category-model.mjs?v=20261127-toolbar1';
 import {sourceInventory} from './admin-source-state.mjs';
 const base='https://epumcdxfkcujulqrcjrw.supabase.co',key='sb_publishable_KPadXg3RKth3SGsAuXzebA_OylGgtpf';
 const auth=createClient(base,key,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:false}});

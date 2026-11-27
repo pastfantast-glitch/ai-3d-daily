@@ -1,7 +1,7 @@
 import {workspaceState} from './admin-graph-workspace.mjs';
 const el=(tag,text)=>{const n=document.createElement(tag);if(text)n.textContent=text;return n;};
 export function mountGraphTools({root,viewport,getNodes,getCamera,setCamera,selectKeys,selection,notify,onChange}){
- const tools=el('details'),toolbar=el('div');toolbar.className='graph-navigation-tools';tools.className='graph-navigation';tools.append(el('summary','畫布導覽、常用視角與群組'),toolbar);root.querySelector('.graph-toolbar').after(tools);
+ const tools=el('details'),toolbar=el('div');toolbar.className='graph-navigation-tools';tools.className='graph-navigation';tools.append(el('summary','畫布導覽、常用視角與群組'),toolbar);root.querySelector('#graph-navigation-slot').append(tools);tools.open=true;
  const location=el('select');location.setAttribute('aria-label','定位節點');const locate=button('定位節點',()=>selectKeys([location.value]));toolbar.append(location,locate);
  let key=null,state={locks:[],views:[],groups:[]};
  const name=el('input');name.placeholder='視角或群組名稱';name.maxLength=40;name.setAttribute('aria-label','視角或群組名稱');
@@ -9,8 +9,9 @@ export function mountGraphTools({root,viewport,getNodes,getCamera,setCamera,sele
  toolbar.append(name,button('儲存目前視角',()=>{const label=name.value.trim();if(!label)throw Error('請輸入視角名稱。');state.views=state.views.filter(v=>v.name!==label);state.views.push({name:label,camera:getCamera()});state.views=state.views.slice(-8);save();refreshMenus();}),views,button('前往視角',()=>{const v=state.views.find(v=>v.name===views.value);if(v)setCamera(v.camera);}),
   button('鎖定／解鎖選取',()=>{const ids=selection();if(!ids.length)throw Error('請先選取節點。');const all=ids.every(id=>state.locks.includes(id));state.locks=all?state.locks.filter(id=>!ids.includes(id)):[...new Set([...state.locks,...ids])];save();paint();notify(all?'已解鎖選取節點。':'已鎖定位置；來源設定仍可編輯。');}),
   button('建立選取群組',()=>{const ids=selection(),label=name.value.trim();if(!ids.length||!label)throw Error('請選取節點並填寫群組名稱。');state.groups=state.groups.filter(g=>g.name!==label);state.groups.push({name:label,ids});state.groups=state.groups.slice(-20);save();refreshMenus();}),groups,button('定位群組',()=>{const g=state.groups.find(g=>g.name===groups.value);if(g)selectKeys(g.ids);}),button('移除選定群組',()=>{state.groups=state.groups.filter(g=>g.name!==groups.value);save();refreshMenus();}));
+ root.querySelector('#graph-create-group').onclick=()=>{root.querySelector('#graph-more').hidden=false;root.querySelector('#graph-more-toggle').setAttribute('aria-expanded','true');tools.open=true;name.focus();notify('填寫群組名稱後，按「建立選取群組」。');};
  root.querySelector('#graph-layout-lock').onclick=()=>[...toolbar.querySelectorAll('button')].find(b=>b.textContent==='鎖定／解鎖選取').click();
- const mini=document.createElementNS('http://www.w3.org/2000/svg','svg');mini.classList.add('graph-minimap');mini.setAttribute('aria-label','畫布小地圖，點擊移動視角');mini.setAttribute('role','img');viewport.after(mini);let mapBounds=null;
+ const mini=document.createElementNS('http://www.w3.org/2000/svg','svg');mini.classList.add('graph-minimap');mini.setAttribute('aria-label','畫布小地圖，點擊移動視角');mini.setAttribute('role','img');viewport.append(mini);let mapBounds=null;
  mini.onclick=e=>{if(!mapBounds)return;const r=mini.getBoundingClientRect(),x=mapBounds.x+(e.clientX-r.left)/r.width*mapBounds.width,y=mapBounds.y+(e.clientY-r.top)/r.height*mapBounds.height,c=getCamera();setCamera({...c,x:x*c.zoom-viewport.clientWidth/2,y:y*c.zoom-viewport.clientHeight/2});};
  function button(text,fn){const b=el('button',text);b.type='button';b.onclick=()=>{try{fn();}catch(e){notify(e.message,true);}};return b;}
  function save(){onChange?.();if(key)try{localStorage.setItem(key,JSON.stringify(state));}catch{notify('瀏覽器無法保存畫布導覽設定。',true);}}

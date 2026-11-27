@@ -21,3 +21,28 @@ body:has(#graph-view.graph-focus:not([hidden])){overflow:hidden}.graph-node-titl
 .graph-layout-actions,.graph-layout-save{display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding:10px 14px;border:1px solid #34445e;border-radius:10px;margin:8px 0;background:#11252d}.graph-layout-save small{width:100%;color:#a7bbc9}.graph-layout-save button{white-space:nowrap}#graph-layout-state{flex:1;min-width:200px}#graph-selection-count{margin-right:8px;color:#b4dbd5}.graph-layout-actions button{padding:8px 10px}.graph-node-title:focus-visible{outline:2px solid #d4f9ff;outline-offset:4px}.graph-focus .graph-layout-save,.graph-focus .graph-layout-actions{padding:5px 10px;margin:4px 0}.graph-focus .graph-layout-save small{display:none}
 
 .graph-viewport.marquee-tool{cursor:crosshair}#graph-select-tool[aria-pressed=true]{background:#315568;border-color:#9cddeb}
+
+/* Tools stay with the canvas; camera transforms affect only graph-world. */
+.graph-canvas-workspace{position:relative;margin-top:12px;min-width:0}
+.graph-controls{position:sticky;top:8px;z-index:18;background:#111d2d;border:1px solid #405675;border-radius:12px 12px 0 0;box-shadow:0 5px 18px #0004}
+.graph-controls .graph-toolbar{display:flex;flex-wrap:wrap;gap:6px;justify-content:flex-start;margin:0!important;padding:10px;align-items:center}
+.graph-controls .graph-toolbar button,.graph-controls .graph-toolbar select,.graph-controls .graph-toolbar input{padding:8px 10px;font-size:13px;min-height:36px}
+.graph-controls .graph-toolbar select{width:116px}.graph-controls .graph-toolbar input{flex:1;min-width:110px;max-width:220px;width:130px}
+.graph-tool-modes{display:flex;gap:3px}.graph-tool-modes button,#graph-undo,#graph-redo{min-width:36px;font-size:19px!important;line-height:1}
+.graph-tool-modes [aria-pressed=true]{background:#315568;border-color:#9cddeb}
+.graph-controls #graph-layout-state{flex:1;min-width:130px;max-width:280px;font-size:12px;color:#b5d7d2;line-height:1.4}
+.graph-controls #graph-layout-save{background:#25625d;white-space:nowrap}
+.graph-controls .graph-layout-actions{position:absolute;top:100%;left:0;right:0;z-index:2;border-radius:0 0 10px 10px;margin:0!important;padding:6px 10px!important;background:#142f3aee;box-shadow:0 5px 14px #0005;gap:6px}
+.graph-layout-actions[hidden],.graph-more-panel[hidden]{display:none!important}
+.graph-controls .graph-layout-actions button{padding:6px 8px;font-size:12px;min-height:32px}
+.graph-more-panel{position:absolute;top:100%;right:0;width:min(650px,100%);max-height:min(65dvh,500px);overflow:auto;background:#142238;border:1px solid #526b89;border-radius:0 0 12px 12px;padding:14px;z-index:4;box-shadow:0 14px 30px #0008}
+.graph-more-actions{display:flex;gap:8px;flex-wrap:wrap}.graph-more-panel .graph-navigation{margin:8px 0 0;padding:8px;max-height:none!important}.graph-more-panel .graph-navigation-tools input,.graph-more-panel .graph-navigation-tools select{width:175px}
+.graph-canvas-workspace .graph-layout{border-radius:0 0 14px 14px}.graph-canvas-pane{min-width:0}
+.graph-viewport .graph-zoom{position:absolute;right:12px;bottom:12px;z-index:8;gap:5px;padding:6px;background:#101d2eee;border:1px solid #49617d;border-radius:10px;box-shadow:0 4px 14px #0005}
+.graph-viewport .graph-zoom button{padding:7px 9px;font-size:12px;min-height:32px}.graph-viewport .graph-zoom output{font-size:12px;min-width:38px}
+.graph-canvas-workspace:has(#graph-selection-actions:not([hidden])) .graph-minimap{top:60px}
+.graph-axis-guide{position:absolute;pointer-events:none;z-index:3;border:0 dashed #7de9e1}.graph-axis-guide.x{border-top-style:dashed}.graph-axis-guide.y{border-left-style:dashed}
+#graph-axis-status{position:absolute;left:14px;bottom:16px;padding:6px 10px;background:#103e42e8;color:#b9fff6;border:1px solid #66c6bd;border-radius:6px;z-index:8;font-size:12px;pointer-events:none}
+#graph-axis-status[hidden]{display:none}
+.graph-focus .graph-canvas-workspace{display:flex;flex-direction:column;flex:1;min-height:0;margin-top:6px}.graph-focus .graph-controls{position:relative;top:0;flex:none}.graph-focus .graph-canvas-workspace>.graph-layout{flex:1;min-height:0}.graph-focus .graph-canvas-pane{display:flex;flex-direction:column;min-height:0}.graph-focus .graph-viewport{flex:1;height:auto;min-height:180px}
+@media(max-width:700px){.graph-controls{top:0}.graph-controls .graph-toolbar input{max-width:none}.graph-controls #graph-layout-state{max-width:none}.graph-controls .graph-layout-actions{max-height:115px;overflow:auto}.graph-viewport .graph-zoom{right:6px;bottom:6px;gap:3px}.graph-viewport .graph-zoom button{padding:6px}.graph-more-panel{box-sizing:border-box}.graph-minimap{width:90px;height:60px}#graph-axis-status{bottom:54px}}
