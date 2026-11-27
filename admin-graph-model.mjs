@@ -1,6 +1,6 @@
 import {validateSettings} from './supabase/functions/collection-admin/policy.mjs?v=20261126-wiring1';
 
-import {unprojectSettings} from './category-model.mjs';
+import {unprojectSettings,BUILTINS} from './category-model.mjs';
 export function validateGraphSettings(settings,options={}){validateSettings(unprojectSettings(settings),options);return settings;}
 export const validateGraphDraft=settings=>validateGraphSettings(settings,{draft:true});
 
@@ -38,4 +38,19 @@ export function stageData(operations,monitor) {
     {id:'reserve',name:'合格備稿',value:`待複核 ${operations?.reserve_count??'—'}`,note:'只保存合格剩餘內容；跨日使用前仍須重新核對來源、期限與去重。',view:'reserve'},
     {id:'publish',name:'唯一正式發布者',value:operations?.state==='DONE'?`已發布 ${count('published')} 篇`:operations?.state||'狀態未知',note:`${date} · ${operations?.issues?.join('；')||'交接、發布品質檢查與 Pages 驗證均須通過，才算正式完成。'}`,view:'overview'},
   ];
+}
+
+// Delete only the editable navigation category, never collection snapshots/articles.
+export function removeCustomCategory(settings,id){
+  if(!settings?._collection)throw Error('請先載入分類工作區。');
+  if(BUILTINS.includes(id)||['ai-3d','top5'].includes(id))throw Error('系統分類不能刪除；可使用隱藏或停用。');
+  if(!settings.topics.some(t=>t.id===id))throw Error('分類已不存在，請更新設定。');
+  const next=structuredClone(settings);
+  next.topics=next.topics.filter(t=>t.id!==id);
+  for(const source of next.sources){
+    if(!source.topic_ids.includes(id))continue;
+    source.topic_ids=source.topic_ids.filter(t=>t!==id);
+    if(!source.topic_ids.length)source.enabled=false;
+  }
+  return validateGraphDraft(next);
 }

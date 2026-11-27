@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {categories,projectSettings,unprojectSettings,categoryItems,visibleCategories,validateCategories} from './category-model.mjs';
 import {validateSettings} from './supabase/functions/collection-admin/policy.mjs';
-import {connectTopic,moveConnection,validateGraphDraft} from './admin-graph-model.mjs';
+import {connectTopic,moveConnection,validateGraphDraft,removeCustomCategory} from './admin-graph-model.mjs';
 import {mergeSettings} from './admin-studio-model.mjs';
 const raw=JSON.parse(readFileSync(new URL('./scripts/fixtures/collection-admin.json',import.meta.url)));
 const daily=JSON.parse(readFileSync(new URL('./data/daily/2026-11-27.json',import.meta.url)));
@@ -76,4 +76,24 @@ test('save control distinguishes no changes, pending validation, and real work',
  assert.match(saveControl({dirty:false,validation:{draft:{}}}).reason,/查看驗證結果並套用/);
  assert.equal(saveControl({dirty:true,busy:false}).disabled,false);
  assert.equal(saveControl({dirty:true,busy:true}).busy,true);
+});
+
+test('deleting a custom category removes its links but preserves articles and collection snapshots',()=>{
+ const original=projectSettings(raw),view=structuredClone(original),beforeDaily=JSON.stringify(daily);
+ view.topics.push({...structuredClone(view.topics[0]),id:'delete-me',name:'Delete me',include_terms:['fixture']});
+ view.sources[0].topic_ids.push('delete-me');view.sources[1].topic_ids=['delete-me'];
+ const before=JSON.stringify(view),next=removeCustomCategory(view,'delete-me'),back=unprojectSettings(next);
+ assert.equal(JSON.stringify(view),before);assert(!next.topics.some(t=>t.id==='delete-me'));
+ assert(next.sources.every(s=>!s.topic_ids.includes('delete-me')));
+ assert.equal(next.sources[0].enabled,view.sources[0].enabled);assert.equal(next.sources[1].enabled,false);
+ assert.deepEqual(next._collection,view._collection);assert.deepEqual(back.topics,raw.topics);
+ assert.equal(JSON.stringify(daily),beforeDaily);assert.equal(back.sources.length,raw.sources.length);
+ assert(!back.navigation.some(t=>t.id==='delete-me'));validateSettings(back);
+ for(const id of [...original.topics.map(t=>t.id),'ai-3d','top5','missing'])assert.throws(()=>removeCustomCategory(original,id));
+});
+test('category deletion can be undone as a whole and refuses remote edits to deleted category',()=>{
+ const base=projectSettings(raw);base.topics.push({...structuredClone(base.topics[0]),id:'delete-me',include_terms:['fixture']});base.sources[0].topic_ids.push('delete-me');
+ const removed=removeCustomCategory(base,'delete-me'),remote=structuredClone(base);remote.topics.at(-1).name='Remote edit';
+ assert(mergeSettings(base,removed,remote).conflicts.includes('topics/delete-me'));
+ assert.equal(mergeSettings(base,removed,base).settings.topics.some(t=>t.id==='delete-me'),false);
 });

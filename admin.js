@@ -1,12 +1,12 @@
-import {categoryStatus,newCategoryVisibility} from './admin-category-state.mjs?v=20261127-category1';
-import {mountLayoutStorage} from './admin-graph-storage.mjs?v=20261127-category1';
-import {mountStudio} from './admin-studio.mjs?v=20261127-category1';
-import {mountGraph} from './admin-graph.js?v=20261127-category1';
-import {validateGraphDraft} from './admin-graph-model.mjs?v=20261127-category1';
-import {mountOperations} from './admin-operations.js?v=20261127-category1';
+import {categoryStatus,newCategoryVisibility} from './admin-category-state.mjs?v=20261127-delete1';
+import {mountLayoutStorage} from './admin-graph-storage.mjs?v=20261127-delete1';
+import {mountStudio} from './admin-studio.mjs?v=20261127-delete1';
+import {mountGraph} from './admin-graph.js?v=20261127-delete1';
+import {validateGraphDraft,removeCustomCategory} from './admin-graph-model.mjs?v=20261127-delete1';
+import {mountOperations} from './admin-operations.js?v=20261127-delete1';
 import {createClient} from 'https://esm.sh/@supabase/supabase-js@2.116.0?bundle';
-import {validateGraphSettings as validateSettings} from './admin-graph-model.mjs?v=20261127-category1';
-import {projectSettings,unprojectSettings,categoryItems,BUILTINS} from './category-model.mjs?v=20261127-category1';
+import {validateGraphSettings as validateSettings} from './admin-graph-model.mjs?v=20261127-delete1';
+import {projectSettings,unprojectSettings,categoryItems,BUILTINS} from './category-model.mjs?v=20261127-delete1';
 import {sourceInventory} from './admin-source-state.mjs';
 const base='https://epumcdxfkcujulqrcjrw.supabase.co',key='sb_publishable_KPadXg3RKth3SGsAuXzebA_OylGgtpf';
 const auth=createClient(base,key,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:false}});
@@ -27,13 +27,23 @@ let graphDirty=false,savedSettings=null,currentView='graph',operationsData=null,
 const operationsView=mountOperations(api,notify,data=>{operationsData=data;if(settings)render();else updateGraph();},row=>studio.showArticle(row));
 const graphView=mountGraph({
   onChange:next=>{if(busy){notify('正在儲存，請稍候再修改。');return;}try{validateGraphDraft(next);settings=next;graphDirty=JSON.stringify(settings)!==JSON.stringify(savedSettings);render();}catch(e){notify(e.message,true);updateGraph();}},
-  onEdit:(kind,id)=>openEditor(kind,id),onAdd:kind=>openEditor(kind),
+  onEdit:(kind,id)=>openEditor(kind,id),onAdd:kind=>openEditor(kind),onDeleteCategory:deleteCategory,
   onSave:async()=>{if(busy||!graphDirty)return;busy=true;updateGraph();try{await save(settings);}catch(e){notify(e.message,true);}finally{busy=false;updateGraph();}},
   onDiscard:()=>{if(!confirm('捨棄尚未儲存的畫布變更？已儲存的待驗證版本不受影響。'))return;settings=structuredClone(savedSettings);graphDirty=false;closeEditor();render();notify('已捨棄本機變更。');},
   onValidation:()=>studio.open('validation'),
   onLayoutChange:()=>layoutView?.changed(),onView:view=>studio.open(view),notify
 });
 layoutView=mountLayoutStorage({auth,graph:graphView,notify});
+function deleteCategory(id){
+  if(busy){notify('正在儲存，請稍候。');return;}
+  if(!studio.canLeaveEditor())return;
+  try{
+    const next=removeCustomCategory(settings,id),name=settings.topics.find(t=>t.id===id).name;
+    const paused=settings.sources.filter(s=>s.enabled&&s.topic_ids.includes(id)&&s.topic_ids.length===1).map(s=>s.name);
+    if(!confirm(`刪除自訂分類「${name}」？將移除分類入口與來源連線，保留已發布文章、歷史日報與收藏。${paused.length?'僅連到此分類的來源將暫停：'+paused.join('、')+'。':''}此步只建立草稿，可按復原；儲存、驗證並套用後才正式生效。`))return;
+    closeEditor();setDraft(next);notify(`「${name}」已加入刪除草稿；已發布文章保留。請儲存、驗證並套用。`);
+  }catch(e){notify(e.message,true);}
+}
 function setDraft(next){if(busy)throw Error('正在儲存，請稍後再修改。');validateGraphDraft(next);settings=structuredClone(next);graphDirty=JSON.stringify(settings)!==JSON.stringify(savedSettings);render();}
 studio=mountStudio({api,notify,onCloseEditor:closeEditor,getState:()=>({settings,activeSettings,savedSettings,sha,pendingSha,validation,monitor,operations:operationsData,dirty:graphDirty}),onDraft:setDraft,onRemote:(data,merged)=>{activeSettings=data.settings;validation=data.validation;savedSettings=structuredClone(validation?.draft||activeSettings);settings=structuredClone(merged||savedSettings);sha=data.sha;head=data.head;pendingSha=data.pending_sha;monitor=data.monitor;metrics=data.metrics;graphDirty=JSON.stringify(settings)!==JSON.stringify(savedSettings);render();void refreshCategoryStatus();}});
 function updateGraph(){if(settings)graphView.update({settings,activeSettings,validation,metrics,monitor,operations:operationsData,categoryStatuses:categoryStatuses(),dirty:graphDirty,busy,version:sha+":"+pendingSha,storageKey:"ai3d.graph.v1:"+(session?.user?.id||"owner")});}
@@ -91,7 +101,7 @@ function render(){
     const row=metrics?.sources?.[s.id],stats=el('div',undefined,'source-stats');for(const [label,k] of [['累計候選','candidates'],['累計退件','rejected'],['累計入備稿','reserve'],['累計發布','published']]){const x=el('span',label);x.append(el('strong',row?.[k]??'—'));stats.append(x);}main.append(stats);
     actions.append(button('編輯',async()=>openEditor('source',s.id)),button(s.enabled?'暫停':'恢復',async()=>{const next=structuredClone(settings);next.sources.find(x=>x.id===s.id).enabled=!s.enabled;setDraft(next);notify('變更已加入工作區草稿。');}));card.append(main,actions);$('#source-list').append(card);
   }
-  $('#topic-list').replaceChildren();for(const t of settings.topics){const c=el('article',undefined,'topic-card');c.append(el('span',t.enabled?'啟用中':'尚未啟用',`pill${t.enabled?'':' off'}`),el('h3',t.name),el('p',t.description));c.append(el('p',`${settings.sources.filter(s=>s.enabled&&s.topic_ids.includes(t.id)).length} 個啟用來源 · 排序 ${t.order??0} · ${t.visible?"導覽顯示":"導覽隱藏"}`));const status=categoryStatuses()[t.id];c.append(el('p','設定：'+status.application,'category-application'),el('p',status.homepage,'category-home-status'));const f=el('footer');const a=el('a','查看分類頁 ↗');a.href=`../?view=${encodeURIComponent(t.id)}`;f.append(a,button('編輯分類',async()=>openEditor('topic',t.id)));c.append(f);$('#topic-list').append(c);}
+  $('#topic-list').replaceChildren();for(const t of settings.topics){const c=el('article',undefined,'topic-card');c.append(el('span',t.enabled?'啟用中':'尚未啟用',`pill${t.enabled?'':' off'}`),el('h3',t.name),el('p',t.description));c.append(el('p',`${settings.sources.filter(s=>s.enabled&&s.topic_ids.includes(t.id)).length} 個啟用來源 · 排序 ${t.order??0} · ${t.visible?"導覽顯示":"導覽隱藏"}`));const status=categoryStatuses()[t.id];c.append(el('p','設定：'+status.application,'category-application'),el('p',status.homepage,'category-home-status'));const f=el('footer');const a=el('a','查看分類頁 ↗');a.href=`../?view=${encodeURIComponent(t.id)}`;f.append(a,button('編輯分類',async()=>openEditor('topic',t.id)));if(!BUILTINS.includes(t.id))f.append(button('刪除分類',async()=>deleteCategory(t.id)));c.append(f);$('#topic-list').append(c);}
   studio?.render();
 }
 function input(name,label,value,{type='text',help='',disabled=false}={}){const l=el('label',label);const i=el(type==='textarea'?'textarea':'input');i.name=name;if(type!=='textarea')i.type=type;i.value=value??'';i.disabled=disabled;if(['id','name','base_url'].includes(name))i.required=true;l.append(i);if(help)l.append(el('small',help,'help'));return l;}
