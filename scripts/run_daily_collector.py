@@ -730,6 +730,7 @@ def source_probe(
     domain = source["domain"]
     published_sources = published_sources or set()
     skipped_published: set[str] = set()
+    queued = getattr(session, 'pending_by_source', {}).get(source_id, [])
 
     def unpublished_link(url: str) -> bool:
         identity = canonicalize_url(url)
@@ -740,7 +741,7 @@ def source_probe(
 
     index_results = [fetch(session, url, timeout, allow_feed=True) for url in endpoints]
     successes = [x for x in index_results if x.get("html")]
-    if not successes:
+    if not successes and not queued:
         statuses = [int(x.get("status", 0)) for x in index_results]
         blocked = any(x in (401, 403, 429) for x in statuses)
         status = "blocked" if blocked else "unavailable"
@@ -756,6 +757,8 @@ def source_probe(
             "index_pages_checked": 0,
             "feed_urls_checked": 0,
             "refill_links_checked": 0,
+            "endpoint_results": [{"url":r.get('url',endpoints[i]),"status":r.get('status',0),"error":r.get('error','')} for i,r in enumerate(index_results)],
+            "coverage_scope": "bounded-configured-indexes",
         }
 
     # Bounded source-grounded fill ladder: traverse declared indexes, same-domain
@@ -847,15 +850,22 @@ def source_probe(
 
     # Known published URLs never consume the bounded article fetch budget.
     links = [(url, title) for url, title in links if unpublished_link(url)]
+    queued = [(url, title) for url, title in queued if same_registered_domain(url, domain) and unpublished_link(url)]
+    links = list(dict(queued + links).items())
+    discovered_links = list(links)
     if personal_cfg:
         links, expanded_urls = expand_source_links(links, max_pages, expansion_terms or [], personal_cfg)
     else:
         links, expanded_urls = links[:max_pages], set()
 
+    # Explicitly retain URLs deferred by the bounded article budget.
+    observations = {url: {'source_url':url, 'state':'discovered', 'errors':['article-budget-deferred']} for url, _ in discovered_links if url not in {u for u,_ in links}}
     def get_page(pair):
         url, fallback = pair
         result = fetch(session, url, timeout)
         meta = page_metadata(result, fallback)
+        observations[url] = {'source_url':url, 'state':'source_unavailable' if not meta else 'rejected',
+                             'errors':[result.get('error') or ('metadata-unavailable' if not meta else 'topic-or-date-ineligible')]}
         if meta:
             meta['topic_ids'] = topic_matches(meta, source, collection_settings,
                 primary_match=relevant(meta), reference_date=report_date) if collection_settings else ([PRIMARY] if relevant(meta) else [])
@@ -882,7 +892,7 @@ def source_probe(
     # preference or publisher weighting.
     refill_links: list[tuple[str, str]] = []
     refill_seen = set(seen_links)
-    for meta in metas:
+    for meta in (metas if refill_pages > 0 else []):
         for url, title in extract_links(meta["html"], meta["url"], domain, max_links):
             if url not in refill_seen and unpublished_link(url):
                 refill_seen.add(url)
@@ -938,6 +948,13 @@ def source_probe(
         "refill_links_checked": len(refill_links),
         "semantic_expansion_links_checked": len(expanded_urls),
         "published_links_skipped": len(skipped_published),
+        "discovered_links": len(discovered_links),
+        "deferred_links": max(0, len(discovered_links)-len(links)),
+        "pagination_remaining": len(pagination_queue),
+        "url_observations": list(observations.values())[:200],
+        "observation_overflow": max(0, len(observations)-200),
+        "endpoint_results": [{"url":r.get('url', endpoints[i]),"status":r.get('status',0),"error":r.get('error','')} for i,r in enumerate(index_results)],
+        "coverage_scope": "bounded-configured-indexes",
     }
 
 
@@ -1359,6 +1376,11 @@ def main() -> int:
     session.managed_sources = bool(settings)
     session.headers.update(collector_http_headers(runtime))
 
+    from collection_queue import pending_seeds
+    from editorial_controls import held_urls
+    session.pending_by_source = pending_seeds(ROOT, report_date, settings, published_sources, held_urls(ROOT))
+    selected = list(dict.fromkeys(selected + list(session.pending_by_source)))
+
     used_ids: set[str] = set()
     discovered: list[dict] = []
     probe_records: dict[str, dict] = {}
@@ -1580,8 +1602,8 @@ def main() -> int:
             "candidate_id": candidate["candidate_id"],
             "source_url": candidate["source_url"],
             "discovery_channels": decision_channels(candidate),
-            "decision": "rejected",
-            "reason_code": "source-date-ineligible" if (candidate.get('scheduled_review') or {}).get('status') == 'source-date-ineligible' else "editorial-quality-rejected",
+            "decision": "pending" if errors == ['awaiting-editorial-review'] else "rejected",
+            "reason_code": "awaiting-editorial-review" if errors == ['awaiting-editorial-review'] else ("source-date-ineligible" if (candidate.get('scheduled_review') or {}).get('status') == 'source-date-ineligible' else "editorial-quality-rejected"),
             "editorial_errors": errors,
         })
     maximum = int(intel["collection"]["daily_max_items"])
@@ -1643,6 +1665,8 @@ def main() -> int:
                 'index_pages_checked', 'feed_urls_checked', 'refill_links_checked',
                 'article_pages_checked', 'evidence_extracted', 'body_readable_before_topic', 'topic_rejected', 'awaiting_review', 'review_approved',
                 'quality_pass_unpublished', 'selected', 'approved_reserve',
+                'discovered_links', 'deferred_links', 'pagination_remaining', 'url_observations',
+                'endpoint_results', 'coverage_scope', 'observation_overflow',
             )} for sid, record in probe_records.items()},
             'articles': [review_record(c, error_map.get(c['candidate_id'], [])) for c in discovered],
         })
@@ -1652,7 +1676,8 @@ def main() -> int:
         "selected": len(selected_items),
         "selected_sources": [candidate["source_url"] for candidate in selected_items],
         "backlog": len(overflow),
-        "editorial_rejected": len(editorial_rejections),
+        "editorial_rejected": sum(errors != ['awaiting-editorial-review'] for _, errors in editorial_rejections),
+        "awaiting_review": sum(errors == ['awaiting-editorial-review'] for _, errors in editorial_rejections),
         "refill_goal": refill_goal,
         "candidate_target": candidate_target,
         "reserve_recheck_unavailable": len(retry_reserve),

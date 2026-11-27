@@ -1,6 +1,6 @@
 // Read-only inventory. Approval is never inferred from a readable body or a date.
 export function urlKey(value){try{const u=new URL(value);u.hash='';for(const k of [...u.searchParams.keys()])if(k.startsWith('utm_')||['fbclid','gclid'].includes(k))u.searchParams.delete(k);u.searchParams.sort();return u.href.replace(/\/$/,'');}catch{return value;}}
-export const sourceMatch=(url,sources)=>{try{const host=new URL(url).hostname.replace(/^www\./,'');return sources.find(s=>new URL(s.base_url).hostname.replace(/^www\./,'')===host);}catch{return undefined;}};
+export const sourceMatch=(url,sources)=>{try{const host=new URL(url).hostname.replace(/^www\./,'');return sources.find(s=>{const base=new URL(s.base_url).hostname.replace(/^www\./,'');return base===host||host.endsWith('.'+base);});}catch{return undefined;}};
 export function reserveInventory(backlog,reviews,{published,held,date,recentSource,settings}){
  const rows=new Map(),used=url=>published.has(url)||published.has(urlKey(url));
  const add=(x,review)=>{

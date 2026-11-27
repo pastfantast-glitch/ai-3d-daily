@@ -467,6 +467,7 @@ def candidate_decision_ledger_errors(data, cfg=None, ledger_data=None):
         return errors + ['candidate decision ledger items must be a list']
 
     terminal = set(ledger_cfg.get('terminal_decisions') or [])
+    terminal.add('pending')
     seen = set()
     by_id = {}
     canonical_ids = {str(x.get('id', '')).strip() for x in all_items(data) if str(x.get('id', '')).strip()}
@@ -490,6 +491,8 @@ def candidate_decision_ledger_errors(data, cfg=None, ledger_data=None):
             errors.append(f'candidate decision ledger {cid} requires https source_url')
         if decision not in terminal:
             errors.append(f'candidate decision ledger {cid} has invalid decision={decision!r}')
+        if decision == 'pending' and (item.get('reason_code') != 'awaiting-editorial-review' or item.get('editorial_errors') != ['awaiting-editorial-review']):
+            errors.append(f'candidate decision ledger {cid}: pending must be unreviewed, never approved')
         if not isinstance(channels, list) or not channels or not all(str(x).strip() for x in channels):
             errors.append(f'candidate decision ledger {cid} requires discovery_channels[]')
         if decision != 'published' and ledger_cfg.get('require_reason_for_non_published') is True and not str(item.get('reason_code', '')).strip():

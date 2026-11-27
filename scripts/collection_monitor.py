@@ -52,6 +52,15 @@ def summarize(packet, conclusion):
     sources = {str(k)[:80]: {field: value[:300] if isinstance(value, str) else value for field, value in v.items()
                if field in ('status', 'candidates_found', 'published_links_skipped', 'reason', 'article_pages_checked', 'evidence_extracted', 'body_readable_before_topic', 'topic_rejected', 'awaiting_review', 'review_approved', 'quality_pass_unpublished', 'selected', 'approved_reserve')
                and isinstance(value, (str, int, bool))} for k, v in list((packet.get('sources') or {}).items())[:100] if isinstance(v, dict)}
+    for sid, row in sources.items():
+        raw = packet['sources'][sid]
+        for key in ('discovered_links','deferred_links','pagination_remaining','observation_overflow','category_indexes_checked','index_pages_checked','feed_urls_checked'):
+            if type(raw.get(key)) is int:
+                row[key] = raw[key]
+        row['coverage_scope'] = 'bounded-configured-indexes'
+        row['url_observations'] = [{k:x[k] for k in ('source_url','state','errors') if k in x}
+                                   for x in raw.get('url_observations', [])[:200] if isinstance(x,dict) and str(x.get('source_url','')).startswith('https://')]
+        row['endpoint_results'] = [{k:x[k] for k in ('url','status','error') if k in x} for x in raw.get('endpoint_results', [])[:5] if isinstance(x,dict)]
     return {'schema_version': 1, 'date': date, 'source_run_id': run, 'source_head_sha': head,
             'mode': 'source-trial' if packet.get('mode') == 'source-trial' else 'daily',
             'collector_conclusion': conclusion, 'observed_at': datetime.now(timezone.utc).isoformat(),
@@ -100,7 +109,8 @@ in the live reserve view immediately and in this trend at the next observation.
         urls = {u for u in unique if source_for(u) == sid}
         supply[sid] = {'approved_30d':len(urls), 'published_from_approvals_30d':len(urls & published),
                        'reserve_pending_recheck':sum(x['source_id'] == sid for x in seeds)}
-    observation = {k:current[k] for k in ('date','source_run_id','source_head_sha','mode','counts','sources')}
+    observation = {k:current[k] for k in ('date','source_run_id','source_head_sha','mode','counts')}
+    observation['sources'] = {sid:{k:v for k,v in row.items() if k not in ('url_observations','endpoint_results')} for sid,row in current['sources'].items()}
     observation.update(observed_at=current['observed_at'], inventory=supply)
     history = [x for x in previous.get('yield_history', []) if isinstance(x,dict)
                and cutoff <= str(x.get('date','')) <= date and x.get('source_run_id') != current['source_run_id']]
@@ -110,6 +120,14 @@ in the live reserve view immediately and in this trend at the next observation.
     current['yield_inventory'] = supply
     current['yield_window_start'] = cutoff
     current['yield_note'] = 'Run observations overlap; never sum candidate counts across retries. Inventory excludes published, held and expired reviews; pending recheck is not ready to publish.'
+    from collection_queue import merge_queue
+    current = merge_queue(current, previous, root)
+    history = dict(previous.get('source_coverage') or {})
+    for sid, row in current['sources'].items():
+        row.pop('url_observations', None)
+        if row.get('status') != 'not-scheduled':
+            history[sid] = {**row, 'checked_on':date,'source_run_id':current['source_run_id']}
+    current['source_coverage'] = {s['id']:history.get(s['id'],{'status':'unknown'}) for s in settings['sources']}
     return current
 
 

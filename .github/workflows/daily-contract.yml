@@ -210,6 +210,8 @@ jobs:
           node --test admin-studio.test.mjs
           node --test admin-source-state.test.mjs
           node --check admin-operations.js
+          node --check admin-intake.js
+          node --test supabase/functions/collection-admin/intake.test.mjs
           node --check reset-password/reset.js
           node --test reset-password/policy.test.mjs supabase/functions/collection-admin/operations.test.mjs
           node --check topics/catalog.js
@@ -244,6 +246,7 @@ jobs:
           python scripts/test_main_ci.py
           python scripts/test_content_supply.py
           python scripts/test_source_trials.py
+          python scripts/test_collection_queue.py
           python scripts/test_handoff_route.py
           python scripts/test_today_library.py
           python scripts/check_policy_resolver_contract.py

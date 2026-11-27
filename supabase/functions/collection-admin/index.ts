@@ -1,6 +1,7 @@
 import { REPO, SETTINGS, ORIGIN, validateSettings, publicURL, publicIP } from './policy.mjs';
 import {snapshot,decode,validationState,savePending,activate} from './settings-flow.mjs';
 import { operations, CONTROL_PATH, validateControls, taipeiDate } from './operations.mjs';
+import {classifyURL,saveRecommendation,INTAKE_PATH} from './intake.mjs';
 
 const MAX_BODY=100000, MAX_REMOTE=2000000;
 function reply(status:number, body:unknown, origin:string){return new Response(JSON.stringify(body),{status,headers:{
@@ -73,6 +74,14 @@ export async function handle(req:Request){
   try{
     if(!await owner(req))return reply(403,{error:'owner_required'},origin);
     const body=JSON.parse(await limited(new Response(req.body),MAX_BODY));
+    if(body.op==='lookup_url'||body.op==='recommend_url'){
+      if(!publicURL(body.url))return reply(400,{error:'unsafe_source_url'},origin);
+      const snap=await snapshot(github),settings=validateSettings(decode(snap.active));
+      if(body.op==='recommend_url')return reply(200,await saveRecommendation(github,body,settings),origin);
+      const data=await operations(github,async()=>{throw Error('actions_not_requested');});
+      const registry=decode(await github(`/contents/data/candidates/published-registry-snapshot.json?ref=${data.head_sha}`));
+      return reply(200,{...classifyURL(body.url,{...data,registry:registry.published_sources||[]},settings),head:data.head_sha,intake_sha:data.intake_sha},origin);
+    }
     if(body.op==='operations'){
       const runs=async(date:string)=>{
         const from=new Date(date+'T00:00:00+08:00').toISOString();
