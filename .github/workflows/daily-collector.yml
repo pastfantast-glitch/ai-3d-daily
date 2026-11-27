@@ -15,6 +15,11 @@ on:
         required: false
         type: boolean
         default: false
+      coverage_audit:
+        description: 'With source_trial: inspect all active source indexes, at most 40 article bodies'
+        required: false
+        type: boolean
+        default: false
   push:
     branches: [main]
     paths:
@@ -266,7 +271,11 @@ jobs:
         env:
           DATE: ${{ steps.preflight.outputs.date }}
           COLLECTOR_REVIEW_PACKET: ${{ runner.temp }}/collector-review.json
-        run: python scripts/run_source_trial.py "$DATE"
+          AUDIT_ALL: ${{ inputs.coverage_audit }}
+        run: |
+          args=()
+          if [ "$AUDIT_ALL" = "true" ]; then args+=(--all-sources); fi
+          python scripts/run_source_trial.py "$DATE" "${args[@]}"
 
       - name: Preserve source evidence for ChatGPT scheduled review
         if: always() && steps.preflight.outputs.skip != 'true'

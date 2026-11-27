@@ -15,7 +15,7 @@ from daily_release_status import release_status
 SOURCE_IDS = ('cg-channel', 'godot-official', 'khronos-official', 'blendernation')
 
 
-def collect(date):
+def collect(date, *, audit_all=False):
     # A manual post-publication trial may add evidence, never reopen an edition.
     if release_status(date, collector.ROOT)['state'] != 'DONE':
         raise ValueError('Source trial requires an existing valid DONE for this date')
@@ -24,7 +24,8 @@ def collect(date):
     settings = load_settings(collector.ROOT)
     config = effective_hybrid(load_hybrid_config(), settings)
     sources = {s['id']: s for s in config['discovery_source_pool']['sources'] if s['enabled']}
-    if not set(SOURCE_IDS) <= sources.keys():
+    chosen = list(sources) if audit_all else list(SOURCE_IDS)
+    if not set(chosen) <= sources.keys():
         raise ValueError('All trial sources must be admitted and active first')
     endpoints = {s['id']: s['endpoints'] for s in settings['sources']}
     runtime = copy.deepcopy(collector.load_json(collector.RUNTIME_PATH))
@@ -32,12 +33,19 @@ def collect(date):
     runtime['discovery'].update(max_pages_per_source=8, refill_pages_per_source=2,
         max_links_per_endpoint=20, index_pages_per_source=0, feed_urls_per_source=1,
         category_indexes_per_source=0)
+    if audit_all:
+        runtime['discovery'].update(max_pages_per_source=max(1,40//len(chosen)),refill_pages_per_source=0,index_pages_per_source=1,category_indexes_per_source=1)
     session = requests.Session()
     session.managed_sources = True
     session.headers.update(collector.collector_http_headers(runtime))
     published, _, _ = collector.load_registry(date, collector.load_json(collector.SNAPSHOT_PATH))
+    from collection_queue import pending_seeds
+    from editorial_controls import held_urls
+    session.pending_by_source = pending_seeds(collector.ROOT,date,settings,published,held_urls(collector.ROOT))
     discovered, records, used = [], {}, set()
-    for sid in SOURCE_IDS:
+    for sid in chosen:
+        if audit_all:
+            runtime['discovery']['max_pages_per_source'] = min(max(1,40//len(chosen)),40-len(discovered))
         candidates, record = collector.source_probe(sources[sid], endpoints[sid], runtime,
             session, date, used, published_sources=published, collection_settings=settings)
         discovered.extend(candidates)
@@ -65,7 +73,7 @@ def collect(date):
 
 
 if __name__ == '__main__':
-    packet = collect(sys.argv[1])
+    packet = collect(sys.argv[1], audit_all='--all-sources' in sys.argv)
     collector.write_json(Path(os.environ['COLLECTOR_REVIEW_PACKET']), packet)
     print(json.dumps({'date':packet['date'], 'mode':packet['mode'], 'sources':packet['sources'],
                       'counts':packet['summary']['content_supply']}, ensure_ascii=False))

@@ -127,5 +127,6 @@ def loss_summary(candidates, rejections):
         status = (candidate.get('meta', {}).get('article_evidence') or {}).get('status', 'not-recorded')
         bodies[status] = bodies.get(status, 0) + 1
     return {'candidates': len(candidates), 'body_status': bodies,
-            'editorial_rejected': len(rejections), 'rejection_classes': counts,
+            'editorial_rejected': sum(errors != ['awaiting-editorial-review'] for _, errors in rejections),
+            'awaiting_review': sum(errors == ['awaiting-editorial-review'] for _, errors in rejections), 'rejection_classes': counts,
             'reason_counts_overlap': True}

@@ -89,6 +89,8 @@ def validate(date: str, session: dict) -> list[str]:
     hybrid = discovery_policy(date)
     ledger_cfg = hybrid.get("candidate_decision_ledger") or {}
     terminal = set(ledger_cfg.get("terminal_decisions") or ["published", "duplicate", "rejected", "ranked-out", "backlog"])
+    # Pending is a complete outcome for this batch, never publication approval.
+    terminal.add('pending')
     require_reason = bool(ledger_cfg.get("require_reason_for_non_published", True))
 
     seen: set[str] = set()
@@ -118,6 +120,8 @@ def validate(date: str, session: dict) -> list[str]:
         if decision == "published":
             if not str(item.get("canonical_id") or "").strip():
                 errors.append(f"{prefix}.canonical_id required for published")
+        elif decision == 'pending' and (item.get('reason_code') != 'awaiting-editorial-review' or item.get('editorial_errors') != ['awaiting-editorial-review']):
+            errors.append(f'{prefix}: pending requires explicit unreviewed evidence reason')
         elif require_reason and decision and not str(item.get("reason_code") or "").strip():
             errors.append(f"{prefix}.reason_code required for non-published decision")
 
