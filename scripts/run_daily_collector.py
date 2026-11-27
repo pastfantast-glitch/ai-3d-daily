@@ -35,6 +35,7 @@ from content_quality import admission as content_admission, classify_content, no
 from article_evidence import extract_article_evidence, review_record, loss_summary
 from editorial_review import candidate_copy
 from reader_quality import reader_errors
+from navigation_categories import collection_category_ids
 from collection_settings import load_settings, effective_hybrid, topic_matches, all_items, PRIMARY
 from source_quality import source_window_errors
 from content_supply import section_links, retained_entries, reserve_output
@@ -1705,6 +1706,7 @@ def main() -> int:
         canonical_items.append({
             "id": candidate["candidate_id"],
             "topic_ids": candidate.get("topic_ids", [PRIMARY]),
+            **({"navigation_category_ids": collection_category_ids(candidate["meta"], {"id": candidate["source_id"]}, settings)} if settings and settings.get("navigation") else {}),
             "title": reader_title,
             "summary": reader["summary"],
             "quick_impact": stars(candidate["base_ranking_score"]),

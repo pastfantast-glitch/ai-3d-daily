@@ -67,7 +67,7 @@ export async function operations(github,publicRuns,now=new Date()){
  const diagnostic=(await file(`data/ops/handoff/${date}.json`)).data;
  const recovery=recoveryAdvice(state,runs,diagnostic);
  if(state==='HANDOFF_FAILED'&&diagnostic?.reason)issues.unshift(diagnostic.reason);
- const published_items=state==='DONE'?[...(canonical.items||[]),...(canonical.topic_items||[])].map(x=>({id:x.id,title:x.title,summary:x.summary,full_analysis:x.full_analysis,source_url:x.source_url,source_id:x.source_id,topic_ids:x.topic_ids,source_date:x.source_published_at||x.source_date||'',state:'published'})):[];
+ const published_items=state==='DONE'?[...(canonical.items||[]),...(canonical.topic_items||[])].map(x=>({id:x.id,navigation_category_ids:x.navigation_category_ids,category:x.category,subcategory:x.subcategory,homepage_tier:x.homepage_tier,title:x.title,summary:x.summary,full_analysis:x.full_analysis,source_url:x.source_url,source_id:x.source_id,topic_ids:x.topic_ids,source_date:x.source_published_at||x.source_date||'',state:'published'})):[];
  const source_supply=settings.sources.map(s=>({source_id:s.id,name:s.name,...(usableMonitor?.sources?.[s.id]||{}),published:state==='DONE'?published_items.filter(x=>sourceMatch(x.source_url,settings.sources)?.id===s.id).length:null,reserve:reviewComplete?reserve.filter(x=>x.source_id===s.id&&x.state==='recheck_required').length:null}));
  const supply=usableMonitor?.counts||canonical?.metadata?.content_supply||null;
  return{date,checked_at:now.toISOString(),head_sha:head,state,issues,latest_date:latest?.date||null,daily_url:state==='DONE'?receipt.daily_url:null,publish_commit:state==='DONE'?receipt.publish_commit_sha:null,counts:supply?{...supply,published:state==='DONE'?canonical.items.length:null}:null,

@@ -10,6 +10,9 @@ on:
       - 'daily.css'
       - 'daily.js'
       - 'home.js'
+      - 'category-*.mjs'
+      - 'scripts/navigation_categories.py'
+      - 'scripts/test_navigation_categories.py'
       - 'history.js'
       - 'canonical-client.js'
       - 'archive-nav-state.js'
@@ -204,6 +207,9 @@ jobs:
       - name: Validate release architecture, source topology, hybrid discovery, personalization and stability contracts
         run: |
           node --check home.js
+          node --check category-navigation.mjs
+          node --test category-model.test.mjs
+          python scripts/test_navigation_categories.py
           node --check admin.js
           node --check admin-graph.js
           node --test admin-graph.test.mjs

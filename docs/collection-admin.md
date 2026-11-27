@@ -1,3 +1,23 @@
+# 分類與分頁管理（2026-11-27）
+
+「新增分類」管理首頁 TOP5 旁的導覽分頁。既有 AI 生成、3D 製作、3D 動作、遊戲引擎、新技術 / Case、Blender / DCC 均為可編輯分類節點。TOP5 是固定跨分類精選節點，不能接入來源或改成第二個收集流程。
+
+生效設定仍位於 `config/collection-admin.json`；新增可選 `navigation`，舊版 `topics` 與歷史 canonical 快照保留相容。首次遷移維持全部六分類的既有名稱、來源可用範圍與顯示狀態，不改文章 ID 或收藏。已套用的 pending 快照同步遷移；真正尚未套用的草稿不得覆蓋。
+
+- 畫布與列表共用同一草稿，可改名稱、說明、排序、啟用、導覽顯示、空分類隱藏、收錄／排除關鍵字。新分類預設隱藏空白分頁。
+- 來源可連到多個分類；移除最後一條連線會暫停來源，原文與收藏保留。連線只限制候選範圍，仍須製作相關性、12 個月日期、正文證據、去重與審稿檢查。
+- 既有分類留白時使用原本分類器；自訂分類需要至少一組關鍵字。Collector 保留 `navigation_category_ids`，避免原文翻譯後關鍵字不見而漏列。交接驗證檢查歸屬是否在當次設定及來源連線中。
+- 人工加入／排除使用原文網址，每分類各最多 200 筆；同網址不能同時加入與排除。這只修正已發布文章的呈現，不核准未審稿、不寫 canonical。
+- 預覽使用最新已發布 canonical 與表單規則，右側顯示匹配數及文章；一篇可出現在多分類，總篇數仍按唯一 ID 計算。舊文既有分類歸屬保留，若需移除請使用人工排除。
+- 儲存 → 既有 GitHub 設定 CI → 套用，保留版本衝突、三方合併、復原／重做；未通過不得生效。生效後導覽呈現使用新設定，下一次 Collector 使用新供稿規則。
+- 最新分類網址沿用 `/?view=分類代號`，圖片卡片保留來源日期、分析與收藏，提供搜尋及每次十篇展開。舊日期 `YYYY-MM-DD/分類/` 與既有 `/topics/` 歷史網址保留，不重寫歷史頁。
+
+驗證包括分類／去重／人工覆寫、連線與遠端合併、Collector 相關性及期限、交接歸屬、既有設定存取權限及正式發布隔離重播。圖形介面測試使用不連線正式後端的本機 fixture；正式登入、庫存及分類節點另於部署後查核。
+
+## 舊版收集主題契約（相容層）
+
+以下保留供既有資料與工具相容使用；使用者入口已改為上述分類管理。
+
 # Source and topic administration, first version
 
 The AI/3D homepage keeps its existing publication contract. `/admin/` manages public collection settings; `/topics/` links to separate topic pages. Authentication reuses the existing Supabase owner account. This feature does not introduce a second Collector, Publisher, schedule, model API or browser-held GitHub credential.

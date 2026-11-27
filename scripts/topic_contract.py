@@ -51,6 +51,10 @@ def topic_errors(data):
         if (not isinstance(bindings, list) or not bindings or any(t not in topics for t in bindings)
                 or not source or not set(bindings) <= set(source['topic_ids'])):
             errors.append(f'{rid}: invalid enabled source/topic binding')
+        if 'navigation_category_ids' in item:
+            nav=item['navigation_category_ids']; allowed={c['id'] for c in settings.get('navigation',[]) if c['enabled'] and source and source['id'] in c['source_ids']}
+            if not isinstance(nav,list) or any(not isinstance(x,str) for x in nav) or len(set(nav))!=len(nav) or not set(nav)<=allowed:
+                errors.append(f'{rid}: invalid navigation category binding')
         if item in data.get('items', []) and PRIMARY not in bindings:
             errors.append(f'{rid}: unrelated article reached AI/3D homepage')
         if item in extras:

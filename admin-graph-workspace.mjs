@@ -28,14 +28,14 @@ export function workspaceState(value){
 export function changeSummary(before,after){
   if(!before||!after)return [];
   const changes=[];
-  for(const [group,label]of [['sources','來源'],['topics','主題']]){
+  for(const [group,label]of [['sources','來源'],['topics','分類']]){
     const old=new Map(before[group].map(x=>[x.id,x]));
     for(const item of after[group]){const previous=old.get(item.id);old.delete(item.id);
       if(!previous){changes.push(`新增${label}：${item.name}`);continue;}
       if(group==='sources'){
         for(const id of item.topic_ids.filter(id=>!previous.topic_ids.includes(id)))changes.push(`新增連線：${item.name} → ${after.topics.find(t=>t.id===id)?.name||id}`);
         for(const id of previous.topic_ids.filter(id=>!item.topic_ids.includes(id)))changes.push(`移除連線：${item.name} → ${before.topics.find(t=>t.id===id)?.name||id}`);
-        if(!item.topic_ids.length)changes.push(`停止供稿：${item.name} 未連接任何主題，套用後保持停用。`);
+        if(!item.topic_ids.length)changes.push(`停止供稿：${item.name} 未連接任何分類，套用後保持停用。`);
       }
       const omit=x=>Object.fromEntries(Object.entries(x).filter(([k])=>k!=='topic_ids'));
       if(JSON.stringify(omit(previous))!==JSON.stringify(omit(item)))changes.push(`調整${label}設定：${item.name}`);

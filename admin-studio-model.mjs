@@ -11,11 +11,11 @@ export function settingsImpact(before,after){
 export function batchSources(settings,ids,{enabled,topic,connected}={}){
  const next=structuredClone(settings),chosen=new Set(ids);
  if(!chosen.size||[...chosen].some(id=>!next.sources.some(s=>s.id===id)))throw Error('請選取現有來源。');
- if(topic&&!next.topics.some(t=>t.id===topic))throw Error('請選取有效主題。');
+ if(topic&&!next.topics.some(t=>t.id===topic))throw Error('請選取有效分類。');
  for(const s of next.sources.filter(s=>chosen.has(s.id))){
   if(topic)s.topic_ids=connected?[...new Set([...s.topic_ids,topic])]:s.topic_ids.filter(id=>id!==topic);
   if(enabled!==undefined)s.enabled=enabled;
-  if(!s.topic_ids.length){if(enabled===true)throw Error(`${s.name} 尚未連接主題，不能啟用。`);s.enabled=false;}
+  if(!s.topic_ids.length){if(enabled===true)throw Error(`${s.name} 尚未連接分類，不能啟用。`);s.enabled=false;}
  }
  return validateGraphDraft(next);
 }
