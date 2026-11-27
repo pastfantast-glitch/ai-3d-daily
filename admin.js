@@ -1,11 +1,12 @@
-import {mountLayoutStorage} from './admin-graph-storage.mjs?v=20261127-toolbar1';
-import {mountStudio} from './admin-studio.mjs?v=20261127-toolbar1';
-import {mountGraph} from './admin-graph.js?v=20261127-toolbar1';
-import {validateGraphDraft} from './admin-graph-model.mjs?v=20261127-toolbar1';
-import {mountOperations} from './admin-operations.js?v=20261127-toolbar1';
+import {categoryStatus,newCategoryVisibility} from './admin-category-state.mjs?v=20261127-category1';
+import {mountLayoutStorage} from './admin-graph-storage.mjs?v=20261127-category1';
+import {mountStudio} from './admin-studio.mjs?v=20261127-category1';
+import {mountGraph} from './admin-graph.js?v=20261127-category1';
+import {validateGraphDraft} from './admin-graph-model.mjs?v=20261127-category1';
+import {mountOperations} from './admin-operations.js?v=20261127-category1';
 import {createClient} from 'https://esm.sh/@supabase/supabase-js@2.116.0?bundle';
-import {validateGraphSettings as validateSettings} from './admin-graph-model.mjs?v=20261127-toolbar1';
-import {projectSettings,unprojectSettings,categoryItems,BUILTINS} from './category-model.mjs?v=20261127-toolbar1';
+import {validateGraphSettings as validateSettings} from './admin-graph-model.mjs?v=20261127-category1';
+import {projectSettings,unprojectSettings,categoryItems,BUILTINS} from './category-model.mjs?v=20261127-category1';
 import {sourceInventory} from './admin-source-state.mjs';
 const base='https://epumcdxfkcujulqrcjrw.supabase.co',key='sb_publishable_KPadXg3RKth3SGsAuXzebA_OylGgtpf';
 const auth=createClient(base,key,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:false}});
@@ -22,7 +23,7 @@ async function api(op,body={}){
   let response;try{response=await fetch(`${base}/functions/v1/collection-admin`,{method:'POST',headers:{apikey:key,Authorization:`Bearer ${session.access_token}`,'Content-Type':'application/json'},body:JSON.stringify({op,...body}),signal:AbortSignal.timeout(op==='probe'?90000:45000)});}catch{throw new Error('無法連線管理服務，請稍後重試；尚未確認儲存成功。');}
   const data=await response.json();if(!response.ok){if(data.error==='version_conflict')studio?.checkRemote();throw new Error(messages[data.error]||data.message||`操作未完成（${data.error||response.status}）`);}if(data.settings)data.settings=projectSettings(data.settings);if(data.validation?.draft)data.validation.draft=projectSettings(data.validation.draft);return data;
 }
-let graphDirty=false,savedSettings=null,currentView='graph',operationsData=null,studio=null,layoutView=null,leaving=false;
+let graphDirty=false,savedSettings=null,currentView='graph',operationsData=null,publicState=null,studio=null,layoutView=null,leaving=false;
 const operationsView=mountOperations(api,notify,data=>{operationsData=data;if(settings)render();else updateGraph();},row=>studio.showArticle(row));
 const graphView=mountGraph({
   onChange:next=>{if(busy){notify('正在儲存，請稍候再修改。');return;}try{validateGraphDraft(next);settings=next;graphDirty=JSON.stringify(settings)!==JSON.stringify(savedSettings);render();}catch(e){notify(e.message,true);updateGraph();}},
@@ -34,15 +35,28 @@ const graphView=mountGraph({
 });
 layoutView=mountLayoutStorage({auth,graph:graphView,notify});
 function setDraft(next){if(busy)throw Error('正在儲存，請稍後再修改。');validateGraphDraft(next);settings=structuredClone(next);graphDirty=JSON.stringify(settings)!==JSON.stringify(savedSettings);render();}
-studio=mountStudio({api,notify,onCloseEditor:closeEditor,getState:()=>({settings,activeSettings,savedSettings,sha,pendingSha,validation,monitor,operations:operationsData,dirty:graphDirty}),onDraft:setDraft,onRemote:(data,merged)=>{activeSettings=data.settings;validation=data.validation;savedSettings=structuredClone(validation?.draft||activeSettings);settings=structuredClone(merged||savedSettings);sha=data.sha;head=data.head;pendingSha=data.pending_sha;monitor=data.monitor;metrics=data.metrics;graphDirty=JSON.stringify(settings)!==JSON.stringify(savedSettings);render();}});
-function updateGraph(){if(settings)graphView.update({settings,activeSettings,validation,metrics,monitor,operations:operationsData,dirty:graphDirty,busy,version:sha+":"+pendingSha,storageKey:"ai3d.graph.v1:"+(session?.user?.id||"owner")});}
+studio=mountStudio({api,notify,onCloseEditor:closeEditor,getState:()=>({settings,activeSettings,savedSettings,sha,pendingSha,validation,monitor,operations:operationsData,dirty:graphDirty}),onDraft:setDraft,onRemote:(data,merged)=>{activeSettings=data.settings;validation=data.validation;savedSettings=structuredClone(validation?.draft||activeSettings);settings=structuredClone(merged||savedSettings);sha=data.sha;head=data.head;pendingSha=data.pending_sha;monitor=data.monitor;metrics=data.metrics;graphDirty=JSON.stringify(settings)!==JSON.stringify(savedSettings);render();void refreshCategoryStatus();}});
+function updateGraph(){if(settings)graphView.update({settings,activeSettings,validation,metrics,monitor,operations:operationsData,categoryStatuses:categoryStatuses(),dirty:graphDirty,busy,version:sha+":"+pendingSha,storageKey:"ai3d.graph.v1:"+(session?.user?.id||"owner")});}
 window.addEventListener('beforeunload',e=>{if(!leaving&&(graphDirty||layoutView?.dirty)){e.preventDefault();e.returnValue='';}});
 function closeEditor(){if($('#graph-inline-editor').contains($('#editor-form')))$('#editor').append($('#editor-form'));$('#editor').close();studio?.resetEditor();graphView.refreshInspector();}
 
+function categoryStatuses(){
+  if(!settings||!activeSettings)return {};
+  const context={settings:unprojectSettings(settings),active:unprojectSettings(activeSettings),saved:unprojectSettings(savedSettings||settings),validation,publicState};
+  return Object.fromEntries(settings.topics.map(t=>[t.id,categoryStatus(t.id,context)]));
+}
+let categoryRead=0;
+async function refreshCategoryStatus(){
+  const request=++categoryRead;
+  const read=async path=>{const r=await fetch('../'+path,{cache:'no-store',signal:AbortSignal.timeout(15000)});if(!r.ok)throw Error('讀取失敗');return r.json();};
+  let next={};
+  try{next.settings=await read('config/collection-admin.json');const latest=await read('data/publish/latest-success.json');const daily=await read(`data/daily/${latest.date}.json`);if(daily.date!==latest.date)throw Error('日期不一致');next={...next,date:latest.date,items:[...(daily.items||[]),...(daily.topic_items||[])]};}catch{}
+  if(request===categoryRead){publicState=next;render();}
+}
 async function load({preserveDirty=false}={}){
   if(graphDirty&&!preserveDirty&&!confirm('重新載入將捨棄尚未儲存的畫布變更，是否繼續？'))return;
   const data=await api('load');activeSettings=data.settings;validation=data.validation;settings=structuredClone(validation?.draft||activeSettings);savedSettings=structuredClone(settings);graphDirty=false;sha=data.sha;head=data.head;pendingSha=data.pending_sha;metrics=data.metrics;monitor=data.monitor;
-  $('#workspace').hidden=false;$('#login-panel').hidden=true;$('#logout').hidden=false;$('#account-state').textContent='站主管理';$('#graph-view').hidden=false;$('#overview-view').hidden=true;render();await Promise.all([layoutView.start(),operationsView.refresh()]);
+  $('#workspace').hidden=false;$('#login-panel').hidden=true;$('#logout').hidden=false;$('#account-state').textContent='站主管理';$('#graph-view').hidden=false;$('#overview-view').hidden=true;render();void refreshCategoryStatus();await Promise.all([layoutView.start(),operationsView.refresh()]);
 }
 function button(text,action){const b=el('button',text);b.type='button';b.onclick=()=>action().catch(e=>notify(e.message,true));return b;}
 async function save(next){if(studio.hasConflict())throw Error('請先比較並處理遠端版本衝突。');validateSettings(next);const result=await api('save',{sha,pending_sha:pendingSha,settings:next});await load({preserveDirty:true});studio.announce();notify(result.message);return result;}
@@ -55,7 +69,7 @@ function renderValidation(){
   if(validation?.message)box.append(el('p',validation.message));
   if(validation?.run_url){const a=el('a','查看驗證結果與失敗原因');a.href=validation.run_url;a.target='_blank';a.rel='noopener';box.append(a);}
   box.append(button('更新驗證狀態',async()=>studio.checkRemote()));
-  if(validation?.state==='PASSED'&&!graphDirty)box.append(button('套用已驗證設定',async()=>{if(busy)return;busy=true;try{if(studio.hasConflict())throw Error('請先處理設定版本衝突。');if(!confirm('已確認影響預覽？套用後，下一次 Collector 使用此設定；已發布文章不變。'))return;const r=await api('activate',{sha,head,pending_sha:pendingSha});await load();studio.announce();notify(r.message);}finally{busy=false;}}));
+  if(validation?.state==='PASSED'&&!graphDirty)box.append(button('套用已驗證設定',async()=>{if(busy)return;busy=true;updateGraph();try{if(studio.hasConflict())throw Error('請先處理設定版本衝突。');if(!confirm('已確認影響預覽？套用後，下一次 Collector 使用此設定；已發布文章不變。'))return;const r=await api('activate',{sha,head,pending_sha:pendingSha});await load();studio.announce();notify(r.message);}finally{busy=false;updateGraph();}}));
 }
 function render(){
   updateGraph();renderValidation();
@@ -77,7 +91,7 @@ function render(){
     const row=metrics?.sources?.[s.id],stats=el('div',undefined,'source-stats');for(const [label,k] of [['累計候選','candidates'],['累計退件','rejected'],['累計入備稿','reserve'],['累計發布','published']]){const x=el('span',label);x.append(el('strong',row?.[k]??'—'));stats.append(x);}main.append(stats);
     actions.append(button('編輯',async()=>openEditor('source',s.id)),button(s.enabled?'暫停':'恢復',async()=>{const next=structuredClone(settings);next.sources.find(x=>x.id===s.id).enabled=!s.enabled;setDraft(next);notify('變更已加入工作區草稿。');}));card.append(main,actions);$('#source-list').append(card);
   }
-  $('#topic-list').replaceChildren();for(const t of settings.topics){const c=el('article',undefined,'topic-card');c.append(el('span',t.enabled?'啟用中':'尚未啟用',`pill${t.enabled?'':' off'}`),el('h3',t.name),el('p',t.description));c.append(el('p',`${settings.sources.filter(s=>s.enabled&&s.topic_ids.includes(t.id)).length} 個啟用來源 · 排序 ${t.order??0} · ${t.visible?"導覽顯示":"導覽隱藏"}`));const f=el('footer');const a=el('a','查看分類頁 ↗');a.href=`../?view=${encodeURIComponent(t.id)}`;f.append(a,button('編輯分類',async()=>openEditor('topic',t.id)));c.append(f);$('#topic-list').append(c);}
+  $('#topic-list').replaceChildren();for(const t of settings.topics){const c=el('article',undefined,'topic-card');c.append(el('span',t.enabled?'啟用中':'尚未啟用',`pill${t.enabled?'':' off'}`),el('h3',t.name),el('p',t.description));c.append(el('p',`${settings.sources.filter(s=>s.enabled&&s.topic_ids.includes(t.id)).length} 個啟用來源 · 排序 ${t.order??0} · ${t.visible?"導覽顯示":"導覽隱藏"}`));const status=categoryStatuses()[t.id];c.append(el('p','設定：'+status.application,'category-application'),el('p',status.homepage,'category-home-status'));const f=el('footer');const a=el('a','查看分類頁 ↗');a.href=`../?view=${encodeURIComponent(t.id)}`;f.append(a,button('編輯分類',async()=>openEditor('topic',t.id)));c.append(f);$('#topic-list').append(c);}
   studio?.render();
 }
 function input(name,label,value,{type='text',help='',disabled=false}={}){const l=el('label',label);const i=el(type==='textarea'?'textarea':'input');i.name=name;if(type!=='textarea')i.type=type;i.value=value??'';i.disabled=disabled;if(['id','name','base_url'].includes(name))i.required=true;l.append(i);if(help)l.append(el('small',help,'help'));return l;}
@@ -93,11 +107,11 @@ function openEditor(kind,id=null){
   }else{
     fields.append(input('description','分類說明',item.description,{type:'textarea'}),input('include_terms','收錄關鍵字',item.include_terms?.join('\n'),{type:'textarea',help:'每行一組；符合其中一組即可。既有分類留白時沿用原分類；後續收集仍檢查製作相關性。'}),input('exclude_terms','排除關鍵字',item.exclude_terms?.join('\n'),{type:'textarea'}));
     fields.append(input('order','按鈕排序（數字小的在前）',item.order??settings.topics.length,{type:'number'}));
-    for(const [key,label,defaultValue] of [['visible','在導覽列顯示',true],['hide_empty','本期沒有文章時隱藏按鈕',true]]){const l=el('label'),i=el('input');i.name=key;i.type='checkbox';i.checked=item[key]??defaultValue;l.append(i,document.createTextNode(' '+label));fields.append(l);}
+    for(const [key,label,defaultValue] of [['visible','在導覽列顯示',newCategoryVisibility.visible],['hide_empty','本期沒有文章時隱藏按鈕',newCategoryVisibility.hide_empty]]){const l=el('label'),i=el('input');i.name=key;i.type='checkbox';i.checked=item[key]??defaultValue;l.append(i,document.createTextNode(' '+label));fields.append(l);}
     fields.append(input('manual_urls','人工指定加入：原文網址',item.manual_urls?.join('\n'),{type:'textarea',help:'每行一個。只調整已發布文章的分類；不會收集或核准文章。同一文章可出現在多個分類。'}),input('excluded_urls','人工指定排除：原文網址',item.excluded_urls?.join('\n'),{type:'textarea'}));
     const preview=button('預覽分類結果',async()=>previewCategory(item.id));fields.append(preview,el('div',undefined,'category-preview'));
   }
-  const l=el('label'),check=el('input');check.name='enabled';check.type='checkbox';check.checked=!!item.enabled;check.disabled=id==='ai-3d';l.append(check,document.createTextNode(' 啟用'+(kind==='source'?'來源':'分類')));fields.append(l,el('p','先儲存待驗證版本；完整檢查通過並套用後，下一次收集才會使用。導覽名稱、排序與顯示在網站更新後生效；供稿規則套用至後續收集，已發布文章保留。','help'));if(currentView==='graph'){$('#graph-inline-editor').append($('#editor-form'));$('#graph-inline-editor input[name=name]').focus();}else $('#editor').showModal();
+  const l=el('label'),check=el('input');check.name='enabled';check.type='checkbox';check.checked=item.enabled??true;check.disabled=id==='ai-3d';l.append(check,document.createTextNode(' 啟用'+(kind==='source'?'來源':'分類')));fields.append(l,el('p','先儲存待驗證版本；完整檢查通過並套用後，下一次收集才會使用。導覽名稱、排序與顯示在網站更新後生效；供稿規則套用至後續收集，已發布文章保留。','help'));if(currentView==='graph'){$('#graph-inline-editor').append($('#editor-form'));$('#graph-inline-editor input[name=name]').focus();}else $('#editor').showModal();
 }
 $('#editor-form').onsubmit=async e=>{e.preventDefault();if(busy)return;busy=true;const submit=e.submitter;submit.disabled=true;try{
   const f=new FormData(e.target),lines=k=>String(f.get(k)||'').split(/\r?\n/).map(x=>x.trim()).filter(Boolean),item={id:editing.id||String(f.get('id')).trim(),name:String(f.get('name')).trim(),enabled:editing.id==='ai-3d'||f.has('enabled')};
