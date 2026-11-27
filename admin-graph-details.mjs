@@ -1,3 +1,4 @@
+import {matchesCategory,unprojectSettings} from './category-model.mjs';
 const el=(tag,text,cls)=>{const e=document.createElement(tag);if(text!==undefined)e.textContent=text;if(cls)e.className=cls;return e;};
 const labels={awaiting_review:'待審稿',rejected:'待修正',held:'已暫緩',recheck_required:'已審，使用前待複核',date_ineligible:'日期不符',source_unavailable:'來源暫時無法讀取',source_disabled:'來源或主題未啟用',published:'已發布'};
 function link(text,url){const a=el('a',text);try{const u=new URL(url);if(u.protocol!=='https:')return el('span',text);a.href=u.href;a.target='_blank';a.rel='noopener noreferrer';return a;}catch{return el('span',text);}}
@@ -7,8 +8,8 @@ export function sourceFor(row,settings){
 }
 export function scopedArticles(key,data){
   const [kind,id]=key.split(':'),ops=data.operations;
-  const rows=id==='publish'&&kind==='stage'?ops?.published_items||[]:id==='reserve'&&kind==='stage'?ops?.reserve||[]:id==='review'&&kind==='stage'?ops?.queue||[]:[...(ops?.queue||[]),...(ops?.reserve||[]),...(ops?.published_items||[])];
-  return rows.filter(row=>kind==='source'?sourceFor(row,data.settings)?.id===id:kind==='topic'?(row.topic_ids||sourceFor(row,data.settings)?.topic_ids||[]).includes(id):true);
+  const rows=['publish','top5'].includes(id)&&kind==='stage'?ops?.published_items||[]:id==='reserve'&&kind==='stage'?ops?.reserve||[]:id==='review'&&kind==='stage'?ops?.queue||[]:[...(ops?.queue||[]),...(ops?.reserve||[]),...(ops?.published_items||[])];
+  return rows.filter(row=>kind==='source'?sourceFor(row,data.settings)?.id===id:kind==='topic'?(data.settings._collection?matchesCategory(row,unprojectSettings(data.settings).navigation.find(t=>t.id===id),unprojectSettings(data.settings)):(row.topic_ids||sourceFor(row,data.settings)?.topic_ids||[]).includes(id)):id==='top5'?row.homepage_tier==='top5':true);
 }
 export function createGraphDetails(){
   const views=new Map();

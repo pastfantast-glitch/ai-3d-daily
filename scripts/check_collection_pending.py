@@ -19,6 +19,7 @@ def changed_sources(active, proposed):
     return [s for s in proposed['sources'] if s['enabled'] and topics.intersection(s['topic_ids'])
             and (s['id'] not in before or not before[s['id']]['enabled']
                  or not old_topics.intersection(before[s['id']]['topic_ids'])
+                 or (bool(proposed.get('navigation')) and any(c['enabled'] and s['id'] in c['source_ids'] for c in proposed['navigation']) and bool(active.get('navigation')) and not any(c['enabled'] and s['id'] in c['source_ids'] for c in active['navigation']))
                  or any(s[k] != before[s['id']][k] for k in ('base_url', 'endpoints')))]
 
 def preview(source, date, fetcher=fetch):

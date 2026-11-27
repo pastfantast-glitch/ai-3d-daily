@@ -35,7 +35,7 @@ def validate_settings(data):
             raise ValueError('Collection settings: ' + message)
     def text(value, limit, empty=False):
         return isinstance(value, str) and len(value) <= limit and (empty or bool(value.strip())) and not any(ord(c) < 32 for c in value)
-    require(isinstance(data, dict) and set(data) == {'schema_version', 'topics', 'sources'} and type(data['schema_version']) is int and data['schema_version'] == 1, 'invalid schema')
+    require(isinstance(data, dict) and set(data) in ({'schema_version', 'topics', 'sources'}, {'schema_version', 'topics', 'sources', 'navigation'}) and type(data['schema_version']) is int and data['schema_version'] == 1, 'invalid schema')
     require(isinstance(data['topics'], list) and 1 <= len(data['topics']) <= 20, '1–20 topics required')
     ids = set()
     for t in data['topics']:
@@ -64,6 +64,10 @@ def validate_settings(data):
         require(isinstance(s['endpoints'],list) and 1 <= len(s['endpoints']) <= 5, '1–5 source endpoints required')
         require(all(public_url(u) and (urlsplit(u).hostname.removeprefix('www.') == host or urlsplit(u).hostname.endswith('.'+host)) for u in s['endpoints']), 'endpoints must stay on source domain')
     require(any(s['enabled'] and PRIMARY in s['topic_ids'] for s in data['sources']), 'at least one AI/3D source must remain enabled')
+    if "navigation" in data:
+        from navigation_categories import validate_navigation
+        validate_navigation(data["navigation"], data["sources"])
+        require(any(c["enabled"] and any(s["enabled"] and s["id"] in c["source_ids"] for s in data["sources"]) for c in data["navigation"]), "at least one active category/source required")
     return data
 
 
@@ -81,7 +85,7 @@ def effective_hybrid(base, settings):
     active_topics = {t['id'] for t in settings['topics'] if t['enabled']}
     cfg['discovery_source_pool']['sources'] = [{**prior.get(s['id'], {}),
         'id':s['id'], 'name':s['name'], 'base_url':s['base_url'], 'domain':urlsplit(s['base_url']).hostname.removeprefix('www.'),
-        'enabled':s['enabled'] and bool(set(s['topic_ids']) & active_topics), 'topic_ids':s['topic_ids'],
+        'enabled':s['enabled'] and bool(set(s['topic_ids']) & active_topics) and ('navigation' not in settings or any(c['enabled'] and s['id'] in c['source_ids'] for c in settings['navigation'])), 'topic_ids':s['topic_ids'],
         'discovery_mode':'active-candidate-source', 'ranking_bonus':0, 'required_daily_check':False,
         'categories':prior.get(s['id'],{}).get('categories', ['emerging-case'])} for s in settings['sources']]
     enabled = {s['id'] for s in cfg['discovery_source_pool']['sources'] if s['enabled']}
@@ -111,6 +115,8 @@ def within_topic_window(published, reference_date, months):
 
 def topic_matches(meta, source, settings, primary_match=False, reference_date=None):
     text = ' '.join(str(meta.get(k) or '') for k in ('title','description','article_excerpt')).casefold()
+    from navigation_categories import collection_category_match
+    primary_match = collection_category_match(meta, source, settings or {}, primary_match)
     result = []
     for topic in (settings or {}).get('topics', []):
         if not topic['enabled'] or topic['id'] not in source.get('topic_ids', [PRIMARY]):

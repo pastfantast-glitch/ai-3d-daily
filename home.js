@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded',async()=>{
 });
 
 // Current-day workspace: category tabs never switch into the History portal.
-document.addEventListener('DOMContentLoaded',()=>{
+document.addEventListener('DOMContentLoaded',async()=>{
   const NAV_SELECTOR='nav.global-category-nav';
   const nav=document.querySelector(NAV_SELECTOR);
   const homeMain=document.querySelector('main.home-main');
@@ -30,7 +30,9 @@ document.addEventListener('DOMContentLoaded',()=>{
   const dateFromNav=[...nav.querySelectorAll('a[data-category][href]')].map(a=>a.getAttribute('href')?.match(/20\d{2}-\d{2}-\d{2}/)?.[0]).find(Boolean)||'';
   const reportDate=document.body.dataset.reportDate||document.querySelector('.week-asof')?.textContent.trim()||dateFromNav;
   let controller=null;
-  let categoryMain=null;
+  let categoryMain=null,managed=null;
+  try{const mod=await import('./category-navigation.mjs?v=20261127-categories1');managed=await mod.prepareNavigation(nav,reportDate);}catch(error){console.warn('Managed navigation unavailable; retaining verified static categories',error);}
+
 
   function setActive(category){
     nav.querySelectorAll('a.global-category-link:not(.preference-bookmark-link):not(.global-history-link)').forEach(link=>{
@@ -70,9 +72,17 @@ document.addEventListener('DOMContentLoaded',()=>{
 
   async function showCategory(category,{push=true}={}){
     if(!reportDate||!category)return;
-    if(![...nav.querySelectorAll('[data-category]')].some(link=>link.dataset.category===category)){
+    if(!managed?.has(category)&&![...nav.querySelectorAll('[data-category]')].some(link=>link.dataset.category===category)){
       showTop({push:false});
       return;
+    }
+    if(managed?.has(category)){
+      if(controller)controller.abort();controller=null;
+      const next=managed.render(category);prepareCategoryMain(next);
+      if(categoryMain)categoryMain.replaceWith(next);else homeMain.insertAdjacentElement('afterend',next);
+      categoryMain=next;homeMain.hidden=true;setActive(category);document.title=`${managed.label(category)}｜${reportDate}｜AI 3D Daily`;
+      if(push){const url=new URL(rootUrl);url.searchParams.set('view',category);history.pushState({currentWorkspace:true,view:category},'',url);}
+      window.scrollTo({top:0,behavior:'auto'});return;
     }
     const sourceUrl=new URL(`${reportDate}/${category}/`,rootUrl);
     if(controller)controller.abort();
@@ -217,7 +227,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     const candidates=rows.filter(row=>active||!featuredSet.has(row));
     candidates.forEach(row=>grid.append(row));
     const matches=candidates.filter(row=>searchable.get(row).includes(query)&&
-      (category.value==='all'||row.dataset.category===category.value)&&
+      (category.value==='all'||(row.dataset.categoryIds||row.dataset.category||'').split(' ').includes(category.value))&&
       (freshness.value==='all'||row.dataset.freshness===freshness.value)&&
       (kind==='all'||row.dataset.contentKind===kind));
     const visible=new Set(matches.slice(0,limit));

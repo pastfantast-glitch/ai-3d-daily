@@ -9,7 +9,7 @@ export function reserveInventory(backlog,reviews,{published,held,date,recentSour
   const approval=review||x.review_provenance||x.reader_copy?.review_provenance;
   const approved=!!review||['verified','temporarily-unavailable','owner-held'].includes(x.refresh_status);
   const unavailable=x.refresh_status==='temporarily-unavailable';
-  const activeTopic=source?.topic_ids?.some(id=>settings.topics.some(t=>t.id===id&&t.enabled));
+  const activeTopic=source?.topic_ids?.some(id=>settings.topics.some(t=>t.id===id&&t.enabled))&&(!settings.navigation||settings.navigation.some(c=>c.enabled&&c.source_ids.includes(source?.id)));
   const state=held.has(url)||held.has(urlKey(url))?'held':!recentSource(sourceDate,date)?'date_ineligible':unavailable?'source_unavailable':!approved?'awaiting_review':!source?.enabled||!activeTopic?'source_disabled':'recheck_required';
   const row={id,title:x.title||x.reader_copy?.title||url,source_url:url,source_date:sourceDate,source_id:source?.id,topic_ids:source?.topic_ids||[],held:state==='held',state,approved,reviewed_on:approval?.date||null,source_run_id:approval?.source_run_id||null,summary:x.summary||x.reader_copy?.summary,full_analysis:x.full_analysis||x.reader_copy?.full_analysis,evidence_refs:x.evidence_refs||[]};
   // An inaccessible source remains unavailable even when its copy is approved.

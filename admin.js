@@ -1,9 +1,10 @@
-import {mountStudio} from './admin-studio.mjs?v=20261126-studio1';
-import {mountGraph} from './admin-graph.js?v=20261126-studio1';
-import {validateGraphDraft} from './admin-graph-model.mjs?v=20261126-studio1';
-import {mountOperations} from './admin-operations.js?v=20261127-intake1';
+import {mountStudio} from './admin-studio.mjs?v=20261127-categories1';
+import {mountGraph} from './admin-graph.js?v=20261127-categories1';
+import {validateGraphDraft} from './admin-graph-model.mjs?v=20261127-categories1';
+import {mountOperations} from './admin-operations.js?v=20261127-categories1';
 import {createClient} from 'https://esm.sh/@supabase/supabase-js@2.116.0?bundle';
-import {validateSettings} from './supabase/functions/collection-admin/policy.mjs?v=20261126-studio1';
+import {validateGraphSettings as validateSettings} from './admin-graph-model.mjs?v=20261127-categories1';
+import {projectSettings,unprojectSettings,categoryItems,BUILTINS} from './category-model.mjs?v=20261127-categories1';
 import {sourceInventory} from './admin-source-state.mjs';
 const base='https://epumcdxfkcujulqrcjrw.supabase.co',key='sb_publishable_KPadXg3RKth3SGsAuXzebA_OylGgtpf';
 const auth=createClient(base,key,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:false}});
@@ -15,9 +16,10 @@ async function api(op,body={}){
   // Same two publisher-declared feed aliases as the Collector. The server
   // still validates HTTPS/public DNS; this preview never approves an article.
   if(op==='probe')body={...body,url:({'https://www.cgchannel.com/feed/':'https://feeds2.feedburner.com/cgchannel/nHpU','https://www.blendernation.com/feed/':'https://feeds.feedburner.com/Blendernation'})[body.url]||body.url};
+  if(body.settings)body={...body,settings:unprojectSettings(body.settings)};
   const current=await auth.auth.getSession();session=current.data.session;if(!session)throw new Error('請先登入站主帳號。');
   let response;try{response=await fetch(`${base}/functions/v1/collection-admin`,{method:'POST',headers:{apikey:key,Authorization:`Bearer ${session.access_token}`,'Content-Type':'application/json'},body:JSON.stringify({op,...body}),signal:AbortSignal.timeout(op==='probe'?90000:45000)});}catch{throw new Error('無法連線管理服務，請稍後重試；尚未確認儲存成功。');}
-  const data=await response.json();if(!response.ok){if(data.error==='version_conflict')studio?.checkRemote();throw new Error(messages[data.error]||data.message||`操作未完成（${data.error||response.status}）`);}return data;
+  const data=await response.json();if(!response.ok){if(data.error==='version_conflict')studio?.checkRemote();throw new Error(messages[data.error]||data.message||`操作未完成（${data.error||response.status}）`);}if(data.settings)data.settings=projectSettings(data.settings);if(data.validation?.draft)data.validation.draft=projectSettings(data.validation.draft);return data;
 }
 let graphDirty=false,savedSettings=null,currentView='graph',operationsData=null,studio=null;
 const operationsView=mountOperations(api,notify,data=>{operationsData=data;if(settings)render();else updateGraph();},row=>studio.showArticle(row));
@@ -73,29 +75,32 @@ function render(){
     const row=metrics?.sources?.[s.id],stats=el('div',undefined,'source-stats');for(const [label,k] of [['累計候選','candidates'],['累計退件','rejected'],['累計入備稿','reserve'],['累計發布','published']]){const x=el('span',label);x.append(el('strong',row?.[k]??'—'));stats.append(x);}main.append(stats);
     actions.append(button('編輯',async()=>openEditor('source',s.id)),button(s.enabled?'暫停':'恢復',async()=>{const next=structuredClone(settings);next.sources.find(x=>x.id===s.id).enabled=!s.enabled;setDraft(next);notify('變更已加入工作區草稿。');}));card.append(main,actions);$('#source-list').append(card);
   }
-  $('#topic-list').replaceChildren();for(const t of settings.topics){const c=el('article',undefined,'topic-card');c.append(el('span',t.enabled?'啟用中':'尚未啟用',`pill${t.enabled?'':' off'}`),el('h3',t.name),el('p',t.description));c.append(el('p',`${settings.sources.filter(s=>s.enabled&&s.topic_ids.includes(t.id)).length} 個啟用來源 · 近 ${t.max_age_months} 個月 · 每期目標 ${t.target_items} 篇`));const f=el('footer');const a=el('a','查看主題頁 ↗');a.href=t.id==='ai-3d'?'../':`../topics/?topic=${encodeURIComponent(t.id)}`;f.append(a,button('編輯主題',async()=>openEditor('topic',t.id)));c.append(f);$('#topic-list').append(c);}
+  $('#topic-list').replaceChildren();for(const t of settings.topics){const c=el('article',undefined,'topic-card');c.append(el('span',t.enabled?'啟用中':'尚未啟用',`pill${t.enabled?'':' off'}`),el('h3',t.name),el('p',t.description));c.append(el('p',`${settings.sources.filter(s=>s.enabled&&s.topic_ids.includes(t.id)).length} 個啟用來源 · 排序 ${t.order??0} · ${t.visible?"導覽顯示":"導覽隱藏"}`));const f=el('footer');const a=el('a','查看分類頁 ↗');a.href=`../?view=${encodeURIComponent(t.id)}`;f.append(a,button('編輯分類',async()=>openEditor('topic',t.id)));c.append(f);$('#topic-list').append(c);}
   studio?.render();
 }
 function input(name,label,value,{type='text',help='',disabled=false}={}){const l=el('label',label);const i=el(type==='textarea'?'textarea':'input');i.name=name;if(type!=='textarea')i.type=type;i.value=value??'';i.disabled=disabled;if(['id','name','base_url'].includes(name))i.required=true;l.append(i);if(help)l.append(el('small',help,'help'));return l;}
 function openEditor(kind,id=null){
   if(studio&&!studio.canLeaveEditor())return;studio?.hide();
   if(busy){notify('正在儲存，請稍候再編輯。');return;}
-  closeEditor();editing={kind,id};$('#editor-form button[type=submit]').textContent=currentView==='graph'?'加入畫布草稿':'儲存並驗證';const fields=$('#editor-fields');fields.replaceChildren();$('#editor-error').textContent='';$('#probe-result').hidden=true;$('#probe-source').hidden=kind!=='source';$('#editor-kicker').textContent=kind==='source'?'SOURCE':'TOPIC';$('#editor-title').textContent=(id?'編輯':'新增')+(kind==='source'?'來源':'收集主題');
+  closeEditor();editing={kind,id};$('#editor-form button[type=submit]').textContent=currentView==='graph'?'加入畫布草稿':'儲存並驗證';const fields=$('#editor-fields');fields.replaceChildren();$('#editor-error').textContent='';$('#probe-result').hidden=true;$('#probe-source').hidden=kind!=='source';$('#editor-kicker').textContent=kind==='source'?'SOURCE':'CATEGORY';$('#editor-title').textContent=(id?'編輯':'新增')+(kind==='source'?'來源':'分類與分頁');
   const item=(kind==='source'?settings.sources:settings.topics).find(x=>x.id===id)||{};
-  fields.append(input('name','名稱',item.name),input('id',kind==='source'?'來源代號':'網址代號',item.id,{disabled:!!id,help:'使用小寫英數與連字號，例如 photography；儲存後固定。'}));
+  fields.append(input('name','名稱',item.name),input('id',kind==='source'?'來源代號':'網址代號',item.id,{disabled:!!id,help:'使用小寫英數與連字號，例如 cloth-workflow；儲存後固定。'}));
   if(kind==='source'){
     fields.append(input('base_url','網站首頁',item.base_url,{type:'url'}),input('endpoints','文章列表或 RSS 網址',item.endpoints?.join('\n'),{type:'textarea',help:'每行一個，最多 5 個；與網站首頁相同網域。'}));
-    const box=el('fieldset',undefined,'checkboxes');box.append(el('legend','收集到哪些主題'));for(const t of settings.topics){const l=el('label'),i=el('input');i.type='checkbox';i.name='topic_ids';i.value=t.id;i.checked=item.topic_ids?.includes(t.id)||(!id&&t.id==='ai-3d');l.append(i,document.createTextNode(' '+t.name));box.append(l);}fields.append(box);
+    const box=el('fieldset',undefined,'checkboxes');box.append(el('legend','收集到哪些分類'));for(const t of settings.topics){const l=el('label'),i=el('input');i.type='checkbox';i.name='topic_ids';i.value=t.id;i.checked=item.topic_ids?.includes(t.id)||(!id&&BUILTINS.includes(t.id));l.append(i,document.createTextNode(' '+t.name));box.append(l);}fields.append(box);
   }else{
-    fields.append(input('description','主題說明',item.description,{type:'textarea'}),input('include_terms','收錄關鍵字',item.include_terms?.join('\n'),{type:'textarea',help:'每行一組；符合其中一組即可。AI／3D 另沿用現有製作相關性檢查。'}),input('exclude_terms','排除關鍵字',item.exclude_terms?.join('\n'),{type:'textarea'}));
-    const pair=el('div',undefined,'field-pair');pair.append(input('target_items','每期目標篇數',item.target_items??10,{type:'number',disabled:id==='ai-3d'}),input('max_age_months','來源期限（月）',item.max_age_months??12,{type:'number'}));fields.append(pair);
+    fields.append(input('description','分類說明',item.description,{type:'textarea'}),input('include_terms','收錄關鍵字',item.include_terms?.join('\n'),{type:'textarea',help:'每行一組；符合其中一組即可。既有分類留白時沿用原分類；後續收集仍檢查製作相關性。'}),input('exclude_terms','排除關鍵字',item.exclude_terms?.join('\n'),{type:'textarea'}));
+    fields.append(input('order','按鈕排序（數字小的在前）',item.order??settings.topics.length,{type:'number'}));
+    for(const [key,label,defaultValue] of [['visible','在導覽列顯示',true],['hide_empty','本期沒有文章時隱藏按鈕',true]]){const l=el('label'),i=el('input');i.name=key;i.type='checkbox';i.checked=item[key]??defaultValue;l.append(i,document.createTextNode(' '+label));fields.append(l);}
+    fields.append(input('manual_urls','人工指定加入：原文網址',item.manual_urls?.join('\n'),{type:'textarea',help:'每行一個。只調整已發布文章的分類；不會收集或核准文章。同一文章可出現在多個分類。'}),input('excluded_urls','人工指定排除：原文網址',item.excluded_urls?.join('\n'),{type:'textarea'}));
+    const preview=button('預覽分類結果',async()=>previewCategory(item.id));fields.append(preview,el('div',undefined,'category-preview'));
   }
-  const l=el('label'),check=el('input');check.name='enabled';check.type='checkbox';check.checked=!!item.enabled;check.disabled=id==='ai-3d';l.append(check,document.createTextNode(' 啟用'+(kind==='source'?'來源':'主題')));fields.append(l,el('p','先儲存待驗證版本；完整檢查通過並套用後，下一次收集才會使用。已發布文章保留。','help'));if(currentView==='graph'){$('#graph-inline-editor').append($('#editor-form'));$('#graph-inline-editor input[name=name]').focus();}else $('#editor').showModal();
+  const l=el('label'),check=el('input');check.name='enabled';check.type='checkbox';check.checked=!!item.enabled;check.disabled=id==='ai-3d';l.append(check,document.createTextNode(' 啟用'+(kind==='source'?'來源':'分類')));fields.append(l,el('p','先儲存待驗證版本；完整檢查通過並套用後，下一次收集才會使用。導覽名稱、排序與顯示在網站更新後生效；供稿規則套用至後續收集，已發布文章保留。','help'));if(currentView==='graph'){$('#graph-inline-editor').append($('#editor-form'));$('#graph-inline-editor input[name=name]').focus();}else $('#editor').showModal();
 }
 $('#editor-form').onsubmit=async e=>{e.preventDefault();if(busy)return;busy=true;const submit=e.submitter;submit.disabled=true;try{
   const f=new FormData(e.target),lines=k=>String(f.get(k)||'').split(/\r?\n/).map(x=>x.trim()).filter(Boolean),item={id:editing.id||String(f.get('id')).trim(),name:String(f.get('name')).trim(),enabled:editing.id==='ai-3d'||f.has('enabled')};
   if(editing.kind==='source')Object.assign(item,{base_url:String(f.get('base_url')).trim(),endpoints:lines('endpoints'),topic_ids:f.getAll('topic_ids')});
-  else Object.assign(item,{description:String(f.get('description')||'').trim(),include_terms:lines('include_terms'),exclude_terms:lines('exclude_terms'),target_items:editing.id==='ai-3d'?30:Number(f.get('target_items')),max_age_months:Number(f.get('max_age_months'))});
+  else Object.assign(item,{description:String(f.get('description')||'').trim(),include_terms:lines('include_terms'),exclude_terms:lines('exclude_terms'),target_items:30,max_age_months:12,visible:f.has('visible'),hide_empty:f.has('hide_empty'),order:Number(f.get('order')),manual_urls:lines('manual_urls'),excluded_urls:lines('excluded_urls'),source_ids:settings.sources.filter(s=>s.topic_ids.includes(editing.id)).map(s=>s.id)});
   const next=structuredClone(settings),list=editing.kind==='source'?next.sources:next.topics,index=list.findIndex(x=>x.id===editing.id);if(index<0)list.push(item);else list[index]=item;
   if(currentView==='graph'){validateGraphDraft(next);settings=next;graphDirty=JSON.stringify(settings)!==JSON.stringify(savedSettings);closeEditor();render();notify('節點設定已加入草稿；請按「儲存畫布並驗證」。');}else{await save(next);closeEditor();}
 }catch(error){$('#editor-error').textContent=error.message;}finally{busy=false;submit.disabled=false;updateGraph();}};
@@ -108,3 +113,10 @@ document.querySelectorAll('[data-view]').forEach(b=>b.onclick=()=>{if(!studio.ca
 $('#login-form').onsubmit=async e=>{e.preventDefault();const f=new FormData(e.target),button=e.submitter;button.disabled=true;try{const r=await auth.auth.signInWithPassword({email:String(f.get('email')),password:String(f.get('password'))});e.target.password.value='';if(r.error)throw new Error('登入失敗，請確認帳號與密碼。');await load();notify('已登入站主後臺。');}catch(e){notify(e.message,true);}finally{button.disabled=false;}};
 $('#logout').onclick=async()=>{if(!studio.canLeaveEditor())return;if(graphDirty&&!confirm('登出將捨棄未儲存的畫布變更，是否繼續？'))return;graphDirty=false;closeEditor();await auth.auth.signOut();location.reload();};
 try{const r=await auth.auth.getSession();if(r.data.session)await load();}catch(e){notify(e.message,true);}
+
+async function previewCategory(id){
+ const target=$('#editor-fields .category-preview');target.replaceChildren(el('p','正在讀取最新已發布內容…'));
+ const f=new FormData($('#editor-form')),lines=k=>String(f.get(k)||'').split(/\r?\n/).map(x=>x.trim()).filter(Boolean);
+ const c={id:id||String(f.get('id')).trim(),enabled:f.has('enabled'),include_terms:lines('include_terms'),exclude_terms:lines('exclude_terms'),manual_urls:lines('manual_urls'),excluded_urls:lines('excluded_urls'),source_ids:settings.sources.filter(s=>s.topic_ids.includes(id)).map(s=>s.id)};
+ try{const read=async url=>{const r=await fetch(url,{cache:'no-cache',signal:AbortSignal.timeout(15000)});if(!r.ok)throw Error('無法取得已發布資料');return r.json();};const latest=await read('../data/publish/latest-success.json'),daily=await read(`../data/daily/${latest.date}.json`);if(daily.date!==latest.date)throw Error('發布資料日期不一致');const matched=categoryItems([...(daily.items||[]),...(daily.topic_items||[])],c,unprojectSettings(settings));target.replaceChildren(el('h4',`${latest.date}：符合 ${matched.length} 篇`),el('p','這是目前表單規則的預覽；尚未儲存或生效。新分類請先建立節點，再連接來源。','help'));for(const i of matched){const a=el('a',i.title);a.href=i.source_url;a.target='_blank';a.rel='noopener';const row=el('p');row.append(a);target.append(row);}}catch(e){target.replaceChildren(el('p',e.message,'error'));}
+}

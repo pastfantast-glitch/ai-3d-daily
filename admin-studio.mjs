@@ -1,8 +1,8 @@
 import {settingsImpact,mergeSettings,batchSources,sourceHealth,reserveBreakdown} from './admin-studio-model.mjs';
 const el=(tag,text,cls)=>{const n=document.createElement(tag);if(text!==undefined)n.textContent=text;if(cls)n.className=cls;return n;};
-const titles={overview:'發布概況',queue:'待審稿與退件',reserve:'備稿管理',sources:'來源管理',topics:'收集主題',history:'修改紀錄',validation:'設定驗證與影響',account:'帳號設定'};
+const titles={overview:'發布概況',queue:'待審稿與退件',reserve:'備稿管理',sources:'來源管理',topics:'分類與分頁',history:'修改紀錄',validation:'設定驗證與影響',account:'帳號設定'};
 const statusNames={ACTIVE:'已生效',SAVED:'已儲存待驗證',VALIDATING:'驗證中',PASSED:'驗證通過，待套用',FAILED:'驗證失敗',UNKNOWN:'驗證狀態未知',STALE:'遠端版本已改變'};
-const stateNames={recheck_required:'已審待複核',held:'暫緩',date_ineligible:'超期／日期不符',source_unavailable:'來源失效',source_disabled:'來源／主題停用',awaiting_review:'待審稿',rejected:'待修正'};
+const stateNames={recheck_required:'已審待複核',held:'暫緩',date_ineligible:'超期／日期不符',source_unavailable:'來源失效',source_disabled:'來源／分類停用',awaiting_review:'待審稿',rejected:'待修正'};
 export function mountStudio({getState,onDraft,onRemote,onCloseEditor,api,notify}){
  const $=s=>document.querySelector(s),selectedSources=new Set(),scrolls=new Map();let view=null,remote=null,checking=false,editorDirty=false,lastFocus=null;
  const bar=el('section',undefined,'studio-status');bar.setAttribute('aria-label','工作區設定狀態');$('#graph-view').prepend(bar);
@@ -21,8 +21,8 @@ export function mountStudio({getState,onDraft,onRemote,onCloseEditor,api,notify}
  function hide(){if(!canLeaveEditor())return;if(article.hidden)scrolls.set(view,content.scrollTop);panel.hidden=true;article.hidden=true;if(view)sections[view].hidden=true;view=null;markNavigation('graph');lastFocus?.isConnected&&lastFocus.focus({preventScroll:true});}
  function canLeaveEditor(){if(!editorDirty)return true;if(!confirm('編輯表單尚未加入草稿，確定離開？'))return false;editorDirty=false;return true;}
  function open(name){if(!sections[name]||!canLeaveEditor())return;onCloseEditor?.();if(view){if(article.hidden)scrolls.set(view,content.scrollTop);}else lastFocus=document.activeElement;view=name;markNavigation(name);for(const [k,s]of Object.entries(sections))s.hidden=k!==name;article.hidden=true;title.textContent=titles[name];panel.hidden=false;content.scrollTop=scrolls.get(name)||0;if(name==='history')history();if(name==='validation')renderImpact();close.focus({preventScroll:true});}
- function renderImpact(){const s=getState();if(!s.settings)return;const report=settingsImpact(s.activeSettings,s.settings);impact.replaceChildren(el('h3','套用影響預覽'),el('p',report.timing));const ul=el('ul');for(const text of report.changes)ul.append(el('li',text));if(!report.changes.length)ul.append(el('li','來源與主題沒有變更。'));impact.append(ul);
-  for(const t of report.topics)impact.append(el('p',`${t.name}：啟用來源 ${t.before} → ${t.after}${t.enabled?'':'（主題停用）'}`));for(const w of report.warnings)impact.append(el('p',w,'error'));
+ function renderImpact(){const s=getState();if(!s.settings)return;const report=settingsImpact(s.activeSettings,s.settings);impact.replaceChildren(el('h3','套用影響預覽'),el('p',report.timing));const ul=el('ul');for(const text of report.changes)ul.append(el('li',text));if(!report.changes.length)ul.append(el('li','來源與分類沒有變更。'));impact.append(ul);
+  for(const t of report.topics)impact.append(el('p',`${t.name}：啟用來源 ${t.before} → ${t.after}${t.enabled?'':'（分類停用）'}`));for(const w of report.warnings)impact.append(el('p',w,'error'));
   // renderValidation replaces its section, so reinsert this separate impact node.
   if(!impact.isConnected)sections.validation.prepend(impact);
  }
@@ -39,7 +39,7 @@ export function mountStudio({getState,onDraft,onRemote,onCloseEditor,api,notify}
   batch.replaceChildren(el('span',`已選 ${selectedSources.size} 個來源`),button('選取目前篩選來源',()=>{$('#source-list').querySelectorAll('[data-source-select]').forEach(x=>selectedSources.add(x.dataset.sourceSelect));render();}),button('清除選取',()=>{selectedSources.clear();render();}));
   const apply=options=>{if(!selectedSources.size)throw Error('請先選取來源。');onDraft(batchSources(s.settings,[...selectedSources],options));notify('批次修改已加入草稿，可復原；儲存驗證後再套用。');};
   batch.append(button('批次啟用',()=>apply({enabled:true})),button('批次暫停',()=>apply({enabled:false})));
-  const topics=el('select');topics.setAttribute('aria-label','批次來源主題');for(const t of s.settings.topics){const o=el('option',t.name);o.value=t.id;topics.append(o);}batch.append(topics,button('加入主題',()=>apply({topic:topics.value,connected:true})),button('移除主題',()=>apply({topic:topics.value,connected:false})));
+  const topics=el('select');topics.setAttribute('aria-label','批次來源分類');for(const t of s.settings.topics){const o=el('option',t.name);o.value=t.id;topics.append(o);}batch.append(topics,button('加入分類',()=>apply({topic:topics.value,connected:true})),button('移除分類',()=>apply({topic:topics.value,connected:false})));
   for(const card of $('#source-list').children){const id=card.querySelector('[data-live-inventory]')?.dataset.liveInventory;if(!id)continue;card.querySelector('.studio-source-check')?.remove();const label=el('label','選取來源','studio-source-check'),check=el('input');check.type='checkbox';check.dataset.sourceSelect=id;check.setAttribute('aria-label','選取來源 '+s.settings.sources.find(x=>x.id===id).name);check.checked=selectedSources.has(id);check.onchange=()=>{check.checked?selectedSources.add(id):selectedSources.delete(id);sourceBatch();};label.prepend(check);card.prepend(label);
    card.querySelector('.source-health')?.remove();const h=sourceHealth(s.monitor,id),health=el('div',undefined,'source-health');health.append(el('p',`最後取得正文：${h.lastSuccess||'未知'} · 近期連續失敗：${h.failures??'未知'} 次`),el('p',`正文取得率 ${h.bodyRate===null?'—':h.bodyRate+'%'} · 批次記錄核准率 ${h.reviewRate===null?'—':h.reviewRate+'%'}（${h.observations} 次觀測；批次可能重疊，非唯一文章數）`));card.append(health);
   }
