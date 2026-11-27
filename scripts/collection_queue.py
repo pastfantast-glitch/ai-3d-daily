@@ -27,11 +27,15 @@ def pending_seeds(root, date, settings, published, held=(), limit=40):
     rows = monitor.get('pending_queue', monitor.get('articles', []))
     intake = read(root/'config/collection-intake.json').get('items', [])
     rows = [dict(x, state=x.get('state') or ('awaiting_review' if 'awaiting-editorial-review' in x.get('errors', []) else 'rejected')) for x in rows]
+    for row in rows:
+        row.setdefault('first_seen', monitor.get('date', date))
+        if row.get('evidence_date') or row.get('body_readable') or row['state'] in ('awaiting_review', 'rejected', 'approved'):
+            row.setdefault('last_attempt_on', row.get('evidence_date', monitor.get('date', date)))
     known = {canonicalize_url(x['source_url']) for x in rows}
     rows += [dict(x, state='recommended') for x in intake if canonicalize_url(x['source_url']) not in known]
     held = {canonicalize_url(u) for u in held}
     picked = {}
-    for row in sorted(rows, key=lambda r: (r.get('last_attempt_on', ''), r.get('first_seen', r.get('requested_on', '')), r['source_url'])):
+    for row in sorted(rows, key=lambda r: (r['state'] != 'recommended', r.get('last_attempt_on', ''), r.get('first_seen', r.get('requested_on', '')), r['source_url'])):
         url = canonicalize_url(row['source_url'])
         s = source_for(url, settings['sources'])
         if not s or not s['enabled'] or url in published or url in held or row['state'] not in ACTIVE:
@@ -70,6 +74,11 @@ def merge_queue(current, previous, root):
             # A failed refresh cannot destroy the last original evidence binding.
             row = {**old, **{k:item[k] for k in ('source_url','state','errors') if k in item}, 'source_id':sid,
                    'first_seen':old.get('first_seen',date)}
+            if item.get('state') == 'discovered' and old:
+                # Merely seeing a link again does not invalidate its evidence or
+                # turn a pending review back into an unfetched article.
+                row['state'] = old['state']
+                row['errors'] = old.get('errors', [])
             if item.get('state') != 'discovered':
                 row['last_attempt_on'] = date
             rows[url] = row

@@ -7,6 +7,22 @@ from article_evidence import loss_summary
 
 
 class QueueTests(unittest.TestCase):
+    def test_new_recommendation_precedes_legacy_already_fetched_rows(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root=Path(tmp);(root/'config').mkdir();(root/'data/ops').mkdir(parents=True)
+            (root/'config/collection-intake.json').write_text(json.dumps({'items':[{'source_url':'https://80.lv/articles/z-new','requested_on':'2026-11-27'}]}))
+            (root/'data/ops/collection-monitor.json').write_text(json.dumps({'date':'2026-11-27','articles':[{'source_url':'https://80.lv/articles/a-old','errors':['awaiting-editorial-review']},{'source_url':'https://80.lv/articles/b-deferred','state':'discovered','errors':['article-budget-deferred']}]}))
+            result=pending_seeds(root,'2026-11-27',{'sources':[{'id':'80-level','base_url':'https://80.lv','enabled':True}]},set(),limit=1)
+            self.assertEqual(result,{'80-level':[('https://80.lv/articles/z-new','')]})
+
+    def test_budget_deferred_link_does_not_downgrade_pending_review(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            row={'id':'one','source_url':'https://80.lv/articles/a','errors':['awaiting-editorial-review']}
+            old={'date':'2026-11-26','source_run_id':10,'source_head_sha':'a'*40,'articles':[row]}
+            current={'date':'2026-11-27','source_run_id':11,'source_head_sha':'b'*40,'articles':[],'sources':{'80-level':{'url_observations':[{'source_url':row['source_url'],'state':'discovered','errors':['article-budget-deferred']}]}}}
+            result=merge_queue(current,old,Path(tmp))['pending_queue'][0]
+            self.assertEqual((result['state'],result['source_run_id'],result['errors']),('awaiting_review',10,['awaiting-editorial-review']))
+
     def test_queued_article_is_fetched_even_if_index_blocks_and_zero_refill_stays_zero(self):
         import copy
         from types import SimpleNamespace
