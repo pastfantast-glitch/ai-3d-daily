@@ -35,7 +35,7 @@ def pending_seeds(root, date, settings, published, held=(), limit=40):
     rows += [dict(x, state='recommended') for x in intake if canonicalize_url(x['source_url']) not in known]
     held = {canonicalize_url(u) for u in held}
     picked = {}
-    for row in sorted(rows, key=lambda r: (r.get('last_attempt_on', ''), r.get('first_seen', r.get('requested_on', '')), r['source_url'])):
+    for row in sorted(rows, key=lambda r: (r['state'] != 'recommended', r.get('last_attempt_on', ''), r.get('first_seen', r.get('requested_on', '')), r['source_url'])):
         url = canonicalize_url(row['source_url'])
         s = source_for(url, settings['sources'])
         if not s or not s['enabled'] or url in published or url in held or row['state'] not in ACTIVE:

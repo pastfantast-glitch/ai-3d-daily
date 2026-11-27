@@ -11,7 +11,7 @@ class QueueTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmp:
             root=Path(tmp);(root/'config').mkdir();(root/'data/ops').mkdir(parents=True)
             (root/'config/collection-intake.json').write_text(json.dumps({'items':[{'source_url':'https://80.lv/articles/z-new','requested_on':'2026-11-27'}]}))
-            (root/'data/ops/collection-monitor.json').write_text(json.dumps({'date':'2026-11-27','articles':[{'source_url':'https://80.lv/articles/a-old','errors':['awaiting-editorial-review']}]}))
+            (root/'data/ops/collection-monitor.json').write_text(json.dumps({'date':'2026-11-27','articles':[{'source_url':'https://80.lv/articles/a-old','errors':['awaiting-editorial-review']},{'source_url':'https://80.lv/articles/b-deferred','state':'discovered','errors':['article-budget-deferred']}]}))
             result=pending_seeds(root,'2026-11-27',{'sources':[{'id':'80-level','base_url':'https://80.lv','enabled':True}]},set(),limit=1)
             self.assertEqual(result,{'80-level':[('https://80.lv/articles/z-new','')]})
 
