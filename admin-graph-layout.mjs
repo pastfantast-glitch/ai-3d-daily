@@ -47,3 +47,9 @@ export function arrangedNodes(nodes,links,selected,locked){
   for(const r of [...columns.keys()].sort((a,b)=>a-b)){let y=origin.y;for(const n of columns.get(r).filter(n=>targets.includes(n))){const x=origin.x+(r-minRank)*390;let collision;do{collision=obstacles.find(o=>x<o.x+o.width+24&&x+n.width+24>o.x&&y<o.y+o.height+30&&y+n.height+30>o.y);if(collision)y=collision.y+collision.height+50;}while(collision);out.push([n.key,{x,y}]);obstacles.push({...n,x,y});y+=n.height+60;}}
   return out;
 }
+
+export async function boundedLayoutRequest(run,timeoutMs=15000){
+  const controller=new AbortController();let timer;
+  try{return await Promise.race([Promise.resolve().then(()=>run(controller.signal)),new Promise((_,reject)=>{timer=setTimeout(()=>{controller.abort();reject(Error('版面服務回應逾時，儲存結果尚未確認；請重新載入帳號版面確認後再操作。'));},timeoutMs);})]);}
+  finally{clearTimeout(timer);}
+}

@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {layoutDocument,layoutStore,movedNodes,alignedNodes,arrangedNodes} from './admin-graph-layout.mjs';
+import {boundedLayoutRequest,layoutDocument,layoutStore,movedNodes,alignedNodes,arrangedNodes} from './admin-graph-layout.mjs';
 const node=(key,x,y,width=100)=>({key,x,y,width,height:100});
 const doc=()=>({schema:3,positions:[['source:a',{x:-300,y:400}]],camera:{x:-100,y:10,zoom:.8},mode:'configuration',navigation:{locks:['source:a'],views:[],groups:[{name:'群組',ids:['source:a']}]}});
 test('layout payload strips settings and credentials and rejects corrupt positions',()=>{
@@ -33,4 +33,9 @@ test('account save restores across new sessions and conflicts cannot silently ov
   await assert.rejects(()=>b.save(doc()),/conflict/);assert.equal(remote.revision,1);
   const afterLogin=layoutStore(rpc);assert.deepEqual((await afterLogin.load()).layout,layoutDocument(doc()));assert.equal(afterLogin.dirty(doc()),false);
   assert.ok(calls.every(x=>['get_admin_graph_layout','save_admin_graph_layout'].includes(x)));
+});
+
+test('a stalled transport has a bounded failure and aborts the request',async()=>{
+ let signal;await assert.rejects(()=>boundedLayoutRequest(s=>{signal=s;return new Promise(()=>{});},10),/尚未確認/);assert.equal(signal.aborted,true);
+ assert.deepEqual(await boundedLayoutRequest(async()=>({revision:3}),100),{revision:3});
 });
