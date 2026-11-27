@@ -1,5 +1,5 @@
 const $=s=>document.querySelector(s),el=(tag,text)=>{const e=document.createElement(tag);if(text!==undefined)e.textContent=text;return e;};
-const labels={published:'已發布',awaiting_review:'等待逐篇審稿',recheck_required:'已審，使用前待複核',recommended:'已推薦，等待收集',discovered:'已發現，等待正文擷取',source_unavailable:'正文暫時無法讀取',rejected:'需處理退件原因',held:'已暫緩',date_ineligible:'來源日期超過收錄範圍',not_discovered:'尚無發現紀錄',unregistered:'尚未加入資訊池',source_disabled:'來源已停用'};
+const labels={unknown:'紀錄不完整，尚無法判定',published:'已發布',awaiting_review:'等待逐篇審稿',recheck_required:'已審，使用前待複核',recommended:'已推薦，等待收集',discovered:'已發現，等待正文擷取',source_unavailable:'正文暫時無法讀取',rejected:'需處理退件原因',held:'已暫緩',date_ineligible:'來源日期超過收錄範圍',not_discovered:'尚無發現紀錄',unregistered:'尚未加入資訊池',source_disabled:'來源已停用'};
 export function mountIntake(api,notify,refresh){
  const form=el('form'),input=el('input'),search=el('button','查詢收錄狀態'),out=el('div');
  form.className='panel';input.type='url';input.required=true;input.placeholder='貼上文章 HTTPS 網址';input.setAttribute('aria-label','查詢或推薦文章網址');search.type='submit';out.setAttribute('role','status');
