@@ -1,10 +1,11 @@
-import {mountStudio} from './admin-studio.mjs?v=20261127-categories1';
-import {mountGraph} from './admin-graph.js?v=20261127-categories1';
-import {validateGraphDraft} from './admin-graph-model.mjs?v=20261127-categories1';
-import {mountOperations} from './admin-operations.js?v=20261127-categories1';
+import {mountLayoutStorage} from './admin-graph-storage.mjs?v=20261127-layout1';
+import {mountStudio} from './admin-studio.mjs?v=20261127-layout1';
+import {mountGraph} from './admin-graph.js?v=20261127-layout1';
+import {validateGraphDraft} from './admin-graph-model.mjs?v=20261127-layout1';
+import {mountOperations} from './admin-operations.js?v=20261127-layout1';
 import {createClient} from 'https://esm.sh/@supabase/supabase-js@2.116.0?bundle';
-import {validateGraphSettings as validateSettings} from './admin-graph-model.mjs?v=20261127-categories1';
-import {projectSettings,unprojectSettings,categoryItems,BUILTINS} from './category-model.mjs?v=20261127-categories1';
+import {validateGraphSettings as validateSettings} from './admin-graph-model.mjs?v=20261127-layout1';
+import {projectSettings,unprojectSettings,categoryItems,BUILTINS} from './category-model.mjs?v=20261127-layout1';
 import {sourceInventory} from './admin-source-state.mjs';
 const base='https://epumcdxfkcujulqrcjrw.supabase.co',key='sb_publishable_KPadXg3RKth3SGsAuXzebA_OylGgtpf';
 const auth=createClient(base,key,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:false}});
@@ -21,7 +22,7 @@ async function api(op,body={}){
   let response;try{response=await fetch(`${base}/functions/v1/collection-admin`,{method:'POST',headers:{apikey:key,Authorization:`Bearer ${session.access_token}`,'Content-Type':'application/json'},body:JSON.stringify({op,...body}),signal:AbortSignal.timeout(op==='probe'?90000:45000)});}catch{throw new Error('無法連線管理服務，請稍後重試；尚未確認儲存成功。');}
   const data=await response.json();if(!response.ok){if(data.error==='version_conflict')studio?.checkRemote();throw new Error(messages[data.error]||data.message||`操作未完成（${data.error||response.status}）`);}if(data.settings)data.settings=projectSettings(data.settings);if(data.validation?.draft)data.validation.draft=projectSettings(data.validation.draft);return data;
 }
-let graphDirty=false,savedSettings=null,currentView='graph',operationsData=null,studio=null;
+let graphDirty=false,savedSettings=null,currentView='graph',operationsData=null,studio=null,layoutView=null,leaving=false;
 const operationsView=mountOperations(api,notify,data=>{operationsData=data;if(settings)render();else updateGraph();},row=>studio.showArticle(row));
 const graphView=mountGraph({
   onChange:next=>{if(busy){notify('正在儲存，請稍候再修改。');return;}try{validateGraphDraft(next);settings=next;graphDirty=JSON.stringify(settings)!==JSON.stringify(savedSettings);render();}catch(e){notify(e.message,true);updateGraph();}},
@@ -29,18 +30,19 @@ const graphView=mountGraph({
   onSave:async()=>{if(busy||!graphDirty)return;busy=true;updateGraph();try{await save(settings);}catch(e){notify(e.message,true);}finally{busy=false;updateGraph();}},
   onDiscard:()=>{if(!confirm('捨棄尚未儲存的畫布變更？已儲存的待驗證版本不受影響。'))return;settings=structuredClone(savedSettings);graphDirty=false;closeEditor();render();notify('已捨棄本機變更。');},
   onValidation:()=>studio.open('validation'),
-  onView:view=>studio.open(view),notify
+  onLayoutChange:()=>layoutView?.changed(),onView:view=>studio.open(view),notify
 });
+layoutView=mountLayoutStorage({auth,graph:graphView,notify});
 function setDraft(next){if(busy)throw Error('正在儲存，請稍後再修改。');validateGraphDraft(next);settings=structuredClone(next);graphDirty=JSON.stringify(settings)!==JSON.stringify(savedSettings);render();}
 studio=mountStudio({api,notify,onCloseEditor:closeEditor,getState:()=>({settings,activeSettings,savedSettings,sha,pendingSha,validation,monitor,operations:operationsData,dirty:graphDirty}),onDraft:setDraft,onRemote:(data,merged)=>{activeSettings=data.settings;validation=data.validation;savedSettings=structuredClone(validation?.draft||activeSettings);settings=structuredClone(merged||savedSettings);sha=data.sha;head=data.head;pendingSha=data.pending_sha;monitor=data.monitor;metrics=data.metrics;graphDirty=JSON.stringify(settings)!==JSON.stringify(savedSettings);render();}});
 function updateGraph(){if(settings)graphView.update({settings,activeSettings,validation,metrics,monitor,operations:operationsData,dirty:graphDirty,busy,version:sha+":"+pendingSha,storageKey:"ai3d.graph.v1:"+(session?.user?.id||"owner")});}
-window.addEventListener('beforeunload',e=>{if(graphDirty){e.preventDefault();e.returnValue='';}});
+window.addEventListener('beforeunload',e=>{if(!leaving&&(graphDirty||layoutView?.dirty)){e.preventDefault();e.returnValue='';}});
 function closeEditor(){if($('#graph-inline-editor').contains($('#editor-form')))$('#editor').append($('#editor-form'));$('#editor').close();studio?.resetEditor();graphView.refreshInspector();}
 
 async function load({preserveDirty=false}={}){
   if(graphDirty&&!preserveDirty&&!confirm('重新載入將捨棄尚未儲存的畫布變更，是否繼續？'))return;
   const data=await api('load');activeSettings=data.settings;validation=data.validation;settings=structuredClone(validation?.draft||activeSettings);savedSettings=structuredClone(settings);graphDirty=false;sha=data.sha;head=data.head;pendingSha=data.pending_sha;metrics=data.metrics;monitor=data.monitor;
-  $('#workspace').hidden=false;$('#login-panel').hidden=true;$('#logout').hidden=false;$('#account-state').textContent='站主管理';$('#graph-view').hidden=false;$('#overview-view').hidden=true;render();await operationsView.refresh();
+  $('#workspace').hidden=false;$('#login-panel').hidden=true;$('#logout').hidden=false;$('#account-state').textContent='站主管理';$('#graph-view').hidden=false;$('#overview-view').hidden=true;render();await Promise.all([layoutView.start(),operationsView.refresh()]);
 }
 function button(text,action){const b=el('button',text);b.type='button';b.onclick=()=>action().catch(e=>notify(e.message,true));return b;}
 async function save(next){if(studio.hasConflict())throw Error('請先比較並處理遠端版本衝突。');validateSettings(next);const result=await api('save',{sha,pending_sha:pendingSha,settings:next});await load({preserveDirty:true});studio.announce();notify(result.message);return result;}
@@ -111,7 +113,7 @@ $('#source-search').oninput=render;$('#source-status').onchange=render;
 $('#reload').onclick=()=>{if(!studio.canLeaveEditor())return;closeEditor();load().catch(e=>notify(e.message,true));};
 document.querySelectorAll('[data-view]').forEach(b=>b.onclick=()=>{if(!studio.canLeaveEditor())return;closeEditor();document.querySelectorAll('[data-view]').forEach(x=>x.removeAttribute('aria-current'));b.setAttribute('aria-current','page');$('#view-title').textContent='圖形工作區';$('#graph-view').hidden=false;if(b.dataset.view==='graph')studio.hide();else studio.open(b.dataset.view);});
 $('#login-form').onsubmit=async e=>{e.preventDefault();const f=new FormData(e.target),button=e.submitter;button.disabled=true;try{const r=await auth.auth.signInWithPassword({email:String(f.get('email')),password:String(f.get('password'))});e.target.password.value='';if(r.error)throw new Error('登入失敗，請確認帳號與密碼。');await load();notify('已登入站主後臺。');}catch(e){notify(e.message,true);}finally{button.disabled=false;}};
-$('#logout').onclick=async()=>{if(!studio.canLeaveEditor())return;if(graphDirty&&!confirm('登出將捨棄未儲存的畫布變更，是否繼續？'))return;graphDirty=false;closeEditor();await auth.auth.signOut();location.reload();};
+$('#logout').onclick=async()=>{if(!studio.canLeaveEditor())return;if((graphDirty||layoutView.dirty)&&!confirm('還有未儲存的設定或版面，確定登出？'))return;leaving=true;graphDirty=false;closeEditor();await auth.auth.signOut();location.reload();};
 try{const r=await auth.auth.getSession();if(r.data.session)await load();}catch(e){notify(e.message,true);}
 
 async function previewCategory(id){
