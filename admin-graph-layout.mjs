@@ -53,3 +53,10 @@ export async function boundedLayoutRequest(run,timeoutMs=15000){
   try{return await Promise.race([Promise.resolve().then(()=>run(controller.signal)),new Promise((_,reject)=>{timer=setTimeout(()=>{controller.abort();reject(Error('版面服務回應逾時，儲存結果尚未確認；請重新載入帳號版面確認後再操作。'));},timeoutMs);})]);}
   finally{clearTimeout(timer);}
 }
+
+// Screen-pixel threshold is independent of zoom. Hold the chosen axis until Shift releases.
+export function axisDrag(dx,dy,shift,axis=null){
+ if(!shift)return {dx,dy,axis:null};
+ if(!axis&&Math.hypot(dx,dy)>=5)axis=Math.abs(dx)>=Math.abs(dy)?'x':'y';
+ return {dx:axis==='y'?0:dx,dy:axis==='x'?0:dy,axis};
+}

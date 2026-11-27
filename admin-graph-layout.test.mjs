@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {boundedLayoutRequest,layoutDocument,layoutStore,movedNodes,alignedNodes,arrangedNodes} from './admin-graph-layout.mjs';
+import {axisDrag,boundedLayoutRequest,layoutDocument,layoutStore,movedNodes,alignedNodes,arrangedNodes} from './admin-graph-layout.mjs';
 const node=(key,x,y,width=100)=>({key,x,y,width,height:100});
 const doc=()=>({schema:3,positions:[['source:a',{x:-300,y:400}]],camera:{x:-100,y:10,zoom:.8},mode:'configuration',navigation:{locks:['source:a'],views:[],groups:[{name:'群組',ids:['source:a']}]}});
 test('layout payload strips settings and credentials and rejects corrupt positions',()=>{
@@ -38,4 +38,15 @@ test('account save restores across new sessions and conflicts cannot silently ov
 test('a stalled transport has a bounded failure and aborts the request',async()=>{
  let signal;await assert.rejects(()=>boundedLayoutRequest(s=>{signal=s;return new Promise(()=>{});},10),/尚未確認/);assert.equal(signal.aborted,true);
  assert.deepEqual(await boundedLayoutRequest(async()=>({revision:3}),100),{revision:3});
+});
+
+test('Shift chooses a stable axis, releases freely and can engage mid-drag',()=>{
+ assert.deepEqual(axisDrag(2,1,true),{dx:2,dy:1,axis:null});
+ assert.deepEqual(axisDrag(40,10,true),{dx:40,dy:0,axis:'x'});
+ assert.deepEqual(axisDrag(41,200,true,'x'),{dx:41,dy:0,axis:'x'});
+ assert.deepEqual(axisDrag(41,200,false,'x'),{dx:41,dy:200,axis:null});
+ assert.deepEqual(axisDrag(41,200,true),{dx:0,dy:200,axis:'y'});
+ assert.deepEqual(axisDrag(-100,-20,true),{dx:-100,dy:0,axis:'x'});
+ const nodes=[node('source:a',-100,40),node('source:b',40,50),node('source:c',300,30)];const ids=new Set(nodes.map(n=>n.key)),d=axisDrag(60,180,true);
+ assert.deepEqual(movedNodes(nodes,ids,k=>k==='source:c',d.dx/.5,d.dy/.5),[['source:a',{x:-100,y:400}],['source:b',{x:40,y:410}]]);
 });

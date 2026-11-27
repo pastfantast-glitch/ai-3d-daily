@@ -1,4 +1,4 @@
-import {layoutStore,boundedLayoutRequest} from './admin-graph-layout.mjs?v=20261127-layout2';
+import {layoutStore,boundedLayoutRequest} from './admin-graph-layout.mjs?v=20261127-toolbar1';
 export function mountLayoutStorage({auth,graph,notify}){
   const status=document.querySelector('#graph-layout-state'),save=document.querySelector('#graph-layout-save'),reload=document.querySelector('#graph-layout-reload');
   let started=false,loading=false,saving=false,updated=null,error='',restoring=false;
