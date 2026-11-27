@@ -1,10 +1,10 @@
 import {BUILTINS} from './category-model.mjs';
-import {saveControl} from './admin-category-state.mjs?v=20261127-select1';
-import {axisDrag,layoutDocument,movedNodes,alignedNodes,arrangedNodes} from './admin-graph-layout.mjs?v=20261127-select1';
-import {mountGraphTools} from './admin-graph-tools.mjs?v=20261127-select1';
-import {connectTopic,moveConnection,connectionState,stageData} from './admin-graph-model.mjs?v=20261127-select1';
-import {zoomAt,fitNodes,workspaceState,editHistory,changeSummary} from './admin-graph-workspace.mjs?v=20261127-select1';
-import {createGraphDetails} from './admin-graph-details.mjs?v=20261127-select1';
+import {saveControl} from './admin-category-state.mjs?v=20261127-drag1';
+import {axisDrag,layoutDocument,movedNodes,alignedNodes,arrangedNodes} from './admin-graph-layout.mjs?v=20261127-drag1';
+import {mountGraphTools} from './admin-graph-tools.mjs?v=20261127-drag1';
+import {connectTopic,moveConnection,connectionState,stageData} from './admin-graph-model.mjs?v=20261127-drag1';
+import {zoomAt,fitNodes,workspaceState,editHistory,changeSummary} from './admin-graph-workspace.mjs?v=20261127-drag1';
+import {createGraphDetails} from './admin-graph-details.mjs?v=20261127-drag1';
 const el=(tag,text,cls)=>{const e=document.createElement(tag);if(text!==undefined)e.textContent=text;if(cls)e.className=cls;return e;};
 const svgEl=tag=>document.createElementNS('http://www.w3.org/2000/svg',tag);
 export function mountGraph({onChange,onEdit,onAdd,onDeleteCategory,onSave,onDiscard,onView,onValidation,onLayoutChange,onLeaveEditor,notify}) {
@@ -66,10 +66,10 @@ export function mountGraph({onChange,onEdit,onAdd,onDeleteCategory,onSave,onDisc
     emphasize();paintEdges();renderInspector();renderHint();persist();
   }
   function connect(source,topic,connected=true){if(data.busy)return;if($('#graph-inline-editor').contains(document.querySelector('#editor-form'))){notify('請先完成或取消右側節點編輯。');return;}try{const next=connectTopic(data.settings,source,topic,connected);armed=null;selectedWire=null;applyDraft(next);notify(connected?'連線已加入草稿，儲存並驗證後才能套用。':'連線已移出草稿，現行設定保持不變。');}catch(e){notify(e.message,true);renderInspector();}renderHint();}
-  function renderHint(){$('#graph-hint').textContent=selectedWire?'已選取連線：拖曳分類端接點改接，放到空白處可斷線；也可按 Delete 或右側「移除連線」。只修改草稿，可復原。':armed?`已選取「${data.settings.sources.find(s=>s.id===armed)?.name}」；點分類的輸入接點完成連線，Esc 取消。`:'點擊卡片選取節點，點擊空白處取消選取。滾輪以游標為中心縮放；空白處、中鍵或空白鍵＋拖曳平移。Shift＋拖曳空白處框選，Shift＋點擊增減選取；Shift＋拖曳節點限制水平／垂直，放開恢復自由移動。拖曳選取節點標題整組移動，固定節點不動。拖曳來源接點到分類接線。點選連線後按 Delete 移除。';}
+  function renderHint(){$('#graph-hint').textContent=selectedWire?'已選取連線：拖曳分類端接點改接，放到空白處可斷線；也可按 Delete 或右側「移除連線」。只修改草稿，可復原。':armed?`已選取「${data.settings.sources.find(s=>s.id===armed)?.name}」；點分類的輸入接點完成連線，Esc 取消。`:'點擊卡片選取節點，點擊空白處取消選取。滾輪以游標為中心縮放；空白處、中鍵或空白鍵＋拖曳平移。Shift＋拖曳空白處框選，Shift＋點擊增減選取；Shift＋拖曳節點限制水平／垂直，放開恢復自由移動。拖曳節點卡片的外框、背景或文字整組移動，固定節點不動。拖曳來源接點到分類接線。點選連線後按 Delete 移除。';}
   function node(n,title,subtitle,status,kind){const box=el('article',undefined,'graph-node '+kind);box.dataset.key=n.key;box.style.left=n.x+'px';box.style.top=n.y+'px';box.style.width=n.width+'px';
     box.onclick=e=>{const control=e.target.closest('button,a,input,select,textarea,[contenteditable]');if(control&&!control.classList.contains('graph-node-title'))return;if(!clickBlocked&&!spaceHeld&&!data.busy)select(n.key,e.shiftKey);};
-    const heading=action(title,()=>{},'graph-node-title');heading.setAttribute('aria-label','選取'+title);heading.onpointerdown=e=>{if(e.button!==0||data.busy||editing()||spaceHeld)return;clickBlocked=false;if(!e.shiftKey&&!selection.has(n.key))select(n.key);if(navigation.locked(n.key))return;gesture={kind:'node',capture:heading,id:e.pointerId,n,startX:e.clientX,startY:e.clientY,shiftClick:e.shiftKey,started:false,axis:null,dx:0,dy:0,allStarts:[...visible,...stageNodes].map(x=>({...x}))};heading.setPointerCapture(e.pointerId);};
+    const heading=action(title,()=>{},'graph-node-title');heading.setAttribute('aria-label','選取'+title);box.onpointerdown=e=>{const control=e.target.closest('button,a,input,select,textarea,[contenteditable]');if(control&&!control.classList.contains('graph-node-title'))return;if(e.button!==0||data.busy||editing()||spaceHeld)return;clickBlocked=false;if(!e.shiftKey&&!selection.has(n.key))select(n.key);if(navigation.locked(n.key))return;gesture={kind:'node',capture:box,id:e.pointerId,n,startX:e.clientX,startY:e.clientY,shiftClick:e.shiftKey,started:false,axis:null,dx:0,dy:0,allStarts:[...visible,...stageNodes].map(x=>({...x}))};box.setPointerCapture(e.pointerId);};
     heading.onkeydown=e=>{if(!data.busy&&!editing()&&e.altKey&&['ArrowLeft','ArrowRight','ArrowUp','ArrowDown'].includes(e.key)){e.preventDefault();if(!selection.has(n.key))select(n.key);applyPositions(movedNodes([...visible,...stageNodes],selection,navigation.locked,e.key==='ArrowLeft'?-24:e.key==='ArrowRight'?24:0,e.key==='ArrowUp'?-24:e.key==='ArrowDown'?24:0));remember();}};
     box.append(el('span',kind==='source'?'來源':kind==='topic'?'分類與分頁':'固定流程','graph-kind'),heading,el('p',subtitle),el('small',status));box.classList.toggle('selected',selected===n.key);nodes.append(box);return box;
   }
