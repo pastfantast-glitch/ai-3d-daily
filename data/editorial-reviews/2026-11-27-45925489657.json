@@ -1,0 +1,234 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-27",
+  "reviewer": "chatgpt-scheduled-task",
+  "purpose": "reserve",
+  "source_run_id": 45925489657,
+  "source_head_sha": "37b9700acf3369701d406db9febb47fab0c830e2",
+  "items": {
+    "80-level-embergen-2-alpha-is-finally-here-a9bb6c1ad3cb65fe": {
+      "content_kind": "news",
+      "title": "EmberGen 2 Alpha 開放三大桌面平台，仍限有效維護授權使用",
+      "summary": "JangaFX 推出重新打造的 EmberGen 2 Alpha，提供 Windows、macOS 與 Linux 版本；這仍是早期開發版本，功能尚未追上 1.x，初期存取也要求有效的授權維護。",
+      "full_analysis": [
+        {
+          "angle": "workflow_or_technical_change",
+          "label": "重建後的三平台版本",
+          "text": "EmberGen 2.0 以從頭重建的方式開發，這次釋出的是 Alpha，涵蓋 Windows、macOS 與 Linux。下載時須在官方版本選單選擇 Alpha，不能把它與既有正式版本混為一談。",
+          "evidence_refs": [
+            "p002",
+            "p004"
+          ]
+        },
+        {
+          "angle": "production_impact",
+          "label": "體積特效工作與授權入口",
+          "text": "EmberGen 的既有用途是以 GPU 即時模擬及渲染火焰、煙霧與爆炸等特效。此次新版本初期只向授權維護仍有效的使用者開放；推論：能否取得測試版本，需先確認維護資格。",
+          "evidence_refs": [
+            "p003",
+            "p005"
+          ]
+        },
+        {
+          "angle": "test_risk_or_limit",
+          "label": "尚不能視為正式製作版本",
+          "text": "報導明確指出這是早期開發組建，預期仍有錯誤與穩定性問題，也尚未具備 1.x 的全部功能。三平台釋出不代表功能已齊備，亦不能據此宣稱新版本效能或專案相容性已獲驗證。",
+          "evidence_refs": [
+            "p003"
+          ]
+        }
+      ],
+      "source_url": "https://80.lv/articles/embergen-2-alpha-is-finally-here",
+      "source_published_at": "2026-11-26",
+      "source_evidence_sha256": "6092b34ac7346e7f6351c01065deb4187945b0292777540cdc10eccd1cb99c9a",
+      "reviewed_on": "2026-11-27",
+      "evidence_refs": [
+        "p002",
+        "p004",
+        "p003",
+        "p005"
+      ],
+      "analysis_level": "BRIEF",
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p002",
+          "p004",
+          "p003",
+          "p005"
+        ]
+      }
+    },
+    "tripo3d-codex-tripo-studio-mcp-93940ee06ee27e91": {
+      "content_kind": "practice",
+      "title": "Tripo 場景教學：逐物件生成，再由 Codex 組裝到 Blender",
+      "summary": "Tripo 官方教學示範以參考圖拆出多個物件，透過 Studio MCP 生成帶紋理模型，再在 Blender 組裝。案例也遇到重複桌面物件，須先確認網格修復方式，不能只靠剛性變換完成。",
+      "full_analysis": [
+        {
+          "angle": "workflow_or_technical_change",
+          "label": "分拆生成與場景組裝",
+          "text": "教學流程先由 Codex 拆分參考圖，為各物件提交 Tripo 生成任務並等待完成，再切換到 Blender 擺放模型。前提包括有可用點數的 Studio 帳號、Codex，以及已安裝 MCP for Blender 的 Blender。",
+          "evidence_refs": [
+            "p002",
+            "p003",
+            "p025"
+          ]
+        },
+        {
+          "angle": "production_impact",
+          "label": "遇到重複物件時保留既有資產",
+          "text": "案例原先限定以平移、旋轉與等比縮放組裝，但生成模型出現重複桌面擺設，因而詢問修復方式。教學提出允許分離網格並清理現有資產，讓組裝可沿用已付費模型，不必重新生成。",
+          "evidence_refs": [
+            "p027",
+            "p028",
+            "p029",
+            "p030"
+          ]
+        },
+        {
+          "angle": "test_risk_or_limit",
+          "label": "來源圖與檔案保存的限制",
+          "text": "教學提醒重疊或遮擋的物件較難分離，參考圖應有清楚布局。MCP 任務與網頁使用相同點數池；生成模型不會出現在網頁資產庫，下載連結有效期短，因此需自行保存模型與 Blender 檔案。",
+          "evidence_refs": [
+            "p008",
+            "p022",
+            "p024",
+            "p033",
+            "p034"
+          ]
+        }
+      ],
+      "source_url": "https://www.tripo3d.ai/zh/tutorials/codex-tripo-studio-mcp",
+      "source_published_at": "2026-11-26",
+      "source_evidence_sha256": "9f7751d74cf2e876cf578ff3eb235711a1f221ee6e7528716c4009c76270a1f2",
+      "reviewed_on": "2026-11-27",
+      "evidence_refs": [
+        "p002",
+        "p003",
+        "p025",
+        "p027",
+        "p028",
+        "p029",
+        "p030",
+        "p008",
+        "p022",
+        "p024",
+        "p033",
+        "p034"
+      ],
+      "analysis_level": "BRIEF",
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p002",
+          "p003",
+          "p025",
+          "p027",
+          "p028",
+          "p029",
+          "p030",
+          "p008",
+          "p022",
+          "p024",
+          "p033",
+          "p034"
+        ]
+      }
+    },
+    "blendernation-dogwalk-for-visionos-blender-studio-releases-the-appl-dab1936796d8a6ec": {
+      "content_kind": "news",
+      "title": "DOGWALK 公開 visionOS 原始碼，展示 Godot 的沉浸桌面體驗",
+      "summary": "Blender Studio 公開 DOGWALK 的 visionOS 版本原始碼，供使用者免費下載並自行執行；報導也介紹 Apple 的 Godot 外掛，以 RealityKit 渲染並支援沉浸式與體積相機模式。",
+      "full_analysis": [
+        {
+          "angle": "workflow_or_technical_change",
+          "label": "從展示案例到可取得的程式碼",
+          "text": "DOGWALK 是 Godot 遊戲，visionOS 版本曾於 WWDC26 展示在 Apple Vision Pro 上的沉浸式桌面體驗。這次公開原始碼，讓開發者可以下載並自行執行該平台版本。",
+          "evidence_refs": [
+            "p001",
+            "p004",
+            "p005"
+          ]
+        },
+        {
+          "angle": "production_impact",
+          "label": "Godot 與 RealityKit 的連接參考",
+          "text": "報導另指向 Apple GitHub 上的 Godot 外掛，以 RealityKit 渲染遊戲，支援沉浸式體驗及體積相機模式。推論：DOGWALK 原始碼與此外掛可作為研究 Godot 轉入 visionOS 的具體參考。",
+          "evidence_refs": [
+            "p007",
+            "p009"
+          ]
+        },
+        {
+          "angle": "test_risk_or_limit",
+          "label": "公開案例不等於任意專案皆可移植",
+          "text": "文章提供可執行原始碼與外掛模式說明，但未列出效能量測、完整相容性清單或商用授權條件。免費下載只能確認取得成本，不能延伸為任意 Godot 專案都能直接移植的保證。",
+          "evidence_refs": [
+            "p001",
+            "p005",
+            "p007",
+            "p008",
+            "p009"
+          ]
+        }
+      ],
+      "source_url": "https://www.blendernation.com/2026/11/26/dogwalk-for-visionos-blender-studio-releases-the-apple-vision-pro-source-code",
+      "source_published_at": "2026-11-26",
+      "source_evidence_sha256": "0886e44e43032ac63ec1d80850468e76b2bbbd60f5a773bf0c8d945a783a0098",
+      "reviewed_on": "2026-11-27",
+      "evidence_refs": [
+        "p001",
+        "p004",
+        "p005",
+        "p007",
+        "p009",
+        "p008"
+      ],
+      "analysis_level": "BRIEF",
+      "review": {
+        "approved": true,
+        "method": "second-pass-source-check",
+        "checks": {
+          "faithful_to_source": true,
+          "dates_and_versions_correct": true,
+          "traditional_chinese_clear": true,
+          "source_specific": true,
+          "inferences_labeled": true,
+          "evidence_sufficient": true
+        },
+        "issues": [],
+        "unsupported_claims": [],
+        "evidence_refs": [
+          "p001",
+          "p004",
+          "p005",
+          "p007",
+          "p009",
+          "p008"
+        ]
+      }
+    }
+  }
+}
